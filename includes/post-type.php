@@ -1,9 +1,9 @@
 <?php
 
-class DT_Starter_Post_Type {
+class DT_Prayer_Post_Type {
 
     // Setup post type naming
-    public $post_type = 'starter_post_type';
+    public $post_type = 'prayer_subscription';
     public $single = 'Starter';
     public $plural = 'Starters';
 
@@ -452,4 +452,4 @@ class DT_Starter_Post_Type {
         return $fields;
     }
 }
-DT_Starter_Post_Type::instance();
+DT_Prayer_Post_Type::instance();

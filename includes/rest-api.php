@@ -4,7 +4,7 @@
  */
 
 
-class DT_Starter_Plugin_Endpoints
+class DT_Prayer_Endpoints
 {
     public $permissions = [ 'view_any_contacts', 'view_project_metrics' ];
 
@@ -33,7 +33,7 @@ class DT_Starter_Plugin_Endpoints
 
     //See https://github.com/DiscipleTools/disciple-tools-theme/wiki/Site-to-Site-Link for outside of wordpress authentication
     public function add_api_routes() {
-        $namespace = 'dt_starter_plugin/v1';
+        $namespace = 'dt_prayer/v1';
 
         register_rest_route(
             $namespace, '/endpoint', [
@@ -56,4 +56,4 @@ class DT_Starter_Plugin_Endpoints
         return true;
     }
 }
-DT_Starter_Plugin_Endpoints::instance();
+DT_Prayer_Endpoints::instance();

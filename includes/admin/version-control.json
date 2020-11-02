@@ -1,9 +1,9 @@
 {
-  "name": "Disciple Tools - Starter Plugin",
+  "name": "Disciple Tools - Prayer Subscription",
   "version": "0.1.0",
-  "download_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/releases/latest/download/disciple-tools-starter-plugin.zip",
+  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer/releases/latest/download/disciple-tools-dt-prayer.zip",
   "sections": {
-    "description": "Disciple Tools - Starter Plugin.",
+    "description": "Disciple Tools - Prayer Subscription.",
     "installation": "(Required) You must have Disciple.Tools Theme installed before using this plugin. Once Disciple.Tools is installed, you can use the normal Plugin system to install the plugin.",
     "changelog": ""
   },
@@ -17,10 +17,10 @@
   },
   "author": "Disciple Tools",
   "author_homepage": "https://disciple.tools",
-  "homepage": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template",
-  "issues_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/issues",
-  "projects_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/projects",
-  "wiki_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/wiki",
-  "license_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/blob/master/LICENSE",
-  "readme_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/blob/master/README.md"
+  "homepage": "https://github.com/DiscipleTools/disciple-tools-prayer",
+  "issues_url": "https://github.com/DiscipleTools/disciple-tools-prayer/issues",
+  "projects_url": "https://github.com/DiscipleTools/disciple-tools-prayer/projects",
+  "wiki_url": "https://github.com/DiscipleTools/disciple-tools-prayer/wiki",
+  "license_url": "https://github.com/DiscipleTools/disciple-tools-prayer/blob/master/LICENSE",
+  "readme_url": "https://github.com/DiscipleTools/disciple-tools-prayer/blob/master/README.md"
 }
