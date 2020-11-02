@@ -1,0 +1,26 @@
+{
+  "name": "Disciple Tools - Starter Plugin",
+  "version": "0.1.0",
+  "download_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/releases/latest/download/disciple-tools-starter-plugin.zip",
+  "sections": {
+    "description": "Disciple Tools - Starter Plugin.",
+    "installation": "(Required) You must have Disciple.Tools Theme installed before using this plugin. Once Disciple.Tools is installed, you can use the normal Plugin system to install the plugin.",
+    "changelog": ""
+  },
+  "last_updated": "2020-1-24",
+  "upgrade_notice": "Here's why you should upgrade...",
+  "requires": "4.7",
+  "tested": "5.5.1",
+  "banners": {
+    "low": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-version-control/master/images/dt-placeholder-772x250.jpg",
+    "high": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-version-control/master/images/dt-placeholder-1544x500.jpg"
+  },
+  "author": "Disciple Tools",
+  "author_homepage": "https://disciple.tools",
+  "homepage": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template",
+  "issues_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/issues",
+  "projects_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/projects",
+  "wiki_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/wiki",
+  "license_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/blob/master/LICENSE",
+  "readme_url": "https://github.com/DiscipleTools/disciple-tools-starter-plugin-template/blob/master/README.md"
+}
