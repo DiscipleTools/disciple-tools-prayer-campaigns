@@ -4,8 +4,8 @@ class DT_Prayer_Post_Type {
 
     // Setup post type naming
     public $post_type = 'prayer_subscription';
-    public $single = 'Starter';
-    public $plural = 'Starters';
+    public $single = 'Prayer';
+    public $plural = 'Prayers';
 
     private static $_instance = null;
     public static function instance() {
