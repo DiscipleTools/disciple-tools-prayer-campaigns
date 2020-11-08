@@ -17,38 +17,14 @@
  *          https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-/*******************************************************************
- * Using the Prayer Subscription
- * The Disciple Tools starter plugin is intended to accelerate integrations and extensions to the Disciple Tools system.
- * This basic plugin starter has some of the basic elements to quickly launch and extension project in the pattern of
- * the Disciple Tools system.
- */
-
-/**
- * Refactoring (renaming) this plugin as your own:
- * 1. @todo Refactor all occurrences of the name DT_Prayer, dt_prayer, dt-prayer, dt-prayer, prayer, prayer_subscription, and Prayer Subscription
- * 2. @todo Rename the `disciple-tools-dt-prayer.php and menu-and-tabs.php files.
- * 3. @todo Update the README.md and LICENSE
- * 4. @todo Update the default.pot file if you intend to make your plugin multilingual. Use a tool like POEdit
- * 5. @todo Change the translation domain to in the phpcs.xml your plugin's domain: @todo
- * 6. @todo Replace the 'sample' namespace in this and the rest-api.php files
- */
-
-/**
- * The starter plugin is equipped with:
- * 1. Wordpress style requirements
- * 2. Travis Continuous Integration
- * 3. Disciple Tools Theme presence check
- * 4. Remote upgrade system for ongoing updates outside the Wordpress Directory
- * 5. Multilingual ready
- * 6. PHP Code Sniffer support (composer) @use /vendor/bin/phpcs and /vendor/bin/phpcbf
- * 7. Starter Admin menu and options page with tabs.
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+require_once( 'includes/rewrite-rules.php');
+
 $dt_prayer_required_dt_theme_version = '0.28.0';
+
 
 /**
  * Gets the instance of the `DT_Prayer` class.
@@ -190,13 +166,13 @@ class DT_Prayer {
 
 
         // sample rest api class
-        require_once( 'includes/rest-api.php' );
+//        require_once( 'includes/rest-api.php' );
 
         // sample post type class
-        require_once( 'includes/post-type.php' );
+//        require_once( 'includes/post-type.php' );
 
         // custom site to site links
-        require_once( 'includes/custom-site-to-site-links.php' );
+//        require_once( 'includes/custom-site-to-site-links.php' );
 
     }
 

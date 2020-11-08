@@ -2,7 +2,7 @@
 /**
  * Rest API example class
  */
-
+if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 class DT_Prayer_Endpoints
 {
