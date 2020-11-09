@@ -36,7 +36,7 @@ class DT_Prayer_Endpoints
         $namespace = 'dt_prayer/v1';
 
         register_rest_route(
-            $namespace, '/endpoint', [
+            'dt-public/v1', '/prayer/create', [
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'private_endpoint' ],
@@ -47,13 +47,23 @@ class DT_Prayer_Endpoints
 
 
     public function private_endpoint( WP_REST_Request $request ) {
-        if ( !$this->has_permission() ){
-            return new WP_Error( "private_endpoint", "Missing Permissions", [ 'status' => 400 ] );
+        $params = $request->get_params();
+
+        $user = wp_get_current_user();
+        $user->add_cap('create_contacts');
+
+        $new_id = DT_Posts::create_post( 'contacts', $params );
+        if ( isset( $new_id['ID'] ) ){
+            try {
+                $hash = hash('sha256', bin2hex( random_bytes( 64 ) ) );
+            } catch( Exception $exception ) {
+                $hash = hash('sha256', bin2hex( rand(0, 1234567891234567890 ) . microtime() ) );
+            }
+            update_post_meta( $new_id['ID'], 'contact_public_key', $hash );
+
+            return $hash;
         }
-
-        // run your function here
-
-        return true;
+        return false;
     }
 }
 DT_Prayer_Endpoints::instance();

@@ -21,9 +21,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-require_once( 'includes/rewrite-rules.php');
+require_once( 'public/url.php');
 
-$dt_prayer_required_dt_theme_version = '0.28.0';
+$dt_prayer_required_dt_theme_version = '0.31.0'; // @todo depends on template-blank.php to be present in theme. So require version that publishes this addition.
 
 
 /**
@@ -56,22 +56,18 @@ function dt_prayer() {
     if ( !defined( 'DT_FUNCTIONS_READY' ) ){
         require_once get_template_directory() . '/dt-core/global-functions.php';
     }
+
     /*
      * Don't load the plugin on every rest request. Only those with the 'sample' namespace
      */
     $is_rest = dt_is_rest();
-    //@todo change 'sample' if you want the plugin to be set up when using rest api calls other than ones with the 'sample' namespace
     if ( ! $is_rest ){
         return DT_Prayer::get_instance();
     }
-    // @todo remove this "else if", if not using rest-api.php
-    else if ( strpos( dt_get_url_path(), 'dt_prayer' ) !== false ) {
+    else if ( strpos( dt_get_url_path(), 'dt-public' ) !== false ) {
         return DT_Prayer::get_instance();
     }
-    // @todo remove if not using a post type
-    else if ( strpos( dt_get_url_path(), 'prayer_subscription' ) !== false) {
-        return DT_Prayer::get_instance();
-    }
+    return false;
 }
 add_action( 'after_setup_theme', 'dt_prayer' );
 
@@ -164,9 +160,8 @@ class DT_Prayer {
         $this->version             = '0.1';
 
 
-
         // sample rest api class
-//        require_once( 'includes/rest-api.php' );
+        require_once( 'includes/rest-api.php' );
 
         // sample post type class
 //        require_once( 'includes/post-type.php' );
