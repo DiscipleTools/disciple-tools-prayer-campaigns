@@ -1,12 +1,11 @@
 <?php
 /**
  * Plugin Name: Disciple Tools - Prayer Subscription
- * Plugin URI: https://github.com/DiscipleTools/disciple-tools-dt-prayer
- * Description: Disciple Tools - Prayer Subscription is intended to help developers and integrator jumpstart their extension
- * of the Disciple Tools system.
- * Version:  0.1.0
+ * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer
+ * Description: Disciple Tools - Prayer Subscription is a tool for collecting and managing saturation prayer subscriptions
+ * Version:  1.0
  * Author URI: https://github.com/DiscipleTools
- * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-dt-prayer
+ * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer
  * Requires at least: 4.7.0
  * (Requires 4.7+ because of the integration of the REST API at 4.7 and the security requirements of this milestone version.)
  * Tested up to: 5.4
@@ -21,10 +20,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-require_once( 'public/url.php');
 
 $dt_prayer_required_dt_theme_version = '0.31.0'; // @todo depends on template-blank.php to be present in theme. So require version that publishes this addition.
-
 
 /**
  * Gets the instance of the `DT_Prayer` class.
@@ -64,7 +61,7 @@ function dt_prayer() {
     if ( ! $is_rest ){
         return DT_Prayer::get_instance();
     }
-    else if ( strpos( dt_get_url_path(), 'dt-public' ) !== false ) {
+    else if ( strpos( dt_get_url_path(), 'dt-prayer') !== false ) {
         return DT_Prayer::get_instance();
     }
     return false;
@@ -131,6 +128,9 @@ class DT_Prayer {
      * @return void
      */
     private function includes() {
+        require_once( 'public/url.php' );
+        require_once( 'public/rest-api.php' );
+
         if ( is_admin() ) {
             require_once( 'includes/admin/admin-menu-and-tabs.php' );
         }
@@ -157,11 +157,7 @@ class DT_Prayer {
 
         // Admin and settings variables
         $this->token             = 'dt_prayer';
-        $this->version             = '0.1';
-
-
-        // sample rest api class
-        require_once( 'includes/rest-api.php' );
+        $this->version             = '1.0';
 
         // sample post type class
 //        require_once( 'includes/post-type.php' );
@@ -185,27 +181,13 @@ class DT_Prayer {
             if ( ! class_exists( 'Puc_v4_Factory' ) ) {
                 require( get_template_directory() . '/dt-core/libraries/plugin-update-checker/plugin-update-checker.php' );
             }
-            /**
-             * Below is the publicly hosted .json file that carries the version information. This file can be hosted
-             * anywhere as long as it is publicly accessible. You can download the version file listed below and use it as
-             * a template.
-             * Also, see the instructions for version updating to understand the steps involved.
-             * @see https://github.com/DiscipleTools/disciple-tools-version-control/wiki/How-to-Update-the-Starter-Plugin
-             * @todo enable this section with your own hosted file
-             * @todo An example of this file can be found in /includes/admin/disciple-tools-dt-prayer-version-control.json
-             * @todo It is recommended to host this version control file outside the project itself. Github is a good option for delivering static json.
-             */
 
-            /***** @todo remove from here
-
-            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer/master/includes/admin/version-control.json"; // @todo change this url
+            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer/master/includes/admin/version-control.json";
             Puc_v4_Factory::buildUpdateChecker(
                 $hosted_json,
                 __FILE__,
-                'disciple-tools-dt-prayer'
+                'disciple-tools-prayer'
             );
-
-            ********* @todo to here */
 
         }
 

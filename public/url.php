@@ -305,6 +305,10 @@ add_action('dt_blank_body', function(){
         return;
     }
 
+    $user = wp_get_current_user();
+    $user->add_cap('create_contacts');
+    dt_write_log($user);
+
     // FORM BODY
     ?>
     <div style="max-width:1200px;margin:1em auto;">
@@ -335,7 +339,7 @@ add_action('dt_blank_body', function(){
                     }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    url: `<?php echo esc_url_raw(rest_url()) ?>dt-public/v1/prayer/create`,
+                    url: `<?php echo esc_url_raw(rest_url()) ?>dt-posts/v1/contacts`,
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('X-WP-Nonce', '<?php echo wp_create_nonce('wp_rest') ?>');
                     }

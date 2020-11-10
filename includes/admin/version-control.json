@@ -1,13 +1,13 @@
 {
   "name": "Disciple Tools - Prayer Subscription",
-  "version": "0.1.0",
-  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer/releases/latest/download/disciple-tools-dt-prayer.zip",
+  "version": "1.0",
+  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer/releases/latest/download/disciple-tools-prayer.zip",
   "sections": {
     "description": "Disciple Tools - Prayer Subscription.",
     "installation": "(Required) You must have Disciple.Tools Theme installed before using this plugin. Once Disciple.Tools is installed, you can use the normal Plugin system to install the plugin.",
     "changelog": ""
   },
-  "last_updated": "2020-1-24",
+  "last_updated": "2020-12-1",
   "upgrade_notice": "Here's why you should upgrade...",
   "requires": "4.7",
   "tested": "5.5.1",
