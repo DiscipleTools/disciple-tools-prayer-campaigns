@@ -128,8 +128,10 @@ class DT_Prayer {
      * @return void
      */
     private function includes() {
-        require_once( 'public/url.php' );
+        require_once( 'public/functions.php' );
         require_once( 'public/rest-api.php' );
+        require_once( 'public/saturation-type.php' );
+        require_once( 'public/twentyfourseven-type.php' );
 
         if ( is_admin() ) {
             require_once( 'includes/admin/admin-menu-and-tabs.php' );

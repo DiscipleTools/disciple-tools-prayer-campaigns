@@ -23,6 +23,9 @@ class DT_Prayer_Endpoints
         if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), 'dt-prayer/v1/create' ) !== false ) {
             $authorized = true;
         }
+        if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), 'dt-prayer/v1/update' ) !== false ) {
+            $authorized = true;
+        }
         return $authorized;
     }
 
@@ -38,6 +41,16 @@ class DT_Prayer_Endpoints
                 ],
             ]
         );
+        register_rest_route(
+            $namespace, '/update', [
+                [
+                    'methods'  => WP_REST_Server::CREATABLE,
+                    'callback' => [ $this, 'update' ],
+                ],
+            ]
+        );
+
+
     }
 
     public function create( WP_REST_Request $request ) {
@@ -61,6 +74,19 @@ class DT_Prayer_Endpoints
             return $hash;
         }
         return false;
+    }
+
+    // @link /dt-posts/dt-posts-endpoints.php:405
+    public function update( WP_REST_Request $request ){
+        $params = $request->get_params();
+        return $params; // @todo
+
+
+        $fields = $request->get_json_params() ?? $request->get_body_params();
+        $url_params = $request->get_url_params();
+        $get_params = $request->get_query_params();
+        $silent = isset( $get_params["silent"] ) && $get_params["silent"] === "true";
+        return DT_Posts::update_post( $url_params["post_type"], $url_params["id"], $fields, $silent );
     }
 }
 DT_Prayer_Endpoints::instance();
