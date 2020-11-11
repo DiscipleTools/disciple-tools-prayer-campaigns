@@ -49,14 +49,27 @@ class DT_Prayer_Endpoints
                 ],
             ]
         );
-
-
     }
 
     public function create( WP_REST_Request $request ) {
         $params = $request->get_params();
 
-        // @todo honey pot test
+        // honey pot test
+        if ( ! isset( $params['email'] ) || ! empty( $params['email'] ) ){
+            return new WP_Error(__METHOD__, 'Shame, shame, shame. We know your name ... ROBOT!', [ 'status' => 418 ]);
+        } else {
+            unset( $params['email'] );
+        }
+
+        // collect type
+        if ( ! isset( $params['type'] ) || empty( $params['type'] ) ){
+            return new WP_Error(__METHOD__, 'Did not set type param.', [ 'status' => 400 ]);
+        } else {
+            $type = sanitize_key( wp_unslash( $params['type'] ) );
+            unset( $params['type'] );
+        }
+
+        // @todo add sanitization to params array
 
 
         $user = wp_get_current_user();
@@ -64,12 +77,10 @@ class DT_Prayer_Endpoints
 
         $new_id = DT_Posts::create_post( 'contacts', $params, true );
         if ( isset( $new_id['ID'] ) ){
-            try {
-                $hash = hash('sha256', bin2hex( random_bytes( 64 ) ) );
-            } catch( Exception $exception ) {
-                $hash = hash('sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
-            }
-            update_post_meta( $new_id['ID'], 'contact_public_key', $hash );
+
+            $hash = dt_prayer_make_public_id();
+            update_post_meta( $new_id['ID'], 'public_key_prayer_'.$type, $hash );
+            update_post_meta( $new_id['ID'], 'unconfirmed_prayer_'.$type, true );
 
             return $hash;
         }
@@ -82,11 +93,11 @@ class DT_Prayer_Endpoints
         return $params; // @todo
 
 
-        $fields = $request->get_json_params() ?? $request->get_body_params();
-        $url_params = $request->get_url_params();
-        $get_params = $request->get_query_params();
-        $silent = isset( $get_params["silent"] ) && $get_params["silent"] === "true";
-        return DT_Posts::update_post( $url_params["post_type"], $url_params["id"], $fields, $silent );
+//        $fields = $request->get_json_params() ?? $request->get_body_params();
+//        $url_params = $request->get_url_params();
+//        $get_params = $request->get_query_params();
+//        $silent = isset( $get_params["silent"] ) && $get_params["silent"] === "true";
+//        return DT_Posts::update_post( $url_params["post_type"], $url_params["id"], $fields, $silent );
     }
 }
 DT_Prayer_Endpoints::instance();

@@ -9,6 +9,15 @@ function dt_prayer_root(){
     return 'prayer';
 }
 
+function dt_prayer_make_public_id() : string {
+    try {
+        $hash = hash('sha256', bin2hex( random_bytes( 64 ) ) );
+    } catch( Exception $exception ) {
+        $hash = hash('sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
+    }
+    return $hash;
+}
+
 function dt_prayer_registered_types(){
     return apply_filters( 'dt_prayer_register_type', $types = [] );
 }
@@ -106,7 +115,7 @@ function dt_prayer_parse_url_parts(){
             $elements['public_key'] = $parts[2];
 
             // also add post_id
-            $post_id = dt_prayer_post_id( $parts[2] );
+            $post_id = dt_prayer_post_id( $elements['type'], $parts[2] );
             if ( ! $post_id ){ // fail if no post id for public key
                 return false;
             } else {
@@ -148,13 +157,24 @@ function get_dt_prayer_action(){
  * @param $public_key
  * @return false|string
  */
-function dt_prayer_post_id( $public_key ){
+function dt_prayer_post_id( $type, $public_key ){
     global $wpdb;
-    $result = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'contact_public_key' AND meta_value = %s", $public_key ) );
+    $meta_key = 'public_key_prayer_'.$type;
+    $result = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = %s AND meta_value = %s", $meta_key, $public_key ) );
     if ( ! empty( $result ) && ! is_wp_error( $result ) ){
         return $result;
     }
     return false;
+}
+
+function dt_prayer_confirm_subscription( $post_id, $type ){
+    if ( get_post_meta( $post_id, 'unconfirmed_prayer_'.$type, true ) ) {
+        delete_post_meta( $post_id, 'unconfirmed_prayer_'.$type, true );
+        $fields = [
+            "overall_status" => "active"
+        ];
+        DT_Posts::update_post( 'contacts', (int) $post_id, $fields, false, false );
+    }
 }
 
 

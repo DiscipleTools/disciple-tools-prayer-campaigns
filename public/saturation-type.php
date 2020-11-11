@@ -38,14 +38,12 @@ class DT_Prayer_Saturation_Type
             add_action('dt_blank_head', [$this, 'form_head' ]);
             add_action('dt_blank_title', [$this, 'form_title' ]);
             add_action('dt_blank_body', [$this, 'form_body' ]);
-            add_action('dt_blank_footer', [$this, 'form_footer' ]);
         }
 
         if ( dt_prayer_is_contact_url($this->type ) ) {
-            add_action('dt_blank_head', [$this, 'contact_head' ]);
-            add_action('dt_blank_title', [$this, 'contact_title' ]);
-            add_action('dt_blank_body', [$this, 'contact_body' ]);
-            add_action('dt_blank_footer', [$this, 'contact_footer' ]);
+            add_action('dt_blank_head', [$this, 'management_head' ]);
+            add_action('dt_blank_title', [$this, 'management_title' ]);
+            add_action('dt_blank_body', [$this, 'management_body' ]);
         }
     }
 
@@ -53,9 +51,8 @@ class DT_Prayer_Saturation_Type
         $types[$this->type] = [
             'type' => $this->type,
             'actions' => [
-                'edit' => 'edit',
                 'instructions' => 'instructions',
-                'list' => 'list',
+                'unsubscribe' => 'unsubscribe',
             ]
         ];
         return $types;
@@ -64,6 +61,8 @@ class DT_Prayer_Saturation_Type
     public function load_scripts(){
         wp_register_script( 'prayer-'.$this->type, plugin_dir_url(__FILE__) . $this->type . '-type.js', ['jquery'], filemtime( plugin_dir_path(__FILE__) . $this->type . '-type.js' ) );
         wp_enqueue_script( 'prayer-'.$this->type );
+        wp_register_script( 'jquery-steps', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js', ['jquery'], '1.1.0' );
+        wp_enqueue_script( 'jquery-steps' );
     }
 
     public function print_scripts(){
@@ -75,8 +74,9 @@ class DT_Prayer_Saturation_Type
             'mapbox-gl',
             'mapbox-cookie',
             'jquery-cookie',
-            'datepicker',
-            'prayer-'.$this->type
+//            'datepicker',
+//            'prayer-'.$this->type,
+//            'jquery-steps'
         ];
 
         global $wp_scripts;
@@ -107,6 +107,8 @@ class DT_Prayer_Saturation_Type
         }
     }
 
+
+    /* FORM */
     public function form_head(){
         wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
         ?>
@@ -114,60 +116,110 @@ class DT_Prayer_Saturation_Type
             body {
                 background-color: inherit;
             }
-        </style>
-        <?php
-    }
-
-    public function contact_head(){
-        wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
-        ?>
-        <style>
-            body {
-                background-color: inherit;
+            #form-wrapper {
+                max-width:1200px;
+                margin:1em auto;
+            }
+            #email {display:none;}
+            #map-wrapper {
+                height: 400px !important;
+            }
+            #map {
+                height: 400px !important;
             }
         </style>
         <?php
     }
-
     public function form_title(){
         ?>
         Blank Form
         <?php
     }
-
     public function form_body(){
-
-        $user = wp_get_current_user();
-        $user->add_cap('create_contacts');
-        dt_write_log($user);
-
         // FORM BODY
         ?>
-        <div style="max-width:1200px;margin:1em auto;">
+        <div id="form-wrapper">
             <div class="grid-x grid-padding-x">
+                <div class="cell center"><h2>Prayer Subscription</h2></div>
+                <div class="cell center">
+                    Select Timezone<br>
+                    <select name="timezone"></select>
+                </div>
                 <div class="cell">
-                    <h2>Form</h2>
+                     <div id="map-wrapper">
+                        <div id='map'><span class="loading-spinner active"></span></div>
+                     </div>
+                    <br>
+                </div>
+                <div class="cell">
                     <input type="text" placeholder="Name" name="title" id="title" /><br>
-                    <button id="new_contact_submit" type="button" class="button small">Submit</button>
+                    <input type="text" placeholder="Email" name="email" id="email" />
+                    <input type="text" placeholder="Email" name="e2" id="e2" /><br>
+                    <input type="text" placeholder="Phone" name="phone" id="phone" /><br>
+                    <button id="new_contact_submit" type="button" class="button small">Submit</button><br>
+                    <div id="error"></div>
                 </div>
             </div>
-            <hr>
-            <div class="grid-x grid-padding-x">
-                <div class="cell" id="link">
-                    <a href="/prayer/saturation/e49d970b1cadef1523313e384572ae454293264923b93d307777e389820cae8f">Sample Contact</a>
-                </div>
-            </div>
-        </div> <!-- wrapper -->
+        </div> <!-- form wrapper -->
         <script>
             jQuery(document).ready(function(){
+
+                // init map
+                mapboxgl.accessToken = '<?php echo DT_Mapbox_API::get_key() ?>';
+                var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [-98, 38.88],
+                    minZoom: 1,
+                    zoom: 1
+                });
+
+                map.on('idle', () => {
+                    jQuery('.loading-spinner').removeClass('active')
+                })
+
                 jQuery('#new_contact_submit').on('click', function(){
                     let title = jQuery('#title').val()
-                    console.log(title)
+                    let e2 = jQuery('#e2').val()
+                    let email = jQuery('#email').val()
+                    let phone = jQuery('#phone').val()
+
+                    if ( email !== '' ){
+                        jQuery('#form-wrapper').empty().html(`Shame, shame, we know your name ... robot!`)
+                    }
+
+                    let source = 'web'
+                    if ( window.location.hash !== ''){
+                        source = window.location.hash.substring(1)
+                    }
 
                     jQuery.ajax({
                         type: "POST",
                         data: JSON.stringify({
-                            title: title
+                            title: title,
+                            overall_status: 'new',
+                            sources: {
+                                values: [
+                                    { value: source}
+                                ]
+                            },
+                            contact_email: {
+                                values: [
+                                    { value: e2 }
+                                ]
+                            },
+                            contact_phone: {
+                                values: [
+                                    { value: phone }
+                                ]
+                            },
+                            location_grid: {
+                                values: [
+                                    { value: '100089589' }
+                                ]
+                            },
+                            email: email,
+                            type: 'saturation'
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -177,66 +229,157 @@ class DT_Prayer_Saturation_Type
                         }
                     })
                         .done(function(data){
-                            if ( ! data ) {
-                                return
-                            }
-                            window.location.href = '<?php echo esc_url_raw(site_url()) ?>/prayer/saturation/' + data
+                            show_success( data ) /* temporary public hash*/
                         })
-
+                        .fail(function(e) {
+                            console.log(e)
+                            jQuery('#error').html(e)
+                        })
                 })
+
+                function show_success( data ){
+                    let new_url = '<?php echo esc_url_raw(site_url()) ?>/prayer/saturation/' + data
+                    jQuery('#form-wrapper').empty().html(`
+                       <div class="grid-x grid-padding-x">
+                            <div class="cell">
+                                <h2 class="center">Success! Check your email to confirm.</h2>
+                                <div class="center">Once you confirm your subscription we'll start connecting you with prayer needs for the areas you indicated.</div>
+                            </div>
+                            <div class="cell"><br><br><hr><br><br><br></div>
+                            <div class="cell center"><h2 class="center">Sample Email</h2></div>
+                            <div class="cell center">
+                            <hr style="width:50%;">
+                            Thank you for subscribing to prayer for a disciple making movement in  ______. <br>
+                            <a class="button large" href="${new_url}" style="font-size:2em;margin: 1em 0;">CONFIRM PRAYER SUBSCRIPTION</a>
+                            </div>
+                        </div>
+                    `)
+                }
+
             })
         </script>
         <?php
     }
 
-    public function form_footer(){
+
+    public function management_head(){
+        wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
+
         ?>
-        <script>console.log('dt_blank_footer for form')</script>
+        <style>
+            body {
+                background-color: inherit;
+            }
+        </style>
         <?php
     }
-
-    public function contact_title(){
+    public function management_title(){
         ?>
         Blank Form
         <?php
     }
-
-    public function contact_body(){
+    public function management_body(){
         $parts = $this->parts;
+        dt_prayer_confirm_subscription( $parts['post_id'], $parts['type'] );
+
         // catch contact response
         $actions = dt_prayer_actions( $parts['type'] );
-        ?>
-        <div style="max-width:1200px;margin:1em auto;">
-            <div class="cell center">
-                <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' ?>">Form</a>
-                | <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] ?>">Home</a>
-                <?php foreach( $actions as $action ) { ?>
-                    | <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] . '/' . $action  ?>"><?php echo ucfirst( $action ) ?></a>
-                <?php } ?>
-            </div>
-            <hr>
-            <div class="cell">
-                <h2><?php echo empty( $parts['action'] ) ? 'Home' : ucfirst( $parts['action'] ) ?></h2>
 
-                <div class="grid-x grid-padding-x">
-                    <div class="medium-6 cell">
-                        Title : <?php echo get_the_title( $parts['post_id'] ) ?>
+        switch( $parts['action'] ) {
+            case 'instructions':
+            case 'unsubscribe':
+                ?>
+                <div style="max-width:1200px;margin:1em auto;">
+                    <div class="cell center">
+                        <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] ?>">Home</a>
+                        <?php foreach( $actions as $action ) { ?>
+                            | <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] . '/' . $action  ?>"><?php echo ucfirst( $action ) ?></a>
+                        <?php } ?>
                     </div>
-                    <div class="medium-6 cell">
-                        Test
+                    <hr>
+                </div>
+                <?php
+                break;
+            default:
+                ?>
+                <div style="max-width:1200px;margin:1em auto;">
+                    <div class="cell center">
+                        <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] ?>">Home</a>
+                        <?php foreach( $actions as $action ) { ?>
+                            | <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] . '/' . $action  ?>"><?php echo ucfirst( $action ) ?></a>
+                        <?php } ?>
+                    </div>
+                    <hr>
+                    <div class="cell">
+                        <h2>Hello, <?php echo get_the_title( $parts['post_id'] ) ?></h2>
+                        <p>
+                            Thank you for praying for disciple making movements! We have not because we ask not, says James.
+                        </p>
+                        <p>
+                            <input name="name" value="<?php echo get_the_title( $parts['post_id'] ) ?>" type="text" />
+                        </p>
+                        <p>
+                            <input name="name" value="<?php echo get_the_title( $parts['post_id'] ) ?>" type="text" />
+                        </p>
+                        <p>
+                            <input name="name" value="<?php echo get_the_title( $parts['post_id'] ) ?>" type="text" />
+                        </p>
+                        <p>
+                            <button type="button" class="button small">Update</button>
+                        </p>
+                    </div>
+                    <div class="cell">
+                        <h2>Manage your prayer locations:</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>
+                                    Subscription
+                                </td>
+                                <td style="width:100px;">
+                                    Action
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    You are praying for ______________
+                                </td>
+                                <td>
+                                    <button type="button" class="button small">Unsubscribe</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    You are praying for ______________
+                                </td>
+                                <td>
+                                    <button type="button" class="button small">Unsubscribe</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    You are praying for ______________
+                                </td>
+                                <td>
+                                    <button type="button" class="button small">Unsubscribe</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cell">
+                        <p>
+                            <button type="button" class="button small">Unsubscribe from all</button>
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <?php
-    }
+                <?php
+                break;
+        }
 
-    public function contact_footer() {
-        ?>
-        <script>console.log('dt_blank_footer for contact')</script>
-        <?php
     }
-
 
 }
 DT_Prayer_Saturation_Type::instance();
