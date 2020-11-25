@@ -161,11 +161,6 @@ class DT_Prayer {
         $this->token             = 'dt_prayer';
         $this->version             = '1.0';
 
-        // sample post type class
-//        require_once( 'includes/post-type.php' );
-
-        // custom site to site links
-//        require_once( 'includes/custom-site-to-site-links.php' );
 
     }
 
