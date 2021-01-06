@@ -15,7 +15,7 @@ class DT_Prayer_Endpoints
     } // End instance()
 
     public function __construct() {
-        add_filter( 'dt_allow_rest_access',[$this, 'authorize_url'], 10, 1  );
+        add_filter( 'dt_allow_rest_access', [ $this, 'authorize_url' ], 10, 1 );
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
     }
 
@@ -56,14 +56,14 @@ class DT_Prayer_Endpoints
 
         // honey pot test
         if ( ! isset( $params['email'] ) || ! empty( $params['email'] ) ){
-            return new WP_Error(__METHOD__, 'Shame, shame, shame. We know your name ... ROBOT!', [ 'status' => 418 ]);
+            return new WP_Error( __METHOD__, 'Shame, shame, shame. We know your name ... ROBOT!', [ 'status' => 418 ] );
         } else {
             unset( $params['email'] );
         }
 
         // collect type
         if ( ! isset( $params['type'] ) || empty( $params['type'] ) ){
-            return new WP_Error(__METHOD__, 'Did not set type param.', [ 'status' => 400 ]);
+            return new WP_Error( __METHOD__, 'Did not set type param.', [ 'status' => 400 ] );
         } else {
             $type = sanitize_key( wp_unslash( $params['type'] ) );
             unset( $params['type'] );
@@ -73,7 +73,7 @@ class DT_Prayer_Endpoints
 
 
         $user = wp_get_current_user();
-        $user->add_cap('create_contacts');
+        $user->add_cap( 'create_contacts' );
 
         $new_id = DT_Posts::create_post( 'contacts', $params, true );
         if ( isset( $new_id['ID'] ) ){

@@ -11,9 +11,9 @@ function dt_prayer_root(){
 
 function dt_prayer_make_public_id() : string {
     try {
-        $hash = hash('sha256', bin2hex( random_bytes( 64 ) ) );
-    } catch( Exception $exception ) {
-        $hash = hash('sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
+        $hash = hash( 'sha256', bin2hex( random_bytes( 64 ) ) );
+    } catch ( Exception $exception ) {
+        $hash = hash( 'sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
     }
     return $hash;
 }
@@ -39,8 +39,8 @@ function dt_prayer_url_bases() : array{
     $url = [];
     $root = dt_prayer_root();
     $types = dt_prayer_types();
-    foreach( $types as $type){
-        $url[] = $root . '/'. $type ;
+    foreach ( $types as $type){
+        $url[] = $root . '/'. $type;
     }
     return $url;
 }
@@ -91,7 +91,7 @@ function dt_prayer_parse_url_parts(){
 
     // get url, create parts array and sanitize
     $url_path = dt_get_url_path();
-    $parts = explode('/', $url_path );
+    $parts = explode( '/', $url_path );
     $parts = array_map( 'sanitize_key', wp_unslash( $parts ) );
 
     // test :
@@ -215,7 +215,7 @@ add_filter( 'dt_templates_for_urls', function( $template_for_url) : array {
 /********************************************************
  * SETUP
  ********************************************************/
-add_filter( 'dt_blank_access', 'dt_prayer_has_access');
+add_filter( 'dt_blank_access', 'dt_prayer_has_access' );
 function dt_prayer_has_access() : bool {
     $parts = dt_prayer_parse_url_parts();
 

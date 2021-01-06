@@ -16,7 +16,7 @@ class DT_Prayer_Saturation_Type
 
     public function __construct() {
         // register type
-        add_filter( 'dt_prayer_register_type', [$this, 'register_type'] );
+        add_filter( 'dt_prayer_register_type', [ $this, 'register_type' ] );
 
         // fail if not valid url
         $this->parts = dt_prayer_parse_url_parts();
@@ -30,20 +30,20 @@ class DT_Prayer_Saturation_Type
         }
 
         // load page elements
-        add_action( 'wp_enqueue_scripts', [$this, 'load_scripts'], 999 );
-        add_action( 'wp_print_scripts', [$this, 'print_scripts'], 1500);
-        add_action( 'wp_print_styles', [$this, 'print_styles'], 1500 );
+        add_action( 'wp_enqueue_scripts', [ $this, 'load_scripts' ], 999 );
+        add_action( 'wp_print_scripts', [ $this, 'print_scripts' ], 1500 );
+        add_action( 'wp_print_styles', [ $this, 'print_styles' ], 1500 );
 
         if ( dt_prayer_is_form_url( $this->type ) ) {
-            add_action('dt_blank_head', [$this, 'form_head' ]);
-            add_action('dt_blank_title', [$this, 'form_title' ]);
-            add_action('dt_blank_body', [$this, 'form_body' ]);
+            add_action( 'dt_blank_head', [ $this, 'form_head' ] );
+            add_action( 'dt_blank_title', [ $this, 'form_title' ] );
+            add_action( 'dt_blank_body', [ $this, 'form_body' ] );
         }
 
-        if ( dt_prayer_is_contact_url($this->type ) ) {
-            add_action('dt_blank_head', [$this, 'management_head' ]);
-            add_action('dt_blank_title', [$this, 'management_title' ]);
-            add_action('dt_blank_body', [$this, 'management_body' ]);
+        if ( dt_prayer_is_contact_url( $this->type ) ) {
+            add_action( 'dt_blank_head', [ $this, 'management_head' ] );
+            add_action( 'dt_blank_title', [ $this, 'management_title' ] );
+            add_action( 'dt_blank_body', [ $this, 'management_body' ] );
         }
     }
 
@@ -59,9 +59,9 @@ class DT_Prayer_Saturation_Type
     }
 
     public function load_scripts(){
-        wp_register_script( 'prayer-'.$this->type, plugin_dir_url(__FILE__) . $this->type . '-type.js', ['jquery'], filemtime( plugin_dir_path(__FILE__) . $this->type . '-type.js' ) );
+        wp_register_script( 'prayer-'.$this->type, plugin_dir_url( __FILE__ ) . $this->type . '-type.js', [ 'jquery' ], filemtime( plugin_dir_path( __FILE__ ) . $this->type . '-type.js' ) );
         wp_enqueue_script( 'prayer-'.$this->type );
-        wp_register_script( 'jquery-steps', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js', ['jquery'], '1.1.0' );
+        wp_register_script( 'jquery-steps', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js', [ 'jquery' ], '1.1.0' );
         wp_enqueue_script( 'jquery-steps' );
     }
 
@@ -81,7 +81,7 @@ class DT_Prayer_Saturation_Type
 
         global $wp_scripts;
         if ( isset( $wp_scripts ) ){
-            foreach( $wp_scripts->queue as $key => $item ){
+            foreach ( $wp_scripts->queue as $key => $item ){
                 if ( ! in_array( $item, $allowed_js ) ){
                     unset( $wp_scripts->queue[$key] );
                 }
@@ -100,8 +100,8 @@ class DT_Prayer_Saturation_Type
         global $wp_styles;
         if ( isset( $wp_styles ) ) {
             foreach ($wp_styles->queue as $key => $item) {
-                if (!in_array($item, $allowed_css)) {
-                    unset($wp_styles->queue[$key]);
+                if ( !in_array( $item, $allowed_css )) {
+                    unset( $wp_styles->queue[$key] );
                 }
             }
         }
@@ -223,9 +223,9 @@ class DT_Prayer_Saturation_Type
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        url: `<?php echo esc_url_raw(rest_url()) ?>dt-prayer/v1/create`,
+                        url: `<?php echo esc_url_raw( rest_url() ) ?>dt-prayer/v1/create`,
                         beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', '<?php echo wp_create_nonce('wp_rest') ?>');
+                            xhr.setRequestHeader('X-WP-Nonce', '<?php echo wp_create_nonce( 'wp_rest' ) ?>');
                         }
                     })
                         .done(function(data){
@@ -238,7 +238,7 @@ class DT_Prayer_Saturation_Type
                 })
 
                 function show_success( data ){
-                    let new_url = '<?php echo esc_url_raw(site_url()) ?>/prayer/saturation/' + data
+                    let new_url = '<?php echo esc_url_raw( site_url() ) ?>/prayer/saturation/' + data
                     jQuery('#form-wrapper').empty().html(`
                        <div class="grid-x grid-padding-x">
                             <div class="cell">
@@ -285,14 +285,14 @@ class DT_Prayer_Saturation_Type
         // catch contact response
         $actions = dt_prayer_actions( $parts['type'] );
 
-        switch( $parts['action'] ) {
+        switch ( $parts['action'] ) {
             case 'instructions':
             case 'unsubscribe':
                 ?>
                 <div style="max-width:1200px;margin:1em auto;">
                     <div class="cell center">
                         <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] ?>">Home</a>
-                        <?php foreach( $actions as $action ) { ?>
+                        <?php foreach ( $actions as $action ) { ?>
                             | <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] . '/' . $action  ?>"><?php echo ucfirst( $action ) ?></a>
                         <?php } ?>
                     </div>
@@ -305,7 +305,7 @@ class DT_Prayer_Saturation_Type
                 <div style="max-width:1200px;margin:1em auto;">
                     <div class="cell center">
                         <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] ?>">Home</a>
-                        <?php foreach( $actions as $action ) { ?>
+                        <?php foreach ( $actions as $action ) { ?>
                             | <a href="<?php echo site_url() . '/' . $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] . '/' . $action  ?>"><?php echo ucfirst( $action ) ?></a>
                         <?php } ?>
                     </div>

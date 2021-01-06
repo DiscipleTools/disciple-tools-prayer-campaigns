@@ -61,7 +61,7 @@ function dt_prayer() {
     if ( ! $is_rest ){
         return DT_Prayer::get_instance();
     }
-    else if ( strpos( dt_get_url_path(), 'dt-prayer') !== false ) {
+    else if ( strpos( dt_get_url_path(), 'dt-prayer' ) !== false ) {
         return DT_Prayer::get_instance();
     }
     return false;
@@ -179,7 +179,7 @@ class DT_Prayer {
                 require( get_template_directory() . '/dt-core/libraries/plugin-update-checker/plugin-update-checker.php' );
             }
 
-            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer/master/includes/admin/version-control.json";
+            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-subscription/master/includes/admin/version-control.json";
             Puc_v4_Factory::buildUpdateChecker(
                 $hosted_json,
                 __FILE__,
