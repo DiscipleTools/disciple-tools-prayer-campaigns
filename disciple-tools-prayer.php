@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Disciple Tools - Prayer Subscription
- * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer
+ * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscription
  * Description: Disciple Tools - Prayer Subscription is a tool for collecting and managing saturation prayer subscriptions
  * Version:  1.0
  * Author URI: https://github.com/DiscipleTools
- * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer
+ * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscription
  * Requires at least: 4.7.0
  * (Requires 4.7+ because of the integration of the REST API at 4.7 and the security requirements of this milestone version.)
  * Tested up to: 5.4
