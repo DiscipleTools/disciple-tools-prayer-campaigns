@@ -2,4 +2,4 @@
 {translation-domain}-{localisation}.po
 
 ex:
-dt_prayer.fr_FR.po
+disciple-tools-prayer-subscription-fr_FR.po
