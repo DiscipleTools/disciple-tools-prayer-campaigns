@@ -27,7 +27,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         }
         // register tiles if on details page
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 5, 2 );
-        add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 10, 2 );
+        add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
         add_action( 'wp_enqueue_scripts', [ $this, 'tile_scripts' ], 100 );
 
 
@@ -39,7 +39,10 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         // register REST and REST access
         add_filter( 'dt_allow_rest_access', [ $this, 'authorize_url' ], 10, 1 );
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
-        add_filter( 'dt_custom_fields_settings', [ $this, 'custom_fields' ], 10, 2 );
+
+        add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
+        add_filter( "dt_post_create_fields", [ $this, "dt_post_create_fields" ], 10, 2 );
+        add_filter( "dt_post_update_fields", [ $this, "dt_post_update_fields" ], 10, 3 );
 
 
         // fail if not valid url
@@ -52,6 +55,8 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         if ( $this->type !== $this->parts['type'] ){
             return;
         }
+
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_mapping_scripts'], 999 );
 
         // load if valid url
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -75,68 +80,129 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === 'prayers' ){
-            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-prayers' ) ];
+//            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-prayers' ) ];
         }
         return $tiles;
     }
 
+    public function enqueue_mapping_scripts(){
+        if ( function_exists( 'dt_get_url_path' ) ) {
+
+            $url_path = dt_get_url_path();
+            if ( strpos( $url_path, 'prayers_app' ) !== false ){
+
+                if ( ! empty( DT_Mapbox_API::get_key() ) ) {
+
+                    if ( class_exists( 'DT_Mapbox_API' ) ) {
+                        DT_Mapbox_API::load_mapbox_header_scripts();
+                        DT_Mapbox_API::load_mapbox_search_widget();
+                    }
+                    else if ( ! class_exists( 'DT_Mapbox_API' ) && file_exists( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' ) ) {
+                        require_once( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' );
+
+                        DT_Mapbox_API::load_mapbox_header_scripts();
+                        DT_Mapbox_API::load_mapbox_search_widget();
+
+                    }
+                }
+            }
+        }
+    }
+
     public function dt_details_additional_section( $section, $post_type ) {
         // test if prayers post type and prayers_app_module enabled
-        if ( $post_type === 'prayers' ) {
+        if ( $post_type === $this->post_type ) {
 
-            // subscriptions tile
-            if ( $section === "subscriptions" ){
-                $magic = new DT_Magic_URL( 'prayers_app' );
-                $types = $magic->list_types();
+            if ( 'locations' === $section ) {
+                $record = DT_Posts::get_post( $post_type, get_the_ID() );
 
-                // types
-                if ( isset( $types['subscription'], $types['subscription']['root'], $types['subscription']['type'] ) ) {
-                    $types['subscription']['new_key'] = $magic->create_unique_key();
-
-                    $subscriptions = [];
-                    /**
-                     * Button Controls
-                     */
-                    ?>
-                    <div class="cell" id="<?php echo esc_attr( $types['subscription']['root'] ) ?>-<?php echo esc_attr( $types['subscription']['type'] ) ?>-wrapper"></div>
-                    <?php
-                    /**
-                     * List Subscriptions
-                     */
-                    if ( ! empty( $subscriptions ) ) {
-                        foreach ( $subscriptions as $year => $subscription ){
-                            ?>
-                            <div class="section-subheader">
-                                Subscriptions in <?php echo esc_html( $year ) ?>
-                            </div>
-                            <div class="subscriptions-for-<?php echo esc_html( $year ) ?>">
-                                <div class="grid-x">
-                                    <div class="cell small-6"><?php echo esc_html__( 'Total Groups', 'disciple-tools-prayers' ) ?></div><div class="cell small-6"><?php echo esc_html( $subscription['total_groups'] ) ?></div>
-                                    <div class="cell small-6"><?php echo esc_html__( 'Total Baptisms', 'disciple-tools-prayers' ) ?></div><div class="cell small-6"><?php echo esc_html( $subscription['total_baptisms'] ) ?></div>
-                                    <div class="cell small-6"><?php echo esc_html__( 'Countries', 'disciple-tools-prayers' ) ?></div><div class="cell small-6"><?php echo esc_html( $subscription['total_countries'] ) ?></div>
-                                    <div class="cell small-6"><?php echo esc_html__( 'States', 'disciple-tools-prayers' ) ?></div><div class="cell small-6"><?php echo esc_html( $subscription['total_states'] ) ?></div>
-                                    <div class="cell small-6"><?php echo esc_html__( 'Counties', 'disciple-tools-prayers' ) ?></div><div class="cell small-6"><?php echo esc_html( $subscription['total_counties'] ) ?></div>
-                                </div>
-                            </div>
-                            <div><hr>
-                                <a class="button hollow" id="<?php echo esc_attr( $types['subscription']['root'] ) ?>-<?php echo esc_attr( $types['subscription']['type'] ) ?>-manage-subscriptions">manage subscriptions</a>
-                            </div>
-                            <?php
-                            break; // loop only the most recent year
-                        }
-                    } else {
-                        ?>
-                        <div class="section-subheader">
-                            No Subscriptions
-                        </div>
-                        <?php
-                    }
-                    ?>
-                    <?php
+                if ( isset( $record[$this->root . '_' . $this->type . '_public_key'])) {
+                    $key = $record[$this->root . '_' . $this->type . '_public_key'];
+                } else {
+                    $magic = new DT_Magic_URL( $this->root );
+                    $key = $magic->create_unique_key();
+                    update_post_meta( get_the_ID(), $this->root . '_' . $this->type . '_public_key', $key );
                 }
-            } /* end stream/app if*/
+                $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
+                ?>
+                <hr>
+                <div class="cell">
+                    <div class="section-subheader">
+                        Subscription Management
+                    </div>
+                    <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
+<!--                    <a class="button hollow small" href="--><?php //echo esc_url( $link ) ?><!--" target="_blank">Send Link</a>-->
+                    <a class="button hollow small" href="<?php echo esc_url( $link ) ?>" target="_blank">Go To</a>
+                </div>
+
+                <script>
+                    const copyToClipboard = str => {
+                        const el = document.createElement('textarea');
+                        el.value = str;
+                        el.setAttribute('readonly', '');
+                        el.style.position = 'absolute';
+                        el.style.left = '-9999px';
+                        document.body.appendChild(el);
+                        const selected =
+                            document.getSelection().rangeCount > 0
+                                ? document.getSelection().getRangeAt(0)
+                                : false;
+                        el.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(el);
+                        if (selected) {
+                            document.getSelection().removeAllRanges();
+                            document.getSelection().addRange(selected);
+                        }
+                        alert('Copied')
+                    };
+                </script>
+                <?php
+            }
+
 
         } // end if prayers and enabled
+    }
+
+    public function dt_custom_fields_settings( $fields, $post_type ){
+        if ( $post_type === 'prayers' ){
+            // do action
+            $fields[$this->root . '_' . $this->type . '_public_key'] = [
+                'name'   => 'Private Report Key',
+                'description' => '',
+                'type'   => 'hash',
+                'hidden' => true,
+            ];
+            $fields[$this->root . '_' . $this->type . '_last_modified'] = [
+                'name'   => 'Subscription Last Modified',
+                'description' => 'Stores the time of the last insert or delete performed on subscriptions.',
+                'type' => 'date',
+                'default' => '',
+                'show_in_table' => true
+            ];
+        }
+        return $fields;
+    }
+
+    public function dt_post_create_fields( $fields, $post_type ){
+        if ( $post_type === $this->post_type ) {
+            if ( !isset( $fields[$this->root . '_' . $this->type . '_public_key'] ) ) {
+                $magic = new DT_Magic_URL;
+                $fields[$this->root . '_' . $this->type . '_public_key'] = $magic->create_unique_key();
+            }
+        }
+        return $fields;
+    }
+
+    public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        if ( $post_type === $this->post_type ){
+
+            if ( ! isset( $fields[$this->root . '_' . $this->type . '_last_modified'] ) ) {
+                $fields[$this->root . '_' . $this->type . '_last_modified'] = time();
+            }
+
+        }
+        return $fields;
     }
 
     public function tile_scripts(){
@@ -211,25 +277,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         return false;
     }
 
-    public function custom_fields( $fields, $post_type ){
-        if ( $post_type === 'prayers' ){
-            // do action
-            $fields[$this->root . '_' . $this->type . '_public_key'] = [
-                'name'   => 'Private Report Key',
-                'description' => '',
-                'type'   => 'hash',
-                'hidden' => true,
-            ];
-            $fields[$this->root . '_' . $this->type . '_last_modified'] = [
-                'name'   => 'Subscription Last Modified',
-                'description' => 'Stores the time of the last insert or delete performed on subscriptions.',
-                'type' => 'date',
-                'default' => '',
-                'show_in_table' => true
-            ];
-        }
-        return $fields;
-    }
+
 
     public function print_scripts(){
         // @link /disciple-tools-theme/dt-assets/functions/enqueue-scripts.php
@@ -257,8 +305,8 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
             }
         }
         unset( $wp_scripts->registered['mapbox-search-widget']->extra['group'] );
-//        dt_write_log($wp_scripts->queue);
-//        dt_write_log($wp_scripts);
+        dt_write_log($wp_scripts->queue);
+        dt_write_log($wp_scripts);
     }
 
     public function print_styles(){
@@ -439,30 +487,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
                 title.html( _.escape( postSubscription.name ) )
 
                 /* FUNCTIONS */
-                window.load_subscriptions = ( data ) => {
-                    content.empty()
-                    $.each(data, function(i,v){
-                        content.prepend(`
-                                 <div class="center"><span class="title-year">${_.escape( i )}</span> </div>
-                                 <table class="hover"><tbody id="subscription-list-${_.escape( i )}"></tbody></table>
-                             `)
-                        let list = $('#subscription-list-'+_.escape( i ))
-                        $.each(v, function(ii,vv){
-                            list.append(`
-                                <tr><td>${_.escape( vv.value )} total ${_.escape( vv.payload.type )} in ${_.escape( vv.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscription" data-id="${_.escape( vv.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
-                            `)
-                        })
-                    })
 
-                    $('.delete-subscription').on('click', function(e){
-                        let id = $(this).data('id')
-                        $(this).attr('disabled', 'disabled')
-                        window.delete_subscription( id )
-                    })
-
-                    spinner.removeClass('active')
-
-                }
 
                 window.create_user = ( name, email ) => {
                     $.ajax({
@@ -498,12 +523,66 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
                         }
                     })
                         .done(function(data){
-                            // window.load_subscriptions( data )
-                            console.log(data)
+                            window.load_subscriptions( data )
+                            spinner.removeClass('active')
                         })
                         .fail(function(e) {
                             console.log(e)
                             $('#error').html(e)
+                        })
+                }
+
+                window.load_subscriptions = ( data ) => {
+                    window.current_subscriptions = data
+
+                    content.empty()
+                    content.append(`
+                                 <div><h3>Subscriptions</h3></div>
+                                 <table class="hover"><tbody id="subscription-list"></tbody></table>
+                             `)
+                    let list = $('#subscription-list')
+
+                    if ( data.subscriptions.length > 0 ) {
+                        $.each(data.subscriptions, function(i,v){
+                            list.append(`
+                                <tr><td>${_.escape( v.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscription" data-id="${_.escape( v.grid_meta_id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                            `)
+                        })
+
+                        $('.delete-subscription').on('click', function(e){
+                            let id = $(this).data('id')
+                            $(this).attr('disabled', 'disabled')
+                            window.delete_subscription( id )
+                        })
+                    } else {
+                        list.append(`
+                        <tr><td>No subscriptions found.</td></tr>
+                        `)
+                    }
+
+                    spinner.removeClass('active')
+                }
+
+                window.delete_subscription = ( id ) => {
+                    spinner.addClass('active')
+
+                    jQuery.ajax({
+                        type: "POST",
+                        data: JSON.stringify({ action: 'delete', parts: postSubscription.parts, subscription_id: id }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: postSubscription.root + postSubscription.parts.root + '/v1/' + postSubscription.parts.type,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscription.nonce )
+                        }
+                    })
+                        .done(function(data){
+                            window.load_subscriptions( data )
+                            spinner.removeClass('active')
+                        })
+                        .fail(function(e) {
+                            console.log(e)
+                            jQuery('#error').html(e)
                         })
                 }
 
@@ -549,28 +628,80 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
                         })
                 }
 
+                window.add_new_listener = () => {
+                    $('#add-subscription-button').on('click', function(e){
+                        $('#add-subscription-button').hide()
+                        $('#add-form-wrapper').empty().append(`
+                            <div class="grid-x grid-x-padding" id="new-subscription-form">
+                                <div class="cell center">
+                                    There are <input type="number" id="value" class="number-input" placeholder="#" value="1" />&nbsp;
+                                    total&nbsp;
+                                    <select id="type" class="select-input">
+                                        <option value="groups">groups</option>
+                                        <option value="baptisms">baptisms</option>
+                                    </select>
+                                    in
+                                </div>
+                                <div class="cell">
+                                    <div id="mapbox-wrapper">
+                                        <div id="mapbox-autocomplete" class="mapbox-autocomplete input-group" data-autosubmit="false" data-add-address="true">
+                                            <input id="mapbox-search" type="text" name="mapbox_search" class="input-group-field" autocomplete="off" placeholder="Search Location" />
+                                            <div class="input-group-button">
+                                                <button id="mapbox-spinner-button" class="button hollow" style="display:none;border-color:lightgrey;">
+                                                    <span class="" style="border-radius: 50%;width: 24px;height: 24px;border: 0.25rem solid lightgrey;border-top-color: black;animation: spin 1s infinite linear;display: inline-block;"></span>
+                                                </button>
+                                                <button id="mapbox-clear-autocomplete" class="button alert input-height delete-button-style mapbox-delete-button" type="button" title="Delete Location" style="display:none;">&times;</button>
+                                            </div>
+                                            <div id="mapbox-autocomplete-list" class="mapbox-autocomplete-items"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cell center">at the end of&nbsp;
+                                    <select id="year" class="select-input">
+                                    </select>
+                                </div>
+                                <div class="cell center" >
+                                    <button class="button large save-subscription" type="button" id="save_new_subscription" disabled="disabled">Save</button>
+                                    <button class="button large save-subscription" type="button" id="save_and_add_new_subscription" disabled="disabled">Save and Add</button>
+                                    <button class="button large alert" type="button" id="cancel_new_subscription">&times;</button>
+                                </div>
+                            </div>
+                        `)
 
+                        window.write_input_widget()
 
-                window.delete_subscription = ( id ) => {
-                    spinner.addClass('active')
+                        // $('.number-input').focus(function(e){
+                        //     window.currentEvent = e
+                        //     if ( e.currentTarget.value === '1' ){
+                        //         e.currentTarget.value = ''
+                        //     }
+                        // })
 
-                    jQuery.ajax({
-                        type: "POST",
-                        data: JSON.stringify({ action: 'delete', parts: postSubscription.parts, subscription_id: id }),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        url: postSubscription.root + postSubscription.parts.root + '/v1/' + postSubscription.parts.type,
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscription.nonce )
-                        }
+                        $('#save_new_subscription').on('click', function(){
+                            window.insert_subscription()
+                            $('#add-form-wrapper').empty()
+                            $('#add-subscription-button').show()
+                        })
+
+                        $('#save_and_add_new_subscription').on('click', function(){
+                            window.insert_subscription()
+                            $('#add-form-wrapper').empty()
+                            $('#add-subscription-button').click()
+                            $('#value').focus()
+                        })
+
+                        $('#cancel_new_subscription').on('click', function(){
+                            window.load_subscriptions()
+                            $('#add-form-wrapper').empty()
+                            $('#add-subscription-button').show()
+                        })
+
+                        $('#mapbox-search').on('change', function(e){
+                            if ( typeof window.selected_location_grid_meta !== 'undefined' || window.selected_location_grid_meta !== '' ) {
+                                $('.save-subscription').removeAttr('disabled')
+                            }
+                        })
                     })
-                        .done(function(data){
-                            window.load_subscriptions( data )
-                        })
-                        .fail(function(e) {
-                            console.log(e)
-                            jQuery('#error').html(e)
-                        })
                 }
 
             })
@@ -676,22 +807,27 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
-            <div class="grid-x" id="add-new">
+            <div class="grid-x">
                 <div class="cell center">
                     <h2 id="title"></h2>
                 </div>
             </div>
             <hr>
             <div class="grid-x" style=" height: inherit !important;">
-                <div class="cell"><hr></div>
                 <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
                 <div class="cell" id="content"><div class="center">... loading</div></div>
                 <div class="cell grid" id="error"></div>
             </div>
+            <div class="grid-x" id="add-new">
+                <div class="cell center"><button type="button" id="add-subscription-button" class="button large" style="min-width:200px;">Add Subscription</button></div>
+                <div id="add-form-wrapper"></div>
+            </div>
+
         </div> <!-- form wrapper -->
         <script>
             jQuery(document).ready(function($){
                 window.get_subscription()
+                window.add_new_listener()
             })
         </script>
         <?php
@@ -724,14 +860,6 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
                 ],
             ]
         );
-//        register_rest_route(
-//            $namespace, '/'.$this->type.'/all', [
-//                [
-//                    'methods'  => WP_REST_Server::CREATABLE,
-//                    'callback' => [ $this, 'endpoint_all' ],
-//                ],
-//            ]
-//        );
     }
 
     public function endpoint( WP_REST_Request $request ) {
@@ -760,19 +888,10 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         switch ( $action ) {
             case 'get':
                 return $this->get_subscriptions( $post_id );
+            case 'delete':
+                return $this->delete_subscription( $params, $post_id );
             case 'insert':
 //                return $this->insert_subscription( $params, $post_id );
-            case 'delete':
-//                return $this->delete_subscription( $params, $post_id );
-            case 'geojson':
-//                return $this->geojson_subscriptions( $post_id );
-            case 'statistics':
-//                return $this->statistics_subscriptions( $post_id );
-            case 'get_all':
-                $data = [];
-//                $data['subscriptions'] = $this->retrieve_subscriptions( $post_id );
-//                $data['geojson'] = $this->geojson_subscriptions( $post_id );
-                return $data;
             default:
                 return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
         }
@@ -818,7 +937,10 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         $user->add_cap( 'create_prayers' );
 
         $record = DT_Posts::get_post( $this->post_type, $post_id, false, false );
-        $data = [];
+        $data = [
+            'subscriptions' => [],
+            'type' => ''
+        ];
 
         if ( isset( $record['location_grid_meta'] ) ) {
             $data['subscriptions'] = $record['location_grid_meta'];
@@ -831,5 +953,13 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
 
         return $data;
 
+    }
+
+    public function delete_subscription( $params, $post_id ) {
+
+        Location_Grid_Meta::delete_location_grid_meta( $post_id, 'grid_meta_id', $params['subscription_id'] );
+
+
+        return $this->get_subscriptions( $post_id );
     }
 }

@@ -87,34 +87,35 @@ class DT_Prayer_Subscription {
         }
 
         require_once( 'post-type/loader.php' ); // add starter post type extension to Disciple Tools system
+        require_once( 'post-type/list-page-tile.php' ); // add starter post type extension to Disciple Tools system
 
         /**
          * @todo Decide if you want to create a custom site-to-site link
          * To remove: delete the line below and remove the folder named /site-link
          */
-        require_once( 'site-link/custom-site-to-site-links.php' ); // add site to site link class and capabilities
+//        require_once( 'site-link/custom-site-to-site-links.php' ); // add site to site link class and capabilities
 
         /**
          * @todo Decide if you want to add new charts to the metrics section
          * To remove: delete the line below and remove the folder named /charts
          */
-        if ( strpos( dt_get_url_path(), 'metrics' ) !== false || ( $is_rest && strpos( dt_get_url_path(), 'disciple-tools-prayer-subscription-metrics' ) !== false ) ){
-            require_once( 'charts/charts-loader.php' );  // add custom charts to the metrics area
-        }
+//        if ( strpos( dt_get_url_path(), 'metrics' ) !== false || ( $is_rest && strpos( dt_get_url_path(), 'disciple-tools-prayer-subscription-metrics' ) !== false ) ){
+//            require_once( 'charts/charts-loader.php' );  // add custom charts to the metrics area
+//        }
 
         /**
          * @todo Decide if you want to add a custom tile
          * To remove: delete the line below and remove the folder named /tile
          */
-        require_once( 'tile/custom-tile.php' ); // add custom tile
+//        require_once( 'tile/custom-tile.php' ); // add custom tile
 
         /**
          * @todo Decide if you want to add a custom admin page in the admin area
          * To remove: delete the 3 lines below and remove the folder named /admin
          */
-        if ( is_admin() ) {
-            require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
-        }
+//        if ( is_admin() ) {
+//            require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
+//        }
 
         $this->i18n();
 

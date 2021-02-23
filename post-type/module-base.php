@@ -47,10 +47,10 @@ class DT_Prayers_Base extends DT_Module_Base {
         // hooks
 //        add_action( "post_connection_removed", [ $this, "post_connection_removed" ], 10, 4 );
 //        add_action( "post_connection_added", [ $this, "post_connection_added" ], 10, 4 );
+//        add_action( "dt_comment_created", [ $this, "dt_comment_created" ], 10, 4 );
         add_filter( "dt_post_update_fields", [ $this, "dt_post_update_fields" ], 10, 3 );
         add_filter( "dt_post_create_fields", [ $this, "dt_post_create_fields" ], 10, 2 );
         add_action( "dt_post_created", [ $this, "dt_post_created" ], 10, 3 );
-//        add_action( "dt_comment_created", [ $this, "dt_comment_created" ], 10, 4 );
 
         //list
         add_filter( "dt_user_list_filters", [ $this, "dt_user_list_filters" ], 10, 2 );
@@ -70,10 +70,32 @@ class DT_Prayers_Base extends DT_Module_Base {
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        if ( !isset( $expected_roles["prayer_admin"] ) ){
-            $expected_roles["prayer_admin"] = [
-                "label" => __( 'Prayer Admin', 'disciple_tools' ),
-                "description" => __( 'Prayer admin can administrate the prayer subscriptions section', 'disciple_tools' ),
+        $expected_roles["prayer_admin"] = [
+            "label" => __( 'Prayer Admin', 'disciple_tools' ),
+            "description" => __( 'Prayer admin can administrate the prayer subscriptions section', 'disciple_tools' ),
+            "permissions" => [
+                'view_any_'.$this->post_type => true,
+                'dt_all_admin_' . $this->post_type => true,
+            ]
+        ];
+
+        if ( !isset( $expected_roles["multiplier"] ) ){
+            $expected_roles["multiplier"] = [
+                "label" => __( 'Multiplier', 'disciple-tools-training' ),
+                "permissions" => []
+            ];
+        }
+        if ( !isset( $expected_roles["dt_admin"] ) ){
+            $expected_roles["dt_admin"] = [
+                "label" => __( 'Disciple.Tools Admin', 'disciple-tools-training' ),
+                "description" => "All D.T permissions",
+                "permissions" => []
+            ];
+        }
+        if ( !isset( $expected_roles["administrator"] ) ){
+            $expected_roles["administrator"] = [
+                "label" => __( 'Administrator', 'disciple-tools-training' ),
+                "description" => "All D.T permissions plus the ability to manage plugins.",
                 "permissions" => []
             ];
         }
@@ -86,14 +108,14 @@ class DT_Prayers_Base extends DT_Module_Base {
             }
         }
 
+
         if ( isset( $expected_roles["administrator"] ) ){
             $expected_roles["administrator"]["permissions"]['view_any_'.$this->post_type ] = true;
-        }
-        if ( isset( $expected_roles["prayer_admin"] ) ){
-            $expected_roles["prayer_admin"]["permissions"]['view_any_'.$this->post_type ] = true;
+            $expected_roles["dt_admin"]["permissions"][ 'dt_all_admin_' . $this->post_type] = true;
         }
         if ( isset( $expected_roles["dt_admin"] ) ){
             $expected_roles["dt_admin"]["permissions"]['view_any_'.$this->post_type ] = true;
+            $expected_roles["dt_admin"]["permissions"][ 'dt_all_admin_' . $this->post_type] = true;
         }
 
         return $expected_roles;
@@ -386,14 +408,13 @@ class DT_Prayers_Base extends DT_Module_Base {
     //action when a post has been created
     public function dt_post_created( $post_type, $post_id, $initial_fields ){
         if ( $post_type === $this->post_type ){
-//            do_action( "dt_'.$this->post_type.'_created", $post_id, $initial_fields );
-//
-//            $post_array = DT_Posts::get_post( $this->post_type, $post_id, true, false );
-//            if ( isset( $post_array["assigned_to"] )) {
-//                if ( $post_array["assigned_to"]["id"] ) {
-//                    DT_Posts::add_shared( $this->post_type, $post_id, $post_array["assigned_to"]["id"], null, false, false, false );
-//                }
-//            }
+            do_action( "dt_'.$this->post_type.'_created", $post_id, $initial_fields );
+            $post_array = DT_Posts::get_post( $this->post_type, $post_id, true, false );
+            if ( isset( $post_array["assigned_to"] )) {
+                if ( $post_array["assigned_to"]["id"] ) {
+                    DT_Posts::add_shared( $this->post_type, $post_id, $post_array["assigned_to"]["id"], null, false, false, false );
+                }
+            }
         }
     }
 
