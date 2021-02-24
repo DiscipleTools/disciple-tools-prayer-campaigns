@@ -42,6 +42,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
+        add_filter( 'desktop_navbar_menu_options', [$this, 'desktop_navbar_menu_options'], 1000, 1 );
 //        add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
 
         // hooks
@@ -62,6 +63,25 @@ class DT_Campaigns_Base extends DT_Module_Base {
         if ( class_exists( 'Disciple_Tools_Post_Type_Template' )) {
             new Disciple_Tools_Post_Type_Template( $this->post_type, $this->single_name, $this->plural_name );
         }
+    }
+
+    /**
+     * Modifies the top tabs to add campaigns under the drop down
+     * @param $tabs
+     * @return mixed
+     */
+    public function desktop_navbar_menu_options( $tabs ) {
+        if ( isset( $tabs[$this->post_type]) ) {
+            unset($tabs[$this->post_type]);
+        }
+        if ( $tabs['subscriptions'] ) {
+            $tabs['subscriptions']['submenu']['subscriptions'] = $tabs['subscriptions'];
+            $tabs['subscriptions']['submenu'][$this->post_type] = [
+                "link" => site_url( "/$this->post_type/" ),
+                "label" => $this->plural_name,
+            ];
+        }
+        return $tabs;
     }
 
     /**

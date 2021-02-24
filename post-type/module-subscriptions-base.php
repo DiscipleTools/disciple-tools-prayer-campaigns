@@ -42,6 +42,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
+
 //        add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
 
         // hooks
@@ -63,6 +64,9 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             new Disciple_Tools_Post_Type_Template( $this->post_type, $this->single_name, $this->plural_name );
         }
     }
+
+
+
 
     /**
      * Documentation
@@ -275,28 +279,28 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 "tile" => "",
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
-//            $fields['location_grid_meta'] = [
-//                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
-//                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
-//                'type'        => 'location_meta',
-//                "tile"      => "locations",
-//                'mapbox'    => false,
-//                'hidden' => true
-//            ];
-//            $fields["contact_address"] = [
-//                "name" => __( 'Address', 'disciple_tools' ),
-//                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
-//                "type" => "communication_channel",
-//                "tile" => "",
-//                'mapbox'    => false,
-//                "customizable" => false
-//            ];
-//            if ( DT_Mapbox_API::get_key() ){
-//                $fields["contact_address"]["hidden"] = true;
-//                $fields["contact_address"]["mapbox"] = true;
-//                $fields["location_grid"]["mapbox"] = true;
-//                $fields["location_grid_meta"]["mapbox"] = true;
-//            }
+            $fields['location_grid_meta'] = [
+                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
+                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+                'type'        => 'location_meta',
+                "tile"      => "locations",
+                'mapbox'    => false,
+                'hidden' => true
+            ];
+            $fields["contact_address"] = [
+                "name" => __( 'Address', 'disciple_tools' ),
+                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
+                "type" => "communication_channel",
+                "tile" => "",
+                'mapbox'    => false,
+                "customizable" => false
+            ];
+            if ( DT_Mapbox_API::get_key() ){
+                $fields["contact_address"]["hidden"] = true;
+                $fields["contact_address"]["mapbox"] = true;
+                $fields["location_grid"]["mapbox"] = true;
+                $fields["location_grid_meta"]["mapbox"] = true;
+            }
 
             $fields['location_grid_time'] = [
                 'name'        => __( 'Location Time', 'disciple_tools' ), //system string does not need translation
