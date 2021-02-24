@@ -189,16 +189,16 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'default' => [],
                 "customizable" => false,
             ];
-//            $fields['assigned_to'] = [
-//                'name'        => __( 'Assigned To', 'disciple_tools' ),
-//                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),
-//                'type'        => 'user_select',
-//                'default'     => '',
-//                'tile' => 'status',
-//                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
-//                "show_in_table" => 16,
-//                'custom_display' => true,
-//            ];
+            $fields['assigned_to'] = [
+                'name'        => __( 'Assigned To', 'disciple_tools' ),
+                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),
+                'type'        => 'user_select',
+                'default'     => '',
+                'tile' => 'status',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
+                "show_in_table" => 16,
+                'custom_display' => true,
+            ];
 //            $fields["requires_update"] = [
 //                'name'        => __( 'Requires Update', 'disciple_tools' ),
 //                'description' => '',
@@ -231,23 +231,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ];
 
 
-            $fields["contact_email"] = [
-                "name" => __( 'Email', 'disciple_tools' ),
-                "icon" => get_template_directory_uri() . "/dt-assets/images/email.svg",
-                "type" => "communication_channel",
-                "tile" => "details",
-                "customizable" => false,
-                "in_create_form" => true,
-            ];
-            $fields["contact_phone"] = [
-                "name" => __( 'Phone', 'disciple_tools' ),
-                'description' => __('Subscriber phone number', 'disciple_tools' ),
-                "icon" => get_template_directory_uri() . "/dt-assets/images/phone.svg",
-                "type" => "communication_channel",
-                "tile" => "details",
-                "customizable" => false,
-                "in_create_form" => false,
-            ];
             $fields["languages"] = [
                 'name' => __( 'Languages', 'disciple_tools' ),
                 'description' => __('Subscriber preferred language', 'disciple_tools' ),
@@ -262,27 +245,10 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'name'   => __( 'Private Key', 'disciple_tools' ),
                 'description' => __('Private key for subscriber access', 'disciple_tools' ),
                 'type'   => 'hash',
+                'default' => DT_Subscriptions_Base::instance()->create_unique_key(),
                 'hidden' => true,
                 "customizable" => false,
             ];
-            $fields['subscriber_last_modified'] = [
-                'name'   => __('Last Modified by Subscriber', 'disciple_tools' ),
-                'description' => '',
-                'type' => 'time',
-                'default' => '',
-                'hidden' => true,
-                "customizable" => false,
-            ];
-            $fields['campaigns'] = [
-                'name'        => __( 'Campaigns', 'disciple_tools' ),
-                'description' => _x( 'Campaigns', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'multi_select',
-                'default'     => [],
-                'tile'        => '',
-                "customizable" => true,
-                "in_create_form" => true,
-            ];
-
 
             /**
              * location elements
@@ -320,40 +286,28 @@ class DT_Campaigns_Base extends DT_Module_Base {
 //                $fields["location_grid_meta"]["mapbox"] = true;
 //            }
 
-            $fields['location_grid_time'] = [
-                'name'        => __( 'Location Time', 'disciple_tools' ), //system string does not need translation
-                'description' => _x( 'Specified time for a location event', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'location_time',
-                "tile"      => "locations",
-                'hidden' => true,
-                "customizable" => false,
-            ];
-            // end locations
-
-            $fields["contacts"] = [
-                "name" => __( 'Contact', 'disciple_tools' ),
+            $fields["subscriptions"] = [
+                "name" => __( 'Subscriptions', 'disciple_tools' ),
                 'description' => _x( 'The contacts who are members of this group.', 'Optional Documentation', 'disciple_tools' ),
                 "type" => "connection",
-                "post_type" => "contacts",
+                "post_type" => "subscriptions",
                 "p2p_direction" => "from",
                 "tile" => "other",
                 "customizable" => false,
-                "p2p_key" => $this->post_type."_to_contacts",
+                "p2p_key" => 'campaigns_to_subscriptions',
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
 
-
-
         }
 
-        if ( $post_type === "contacts" && current_user_can('view_all_'.$this->post_type ) ){
-            $fields[$this->post_type] = [
+        if ( $post_type === "subscriptions" ){
+            $fields['campaigns'] = [
                 "name" => $this->plural_name,
                 "description" => '',
                 "type" => "connection",
                 "post_type" => $this->post_type,
-                "p2p_direction" => "from",
-                "p2p_key" => $this->post_type."_to_contacts",
+                "p2p_direction" => "to",
+                "p2p_key" => 'campaigns_to_subscriptions',
                 "tile" => "other",
                 'icon' => get_template_directory_uri() . "/dt-assets/images/group-type.svg",
                 'create-icon' => get_template_directory_uri() . "/dt-assets/images/add-group.svg",
@@ -370,20 +324,18 @@ class DT_Campaigns_Base extends DT_Module_Base {
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/fields.md#declaring-connection-fields
      */
     public function p2p_init(){
-        /**
-         * Group members field
-         */
+
         p2p_register_connection_type(
             [
-                'name'           => $this->post_type."_to_contacts",
-                'from'           => 'contacts',
-                'to'             => $this->post_type,
+                'name'           => "campaigns_to_subscriptions",
+                'from'           => 'campaigns',
+                'to'             => 'subscriptions',
                 'admin_box' => [
                     'show' => false,
                 ],
                 'title'          => [
-                    'from' => __( 'Contacts', 'disciple_tools' ),
-                    'to'   => $this->plural_name,
+                    'from' => __( 'Campaigns', 'disciple_tools' ),
+                    'to'   => 'Subscriptions',
                 ]
             ]
         );
@@ -482,9 +434,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
     //filter at the start of post update
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
         if ( $post_type === $this->post_type ){
-            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
-                $fields['subscriber_last_modified'] = time();
-            }
+
         }
         return $fields;
     }
@@ -498,9 +448,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
             if ( !isset( $fields['public_key'] ) ) {
                 $fields['public_key'] = $this->create_unique_key();
             }
-            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
-                $fields['subscriber_last_modified'] = time();
-            }
+
         }
         return $fields;
     }

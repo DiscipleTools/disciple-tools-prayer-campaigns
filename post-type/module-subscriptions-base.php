@@ -66,8 +66,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
     }
 
 
-
-
     /**
      * Documentation
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/roles-permissions.md#rolesd
@@ -416,10 +414,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                     </div>
                 </div>
             </div>
-            <div class="cell small-12">
-                <?php render_field_for_display( "campaigns", $fields, $record, true ); ?>
-            </div>
-
         <?php }
 
         if ( $post_type === $this->post_type && $section === "other" ) :

@@ -49,8 +49,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
             return;
         }
 
-//        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_mapping_scripts'], 999 );
-
         // load if valid url
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
         if ( $this->magic->is_valid_key_url( $this->type ) && '' === $this->parts['action'] ) {
@@ -78,29 +76,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
         return $tiles;
     }
 
-//    public function enqueue_mapping_scripts(){
-//        if ( function_exists( 'dt_get_url_path' ) ) {
-//
-//            $url_path = dt_get_url_path();
-//            if ( strpos( $url_path, 'subscriptions_app' ) !== false ){
-//
-//                if ( ! empty( DT_Mapbox_API::get_key() ) ) {
-//
-//                    if ( class_exists( 'DT_Mapbox_API' ) ) {
-//                        DT_Mapbox_API::load_mapbox_header_scripts();
-//                        DT_Mapbox_API::load_mapbox_search_widget();
-//                    }
-//                    else if ( ! class_exists( 'DT_Mapbox_API' ) && file_exists( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' ) ) {
-//                        require_once( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' );
-//
-//                        DT_Mapbox_API::load_mapbox_header_scripts();
-//                        DT_Mapbox_API::load_mapbox_search_widget();
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     public function dt_details_additional_section( $section, $post_type ) {
         // test if subscriptions post type and subscriptions_app_module enabled
