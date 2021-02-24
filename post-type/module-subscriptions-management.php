@@ -178,7 +178,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
             'name' => 'Subscriptions',
             'root' => $this->root,
             'type' => $this->type,
-            'meta_key' => $this->root . '_' . $this->type . '_public_key', // coaching-magic_c_key
+            'meta_key' => 'public_key', // coaching-magic_c_key
             'actions' => [
                 '' => 'Manage',
             ],
