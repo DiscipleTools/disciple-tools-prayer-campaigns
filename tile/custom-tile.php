@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Prayer_Subscription_Tile
+class DT_Subscription_Tile
 {
     private static $_instance = null;
     public static function instance(){
@@ -29,7 +29,7 @@ class DT_Prayer_Subscription_Tile
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ) {
         if ( $post_type === "contacts" ){
-            $tiles["dt_prayers"] = [ "label" => __( "Prayer Subscription", 'disciple_tools' ) ];
+            $tiles["dt_subscription"] = [ "label" => __( "Subscription", 'disciple_tools' ) ];
         }
         return $tiles;
     }
@@ -58,18 +58,18 @@ class DT_Prayer_Subscription_Tile
             /**
              * This is an example of a text field
              */
-            $fields['dt_prayers_text'] = [
+            $fields['dt_subscription_text'] = [
                 'name'        => __( 'Text', 'disciple_tools' ),
                 'description' => _x( 'Text', 'Optional Documentation', 'disciple_tools' ),
                 'type'        => 'text',
                 'default'     => '',
-                'tile' => 'dt_prayers',
+                'tile' => 'dt_subscription',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/edit.svg',
             ];
             /**
              * This is an example of a multiselect field
              */
-            $fields["dt_prayers_multiselect"] = [
+            $fields["dt_subscription_multiselect"] = [
                 "name" => __( 'Multiselect', 'disciple_tools' ),
                 "default" => [
                     "one" => [ "label" => __( "One", 'disciple_tools' ) ],
@@ -77,7 +77,7 @@ class DT_Prayer_Subscription_Tile
                     "three" => [ "label" => __( "Three", 'disciple_tools' ) ],
                     "four" => [ "label" => __( "Four", 'disciple_tools' ) ],
                 ],
-                "tile" => "dt_prayers",
+                "tile" => "dt_subscription",
                 "type" => "multi_select",
                 "hidden" => false,
                 'icon' => get_template_directory_uri() . '/dt-assets/images/edit.svg',
@@ -85,10 +85,10 @@ class DT_Prayer_Subscription_Tile
             /**
              * This is an example of a key select field
              */
-            $fields["dt_prayers_keyselect"] = [
+            $fields["dt_subscription_keyselect"] = [
                 'name' => "Key Select",
                 'type' => 'key_select',
-                "tile" => "dt_prayers",
+                "tile" => "dt_subscription",
                 'default' => [
                     'new'   => [
                         "label" => _x( 'New', 'Training Status label', 'disciple_tools' ),
@@ -137,7 +137,7 @@ class DT_Prayer_Subscription_Tile
         /**
          * @todo set the post type and the section key that you created in the dt_details_additional_tiles() function
          */
-        if ( $post_type === "contacts" && $section === "dt_prayers" ){
+        if ( $post_type === "contacts" && $section === "dt_subscription" ){
             /**
              * These are two sets of key data:
              * $this_post is the details for this specific post
@@ -163,4 +163,4 @@ class DT_Prayer_Subscription_Tile
         <?php }
     }
 }
-DT_Prayer_Subscription_Tile::instance();
+DT_Subscription_Tile::instance();

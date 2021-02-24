@@ -4,7 +4,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-class DT_Prayer_Endpoints
+class DT_Subscription_Endpoints
 {
     private static $_instance = null;
     public static function instance() {
@@ -100,4 +100,4 @@ class DT_Prayer_Endpoints
 //        return DT_Posts::update_post( $url_params["post_type"], $url_params["id"], $fields, $silent );
     }
 }
-DT_Prayer_Endpoints::instance();
+DT_Subscription_Endpoints::instance();

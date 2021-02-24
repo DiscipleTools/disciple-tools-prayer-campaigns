@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-class DT_Prayer_Saturation_Type
+class DT_Subscription_Saturation_Type
 {
     public $parts = false;
     public $type = 'saturation';
@@ -140,7 +140,7 @@ class DT_Prayer_Saturation_Type
         ?>
         <div id="form-wrapper">
             <div class="grid-x grid-padding-x">
-                <div class="cell center"><h2>Prayer Subscription</h2></div>
+                <div class="cell center"><h2>Subscription</h2></div>
                 <div class="cell center">
                     Select Timezone<br>
                     <select name="timezone"></select>
@@ -382,4 +382,4 @@ class DT_Prayer_Saturation_Type
     }
 
 }
-DT_Prayer_Saturation_Type::instance();
+DT_Subscription_Saturation_Type::instance();

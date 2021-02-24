@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Prayer_Subscription_Endpoints
+class DT_Subscription_Endpoints
 {
     /**
      * @todo Set the permissions your endpoint needs
@@ -19,7 +19,7 @@ class DT_Prayer_Subscription_Endpoints
      */
     //See https://github.com/DiscipleTools/disciple-tools-theme/wiki/Site-to-Site-Link for outside of wordpress authentication
     public function add_api_routes() {
-        $namespace = 'dt_prayers/v1';
+        $namespace = 'dt_subscription/v1';
 
         register_rest_route(
             $namespace, '/endpoint', [
@@ -74,4 +74,4 @@ class DT_Prayer_Subscription_Endpoints
         return $pass;
     }
 }
-DT_Prayer_Subscription_Endpoints::instance();
+DT_Subscription_Endpoints::instance();

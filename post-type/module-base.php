@@ -2,21 +2,21 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 /**
- * Class DT_Prayers_Base
+ * Class DT_Subscription_Base
  * Load the core post type hooks into the Disciple Tools system
  */
-class DT_Prayers_Base extends DT_Module_Base {
+class DT_Subscription_Base extends DT_Module_Base {
 
     /**
      * Define post type variables
      * @var string
      */
-    public $post_type = "prayers";
-    public $module = "prayers_base";
-    public $single_name = 'Prayer Subscription';
+    public $post_type = "subscription";
+    public $module = "subscription_base";
+    public $single_name = 'Subscription';
     public $plural_name = 'Subscriptions';
     public static function post_type(){
-        return 'prayers';
+        return 'subscription';
     }
 
     private static $_instance = null;
@@ -71,20 +71,21 @@ class DT_Prayers_Base extends DT_Module_Base {
     public function dt_set_roles_and_permissions( $expected_roles ){
 
         $expected_roles["prayer_admin"] = [
-            "label" => __( 'Prayer Admin', 'disciple_tools' ),
-            "description" => __( 'Prayer admin can administrate the prayer subscriptions section', 'disciple_tools' ),
+            "label" => __( 'Subscription Admin', 'disciple_tools' ),
+            "description" => __( 'Subscription admin can administrate the prayer subscriptions section', 'disciple_tools' ),
             "permissions" => [
                 'view_any_'.$this->post_type => true,
                 'dt_all_admin_' . $this->post_type => true,
             ]
         ];
 
-        if ( !isset( $expected_roles["multiplier"] ) ){
-            $expected_roles["multiplier"] = [
-                "label" => __( 'Multiplier', 'disciple-tools-training' ),
-                "permissions" => []
-            ];
-        }
+        // @note removed multiplier role because these people are not expected to be interacted with.
+//        if ( !isset( $expected_roles["multiplier"] ) ){
+//            $expected_roles["multiplier"] = [
+//                "label" => __( 'Multiplier', 'disciple-tools-training' ),
+//                "permissions" => []
+//            ];
+//        }
         if ( !isset( $expected_roles["dt_admin"] ) ){
             $expected_roles["dt_admin"] = [
                 "label" => __( 'Disciple.Tools Admin', 'disciple-tools-training' ),
@@ -138,28 +139,33 @@ class DT_Prayers_Base extends DT_Module_Base {
                 'default'     => [],
                 'tile'        => 'other',
                 'custom_display' => true,
+                "customizable" => false,
             ];
-//            $fields["follow"] = [
-//                'name'        => __( 'Follow', 'disciple_tools' ),
-//                'type'        => 'multi_select',
-//                'default'     => [],
-//                'section'     => 'misc',
-//                'hidden'      => true
-//            ];
-//            $fields["unfollow"] = [
-//                'name'        => __( 'Un-Follow', 'disciple_tools' ),
-//                'type'        => 'multi_select',
-//                'default'     => [],
-//                'hidden'      => true
-//            ];
-//            $fields['tasks'] = [
-//                'name' => __( 'Tasks', 'disciple_tools' ),
-//                'type' => 'post_user_meta',
-//            ];
+            $fields["follow"] = [
+                'name'        => __( 'Follow', 'disciple_tools' ),
+                'type'        => 'multi_select',
+                'default'     => [],
+                'section'     => 'misc',
+                'hidden'      => true,
+                "customizable" => false,
+            ];
+            $fields["unfollow"] = [
+                'name'        => __( 'Un-Follow', 'disciple_tools' ),
+                'type'        => 'multi_select',
+                'default'     => [],
+                'hidden'      => true,
+                "customizable" => false,
+            ];
+            $fields['tasks'] = [
+                'name' => __( 'Tasks', 'disciple_tools' ),
+                'type' => 'post_user_meta',
+                "customizable" => false,
+            ];
             $fields["duplicate_data"] = [
                 "name" => 'Duplicates', //system string does not need translation
                 'type' => 'array',
                 'default' => [],
+                "customizable" => false,
             ];
 //            $fields['assigned_to'] = [
 //                'name'        => __( 'Assigned To', 'disciple_tools' ),
@@ -202,28 +208,58 @@ class DT_Prayers_Base extends DT_Module_Base {
                 "show_in_table" => 10,
             ];
 
-            $fields["languages"] = [
-                'name' => __( 'Languages', 'disciple_tools' ),
-                'type' => 'multi_select',
-                'default' => dt_get_option( "dt_working_languages" ) ?: [],
-                'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
-            ];
+
             $fields["contact_email"] = [
                 "name" => __( 'Email', 'disciple_tools' ),
                 "icon" => get_template_directory_uri() . "/dt-assets/images/email.svg",
                 "type" => "communication_channel",
                 "tile" => "details",
-                "customizable" => false
+                "customizable" => false,
+                "in_create_form" => true,
             ];
             $fields["contact_phone"] = [
                 "name" => __( 'Phone', 'disciple_tools' ),
+                'description' => __('Subscriber phone number', 'disciple_tools' ),
                 "icon" => get_template_directory_uri() . "/dt-assets/images/phone.svg",
                 "type" => "communication_channel",
                 "tile" => "details",
                 "customizable" => false,
+                "in_create_form" => false,
+            ];
+            $fields["languages"] = [
+                'name' => __( 'Languages', 'disciple_tools' ),
+                'description' => __('Subscriber preferred language', 'disciple_tools' ),
+                'type' => 'key_select',
+                "tile" => "details",
                 "in_create_form" => true,
+                'default' => dt_get_option( "dt_working_languages" ) ?: ['en'],
+                'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
 
+            $fields['public_key'] = [
+                'name'   => __( 'Private Key', 'disciple_tools' ),
+                'description' => __('Private key for subscriber access', 'disciple_tools' ),
+                'type'   => 'hash',
+                'hidden' => true,
+                "customizable" => false,
+            ];
+            $fields['subscriber_last_modified'] = [
+                'name'   => __('Last Modified by Subscriber', 'disciple_tools' ),
+                'description' => '',
+                'type' => 'time',
+                'default' => '',
+                'hidden' => true,
+                "customizable" => false,
+            ];
+            $fields['campaigns'] = [
+                'name'        => __( 'Campaigns', 'disciple_tools' ),
+                'description' => _x( 'Campaigns', 'Optional Documentation', 'disciple_tools' ),
+                'type'        => 'multi_select',
+                'default'     => [],
+                'tile'        => '',
+                "customizable" => true,
+                "in_create_form" => true,
+            ];
 
 
             /**
@@ -234,32 +270,42 @@ class DT_Prayers_Base extends DT_Module_Base {
                 'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
                 'type'        => 'location',
                 'mapbox'    => false,
+                "customizable" => false,
                 "in_create_form" => true,
-                "tile" => "locations",
+                "tile" => "",
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
-            $fields['location_grid_meta'] = [
-                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
-                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'location_meta',
+//            $fields['location_grid_meta'] = [
+//                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
+//                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+//                'type'        => 'location_meta',
+//                "tile"      => "locations",
+//                'mapbox'    => false,
+//                'hidden' => true
+//            ];
+//            $fields["contact_address"] = [
+//                "name" => __( 'Address', 'disciple_tools' ),
+//                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
+//                "type" => "communication_channel",
+//                "tile" => "",
+//                'mapbox'    => false,
+//                "customizable" => false
+//            ];
+//            if ( DT_Mapbox_API::get_key() ){
+//                $fields["contact_address"]["hidden"] = true;
+//                $fields["contact_address"]["mapbox"] = true;
+//                $fields["location_grid"]["mapbox"] = true;
+//                $fields["location_grid_meta"]["mapbox"] = true;
+//            }
+
+            $fields['location_grid_time'] = [
+                'name'        => __( 'Location Time', 'disciple_tools' ), //system string does not need translation
+                'description' => _x( 'Specified time for a location event', 'Optional Documentation', 'disciple_tools' ),
+                'type'        => 'location_time',
                 "tile"      => "locations",
-                'mapbox'    => false,
-                'hidden' => true
+                'hidden' => true,
+                "customizable" => false,
             ];
-            $fields["contact_address"] = [
-                "name" => __( 'Address', 'disciple_tools' ),
-                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
-                "type" => "communication_channel",
-                "tile" => "locations",
-                'mapbox'    => false,
-                "customizable" => false
-            ];
-            if ( DT_Mapbox_API::get_key() ){
-                $fields["contact_address"]["hidden"] = true;
-                $fields["contact_address"]["mapbox"] = true;
-                $fields["location_grid"]["mapbox"] = true;
-                $fields["location_grid_meta"]["mapbox"] = true;
-            }
             // end locations
 
             $fields["contacts"] = [
@@ -269,13 +315,16 @@ class DT_Prayers_Base extends DT_Module_Base {
                 "post_type" => "contacts",
                 "p2p_direction" => "from",
                 "tile" => "other",
+                "customizable" => false,
                 "p2p_key" => $this->post_type."_to_contacts",
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
 
+
+
         }
 
-        if ( $post_type === "contacts" ){
+        if ( $post_type === "contacts" && current_user_can('view_all_'.$this->post_type ) ){
             $fields[$this->post_type] = [
                 "name" => $this->plural_name,
                 "description" => '',
@@ -286,7 +335,8 @@ class DT_Prayers_Base extends DT_Module_Base {
                 "tile" => "other",
                 'icon' => get_template_directory_uri() . "/dt-assets/images/group-type.svg",
                 'create-icon' => get_template_directory_uri() . "/dt-assets/images/add-group.svg",
-                "show_in_table" => 35
+                "show_in_table" => 35,
+                "customizable" => false,
             ];
         }
 
@@ -322,7 +372,6 @@ class DT_Prayers_Base extends DT_Module_Base {
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
-            $tiles["locations"] = [ "label" => __( "Location Subscriptions", 'disciple_tools' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
         return $tiles;
@@ -336,11 +385,37 @@ class DT_Prayers_Base extends DT_Module_Base {
 
         if ( $post_type === $this->post_type && $section === "status" ){
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
-            $record_fields = DT_Posts::get_post_field_settings( $post_type );
+            $fields = DT_Posts::get_post_field_settings( $post_type );
             ?>
             <div class="cell small-12 medium-4">
-                <?php render_field_for_display( "status", $record_fields, $record, true ); ?>
+                <?php render_field_for_display( "status", $fields, $record, true ); ?>
             </div>
+            <div class="cell small-12 medium-8">
+                <div class="section-subheader">
+                    <?php echo esc_html( $fields["location_grid"]["name"] ) ?>
+                </div>
+                <div class="dt_location_grid" data-id="location_grid">
+                    <var id="location_grid-result-container" class="result-container"></var>
+                    <div id="location_grid_t" name="form-location_grid" class="scrollable-typeahead typeahead-margin-when-active">
+                        <div class="typeahead__container">
+                            <div class="typeahead__field">
+                                    <span class="typeahead__query">
+                                        <input class="js-typeahead-location_grid input-height"
+                                               data-field="location_grid"
+                                               data-field_type="location"
+                                               name="location_grid[query]"
+                                               placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields['location_grid']['name'] ) )?>"
+                                               autocomplete="off" />
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell small-12">
+                <?php render_field_for_display( "campaigns", $fields, $record, true ); ?>
+            </div>
+
         <?php }
 
         if ( $post_type === $this->post_type && $section === "other" ) :
@@ -373,19 +448,6 @@ class DT_Prayers_Base extends DT_Module_Base {
 
     }
 
-
-
-    //filter at the start of post update
-    public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        if ( $post_type === $this->post_type ){
-            // execute your code here
-            dt_write_log( __METHOD__ );
-        }
-        return $fields;
-    }
-
-
-
     //filter when a comment is created
     public function dt_comment_created( $post_type, $post_id, $comment_id, $type ){
         if ( $post_type === $this->post_type ){
@@ -395,26 +457,51 @@ class DT_Prayers_Base extends DT_Module_Base {
         }
     }
 
+    //filter at the start of post update
+    public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        if ( $post_type === $this->post_type ){
+            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
+                $fields['subscriber_last_modified'] = time();
+            }
+        }
+        return $fields;
+    }
+
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
         if ( $post_type === $this->post_type ) {
             if ( !isset( $fields["status"] ) ) {
                 $fields["status"] = "active";
             }
+            if ( !isset( $fields['public_key'] ) ) {
+                $fields['public_key'] = $this->create_unique_key();
+            }
+            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
+                $fields['subscriber_last_modified'] = time();
+            }
         }
         return $fields;
+    }
+
+    public function create_unique_key() : string {
+        try {
+            $hash = hash( 'sha256', bin2hex( random_bytes( 256 ) ) );
+        } catch ( Exception $exception ) {
+            $hash = hash( 'sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
+        }
+        return $hash;
     }
 
     //action when a post has been created
     public function dt_post_created( $post_type, $post_id, $initial_fields ){
         if ( $post_type === $this->post_type ){
             do_action( "dt_'.$this->post_type.'_created", $post_id, $initial_fields );
-            $post_array = DT_Posts::get_post( $this->post_type, $post_id, true, false );
-            if ( isset( $post_array["assigned_to"] )) {
-                if ( $post_array["assigned_to"]["id"] ) {
-                    DT_Posts::add_shared( $this->post_type, $post_id, $post_array["assigned_to"]["id"], null, false, false, false );
-                }
-            }
+//            $post_array = DT_Posts::get_post( $this->post_type, $post_id, true, false );
+//            if ( isset( $post_array["assigned_to"] )) {
+//                if ( $post_array["assigned_to"]["id"] ) {
+//                    DT_Posts::add_shared( $this->post_type, $post_id, $post_array["assigned_to"]["id"], null, false, false, false );
+//                }
+//            }
         }
     }
 
@@ -422,22 +509,21 @@ class DT_Prayers_Base extends DT_Module_Base {
     private static function get_all_status_types(){
         global $wpdb;
 
-        if ( current_user_can( 'view_any_'.self::post_type() ) ){
-            $results = $wpdb->get_results($wpdb->prepare( "
+        $results = $wpdb->get_results($wpdb->prepare( "
                 SELECT pm.meta_value as status, count(pm.post_id) as count
                 FROM $wpdb->postmeta pm
                 JOIN $wpdb->posts a ON( a.ID = pm.post_id AND a.post_type = %s and a.post_status = 'publish' )
                 WHERE pm.meta_key = 'status'
                 GROUP BY pm.meta_value;
             ", self::post_type() ), ARRAY_A );
-        }
 
         return $results;
     }
 
     //build list page filters
     public static function dt_user_list_filters( $filters, $post_type ){
-        if ( $post_type === self::post_type() ){
+        if ( $post_type === self::post_type() && current_user_can( 'view_any_'.self::post_type() ) ){
+
             $fields = DT_Posts::get_post_field_settings( $post_type );
 
             $counts = self::get_all_status_types();

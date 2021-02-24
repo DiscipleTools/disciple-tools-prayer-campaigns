@@ -4,8 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  * Configures the site link system for the network reporting
  */
 
-class DT_Prayer_Subscription_Site_Links {
-    public $type = 'dt_prayers';
+class DT_Subscription_Site_Links {
+    public $type = 'dt_subscription';
 
     private static $_instance = null;
     public static function instance() {
@@ -33,9 +33,9 @@ class DT_Prayer_Subscription_Site_Links {
     }
 
     public function site_link_type( $type ) {
-        $type[$this->type] = __( 'Prayer Subscription' );
+        $type[$this->type] = __( 'Subscription' );
         return $type;
     }
 }
-DT_Prayer_Subscription_Site_Links::instance();
+DT_Subscription_Site_Links::instance();
 

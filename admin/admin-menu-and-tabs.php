@@ -2,22 +2,22 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class DT_Prayer_Subscription_Menu
+ * Class DT_Subscription_Menu
  */
-class DT_Prayer_Subscription_Menu {
+class DT_Subscription_Menu {
 
-    public $token = 'dt_prayers';
+    public $token = 'dt_subscription';
 
     private static $_instance = null;
 
     /**
-     * DT_Prayer_Subscription_Menu Instance
+     * DT_Subscription_Menu Instance
      *
-     * Ensures only one instance of DT_Prayer_Subscription_Menu is loaded or can be loaded.
+     * Ensures only one instance of DT_Subscription_Menu is loaded or can be loaded.
      *
      * @since 0.1.0
      * @static
-     * @return DT_Prayer_Subscription_Menu instance
+     * @return DT_Subscription_Menu instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -44,7 +44,7 @@ class DT_Prayer_Subscription_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_submenu_page( 'dt_extensions', 'Prayer Subscription', 'Prayer Subscription', 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_submenu_page( 'dt_extensions', 'Subscription', 'Subscription', 'manage_dt', $this->token, [ $this, 'content' ] );
     }
 
     /**
@@ -72,7 +72,7 @@ class DT_Prayer_Subscription_Menu {
 
         ?>
         <div class="wrap">
-            <h2>Prayer Subscription</h2>
+            <h2>Subscription</h2>
             <h2 class="nav-tab-wrapper">
                 <a href="<?php echo esc_attr( $link ) . 'general' ?>"
                    class="nav-tab <?php echo esc_html( ( $tab == 'general' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">General</a>
@@ -82,11 +82,11 @@ class DT_Prayer_Subscription_Menu {
             <?php
             switch ($tab) {
                 case "general":
-                    $object = new DT_Prayer_Subscription_Tab_General();
+                    $object = new DT_Subscription_Tab_General();
                     $object->content();
                     break;
                 case "second":
-                    $object = new DT_Prayer_Subscription_Tab_Second();
+                    $object = new DT_Subscription_Tab_Second();
                     $object->content();
                     break;
                 default:
@@ -99,12 +99,12 @@ class DT_Prayer_Subscription_Menu {
         <?php
     }
 }
-DT_Prayer_Subscription_Menu::instance();
+DT_Subscription_Menu::instance();
 
 /**
- * Class DT_Prayer_Subscription_Tab_General
+ * Class DT_Subscription_Tab_General
  */
-class DT_Prayer_Subscription_Tab_General {
+class DT_Subscription_Tab_General {
     public function content() {
         ?>
         <div class="wrap">
@@ -179,9 +179,9 @@ class DT_Prayer_Subscription_Tab_General {
 
 
 /**
- * Class DT_Prayer_Subscription_Tab_Second
+ * Class DT_Subscription_Tab_Second
  */
-class DT_Prayer_Subscription_Tab_Second {
+class DT_Subscription_Tab_Second {
     public function content() {
         ?>
         <div class="wrap">

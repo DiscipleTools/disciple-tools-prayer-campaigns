@@ -1,14 +1,14 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Prayer_Subscription_Management extends DT_Module_Base
+class DT_Subscription_Management extends DT_Module_Base
 {
-    public $module = "prayers_management";
-    public $post_type = 'prayers';
+    public $module = "subscription_management";
+    public $post_type = 'subscription';
 
     public $magic = false;
     public $parts = false;
-    public $root = "prayers_app"; // define the root of the url {yoursite}/root/type/key/action
+    public $root = "subscription_app"; // define the root of the url {yoursite}/root/type/key/action
     public $type = 'subscription'; // define the type
 
 
@@ -30,20 +30,13 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
         add_action( 'wp_enqueue_scripts', [ $this, 'tile_scripts' ], 100 );
 
-
         // register type
         $this->magic = new DT_Magic_URL( $this->root );
         add_filter( 'dt_magic_url_register_types', [ $this, 'register_type' ], 10, 1 );
 
-
         // register REST and REST access
         add_filter( 'dt_allow_rest_access', [ $this, 'authorize_url' ], 10, 1 );
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
-
-        add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
-        add_filter( "dt_post_create_fields", [ $this, "dt_post_create_fields" ], 10, 2 );
-        add_filter( "dt_post_update_fields", [ $this, "dt_post_update_fields" ], 10, 3 );
-
 
         // fail if not valid url
         $this->parts = $this->magic->parse_url_parts();
@@ -56,7 +49,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
             return;
         }
 
-        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_mapping_scripts'], 999 );
+//        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_mapping_scripts'], 999 );
 
         // load if valid url
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -79,59 +72,56 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
     }
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
-        if ( $post_type === 'prayers' ){
-//            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-prayers' ) ];
+        if ( $post_type === 'subscription' ){
+            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscription' ) ];
         }
         return $tiles;
     }
 
-    public function enqueue_mapping_scripts(){
-        if ( function_exists( 'dt_get_url_path' ) ) {
-
-            $url_path = dt_get_url_path();
-            if ( strpos( $url_path, 'prayers_app' ) !== false ){
-
-                if ( ! empty( DT_Mapbox_API::get_key() ) ) {
-
-                    if ( class_exists( 'DT_Mapbox_API' ) ) {
-                        DT_Mapbox_API::load_mapbox_header_scripts();
-                        DT_Mapbox_API::load_mapbox_search_widget();
-                    }
-                    else if ( ! class_exists( 'DT_Mapbox_API' ) && file_exists( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' ) ) {
-                        require_once( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' );
-
-                        DT_Mapbox_API::load_mapbox_header_scripts();
-                        DT_Mapbox_API::load_mapbox_search_widget();
-
-                    }
-                }
-            }
-        }
-    }
+//    public function enqueue_mapping_scripts(){
+//        if ( function_exists( 'dt_get_url_path' ) ) {
+//
+//            $url_path = dt_get_url_path();
+//            if ( strpos( $url_path, 'subscription_app' ) !== false ){
+//
+//                if ( ! empty( DT_Mapbox_API::get_key() ) ) {
+//
+//                    if ( class_exists( 'DT_Mapbox_API' ) ) {
+//                        DT_Mapbox_API::load_mapbox_header_scripts();
+//                        DT_Mapbox_API::load_mapbox_search_widget();
+//                    }
+//                    else if ( ! class_exists( 'DT_Mapbox_API' ) && file_exists( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' ) ) {
+//                        require_once( get_stylesheet_directory() . 'dt-mapping/geocode-api/mapbox-api.php' );
+//
+//                        DT_Mapbox_API::load_mapbox_header_scripts();
+//                        DT_Mapbox_API::load_mapbox_search_widget();
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public function dt_details_additional_section( $section, $post_type ) {
-        // test if prayers post type and prayers_app_module enabled
+        // test if subscription post type and subscription_app_module enabled
         if ( $post_type === $this->post_type ) {
 
-            if ( 'locations' === $section ) {
+            if ( 'subscriptions' === $section ) {
                 $record = DT_Posts::get_post( $post_type, get_the_ID() );
 
-                if ( isset( $record[$this->root . '_' . $this->type . '_public_key'])) {
-                    $key = $record[$this->root . '_' . $this->type . '_public_key'];
+                if ( isset( $record['public_key'])) {
+                    $key = $record['public_key'];
                 } else {
-                    $magic = new DT_Magic_URL( $this->root );
-                    $key = $magic->create_unique_key();
-                    update_post_meta( get_the_ID(), $this->root . '_' . $this->type . '_public_key', $key );
+                    $key = DT_Subscription_Base::instance()->create_unique_key();
+                    update_post_meta( get_the_ID(), 'public_key', $key );
                 }
                 $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
                 ?>
-                <hr>
                 <div class="cell">
                     <div class="section-subheader">
                         Subscription Management
                     </div>
                     <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
-<!--                    <a class="button hollow small" href="--><?php //echo esc_url( $link ) ?><!--" target="_blank">Send Link</a>-->
                     <a class="button hollow small" href="<?php echo esc_url( $link ) ?>" target="_blank">Go To</a>
                 </div>
 
@@ -161,59 +151,19 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
             }
 
 
-        } // end if prayers and enabled
+        } // end if subscription and enabled
     }
 
-    public function dt_custom_fields_settings( $fields, $post_type ){
-        if ( $post_type === 'prayers' ){
-            // do action
-            $fields[$this->root . '_' . $this->type . '_public_key'] = [
-                'name'   => 'Private Report Key',
-                'description' => '',
-                'type'   => 'hash',
-                'hidden' => true,
-            ];
-            $fields[$this->root . '_' . $this->type . '_last_modified'] = [
-                'name'   => 'Subscription Last Modified',
-                'description' => 'Stores the time of the last insert or delete performed on subscriptions.',
-                'type' => 'date',
-                'default' => '',
-                'show_in_table' => true
-            ];
-        }
-        return $fields;
-    }
-
-    public function dt_post_create_fields( $fields, $post_type ){
-        if ( $post_type === $this->post_type ) {
-            if ( !isset( $fields[$this->root . '_' . $this->type . '_public_key'] ) ) {
-                $magic = new DT_Magic_URL;
-                $fields[$this->root . '_' . $this->type . '_public_key'] = $magic->create_unique_key();
-            }
-        }
-        return $fields;
-    }
-
-    public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        if ( $post_type === $this->post_type ){
-
-            if ( ! isset( $fields[$this->root . '_' . $this->type . '_last_modified'] ) ) {
-                $fields[$this->root . '_' . $this->type . '_last_modified'] = time();
-            }
-
-        }
-        return $fields;
-    }
 
     public function tile_scripts(){
-        if ( is_singular( "prayers" ) ){
-            $magic = new DT_Magic_URL( 'prayers_app' );
+        if ( is_singular( "subscription" ) ){
+            $magic = new DT_Magic_URL( 'subscription_app' );
             $types = $magic->list_types();
             $subscription = $types['subscription'] ?? [];
             $subscription['new_key'] = $magic->create_unique_key();
 
-            wp_localize_script( // add object to prayers-post-type.js
-                'dt_prayers', 'prayers_subscription_module', [
+            wp_localize_script( // add object to subscription-post-type.js
+                'dt_subscription', 'subscription_subscription_module', [
                     'subscription' => $subscription,
                 ]
             );
@@ -225,7 +175,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
             $types[$this->root] = [];
         }
         $types[$this->root][$this->type] = [
-            'name' => 'Prayer Subscription',
+            'name' => 'Subscription',
             'root' => $this->root,
             'type' => $this->type,
             'meta_key' => $this->root . '_' . $this->type . '_public_key', // coaching-magic_c_key
@@ -276,8 +226,6 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
 
         return false;
     }
-
-
 
     public function print_scripts(){
         // @link /disciple-tools-theme/dt-assets/functions/enqueue-scripts.php
@@ -468,7 +416,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id']),
                 'translations' => [
-                    'add' => __( 'Add Report', 'disciple-tools-prayers' ),
+                    'add' => __( 'Add Report', 'disciple-tools-subscription' ),
                     'search_location' => 'Search for Location'
                 ],
             ]) ?>][0]
@@ -904,7 +852,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
         }
 
         $user = wp_get_current_user();
-        $user->add_cap( 'create_prayers' );
+        $user->add_cap( 'create_subscription' );
 
         $params = dt_recursive_sanitize_array( $params );
         $hash = $this->magic->create_unique_key();
@@ -918,7 +866,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
             $this->root . '_' . $this->type . '_last_modified' => time(),
         ];
 
-        $new_id = DT_Posts::create_post( 'prayers', $fields, true );
+        $new_id = DT_Posts::create_post( 'subscription', $fields, true );
 
         if ( is_wp_error( $new_id ) ) {
             return $new_id;
@@ -934,7 +882,7 @@ class DT_Prayer_Subscription_Management extends DT_Module_Base
 
     public function get_subscriptions( $post_id ) {
         $user = wp_get_current_user();
-        $user->add_cap( 'create_prayers' );
+        $user->add_cap( 'create_subscription' );
 
         $record = DT_Posts::get_post( $this->post_type, $post_id, false, false );
         $data = [

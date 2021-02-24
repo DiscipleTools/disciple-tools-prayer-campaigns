@@ -3,7 +3,7 @@
  * Adds tile at the left bottom of the Subscription lists page
  */
 add_action( 'dt_post_list_filters_sidebar', function( $post_type ) {
-    if ( 'prayers' === $post_type ) {
+    if ( 'subscription' === $post_type ) {
         ?>
         <div class="bordered-box" style="margin-top: 1em;">
             <div class="section-header"><?php esc_html_e( 'Public Apps', 'disciple-tools-list-exports' )?>&nbsp;
@@ -18,7 +18,7 @@ add_action( 'dt_post_list_filters_sidebar', function( $post_type ) {
                 </button>
             </div>
             <div class="section-body" style="padding-top:1em;">
-                <a id="subscription-page" href="/prayers_app/subscription/" ><?php esc_html_e( "subscription page", 'disciple-tools-prayers' ) ?></a><br>
+                <a id="subscription-page" href="/subscription_app/subscription/" ><?php esc_html_e( "subscription page", 'disciple-tools-subscription' ) ?></a><br>
             </div>
         </div>
         <?php

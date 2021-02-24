@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-subscription.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-subscription)
 
-# Disciple Tools - Prayer Subscription
+# Disciple Tools - Subscription
 
 Add a prayer subscription module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations
 at specific times, supporting both time and geographic prayer saturation for your project.

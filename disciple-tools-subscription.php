@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Disciple Tools - Prayer Subscription
+ * Plugin Name: Disciple Tools - Subscriptions
  * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscription
  * Description: Add a prayer subscription module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
  * Text Domain: disciple-tools-prayer-subscription
@@ -25,14 +25,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Gets the instance of the `DT_Prayer_Subscription` class.
+ * Gets the instance of the `DT_Subscription` class.
  *
  * @since  0.1
  * @access public
  * @return object|bool
  */
-function dt_prayers() {
-    $dt_prayers_required_dt_theme_version = '1.0';
+function dt_subscription() {
+    $dt_subscription_required_dt_theme_version = '1.0';
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
 
@@ -40,8 +40,8 @@ function dt_prayers() {
      * Check if the Disciple.Tools theme is loaded and is the latest required version
      */
     $is_theme_dt = strpos( $wp_theme->get_template(), "disciple-tools-theme" ) !== false || $wp_theme->name === "Disciple Tools";
-    if ( $is_theme_dt && version_compare( $version, $dt_prayers_required_dt_theme_version, "<" ) ) {
-        add_action( 'admin_notices', 'dt_prayers_hook_admin_notice' );
+    if ( $is_theme_dt && version_compare( $version, $dt_subscription_required_dt_theme_version, "<" ) ) {
+        add_action( 'admin_notices', 'dt_subscription_hook_admin_notice' );
         add_action( 'wp_ajax_dismissed_notice_handler', 'dt_hook_ajax_notice_handler' );
         return false;
     }
@@ -55,10 +55,10 @@ function dt_prayers() {
         require_once get_template_directory() . '/dt-core/global-functions.php';
     }
 
-    return DT_Prayer_Subscription::instance();
+    return DT_Subscription::instance();
 
 }
-add_action( 'after_setup_theme', 'dt_prayers', 20 );
+add_action( 'after_setup_theme', 'dt_subscription', 20 );
 
 /**
  * Singleton class for setting up the plugin.
@@ -66,7 +66,7 @@ add_action( 'after_setup_theme', 'dt_prayers', 20 );
  * @since  0.1
  * @access public
  */
-class DT_Prayer_Subscription {
+class DT_Subscription {
 
     private static $_instance = null;
     public static function instance() {
@@ -82,7 +82,7 @@ class DT_Prayer_Subscription {
          * @todo Decide if you want to use the REST API example
          * To remove: delete this following line and remove the folder named /rest-api
          */
-        if ( strpos( dt_get_url_path(), 'dt_prayers_template' ) !== false ) {
+        if ( strpos( dt_get_url_path(), 'dt_subscription_template' ) !== false ) {
             require_once( 'rest-api/rest-api.php' ); // adds starter rest api class
         }
 
@@ -236,7 +236,7 @@ class DT_Prayer_Subscription {
      * @access public
      */
     public function __call( $method = '', $args = array() ) {
-        _doing_it_wrong( "dt_prayers::" . esc_html( $method ), 'Method does not exist.', '0.1' );
+        _doing_it_wrong( "dt_subscription::" . esc_html( $method ), 'Method does not exist.', '0.1' );
         unset( $method, $args );
         return null;
     }
@@ -244,18 +244,18 @@ class DT_Prayer_Subscription {
 
 
 // Register activation hook.
-register_activation_hook( __FILE__, [ 'DT_Prayer_Subscription', 'activation' ] );
-register_deactivation_hook( __FILE__, [ 'DT_Prayer_Subscription', 'deactivation' ] );
+register_activation_hook( __FILE__, [ 'DT_Subscription', 'activation' ] );
+register_deactivation_hook( __FILE__, [ 'DT_Subscription', 'deactivation' ] );
 
 
-if ( ! function_exists( 'dt_prayers_hook_admin_notice' ) ) {
-    function dt_prayers_hook_admin_notice() {
-        global $dt_prayers_required_dt_theme_version;
+if ( ! function_exists( 'dt_subscription_hook_admin_notice' ) ) {
+    function dt_subscription_hook_admin_notice() {
+        global $dt_subscription_required_dt_theme_version;
         $wp_theme = wp_get_theme();
         $current_version = $wp_theme->version;
-        $message = "'Disciple Tools - Prayer Subscription' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.";
+        $message = "'Disciple Tools - Subscription' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.";
         if ( $wp_theme->get_template() === "disciple-tools-theme" ){
-            $message .= ' ' . sprintf( esc_html( 'Current Disciple Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_prayers_required_dt_theme_version ) );
+            $message .= ' ' . sprintf( esc_html( 'Current Disciple Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_subscription_required_dt_theme_version ) );
         }
         // Check if it's been dismissed...
         if ( ! get_option( 'dismissed-disciple-tools-prayer-subscription', false ) ) { ?>

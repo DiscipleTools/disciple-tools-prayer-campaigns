@@ -14,28 +14,28 @@ if ( ! class_exists( 'DT_Module_Base' ) ) {
  */
 add_filter( 'dt_post_type_modules', function( $modules ){
 
-    $modules["prayers_base"] = [
-        "name" => "Prayer Subscription",
+    $modules["subscription_base"] = [
+        "name" => "Subscription",
         "enabled" => true,
         "locked" => true,
         "prerequisites" => [ "contacts_base" ],
-        "post_type" => "prayers",
-        "description" => "Prayer subscription base"
+        "post_type" => "subscription",
+        "description" => "Subscription base"
     ];
-    $modules["prayers_management"] = [
-        "name" => "Prayer Subscription",
+    $modules["subscription_management"] = [
+        "name" => "Subscription Management",
         "enabled" => true,
         "locked" => true,
-        "prerequisites" => [ "prayers_base" ],
-        "post_type" => "prayers",
-        "description" => "Prayer Subscription Management Form"
+        "prerequisites" => [ "subscription_base" ],
+        "post_type" => "subscription",
+        "description" => "Subscription Management"
     ];
 
     return $modules;
 }, 20, 1 );
 
 require_once 'module-base.php';
-DT_Prayers_Base::instance();
+DT_Subscription_Base::instance();
 
-require_once 'module-subscription.php';
-DT_Prayer_Subscription_Management::instance();
+require_once 'module-management.php';
+DT_Subscription_Management::instance();
