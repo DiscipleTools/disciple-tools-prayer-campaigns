@@ -79,6 +79,8 @@ class DT_Campaigns_Base extends DT_Module_Base {
             $tabs['subscriptions']['submenu'][$this->post_type] = [
                 "link" => site_url( "/$this->post_type/" ),
                 "label" => $this->plural_name,
+                'icon' => '',
+                'hidden' => false,
             ];
         }
         return $tabs;
