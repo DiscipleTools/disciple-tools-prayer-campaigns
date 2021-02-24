@@ -14,28 +14,40 @@ if ( ! class_exists( 'DT_Module_Base' ) ) {
  */
 add_filter( 'dt_post_type_modules', function( $modules ){
 
-    $modules["subscription_base"] = [
-        "name" => "Subscription",
+    $modules["subscriptions_base"] = [
+        "name" => "Subscriptions",
         "enabled" => true,
         "locked" => true,
         "prerequisites" => [ "contacts_base" ],
-        "post_type" => "subscription",
-        "description" => "Subscription base"
+        "post_type" => "subscriptions",
+        "description" => "Subscriptions base"
     ];
-    $modules["subscription_management"] = [
-        "name" => "Subscription Management",
+    $modules["subscriptions_management"] = [
+        "name" => "Subscriptions Management",
         "enabled" => true,
         "locked" => true,
-        "prerequisites" => [ "subscription_base" ],
-        "post_type" => "subscription",
-        "description" => "Subscription Management"
+        "prerequisites" => [ "subscriptions_base" ],
+        "post_type" => "subscriptions",
+        "description" => "Subscriptions Management"
+    ];
+
+    $modules["campaigns_base"] = [
+        "name" => "Campaigns",
+        "enabled" => true,
+        "locked" => true,
+        "prerequisites" => [ "subscriptions_base" ],
+        "post_type" => "campaigns",
+        "description" => "Campaigns base"
     ];
 
     return $modules;
 }, 20, 1 );
 
-require_once 'module-base.php';
-DT_Subscription_Base::instance();
+require_once 'module-subscriptions-base.php';
+DT_Subscriptions_Base::instance();
 
-require_once 'module-management.php';
-DT_Subscription_Management::instance();
+require_once 'module-subscriptions-management.php';
+DT_Subscriptions_Management::instance();
+
+require_once 'module-campaigns.php';
+DT_Campaigns_Base::instance();

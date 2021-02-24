@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-class DT_Subscription_Saturation_Type
+class DT_Subscriptions_Saturation_Type
 {
     public $parts = false;
     public $type = 'saturation';
@@ -140,7 +140,7 @@ class DT_Subscription_Saturation_Type
         ?>
         <div id="form-wrapper">
             <div class="grid-x grid-padding-x">
-                <div class="cell center"><h2>Subscription</h2></div>
+                <div class="cell center"><h2>Subscriptions</h2></div>
                 <div class="cell center">
                     Select Timezone<br>
                     <select name="timezone"></select>
@@ -243,7 +243,7 @@ class DT_Subscription_Saturation_Type
                        <div class="grid-x grid-padding-x">
                             <div class="cell">
                                 <h2 class="center">Success! Check your email to confirm.</h2>
-                                <div class="center">Once you confirm your subscription we'll start connecting you with prayer needs for the areas you indicated.</div>
+                                <div class="center">Once you confirm your subscriptions we'll start connecting you with prayer needs for the areas you indicated.</div>
                             </div>
                             <div class="cell"><br><br><hr><br><br><br></div>
                             <div class="cell center"><h2 class="center">Sample Email</h2></div>
@@ -280,7 +280,7 @@ class DT_Subscription_Saturation_Type
     }
     public function management_body(){
         $parts = $this->parts;
-        dt_prayer_confirm_subscription( $parts['post_id'], $parts['type'] );
+        dt_prayer_confirm_subscriptions( $parts['post_id'], $parts['type'] );
 
         // catch contact response
         $actions = dt_prayer_actions( $parts['type'] );
@@ -334,7 +334,7 @@ class DT_Subscription_Saturation_Type
                             <thead>
                             <tr>
                                 <td>
-                                    Subscription
+                                    Subscriptions
                                 </td>
                                 <td style="width:100px;">
                                     Action
@@ -382,4 +382,4 @@ class DT_Subscription_Saturation_Type
     }
 
 }
-DT_Subscription_Saturation_Type::instance();
+DT_Subscriptions_Saturation_Type::instance();

@@ -1,15 +1,15 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Subscription_Management extends DT_Module_Base
+class DT_Subscriptions_Management extends DT_Module_Base
 {
-    public $module = "subscription_management";
-    public $post_type = 'subscription';
+    public $module = "subscriptions_management";
+    public $post_type = 'subscriptions';
 
     public $magic = false;
     public $parts = false;
-    public $root = "subscription_app"; // define the root of the url {yoursite}/root/type/key/action
-    public $type = 'subscription'; // define the type
+    public $root = "subscriptions_app"; // define the root of the url {yoursite}/root/type/key/action
+    public $type = 'subscriptions'; // define the type
 
 
     private static $_instance = null;
@@ -72,8 +72,8 @@ class DT_Subscription_Management extends DT_Module_Base
     }
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
-        if ( $post_type === 'subscription' ){
-            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscription' ) ];
+        if ( $post_type === 'subscriptions' ){
+            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscriptions' ) ];
         }
         return $tiles;
     }
@@ -82,7 +82,7 @@ class DT_Subscription_Management extends DT_Module_Base
 //        if ( function_exists( 'dt_get_url_path' ) ) {
 //
 //            $url_path = dt_get_url_path();
-//            if ( strpos( $url_path, 'subscription_app' ) !== false ){
+//            if ( strpos( $url_path, 'subscriptions_app' ) !== false ){
 //
 //                if ( ! empty( DT_Mapbox_API::get_key() ) ) {
 //
@@ -103,7 +103,7 @@ class DT_Subscription_Management extends DT_Module_Base
 //    }
 
     public function dt_details_additional_section( $section, $post_type ) {
-        // test if subscription post type and subscription_app_module enabled
+        // test if subscriptions post type and subscriptions_app_module enabled
         if ( $post_type === $this->post_type ) {
 
             if ( 'subscriptions' === $section ) {
@@ -112,14 +112,14 @@ class DT_Subscription_Management extends DT_Module_Base
                 if ( isset( $record['public_key'])) {
                     $key = $record['public_key'];
                 } else {
-                    $key = DT_Subscription_Base::instance()->create_unique_key();
+                    $key = DT_Subscriptions_Base::instance()->create_unique_key();
                     update_post_meta( get_the_ID(), 'public_key', $key );
                 }
                 $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
                 ?>
                 <div class="cell">
                     <div class="section-subheader">
-                        Subscription Management
+                        Subscriptions Management
                     </div>
                     <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
                     <a class="button hollow small" href="<?php echo esc_url( $link ) ?>" target="_blank">Go To</a>
@@ -151,20 +151,20 @@ class DT_Subscription_Management extends DT_Module_Base
             }
 
 
-        } // end if subscription and enabled
+        } // end if subscriptions and enabled
     }
 
 
     public function tile_scripts(){
-        if ( is_singular( "subscription" ) ){
-            $magic = new DT_Magic_URL( 'subscription_app' );
+        if ( is_singular( "subscriptions" ) ){
+            $magic = new DT_Magic_URL( 'subscriptions_app' );
             $types = $magic->list_types();
-            $subscription = $types['subscription'] ?? [];
-            $subscription['new_key'] = $magic->create_unique_key();
+            $subscriptions = $types['subscriptions'] ?? [];
+            $subscriptions['new_key'] = $magic->create_unique_key();
 
-            wp_localize_script( // add object to subscription-post-type.js
-                'dt_subscription', 'subscription_subscription_module', [
-                    'subscription' => $subscription,
+            wp_localize_script( // add object to subscriptions-post-type.js
+                'dt_subscriptions', 'subscriptions_subscriptions_module', [
+                    'subscriptions' => $subscriptions,
                 ]
             );
         }
@@ -175,7 +175,7 @@ class DT_Subscription_Management extends DT_Module_Base
             $types[$this->root] = [];
         }
         $types[$this->root][$this->type] = [
-            'name' => 'Subscription',
+            'name' => 'Subscriptions',
             'root' => $this->root,
             'type' => $this->type,
             'meta_key' => $this->root . '_' . $this->type . '_public_key', // coaching-magic_c_key
@@ -279,11 +279,11 @@ class DT_Subscription_Management extends DT_Module_Base
 
     public function form_head(){
         wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
-        $this->subscription_styles_header();
-        $this->subscription_javascript_header();
+        $this->subscriptions_styles_header();
+        $this->subscriptions_javascript_header();
     }
 
-    public function subscription_styles_header(){
+    public function subscriptions_styles_header(){
         ?>
         <style>
             #title {
@@ -325,7 +325,7 @@ class DT_Subscription_Management extends DT_Module_Base
                 width:75px;
                 display:inline;
             }
-            #new-subscription-form {
+            #new-subscriptions-form {
                 padding: 1em .5em;
                 background-color: #f4f4f4;;
                 border: 1px solid #3f729b;
@@ -406,17 +406,17 @@ class DT_Subscription_Management extends DT_Module_Base
         <?php
     }
 
-    public function subscription_javascript_header(){
+    public function subscriptions_javascript_header(){
         ?>
         <script>
-            var postSubscription = [<?php echo json_encode([
+            var postSubscriptions = [<?php echo json_encode([
                 'map_key' => DT_Mapbox_API::get_key(),
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id']),
                 'translations' => [
-                    'add' => __( 'Add Report', 'disciple-tools-subscription' ),
+                    'add' => __( 'Add Report', 'disciple-tools-subscriptions' ),
                     'search_location' => 'Search for Location'
                 ],
             ]) ?>][0]
@@ -432,7 +432,7 @@ class DT_Subscription_Management extends DT_Module_Base
                 let content = $('#content')
 
                 /* set title */
-                title.html( _.escape( postSubscription.name ) )
+                title.html( _.escape( postSubscriptions.name ) )
 
                 /* FUNCTIONS */
 
@@ -440,12 +440,12 @@ class DT_Subscription_Management extends DT_Module_Base
                 window.create_user = ( name, email ) => {
                     $.ajax({
                         type: "POST",
-                        data: JSON.stringify({ action: 'create_user', parts: postSubscription.parts, name: name, email: email }),
+                        data: JSON.stringify({ action: 'create_user', parts: postSubscriptions.parts, name: name, email: email }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        url: postSubscription.root + postSubscription.parts.root + '/v1/' + postSubscription.parts.type,
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
                         beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscription.nonce )
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
                         }
                     })
                         .done(function(data){
@@ -459,15 +459,15 @@ class DT_Subscription_Management extends DT_Module_Base
                         })
                 }
 
-                window.get_subscription = () => {
+                window.get_subscriptions = () => {
                     $.ajax({
                         type: "POST",
-                        data: JSON.stringify({ action: 'get', parts: postSubscription.parts }),
+                        data: JSON.stringify({ action: 'get', parts: postSubscriptions.parts }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        url: postSubscription.root + postSubscription.parts.root + '/v1/' + postSubscription.parts.type,
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
                         beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscription.nonce )
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
                         }
                     })
                         .done(function(data){
@@ -486,21 +486,21 @@ class DT_Subscription_Management extends DT_Module_Base
                     content.empty()
                     content.append(`
                                  <div><h3>Subscriptions</h3></div>
-                                 <table class="hover"><tbody id="subscription-list"></tbody></table>
+                                 <table class="hover"><tbody id="subscriptions-list"></tbody></table>
                              `)
-                    let list = $('#subscription-list')
+                    let list = $('#subscriptions-list')
 
                     if ( data.subscriptions.length > 0 ) {
                         $.each(data.subscriptions, function(i,v){
                             list.append(`
-                                <tr><td>${_.escape( v.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscription" data-id="${_.escape( v.grid_meta_id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                                <tr><td>${_.escape( v.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.grid_meta_id )}" style="margin: 0;float:right;">&times;</button></td></tr>
                             `)
                         })
 
-                        $('.delete-subscription').on('click', function(e){
+                        $('.delete-subscriptions').on('click', function(e){
                             let id = $(this).data('id')
                             $(this).attr('disabled', 'disabled')
-                            window.delete_subscription( id )
+                            window.delete_subscriptions( id )
                         })
                     } else {
                         list.append(`
@@ -511,17 +511,17 @@ class DT_Subscription_Management extends DT_Module_Base
                     spinner.removeClass('active')
                 }
 
-                window.delete_subscription = ( id ) => {
+                window.delete_subscriptions = ( id ) => {
                     spinner.addClass('active')
 
                     jQuery.ajax({
                         type: "POST",
-                        data: JSON.stringify({ action: 'delete', parts: postSubscription.parts, subscription_id: id }),
+                        data: JSON.stringify({ action: 'delete', parts: postSubscriptions.parts, subscriptions_id: id }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        url: postSubscription.root + postSubscription.parts.root + '/v1/' + postSubscription.parts.type,
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
                         beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscription.nonce )
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
                         }
                     })
                         .done(function(data){
@@ -534,16 +534,16 @@ class DT_Subscription_Management extends DT_Module_Base
                         })
                 }
 
-                window.insert_subscription = () => {
+                window.insert_subscriptions = () => {
                     spinner.addClass('active')
 
                     let year = $('#year').val()
                     let value = $('#value').val()
                     let type = $('#type').val()
 
-                    let subscription = {
+                    let subscriptions = {
                         action: 'insert',
-                        parts: postSubscription.parts,
+                        parts: postSubscriptions.parts,
                         type: type,
                         subtype: type,
                         value: value,
@@ -551,20 +551,20 @@ class DT_Subscription_Management extends DT_Module_Base
                     }
 
                     if ( typeof window.selected_location_grid_meta !== 'undefined' && ( typeof window.selected_location_grid_meta.location_grid_meta !== 'undefined' || window.selected_location_grid_meta.location_grid_meta !== '' ) ) {
-                        subscription.location_grid_meta = window.selected_location_grid_meta.location_grid_meta
+                        subscriptions.location_grid_meta = window.selected_location_grid_meta.location_grid_meta
                     }
                     else if ( $('#new_contact_address').val() ) {
-                        subscription.address = $('#new_contact_address').val()
+                        subscriptions.address = $('#new_contact_address').val()
                     }
 
                     jQuery.ajax({
                         type: "POST",
-                        data: JSON.stringify(subscription),
+                        data: JSON.stringify(subscriptions),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        url: postSubscription.root + postSubscription.parts.root + '/v1/' + postSubscription.parts.type,
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
                         beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscription.nonce )
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
                         }
                     })
                         .done(function(data){
@@ -577,10 +577,10 @@ class DT_Subscription_Management extends DT_Module_Base
                 }
 
                 window.add_new_listener = () => {
-                    $('#add-subscription-button').on('click', function(e){
-                        $('#add-subscription-button').hide()
+                    $('#add-subscriptions-button').on('click', function(e){
+                        $('#add-subscriptions-button').hide()
                         $('#add-form-wrapper').empty().append(`
-                            <div class="grid-x grid-x-padding" id="new-subscription-form">
+                            <div class="grid-x grid-x-padding" id="new-subscriptions-form">
                                 <div class="cell center">
                                     There are <input type="number" id="value" class="number-input" placeholder="#" value="1" />&nbsp;
                                     total&nbsp;
@@ -609,9 +609,9 @@ class DT_Subscription_Management extends DT_Module_Base
                                     </select>
                                 </div>
                                 <div class="cell center" >
-                                    <button class="button large save-subscription" type="button" id="save_new_subscription" disabled="disabled">Save</button>
-                                    <button class="button large save-subscription" type="button" id="save_and_add_new_subscription" disabled="disabled">Save and Add</button>
-                                    <button class="button large alert" type="button" id="cancel_new_subscription">&times;</button>
+                                    <button class="button large save-subscriptions" type="button" id="save_new_subscriptions" disabled="disabled">Save</button>
+                                    <button class="button large save-subscriptions" type="button" id="save_and_add_new_subscriptions" disabled="disabled">Save and Add</button>
+                                    <button class="button large alert" type="button" id="cancel_new_subscriptions">&times;</button>
                                 </div>
                             </div>
                         `)
@@ -625,28 +625,28 @@ class DT_Subscription_Management extends DT_Module_Base
                         //     }
                         // })
 
-                        $('#save_new_subscription').on('click', function(){
-                            window.insert_subscription()
+                        $('#save_new_subscriptions').on('click', function(){
+                            window.insert_subscriptions()
                             $('#add-form-wrapper').empty()
-                            $('#add-subscription-button').show()
+                            $('#add-subscriptions-button').show()
                         })
 
-                        $('#save_and_add_new_subscription').on('click', function(){
-                            window.insert_subscription()
+                        $('#save_and_add_new_subscriptions').on('click', function(){
+                            window.insert_subscriptions()
                             $('#add-form-wrapper').empty()
-                            $('#add-subscription-button').click()
+                            $('#add-subscriptions-button').click()
                             $('#value').focus()
                         })
 
-                        $('#cancel_new_subscription').on('click', function(){
+                        $('#cancel_new_subscriptions').on('click', function(){
                             window.load_subscriptions()
                             $('#add-form-wrapper').empty()
-                            $('#add-subscription-button').show()
+                            $('#add-subscriptions-button').show()
                         })
 
                         $('#mapbox-search').on('change', function(e){
                             if ( typeof window.selected_location_grid_meta !== 'undefined' || window.selected_location_grid_meta !== '' ) {
-                                $('.save-subscription').removeAttr('disabled')
+                                $('.save-subscriptions').removeAttr('disabled')
                             }
                         })
                     })
@@ -767,14 +767,14 @@ class DT_Subscription_Management extends DT_Module_Base
                 <div class="cell grid" id="error"></div>
             </div>
             <div class="grid-x" id="add-new">
-                <div class="cell center"><button type="button" id="add-subscription-button" class="button large" style="min-width:200px;">Add Subscription</button></div>
+                <div class="cell center"><button type="button" id="add-subscriptions-button" class="button large" style="min-width:200px;">Add Subscriptions</button></div>
                 <div id="add-form-wrapper"></div>
             </div>
 
         </div> <!-- form wrapper -->
         <script>
             jQuery(document).ready(function($){
-                window.get_subscription()
+                window.get_subscriptions()
                 window.add_new_listener()
             })
         </script>
@@ -837,9 +837,9 @@ class DT_Subscription_Management extends DT_Module_Base
             case 'get':
                 return $this->get_subscriptions( $post_id );
             case 'delete':
-                return $this->delete_subscription( $params, $post_id );
+                return $this->delete_subscriptions( $params, $post_id );
             case 'insert':
-//                return $this->insert_subscription( $params, $post_id );
+//                return $this->insert_subscriptions( $params, $post_id );
             default:
                 return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
         }
@@ -852,7 +852,7 @@ class DT_Subscription_Management extends DT_Module_Base
         }
 
         $user = wp_get_current_user();
-        $user->add_cap( 'create_subscription' );
+        $user->add_cap( 'create_subscriptions' );
 
         $params = dt_recursive_sanitize_array( $params );
         $hash = $this->magic->create_unique_key();
@@ -866,7 +866,7 @@ class DT_Subscription_Management extends DT_Module_Base
             $this->root . '_' . $this->type . '_last_modified' => time(),
         ];
 
-        $new_id = DT_Posts::create_post( 'subscription', $fields, true );
+        $new_id = DT_Posts::create_post( 'subscriptions', $fields, true );
 
         if ( is_wp_error( $new_id ) ) {
             return $new_id;
@@ -875,14 +875,14 @@ class DT_Subscription_Management extends DT_Module_Base
             return $hash;
         }
         else {
-            return new WP_Error( __METHOD__, "Failed to create subscription.", [ 'status' => 400, 'error' ] );
+            return new WP_Error( __METHOD__, "Failed to create subscriptions.", [ 'status' => 400, 'error' ] );
         }
 
     }
 
     public function get_subscriptions( $post_id ) {
         $user = wp_get_current_user();
-        $user->add_cap( 'create_subscription' );
+        $user->add_cap( 'create_subscriptions' );
 
         $record = DT_Posts::get_post( $this->post_type, $post_id, false, false );
         $data = [
@@ -903,9 +903,9 @@ class DT_Subscription_Management extends DT_Module_Base
 
     }
 
-    public function delete_subscription( $params, $post_id ) {
+    public function delete_subscriptions( $params, $post_id ) {
 
-        Location_Grid_Meta::delete_location_grid_meta( $post_id, 'grid_meta_id', $params['subscription_id'] );
+        Location_Grid_Meta::delete_location_grid_meta( $post_id, 'grid_meta_id', $params['subscriptions_id'] );
 
 
         return $this->get_subscriptions( $post_id );

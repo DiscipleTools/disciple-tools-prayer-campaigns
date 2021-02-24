@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-class DT_Subscription_Twentyfourseven_Type
+class DT_Subscriptions_Twentyfourseven_Type
 {
     public $parts = false;
     public $type = 'twentyfourseven';
@@ -239,4 +239,4 @@ class DT_Subscription_Twentyfourseven_Type
 
 
 }
-DT_Subscription_Twentyfourseven_Type::instance();
+DT_Subscriptions_Twentyfourseven_Type::instance();

@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Subscription_Charts
+class DT_Subscriptions_Charts
 {
     private static $_instance = null;
     public static function instance(){
@@ -14,7 +14,7 @@ class DT_Subscription_Charts
     public function __construct(){
 
         require_once( 'one-page-chart-template.php' );
-        new DT_Subscription_Chart_Template();
+        new DT_Subscriptions_Chart_Template();
 
         /**
          * @todo add other charts like the pattern above here
@@ -22,4 +22,4 @@ class DT_Subscription_Charts
 
     } // End __construct
 }
-DT_Subscription_Charts::instance();
+DT_Subscriptions_Charts::instance();

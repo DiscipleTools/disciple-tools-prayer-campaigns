@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Disciple Tools - Subscriptions
- * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscription
- * Description: Add a prayer subscription module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
- * Text Domain: disciple-tools-prayer-subscription
+ * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions
+ * Description: Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
+ * Text Domain: disciple-tools-prayer-subscriptions
  * Domain Path: /languages
  * Version:  0.1
  * Author URI: https://github.com/DiscipleTools
- * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscription
+ * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions
  * Requires at least: 4.7.0
  * (Requires 4.7+ because of the integration of the REST API at 4.7 and the security requirements of this milestone version.)
  * Tested up to: 5.6.1
@@ -25,14 +25,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Gets the instance of the `DT_Subscription` class.
+ * Gets the instance of the `DT_Subscriptions` class.
  *
  * @since  0.1
  * @access public
  * @return object|bool
  */
-function dt_subscription() {
-    $dt_subscription_required_dt_theme_version = '1.0';
+function dt_subscriptions() {
+    $dt_subscriptions_required_dt_theme_version = '1.0';
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
 
@@ -40,8 +40,8 @@ function dt_subscription() {
      * Check if the Disciple.Tools theme is loaded and is the latest required version
      */
     $is_theme_dt = strpos( $wp_theme->get_template(), "disciple-tools-theme" ) !== false || $wp_theme->name === "Disciple Tools";
-    if ( $is_theme_dt && version_compare( $version, $dt_subscription_required_dt_theme_version, "<" ) ) {
-        add_action( 'admin_notices', 'dt_subscription_hook_admin_notice' );
+    if ( $is_theme_dt && version_compare( $version, $dt_subscriptions_required_dt_theme_version, "<" ) ) {
+        add_action( 'admin_notices', 'dt_subscriptions_hook_admin_notice' );
         add_action( 'wp_ajax_dismissed_notice_handler', 'dt_hook_ajax_notice_handler' );
         return false;
     }
@@ -55,10 +55,10 @@ function dt_subscription() {
         require_once get_template_directory() . '/dt-core/global-functions.php';
     }
 
-    return DT_Subscription::instance();
+    return DT_Subscriptions::instance();
 
 }
-add_action( 'after_setup_theme', 'dt_subscription', 20 );
+add_action( 'after_setup_theme', 'dt_subscriptions', 20 );
 
 /**
  * Singleton class for setting up the plugin.
@@ -66,7 +66,7 @@ add_action( 'after_setup_theme', 'dt_subscription', 20 );
  * @since  0.1
  * @access public
  */
-class DT_Subscription {
+class DT_Subscriptions {
 
     private static $_instance = null;
     public static function instance() {
@@ -77,17 +77,20 @@ class DT_Subscription {
     }
 
     private function __construct() {
+
+        require_once( 'post-type/loader.php' ); // add starter post type extension to Disciple Tools system
+        require_once( 'post-type/list-page-tile.php' ); // add starter post type extension to Disciple Tools system
+
         $is_rest = dt_is_rest();
         /**
          * @todo Decide if you want to use the REST API example
          * To remove: delete this following line and remove the folder named /rest-api
          */
-        if ( strpos( dt_get_url_path(), 'dt_subscription_template' ) !== false ) {
-            require_once( 'rest-api/rest-api.php' ); // adds starter rest api class
-        }
+//        if ( strpos( dt_get_url_path(), 'dt_subscriptions_template' ) !== false ) {
+//            require_once( 'rest-api/rest-api.php' ); // adds starter rest api class
+//        }
 
-        require_once( 'post-type/loader.php' ); // add starter post type extension to Disciple Tools system
-        require_once( 'post-type/list-page-tile.php' ); // add starter post type extension to Disciple Tools system
+
 
         /**
          * @todo Decide if you want to create a custom site-to-site link
@@ -99,7 +102,7 @@ class DT_Subscription {
          * @todo Decide if you want to add new charts to the metrics section
          * To remove: delete the line below and remove the folder named /charts
          */
-//        if ( strpos( dt_get_url_path(), 'metrics' ) !== false || ( $is_rest && strpos( dt_get_url_path(), 'disciple-tools-prayer-subscription-metrics' ) !== false ) ){
+//        if ( strpos( dt_get_url_path(), 'metrics' ) !== false || ( $is_rest && strpos( dt_get_url_path(), 'disciple-tools-prayer-subscriptions-metrics' ) !== false ) ){
 //            require_once( 'charts/charts-loader.php' );  // add custom charts to the metrics area
 //        }
 
@@ -109,13 +112,9 @@ class DT_Subscription {
          */
 //        require_once( 'tile/custom-tile.php' ); // add custom tile
 
-        /**
-         * @todo Decide if you want to add a custom admin page in the admin area
-         * To remove: delete the 3 lines below and remove the folder named /admin
-         */
-//        if ( is_admin() ) {
-//            require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
-//        }
+        if ( is_admin() ) {
+            require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
+        }
 
         $this->i18n();
 
@@ -128,12 +127,12 @@ class DT_Subscription {
             }
 
             // @todo change this url
-            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-subscription/master/version-control.json";
+            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-subscriptions/master/version-control.json";
 
             Puc_v4_Factory::buildUpdateChecker(
                 $hosted_json,
                 __FILE__,
-                'disciple-tools-prayer-subscription' // change this token
+                'disciple-tools-prayer-subscriptions' // change this token
             );
         }
 
@@ -178,7 +177,7 @@ class DT_Subscription {
      */
     public static function deactivation() {
         // add functions here that need to happen on deactivation
-        delete_option( 'dismissed-disciple-tools-prayer-subscription' );
+        delete_option( 'dismissed-disciple-tools-prayer-subscriptions' );
     }
 
     /**
@@ -189,7 +188,7 @@ class DT_Subscription {
      * @return void
      */
     public function i18n() {
-        $domain = 'disciple-tools-prayer-subscription';
+        $domain = 'disciple-tools-prayer-subscriptions';
         load_plugin_textdomain( $domain, false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ). 'languages' );
     }
 
@@ -201,7 +200,7 @@ class DT_Subscription {
      * @return string
      */
     public function __toString() {
-        return 'disciple-tools-prayer-subscription';
+        return 'disciple-tools-prayer-subscriptions';
     }
 
     /**
@@ -236,7 +235,7 @@ class DT_Subscription {
      * @access public
      */
     public function __call( $method = '', $args = array() ) {
-        _doing_it_wrong( "dt_subscription::" . esc_html( $method ), 'Method does not exist.', '0.1' );
+        _doing_it_wrong( "dt_subscriptions::" . esc_html( $method ), 'Method does not exist.', '0.1' );
         unset( $method, $args );
         return null;
     }
@@ -244,32 +243,32 @@ class DT_Subscription {
 
 
 // Register activation hook.
-register_activation_hook( __FILE__, [ 'DT_Subscription', 'activation' ] );
-register_deactivation_hook( __FILE__, [ 'DT_Subscription', 'deactivation' ] );
+register_activation_hook( __FILE__, [ 'DT_Subscriptions', 'activation' ] );
+register_deactivation_hook( __FILE__, [ 'DT_Subscriptions', 'deactivation' ] );
 
 
-if ( ! function_exists( 'dt_subscription_hook_admin_notice' ) ) {
-    function dt_subscription_hook_admin_notice() {
-        global $dt_subscription_required_dt_theme_version;
+if ( ! function_exists( 'dt_subscriptions_hook_admin_notice' ) ) {
+    function dt_subscriptions_hook_admin_notice() {
+        global $dt_subscriptions_required_dt_theme_version;
         $wp_theme = wp_get_theme();
         $current_version = $wp_theme->version;
-        $message = "'Disciple Tools - Subscription' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.";
+        $message = "'Disciple Tools - Subscriptions' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.";
         if ( $wp_theme->get_template() === "disciple-tools-theme" ){
-            $message .= ' ' . sprintf( esc_html( 'Current Disciple Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_subscription_required_dt_theme_version ) );
+            $message .= ' ' . sprintf( esc_html( 'Current Disciple Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_subscriptions_required_dt_theme_version ) );
         }
         // Check if it's been dismissed...
-        if ( ! get_option( 'dismissed-disciple-tools-prayer-subscription', false ) ) { ?>
-            <div class="notice notice-error notice-disciple-tools-prayer-subscription is-dismissible" data-notice="disciple-tools-prayer-subscription">
+        if ( ! get_option( 'dismissed-disciple-tools-prayer-subscriptions', false ) ) { ?>
+            <div class="notice notice-error notice-disciple-tools-prayer-subscriptions is-dismissible" data-notice="disciple-tools-prayer-subscriptions">
                 <p><?php echo esc_html( $message );?></p>
             </div>
             <script>
                 jQuery(function($) {
-                    $( document ).on( 'click', '.notice-disciple-tools-prayer-subscription .notice-dismiss', function () {
+                    $( document ).on( 'click', '.notice-disciple-tools-prayer-subscriptions .notice-dismiss', function () {
                         $.ajax( ajaxurl, {
                             type: 'POST',
                             data: {
                                 action: 'dismissed_notice_handler',
-                                type: 'disciple-tools-prayer-subscription',
+                                type: 'disciple-tools-prayer-subscriptions',
                                 security: '<?php echo esc_html( wp_create_nonce( 'wp_rest_dismiss' ) ) ?>'
                             }
                         })

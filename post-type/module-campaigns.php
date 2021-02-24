@@ -2,21 +2,21 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 /**
- * Class DT_Subscription_Base
+ * Class DT_Subscriptions_Base
  * Load the core post type hooks into the Disciple Tools system
  */
-class DT_Subscription_Base extends DT_Module_Base {
+class DT_Campaigns_Base extends DT_Module_Base {
 
     /**
      * Define post type variables
      * @var string
      */
-    public $post_type = "subscription";
-    public $module = "subscription_base";
-    public $single_name = 'Subscription';
-    public $plural_name = 'Subscriptions';
+    public $post_type = "campaigns";
+    public $module = "campaigns_base";
+    public $single_name = 'Campaign';
+    public $plural_name = 'Campaigns';
     public static function post_type(){
-        return 'subscription';
+        return 'campaigns';
     }
 
     private static $_instance = null;
@@ -71,8 +71,8 @@ class DT_Subscription_Base extends DT_Module_Base {
     public function dt_set_roles_and_permissions( $expected_roles ){
 
         $expected_roles["prayer_admin"] = [
-            "label" => __( 'Subscription Admin', 'disciple_tools' ),
-            "description" => __( 'Subscription admin can administrate the prayer subscriptions section', 'disciple_tools' ),
+            "label" => __( 'Subscriptions Admin', 'disciple_tools' ),
+            "description" => __( 'Subscriptions admin can administrate the prayer subscriptions section', 'disciple_tools' ),
             "permissions" => [
                 'view_any_'.$this->post_type => true,
                 'dt_all_admin_' . $this->post_type => true,
@@ -598,5 +598,3 @@ class DT_Subscription_Base extends DT_Module_Base {
         return $permissions;
     }
 }
-
-

@@ -167,7 +167,7 @@ function dt_prayer_post_id( $type, $public_key ){
     return false;
 }
 
-function dt_prayer_confirm_subscription( $post_id, $type ){
+function dt_prayer_confirm_subscriptions( $post_id, $type ){
     if ( get_post_meta( $post_id, 'unconfirmed_prayer_'.$type, true ) ) {
         delete_post_meta( $post_id, 'unconfirmed_prayer_'.$type, true );
         $fields = [

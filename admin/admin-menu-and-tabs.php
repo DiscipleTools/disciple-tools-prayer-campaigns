@@ -2,22 +2,22 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class DT_Subscription_Menu
+ * Class DT_Subscriptions_Menu
  */
-class DT_Subscription_Menu {
+class DT_Subscriptions_Menu {
 
-    public $token = 'dt_subscription';
+    public $token = 'dt_subscriptions';
 
     private static $_instance = null;
 
     /**
-     * DT_Subscription_Menu Instance
+     * DT_Subscriptions_Menu Instance
      *
-     * Ensures only one instance of DT_Subscription_Menu is loaded or can be loaded.
+     * Ensures only one instance of DT_Subscriptions_Menu is loaded or can be loaded.
      *
      * @since 0.1.0
      * @static
-     * @return DT_Subscription_Menu instance
+     * @return DT_Subscriptions_Menu instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -33,7 +33,6 @@ class DT_Subscription_Menu {
      * @since   0.1.0
      */
     public function __construct() {
-
         add_action( "admin_menu", array( $this, "register_menu" ) );
 
     } // End __construct()
@@ -44,7 +43,7 @@ class DT_Subscription_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_submenu_page( 'dt_extensions', 'Subscription', 'Subscription', 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_submenu_page( 'dt_extensions', 'Subscriptions', 'Subscriptions', 'manage_dt', $this->token, [ $this, 'content' ] );
     }
 
     /**
@@ -65,28 +64,28 @@ class DT_Subscription_Menu {
         if ( isset( $_GET["tab"] ) ) {
             $tab = sanitize_key( wp_unslash( $_GET["tab"] ) );
         } else {
-            $tab = 'general';
+            $tab = 'campaigns';
         }
 
         $link = 'admin.php?page='.$this->token.'&tab=';
 
         ?>
         <div class="wrap">
-            <h2>Subscription</h2>
+            <h2>Subscriptions</h2>
             <h2 class="nav-tab-wrapper">
-                <a href="<?php echo esc_attr( $link ) . 'general' ?>"
-                   class="nav-tab <?php echo esc_html( ( $tab == 'general' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">General</a>
-                <a href="<?php echo esc_attr( $link ) . 'second' ?>" class="nav-tab <?php echo esc_html( ( $tab == 'second' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">Second</a>
+                <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
+                   class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">Campaigns</a>
+<!--                <a href="--><?php //echo esc_attr( $link ) . 'second' ?><!--" class="nav-tab --><?php //echo esc_html( ( $tab == 'second' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?><!--">Second</a>-->
             </h2>
 
             <?php
             switch ($tab) {
-                case "general":
-                    $object = new DT_Subscription_Tab_General();
+                case "campaigns":
+                    $object = new DT_Subscriptions_Campaigns();
                     $object->content();
                     break;
                 case "second":
-                    $object = new DT_Subscription_Tab_Second();
+                    $object = new DT_Subscriptions_Tab_Second();
                     $object->content();
                     break;
                 default:
@@ -99,12 +98,12 @@ class DT_Subscription_Menu {
         <?php
     }
 }
-DT_Subscription_Menu::instance();
+DT_Subscriptions_Menu::instance();
 
 /**
- * Class DT_Subscription_Tab_General
+ * Class DT_Subscriptions_Tab_General
  */
-class DT_Subscription_Tab_General {
+class DT_Subscriptions_Campaigns {
     public function content() {
         ?>
         <div class="wrap">
@@ -179,9 +178,9 @@ class DT_Subscription_Tab_General {
 
 
 /**
- * Class DT_Subscription_Tab_Second
+ * Class DT_Subscriptions_Tab_Second
  */
-class DT_Subscription_Tab_Second {
+class DT_Subscriptions_Tab_Second {
     public function content() {
         ?>
         <div class="wrap">
