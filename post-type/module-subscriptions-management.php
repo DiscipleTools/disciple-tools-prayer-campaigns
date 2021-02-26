@@ -26,8 +26,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
             return;
         }
         // register tiles if on details page
-        add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 5, 2 );
-        add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
         add_action( 'wp_enqueue_scripts', [ $this, 'tile_scripts' ], 100 );
 
         // register type
@@ -51,6 +49,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
         // load if valid url
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
+        add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
         if ( $this->magic->is_valid_key_url( $this->type ) && '' === $this->parts['action'] ) {
             add_action( 'dt_blank_body', [ $this, 'manage_body' ] );
         } else {
@@ -69,79 +68,19 @@ class DT_Subscriptions_Management extends DT_Module_Base
         }, 100, 1 );
     }
 
-    public function dt_details_additional_tiles( $tiles, $post_type = "" ){
-        if ( $post_type === 'subscriptions' ){
-            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscriptions' ) ];
-        }
-        return $tiles;
-    }
-
-
-    public function dt_details_additional_section( $section, $post_type ) {
-        // test if subscriptions post type and subscriptions_app_module enabled
-        if ( $post_type === $this->post_type ) {
-
-            if ( 'subscriptions' === $section ) {
-                $record = DT_Posts::get_post( $post_type, get_the_ID() );
-
-                if ( isset( $record['public_key'])) {
-                    $key = $record['public_key'];
-                } else {
-                    $key = DT_Subscriptions_Base::instance()->create_unique_key();
-                    update_post_meta( get_the_ID(), 'public_key', $key );
-                }
-                $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
-                ?>
-                <div class="cell">
-                    <div class="section-subheader">
-                        Subscriptions Management
-                    </div>
-                    <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
-                    <a class="button hollow small" href="<?php echo esc_url( $link ) ?>" target="_blank">Go To</a>
-                </div>
-
-                <script>
-                    const copyToClipboard = str => {
-                        const el = document.createElement('textarea');
-                        el.value = str;
-                        el.setAttribute('readonly', '');
-                        el.style.position = 'absolute';
-                        el.style.left = '-9999px';
-                        document.body.appendChild(el);
-                        const selected =
-                            document.getSelection().rangeCount > 0
-                                ? document.getSelection().getRangeAt(0)
-                                : false;
-                        el.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(el);
-                        if (selected) {
-                            document.getSelection().removeAllRanges();
-                            document.getSelection().addRange(selected);
-                        }
-                        alert('Copied')
-                    };
-                </script>
-                <?php
-            }
-
-
-        } // end if subscriptions and enabled
-    }
-
 
     public function tile_scripts(){
         if ( is_singular( "subscriptions" ) ){
-            $magic = new DT_Magic_URL( 'subscriptions_app' );
-            $types = $magic->list_types();
-            $subscriptions = $types['subscriptions'] ?? [];
-            $subscriptions['new_key'] = $magic->create_unique_key();
-
-            wp_localize_script( // add object to subscriptions-post-type.js
-                'dt_subscriptions', 'subscriptions_subscriptions_module', [
-                    'subscriptions' => $subscriptions,
-                ]
-            );
+//            $magic = new DT_Magic_URL( 'subscriptions_app' );
+//            $types = $magic->list_types();
+//            $subscriptions = $types['subscriptions'] ?? [];
+//            $subscriptions['new_key'] = $magic->create_unique_key();
+//
+//            wp_localize_script( // add object to subscriptions-post-type.js
+//                'dt_subscriptions', 'subscriptions_subscriptions_module', [
+//                    'subscriptions' => $subscriptions,
+//                ]
+//            );
         }
     }
 
@@ -228,8 +167,8 @@ class DT_Subscriptions_Management extends DT_Module_Base
             }
         }
         unset( $wp_scripts->registered['mapbox-search-widget']->extra['group'] );
-        dt_write_log($wp_scripts->queue);
-        dt_write_log($wp_scripts);
+//        dt_write_log($wp_scripts->queue);
+//        dt_write_log($wp_scripts);
     }
 
     public function print_styles(){
@@ -256,6 +195,9 @@ class DT_Subscriptions_Management extends DT_Module_Base
         wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
         $this->subscriptions_styles_header();
         $this->subscriptions_javascript_header();
+    }
+    public function form_footer(){
+        wp_footer(); // styles controlled by wp_print_styles and wp_print_scripts actions
     }
 
     public function subscriptions_styles_header(){

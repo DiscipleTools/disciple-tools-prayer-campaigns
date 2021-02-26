@@ -52,7 +52,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
         // load if valid url
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
-        add_action( 'dt_blank_footer', [ $this, 'form_foot' ] );
+        add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
         if ( $this->magic->is_valid_key_url( $this->type ) && '' === $this->parts['action'] ) {
             add_action( 'dt_blank_body', [ $this, 'form_body' ] );
         } else {
@@ -297,7 +297,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         $this->campaigns_javascript_header();
     }
 
-    public function form_foot(){
+    public function form_footer(){
         wp_footer(); // styles controlled by wp_print_styles and wp_print_scripts actions
     }
 
@@ -488,6 +488,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                             border: 1px solid grey;
                             font-size:1.2em;
                         }
+                        .no-selection {
+                            max-width: 100%;
+                            padding-top: 10px;
+                            border: 1px solid grey;
+                            font-size:1.2em;
+                        }
                         .remove-selection {
                             float: right;
                             color: red;
@@ -503,7 +509,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 jQuery.each( postObject.campaign_times_lists, function(i,v){
                     list += `<div class="cell day-cell" data-time="${v.key}" data-percent="${v.percent}" data-location="${postObject.campaign_grid_id}"><div>${v.formatted}</div><div class="progress-bar" data-percent="${v.percent}" style="background: dodgerblue; width:0"></div></div>`
                 })
-                content.html(`<div class="grid-x">${list}</div>`)
+                content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 let percent = 0
                 jQuery.each( jQuery('.progress-bar'), function(i,v){
                     percent = jQuery(this).data('percent')
@@ -561,6 +567,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             window.create_subscription = () => {
                 let spinner = $('.loading-spinner')
                 spinner.addClass('active')
+                let submit_button = jQuery('#submit-form')
+                submit_button.prop('disabled', true)
 
                 let honey = jQuery('#email').val()
                 if ( honey ) {
@@ -577,6 +585,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     name_input.focus(function(){
                         jQuery('#name-error').hide()
                     })
+                    submit_button.prop('disabled', false)
                     return;
                 }
 
@@ -588,6 +597,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     email_input.focus(function(){
                         jQuery('#email-error').hide()
                     })
+                    submit_button.prop('disabled', false)
                     return;
                 }
 
@@ -596,9 +606,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 if ( selected_times_divs.length === 0 ) {
                     jQuery('#selection-error').show()
                     spinner.hide()
-                    name_input.focus(function(){
+                    jQuery('#selection-grid-wrapper').click(function(){
                         jQuery('#selection-error').hide()
                     })
+                    submit_button.prop('disabled', false)
                     return;
                 } else {
                     jQuery.each(selected_times_divs, function(i,v){
@@ -610,8 +621,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     name: name,
                     email: email,
                     selected_times: selected_times,
-                    campaign_id: postObject.campaign_id,
-                    campaign_grid_id: postObject.campaign_grid_id
+                    campaign_id: postObject.campaign_id
                 }
 
                 jQuery.ajax({
@@ -682,13 +692,17 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             <br>
             <div class="center"><h2>Confirm Selections</h2></div>
             <span id="selection-error" class="form-error">
-                You're email is required.
+                You must select at least one time slot above.
             </span>
             <div id="selected-prayer-times" class="grid-x grid-padding-x grid-padding-y">
-                <div class="cell selected-hour" id="no-selections">No Selections</div>
+                <div class="cell no-selection" id="no-selections">No Selections</div>
             </div>
             <br>
             <div class="grid-x grid-padding-x grid-padding-y">
+                <div class="cell center">
+                    <input type="checkbox" id="receive_campaign_emails" name="receive_campaign_notifications" checked /> <label for="receive_campaign_emails">Receive Prayer Time Notifications</label>
+                    <input type="checkbox" id="receive_campaign_emails" name="receive_campaign_emails" checked /> <label for="receive_campaign_emails">Receive Prayer Emails</label>
+                </div>
                 <div class="cell center">
                     <button class="button large" id="submit-form">Submit Your Prayer Commitment</button>
                 </div>
@@ -764,16 +778,18 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         $user = wp_get_current_user();
         $user->add_cap( 'create_subscriptions' );
 
-
         $hash = dt_create_unique_key();
-
 
         $fields = [
             'title' => $title,
             "contact_email" => [
-                ["value" => $email ], //create
+                ["value" => $email ],
             ],
-            'campaigns' => $params['campaign'],
+            'campaigns' => [
+                "values" => [
+                    [ "value" => $params['campaign_id'] ],
+                ],
+            ],
             'public_key' => $hash,
         ];
 

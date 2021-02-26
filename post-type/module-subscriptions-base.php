@@ -40,14 +40,14 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         //setup tiles and fields
         add_action( 'p2p_init', [ $this, 'p2p_init' ] );
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
-        add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
-        add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
+        add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 20, 2 );
+        add_action( 'dt_details_additional_section_post', [ $this, 'dt_details_additional_section' ], 20, 2 );
 
 //        add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
 
         // hooks
-//        add_action( "post_connection_removed", [ $this, "post_connection_removed" ], 10, 4 );
-//        add_action( "post_connection_added", [ $this, "post_connection_added" ], 10, 4 );
+        add_action( "post_connection_added", [ $this, "post_connection_added" ], 10, 4 );
+        add_action( "post_connection_removed", [ $this, "post_connection_removed" ], 10, 4 );
 //        add_action( "dt_comment_created", [ $this, "dt_comment_created" ], 10, 4 );
         add_filter( "dt_post_update_fields", [ $this, "dt_post_update_fields" ], 10, 3 );
         add_filter( "dt_post_create_fields", [ $this, "dt_post_create_fields" ], 10, 2 );
@@ -72,7 +72,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        $expected_roles["prayer_admin"] = [
+        $expected_roles["subscriptions_admin"] = [
             "label" => __( 'Subscriptions Admin', 'disciple_tools' ),
             "description" => __( 'Subscriptions admin can administrate the prayer subscriptions section', 'disciple_tools' ),
             "permissions" => [
@@ -81,13 +81,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             ]
         ];
 
-        // @note removed multiplier role because these people are not expected to be interacted with.
-//        if ( !isset( $expected_roles["multiplier"] ) ){
-//            $expected_roles["multiplier"] = [
-//                "label" => __( 'Multiplier', 'disciple-tools-training' ),
-//                "permissions" => []
-//            ];
-//        }
         if ( !isset( $expected_roles["dt_admin"] ) ){
             $expected_roles["dt_admin"] = [
                 "label" => __( 'Disciple.Tools Admin', 'disciple-tools-training' ),
@@ -205,6 +198,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                         'color' => "#4CAF50"
                     ],
                 ],
+                'order' => 1,
                 'tile'     => '',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#366184",
@@ -275,14 +269,14 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 'mapbox'    => false,
                 "customizable" => false,
                 "in_create_form" => true,
-                "tile" => "",
+                "tile" => "details",
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
             $fields['location_grid_meta'] = [
                 'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
                 'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
                 'type'        => 'location_meta',
-                "tile"      => "locations",
+                "tile"      => "details",
                 'mapbox'    => false,
                 'hidden' => true
             ];
@@ -300,15 +294,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 $fields["location_grid"]["mapbox"] = true;
                 $fields["location_grid_meta"]["mapbox"] = true;
             }
-
-            $fields['location_grid_time'] = [
-                'name'        => __( 'Location Time', 'disciple_tools' ), //system string does not need translation
-                'description' => _x( 'Specified time for a location event', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'location_time',
-                "tile"      => "locations",
-                'hidden' => true,
-                "customizable" => false,
-            ];
             // end locations
 
             $fields["contacts"] = [
@@ -374,6 +359,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
+            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscriptions' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
         return $tiles;
@@ -387,32 +373,59 @@ class DT_Subscriptions_Base extends DT_Module_Base {
 
         if ( $post_type === $this->post_type && $section === "status" ){
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
+
+            if ( isset( $record['public_key'])) {
+                $key = $record['public_key'];
+            } else {
+                $key = self::create_unique_key();
+                update_post_meta( get_the_ID(), 'public_key', $key );
+            }
+            $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $key;
+            ?>
+            <div class="cell small-12 medium-4">
+                <div class="section-subheader">
+                    Subscriptions Management
+                </div>
+                <div class="grid-x">
+                    <div class="cell small-6" style="padding:2px;">
+                        <a class="button expanded hollow" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
+                    </div>
+                    <div class="cell small-6" style="padding:2px;">
+                        <a class="button expanded hollow" href="<?php echo esc_url( $link ) ?>" target="_blank">Go To</a>
+                    </div>
+                </div>
+            </div>
+            <script>
+                /* @todo move somewhere more global */
+                const copyToClipboard = str => {
+                    const el = document.createElement('textarea');
+                    el.value = str;
+                    el.setAttribute('readonly', '');
+                    el.style.position = 'absolute';
+                    el.style.left = '-9999px';
+                    document.body.appendChild(el);
+                    const selected =
+                        document.getSelection().rangeCount > 0
+                            ? document.getSelection().getRangeAt(0)
+                            : false;
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+                    if (selected) {
+                        document.getSelection().removeAllRanges();
+                        document.getSelection().addRange(selected);
+                    }
+                    alert('Copied')
+                };
+            </script>
+        <?php }
+
+        if ( $post_type === $this->post_type && $section === "status" ){
+            $record = DT_Posts::get_post( $post_type, get_the_ID() );
             $fields = DT_Posts::get_post_field_settings( $post_type );
             ?>
             <div class="cell small-12 medium-4">
                 <?php render_field_for_display( "status", $fields, $record, true ); ?>
-            </div>
-            <div class="cell small-12 medium-8">
-                <div class="section-subheader">
-                    <?php echo esc_html( $fields["location_grid"]["name"] ) ?>
-                </div>
-                <div class="dt_location_grid" data-id="location_grid">
-                    <var id="location_grid-result-container" class="result-container"></var>
-                    <div id="location_grid_t" name="form-location_grid" class="scrollable-typeahead typeahead-margin-when-active">
-                        <div class="typeahead__container">
-                            <div class="typeahead__field">
-                                    <span class="typeahead__query">
-                                        <input class="js-typeahead-location_grid input-height"
-                                               data-field="location_grid"
-                                               data-field_type="location"
-                                               name="location_grid[query]"
-                                               placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields['location_grid']['name'] ) )?>"
-                                               autocomplete="off" />
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         <?php }
 
@@ -444,6 +457,28 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             </div>
         <?php endif;
 
+    }
+
+    public function post_connection_added( $post_type, $post_id, $field_key, $value ){
+        if ( $post_type === $this->post_type ){
+            if ( $field_key === "campaigns" ){
+                // @todo change 'members'
+                // execute your code here, if field key match
+                dt_write_log( __METHOD__ . ' and field_key = members' );
+            }
+        }
+        if ( $post_type === "contacts" && $field_key === $this->post_type ){
+            // execute your code here, if a change is made in contacts and a field key is matched
+            dt_write_log( __METHOD__ . ' and post_type = contacts & field_key = coaches' );
+        }
+    }
+
+    //action when a post connection is removed during create or update
+    public function post_connection_removed( $post_type, $post_id, $field_key, $value ){
+        if ( $post_type === $this->post_type ){
+            // execute your code here, if connection removed
+            dt_write_log( __METHOD__ );
+        }
     }
 
     //filter when a comment is created

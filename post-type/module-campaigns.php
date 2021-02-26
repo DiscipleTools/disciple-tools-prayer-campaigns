@@ -72,13 +72,13 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function desktop_navbar_menu_options( $tabs ) {
         if ( isset( $tabs[$this->post_type]) ) {
-            unset($tabs[$this->post_type]);
+            unset($tabs['subscriptions']);
         }
-        if ( $tabs['subscriptions'] ) {
-            $tabs['subscriptions']['submenu']['subscriptions'] = $tabs['subscriptions'];
-            $tabs['subscriptions']['submenu'][$this->post_type] = [
-                "link" => site_url( "/$this->post_type/" ),
-                "label" => $this->plural_name,
+        if ( $tabs['campaigns'] ) {
+            $tabs['campaigns']['submenu']['campaigns'] = $tabs['campaigns'];
+            $tabs['campaigns']['submenu']['subscriptions'] = [
+                "link" => site_url( "/subscriptions/" ),
+                "label" => __('Subscriptions', 'disciple_tools'),
                 'icon' => '',
                 'hidden' => false,
             ];
@@ -92,7 +92,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        $expected_roles["prayer_admin"] = [
+        $expected_roles["subscriptions_admin"] = [
             "label" => __( 'Subscriptions Admin', 'disciple_tools' ),
             "description" => __( 'Subscriptions admin can administrate the prayer subscriptions section', 'disciple_tools' ),
             "permissions" => [
@@ -353,7 +353,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "post_type" => $this->post_type,
                 "p2p_direction" => "to",
                 "p2p_key" => 'campaigns_to_subscriptions',
-                "tile" => "subscriptions",
+                "tile" => "status",
                 'icon' => get_template_directory_uri() . "/dt-assets/images/group-type.svg",
                 'create-icon' => get_template_directory_uri() . "/dt-assets/images/add-group.svg",
                 "show_in_table" => 35,
