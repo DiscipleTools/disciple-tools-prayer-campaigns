@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return object|bool
  */
 function dt_subscriptions() {
-    $dt_subscriptions_required_dt_theme_version = '1.0';
+    $dt_subscriptions_required_dt_theme_version = '1.1';
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
 
@@ -78,8 +78,9 @@ class DT_Subscriptions {
 
     private function __construct() {
 
-        require_once( 'post-type/loader.php' ); // add starter post type extension to Disciple Tools system
-        require_once( 'post-type/list-page-tile.php' ); // add starter post type extension to Disciple Tools system
+        require_once( 'admin/time-utilities.php' );
+        require_once( 'post-type/loader.php' );
+        require_once( 'post-type/list-page-tile.php' );
 
         if ( is_admin() ) {
             require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin

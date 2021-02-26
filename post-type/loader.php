@@ -39,6 +39,14 @@ add_filter( 'dt_post_type_modules', function( $modules ){
         "post_type" => "campaigns",
         "description" => "Campaigns base"
     ];
+    $modules["campaigns_24hour_prayer"] = [
+        "name" => "Campaigns - 24Hour Prayer",
+        "enabled" => true,
+        "locked" => false,
+        "prerequisites" => [ "campaigns_base" ],
+        "post_type" => "campaigns",
+        "description" => "Campaigns - 24Hour Prayer"
+    ];
 
     return $modules;
 }, 20, 1 );
@@ -51,3 +59,6 @@ DT_Subscriptions_Management::instance();
 
 require_once 'module-campaigns.php';
 DT_Campaigns_Base::instance();
+
+require_once 'module-campaigns-24hour-prayer.php';
+DT_Campaign_24Hour_Prayer::instance();

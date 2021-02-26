@@ -189,16 +189,47 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'default' => [],
                 "customizable" => false,
             ];
-            $fields['assigned_to'] = [
-                'name'        => __( 'Assigned To', 'disciple_tools' ),
-                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),
-                'type'        => 'user_select',
-                'default'     => '',
-                'tile' => 'status',
-                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
-                "show_in_table" => 16,
-                'custom_display' => true,
+            $fields['status'] = [
+                'name'        => __( 'Status', 'disciple_tools' ),
+                'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
+                'type'        => 'key_select',
+                'default'     => [
+                    'active'   => [
+                        'label' => __( 'Active', 'disciple_tools' ),
+                        'description' => _x( 'Is active.', 'field description', 'disciple_tools' ),
+                        'color' => "#4CAF50"
+                    ],
+                    'inactive' => [
+                        'label' => __( 'Inactive', 'disciple_tools' ),
+                        'description' => _x( 'No longer active.', 'field description', 'disciple_tools' ),
+                        'color' => "#F43636"
+                    ],
+                ],
+                'tile'     => 'status',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
+                "default_color" => "#366184",
+                "show_in_table" => 10,
             ];
+            $fields['type'] = [
+                'name'        => __( 'Campaign Type', 'disciple_tools' ),
+                'description' => _x( 'Set the current type.', 'field description', 'disciple_tools' ),
+                'type'        => 'key_select',
+                'default'     => apply_filters( 'dt_campaign_types', [] ),
+                'tile'     => 'status',
+//                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
+                "default_color" => "#F43636",
+                "show_in_table" => 10,
+            ];
+//            $fields['assigned_to'] = [
+//                'name'        => __( 'Assigned To', 'disciple_tools' ),
+//                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),
+//                'type'        => 'user_select',
+//                'default'     => '',
+//                'tile' => 'status',
+//                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
+//                "show_in_table" => 16,
+//                'custom_display' => true,
+//            ];
 //            $fields["requires_update"] = [
 //                'name'        => __( 'Requires Update', 'disciple_tools' ),
 //                'description' => '',
@@ -208,29 +239,15 @@ class DT_Campaigns_Base extends DT_Module_Base {
             // end basic framework fields
 
 
-            $fields['status'] = [
-                'name'        => __( 'Status', 'disciple_tools' ),
-                'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
-                'type'        => 'key_select',
-                'default'     => [
-                    'inactive' => [
-                        'label' => __( 'Inactive', 'disciple_tools' ),
-                        'description' => _x( 'No longer active.', 'field description', 'disciple_tools' ),
-                        'color' => "#F43636"
-                    ],
-                    'active'   => [
-                        'label' => __( 'Active', 'disciple_tools' ),
-                        'description' => _x( 'Is active.', 'field description', 'disciple_tools' ),
-                        'color' => "#4CAF50"
-                    ],
-                ],
-                'tile'     => '',
-                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
-                "default_color" => "#366184",
-                "show_in_table" => 10,
+            $fields['notes'] = [
+                'name'   => __( 'Notes', 'disciple_tools' ),
+                'description' => __('Permanent notes about the campaign', 'disciple_tools' ),
+                'type'   => 'text',
+                "tile" => "details",
+                'default' => '',
+                "customizable" => true,
+                "in_create_form" => true,
             ];
-
-
             $fields["languages"] = [
                 'name' => __( 'Languages', 'disciple_tools' ),
                 'description' => __('Subscriber preferred language', 'disciple_tools' ),
@@ -240,6 +257,33 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'default' => dt_get_option( "dt_working_languages" ) ?: ['en'],
                 'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
+            $fields["peoplegroups"] = [
+                "name" => __( 'People Groups', 'disciple_tools' ),
+                'description' => _x( 'The people groups connected to this record.', 'Optional Documentation', 'disciple_tools' ),
+                "type" => "connection",
+                "post_type" => $this->post_type,
+                "tile" => "details",
+                "p2p_direction" => "to",
+                "p2p_key" => $this->post_type."_to_peoplegroups"
+            ];
+
+            $fields['start_date'] = [
+                'name'        => __( 'Start Date', 'disciple_tools' ),
+                'description' => '',
+                'type'        => 'date',
+                'default'     => time(),
+                'tile' => 'time',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
+            ];
+            $fields['end_date'] = [
+                'name'        => __( 'End Date', 'disciple_tools' ),
+                'description' => '',
+                'type'        => 'date',
+                'default'     => '',
+                'tile' => 'time',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
+            ];
+
 
             $fields['public_key'] = [
                 'name'   => __( 'Private Key', 'disciple_tools' ),
@@ -269,7 +313,8 @@ class DT_Campaigns_Base extends DT_Module_Base {
 //                'type'        => 'location_meta',
 //                "tile"      => "locations",
 //                'mapbox'    => false,
-//                'hidden' => true
+//                'hidden' => true,
+//                "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
 //            ];
 //            $fields["contact_address"] = [
 //                "name" => __( 'Address', 'disciple_tools' ),
@@ -292,8 +337,8 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "type" => "connection",
                 "post_type" => "subscriptions",
                 "p2p_direction" => "from",
-                "tile" => "other",
                 "customizable" => false,
+                'hidden' => true,
                 "p2p_key" => 'campaigns_to_subscriptions',
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
@@ -308,7 +353,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "post_type" => $this->post_type,
                 "p2p_direction" => "to",
                 "p2p_key" => 'campaigns_to_subscriptions',
-                "tile" => "other",
+                "tile" => "subscriptions",
                 'icon' => get_template_directory_uri() . "/dt-assets/images/group-type.svg",
                 'create-icon' => get_template_directory_uri() . "/dt-assets/images/add-group.svg",
                 "show_in_table" => 35,
@@ -339,6 +384,17 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 ]
             ]
         );
+        p2p_register_connection_type(
+            [
+                'name'        => $this->post_type."_to_peoplegroups",
+                'from'        => $this->post_type,
+                'to'          => 'peoplegroups',
+                'title'       => [
+                    'from' => __( 'People Groups', 'disciple_tools' ),
+                    'to'   => $this->plural_name,
+                ]
+            ]
+        );
     }
 
     /**
@@ -346,6 +402,8 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
+            $tiles["location"] = [ "label" => __( "Geo Focus", 'disciple_tools' ) ];
+            $tiles["time"] = [ "label" => __( "Time Range", 'disciple_tools' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
         return $tiles;
@@ -357,16 +415,14 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function dt_details_additional_section( $section, $post_type ){
 
-        if ( $post_type === $this->post_type && $section === "status" ){
-            $record = DT_Posts::get_post( $post_type, get_the_ID() );
+
+
+        if ( $post_type === $this->post_type && $section === "location" ){
             $fields = DT_Posts::get_post_field_settings( $post_type );
             ?>
-            <div class="cell small-12 medium-4">
-                <?php render_field_for_display( "status", $fields, $record, true ); ?>
-            </div>
-            <div class="cell small-12 medium-8">
+            <div class="cell small-12">
                 <div class="section-subheader">
-                    <?php echo esc_html( $fields["location_grid"]["name"] ) ?>
+                    <img src="<?php echo get_template_directory_uri() . "/dt-assets/images/location.svg" ?>" /> <?php echo $fields['location_grid']['name'] ?>
                 </div>
                 <div class="dt_location_grid" data-id="location_grid">
                     <var id="location_grid-result-container" class="result-container"></var>
@@ -386,8 +442,18 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     </div>
                 </div>
             </div>
+
+        <?php }
+
+        if ( $post_type === $this->post_type && $section === "time" ){
+//            $record = DT_Posts::get_post( $post_type, get_the_ID() );
+//            $fields = DT_Posts::get_post_field_settings( $post_type );
+            ?>
             <div class="cell small-12">
-                <?php render_field_for_display( "campaigns", $fields, $record, true ); ?>
+                <div class="section-subheader">
+
+                </div>
+
             </div>
 
         <?php }

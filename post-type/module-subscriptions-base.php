@@ -142,6 +142,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 'tile'        => 'other',
                 'custom_display' => true,
                 "customizable" => false,
+                'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
             $fields["follow"] = [
                 'name'        => __( 'Follow', 'disciple_tools' ),
@@ -319,7 +320,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 "tile" => "other",
                 "customizable" => false,
                 "p2p_key" => $this->post_type."_to_contacts",
-                'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
 
 

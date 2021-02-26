@@ -9,7 +9,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
     public $magic = false;
     public $parts = false;
     public $root = "subscriptions_app"; // define the root of the url {yoursite}/root/type/key/action
-    public $type = 'subscriptions'; // define the type
+    public $type = 'manage'; // define the type
 
 
     private static $_instance = null;
