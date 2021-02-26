@@ -248,15 +248,15 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 'hidden' => true,
                 "customizable" => false,
             ];
-            $fields['campaigns'] = [
-                'name'        => __( 'Campaigns', 'disciple_tools' ),
-                'description' => _x( 'Campaigns', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'multi_select',
-                'default'     => [],
-                'tile'        => '',
-                "customizable" => true,
-                "in_create_form" => true,
-            ];
+//            $fields['campaigns'] = [
+//                'name'        => __( 'Campaigns', 'disciple_tools' ),
+//                'description' => _x( 'Campaigns', 'Optional Documentation', 'disciple_tools' ),
+//                'type'        => 'multi_select',
+//                'default'     => [],
+//                'tile'        => '',
+//                "customizable" => true,
+//                "in_create_form" => true,
+//            ];
 
 
             /**
@@ -306,8 +306,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 "customizable" => false,
                 "p2p_key" => $this->post_type."_to_contacts",
             ];
-
-
 
         }
 

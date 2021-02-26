@@ -1,7 +1,7 @@
 <?php
 /**
  * Adds tile at the left bottom of the Subscriptions lists page
- */
+
 add_action( 'dt_post_list_filters_sidebar', function( $post_type ) {
     if ( 'subscriptions' === $post_type ) {
         ?>
@@ -24,3 +24,4 @@ add_action( 'dt_post_list_filters_sidebar', function( $post_type ) {
         <?php
     }
 }, 20 );
+ */
