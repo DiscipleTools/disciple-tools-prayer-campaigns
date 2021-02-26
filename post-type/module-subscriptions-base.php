@@ -199,7 +199,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                     ],
                 ],
                 'order' => 1,
-                'tile'     => 'status',
+                'tile'     => '',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#366184",
                 "show_in_table" => 10,
@@ -248,15 +248,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 'hidden' => true,
                 "customizable" => false,
             ];
-//            $fields['campaigns'] = [
-//                'name'        => __( 'Campaigns', 'disciple_tools' ),
-//                'description' => _x( 'Campaigns', 'Optional Documentation', 'disciple_tools' ),
-//                'type'        => 'multi_select',
-//                'default'     => [],
-//                'tile'        => '',
-//                "customizable" => true,
-//                "in_create_form" => true,
-//            ];
+
 
 
             /**
@@ -357,7 +349,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
-            $tiles["subs"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscriptions' ) ];
+            $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple-tools-subscriptions' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
 
@@ -369,11 +361,10 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md#add-custom-content
      */
     public function dt_details_additional_section( $section, $post_type ){
-        dt_write_log($section);
-        dt_write_log($post_type);
         /* STATUS */
         if ( $post_type === $this->post_type && $section === "status" ){
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
+            $fields = DT_Posts::get_post_field_settings( $post_type );
 
             if ( isset( $record['public_key'])) {
                 $key = $record['public_key'];
@@ -384,6 +375,16 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $key;
 
             ?>
+            <div class="cell small-12 medium-4">
+                <div class="cell small-12 medium-4">
+                    <?php render_field_for_display( "status", $fields, $record, true ); ?>
+                </div>
+            </div>
+            <div class="cell small-12 medium-4">
+                <div class="cell small-12 medium-4">
+                    <?php render_field_for_display( "campaigns", $fields, $record, true ); ?>
+                </div>
+            </div>
             <div class="cell small-12 medium-4">
                 <div class="section-subheader">
                     Subscriptions Management
@@ -452,8 +453,27 @@ class DT_Subscriptions_Base extends DT_Module_Base {
 
         /* SUBSCRIPTIONS */
 
-        if ( $post_type === $this->post_type && $section === "subs" ){
-
+        if ( $post_type === $this->post_type && $section === "commitments" ){
+            $subs = Disciple_Tools_Reports::get( get_the_ID(), 'post_id' );
+            if ( ! empty( $subs ) ){
+                foreach( $subs as $sub ){
+                    $style = '';
+                    if ( $sub['time_begin'] < time() ){
+                        $style = 'style="text-decoration:line-through;"';
+                    }
+                    ?>
+                    <div>
+                        <span <?php echo $style; ?>><?php echo gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) ?> for <?php echo $sub['label'] ?></span>
+                    </div>
+                    <?php
+                }
+            } else {
+                ?>
+                <div>
+                    No Subscriptions
+                </div>
+                <?php
+            }
         }
     }
 

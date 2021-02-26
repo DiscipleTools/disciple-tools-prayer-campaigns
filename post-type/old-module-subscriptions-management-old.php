@@ -52,7 +52,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
             add_action( 'dt_blank_body', [ $this, 'manage_body' ] );
         } else {
             // fail if no valid action url found
-            return;
+            add_action( 'dt_blank_body', [ $this, 'register_body' ] );
         }
 
         // load page elements
@@ -313,10 +313,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
     }
 
     public function subscriptions_javascript_header(){
-        $post = DT_Posts::get_post('campaigns', $this->parts['post_id'], true, false );
-        if ( is_wp_error( $post ) ) {
-            return $post;
-        }
         ?>
         <script>
             var postSubscriptions = [<?php echo json_encode([
@@ -324,7 +320,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
-                'post' => $post,
                 'name' => get_the_title( $this->parts['post_id']),
                 'translations' => [
                     'add' => __( 'Add Report', 'disciple-tools-subscriptions' ),
@@ -335,15 +330,41 @@ class DT_Subscriptions_Management extends DT_Module_Base
             jQuery(document).ready(function($){
                 clearInterval(window.fiveMinuteTimer)
 
+
                 /* LOAD */
+                window.spinner = $('#spinner-section')
                 let spinner = $('.loading-spinner')
                 let title = $('#title')
                 let content = $('#content')
 
                 /* set title */
-                title.html( _.escape( postSubscriptions.post.title ) )
+                title.html( _.escape( postSubscriptions.name ) )
 
                 /* FUNCTIONS */
+
+
+                window.create_user = ( name, email ) => {
+                    $.ajax({
+                        type: "POST",
+                        data: JSON.stringify({ action: 'create_user', parts: postSubscriptions.parts, name: name, email: email }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
+                        }
+                    })
+                        .done(function(data){
+                            console.log(data)
+                            window.location = window.location.href + data
+                            jQuery('#spinner-section').hide()
+                        })
+                        .fail(function(e) {
+                            console.log(e)
+                            $('#error').html(e)
+                        })
+                }
+
                 window.get_subscriptions = () => {
                     $.ajax({
                         type: "POST",
@@ -366,36 +387,34 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 }
 
                 window.load_subscriptions = ( data ) => {
-                    console.log(data)
-                    //
-                    // window.current_subscriptions = data
-                    //
-                    // content.empty()
-                    // content.append(`
-                    //              <div><h3>Subscriptions</h3></div>
-                    //              <table class="hover"><tbody id="subscriptions-list"></tbody></table>
-                    //          `)
-                    // let list = $('#subscriptions-list')
-                    //
-                    // if ( data.subscriptions.length > 0 ) {
-                    //     $.each(data.subscriptions, function(i,v){
-                    //         list.append(`
-                    //             <tr><td>${_.escape( v.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.grid_meta_id )}" style="margin: 0;float:right;">&times;</button></td></tr>
-                    //         `)
-                    //     })
-                    //
-                    //     $('.delete-subscriptions').on('click', function(e){
-                    //         let id = $(this).data('id')
-                    //         $(this).attr('disabled', 'disabled')
-                    //         window.delete_subscriptions( id )
-                    //     })
-                    // } else {
-                    //     list.append(`
-                    //     <tr><td>No subscriptions found.</td></tr>
-                    //     `)
-                    // }
-                    //
-                    // spinner.removeClass('active')
+                    window.current_subscriptions = data
+
+                    content.empty()
+                    content.append(`
+                                 <div><h3>Subscriptions</h3></div>
+                                 <table class="hover"><tbody id="subscriptions-list"></tbody></table>
+                             `)
+                    let list = $('#subscriptions-list')
+
+                    if ( data.subscriptions.length > 0 ) {
+                        $.each(data.subscriptions, function(i,v){
+                            list.append(`
+                                <tr><td>${_.escape( v.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.grid_meta_id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                            `)
+                        })
+
+                        $('.delete-subscriptions').on('click', function(e){
+                            let id = $(this).data('id')
+                            $(this).attr('disabled', 'disabled')
+                            window.delete_subscriptions( id )
+                        })
+                    } else {
+                        list.append(`
+                        <tr><td>No subscriptions found.</td></tr>
+                        `)
+                    }
+
+                    spinner.removeClass('active')
                 }
 
                 window.delete_subscriptions = ( id ) => {
@@ -544,6 +563,97 @@ class DT_Subscriptions_Management extends DT_Module_Base
         <?php
     }
 
+    public function register_body(){
+        // FORM BODY
+        ?>
+        <style>
+            #email {
+                display:none;
+            }
+        </style>
+        <div id="custom-style"></div>
+        <div id="wrapper">
+            <div class="grid-x" id="add-new">
+                <div class="cell center">
+                    <h2>Subscribe to Pray</h2>
+                </div>
+            </div>
+            <hr>
+
+            <form data-abide>
+            <div class="grid-x">
+                <div class="cell">
+                    <span id="name-error" class="form-error">
+                        You're name is required.
+                    </span>
+                    <label for="name">Name<br>
+                        <input type="text" name="name" id="name" placeholder="Name" required/>
+                    </label>
+
+                </div>
+                <div class="cell">
+                    <span id="email-error" class="form-error">
+                        You're email is required.
+                    </span>
+                    <label for="email">Email<br>
+                        <input type="email" name="email" id="email" placeholder="Email" />
+                        <input type="email" name="e2" id="e2" placeholder="Email" required />
+                    </label>
+                </div>
+                <div class="cell">
+                    <button type="button" class="button expanded" value="submit" id="next_1">Next</button>
+                </div>
+            </div>
+            </form>
+
+            <div class="grid-x" id="spinner-section" style="display:none; height: inherit !important;">
+                <div class="cell"><hr></div>
+                <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
+                <div class="cell" id="content"><div class="center">... loading</div></div>
+                <div class="cell grid" id="error"></div>
+            </div>
+        </div> <!-- form wrapper -->
+        <script>
+            jQuery(document).ready(function($){
+                jQuery('#next_1').on( 'click', function(e){
+                    window.spinner.show()
+
+                    let honey = jQuery('#email').val()
+                    if ( honey ) {
+                        jQuery('#next_1').html('Shame, shame, shame. We know your name ... ROBOT!').prop('disabled', true )
+                        window.spinner.hide()
+                        return;
+                    }
+
+                    let name_input = jQuery('#name')
+                    let name = name_input.val()
+                    if ( ! name ) {
+                        jQuery('#name-error').show()
+                        window.spinner.hide()
+                        name_input.focus(function(){
+                            jQuery('#name-error').hide()
+                        })
+                        return;
+                    }
+
+                    let email_input = jQuery('#e2')
+                    let email = email_input.val()
+                    if ( ! email ) {
+                        jQuery('#email-error').show()
+                        window.spinner.hide()
+                        email_input.focus(function(){
+                            jQuery('#email-error').hide()
+                        })
+                        return;
+                    }
+
+                    window.create_user( name, email )
+                })
+            })
+        </script>
+        <?php
+    }
+
     public function manage_body(){
 //        $actions = $this->magic->list_actions( $this->type );
 
@@ -571,11 +681,12 @@ class DT_Subscriptions_Management extends DT_Module_Base
         <script>
             jQuery(document).ready(function($){
                 window.get_subscriptions()
-                // window.add_new_listener()
+                window.add_new_listener()
             })
         </script>
         <?php
     }
+
 
     /**
      * Open default restrictions for access to registered endpoints
@@ -615,6 +726,11 @@ class DT_Subscriptions_Management extends DT_Module_Base
         $params = dt_recursive_sanitize_array( $params );
         $action = sanitize_text_field( wp_unslash( $params['action'] ) );
 
+        // create
+        if ( 'create_user' === $action ) {
+            return $this->create_user( $params );
+        }
+
         // manage
         $magic = $this->magic;
         $post_id = $magic->get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
@@ -635,8 +751,62 @@ class DT_Subscriptions_Management extends DT_Module_Base
         }
     }
 
+    public function create_user( $params ) {
+
+        if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
+            return new WP_Error( __METHOD__, "Missing params", [ 'status' => 400 ] );
+        }
+
+        $user = wp_get_current_user();
+        $user->add_cap( 'create_subscriptions' );
+
+        $params = dt_recursive_sanitize_array( $params );
+        $hash = $this->magic->create_unique_key();
+
+        $fields = [
+            'title' => sanitize_text_field( wp_unslash( $params['name'] ) ),
+            "contact_email" => [
+                ["value" => sanitize_text_field( wp_unslash( $params['email'] ) ) ], //create
+            ],
+            $this->root . '_' . $this->type . '_public_key' => $hash,
+            $this->root . '_' . $this->type . '_last_modified' => time(),
+        ];
+
+        $new_id = DT_Posts::create_post( 'subscriptions', $fields, true );
+
+        if ( is_wp_error( $new_id ) ) {
+            return $new_id;
+        }
+        if ( isset( $new_id['ID'] ) ){
+            return $hash;
+        }
+        else {
+            return new WP_Error( __METHOD__, "Failed to create subscriptions.", [ 'status' => 400, 'error' ] );
+        }
+
+    }
+
     public function get_subscriptions( $post_id ) {
-       return Disciple_Tools_Reports::get( $post_id, 'post_id' );
+        $user = wp_get_current_user();
+        $user->add_cap( 'create_subscriptions' );
+
+        $record = DT_Posts::get_post( $this->post_type, $post_id, false, false );
+        $data = [
+            'subscriptions' => [],
+            'type' => ''
+        ];
+
+        if ( isset( $record['location_grid_meta'] ) ) {
+            $data['subscriptions'] = $record['location_grid_meta'];
+            $data['type'] = 'lgm';
+        }
+        else if ( isset( $record['location_grid'] ) ) {
+            $data['subscriptions'] = $record['location_grid'];
+            $data['type'] = 'lg';
+        }
+
+        return $data;
+
     }
 
     public function delete_subscriptions( $params, $post_id ) {

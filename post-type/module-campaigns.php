@@ -346,7 +346,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "post_type" => $this->post_type,
                 "p2p_direction" => "to",
                 "p2p_key" => 'campaigns_to_subscriptions',
-                "tile" => "status",
+                "tile" => "",
                 'icon' => get_template_directory_uri() . "/dt-assets/images/group-type.svg",
                 'create-icon' => get_template_directory_uri() . "/dt-assets/images/add-group.svg",
                 "show_in_table" => 35,
@@ -397,6 +397,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         if ( $post_type === $this->post_type ){
             $tiles["location"] = [ "label" => __( "Geo Focus", 'disciple_tools' ) ];
             $tiles["time"] = [ "label" => __( "Time Range", 'disciple_tools' ) ];
+            $tiles["subscribers"] = [ "label" => __( "Subscribers", 'disciple_tools' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
         return $tiles;
@@ -407,6 +408,45 @@ class DT_Campaigns_Base extends DT_Module_Base {
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md#add-custom-content
      */
     public function dt_details_additional_section( $section, $post_type ){
+
+        if ( $post_type === $this->post_type && $section === "subscribers" ){
+            $subscribers_count = $this->query_subscriber_count();
+            $active_commitments = $this->query_active_count();
+            $past_commitments = $this->query_past_count();
+            ?>
+            <div class="cell small-12">
+            <div class="grid-x">
+            <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Subscribers
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( $subscribers_count ) ?></span>
+                </div>
+            </div>
+            <div class="cell small-6 ">
+
+            </div>
+            <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Active Commitments
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( $active_commitments ) ?></span>
+                </div>
+            </div>
+            <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Past Commitments
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( $past_commitments ) ?></span>
+                </div>
+            </div>
+        </div>
+
+
+        <?php }
 
         if ( $post_type === $this->post_type && $section === "location" ){
             $fields = DT_Posts::get_post_field_settings( $post_type );
@@ -464,6 +504,35 @@ class DT_Campaigns_Base extends DT_Module_Base {
             </div>
         <?php endif;
 
+    }
+
+    public function query_subscriber_count(){
+        global $wpdb;
+        return $wpdb->get_var("SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions'");
+    }
+
+    public function query_active_count(){
+        global $wpdb;
+        return $wpdb->get_var("SELECT COUNT(r.post_id) as count
+            FROM (SELECT p2p_to as post_id
+            FROM $wpdb->p2p
+            WHERE p2p_type = 'campaigns_to_subscriptions') as t1
+            LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+            WHERE r.post_id IS NOT NULL
+            AND r.time_begin > UNIX_TIMESTAMP();"
+        );
+    }
+
+    public function query_past_count(){
+        global $wpdb;
+        return $wpdb->get_var("SELECT COUNT(r.post_id) as count
+            FROM (SELECT p2p_to as post_id
+            FROM $wpdb->p2p
+            WHERE p2p_type = 'campaigns_to_subscriptions') as t1
+            LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+            WHERE r.post_id IS NOT NULL
+            AND r.time_begin <= UNIX_TIMESTAMP();"
+        );
     }
 
     //filter when a comment is created
