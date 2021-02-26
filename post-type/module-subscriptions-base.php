@@ -453,12 +453,8 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         /* SUBSCRIPTIONS */
 
         if ( $post_type === $this->post_type && $section === "subs" ){
-            dt_write_log($post_type);
-//
+
         }
-
-
-
     }
 
     public function post_connection_added( $post_type, $post_id, $field_key, $value ){
