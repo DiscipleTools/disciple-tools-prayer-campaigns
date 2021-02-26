@@ -1,9 +1,11 @@
 [![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns)
 
-# Disciple Tools - Subscriptions
+# Disciple Tools - Prayer Campaigns
 
-Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations
-at specific times, supporting both time and geographic prayer saturation for your project.
+Add prayer campaigns to your strategy inside Disciple.Tools. This module adds the ability to
+mobilize saturation prayer for specific locations. It creates embeddable mobilization forms
+for users to sign up, and direct links for them to manage their subscription, with a username and
+password.
 
 ## Purpose
 
