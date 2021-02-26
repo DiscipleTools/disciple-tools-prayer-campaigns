@@ -25,8 +25,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
         if ( !self::check_enabled_and_prerequisites() ){
             return;
         }
-        // register tiles if on details page
-        add_action( 'wp_enqueue_scripts', [ $this, 'tile_scripts' ], 100 );
 
         // register type
         $this->magic = new DT_Magic_URL( $this->root );
@@ -69,20 +67,20 @@ class DT_Subscriptions_Management extends DT_Module_Base
     }
 
 
-    public function tile_scripts(){
-        if ( is_singular( "subscriptions" ) ){
-//            $magic = new DT_Magic_URL( 'subscriptions_app' );
-//            $types = $magic->list_types();
-//            $subscriptions = $types['subscriptions'] ?? [];
-//            $subscriptions['new_key'] = $magic->create_unique_key();
-//
-//            wp_localize_script( // add object to subscriptions-post-type.js
-//                'dt_prayer_campaigns', 'subscriptions_subscriptions_module', [
-//                    'subscriptions' => $subscriptions,
-//                ]
-//            );
-        }
-    }
+//    public function tile_scripts(){
+//        if ( is_singular( "subscriptions" ) ){
+////            $magic = new DT_Magic_URL( 'subscriptions_app' );
+////            $types = $magic->list_types();
+////            $subscriptions = $types['subscriptions'] ?? [];
+////            $subscriptions['new_key'] = $magic->create_unique_key();
+////
+////            wp_localize_script( // add object to subscriptions-post-type.js
+////                'dt_prayer_campaigns', 'subscriptions_subscriptions_module', [
+////                    'subscriptions' => $subscriptions,
+////                ]
+////            );
+//        }
+//    }
 
     public function register_type( array $types ) : array {
         if ( ! isset( $types[$this->root] ) ) {

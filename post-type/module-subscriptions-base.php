@@ -199,7 +199,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                     ],
                 ],
                 'order' => 1,
-                'tile'     => '',
+                'tile'     => 'status',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#366184",
                 "show_in_table" => 10,
@@ -357,9 +357,10 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
-            $tiles["subscriptions"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscriptions' ) ];
+            $tiles["subs"] = [ "label" => __( "Subscriptions", 'disciple-tools-subscriptions' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
+
         return $tiles;
     }
 
@@ -368,7 +369,9 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md#add-custom-content
      */
     public function dt_details_additional_section( $section, $post_type ){
-
+        dt_write_log($section);
+        dt_write_log($post_type);
+        /* STATUS */
         if ( $post_type === $this->post_type && $section === "status" ){
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
 
@@ -379,6 +382,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 update_post_meta( get_the_ID(), 'public_key', $key );
             }
             $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $key;
+
             ?>
             <div class="cell small-12 medium-4">
                 <div class="section-subheader">
@@ -418,15 +422,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             </script>
         <?php }
 
-        if ( $post_type === $this->post_type && $section === "status" ){
-            $record = DT_Posts::get_post( $post_type, get_the_ID() );
-            $fields = DT_Posts::get_post_field_settings( $post_type );
-            ?>
-            <div class="cell small-12 medium-4">
-                <?php render_field_for_display( "status", $fields, $record, true ); ?>
-            </div>
-        <?php }
-
         if ( $post_type === $this->post_type && $section === "other" ) :
             $fields = DT_Posts::get_post_field_settings( $post_type );
             ?>
@@ -455,28 +450,37 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             </div>
         <?php endif;
 
+        /* SUBSCRIPTIONS */
+
+        if ( $post_type === $this->post_type && $section === "subs" ){
+            dt_write_log($post_type);
+//
+        }
+
+
+
     }
 
     public function post_connection_added( $post_type, $post_id, $field_key, $value ){
-        if ( $post_type === $this->post_type ){
-            if ( $field_key === "campaigns" ){
-                // @todo change 'members'
-                // execute your code here, if field key match
-                dt_write_log( __METHOD__ . ' and field_key = members' );
-            }
-        }
-        if ( $post_type === "contacts" && $field_key === $this->post_type ){
-            // execute your code here, if a change is made in contacts and a field key is matched
-            dt_write_log( __METHOD__ . ' and post_type = contacts & field_key = coaches' );
-        }
+//        if ( $post_type === $this->post_type ){
+//            if ( $field_key === "campaigns" ){
+//                // @todo change 'members'
+//                // execute your code here, if field key match
+//                dt_write_log( __METHOD__ . ' and field_key = members' );
+//            }
+//        }
+//        if ( $post_type === "contacts" && $field_key === $this->post_type ){
+//            // execute your code here, if a change is made in contacts and a field key is matched
+//            dt_write_log( __METHOD__ . ' and post_type = contacts & field_key = coaches' );
+//        }
     }
 
     //action when a post connection is removed during create or update
     public function post_connection_removed( $post_type, $post_id, $field_key, $value ){
-        if ( $post_type === $this->post_type ){
-            // execute your code here, if connection removed
-            dt_write_log( __METHOD__ );
-        }
+//        if ( $post_type === $this->post_type ){
+//            // execute your code here, if connection removed
+//            dt_write_log( __METHOD__ );
+//        }
     }
 
     //filter when a comment is created
