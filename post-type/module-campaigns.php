@@ -101,13 +101,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ]
         ];
 
-        // @note removed multiplier role because these people are not expected to be interacted with.
-//        if ( !isset( $expected_roles["multiplier"] ) ){
-//            $expected_roles["multiplier"] = [
-//                "label" => __( 'Multiplier', 'disciple-tools-training' ),
-//                "permissions" => []
-//            ];
-//        }
         if ( !isset( $expected_roles["dt_admin"] ) ){
             $expected_roles["dt_admin"] = [
                 "label" => __( 'Disciple.Tools Admin', 'disciple-tools-training' ),
@@ -415,8 +408,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function dt_details_additional_section( $section, $post_type ){
 
-
-
         if ( $post_type === $this->post_type && $section === "location" ){
             $fields = DT_Posts::get_post_field_settings( $post_type );
             ?>
@@ -441,19 +432,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                         </div>
                     </div>
                 </div>
-            </div>
-
-        <?php }
-
-        if ( $post_type === $this->post_type && $section === "time" ){
-//            $record = DT_Posts::get_post( $post_type, get_the_ID() );
-//            $fields = DT_Posts::get_post_field_settings( $post_type );
-            ?>
-            <div class="cell small-12">
-                <div class="section-subheader">
-
-                </div>
-
             </div>
 
         <?php }

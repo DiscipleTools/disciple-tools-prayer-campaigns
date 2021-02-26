@@ -18,7 +18,7 @@ add_filter( 'dt_post_type_modules', function( $modules ){
         "name" => "Subscriptions",
         "enabled" => true,
         "locked" => true,
-        "prerequisites" => [ "campaigns_base" ],
+        "prerequisites" => [ "contacts_base" ],
         "post_type" => "subscriptions",
         "description" => "Subscriptions base"
     ];
