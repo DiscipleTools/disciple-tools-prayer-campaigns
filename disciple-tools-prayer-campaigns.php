@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: Disciple Tools - Subscriptions
- * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions
+ * Plugin Name: Disciple Tools - Prayer Campaigns
+ * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-campaigns
  * Description: Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
- * Text Domain: disciple-tools-prayer-subscriptions
+ * Text Domain: disciple-tools-prayer-campaigns
  * Domain Path: /languages
  * Version:  0.1
  * Author URI: https://github.com/DiscipleTools
- * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions
+ * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-campaigns
  * Requires at least: 4.7.0
  * (Requires 4.7+ because of the integration of the REST API at 4.7 and the security requirements of this milestone version.)
  * Tested up to: 5.6.1
@@ -25,14 +25,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Gets the instance of the `DT_Subscriptions` class.
+ * Gets the instance of the `DT_Prayer_Campaigns` class.
  *
  * @since  0.1
  * @access public
  * @return object|bool
  */
-function dt_subscriptions() {
-    $dt_subscriptions_required_dt_theme_version = '1.1';
+function dt_prayer_campaigns() {
+    $dt_prayer_campaigns_required_dt_theme_version = '1.1';
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
 
@@ -40,8 +40,8 @@ function dt_subscriptions() {
      * Check if the Disciple.Tools theme is loaded and is the latest required version
      */
     $is_theme_dt = strpos( $wp_theme->get_template(), "disciple-tools-theme" ) !== false || $wp_theme->name === "Disciple Tools";
-    if ( $is_theme_dt && version_compare( $version, $dt_subscriptions_required_dt_theme_version, "<" ) ) {
-        add_action( 'admin_notices', 'dt_subscriptions_hook_admin_notice' );
+    if ( $is_theme_dt && version_compare( $version, $dt_prayer_campaigns_required_dt_theme_version, "<" ) ) {
+        add_action( 'admin_notices', 'dt_prayer_campaigns_hook_admin_notice' );
         add_action( 'wp_ajax_dismissed_notice_handler', 'dt_hook_ajax_notice_handler' );
         return false;
     }
@@ -55,10 +55,10 @@ function dt_subscriptions() {
         require_once get_template_directory() . '/dt-core/global-functions.php';
     }
 
-    return DT_Subscriptions::instance();
+    return DT_Prayer_Campaigns::instance();
 
 }
-add_action( 'after_setup_theme', 'dt_subscriptions', 20 );
+add_action( 'after_setup_theme', 'dt_prayer_campaigns', 20 );
 
 /**
  * Singleton class for setting up the plugin.
@@ -66,7 +66,7 @@ add_action( 'after_setup_theme', 'dt_subscriptions', 20 );
  * @since  0.1
  * @access public
  */
-class DT_Subscriptions {
+class DT_Prayer_Campaigns {
 
     private static $_instance = null;
     public static function instance() {
@@ -97,12 +97,12 @@ class DT_Subscriptions {
             }
 
             // @todo change this url
-            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-subscriptions/master/version-control.json";
+            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json";
 
             Puc_v4_Factory::buildUpdateChecker(
                 $hosted_json,
                 __FILE__,
-                'disciple-tools-prayer-subscriptions' // change this token
+                'disciple-tools-prayer-campaigns' // change this token
             );
         }
 
@@ -147,7 +147,7 @@ class DT_Subscriptions {
      */
     public static function deactivation() {
         // add functions here that need to happen on deactivation
-        delete_option( 'dismissed-disciple-tools-prayer-subscriptions' );
+        delete_option( 'dismissed-disciple-tools-prayer-campaigns' );
     }
 
     /**
@@ -158,7 +158,7 @@ class DT_Subscriptions {
      * @return void
      */
     public function i18n() {
-        $domain = 'disciple-tools-prayer-subscriptions';
+        $domain = 'disciple-tools-prayer-campaigns';
         load_plugin_textdomain( $domain, false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ). 'languages' );
     }
 
@@ -170,7 +170,7 @@ class DT_Subscriptions {
      * @return string
      */
     public function __toString() {
-        return 'disciple-tools-prayer-subscriptions';
+        return 'disciple-tools-prayer-campaigns';
     }
 
     /**
@@ -205,7 +205,7 @@ class DT_Subscriptions {
      * @access public
      */
     public function __call( $method = '', $args = array() ) {
-        _doing_it_wrong( "dt_subscriptions::" . esc_html( $method ), 'Method does not exist.', '0.1' );
+        _doing_it_wrong( "dt_prayer_campaigns::" . esc_html( $method ), 'Method does not exist.', '0.1' );
         unset( $method, $args );
         return null;
     }
@@ -213,32 +213,32 @@ class DT_Subscriptions {
 
 
 // Register activation hook.
-register_activation_hook( __FILE__, [ 'DT_Subscriptions', 'activation' ] );
-register_deactivation_hook( __FILE__, [ 'DT_Subscriptions', 'deactivation' ] );
+register_activation_hook( __FILE__, [ 'DT_Prayer_Campaigns', 'activation' ] );
+register_deactivation_hook( __FILE__, [ 'DT_Prayer_Campaigns', 'deactivation' ] );
 
 
-if ( ! function_exists( 'dt_subscriptions_hook_admin_notice' ) ) {
-    function dt_subscriptions_hook_admin_notice() {
-        global $dt_subscriptions_required_dt_theme_version;
+if ( ! function_exists( 'dt_prayer_campaigns_hook_admin_notice' ) ) {
+    function dt_prayer_campaigns_hook_admin_notice() {
+        global $dt_prayer_campaigns_required_dt_theme_version;
         $wp_theme = wp_get_theme();
         $current_version = $wp_theme->version;
         $message = "'Disciple Tools - Subscriptions' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.";
         if ( $wp_theme->get_template() === "disciple-tools-theme" ){
-            $message .= ' ' . sprintf( esc_html( 'Current Disciple Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_subscriptions_required_dt_theme_version ) );
+            $message .= ' ' . sprintf( esc_html( 'Current Disciple Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_prayer_campaigns_required_dt_theme_version ) );
         }
         // Check if it's been dismissed...
-        if ( ! get_option( 'dismissed-disciple-tools-prayer-subscriptions', false ) ) { ?>
-            <div class="notice notice-error notice-disciple-tools-prayer-subscriptions is-dismissible" data-notice="disciple-tools-prayer-subscriptions">
+        if ( ! get_option( 'dismissed-disciple-tools-prayer-campaigns', false ) ) { ?>
+            <div class="notice notice-error notice-disciple-tools-prayer-campaigns is-dismissible" data-notice="disciple-tools-prayer-campaigns">
                 <p><?php echo esc_html( $message );?></p>
             </div>
             <script>
                 jQuery(function($) {
-                    $( document ).on( 'click', '.notice-disciple-tools-prayer-subscriptions .notice-dismiss', function () {
+                    $( document ).on( 'click', '.notice-disciple-tools-prayer-campaigns .notice-dismiss', function () {
                         $.ajax( ajaxurl, {
                             type: 'POST',
                             data: {
                                 action: 'dismissed_notice_handler',
-                                type: 'disciple-tools-prayer-subscriptions',
+                                type: 'disciple-tools-prayer-campaigns',
                                 security: '<?php echo esc_html( wp_create_nonce( 'wp_rest_dismiss' ) ) ?>'
                             }
                         })

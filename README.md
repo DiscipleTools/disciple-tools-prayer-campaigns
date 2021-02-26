@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-subscriptions.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-subscriptions)
+[![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns)
 
 # Disciple Tools - Subscriptions
 
@@ -35,11 +35,11 @@ you to publish a prayer subscriptions form with the supporting management tools 
 ## Contribution
 
 Contributions welcome. You can report issues and bugs in the
-[Issues](https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/issues) section of the repo. You can present ideas
-in the [Discussions](https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/discussions) section of the repo. And
-code contributions are welcome using the [Pull Request](https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/pulls)
+[Issues](https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/issues) section of the repo. You can present ideas
+in the [Discussions](https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/discussions) section of the repo. And
+code contributions are welcome using the [Pull Request](https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/pulls)
 system for git. For a more details on contribution see the
-[contribution guidelines](https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/blob/master/CONTRIBUTING.md).
+[contribution guidelines](https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/blob/master/CONTRIBUTING.md).
 
 
 ## Screenshots

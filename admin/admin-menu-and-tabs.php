@@ -2,22 +2,22 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class DT_Subscriptions_Menu
+ * Class DT_Prayer_Campaigns_Menu
  */
-class DT_Subscriptions_Menu {
+class DT_Prayer_Campaigns_Menu {
 
-    public $token = 'dt_subscriptions';
+    public $token = 'dt_prayer_campaigns';
 
     private static $_instance = null;
 
     /**
-     * DT_Subscriptions_Menu Instance
+     * DT_Prayer_Campaigns_Menu Instance
      *
-     * Ensures only one instance of DT_Subscriptions_Menu is loaded or can be loaded.
+     * Ensures only one instance of DT_Prayer_Campaigns_Menu is loaded or can be loaded.
      *
      * @since 0.1.0
      * @static
-     * @return DT_Subscriptions_Menu instance
+     * @return DT_Prayer_Campaigns_Menu instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -81,11 +81,11 @@ class DT_Subscriptions_Menu {
             <?php
             switch ($tab) {
                 case "campaigns":
-                    $object = new DT_Subscriptions_Campaigns();
+                    $object = new DT_Prayer_Campaigns_Campaigns();
                     $object->content();
                     break;
                 case "second":
-                    $object = new DT_Subscriptions_Tab_Second();
+                    $object = new DT_Prayer_Campaigns_Tab_Second();
                     $object->content();
                     break;
                 default:
@@ -98,12 +98,12 @@ class DT_Subscriptions_Menu {
         <?php
     }
 }
-DT_Subscriptions_Menu::instance();
+DT_Prayer_Campaigns_Menu::instance();
 
 /**
- * Class DT_Subscriptions_Tab_General
+ * Class DT_Prayer_Campaigns_Tab_General
  */
-class DT_Subscriptions_Campaigns {
+class DT_Prayer_Campaigns_Campaigns {
     public function content() {
         ?>
         <div class="wrap">
@@ -178,9 +178,9 @@ class DT_Subscriptions_Campaigns {
 
 
 /**
- * Class DT_Subscriptions_Tab_Second
+ * Class DT_Prayer_Campaigns_Tab_Second
  */
-class DT_Subscriptions_Tab_Second {
+class DT_Prayer_Campaigns_Tab_Second {
     public function content() {
         ?>
         <div class="wrap">

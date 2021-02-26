@@ -77,7 +77,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
 //            $subscriptions['new_key'] = $magic->create_unique_key();
 //
 //            wp_localize_script( // add object to subscriptions-post-type.js
-//                'dt_subscriptions', 'subscriptions_subscriptions_module', [
+//                'dt_prayer_campaigns', 'subscriptions_subscriptions_module', [
 //                    'subscriptions' => $subscriptions,
 //                ]
 //            );

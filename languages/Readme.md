@@ -2,4 +2,4 @@
 {translation-domain}-{localisation}.po
 
 ex:
-disciple-tools-prayer-subscriptions-fr_FR.po
+disciple-tools-prayer-campaigns-fr_FR.po

@@ -18,7 +18,7 @@ add_action( 'dt_post_list_filters_sidebar', function( $post_type ) {
                 </button>
             </div>
             <div class="section-body" style="padding-top:1em;">
-                <a id="subscriptions-page" href="/subscriptions_app/subscriptions/" ><?php esc_html_e( "subscriptions page", 'disciple-tools-subscriptions' ) ?></a><br>
+                <a id="subscriptions-page" href="/subscriptions_app/manage/" ><?php esc_html_e( "subscriptions page", 'disciple-tools-subscriptions' ) ?></a><br>
             </div>
         </div>
         <?php

@@ -6,15 +6,15 @@
   "author": "Disciple Tools",
   "author_homepage": "https://disciple.tools",
   "git_owner": "DiscipleTools",
-  "git_repo": "disciple-tools-prayer-subscriptions",
-  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/releases/latest/download/disciple-tools-prayer-subscriptions.zip",
-  "homepage": "https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions",
-  "issues_url": "https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/issues",
-  "projects_url": "https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/projects/1",
-  "discussions_url": "https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/discussions",
-  "wiki_url": "https://github.com/DiscipleTools/disciple-tools-prayer-subscriptions/wiki",
-  "license_url": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-subscriptions/master/LICENSE",
-  "readme_url": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-subscriptions/master/README.md",
+  "git_repo": "disciple-tools-prayer-campaigns",
+  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/releases/latest/download/disciple-tools-prayer-campaigns.zip",
+  "homepage": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns",
+  "issues_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/issues",
+  "projects_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/projects/1",
+  "discussions_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/discussions",
+  "wiki_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/wiki",
+  "license_url": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/LICENSE",
+  "readme_url": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/README.md",
   "requires": "4.7",
   "tested": "5.6.1",
   "upgrade_notice": "Here's why you should upgrade...",
@@ -23,7 +23,7 @@
     "high": "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-version-control/master/images/dt-placeholder-1544x500.jpg"
   },
   "sections": {
-    "description": "Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.",
+    "description": "Add a prayer campaigns module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.",
     "installation": "(Required) You must have Disciple.Tools Theme installed before using this plugin. Once Disciple.Tools is installed, you can use the normal Plugin system to install the plugin.",
     "changelog": ""
   }
