@@ -636,7 +636,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 })
                     .done(function(data){
                         console.log(data)
-                        window.location = window.location.origin + '/subscriptions_app/manage/' + data
+                        
                         spinner.removeClass('active')
                     })
                     .fail(function(e) {
@@ -808,8 +808,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 'post_type' => 'subscriptions',
                 'type' => $this->root,
                 'subtype' => $this->type,
-                'payload' => null,
-                'value' => $params['campaign_id'],
+                'payload' => $params['campaign_id'],
+                'value' => 0,
                 'lng' => null,
                 'lat' => null,
                 'level' => null,

@@ -55,6 +55,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
             return;
         }
 
+
         // load page elements
         add_action( 'wp_print_scripts', [ $this, 'print_scripts' ], 1500 );
         add_action( 'wp_print_styles', [ $this, 'print_styles' ], 1500 );
@@ -334,8 +335,12 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
                     if ( data.length > 0 ) {
                         $.each(data, function(i,v){
+                            let verified = ''
+                            if ( v.verified ) {
+                                verified = ' <span style="color:green; font-weight:bold;"><i class="fi-check"></i> Verified!</span>'
+                            }
                             list.append(`
-                                <tr><td>${_.escape( v.formatted_time )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                                <tr><td>${_.escape( v.formatted_time )} ${verified}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
                             `)
                         })
 
@@ -467,6 +472,13 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
        if ( ! empty( $subs ) ){
            foreach( $subs as $index => $sub ) {
+               // verification step
+               if ( $sub['value'] < 1 ) {
+                   Disciple_Tools_Reports::update(['id' => $sub['id'], 'value' => 1 ] );
+                   $subs[$index]['value'] = 1;
+                   $subs[$index]['verified'] = true;
+               }
+
                $subs[$index]['formatted_time'] = gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' for ' . $sub['label'];
            }
        }

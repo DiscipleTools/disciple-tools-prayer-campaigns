@@ -35,6 +35,7 @@ class DT_Prayer_Campaigns_Send_Email {
             <p>Here are the times you have committed to pray:</p>
             <p>'.$commitment_list.'</p>
             <p>Please verify your commitment by visiting:</p>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Verify your prayer times!</a></p>
             <p>'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'</p>
             ';
 
