@@ -830,6 +830,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             Disciple_Tools_Reports::insert( $args );
         }
 
+        DT_Prayer_Campaigns_Send_Email::send_registration($new_id['ID']);
+
         return $hash;
     }
 }

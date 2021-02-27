@@ -150,8 +150,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
             }
         }
         unset( $wp_scripts->registered['mapbox-search-widget']->extra['group'] );
-//        dt_write_log($wp_scripts->queue);
-//        dt_write_log($wp_scripts);
     }
 
     public function print_styles(){
@@ -196,20 +194,11 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 font-size:1.7rem;
                 font-weight: 100;
             }
-            #top-bar {
-                position:relative;
-                padding-bottom:1em;
-            }
             #add-new {
                 padding-top:1em;
             }
-            #top-loader {
-                position:absolute;
-                right:5px;
-                top: 5px;
-            }
             #wrapper {
-                max-width:500px;
+                max-width:1000px;
                 margin:0 auto;
                 padding: .5em;
                 background-color: white;
@@ -246,16 +235,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 background: white;
                 text-align:center;
             }
-            .stat-heading {
-                font-size: 2rem;
-            }
-            .stat-number {
-                font-size: 3.5rem;
-            }
-            .stat-year {
-                font-size: 2rem;
-                color: darkgrey;
-            }
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,
             input::-webkit-inner-spin-button {
@@ -266,31 +245,8 @@ class DT_Subscriptions_Management extends DT_Module_Base
             input[type=number] {
                 -moz-appearance: textfield;
             }
-            .select-input {
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                border-bottom: 1px solid gray;
-                box-shadow: none;
-                background: white;
-                text-align:center;
-            }
             select::-ms-expand {
                 display: none;
-            }
-            .input-group-field {
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                padding:0;
-                border-bottom: 1px solid gray;
-                box-shadow: none;
-                background: white;
-            }
-            .title-year {
-                font-size:3em;
-                font-weight: 100;
-                color: #0a0a0a;
             }
 
             /* size specific style section */
@@ -366,36 +322,36 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 }
 
                 window.load_subscriptions = ( data ) => {
-                    console.log(data)
-                    //
-                    // window.current_subscriptions = data
-                    //
-                    // content.empty()
-                    // content.append(`
-                    //              <div><h3>Subscriptions</h3></div>
-                    //              <table class="hover"><tbody id="subscriptions-list"></tbody></table>
-                    //          `)
-                    // let list = $('#subscriptions-list')
-                    //
-                    // if ( data.subscriptions.length > 0 ) {
-                    //     $.each(data.subscriptions, function(i,v){
-                    //         list.append(`
-                    //             <tr><td>${_.escape( v.label )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.grid_meta_id )}" style="margin: 0;float:right;">&times;</button></td></tr>
-                    //         `)
-                    //     })
-                    //
-                    //     $('.delete-subscriptions').on('click', function(e){
-                    //         let id = $(this).data('id')
-                    //         $(this).attr('disabled', 'disabled')
-                    //         window.delete_subscriptions( id )
-                    //     })
-                    // } else {
-                    //     list.append(`
-                    //     <tr><td>No subscriptions found.</td></tr>
-                    //     `)
-                    // }
-                    //
-                    // spinner.removeClass('active')
+                    spinner.addClass('active')
+
+                    window.current_subscriptions = data
+
+                    content.empty()
+                    content.append(`<div><h3>Subscriptions</h3></div>
+                                 <table class="hover"><tbody id="subscriptions-list"></tbody></table>`)
+
+                    let list = $('#subscriptions-list')
+
+                    if ( data.length > 0 ) {
+                        $.each(data, function(i,v){
+                            list.append(`
+                                <tr><td>${_.escape( v.formatted_time )}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                            `)
+                        })
+
+                        $('.delete-subscriptions').on('click', function(e){
+                            let id = $(this).data('id')
+                            $(this).attr('disabled', 'disabled')
+                            window.delete_subscriptions( id )
+                        })
+                    } else {
+                        list.append(`
+                        <tr><td>No subscriptions found.</td></tr>
+                        `)
+                    }
+
+
+                    spinner.removeClass('active')
                 }
 
                 window.delete_subscriptions = ( id ) => {
@@ -403,7 +359,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
                     jQuery.ajax({
                         type: "POST",
-                        data: JSON.stringify({ action: 'delete', parts: postSubscriptions.parts, subscriptions_id: id }),
+                        data: JSON.stringify({ action: 'delete', parts: postSubscriptions.parts, report_id: id }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
@@ -420,134 +376,13 @@ class DT_Subscriptions_Management extends DT_Module_Base
                             jQuery('#error').html(e)
                         })
                 }
-
-                window.insert_subscriptions = () => {
-                    spinner.addClass('active')
-
-                    let year = $('#year').val()
-                    let value = $('#value').val()
-                    let type = $('#type').val()
-
-                    let subscriptions = {
-                        action: 'insert',
-                        parts: postSubscriptions.parts,
-                        type: type,
-                        subtype: type,
-                        value: value,
-                        time_end: year
-                    }
-
-                    if ( typeof window.selected_location_grid_meta !== 'undefined' && ( typeof window.selected_location_grid_meta.location_grid_meta !== 'undefined' || window.selected_location_grid_meta.location_grid_meta !== '' ) ) {
-                        subscriptions.location_grid_meta = window.selected_location_grid_meta.location_grid_meta
-                    }
-                    else if ( $('#new_contact_address').val() ) {
-                        subscriptions.address = $('#new_contact_address').val()
-                    }
-
-                    jQuery.ajax({
-                        type: "POST",
-                        data: JSON.stringify(subscriptions),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
-                        }
-                    })
-                        .done(function(data){
-                            window.load_subscriptions( data )
-                        })
-                        .fail(function(e) {
-                            console.log(e)
-                            jQuery('#error').html(e)
-                        })
-                }
-
-                window.add_new_listener = () => {
-                    $('#add-subscriptions-button').on('click', function(e){
-                        $('#add-subscriptions-button').hide()
-                        $('#add-form-wrapper').empty().append(`
-                            <div class="grid-x grid-x-padding" id="new-subscriptions-form">
-                                <div class="cell center">
-                                    There are <input type="number" id="value" class="number-input" placeholder="#" value="1" />&nbsp;
-                                    total&nbsp;
-                                    <select id="type" class="select-input">
-                                        <option value="groups">groups</option>
-                                        <option value="baptisms">baptisms</option>
-                                    </select>
-                                    in
-                                </div>
-                                <div class="cell">
-                                    <div id="mapbox-wrapper">
-                                        <div id="mapbox-autocomplete" class="mapbox-autocomplete input-group" data-autosubmit="false" data-add-address="true">
-                                            <input id="mapbox-search" type="text" name="mapbox_search" class="input-group-field" autocomplete="off" placeholder="Search Location" />
-                                            <div class="input-group-button">
-                                                <button id="mapbox-spinner-button" class="button hollow" style="display:none;border-color:lightgrey;">
-                                                    <span class="" style="border-radius: 50%;width: 24px;height: 24px;border: 0.25rem solid lightgrey;border-top-color: black;animation: spin 1s infinite linear;display: inline-block;"></span>
-                                                </button>
-                                                <button id="mapbox-clear-autocomplete" class="button alert input-height delete-button-style mapbox-delete-button" type="button" title="Delete Location" style="display:none;">&times;</button>
-                                            </div>
-                                            <div id="mapbox-autocomplete-list" class="mapbox-autocomplete-items"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell center">at the end of&nbsp;
-                                    <select id="year" class="select-input">
-                                    </select>
-                                </div>
-                                <div class="cell center" >
-                                    <button class="button large save-subscriptions" type="button" id="save_new_subscriptions" disabled="disabled">Save</button>
-                                    <button class="button large save-subscriptions" type="button" id="save_and_add_new_subscriptions" disabled="disabled">Save and Add</button>
-                                    <button class="button large alert" type="button" id="cancel_new_subscriptions">&times;</button>
-                                </div>
-                            </div>
-                        `)
-
-                        window.write_input_widget()
-
-                        // $('.number-input').focus(function(e){
-                        //     window.currentEvent = e
-                        //     if ( e.currentTarget.value === '1' ){
-                        //         e.currentTarget.value = ''
-                        //     }
-                        // })
-
-                        $('#save_new_subscriptions').on('click', function(){
-                            window.insert_subscriptions()
-                            $('#add-form-wrapper').empty()
-                            $('#add-subscriptions-button').show()
-                        })
-
-                        $('#save_and_add_new_subscriptions').on('click', function(){
-                            window.insert_subscriptions()
-                            $('#add-form-wrapper').empty()
-                            $('#add-subscriptions-button').click()
-                            $('#value').focus()
-                        })
-
-                        $('#cancel_new_subscriptions').on('click', function(){
-                            window.load_subscriptions()
-                            $('#add-form-wrapper').empty()
-                            $('#add-subscriptions-button').show()
-                        })
-
-                        $('#mapbox-search').on('change', function(e){
-                            if ( typeof window.selected_location_grid_meta !== 'undefined' || window.selected_location_grid_meta !== '' ) {
-                                $('.save-subscriptions').removeAttr('disabled')
-                            }
-                        })
-                    })
-                }
-
             })
         </script>
         <?php
+        return true;
     }
 
     public function manage_body(){
-//        $actions = $this->magic->list_actions( $this->type );
-
-        // FORM BODY
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
@@ -562,16 +397,10 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 <div class="cell" id="content"><div class="center">... loading</div></div>
                 <div class="cell grid" id="error"></div>
             </div>
-            <div class="grid-x" id="add-new">
-                <div class="cell center"><button type="button" id="add-subscriptions-button" class="button large" style="min-width:200px;">Add Subscriptions</button></div>
-                <div id="add-form-wrapper"></div>
-            </div>
-
         </div> <!-- form wrapper -->
         <script>
             jQuery(document).ready(function($){
                 window.get_subscriptions()
-                // window.add_new_listener()
             })
         </script>
         <?php
@@ -627,23 +456,26 @@ class DT_Subscriptions_Management extends DT_Module_Base
             case 'get':
                 return $this->get_subscriptions( $post_id );
             case 'delete':
-                return $this->delete_subscriptions( $params, $post_id );
-            case 'insert':
-//                return $this->insert_subscriptions( $params, $post_id );
+                return $this->delete_subscriptions( $params );
             default:
                 return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
         }
     }
 
     public function get_subscriptions( $post_id ) {
-       return Disciple_Tools_Reports::get( $post_id, 'post_id' );
+       $subs = Disciple_Tools_Reports::get( $post_id, 'post_id' );
+
+       if ( ! empty( $subs ) ){
+           foreach( $subs as $index => $sub ) {
+               $subs[$index]['formatted_time'] = gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' for ' . $sub['label'];
+           }
+       }
+
+       return $subs;
     }
 
-    public function delete_subscriptions( $params, $post_id ) {
-
-        Location_Grid_Meta::delete_location_grid_meta( $post_id, 'grid_meta_id', $params['subscriptions_id'] );
-
-
-        return $this->get_subscriptions( $post_id );
+    public function delete_subscriptions( $params ) {
+        Disciple_Tools_Reports::delete( $params['report_id'] );
+        return $this->get_subscriptions( $params['parts']['post_id'] );
     }
 }
