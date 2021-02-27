@@ -26,7 +26,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $commitment_list = '';
         foreach ( $commitments as $row ){
-            $commitment_list .= gmdate( 'F d, Y @ H:i a', $row['time_begin'] ) . ' from ' . gmdate( 'H:i a', $row['time_begin'] ) . ' to ' . gmdate( 'H:i a', $row['time_end'] ) . ' for ' . $row['label'] . '<br>';
+            $commitment_list .= gmdate( 'F d, Y', $row['time_begin'] ) . ' from ' . gmdate( 'H:i a', $row['time_begin'] ) . ' to ' . gmdate( 'H:i a', $row['time_end'] ) . ' for ' . $row['label'] . '<br>';
         }
 
         $subject = 'Registered to pray with us!';
@@ -45,9 +45,9 @@ class DT_Prayer_Campaigns_Send_Email {
         $headers[] = 'Content-Type: text/html';
         $headers[] = 'charset=UTF-8';
 
-        dt_write_log($message);
+//        dt_write_log($message);
 
         $sent = wp_mail( $to, $subject, $message, $headers );
-        dt_write_log($sent);
+//        dt_write_log($sent);
     }
 }

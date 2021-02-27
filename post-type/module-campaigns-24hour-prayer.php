@@ -55,7 +55,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
         if ( $this->magic->is_valid_key_url( $this->type ) && '' === $this->parts['action'] ) {
             add_action( 'dt_blank_body', [ $this, 'form_body' ] );
-        } else {
+        }
+        else if ( 'access_account' === $this->parts['action'] ) {
+            add_action( 'dt_blank_body', [ $this, 'access_account_body' ] );
+        }
+        else {
             // fail if no valid action url found
             return;
         }
@@ -195,6 +199,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             'meta_key' => 'public_key', // coaching-magic_c_key
             'actions' => [
                 '' => 'Manage',
+                'access_account' => 'Access Account',
             ],
             'post_type' => $this->post_type,
         ];
@@ -636,7 +641,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 })
                     .done(function(data){
                         console.log(data)
-                        
+
                         spinner.removeClass('active')
                     })
                     .fail(function(e) {
@@ -658,11 +663,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
     }
 
     public function form_body(){
-
+        $link = trailingslashit( site_url() ) . $this->parts['root'] . '/' . $this->parts['type'] . '/' . $this->parts['public_key'] . '/access_account';
         // FORM BODY
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
+            <span style="position:absolute; right:10px;"><a href="<?php echo esc_url($link) ?>">Already have a commitment?</a></span>
             <div class="center"><h2>Enter Contact Info</h2></div>
             <div class="grid-x ">
                 <div class="cell">
@@ -729,6 +735,92 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         <?php
     }
 
+    public function access_account_body(){
+        ?>
+        <style>
+            #email {
+                display:none;
+            }
+        </style>
+        <div id="custom-style"></div>
+        <div id="wrapper">
+            <div class="center"><h2>We'll Email You a Link to Your Account</h2></div>
+            <div class="grid-x ">
+                <div class="cell">
+                    <span id="email-error" class="form-error">
+                        You're email is required.
+                    </span>
+                    <label for="email">Email<br>
+                        <input type="email" name="email" id="email" placeholder="Email" />
+                        <input type="email" name="e2" id="e2" placeholder="Email" required />
+                    </label>
+                </div>
+                <div class="cell center">
+                    <button class="button large" id="send-link-form">Send me a link to my prayer times</button>
+                </div>
+            </div>
+        </div> <!-- form wrapper -->
+        <script>
+            jQuery(document).ready(function($){
+
+                jQuery('#send-link-form').on('click', function(e){
+                    let spinner = jQuery('.loading-spinner')
+                    spinner.addClass('active')
+
+                    let submit_button = jQuery('#send-link-form')
+                    submit_button.prop('disabled', true)
+
+                    let honey = jQuery('#email').val()
+                    if ( honey ) {
+                        jQuery('#next_1').html('Shame, shame, shame. We know your name ... ROBOT!').prop('disabled', true )
+                        window.spinner.hide()
+                        return;
+                    }
+
+                    let email_input = jQuery('#e2')
+                    let email = email_input.val()
+                    if ( ! email ) {
+                        jQuery('#email-error').show()
+                        spinner.hide()
+                        email_input.focus(function(){
+                            jQuery('#email-error').hide()
+                        })
+                        submit_button.prop('disabled', false)
+                        return;
+                    }
+
+                    let data = {
+                        'action': 'access_account',
+                        'parts': postObject.parts,
+                        'email': email
+                    }
+
+                    jQuery.ajax({
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: postObject.root + postObject.parts.root + '/v1/' + postObject.parts.type + '/access_account',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', postObject.nonce )
+                        }
+                    })
+                        .done(function(data){
+                            console.log(data)
+
+                            spinner.removeClass('active')
+                        })
+                        .fail(function(e) {
+                            console.log(e)
+                            $('#error').html(e)
+                            spinner.removeClass('active')
+                        })
+                })
+            })
+        </script>
+        <?php
+    }
+
     /**
      * Open default restrictions for access to registered endpoints
      * @param $authorized
@@ -752,6 +844,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'endpoint' ],
+                ],
+            ]
+        );
+        register_rest_route(
+            $namespace, '/'.$this->type . '/access_account', [
+                [
+                    'methods'  => WP_REST_Server::CREATABLE,
+                    'callback' => [ $this, 'access_account' ],
                 ],
             ]
         );
@@ -833,5 +933,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         DT_Prayer_Campaigns_Send_Email::send_registration($new_id['ID']);
 
         return $hash;
+    }
+
+    public function access_account( WP_REST_Request $request )
+    {
+        $params = $request->get_params();
+
+        // @todo insert email reset link
+
+        
+        return $params;
     }
 }
