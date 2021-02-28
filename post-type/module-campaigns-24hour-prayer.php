@@ -629,6 +629,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     campaign_id: postObject.campaign_id
                 }
 
+                let wrapper = jQuery('#wrapper')
+                wrapper.empty().html(`<div class="grid-x"><div class="cell center"><span class="loading-spinner active"></span></div></div>`)
+
+                let alert = `
+                    <div class="grid-x">
+                        <div class="cell center"><h2>Sent! Check your email.<br><br>Click on the link included in the email to verify your commitment!</h2></div>
+                    </div>
+                    `
+
                 jQuery.ajax({
                     type: "POST",
                     data: JSON.stringify(data),
@@ -641,11 +650,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 })
                     .done(function(data){
                         console.log(data)
-
+                        wrapper.empty().html(alert)
                         spinner.removeClass('active')
                     })
                     .fail(function(e) {
                         console.log(e)
+                        wrapper.empty().html(`<div class="grid-x"><div class="cell center">
+                        So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+                        <a href="${window.location.href}">Try Again</a>
+                        </div></div>`)
                         $('#error').html(e)
                         spinner.removeClass('active')
                     })
@@ -668,7 +681,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
-            <span style="position:absolute; right:10px;"><a href="<?php echo esc_url($link) ?>">Already have a commitment?</a></span>
+            <span class="hide-for-small-only" style="position:absolute; right:10px;"><a href="<?php echo esc_url($link) ?>">Already have a commitment?</a></span>
+            <div class="center show-for-small-only"><a href="<?php echo esc_url($link) ?>">Already have a commitment?</a></div>
             <div class="center"><h2>Enter Contact Info</h2></div>
             <div class="grid-x ">
                 <div class="cell">
@@ -790,11 +804,18 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     }
 
                     let data = {
-                        'action': 'access_account',
-                        'parts': postObject.parts,
-                        'email': email
+                        'email': email,
+                        'campaign_id': postObject.campaign_id
                     }
 
+                    let wrapper = jQuery('#wrapper')
+                    wrapper.empty().html(`<div class="grid-x"><div class="cell center"><span class="loading-spinner active"></span></div></div>`)
+
+                    let alert = `
+                    <div class="grid-x">
+                        <div class="cell center"><h2>Sent! Check your email.<br><br> If your address is in our system, you'll get an email with a link to your prayer commitments.</h2></div>
+                    </div>
+                    `
                     jQuery.ajax({
                         type: "POST",
                         data: JSON.stringify(data),
@@ -807,7 +828,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     })
                         .done(function(data){
                             console.log(data)
-
+                            wrapper.empty().html(alert)
                             spinner.removeClass('active')
                         })
                         .fail(function(e) {
@@ -904,11 +925,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
         foreach( $params['selected_times'] as $time ){
             $args = [
+                'parent_id' => $params['campaign_id'],
                 'post_id' => $new_id['ID'],
                 'post_type' => 'subscriptions',
                 'type' => $this->root,
                 'subtype' => $this->type,
-                'payload' => $params['campaign_id'],
+                'payload' => null,
                 'value' => 0,
                 'lng' => null,
                 'lat' => null,
@@ -940,8 +962,13 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         $params = $request->get_params();
 
         // @todo insert email reset link
+        $params = dt_recursive_sanitize_array( $params );
+        if ( ! isset( $params['email'], $params['campaign_id'] ) ) {
+            return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
+        }
 
-        
+        DT_Prayer_Campaigns_Send_Email::send_account_access( $params['campaign_id'], $params['email']  ) ;
+
         return $params;
     }
 }

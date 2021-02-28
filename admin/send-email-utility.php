@@ -8,7 +8,6 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log('failed to record');
             return;
         }
-        dt_write_log($record);
         if ( ! isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
             return;
         }
@@ -48,6 +47,55 @@ class DT_Prayer_Campaigns_Send_Email {
 //        dt_write_log($message);
 
         $sent = wp_mail( $to, $subject, $message, $headers );
+        if ( ! $sent ){
+            dt_write_log(__METHOD__ . ': Unable to send email. ' . $to );
+        }
 //        dt_write_log($sent);
+    }
+
+    public static function send_account_access( $campaign_id, $email ) {
+        // get post id for campaign
+        global $wpdb;
+        $email = trim($email);
+        $keys = $wpdb->get_col(  $wpdb->prepare( "SELECT pk.meta_value as public_key
+                FROM $wpdb->p2p p2
+                    JOIN $wpdb->postmeta pm ON pm.post_id=p2.p2p_to
+                       AND pm.meta_key LIKE %s
+                       AND pm.meta_key NOT LIKE %s
+                    JOIN $wpdb->postmeta pk ON pk.post_id=p2.p2p_to AND pk.meta_key = 'public_key'
+                WHERE p2.p2p_type = 'campaigns_to_subscriptions'
+                    AND p2.p2p_from = %s
+                    AND pm.meta_value = %s",
+            $wpdb->esc_like('contact_email'). '%',
+                    '%'.$wpdb->esc_like('details'),
+                    $campaign_id,
+                    $email
+                    ) );
+
+        $subject = 'Access to your prayer commitments!';
+
+        $headers = [];
+        $headers[] = 'From: Zume Community <no-reply@zume.community>';
+        $headers[] = 'Content-Type: text/html';
+        $headers[] = 'charset=UTF-8';
+
+        if ( ! empty( $keys ) ) {
+            foreach ( $keys as $public_key ) {
+                $message =
+                    '<h3>Thank you for praying with us!</h3>
+                    <p>Here is the link you requested to your prayer commitments:</p>
+                    <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $public_key.'">Link to your commitments!</a></p>
+                    <br><br><hr>
+                    <p>If you did not request this link, just ignore this email.</p>
+
+                    <'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $public_key.'>
+                    ';
+
+                $sent = wp_mail( $email, $subject, $message, $headers );
+                if ( ! $sent ){
+                    dt_write_log(__METHOD__ . ': Unable to send email. ' . $email );
+                }
+            }
+        }
     }
 }

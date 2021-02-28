@@ -232,14 +232,15 @@ class DT_Campaigns_Base extends DT_Module_Base {
             // end basic framework fields
 
 
-            $fields['notes'] = [
-                'name'   => __( 'Notes', 'disciple_tools' ),
-                'description' => __('Permanent notes about the campaign', 'disciple_tools' ),
+            $fields['description'] = [
+                'name'   => __( 'Description', 'disciple_tools' ),
+                'description' => __('General description about the campaign', 'disciple_tools' ),
                 'type'   => 'text',
                 "tile" => "details",
                 'default' => '',
                 "customizable" => true,
                 "in_create_form" => true,
+                'icon' => get_template_directory_uri() . '/dt-assets/images/sign-post.svg',
             ];
             $fields["languages"] = [
                 'name' => __( 'Languages', 'disciple_tools' ),
@@ -300,29 +301,29 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "tile" => "",
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
-//            $fields['location_grid_meta'] = [
-//                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
-//                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
-//                'type'        => 'location_meta',
-//                "tile"      => "locations",
-//                'mapbox'    => false,
-//                'hidden' => true,
-//                "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
-//            ];
-//            $fields["contact_address"] = [
-//                "name" => __( 'Address', 'disciple_tools' ),
-//                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
-//                "type" => "communication_channel",
-//                "tile" => "",
-//                'mapbox'    => false,
-//                "customizable" => false
-//            ];
-//            if ( DT_Mapbox_API::get_key() ){
-//                $fields["contact_address"]["hidden"] = true;
-//                $fields["contact_address"]["mapbox"] = true;
-//                $fields["location_grid"]["mapbox"] = true;
-//                $fields["location_grid_meta"]["mapbox"] = true;
-//            }
+            $fields['location_grid_meta'] = [
+                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
+                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+                'type'        => 'location_meta',
+                "tile"      => "locations",
+                'mapbox'    => false,
+                'hidden' => true,
+                "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
+            ];
+            $fields["contact_address"] = [
+                "name" => __( 'Address', 'disciple_tools' ),
+                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
+                "type" => "communication_channel",
+                "tile" => "",
+                'mapbox'    => false,
+                "customizable" => false
+            ];
+            if ( DT_Mapbox_API::get_key() ){
+                $fields["contact_address"]["hidden"] = true;
+                $fields["contact_address"]["mapbox"] = true;
+                $fields["location_grid"]["mapbox"] = true;
+                $fields["location_grid_meta"]["mapbox"] = true;
+            }
 
             $fields["subscriptions"] = [
                 "name" => __( 'Subscriptions', 'disciple_tools' ),
@@ -397,7 +398,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         if ( $post_type === $this->post_type ){
             $tiles["location"] = [ "label" => __( "Geo Focus", 'disciple_tools' ) ];
             $tiles["time"] = [ "label" => __( "Time Range", 'disciple_tools' ) ];
-            $tiles["subscribers"] = [ "label" => __( "Subscribers", 'disciple_tools' ) ];
+            $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
             $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
         return $tiles;
@@ -409,10 +410,11 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function dt_details_additional_section( $section, $post_type ){
 
-        if ( $post_type === $this->post_type && $section === "subscribers" ){
-            $subscribers_count = $this->query_subscriber_count();
-            $active_commitments = $this->query_active_count();
-            $past_commitments = $this->query_past_count();
+        if ( $post_type === $this->post_type && $section === "commitments" ){
+            $subscribers_count = $this->query_subscriber_count( get_the_ID() );
+            $coverage_count = $this->query_coverage_count( get_the_ID() );
+            $scheduled_commitments = $this->query_scheduled_count( get_the_ID() );
+            $past_commitments = $this->query_past_count( get_the_ID() );
             ?>
             <div class="cell small-12">
             <div class="grid-x">
@@ -425,19 +427,24 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 </div>
             </div>
             <div class="cell small-6 ">
-
-            </div>
-            <div class="cell small-6 ">
                 <div class="section-subheader">
-                    Active Commitments
+                    Coverage
                 </div>
                 <div>
-                    <span style="font-size:2rem;"><?php echo esc_html( $active_commitments ) ?></span>
+                    <span style="font-size:2rem;"><?php echo esc_html( $coverage_count ) ?>%</span>
                 </div>
             </div>
             <div class="cell small-6 ">
                 <div class="section-subheader">
-                    Past Commitments
+                    Scheduled Events
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( $scheduled_commitments ) ?></span>
+                </div>
+            </div>
+            <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Past Events
                 </div>
                 <div>
                     <span style="font-size:2rem;"><?php echo esc_html( $past_commitments ) ?></span>
@@ -506,33 +513,51 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
     }
 
-    public function query_subscriber_count(){
+    public function query_subscriber_count( $campaign_post_id ){
         global $wpdb;
-        return $wpdb->get_var("SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions'");
+        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s",  $campaign_post_id ) );
     }
 
-    public function query_active_count(){
+    public function query_scheduled_count( $campaign_post_id ){
         global $wpdb;
-        return $wpdb->get_var("SELECT COUNT(r.post_id) as count
+        return $wpdb->get_var( $wpdb->prepare(  "SELECT COUNT(r.post_id) as count
             FROM (SELECT p2p_to as post_id
             FROM $wpdb->p2p
-            WHERE p2p_type = 'campaigns_to_subscriptions') as t1
+            WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
             LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
             WHERE r.post_id IS NOT NULL
-            AND r.time_begin > UNIX_TIMESTAMP();"
-        );
+            AND r.time_begin > UNIX_TIMESTAMP();", $campaign_post_id
+        ) );
     }
 
-    public function query_past_count(){
+    public function query_past_count( $campaign_post_id ){
         global $wpdb;
-        return $wpdb->get_var("SELECT COUNT(r.post_id) as count
+        return $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(r.post_id) as count
             FROM (SELECT p2p_to as post_id
             FROM $wpdb->p2p
-            WHERE p2p_type = 'campaigns_to_subscriptions') as t1
+            WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
             LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
             WHERE r.post_id IS NOT NULL
-            AND r.time_begin <= UNIX_TIMESTAMP();"
-        );
+            AND r.time_begin <= UNIX_TIMESTAMP();", $campaign_post_id
+        ) );
+    }
+
+    public function query_coverage_count( $campaign_post_id ) {
+        $percent = 0;
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
+
+        $day_count = 0;
+        $blocks_covered = 0;
+        if ( ! empty( $times_list ) ) {
+            foreach( $times_list as $day ){
+                $day_count++;
+                $blocks_covered += $day['blocks_covered'];
+            }
+
+            $blocks = $day_count * 96; // 96 blocks of 15 minutes for a 24 hour period
+            $percent = $blocks_covered / $blocks * 100;
+        }
+        return round( $percent, 1 );
     }
 
     //filter when a comment is created
