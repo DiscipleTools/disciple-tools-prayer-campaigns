@@ -270,7 +270,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
     }
 
     public function subscriptions_javascript_header(){
-        $post = DT_Posts::get_post('campaigns', $this->parts['post_id'], true, false );
+        $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
         }
@@ -282,7 +282,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'post' => $post,
-                'name' => get_the_title( $this->parts['post_id']),
+                'name' => get_the_title( $this->parts['post_id'] ),
                 'translations' => [
                     'add' => __( 'Add Report', 'disciple-tools-subscriptions' ),
                     'search_location' => 'Search for Location'
@@ -468,22 +468,25 @@ class DT_Subscriptions_Management extends DT_Module_Base
     }
 
     public function get_subscriptions( $post_id ) {
-       $subs = Disciple_Tools_Reports::get( $post_id, 'post_id' );
+        $subs = Disciple_Tools_Reports::get( $post_id, 'post_id' );
 
-       if ( ! empty( $subs ) ){
-           foreach( $subs as $index => $sub ) {
-               // verification step
-               if ( $sub['value'] < 1 ) {
-                   Disciple_Tools_Reports::update(['id' => $sub['id'], 'value' => 1 ] );
-                   $subs[$index]['value'] = 1;
-                   $subs[$index]['verified'] = true;
-               }
+        if ( ! empty( $subs ) ){
+            foreach ( $subs as $index => $sub ) {
+                // verification step
+                if ( $sub['value'] < 1 ) {
+                    Disciple_Tools_Reports::update( [
+                        'id' => $sub['id'],
+                        'value' => 1
+                    ] );
+                    $subs[$index]['value'] = 1;
+                    $subs[$index]['verified'] = true;
+                }
 
-               $subs[$index]['formatted_time'] = gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' for ' . $sub['label'];
-           }
-       }
+                $subs[$index]['formatted_time'] = gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' for ' . $sub['label'];
+            }
+        }
 
-       return $subs;
+        return $subs;
     }
 
     public function delete_subscriptions( $params ) {

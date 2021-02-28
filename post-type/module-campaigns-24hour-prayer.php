@@ -26,7 +26,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             return;
         }
         // register tiles if on details page
-        add_filter( 'dt_campaign_types', [ $this, 'dt_campaign_types'], 20, 1 );
+        add_filter( 'dt_campaign_types', [ $this, 'dt_campaign_types' ], 20, 1 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 30, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
         add_action( 'wp_enqueue_scripts', [ $this, 'tile_scripts' ], 100 );
@@ -41,7 +41,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
         // stop processing for non magic urls
         $url = dt_get_url_path();
-        if (  strpos( $url, $this->root . '/' . $this->type  ) === false ) {
+        if ( strpos( $url, $this->root . '/' . $this->type ) === false ) {
             return;
         }
 
@@ -54,8 +54,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 $template_for_url[ $url ] = 'template-blank.php';
                 return $template_for_url;
             }, 199, 1 );
-            add_filter( 'dt_blank_access', function(){ return true;} );
-            add_filter( 'dt_allow_non_login_access', function(){ return true;}, 100, 1 );
+            add_filter( 'dt_blank_access', function(){ return true;
+            } );
+            add_filter( 'dt_allow_non_login_access', function(){ return true;
+            }, 100, 1 );
             return;
         }
 
@@ -110,7 +112,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 $record = DT_Posts::get_post( $post_type, get_the_ID() );
 
                 if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ) {
-                    if ( isset( $record['public_key'])) {
+                    if ( isset( $record['public_key'] )) {
                         $key = $record['public_key'];
                     } else {
                         $key = DT_Subscriptions_Base::instance()->create_unique_key();
@@ -177,10 +179,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     </script>
                     <?php
                 } // end if 24hour prayer
-
             } // end if apps section
-
-
         } // end if campaigns and enabled
     }
 
@@ -456,7 +455,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
     }
 
     public function campaigns_javascript_header(){
-        $post = DT_Posts::get_post('campaigns', $this->parts['post_id'], true, false );
+        $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
         }
@@ -474,7 +473,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 'post' => $post,
                 'campaign_id' => $post['ID'],
                 'campaign_grid_id' => $grid_id,
-                'campaign_times_lists' => DT_Time_Utilities::campaign_times_list( $this->parts['post_id']),
+                'campaign_times_lists' => DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] ),
                 'translations' => []
             ]) ?>][0]
 
@@ -699,8 +698,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
-            <span class="hide-for-small-only" style="position:absolute; right:10px;"><a href="<?php echo esc_url($link) ?>">Already have a commitment?</a></span>
-            <div class="center show-for-small-only"><a href="<?php echo esc_url($link) ?>">Already have a commitment?</a></div>
+            <span class="hide-for-small-only" style="position:absolute; right:10px;"><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></span>
+            <div class="center show-for-small-only"><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></div>
             <div class="center"><h2>Enter Contact Info</h2></div>
             <div class="grid-x ">
                 <div class="cell">
@@ -924,7 +923,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         $fields = [
             'title' => $title,
             "contact_email" => [
-                ["value" => $email ],
+                [ "value" => $email ],
             ],
             'campaigns' => [
                 "values" => [
@@ -943,7 +942,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
         // log reports
 
-        foreach( $params['selected_times'] as $time ){
+        foreach ( $params['selected_times'] as $time ){
             $args = [
                 'parent_id' => $params['campaign_id'],
                 'post_id' => $new_id['ID'],
@@ -961,9 +960,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 'time_end' => $time['time'] + 900,
             ];
 
-            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id($time['grid_id']);
+            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $time['grid_id'] );
             if ( ! empty( $grid_row ) ){
-                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id($time['grid_id']);
+                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $time['grid_id'] );
                 $args['lng'] = $grid_row['longitude'];
                 $args['lat'] = $grid_row['latitude'];
                 $args['level'] = $grid_row['level_name'];
@@ -972,13 +971,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             Disciple_Tools_Reports::insert( $args );
         }
 
-        DT_Prayer_Campaigns_Send_Email::send_registration($new_id['ID']);
+        DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'] );
 
         return $hash;
     }
 
-    public function access_account( WP_REST_Request $request )
-    {
+    public function access_account( WP_REST_Request $request ) {
         $params = $request->get_params();
 
         // @todo insert email reset link
@@ -987,7 +985,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
         }
 
-        DT_Prayer_Campaigns_Send_Email::send_account_access( $params['campaign_id'], $params['email']  ) ;
+        DT_Prayer_Campaigns_Send_Email::send_account_access( $params['campaign_id'], $params['email'] );
 
         return $params;
     }

@@ -32,8 +32,8 @@ function dt_prayer_campaign_send_12hour_reminder(){
             AND ( r.payload = '' || r.payload IS NULL )
             ORDER BY r.time_begin;
             ",
-        $wpdb->esc_like('contact_email') . '%',
-        '%' . $wpdb->esc_like('details'),
+        $wpdb->esc_like( 'contact_email' ) . '%',
+        '%' . $wpdb->esc_like( 'details' ),
         $begin_time_range,
         $end_time_range
     ), ARRAY_A );
@@ -45,7 +45,7 @@ function dt_prayer_campaign_send_12hour_reminder(){
     // build nested array to separate campaigns and combine user reminders
     $grouped_reminders = [];
     $campaign_ids = [];
-    foreach( $reminders as $reminder ) {
+    foreach ( $reminders as $reminder ) {
         if ( ! isset( $grouped_reminders[$reminder['parent_id']] ) ) {
             $grouped_reminders[$reminder['parent_id']] = [];
             $campaign_ids[] = $reminder['parent_id'];
@@ -58,14 +58,14 @@ function dt_prayer_campaign_send_12hour_reminder(){
 
 
     // build message by campaign, and then by user, and grouping times per user message
-    foreach( $grouped_reminders as $campaign_id => $subscriber_values ) {
+    foreach ( $grouped_reminders as $campaign_id => $subscriber_values ) {
         // get campaign messages and links for the day
             // @todo system to add unique links and messages to a days campaign.
         $campaign_subject_line = 'Tunisia prayer reminder!';
 //        $campaign_greeting = 'We are so thankful for you praying with us. We are stronger together.';
         $campaign_link = 'https://pray4colorado.org';
 
-        foreach( $subscriber_values as $key => $values ) {
+        foreach ( $subscriber_values as $key => $values ) {
             $e = [
                 'to' => '',
                 'subject' => $campaign_subject_line,
@@ -97,16 +97,17 @@ function dt_prayer_campaign_send_12hour_reminder(){
             $sent = wp_mail( $e['to'], $e['subject'], $e['message'], $e['headers'] );
 
             if ( ! $sent ){
-                dt_write_log(__METHOD__ . ': Unable to send email. ' . $to );
+                dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
             } else {
                 // note in report that email was sent
                 foreach ( $values as $row ){
                     $payload = maybe_serialize( [ '12hour_reminder_sent' => time() ] );
-                    Disciple_Tools_Reports::update( ['id' => $row['id'], 'payload' => $payload ] );
+                    Disciple_Tools_Reports::update( [
+                        'id' => $row['id'],
+                        'payload' => $payload
+                    ] );
                 }
-
             }
-
         } // user loop
 
     } // campaign loop

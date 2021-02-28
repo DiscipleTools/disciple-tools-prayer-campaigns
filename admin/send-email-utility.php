@@ -5,7 +5,7 @@ class DT_Prayer_Campaigns_Send_Email {
         // @todo build this to use mailgun or mailsend
         $record = DT_Posts::get_post( 'subscriptions', $post_id );
         if ( is_wp_error( $record ) ){
-            dt_write_log('failed to record');
+            dt_write_log( 'failed to record' );
             return;
         }
         if ( ! isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
@@ -13,12 +13,12 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $commitments = Disciple_Tools_Reports::get( $post_id, 'post_id' );
         if ( empty( $commitments ) ) {
-            dt_write_log('failed to commitments');
+            dt_write_log( 'failed to commitments' );
             return;
         }
 
         $to = [];
-        foreach( $record['contact_email'] as $value ){
+        foreach ( $record['contact_email'] as $value ){
             $to[] = $value['value'];
         }
         $to = implode( ',', $to );
@@ -47,14 +47,14 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
-            dt_write_log(__METHOD__ . ': Unable to send email. ' . $to );
+            dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         }
     }
 
     public static function send_account_access( $campaign_id, $email ) {
         // get post id for campaign
         global $wpdb;
-        $email = trim($email);
+        $email = trim( $email );
         $keys = $wpdb->get_col(  $wpdb->prepare( "SELECT pk.meta_value as public_key
                 FROM $wpdb->p2p p2
                     JOIN $wpdb->postmeta pm ON pm.post_id=p2.p2p_to
@@ -64,11 +64,11 @@ class DT_Prayer_Campaigns_Send_Email {
                 WHERE p2.p2p_type = 'campaigns_to_subscriptions'
                     AND p2.p2p_from = %s
                     AND pm.meta_value = %s",
-            $wpdb->esc_like('contact_email'). '%',
-                    '%'.$wpdb->esc_like('details'),
-                    $campaign_id,
-                    $email
-                    ) );
+            $wpdb->esc_like( 'contact_email' ). '%',
+            '%'.$wpdb->esc_like( 'details' ),
+            $campaign_id,
+            $email
+        ) );
 
         $subject = 'Access to your prayer commitments!';
 
@@ -91,7 +91,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
                 $sent = wp_mail( $email, $subject, $message, $headers );
                 if ( ! $sent ){
-                    dt_write_log(__METHOD__ . ': Unable to send email. ' . $email );
+                    dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
                 }
             }
         }

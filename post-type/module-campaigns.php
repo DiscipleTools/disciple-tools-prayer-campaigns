@@ -43,7 +43,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
-        add_filter( 'desktop_navbar_menu_options', [$this, 'desktop_navbar_menu_options'], 1000, 1 );
+        add_filter( 'desktop_navbar_menu_options', [ $this, 'desktop_navbar_menu_options' ], 1000, 1 );
 //        add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
 
         // hooks
@@ -72,14 +72,14 @@ class DT_Campaigns_Base extends DT_Module_Base {
      * @return mixed
      */
     public function desktop_navbar_menu_options( $tabs ) {
-        if ( isset( $tabs[$this->post_type]) ) {
-            unset($tabs['subscriptions']);
+        if ( isset( $tabs[$this->post_type] ) ) {
+            unset( $tabs['subscriptions'] );
         }
         if ( $tabs['campaigns'] ) {
             $tabs['campaigns']['submenu']['campaigns'] = $tabs['campaigns'];
             $tabs['campaigns']['submenu']['subscriptions'] = [
                 "link" => site_url( "/subscriptions/" ),
-                "label" => __('Subscriptions', 'disciple_tools'),
+                "label" => __( 'Subscriptions', 'disciple_tools' ),
                 'icon' => '',
                 'hidden' => false,
             ];
@@ -235,7 +235,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
             $fields['description'] = [
                 'name'   => __( 'Description', 'disciple_tools' ),
-                'description' => __('General description about the campaign', 'disciple_tools' ),
+                'description' => __( 'General description about the campaign', 'disciple_tools' ),
                 'type'   => 'text',
                 "tile" => "details",
                 'default' => '',
@@ -245,11 +245,11 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ];
             $fields["languages"] = [
                 'name' => __( 'Languages', 'disciple_tools' ),
-                'description' => __('Subscriber preferred language', 'disciple_tools' ),
+                'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
                 'type' => 'key_select',
                 "tile" => "details",
                 "in_create_form" => true,
-                'default' => dt_get_option( "dt_working_languages" ) ?: ['en'],
+                'default' => dt_get_option( "dt_working_languages" ) ?: [ 'en' ],
                 'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
             $fields["peoplegroups"] = [
@@ -282,7 +282,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
             $fields['public_key'] = [
                 'name'   => __( 'Private Key', 'disciple_tools' ),
-                'description' => __('Private key for subscriber access', 'disciple_tools' ),
+                'description' => __( 'Private key for subscriber access', 'disciple_tools' ),
                 'type'   => 'hash',
                 'default' => DT_Subscriptions_Base::instance()->create_unique_key(),
                 'hidden' => true,
@@ -610,7 +610,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => [ $this, 'subscribers_endpoint' ],
                     'permission_callback' => function( WP_REST_Request $request ) {
-                        return dt_has_permissions( ['view_any_subscriptions'] );
+                        return dt_has_permissions( [ 'view_any_subscriptions' ] );
                     },
                 ],
             ]
@@ -621,18 +621,17 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => [ $this, 'coverage_endpoint' ],
                     'permission_callback' => function( WP_REST_Request $request ) {
-                        return dt_has_permissions( ['view_any_subscriptions'] );
+                        return dt_has_permissions( [ 'view_any_subscriptions' ] );
                     },
                 ],
             ]
         );
     }
 
-    public function subscribers_endpoint( WP_REST_Request $request )
-    {
+    public function subscribers_endpoint( WP_REST_Request $request ) {
         $params = $request->get_params();
         if ( ! isset( $params['campaign_id'] ) ) {
-            return new WP_Error(__METHOD__, 'Required parameter not set' );
+            return new WP_Error( __METHOD__, 'Required parameter not set' );
         }
         global $wpdb;
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
@@ -647,24 +646,23 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 LEFT JOIN $wpdb->posts p ON p.ID=p2.p2p_to
                 WHERE p2p_type = 'campaigns_to_subscriptions'
                 AND p2p_from = %s", $campaign_post_id
-        ),ARRAY_A );
+        ), ARRAY_A );
 
     }
 
-    public function coverage_endpoint( WP_REST_Request $request )
-    {
+    public function coverage_endpoint( WP_REST_Request $request ) {
         $params = $request->get_params();
         if ( ! isset( $params['campaign_id'] ) ) {
-            return new WP_Error(__METHOD__, 'Required parameter not set' );
+            return new WP_Error( __METHOD__, 'Required parameter not set' );
         }
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
-        return DT_Time_Utilities::campaign_times_list( $campaign_post_id);
+        return DT_Time_Utilities::campaign_times_list( $campaign_post_id );
 
     }
 
     public function query_subscriber_count( $campaign_post_id ){
         global $wpdb;
-        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s",  $campaign_post_id ) );
+        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s", $campaign_post_id ) );
     }
 
     public function query_scheduled_count( $campaign_post_id ){
@@ -698,7 +696,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         $day_count = 0;
         $blocks_covered = 0;
         if ( ! empty( $times_list ) ) {
-            foreach( $times_list as $day ){
+            foreach ( $times_list as $day ){
                 $day_count++;
                 $blocks_covered += $day['blocks_covered'];
             }
@@ -735,7 +733,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
             if ( !isset( $fields['public_key'] ) ) {
                 $fields['public_key'] = $this->create_unique_key();
             }
-
         }
         return $fields;
     }

@@ -216,7 +216,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             ];
             $fields["contact_phone"] = [
                 "name" => __( 'Phone', 'disciple_tools' ),
-                'description' => __('Subscriber phone number', 'disciple_tools' ),
+                'description' => __( 'Subscriber phone number', 'disciple_tools' ),
                 "icon" => get_template_directory_uri() . "/dt-assets/images/phone.svg",
                 "type" => "communication_channel",
                 "tile" => "details",
@@ -225,23 +225,23 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             ];
             $fields["languages"] = [
                 'name' => __( 'Languages', 'disciple_tools' ),
-                'description' => __('Subscriber preferred language', 'disciple_tools' ),
+                'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
                 'type' => 'key_select',
                 "tile" => "details",
                 "in_create_form" => true,
-                'default' => dt_get_option( "dt_working_languages" ) ?: ['en'],
+                'default' => dt_get_option( "dt_working_languages" ) ?: [ 'en' ],
                 'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
 
             $fields['public_key'] = [
                 'name'   => __( 'Private Key', 'disciple_tools' ),
-                'description' => __('Private key for subscriber access', 'disciple_tools' ),
+                'description' => __( 'Private key for subscriber access', 'disciple_tools' ),
                 'type'   => 'hash',
                 'hidden' => true,
                 "customizable" => false,
             ];
             $fields['subscriber_last_modified'] = [
-                'name'   => __('Last Modified by Subscriber', 'disciple_tools' ),
+                'name'   => __( 'Last Modified by Subscriber', 'disciple_tools' ),
                 'description' => '',
                 'type' => 'time',
                 'default' => '',
@@ -301,7 +301,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
 
         }
 
-        if ( $post_type === "contacts" && current_user_can('view_all_'.$this->post_type ) ){
+        if ( $post_type === "contacts" && current_user_can( 'view_all_'.$this->post_type ) ){
             $fields[$this->post_type] = [
                 "name" => $this->plural_name,
                 "description" => '',
@@ -366,7 +366,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
             $fields = DT_Posts::get_post_field_settings( $post_type );
 
-            if ( isset( $record['public_key'])) {
+            if ( isset( $record['public_key'] )) {
                 $key = $record['public_key'];
             } else {
                 $key = self::create_unique_key();
@@ -482,7 +482,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         if ( $post_type === $this->post_type && $section === "commitments" ){
             $subs = Disciple_Tools_Reports::get( get_the_ID(), 'post_id' );
             if ( ! empty( $subs ) ){
-                foreach( $subs as $sub ){
+                foreach ( $subs as $sub ){
                     $style = '';
                     if ( $sub['time_begin'] < time() ){
                         $style = 'style="text-decoration:line-through;"';

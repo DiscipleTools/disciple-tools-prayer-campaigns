@@ -1,28 +1,27 @@
 <?php
 
 class DT_Time_Utilities {
-    public static function campaign_times_list( $post_id )
-    {
+    public static function campaign_times_list( $post_id ) {
         $data = [];
 
-        $record = DT_Posts::get_post('campaigns', $post_id, true, false);
+        $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
 
         // process start and end of campaign
-        if (!isset($record['start_date'])) {
+        if ( !isset( $record['start_date'] )) {
             $start = time();
         } else {
             $start = strtotime( gmdate( 'Y-m-d', $record['start_date']['timestamp'] ) ); // perfects the stamp to day beginning
         }
         $record['start_date'] = $start;
 
-        if (!isset($record['end_date'])) {
-            $end = strtotime('+30 days');
+        if ( !isset( $record['end_date'] )) {
+            $end = strtotime( '+30 days' );
         } else {
             $end = strtotime( gmdate( 'Y-m-d', $record['end_date']['timestamp'] ) ) + 86399; // end of selected day (-1 second)
         }
         $record['end_date'] = $end;
 
-        $current_times_list = self::get_current_commitments($record['ID'], (int) $start, (int) $end );
+        $current_times_list = self::get_current_commitments( $record['ID'], (int) $start, (int) $end );
 
         // build time list array
         while ($start <= $end) {
@@ -30,11 +29,11 @@ class DT_Time_Utilities {
             $time_begin = $start;
             $end_of_day = $start + 86400;
 
-            while( $time_begin < $end_of_day ) {
-                if (!isset($data[$start])) {
+            while ( $time_begin < $end_of_day ) {
+                if ( !isset( $data[$start] )) {
                     $data[$start] = [
                         'key' => $start,
-                        'formatted' => gmdate('F d', $start ),
+                        'formatted' => gmdate( 'F d', $start ),
                         'percent' => 0,
                         'blocks_covered' => 0,
                         'hours' => []
@@ -43,7 +42,7 @@ class DT_Time_Utilities {
 
                 $data[$start]['hours'][] = [
                     'key' => $time_begin,
-                    'formatted' => gmdate('H:i', $time_begin ),
+                    'formatted' => gmdate( 'H:i', $time_begin ),
                     'subscribers' => $current_times_list[$time_begin] ?? 0,
                 ];
 
@@ -53,9 +52,9 @@ class DT_Time_Utilities {
             $start = $start + 86400; // add a day
         } // end while
 
-        foreach( $data as $index => $value ) {
+        foreach ( $data as $index => $value ) {
             $covered = 0;
-            foreach( $value['hours'] as $time ) {
+            foreach ( $value['hours'] as $time ) {
                 if ( $time['subscribers'] > 0 ){
                     $covered++;
                 }
@@ -87,7 +86,7 @@ class DT_Time_Utilities {
         $times_list = [];
 
         if ( ! empty( $commitments ) ){
-            foreach( $commitments as $commitment ) {
+            foreach ( $commitments as $commitment ) {
                 $times_list[$commitment['time_begin']] = $commitment['count'];
             }
         }
