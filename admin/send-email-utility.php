@@ -35,7 +35,8 @@ class DT_Prayer_Campaigns_Send_Email {
             <p>'.$commitment_list.'</p>
             <p>Please verify your commitment by visiting:</p>
             <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Verify your prayer times!</a></p>
-            <p>'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'</p>
+
+            <'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'>
             ';
 
 
@@ -44,13 +45,10 @@ class DT_Prayer_Campaigns_Send_Email {
         $headers[] = 'Content-Type: text/html';
         $headers[] = 'charset=UTF-8';
 
-//        dt_write_log($message);
-
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
             dt_write_log(__METHOD__ . ': Unable to send email. ' . $to );
         }
-//        dt_write_log($sent);
     }
 
     public static function send_account_access( $campaign_id, $email ) {

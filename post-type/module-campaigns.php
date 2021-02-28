@@ -39,6 +39,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
         //setup tiles and fields
         add_action( 'p2p_init', [ $this, 'p2p_init' ] );
+        add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
@@ -423,7 +424,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     Subscribers
                 </div>
                 <div>
-                    <span style="font-size:2rem;"><?php echo esc_html( $subscribers_count ) ?></span>
+                    <span style="font-size:2rem;"><a href="javascript:void(0)" id="campaign_subscriber_list"><?php echo esc_html( $subscribers_count ) ?></a></span>
                 </div>
             </div>
             <div class="cell small-6 ">
@@ -431,7 +432,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     Coverage
                 </div>
                 <div>
-                    <span style="font-size:2rem;"><?php echo esc_html( $coverage_count ) ?>%</span>
+                    <span style="font-size:2rem;"><a href="javascript:void(0)" id="campaign_coverage_chart"><?php echo esc_html( $coverage_count ) ?>%</a></span>
                 </div>
             </div>
             <div class="cell small-6 ">
@@ -451,6 +452,94 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 </div>
             </div>
         </div>
+        <script>
+        jQuery(document).ready(function($){
+            /* subscribers */
+            $('#campaign_subscriber_list').on('click', function(e){
+                 $('#modal-small-title').empty().html(`<h2>Subscriber List</h2><hr>`)
+
+                let container = $('#modal-small-content')
+                container.empty().html(`
+                <span class="loading-spinner active"></span>
+                `)
+                 makeRequest( 'GET', '/subscribers', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                .done(function(data){
+                    let content = `<ol>`
+                    if ( data ) {
+                        jQuery.each(data, function(i,v){
+                            content += `<li><a href="/subscriptions/${v.ID}">${v.name} (${v.commitments})</a></li>`
+                        })
+                    } else {
+                        content += `<div class="cell">No subscribers found</div>`
+                    }
+                    content += `</ol>`
+                    container.empty().html(content)
+                })
+
+                $('#modal-small').foundation('open')
+            })
+
+            /* campaign coverage */
+            $('#campaign_coverage_chart').on('click', function(e){
+                $('#modal-full-title').empty().html(`<h2>Coverage Chart</h2><span style="font-size:.7em;">Cells contain subscriber count per block of time.</span><hr>`)
+
+                let container = $('#modal-full-content')
+                container.empty().html(`
+                <span class="loading-spinner active"></span>
+                `)
+
+                makeRequest( 'GET', '/coverage', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                .done(function(data){
+                    console.log(data)
+                    let content = `<style>#cover-table td:hover {border: 1px solid darkslateblue;}</style><div class="table-scroll"><table id="cover-table" class="center">`
+                    /* top row */
+                    jQuery.each(data, function(i,v){
+                        content += `<tr><th></th>`
+                        let c = 0
+                        jQuery.each(v.hours, function(ii,vv){
+                            if ( c >= 20 ){
+                                 content += `<th></th>`
+                                c = 0
+                            } else {
+                                c++
+                            }
+                            content += `<th>${vv.formatted}</th>`
+                        })
+                        content += `</tr>`
+                        return false // looping only once for the column titles
+                    })
+                    /* table body */
+                    jQuery.each(data, function(i,v){
+                        content += `<tr><th style="white-space:nowrap">${v.formatted}</th>`
+                        let c = 0
+                        jQuery.each(v.hours, function(ii,vv){
+                            if ( c >= 20 ){
+                                 content += `<th style="white-space:nowrap">${v.formatted}</th>`
+                                c = 0
+                            } else {
+                                c++
+                            }
+                            if ( vv.subscribers > 0 ){
+                                    content += `<td style="background-color:lightblue;">${vv.subscribers}</td>`
+                                } else {
+                                    content += `<td>${vv.subscribers}</td>`
+                                }
+                        })
+
+                        content += `</tr>`
+                    })
+                    content += `</table></div>`
+
+                    container.empty().html(content)
+
+                })
+
+
+                $('#modal-full').foundation('open')
+            })
+
+        })
+        </script>
 
 
         <?php }
@@ -510,6 +599,66 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 </div>
             </div>
         <?php endif;
+
+    }
+
+    public function add_api_routes() {
+        $namespace = 'campaigns/v1';
+        register_rest_route(
+            $namespace, '/subscribers', [
+                [
+                    'methods'  => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'subscribers_endpoint' ],
+                    'permission_callback' => function( WP_REST_Request $request ) {
+                        return dt_has_permissions( ['view_any_subscriptions'] );
+                    },
+                ],
+            ]
+        );
+        register_rest_route(
+            $namespace, '/coverage', [
+                [
+                    'methods'  => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'coverage_endpoint' ],
+                    'permission_callback' => function( WP_REST_Request $request ) {
+                        return dt_has_permissions( ['view_any_subscriptions'] );
+                    },
+                ],
+            ]
+        );
+    }
+
+    public function subscribers_endpoint( WP_REST_Request $request )
+    {
+        $params = $request->get_params();
+        if ( ! isset( $params['campaign_id'] ) ) {
+            return new WP_Error(__METHOD__, 'Required parameter not set' );
+        }
+        global $wpdb;
+        $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
+        return $wpdb->get_results( $wpdb->prepare( "
+                SELECT p.post_title as name, p.ID,
+                       (SELECT COUNT(r.post_id)
+                       FROM $wpdb->dt_reports r
+                       WHERE r.post_type = 'subscriptions'
+                         AND r.parent_id = 60
+                         AND r.post_id = p.ID) as commitments
+                FROM $wpdb->p2p p2
+                LEFT JOIN $wpdb->posts p ON p.ID=p2.p2p_to
+                WHERE p2p_type = 'campaigns_to_subscriptions'
+                AND p2p_from = %s", $campaign_post_id
+        ),ARRAY_A );
+
+    }
+
+    public function coverage_endpoint( WP_REST_Request $request )
+    {
+        $params = $request->get_params();
+        if ( ! isset( $params['campaign_id'] ) ) {
+            return new WP_Error(__METHOD__, 'Required parameter not set' );
+        }
+        $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
+        return DT_Time_Utilities::campaign_times_list( $campaign_post_id);
 
     }
 

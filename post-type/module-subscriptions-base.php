@@ -13,7 +13,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      */
     public $post_type = "subscriptions";
     public $module = "subscriptions_base";
-    public $single_name = 'Subscriptions';
+    public $single_name = 'Subscription';
     public $plural_name = 'Subscriptions';
     public static function post_type(){
         return 'subscriptions';
@@ -394,7 +394,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                         <a class="button expanded hollow" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
                     </div>
                     <div class="cell small-6" style="padding:2px;">
-                        <a class="button expanded hollow" href="<?php echo esc_url( $link ) ?>" target="_blank">Go To</a>
+                        <a class="button expanded hollow" onclick="open_app('<?php echo esc_url( $link ) ?>')">Open</a>
                     </div>
                 </div>
             </div>
@@ -420,6 +420,32 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                     }
                     alert('Copied')
                 };
+                function open_app( link ){
+                    jQuery('#modal-large-content').empty().html(`
+                            <div class="iframe_container">
+                                <span id="campaign-spinner" class="loading-spinner active"></span>
+                                <iframe id="campaign-iframe" src="<?php echo esc_url( $link ) ?>" width="100%" height="${window.innerHeight -150}px" style="border:none;">Your browser does not support iframes</iframe>
+                            </div>
+                            <style>
+                            .iframe_container {
+                                position: relative;
+                            }
+                            .iframe_container .loading-spinner {
+                                position: absolute;
+                                top: 10%;
+                                left: 50%;
+                            }
+                            .iframe_container iframe {
+                                background: transparent;
+                                z-index: 1;
+                            }
+                            </style>
+                            `)
+                    jQuery('#campaign-iframe').on('load', function() {
+                        document.getElementById('campaign-spinner').style.display='none';
+                    });
+                    jQuery('#modal-large').foundation('open')
+                }
             </script>
         <?php }
 

@@ -39,9 +39,23 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         add_filter( 'dt_allow_rest_access', [ $this, 'authorize_url' ], 10, 1 );
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
 
-        // fail if not valid url
+        // stop processing for non magic urls
+        $url = dt_get_url_path();
+        if (  strpos( $url, $this->root . '/' . $this->type  ) === false ) {
+            return;
+        }
+
+        // fail to blank if not valid url
         $this->parts = $this->magic->parse_url_parts();
         if ( ! $this->parts ){
+            // @note this returns a blank page for bad url, instead of redirecting to login
+            add_filter( 'dt_templates_for_urls', function ( $template_for_url ) {
+                $url = dt_get_url_path();
+                $template_for_url[ $url ] = 'template-blank.php';
+                return $template_for_url;
+            }, 199, 1 );
+            add_filter( 'dt_blank_access', function(){ return true;} );
+            add_filter( 'dt_allow_non_login_access', function(){ return true;}, 100, 1 );
             return;
         }
 
@@ -73,6 +87,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         add_filter( 'dt_blank_access', [ $this, '_has_access' ] );
         add_filter( 'dt_allow_non_login_access', function(){ return true;
         }, 100, 1 );
+    }
+
+    public function fail_register( $template_for_url ) {
+        $url = dt_get_url_path();
+        $template_for_url[ $url ] = 'template-blank.php';
+        return $template_for_url;
     }
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
@@ -272,8 +292,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             }
         }
         unset( $wp_scripts->registered['mapbox-search-widget']->extra['group'] );
-//        dt_write_log($wp_scripts->queue);
-//        dt_write_log($wp_scripts);
     }
 
     public function print_styles(){
@@ -865,6 +883,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'endpoint' ],
+                    'permission_callback' => '__return_true',
                 ],
             ]
         );
@@ -873,6 +892,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'access_account' ],
+                    'permission_callback' => '__return_true',
                 ],
             ]
         );

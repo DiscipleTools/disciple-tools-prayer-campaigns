@@ -82,6 +82,7 @@ class DT_Prayer_Campaigns {
         require_once( 'admin/send-email-utility.php' );
         require_once( 'post-type/loader.php' );
         require_once( 'post-type/list-page-tile.php' );
+        require_once( 'admin/cron-schedule.php' );
 
         if ( is_admin() ) {
             require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
