@@ -489,7 +489,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                     }
                     ?>
                     <div>
-                        <span <?php echo $style; ?>><?php echo gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) ?> for <?php echo $sub['label'] ?></span>
+                        <span <?php echo esc_html( $style ); ?>><?php echo esc_html( gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) ) ?> for <?php echo esc_html( $sub['label'] ) ?></span>
                     </div>
                     <?php
                 }
@@ -504,34 +504,17 @@ class DT_Subscriptions_Base extends DT_Module_Base {
     }
 
     public function post_connection_added( $post_type, $post_id, $field_key, $value ){
-//        if ( $post_type === $this->post_type ){
-//            if ( $field_key === "campaigns" ){
-//                // @todo change 'members'
-//                // execute your code here, if field key match
-//                dt_write_log( __METHOD__ . ' and field_key = members' );
-//            }
-//        }
-//        if ( $post_type === "contacts" && $field_key === $this->post_type ){
-//            // execute your code here, if a change is made in contacts and a field key is matched
-//            dt_write_log( __METHOD__ . ' and post_type = contacts & field_key = coaches' );
-//        }
+        // placeholder for future
     }
 
     //action when a post connection is removed during create or update
     public function post_connection_removed( $post_type, $post_id, $field_key, $value ){
-//        if ( $post_type === $this->post_type ){
-//            // execute your code here, if connection removed
-//            dt_write_log( __METHOD__ );
-//        }
+        // placeholder for future
     }
 
     //filter when a comment is created
     public function dt_comment_created( $post_type, $post_id, $comment_id, $type ){
-        if ( $post_type === $this->post_type ){
-//            if ( $type === "comment" ){
-//                self::check_requires_update( $post_id );
-//            }
-        }
+        // placeholder for future
     }
 
     //filter at the start of post update

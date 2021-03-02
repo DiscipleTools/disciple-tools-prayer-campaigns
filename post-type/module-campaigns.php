@@ -549,7 +549,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ?>
             <div class="cell small-12">
                 <div class="section-subheader">
-                    <img src="<?php echo get_template_directory_uri() . "/dt-assets/images/location.svg" ?>" /> <?php echo $fields['location_grid']['name'] ?>
+                    <img src="<?php echo esc_url( get_template_directory_uri() . "/dt-assets/images/location.svg" ) ?>" /> <?php echo esc_html( $fields['location_grid']['name'] ) ?>
                 </div>
                 <div class="dt_location_grid" data-id="location_grid">
                     <var id="location_grid-result-container" class="result-container"></var>
@@ -709,18 +709,12 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
     //filter when a comment is created
     public function dt_comment_created( $post_type, $post_id, $comment_id, $type ){
-        if ( $post_type === $this->post_type ){
-//            if ( $type === "comment" ){
-//                self::check_requires_update( $post_id );
-//            }
-        }
+        // action when comment is created
     }
 
     //filter at the start of post update
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        if ( $post_type === $this->post_type ){
-
-        }
+        // filter the fields when being updated
         return $fields;
     }
 
