@@ -481,15 +481,18 @@ class DT_Subscriptions_Base extends DT_Module_Base {
 
         if ( $post_type === $this->post_type && $section === "commitments" ){
             $subs = Disciple_Tools_Reports::get( get_the_ID(), 'post_id' );
+            usort($subs, function($a, $b) {
+                return $a['time_begin'] <=> $b['time_begin'];
+            });
             if ( ! empty( $subs ) ){
                 foreach ( $subs as $sub ){
                     $style = '';
-                    if ( $sub['time_begin'] < time() ){
-                        $style = 'style="text-decoration:line-through;"';
+                    if ( time() >  $sub['time_begin'] ){
+                        $style = 'text-decoration:line-through;';
                     }
                     ?>
                     <div>
-                        <span <?php echo esc_html( $style ); ?>><?php echo esc_html( gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) ) ?> for <?php echo esc_html( $sub['label'] ) ?></span>
+                        <span style="<?php echo esc_html( $style ); ?>"><?php echo esc_html( gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) ) ?> for <?php echo esc_html( $sub['label'] ) ?></span>
                     </div>
                     <?php
                 }
