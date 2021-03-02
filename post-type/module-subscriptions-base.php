@@ -481,13 +481,13 @@ class DT_Subscriptions_Base extends DT_Module_Base {
 
         if ( $post_type === $this->post_type && $section === "commitments" ){
             $subs = Disciple_Tools_Reports::get( get_the_ID(), 'post_id' );
-            usort($subs, function($a, $b) {
+            usort($subs, function( $a, $b) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
             if ( ! empty( $subs ) ){
                 foreach ( $subs as $sub ){
                     $style = '';
-                    if ( time() >  $sub['time_begin'] ){
+                    if ( time() > $sub['time_begin'] ){
                         $style = 'text-decoration:line-through;';
                     }
                     ?>
