@@ -298,7 +298,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 let content = $('#content')
 
                 /* set title */
-                title.html( _.escape( postSubscriptions.post.title ) )
+                title.html( window.lodash.escape( postSubscriptions.post.title ) )
 
                 /* FUNCTIONS */
                 window.get_subscriptions = () => {
@@ -340,7 +340,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
                                 verified = ' <span style="color:green; font-weight:bold;"><i class="fi-check"></i> Verified!</span>'
                             }
                             list.append(`
-                                <tr><td>${_.escape( v.formatted_time )} ${verified}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${_.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                                <tr><td>${window.lodash.escape( v.formatted_time )} ${verified}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${window.lodash.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
                             `)
                         })
 
