@@ -177,12 +177,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'type' => 'post_user_meta',
                 "customizable" => false,
             ];
-            $fields["duplicate_data"] = [
-                "name" => 'Duplicates', //system string does not need translation
-                'type' => 'array',
-                'default' => [],
-                "customizable" => false,
-            ];
             $fields['status'] = [
                 'name'        => __( 'Status', 'disciple_tools' ),
                 'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
@@ -213,6 +207,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 //                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#F43636",
                 "show_in_table" => 10,
+                "in_create_form" => false
             ];
 //            $fields['assigned_to'] = [
 //                'name'        => __( 'Assigned To', 'disciple_tools' ),
@@ -244,7 +239,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'icon' => get_template_directory_uri() . '/dt-assets/images/sign-post.svg',
             ];
             $fields["languages"] = [
-                'name' => __( 'Languages', 'disciple_tools' ),
+                'name' => __( 'Subscriber Preferred Language', 'disciple_tools' ),
                 'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
                 'type' => 'key_select',
                 "tile" => "details",
@@ -256,7 +251,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "name" => __( 'People Groups', 'disciple_tools' ),
                 'description' => _x( 'The people groups connected to this record.', 'Optional Documentation', 'disciple_tools' ),
                 "type" => "connection",
-                "post_type" => $this->post_type,
+                "post_type" => "peoplegroups",
                 "tile" => "details",
                 "p2p_direction" => "to",
                 "p2p_key" => $this->post_type."_to_peoplegroups"
@@ -269,6 +264,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'default'     => time(),
                 'tile' => 'time',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
+                "in_create_form" => true,
             ];
             $fields['end_date'] = [
                 'name'        => __( 'End Date', 'disciple_tools' ),
@@ -277,6 +273,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'default'     => '',
                 'tile' => 'time',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
+                "in_create_form" => true,
             ];
 
 
@@ -727,6 +724,9 @@ class DT_Campaigns_Base extends DT_Module_Base {
             if ( !isset( $fields['public_key'] ) ) {
                 $fields['public_key'] = $this->create_unique_key();
             }
+            if ( !isset( $fields["type"] ) ){
+                $fields["type"] = "24hour";
+            }
         }
         return $fields;
     }
@@ -742,15 +742,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
     //action when a post has been created
     public function dt_post_created( $post_type, $post_id, $initial_fields ){
-        if ( $post_type === $this->post_type ){
-            do_action( "dt_'.$this->post_type.'_created", $post_id, $initial_fields );
-//            $post_array = DT_Posts::get_post( $this->post_type, $post_id, true, false );
-//            if ( isset( $post_array["assigned_to"] )) {
-//                if ( $post_array["assigned_to"]["id"] ) {
-//                    DT_Posts::add_shared( $this->post_type, $post_id, $post_array["assigned_to"]["id"], null, false, false, false );
-//                }
-//            }
-        }
+
     }
 
     //list page filters function
@@ -758,12 +750,12 @@ class DT_Campaigns_Base extends DT_Module_Base {
         global $wpdb;
 
         $results = $wpdb->get_results($wpdb->prepare( "
-                SELECT pm.meta_value as status, count(pm.post_id) as count
-                FROM $wpdb->postmeta pm
-                JOIN $wpdb->posts a ON( a.ID = pm.post_id AND a.post_type = %s and a.post_status = 'publish' )
-                WHERE pm.meta_key = 'status'
-                GROUP BY pm.meta_value;
-            ", self::post_type() ), ARRAY_A );
+            SELECT pm.meta_value as status, count(pm.post_id) as count
+            FROM $wpdb->postmeta pm
+            JOIN $wpdb->posts a ON( a.ID = pm.post_id AND a.post_type = %s and a.post_status = 'publish' )
+            WHERE pm.meta_key = 'status'
+            GROUP BY pm.meta_value;
+        ", self::post_type() ), ARRAY_A );
 
         return $results;
     }

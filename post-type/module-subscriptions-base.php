@@ -157,12 +157,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 'type' => 'post_user_meta',
                 "customizable" => false,
             ];
-            $fields["duplicate_data"] = [
-                "name" => 'Duplicates', //system string does not need translation
-                'type' => 'array',
-                'default' => [],
-                "customizable" => false,
-            ];
 //            $fields['assigned_to'] = [
 //                'name'        => __( 'Assigned To', 'disciple_tools' ),
 //                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),

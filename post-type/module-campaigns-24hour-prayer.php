@@ -122,10 +122,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     ?>
                     <div class="cell">
                         <div class="section-subheader">
-                            24hour Prayer
+                            <?php esc_html_e( '24hour Prayer', 'disciple_tools' ); ?>
                         </div>
-                        <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
-                        <a class="button hollow small" onclick="open_app('<?php echo esc_url( $link ) ?>')">Open</a>
+                        <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple_tools' ); ?></a>
+                        <a class="button hollow small" onclick="open_app('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Open', 'disciple_tools' ); ?></a>
                     </div>
 
                     <script>
@@ -186,7 +186,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
     public function dt_campaign_types( $types ) {
         $types['24hour'] = [
             'label' => __( '24hr Prayer Calendar', 'disciple_tools' ),
-            'description' => _x( 'No longer active.', 'field description', 'disciple_tools' ),
+            'description' => __( 'Cover a region with 24h prayer.', 'disciple_tools' ),
+            "visibility" => __( "Collaborators", 'disciple_tools' ),
             'color' => "#4CAF50"
         ];
         return $types;
@@ -700,39 +701,39 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         <div id="wrapper">
             <span class="hide-for-small-only" style="position:absolute; right:10px;"><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></span>
             <div class="center show-for-small-only"><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></div>
-            <div class="center"><h2>Enter Contact Info</h2></div>
+            <div class="center"><h2><?php echo esc_html( "Enter Your Contact Information" ); ?></h2></div>
             <div class="grid-x ">
                 <div class="cell">
                     <span id="name-error" class="form-error">
-                        You're name is required.
+                        <?php echo esc_html( "You're name is required." ); ?>
                     </span>
-                    <label for="name">Name<br>
+                    <label for="name"><?php esc_html_e( 'Name', 'disciple_tools' ); ?><br>
                         <input type="text" name="name" id="name" placeholder="Name" required/>
                     </label>
                 </div>
                 <div class="cell">
                     <span id="email-error" class="form-error">
-                        You're email is required.
+                        <?php esc_html_e( "You're email is required.", 'disciple_tools' ); ?>
                     </span>
-                    <label for="email">Email<br>
+                    <label for="email"><?php esc_html_e( 'Email', 'disciple_tools' ); ?><br>
                         <input type="email" name="email" id="email" placeholder="Email" />
                         <input type="email" name="e2" id="e2" placeholder="Email" required />
                     </label>
                 </div>
             </div>
-            <div class="center"><h2>Select Prayer Times</h2></div>
+            <div class="center"><h2><?php esc_html_e( 'Select Prayer Times', 'disciple_tools' ); ?></h2></div>
             <div class="grid-x" style=" height: inherit !important;">
                 <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
-                <div class="cell" id="content"><div class="center">... loading</div></div>
+                <div class="cell" id="content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
                 <div class="cell grid" id="error"></div>
             </div>
             <br>
-            <div class="center"><h2>Confirm Selections</h2></div>
+            <div class="center"><h2><?php esc_html_e( 'Confirm Selections', 'disciple_tools' ); ?></h2></div>
             <span id="selection-error" class="form-error">
-                You must select at least one time slot above.
+                <?php esc_html_e( 'You must select at least one time slot above.', 'disciple_tools' ); ?>
             </span>
             <div id="selected-prayer-times" class="grid-x grid-padding-x grid-padding-y">
-                <div class="cell no-selection" id="no-selections">No Selections</div>
+                <div class="cell no-selection" id="no-selections"><?php esc_html_e( 'No Selections', 'disciple_tools' ); ?></div>
             </div>
             <br>
             <div class="grid-x grid-padding-x grid-padding-y">
@@ -741,7 +742,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     <input type="checkbox" id="receive_campaign_emails" name="receive_campaign_emails" checked /> <label for="receive_campaign_emails">Receive Prayer Emails</label>
                 </div>
                 <div class="cell center">
-                    <button class="button large" id="submit-form">Submit Your Prayer Commitment</button>
+                    <button class="button large" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?></button>
                 </div>
             </div>
             <div class="reveal small" id="list-modal"  data-v-offset="0" data-reveal>
@@ -750,11 +751,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 <br>
                 <div class="center">
                     <button class="button hollow large" data-close="" aria-label="Close modal" type="button">
-                        <span aria-hidden="true">Close</span>
+                        <span aria-hidden="true"><?php esc_html_e( 'Close', 'disciple_tools' ); ?></span>
                     </button>
                 </div>
                 <button class="close-button" data-close="" aria-label="Close modal" type="button">
-                    Close <span aria-hidden="true">×</span>
+                    <?php esc_html_e( 'Close', 'disciple_tools' ); ?> <span aria-hidden="true">×</span>
                 </button>
             </div>
         </div> <!-- form wrapper -->
@@ -775,19 +776,19 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         </style>
         <div id="custom-style"></div>
         <div id="wrapper">
-            <div class="center"><h2>We'll Email You a Link to Your Account</h2></div>
+            <div class="center"><h2><?php esc_html_e( "We'll Email You a Link to Your Account", 'disciple_tools' ); ?></h2></div>
             <div class="grid-x ">
                 <div class="cell">
                     <span id="email-error" class="form-error">
-                        You're email is required.
+                        <?php esc_html_e( "You're email is required.", 'disciple_tools' ); ?>
                     </span>
-                    <label for="email">Email<br>
+                    <label for="email"><?php esc_html_e( 'Email', 'disciple_tools' ); ?><br>
                         <input type="email" name="email" id="email" placeholder="Email" />
                         <input type="email" name="e2" id="e2" placeholder="Email" required />
                     </label>
                 </div>
                 <div class="cell center">
-                    <button class="button large" id="send-link-form">Send me a link to my prayer times</button>
+                    <button class="button large" id="send-link-form"><?php esc_html_e( 'Send me a link to my prayer times', 'disciple_tools' ); ?></button>
                 </div>
             </div>
         </div> <!-- form wrapper -->
@@ -830,7 +831,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
                     let alert = `
                     <div class="grid-x">
-                        <div class="cell center"><h2>Sent! Check your email.<br><br> If your address is in our system, you'll get an email with a link to your prayer commitments.</h2></div>
+                        <div class="cell center">
+                            <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple_tools' ); ?>
+                                <br><br>
+                                <?php esc_html_e( "If your address is in our system, you'll get an email with a link to your prayer commitments.", 'disciple_tools' ); ?>
+                            </h2>
+                        </div>
                     </div>
                     `
                     jQuery.ajax({
