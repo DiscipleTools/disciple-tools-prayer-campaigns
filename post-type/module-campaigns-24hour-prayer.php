@@ -472,7 +472,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
-                'post' => $post,
                 'campaign_id' => $post['ID'],
                 'campaign_grid_id' => $grid_id,
                 'campaign_times_lists' => $campaign_times,
