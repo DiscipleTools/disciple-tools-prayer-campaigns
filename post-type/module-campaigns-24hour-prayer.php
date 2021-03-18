@@ -464,6 +464,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         if ( isset( $post['location_grid'] ) && ! empty( $post['location_grid'] ) ) {
             $grid_id = $post['location_grid'][0]['id'];
         }
+        $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
         ?>
         <script>
             var postObject = [<?php echo json_encode([
@@ -474,7 +475,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 'post' => $post,
                 'campaign_id' => $post['ID'],
                 'campaign_grid_id' => $grid_id,
-                'campaign_times_lists' => DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] ),
+                'campaign_times_lists' => $campaign_times,
                 'translations' => []
             ]) ?>][0]
 
@@ -572,7 +573,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                             jQuery('#selected-'+selected_time_id).remove()
                         } else {
                             jQuery(this).css('background-color', 'green')
-                            selected_times.append(`<div id="selected-${selected_time_id}" class="cell selected-hour" data-time="${selected_time_id}" data-location="${selected_location_id}">${selected_time_label} <i class="fi-x remove-selection" onclick="jQuery('#selected-${selected_time_id}').remove()"></i></div>`)
+                            selected_times.append(`
+                                <div id="selected-${window.lodash.escape(selected_time_id)}" class="cell selected-hour" data-time="${window.lodash.escape(selected_time_id)}"
+                                    data-location="${window.lodash.escape(selected_location_id)}">${window.lodash.escape(selected_time_label)}
+                                    <i class="fi-x remove-selection" onclick="jQuery('#selected-${window.lodash.escape(selected_time_id)}').remove()"></i>
+                            </div>`)
                         }
 
                         if ( 0 === jQuery('#selected-prayer-times div').length ){
@@ -582,6 +587,21 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     })
 
                     jQuery('#list-modal').foundation('open')
+                })
+                jQuery('#daily_time_select').on( 'change', function (){
+                    $("#no-selections").remove()
+                    let hour = $(this).val()
+                    let label = $("#daily_time_select option:selected").text()
+                    let selected_items_html = ``
+                    window.lodash.forOwn(postObject.campaign_times_lists, day=>{
+                        let time = parseInt(day.key) + parseInt(hour);
+                        selected_items_html += `
+                            <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
+                                data-time="${window.lodash.escape(time)}" data-location="${window.lodash.escape(postObject.campaign_grid_id)}">${window.lodash.escape(day.formatted)} at ${window.lodash.escape(label)}
+                                <i class="fi-x remove-selection" onclick="jQuery('#selected-${window.lodash.escape(time)}').remove()"></i>
+                            </div>`
+                    })
+                    selected_times.append(selected_items_html)
                 })
 
                 spinner.removeClass('active')
@@ -721,7 +741,21 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     </label>
                 </div>
             </div>
-            <div class="center"><h2><?php esc_html_e( 'Select Prayer Times', 'disciple_tools' ); ?></h2></div>
+            <div class="center"><h2><?php esc_html_e( 'Select Daily or Individual Prayer Times', 'disciple_tools' ); ?></h2></div>
+
+            <div>
+                <label>Every Day At:<label>
+                <select id="daily_time_select">
+                    <?php $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
+                    $time_in_seconds = 0;
+                    foreach ( $campaign_times[array_keys( $campaign_times )[0]]["hours"] as $hour ) : ?>
+                        <option value="<?php echo esc_html( $time_in_seconds ); ?>"><?php echo esc_html( $hour["formatted"] ); ?></option>
+                        <?php
+                        $time_in_seconds += 15 * 60;
+                    endforeach; ?>
+                </select>
+            </div>
+
             <div class="grid-x" style=" height: inherit !important;">
                 <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
                 <div class="cell" id="content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
