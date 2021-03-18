@@ -18,7 +18,7 @@ add_filter( 'dt_post_type_modules', function( $modules ){
         "name" => "Subscriptions",
         "enabled" => true,
         "locked" => true,
-        "prerequisites" => [ "contacts_base" ],
+        "prerequisites" => [],
         "post_type" => "subscriptions",
         "description" => "Subscriptions base"
     ];
@@ -35,7 +35,7 @@ add_filter( 'dt_post_type_modules', function( $modules ){
         "name" => "Campaigns",
         "enabled" => true,
         "locked" => true,
-        "prerequisites" => [ "contacts_base" ],
+        "prerequisites" => [],
         "post_type" => "campaigns",
         "description" => "Campaigns base"
     ];
@@ -47,6 +47,13 @@ add_filter( 'dt_post_type_modules', function( $modules ){
         "post_type" => "campaigns",
         "description" => "Campaigns - 24Hour Prayer"
     ];
+
+    if ( isset( $modules["contacts_base"] ) ){
+        $modules["contacts_base"]["locked"] = false;
+    }
+    if ( isset( $modules["groups_base"] ) ){
+        $modules["groups_base"]["locked"] = false;
+    }
 
     return $modules;
 }, 20, 1 );
