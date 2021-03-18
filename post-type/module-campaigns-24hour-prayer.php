@@ -150,7 +150,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                             alert('Copied')
                         };
 
-                        function open_app( link ){
+                        function open_app(){
                             jQuery('#modal-large-content').empty().html(`
                             <div class="iframe_container">
                                 <span id="campaign-spinner" class="loading-spinner active"></span>
@@ -334,70 +334,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             #content {
                 max-width:100%;
             }
-            #title {
-                font-size:1.7rem;
-                font-weight: 100;
-            }
-            #top-bar {
-                position:relative;
-                padding-bottom:1em;
-            }
-            #add-new {
-                padding-top:1em;
-            }
-            #top-loader {
-                position:absolute;
-                right:5px;
-                top: 5px;
-            }
+
             #wrapper {
                 max-width:1000px;
                 margin:0 auto;
                 padding: .5em;
                 background-color: white;
             }
-            #value {
-                width:50px;
-                display:inline;
-            }
-            #type {
-                width:75px;
-                padding:5px 10px;
-                display:inline;
-            }
-            #mapbox-search {
-                padding:5px 10px;
-                border-bottom-color: rgb(138, 138, 138);
-            }
-            #year {
-                width:75px;
-                display:inline;
-            }
-            #new-campaigns-form {
-                padding: 1em .5em;
-                background-color: #f4f4f4;;
-                border: 1px solid #3f729b;
-                font-weight: bold;
-            }
-            .number-input {
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                border-bottom: 1px solid gray;
-                box-shadow: none;
-                background: white;
-                text-align:center;
-            }
-            .stat-heading {
-                font-size: 2rem;
-            }
-            .stat-number {
-                font-size: 3.5rem;
-            }
-            .stat-year {
-                font-size: 2rem;
-                color: darkgrey;
-            }
+
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,
             input::-webkit-inner-spin-button {
@@ -408,33 +352,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             input[type=number] {
                 -moz-appearance: textfield;
             }
-            .select-input {
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                border-bottom: 1px solid gray;
-                box-shadow: none;
-                background: white;
-                text-align:center;
-            }
             select::-ms-expand {
                 display: none;
             }
-            .input-group-field {
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                padding:0;
-                border-bottom: 1px solid gray;
-                box-shadow: none;
-                background: white;
-            }
-            .title-year {
-                font-size:3em;
-                font-weight: 100;
-                color: #0a0a0a;
-            }
-
 
             /* size specific style section */
             @media screen and (max-width: 991px) {
@@ -450,6 +370,43 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 body {
                     background-color: white;
                 }
+            }
+
+            .day-cell {
+                max-width: 25%;
+                float:left;
+                text-align: center;
+                border: 1px solid grey;
+                font-size:1.2em;
+                padding: 10px 5px 5px 5px;
+            }
+            .day-cell:hover {
+                background: lightblue;
+                border: 1px solid darkslategrey;
+                cursor:pointer;
+            }
+            .progress-bar {
+                height:10px;
+            }
+            .selected-hour {
+                max-width: 100%;
+                padding-top: 10px;
+                border: 1px solid grey;
+                font-size:1.2em;
+            }
+            .no-selection {
+                max-width: 100%;
+                padding-top: 10px;
+                border: 1px solid grey;
+                font-size:1.2em;
+            }
+            .remove-selection {
+                float: right;
+                color: red;
+                cursor:pointer;
+            }
+            #email {
+                display:none;
             }
         </style>
         <?php
@@ -467,7 +424,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
         ?>
         <script>
-            var postObject = [<?php echo json_encode([
+            let postObject = [<?php echo json_encode([
                 'map_key' => DT_Mapbox_API::get_key(),
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -485,52 +442,17 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 let spinner = $('.loading-spinner')
                 let content = $('#content')
                 let selected_times = $('#selected-prayer-times')
+                let selected_calendar_color = 'green'
                 content.empty()
-
-                jQuery('#custom-style').empty().html(`
-                    <style>
-                        .day-cell {
-                            max-width: 25%;
-                            float:left;
-                            padding-top: 10px;
-                            text-align: center;
-                            border: 1px solid grey;
-                            font-size:1.2em;
-                        }
-                        .day-cell:hover {
-                            background: lightblue;
-                            border: 1px solid darkslategrey;
-                            cursor:pointer;
-                        }
-                        .progress-bar {
-                            height:10px;
-                        }
-                        .selected-hour {
-                            max-width: 100%;
-                            padding-top: 10px;
-                            border: 1px solid grey;
-                            font-size:1.2em;
-                        }
-                        .no-selection {
-                            max-width: 100%;
-                            padding-top: 10px;
-                            border: 1px solid grey;
-                            font-size:1.2em;
-                        }
-                        .remove-selection {
-                            float: right;
-                            color: red;
-                            cursor:pointer;
-                        }
-                        #email {
-                            display:none;
-                        }
-                    </style>
-                    `)
 
                 let list = ''
                 jQuery.each( postObject.campaign_times_lists, function(i,v){
-                    list += `<div class="cell day-cell" data-time="${v.key}" data-percent="${v.percent}" data-location="${postObject.campaign_grid_id}"><div>${v.formatted}</div><div class="progress-bar" data-percent="${v.percent}" style="background: dodgerblue; width:0"></div></div>`
+                    list += `<div class="cell day-cell" data-time="${window.lodash.escape(v.key)}"
+                                data-percent="${window.lodash.escape(v.percent)}"
+                                data-location="${window.lodash.escape(postObject.campaign_grid_id)}">
+                        <div>${window.lodash.escape(v.formatted)} (${window.lodash.escape(parseInt(v.percent))}%)</div>
+                    <div class="progress-bar" data-percent="${v.percent}" style="background: dodgerblue; width:0;"></div>
+                    </div>`
                 })
                 content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 let percent = 0
@@ -540,43 +462,46 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                         width: percent + '%'
                     })
                 })
-
                 // listen for click
                 jQuery('.day-cell').on('click', function(e){
                     let id = jQuery(this).data('time')
-
                     let list_title = jQuery('#list-modal-title')
-                    list_title.empty().html(`<h2 class="section_title">${postObject.campaign_times_lists[id].formatted}</h2>`)
+                    list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(postObject.campaign_times_lists[id].formatted)}</h2>`)
                     let list_content = jQuery('#list-modal-content')
                     let row = '<div class="grid-x">'
                     jQuery.each(postObject.campaign_times_lists[id].hours, function(i,v){
+                        let background_color = 'white'
                         if ( v.subscribers > 0) {
-                            row += `<div class="cell day-cell time-cell" style="background-color:lightblue" id="${v.key}" data-time="${v.key}" data-location="${postObject.campaign_grid_id}" data-label="${postObject.campaign_times_lists[id].formatted} at ${v.formatted}">${v.formatted} (${v.subscribers} praying) </div>`
-                        } else {
-                            row += `<div class="cell day-cell time-cell" id="${v.key}" data-time="${v.key}" data-location="${postObject.campaign_grid_id}" data-label="${postObject.campaign_times_lists[id].formatted} at ${v.formatted}">${v.formatted}</div>`
+                            background_color = 'lightblue'
                         }
-
+                        if ( v.selected ) {
+                            background_color = selected_calendar_color
+                        }
+                        row += `<div class="cell day-cell time-cell"
+                                    style="background-color:${background_color}" id="${v.key}"
+                                    data-day=${window.lodash.escape(id)}
+                                    data-time="${window.lodash.escape(v.key)}">
+                            ${window.lodash.escape(v.formatted)} (${window.lodash.escape(v.subscribers)} praying)
+                        </div>`
                     })
                     row += `</div>`
                     list_content.empty().html(row)
+
+
 
                     jQuery('.time-cell').on('click', function(i,v){
                         jQuery('#no-selections').remove()
 
                         let selected_time_id = jQuery(this).data('time')
-                        let selected_time_label = jQuery(this).data('label')
-                        let selected_location_id = jQuery(this).data('location')
-
+                        let selected_day_id = jQuery(this).data('day')
+                        let hour = postObject.campaign_times_lists[selected_day_id].hours.find(k => parseInt(k.key) === parseInt(selected_time_id) )
+                        hour.selected = true
                         if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
                             jQuery(this).css('background-color', 'white')
                             jQuery('#selected-'+selected_time_id).remove()
                         } else {
-                            jQuery(this).css('background-color', 'green')
-                            selected_times.append(`
-                                <div id="selected-${window.lodash.escape(selected_time_id)}" class="cell selected-hour" data-time="${window.lodash.escape(selected_time_id)}"
-                                    data-location="${window.lodash.escape(selected_location_id)}">${window.lodash.escape(selected_time_label)}
-                                    <i class="fi-x remove-selection" onclick="jQuery('#selected-${window.lodash.escape(selected_time_id)}').remove()"></i>
-                            </div>`)
+                            jQuery(this).css('background-color', selected_calendar_color)
+                            add_selected(selected_time_id, selected_day_id,postObject.campaign_times_lists[selected_day_id].formatted, hour.formatted)
                         }
 
                         if ( 0 === jQuery('#selected-prayer-times div').length ){
@@ -587,20 +512,43 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
                     jQuery('#list-modal').foundation('open')
                 })
+
+                $(document).on("click", '.remove-selection', function (){
+                    let time = $(this).data("time")
+                    let day = $(this).data("day")
+                    postObject.campaign_times_lists[day].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = false
+                    $(`#selected-${time}`).remove()
+                })
+                let add_selected = function (time, day, day_label, time_label){
+                    selected_times.append(`
+                        <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
+                            data-time="${window.lodash.escape(time)}"
+                            data-location="${window.lodash.escape(postObject.campaign_grid_id)}">
+                            ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)}
+                            <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
+                        </div>`)
+                }
+
                 jQuery('#daily_time_select').on( 'change', function (){
                     $("#no-selections").remove()
                     let hour = $(this).val()
                     let label = $("#daily_time_select option:selected").text()
+                    $('#selection-grid-wrapper').hide()
+                    $('#show_calendar').show()
                     let selected_items_html = ``
                     window.lodash.forOwn(postObject.campaign_times_lists, day=>{
                         let time = parseInt(day.key) + parseInt(hour);
-                        selected_items_html += `
-                            <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
-                                data-time="${window.lodash.escape(time)}" data-location="${window.lodash.escape(postObject.campaign_grid_id)}">${window.lodash.escape(day.formatted)} at ${window.lodash.escape(label)}
-                                <i class="fi-x remove-selection" onclick="jQuery('#selected-${window.lodash.escape(time)}').remove()"></i>
-                            </div>`
+                        postObject.campaign_times_lists[day.key].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = true
+                        jQuery(`#${time}`).css('background-color', selected_calendar_color)
+                        add_selected( time, day.key, day.formatted, label)
                     })
                     selected_times.append(selected_items_html)
+                })
+
+
+                $('#show_calendar').on('click', function (){
+                    $('#show_calendar').hide()
+                    $('#selection-grid-wrapper').show()
                 })
 
                 spinner.removeClass('active')
@@ -686,7 +634,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     }
                 })
                     .done(function(data){
-                        console.log(data)
                         wrapper.empty().html(alert)
                         spinner.removeClass('active')
                     })
@@ -740,11 +687,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     </label>
                 </div>
             </div>
-            <div class="center"><h2><?php esc_html_e( 'Select Daily or Individual Prayer Times', 'disciple_tools' ); ?></h2></div>
+            <div class="center"><h2><?php esc_html_e( 'Select Daily', 'disciple_tools' ); ?></h2></div>
 
             <div>
                 <label>Every Day At:<label>
                 <select id="daily_time_select">
+                    <option><?php echo esc_html( "Select a time" ); ?></option>
                     <?php $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
                     $time_in_seconds = 0;
                     foreach ( $campaign_times[array_keys( $campaign_times )[0]]["hours"] as $hour ) : ?>
@@ -753,6 +701,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                         $time_in_seconds += 15 * 60;
                     endforeach; ?>
                 </select>
+            </div>
+            <div class="center">
+                <h2 style="display: inline-block"><?php esc_html_e( 'Individual Time Slots', 'disciple_tools' ); ?></h2>
+                <a id="show_calendar" style="display: none; margin: 0 0 0 20px"><?php esc_html_e( 'Show Calendar', 'disciple_tools' ); ?></a>
             </div>
 
             <div class="grid-x" style=" height: inherit !important;">
@@ -771,8 +723,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             <br>
             <div class="grid-x grid-padding-x grid-padding-y">
                 <div class="cell center">
-                    <input type="checkbox" id="receive_campaign_emails" name="receive_campaign_notifications" checked /> <label for="receive_campaign_emails">Receive Prayer Time Notifications</label>
-                    <input type="checkbox" id="receive_campaign_emails" name="receive_campaign_emails" checked /> <label for="receive_campaign_emails">Receive Prayer Emails</label>
+                    <input type="checkbox" id="receive_campaign_notifications" name="receive_campaign_notifications" checked />
+                    <label for="receive_campaign_notifications"><?php esc_html_e( 'Receive Prayer Time Notifications', 'disciple_tools' ); ?></label>
+                    <input type="checkbox" id="receive_campaign_emails" name="receive_campaign_emails" checked />
+                    <label for="receive_campaign_emails"><?php esc_html_e( 'Receive Prayer Emails', 'disciple_tools' ); ?></label>
                 </div>
                 <div class="cell center">
                     <button class="button large" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?></button>

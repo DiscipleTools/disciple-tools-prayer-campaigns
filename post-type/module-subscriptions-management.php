@@ -270,7 +270,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
     }
 
     public function subscriptions_javascript_header(){
-        $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
+        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
         }
