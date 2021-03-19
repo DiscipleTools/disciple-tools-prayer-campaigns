@@ -412,6 +412,188 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         <?php
     }
 
+    public static function calendar_subscribe( $campaign_id, $location_id, $campaign_times_lists ){
+        ?>
+        <script>
+        let calendar_subscribe_object = [<?php echo json_encode([
+            'campaign_id' => $campaign_id,
+            'campaign_grid_id' => $location_id,
+            'campaign_times_lists' => $campaign_times_lists,
+            'translations' => []
+        ]) ?>][0]
+
+
+        window.load_campaigns = () => {
+            let spinner = $('.loading-spinner')
+            let content = $('#calendar-content')
+            let selected_times = $('#selected-prayer-times')
+            let selected_calendar_color = 'green'
+            content.empty()
+
+            let list = ''
+            jQuery.each( calendar_subscribe_object.campaign_times_lists, function(i,v){
+                list += `<div class="cell day-cell" data-time="${window.lodash.escape(v.key)}"
+                                data-percent="${window.lodash.escape(v.percent)}"
+                                data-location="${window.lodash.escape(calendar_subscribe_object.campaign_grid_id)}">
+                        <div>${window.lodash.escape(v.formatted)} (${window.lodash.escape(parseInt(v.percent))}%)</div>
+                    <div class="progress-bar" data-percent="${v.percent}" style="background: dodgerblue; width:0;"></div>
+                    </div>`
+            })
+            content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
+            let percent = 0
+            jQuery.each( jQuery('.progress-bar'), function(i,v){
+                percent = jQuery(this).data('percent')
+                jQuery(this).animate({
+                    width: percent + '%'
+                })
+            })
+            // listen for click
+            jQuery('.day-cell').on('click', function(e){
+                let id = jQuery(this).data('time')
+                let list_title = jQuery('#list-modal-title')
+                list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(calendar_subscribe_object.campaign_times_lists[id].formatted)}</h2>`)
+                let list_content = jQuery('#list-modal-content')
+                let row = '<div class="grid-x">'
+                jQuery.each(calendar_subscribe_object.campaign_times_lists[id].hours, function(i,v){
+                    let background_color = 'white'
+                    if ( v.subscribers > 0) {
+                        background_color = 'lightblue'
+                    }
+                    if ( v.selected ) {
+                        background_color = selected_calendar_color
+                    }
+                    row += `<div class="cell day-cell time-cell"
+                                    style="background-color:${background_color}" id="${v.key}"
+                                    data-day=${window.lodash.escape(id)}
+                                    data-time="${window.lodash.escape(v.key)}">
+                            ${window.lodash.escape(v.formatted)} (${window.lodash.escape(v.subscribers)} praying)
+                        </div>`
+                })
+                row += `</div>`
+                list_content.empty().html(row)
+
+
+
+                jQuery('.time-cell').on('click', function(i,v){
+                    jQuery('#no-selections').remove()
+
+                    let selected_time_id = jQuery(this).data('time')
+                    let selected_day_id = jQuery(this).data('day')
+                    let hour = calendar_subscribe_object.campaign_times_lists[selected_day_id].hours.find(k => parseInt(k.key) === parseInt(selected_time_id) )
+                    hour.selected = true
+                    if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
+                        jQuery(this).css('background-color', 'white')
+                        jQuery('#selected-'+selected_time_id).remove()
+                    } else {
+                        jQuery(this).css('background-color', selected_calendar_color)
+                        add_selected(selected_time_id, selected_day_id,calendar_subscribe_object.campaign_times_lists[selected_day_id].formatted, hour.formatted)
+                    }
+
+                    if ( 0 === jQuery('#selected-prayer-times div').length ){
+                        selected_times.html(`<div class="cell selected-hour" id="no-selections">No Selections</div>`)
+                    }
+
+                })
+
+                jQuery('#list-modal').foundation('open')
+            })
+
+            $(document).on("click", '.remove-selection', function (){
+                let time = $(this).data("time")
+                let day = $(this).data("day")
+                calendar_subscribe_object.campaign_times_lists[day].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = false
+                $(`#selected-${time}`).remove()
+            })
+            let add_selected = function (time, day, day_label, time_label){
+                selected_times.append(`
+                        <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
+                            data-time="${window.lodash.escape(time)}"
+                            data-location="${window.lodash.escape(calendar_subscribe_object.campaign_grid_id)}">
+                            ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)}
+                            <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
+                        </div>`)
+            }
+
+            jQuery('#daily_time_select').on( 'change', function (){
+                $("#no-selections").remove()
+                let hour = $(this).val()
+                let label = $("#daily_time_select option:selected").text()
+                $('#selection-grid-wrapper').hide()
+                $('#show_calendar').show()
+                let selected_items_html = ``
+                window.lodash.forOwn(calendar_subscribe_object.campaign_times_lists, day=>{
+                    let time = parseInt(day.key) + parseInt(hour);
+                    calendar_subscribe_object.campaign_times_lists[day.key].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = true
+                    jQuery(`#${time}`).css('background-color', selected_calendar_color)
+                    add_selected( time, day.key, day.formatted, label)
+                })
+                selected_times.append(selected_items_html)
+            })
+
+
+            $('#show_calendar').on('click', function (){
+                $('#show_calendar').hide()
+                $('#selection-grid-wrapper').show()
+            })
+
+            spinner.removeClass('active')
+        }
+        jQuery(document).ready(function($){
+            window.load_campaigns()
+        })
+
+        </script>
+
+
+        <div class="center"><h2><?php esc_html_e( 'Select Daily', 'disciple_tools' ); ?></h2></div>
+        <div>
+            <label><?php echo esc_html( "Every Day At:" ); ?><label>
+            <select id="daily_time_select">
+                <option><?php echo esc_html( "Select a time" ); ?></option>
+                <?php
+                $time_in_seconds = 0;
+                foreach ( $campaign_times_lists[array_keys( $campaign_times_lists )[0]]["hours"] as $hour ) : ?>
+                    <option value="<?php echo esc_html( $time_in_seconds ); ?>"><?php echo esc_html( $hour["formatted"] ); ?></option>
+                    <?php
+                    $time_in_seconds += 15 * 60;
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="center">
+            <h2 style="display: inline-block"><?php esc_html_e( 'Individual Time Slots', 'disciple_tools' ); ?></h2>
+            <a id="show_calendar" style="display: none; margin: 0 0 0 20px"><?php esc_html_e( 'Show Calendar', 'disciple_tools' ); ?></a>
+        </div>
+
+        <div class="grid-x" style=" height: inherit !important;">
+            <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
+            <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
+            <div class="cell grid" id="error"></div>
+        </div>
+        <br>
+        <div class="center"><h2><?php esc_html_e( 'Confirm Selections', 'disciple_tools' ); ?></h2></div>
+        <span id="selection-error" class="form-error">
+            <?php esc_html_e( 'You must select at least one time slot above.', 'disciple_tools' ); ?>
+        </span>
+        <div id="selected-prayer-times" class="grid-x grid-padding-x grid-padding-y">
+            <div class="cell no-selection" id="no-selections"><?php esc_html_e( 'No Selections', 'disciple_tools' ); ?></div>
+        </div>
+        <div class="reveal small" id="list-modal"  data-v-offset="0" data-reveal>
+            <h3 id="list-modal-title"></h3>
+            <div id="list-modal-content"></div>
+            <br>
+            <div class="center">
+                <button class="button hollow large" data-close="" aria-label="Close modal" type="button">
+                    <span aria-hidden="true"><?php esc_html_e( 'Close', 'disciple_tools' ); ?></span>
+                </button>
+            </div>
+            <button class="close-button" data-close="" aria-label="Close modal" type="button">
+                <?php esc_html_e( 'Close', 'disciple_tools' ); ?> <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <?php
+    }
+
+
     public function campaigns_javascript_header(){
         $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
@@ -421,139 +603,18 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         if ( isset( $post['location_grid'] ) && ! empty( $post['location_grid'] ) ) {
             $grid_id = $post['location_grid'][0]['id'];
         }
-        $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
         ?>
         <script>
             let postObject = [<?php echo json_encode([
-                'map_key' => DT_Mapbox_API::get_key(),
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'campaign_id' => $post['ID'],
                 'campaign_grid_id' => $grid_id,
-                'campaign_times_lists' => $campaign_times,
                 'translations' => []
             ]) ?>][0]
 
-            /* LOAD */
-
             /* FUNCTIONS */
-            window.load_campaigns = () => {
-                let spinner = $('.loading-spinner')
-                let content = $('#content')
-                let selected_times = $('#selected-prayer-times')
-                let selected_calendar_color = 'green'
-                content.empty()
-
-                let list = ''
-                jQuery.each( postObject.campaign_times_lists, function(i,v){
-                    list += `<div class="cell day-cell" data-time="${window.lodash.escape(v.key)}"
-                                data-percent="${window.lodash.escape(v.percent)}"
-                                data-location="${window.lodash.escape(postObject.campaign_grid_id)}">
-                        <div>${window.lodash.escape(v.formatted)} (${window.lodash.escape(parseInt(v.percent))}%)</div>
-                    <div class="progress-bar" data-percent="${v.percent}" style="background: dodgerblue; width:0;"></div>
-                    </div>`
-                })
-                content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
-                let percent = 0
-                jQuery.each( jQuery('.progress-bar'), function(i,v){
-                    percent = jQuery(this).data('percent')
-                    jQuery(this).animate({
-                        width: percent + '%'
-                    })
-                })
-                // listen for click
-                jQuery('.day-cell').on('click', function(e){
-                    let id = jQuery(this).data('time')
-                    let list_title = jQuery('#list-modal-title')
-                    list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(postObject.campaign_times_lists[id].formatted)}</h2>`)
-                    let list_content = jQuery('#list-modal-content')
-                    let row = '<div class="grid-x">'
-                    jQuery.each(postObject.campaign_times_lists[id].hours, function(i,v){
-                        let background_color = 'white'
-                        if ( v.subscribers > 0) {
-                            background_color = 'lightblue'
-                        }
-                        if ( v.selected ) {
-                            background_color = selected_calendar_color
-                        }
-                        row += `<div class="cell day-cell time-cell"
-                                    style="background-color:${background_color}" id="${v.key}"
-                                    data-day=${window.lodash.escape(id)}
-                                    data-time="${window.lodash.escape(v.key)}">
-                            ${window.lodash.escape(v.formatted)} (${window.lodash.escape(v.subscribers)} praying)
-                        </div>`
-                    })
-                    row += `</div>`
-                    list_content.empty().html(row)
-
-
-
-                    jQuery('.time-cell').on('click', function(i,v){
-                        jQuery('#no-selections').remove()
-
-                        let selected_time_id = jQuery(this).data('time')
-                        let selected_day_id = jQuery(this).data('day')
-                        let hour = postObject.campaign_times_lists[selected_day_id].hours.find(k => parseInt(k.key) === parseInt(selected_time_id) )
-                        hour.selected = true
-                        if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
-                            jQuery(this).css('background-color', 'white')
-                            jQuery('#selected-'+selected_time_id).remove()
-                        } else {
-                            jQuery(this).css('background-color', selected_calendar_color)
-                            add_selected(selected_time_id, selected_day_id,postObject.campaign_times_lists[selected_day_id].formatted, hour.formatted)
-                        }
-
-                        if ( 0 === jQuery('#selected-prayer-times div').length ){
-                            selected_times.html(`<div class="cell selected-hour" id="no-selections">No Selections</div>`)
-                        }
-
-                    })
-
-                    jQuery('#list-modal').foundation('open')
-                })
-
-                $(document).on("click", '.remove-selection', function (){
-                    let time = $(this).data("time")
-                    let day = $(this).data("day")
-                    postObject.campaign_times_lists[day].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = false
-                    $(`#selected-${time}`).remove()
-                })
-                let add_selected = function (time, day, day_label, time_label){
-                    selected_times.append(`
-                        <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
-                            data-time="${window.lodash.escape(time)}"
-                            data-location="${window.lodash.escape(postObject.campaign_grid_id)}">
-                            ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)}
-                            <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
-                        </div>`)
-                }
-
-                jQuery('#daily_time_select').on( 'change', function (){
-                    $("#no-selections").remove()
-                    let hour = $(this).val()
-                    let label = $("#daily_time_select option:selected").text()
-                    $('#selection-grid-wrapper').hide()
-                    $('#show_calendar').show()
-                    let selected_items_html = ``
-                    window.lodash.forOwn(postObject.campaign_times_lists, day=>{
-                        let time = parseInt(day.key) + parseInt(hour);
-                        postObject.campaign_times_lists[day.key].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = true
-                        jQuery(`#${time}`).css('background-color', selected_calendar_color)
-                        add_selected( time, day.key, day.formatted, label)
-                    })
-                    selected_times.append(selected_items_html)
-                })
-
-
-                $('#show_calendar').on('click', function (){
-                    $('#show_calendar').hide()
-                    $('#selection-grid-wrapper').show()
-                })
-
-                spinner.removeClass('active')
-            }
-
             window.create_subscription = () => {
                 let spinner = $('.loading-spinner')
                 spinner.addClass('active')
@@ -648,11 +709,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     })
             }
 
+
             jQuery(document).ready(function($){
-                clearInterval(window.fiveMinuteTimer)
                 jQuery('#submit-form').on('click', function(){
                     window.create_subscription()
                 })
+                clearInterval(window.fiveMinuteTimer)
             })
         </script>
         <?php
@@ -687,39 +749,19 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     </label>
                 </div>
             </div>
-            <div class="center"><h2><?php esc_html_e( 'Select Daily', 'disciple_tools' ); ?></h2></div>
 
-            <div>
-                <label>Every Day At:<label>
-                <select id="daily_time_select">
-                    <option><?php echo esc_html( "Select a time" ); ?></option>
-                    <?php $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
-                    $time_in_seconds = 0;
-                    foreach ( $campaign_times[array_keys( $campaign_times )[0]]["hours"] as $hour ) : ?>
-                        <option value="<?php echo esc_html( $time_in_seconds ); ?>"><?php echo esc_html( $hour["formatted"] ); ?></option>
-                        <?php
-                        $time_in_seconds += 15 * 60;
-                    endforeach; ?>
-                </select>
-            </div>
-            <div class="center">
-                <h2 style="display: inline-block"><?php esc_html_e( 'Individual Time Slots', 'disciple_tools' ); ?></h2>
-                <a id="show_calendar" style="display: none; margin: 0 0 0 20px"><?php esc_html_e( 'Show Calendar', 'disciple_tools' ); ?></a>
-            </div>
+            <?php
+            $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
+            if ( is_wp_error( $post ) ) {
+                return $post;
+            }
+            $grid_id = 1;
+            if ( isset( $post['location_grid'] ) && ! empty( $post['location_grid'] ) ) {
+                $grid_id = $post['location_grid'][0]['id'];
+            }
+            $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
+            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $campaign_times ) ?>
 
-            <div class="grid-x" style=" height: inherit !important;">
-                <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
-                <div class="cell" id="content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
-                <div class="cell grid" id="error"></div>
-            </div>
-            <br>
-            <div class="center"><h2><?php esc_html_e( 'Confirm Selections', 'disciple_tools' ); ?></h2></div>
-            <span id="selection-error" class="form-error">
-                <?php esc_html_e( 'You must select at least one time slot above.', 'disciple_tools' ); ?>
-            </span>
-            <div id="selected-prayer-times" class="grid-x grid-padding-x grid-padding-y">
-                <div class="cell no-selection" id="no-selections"><?php esc_html_e( 'No Selections', 'disciple_tools' ); ?></div>
-            </div>
             <br>
             <div class="grid-x grid-padding-x grid-padding-y">
                 <div class="cell center">
@@ -732,24 +774,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     <button class="button large" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?></button>
                 </div>
             </div>
-            <div class="reveal small" id="list-modal"  data-v-offset="0" data-reveal>
-                <h3 id="list-modal-title"></h3>
-                <div id="list-modal-content"></div>
-                <br>
-                <div class="center">
-                    <button class="button hollow large" data-close="" aria-label="Close modal" type="button">
-                        <span aria-hidden="true"><?php esc_html_e( 'Close', 'disciple_tools' ); ?></span>
-                    </button>
-                </div>
-                <button class="close-button" data-close="" aria-label="Close modal" type="button">
-                    <?php esc_html_e( 'Close', 'disciple_tools' ); ?> <span aria-hidden="true">×</span>
-                </button>
-            </div>
+
         </div> <!-- form wrapper -->
         <script>
-            jQuery(document).ready(function($){
-                window.load_campaigns()
-            })
+
         </script>
         <?php
     }
@@ -874,7 +902,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             $namespace, '/'.$this->type, [
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
-                    'callback' => [ $this, 'endpoint' ],
+                    'callback' => [ $this, 'create_subscription' ],
                     'permission_callback' => '__return_true',
                 ],
             ]
@@ -890,7 +918,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         );
     }
 
-    public function endpoint( WP_REST_Request $request ) {
+    public function create_subscription( WP_REST_Request $request ) {
         $params = $request->get_params();
 
         // create
@@ -934,7 +962,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         }
 
         // log reports
-
         foreach ( $params['selected_times'] as $time ){
             $args = [
                 'parent_id' => $params['campaign_id'],

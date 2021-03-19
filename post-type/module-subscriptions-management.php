@@ -54,6 +54,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
             // fail if no valid action url found
             return;
         }
+        add_filter( "dt_blank_title", [ $this, "page_tab_title" ] );
 
 
         // load page elements
@@ -67,6 +68,9 @@ class DT_Subscriptions_Management extends DT_Module_Base
         }, 100, 1 );
     }
 
+    public function page_tab_title( $title ){
+        return __( "My Prayer Times", 'disciple_tools' );
+    }
 
     public function register_type( array $types ) : array {
         if ( ! isset( $types[$this->root] ) ) {
@@ -190,51 +194,18 @@ class DT_Subscriptions_Management extends DT_Module_Base
             }
             #content {
                 max-width:100%;
+                min-height: 300px;
+                margin-bottom: 200px;
             }
             #title {
                 font-size:1.7rem;
                 font-weight: 100;
-            }
-            #add-new {
-                padding-top:1em;
             }
             #wrapper {
                 max-width:1000px;
                 margin:0 auto;
                 padding: .5em;
                 background-color: white;
-            }
-            #value {
-                width:50px;
-                display:inline;
-            }
-            #type {
-                width:75px;
-                padding:5px 10px;
-                display:inline;
-            }
-            #mapbox-search {
-                padding:5px 10px;
-                border-bottom-color: rgb(138, 138, 138);
-            }
-            #year {
-                width:75px;
-                display:inline;
-            }
-            #new-subscriptions-form {
-                padding: 1em .5em;
-                background-color: #f4f4f4;;
-                border: 1px solid #3f729b;
-                font-weight: bold;
-            }
-            .number-input {
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
-                border-bottom: 1px solid gray;
-                box-shadow: none;
-                background: white;
-                text-align:center;
             }
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,
@@ -265,6 +236,39 @@ class DT_Subscriptions_Management extends DT_Module_Base
                     background-color: white;
                 }
             }
+            .day-cell {
+                max-width: 25%;
+                float:left;
+                text-align: center;
+                border: 1px solid grey;
+                font-size:1.2em;
+                padding: 10px 5px 5px 5px;
+            }
+            .day-cell:hover {
+                background: lightblue;
+                border: 1px solid darkslategrey;
+                cursor:pointer;
+            }
+            .progress-bar {
+                height:10px;
+            }
+            .selected-hour {
+                max-width: 100%;
+                padding-top: 10px;
+                border: 1px solid grey;
+                font-size:1.2em;
+            }
+            .no-selection {
+                max-width: 100%;
+                padding-top: 10px;
+                border: 1px solid grey;
+                font-size:1.2em;
+            }
+            .remove-selection {
+                float: right;
+                color: red;
+                cursor:pointer;
+            }
         </style>
         <?php
     }
@@ -276,7 +280,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
         }
         ?>
         <script>
-            var postSubscriptions = [<?php echo json_encode([
+            let postSubscriptions = [<?php echo json_encode([
                 'map_key' => DT_Mapbox_API::get_key(),
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -294,11 +298,6 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
                 /* LOAD */
                 let spinner = $('.loading-spinner')
-                let title = $('#title')
-                let content = $('#content')
-
-                /* set title */
-                title.html( window.lodash.escape( postSubscriptions.post.title ) )
 
                 /* FUNCTIONS */
                 window.get_subscriptions = () => {
@@ -324,14 +323,14 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
                 window.load_subscriptions = ( data ) => {
                     spinner.addClass('active')
+                    data.sort((a,b) => {
+                        return parseInt(a.time_begin) - parseInt(b.time_begin)
+                    })
 
                     window.current_subscriptions = data
 
-                    content.empty()
-                    content.append(`<div><h3>Subscriptions</h3></div>
-                                 <table class="hover"><tbody id="subscriptions-list"></tbody></table>`)
-
                     let list = $('#subscriptions-list')
+                    list.empty();
 
                     if ( data.length > 0 ) {
                         $.each(data, function(i,v){
@@ -357,6 +356,8 @@ class DT_Subscriptions_Management extends DT_Module_Base
 
 
                     spinner.removeClass('active')
+                    $('#loading-message').hide()
+
                 }
 
                 window.delete_subscriptions = ( id ) => {
@@ -381,6 +382,65 @@ class DT_Subscriptions_Management extends DT_Module_Base
                             jQuery('#error').html(e)
                         })
                 }
+
+                window.get_subscriptions()
+
+                jQuery('#submit-form').on('click', function(){
+
+                    let spinner = $('.loading-spinner')
+                    spinner.addClass('active')
+                    let submit_button = jQuery('#submit-form')
+                    submit_button.prop('disabled', true)
+
+                    let selected_times_divs = jQuery(`.selected-hour`)
+                    let selected_times = []
+                    if ( selected_times_divs.length === 0 ) {
+                        jQuery('#selection-error').show()
+                        spinner.hide()
+                        jQuery('#selection-grid-wrapper').click(function(){
+                            jQuery('#selection-error').hide()
+                        })
+                        submit_button.prop('disabled', false)
+                        return;
+                    } else {
+                        jQuery.each(selected_times_divs, function(i,v){
+                            selected_times.push({ time: jQuery(this).data('time'), grid_id: jQuery(this).data('location') } )
+                        })
+                    }
+
+                    let wrapper = jQuery('#wrapper')
+                    wrapper.empty().html(`<div class="grid-x"><div class="cell center"><span class="loading-spinner active"></span></div></div>`)
+
+                    let alert = `
+                        <div class="grid-x">
+                            <div class="cell center"><h2><?php esc_html_e( 'Saved!', 'disciple_tools' ); ?></h2></div>
+                        </div>
+                    `
+                    jQuery.ajax({
+                        type: "POST",
+                        data: JSON.stringify({ action: 'add', parts: postSubscriptions.parts, selected_times }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
+                        }
+                    })
+                    .done(function(data){
+                        wrapper.empty().html(alert)
+                        spinner.removeClass('active')
+                    })
+                    .fail(function(e) {
+                        console.log(e)
+                        wrapper.empty().html(`<div class="grid-x"><div class="cell center">
+                        So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+                        <a href="${window.location.href}">Try Again</a>
+                        </div></div>`)
+                        $('#error').html(e)
+                        spinner.removeClass('active')
+                    })
+                })
+
             })
         </script>
         <?php
@@ -388,26 +448,53 @@ class DT_Subscriptions_Management extends DT_Module_Base
     }
 
     public function manage_body(){
+        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+            return false;
+        }
+        $campaign_id = $post["campaigns"][0]["ID"];
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        if ( is_wp_error( $campaign ) ) {
+                return $campaign;
+        }
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
             <div class="grid-x">
                 <div class="cell center">
-                    <h2 id="title"></h2>
+                    <h2 id="title"><?php echo esc_html( $post["name"] ); ?></h2>
                 </div>
             </div>
             <hr>
             <div class="grid-x" style=" height: inherit !important;">
                 <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
-                <div class="cell" id="content"><div class="center">... loading</div></div>
+                <h3><?php esc_html_e( 'My Prayer Times', 'disciple_tools' ); ?></h3>
+                <div class="cell" id="content">
+                    <table class="hover">
+                        <tbody id="subscriptions-list"></tbody>
+                    </table>
+                    <div id="loading-message" class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div>
+                </div>
                 <div class="cell grid" id="error"></div>
             </div>
+
+            <h3><?php esc_html_e( 'Sign up for more', 'disciple_tools' ); ?></h3>
+            <?php
+            $grid_id = 1;
+            if ( isset( $campaign['location_grid'] ) && ! empty( $campaign['location_grid'] ) ) {
+                $grid_id = $campaign['location_grid'][0]['id'];
+            }
+            $campaign_times = DT_Time_Utilities::campaign_times_list( $campaign_id );
+            DT_Campaign_24Hour_Prayer::calendar_subscribe( $campaign_id, $grid_id, $campaign_times );
+            ?>
+
+            <br>
+            <div class="grid-x grid-padding-x grid-padding-y">
+                <div class="cell center">
+                    <button class="button large" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?></button>
+                </div>
+            </div>
         </div> <!-- form wrapper -->
-        <script>
-            jQuery(document).ready(function($){
-                window.get_subscriptions()
-            })
-        </script>
         <?php
     }
 
@@ -461,7 +548,9 @@ class DT_Subscriptions_Management extends DT_Module_Base
             case 'get':
                 return $this->get_subscriptions( $post_id );
             case 'delete':
-                return $this->delete_subscriptions( $params );
+                return $this->delete_subscriptions( $post_id, $params );
+            case 'add':
+                return $this->add_subscriptions( $post_id, $params );
             default:
                 return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
         }
@@ -489,8 +578,48 @@ class DT_Subscriptions_Management extends DT_Module_Base
         return $subs;
     }
 
-    public function delete_subscriptions( $params ) {
+    private function delete_subscriptions( $post_id, $params ) {
         Disciple_Tools_Reports::delete( $params['report_id'] );
+        return $this->get_subscriptions( $post_id );
+    }
+
+    private function add_subscriptions( $post_id, $params ){
+        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+            return false;
+        }
+        $campaign_id = $post["campaigns"][0]["ID"];
+
+
+        $campaign_instance = DT_Campaign_24Hour_Prayer::instance();
+        foreach ( $params['selected_times'] as $time ){
+            $args = [
+                'parent_id' => $campaign_id,
+                'post_id' => $post_id,
+                'post_type' => 'subscriptions',
+                'type' => $campaign_instance->root,
+                'subtype' => $campaign_instance->type,
+                'payload' => null,
+                'value' => 0,
+                'lng' => null,
+                'lat' => null,
+                'level' => null,
+                'label' => null,
+                'grid_id' => $time['grid_id'],
+                'time_begin' => $time['time'],
+                'time_end' => $time['time'] + 900,
+            ];
+
+            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $time['grid_id'] );
+            if ( ! empty( $grid_row ) ){
+                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $time['grid_id'] );
+                $args['lng'] = $grid_row['longitude'];
+                $args['lat'] = $grid_row['latitude'];
+                $args['level'] = $grid_row['level_name'];
+                $args['label'] = $full_name;
+            }
+            Disciple_Tools_Reports::insert( $args );
+        }
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
 }
