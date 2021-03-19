@@ -600,7 +600,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 'type' => $campaign_instance->root,
                 'subtype' => $campaign_instance->type,
                 'payload' => null,
-                'value' => 0,
+                'value' => 1,
                 'lng' => null,
                 'lat' => null,
                 'level' => null,
