@@ -1,6 +1,30 @@
 <?php
 
 class DT_Time_Utilities {
+
+    public static function subscribed_times_list( $post_id ){
+        $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
+
+        // process start and end of campaign
+        if ( !isset( $record['start_date'] )) {
+            $start = strtotime( gmdate( 'Y-m-d', time() ) );
+        } else {
+            $start = strtotime( gmdate( 'Y-m-d', $record['start_date']['timestamp'] ) ); // perfects the stamp to day beginning
+        }
+        $record['start_date'] = $start;
+
+        if ( !isset( $record['end_date'] )) {
+            $end = strtotime( '+30 days' );
+        } else {
+            $end = strtotime( gmdate( 'Y-m-d', $record['end_date']['timestamp'] ) ) + 86399; // end of selected day (-1 second)
+        }
+        $record['end_date'] = $end;
+
+        $current_times_list = self::get_current_commitments( $record['ID'], (int) $start, (int) $end );
+        return $current_times_list;
+    }
+
+
     public static function campaign_times_list( $post_id ) {
         $data = [];
 

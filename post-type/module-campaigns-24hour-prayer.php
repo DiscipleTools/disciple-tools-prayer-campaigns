@@ -99,7 +99,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === 'campaigns' && ! isset( $tiles["apps"] ) ){
-            $tiles["apps"] = [ "label" => __( "App Links", 'disciple-tools-campaigns' ) ];
+            $tiles["apps"] = [ "label" => __( "Campaign Subscription Form Links", 'disciple-tools-campaigns' ) ];
         }
         return $tiles;
     }
@@ -117,6 +117,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     } else {
                         $key = DT_Subscriptions_Base::instance()->create_unique_key();
                         update_post_meta( get_the_ID(), 'public_key', $key );
+                    }
+                    if ( !isset( $record["start_date"]["timestamp"], $record["end_date"]["timestamp"] ) ){
+                        ?>
+                        <p>A Start Date and End Date are required for the 24 hour campaign</p>
+                        <?php
+                        return;
                     }
                     $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
                     ?>
@@ -331,10 +337,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 background-color: white;
             }
 
-            #content {
-                max-width:100%;
-            }
-
             #wrapper {
                 max-width:1000px;
                 margin:0 auto;
@@ -412,81 +414,164 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         <?php
     }
 
-    public static function calendar_subscribe( $campaign_id, $location_id, $campaign_times_lists ){
+    public static function calendar_subscribe( $campaign_id, $location_id, $current_commitments, $start_timestamp, $end_timestamp ){
         ?>
         <script>
         let calendar_subscribe_object = [<?php echo json_encode([
             'campaign_id' => $campaign_id,
             'campaign_grid_id' => $location_id,
-            'campaign_times_lists' => $campaign_times_lists,
-            'translations' => []
+            'current_commitments' => $current_commitments,
+            'translations' => [],
+            'start_timestamp' => (int) $start_timestamp,
+            'end_timestamp' => (int) $end_timestamp,
         ]) ?>][0]
 
+        //format date to month and day
+        let timestamp_to_month_day = (timestamp, timezone = null)=>{
+            const options = { month: "long", day: "numeric" };
+            if ( timezone ){
+                options.timeZone = timezone
+            }
+            return new Intl.DateTimeFormat("en-US", options).format(
+              timestamp * 1000
+            );
+        }
 
-        window.load_campaigns = () => {
-            let spinner = $('.loading-spinner')
-            let content = $('#calendar-content')
-            let selected_times = $('#selected-prayer-times')
-            let selected_calendar_color = 'green'
-            content.empty()
+        //format date to hour:minutes
+        let timestamp_to_time = (timestamp, timezone = null)=>{
+            const options = { hour: "numeric", minute: "numeric" };
+            if ( timezone ){
+                options.timeZone = timezone
+            }
+            return new Intl.DateTimeFormat("en-US", options).format(
+              timestamp * 1000
+            );
+        }
 
-            let list = ''
-            jQuery.each( calendar_subscribe_object.campaign_times_lists, function(i,v){
-                list += `<div class="cell day-cell" data-time="${window.lodash.escape(v.key)}"
-                                data-percent="${window.lodash.escape(v.percent)}"
-                                data-location="${window.lodash.escape(calendar_subscribe_object.campaign_grid_id)}">
-                        <div>${window.lodash.escape(v.formatted)} (${window.lodash.escape(parseInt(v.percent))}%)</div>
-                    <div class="progress-bar" data-percent="${v.percent}" style="background: dodgerblue; width:0;"></div>
-                    </div>`
-            })
-            content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
-            let percent = 0
-            jQuery.each( jQuery('.progress-bar'), function(i,v){
-                percent = jQuery(this).data('percent')
-                jQuery(this).animate({
-                    width: percent + '%'
+        function changeTimezone(date, timezone) {
+          // suppose the date is 12:00 UTC
+          let invdate = new Date(date.toLocaleString('en-US', {
+            timeZone: timezone
+          }));
+          // then invdate will be 07:00 in Toronto
+          // and the diff is 5 hours
+          var diff = date.getTime() - invdate.getTime();
+          // so 12:00 in Toronto is 17:00 UTC
+          return new Date(date.getTime() - diff); // needs to substract
+
+        }
+
+        let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+        let selected_calendar_color = 'green'
+
+        //set up array of days and time slots according to timezone
+        let calculate_day_times = function (custom_timezone=null){
+            let days = [];
+
+            let time_iterator = calendar_subscribe_object.start_timestamp;
+            while ( time_iterator < calendar_subscribe_object.end_timestamp ){
+                let day = timestamp_to_month_day( time_iterator, custom_timezone )
+
+                if ( !days.length || day !== days[days.length-1]["formatted"] ){
+                    let start_of_day = new Date(time_iterator*1000)
+                    if ( custom_timezone ){
+                        changeTimezone(start_of_day, custom_timezone)
+                    }
+                    start_of_day.setHours(0,0,0,0)
+                    days.push({
+                        "key": start_of_day.getTime()/1000,
+                        "formatted": day,
+                        "percent": 0,
+                        "slots": []
+                    })
+                }
+                days[days.length-1]["slots"].push({
+                    "key": time_iterator,
+                    "formatted": timestamp_to_time(time_iterator, custom_timezone),
+                    "subscribers": parseInt(calendar_subscribe_object.current_commitments[time_iterator] || 0)
                 })
-            })
-            // listen for click
-            jQuery('.day-cell').on('click', function(e){
+                if ( calendar_subscribe_object.current_commitments[time_iterator] ){
+                    days[days.length-1].percent += 100 / ( 24 / ( 15/60 ) ) // percent of day of 15 mins
+                }
+                time_iterator += 15 * 60;
+            }
+            return days;
+        }
+        let days = calculate_day_times()
+
+
+
+        jQuery(document).ready(function($){
+            let selected_times = $('#selected-prayer-times')
+
+            let update_timezone = function (){
+                $('#timezone-current').html(current_time_zone)
+                $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
+            }
+            update_timezone()
+
+            let draw_calendar = () => {
+                let content = $('#calendar-content')
+                content.empty()
+                let list = ''
+                days.forEach(day=>{
+                    list += `<div class="cell day-cell" data-time="${window.lodash.escape(day.key)}"
+                                data-percent="${window.lodash.escape(day.percent)}">
+                        <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
+                    <div class="progress-bar" data-percent="${day.percent}" style="background: dodgerblue; width:0;"></div>
+                </div>`
+                })
+
+                content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
+                jQuery.each( jQuery('.progress-bar'), function(){
+                    jQuery(this).animate({
+                        width: ( jQuery(this).data('percent') || 0 ) + '%'
+                    })
+                })
+
+            }
+            draw_calendar()
+
+            // listen for click on day cell
+            jQuery(document).on('click', '.day-cell', function(){
                 let id = jQuery(this).data('time')
                 let list_title = jQuery('#list-modal-title')
-                list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(calendar_subscribe_object.campaign_times_lists[id].formatted)}</h2>`)
+                let day=days.find(k=>k.key===id)
+                list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(day.formatted)}</h2>`)
                 let list_content = jQuery('#list-modal-content')
-                let row = '<div class="grid-x">'
-                jQuery.each(calendar_subscribe_object.campaign_times_lists[id].hours, function(i,v){
+                let time_cell = ''
+                day.slots.forEach(slot=>{
                     let background_color = 'white'
-                    if ( v.subscribers > 0) {
+                    if ( slot.subscribers > 0) {
                         background_color = 'lightblue'
                     }
-                    if ( v.selected ) {
+                    if ( slot.selected ) {
                         background_color = selected_calendar_color
                     }
-                    row += `<div class="cell day-cell time-cell"
-                                    style="background-color:${background_color}" id="${v.key}"
-                                    data-day=${window.lodash.escape(id)}
-                                    data-time="${window.lodash.escape(v.key)}">
-                            ${window.lodash.escape(v.formatted)} (${window.lodash.escape(v.subscribers)} praying)
-                        </div>`
+                    time_cell += `<div class="cell day-cell time-cell"
+                                style="background-color:${background_color}" id="${slot.key}"
+                                data-day=${window.lodash.escape(id)}
+                                data-time="${window.lodash.escape(slot.key)}">
+                        ${window.lodash.escape(slot.formatted)} (${window.lodash.escape(slot.subscribers)} praying)
+                    </div>`
                 })
-                row += `</div>`
-                list_content.empty().html(row)
+                list_content.empty().html(`<div class="grid-x"> ${time_cell} </div>`)
 
-
-
-                jQuery('.time-cell').on('click', function(i,v){
+                //click on calendar squrare
+                $(document).on("click", '.time-cell', function (){
                     jQuery('#no-selections').remove()
 
                     let selected_time_id = jQuery(this).data('time')
                     let selected_day_id = jQuery(this).data('day')
-                    let hour = calendar_subscribe_object.campaign_times_lists[selected_day_id].hours.find(k => parseInt(k.key) === parseInt(selected_time_id) )
-                    hour.selected = true
+                    let day = days.find(k=>k.key===selected_day_id)
+                    let slot = day.slots.find(k=>k.key===selected_time_id)
+                    slot.selected = true
                     if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
                         jQuery(this).css('background-color', 'white')
                         jQuery('#selected-'+selected_time_id).remove()
                     } else {
                         jQuery(this).css('background-color', selected_calendar_color)
-                        add_selected(selected_time_id, selected_day_id,calendar_subscribe_object.campaign_times_lists[selected_day_id].formatted, hour.formatted)
+                        add_selected(selected_time_id, day.formatted, slot.formatted)
                     }
 
                     if ( 0 === jQuery('#selected-prayer-times div').length ){
@@ -498,53 +583,101 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 jQuery('#list-modal').foundation('open')
             })
 
-            $(document).on("click", '.remove-selection', function (){
-                let time = $(this).data("time")
-                let day = $(this).data("day")
-                calendar_subscribe_object.campaign_times_lists[day].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = false
-                $(`#selected-${time}`).remove()
-            })
-            let add_selected = function (time, day, day_label, time_label){
-                selected_times.append(`
-                        <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
-                            data-time="${window.lodash.escape(time)}"
-                            data-location="${window.lodash.escape(calendar_subscribe_object.campaign_grid_id)}">
-                            ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)}
-                            <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
-                        </div>`)
-            }
 
+            //change timezone
+            $('#confirm-timezone').on('click', function (){
+                current_time_zone = $("#timezone-select").val()
+                update_timezone()
+                days = calculate_day_times(current_time_zone)
+                draw_calendar()
+            })
+
+            //create a recurring time slot
             jQuery('#daily_time_select').on( 'change', function (){
                 $("#no-selections").remove()
-                let hour = $(this).val()
+                let slot = $(this).val()
                 let label = $("#daily_time_select option:selected").text()
                 $('#selection-grid-wrapper').hide()
                 $('#show_calendar').show()
                 let selected_items_html = ``
-                window.lodash.forOwn(calendar_subscribe_object.campaign_times_lists, day=>{
-                    let time = parseInt(day.key) + parseInt(hour);
-                    calendar_subscribe_object.campaign_times_lists[day.key].hours.find(h=>parseInt(h.key)===parseInt(time)).selected = true
-                    jQuery(`#${time}`).css('background-color', selected_calendar_color)
-                    add_selected( time, day.key, day.formatted, label)
+                days.forEach(day=>{
+                    let time = parseInt(day.key) + parseInt(slot);
+                    if ( time > calendar_subscribe_object.start_timestamp && time < calendar_subscribe_object.end_timestamp ){
+                        let slot = day.slots.find(h=>parseInt(h.key)===parseInt(time))
+                        if ( slot ){
+                            slot.selected = true
+                            jQuery(`#${time}`).css('background-color', selected_calendar_color)
+                            add_selected( time, day.key, day.formatted, label)
+                        }
+                    }
                 })
-                selected_times.append(selected_items_html)
+                $('#selected-prayer-times').append(selected_items_html)
             })
 
-
+            //show calendar
             $('#show_calendar').on('click', function (){
                 $('#show_calendar').hide()
                 $('#selection-grid-wrapper').show()
             })
 
-            spinner.removeClass('active')
-        }
-        jQuery(document).ready(function($){
-            window.load_campaigns()
+            // add selection function
+            let add_selected = function (time, day, day_label, time_label){
+                $('#selected-prayer-times').append(`
+                <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
+                    data-time="${window.lodash.escape(time)}"
+                    data-location="${window.lodash.escape(calendar_subscribe_object.campaign_grid_id)}">
+                    ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)} (${current_time_zone})
+                    <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
+                </div>
+            `)
+            }
+
+            //remove selection
+            $(document).on("click", '.remove-selection', function (){
+                let time_timestamp = $(this).data("time")
+                let day_timestamp = $(this).data("day")
+                let day = days.find(k=>k.key===day_timestamp)
+                let slot = day.slots.find(k=>k.key===time_timestamp)
+                slot.selected = true
+                $(`#selected-${time_timestamp}`).remove()
+            })
         })
 
         </script>
 
 
+        <div class="cell medium-6">
+            Timezone (<a href="javascript:void(0)" data-open="timezone-changer" id="timezone-current"></a>)
+            <!-- Reveal Modal Timezone Changer-->
+            <div id="timezone-changer" class="reveal tiny" data-reveal>
+                <h2>Change your timezone:</h2>
+                <select id="timezone-select">
+                    <?php
+                    $selected_tz = 'America/Denver';
+                    if ( !empty( $selected_tz ) ){
+                        ?>
+                        <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
+                        <option disabled>----</option>
+                        <?php
+                    }
+                    $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+                    foreach ( $tzlist as $tz ){
+                        ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
+                    }
+                    ?>
+                </select>
+                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                    <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                </button>
+                <button class="button" type="button" id="confirm-timezone" data-close>
+                    <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+                </button>
+
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
         <div class="center"><h2><?php esc_html_e( 'Select Daily', 'disciple_tools' ); ?></h2></div>
         <div>
             <label><?php echo esc_html( "Every Day At:" ); ?><label>
@@ -552,11 +685,16 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 <option><?php echo esc_html( "Select a time" ); ?></option>
                 <?php
                 $time_in_seconds = 0;
-                foreach ( $campaign_times_lists[array_keys( $campaign_times_lists )[0]]["hours"] as $hour ) : ?>
-                    <option value="<?php echo esc_html( $time_in_seconds ); ?>"><?php echo esc_html( $hour["formatted"] ); ?></option>
+                $start_of_day = strtotime( gmdate( 'Y-m-d', time() ) );
+                $end_of_day = $start_of_day + 86400;
+                while ($time_in_seconds + $start_of_day < $end_of_day) : ?>
+                    <option value="<?php echo esc_html( $time_in_seconds ); ?>">
+                        <?php echo esc_html( gmdate( 'H:i', $start_of_day + $time_in_seconds ) ); ?>
+                    </option>
                     <?php
-                    $time_in_seconds += 15 * 60;
-                endforeach; ?>
+                    $time_in_seconds += 15 * 60; // add 15 minutes
+                endwhile; ?>
+
             </select>
         </div>
         <div class="center">
@@ -565,7 +703,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         </div>
 
         <div class="grid-x" style=" height: inherit !important;">
-            <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
+            <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
             <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
             <div class="cell grid" id="error"></div>
         </div>
@@ -663,7 +801,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     submit_button.prop('disabled', false)
                     return;
                 } else {
-                    jQuery.each(selected_times_divs, function(i,v){
+                    jQuery.each(selected_times_divs, function(){
                         selected_times.push({ time: jQuery(this).data('time'), grid_id: jQuery(this).data('location') } )
                     })
                 }
@@ -694,7 +832,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                         xhr.setRequestHeader('X-WP-Nonce', postObject.nonce )
                     }
                 })
-                    .done(function(data){
+                    .done(function(){
                         wrapper.empty().html(alert)
                         spinner.removeClass('active')
                     })
@@ -710,7 +848,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             }
 
 
-            jQuery(document).ready(function($){
+            jQuery(document).ready(function(){
                 jQuery('#submit-form').on('click', function(){
                     window.create_subscription()
                 })
@@ -759,8 +897,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             if ( isset( $post['location_grid'] ) && ! empty( $post['location_grid'] ) ) {
                 $grid_id = $post['location_grid'][0]['id'];
             }
-            $campaign_times = DT_Time_Utilities::campaign_times_list( $this->parts['post_id'] );
-            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $campaign_times ) ?>
+            $current_commitments = DT_Time_Utilities::subscribed_times_list( $this->parts['post_id'] );
+            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, $post['start_date']['timestamp'] ?? time(), $post['end_date']['timestamp'] ?? time() ) ?>
 
             <br>
             <div class="grid-x grid-padding-x grid-padding-y">
@@ -810,7 +948,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         <script>
             jQuery(document).ready(function($){
 
-                jQuery('#send-link-form').on('click', function(e){
+                jQuery('#send-link-form').on('click', function(){
                     let spinner = jQuery('.loading-spinner')
                     spinner.addClass('active')
 

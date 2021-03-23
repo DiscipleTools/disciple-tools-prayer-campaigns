@@ -2,7 +2,7 @@
 
 class DT_Prayer_Campaigns_Send_Email {
     public static function send_registration( $post_id ) {
-        // @todo build this to use mailgun or mailsend
+
         $record = DT_Posts::get_post( 'subscriptions', $post_id );
         if ( is_wp_error( $record ) ){
             dt_write_log( 'failed to record' );
@@ -41,7 +41,6 @@ class DT_Prayer_Campaigns_Send_Email {
 
 
         $headers = [];
-        $headers[] = 'From: Zume Community <no-reply@zume.community>';
         $headers[] = 'Content-Type: text/html';
         $headers[] = 'charset=UTF-8';
 
@@ -73,7 +72,6 @@ class DT_Prayer_Campaigns_Send_Email {
         $subject = 'Access to your prayer commitments!';
 
         $headers = [];
-        $headers[] = 'From: Zume Community <no-reply@zume.community>';
         $headers[] = 'Content-Type: text/html';
         $headers[] = 'charset=UTF-8';
 

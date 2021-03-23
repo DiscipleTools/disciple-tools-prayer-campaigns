@@ -339,7 +339,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
                                 verified = ' <span style="color:green; font-weight:bold;"><i class="fi-check"></i> Verified!</span>'
                             }
                             list.append(`
-                                <tr><td>${window.lodash.escape( v.formatted_time )} ${verified}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${window.lodash.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
+                                <tr><td>${window.lodash.escape( window.SHAREDFUNCTIONS.formatDate(v.time_begin, true) )} ${verified}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${window.lodash.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
                             `)
                         })
 
@@ -484,8 +484,8 @@ class DT_Subscriptions_Management extends DT_Module_Base
             if ( isset( $campaign['location_grid'] ) && ! empty( $campaign['location_grid'] ) ) {
                 $grid_id = $campaign['location_grid'][0]['id'];
             }
-            $campaign_times = DT_Time_Utilities::campaign_times_list( $campaign_id );
-            DT_Campaign_24Hour_Prayer::calendar_subscribe( $campaign_id, $grid_id, $campaign_times );
+            $current_commitments = DT_Time_Utilities::subscribed_times_list( $campaign_id );
+            DT_Campaign_24Hour_Prayer::calendar_subscribe( $campaign_id, $grid_id, $current_commitments, $campaign['start_date']['timestamp'] ?? time(), $campaign['end_date']['timestamp'] ?? time() );
             ?>
 
             <br>
