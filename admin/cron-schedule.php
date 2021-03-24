@@ -83,16 +83,31 @@ function dt_prayer_campaign_send_12hour_reminder(){
             $to = [];
             $public_key ="";
             $name = "";
+            $record = DT_Posts::get_post( 'subscriptions', $key, true, false );
+            if ( is_wp_error( $record ) ){
+                continue;
+            }
+            $timezone = $record["timezone"] ?? 'America/New_York';
+            $tz = new DateTimeZone( $timezone );
             foreach ( $reports as $row ){
+
                 $to[$row['email']] = $row['email'];
                 $name = $row["name"];
                 $public_key = $row['public_key'];
-                $commitment_list .= gmdate( 'F d, Y', $row['time_begin'] )
-                    . ' from <strong>'
-                    . gmdate( 'H:i a', $row['time_begin'] )
-                    . '</strong> to <strong>'
-                    . gmdate( 'H:i a', $row['time_end'] ) .
-                    '</strong> for ' . $row['label'] . '<br>';
+                $begin_date = new DateTime( "@".$row['time_begin'] );
+                $end_date = new DateTime( "@".$row['time_end'] );
+                $begin_date->setTimezone( $tz );
+                $end_date->setTimezone( $tz );
+                $commitment_list .= sprintf(
+                    '%1$s from <strong>%2$s</strong> to <strong>%3$s</strong>',
+                    $begin_date->format( 'F d, Y' ),
+                    $begin_date->format( 'H:i a' ),
+                    $end_date->format( 'H:i a' )
+                );
+                if ( !empty( $row["label"] ) ){
+                    $commitment_list .= " for " . $row["label"];
+                }
+                $commitment_list .= '<br>';
             }
             $e['to'] = implode( ',', $to );
 
@@ -102,10 +117,11 @@ function dt_prayer_campaign_send_12hour_reminder(){
                 <h4>Thank you for praying with us!</h4>
                 <p>Here are your upcoming prayer times:</p>
                 <p>'.$commitment_list.'</p>
+                <p>Times are shown according to: ' . esc_html( $timezone ) . ' time </p>
                 <br>
                 <hr>
                 <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . esc_html( $public_key ) .'">
-                    Manage/edit your prayer times</a>
+                    Manage/edit your account and prayer times</a>
                 </p>
             ';
 

@@ -296,6 +296,11 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 "p2p_key" => $this->post_type."_to_contacts",
             ];
 
+            $fields["timezone"] = [
+                "name" => __( 'Timezone', 'disciple_tools' ),
+                "type" => "text",
+                "hidden" => true
+            ];
         }
 
         if ( $post_type === "contacts" && current_user_can( 'view_all_'.$this->post_type ) ){

@@ -3,7 +3,7 @@
 class DT_Prayer_Campaigns_Send_Email {
     public static function send_registration( $post_id ) {
 
-        $record = DT_Posts::get_post( 'subscriptions', $post_id );
+        $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
         if ( is_wp_error( $record ) ){
             dt_write_log( 'failed to record' );
             return;
@@ -23,9 +23,24 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $to = implode( ',', $to );
 
+        $timezone = $record["timezone"] ?? 'America/New_York';
+        $tz = new DateTimeZone( $timezone );
         $commitment_list = '';
         foreach ( $commitments as $row ){
-            $commitment_list .= gmdate( 'F d, Y', $row['time_begin'] ) . ' from ' . gmdate( 'H:i a', $row['time_begin'] ) . ' to ' . gmdate( 'H:i a', $row['time_end'] ) . ' for ' . $row['label'] . '<br>';
+            $begin_date = new DateTime( "@".$row['time_begin'] );
+            $end_date = new DateTime( "@".$row['time_end'] );
+            $begin_date->setTimezone( $tz );
+            $end_date->setTimezone( $tz );
+            $commitment_list .= sprintf(
+                '%1$s from <strong>%2$s</strong> to <strong>%3$s</strong>',
+                $begin_date->format( 'F d, Y' ),
+                $begin_date->format( 'H:i a' ),
+                $end_date->format( 'H:i a' )
+            );
+            if ( !empty( $row["label"] ) ){
+                $commitment_list .= " for " . $row["label"];
+            }
+            $commitment_list .= '<br>';
         }
 
         $subject = 'Registered to pray with us!';
@@ -33,10 +48,12 @@ class DT_Prayer_Campaigns_Send_Email {
             '<h3>Thank you for praying with us!</h3>
             <p>Here are the times you have committed to pray:</p>
             <p>'.$commitment_list.'</p>
-            <p>Please verify your commitment by visiting:</p>
-            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Verify your prayer times!</a></p>
+            <p>Times are shown according to: <strong>' . esc_html( $timezone ) . '</strong> time </p>
+            <p>Please confirm your time commitments by visiting:</p>
 
-            <'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Confirm your prayer times!</a></p>
+
+            <p>Manage your account and time commitments <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">here.</a></p>
             ';
 
 

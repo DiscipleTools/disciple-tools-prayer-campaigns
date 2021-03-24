@@ -533,7 +533,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             draw_calendar()
 
             // listen for click on day cell
-            jQuery(document).on('click', '.day-cell', function(){
+            jQuery(document).on('click', '#selection-grid-wrapper > .day-cell', function(){
                 let id = jQuery(this).data('time')
                 let list_title = jQuery('#list-modal-title')
                 let day=days.find(k=>k.key===id)
@@ -557,30 +557,31 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 })
                 list_content.empty().html(`<div class="grid-x"> ${time_cell} </div>`)
 
-                //click on calendar squrare
-                $(document).on("click", '.time-cell', function (){
-                    jQuery('#no-selections').remove()
-
-                    let selected_time_id = jQuery(this).data('time')
-                    let selected_day_id = jQuery(this).data('day')
-                    let day = days.find(k=>k.key===selected_day_id)
-                    let slot = day.slots.find(k=>k.key===selected_time_id)
-                    slot.selected = true
-                    if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
-                        jQuery(this).css('background-color', 'white')
-                        jQuery('#selected-'+selected_time_id).remove()
-                    } else {
-                        jQuery(this).css('background-color', selected_calendar_color)
-                        add_selected(selected_time_id, day.formatted, slot.formatted)
-                    }
-
-                    if ( 0 === jQuery('#selected-prayer-times div').length ){
-                        selected_times.html(`<div class="cell selected-hour" id="no-selections">No Selections</div>`)
-                    }
-
-                })
 
                 jQuery('#list-modal').foundation('open')
+            })
+
+            //click on calendar square
+            $(document).on("click", '.day-cell.time-cell', function (){
+                jQuery('#no-selections').remove()
+
+                let selected_time_id = jQuery(this).data('time')
+                let selected_day_id = jQuery(this).data('day')
+                let day = days.find(k=>k.key===selected_day_id)
+                let slot = day.slots.find(k=>k.key===selected_time_id)
+                slot.selected = true
+                if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
+                    jQuery(this).css('background-color', 'white')
+                    jQuery('#selected-'+selected_time_id).remove()
+                } else {
+                    jQuery(this).css('background-color', selected_calendar_color)
+                    add_selected(selected_time_id, selected_day_id, day.formatted, slot.formatted)
+                }
+
+                if ( 0 === jQuery('#selected-prayer-times div').length ){
+                    selected_times.html(`<div class="cell selected-hour" id="no-selections">No Selections</div>`)
+                }
+
             })
 
 
@@ -626,7 +627,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 <div id="selected-${window.lodash.escape(time)}" class="cell selected-hour"
                     data-time="${window.lodash.escape(time)}"
                     data-location="${window.lodash.escape(calendar_subscribe_object.campaign_grid_id)}">
-                    ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)} (${current_time_zone})
+                    ${window.lodash.escape(day_label)} at ${window.lodash.escape(time_label)} (${current_time_zone} time)
                     <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
                 </div>
             `)
@@ -810,7 +811,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     name: name,
                     email: email,
                     selected_times: selected_times,
-                    campaign_id: postObject.campaign_id
+                    campaign_id: postObject.campaign_id,
+                    timezone: current_time_zone
                 }
 
                 let wrapper = jQuery('#wrapper')
@@ -1066,6 +1068,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         if ( ! isset( $params['selected_times'] ) || empty( $params['selected_times'] ) ) {
             return new WP_Error( __METHOD__, "Missing times and locations", [ 'status' => 400 ] );
         }
+        if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
+            return new WP_Error( __METHOD__, "Missing timezone", [ 'status' => 400 ] );
+        }
 
         $params = dt_recursive_sanitize_array( $params );
         $email = $params['email'];
@@ -1089,6 +1094,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     [ "value" => $params['campaign_id'] ],
                 ],
             ],
+            'timezone' => $params["timezone"],
             'public_key' => $hash,
         ];
 
