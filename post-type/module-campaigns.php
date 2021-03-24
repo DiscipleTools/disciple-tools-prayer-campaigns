@@ -229,7 +229,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
 
             $fields['description'] = [
-                'name'   => __( 'Description', 'disciple_tools' ),
+                'name'   => __( 'Public campaign description', 'disciple_tools' ),
                 'description' => __( 'General description about the campaign', 'disciple_tools' ),
                 'type'   => 'text',
                 "tile" => "details",
@@ -413,7 +413,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
         if ( $post_type === $this->post_type && $section === "commitments" ){
             $subscribers_count = $this->query_subscriber_count( get_the_ID() );
-            $coverage_count = $this->query_coverage_count( get_the_ID() );
+            $coverage_count = $this->query_coverage_percentage( get_the_ID() );
             $scheduled_commitments = $this->query_scheduled_count( get_the_ID() );
             $past_commitments = $this->query_past_count( get_the_ID() );
             ?>
@@ -689,7 +689,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         ) );
     }
 
-    public function query_coverage_count( $campaign_post_id ) {
+    public static function query_coverage_percentage( $campaign_post_id ) {
         $percent = 0;
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
 
@@ -705,6 +705,21 @@ class DT_Campaigns_Base extends DT_Module_Base {
             $percent = $blocks_covered / $blocks * 100;
         }
         return round( $percent, 1 );
+    }
+
+    /**
+     * Get the number of time slots the campaign will cover
+     * @param $campaign_post_id
+     * @return int
+     */
+    public static function query_coverage_total_time_slots( $campaign_post_id ){
+        $campaign = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        if ( isset( $campaign["start_date"]["timestamp"], $campaign["end_date"]["timestamp"] ) ){
+            $duration_in_seconds = (int) $campaign["end_date"]["timestamp"] - (int) $campaign["start_date"]["timestamp"];
+            $number_of_time_slots = $duration_in_seconds / ( 15 * 60 );
+            return $number_of_time_slots;
+        }
+        return 0;
     }
 
     //filter when a comment is created
