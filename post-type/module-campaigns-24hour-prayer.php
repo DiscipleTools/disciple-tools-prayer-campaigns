@@ -647,6 +647,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         </script>
 
 
+        <div class="center">
+            <h3><?php esc_html_e( 'Select Daily', 'disciple_tools' ); ?></h3>
+        </div>
         <div class="cell medium-6">
             Timezone (<a href="javascript:void(0)" data-open="timezone-changer" id="timezone-current"></a>)
             <!-- Reveal Modal Timezone Changer-->
@@ -679,7 +682,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 </button>
             </div>
         </div>
-        <div class="center"><h2><?php esc_html_e( 'Select Daily', 'disciple_tools' ); ?></h2></div>
         <div>
             <label><?php echo esc_html( "Every Day At:" ); ?><label>
             <select id="daily_time_select">
@@ -699,7 +701,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             </select>
         </div>
         <div class="center">
-            <h2 style="display: inline-block"><?php esc_html_e( 'Individual Time Slots', 'disciple_tools' ); ?></h2>
+            <h3 style="display: inline-block"><?php esc_html_e( 'Individual Time Slots', 'disciple_tools' ); ?></h3>
             <a id="show_calendar" style="display: none; margin: 0 0 0 20px"><?php esc_html_e( 'Show Calendar', 'disciple_tools' ); ?></a>
         </div>
 
@@ -863,12 +865,49 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
     public function form_body(){
         $link = trailingslashit( site_url() ) . $this->parts['root'] . '/' . $this->parts['type'] . '/' . $this->parts['public_key'] . '/access_account';
+        $post_id = $this->parts['post_id'];
+        $record = DT_Posts::get_post( "campaigns", $post_id, true, false );
+        if ( is_wp_error( $record ) ){
+            return;
+        }
+        $coverage_percentage = DT_Campaigns_Base::query_coverage_percentage( $post_id );
+        $number_of_time_slots = DT_Campaigns_Base::query_coverage_total_time_slots( $post_id );
+        $description = "Campaign Description";
+        if ( isset( $record["description"] ) && !empty( $record["description"] ) ){
+            $description = $record["description"];
+        }
         // FORM BODY
         ?>
         <div id="custom-style"></div>
         <div id="wrapper">
+
+
             <span class="hide-for-small-only" style="position:absolute; right:10px;"><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></span>
+            <div class="center">
+                <h2><?php echo esc_html( $description ); ?></h2>
+            </div>
+            <div class="progress-bar-container" style="border: 1px solid black" >
+                <div class="coverage-progress-bar" data-percent="<?php echo esc_html( $coverage_percentage ); ?>" style="background: dodgerblue; width:0; height:20px"></div>
+            </div>
+            <p>We have covered <strong><?php echo esc_html( $coverage_percentage ); ?>%</strong> of the <?php echo esc_html( $number_of_time_slots ); ?> time slots needed to cover the region in 24 hour prayer.</p>
+
             <div class="center show-for-small-only"><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></div>
+
+
+            <?php
+            $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
+            if ( is_wp_error( $post ) ) {
+                return $post;
+            }
+            $grid_id = 1;
+            if ( isset( $post['location_grid'] ) && ! empty( $post['location_grid'] ) ) {
+                $grid_id = $post['location_grid'][0]['id'];
+            }
+            $current_commitments = DT_Time_Utilities::subscribed_times_list( $this->parts['post_id'] );
+            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, $post['start_date']['timestamp'] ?? time(), $post['end_date']['timestamp'] ?? time() ) ?>
+
+            <br>
+
             <div class="center"><h2><?php echo esc_html( "Enter Your Contact Information" ); ?></h2></div>
             <div class="grid-x ">
                 <div class="cell">
@@ -890,19 +929,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 </div>
             </div>
 
-            <?php
-            $post = DT_Posts::get_post( 'campaigns', $this->parts['post_id'], true, false );
-            if ( is_wp_error( $post ) ) {
-                return $post;
-            }
-            $grid_id = 1;
-            if ( isset( $post['location_grid'] ) && ! empty( $post['location_grid'] ) ) {
-                $grid_id = $post['location_grid'][0]['id'];
-            }
-            $current_commitments = DT_Time_Utilities::subscribed_times_list( $this->parts['post_id'] );
-            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, $post['start_date']['timestamp'] ?? time(), $post['end_date']['timestamp'] ?? time() ) ?>
-
-            <br>
             <div class="grid-x grid-padding-x grid-padding-y">
                 <div class="cell center">
                     <input type="checkbox" id="receive_campaign_notifications" name="receive_campaign_notifications" checked />
@@ -917,7 +943,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
         </div> <!-- form wrapper -->
         <script>
-
+            let coverage_bar = jQuery('.coverage-progress-bar')
+            coverage_bar.animate({
+                width: ( coverage_bar.data('percent') || 0 ) + '%'
+            })
         </script>
         <?php
     }
