@@ -156,7 +156,8 @@ class DT_Campaign_Progress extends DT_Module_Base
             'label' => __( 'Progress', 'disciple_tools' ),
             'description' => __( 'Cover a region with 24h prayer.', 'disciple_tools' ),
             "visibility" => __( "Collaborators", 'disciple_tools' ),
-            'color' => "#4CAF50"
+            'color' => "#4CAF50",
+            'hidden' => true
         ];
         return $types;
     }

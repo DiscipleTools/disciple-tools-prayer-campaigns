@@ -12,7 +12,7 @@ add_action( 'dt_prayer_campaign_reminders', 'dt_prayer_campaign_prayer_time_remi
 function dt_prayer_campaign_prayer_time_reminder(){
     global $wpdb;
 
-    $lead_time_in_hours = 12;
+    $lead_time_in_hours = 4;
 
     // get all reminders needed in the next x hours that have not been sent
     $begin_time_range = time();

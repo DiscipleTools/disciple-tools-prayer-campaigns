@@ -241,22 +241,19 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 float:left;
                 text-align: center;
                 border: 1px solid grey;
-                font-size:1.2em;
+            }
+
+            .day-selector {
                 padding: 10px 5px 5px 5px;
             }
-            .day-cell:hover {
+            .day-selector:hover {
                 background: lightblue;
-                border: 1px solid darkslategrey;
                 cursor:pointer;
             }
             .progress-bar {
                 height:10px;
-            }
-            .selected-hour {
-                max-width: 100%;
-                padding-top: 10px;
-                border: 1px solid grey;
-                font-size:1.2em;
+                background: dodgerblue;
+                width:0;
             }
             .no-selection {
                 max-width: 100%;
@@ -265,9 +262,66 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 font-size:1.2em;
             }
             .remove-selection {
-                float: right;
+                /*float: right;*/
                 color: red;
                 cursor:pointer;
+            }
+            #email {
+                display:none;
+            }
+            .day-extra {
+                text-align: start;
+                padding: 2px 5px;
+            }
+
+
+            .type-options {
+                display:flex;
+                flex-wrap:wrap;
+                margin-bottom: 15px;
+            }
+            .type-option:hover .type-option-border {
+                background-color: #ecf5fc;
+                border: 1px solid #c2e0ff;
+                border-radius:15px;
+            }
+            .type-option.selected .type-option-border {
+                background-color: #ecf5fc;
+                border: 1px solid #c2e0ff;
+                border-radius:15px;
+            }
+            .type-option {
+                padding-right: 10px;
+                display: flex;
+                flex-basis: 25%;
+            }
+            .type-option .type-option-border {
+                padding: 5px 10px;
+                border: 1px solid #c2e0ff;
+                border-radius:15px;
+                width: 100%;
+            }
+            .type-option input {
+                align-self:center;
+                margin-right:5px;
+                margin-bottom: 0;
+            }
+            .type-option .type-option-title {
+                color:#3f729b;
+                font-size: larger;
+            }
+
+            .type-option .type-option-rows {
+                display: inline-block;
+            .type-option .type-option-rows div {
+                display: block;
+                margin-bottom: 5px;
+            }
+            @media screen and (max-width : 640px) {
+                .type-option {
+                    flex-basis: 100%;
+                    margin-bottom: 1.25em;
+                }
             }
         </style>
         <?php
@@ -478,7 +532,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 <div class="cell grid" id="error"></div>
             </div>
 
-            <h3><?php esc_html_e( 'Sign up for more', 'disciple_tools' ); ?></h3>
+            <h2 class="center"><?php esc_html_e( 'Sign up for more', 'disciple_tools' ); ?></h2>
             <?php
             $grid_id = 1;
             if ( isset( $campaign['location_grid'] ) && ! empty( $campaign['location_grid'] ) ) {
