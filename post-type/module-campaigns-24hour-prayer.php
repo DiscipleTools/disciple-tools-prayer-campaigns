@@ -382,6 +382,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             }
             .time-cell {
                 cursor:pointer;
+                padding: 10px 5px 5px 5px;
             }
 
             .day-selector {
@@ -503,6 +504,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             );
         }
 
+        let day_start_timestamp_utc = ( timestamp ) => {
+            let start_of_day = new Date(timestamp*1000)
+            start_of_day.setHours(0,0,0,0)
+            return start_of_day.getTime()/1000
+        }
 
         let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
         let selected_calendar_color = 'green'
@@ -521,7 +527,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
                 if ( !days.length || day !== days[days.length-1]["formatted"] ){
                     days.push({
-                        "key": time_iterator,
+                        "key": day_start_timestamp_utc(time_iterator),
                         "formatted": day,
                         "percent": 0,
                         "slots": []
@@ -667,10 +673,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 } else {
                     jQuery(this).css('background-color', selected_calendar_color)
                     add_selected(selected_time_id, selected_day_id, day.formatted, slot.formatted)
-                }
-
-                if ( 0 === jQuery('#selected-prayer-times div').length ){
-                    selected_times.html(`<div class="cell selected-hour" id="no-selections">No Selections</div>`)
                 }
             })
 
