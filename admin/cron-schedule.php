@@ -1,26 +1,28 @@
 <?php
 /**
- * The cron runs hourly and looks at the next 12 hours for reminders needed.
- * Effectively this gives a soft buffer where most emails will go out between 10-12 hours
+ * The cron runs hourly and looks at the next x hours for reminders needed.
+ * Effectively this gives a soft buffer where most emails will go out between x hours
  * before the commitment time.
  */
-if ( !wp_next_scheduled( 'dt_prayer_campaign_send_12hour_reminder' )) {
-    wp_schedule_event( strtotime( '+1 hour' ), 'hourly', 'dt_prayer_campaign_send_12hour_reminder' );
+if ( !wp_next_scheduled( 'dt_prayer_campaign_reminders' )) {
+    wp_schedule_event( time(), 'hourly', 'dt_prayer_campaign_reminders' );
 }
-add_action( 'dt_prayer_campaign_send_12hour_reminder', 'dt_prayer_campaign_send_12hour_reminder' );
+add_action( 'dt_prayer_campaign_reminders', 'dt_prayer_campaign_prayer_time_reminder' );
 
-function dt_prayer_campaign_send_12hour_reminder(){
+function dt_prayer_campaign_prayer_time_reminder(){
     global $wpdb;
 
-    // get all reminders needed in the next 12 hours that have not been sent
+    $lead_time_in_hours = 12;
+
+    // get all reminders needed in the next x hours that have not been sent
     $begin_time_range = time();
-    $end_time_range = time() + 43200; // 43200 is the number of seconds in 12 hours
+    $end_time_range = time() + $lead_time_in_hours * 3600;
 
     /**
      * Get reports
      * That have been confirmed
      * Where notification has not been sent (no payload)
-     * Of prayer time happening in the next 12 hours
+     * Of prayer time happening in the next x hours
      */
     $reminders = $wpdb->get_results($wpdb->prepare(
         "SELECT r.id, r.parent_id, r.post_id, r.time_begin, r.time_end, pm.meta_value as email, r.label, pk.meta_value as public_key, p.post_title as name
@@ -31,11 +33,12 @@ function dt_prayer_campaign_send_12hour_reminder(){
             LEFT JOIN $wpdb->postmeta pk ON pm.post_id=pk.post_id
                 AND pk.meta_key = 'public_key'
             LEFT JOIN $wpdb->posts p ON p.ID=r.post_id
+            LEFT JOIN $wpdb->dt_reportmeta rm  ON ( rm.report_id = r.id AND rm.meta_key = 'prayer_time_reminder_sent' )
             WHERE r.post_type = 'subscriptions'
             AND r.time_begin >= %d
             AND r.time_begin <= %d
             AND r.value = '1'
-            AND ( r.payload = '' || r.payload IS NULL )
+            AND rm.meta_id IS NULL
             ORDER BY r.time_begin;
             ",
         $wpdb->esc_like( 'contact_email' ) . '%',
@@ -87,7 +90,7 @@ function dt_prayer_campaign_send_12hour_reminder(){
             if ( is_wp_error( $record ) ){
                 continue;
             }
-            $timezone = $record["timezone"] ?? 'America/New_York';
+            $timezone = $record["timezone"] ?? 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             foreach ( $reports as $row ){
 
@@ -132,11 +135,12 @@ function dt_prayer_campaign_send_12hour_reminder(){
             } else {
                 // note in report that email was sent
                 foreach ( $reports as $row ){
-                    $payload = maybe_serialize( [ '12hour_reminder_sent' => time() ] );
+                    $payload = maybe_serialize( [ 'prayer_time_reminder_sent' => time() ] );
                     Disciple_Tools_Reports::update( [
                         'id' => $row['id'],
                         'payload' => $payload
                     ] );
+                    Disciple_Tools_Reports::add_meta( $row['id'], 'prayer_time_reminder_sent', time() );
                 }
             }
         } // user loop

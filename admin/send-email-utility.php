@@ -23,7 +23,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $to = implode( ',', $to );
 
-        $timezone = $record["timezone"] ?? 'America/New_York';
+        $timezone = $record["timezone"] ?? 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
         $commitment_list = '';
         foreach ( $commitments as $row ){
