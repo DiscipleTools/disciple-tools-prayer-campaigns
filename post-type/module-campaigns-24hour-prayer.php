@@ -382,7 +382,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             }
             .time-cell {
                 cursor:pointer;
-                padding: 10px 5px 5px 5px;
+                padding: 5px 5px 5px 5px;
             }
 
             .day-selector {
@@ -396,6 +396,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 height:10px;
                 background: dodgerblue;
                 width:0;
+            }
+            .progress-bar-container {
+                border: 1px solid #bfbfbf;
+                margin-left: 5px;
+                margin-right: 5px;
             }
             .no-selection {
                 max-width: 100%;
@@ -557,7 +562,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
 
         jQuery(document).ready(function($){
-            let selected_times = $('#selected-prayer-times')
 
             let update_timezone = function (){
                 $('.timezone-current').html(current_time_zone)
@@ -570,10 +574,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 content.empty()
                 let list = ''
                 days.forEach(day=>{
-                    list += `<div class="cell day-cell" >
+                    list += `<div class="cell day-cell">
                         <div class="day-selector" data-time="${window.lodash.escape(day.key)}">
                             <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
-                            <div class="progress-bar" data-percent="${day.percent}"></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" data-percent="${day.percent}"></div>
+                            </div>
                         </div>
                         <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                     </div>`
@@ -649,7 +655,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                                 style="background-color:${background_color}" id="${slot.key}"
                                 data-day=${window.lodash.escape(id)}
                                 data-time="${window.lodash.escape(slot.key)}">
-                        ${window.lodash.escape(slot.formatted)} (${window.lodash.escape(slot.subscribers)} praying)
+                        ${window.lodash.escape(slot.formatted)} (${window.lodash.escape(slot.subscribers)} <i class="fi-torsos"></i>)
                     </div>`
                 })
                 list_content.empty().html(`<div class="grid-x"> ${time_cell} </div>`)
@@ -668,7 +674,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 let slot = day.slots.find(k=>k.key===selected_time_id)
                 slot.selected = true
                 if( 'rgb(0, 128, 0)' === jQuery(this).css('background-color') ) {
-                    jQuery(this).css('background-color', 'white')
+                    let background_color = 'white'
+                    if ( slot.subscribers > 0) {
+                        background_color = 'lightblue'
+                    }
+                    jQuery(this).css('background-color', background_color)
                     jQuery('#selected-'+selected_time_id).remove()
                 } else {
                     jQuery(this).css('background-color', selected_calendar_color)
@@ -691,9 +701,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 let slot = $(this).val()
                 let label = $("#daily_time_select option:selected").text()
 
+                let now = new Date().getTime()/1000
                 days.forEach(day=>{
                     let time = parseInt(day.key) + parseInt(slot);
-                    if ( time > calendar_subscribe_object.start_timestamp && time < calendar_subscribe_object.end_timestamp ){
+                    if ( time > now && time > calendar_subscribe_object.start_timestamp && time < calendar_subscribe_object.end_timestamp ){
                         let slot = day.slots.find(h=>parseInt(h.key)===parseInt(time))
                         if ( slot ){
                             slot.selected = true
@@ -843,11 +854,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         </div>
         <div class="reveal small" id="list-modal"  data-v-offset="0" data-reveal>
             <h3 id="list-modal-title"></h3>
+            <p><?php esc_html_e( 'Click the time slots you want to pray for.', 'disciple_tools' ); ?></p>
             <div id="list-modal-content"></div>
             <br>
             <div class="center">
                 <button class="button hollow large" data-close="" aria-label="Close modal" type="button">
-                    <span aria-hidden="true"><?php esc_html_e( 'Close', 'disciple_tools' ); ?></span>
+                    <span aria-hidden="true"><?php esc_html_e( 'Confirm', 'disciple_tools' ); ?></span>
                 </button>
             </div>
             <button class="close-button" data-close="" aria-label="Close modal" type="button">
@@ -1012,7 +1024,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 <h2><?php echo esc_html( $description ); ?></h2>
             </div>
             <div id="progress-section">
-                <div class="progress-bar-container" style="border: 1px solid black" >
+                <div class="progress-bar-container">
                     <div class="coverage-progress-bar" data-percent="<?php echo esc_html( $coverage_percentage ); ?>" style="background: dodgerblue; width:0; height:20px"></div>
                 </div>
                 <p>We have covered <strong><?php echo esc_html( $coverage_percentage ); ?>%</strong> of the <?php echo esc_html( $number_of_time_slots ); ?> time slots needed to cover the region in 24 hour prayer.</p>
