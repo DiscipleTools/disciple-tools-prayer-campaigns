@@ -338,6 +338,12 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
 
+            $fields["prayer_content_message"] = [
+                "name" => __( "Prayer Content message", 'disciple_tools' ),
+                "type" => "text",
+                "tile" => "details"
+            ];
+
         }
 
         if ( $post_type === "subscriptions" ){

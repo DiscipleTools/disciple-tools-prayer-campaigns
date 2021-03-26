@@ -74,6 +74,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
         // get campaign messages and links for the day
         $campaign_subject_line = 'Prayer Time reminder!';
 
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         foreach ( $subscriber_values as $key => $reports ) {
             $e = [
                 'to' => '',
@@ -117,6 +118,11 @@ function dt_prayer_campaign_prayer_time_reminder(){
             }
             $e['to'] = implode( ',', $to );
 
+            $prayer_content_message = "";
+            if ( isset( $campaign["prayer_content_message"] ) ){
+                $prayer_content_message = $campaign["prayer_content_message"];
+            }
+
             $e['message'] =
                 '
                 <h3>Hello ' . esc_html( $name ) . ',</h3>
@@ -124,6 +130,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 <p>Here are your upcoming prayer times:</p>
                 <p>'.$commitment_list.'</p>
                 <p>Times are shown according to: ' . esc_html( $timezone ) . ' time </p>
+                <p>' . $prayer_content_message . '</p>
                 <br>
                 <hr>
                 <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . esc_html( $public_key ) .'">
