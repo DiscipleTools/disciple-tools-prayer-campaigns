@@ -65,6 +65,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         }
+        return $sent;
     }
 
     public static function send_account_access( $campaign_id, $email ) {

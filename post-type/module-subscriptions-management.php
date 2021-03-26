@@ -509,7 +509,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
         $campaign_id = $post["campaigns"][0]["ID"];
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ) {
-                return $campaign;
+            return $campaign;
         }
         ?>
         <div id="custom-style"></div>
@@ -643,10 +643,15 @@ class DT_Subscriptions_Management extends DT_Module_Base
             return false;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
+        $campaign_grid_id = isset( $post["location_grid"][0]['id'] ) ? $post["location_grid"][0]['id'] : null;
 
 
         $campaign_instance = DT_Campaign_24Hour_Prayer::instance();
         foreach ( $params['selected_times'] as $time ){
+            if ( !isset( $time["time"] ) ){
+                continue;
+            }
+            $location_id = isset( $time['grid_id'] ) ? $time['grid_id'] : $campaign_grid_id;
             $args = [
                 'parent_id' => $campaign_id,
                 'post_id' => $post_id,
@@ -664,9 +669,9 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 'time_end' => $time['time'] + 900,
             ];
 
-            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $time['grid_id'] );
+            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
             if ( ! empty( $grid_row ) ){
-                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $time['grid_id'] );
+                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
                 $args['lng'] = $grid_row['longitude'];
                 $args['lat'] = $grid_row['latitude'];
                 $args['level'] = $grid_row['level_name'];

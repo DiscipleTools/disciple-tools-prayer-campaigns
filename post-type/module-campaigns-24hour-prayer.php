@@ -880,7 +880,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
             /* FUNCTIONS */
             window.create_subscription = () => {
-                console.log("here");
                 let spinner = $('.loading-spinner')
                 spinner.addClass('active')
                 let submit_button = jQuery('#submit-form')
@@ -1265,8 +1264,18 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             return $new_id;
         }
 
+        $campaign = DT_Posts::get_post( 'campaigns', $params['campaign_id'], true, false );
+        if ( is_wp_error( $campaign ) ){
+            return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
+        }
+        $campaign_grid_id = isset( $campaign["location_grid"][0]['id'] ) ? $campaign["location_grid"][0]['id'] : null;
+
         // log reports
         foreach ( $params['selected_times'] as $time ){
+            if ( !isset( $time["time"] ) ){
+                continue;
+            }
+            $location_id = isset( $time['grid_id'] ) ? $time['grid_id'] : $campaign_grid_id;
             $args = [
                 'parent_id' => $params['campaign_id'],
                 'post_id' => $new_id['ID'],
@@ -1279,14 +1288,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 'lat' => null,
                 'level' => null,
                 'label' => null,
-                'grid_id' => $time['grid_id'],
+                'grid_id' => $location_id,
                 'time_begin' => $time['time'],
                 'time_end' => $time['time'] + 900,
             ];
 
-            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $time['grid_id'] );
+            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
             if ( ! empty( $grid_row ) ){
-                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $time['grid_id'] );
+                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
                 $args['lng'] = $grid_row['longitude'];
                 $args['lat'] = $grid_row['latitude'];
                 $args['level'] = $grid_row['level_name'];
@@ -1295,7 +1304,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             Disciple_Tools_Reports::insert( $args );
         }
 
-        DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'] );
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'] );
+
+        if ( !$email_sent ){
+            return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );
+        }
 
         return $hash;
     }
