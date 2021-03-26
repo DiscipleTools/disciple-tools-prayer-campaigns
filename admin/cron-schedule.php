@@ -124,7 +124,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 <br>
                 <hr>
                 <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . esc_html( $public_key ) .'">
-                    Manage/edit your account and prayer times</a>
+                    Manage/edit your account and prayer times.</a>
                 </p>
             ';
 

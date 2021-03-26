@@ -44,17 +44,20 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         $subject = 'Registered to pray with us!';
-        $message =
-            '<h3>Thank you for praying with us!</h3>
+        $message = '';
+        if ( !empty( $record["name"] ) ){
+            $message .= '<h3>Hello ' . esc_html( $record["name"] ) . ',</h3>';
+        }
+
+        $message .= '
+            <h4>Thank you for praying with us!</h4>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Click here to verify your email address and confirm your prayer times. </a></p>
             <p>Here are the times you have committed to pray:</p>
             <p>'.$commitment_list.'</p>
             <p>Times are shown according to: <strong>' . esc_html( $timezone ) . '</strong> time </p>
-            <p>Please confirm your time commitments by visiting:</p>
-
-            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Confirm your prayer times!</a></p>
 
             <p>Manage your account and time commitments <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">here.</a></p>
-            ';
+        ';
 
 
         $headers = [];
