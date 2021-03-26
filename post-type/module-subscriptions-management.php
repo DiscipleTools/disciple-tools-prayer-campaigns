@@ -495,6 +495,40 @@ class DT_Subscriptions_Management extends DT_Module_Base
                     })
                 })
 
+                $('#confirm-delete-profile').on('click', function (){
+                    $(this).toggleClass('loading')
+                    let wrapper = jQuery('#wrapper')
+                     jQuery.ajax({
+                        type: "DELETE",
+                        data: JSON.stringify({parts: postSubscriptions.parts}),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type + '/delete_profile',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
+                        }
+                    }).done(function(data){
+                        wrapper.empty().html(`
+                            <div class="center">
+                            <h1>Your profile has been deleted!</h1>
+                            <p>Thank you for praying with us.<p>
+                            </div>
+                        `)
+                        spinner.removeClass('active')
+                        $(`#delete-profile-modal`).foundation('close')
+                    })
+                    .fail(function(e) {
+                        console.log(e)
+                        $('#confirm-delete-profile').toggleClass('loading')
+                        $('#delete-account-errors').empty().html(`<div class="grid-x"><div class="cell center">
+                        So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+
+                        </div></div>`)
+                        $('#error').html(e)
+                        spinner.removeClass('active')
+                    })
+                })
+
             })
         </script>
         <?php
@@ -548,7 +582,36 @@ class DT_Subscriptions_Management extends DT_Module_Base
                     <button class="button large" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?></button>
                 </div>
             </div>
-        </div> <!-- form wrapper -->
+
+
+            <div style="margin-top: 50px">
+                <h2>Danger Zone</h2>
+                <label>
+                    Delete this profile and all the scheduled prayer times?
+                    <button class="button alert" data-open="delete-profile-modal">Delete</button>
+                </label>
+                 <!-- Reveal Modal Daily time slot-->
+                <div id="delete-profile-modal" class="reveal tiny" data-reveal>
+                    <h2>Are you sure you want to delete your profile?</h2>
+                    <p>
+                        <?php esc_html_e( 'This can not be undone.', 'disciple_tools' ); ?>
+                    </p>
+                    <p id="delete-account-errors"></p>
+
+
+                    <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                    </button>
+                    <button class="button loader alert" type="button" id="confirm-delete-profile">
+                        <?php echo esc_html__( 'DELETE', 'disciple_tools' )?>
+                    </button>
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
         <?php
     }
 
@@ -573,11 +636,44 @@ class DT_Subscriptions_Management extends DT_Module_Base
         register_rest_route(
             $namespace, '/'.$this->type, [
                 [
-                    'methods'  => WP_REST_Server::CREATABLE,
+                    'methods'  => "POST",
                     'callback' => [ $this, 'endpoint' ],
                 ],
             ]
         );
+        register_rest_route(
+            $namespace, '/'.$this->type . '/delete_profile', [
+                [
+                    'methods'  => "DELETE",
+                    'callback' => [ $this, 'delete_profile' ],
+                ],
+            ]
+        );
+    }
+
+    public function delete_profile( WP_REST_Request $request ){
+        $params = $request->get_params();
+
+        if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'] ) ) {
+            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
+        }
+        $params = dt_recursive_sanitize_array( $params );
+        // manage
+        $magic = $this->magic;
+        $post_id = $magic->get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
+
+        if ( ! $post_id ){
+            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        }
+
+        $deleted = DT_Posts::delete_post( "subscriptions", $post_id, false );
+        if ( is_wp_error( $deleted )){
+            return new WP_Error( __METHOD__, "Could not delete profile", [ 'status' => 500 ] );
+        }
+        global $wpdb;
+        $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
+
+        return true;
     }
 
     public function endpoint( WP_REST_Request $request ) {
