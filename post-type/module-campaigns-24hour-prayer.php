@@ -384,6 +384,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 cursor:pointer;
                 padding: 5px 5px 5px 5px;
             }
+            .disabled-time-cell {
+                padding: 5px 5px 5px 5px;
+                background-color: #eee;
+            }
 
             .day-selector {
                 padding: 10px 5px 5px 5px;
@@ -391,6 +395,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             .day-selector:hover {
                 background: lightblue;
                 cursor:pointer;
+            }
+            .disabled-day {
+                padding: 10px 5px 5px 5px;
+                background-color: #eee;
             }
             .progress-bar {
                 height:10px;
@@ -575,12 +583,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 let content = $(`#${id}`)
                 content.empty()
                 let list = ''
+                let now = new Date().getTime()/1000
                 days.forEach(day=>{
-                    list += `<div class="cell day-cell">
-                        <div class="day-selector" data-time="${window.lodash.escape(day.key)}">
+                    let disabled = ( day.key + ( 24*3600 ) ) > now ?  '' : "disabled-day";
+                    list += `<div class="cell day-cell ${disabled}">
+                        <div class="${disabled ? '' : 'day-selector'}" data-time="${window.lodash.escape(day.key)}">
                             <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
                             <div class="progress-bar-container">
-                                <div class="progress-bar" data-percent="${day.percent}"></div>
+                                <div class="progress-bar" data-percent="${day.percent}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
                             </div>
                         </div>
                         <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
@@ -588,11 +598,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 })
 
                 content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
-                jQuery.each( jQuery('.progress-bar'), function(){
-                    jQuery(this).animate({
-                        width: ( jQuery(this).data('percent') || 0 ) + '%'
-                    })
-                })
 
             }
             draw_calendar()
@@ -647,6 +652,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 let list_content = jQuery('#list-modal-content')
                 let time_cell = ''
                 day.slots.forEach(slot=>{
+                    let now = new Date().getTime()/1000
+                    let disabled = ( slot.key ) < now;
+
                     let background_color = 'white'
                     if ( slot.subscribers > 0) {
                         background_color = 'lightblue'
@@ -654,7 +662,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     if ( slot.selected ) {
                         background_color = selected_calendar_color
                     }
-                    time_cell += `<div class="cell day-cell time-cell"
+                    if ( disabled ){
+                        background_color = `#eee`
+                    }
+                    time_cell += `<div class="cell day-cell ${disabled ? 'disabled-time-cell' : 'time-cell' } "
                                 style="background-color:${background_color}" id="${slot.key}"
                                 data-day=${window.lodash.escape(id)}
                                 data-time="${window.lodash.escape(slot.key)}">
