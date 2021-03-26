@@ -21,7 +21,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
     /**
      * Get reports
      * That have been confirmed
-     * Where notification has not been sent (no payload)
+     * Where notification has not been sent (no 'prayer_time_reminder_sent' meta)
      * Of prayer time happening in the next x hours
      */
     $reminders = $wpdb->get_results($wpdb->prepare(
@@ -32,12 +32,15 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 AND pm.meta_key NOT LIKE %s
             LEFT JOIN $wpdb->postmeta pk ON pm.post_id=pk.post_id
                 AND pk.meta_key = 'public_key'
+            LEFT JOIN $wpdb->postmeta pn ON pm.post_id=pn.post_id
+                AND pn.meta_key = 'receive_prayer_time_notifications'
             LEFT JOIN $wpdb->posts p ON p.ID=r.post_id
             LEFT JOIN $wpdb->dt_reportmeta rm  ON ( rm.report_id = r.id AND rm.meta_key = 'prayer_time_reminder_sent' )
             WHERE r.post_type = 'subscriptions'
             AND r.time_begin >= %d
             AND r.time_begin <= %d
             AND r.value = '1'
+            AND pn.meta_value = '1'
             AND rm.meta_id IS NULL
             ORDER BY r.time_begin;
             ",

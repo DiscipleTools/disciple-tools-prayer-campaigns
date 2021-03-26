@@ -301,6 +301,13 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 "type" => "text",
                 "hidden" => true
             ];
+            $fields["receive_prayer_time_notifications"] = [
+                "name" => __( 'Receive Prayer Time Notifications', 'disciple_tools' ),
+                "type" => "boolean",
+                "tile" => "details",
+                "default" => false,
+                "hidden" => false,
+            ];
         }
 
         if ( $post_type === "contacts" && current_user_can( 'view_all_'.$this->post_type ) ){
