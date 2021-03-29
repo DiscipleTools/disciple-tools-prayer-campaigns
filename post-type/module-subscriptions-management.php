@@ -221,6 +221,10 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 display: none;
             }
 
+            #email {
+                display:none;
+            }
+
             /* size specific style section */
             @media screen and (max-width: 991px) {
                 /* start of large tablet styles */
@@ -236,93 +240,11 @@ class DT_Subscriptions_Management extends DT_Module_Base
                     background-color: white;
                 }
             }
-            .day-cell {
-                max-width: 25%;
-                float:left;
-                text-align: center;
-                border: 1px solid grey;
-            }
-
-            .day-selector {
-                padding: 10px 5px 5px 5px;
-            }
-            .day-selector:hover {
-                background: lightblue;
-                cursor:pointer;
-            }
-            .progress-bar {
-                height:10px;
-                background: dodgerblue;
-                width:0;
-            }
-            .no-selection {
-                max-width: 100%;
-                padding-top: 10px;
-                border: 1px solid grey;
-                font-size:1.2em;
-            }
-            .remove-selection {
-                /*float: right;*/
+            .remove-my-prayer-time {
                 color: red;
                 cursor:pointer;
             }
-            #email {
-                display:none;
-            }
-            .day-extra {
-                text-align: start;
-                padding: 2px 5px;
-            }
 
-
-            .type-options {
-                display:flex;
-                flex-wrap:wrap;
-                margin-bottom: 15px;
-            }
-            .type-option:hover .type-option-border {
-                background-color: #ecf5fc;
-                border: 1px solid #c2e0ff;
-                border-radius:15px;
-            }
-            .type-option.selected .type-option-border {
-                background-color: #ecf5fc;
-                border: 1px solid #c2e0ff;
-                border-radius:15px;
-            }
-            .type-option {
-                padding-right: 10px;
-                display: flex;
-                flex-basis: 25%;
-            }
-            .type-option .type-option-border {
-                padding: 5px 10px;
-                border: 1px solid #c2e0ff;
-                border-radius:15px;
-                width: 100%;
-            }
-            .type-option input {
-                align-self:center;
-                margin-right:5px;
-                margin-bottom: 0;
-            }
-            .type-option .type-option-title {
-                color:#3f729b;
-                font-size: larger;
-            }
-
-            .type-option .type-option-rows {
-                display: inline-block;
-            .type-option .type-option-rows div {
-                display: block;
-                margin-bottom: 5px;
-            }
-            @media screen and (max-width : 640px) {
-                .type-option {
-                    flex-basis: 100%;
-                    margin-bottom: 1.25em;
-                }
-            }
         </style>
         <?php
     }
@@ -331,6 +253,17 @@ class DT_Subscriptions_Management extends DT_Module_Base
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
+        }
+        $my_commitments_reports = $this->get_subscriptions( $this->parts['post_id'] );
+        $my_commitments = [];
+        foreach ( $my_commitments_reports as $commitments_report ){
+            $my_commitments[] = [
+                "time_begin" => $commitments_report["time_begin"],
+                "value" => $commitments_report["value"],
+                "report_id" => $commitments_report["id"],
+                "verified" => $commitments_report["verified"] ?? false,
+
+            ];
         }
         ?>
         <script>
@@ -345,76 +278,33 @@ class DT_Subscriptions_Management extends DT_Module_Base
                     'add' => __( 'Add Report', 'disciple-tools-subscriptions' ),
                     'search_location' => 'Search for Location'
                 ],
+                'my_commitments' => $my_commitments,
             ]) ?>][0]
 
             jQuery(document).ready(function($){
                 clearInterval(window.fiveMinuteTimer)
+                 $( document ).on( 'calendar_drawn', function (e){
+                    postSubscriptions.my_commitments.forEach(c=>{
+                        let time = c.time_begin;
+                        let day_timestamp = day_start_timestamp_utc(c.time_begin)
+                        let time_label = timestamp_to_time(c.time_begin)
 
-                /* LOAD */
-                let spinner = $('.loading-spinner')
-
-                /* FUNCTIONS */
-                window.get_subscriptions = () => {
-                    $.ajax({
-                        type: "POST",
-                        data: JSON.stringify({ action: 'get', parts: postSubscriptions.parts }),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        url: postSubscriptions.root + postSubscriptions.parts.root + '/v1/' + postSubscriptions.parts.type,
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader('X-WP-Nonce', postSubscriptions.nonce )
-                        }
-                    })
-                        .done(function(data){
-                            window.load_subscriptions( data )
-                            spinner.removeClass('active')
-                        })
-                        .fail(function(e) {
-                            console.log(e)
-                            $('#error').html(e)
-                        })
-                }
-
-                window.load_subscriptions = ( data ) => {
-                    spinner.addClass('active')
-                    data.sort((a,b) => {
-                        return parseInt(a.time_begin) - parseInt(b.time_begin)
-                    })
-
-                    window.current_subscriptions = data
-
-                    let list = $('#subscriptions-list')
-                    list.empty();
-
-                    if ( data.length > 0 ) {
-                        $.each(data, function(i,v){
-                            let verified = ''
-                            if ( v.verified ) {
-                                verified = ' <span style="color:green; font-weight:bold;"><i class="fi-check"></i> Verified!</span>'
-                            }
-                            list.append(`
-                                <tr><td>${window.lodash.escape( window.SHAREDFUNCTIONS.formatDate(v.time_begin, true) )} ${verified}</td><td style="vertical-align: middle;"><button type="button" class="button small alert delete-subscriptions" data-id="${window.lodash.escape( v.id )}" style="margin: 0;float:right;">&times;</button></td></tr>
-                            `)
-                        })
-
-                        $('.delete-subscriptions').on('click', function(e){
-                            let id = $(this).data('id')
-                            $(this).attr('disabled', 'disabled')
-                            window.delete_subscriptions( id )
-                        })
-                    } else {
-                        list.append(`
-                        <tr><td>No subscriptions found.</td></tr>
+                        $(`#calendar-extra-${day_timestamp}`).append(`
+                            <div id="selected-${window.lodash.escape(time)}"
+                                data-time="${window.lodash.escape(time)}">
+                                ${window.lodash.escape(time_label)}
+                                <i class="fi-x remove-selection remove-my-prayer-time" data-report=${window.lodash.escape(c.report_id)} data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
+                                ${c.verified ? ' <span class="verified"><i class="fi-check"></i> Verified!</span>' : ''}
+                            </div>
                         `)
-                    }
+
+                    })
+                 })
 
 
-                    spinner.removeClass('active')
-                    $('#loading-message').hide()
-
-                }
-
-                window.delete_subscriptions = ( id ) => {
+                $(document).on("click", '.remove-my-prayer-time', function (){
+                    let id = $(this).data("report")
+                    let spinner = $('.loading-spinner')
                     spinner.addClass('active')
 
                     jQuery.ajax({
@@ -428,16 +318,13 @@ class DT_Subscriptions_Management extends DT_Module_Base
                         }
                     })
                         .done(function(data){
-                            window.load_subscriptions( data )
                             spinner.removeClass('active')
                         })
                         .fail(function(e) {
                             console.log(e)
                             jQuery('#error').html(e)
                         })
-                }
-
-                window.get_subscriptions()
+                })
 
                 jQuery('#submit-form').on('click', function(){
 
@@ -554,32 +441,25 @@ class DT_Subscriptions_Management extends DT_Module_Base
                 </div>
             </div>
             <hr>
-            <div class="grid-x" style=" height: inherit !important;">
-                <div class="cell center" id="bottom-spinner"><span class="loading-spinner active"></span></div>
-                <h3><?php esc_html_e( 'My Prayer Times', 'disciple_tools' ); ?></h3>
-                <div class="cell" id="content">
-                    <table class="hover">
-                        <tbody id="subscriptions-list"></tbody>
-                    </table>
-                    <div id="loading-message" class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div>
-                </div>
-                <div class="cell grid" id="error"></div>
-            </div>
 
-            <h2 class="center"><?php esc_html_e( 'Sign up for more', 'disciple_tools' ); ?></h2>
+            <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple_tools' ); ?></h2>
             <?php
             $grid_id = 1;
             if ( isset( $campaign['location_grid'] ) && ! empty( $campaign['location_grid'] ) ) {
                 $grid_id = $campaign['location_grid'][0]['id'];
             }
             $current_commitments = DT_Time_Utilities::subscribed_times_list( $campaign_id );
+
             DT_Campaign_24Hour_Prayer::calendar_subscribe( $campaign_id, $grid_id, $current_commitments, $campaign['start_date']['timestamp'] ?? time(), $campaign['end_date']['timestamp'] ?? time() );
+            ?><div class=""><h2>Sign up for more</h2></div>
+            <?php
+            DT_Campaign_24Hour_Prayer::select_times()
             ?>
 
             <br>
             <div class="grid-x grid-padding-x grid-padding-y">
                 <div class="cell center">
-                    <button class="button large" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?></button>
+                    <button class="button large" id="submit-form"><?php esc_html_e( 'Confirm new prayer times', 'disciple_tools' ); ?></button>
                 </div>
             </div>
 

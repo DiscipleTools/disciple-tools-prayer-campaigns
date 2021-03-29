@@ -491,7 +491,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         if ( $post_type === $this->post_type && $section === "commitments" ){
             $subscriber_id = get_the_ID();
             $subscriber = DT_Posts::get_post( "subscriptions", $subscriber_id, true, true );
-            $subs = Disciple_Tools_Reports::get( get_the_ID(), 'post_id' );
+            $subs = Disciple_Tools_Reports::get( $subscriber_id, 'post_id' );
             usort($subs, function( $a, $b) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });

@@ -373,7 +373,153 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     background-color: white;
                 }
             }
+            #email {
+                display: none;
+            }
 
+
+        </style>
+        <?php
+    }
+
+    public static function select_times(){
+
+
+        ?>
+        <div class="center">
+            <h3 class="type-description-row" style="margin-top:30px">When will you pray?</h3>
+            <div class="type-options">
+                <div class="type-option" id="type-daily">
+                    <div class="type-option-border">
+                        <input type="radio" name="type" value="type-daily" style="display: none">
+                        <div class="type-option-rows">
+                            <div>
+                                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/time.svg' ) ?>">
+                                <strong class="type-option-title">Recurring Prayer Time </strong>
+                            </div>
+                            <!--                        <div class="type-description-row">-->
+                            <!--                            <img class="dt-icon" src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/visibility.svg' ) ?><!--"/>-->
+                            <!--                            (Recommended)-->
+                            <!--                        </div>-->
+                            <div class="">
+                                <!--                            <img class="dt-icon" src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/help.svg' ) ?><!--"/>-->
+                                Pray at the same time each day
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="type-option" id="type-individual">
+                    <div class="type-option-border">
+                        <input type="radio" name="type" value="type-individual" style="display: none">
+                        <div class="type-option-rows">
+                            <div>
+                                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/calendar.svg' ) ?>">
+                                <strong class="type-option-title">Individual Prayer Times</strong>
+                            </div>
+                            <div class="">
+                                <!--                            <img class="dt-icon" src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/help.svg' ) ?><!--"/>-->
+                                Select individual prayer times
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reveal Modal Timezone Changer-->
+        <div id="timezone-changer" class="reveal tiny" data-reveal>
+            <h2>Change your timezone:</h2>
+            <select id="timezone-select">
+                <?php
+                $selected_tz = 'America/Denver';
+                if ( !empty( $selected_tz ) ){
+                    ?>
+                    <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
+                    <option disabled>----</option>
+                    <?php
+                }
+                $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+                foreach ( $tzlist as $tz ){
+                    ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
+                }
+                ?>
+            </select>
+            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+            </button>
+            <button class="button" type="button" id="confirm-timezone" data-close>
+                <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+            </button>
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <!-- Reveal Modal Daily time slot-->
+        <div id="daily-time-modal" class="reveal tiny" data-reveal style="min-height: 300px">
+            <h2>Recurring prayer time</h2>
+
+            <div>
+                <label>
+                    <strong><?php echo esc_html( "Pray every day at:" ); ?></strong>
+                    <label>
+                        <select id="daily_time_select"></select>
+                        <strong><?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+            </div>
+
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="pin-to-bottom">
+                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                    <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                </button>
+                <button class="button" type="button" id="confirm-daily-time" data-close>
+                    <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+                </button>
+            </div>
+        </div>
+
+        <!-- Reveal Modal Daily time slot-->
+        <div id="individual-times-modal" class="reveal tiny" data-reveal>
+            <h2>Recurring prayer time</h2>
+            <p>
+                <?php esc_html_e( 'Click on a days and then the time slots you want to pray for.', 'disciple_tools' ); ?>
+            </p>
+            <strong><?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+            <div id="mini-calendar" style="margin-bottom: 30px">
+
+            </div>
+
+            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+            </button>
+            <button class="button" type="button" id="confirm-daily-time" data-close>
+                <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+            </button>
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <div id="type-individual-section" style="display: none">
+            <p>
+                <?php esc_html_e( 'Click on a day and then the time slots you want to pray for.', 'disciple_tools' ); ?>
+            </p>
+        </div>
+        <?php
+    }
+
+
+    public static function calendar_subscribe( $campaign_id, $location_id, $current_commitments, $start_timestamp, $end_timestamp ){
+        ?>
+        <style>
             .day-cell {
                 max-width: 25%;
                 float:left;
@@ -421,9 +567,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 color: red;
                 cursor:pointer;
             }
-            #email {
-                display:none;
-            }
+
             .day-extra {
                 text-align: start;
                 padding: 2px 5px;
@@ -472,8 +616,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 display: inline-block;
             }
             .type-option .type-option-rows div {
-                    display: block;
-                    margin-bottom: 5px;
+                display: block;
+                margin-bottom: 5px;
             }
             @media only screen and (max-width : 640px) {
                 .type-option {
@@ -481,12 +625,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     margin-bottom: 1.25em;
                 }
             }
+            .verified {
+                color:green; font-weight:bold;
+            }
         </style>
-        <?php
-    }
-
-    public static function calendar_subscribe( $campaign_id, $location_id, $current_commitments, $start_timestamp, $end_timestamp ){
-        ?>
         <script>
         let calendar_subscribe_object = [<?php echo json_encode([
             'campaign_id' => $campaign_id,
@@ -495,6 +637,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             'translations' => [],
             'start_timestamp' => (int) $start_timestamp,
             'end_timestamp' => (int) $end_timestamp + 86400,
+            'slot_length' => 15
         ]) ?>][0]
 
         //format date to month and day
@@ -545,7 +688,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                         "key": day_start_timestamp_utc(time_iterator),
                         "formatted": day,
                         "percent": 0,
-                        "slots": []
+                        "slots": [],
+                        "covered_slots": 0,
                     })
                 }
                 let time_formatted = timestamp_to_time(time_iterator, custom_timezone)
@@ -556,20 +700,21 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 })
 
                 if ( calendar_subscribe_object.current_commitments[time_iterator] ){
-                    days[days.length-1].percent += 100 / ( 24 / ( 15/60 ) ) // percent of day of 15 mins
+                    days[days.length-1].covered_slots += 1;
 
                     if ( !time_slot_coverage[time_formatted]){
                         time_slot_coverage[time_formatted] = 0;
                     }
                     time_slot_coverage[time_formatted]++;
                 }
-                time_iterator += 15 * 60;
+                time_iterator += calendar_subscribe_object.slot_length * 60;
             }
+            days.forEach(d=>{
+                d.percent = d.covered_slots / d.slots.length * 100
+            })
             return days;
         }
         let days = calculate_day_times()
-
-
 
         jQuery(document).ready(function($){
 
@@ -578,6 +723,20 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
             }
             update_timezone()
+
+            // add selection function
+            let add_selected = function (time, day, day_label, time_label, verified ){
+                $("#progress-section").hide()
+                $(`#calendar-extra-${day}`).append(`
+                    <div id="selected-${window.lodash.escape(time)}" class="selected-hour"
+                        data-time="${window.lodash.escape(time)}">
+                        ${window.lodash.escape(time_label)}
+                        <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
+                        ${verified ? ' <span class="verified"><i class="fi-check"></i> Verified!</span>' : ''}
+                    </div>
+                `)
+                $('#confirmation-section').show()
+            }
 
             let draw_calendar = ( id = 'calendar-content') => {
                 let content = $(`#${id}`)
@@ -601,6 +760,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
             }
             draw_calendar()
+            $( document ).trigger( "calendar_drawn" );
             let populate_select = () => {
                 let select = $('#daily_time_select')
                 select.empty();
@@ -618,7 +778,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                     select_html += `<option value="${window.lodash.escape(key)}">
                         ${window.lodash.escape(time_formatted)} ${ covered ? "(Already covered)": '' }
                     </option>`
-                    key+=15*60
+                    key += calendar_subscribe_object.slot_length * 60
                 }
                 select.html(select_html)
 
@@ -741,19 +901,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
 
             })
 
-            // add selection function
-            let add_selected = function (time, day, day_label, time_label){
-                $("#progress-section").hide()
-                $(`#calendar-extra-${day}`).append(`
-                    <div id="selected-${window.lodash.escape(time)}" class="selected-hour"
-                        data-time="${window.lodash.escape(time)}">
-                        ${window.lodash.escape(time_label)}
-                        <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
-                    </div>
-                `)
-                $('#confirmation-section').show()
-            }
-
             //remove selection
             $(document).on("click", '.remove-selection', function (){
                 let time_timestamp = $(this).data("time")
@@ -766,134 +913,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         })
 
         </script>
-        <div class="center">
-            <h3 class="type-description-row" style="margin-top:30px">When will you pray?</h3>
-            <div class="type-options">
-                <div class="type-option" id="type-daily">
-                    <div class="type-option-border">
-                        <input type="radio" name="type" value="type-daily" style="display: none">
-                        <div class="type-option-rows">
-                            <div>
-                                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/time.svg' ) ?>">
-                                <strong class="type-option-title">Recurring Prayer Time </strong>
-                            </div>
-    <!--                        <div class="type-description-row">-->
-    <!--                            <img class="dt-icon" src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/visibility.svg' ) ?><!--"/>-->
-    <!--                            (Recommended)-->
-    <!--                        </div>-->
-                            <div class="">
-    <!--                            <img class="dt-icon" src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/help.svg' ) ?><!--"/>-->
-                                Pray at the same time each day
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="type-option" id="type-individual">
-                    <div class="type-option-border">
-                        <input type="radio" name="type" value="type-individual" style="display: none">
-                        <div class="type-option-rows">
-                            <div>
-                                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/calendar.svg' ) ?>">
-                                <strong class="type-option-title">Individual Prayer Times</strong>
-                            </div>
-                            <div class="">
-    <!--                            <img class="dt-icon" src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/help.svg' ) ?><!--"/>-->
-                                Select individual prayer times
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <!-- Reveal Modal Timezone Changer-->
-        <div id="timezone-changer" class="reveal tiny" data-reveal>
-            <h2>Change your timezone:</h2>
-            <select id="timezone-select">
-                <?php
-                $selected_tz = 'America/Denver';
-                if ( !empty( $selected_tz ) ){
-                    ?>
-                    <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
-                    <option disabled>----</option>
-                    <?php
-                }
-                $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
-                foreach ( $tzlist as $tz ){
-                    ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
-                }
-                ?>
-            </select>
-            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
-            </button>
-            <button class="button" type="button" id="confirm-timezone" data-close>
-                <?php echo esc_html__( 'Select', 'disciple_tools' )?>
-            </button>
-
-            <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
 
 
-        <!-- Reveal Modal Daily time slot-->
-        <div id="daily-time-modal" class="reveal tiny" data-reveal style="min-height: 300px">
-            <h2>Recurring prayer time</h2>
 
-            <div>
-                <label>
-                    <strong><?php echo esc_html( "Pray every day at:" ); ?></strong>
-                <label>
-                <select id="daily_time_select"></select>
-                <strong><?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-            </div>
-
-
-            <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="pin-to-bottom">
-                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
-                </button>
-                <button class="button" type="button" id="confirm-daily-time" data-close>
-                    <?php echo esc_html__( 'Select', 'disciple_tools' )?>
-                </button>
-            </div>
-        </div>
-
-        <!-- Reveal Modal Daily time slot-->
-        <div id="individual-times-modal" class="reveal tiny" data-reveal>
-            <h2>Recurring prayer time</h2>
-            <p>
-                <?php esc_html_e( 'Click on a days and then the time slots you want to pray for.', 'disciple_tools' ); ?>
-            </p>
-            <strong><?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-            <div id="mini-calendar" style="margin-bottom: 30px">
-
-            </div>
-
-            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
-            </button>
-            <button class="button" type="button" id="confirm-daily-time" data-close>
-                <?php echo esc_html__( 'Select', 'disciple_tools' )?>
-            </button>
-
-            <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-
-        <div id="type-individual-section" style="display: none">
-            <p>
-                <?php esc_html_e( 'Click on a day and then the time slots you want to pray for.', 'disciple_tools' ); ?>
-            </p>
-        </div>
 
         <div id="type-individual-section">
             <div class="center">
@@ -1109,8 +1133,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
                 $grid_id = $post['location_grid'][0]['id'];
             }
             $current_commitments = DT_Time_Utilities::subscribed_times_list( $this->parts['post_id'] );
-            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, $post['start_date']['timestamp'] ?? time(), $post['end_date']['timestamp'] ?? time() ) ?>
+            $this->select_times();
+            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, $post['start_date']['timestamp'] ?? time(), $post['end_date']['timestamp'] ?? time() );
 
+            ?>
             <br>
 
             <div id="confirmation-section" style="">
