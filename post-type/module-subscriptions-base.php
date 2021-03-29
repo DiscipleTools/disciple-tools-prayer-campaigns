@@ -479,6 +479,9 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             <?php
             if ( ! empty( $subs ) ){
                 foreach ( $subs as $sub ){
+                    if ( !isset( $sub["time_begin"] ) ){
+                        continue;
+                    }
                     $style = '';
                     if ( time() > $sub['time_begin'] ){
                         $style = 'text-decoration:line-through;';
