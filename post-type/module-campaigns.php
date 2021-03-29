@@ -117,21 +117,9 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ];
         }
 
-        // if the user can access contact they also can access this post type
-        foreach ( $expected_roles as $role => $role_value ){
-            if ( isset( $expected_roles[$role]["permissions"]['access_contacts'] ) && $expected_roles[$role]["permissions"]['access_contacts'] ){
-                $expected_roles[$role]["permissions"]['access_' . $this->post_type ] = true;
-                $expected_roles[$role]["permissions"]['create_' . $this->post_type] = true;
-            }
-        }
-
-
         if ( isset( $expected_roles["administrator"] ) ){
             $expected_roles["administrator"]["permissions"]['view_any_'.$this->post_type ] = true;
-            $expected_roles["dt_admin"]["permissions"][ 'dt_all_admin_' . $this->post_type] = true;
-        }
-        if ( isset( $expected_roles["dt_admin"] ) ){
-            $expected_roles["dt_admin"]["permissions"]['view_any_'.$this->post_type ] = true;
+            $expected_roles["administrator"]["permissions"]['update_any_'.$this->post_type ] = true;
             $expected_roles["dt_admin"]["permissions"][ 'dt_all_admin_' . $this->post_type] = true;
         }
 
