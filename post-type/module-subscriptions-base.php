@@ -489,19 +489,45 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         /* SUBSCRIPTIONS */
 
         if ( $post_type === $this->post_type && $section === "commitments" ){
+            $subscriber_id = get_the_ID();
+            $subscriber = DT_Posts::get_post( "subscriptions", $subscriber_id, true, true );
             $subs = Disciple_Tools_Reports::get( get_the_ID(), 'post_id' );
             usort($subs, function( $a, $b) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
+            $timezone = $subscriber["timezone"] ?? 'America/Chicago';
+            $tz = new DateTimeZone( $timezone );
+            $notifications = isset( $subscriber["receive_prayer_time_notifications"] ) && !empty( $subscriber["receive_prayer_time_notifications"] );
+            ?>
+            <div>Notifications allowed:
+                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
+            </div>
+            <?php
             if ( ! empty( $subs ) ){
                 foreach ( $subs as $sub ){
                     $style = '';
                     if ( time() > $sub['time_begin'] ){
                         $style = 'text-decoration:line-through;';
                     }
+                    $begin_date = new DateTime( "@".$sub['time_begin'] );
+                    $end_date = new DateTime( "@".$sub['time_end'] );
+                    $begin_date->setTimezone( $tz );
+                    $end_date->setTimezone( $tz );
+                    $payload = maybe_unserialize( $sub["payload"] );
                     ?>
                     <div>
-                        <span style="<?php echo esc_html( $style ); ?>"><?php echo esc_html( gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) ) ?> for <?php echo esc_html( $sub['label'] ) ?></span>
+                        <span style="<?php echo esc_html( $style ); ?>">
+                            <?php echo esc_html( $begin_date->format( 'F d, Y @ H:i a' ) );
+                            if ( !empty( $sub["label"] ) ) : ?>
+                                for <?php echo esc_html( $sub['label'] ) ?>
+                            <?php endif;
+                            if ( !empty( $sub["value"] ) ) : ?>
+                                <img class="dt-icon" title="<?php esc_html_e( 'Verified', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                            <?php endif;
+                            if ( isset( $payload["prayer_time_reminder_sent"] ) ) : ?>
+                                <img class="dt-icon" title="<?php esc_html_e( 'Email Sent', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/email.svg' ) ?>"/>
+                            <?php endif; ?>
+                        </span>
                     </div>
                     <?php
                 }
