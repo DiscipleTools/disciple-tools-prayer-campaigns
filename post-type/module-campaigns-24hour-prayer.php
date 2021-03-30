@@ -662,6 +662,23 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             );
         }
 
+        /**
+         * return the st of day timestamp of a particular timezone
+         * @param timestamp
+         * @param timezone
+         * @returns {number}
+         */
+        let day_start = (timestamp, timezone) =>{
+            let date = new Date( timestamp * 1000)
+            let invdate = new Date(date.toLocaleString('en-US', {
+                timeZone: timezone
+            }));
+            let diff = date.getTime() - invdate.getTime();
+            invdate.setHours(0,0,0,0)
+            return (invdate.getTime()+diff)/1000
+
+        }
+
         let day_start_timestamp_utc = ( timestamp ) => {
             let start_of_day = new Date(timestamp*1000)
             start_of_day.setHours(0,0,0,0)
@@ -678,21 +695,31 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
         //set up array of days and time slots according to timezone
         let calculate_day_times = function (custom_timezone=null){
             let days = [];
-
+            let processing_save = {}
             let time_iterator = calendar_subscribe_object.start_timestamp;
-            while ( time_iterator < calendar_subscribe_object.end_timestamp ){
-                let day = timestamp_to_month_day( time_iterator, custom_timezone )
 
-                if ( !days.length || day !== days[days.length-1]["formatted"] ){
+            let start_of_day = day_start( time_iterator, current_time_zone)
+            while ( time_iterator < calendar_subscribe_object.end_timestamp ){
+
+                if ( !days.length || time_iterator >= ( start_of_day+24*3600 ) ){
+                    start_of_day = ( time_iterator >= start_of_day+24*3600 ) ? time_iterator : start_of_day
+                    let day = timestamp_to_month_day( time_iterator, custom_timezone )
                     days.push({
-                        "key": day_start_timestamp_utc(time_iterator),
+                        "key": time_iterator,
                         "formatted": day,
                         "percent": 0,
                         "slots": [],
                         "covered_slots": 0,
                     })
                 }
-                let time_formatted = timestamp_to_time(time_iterator, custom_timezone)
+                let mod_time = time_iterator % (24 * 60 * 60)
+                let time_formatted = '';
+                if ( processing_save[mod_time] ){
+                    time_formatted = processing_save[mod_time]
+                } else {
+                    time_formatted = timestamp_to_time(time_iterator, custom_timezone)
+                    processing_save[mod_time] = time_formatted
+                }
                 days[days.length-1]["slots"].push({
                     "key": time_iterator,
                     "formatted": time_formatted,
@@ -1134,7 +1161,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             }
             $current_commitments = DT_Time_Utilities::subscribed_times_list( $this->parts['post_id'] );
             $this->select_times();
-            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, $post['start_date']['timestamp'] ?? time(), $post['end_date']['timestamp'] ?? time() );
+            $this->calendar_subscribe( $this->parts['post_id'], $grid_id, $current_commitments, DT_Time_Utilities::start_of_campaign_with_timezone( $post["ID"] ), DT_Time_Utilities::end_of_campaign_with_timezone( $post["ID"] ) );
 
             ?>
             <br>

@@ -118,4 +118,37 @@ class DT_Time_Utilities {
         return $times_list;
     }
 
+    public static function start_of_campaign_with_timezone( $post_id ){
+        $post = DT_Posts::get_post( 'campaigns', $post_id, true, false );
+        if ( isset( $post["campaign_timezone"]["key"] ) ){
+            if ( isset( $post["start_date"]["timestamp"] ) && !empty( $post["start_date"]["timestamp"] ) ){
+                $dt_now = new DateTime();
+                // Set a non-default timezone if needed
+                $dt_now->setTimezone( new DateTimeZone( $post["campaign_timezone"]["key"] ) );
+                $dt_now->setTimestamp( $post["start_date"]["timestamp"] );
+
+                $start_date = clone $dt_now;
+                $start_date->modify( 'today' );
+                return $start_date->getTimestamp();
+            }
+        }
+        return isset( $post["start_date"]["timestamp"] ) ? $post["start_date"]["timestamp"] : time();
+    }
+    public static function end_of_campaign_with_timezone( $post_id ){
+        $post = DT_Posts::get_post( 'campaigns', $post_id, true, false );
+        if ( isset( $post["campaign_timezone"]["key"] ) ){
+            if ( isset( $post["end_date"]["timestamp"] ) && !empty( $post["end_date"]["timestamp"] ) ){
+                $dt_now = new DateTime();
+                // Set a non-default timezone if needed
+                $dt_now->setTimezone( new DateTimeZone( $post["campaign_timezone"]["key"] ) );
+                $dt_now->setTimestamp( $post["end_date"]["timestamp"] );
+
+                $end_date = clone $dt_now;
+                $end_date->modify( 'today' );
+                return $end_date->getTimestamp();
+            }
+        }
+        return isset( $post["end_date"]["timestamp"] ) ? $post["end_date"]["timestamp"] : time();
+    }
+
 }

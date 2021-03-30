@@ -331,6 +331,20 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "type" => "text",
                 "tile" => "details"
             ];
+            $timezones = [];
+            $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+            foreach ( $tzlist as $tz ){
+                $timezones[$tz] = [
+                    "label" => $tz
+                ];
+            }
+
+            $fields["campaign_timezone"] = [
+                "name" => __( "Campaign Time Zone", 'disciple_tools' ),
+                "default" => $timezones,
+                "type" => "key_select",
+                "tile" => "time",
+            ];
 
         }
 

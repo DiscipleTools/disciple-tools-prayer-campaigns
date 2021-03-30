@@ -450,7 +450,7 @@ class DT_Subscriptions_Management extends DT_Module_Base
             }
             $current_commitments = DT_Time_Utilities::subscribed_times_list( $campaign_id );
 
-            DT_Campaign_24Hour_Prayer::calendar_subscribe( $campaign_id, $grid_id, $current_commitments, $campaign['start_date']['timestamp'] ?? time(), $campaign['end_date']['timestamp'] ?? time() );
+            DT_Campaign_24Hour_Prayer::calendar_subscribe( $campaign_id, $grid_id, $current_commitments, DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ), DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id ) );
             ?><div class=""><h2>Sign up for more</h2></div>
             <?php
             DT_Campaign_24Hour_Prayer::select_times()
