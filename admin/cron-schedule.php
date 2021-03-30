@@ -5,7 +5,7 @@
  * before the commitment time.
  */
 if ( !wp_next_scheduled( 'dt_prayer_campaign_reminders' )) {
-    wp_schedule_event( time(), 'hourly', 'dt_prayer_campaign_reminders' );
+    wp_schedule_event( time(), '15min', 'dt_prayer_campaign_reminders' );
 }
 add_action( 'dt_prayer_campaign_reminders', 'dt_prayer_campaign_prayer_time_reminder' );
 
