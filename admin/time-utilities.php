@@ -104,7 +104,7 @@ class DT_Time_Utilities {
                 AND time_begin >= %d
                 AND time_begin <= %d
                 GROUP BY time_begin, time_end
-            ", $campaign_post_id, $campaign_start_date, $campaign_end_date
+            ", $campaign_post_id, $campaign_start_date - 86400, $campaign_end_date + 86400
         ), ARRAY_A );
 
         $times_list = [];
