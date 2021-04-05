@@ -515,8 +515,40 @@ class DT_Campaign_24hp extends DT_Module_Base
                 background-color: white;
             }
 
+
+            .day-cell {
+                /*flex-basis: 14%;*/
+                text-align: center;
+                flex-grow: 0;
+
+            }
             .display-day-cell {
-                display: inline-block;
+                height: 40px;
+            }
+            .disabled-calendar-day{
+                width:40px;
+                height:40px;
+                vertical-align: top;
+                padding-top:10px;
+                color: grey;
+            }
+            .calendar {
+                display: flex;
+                flex-wrap: wrap;
+                width: 300px;
+                margin: auto
+            }
+            .month-title {
+                text-align: center;
+                margin-bottom: 0;
+            }
+            .week-day {
+                height: 20px;
+                width:40px;
+                color: grey;
+            }
+            #calendar-content h3 {
+                margin-bottom: 0;
             }
 
             #list-day-times td, th {
@@ -550,6 +582,35 @@ class DT_Campaign_24hp extends DT_Module_Base
             }
             .small-view .calendar-month-title {
                 /*display: inline-block;*/
+            }
+
+            #modal-calendar.small-view {
+                display: flex;
+                width: 250px;
+                flex-wrap: wrap;
+            }
+
+            .small-view .calendar {
+                width: 180px;
+            }
+            .small-view .month-title {
+                width: 50px;
+                padding: 0 10px;
+                overflow: hidden;
+            }
+            .small-view .calendar .week-day {
+                height: 20px;
+                width: 25px;
+            }
+            .small-view .calendar .day-in-select-calendar {
+                height: 25px;
+                width: 25px;
+            }
+            .small-view .calendar .disabled-calendar-day {
+                width: 25px;
+                height: 25px;
+                padding-top: 5px;
+                font-size: 11px;
             }
 
             .small-view .day-in-select-calendar {
@@ -595,12 +656,14 @@ class DT_Campaign_24hp extends DT_Module_Base
                     At <strong><?php echo esc_html( $coverage_percentage ); ?>%</strong> of the <?php echo esc_html( $number_of_time_slots ); ?> time slots needed to cover the region in 24 hour prayer.
                 </div>
                 <div id="main-progress" class="center">
-                    <progress-ring stroke="10" radius="100" font="20" progress="<?php echo esc_html( $coverage_percentage ); ?>" text="<?php echo esc_html( $coverage_percentage ); ?>% Covered"></progress-ring>
+                    <progress-ring stroke="10" radius="80" font="18" progress="<?php echo esc_html( $coverage_percentage ); ?>" text="<?php echo esc_html( $coverage_percentage ); ?>% Covered"></progress-ring>
                 </div>
 
                 <div id="calendar-content"></div>
 
-                <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <p class="center" style="margin-top: 10px">
+                    <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                </p>
                 <div class="center">
                     <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">Sign up to Pray</button>
                 </div>
@@ -834,19 +897,47 @@ class DT_Campaign_24hp extends DT_Module_Base
                     draw_calendar()
                 })
 
+                let headers = `
+                    <div class="day-cell week-day">Su</div>
+                    <div class="day-cell week-day">Mo</div>
+                    <div class="day-cell week-day">Tu</div>
+                    <div class="day-cell week-day">We</div>
+                    <div class="day-cell week-day">Th</div>
+                    <div class="day-cell week-day">Fr</div>
+                    <div class="day-cell week-day">Sa</div>
+                    `
+
                 let draw_calendar = ( id = 'calendar-content') => {
                     let content = $(`#${id}`)
                     content.empty()
-                    let list = ''
-                    let now = new Date().getTime()/1000
                     let last_month = "";
+                    let list = ``
                     days.forEach(day=>{
                         if ( day.month !== last_month ){
+                            if ( last_month ){
+                                //add extra days at the month end
+                                let day_number = new Date( day.key * 1000 ).getDay()
+                                for ( let i = 1; i <= 7-day_number; i++ ){
+                                    list +=  `<div class="day-cell disabled-calendar-day">${i}</div>`
+                                }
+                                list += `</div>`
+                            }
+
+                            list += `<h3 class="month-title">${day.month}</h3><div class="calendar">`
+                            if( !last_month ){
+                                list += headers
+                            }
+
+                            //add extra days at the month start
+                            let day_number = new Date( day.key * 1000 ).getDay()
+                            let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
+                            for ( let i = 0; i < day_number; i++ ){
+                                list +=  `<div class="day-cell disabled-calendar-day">${start_of_week.getDate()+i}</div>`
+                            }
                             last_month = day.month
-                            list += `<h3 style="display: block; padding:0 10px">${day.month}</h3>`
                         }
                         if ( day.disabled ){
-                            list += `<div style="display: inline-block; width:40px" class="center">
+                            list += `<div class="day-cell disabled-calendar-day">
                                 ${day.day}
                             </div>`
                         } else {
@@ -857,6 +948,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                             `
                         }
                     })
+                    list += `</div>`
 
                     content.html(`<div class="" id="selection-grid-wrapper">${list}</div>`)
                 }
@@ -901,10 +993,28 @@ class DT_Campaign_24hp extends DT_Module_Base
                 let now = new Date().getTime()/1000
                 let last_month = "";
                 days.forEach(day=>{
-                    let disabled = ( day.key + ( 24*3600 ) ) > now ?  '' : "disabled-day";
                     if ( day.month !== last_month ){
+                        if ( last_month ){
+                            //add extra days at the month end
+                            let day_number = new Date( day.key * 1000 ).getDay()
+                            for ( let i = 1; i <= 7-day_number; i++ ){
+                                list +=  `<div class="day-cell disabled-calendar-day">${i}</div>`
+                            }
+                            list += `</div>`
+                        }
+
+                        list += `<h3 class="month-title">${day.month}</h3><div class="calendar">`
+                        if( !last_month ){
+                            list += headers
+                        }
+
+                        //add extra days at the month start
+                        let day_number = new Date( day.key * 1000 ).getDay()
+                        let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
+                        for ( let i = 0; i < day_number; i++ ){
+                            list +=  `<div class="day-cell disabled-calendar-day">${start_of_week.getDate()+i}</div>`
+                        }
                         last_month = day.month
-                        list += `<h3 class="calendar-month-title" style="">${window.lodash.escape(day.month)}</h3>`
                     }
                     list +=`
                         <div class="selected-day day-in-select-calendar" data-day="${window.lodash.escape(day.key)}">

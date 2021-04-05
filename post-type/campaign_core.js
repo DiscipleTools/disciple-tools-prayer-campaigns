@@ -1,4 +1,3 @@
-
 window.campaign_scripts = {
   time_slot_coverage: {},
   calculate_day_times: function (custom_timezone=null){
@@ -51,41 +50,6 @@ window.campaign_scripts = {
     days.forEach(d=>{
       d.percent = d.covered_slots / d.slots.length * 100
     })
-
-
-    start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, current_time_zone)
-
-
-    //for extra days
-
-    // let start_date = new Date ( start_of_day*1000 )
-    // for ( let i = start_date.getDay(); i > 0; i-- ){
-    //     let day = start_of_day - 24 * 3600 * i
-    //     days.unshift({
-    //         "key": day,
-    //         "formatted": timestamp_to_month_day( day ),
-    //         "month": timestamp_to_format( day, { month:"long" }, custom_timezone),
-    //         "day": timestamp_to_format( day, { day:"numeric" }, custom_timezone),
-    //         "percent": 0,
-    //         "slots": [],
-    //         "covered_slots": 0,
-    //         "disabled": true
-    //     })
-    // }
-    // let end_date = new Date ( time_iterator*1000 )
-    // for ( let i = 0 ; i + end_date.getDay() <= 6; i++ ){
-    //     let day = time_iterator + 24 * 3600 * i
-    //     days.push({
-    //         "key": day,
-    //         "formatted": timestamp_to_month_day( day ),
-    //         "month": timestamp_to_format( day, { month:"long" }, custom_timezone),
-    //         "day": timestamp_to_format( day, { day:"numeric" }, custom_timezone),
-    //         "percent": 0,
-    //         "slots": [],
-    //         "covered_slots": 0,
-    //         "disabled": true
-    //     })
-    // }
 
     return days;
   },
