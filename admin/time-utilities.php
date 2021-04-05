@@ -30,19 +30,10 @@ class DT_Time_Utilities {
 
         $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
 
-        // process start and end of campaign
-        if ( !isset( $record['start_date'] )) {
-            $start = time();
-        } else {
-            $start = strtotime( gmdate( 'Y-m-d', $record['start_date']['timestamp'] ) ); // perfects the stamp to day beginning
-        }
+        $start = self::start_of_campaign_with_timezone( $post_id );
         $record['start_date'] = $start;
 
-        if ( !isset( $record['end_date'] )) {
-            $end = strtotime( '+30 days' );
-        } else {
-            $end = strtotime( gmdate( 'Y-m-d', $record['end_date']['timestamp'] ) ) + 86399; // end of selected day (-1 second)
-        }
+        $end = self::end_of_campaign_with_timezone( $post_id );
         $record['end_date'] = $end;
 
         $current_times_list = self::get_current_commitments( $record['ID'], (int) $start, (int) $end );
