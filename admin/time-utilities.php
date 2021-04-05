@@ -97,21 +97,28 @@ class DT_Time_Utilities {
     public static function get_current_commitments( $campaign_post_id, int $campaign_start_date, int $campaign_end_date ) {
         global $wpdb;
         $commitments = $wpdb->get_results($wpdb->prepare( "
-            SELECT time_begin, COUNT(id) as count
+            SELECT time_begin, time_end, COUNT(id) as count
                 FROM $wpdb->dt_reports
                 WHERE post_type = 'subscriptions'
                 AND parent_id = %s
                 AND time_begin >= %d
                 AND time_begin <= %d
-                GROUP BY time_begin
+                GROUP BY time_begin, time_end
             ", $campaign_post_id, $campaign_start_date, $campaign_end_date
         ), ARRAY_A );
 
         $times_list = [];
 
-        if ( ! empty( $commitments ) ){
-            foreach ( $commitments as $commitment ) {
-                $times_list[$commitment['time_begin']] = $commitment['count'];
+        if ( !empty( $commitments ) ){
+            foreach ( $commitments as $commitment ){
+                // split into 15 min increments
+                for ( $i = 0; $i < $commitment['time_end'] - $commitment['time_begin']; $i += 15 ){
+                    $time = $commitment['time_begin'] + $i;
+                    if ( !isset( $times_list[$time] ) ){
+                        $times_list[$time] = 0;
+                    }
+                    $times_list[$time] += $commitment["count"];
+                }
             }
         }
 

@@ -289,6 +289,10 @@ class DT_Campaign_24hp extends DT_Module_Base
             if ( !isset( $time["time"] ) ){
                 continue;
             }
+            $duration_mins = 15;
+            if ( isset( $time["duration"] ) && is_numeric( $time["duration"] ) ){
+                $duration_mins = $time["duration"];
+            }
             $location_id = isset( $time['grid_id'] ) ? $time['grid_id'] : $campaign_grid_id;
             $args = [
                 'parent_id' => $params['campaign_id'],
@@ -304,7 +308,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                 'label' => null,
                 'grid_id' => $location_id,
                 'time_begin' => $time['time'],
-                'time_end' => $time['time'] + 900,
+                'time_end' => $time['time'] + $duration_mins * 60,
             ];
 
             $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
@@ -516,7 +520,7 @@ class DT_Campaign_24hp extends DT_Module_Base
             }
 
             #list-day-times td, th {
-                padding: 2px 0
+                padding: 2px 6px
             }
 
             #email {
@@ -596,7 +600,7 @@ class DT_Campaign_24hp extends DT_Module_Base
 
                 <div id="calendar-content"></div>
 
-                <?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 <div class="center">
                     <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">Sign up to Pray</button>
                 </div>
@@ -812,11 +816,8 @@ class DT_Campaign_24hp extends DT_Module_Base
             let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
             let selected_calendar_color = 'green'
 
-
             const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
             let time_slot_coverage = {}
-
-
 
             jQuery(document).ready(function($){
                 let days = window.campaign_scripts.calculate_day_times()
@@ -1014,9 +1015,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                         let day = $(val).data('day')
                         let time = parseInt(day) + parseInt(selected_daily_time)
                         let duration = parseInt($('#prayer-time-duration-select').val())
-                        for( let i = 0; i < duration; i+=15 ){
-                            selected_times.push({ time: time + i*60 })
-                        }
+                        selected_times.push({time: time, duration: duration})
                     })
 
                     let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
