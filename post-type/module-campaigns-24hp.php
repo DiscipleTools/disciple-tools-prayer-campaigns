@@ -525,7 +525,7 @@ class DT_Campaign_24hp extends DT_Module_Base
             .display-day-cell {
                 height: 40px;
             }
-            .disabled-calendar-day{
+            .disabled-calendar-day {
                 width:40px;
                 height:40px;
                 vertical-align: top;
@@ -909,6 +909,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                     <div class="day-cell week-day">Sa</div>
                     `
 
+                //display main calendar
                 let draw_calendar = ( id = 'calendar-content') => {
                     let content = $(`#${id}`)
                     content.empty()
@@ -1018,8 +1019,9 @@ class DT_Campaign_24hp extends DT_Module_Base
                         }
                         last_month = day.month
                     }
+                    let disabled = ( day.key + ( 24*3600 ) ) < now;
                     list +=`
-                        <div class="selected-day day-in-select-calendar" data-day="${window.lodash.escape(day.key)}">
+                        <div class="day-cell ${ disabled ? 'disabled-calendar-day' : 'selected-day day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
                             ${window.lodash.escape(day.day)}
                         </div>
                     `
@@ -1126,8 +1128,11 @@ class DT_Campaign_24hp extends DT_Module_Base
                     $('.selected-day').each((index, val)=>{
                         let day = $(val).data('day')
                         let time = parseInt(day) + parseInt(selected_daily_time)
-                        let duration = parseInt($('#prayer-time-duration-select').val())
-                        selected_times.push({time: time, duration: duration})
+                        let now = new Date().getTime()/1000
+                        if ( time > now ){
+                            let duration = parseInt($('#prayer-time-duration-select').val())
+                            selected_times.push({time: time, duration: duration})
+                        }
                     })
 
                     let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
