@@ -474,7 +474,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             <button class="close-button" data-close aria-label="Close modal" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <div class="pin-to-bottom">
+            <div class="" style="margin-top:20px">
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
                     <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
                 </button>
