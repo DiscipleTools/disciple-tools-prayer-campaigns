@@ -1442,7 +1442,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base
             Disciple_Tools_Reports::insert( $args );
         }
 
-        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'] );
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'], $campaign["ID"] );
 
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );

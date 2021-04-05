@@ -331,6 +331,13 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "type" => "text",
                 "tile" => "details"
             ];
+
+            $fields["sign_up_email_extra_message"] = [
+                "name" => __( "Sign up email extra content", 'disciple_tools' ),
+                "type" => "text",
+                "tile" => "details"
+            ];
+
             $timezones = [];
             $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
             foreach ( $tzlist as $tz ){
@@ -338,7 +345,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     "label" => $tz
                 ];
             }
-
             $fields["campaign_timezone"] = [
                 "name" => __( "Campaign Time Zone", 'disciple_tools' ),
                 "default" => $timezones,

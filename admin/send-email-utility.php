@@ -1,7 +1,7 @@
 <?php
 
 class DT_Prayer_Campaigns_Send_Email {
-    public static function send_registration( $post_id ) {
+    public static function send_registration( $post_id, $campaign_id ) {
 
         $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
         if ( is_wp_error( $record ) ){
@@ -49,13 +49,18 @@ class DT_Prayer_Campaigns_Send_Email {
             $message .= '<h3>Hello ' . esc_html( $record["name"] ) . ',</h3>';
         }
 
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        $sign_up_email_extra_message = "";
+        if ( isset( $campaign["sign_up_email_extra_message"] ) ){
+            $sign_up_email_extra_message = $campaign["sign_up_email_extra_message"];
+        }
         $message .= '
             <h4>Thank you for praying with us!</h4>
             <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Click here to verify your email address and confirm your prayer times. </a></p>
             <p>Here are the times you have committed to pray:</p>
             <p>'.$commitment_list.'</p>
             <p>Times are shown according to: <strong>' . esc_html( $timezone ) . '</strong> time </p>
-
+            <p>' . $sign_up_email_extra_message . '</p>
             <p>Manage your account and time commitments <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">here.</a></p>
         ';
 
