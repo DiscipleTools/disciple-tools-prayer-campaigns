@@ -70,5 +70,8 @@ DT_Campaigns_Base::instance();
 require_once 'module-campaigns-24hour-prayer.php';
 DT_Campaign_24Hour_Prayer::instance();
 
+require_once 'module-campaigns-24hp.php';
+DT_Campaign_24hp::instance();
+
 require_once 'module-campaigns-progress.php';
 DT_Campaign_Progress::instance();
