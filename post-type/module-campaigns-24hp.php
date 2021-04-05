@@ -511,6 +511,14 @@ class DT_Campaign_24hp extends DT_Module_Base
                 background-color: white;
             }
 
+            .display-day-cell {
+                display: inline-block;
+            }
+
+            #list-day-times td, th {
+                padding: 2px 0
+            }
+
             #email {
                 display:none;
             }
@@ -586,35 +594,86 @@ class DT_Campaign_24hp extends DT_Module_Base
                     <progress-ring stroke="10" radius="100" font="20" progress="<?php echo esc_html( $coverage_percentage ); ?>" text="<?php echo esc_html( $coverage_percentage ); ?>% Covered"></progress-ring>
                 </div>
 
-                <!--                <div class="center">-->
-                <!--                    <h3>Calendar</h3>-->
-                <!--                </div>-->
                 <div id="calendar-content"></div>
 
+                <?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 <div class="center">
                     <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">Sign up to Pray</button>
                 </div>
 
+                <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
+                    <h3 id="list-modal-title"></h3>
+
+                    <div id="list-day-times">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>:00</th>
+                                <th>:15</th>
+                                <th>:30</th>
+                                <th>:45</th>
+                            </tr>
+                            </thead>
+                            <tbody id="day-times-table-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="center">
+                        <button class="button" data-close aria-label="Close reveal" type="button">
+                            <?php echo esc_html__( 'Close', 'disciple_tools' )?>
+                        </button>
+                    </div>
+                </div>
+
+
                 <div class="reveal" id="select-times-modal" data-reveal data-close-on-click="false" data-multiple-opened="true">
 
                     <div id="modal-calendar">Modal Calendar</div>
-                    <p id="calendar-select-all-selected" class="select-view" style="margin-top: 10px">All days selected.
+                    <p id="calendar-select-all-selected" class="select-view center" style="margin-top: 10px">
+                        <strong>All days selected.</strong>
                         <a id="unselect-all-calendar-days">unselect all</a>
                     </p>
-                    <p id="calendar-select-help" class="select-view" style="margin-top: 10px; display: none">
-                        <span id="calendar-select-help-text"></span>
+                    <p id="calendar-select-help" class="select-view center" style="margin-top: 10px; display: none">
+                        <span id="calendar-select-help-text" style="font-weight: bold"></span>
                         <a id="select-all-calendar-days">select all</a>
                     </p>
 
-                    <select id="daily_time_select" class="select-view">
-                        <option>Daily Time</option>
-                    </select>
-
-
+                    <label class="select-view" >
+                        <strong>Prayer Time</strong>
+                        <select id="daily_time_select" class="select-view">
+                            <option>Daily Time</option>
+                        </select>
+                    </label>
+                    <label class="select-view">
+                        <strong>For</strong>
+                        <select id="prayer-time-duration-select" class="select-view">
+                            <option value="15">15 Minutes</option>
+                            <option value="30">30 Minutes</option>
+                            <option value="45">45 Minutes</option>
+                            <option value="60">1 Hour</option>
+                            <option value="90">1 Hour 30 Minutes</option>
+                            <option value="120">2 Hours</option>
+                        </select>
+                    </label>
+                    <p class="select-view">
+                        <strong>
+                            <?php esc_html_e( 'Using timezone for:', 'disciple_tools' ); ?></strong>
+                        <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                    </p>
 
                     <div id="confirmation-section" class="confirm-view" style="margin-top:15px">
-                        <!--                        //@todo timezone-->
-                        <p>Your are signing up to praying on each selected day at <span id="time-confirmation" style="font-weight: bold"></span></p>
+                        <p>
+                            You are signing up to praying for
+                            <span id="time-duration-confirmation" style="font-weight: bold" ></span>
+                            on each selected day at <span id="time-confirmation" style="font-weight: bold"></span>
+                            in <span class="timezone-current"></span> timezone.
+                        </p>
 
                         <!--                        <div class="center"><h2 id="contact-information">--><?php //echo esc_html( "Contact Information" ); ?><!--</h2></div>-->
                         <div class="grid-x">
@@ -667,15 +726,17 @@ class DT_Campaign_24hp extends DT_Module_Base
                     </div>
 
 
-                    <button class="button button-cancel clear select-view" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
-                    </button>
+                    <div class="center">
+                        <button class="button button-cancel clear select-view" data-close aria-label="Close reveal" type="button">
+                            <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                        </button>
 
+                        <button class="button select-view" type="button" id="confirm-daily-time" disabled>
+                            <?php echo esc_html__( 'Next', 'disciple_tools' )?>
+                        </button>
+                    </div>
                     <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
                         <?php echo esc_html__( 'back', 'disciple_tools' )?>
-                    </button>
-                    <button class="button select-view" type="button" id="confirm-daily-time" disabled>
-                        <?php echo esc_html__( 'Next', 'disciple_tools' )?>
                     </button>
 
                     <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -686,6 +747,35 @@ class DT_Campaign_24hp extends DT_Module_Base
                             <?php echo esc_html__( 'ok', 'disciple_tools' )?>
                         </button>
                     </div>
+                </div>
+                <!-- Reveal Modal Timezone Changer-->
+                <div id="timezone-changer" class="reveal tiny" data-reveal>
+                    <h2>Change your timezone:</h2>
+                    <select id="timezone-select">
+                        <?php
+                        $selected_tz = 'America/Denver';
+                        if ( !empty( $selected_tz ) ){
+                            ?>
+                            <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
+                            <option disabled>----</option>
+                            <?php
+                        }
+                        $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+                        foreach ( $tzlist as $tz ){
+                            ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
+                        }
+                        ?>
+                    </select>
+                    <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                    </button>
+                    <button class="button" type="button" id="confirm-timezone" data-close>
+                        <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+                    </button>
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
 
             </div> <!-- form wrapper -->
@@ -730,6 +820,18 @@ class DT_Campaign_24hp extends DT_Module_Base
 
             jQuery(document).ready(function($){
                 let days = window.campaign_scripts.calculate_day_times()
+                let update_timezone = function (){
+                    $('.timezone-current').html(current_time_zone)
+                    $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
+                }
+                update_timezone()
+                //change timezone
+                $('#confirm-timezone').on('click', function (){
+                    current_time_zone = $("#timezone-select").val()
+                    update_timezone()
+                    days = window.campaign_scripts.calculate_day_times(current_time_zone)
+                    draw_calendar()
+                })
 
                 let draw_calendar = ( id = 'calendar-content') => {
                     let content = $(`#${id}`)
@@ -748,8 +850,8 @@ class DT_Campaign_24hp extends DT_Module_Base
                             </div>`
                         } else {
                             list +=`
-                                <div style="display: inline-block">
-                                    <progress-ring stroke="3" radius="20" progress="${day.percent}" text="${day.day}"></progress-ring>
+                                <div class="display-day-cell" data-day=${window.lodash.escape(day.key)}>
+                                    <progress-ring stroke="3" radius="20" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
                                 </div>
                             `
                         }
@@ -758,6 +860,35 @@ class DT_Campaign_24hp extends DT_Module_Base
                     content.html(`<div class="" id="selection-grid-wrapper">${list}</div>`)
                 }
                 draw_calendar()
+
+                //day times coverage modal
+                $('.display-day-cell').on( 'click', function (){
+                    let day_timestamp = $(this).data('day')
+                    $('#view-times-modal').foundation('open')
+                    let list_title = jQuery('#list-modal-title')
+                    let day=days.find(k=>k.key===day_timestamp)
+                    list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(day.formatted)}</h2>`)
+                    let day_times_content = $('#day-times-table-body')
+                    let times_html = ``
+                    let row_index = 0
+                    day.slots.forEach(slot=>{
+                        let background_color = 'white'
+                        if ( slot.subscribers > 0) {
+                            background_color = 'lightblue'
+                        }
+                        if ( row_index === 0 ){
+                            times_html += `<tr><td>${window.lodash.escape(slot.formatted)}</td>`
+                        }
+                        times_html +=`<td style="background-color:${background_color}">
+                            ${window.lodash.escape(slot.subscribers)} <i class="fi-torsos"></i>
+                        </td>`
+                        if ( times_html === 3 ){
+                            times_html += `</tr>`
+                        }
+                        row_index = row_index === 3 ? 0 : row_index + 1;
+                    })
+                    day_times_content.empty().html(`<div class="grid-x"> ${times_html} </div>`)
+                })
 
                 //draw progress circles
                 window.customElements.define('progress-ring', ProgressRing);
@@ -831,12 +962,14 @@ class DT_Campaign_24hp extends DT_Module_Base
                     $('.select-view').hide()
                     $('.confirm-view').show()
                     $('#time-confirmation').html( $('#daily_time_select option:selected').text())
+                    $('#time-duration-confirmation').html($('#prayer-time-duration-select option:selected').text())
                 })
 
                 $('#back-to-select').on('click', function (){
                     $('#modal-calendar').toggleClass('small-view')
                     $('.select-view').toggle()
                     $('.confirm-view').toggle()
+                    show_help_text()
                 })
 
                 $('#submit-form').on('click', function (){
@@ -880,7 +1013,10 @@ class DT_Campaign_24hp extends DT_Module_Base
                     $('.selected-day').each((index, val)=>{
                         let day = $(val).data('day')
                         let time = parseInt(day) + parseInt(selected_daily_time)
-                        selected_times.push({ time })
+                        let duration = parseInt($('#prayer-time-duration-select').val())
+                        for( let i = 0; i < duration; i+=15 ){
+                            selected_times.push({ time: time + i*60 })
+                        }
                     })
 
                     let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
