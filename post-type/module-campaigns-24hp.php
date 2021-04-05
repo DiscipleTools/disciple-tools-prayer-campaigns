@@ -588,6 +588,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                 display: flex;
                 width: 250px;
                 flex-wrap: wrap;
+                margin: auto;
             }
 
             .small-view .calendar {
@@ -597,6 +598,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                 width: 50px;
                 padding: 0 10px;
                 overflow: hidden;
+                flex-grow: 1;
             }
             .small-view .calendar .week-day {
                 height: 20px;
@@ -870,8 +872,8 @@ class DT_Campaign_24hp extends DT_Module_Base
                 'campaign_id' => $post['ID'],
                 'campaign_grid_id' => $grid_id,
                 'translations' => [],
-                'start_timestamp' => DT_Time_Utilities::start_of_campaign_with_timezone( $post["ID"] ),
-                'end_timestamp' => DT_Time_Utilities::end_of_campaign_with_timezone( $post["ID"] ) + 86400,
+                'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post["ID"] ),
+                'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post["ID"] ) + 86400,
                 'current_commitments' => $current_commitments,
                 'slot_length' => 15
             ]) ?>][0]
