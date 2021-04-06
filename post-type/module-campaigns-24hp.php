@@ -541,6 +541,11 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                 <div id="main-progress" class="center">
                     <progress-ring stroke="10" radius="80" font="18" progress="<?php echo esc_html( $coverage_percentage ); ?>" text="<?php echo esc_html( $coverage_percentage ); ?>% Covered"></progress-ring>
                 </div>
+                <div class="center">
+                    <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
+                        Choose Prayer Times
+                    </button>
+                </div>
 
                 <div id="calendar-content"></div>
 
@@ -548,10 +553,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                     <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </p>
                 <div class="center">
-                    <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">Sign up to Pray</button>
-                </div>
-                <div class="center">
-                    <div class="" style=""><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></div>
+                    <div class="" style=""><a href="<?php echo esc_url( $link ) ?>">Already have prayer times?</a></div>
                 </div>
 
                 <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
