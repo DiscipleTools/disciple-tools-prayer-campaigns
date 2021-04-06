@@ -1,16 +1,11 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Campaign_24hp extends DT_Module_Base
-{
+class DT_Campaign_24hp_Module extends DT_Module_Base {
     public $module = "campaigns_24hour_prayer";
     public $post_type = 'campaigns';
-
-    public $magic = false;
-    public $parts = false;
-    public $root = "campaign_app"; // define the root of the url {yoursite}/root/type/key/action
-    public $type = '24hp'; // define the type
-
+    public $magic_link_root = "campaign_app";
+    public $magic_link_type = "24hp";
 
     private static $_instance = null;
     public static function instance() {
@@ -21,81 +16,20 @@ class DT_Campaign_24hp extends DT_Module_Base
     } // End instance()
 
     public function __construct() {
-        parent::__construct();
-        if ( !self::check_enabled_and_prerequisites() ){
+        $module_enabled = dt_is_module_enabled( "subscriptions_management", true );
+        if ( !$module_enabled ){
             return;
         }
+        parent::__construct();
         // register tiles if on details page
         add_filter( 'dt_campaign_types', [ $this, 'dt_campaign_types' ], 20, 1 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 30, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
-        add_action( 'wp_enqueue_scripts', [ $this, 'tile_scripts' ], 100 );
 
-        // register type
-        $this->magic = new DT_Magic_URL( $this->root );
-        add_filter( 'dt_magic_url_register_types', [ $this, 'register_type' ], 10, 1 );
-
-        // register REST and REST access
-        add_filter( 'dt_allow_rest_access', [ $this, 'authorize_url' ], 10, 1 );
+        new DT_Prayer_Campaign_24_Hour_Magic_Link();
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
-
-        // stop processing for non magic urls
-        $url = dt_get_url_path();
-        if ( strpos( $url, $this->root . '/' . $this->type ) === false ) {
-            return;
-        }
-
-        // fail to blank if not valid url
-        $this->parts = $this->magic->parse_url_parts();
-        if ( ! $this->parts ){
-            // @note this returns a blank page for bad url, instead of redirecting to login
-            add_filter( 'dt_templates_for_urls', function ( $template_for_url ) {
-                $url = dt_get_url_path();
-                $template_for_url[ $url ] = 'template-blank.php';
-                return $template_for_url;
-            }, 199, 1 );
-            add_filter( 'dt_blank_access', function(){ return true;
-            } );
-            add_filter( 'dt_allow_non_login_access', function(){ return true;
-            }, 100, 1 );
-            return;
-        }
-
-        // fail if does not match type
-        if ( $this->type !== $this->parts['type'] ){
-            return;
-        }
-
-        // load if valid url
-        add_action( 'dt_blank_head', [ $this, 'form_head' ] );
-        add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
-        if ( $this->magic->is_valid_key_url( $this->type ) && '' === $this->parts['action'] ) {
-            add_action( 'dt_blank_body', [ $this, 'form_body' ] );
-        }
-        else if ( 'access_account' === $this->parts['action'] ) {
-            add_action( 'dt_blank_body', [ $this, 'access_account_body' ] );
-        }
-        else {
-            // fail if no valid action url found
-            return;
-        }
-
-        // load page elements
-        add_action( 'wp_print_scripts', [ $this, 'print_scripts' ], 1500 );
-        add_action( 'wp_print_styles', [ $this, 'print_styles' ], 1500 );
-
-        // register url and access
-        add_filter( 'dt_templates_for_urls', [ $this, 'register_url' ], 199, 1 );
-        add_filter( 'dt_blank_access', [ $this, '_has_access' ] );
-        add_filter( 'dt_allow_non_login_access', function(){ return true;
-        }, 100, 1 );
     }
 
-    public function fail_register( $template_for_url ) {
-        $url = dt_get_url_path();
-        $template_for_url[ $url ] = 'template-blank.php';
-        return $template_for_url;
-    }
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === 'campaigns' && ! isset( $tiles["apps"] ) ){
@@ -124,7 +58,7 @@ class DT_Campaign_24hp extends DT_Module_Base
                         <?php
                         return;
                     }
-                    $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
+                    $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
                     ?>
                     <div class="cell">
                         <div class="section-subheader">
@@ -189,27 +123,14 @@ class DT_Campaign_24hp extends DT_Module_Base
         } // end if campaigns and enabled
     }
 
-
-    /**
-     * Open default restrictions for access to registered endpoints
-     * @param $authorized
-     * @return bool
-     */
-    public function authorize_url( $authorized ){
-        if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), $this->root . '/v1/'.$this->type ) !== false ) {
-            $authorized = true;
-        }
-        return $authorized;
-    }
-
     /**
      * Register REST Endpoints
      * @link https://github.com/DiscipleTools/disciple-tools-theme/wiki/Site-to-Site-Link for outside of wordpress authentication
      */
     public function add_api_routes() {
-        $namespace = $this->root . '/v1';
+        $namespace = $this->magic_link_root . '/v1';
         register_rest_route(
-            $namespace, '/'.$this->type, [
+            $namespace, '/'.$this->magic_link_type, [
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'create_subscription' ],
@@ -218,7 +139,7 @@ class DT_Campaign_24hp extends DT_Module_Base
             ]
         );
         register_rest_route(
-            $namespace, '/'.$this->type . '/access_account', [
+            $namespace, '/'.$this->magic_link_type . '/access_account', [
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'access_account' ],
@@ -228,8 +149,25 @@ class DT_Campaign_24hp extends DT_Module_Base
         );
     }
 
+    public function verify_magic_link_and_get_post_id( $meta_key, $public_key ){
+        $magic = new DT_Magic_URL( $this->magic_link_root );
+        $parts = $magic->parse_wp_rest_url_parts( $public_key );
+        if ( !$parts || $this->magic_link_type != $parts["type"] ){
+            return false;
+        }
+        if ( isset( $parts["post_id"] ) && !empty( $parts["post_id"] ) ){
+            return (int) $parts["post_id"];
+        }
+        return false;
+    }
+
     public function create_subscription( WP_REST_Request $request ) {
         $params = $request->get_params();
+
+        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
+        if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== $params["campaign_id"] ){
+            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        }
 
         // create
         if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
@@ -298,8 +236,8 @@ class DT_Campaign_24hp extends DT_Module_Base
                 'parent_id' => $params['campaign_id'],
                 'post_id' => $new_id['ID'],
                 'post_type' => 'subscriptions',
-                'type' => $this->root,
-                'subtype' => $this->type,
+                'type' => $this->magic_link_root,
+                'subtype' => $this->magic_link_type,
                 'payload' => null,
                 'value' => 0,
                 'lng' => null,
@@ -334,6 +272,11 @@ class DT_Campaign_24hp extends DT_Module_Base
     public function access_account( WP_REST_Request $request ) {
         $params = $request->get_params();
 
+        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
+        if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== $params["campaign_id"] ){
+            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        }
+
         // @todo insert email reset link
         $params = dt_recursive_sanitize_array( $params );
         if ( ! isset( $params['email'], $params['campaign_id'] ) ) {
@@ -356,7 +299,51 @@ class DT_Campaign_24hp extends DT_Module_Base
         return $types;
     }
 
-    public function tile_scripts(){
+
+}
+
+
+class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
+
+    public $module = "campaigns_24hour_prayer";
+    public $post_type = 'campaigns';
+    public $page_title = "Sign up to pray";
+
+    public $magic = false;
+    public $parts = false;
+    public $root = "campaign_app"; // define the root of the url {yoursite}/root/type/key/action
+    public $type = '24hp'; // define the type
+    public $type_name = "Campaigns";
+    public $type_actions = [
+        '' => "Manage",
+        'access_account' => 'Access Account'
+    ];
+
+    public $allowed_scripts = [
+        'dt_campaign_core'
+    ];
+
+    public function __construct(){
+        parent::__construct();
+        if ( !$this->check_parts_match()){
+            return;
+        }
+
+        add_action( 'dt_blank_head', [ $this, 'page_head' ] );
+        add_action( 'dt_blank_footer', [ $this, 'page_footer' ] );
+        //load correct page based on the action
+        if ( '' === $this->parts['action'] ) {
+            add_action( 'dt_blank_body', [ $this, 'page_body' ] );
+        } else if ( 'access_account' === $this->parts['action'] ) {
+            add_action( 'dt_blank_body', [ $this, 'access_account_body' ] );
+        } else {
+            return; // fail if no valid action url found
+        }
+
+        add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
+    }
+
+    public function wp_enqueue_scripts(){
         if ( is_singular( "campaigns" ) ){
             $magic = new DT_Magic_URL( 'campaigns_app' );
             $types = $magic->list_types();
@@ -386,118 +373,12 @@ class DT_Campaign_24hp extends DT_Module_Base
         );
     }
 
-    public function register_type( array $types ) : array {
-        if ( ! isset( $types[$this->root] ) ) {
-            $types[$this->root] = [];
-        }
-        $types[$this->root][$this->type] = [
-            'name' => 'Subscriptions',
-            'root' => $this->root,
-            'type' => $this->type,
-            'meta_key' => 'public_key', // coaching-magic_c_key
-            'actions' => [
-                '' => 'Manage',
-                'access_account' => 'Access Account',
-            ],
-            'post_type' => $this->post_type,
-        ];
-        return $types;
-    }
-
-    public function register_url( $template_for_url ){
-        $parts = $this->parts;
-
-        // test 1 : correct url root and type
-        if ( ! $parts ){ // parts returns false
-            return $template_for_url;
-        }
-
-        // test 2 : only base url requested
-        if ( empty( $parts['public_key'] ) ){ // no public key present
-            $template_for_url[ $parts['root'] . '/'. $parts['type'] ] = 'template-blank.php';
-            return $template_for_url;
-        }
-
-        // test 3 : no specific action requested
-        if ( empty( $parts['action'] ) ){ // only root public key requested
-            $template_for_url[ $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] ] = 'template-blank.php';
-            return $template_for_url;
-        }
-
-        // test 4 : valid action requested
-        $actions = $this->magic->list_actions( $parts['type'] );
-        if ( isset( $actions[ $parts['action'] ] ) ){
-            $template_for_url[ $parts['root'] . '/'. $parts['type'] . '/' . $parts['public_key'] . '/' . $parts['action'] ] = 'template-blank.php';
-        }
-
-        return $template_for_url;
-    }
-
-    public function _has_access() : bool {
-        $parts = $this->parts;
-
-        // test 1 : correct url root and type
-        if ( $parts ){ // parts returns false
-            return true;
-        }
-
-        return false;
-    }
-
-    public function print_scripts(){
-        // @link /disciple-tools-theme/dt-assets/functions/enqueue-scripts.php
-        $allowed_js = [
-            'jquery',
-            'jquery-core',
-            'lodash',
-            'lodash-core',
-            'site-js',
-            'shared-functions',
-            'dt_campaign_core'
-        ];
-
-        global $wp_scripts;
-
-        if ( isset( $wp_scripts ) ){
-            foreach ( $wp_scripts->queue as $key => $item ){
-                if ( ! in_array( $item, $allowed_js ) ){
-                    unset( $wp_scripts->queue[$key] );
-                }
-            }
-        }
-        if ( isset( $wp_scripts ) ){
-            foreach ( $wp_scripts->registered as $key => $item ){
-                if ( ! in_array( $key, $allowed_js ) ){
-                    unset( $wp_scripts->registered[$key] );
-                }
-            }
-        }
-        unset( $wp_scripts->registered['mapbox-search-widget']->extra['group'] );
-    }
-
-    public function print_styles(){
-        // @link /disciple-tools-theme/dt-assets/functions/enqueue-scripts.php
-        $allowed_css = [
-            'foundation-css',
-            'site-css',
-        ];
-
-        global $wp_styles;
-        if ( isset( $wp_styles ) ) {
-            foreach ($wp_styles->queue as $key => $item) {
-                if ( !in_array( $item, $allowed_css )) {
-                    unset( $wp_styles->queue[$key] );
-                }
-            }
-        }
-    }
-
-    public function form_head(){
+    public function page_head(){
         wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
         $this->campaigns_styles_header();
     }
 
-    public function form_footer(){
+    public function page_footer(){
         $this->campaigns_javascript_header();
         wp_footer(); // styles controlled by wp_print_styles and wp_print_scripts actions
     }
@@ -633,8 +514,8 @@ class DT_Campaign_24hp extends DT_Module_Base
         <?php
     }
 
-    public function form_body(){
-
+    public function page_body(){
+        $link = trailingslashit( site_url() ) . $this->parts['root'] . '/' . $this->parts['type'] . '/' . $this->parts['public_key'] . '/access_account';
         $post_id = $this->parts['post_id'];
         $record = DT_Posts::get_post( "campaigns", $post_id, true, false );
         if ( is_wp_error( $record ) ){
@@ -668,6 +549,9 @@ class DT_Campaign_24hp extends DT_Module_Base
                 </p>
                 <div class="center">
                     <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">Sign up to Pray</button>
+                </div>
+                <div class="center">
+                    <div class="" style=""><a href="<?php echo esc_url( $link ) ?>">Already have a commitment?</a></div>
                 </div>
 
                 <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
@@ -1143,7 +1027,8 @@ class DT_Campaign_24hp extends DT_Module_Base
                         selected_times: selected_times,
                         campaign_id: calendar_subscribe_object.campaign_id,
                         timezone: current_time_zone,
-                        receive_prayer_time_notifications
+                        receive_prayer_time_notifications,
+                        parts: calendar_subscribe_object.parts
                     }
                     jQuery.ajax({
                         type: "POST",
@@ -1179,4 +1064,102 @@ class DT_Campaign_24hp extends DT_Module_Base
         return true;
     }
 
+    public function access_account_body(){
+        ?>
+        <style>
+            #email {
+                display:none;
+            }
+        </style>
+        <div id="custom-style"></div>
+        <div id="wrapper">
+            <div class="center"><h2><?php esc_html_e( "We'll Email You a Link to Your Account", 'disciple_tools' ); ?></h2></div>
+            <div class="grid-x ">
+                <div class="cell">
+                    <span id="email-error" class="form-error">
+                        <?php esc_html_e( "You're email is required.", 'disciple_tools' ); ?>
+                    </span>
+                    <label for="email"><?php esc_html_e( 'Email', 'disciple_tools' ); ?><br>
+                        <input type="email" name="email" id="email" placeholder="Email" />
+                        <input type="email" name="e2" id="e2" placeholder="Email" required />
+                    </label>
+                </div>
+                <div class="cell center">
+                    <button class="button large" id="send-link-form"><?php esc_html_e( 'Send me a link to my prayer times', 'disciple_tools' ); ?></button>
+                </div>
+            </div>
+        </div> <!-- form wrapper -->
+        <script>
+            jQuery(document).ready(function($){
+
+                jQuery('#send-link-form').on('click', function(){
+                    let spinner = jQuery('.loading-spinner')
+                    spinner.addClass('active')
+
+                    let submit_button = jQuery('#send-link-form')
+                    submit_button.prop('disabled', true)
+
+                    let honey = jQuery('#email').val()
+                    if ( honey ) {
+                        jQuery('#next_1').html('Shame, shame, shame. We know your name ... ROBOT!').prop('disabled', true )
+                        window.spinner.hide()
+                        return;
+                    }
+
+                    let email_input = jQuery('#e2')
+                    let email = email_input.val()
+                    if ( ! email ) {
+                        jQuery('#email-error').show()
+                        spinner.hide()
+                        email_input.focus(function(){
+                            jQuery('#email-error').hide()
+                        })
+                        submit_button.prop('disabled', false)
+                        return;
+                    }
+
+                    let data = {
+                        'email': email,
+                        'campaign_id': calendar_subscribe_object.campaign_id,
+                        'parts': calendar_subscribe_object.parts
+                    }
+
+                    let wrapper = jQuery('#wrapper')
+                    wrapper.empty().html(`<div class="grid-x"><div class="cell center"><span class="loading-spinner active"></span></div></div>`)
+
+                    let alert = `
+                    <div class="grid-x">
+                        <div class="cell center">
+                            <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple_tools' ); ?>
+                                <br><br>
+                                <?php esc_html_e( "If your address is in our system, you'll get an email with a link to your prayer commitments.", 'disciple_tools' ); ?>
+                            </h2>
+                        </div>
+                    </div>
+                    `
+                    jQuery.ajax({
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type + '/access_account',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
+                        }
+                    })
+                    .done(function(data){
+                        console.log(data)
+                        wrapper.empty().html(alert)
+                        spinner.removeClass('active')
+                    })
+                    .fail(function(e) {
+                        console.log(e)
+                        $('#error').html(e)
+                        spinner.removeClass('active')
+                    })
+                })
+            })
+        </script>
+        <?php
+    }
 }
