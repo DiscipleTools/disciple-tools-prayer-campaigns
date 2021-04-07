@@ -894,7 +894,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             <div class="center">
                 <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
-                    Choose Prayer Times
+                    Choose New Prayer Times
                 </button>
             </div>
             <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
