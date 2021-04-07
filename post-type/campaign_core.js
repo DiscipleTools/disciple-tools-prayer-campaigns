@@ -131,13 +131,31 @@ class ProgressRing extends HTMLElement {
   constructor() {
     super();
     const stroke = this.getAttribute('stroke');
+    this._stroke = stroke;
     const radius = this.getAttribute('radius');
     const text = this.getAttribute('text');
+    const text2 = this.getAttribute('text2');
     const progress = this.getAttribute('progress');
+    this._progress2 = this.getAttribute('progress2');
     const font_size = this.getAttribute('font') || 15;
     const normalizedRadius = radius - stroke;
     this._circumference = normalizedRadius * 2 * Math.PI;
 
+    let normalizedRadius2 = parseInt(radius) - stroke/2 + 1
+    this._circumference2 = normalizedRadius2 * 2 * Math.PI;
+
+    let text_html = ``;
+    if ( text2 ){
+      text_html = `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px">
+          <tspan x="50%" dy="0">${window.lodash.escape(text || progress + '%')}</tspan>
+          <tspan x="50%" dy="0.5cm">${window.lodash.escape(text2)}</tspan>
+      </text>`
+    } else {
+      text_html =  `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
+        ${window.lodash.escape(text || progress + '%')}
+      </text>
+      `
+    }
     this._root = this.attachShadow({mode: 'open'});
     this._root.innerHTML = `
       <svg height="${radius * 2}"
@@ -154,6 +172,17 @@ class ProgressRing extends HTMLElement {
              cy="${radius}"
           />
           <circle
+             class="third-circle"
+             stroke="red"
+             stroke-dasharray="${this._circumference2} ${this._circumference2}"
+             style="stroke-dashoffset:${this._circumference2}"
+             stroke-width="2px"
+             fill="transparent"
+             r="${normalizedRadius2}"
+             cx="${radius}"
+             cy="${radius}"
+          />
+          <circle
              class="second-circle"
              stroke="#eee"
              stroke-dasharray="${this._circumference} ${this._circumference}"
@@ -164,9 +193,7 @@ class ProgressRing extends HTMLElement {
              cx="${radius}"
              cy="${radius}"
           />
-          <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
-              ${text || progress + '%'}
-          </text>
+          ${text_html}
       </svg>
 
       <style>
@@ -185,6 +212,11 @@ class ProgressRing extends HTMLElement {
     circle.style.strokeDashoffset = offset;
     const circle2 = this._root.querySelector('circle.second-circle');
     circle2.style.strokeDashoffset = -(percent / 100 * this._circumference);
+    if ( this._progress2 ){
+      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
+      const circle3 = this._root.querySelector('circle.third-circle');
+      circle3.style.strokeDashoffset = offset3
+    }
   }
 
   static get observedAttributes() {

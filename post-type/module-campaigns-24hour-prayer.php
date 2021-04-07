@@ -521,8 +521,11 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         if ( is_wp_error( $record ) ){
             return;
         }
-        $coverage_percentage = DT_Campaigns_Base::query_coverage_percentage( $post_id );
+        $coverage_levels = DT_Campaigns_Base::query_coverage_levels_progress( $post_id );
         $number_of_time_slots = DT_Campaigns_Base::query_coverage_total_time_slots( $post_id );
+
+        $coverage_percentage = $coverage_levels[0]["percent"];
+        $second_level = isset( $coverage_levels[1]["percent"] ) && $coverage_percentage === 100.0 ? $coverage_levels[1]["percent"] : "";
 
         $description = "Campaign Description";
         if ( isset( $record["description"] ) && !empty( $record["description"] ) ){
@@ -530,16 +533,27 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         }
 
         if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ) {
+            $text2 = "covered";
             ?>
 
             <div id="wrapper">
                 <div class="center">
                     <h2 ><?php echo esc_html( $description ); ?></h2>
-
-                    At <strong><?php echo esc_html( $coverage_percentage ); ?>%</strong> of the <?php echo esc_html( $number_of_time_slots ); ?> time slots needed to cover the region in 24 hour prayer.
+                    <?php if ( $coverage_percentage === 100.0 ) :
+                        $text2 = "+" . $second_level . "%";
+                        ?>
+                        All of the <?php echo esc_html( $number_of_time_slots ); ?> time slots is covered in once prayer once. Help us cover them twice!
+                    <?php else : ?>
+                        At <strong><?php echo esc_html( $coverage_percentage ); ?>%</strong> of the <?php echo esc_html( $number_of_time_slots ); ?> time slots needed to cover the region in 24 hour prayer.
+                    <?php endif; ?>
                 </div>
                 <div id="main-progress" class="center">
-                    <progress-ring stroke="10" radius="80" font="18" progress="<?php echo esc_html( $coverage_percentage ); ?>" text="<?php echo esc_html( $coverage_percentage ); ?>% Covered"></progress-ring>
+                    <progress-ring stroke="10" radius="80" font="18"
+                                   progress="<?php echo esc_html( $coverage_percentage ); ?>"
+                                   progress2="<?php echo esc_html( $second_level ); ?>"
+                                   text="<?php echo esc_html( $coverage_percentage ); ?>%"
+                                   text2="<?php echo esc_html( $text2 ); ?>">
+                    </progress-ring>
                 </div>
                 <div class="center">
                     <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">

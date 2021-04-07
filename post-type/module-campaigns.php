@@ -721,6 +721,49 @@ class DT_Campaigns_Base extends DT_Module_Base {
         return round( $percent, 1 );
     }
 
+    public static function query_coverage_levels_progress( $campaign_post_id ) {
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
+
+        $day_count = 0;
+        $blocks_covered = [];
+        $res = [];
+        $highest_number = 0;
+        if ( ! empty( $times_list ) ) {
+            foreach ( $times_list as $day ){
+                $day_count++;
+                foreach ( $day["hours"] as $hour ){
+                    if ( $hour["subscribers"] > 0 ){
+                        $highest_number = max( $hour["subscribers"], $highest_number );
+                        if ( !isset( $blocks_covered[$hour["subscribers"]] ) ){
+                            $blocks_covered[$hour["subscribers"]] = 0;
+                        }
+                        $blocks_covered[$hour["subscribers"]]++;
+                    }
+                }
+            }
+            for ( $i = 1; $i <= $highest_number; $i++ ){
+                $res[] = [
+                    "key" => $i,
+                    "blocks_covered" => 0,
+                    "percent" => 0
+                ];
+            }
+
+            foreach ( $blocks_covered as $number_of_prayers => $times_covered ){
+                foreach ($res as &$r ){
+                    if ( $r["key"] <= $number_of_prayers ){
+                        $r["blocks_covered"] += $times_covered;
+                    }
+                }
+            }
+            $total_blocks = $day_count * 96; // 96 blocks of 15 minutes for a 24 hour period
+            foreach ($res as &$r ){
+                $r["percent"] = round( $r["blocks_covered"] / $total_blocks * 100, 1 );
+            }
+        }
+        return $res;
+    }
+
     /**
      * Get the number of time slots the campaign will cover
      * @param $campaign_post_id
