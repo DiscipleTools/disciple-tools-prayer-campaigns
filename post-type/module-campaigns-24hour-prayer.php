@@ -797,7 +797,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
                 //display main calendar
                 let draw_calendar = ( id = 'calendar-content') => {
-                    let content = $(`#${id}`)
+                    let content = $(`#${window.lodash.escape(id)}`)
                     content.empty()
                     let last_month = "";
                     let list = ``
@@ -807,12 +807,12 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                                 //add extra days at the month end
                                 let day_number = new Date( day.key * 1000 ).getDay()
                                 for ( let i = 1; i <= 7-day_number; i++ ){
-                                    list +=  `<div class="day-cell disabled-calendar-day">${i}</div>`
+                                    list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
                                 }
                                 list += `</div>`
                             }
 
-                            list += `<h3 class="month-title">${day.month}</h3><div class="calendar">`
+                            list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
                             if( !last_month ){
                                 list += headers
                             }
@@ -821,7 +821,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                             let day_number = new Date( day.key * 1000 ).getDay()
                             let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
                             for ( let i = 0; i < day_number; i++ ){
-                                list +=  `<div class="day-cell disabled-calendar-day">${start_of_week.getDate()+i}</div>`
+                                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
                             }
                             last_month = day.month
                         }
@@ -887,12 +887,12 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                             //add extra days at the month end
                             let day_number = new Date( day.key * 1000 ).getDay()
                             for ( let i = 1; i <= 7-day_number; i++ ){
-                                list +=  `<div class="day-cell disabled-calendar-day">${i}</div>`
+                                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
                             }
                             list += `</div>`
                         }
 
-                        list += `<h3 class="month-title">${day.month}</h3><div class="calendar">`
+                        list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
                         if( !last_month ){
                             list += headers
                         }
@@ -901,7 +901,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                         let day_number = new Date( day.key * 1000 ).getDay()
                         let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
                         for ( let i = 0; i < day_number; i++ ){
-                            list +=  `<div class="day-cell disabled-calendar-day">${start_of_week.getDate()+i}</div>`
+                            list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
                         }
                         last_month = day.month
                     }
@@ -953,7 +953,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                         cal_select_all_div.hide()
                         cal_select_help_text.show()
                     }
-                    $('#calendar-select-help-text').html(`${number_of_days_selected} of ${days.length} days selected`)
+                    $('#calendar-select-help-text').html(`${window.lodash.escape(number_of_days_selected)} of ${window.lodash.escape(days.length)} days selected`)
                     disable_button( number_of_days_selected )
                 }
 
@@ -1053,7 +1053,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                         console.log(e)
                         $('#selection-error').empty().html(`<div class="cell center">
                         So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
-                        <a href="${window.location.href}">Try Again</a>
+                        <a href="${window.lodash.escape(window.location.href)}">Try Again</a>
                         </div>`).show()
                         $('#error').html(e)
                         submit_button.removeClass('loading')

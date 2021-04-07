@@ -489,7 +489,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <div id="selected-${window.lodash.escape(time)}" class="selected-hour"
                             data-time="${window.lodash.escape(time)}">
                             ${window.lodash.escape(time_label)}
-                            <i class="fi-x remove-selection" data-time="${time}" data-day="${day}"></i>
+                            <i class="fi-x remove-selection" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day)}"></i>
                         </div>
                     `)
                     $('#confirmation-section').show()
@@ -506,7 +506,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             <div class="${disabled ? '' : 'day-selector'}" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
                                 <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar" data-percent="${day.percent}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
+                                    <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
                                 </div>
                             </div>
                             <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
@@ -526,7 +526,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         if ( c.verified ){
                             verified = true;
                         }
-                        $(`#calendar-extra-${day_timestamp}`).append(`
+                        $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
                             <div id="selected-${window.lodash.escape(time)}"
                                 data-time="${window.lodash.escape(time)}">
                                 ${window.lodash.escape(time_label)}
@@ -637,7 +637,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             //add extra days at the month end
                             let day_number = new Date( day.key * 1000 ).getDay()
                             for ( let i = 1; i <= 7-day_number; i++ ){
-                                list +=  `<div class="day-cell disabled-calendar-day">${i}</div>`
+                                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
                             }
                             list += `</div>`
                         }
@@ -651,7 +651,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         let day_number = new Date( day.key * 1000 ).getDay()
                         let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
                         for ( let i = 0; i < day_number; i++ ){
-                            list +=  `<div class="day-cell disabled-calendar-day">${start_of_week.getDate()+i}</div>`
+                            list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
                         }
                         last_month = day.month
                     }
@@ -697,7 +697,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         cal_select_all_div.hide()
                         cal_select_help_text.show()
                     }
-                    $('#calendar-select-help-text').html(`${number_of_days_selected} of ${days.length} days selected`)
+                    $('#calendar-select-help-text').html(`${window.lodash.escape(number_of_days_selected)} of ${window.lodash.escape(days.length)} days selected`)
                     disable_button( number_of_days_selected )
                 }
 
@@ -763,7 +763,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         console.log(e)
                         $('#selection-error').empty().html(`<div class="cell center">
                         So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
-                        <a href="${window.location.href}">Try Again</a>
+                        <a href="${window.lodash.escape(window.location.href)}">Try Again</a>
                         </div>`).show()
                         $('#error').html(e)
                         submit_button.removeClass('loading')
