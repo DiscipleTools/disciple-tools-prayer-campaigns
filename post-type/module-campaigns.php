@@ -727,7 +727,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         $day_count = 0;
         $blocks_covered = [];
         $res = [];
-        $highest_number = 0;
+        $highest_number = 1;
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
                 $day_count++;

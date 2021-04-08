@@ -103,7 +103,7 @@ class DT_Time_Utilities {
         if ( !empty( $commitments ) ){
             foreach ( $commitments as $commitment ){
                 // split into 15 min increments
-                for ( $i = 0; $i < $commitment['time_end'] - $commitment['time_begin']; $i += 15 ){
+                for ( $i = 0; $i < $commitment['time_end'] - $commitment['time_begin']; $i += 15 *60 ){
                     $time = $commitment['time_begin'] + $i;
                     if ( !isset( $times_list[$time] ) ){
                         $times_list[$time] = 0;
