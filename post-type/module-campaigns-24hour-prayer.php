@@ -930,14 +930,14 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
                 //build time select input
                 let time_select = $('#daily_time_select')
-                time_select.empty();
-                time_select.html(window.campaign_scripts.get_time_select_html())
-
 
                 let cal_select_all_div = $('#calendar-select-all-selected')
                 let cal_select_help_text = $('#calendar-select-help')
                 $(document).on('click', '.day-in-select-calendar', function (){
                     $(this).toggleClass('selected-day')
+                    show_help_text()
+                })
+                $('#open-select-times-button').on('click', function (){
                     show_help_text()
                 })
 
@@ -959,7 +959,8 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                     $('#confirm-daily-time').prop('disabled', num_selected === 0 || select_val === "false" )
                 }
                 let show_help_text = () =>{
-                    let number_of_days_selected = $('.selected-day').length
+                    let selected_days = $('.selected-day')
+                    let number_of_days_selected = selected_days.length
                     if ( number_of_days_selected === days.length ){
                         cal_select_all_div.show()
                         cal_select_help_text.hide()
@@ -969,6 +970,55 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                     }
                     $('#calendar-select-help-text').html(`${window.lodash.escape(number_of_days_selected)} of ${window.lodash.escape(days.length)} days selected`)
                     disable_button( number_of_days_selected )
+                    let coverage = {}
+                    let already_selected = parseInt(time_select.val())
+                    selected_days.each((index, val)=> {
+                        let day = $(val).data('day')
+                        for ( const key in calendar_subscribe_object.current_commitments ){
+                            if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
+                                continue;
+                            }
+                            if ( key >= day && key < day + 24 * 3600 ){
+                                let mod_time = key % (24 * 60 * 60)
+                                let time_formatted = '';
+                                if ( window.campaign_scripts.processing_save[mod_time] ){
+                                    time_formatted = window.campaign_scripts.processing_save[mod_time]
+                                } else {
+                                    time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
+                                    window.campaign_scripts.processing_save[mod_time] = time_formatted
+                                }
+                                if ( !coverage[time_formatted]){
+                                    coverage[time_formatted] = 0;
+                                }
+                                coverage[time_formatted]++;
+                            }
+                        }
+                    })
+                    let select_html = `<option value="false">Select a time</option>`
+
+                    let key = 0;
+                    let start_of_today = new Date()
+                    start_of_today.setHours(0,0,0,0)
+                    let start_time_stamp = start_of_today.getTime()/1000
+                    while ( key < 24 * 3600 ){
+                        let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+                        let text = ''
+                        let covered = coverage[time_formatted] ? coverage[time_formatted] === number_of_days_selected : false;
+                        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
+                        if ( fully_covered ){
+                            text = "(fully covered)"
+                        } else if ( covered ){
+                            text = "(covered for selected days)"
+                        } else if ( coverage[time_formatted] > 0 ){
+                            text = `(${coverage[time_formatted]} out of ${number_of_days_selected} selected days covered)`
+                        }
+                        select_html += `<option value="${window.lodash.escape(key)}" ${already_selected===key ? "selected" : ''}>
+                            ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
+                        </option>`
+                        key += calendar_subscribe_object.slot_length * 60
+                    }
+                    time_select.empty();
+                    time_select.html(select_html)
                 }
 
                 $('#confirm-daily-time').on("click", function (){

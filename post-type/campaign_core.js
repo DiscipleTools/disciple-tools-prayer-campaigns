@@ -1,9 +1,9 @@
 window.campaign_scripts = {
   time_slot_coverage: {},
+  processing_save: {},
   calculate_day_times: function (custom_timezone=null){
     //set up array of days and time slots according to timezone
     let days = [];
-    let processing_save = {}
     let time_iterator = calendar_subscribe_object.start_timestamp;
 
     let start_of_day = window.campaign_scripts.day_start( time_iterator, current_time_zone)
@@ -25,11 +25,11 @@ window.campaign_scripts = {
       }
       let mod_time = time_iterator % (24 * 60 * 60)
       let time_formatted = '';
-      if ( processing_save[mod_time] ){
-        time_formatted = processing_save[mod_time]
+      if ( window.campaign_scripts.processing_save[mod_time] ){
+        time_formatted = window.campaign_scripts.processing_save[mod_time]
       } else {
         time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
-        processing_save[mod_time] = time_formatted
+        window.campaign_scripts.processing_save[mod_time] = time_formatted
       }
       days[days.length-1]["slots"].push({
         "key": time_iterator,
@@ -115,7 +115,7 @@ window.campaign_scripts = {
       let covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
 
       select_html += `<option value="${window.lodash.escape(key)}">
-                        ${window.lodash.escape(time_formatted)} ${ covered ? "(Already covered)": '' }
+                        ${window.lodash.escape(time_formatted)} ${ covered ? "(fully covered)": '' }
                     </option>`
       key += calendar_subscribe_object.slot_length * 60
     }
@@ -176,7 +176,7 @@ class ProgressRing extends HTMLElement {
              stroke="red"
              stroke-dasharray="${this._circumference2} ${this._circumference2}"
              style="stroke-dashoffset:${this._circumference2}"
-             stroke-width="2px"
+             stroke-width="4px"
              fill="transparent"
              r="${normalizedRadius2}"
              cx="${radius}"
