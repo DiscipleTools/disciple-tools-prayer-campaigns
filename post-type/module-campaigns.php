@@ -481,7 +481,13 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     let content = `<ol>`
                     if ( data ) {
                         jQuery.each(data, function(i,v){
-                            content += `<li><a href="/subscriptions/${window.lodash.escape(v.ID)}">${window.lodash.escape(v.name)} (${window.lodash.escape(v.commitments)})</a></li>`
+                            content += `<li>
+                                <a href="/subscriptions/${window.lodash.escape(v.ID)}">
+                                    ${window.lodash.escape(v.name)}
+                                </a>
+                                 (${window.lodash.escape(v.commitments)})
+                                 ${parseInt(v.verified)>0 ? 'verified ' : '' }
+                            </li>`
                         })
                     } else {
                         content += `<div class="cell">No subscribers found</div>`
@@ -652,14 +658,20 @@ class DT_Campaigns_Base extends DT_Module_Base {
         return $wpdb->get_results( $wpdb->prepare( "
             SELECT p.post_title as name, p.ID,
                    (SELECT COUNT(r.post_id)
-                   FROM $wpdb->dt_reports r
-                   WHERE r.post_type = 'subscriptions'
+                      FROM $wpdb->dt_reports r
+                      WHERE r.post_type = 'subscriptions'
+                      AND r.parent_id = %s
+                      AND r.post_id = p.ID) as commitments,
+                   (SELECT COUNT(r.post_id)
+                      FROM $wpdb->dt_reports r
+                      WHERE r.post_type = 'subscriptions'
                      AND r.parent_id = %s
-                     AND r.post_id = p.ID) as commitments
+                     AND r.value = 1
+                     AND r.post_id = p.ID) as verified
             FROM $wpdb->p2p p2
             LEFT JOIN $wpdb->posts p ON p.ID=p2.p2p_to
             WHERE p2p_type = 'campaigns_to_subscriptions'
-            AND p2p_from = %s", $campaign_post_id, $campaign_post_id
+            AND p2p_from = %s", $campaign_post_id, $campaign_post_id, $campaign_post_id
         ), ARRAY_A );
 
     }
