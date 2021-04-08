@@ -797,6 +797,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                     update_timezone()
                     days = window.campaign_scripts.calculate_day_times(current_time_zone)
                     draw_calendar()
+                    draw_modal_calendar()
                 })
 
                 let headers = `
@@ -819,7 +820,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                         if ( day.month !== last_month ){
                             if ( last_month ){
                                 //add extra days at the month end
-                                let day_number = new Date( day.key * 1000 ).getDay()
+                                let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
                                 for ( let i = 1; i <= 7-day_number; i++ ){
                                     list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
                                 }
@@ -832,7 +833,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                             }
 
                             //add extra days at the month start
-                            let day_number = new Date( day.key * 1000 ).getDay()
+                            let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
                             let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
                             for ( let i = 0; i < day_number; i++ ){
                                 list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
@@ -891,42 +892,45 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
                 //dawn calendar in date select modal
                 let modal_calendar = $('#modal-calendar')
-                modal_calendar.empty()
-                let list = ''
                 let now = new Date().getTime()/1000
-                let last_month = "";
-                days.forEach(day=>{
-                    if ( day.month !== last_month ){
-                        if ( last_month ){
-                            //add extra days at the month end
-                            let day_number = new Date( day.key * 1000 ).getDay()
-                            for ( let i = 1; i <= 7-day_number; i++ ){
-                                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                let draw_modal_calendar = ()=> {
+                    let last_month = "";
+                    modal_calendar.empty()
+                    let list = ''
+                    days.forEach(day => {
+                        if (day.month!==last_month) {
+                            if (last_month) {
+                                //add extra days at the month end
+                                let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
+                                for (let i = 1; i <= 7 - day_number; i++) {
+                                    list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                                }
+                                list += `</div>`
                             }
-                            list += `</div>`
-                        }
 
-                        list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
-                        if( !last_month ){
-                            list += headers
-                        }
+                            list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
+                            if (!last_month) {
+                                list += headers
+                            }
 
-                        //add extra days at the month start
-                        let day_number = new Date( day.key * 1000 ).getDay()
-                        let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
-                        for ( let i = 0; i < day_number; i++ ){
-                            list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
+                            //add extra days at the month start
+                            let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
+                            let start_of_week = new Date((day.key - day_number * 86400) * 1000)
+                            for (let i = 0; i < day_number; i++) {
+                                list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate() + i)}</div>`
+                            }
+                            last_month = day.month
                         }
-                        last_month = day.month
-                    }
-                    let disabled = ( day.key + ( 24*3600 ) ) < now;
-                    list +=`
-                        <div class="day-cell ${ disabled ? 'disabled-calendar-day' : 'selected-day day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
+                        let disabled = (day.key + (24 * 3600)) < now;
+                        list += `
+                        <div class="day-cell ${disabled ? 'disabled-calendar-day':'selected-day day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
                             ${window.lodash.escape(day.day)}
                         </div>
                     `
-                })
-                modal_calendar.html(list)
+                    })
+                    modal_calendar.html(list)
+                }
+                draw_modal_calendar()
 
                 //build time select input
                 let time_select = $('#daily_time_select')
@@ -1079,7 +1083,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                         let day = $(val).data('day')
                         let time = parseInt(day) + parseInt(selected_daily_time)
                         let now = new Date().getTime()/1000
-                        if ( time > now ){
+                        if ( time > now && time >= calendar_subscribe_object['start_timestamp'] ){
                             let duration = parseInt($('#prayer-time-duration-select').val())
                             selected_times.push({time: time, duration: duration})
                         }

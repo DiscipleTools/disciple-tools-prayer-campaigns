@@ -14,7 +14,7 @@ window.campaign_scripts = {
         start_of_day = ( time_iterator >= start_of_day+24*3600 ) ? time_iterator : start_of_day
         let day = window.campaign_scripts.timestamp_to_month_day( time_iterator, custom_timezone )
         days.push({
-          "key": time_iterator,
+          "key": start_of_day,
           "formatted": day,
           "month": window.campaign_scripts.timestamp_to_format( time_iterator, { month:"long" }, custom_timezone),
           "day": window.campaign_scripts.timestamp_to_format( time_iterator, { day:"numeric" }, custom_timezone),
@@ -82,7 +82,7 @@ window.campaign_scripts = {
     );
   },
   /**
-   * return the st of day timestamp of a particular timezone
+   * return the start of day timestamp of a particular timezone
    * @param timestamp
    * @param timezone
    * @returns {number}
