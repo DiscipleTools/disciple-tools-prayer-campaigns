@@ -476,6 +476,9 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             <div>Notifications allowed:
                 <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </div>
+            <p>
+                Showing times according to timezone: <strong><?php echo esc_html( $timezone ); ?></strong>
+            </p>
             <?php
             if ( ! empty( $subs ) ){
                 foreach ( $subs as $sub ){
@@ -494,7 +497,12 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                     ?>
                     <div>
                         <span style="<?php echo esc_html( $style ); ?>">
-                            <?php echo esc_html( $begin_date->format( 'F d, Y @ H:i a' ) );
+                            <?php echo esc_html( sprintf(
+                                '%1$s from %2$s to %3$s',
+                                $begin_date->format( 'F d, Y' ),
+                                $begin_date->format( 'H:i a' ),
+                                $end_date->format( 'H:i a' )
+                            ) );
                             if ( !empty( $sub["label"] ) ) : ?>
                                 for <?php echo esc_html( $sub['label'] ) ?>
                             <?php endif;
