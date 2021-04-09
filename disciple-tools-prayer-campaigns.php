@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return object|bool
  */
 function dt_prayer_campaigns() {
-    $dt_prayer_campaigns_required_dt_theme_version = '1.1';
+    $dt_prayer_campaigns_required_dt_theme_version = '1.3';
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
 

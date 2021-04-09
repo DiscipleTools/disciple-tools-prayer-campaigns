@@ -158,8 +158,8 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 'parent_id' => $campaign_id,
                 'post_id' => $post_id,
                 'post_type' => 'subscriptions',
-                'type' => $campaign_instance->root,
-                'subtype' => $campaign_instance->type,
+                'type' => $campaign_instance->magic_link_root,
+                'subtype' => $campaign_instance->magic_link_type,
                 'payload' => null,
                 'value' => 1,
                 'lng' => null,
@@ -521,11 +521,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     $('.day-extra').empty()
                     calendar_subscribe_object.my_commitments.forEach(c=>{
                         let time = c.time_begin;
-                        let day_timestamp = window.campaign_scripts.day_start_timestamp_utc(c.time_begin)
-                        let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin)
-                        if ( c.verified ){
-                            verified = true;
-                        }
+                        let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
+                        let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone)
                         $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
                             <div id="selected-${window.lodash.escape(time)}"
                                 data-time="${window.lodash.escape(time)}">
@@ -548,6 +545,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     update_timezone()
                     days = window.campaign_scripts.calculate_day_times(current_time_zone)
                     draw_calendar()
+                    add_my_commitments()
+                    draw_modal_calendar()
                 })
 
                 $(document).on("click", '.remove-my-prayer-time', function (){
@@ -627,42 +626,45 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
                 //dawn calendar in date select modal
                 let modal_calendar = $('#modal-calendar')
-                modal_calendar.empty()
-                let list = ''
                 let now = new Date().getTime()/1000
-                let last_month = "";
-                days.forEach(day=>{
-                    if ( day.month !== last_month ){
-                        if ( last_month ){
-                            //add extra days at the month end
-                            let day_number = new Date( day.key * 1000 ).getDay()
-                            for ( let i = 1; i <= 7-day_number; i++ ){
-                                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                let draw_modal_calendar = ()=> {
+                    let last_month = "";
+                    modal_calendar.empty()
+                    let list = ''
+                    days.forEach(day => {
+                        if (day.month!==last_month) {
+                            if (last_month) {
+                                //add extra days at the month end
+                                let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
+                                for (let i = 1; i <= 7 - day_number; i++) {
+                                    list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                                }
+                                list += `</div>`
                             }
-                            list += `</div>`
-                        }
 
-                        list += `<h3 class="month-title">${day.month}</h3><div class="calendar">`
-                        if( !last_month ){
-                            list += headers
-                        }
+                            list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
+                            if (!last_month) {
+                                list += headers
+                            }
 
-                        //add extra days at the month start
-                        let day_number = new Date( day.key * 1000 ).getDay()
-                        let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
-                        for ( let i = 0; i < day_number; i++ ){
-                            list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
+                            //add extra days at the month start
+                            let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
+                            let start_of_week = new Date((day.key - day_number * 86400) * 1000)
+                            for (let i = 0; i < day_number; i++) {
+                                list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate() + i)}</div>`
+                            }
+                            last_month = day.month
                         }
-                        last_month = day.month
-                    }
-                    let disabled = ( day.key + ( 24*3600 ) ) < now;
-                    list +=`
-                        <div class="day-cell ${ disabled ? 'disabled-calendar-day' : 'selected-day day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
+                        let disabled = (day.key + (24 * 3600)) < now;
+                        list += `
+                        <div class="day-cell ${disabled ? 'disabled-calendar-day':'selected-day day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
                             ${window.lodash.escape(day.day)}
                         </div>
                     `
-                })
-                modal_calendar.html(list)
+                    })
+                    modal_calendar.html(list)
+                }
+                draw_modal_calendar()
 
                 let cal_select_all_div = $('#calendar-select-all-selected')
                 let cal_select_help_text = $('#calendar-select-help')
@@ -689,7 +691,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     $('#confirm-daily-time').prop('disabled', num_selected === 0 || select_val === "false" )
                 }
                 let show_help_text = () =>{
-                    let number_of_days_selected = $('.selected-day').length
+                    let selected_days = $('.selected-day')
+                    let number_of_days_selected = selected_days.length
                     if ( number_of_days_selected === days.length ){
                         cal_select_all_div.show()
                         cal_select_help_text.hide()
@@ -699,6 +702,55 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     }
                     $('#calendar-select-help-text').html(`${window.lodash.escape(number_of_days_selected)} of ${window.lodash.escape(days.length)} days selected`)
                     disable_button( number_of_days_selected )
+                    let coverage = {}
+                    let already_selected = parseInt(time_select.val())
+                    selected_days.each((index, val)=> {
+                        let day = $(val).data('day')
+                        for ( const key in calendar_subscribe_object.current_commitments ){
+                            if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
+                                continue;
+                            }
+                            if ( key >= day && key < day + 24 * 3600 ){
+                                let mod_time = key % (24 * 60 * 60)
+                                let time_formatted = '';
+                                if ( window.campaign_scripts.processing_save[mod_time] ){
+                                    time_formatted = window.campaign_scripts.processing_save[mod_time]
+                                } else {
+                                    time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
+                                    window.campaign_scripts.processing_save[mod_time] = time_formatted
+                                }
+                                if ( !coverage[time_formatted]){
+                                    coverage[time_formatted] = 0;
+                                }
+                                coverage[time_formatted]++;
+                            }
+                        }
+                    })
+                    let select_html = `<option value="false">Select a time</option>`
+
+                    let key = 0;
+                    let start_of_today = new Date()
+                    start_of_today.setHours(0,0,0,0)
+                    let start_time_stamp = start_of_today.getTime()/1000
+                    while ( key < 24 * 3600 ){
+                        let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+                        let text = ''
+                        let covered = coverage[time_formatted] ? coverage[time_formatted] === number_of_days_selected : false;
+                        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
+                        if ( fully_covered ){
+                            text = "(fully covered)"
+                        } else if ( covered ){
+                            text = "(covered for selected days)"
+                        } else if ( coverage[time_formatted] > 0 ){
+                            text = `(${coverage[time_formatted]} out of ${number_of_days_selected} selected days covered)`
+                        }
+                        select_html += `<option value="${window.lodash.escape(key)}" ${already_selected===key ? "selected" : ''}>
+                            ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
+                        </option>`
+                        key += calendar_subscribe_object.slot_length * 60
+                    }
+                    time_select.empty();
+                    time_select.html(select_html)
                 }
 
                 $('#confirm-daily-time').on("click", function (){
@@ -758,6 +810,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         $(`.success-confirmation-section`).show()
                         calendar_subscribe_object.my_commitments = response
                         add_my_commitments()
+                        submit_button.prop('disabled', false)
                     })
                     .fail(function(e) {
                         console.log(e)
