@@ -154,6 +154,10 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 continue;
             }
             $location_id = isset( $time['grid_id'] ) ? $time['grid_id'] : $campaign_grid_id;
+            $duration_mins = 15;
+            if ( isset( $time["duration"] ) && is_numeric( $time["duration"] ) ){
+                $duration_mins = $time["duration"];
+            }
             $args = [
                 'parent_id' => $campaign_id,
                 'post_id' => $post_id,
@@ -168,7 +172,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 'label' => null,
                 'grid_id' => $time['grid_id'],
                 'time_begin' => $time['time'],
-                'time_end' => $time['time'] + 900,
+                'time_end' => $time['time'] + $duration_mins * 60,
             ];
 
             $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
