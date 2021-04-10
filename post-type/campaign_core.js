@@ -158,7 +158,7 @@ class ProgressRing extends HTMLElement {
     }
     this._root = this.attachShadow({mode: 'open'});
 
-    let color = parseInt( progress ) >= 100 ? '#55d41b' : 'dodgerblue'
+    let color = parseInt( progress ) >= 100 ? 'mediumseagreen' : 'dodgerblue'
     this._root.innerHTML = `
       <svg height="${radius * 2}"
            width="${radius * 2}" >
