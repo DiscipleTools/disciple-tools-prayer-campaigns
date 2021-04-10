@@ -872,6 +872,8 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                         let background_color = 'white'
                         if ( slot.subscribers > 0) {
                             background_color = 'lightblue'
+                        } if ( slot.subscribers > 1) {
+                            background_color = 'mediumseagreen'
                         }
                         if ( row_index === 0 ){
                             times_html += `<tr><td>${window.lodash.escape(slot.formatted)}</td>`
@@ -992,9 +994,9 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                                     window.campaign_scripts.processing_save[mod_time] = time_formatted
                                 }
                                 if ( !coverage[time_formatted]){
-                                    coverage[time_formatted] = 0;
+                                    coverage[time_formatted] = [];
                                 }
-                                coverage[time_formatted]++;
+                                coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
                             }
                         }
                     })
@@ -1007,14 +1009,17 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                     while ( key < 24 * 3600 ){
                         let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
                         let text = ''
-                        let covered = coverage[time_formatted] ? coverage[time_formatted] === number_of_days_selected : false;
+                        let covered = coverage[time_formatted] ? coverage[time_formatted].length === number_of_days_selected : false;
                         let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-                        if ( fully_covered ){
-                            text = "(fully covered)"
+                        let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
+                        if ( fully_covered && level_covered === 1 ){
+                            text = "(fully covered once)"
+                        } else if ( fully_covered && level_covered > 1  ){
+                            text = `(fully covered ${level_covered} times)`
                         } else if ( covered ){
                             text = "(covered for selected days)"
-                        } else if ( coverage[time_formatted] > 0 ){
-                            text = `(${coverage[time_formatted]} out of ${number_of_days_selected} selected days covered)`
+                        } else if ( coverage[time_formatted] && coverage[time_formatted].length > 0 ){
+                            text = `(${coverage[time_formatted].length} out of ${number_of_days_selected} selected days covered)`
                         }
                         select_html += `<option value="${window.lodash.escape(key)}" ${already_selected===key ? "selected" : ''}>
                             ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
