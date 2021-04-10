@@ -437,6 +437,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         foreach ( $my_commitments_reports as $commitments_report ){
             $my_commitments[] = [
                 "time_begin" => $commitments_report["time_begin"],
+                "time_end" => $commitments_report["time_end"],
                 "value" => $commitments_report["value"],
                 "report_id" => $commitments_report["id"],
                 "verified" => $commitments_report["verified"] ?? false,
@@ -523,10 +524,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         let time = c.time_begin;
                         let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
                         let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone)
+                        let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
                         $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
                             <div id="selected-${window.lodash.escape(time)}"
                                 data-time="${window.lodash.escape(time)}">
-                                ${window.lodash.escape(time_label)}
+                                ${window.lodash.escape(time_label)} - ${window.lodash.escape(time_end_label)}
                                 <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
                             </div>
                         `)

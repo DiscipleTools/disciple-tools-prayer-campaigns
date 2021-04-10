@@ -157,12 +157,14 @@ class ProgressRing extends HTMLElement {
       `
     }
     this._root = this.attachShadow({mode: 'open'});
+
+    let color = parseInt( progress ) >= 100 ? '#55d41b' : 'dodgerblue'
     this._root.innerHTML = `
       <svg height="${radius * 2}"
            width="${radius * 2}" >
            <circle
              class="first-circle"
-             stroke="dodgerblue"
+             stroke="${color}"
              stroke-dasharray="${this._circumference} ${this._circumference}"
              style="stroke-dashoffset:${this._circumference}"
              stroke-width="${stroke}"
