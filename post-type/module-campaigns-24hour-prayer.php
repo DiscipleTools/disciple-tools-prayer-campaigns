@@ -525,7 +525,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         $number_of_time_slots = DT_Campaigns_Base::query_coverage_total_time_slots( $post_id );
 
         $coverage_percentage = $coverage_levels[0]["percent"];
-        $second_level = isset( $coverage_levels[1]["percent"] ) && $coverage_percentage === 100.0 ? $coverage_levels[1]["percent"] : "";
+        $second_level = isset( $coverage_levels[1]["percent"] ) ? $coverage_levels[1]["percent"] : "";
 
         $description = "Campaign Description";
         if ( isset( $record["description"] ) && !empty( $record["description"] ) ){
