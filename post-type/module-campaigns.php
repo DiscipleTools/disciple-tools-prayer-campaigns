@@ -770,7 +770,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
             }
             $total_blocks = $day_count * 96; // 96 blocks of 15 minutes for a 24 hour period
             foreach ($res as &$r ){
-                $r["percent"] = round( $r["blocks_covered"] / $total_blocks * 100, 1 );
+                $r["percent"] = round( $r["blocks_covered"] / $total_blocks * 100, 2 );
             }
         }
         return $res;
@@ -785,6 +785,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         $campaign = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
         if ( isset( $campaign["start_date"]["timestamp"], $campaign["end_date"]["timestamp"] ) ){
             $duration_in_seconds = (int) $campaign["end_date"]["timestamp"] - (int) $campaign["start_date"]["timestamp"];
+            $duration_in_seconds += 86400; // end of last day.
             $number_of_time_slots = $duration_in_seconds / ( 15 * 60 );
             return $number_of_time_slots;
         }

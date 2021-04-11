@@ -539,7 +539,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
             <div id="wrapper">
                 <div class="center">
                     <h2 ><?php echo esc_html( $description ); ?></h2>
-                    <?php if ( $coverage_percentage === 100.0 ) :
+                    <?php if ( $coverage_levels[0]["blocks_covered"] === $number_of_time_slots ) :
                         $text2 = "+" . $second_level . "%";
                         ?>
                         All of the <?php echo esc_html( $number_of_time_slots ); ?> time slots are covered in once prayer once. Help us cover them twice!
