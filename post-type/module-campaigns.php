@@ -75,7 +75,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         if ( isset( $tabs[$this->post_type] ) ) {
             unset( $tabs['subscriptions'] );
         }
-        if ( $tabs['campaigns'] ) {
+        if ( isset( $tabs['campaigns'] ) ){
             $tabs['campaigns']['submenu']['campaigns'] = $tabs['campaigns'];
             $tabs['campaigns']['submenu']['subscriptions'] = [
                 "link" => site_url( "/subscriptions/" ),
