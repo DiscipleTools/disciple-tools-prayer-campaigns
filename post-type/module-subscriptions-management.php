@@ -526,16 +526,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     $('.day-extra').empty()
                     calendar_subscribe_object.my_commitments.forEach(c=>{
                         let time = c.time_begin;
-                        let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
-                        let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone)
-                        let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
-                        $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
-                            <div id="selected-${window.lodash.escape(time)}"
-                                data-time="${window.lodash.escape(time)}">
-                                ${window.lodash.escape(time_label)} - ${window.lodash.escape(time_end_label)}
-                                <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
-                            </div>
-                        `)
+                        let now = new Date().getTime()/1000
+                        if ( time >= now){
+                            let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
+                            let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone)
+                            let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
+                            $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
+                                <div id="selected-${window.lodash.escape(time)}"
+                                    data-time="${window.lodash.escape(time)}">
+                                    ${window.lodash.escape(time_label)} - ${window.lodash.escape(time_end_label)}
+                                    <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
+                                </div>
+                            `)
+                        }
 
                     })
 
