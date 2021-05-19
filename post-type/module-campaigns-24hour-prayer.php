@@ -49,7 +49,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                     if ( isset( $record['public_key'] )) {
                         $key = $record['public_key'];
                     } else {
-                        $key = DT_Subscriptions_Base::instance()->create_unique_key();
+                        $key = dt_create_unique_key();
                         update_post_meta( get_the_ID(), 'public_key', $key );
                     }
                     if ( !isset( $record["start_date"]["timestamp"], $record["end_date"]["timestamp"] ) ){
@@ -348,7 +348,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
             $magic = new DT_Magic_URL( 'campaigns_app' );
             $types = $magic->list_types();
             $campaigns = $types['campaigns'] ?? [];
-            $campaigns['new_key'] = $magic->create_unique_key();
+            $campaigns['new_key'] = dt_create_unique_key();
 
             wp_localize_script( // add object to campaigns-post-type.js
                 'dt_campaigns', 'campaigns_campaigns_module', [

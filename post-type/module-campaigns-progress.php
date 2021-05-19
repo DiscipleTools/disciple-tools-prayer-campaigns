@@ -167,7 +167,7 @@ class DT_Campaign_Progress extends DT_Module_Base
             $magic = new DT_Magic_URL( 'campaigns_app' );
             $types = $magic->list_types();
             $campaigns = $types['campaigns'] ?? [];
-            $campaigns['new_key'] = $magic->create_unique_key();
+            $campaigns['new_key'] = dt_create_unique_key();
 
             wp_localize_script( // add object to campaigns-post-type.js
                 'dt_campaigns', 'campaigns_campaigns_module', [
