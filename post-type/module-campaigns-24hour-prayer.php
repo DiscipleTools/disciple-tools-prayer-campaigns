@@ -46,11 +46,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 $record = DT_Posts::get_post( $post_type, get_the_ID() );
 
                 if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ) {
-                    if ( isset( $record['public_key'] )) {
-                        $key = $record['public_key'];
+                    $key_name = 'public_key';
+                    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                        $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+                    }
+                    if ( isset( $record[$key_name] )) {
+                        $key = $record[$key_name];
                     } else {
                         $key = dt_create_unique_key();
-                        update_post_meta( get_the_ID(), 'public_key', $key );
+                        update_post_meta( get_the_ID(), $key_name, $key );
                     }
                     if ( !isset( $record["start_date"]["timestamp"], $record["end_date"]["timestamp"] ) ){
                         ?>
@@ -194,6 +198,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
         $receive_prayer_time_notifications = isset( $params["receive_prayer_time_notifications"] ) && !empty( $params["receive_prayer_time_notifications"] );
 
+        $key_name = 'public_key';
+        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+        }
         $fields = [
             'title' => $title,
             "contact_email" => [
@@ -205,7 +213,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 ],
             ],
             'timezone' => $params["timezone"],
-            'public_key' => $hash,
+            $key_name => $hash,
             'receive_prayer_time_notifications' => $receive_prayer_time_notifications,
         ];
 

@@ -48,6 +48,10 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $record["name"] ) ){
             $message .= '<h3>Hello ' . esc_html( $record["name"] ) . ',</h3>';
         }
+        $key_name = 'public_key';
+        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        }
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = "";
@@ -56,12 +60,12 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $message .= '
             <h4>Thank you for praying with us!</h4>
-            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">Click here to verify your email address and confirm your prayer times. </a></p>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">Click here to verify your email address and confirm your prayer times. </a></p>
             <p>Here are the times you have committed to pray:</p>
             <p>'.$commitment_list.'</p>
             <p>Times are shown according to: <strong>' . esc_html( $timezone ) . '</strong> time </p>
             ' . $sign_up_email_extra_message . '
-            <p>Manage your account and time commitments <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record['public_key'].'">here.</a></p>
+            <p>Manage your account and time commitments <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">here.</a></p>
         ';
 
 
@@ -80,17 +84,22 @@ class DT_Prayer_Campaigns_Send_Email {
         // get post id for campaign
         global $wpdb;
         $email = trim( $email );
+        $key_name = 'public_key';
+        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        }
         $keys = $wpdb->get_col(  $wpdb->prepare( "SELECT pk.meta_value as public_key
                 FROM $wpdb->p2p p2
                     JOIN $wpdb->postmeta pm ON pm.post_id=p2.p2p_to
                        AND pm.meta_key LIKE %s
                        AND pm.meta_key NOT LIKE %s
-                    JOIN $wpdb->postmeta pk ON pk.post_id=p2.p2p_to AND pk.meta_key = 'public_key'
+                    JOIN $wpdb->postmeta pk ON pk.post_id=p2.p2p_to AND pk.meta_key = %s
                 WHERE p2.p2p_type = 'campaigns_to_subscriptions'
                     AND p2.p2p_from = %s
                     AND pm.meta_value = %s",
             $wpdb->esc_like( 'contact_email' ). '%',
             '%'.$wpdb->esc_like( 'details' ),
+            $key_name,
             $campaign_id,
             $email
         ) );

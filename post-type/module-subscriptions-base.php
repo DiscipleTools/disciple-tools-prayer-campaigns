@@ -201,7 +201,11 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
 
-            $fields['public_key'] = [
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+            }
+            $fields[$key_name] = [
                 'name'   => __( 'Private Key', 'disciple_tools' ),
                 'description' => __( 'Private key for subscriber access', 'disciple_tools' ),
                 'type'   => 'hash',
@@ -349,11 +353,16 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
             $fields = DT_Posts::get_post_field_settings( $post_type );
 
-            if ( isset( $record['public_key'] )) {
-                $key = $record['public_key'];
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+            }
+            if ( isset( $record[$key_name] )) {
+                $key = $record[$key_name];
             } else {
-                $key = self::create_unique_key();
-                update_post_meta( get_the_ID(), 'public_key', $key );
+
+                $key = dt_create_unique_key();
+                update_post_meta( get_the_ID(), $key_name, $key );
             }
             $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $key;
 
@@ -556,23 +565,18 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             if ( !isset( $fields["status"] ) ) {
                 $fields["status"] = "active";
             }
-            if ( !isset( $fields['public_key'] ) ) {
-                $fields['public_key'] = $this->create_unique_key();
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+            }
+            if ( !isset( $fields[$key_name] ) ) {
+                $fields[$key_name] = dt_create_unique_key();
             }
             if ( ! isset( $fields['subscriber_last_modified'] ) ) {
                 $fields['subscriber_last_modified'] = time();
             }
         }
         return $fields;
-    }
-
-    public function create_unique_key() : string {
-        try {
-            $hash = hash( 'sha256', bin2hex( random_bytes( 256 ) ) );
-        } catch ( Exception $exception ) {
-            $hash = hash( 'sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
-        }
-        return $hash;
     }
 
     //action when a post has been created

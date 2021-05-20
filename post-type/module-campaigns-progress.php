@@ -120,11 +120,16 @@ class DT_Campaign_Progress extends DT_Module_Base
                 }
 
                 if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ) {
-                    if ( isset( $record['public_key'] )) {
-                        $key = $record['public_key'];
+                    $key_name = 'public_key';
+                    if ( method_exists( "DT_Magic_URL", "get_meta_key" ) ){
+                        $key_name = DT_Magic_URL::get_public_key_meta_key( $this->root, $this->type );
+                    }
+                    if ( isset( $record[$key_name] )) {
+                        $key = $record[$key_name];
                     } else {
-                        $key = DT_Subscriptions_Base::instance()->create_unique_key();
-                        update_post_meta( get_the_ID(), 'public_key', $key );
+
+                        $key = dt_create_unique_key();
+                        update_post_meta( get_the_ID(), $key_name, $key );
                     }
                     $link = trailingslashit( site_url() ) . $this->root . '/' . $this->type . '/' . $key;
                     ?>
@@ -185,7 +190,7 @@ class DT_Campaign_Progress extends DT_Module_Base
             'name' => 'Subscriptions',
             'root' => $this->root,
             'type' => $this->type,
-            'meta_key' => 'public_key', // coaching-magic_c_key
+            'meta_key' => $this->root . '_' . $this->type . '_magic_key',
             'actions' => [
                 '' => 'Manage',
                 'access_account' => 'Access Account',
