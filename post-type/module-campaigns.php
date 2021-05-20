@@ -465,12 +465,15 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     <span style="font-size:2rem;"><?php echo esc_html( $past_commitments ) ?></span>
                 </div>
             </div>
+            <div class="cell small-6 ">
+                <button class="button hollow" id="campaign_coverage_stats">Stats</button>
+            </div>
         </div>
         <script>
         jQuery(document).ready(function($){
             /* subscribers */
             $('#campaign_subscriber_list').on('click', function(e){
-                 $('#modal-small-title').empty().html(`<h2>Subscriber List</h2><hr>`)
+                $('#modal-small-title').empty().html(`<h2>Subscriber List</h2><hr>`)
 
                 let container = $('#modal-small-content')
                 container.empty().html(`
@@ -493,6 +496,32 @@ class DT_Campaigns_Base extends DT_Module_Base {
                         content += `<div class="cell">No subscribers found</div>`
                     }
                     content += `</ol>`
+                    container.empty().html(content)
+                })
+
+                $('#modal-small').foundation('open')
+            })
+
+            $('#campaign_coverage_stats').on('click', function(e){
+                $('#modal-small-title').empty().html(`<h2>Stats</h2><hr>`)
+
+                let container = $('#modal-small-content')
+                container.empty().html(`
+                    <span class="loading-spinner active"></span>
+                `)
+                window.makeRequest( 'GET', '/coverage-stats', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                .done(function(data){
+                    let content = `<ul>`
+                    if ( data ) {
+                        jQuery.each(data.unique_days_covered, function(i,v){
+                            content += `<li>
+                                ${window.lodash.escape(v)} subscribers covered ${window.lodash.escape(i)} days
+                            </li>`
+                        })
+                    } else {
+                        content += `<div class="cell">No subscribers found</div>`
+                    }
+                    content += `</ul>`
                     container.empty().html(content)
                 })
 
@@ -646,6 +675,17 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 ],
             ]
         );
+        register_rest_route(
+            $namespace, '/coverage-stats', [
+                [
+                    'methods'  => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'coverage_stats_endpoint' ],
+                    'permission_callback' => function( WP_REST_Request $request ) {
+                        return dt_has_permissions( [ 'view_any_subscriptions' ] );
+                    },
+                ],
+            ]
+        );
     }
 
     public function subscribers_endpoint( WP_REST_Request $request ) {
@@ -684,6 +724,56 @@ class DT_Campaigns_Base extends DT_Module_Base {
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         return DT_Time_Utilities::campaign_times_list( $campaign_post_id );
 
+    }
+
+    public function coverage_stats_endpoint( WP_REST_Request $request ){
+        $params = $request->get_params();
+        if ( ! isset( $params['campaign_id'] ) ) {
+            return new WP_Error( __METHOD__, 'Required parameter not set' );
+        }
+        global $wpdb;
+        $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
+        $subscribers = $wpdb->get_results( $wpdb->prepare( "
+            SELECT p.post_title as name, p.ID,
+                (SELECT COUNT(r.post_id)
+                    FROM $wpdb->dt_reports r
+                    WHERE r.post_type = 'subscriptions'
+                    AND r.parent_id = %s
+                    AND r.post_id = p.ID) as commitments,
+                (SELECT COUNT(r.post_id)
+                    FROM $wpdb->dt_reports r
+                    WHERE r.post_type = 'subscriptions'
+                    AND r.parent_id = %s
+                    AND r.value = 1
+                    AND r.post_id = p.ID) as verified
+            FROM $wpdb->p2p p2
+            LEFT JOIN $wpdb->posts p ON p.ID=p2.p2p_to
+            WHERE p2p_type = 'campaigns_to_subscriptions'
+            AND p2p_from = %s", $campaign_post_id, $campaign_post_id, $campaign_post_id, $campaign_post_id
+        ), ARRAY_A );
+
+        $unique_days_covered = [];
+        foreach ( $subscribers as &$sub ){
+            $unique_days = [];
+            if ( $sub["commitments"] !== "0"){
+                $times = Disciple_Tools_Reports::get( $sub["ID"], 'post_id' );
+                foreach ( $times as $time ){
+                    $day = gmdate( "Y-m-d", $time["time_begin"] );
+                    if ( !in_array( $day, $unique_days, true ) ){
+                        $unique_days[] = $day;
+                    }
+                }
+            }
+            $number_of_days_covered = sizeof( $unique_days );
+            if ( !isset( $unique_days_covered[$number_of_days_covered] ) ){
+                $unique_days_covered[$number_of_days_covered] =0;
+            }
+            $unique_days_covered[$number_of_days_covered]++;
+            $sub["unique_days_covered"] = sizeof( $unique_days );
+        }
+        return [
+            "unique_days_covered" => $unique_days_covered,
+        ];
     }
 
     public function query_subscriber_count( $campaign_post_id ){
