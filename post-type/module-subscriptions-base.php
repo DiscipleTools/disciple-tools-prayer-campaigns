@@ -202,7 +202,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             ];
 
             $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_meta_key" ) ){
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
             }
             $fields[$key_name] = [

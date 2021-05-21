@@ -121,7 +121,7 @@ class DT_Campaign_Progress extends DT_Module_Base
 
                 if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ) {
                     $key_name = 'public_key';
-                    if ( method_exists( "DT_Magic_URL", "get_meta_key" ) ){
+                    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
                         $key_name = DT_Magic_URL::get_public_key_meta_key( $this->root, $this->type );
                     }
                     if ( isset( $record[$key_name] )) {

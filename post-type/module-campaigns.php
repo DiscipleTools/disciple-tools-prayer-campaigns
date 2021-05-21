@@ -904,7 +904,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 $fields["status"] = "active";
             }
             $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_meta_key" ) ){
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
             }
             if ( !isset( $fields[$key_name] ) ) {
