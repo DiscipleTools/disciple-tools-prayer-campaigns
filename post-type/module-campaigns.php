@@ -265,11 +265,15 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ];
 
 
-            $fields['public_key'] = [
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+            }
+            $fields[$key_name] = [
                 'name'   => __( 'Private Key', 'disciple_tools' ),
                 'description' => __( 'Private key for subscriber access', 'disciple_tools' ),
                 'type'   => 'hash',
-                'default' => DT_Subscriptions_Base::instance()->create_unique_key(),
+                'default' => dt_create_unique_key(),
                 'hidden' => true,
                 "customizable" => false,
             ];
@@ -899,8 +903,12 @@ class DT_Campaigns_Base extends DT_Module_Base {
             if ( !isset( $fields["status"] ) ) {
                 $fields["status"] = "active";
             }
-            if ( !isset( $fields['public_key'] ) ) {
-                $fields['public_key'] = $this->create_unique_key();
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+            }
+            if ( !isset( $fields[$key_name] ) ) {
+                $fields[$key_name] = dt_create_unique_key();
             }
             if ( !isset( $fields["type"] ) ){
                 $fields["type"] = "24hour";

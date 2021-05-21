@@ -18,6 +18,10 @@ function dt_prayer_campaign_prayer_time_reminder(){
     $begin_time_range = time();
     $end_time_range = time() + $lead_time_in_hours * 3600;
 
+    $key_name = 'public_key';
+    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+        $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+    }
     /**
      * Get reports
      * That have been confirmed
@@ -31,7 +35,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 AND pm.meta_key LIKE %s
                 AND pm.meta_key NOT LIKE %s
             LEFT JOIN $wpdb->postmeta pk ON pm.post_id=pk.post_id
-                AND pk.meta_key = 'public_key'
+                AND pk.meta_key = %s
             LEFT JOIN $wpdb->postmeta pn ON pm.post_id=pn.post_id
                 AND pn.meta_key = 'receive_prayer_time_notifications'
             LEFT JOIN $wpdb->posts p ON p.ID=r.post_id
@@ -46,6 +50,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
             ",
         $wpdb->esc_like( 'contact_email' ) . '%',
         '%' . $wpdb->esc_like( 'details' ),
+        $key_name,
         $begin_time_range,
         $end_time_range
     ), ARRAY_A );
