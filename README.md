@@ -46,4 +46,4 @@ system for git. For a more details on contribution see the
 
 ## Screenshots
 
-![screenshot](https://via.placeholder.com/600x150)
+![screenshot](https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/raw/master/assets/screenshot.png)
