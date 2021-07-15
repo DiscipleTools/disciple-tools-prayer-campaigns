@@ -43,7 +43,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
-        add_filter( 'desktop_navbar_menu_options', [ $this, 'desktop_navbar_menu_options' ], 1000, 1 );
 //        add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
 
         // hooks
@@ -67,60 +66,27 @@ class DT_Campaigns_Base extends DT_Module_Base {
     }
 
     /**
-     * Modifies the top tabs to add campaigns under the drop down
-     * @param $tabs
-     * @return mixed
-     */
-    public function desktop_navbar_menu_options( $tabs ) {
-        if ( isset( $tabs[$this->post_type] ) ) {
-            unset( $tabs['subscriptions'] );
-        }
-        if ( isset( $tabs['campaigns'] ) ){
-            $tabs['campaigns']['submenu']['campaigns'] = $tabs['campaigns'];
-            $tabs['campaigns']['submenu']['subscriptions'] = [
-                "link" => site_url( "/subscriptions/" ),
-                "label" => __( 'Subscriptions', 'disciple_tools' ),
-                'icon' => '',
-                'hidden' => false,
-            ];
-        }
-        return $tabs;
-    }
-
-    /**
      * Documentation
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/roles-permissions.md#rolesd
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        $expected_roles["subscriptions_admin"] = [
-            "label" => __( 'Subscriptions Admin', 'disciple_tools' ),
-            "description" => __( 'Subscriptions admin can administrate the prayer subscriptions section', 'disciple_tools' ),
+        $expected_roles["campaigns_admin"] = [
+            "label" => __( 'Campaigns Admin', 'disciple_tools' ),
+            "description" => __( 'Campaigns admin can administrate the prayer campaigns and subscriptions section', 'disciple_tools' ),
             "permissions" => [
+                'access_'.$this->post_type => true,
+                'create_'.$this->post_type => true,
+                'update_any_'.$this->post_type => true,
                 'view_any_'.$this->post_type => true,
-                'dt_all_admin_' . $this->post_type => true,
             ]
         ];
 
-        if ( !isset( $expected_roles["dt_admin"] ) ){
-            $expected_roles["dt_admin"] = [
-                "label" => __( 'Disciple.Tools Admin', 'disciple-tools-training' ),
-                "description" => "All D.T permissions",
-                "permissions" => []
-            ];
-        }
-        if ( !isset( $expected_roles["administrator"] ) ){
-            $expected_roles["administrator"] = [
-                "label" => __( 'Administrator', 'disciple-tools-training' ),
-                "description" => "All D.T permissions plus the ability to manage plugins.",
-                "permissions" => []
-            ];
-        }
-
         if ( isset( $expected_roles["administrator"] ) ){
+            $expected_roles["administrator"]["permissions"]['access_' . $this->post_type ] = true;
+            $expected_roles["administrator"]["permissions"]['create_' . $this->post_type] = true;
             $expected_roles["administrator"]["permissions"]['view_any_'.$this->post_type ] = true;
             $expected_roles["administrator"]["permissions"]['update_any_'.$this->post_type ] = true;
-            $expected_roles["dt_admin"]["permissions"][ 'dt_all_admin_' . $this->post_type] = true;
         }
 
         return $expected_roles;

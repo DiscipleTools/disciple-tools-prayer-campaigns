@@ -36,6 +36,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
         add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
+        add_filter( 'desktop_navbar_menu_options', [ $this, 'desktop_navbar_menu_options' ], 1000, 1 );
 
         //setup tiles and fields
         add_action( 'p2p_init', [ $this, 'p2p_init' ] );
@@ -72,23 +73,46 @@ class DT_Subscriptions_Base extends DT_Module_Base {
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        $expected_roles["subscriptions_admin"] = [
-            "label" => __( 'Subscriptions Admin', 'disciple_tools' ),
-            "description" => __( 'Subscriptions admin can administrate the prayer subscriptions section', 'disciple_tools' ),
+        $expected_roles["campaigns_admin"] = [
+            "label" => __( 'Campaigns Admin', 'disciple_tools' ),
+            "description" => __( 'Campaigns admin can administrate the prayer campaigns and subscriptions section', 'disciple_tools' ),
             "permissions" => [
-                'view_any_'.$this->post_type => true,
+                'access_'.$this->post_type => true,
+                'create_'.$this->post_type => true,
                 'update_any_'.$this->post_type => true,
-                'dt_all_admin_' . $this->post_type => true,
+                'view_any_'.$this->post_type => true,
             ]
         ];
 
         if ( isset( $expected_roles["administrator"] ) ){
+            $expected_roles["administrator"]["permissions"]['access_' . $this->post_type ] = true;
+            $expected_roles["administrator"]["permissions"]['create_' . $this->post_type] = true;
             $expected_roles["administrator"]["permissions"]['view_any_'.$this->post_type ] = true;
             $expected_roles["administrator"]["permissions"]['update_any_'.$this->post_type ] = true;
-            $expected_roles["dt_admin"]["permissions"][ 'dt_all_admin_' . $this->post_type] = true;
         }
 
         return $expected_roles;
+    }
+
+    /**
+     * Modifies the top tabs to add subscriptions under the campaigns drop down
+     * @param $tabs
+     * @return mixed
+     */
+    public function desktop_navbar_menu_options( $tabs ) {
+        if ( isset( $tabs[$this->post_type] ) ) {
+            unset( $tabs['subscriptions'] );
+        }
+        if ( isset( $tabs['campaigns'] ) ){
+            $tabs['campaigns']['submenu']['campaigns'] = $tabs['campaigns'];
+            $tabs['campaigns']['submenu']['subscriptions'] = [
+                "link" => site_url( "/subscriptions/" ),
+                "label" => __( 'Subscriptions', 'disciple_tools' ),
+                'icon' => '',
+                'hidden' => false,
+            ];
+        }
+        return $tabs;
     }
 
     /**
