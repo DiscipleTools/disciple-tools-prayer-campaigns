@@ -327,15 +327,13 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         'access_account' => 'Access Account'
     ];
 
-    public $allowed_scripts = [
-        'dt_campaign_core'
-    ];
-
     public function __construct(){
         parent::__construct();
         if ( !$this->check_parts_match()){
             return;
         }
+        // add dt_campaign_core to allowed scripts
+        $this->allowed_scripts[] = 'dt_campaign_core';
 
         add_action( 'dt_blank_head', [ $this, 'page_head' ] );
         add_action( 'dt_blank_footer', [ $this, 'page_footer' ] );

@@ -200,15 +200,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public $type = 'manage'; // define the type
     public $type_name = 'Subscriptions';
 
-    public $allowed_scripts = [
-        'dt_campaign_core'
-    ];
-
     public function __construct(){
         parent::__construct();
         if ( !$this->check_parts_match()){
             return;
         }
+
+        // add dt_campaign_core to allowed scripts
+        $this->allowed_scripts[] = 'dt_campaign_core';
+
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
         add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
 
