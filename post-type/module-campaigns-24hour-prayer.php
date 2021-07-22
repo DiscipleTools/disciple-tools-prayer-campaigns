@@ -306,8 +306,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         ];
         return $types;
     }
-
-
 }
 
 
@@ -333,8 +331,6 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
             return;
         }
         // add dt_campaign_core to allowed scripts
-        $this->allowed_scripts[] = 'dt_campaign_core';
-
         add_action( 'dt_blank_head', [ $this, 'page_head' ] );
         add_action( 'dt_blank_footer', [ $this, 'page_footer' ] );
         //load correct page based on the action
@@ -346,7 +342,13 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
             return; // fail if no valid action url found
         }
 
+        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
+    }
+
+    public function dt_magic_url_base_allowed_js( $allowed_js ) {
+        $allowed_js[] = 'dt_campaign_core';
+        return $allowed_js;
     }
 
     public function wp_enqueue_scripts(){

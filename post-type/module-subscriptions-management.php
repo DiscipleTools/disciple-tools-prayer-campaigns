@@ -207,8 +207,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         // add dt_campaign_core to allowed scripts
-        $this->allowed_scripts[] = 'dt_campaign_core';
-
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
         add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
 
@@ -220,7 +218,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         // load page elements
+        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
+    }
+
+    public function dt_magic_url_base_allowed_js( $allowed_js ) {
+        $allowed_js[] = 'dt_campaign_core';
+        return $allowed_js;
     }
 
     public function wp_enqueue_scripts(){
@@ -230,7 +234,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         ], filemtime( plugin_dir_path( __FILE__ ) . 'campaign_core.js' ), true );
 
     }
-
 
     public function form_head(){
         wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
