@@ -135,7 +135,18 @@ class DT_Subscriptions_Management extends DT_Module_Base {
     }
 
     private function delete_subscriptions( $post_id, $params ) {
+        $sub = Disciple_Tools_Reports::get( $params["report_id"], 'id' );
+        $time_in_mins = ( $sub["time_end"] - $sub["time_begin"] ) / 60;
+        //@todo convert timezone?
+        $label = "Commitment deleted: " . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
         Disciple_Tools_Reports::delete( $params['report_id'] );
+        dt_activity_insert([
+            'action' => 'delete_subscription',
+            'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
+            'object_subtype' => 'report',
+            'object_note' => $label,
+            'object_id' => $post_id
+        ] );
         return $this->get_subscriptions( $post_id );
     }
 
@@ -184,6 +195,17 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 $args['label'] = $full_name;
             }
             Disciple_Tools_Reports::insert( $args );
+
+            $time_in_mins = ( $args["time_end"] - $args["time_begin"] ) / 60;
+            //@todo convert timezone?
+            $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
+            dt_activity_insert([
+                'action' => 'add_subscription',
+                'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
+                'object_subtype' => 'report',
+                'object_note' => $label,
+                'object_id' => $post_id
+            ] );
         }
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
@@ -471,7 +493,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id ) + 86400,
                 'slot_length' => 15
             ]) ?>][0]
-            console.log(calendar_subscribe_object);
 
             let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
             const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
