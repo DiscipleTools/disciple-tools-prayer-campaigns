@@ -38,7 +38,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
         add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
 
         //setup tiles and fields
-        add_action( 'p2p_init', [ $this, 'p2p_init' ] );
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
@@ -105,17 +104,15 @@ class DT_Campaigns_Base extends DT_Module_Base {
             $fields['tags'] = [
                 'name'        => __( 'Tags', 'disciple_tools' ),
                 'description' => _x( 'A useful way to group related items.', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'multi_select',
+                'type'        => 'tags',
                 'default'     => [],
-                'tile'        => 'other',
-                'custom_display' => true,
+                'tile'        => 'details',
                 "customizable" => false,
             ];
             $fields["follow"] = [
                 'name'        => __( 'Follow', 'disciple_tools' ),
                 'type'        => 'multi_select',
                 'default'     => [],
-                'section'     => 'misc',
                 'hidden'      => true,
                 "customizable" => false,
             ];
@@ -163,22 +160,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "show_in_table" => 10,
                 "in_create_form" => false
             ];
-//            $fields['assigned_to'] = [
-//                'name'        => __( 'Assigned To', 'disciple_tools' ),
-//                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),
-//                'type'        => 'user_select',
-//                'default'     => '',
-//                'tile' => 'status',
-//                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
-//                "show_in_table" => 16,
-//                'custom_display' => true,
-//            ];
-//            $fields["requires_update"] = [
-//                'name'        => __( 'Requires Update', 'disciple_tools' ),
-//                'description' => '',
-//                'type'        => 'boolean',
-//                'default'     => false,
-//            ];
             // end basic framework fields
 
 
@@ -216,7 +197,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'description' => '',
                 'type'        => 'date',
                 'default'     => time(),
-                'tile' => 'time',
+                'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
                 "in_create_form" => true,
             ];
@@ -225,11 +206,24 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'description' => '',
                 'type'        => 'date',
                 'default'     => '',
-                'tile' => 'time',
+                'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
                 "in_create_form" => true,
             ];
 
+            $timezones = [];
+            $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+            foreach ( $tzlist as $tz ){
+                $timezones[$tz] = [
+                    "label" => $tz
+                ];
+            }
+            $fields["campaign_timezone"] = [
+                "name" => __( "Campaign Time Zone", 'disciple_tools' ),
+                "default" => $timezones,
+                "type" => "key_select",
+                "tile" => "campaign_setup",
+            ];
 
             $key_name = 'public_key';
             if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
@@ -254,14 +248,14 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'mapbox'    => false,
                 "customizable" => false,
                 "in_create_form" => true,
-                "tile" => "",
+                "tile" => "campaign_setup",
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
             $fields['location_grid_meta'] = [
                 'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
                 'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
                 'type'        => 'location_meta',
-                "tile"      => "locations",
+                "tile"      => "campaign_setup",
                 'mapbox'    => false,
                 'hidden' => true,
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
@@ -308,19 +302,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "tile" => "details"
             ];
 
-            $timezones = [];
-            $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
-            foreach ( $tzlist as $tz ){
-                $timezones[$tz] = [
-                    "label" => $tz
-                ];
-            }
-            $fields["campaign_timezone"] = [
-                "name" => __( "Campaign Time Zone", 'disciple_tools' ),
-                "default" => $timezones,
-                "type" => "key_select",
-                "tile" => "time",
-            ];
 
         }
 
@@ -344,47 +325,12 @@ class DT_Campaigns_Base extends DT_Module_Base {
     }
 
     /**
-     * Documentation
-     * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/fields.md#declaring-connection-fields
-     */
-    public function p2p_init(){
-
-        p2p_register_connection_type(
-            [
-                'name'           => "campaigns_to_subscriptions",
-                'from'           => 'campaigns',
-                'to'             => 'subscriptions',
-                'admin_box' => [
-                    'show' => false,
-                ],
-                'title'          => [
-                    'from' => __( 'Campaigns', 'disciple_tools' ),
-                    'to'   => 'Subscriptions',
-                ]
-            ]
-        );
-        p2p_register_connection_type(
-            [
-                'name'        => $this->post_type."_to_peoplegroups",
-                'from'        => $this->post_type,
-                'to'          => 'peoplegroups',
-                'title'       => [
-                    'from' => __( 'People Groups', 'disciple_tools' ),
-                    'to'   => $this->plural_name,
-                ]
-            ]
-        );
-    }
-
-    /**
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
-            $tiles["location"] = [ "label" => __( "Geo Focus", 'disciple_tools' ) ];
-            $tiles["time"] = [ "label" => __( "Time Range", 'disciple_tools' ) ];
+            $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
-            $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
         }
         return $tiles;
     }
@@ -562,62 +508,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
 
         <?php }
-
-        if ( $post_type === $this->post_type && $section === "location" ){
-            $fields = DT_Posts::get_post_field_settings( $post_type );
-            ?>
-            <div class="cell small-12">
-                <div class="section-subheader">
-                    <img src="<?php echo esc_url( get_template_directory_uri() . "/dt-assets/images/location.svg" ) ?>" /> <?php echo esc_html( $fields['location_grid']['name'] ) ?>
-                </div>
-                <div class="dt_location_grid" data-id="location_grid">
-                    <var id="location_grid-result-container" class="result-container"></var>
-                    <div id="location_grid_t" name="form-location_grid" class="scrollable-typeahead typeahead-margin-when-active">
-                        <div class="typeahead__container">
-                            <div class="typeahead__field">
-                                    <span class="typeahead__query">
-                                        <input class="js-typeahead-location_grid input-height"
-                                               data-field="location_grid"
-                                               data-field_type="location"
-                                               name="location_grid[query]"
-                                               placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields['location_grid']['name'] ) )?>"
-                                               autocomplete="off" />
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <?php }
-
-        if ( $post_type === $this->post_type && $section === "other" ) :
-            $fields = DT_Posts::get_post_field_settings( $post_type );
-            ?>
-            <div class="section-subheader">
-                <?php echo esc_html( $fields["tags"]["name"] ) ?>
-            </div>
-            <div class="tags">
-                <var id="tags-result-container" class="result-container"></var>
-                <div id="tags_t" name="form-tags" class="scrollable-typeahead typeahead-margin-when-active">
-                    <div class="typeahead__container">
-                        <div class="typeahead__field">
-                            <span class="typeahead__query">
-                                <input class="js-typeahead-tags input-height"
-                                       name="tags[query]"
-                                       placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields["tags"]['name'] ) )?>"
-                                       autocomplete="off">
-                            </span>
-                            <span class="typeahead__button">
-                                <button type="button" data-open="create-tag-modal" class="create-new-tag typeahead__image_button input-height">
-                                    <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/tag-add.svg' ) ?>"/>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endif;
 
     }
 
