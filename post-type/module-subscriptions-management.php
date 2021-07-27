@@ -73,13 +73,16 @@ class DT_Subscriptions_Management extends DT_Module_Base {
         if ( ! $post_id ){
             return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
         }
-
-        $deleted = DT_Posts::delete_post( "subscriptions", $post_id, false );
-        if ( is_wp_error( $deleted )){
-            return new WP_Error( __METHOD__, "Could not delete profile", [ 'status' => 500 ] );
-        }
         global $wpdb;
-        $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
+
+        //remove connection
+        $a = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts p SET post_title = 'Deleted Subscription', post_name = 'Deleted Subscription' WHERE p.ID = %s", $post_id ) );
+        $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_activity_log WHERE object_id = %s and action != 'add_subscription' and action !='delete_subscription'", $post_id ) );
+        //create activity for connection removed on the campaign
+        DT_Posts::update_post( 'subscriptions', $post_id, [ "campaigns" => [ "values" => [], "force_values" => true ] ], true, false );
+        $a = $wpdb->query( $wpdb->prepare( "DELETE pm FROM $wpdb->postmeta pm WHERE pm.post_id = %s", $post_id ) );
+        $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
+        DT_Posts::update_post( 'subscriptions', $post_id, [ "status" => 'inactive' ], true, false );
 
         return true;
     }
@@ -196,9 +199,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
             }
             Disciple_Tools_Reports::insert( $args );
 
-            $time_in_mins = ( $args["time_end"] - $args["time_begin"] ) / 60;
-            //@todo convert timezone?
-            $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
+            $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
             dt_activity_insert([
                 'action' => 'add_subscription',
                 'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
@@ -227,6 +228,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match()){
             return;
         }
+
+        //cannot manage a subscription that has no campaign
+        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        if ( is_wp_error( $post ) || !isset($post["campaigns"][0]["ID"]) ) {
+             add_action( 'dt_blank_body', [ $this, 'error_body' ] );
+            return;
+        }
+
 
         // add dt_campaign_core to allowed scripts
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -868,7 +877,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                  * Delete profile
                  */
                 $('#confirm-delete-profile').on('click', function (){
-                    $(this).toggleClass('loading')
+                    let spinner = $(this)
                     let wrapper = jQuery('#wrapper')
                     jQuery.ajax({
                         type: "DELETE",
@@ -1132,6 +1141,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     </button>
                 </div>
             </div>
+        </div>
+        <?php
+    }
+
+    public function error_body(){
+        ?>
+        <div class="center" style="margin-top:50px">
+            <h2 class=""><?php esc_html_e( 'This subscription has ended or is not configured correctly.', 'disciple_tools' ); ?></h2>
         </div>
         <?php
     }

@@ -266,6 +266,16 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 $args['label'] = $full_name;
             }
             Disciple_Tools_Reports::insert( $args );
+
+            $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
+            dt_activity_insert([
+                'action' => 'add_subscription',
+                'object_type' => $args["post_type"], // If this could be contacts/groups, that would be best
+                'object_subtype' => 'report',
+                'object_note' => $label,
+                'object_id' => $args["post_id"]
+            ] );
+
         }
 
         $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'], $campaign["ID"] );
