@@ -159,54 +159,15 @@ class DT_Subscriptions_Management extends DT_Module_Base {
             return false;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
-        $campaign_grid_id = isset( $post["location_grid"][0]['id'] ) ? $post["location_grid"][0]['id'] : null;
 
-
-        $campaign_instance = DT_Campaign_24Hour_Prayer::instance();
         foreach ( $params['selected_times'] as $time ){
             if ( !isset( $time["time"] ) ){
                 continue;
             }
-            $location_id = isset( $time['grid_id'] ) ? $time['grid_id'] : $campaign_grid_id;
-            $duration_mins = 15;
-            if ( isset( $time["duration"] ) && is_numeric( $time["duration"] ) ){
-                $duration_mins = $time["duration"];
+            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time["time"], $time["duration"], $time['grid_id'] );
+            if ( !$new_report ){
+                return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
             }
-            $args = [
-                'parent_id' => $campaign_id,
-                'post_id' => $post_id,
-                'post_type' => 'subscriptions',
-                'type' => $campaign_instance->magic_link_root,
-                'subtype' => $campaign_instance->magic_link_type,
-                'payload' => null,
-                'value' => 1,
-                'lng' => null,
-                'lat' => null,
-                'level' => null,
-                'label' => null,
-                'grid_id' => $time['grid_id'],
-                'time_begin' => $time['time'],
-                'time_end' => $time['time'] + $duration_mins * 60,
-            ];
-
-            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
-            if ( ! empty( $grid_row ) ){
-                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
-                $args['lng'] = $grid_row['longitude'];
-                $args['lat'] = $grid_row['latitude'];
-                $args['level'] = $grid_row['level_name'];
-                $args['label'] = $full_name;
-            }
-            Disciple_Tools_Reports::insert( $args );
-
-            $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
-            dt_activity_insert([
-                'action' => 'add_subscription',
-                'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
-                'object_subtype' => 'report',
-                'object_note' => $label,
-                'object_id' => $post_id
-            ] );
         }
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
@@ -228,14 +189,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match()){
             return;
         }
-
-        //cannot manage a subscription that has no campaign
-        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
-        if ( is_wp_error( $post ) || !isset($post["campaigns"][0]["ID"]) ) {
-             add_action( 'dt_blank_body', [ $this, 'error_body' ] );
-            return;
-        }
-
 
         // add dt_campaign_core to allowed scripts
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -269,9 +222,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public function form_head(){
         wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
         $this->subscriptions_styles_header();
-        $this->subscriptions_javascript_header();
     }
     public function form_footer(){
+        $this->subscriptions_javascript_header();
         wp_footer(); // styles controlled by wp_print_styles and wp_print_scripts actions
     }
 
@@ -502,7 +455,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id ) + 86400,
                 'slot_length' => 15
             ]) ?>][0]
-
+            console.log(calendar_subscribe_object)
             let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
             const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
             let time_slot_coverage = {}
@@ -888,7 +841,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         beforeSend: function (xhr) {
                             xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
                         }
-                    }).done(function(data){
+                    }).done(function(){
                         wrapper.empty().html(`
                             <div class="center">
                             <h1>Your profile has been deleted!</h1>
@@ -922,6 +875,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return false;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
+        //cannot manage a subscription that has no campaign
+        if ( empty( $campaign_id ) ){
+            $this->error_body();
+            exit;
+        }
+
+
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ) {
             return $campaign;

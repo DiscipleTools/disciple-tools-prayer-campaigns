@@ -191,100 +191,35 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             $title = $email;
         }
 
-        $user = wp_get_current_user();
-        $user->add_cap( 'create_subscriptions' );
-
-        $hash = dt_create_unique_key();
-
         $receive_prayer_time_notifications = isset( $params["receive_prayer_time_notifications"] ) && !empty( $params["receive_prayer_time_notifications"] );
 
-        $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
-        }
-        $fields = [
-            'title' => $title,
-            "contact_email" => [
-                [ "value" => $email ],
-            ],
-            'campaigns' => [
-                "values" => [
-                    [ "value" => $params['campaign_id'] ],
-                ],
-            ],
-            'timezone' => $params["timezone"],
-            $key_name => $hash,
-            'receive_prayer_time_notifications' => $receive_prayer_time_notifications,
-        ];
+        $existing_posts = DT_Posts::list_posts( "subscriptions", [
+            "campaigns" => [  $params["campaign_id"] ],
+            "contact_email" => [ $email ]
+        ], false );
 
-        // create post
-
-        $new_id = DT_Posts::create_post( 'subscriptions', $fields, true );
-        if ( is_wp_error( $new_id ) ) {
-            return $new_id;
-        }
-
-        $campaign = DT_Posts::get_post( 'campaigns', $params['campaign_id'], true, false );
-        if ( is_wp_error( $campaign ) ){
-            return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
-        }
-        $campaign_grid_id = isset( $campaign["location_grid"][0]['id'] ) ? $campaign["location_grid"][0]['id'] : null;
-
-        // log reports
-        foreach ( $params['selected_times'] as $time ){
-            if ( !isset( $time["time"] ) ){
-                continue;
+        if ( (int) $existing_posts["total"] === 1 ){
+            $subscriber_id = $existing_posts["posts"][0]["ID"];
+            $added_times = DT_Subscriptions::add_subscriber_times( $params["campaign_id"], $subscriber_id, $params['selected_times'] );
+            if ( is_wp_error( $added_times ) ){
+                return $added_times;
             }
-            $duration_mins = 15;
-            if ( isset( $time["duration"] ) && is_numeric( $time["duration"] ) ){
-                $duration_mins = $time["duration"];
+        } else {
+            $subscriber_id = DT_Subscriptions::create_subscriber( $params["campaign_id"], $email, $title, $params['selected_times'], [
+                "receive_prayer_time_notifications" => $receive_prayer_time_notifications,
+                "timezone" => $params["timezone"]
+            ]);
+            if ( is_wp_error( $subscriber_id ) ){
+                return new WP_Error( __METHOD__, "Could not create record", [ 'status' => 400 ] );
             }
-            $location_id = isset( $time['grid_id'] ) ? $time['grid_id'] : $campaign_grid_id;
-            $args = [
-                'parent_id' => $params['campaign_id'],
-                'post_id' => $new_id['ID'],
-                'post_type' => 'subscriptions',
-                'type' => $this->magic_link_root,
-                'subtype' => $this->magic_link_type,
-                'payload' => null,
-                'value' => 0,
-                'lng' => null,
-                'lat' => null,
-                'level' => null,
-                'label' => null,
-                'grid_id' => $location_id,
-                'time_begin' => $time['time'],
-                'time_end' => $time['time'] + $duration_mins * 60,
-            ];
-
-            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
-            if ( ! empty( $grid_row ) ){
-                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
-                $args['lng'] = $grid_row['longitude'];
-                $args['lat'] = $grid_row['latitude'];
-                $args['level'] = $grid_row['level_name'];
-                $args['label'] = $full_name;
-            }
-            Disciple_Tools_Reports::insert( $args );
-
-            $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
-            dt_activity_insert([
-                'action' => 'add_subscription',
-                'object_type' => $args["post_type"], // If this could be contacts/groups, that would be best
-                'object_subtype' => 'report',
-                'object_note' => $label,
-                'object_id' => $args["post_id"]
-            ] );
-
         }
 
-        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $new_id['ID'], $campaign["ID"] );
-
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params["campaign_id"] );
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );
         }
 
-        return $hash;
+        return true;
     }
 
     public function access_account( WP_REST_Request $request ) {
