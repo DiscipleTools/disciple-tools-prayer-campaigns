@@ -167,7 +167,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'name'   => __( 'Public campaign description', 'disciple_tools' ),
                 'description' => __( 'General description about the campaign', 'disciple_tools' ),
                 'type'   => 'text',
-                "tile" => "details",
+                "tile" => "campaign_setup",
                 'default' => '',
                 "customizable" => true,
                 "in_create_form" => true,
@@ -178,7 +178,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
                 'type' => 'key_select',
                 "tile" => "details",
-                "in_create_form" => true,
                 'default' => dt_get_option( "dt_working_languages" ) ?: [ 'en' ],
                 'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
@@ -194,6 +193,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
             $fields['start_date'] = [
                 'name'        => __( 'Start Date', 'disciple_tools' ),
+                'required' => true,
                 'description' => '',
                 'type'        => 'date',
                 'default'     => time(),
@@ -203,6 +203,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ];
             $fields['end_date'] = [
                 'name'        => __( 'End Date', 'disciple_tools' ),
+                'required' => true,
                 'description' => '',
                 'type'        => 'date',
                 'default'     => '',
@@ -220,6 +221,8 @@ class DT_Campaigns_Base extends DT_Module_Base {
             }
             $fields["campaign_timezone"] = [
                 "name" => __( "Campaign Time Zone", 'disciple_tools' ),
+                'required' => true,
+                "in_create_form" => true,
                 "default" => $timezones,
                 "type" => "key_select",
                 "tile" => "campaign_setup",
