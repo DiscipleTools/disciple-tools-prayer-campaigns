@@ -275,3 +275,5 @@ function dt_prayer_campaign_cron_schedules( $schedules ){
     }
     return $schedules;
 }
+
+require_once( 'magic-links/24hour.php' );

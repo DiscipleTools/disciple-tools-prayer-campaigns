@@ -151,6 +151,19 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 ],
             ]
         );
+        register_rest_route(
+            $namespace, '/'.$this->magic_link_type . '/campaign_info', [
+                [
+                    'methods'  => "GET",
+                    'callback' => [ $this, 'campaign_info' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->magic_link_root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+
     }
 
     public function verify_magic_link_and_get_post_id( $meta_key, $public_key ){
@@ -169,7 +182,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $params = $request->get_params();
 
         $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
-        if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== $params["campaign_id"] ){
+        if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== (int) $params["campaign_id"] ){
             return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
         }
 
@@ -241,6 +254,49 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         return $params;
     }
 
+    public function campaign_info( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $magic = new DT_Magic_URL( $this->magic_link_root );
+        $parts = $magic->parse_wp_rest_url_parts( $params["parts"]["public_key"]);
+
+        $post_id = $parts['post_id'];
+        $record = DT_Posts::get_post( "campaigns", $post_id, true, false );
+        if ( is_wp_error( $record ) ){
+            return;
+        }
+        $coverage_levels = DT_Campaigns_Base::query_coverage_levels_progress( $post_id );
+        $number_of_time_slots = DT_Campaigns_Base::query_coverage_total_time_slots( $post_id );
+
+        $coverage_percentage = $coverage_levels[0]["percent"];
+        $second_level = isset( $coverage_levels[1]["percent"] ) ? $coverage_levels[1]["percent"] : "";
+
+        $description = "Campaign Description";
+        if ( isset( $record["description"] ) && !empty( $record["description"] ) ){
+            $description = $record["description"];
+        }
+        $grid_id = 1;
+        if ( isset( $record['location_grid'] ) && ! empty( $record['location_grid'] ) ) {
+            $grid_id = $record['location_grid'][0]['id'];
+        }
+        $current_commitments = DT_Time_Utilities::subscribed_times_list( $post_id );
+
+        return [
+            "description" => $description,
+            "coverage_levels" => $coverage_levels,
+            "number_of_time_slots" => $number_of_time_slots,
+            "coverage_percentage" => $coverage_percentage,
+            'campaign_id' => $post_id,
+            'campaign_grid_id' => $grid_id,
+            'translations' => [],
+            'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id ),
+            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id ) + 86400,
+            'current_commitments' => $current_commitments,
+            'slot_length' => 15,
+            'second_lever' => $second_level
+        ];
+
+    }
 
     public function dt_campaign_types( $types ) {
         $types['24hour'] = [
