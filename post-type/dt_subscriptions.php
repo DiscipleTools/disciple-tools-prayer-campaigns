@@ -88,7 +88,7 @@ class DT_Subscriptions {
         }
 
         if ( empty( $location_id ) && isset( $campaign["location_grid"][0]['id'] ) ){
-            $location_id =  $campaign["location_grid"][0]['id'];
+            $location_id = $campaign["location_grid"][0]['id'];
         }
 
         $duration_mins = 15;

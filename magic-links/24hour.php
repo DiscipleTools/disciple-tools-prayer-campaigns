@@ -12,8 +12,7 @@ function dt_campaign_shortcode( $atts ){
     ], filemtime( plugin_dir_path( __FILE__ ) . '../post-type/campaign_core.js' ), true );
 
     //24 hour campaign js
-    wp_enqueue_script('24hour',trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery' ),
-        filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
+    wp_enqueue_script( '24hour', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
     wp_localize_script(
         '24hour', 'campaign_objects', [
             'translations' => [
