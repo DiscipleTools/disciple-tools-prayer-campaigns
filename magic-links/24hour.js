@@ -166,10 +166,10 @@ jQuery(document).ready(function($) {
       let text = ''
       let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
       let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
-      if ( fully_covered ){
-        text = "(fully covered once)"
-      } else if ( fully_covered && level_covered > 1  ){
+      if ( fully_covered && level_covered > 1  ){
         text = `(fully covered ${level_covered} times)`
+      } else if ( fully_covered ) {
+        text = "(fully covered once)"
       }
       select_html += `<option value="${window.lodash.escape(key)}"}>
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }

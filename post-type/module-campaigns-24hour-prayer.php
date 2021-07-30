@@ -63,13 +63,19 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                         return;
                     }
                     $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
+                    $shortcode = '[dt_campaign root="' . esc_html( $this->magic_link_root ) . '" type="' . esc_html( $this->magic_link_type ) . '" public_key="' . esc_html( $key ) . '" meta_key="' . esc_html( $key_name ) . '" post_id="' . esc_html( get_the_ID() ) . '" rest_url="' . esc_html( rest_url() ) . '"]';
                     ?>
                     <div class="cell">
                         <div class="section-subheader">
                             <?php esc_html_e( '24hour Circles Prayer', 'disciple_tools' ); ?>
                         </div>
+                        <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple_tools' ); ?></a>
                         <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple_tools' ); ?></a>
                         <a class="button hollow small" onclick="open_app('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Open', 'disciple_tools' ); ?></a>
+                        <div class="section-subheader">
+                            <?php esc_html_e( 'Shortcode', 'disciple_tools' ); ?>
+                        </div>
+                        <pre><?php echo esc_html( $shortcode ) ?></pre>
                     </div>
 
                     <script>
