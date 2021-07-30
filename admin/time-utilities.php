@@ -124,10 +124,8 @@ class DT_Time_Utilities {
                 // Set a non-default timezone if needed
                 $dt_now->setTimezone( new DateTimeZone( $post["campaign_timezone"]["key"] ) );
                 $dt_now->setTimestamp( $post["start_date"]["timestamp"] );
-
-                $start_date = clone $dt_now;
-                $start_date->modify( 'today' );
-                return $start_date->getTimestamp();
+                $off = $dt_now->getOffset();
+                return $dt_now->getTimestamp() - $off;
             }
         }
         return isset( $post["start_date"]["timestamp"] ) ? $post["start_date"]["timestamp"] : time();
@@ -140,10 +138,8 @@ class DT_Time_Utilities {
                 // Set a non-default timezone if needed
                 $dt_now->setTimezone( new DateTimeZone( $post["campaign_timezone"]["key"] ) );
                 $dt_now->setTimestamp( $post["end_date"]["timestamp"] );
-
-                $end_date = clone $dt_now;
-                $end_date->modify( 'today' );
-                return $end_date->getTimestamp();
+                $off = $dt_now->getOffset();
+                return $dt_now->getTimestamp() - $off;
             }
         }
         return isset( $post["end_date"]["timestamp"] ) ? $post["end_date"]["timestamp"] : time();
