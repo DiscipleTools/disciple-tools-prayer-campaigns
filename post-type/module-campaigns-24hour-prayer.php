@@ -299,7 +299,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id ) + 86400,
             'current_commitments' => $current_commitments,
             'slot_length' => 15,
-            'second_lever' => $second_level
+            'second_level' => $second_level
         ];
 
     }
