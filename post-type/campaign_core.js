@@ -97,10 +97,27 @@ window.campaign_scripts = {
     return (invdate.getTime()+diff)/1000
 
   },
+  get_day_number: (timestamp, timezone) => {
+    let date = new Date( timestamp * 1000)
+    let invdate = new Date(date.toLocaleString('en-US', {
+      timeZone: timezone
+    }));
+    return invdate.getDay();
+  },
   day_start_timestamp_utc:( timestamp ) => {
     let start_of_day = new Date(timestamp*1000)
     start_of_day.setHours(0,0,0,0)
     return start_of_day.getTime()/1000
+  },
+  start_of_week: (timestamp, timezone) => {
+    let day_number = window.campaign_scripts.get_day_number( timestamp, timezone )
+
+    let date = new Date( ( timestamp - day_number * 86400 ) * 1000)
+    let invdate = new Date(date.toLocaleString('en-US', {
+      timeZone: timezone
+    }));
+    return invdate;
+
   },
   get_time_select_html: () => {
     let select_html = `<option value="false">Select a time</option>`

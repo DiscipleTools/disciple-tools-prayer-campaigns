@@ -94,9 +94,11 @@ jQuery(document).ready(function($) {
         if ( day.month !== last_month ){
           if ( last_month ){
             //add extra days at the month end
-            let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
-            for ( let i = 1; i <= 7-day_number; i++ ){
-              list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+            let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
+            if ( day_number !== 0 ){
+              for ( let i = 1; i <= 7-day_number; i++ ){
+                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+              }
             }
             list += `</div>`
           }
@@ -107,8 +109,8 @@ jQuery(document).ready(function($) {
           }
 
           //add extra days at the month start
-          let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
-          let start_of_week = new Date ( ( day.key - day_number * 86400 ) * 1000 )
+          let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
+          let start_of_week = window.campaign_scripts.start_of_week(day.key, current_time_zone);
           for ( let i = 0; i < day_number; i++ ){
             list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
           }
@@ -248,9 +250,11 @@ jQuery(document).ready(function($) {
         if (day.month!==last_month) {
           if (last_month) {
             //add extra days at the month end
-            let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
-            for (let i = 1; i <= 7 - day_number; i++) {
-              list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+            let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
+            if ( day_number !== 0 ) {
+              for (let i = 1; i <= 7 - day_number; i++) {
+                list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+              }
             }
             list += `</div>`
           }
@@ -261,8 +265,8 @@ jQuery(document).ready(function($) {
           }
 
           //add extra days at the month start
-          let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
-          let start_of_week = new Date((day.key - day_number * 86400) * 1000)
+          let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
+          let start_of_week = window.campaign_scripts.start_of_week(day.key, current_time_zone);
           for (let i = 0; i < day_number; i++) {
             list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate() + i)}</div>`
           }
