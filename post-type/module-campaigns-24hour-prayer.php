@@ -213,7 +213,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $receive_prayer_time_notifications = isset( $params["receive_prayer_time_notifications"] ) && !empty( $params["receive_prayer_time_notifications"] );
 
         $existing_posts = DT_Posts::list_posts( "subscriptions", [
-            "campaigns" => [  $params["campaign_id"] ],
+            "campaigns" => [ $params["campaign_id"] ],
             "contact_email" => [ $email ]
         ], false );
 
@@ -264,7 +264,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
         $magic = new DT_Magic_URL( $this->magic_link_root );
-        $parts = $magic->parse_wp_rest_url_parts( $params["parts"]["public_key"]);
+        $parts = $magic->parse_wp_rest_url_parts( $params["parts"]["public_key"] );
 
         $post_id = $parts['post_id'];
         $record = DT_Posts::get_post( "campaigns", $post_id, true, false );
@@ -329,7 +329,8 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
     public $type_name = "Campaigns";
     public $type_actions = [
         '' => "Manage",
-        'access_account' => 'Access Account'
+        'access_account' => 'Access Account',
+        'shortcode' => "Shortcode View"
     ];
 
     public function __construct(){
@@ -337,24 +338,41 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match()){
             return;
         }
-        // add dt_campaign_core to allowed scripts
-        add_action( 'dt_blank_head', [ $this, 'page_head' ] );
-        add_action( 'dt_blank_footer', [ $this, 'page_footer' ] );
-        //load correct page based on the action
-        if ( '' === $this->parts['action'] ) {
-            add_action( 'dt_blank_body', [ $this, 'page_body' ] );
-        } else if ( 'access_account' === $this->parts['action'] ) {
-            add_action( 'dt_blank_body', [ $this, 'access_account_body' ] );
+
+        if ( 'shortcode' === $this->parts['action'] ){
+            add_action( 'wp_enqueue_scripts', function (){
+                dt_24hour_campaign_register_scripts([
+                    "root" => $this->root,
+                    "type" => $this->type,
+                    "public_key" => $this->parts["public_key"],
+                    "meta_key" => $this->parts["meta_key"],
+                    "post_id" => $this->parts["post_id"],
+                    "rest_url" => rest_url()
+
+                ]);
+            }, 100 );
+            dt_24hour_campaign_body();
         } else {
-            return; // fail if no valid action url found
+            if ( '' === $this->parts['action'] ) {
+                add_action( 'dt_blank_body', [ $this, 'page_body' ] );
+            } else if ( 'access_account' === $this->parts['action'] ) {
+                add_action( 'dt_blank_body', [ $this, 'access_account_body' ] );
+            } else {
+                return; // fail if no valid action url found
+            }
+
+            add_action( 'dt_blank_head', [ $this, 'page_head' ] );
+            add_action( 'dt_blank_footer', [ $this, 'page_footer' ] );
+            add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
         }
 
+        // add dt_campaign_core to allowed scripts
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
-        add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
         $allowed_js[] = 'dt_campaign_core';
+        $allowed_js[] = 'dt_campaign';
         return $allowed_js;
     }
 

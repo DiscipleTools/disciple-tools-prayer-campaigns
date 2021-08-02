@@ -1,10 +1,6 @@
 <?php
-function dt_campaign_shortcode( $atts ){
 
-    if ( !isset( $atts["root"], $atts["type"], $atts["public_key"], $atts["meta_key"], $atts["post_id"], $atts["rest_url"] ) ){
-        return;
-    }
-
+function dt_24hour_campaign_register_scripts( $atts ){
     //campaigns core js
     wp_enqueue_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __FILE__ ) ) . '../post-type/campaign_core.js', [
         'jquery',
@@ -12,9 +8,9 @@ function dt_campaign_shortcode( $atts ){
     ], filemtime( plugin_dir_path( __FILE__ ) . '../post-type/campaign_core.js' ), true );
 
     //24 hour campaign js
-    wp_enqueue_script( '24hour', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
+    wp_enqueue_script( 'dt_campaign', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
     wp_localize_script(
-        '24hour', 'campaign_objects', [
+        'dt_campaign', 'campaign_objects', [
             'translations' => [
                 "Sample API Call" => __( "Sample API Call" )
             ],
@@ -28,6 +24,9 @@ function dt_campaign_shortcode( $atts ){
             "root" => $atts["rest_url"]
         ]
     );
+}
+
+function dt_24hour_campaign_body(){
     ?>
 
     <style>
@@ -159,7 +158,7 @@ function dt_campaign_shortcode( $atts ){
             margin-top: 20px;
         }
 
-         #cp-wrapper .cp-close-button {
+        #cp-wrapper .cp-close-button {
             position: relative;
             top: .5rem;
             font-size: 1em;
@@ -256,7 +255,7 @@ function dt_campaign_shortcode( $atts ){
             <!--pray button-->
             <div class="cp-center">
                 <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose" data-force-scroll="true" style="margin-top: 10px">
-                     Pray With Us
+                    Pray With Us
                 </button>
             </div>
 
@@ -381,12 +380,12 @@ function dt_campaign_shortcode( $atts ){
             <h2>Confirm</h2>
             <br>
             <!-- @todo summary -->
-<!--            <p>-->
-<!--                You are signing up to praying for-->
-<!--                <span id="time-duration-confirmation" style="font-weight: bold" ></span>-->
-<!--                on each selected day at <span id="time-confirmation" style="font-weight: bold"></span>-->
-<!--                in <span class="timezone-current"></span> timezone.-->
-<!--            </p>-->
+            <!--            <p>-->
+            <!--                You are signing up to praying for-->
+            <!--                <span id="time-duration-confirmation" style="font-weight: bold" ></span>-->
+            <!--                on each selected day at <span id="time-confirmation" style="font-weight: bold"></span>-->
+            <!--                in <span class="timezone-current"></span> timezone.-->
+            <!--            </p>-->
 
             <div>
                 <span id="name-error" class="form-error">
@@ -436,6 +435,20 @@ function dt_campaign_shortcode( $atts ){
 
     </div> <!-- form wrapper -->
     <?php
-    return;
 }
-add_shortcode( 'dt_campaign', 'dt_campaign_shortcode' );
+
+function dt_24hour_campaign_shortcode( $atts ){
+
+    if ( !isset( $atts["root"], $atts["type"], $atts["public_key"], $atts["meta_key"], $atts["post_id"], $atts["rest_url"] ) ){
+        return;
+    }
+
+    if ( $atts["type"] !== "24hour" && $atts["root"] !== "campaign_app" ){
+        return;
+    }
+
+    dt_24hour_campaign_register_scripts( $atts );
+
+    dt_24hour_campaign_body();
+}
+add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
