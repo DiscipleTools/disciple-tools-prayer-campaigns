@@ -73,4 +73,4 @@ DT_Campaign_24Hour_Prayer::instance();
 require_once 'module-campaigns-progress.php';
 DT_Campaign_Progress::instance();
 
-require_once 'dt_subscriptions.php';
+require_once 'dt-subscriptions.php';

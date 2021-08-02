@@ -174,6 +174,7 @@ function dt_24hour_campaign_body(){
             border: 1px solid black ;
             display: block;
             min-width: 250px;
+            max-width: 400px
         }
         #cp-wrapper input {
             font-size: 1rem;
@@ -266,7 +267,7 @@ function dt_24hour_campaign_body(){
             </div>
             <!--time zone selector-->
             <p class="cp-center">
-                <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
             </p>
 
         </div>
@@ -319,9 +320,7 @@ function dt_24hour_campaign_body(){
                         </select>
                     </label>
                     <p>
-                        <strong>
-                            <?php esc_html_e( 'Using timezone for:', 'disciple_tools' ); ?></strong>
-                        <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                        <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
                     </p>
                     <button style="margin-top:10px" disabled id="cp-confirm-daily-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true">Confirm Times</button>
                 </div>
@@ -362,9 +361,7 @@ function dt_24hour_campaign_body(){
                     <span style="display: none" id="cp-time-added">Time added</span>
                 </div>
                 <p>
-                    <strong>
-                        <?php esc_html_e( 'Using timezone for:', 'disciple_tools' ); ?></strong>
-                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                    <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
                 </p>
 
                 <div style="margin: 30px 0">
@@ -431,6 +428,33 @@ function dt_24hour_campaign_body(){
                     </p>
                 </div>
             </div>
+
+
+        </div>
+        <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
+            <h2>Change your timezone:</h2>
+            <select id="timezone-select" style="margin: 20px auto">
+                <?php
+                $selected_tz = 'America/Denver';
+                if ( !empty( $selected_tz ) ){
+                    ?>
+                    <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
+                    <option disabled>----</option>
+                    <?php
+                }
+                $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+                foreach ( $tzlist as $tz ){
+                    ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
+                }
+                ?>
+            </select>
+
+            <button class="button button-cancel clear cp-nav" data-open="cp-main-page" aria-label="Close reveal" type="button">
+                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+            </button>
+            <button class="button cp-nav" type="button" id="confirm-timezone" data-open="cp-main-page">
+                <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+            </button>
         </div>
 
     </div> <!-- form wrapper -->

@@ -27,6 +27,7 @@ jQuery(document).ready(function($) {
   .done(function (data) {
 
     calendar_subscribe_object = { ...calendar_subscribe_object, ...data}
+    calendar_subscribe_object.end_timestamp -= 1;
     let days = window.campaign_scripts.calculate_day_times()
     const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
     $('#cp-wrapper').removeClass("loading-content")
@@ -63,10 +64,14 @@ jQuery(document).ready(function($) {
       }
     })
 
-    let start_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.start_timestamp, { month: "long", day: "numeric", hour:"numeric" }, current_time_zone)
-    let end_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.end_timestamp, { month: "long", day: "numeric", hour:"numeric" }, current_time_zone)
-    let start_end = `Everyday from <strong>${start_time}</strong> to <strong>${end_time}</strong>`
-    $('#cp-start-end').html(start_end);
+    let set_campaign_date_range_title = function (){
+      let start_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.start_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
+      let end_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.end_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
+      let start_end = `Everyday from <strong>${start_time}</strong> to <strong>${end_time}</strong>`
+      $('#cp-start-end').html(start_end);
+    }
+    set_campaign_date_range_title()
+
 
 
     let headers = `
@@ -374,6 +379,20 @@ jQuery(document).ready(function($) {
     })
 
   //@todo timezone
+    let update_timezone = function (){
+      $('.timezone-current').html(current_time_zone)
+      $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
+    }
+    update_timezone()
+
+    $('#confirm-timezone').on('click', function (){
+      current_time_zone = $("#timezone-select").val()
+      update_timezone()
+      days = window.campaign_scripts.calculate_day_times(current_time_zone)
+      set_campaign_date_range_title()
+      draw_calendar()
+      draw_modal_calendar()
+    })
 
 
 
