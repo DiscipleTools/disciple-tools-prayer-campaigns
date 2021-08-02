@@ -3,6 +3,7 @@ window.campaign_scripts = {
   processing_save: {},
   calculate_day_times: function (custom_timezone=null){
     //set up array of days and time slots according to timezone
+    window.campaign_scripts.processing_save = {}
     let days = [];
     let time_iterator = calendar_subscribe_object.start_timestamp;
 
