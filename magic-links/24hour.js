@@ -57,11 +57,19 @@ jQuery(document).ready(function($) {
     //navigation function
     $('.cp-nav').on( 'click', function (){
       $('.cp-view').hide()
-      $(`#${$(this).data('open')}`).show()
+      let view_to_open = $(this).data('open')
+      $(`#${view_to_open}`).show()
+
+      //force the screen to scroll to the top of the wrapper
       if ( $(this).data('force-scroll')){
         let elmnt = document.getElementById("cp-wrapper");
         elmnt.scrollIntoView();
       }
+
+      //configure the view to go back to
+      let back_to = $(this).data('back-to');
+      if ( back_to )
+      $(`#${view_to_open} .cp-close-button`).data('open', back_to)
     })
 
     let set_campaign_date_range_title = function (){
@@ -198,10 +206,12 @@ jQuery(document).ready(function($) {
         let time = day.key + daily_time_selected;
         let now = new Date().getTime()/1000
         let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
-        if ( time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
+        let already_added = selected_times.find(k=>k.time===current_time_selected)
+        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
           selected_times.push({time: time, duration: duration, label: time_label})
         }
       })
+      display_selected_times();
     })
 
 
@@ -221,7 +231,7 @@ jQuery(document).ready(function($) {
       selected_times.forEach(time=>{
         html += `<li>${time.label} for ${time.duration} minutes. </li>`
       })
-      $('#cp-display-selected-times').html(html)
+      $('.cp-display-selected-times').html(html)
     }
 
     //add a selected time to the array
@@ -239,7 +249,7 @@ jQuery(document).ready(function($) {
       $('#cp-confirm-individual-times').attr('disabled', false)
     })
 
-    //dawn calendar in date select modal
+    //dawn calendar in date select view
     let modal_calendar = $('#day-select-calendar')
     let now = new Date().getTime()/1000
     let draw_modal_calendar = ()=> {
@@ -283,7 +293,7 @@ jQuery(document).ready(function($) {
     }
     draw_modal_calendar()
 
-    //when a day is click on from the calendar
+    //when a day is clicked on from the calendar
     $(document).on('click', '.day-in-select-calendar', function (){
       $('#day-select-calendar div').removeClass('selected-day')
       $(this).toggleClass('selected-day')

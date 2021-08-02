@@ -32,8 +32,8 @@ function dt_24hour_campaign_body(){
     <style>
         #cp-wrapper {
             max-width:1000px;
-            margin:0 auto;
-            padding: .5em;
+            margin: 10px auto;
+            padding: 2em .5em;
             background-color: white;
             border-radius: 5px;
             min-height: 800px;
@@ -240,6 +240,11 @@ function dt_24hour_campaign_body(){
             color: red;
         }
 
+        #cp-wrapper .cp-display-selected-times {
+            list-style-type: none;
+            padding: 0;
+        }
+
     </style>
 
     <div id="cp-wrapper" class="loading-content">
@@ -322,7 +327,7 @@ function dt_24hour_campaign_body(){
                     <p>
                         <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
                     </p>
-                    <button style="margin-top:10px" disabled id="cp-confirm-daily-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true">Confirm Times</button>
+                    <button style="margin-top:10px" disabled id="cp-confirm-daily-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-daily-prayer-time">Confirm Times</button>
                 </div>
             </div>
         </div>
@@ -366,14 +371,17 @@ function dt_24hour_campaign_body(){
 
                 <div style="margin: 30px 0">
                     <h3>Selected Times</h3>
-                    <ul id="cp-display-selected-times" style="list-style-type: none"></ul>
+                    <ul class="cp-display-selected-times"></ul>
                 </div>
-                <button style="margin-top:10px" disabled id="cp-confirm-individual-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true">Confirm Times</button>
+                <button style="margin-top:10px" disabled id="cp-confirm-individual-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-choose-individual-times">Confirm Times</button>
             </div>
         </div>
 
         <!-- confirm email -->
         <div id="cp-view-confirm" class="cp-view cp-center" style="display: none">
+            <button class="cp-close-button cp-nav" data-open="cp-times-choose">
+                <span aria-hidden="true"> < back </span>
+            </button>
             <h2>Confirm</h2>
             <br>
             <!-- @todo summary -->
@@ -429,7 +437,12 @@ function dt_24hour_campaign_body(){
                 </div>
             </div>
 
+            <div id="confirmation-times" style="margin-top: 40px">
+                <h3>Selected Times</h3>
+                <ul class="cp-display-selected-times">
 
+                </ul>
+            </div>
         </div>
         <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
             <h2>Change your timezone:</h2>
