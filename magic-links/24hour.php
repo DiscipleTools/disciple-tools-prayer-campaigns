@@ -216,7 +216,7 @@ function dt_24hour_campaign_body(){
             </div>
             <!--time zone selector-->
             <p class="cp-center">
-                <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
+                <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
             </p>
 
         </div>
@@ -269,7 +269,7 @@ function dt_24hour_campaign_body(){
                         </select>
                     </label>
                     <p>
-                        <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
+                        <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
                     </p>
                     <button style="margin-top:10px" disabled id="cp-confirm-daily-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-daily-prayer-time"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
                 </div>
@@ -310,7 +310,7 @@ function dt_24hour_campaign_body(){
                     <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
                 </div>
                 <p>
-                    <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?><a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
+                    <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
                 </p>
 
                 <div style="margin: 30px 0">
