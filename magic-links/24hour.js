@@ -27,19 +27,20 @@ jQuery(document).ready(function($) {
   .done(function (data) {
 
     calendar_subscribe_object = { ...calendar_subscribe_object, ...data}
+    calendar_subscribe_object.translations = window.SHAREDFUNCTIONS.escapeObject(jsObject.translations)
+    const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
     calendar_subscribe_object.end_timestamp -= 1;
     let days = window.campaign_scripts.calculate_day_times()
-    const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
     $('#cp-wrapper').removeClass("loading-content")
     //display description from remote
     $('#campaign-description').text(calendar_subscribe_object.description)
     //show coverage level
     if ( calendar_subscribe_object.coverage_levels[0].blocks_covered === calendar_subscribe_object.number_of_time_slots){
-        $('#coverage-level').text(`All of the ${calendar_subscribe_object.number_of_time_slots} time slots are covered in once prayer once. Help us cover them twice!`)
+        $('#coverage-level').text(calendar_subscribe_object.translations.going_for_twice.replace('%1$s', calendar_subscribe_object.number_of_time_slots));
     } else {
       let ppl_needed =  (60*24) / calendar_subscribe_object.slot_length;
       //&#128100
-      $('#coverage-level').html(`${ppl_needed} people praying ${calendar_subscribe_object.slot_length} min everyday day will cover the region in 24h prayer.`)
+      $('#coverage-level').html(calendar_subscribe_object.translations.invitation.replace('%1$s', `<strong>${ppl_needed}</strong>`).replace('%2$s', `<strong>${window.lodash.escape(calendar_subscribe_object.slot_length)}</strong>`));
     }
 
     //main progress circle
@@ -75,7 +76,7 @@ jQuery(document).ready(function($) {
     let set_campaign_date_range_title = function (){
       let start_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.start_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
       let end_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.end_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
-      let start_end = `Everyday from <strong>${start_time}</strong> to <strong>${end_time}</strong>`
+      let start_end = window.lodash.escape(calendar_subscribe_object.translations.campaign_duration).replace('%1$s', `<strong>${start_time}</strong>`).replace(`%2$s`,`<strong>${end_time}</strong>`)
       $('#cp-start-end').html(start_end);
     }
     set_campaign_date_range_title()
@@ -147,7 +148,7 @@ jQuery(document).ready(function($) {
      */
     let daily_time_select = $('#cp-daily-time-select')
 
-    let select_html = `<option value="false">Select a time</option>`
+    let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
 
     let coverage = {}
     days.forEach(val=> {
@@ -182,11 +183,11 @@ jQuery(document).ready(function($) {
       let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
       let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
       if ( fully_covered && level_covered > 1  ){
-        text = `(fully covered ${level_covered} times)`
+        text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
       } else if ( fully_covered ) {
-        text = "(fully covered once)"
+        text = `(${calendar_subscribe_object.translations.fully_covered_once})`
       }
-      select_html += `<option value="${window.lodash.escape(key)}"}>
+      select_html += `<option value="${window.lodash.escape(key)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
       </option>`
       key += calendar_subscribe_object.slot_length * 60
@@ -229,7 +230,7 @@ jQuery(document).ready(function($) {
         return a.time - b.time
       });
       selected_times.forEach(time=>{
-        html += `<li>${time.label} for ${time.duration} minutes. </li>`
+        html += `<li>${calendar_subscribe_object.translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )} </li>`
       })
       $('.cp-display-selected-times').html(html)
     }

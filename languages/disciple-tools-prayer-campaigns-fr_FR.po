@@ -1,23 +1,23 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Disciple Tools - Subscriptions\n"
-"POT-Creation-Date: 2021-08-03 11:13-0400\n"
-"PO-Revision-Date: 2018-01-29 05:53-0700\n"
+"POT-Creation-Date: 2021-08-03 11:12-0400\n"
+"PO-Revision-Date: 2021-08-03 11:13-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: disciple-tools-prayer-campaigns.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: ;__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "X-Poedit-SearchPathExcluded-1: */libraries/*\n"
@@ -27,26 +27,26 @@ msgstr ""
 #: magic-links/24hour.php:15
 #, php-format
 msgid "Everyday from %1$s to %2$s"
-msgstr ""
+msgstr "Tous les jour de %1$s à %2$s"
 
 #: magic-links/24hour.php:16
 msgid "Select a time"
-msgstr ""
+msgstr "Sélectionnez une heure"
 
 #: magic-links/24hour.php:17
 msgid "fully covered once"
-msgstr ""
+msgstr "entièrement couvert une fois"
 
 #: magic-links/24hour.php:18
 #, php-format
 msgid "fully covered %1$s times"
-msgstr ""
+msgstr "entièrement couvert %1$s fois"
 
 #: magic-links/24hour.php:19
 #, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr ""
+msgstr "%1$s pour %2$s minutes."
 
 #: magic-links/24hour.php:20
 #, php-format
@@ -54,6 +54,8 @@ msgid ""
 "All of the %1$s time slots are covered in once prayer once. Help us cover "
 "them twice!"
 msgstr ""
+"Tous les %1$s tranches de temps sont couverts de prière une fois. Aidez-nous "
+"à les couvrir deux fois !"
 
 #: magic-links/24hour.php:21
 #, php-format
@@ -61,166 +63,172 @@ msgid ""
 "%1$s people praying %2$s minutes everyday day will cover the region in 24h "
 "prayer."
 msgstr ""
+"%1$s personnes priant %2$s minutes tous les jours peuvent couvrir la région "
+"de prière 24h/24."
 
 #: magic-links/24hour.php:260
 msgid "Loading prayer campaign data..."
-msgstr ""
+msgstr "Chargement des données de la campagne de prière..."
 
 #: magic-links/24hour.php:271
 msgid "Pray With Us"
-msgstr ""
+msgstr "Priez avec nous"
 
 #: magic-links/24hour.php:282 magic-links/24hour.php:335
 #: magic-links/24hour.php:376
 msgid "Showing times for:"
-msgstr ""
+msgstr "Affichage des heures pour:"
 
 #: magic-links/24hour.php:290 magic-links/24hour.php:312
 #: magic-links/24hour.php:345 magic-links/24hour.php:390
 msgid "< back"
-msgstr ""
+msgstr "< retour"
 
 #: magic-links/24hour.php:292
 msgid "Select an option"
-msgstr ""
+msgstr "Sélectionner une option"
 
 #: magic-links/24hour.php:295
 msgid "Pray every day at the same time"
-msgstr ""
+msgstr "Prier tous les jours à la même heure"
 
 #: magic-links/24hour.php:297
 msgid "Example: Everyday at 4pm for 15mins"
-msgstr ""
+msgstr "Exemple: Tous les jours à 16h pour 15minutes"
 
 #: magic-links/24hour.php:300
 msgid "Select days and times to pray"
-msgstr ""
+msgstr "Sélectionnez les jours et les heures pour prier"
 
 #: magic-links/24hour.php:302
 msgid "Example: Monday 12th at 6pm for 15mins"
-msgstr ""
+msgstr "Exemple: Lundi 12 à 18h pour 15minutes"
 
 #: magic-links/24hour.php:318
 msgid "Prayer Time"
-msgstr ""
+msgstr "Temps de prière"
 
 #: magic-links/24hour.php:320 magic-links/24hour.php:357
 msgid "Daily Time"
-msgstr ""
+msgstr "Heure tous les jours"
 
 #: magic-links/24hour.php:324 magic-links/24hour.php:361
 msgid "For how long"
-msgstr ""
+msgstr "Pour combien de temps"
 
 #: magic-links/24hour.php:326 magic-links/24hour.php:363
 msgid "15 Minutes"
-msgstr ""
+msgstr "15 Minutes"
 
 #: magic-links/24hour.php:327 magic-links/24hour.php:364
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 Minutes"
 
 #: magic-links/24hour.php:328 magic-links/24hour.php:365
 msgid "45 Minutes"
-msgstr ""
+msgstr "45 Minutes"
 
 #: magic-links/24hour.php:329 magic-links/24hour.php:366
 msgid "1 Hour"
-msgstr ""
+msgstr "1 Heur"
 
 #: magic-links/24hour.php:330 magic-links/24hour.php:367
 msgid "1 Hour 30 Minutes"
-msgstr ""
+msgstr "1 Heur 30 Minutes"
 
 #: magic-links/24hour.php:331 magic-links/24hour.php:368
 msgid "2 Hours"
-msgstr ""
+msgstr "2 Heures"
 
 #: magic-links/24hour.php:337 magic-links/24hour.php:383
 msgid "Confirm Times"
-msgstr ""
+msgstr "Confirmer les heurs"
 
 #: magic-links/24hour.php:348
 msgid "Select a day and choose a time"
-msgstr ""
+msgstr "Sélectionnez un jour et choisissez une heure"
 
 #: magic-links/24hour.php:355
 msgid "Select a prayer time"
-msgstr ""
+msgstr "Sélectionnez une heure de prière"
 
 #: magic-links/24hour.php:372
 msgid "Add prayer time"
-msgstr ""
+msgstr "Ajouter la sélection"
 
 #: magic-links/24hour.php:373
 msgid "Time added"
-msgstr ""
+msgstr "Heur ajouté"
 
 #: magic-links/24hour.php:380 magic-links/24hour.php:448
 msgid "Selected Times"
-msgstr ""
+msgstr "Heures sélectionnées"
 
 #: magic-links/24hour.php:392
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #: magic-links/24hour.php:406
 msgid "Contact Name"
-msgstr ""
+msgstr "Nom"
 
 #: magic-links/24hour.php:407
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: magic-links/24hour.php:412
 msgid "You're email is required."
-msgstr ""
+msgstr "Votre e-mail est requis."
 
 #: magic-links/24hour.php:414
 msgid "Contact Email"
-msgstr ""
+msgstr "Email de contact"
 
 #: magic-links/24hour.php:415 magic-links/24hour.php:416
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: magic-links/24hour.php:423
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr ""
+"Recevez des notifications d'heure de prière (vérification par e-mail "
+"requise)."
 
 #: magic-links/24hour.php:428
 msgid "Submit Your Prayer Commitment"
-msgstr ""
+msgstr "Soumettez votre engagement de prière"
 
 #: magic-links/24hour.php:434
 msgid "Sent! Check your email."
-msgstr ""
+msgstr "Envoyé! Vérifiez votre email."
 
 #: magic-links/24hour.php:436
 msgid ""
 "Click on the link included in the email to verify your commitment and "
 "receive prayer time notifications!"
 msgstr ""
+"Cliquez sur le lien inclus dans l'e-mail pour vérifier votre engagement et "
+"recevoir les notifications de l'heure de la prière !"
 
 #: magic-links/24hour.php:439
 msgid "In the email is a link to manage your prayer times."
-msgstr ""
+msgstr "Dans l'e-mail se trouve un lien pour gérer vos temps de prière."
 
 #: magic-links/24hour.php:473
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: magic-links/24hour.php:476
 msgid "Select"
-msgstr ""
+msgstr "Sélectionner"
 
 #. Plugin Name of the plugin/theme
 msgid "Disciple Tools - Prayer Campaigns"
-msgstr ""
+msgstr "Disciple Tools - Prayer Campaigns"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
-msgstr ""
+msgstr "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
 
 #. Description of the plugin/theme
 msgid ""
@@ -228,7 +236,13 @@ msgid ""
 "users to subscribe to pray for specific locations at specific times, "
 "supporting both time and geographic prayer saturation for your project."
 msgstr ""
+"Add a prayer subscriptions module to Disciple.Tools that allows for non-"
+"users to subscribe to pray for specific locations at specific times, "
+"supporting both time and geographic prayer saturation for your project."
 
 #. Author URI of the plugin/theme
 msgid "https://github.com/DiscipleTools"
-msgstr ""
+msgstr "https://github.com/DiscipleTools"
+
+#~ msgid "Once every 15 minutes"
+#~ msgstr "Une fois tous les 15 minutes"

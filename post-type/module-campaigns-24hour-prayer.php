@@ -42,6 +42,32 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         // test if campaigns post type and campaigns_app_module enabled
         if ( $post_type === $this->post_type ) {
 
+            if ( 'status' === $section ){
+                $record = DT_Posts::get_post( $post_type, get_the_ID() );
+
+                if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ){
+                    $key_name = 'public_key';
+                    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                        $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+                    }
+                    if ( isset( $record[$key_name] ) ){
+                        $key = $record[$key_name];
+                    } else {
+                        $key = dt_create_unique_key();
+                        update_post_meta( get_the_ID(), $key_name, $key );
+                    }
+                    $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
+                    ?>
+                    <div class="cell small-12 medium-4">
+                        <div class="section-subheader">
+                            <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
+                        </div>
+                        <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple_tools' ); ?></a>
+                    </div>
+                    <?php
+                }
+            }
+
             if ( 'apps' === $section ) {
                 $record = DT_Posts::get_post( $post_type, get_the_ID() );
 
@@ -351,7 +377,9 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
                 ]);
             }, 100 );
-            dt_24hour_campaign_body();
+            add_action( 'dt_blank_body', function (){
+                dt_24hour_campaign_body();
+            } );
         } else {
             if ( '' === $this->parts['action'] ) {
                 add_action( 'dt_blank_body', [ $this, 'page_body' ] );
@@ -597,7 +625,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
                 <div id="calendar-content"></div>
 
                 <p class="center" style="margin-top: 10px">
-                    <?php esc_html_e( 'Showing times for: ', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                    <?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </p>
                 <div class="center">
                     <div class="" style=""><a href="<?php echo esc_url( $link ) ?>">Already have prayer times?</a></div>
