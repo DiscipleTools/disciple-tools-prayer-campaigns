@@ -56,7 +56,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                         $key = dt_create_unique_key();
                         update_post_meta( get_the_ID(), $key_name, $key );
                     }
-                    $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
+                    $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key. '/shortcode';
                     ?>
                     <div class="cell small-12 medium-4">
                         <div class="section-subheader">
@@ -313,6 +313,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         }
         $current_commitments = DT_Time_Utilities::subscribed_times_list( $post_id );
 
+        $min_time_duration = 15;
+        if ( isset( $record["min_time_duration"]["key"] ) ){
+            $min_time_duration = $record["min_time_duration"]["key"];
+        }
+        $field_settings = DT_Posts::get_post_field_settings( "campaigns" );
+
         return [
             "description" => $description,
             "coverage_levels" => $coverage_levels,
@@ -324,8 +330,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id ),
             'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id ) + 86400,
             'current_commitments' => $current_commitments,
-            'slot_length' => 15,
-            'second_level' => $second_level
+            'slot_length' => (int) $min_time_duration,
+            'second_level' => $second_level,
+            "duration_options" => $field_settings["duration_options"]["default"]
         ];
 
     }

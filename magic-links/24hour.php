@@ -259,14 +259,7 @@ function dt_24hour_campaign_body(){
                     </label>
                     <label>
                         <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                        <select id="cp-prayer-time-duration-select">
-                            <option value="15"><?php esc_html_e( '15 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                            <option value="30"><?php esc_html_e( '30 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                            <option value="45"><?php esc_html_e( '45 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                            <option value="60"><?php esc_html_e( '1 Hour', 'disciple-tools-prayer-campaigns' ); ?></option>
-                            <option value="90"><?php esc_html_e( '1 Hour 30 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                            <option value="120"><?php esc_html_e( '2 Hours', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        </select>
+                        <select id="cp-prayer-time-duration-select" class="cp-time-duration-select"></select>
                     </label>
                     <p>
                         <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
@@ -296,14 +289,7 @@ function dt_24hour_campaign_body(){
                 </label>
                 <label>
                     <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                    <select id="cp-individual-prayer-time-duration-select" style="margin: auto">
-                        <option value="15"><?php esc_html_e( '15 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        <option value="30"><?php esc_html_e( '30 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        <option value="45"><?php esc_html_e( '45 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        <option value="60"><?php esc_html_e( '1 Hour', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        <option value="90"><?php esc_html_e( '1 Hour 30 Minutes', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        <option value="120"><?php esc_html_e( '2 Hours', 'disciple-tools-prayer-campaigns' ); ?></option>
-                    </select>
+                    <select id="cp-individual-prayer-time-duration-select" class="cp-time-duration-select" style="margin: auto"></select>
                 </label>
                 <div>
                     <button id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>

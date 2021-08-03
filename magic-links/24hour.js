@@ -12,6 +12,7 @@ let calendar_subscribe_object = {
   start_timestamp: 0,
   end_timestamp: 0,
   slot_length: 15,
+  duration_options: {}
 }
 
 jQuery(document).ready(function($) {
@@ -195,6 +196,13 @@ jQuery(document).ready(function($) {
     daily_time_select.empty();
     daily_time_select.html(select_html)
 
+    let duration_options_html = ``
+    for (const prop in calendar_subscribe_object.duration_options) {
+      if (calendar_subscribe_object.duration_options.hasOwnProperty(prop) && parseInt(prop) >= parseInt(calendar_subscribe_object.slot_length) ) {
+        duration_options_html += `<option value="${window.lodash.escape(prop)}">${window.lodash.escape(calendar_subscribe_object.duration_options[prop].label)}</option>`
+      }
+    }
+    $(".cp-time-duration-select").html(duration_options_html)
 
     daily_time_select.on("change", function (){
       $('#cp-confirm-daily-times').attr('disabled', false)

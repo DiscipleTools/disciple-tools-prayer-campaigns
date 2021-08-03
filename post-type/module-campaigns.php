@@ -97,37 +97,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public function dt_custom_fields_settings( $fields, $post_type ){
         if ( $post_type === $this->post_type ){
-            /**
-             * Basic framework fields used by post-type base
-             * recommended to leave these alone
-             */
-            $fields['tags'] = [
-                'name'        => __( 'Tags', 'disciple_tools' ),
-                'description' => _x( 'A useful way to group related items.', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'tags',
-                'default'     => [],
-                'tile'        => 'details',
-                "customizable" => false,
-            ];
-            $fields["follow"] = [
-                'name'        => __( 'Follow', 'disciple_tools' ),
-                'type'        => 'multi_select',
-                'default'     => [],
-                'hidden'      => true,
-                "customizable" => false,
-            ];
-            $fields["unfollow"] = [
-                'name'        => __( 'Un-Follow', 'disciple_tools' ),
-                'type'        => 'multi_select',
-                'default'     => [],
-                'hidden'      => true,
-                "customizable" => false,
-            ];
-            $fields['tasks'] = [
-                'name' => __( 'Tasks', 'disciple_tools' ),
-                'type' => 'post_user_meta',
-                "customizable" => false,
-            ];
             $fields['status'] = [
                 'name'        => __( 'Status', 'disciple_tools' ),
                 'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
@@ -226,6 +195,29 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 "default" => $timezones,
                 "type" => "key_select",
                 "tile" => "campaign_setup",
+            ];
+
+            $fields["min_time_duration"] = [
+                "name" => __( "Prayer Time Duration", 'disciple_tools' ),
+                "type" => "key_select",
+                "default" => [
+                    "15" => [ "label" => "15 Minutes", "default" => true ], //keep as first item
+                    "10" => [ "label" => "10 Minutes" ],
+                    "5" => [ "label" => "5 Minutes" ],
+                ],
+                "tile" => "campaign_setup"
+            ];
+
+            $fields["duration_options"] = [
+                "name" => __( "Duration options", 'disciple-tools-prayer-campaigns' ),
+                "type" => "key_select",
+                "default" => [
+                    "5" => [ "label" => __( "5 minutes", 'disciple-tools-prayer-campaigns' ) ],
+                    "10" => [ "label" => __( "10 minutes", 'disciple-tools-prayer-campaigns' ) ],
+                    "15" => [ "label" => __( "15 minutes", 'disciple-tools-prayer-campaigns' ) ],
+                    "30" => [ "label" => __( "30 minutes", 'disciple-tools-prayer-campaigns' ) ],
+                    "60" => [ "label" => __( "1 hour", 'disciple-tools-prayer-campaigns' ) ],
+                ]
             ];
 
             $key_name = 'public_key';
@@ -671,6 +663,11 @@ class DT_Campaigns_Base extends DT_Module_Base {
     public static function query_coverage_percentage( $campaign_post_id ) {
         $percent = 0;
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
+        $record = DT_Posts::get_post( "campaigns", $campaign_post_id );
+        $min_time_duration = 15;
+        if ( isset( $record["min_time_duration"]["key"] ) ){
+            $min_time_duration = $record["min_time_duration"]["key"];
+        }
 
         $day_count = 0;
         $blocks_covered = 0;
@@ -680,7 +677,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 $blocks_covered += $day['blocks_covered'];
             }
 
-            $blocks = $day_count * 96; // 96 blocks of 15 minutes for a 24 hour period
+            $blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
             $percent = $blocks_covered / $blocks * 100;
         }
         return round( $percent, 1 );
@@ -688,6 +685,11 @@ class DT_Campaigns_Base extends DT_Module_Base {
 
     public static function query_coverage_levels_progress( $campaign_post_id ) {
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
+        $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        $min_time_duration = 15;
+        if ( isset( $record["min_time_duration"]["key"] ) ){
+            $min_time_duration = $record["min_time_duration"]["key"];
+        }
 
         $day_count = 0;
         $blocks_covered = [];
@@ -721,7 +723,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                     }
                 }
             }
-            $total_blocks = $day_count * 96; // 96 blocks of 15 minutes for a 24 hour period
+            $total_blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
             foreach ($res as &$r ){
                 $r["percent"] = round( $r["blocks_covered"] / $total_blocks * 100, 2 );
             }
@@ -736,10 +738,14 @@ class DT_Campaigns_Base extends DT_Module_Base {
      */
     public static function query_coverage_total_time_slots( $campaign_post_id ){
         $campaign = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        $min_time_duration = 15;
+        if ( isset( $campaign["min_time_duration"]["key"] ) ){
+            $min_time_duration = $campaign["min_time_duration"]["key"];
+        }
         if ( isset( $campaign["start_date"]["timestamp"], $campaign["end_date"]["timestamp"] ) ){
             $duration_in_seconds = (int) $campaign["end_date"]["timestamp"] - (int) $campaign["start_date"]["timestamp"];
             $duration_in_seconds += 86400; // end of last day.
-            $number_of_time_slots = $duration_in_seconds / ( 15 * 60 );
+            $number_of_time_slots = $duration_in_seconds / ( $min_time_duration * 60 );
             return $number_of_time_slots;
         }
         return 0;
@@ -771,6 +777,9 @@ class DT_Campaigns_Base extends DT_Module_Base {
             }
             if ( !isset( $fields["type"] ) ){
                 $fields["type"] = "24hour";
+            }
+            if ( !isset( $fields["min_time_duration"] ) ){
+                $fields["min_time_duration"] = "15";
             }
         }
         return $fields;

@@ -30,6 +30,11 @@ class DT_Time_Utilities {
 
         $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
 
+        $min_time_duration = 15;
+        if ( isset( $record["min_time_duration"]["key"] ) ){
+            $min_time_duration = $record["min_time_duration"]["key"];
+        }
+
         $start = self::start_of_campaign_with_timezone( $post_id );
         $record['start_date'] = $start;
 
@@ -61,7 +66,7 @@ class DT_Time_Utilities {
                     'subscribers' => $current_times_list[$time_begin] ?? 0,
                 ];
 
-                $time_begin = $time_begin + 900; // add 15 minutes
+                $time_begin = $time_begin + $min_time_duration * 60; // add x minutes
             } // end while
 
             $start = $start + 86400; // add a day
@@ -76,7 +81,7 @@ class DT_Time_Utilities {
             }
 
             if ( $covered > 0 ){
-                $percent = $covered / 96 * 100; // 96 is based on 15 minute blocks for 24 hours. different block size will require different math
+                $percent = $covered / ( ( 24 * 60 ) / $min_time_duration ) * 100; // number of x minute blocks for 24 hours. different block size will require different math
                 $data[$index]['percent'] = $percent;
                 $data[$index]['blocks_covered'] = $covered;
             }
@@ -100,10 +105,16 @@ class DT_Time_Utilities {
 
         $times_list = [];
 
+        $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        $min_time_duration = 15;
+        if ( isset( $record["min_time_duration"]["key"] ) ){
+            $min_time_duration = $record["min_time_duration"]["key"];
+        }
+
         if ( !empty( $commitments ) ){
             foreach ( $commitments as $commitment ){
-                // split into 15 min increments
-                for ( $i = 0; $i < $commitment['time_end'] - $commitment['time_begin']; $i += 15 *60 ){
+                // split into x min increments
+                for ( $i = 0; $i < $commitment['time_end'] - $commitment['time_begin']; $i += $min_time_duration *60 ){
                     $time = $commitment['time_begin'] + $i;
                     if ( !isset( $times_list[$time] ) ){
                         $times_list[$time] = 0;
