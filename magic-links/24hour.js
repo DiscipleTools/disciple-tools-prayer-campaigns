@@ -402,6 +402,11 @@ jQuery(document).ready(function($) {
     })
 
 
+    //when click ok after submit
+    $('#cp-ok-done-button').on( 'click', function (){
+      window.location.reload()
+    })
+
     let update_timezone = function (){
       $('.timezone-current').html(current_time_zone)
       $('#selected-time-zone').val(current_time_zone).text(current_time_zone)

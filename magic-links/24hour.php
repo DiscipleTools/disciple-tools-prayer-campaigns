@@ -362,7 +362,7 @@ function dt_24hour_campaign_body(){
                         <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
                     </p>
                     <p>
-                        <button class="cp-nav" data-open="cp-main-page">OK</button>
+                        <button class="cp-nav" id="cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple_tools' ); ?></button>
                     </p>
                 </div>
             </div>
