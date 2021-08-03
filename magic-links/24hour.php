@@ -44,56 +44,50 @@ function dt_24hour_campaign_body(){
             border-radius: 5px;
             min-height: 800px;
         }
-        .cp-center {
+        #cp-wrapper .cp-center {
             text-align: center;
-            margin-bottom: 20px;
         }
 
-
-        .day-cell {
+        #cp-wrapper .day-cell {
             /*flex-basis: 14%;*/
             text-align: center;
             flex-grow: 0;
 
         }
-        .display-day-cell {
+        #cp-wrapper .display-day-cell {
             height: 40px;
         }
-        .disabled-calendar-day {
+        #cp-wrapper .disabled-calendar-day {
             width:40px;
             height:40px;
             vertical-align: top;
             padding-top:10px;
             color: grey;
         }
-        .calendar {
+        #cp-wrapper .calendar {
             display: flex;
             flex-wrap: wrap;
             width: 300px;
             margin: auto
         }
-        .month-title {
+        #cp-wrapper .month-title {
             text-align: center;
             margin-bottom: 0;
         }
-        .week-day {
+        #cp-wrapper .week-day {
             height: 20px;
             width:40px;
             color: grey;
         }
-        #calendar-content h3 {
+        #cp-wrapper #calendar-content h3 {
             margin-bottom: 0;
         }
 
-        #list-day-times td, th {
-            padding: 2px 6px
-        }
-
-        #email {
+        #cp-wrapper #email {
             display:none;
         }
 
-        .day-in-select-calendar {
+        #cp-wrapper .day-in-select-calendar {
             color: black;
             display: inline-block;
             height: 40px;
@@ -103,63 +97,14 @@ function dt_24hour_campaign_body(){
             text-align: center;
             padding-top: 18px;
         }
-        .selected-day {
+        #cp-wrapper .selected-day {
             background-color: dodgerblue;
             color: white;
             border-radius: 50%;
             border: 2px solid;
         }
 
-        .calendar-month-title {
-            display: block;
-            padding:0 10px;
-        }
-        .small-view .calendar-month-title {
-            /*display: inline-block;*/
-        }
-
-        #modal-calendar.small-view {
-            display: flex;
-            width: 250px;
-            flex-wrap: wrap;
-            margin: auto;
-        }
-
-        .small-view .calendar {
-            width: 180px;
-        }
-        .small-view .month-title {
-            width: 50px;
-            padding: 0 10px;
-            overflow: hidden;
-            flex-grow: 1;
-        }
-        .small-view .calendar .week-day {
-            height: 20px;
-            width: 25px;
-        }
-        .small-view .calendar .day-in-select-calendar {
-            height: 25px;
-            width: 25px;
-        }
-        .small-view .calendar .disabled-calendar-day {
-            width: 25px;
-            height: 25px;
-            padding-top: 5px;
-            font-size: 11px;
-        }
-
-        .small-view .day-in-select-calendar {
-            height: 25px;
-            width: 25px;
-            padding-top: 11px;
-            font-size:8px;
-        }
-
-        .confirm-view {
-            display: none;
-        }
-        .success-confirmation-section {
+        #cp-wrapper .success-confirmation-section {
             display: none;
             margin-top: 20px;
         }
@@ -186,11 +131,12 @@ function dt_24hour_campaign_body(){
             font-size: 1rem;
             line-height: 1rem;
             color: black;
-            border: 1px solid black ;
+            border: 1px solid black;
         }
         #cp-wrapper .cp-input {
             min-width: 250px;
             max-width: 400px;
+            margin: auto;
         }
         #cp-wrapper {
             font-size: 1rem;
@@ -233,15 +179,6 @@ function dt_24hour_campaign_body(){
             cursor: not-allowed;
         }
 
-        #cp-wrapper .cp-day-select {
-            background-color: transparent;
-            padding: 2px 10px;
-            color:black;
-        }
-        #cp-wrapper .cp-day-select.active {
-            background-color: red;
-        }
-
         #cp-wrapper .form-error {
             display: none;
             color: red;
@@ -267,7 +204,7 @@ function dt_24hour_campaign_body(){
             </div>
             <!--pray button-->
             <div class="cp-center">
-                <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose" data-force-scroll="true" style="margin-top: 10px">
+                <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose" data-force-scroll="true">
                     <?php esc_html_e( 'Pray With Us', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
             </div>
