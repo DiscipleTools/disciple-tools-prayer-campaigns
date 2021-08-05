@@ -132,16 +132,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
             // end basic framework fields
 
 
-            $fields['description'] = [
-                'name'   => __( 'Public campaign description', 'disciple_tools' ),
-                'description' => __( 'General description about the campaign', 'disciple_tools' ),
-                'type'   => 'text',
-                "tile" => "campaign_setup",
-                'default' => '',
-                "customizable" => true,
-                "in_create_form" => true,
-                'icon' => get_template_directory_uri() . '/dt-assets/images/sign-post.svg',
-            ];
             $fields["languages"] = [
                 'name' => __( 'Subscriber Preferred Language', 'disciple_tools' ),
                 'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
@@ -220,6 +210,17 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 ]
             ];
 
+            $fields["strings_translations"] = [
+                "name" => "String Translations",
+                "type" => "array",
+                $default = [
+                    "en_US" => [
+                        "title" => "Campaign Description"
+                    ]
+                ],
+                "hidden" => true
+            ];
+
             $key_name = 'public_key';
             if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
@@ -285,18 +286,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
 
-            $fields["prayer_content_message"] = [
-                "name" => __( "Prayer Content message", 'disciple_tools' ),
-                "type" => "text",
-                "tile" => "details"
-            ];
-
-            $fields["sign_up_email_extra_message"] = [
-                "name" => __( "Sign up email extra content", 'disciple_tools' ),
-                "type" => "text",
-                "tile" => "details"
-            ];
-
 
         }
 
@@ -325,6 +314,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
             $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
+            $tiles["campaign_strings"] = [ "label" => __( "Campaign Strings", 'disciple-tools-campaigns' ) ];
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
         }
         return $tiles;

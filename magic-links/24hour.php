@@ -26,6 +26,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
                 "public_key" => $atts['public_key'],
                 "meta_key" => $atts['meta_key'],
                 "post_id" => $atts["post_id"],
+                "lang" => $atts["lang"] ?? "en_US"
             ],
             "root" => $atts["rest_url"]
         ]
@@ -362,7 +363,7 @@ function dt_24hour_campaign_body(){
                         <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
                     </p>
                     <p>
-                        <button class="cp-nav" id="cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple_tools' ); ?></button>
+                        <button class="cp-nav" id="cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
                     </p>
                 </div>
             </div>
@@ -412,6 +413,17 @@ function dt_24hour_campaign_shortcode( $atts ){
 
     if ( $atts["type"] !== "24hour" && $atts["root"] !== "campaign_app" ){
         return;
+    }
+
+    if ( isset( $atts["lang"] ) ){
+        add_filter( 'determine_locale', function ( $locale ) use ( $atts ){
+            $lang_code = sanitize_text_field( wp_unslash( $atts["lang"] ) );
+            if ( !empty( $lang_code ) ){
+                return $lang_code;
+            }
+            return $locale;
+        } );
+        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
     }
 
     dt_24hour_campaign_register_scripts( $atts );

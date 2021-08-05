@@ -25,6 +25,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         add_filter( 'dt_campaign_types', [ $this, 'dt_campaign_types' ], 20, 1 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 30, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
+        add_filter( 'dt_post_update_fields', [ $this, 'dt_post_update_fields' ], 20, 3 );
 
         new DT_Prayer_Campaign_24_Hour_Magic_Link();
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
@@ -38,96 +39,140 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         return $tiles;
     }
 
+    public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        if ( $post_type === "campaigns" ){
+            foreach ( $fields as $field_key => $field_value ){
+                if ( strpos( $field_key, "hack-campaign_strings" ) === 0 ){
+                    $temp = explode( '--', str_replace( "hack-campaign_strings-", "", $field_key ) );
+                    $string_key = $temp[0];
+                    $lang_code = $temp[1];
+                    $campaign_strings = get_post_meta( $post_id, "campaign_strings", true ) ?? [];
+                    if ( empty( $campaign_strings ) ){
+                        $campaign_strings = [];
+                    }
+                    $campaign_strings[$lang_code]["$string_key"] = sanitize_text_field( wp_unslash( $field_value ) );
+                    update_post_meta( $post_id, 'campaign_strings', $campaign_strings );
+                    unset( $fields[$field_key] );
+                }
+            }
+        }
+        return $fields;
+    }
+
     public function dt_details_additional_section( $section, $post_type ) {
         // test if campaigns post type and campaigns_app_module enabled
         if ( $post_type === $this->post_type ) {
-
-            if ( 'status' === $section ){
-                $record = DT_Posts::get_post( $post_type, get_the_ID() );
-
-                if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ){
-                    $key_name = 'public_key';
-                    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                        $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
-                    }
-                    if ( isset( $record[$key_name] ) ){
-                        $key = $record[$key_name];
-                    } else {
-                        $key = dt_create_unique_key();
-                        update_post_meta( get_the_ID(), $key_name, $key );
-                    }
-                    $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key. '/shortcode';
-                    ?>
-                    <div class="cell small-12 medium-4">
-                        <div class="section-subheader">
-                            <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
-                        </div>
-                        <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple_tools' ); ?></a>
-                    </div>
-                    <?php
-                }
+            $record = DT_Posts::get_post( $post_type, get_the_ID() );
+            if ( !isset( $record['type']['key'] ) || '24hour' !== $record['type']['key'] ){
+                return;
+            }
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+            }
+            if ( isset( $record[$key_name] )) {
+                $key = $record[$key_name];
+            } else {
+                $key = dt_create_unique_key();
+                update_post_meta( get_the_ID(), $key_name, $key );
             }
 
-            if ( 'apps' === $section ) {
-                $record = DT_Posts::get_post( $post_type, get_the_ID() );
-
-                if ( isset( $record['type']['key'] ) && '24hour' === $record['type']['key'] ) {
-                    $key_name = 'public_key';
-                    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                        $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
-                    }
-                    if ( isset( $record[$key_name] )) {
-                        $key = $record[$key_name];
-                    } else {
-                        $key = dt_create_unique_key();
-                        update_post_meta( get_the_ID(), $key_name, $key );
-                    }
-                    if ( !isset( $record["start_date"]["timestamp"], $record["end_date"]["timestamp"] ) ){
-                        ?>
-                        <p>A Start Date and End Date are required for the 24 hour campaign</p>
-                        <?php
-                        return;
-                    }
-                    $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
-                    $shortcode = '[dt_campaign root="' . esc_html( $this->magic_link_root ) . '" type="' . esc_html( $this->magic_link_type ) . '" public_key="' . esc_html( $key ) . '" meta_key="' . esc_html( $key_name ) . '" post_id="' . esc_html( get_the_ID() ) . '" rest_url="' . esc_html( rest_url() ) . '"]';
-                    ?>
-                    <div class="cell">
-                        <div class="section-subheader">
-                            <?php esc_html_e( '24hour Circles Prayer', 'disciple_tools' ); ?>
-                        </div>
-                        <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple_tools' ); ?></a>
-                        <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple_tools' ); ?></a>
-                        <a class="button hollow small" onclick="open_app('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Open', 'disciple_tools' ); ?></a>
-                        <div class="section-subheader">
-                            <?php esc_html_e( 'Shortcode', 'disciple_tools' ); ?>
-                        </div>
-                        <pre><?php echo esc_html( $shortcode ) ?></pre>
+            if ( 'status' === $section ){
+                $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key. '/shortcode';
+                ?>
+                <div class="cell small-12 medium-4">
+                    <div class="section-subheader">
+                        <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
                     </div>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple_tools' ); ?></a>
+                </div>
+                <?php
+            }
 
-                    <script>
-                        const copyToClipboard = str => {
-                            const el = document.createElement('textarea');
-                            el.value = str;
-                            el.setAttribute('readonly', '');
-                            el.style.position = 'absolute';
-                            el.style.left = '-9999px';
-                            document.body.appendChild(el);
-                            const selected =
-                                document.getSelection().rangeCount > 0
-                                    ? document.getSelection().getRangeAt(0)
-                                    : false;
-                            el.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(el);
-                            if (selected) {
-                                document.getSelection().removeAllRanges();
-                                document.getSelection().addRange(selected);
-                            }
-                            alert('Copied')
-                        };
+            if ( "campaign_strings" === $section ){
 
-                        function open_app(){
-                            jQuery('#modal-large-content').empty().html(`
+                $post = DT_Posts::get_post( $post_type, GET_THE_ID() );
+                $strings = $post["campaign_strings"] ?? [];
+                $plugin_root = trailingslashit( dirname( __FILE__, 2 ) );
+                $installed_translations = get_available_languages( $plugin_root . 'languages' );
+                array_unshift( $installed_translations, "en_US" );
+                ?>
+                <ul class="tabs" data-tabs id="language-strings-tabs" style="display: flex">
+                    <?php
+                    foreach ( $installed_translations as $index => $translation_key ) :
+                        $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
+                        ?>
+                        <li class="tabs-title <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>"><a href="#lang-<?php echo esc_html( $code ); ?>" data-tabs-target="lang-<?php echo esc_html( $code ); ?>"><?php echo esc_html( $code ); ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+
+                <div class="tabs-content" data-tabs-content="language-strings-tabs">
+                    <?php
+                    foreach ( $installed_translations as $index => $translation_key ) :
+                        $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
+                        ?>
+                        <div class="tabs-panel <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>" id="lang-<?php echo esc_html( $code ); ?>">
+                            <label class="section-subheader">
+                                Campaign Description
+                                <input id="hack-campaign_strings-campaign_description--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]["campaign_description"] ?? '' ); ?>">
+                            </label>
+                            <label class="section-subheader" >
+                                Extra content in sign up email
+                                <input id="hack-campaign_strings-signup_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]["signup_content"] ?? '' ); ?>">
+                            </label>
+                            <label class="section-subheader">
+                                Extra content in prayer time reminder email
+                                <input id="hack-campaign_strings-reminder_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]["reminder_content"] ?? '' ); ?>">
+                            </label>
+
+                            <?php
+                            if ( !isset( $record["start_date"]["timestamp"], $record["end_date"]["timestamp"] ) ) :
+                                ?><p>A Start Date and End Date are required for the 24 hour campaign</p><?php
+                                return;
+                            endif;
+
+                            $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key . '?lang=' . $code;
+                            $shortcode = '[dt_campaign root="' . esc_html( $this->magic_link_root ) . '" type="' . esc_html( $this->magic_link_type ) . '" public_key="' . esc_html( $key ) . '" meta_key="' . esc_html( $key_name ) . '" post_id="' . esc_html( get_the_ID() ) . '" rest_url="' . esc_html( rest_url() ) . '" lang="' . esc_html( $code ) . '"]';
+                            ?>
+
+                            <div class="section-subheader">
+                                <?php esc_html_e( 'Magic Links', 'disciple_tools' ); ?>
+                            </div>
+                            <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple_tools' ); ?></a>
+                            <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple_tools' ); ?></a>
+                            <a class="button hollow small" onclick="open_app('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Open', 'disciple_tools' ); ?></a>
+
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <?php
+            }
+            ?>
+            <script>
+                const copyToClipboard = str => {
+                    const el = document.createElement('textarea');
+                    el.value = str;
+                    el.setAttribute('readonly', '');
+                    el.style.position = 'absolute';
+                    el.style.left = '-9999px';
+                    document.body.appendChild(el);
+                    const selected =
+                        document.getSelection().rangeCount > 0
+                            ? document.getSelection().getRangeAt(0)
+                            : false;
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+                    if (selected) {
+                        document.getSelection().removeAllRanges();
+                        document.getSelection().addRange(selected);
+                    }
+                    alert('Copied')
+                };
+
+                function open_app(){
+                    jQuery('#modal-large-content').empty().html(`
                             <div class="iframe_container">
                                 <span id="campaign-spinner" class="loading-spinner active"></span>
                                 <iframe id="campaign-iframe" src="<?php echo esc_url( $link ) ?>" width="100%" height="${window.innerHeight -150}px" style="border:none;">Your browser does not support iframes</iframe>
@@ -147,15 +192,13 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                             }
                             </style>
                             `)
-                            jQuery('#campaign-iframe').on('load', function() {
-                                document.getElementById('campaign-spinner').style.display='none';
-                            });
-                            jQuery('#modal-large').foundation('open')
-                        }
-                    </script>
-                    <?php
-                } // end if 24hour prayer
-            } // end if apps section
+                    jQuery('#campaign-iframe').on('load', function() {
+                        document.getElementById('campaign-spinner').style.display='none';
+                    });
+                    jQuery('#modal-large').foundation('open')
+                }
+            </script>
+            <?php
         } // end if campaigns and enabled
     }
 
@@ -250,9 +293,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 return $added_times;
             }
         } else {
+            $lang = "en_US";
+            if ( isset( $params["parts"]["lang"] ) ){
+                $lang = $params["parts"]["lang"];
+            }
             $subscriber_id = DT_Subscriptions::create_subscriber( $params["campaign_id"], $email, $title, $params['selected_times'], [
                 "receive_prayer_time_notifications" => $receive_prayer_time_notifications,
-                "timezone" => $params["timezone"]
+                "timezone" => $params["timezone"],
+                "lang" => $lang,
             ]);
             if ( is_wp_error( $subscriber_id ) ){
                 return new WP_Error( __METHOD__, "Could not create record", [ 'status' => 400 ] );
@@ -303,9 +351,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $coverage_percentage = $coverage_levels[0]["percent"];
         $second_level = isset( $coverage_levels[1]["percent"] ) ? $coverage_levels[1]["percent"] : "";
 
+
+        $locale = $params["parts"]["lang"] ?: "en_US";
         $description = "Campaign Description";
-        if ( isset( $record["description"] ) && !empty( $record["description"] ) ){
-            $description = $record["description"];
+        if ( isset( $record["campaign_strings"][$locale]["campaign_description"] ) ){
+            $description = $record["campaign_strings"][$locale]["campaign_description"];
         }
         $grid_id = 1;
         if ( isset( $record['location_grid'] ) && ! empty( $record['location_grid'] ) ) {
@@ -372,15 +422,23 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
             return;
         }
 
+        $lang_code = "en_US";
+        if ( isset( $_GET["lang"] ) ){
+            $lang_code = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
+            $this->switch_language( $lang_code );
+        }
+
+
         if ( 'shortcode' === $this->parts['action'] ){
-            add_action( 'wp_enqueue_scripts', function (){
+            add_action( 'wp_enqueue_scripts', function () use ( $lang_code ){
                 dt_24hour_campaign_register_scripts([
                     "root" => $this->root,
                     "type" => $this->type,
                     "public_key" => $this->parts["public_key"],
                     "meta_key" => $this->parts["meta_key"],
                     "post_id" => $this->parts["post_id"],
-                    "rest_url" => rest_url()
+                    "rest_url" => rest_url(),
+                    "lang" => $lang_code,
 
                 ]);
             }, 100 );
@@ -403,6 +461,15 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
         // add dt_campaign_core to allowed scripts
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
+    }
+
+    public function switch_language( $lang_code ){
+        add_filter( 'locale', function ( $locale ) use ( $lang_code ){
+            if ( !empty( $lang_code ) ){
+                return $lang_code;
+            }
+            return $locale;
+        } );
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {

@@ -14,6 +14,11 @@ let calendar_subscribe_object = {
   slot_length: 15,
   duration_options: {}
 }
+let escapeObject = (obj) => {
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => {
+    return [ key, window.lodash.escape(value)]
+  }))
+}
 
 jQuery(document).ready(function($) {
   let jsObject = window.campaign_objects
@@ -28,7 +33,7 @@ jQuery(document).ready(function($) {
   .done(function (data) {
 
     calendar_subscribe_object = { ...calendar_subscribe_object, ...data}
-    calendar_subscribe_object.translations = window.SHAREDFUNCTIONS.escapeObject(jsObject.translations)
+    calendar_subscribe_object.translations = escapeObject(jsObject.translations)
     const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
     calendar_subscribe_object.end_timestamp -= 1;
     let days = window.campaign_scripts.calculate_day_times()

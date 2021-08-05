@@ -8,7 +8,8 @@ class DT_Subscriptions {
             $args,
             [
                 'receive_prayer_time_notifications' => false,
-                "timezone" => ""
+                "timezone" => "",
+                "lang" => "en_US"
             ]
         );
 
@@ -33,6 +34,7 @@ class DT_Subscriptions {
                 ],
             ],
             'timezone' => $args["timezone"],
+            'lang' => $args["lang"],
             $key_name => $hash,
             'receive_prayer_time_notifications' => $args["receive_prayer_time_notifications"],
         ];

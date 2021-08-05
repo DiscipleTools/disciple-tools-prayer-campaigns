@@ -303,6 +303,11 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 "type" => "text",
                 "hidden" => true
             ];
+            $fields["lang"] = [
+                "name" => __( 'Language', 'disciple_tools' ),
+                "type" => "text",
+                "hidden" => true
+            ];
             $fields["receive_prayer_time_notifications"] = [
                 "name" => __( 'Receive Prayer Time Notifications', 'disciple_tools' ),
                 "type" => "boolean",
@@ -510,7 +515,8 @@ class DT_Subscriptions_Base extends DT_Module_Base {
                 <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </div>
             <p>
-                Showing times according to timezone: <strong><?php echo esc_html( $timezone ); ?></strong>
+                Showing times according to timezone: <strong><?php echo esc_html( $timezone ); ?></strong><br>
+                Subscriber language: <strong><?php echo esc_html( $subscriber["lang"] ?? "en_US" ); ?></strong>
             </p>
             <?php
             if ( ! empty( $subs ) ){

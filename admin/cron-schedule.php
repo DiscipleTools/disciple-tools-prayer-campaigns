@@ -124,8 +124,8 @@ function dt_prayer_campaign_prayer_time_reminder(){
             $e['to'] = implode( ',', $to );
 
             $prayer_content_message = "";
-            if ( isset( $campaign["prayer_content_message"] ) ){
-                $prayer_content_message = $campaign["prayer_content_message"];
+            if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["signup_content"] ) ){
+                $prayer_content_message = $campaign["campaign_strings"][$record["lang"]]["signup_content"];
             }
 
             $e['message'] =

@@ -55,8 +55,8 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = "";
-        if ( isset( $campaign["sign_up_email_extra_message"] ) ){
-            $sign_up_email_extra_message = '<p>' . $campaign["sign_up_email_extra_message"] . '</p>';
+        if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["reminder_content"] ) ){
+            $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["reminder_content"] . '</p>';
         }
         $message .= '
             <h4>Thank you for praying with us!</h4>
