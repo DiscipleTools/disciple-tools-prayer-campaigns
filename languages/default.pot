@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Disciple Tools - Subscriptions\n"
-"POT-Creation-Date: 2021-08-03 11:13-0400\n"
+"POT-Creation-Date: 2021-08-06 11:44-0400\n"
 "PO-Revision-Date: 2018-01-29 05:53-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,6 +23,39 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: */libraries/*\n"
 "X-Poedit-SearchPathExcluded-2: post-type\n"
 "X-Poedit-SearchPathExcluded-3: disciple-tools-prayer-campaigns.php\n"
+
+#: admin/send-email-utility.php:35
+#, php-format
+msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
+msgid "%1$s from %2$s to %3$s"
+msgstr ""
+
+#: admin/send-email-utility.php:78
+#, php-format
+msgid "Hello %s"
+msgstr ""
+
+#: admin/send-email-utility.php:79
+msgid "Thank you for praying with us!"
+msgstr ""
+
+#: admin/send-email-utility.php:80
+msgid ""
+"Click here to verify your email address and confirm your prayer times."
+msgstr ""
+
+#: admin/send-email-utility.php:81
+msgid "Here are the times you have committed to pray:"
+msgstr ""
+
+#: admin/send-email-utility.php:83
+#, php-format
+msgid "Times are shown according to: %s time"
+msgstr ""
+
+#: admin/send-email-utility.php:85
+msgid "Click here Manage your account and time commitments"
+msgstr ""
 
 #: magic-links/24hour.php:15
 #, php-format
@@ -62,155 +95,135 @@ msgid ""
 "prayer."
 msgstr ""
 
-#: magic-links/24hour.php:260
+#: magic-links/24hour.php:198
 msgid "Loading prayer campaign data..."
 msgstr ""
 
-#: magic-links/24hour.php:271
+#: magic-links/24hour.php:209
 msgid "Pray With Us"
 msgstr ""
 
-#: magic-links/24hour.php:282 magic-links/24hour.php:335
-#: magic-links/24hour.php:376
+#: magic-links/24hour.php:220 magic-links/24hour.php:266
+#: magic-links/24hour.php:300
 msgid "Showing times for:"
 msgstr ""
 
-#: magic-links/24hour.php:290 magic-links/24hour.php:312
-#: magic-links/24hour.php:345 magic-links/24hour.php:390
+#: magic-links/24hour.php:228 magic-links/24hour.php:250
+#: magic-links/24hour.php:276 magic-links/24hour.php:314
 msgid "< back"
 msgstr ""
 
-#: magic-links/24hour.php:292
+#: magic-links/24hour.php:230
 msgid "Select an option"
 msgstr ""
 
-#: magic-links/24hour.php:295
+#: magic-links/24hour.php:233
 msgid "Pray every day at the same time"
 msgstr ""
 
-#: magic-links/24hour.php:297
+#: magic-links/24hour.php:235
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr ""
 
-#: magic-links/24hour.php:300
+#: magic-links/24hour.php:238
 msgid "Select days and times to pray"
 msgstr ""
 
-#: magic-links/24hour.php:302
+#: magic-links/24hour.php:240
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr ""
 
-#: magic-links/24hour.php:318
+#: magic-links/24hour.php:256
 msgid "Prayer Time"
 msgstr ""
 
-#: magic-links/24hour.php:320 magic-links/24hour.php:357
+#: magic-links/24hour.php:258 magic-links/24hour.php:288
 msgid "Daily Time"
 msgstr ""
 
-#: magic-links/24hour.php:324 magic-links/24hour.php:361
+#: magic-links/24hour.php:262 magic-links/24hour.php:292
 msgid "For how long"
 msgstr ""
 
-#: magic-links/24hour.php:326 magic-links/24hour.php:363
-msgid "15 Minutes"
-msgstr ""
-
-#: magic-links/24hour.php:327 magic-links/24hour.php:364
-msgid "30 Minutes"
-msgstr ""
-
-#: magic-links/24hour.php:328 magic-links/24hour.php:365
-msgid "45 Minutes"
-msgstr ""
-
-#: magic-links/24hour.php:329 magic-links/24hour.php:366
-msgid "1 Hour"
-msgstr ""
-
-#: magic-links/24hour.php:330 magic-links/24hour.php:367
-msgid "1 Hour 30 Minutes"
-msgstr ""
-
-#: magic-links/24hour.php:331 magic-links/24hour.php:368
-msgid "2 Hours"
-msgstr ""
-
-#: magic-links/24hour.php:337 magic-links/24hour.php:383
+#: magic-links/24hour.php:268 magic-links/24hour.php:307
 msgid "Confirm Times"
 msgstr ""
 
-#: magic-links/24hour.php:348
+#: magic-links/24hour.php:279
 msgid "Select a day and choose a time"
 msgstr ""
 
-#: magic-links/24hour.php:355
+#: magic-links/24hour.php:286
 msgid "Select a prayer time"
 msgstr ""
 
-#: magic-links/24hour.php:372
+#: magic-links/24hour.php:296
 msgid "Add prayer time"
 msgstr ""
 
-#: magic-links/24hour.php:373
+#: magic-links/24hour.php:297
 msgid "Time added"
 msgstr ""
 
-#: magic-links/24hour.php:380 magic-links/24hour.php:448
+#: magic-links/24hour.php:304 magic-links/24hour.php:372
 msgid "Selected Times"
 msgstr ""
 
-#: magic-links/24hour.php:392
+#: magic-links/24hour.php:316
 msgid "Confirm"
 msgstr ""
 
-#: magic-links/24hour.php:406
+#: magic-links/24hour.php:330
 msgid "Contact Name"
 msgstr ""
 
-#: magic-links/24hour.php:407
+#: magic-links/24hour.php:331
 msgid "Name"
 msgstr ""
 
-#: magic-links/24hour.php:412
+#: magic-links/24hour.php:336
 msgid "You're email is required."
 msgstr ""
 
-#: magic-links/24hour.php:414
+#: magic-links/24hour.php:338
 msgid "Contact Email"
 msgstr ""
 
-#: magic-links/24hour.php:415 magic-links/24hour.php:416
+#: magic-links/24hour.php:339 magic-links/24hour.php:340
 msgid "Email"
 msgstr ""
 
-#: magic-links/24hour.php:423
+#: magic-links/24hour.php:347
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr ""
 
-#: magic-links/24hour.php:428
+#: magic-links/24hour.php:352
 msgid "Submit Your Prayer Commitment"
 msgstr ""
 
-#: magic-links/24hour.php:434
+#: magic-links/24hour.php:358
 msgid "Sent! Check your email."
 msgstr ""
 
-#: magic-links/24hour.php:436
+#: magic-links/24hour.php:360
 msgid ""
 "Click on the link included in the email to verify your commitment and "
 "receive prayer time notifications!"
 msgstr ""
 
-#: magic-links/24hour.php:439
+#: magic-links/24hour.php:363
 msgid "In the email is a link to manage your prayer times."
 msgstr ""
 
-#: magic-links/24hour.php:473
+#: magic-links/24hour.php:366
+msgid "OK"
+msgstr ""
+
+#: magic-links/24hour.php:397
 msgid "Cancel"
 msgstr ""
 
-#: magic-links/24hour.php:476
+#: magic-links/24hour.php:400
 msgid "Select"
 msgstr ""
 

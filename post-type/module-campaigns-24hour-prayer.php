@@ -49,7 +49,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                     if ( empty( $campaign_strings ) ){
                         $campaign_strings = [];
                     }
-                    $campaign_strings[$lang_code]["$string_key"] = sanitize_text_field( wp_unslash( $field_value ) );
+                    $campaign_strings[$lang_code]["$string_key"] = $field_value;
                     update_post_meta( $post_id, 'campaign_strings', $campaign_strings );
                     unset( $fields[$field_key] );
                 }

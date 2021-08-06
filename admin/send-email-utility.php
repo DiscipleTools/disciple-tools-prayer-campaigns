@@ -17,6 +17,19 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
+        $lang_code = "en_US";
+        if ( isset( $record["lang"] ) ){
+            $lang_code = sanitize_text_field( wp_unslash( $record["lang"] ) );
+        }
+        add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
+            if ( !empty( $lang_code ) ){
+                return $lang_code;
+            }
+            return $locale;
+        } );
+        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+
+
         $to = [];
         foreach ( $record['contact_email'] as $value ){
             $to[] = $value['value'];
@@ -32,10 +45,10 @@ class DT_Prayer_Campaigns_Send_Email {
             $begin_date->setTimezone( $tz );
             $end_date->setTimezone( $tz );
             $commitment_list .= sprintf(
-                '%1$s from <strong>%2$s</strong> to <strong>%3$s</strong>',
+                _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
                 $begin_date->format( 'F d, Y' ),
-                $begin_date->format( 'H:i a' ),
-                $end_date->format( 'H:i a' )
+                '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
+                '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
             );
             if ( !empty( $row["label"] ) ){
                 $commitment_list .= " for " . $row["label"];
@@ -43,10 +56,14 @@ class DT_Prayer_Campaigns_Send_Email {
             $commitment_list .= '<br>';
         }
 
-        $subject = 'Registered to pray with us!';
+        $headers = [];
+        $headers[] = 'Content-Type: text/html';
+        $headers[] = 'charset=UTF-8';
+
+        $subject = __( 'Registered to pray with us!', 'disciple-tools-prayer-campaigns' );
         $message = '';
         if ( !empty( $record["name"] ) ){
-            $message .= '<h3>Hello ' . esc_html( $record["name"] ) . ',</h3>';
+            $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>';
         }
         $key_name = 'public_key';
         if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
@@ -55,23 +72,19 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = "";
-        if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["reminder_content"] ) ){
-            $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["reminder_content"] . '</p>';
+        if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["signup_content"] ) ){
+            $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
         }
+
         $message .= '
-            <h4>Thank you for praying with us!</h4>
-            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">Click here to verify your email address and confirm your prayer times. </a></p>
-            <p>Here are the times you have committed to pray:</p>
+            <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' . __( 'Click here to verify your email address and confirm your prayer times.', 'disciple-tools-prayer-campaigns' ) .  '</a></p>
+            <p>' . __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>'.$commitment_list.'</p>
-            <p>Times are shown according to: <strong>' . esc_html( $timezone ) . '</strong> time </p>
+            <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
             ' . $sign_up_email_extra_message . '
-            <p>Manage your account and time commitments <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">here.</a></p>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here Manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
         ';
-
-
-        $headers = [];
-        $headers[] = 'Content-Type: text/html';
-        $headers[] = 'charset=UTF-8';
 
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
