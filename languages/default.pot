@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Disciple Tools - Subscriptions\n"
-"POT-Creation-Date: 2021-08-06 11:44-0400\n"
+"POT-Creation-Date: 2021-08-06 12:19-0400\n"
 "PO-Revision-Date: 2018-01-29 05:53-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,37 +24,51 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: post-type\n"
 "X-Poedit-SearchPathExcluded-3: disciple-tools-prayer-campaigns.php\n"
 
-#: admin/send-email-utility.php:35
+#: admin/cron-schedule.php:126 admin/send-email-utility.php:48
 #, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr ""
 
-#: admin/send-email-utility.php:78
+#: admin/cron-schedule.php:132
 #, php-format
-msgid "Hello %s"
+msgctxt "for Paris, France"
+msgid "for %s"
 msgstr ""
 
-#: admin/send-email-utility.php:79
+#: admin/cron-schedule.php:145 admin/send-email-utility.php:66
+#, php-format
+msgid "Hello %s,"
+msgstr ""
+
+#: admin/cron-schedule.php:146 admin/send-email-utility.php:80
 msgid "Thank you for praying with us!"
 msgstr ""
 
-#: admin/send-email-utility.php:80
-msgid ""
-"Click here to verify your email address and confirm your prayer times."
+#: admin/cron-schedule.php:147
+msgid "Here are your upcoming prayer times:"
 msgstr ""
 
-#: admin/send-email-utility.php:81
-msgid "Here are the times you have committed to pray:"
-msgstr ""
-
-#: admin/send-email-utility.php:83
+#: admin/cron-schedule.php:149 admin/send-email-utility.php:84
 #, php-format
 msgid "Times are shown according to: %s time"
 msgstr ""
 
-#: admin/send-email-utility.php:85
+#: admin/cron-schedule.php:153 admin/send-email-utility.php:86
 msgid "Click here Manage your account and time commitments"
+msgstr ""
+
+#: admin/send-email-utility.php:63
+msgid "Registered to pray with us!"
+msgstr ""
+
+#: admin/send-email-utility.php:81
+msgid ""
+"Click here to verify your email address and confirm your prayer times."
+msgstr ""
+
+#: admin/send-email-utility.php:82
+msgid "Here are the times you have committed to pray:"
 msgstr ""
 
 #: magic-links/24hour.php:15

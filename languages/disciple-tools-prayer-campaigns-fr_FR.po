@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Disciple Tools - Subscriptions\n"
-"POT-Creation-Date: 2021-08-06 12:06-0400\n"
-"PO-Revision-Date: 2021-08-06 12:06-0400\n"
+"POT-Creation-Date: 2021-08-06 12:19-0400\n"
+"PO-Revision-Date: 2021-08-06 12:19-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -24,43 +24,53 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: post-type\n"
 "X-Poedit-SearchPathExcluded-3: disciple-tools-prayer-campaigns.php\n"
 
-#: admin/send-email-utility.php:55
+#: admin/cron-schedule.php:126 admin/send-email-utility.php:48
 #, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s de %2$s à %3$s"
 
-#: admin/send-email-utility.php:70
-msgid "Registered to pray with us!"
-msgstr "Inscrits pour prier avec nous!"
+#: admin/cron-schedule.php:132
+#, php-format
+msgctxt "for Paris, France"
+msgid "for %s"
+msgstr "pour %s"
 
-#: admin/send-email-utility.php:73
+#: admin/cron-schedule.php:145 admin/send-email-utility.php:66
 #, php-format
 msgid "Hello %s,"
 msgstr "Bonjour %s,"
 
-#: admin/send-email-utility.php:98
+#: admin/cron-schedule.php:146 admin/send-email-utility.php:80
 msgid "Thank you for praying with us!"
 msgstr "Merci de nous rejoindre en prière!"
 
-#: admin/send-email-utility.php:99
+#: admin/cron-schedule.php:147
+msgid "Here are your upcoming prayer times:"
+msgstr "Voici vos temps de prière à venir:"
+
+#: admin/cron-schedule.php:149 admin/send-email-utility.php:84
+#, php-format
+msgid "Times are shown according to: %s time"
+msgstr "Les temps sont affichés avec l'horaire de %s"
+
+#: admin/cron-schedule.php:153 admin/send-email-utility.php:86
+msgid "Click here Manage your account and time commitments"
+msgstr "Cliquer ici pour gérer voter compte et vos temps de priére"
+
+#: admin/send-email-utility.php:63
+msgid "Registered to pray with us!"
+msgstr "Inscrits pour prier avec nous!"
+
+#: admin/send-email-utility.php:81
 msgid "Click here to verify your email address and confirm your prayer times."
 msgstr ""
 "Cliquer ici pour vérifier votre adresse et pour confirmer vos temps de "
 "prière."
 
-#: admin/send-email-utility.php:100
+#: admin/send-email-utility.php:82
 msgid "Here are the times you have committed to pray:"
 msgstr "Voici les temps que vous avez sélectionné pour prier:"
-
-#: admin/send-email-utility.php:102
-#, php-format
-msgid "Times are shown according to: %s time"
-msgstr "Les temps sont affichés avec l'horaire de %s"
-
-#: admin/send-email-utility.php:104
-msgid "Click here Manage your account and time commitments"
-msgstr "Cliquer ici pour gérer voter compte et vos temps de priére"
 
 #: magic-links/24hour.php:15
 #, php-format
