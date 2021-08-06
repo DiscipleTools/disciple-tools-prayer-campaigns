@@ -27,7 +27,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
         add_filter( 'dt_post_update_fields', [ $this, 'dt_post_update_fields' ], 20, 3 );
 
-        new DT_Prayer_Campaign_24_Hour_Magic_Link();
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
     }
 
