@@ -140,64 +140,37 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                             </div>
                             <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple_tools' ); ?></a>
                             <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple_tools' ); ?></a>
-                            <a class="button hollow small" onclick="open_app('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Open', 'disciple_tools' ); ?></a>
+                            <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple_tools' ); ?></a>
 
                         </div>
                     <?php endforeach; ?>
                 </div>
 
+                <script>
+                    const copyToClipboard = str => {
+                        const el = document.createElement('textarea');
+                        el.value = str;
+                        el.setAttribute('readonly', '');
+                        el.style.position = 'absolute';
+                        el.style.left = '-9999px';
+                        document.body.appendChild(el);
+                        const selected =
+                            document.getSelection().rangeCount > 0
+                                ? document.getSelection().getRangeAt(0)
+                                : false;
+                        el.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(el);
+                        if (selected) {
+                            document.getSelection().removeAllRanges();
+                            document.getSelection().addRange(selected);
+                        }
+                        alert('Copied')
+                    };
+                </script>
                 <?php
             }
             ?>
-            <script>
-                const copyToClipboard = str => {
-                    const el = document.createElement('textarea');
-                    el.value = str;
-                    el.setAttribute('readonly', '');
-                    el.style.position = 'absolute';
-                    el.style.left = '-9999px';
-                    document.body.appendChild(el);
-                    const selected =
-                        document.getSelection().rangeCount > 0
-                            ? document.getSelection().getRangeAt(0)
-                            : false;
-                    el.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(el);
-                    if (selected) {
-                        document.getSelection().removeAllRanges();
-                        document.getSelection().addRange(selected);
-                    }
-                    alert('Copied')
-                };
-
-                function open_app(){
-                    jQuery('#modal-large-content').empty().html(`
-                            <div class="iframe_container">
-                                <span id="campaign-spinner" class="loading-spinner active"></span>
-                                <iframe id="campaign-iframe" src="<?php echo esc_url( $link ) ?>" width="100%" height="${window.innerHeight -150}px" style="border:none;">Your browser does not support iframes</iframe>
-                            </div>
-                            <style>
-                            .iframe_container {
-                                position: relative;
-                            }
-                            .iframe_container .loading-spinner {
-                                position: absolute;
-                                top: 10%;
-                                left: 50%;
-                            }
-                            .iframe_container iframe {
-                                background: transparent;
-                                z-index: 1;
-                            }
-                            </style>
-                            `)
-                    jQuery('#campaign-iframe').on('load', function() {
-                        document.getElementById('campaign-spinner').style.display='none';
-                    });
-                    jQuery('#modal-large').foundation('open')
-                }
-            </script>
             <?php
         } // end if campaigns and enabled
     }
