@@ -1,5 +1,6 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
+new DT_Prayer_Subscription_Management_Magic_Link();
 
 class DT_Subscriptions_Management extends DT_Module_Base {
     public $module = "subscriptions_management";
@@ -21,6 +22,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
         if ( !self::check_enabled_and_prerequisites() ){
             return;
         }
+
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
     }
 
@@ -182,6 +184,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public $root = "subscriptions_app"; // define the root of the url {yoursite}/root/type/key/action
     public $type = 'manage'; // define the type
     public $type_name = 'Subscriptions';
+    public $type_actions = [
+        '' => "Manage",
+        'download_calendar' => 'Download Calendar',
+    ];
 
     public function __construct(){
         parent::__construct();
@@ -194,7 +200,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
 
         // load if valid url
-        if ( '' === $this->parts['action'] ) {
+        if ( 'download_calendar' === $this->parts['action'] ) {
+            //add_action( 'dt_blank_footer', [ $this, 'display_calendar' ] );
+            $this->display_calendar();
+            return;
+        } else if ( '' === $this->parts['action'] ) {
             add_action( 'dt_blank_body', [ $this, 'manage_body' ] );
         } else {
             return; // fail if no valid action url found
@@ -413,6 +423,100 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         </style>
         <?php
+    }
+
+
+    public function get_clean_duration( $start_time, $end_time ) {
+        $time_duration = ( $start_time - $end_time ) / 60;
+
+        switch ( true ) {
+            case $time_duration < 60:
+                $time_duration .= " minutes";
+                break;
+            case $time_duration === 60:
+                $time_duration = $time_duration / 60 . " hour";
+                break;
+            case $time_duration < 60:
+                $time_duration = $time_duration . " hours";
+                break;
+        }
+        return $time_duration;
+    }
+
+    public function get_timezone_offset( $timezone ) {
+        $dt_now = new DateTime();
+        $dt_now->setTimezone( new DateTimeZone( $timezone ) );
+        $dt_now->setTimestamp( gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z" );
+        $timezone_offset = sprintf( '%+03d', $dt_now->getOffset() / 3600 );
+        return $timezone_offset;
+    }
+
+    public function display_calendar() {
+        // Get post data
+        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        if ( is_wp_error( $post ) ) {
+            return $post;
+        }
+        $campaign_id = $post["campaigns"][0]["ID"];
+        $calendar_title = $post['campaigns'][0]['post_title'];
+        $calendar_timezone = $post['timezone'];
+        $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z";
+        $calendar_uid = md5( uniqid( mt_rand(), true ) ) . "@disciple.tools";
+        $calendar_description = get_post_meta( $campaign_id, 'description', true );
+
+        $calendar_timezone_offset = self::get_timezone_offset( $calendar_timezone );
+
+        $my_commitments_reports = DT_Subscriptions_Management::instance()->get_subscriptions( $this->parts['post_id'] );
+        $my_commitments = [];
+
+        foreach ( $my_commitments_reports as $commitments_report ){
+
+            $my_commitments[] = [
+                "time_begin" => gmdate( 'Ymd', $commitments_report["time_begin"] ) . 'T'. gmdate( 'His', $commitments_report["time_begin"] ),
+                "time_end" => gmdate( 'Ymd', $commitments_report["time_end"] ) . 'T'. gmdate( 'His', $commitments_report["time_end"] ),
+                "time_duration" => self::get_clean_duration( $commitments_report["time_end"], $commitments_report["time_begin"] ),
+                "location" => $commitments_report['label'],
+            ];
+        }
+
+        header( 'Content-type: text/calendar; charset=utf-8' );
+        header( 'Content-Disposition: inline; filename=calendar.ics' );
+
+        echo "BEGIN:VCALENDAR\r\n";
+        echo "VERSION:2.0\r\n";
+        echo "PRODID:-//disciple.tools\r\n";
+        echo "CALSCALE:GREGORIAN\r\n";
+        echo "BEGIN:VTIMEZONE\r\n";
+        echo "TZID:" . esc_html( $calendar_timezone ) . "\r\n";
+        echo "BEGIN:STANDARD\r\n";
+        echo "TZNAME:" . esc_html( $calendar_timezone_offset ) . "\r\n";
+        echo "TZOFFSETFROM:" . esc_html( $calendar_timezone_offset ) . "00\r\n";
+        echo "TZOFFSETTO:" . esc_html( $calendar_timezone_offset ) . "00\r\n";
+        echo "DTSTART:19700101T000000\r\n";
+        echo "END:STANDARD\r\n";
+        echo "END:VTIMEZONE\r\n";
+
+        foreach ( $my_commitments as $mc ) {
+            echo "BEGIN:VEVENT\r\n";
+            echo "UID:" . esc_html( $calendar_uid ) . "\r\n";
+            echo "DTSTAMP:" . esc_html( $calendar_dtstamp ) . "\r\n";
+            echo "SUMMARY:" . esc_html( $calendar_title ) . "\r\n";
+            echo "DTSTART:" . esc_html( $mc['time_begin'] ) . "\r\n";
+            echo "DTEND:" . esc_html( $mc['time_end'] ) . "\r\n";
+            echo "LOCATION:" . esc_html( $calendar_location ) . "\r\n";
+            echo "DESCRIPTION:" . esc_html( $calendar_description ) . "\r\n";
+            echo "STATUS:CONFIRMED\r\n";
+            echo "SEQUENCE:3\r\n";
+            echo "BEGIN:VALARM\r\n";
+            echo "TRIGGER:-PT10M\r\n";
+            echo "DESCRIPTION:Don't forget to pray your " . esc_html( $mc['time_duration'] ) . "!\r\n";
+            echo "ACTION:DISPLAY\r\n";
+            echo "END:VALARM\r\n";
+            echo "END:VEVENT\r\n";
+        }
+
+        echo "END:VCALENDAR\r\n";
+        die();
     }
 
     public function subscriptions_javascript_header(){
