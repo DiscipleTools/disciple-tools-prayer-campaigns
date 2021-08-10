@@ -454,11 +454,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function get_download_url() {
-        if ( ! isset( $_SERVER['REQUEST_URI'] ) || empty( $_SERVER['REQUEST_URI'] ) ) {
-            return;
-        } else {
-            $download_url = trailingslashit( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) . 'download_calendar';
-        }
+        $download_url = trailingslashit( $this->parts['public_key'] ) .'download_calendar';
         return $download_url;
     }
 
@@ -1066,7 +1062,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
                     Choose New Prayer Times
                 </button>
-                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( esc_url( self::get_download_url() ) ); ?>">Download Calendar</a>
+                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">Download Calendar</a>
             </div>
             <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
                 <h3 id="list-modal-title"></h3>
