@@ -37,7 +37,6 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 [
                     'methods'  => "POST",
                     'callback' => [ $this, 'manage_profile' ],
-                    'permission_callback' => '__return_true',
                 ],
             ]
         );
@@ -46,7 +45,6 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 [
                     'methods'  => "DELETE",
                     'callback' => [ $this, 'delete_profile' ],
-                    'permission_callback' => '__return_true',
                 ],
             ]
         );
@@ -433,24 +431,35 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         switch ( true ) {
             case $time_duration < 60:
-                $time_duration .= " minutes";
+                $time_duration .= ' minutes';
                 break;
             case $time_duration === 60:
-                $time_duration = $time_duration / 60 . " hour";
+                $time_duration = $time_duration / 60 . ' hour';
                 break;
             case $time_duration < 60:
-                $time_duration = $time_duration . " hours";
+                $time_duration = $time_duration . ' hours';
                 break;
+            case $time_duration > 60:
+                $time_duration = $time_duration / 60 . ' hours';
         }
         return $time_duration;
     }
 
     public function get_timezone_offset( $timezone ) {
         $dt_now = new DateTime();
-        $dt_now->setTimezone( new DateTimeZone( $timezone ) );
+        $dt_now->setTimezone( new DateTimeZone( esc_html( $timezone ) ) );
         $dt_now->setTimestamp( gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z" );
         $timezone_offset = sprintf( '%+03d', $dt_now->getOffset() / 3600 );
         return $timezone_offset;
+    }
+
+    public function get_download_url() {
+        if ( ! isset( $_SERVER['REQUEST_URI'] ) || empty( $_SERVER['REQUEST_URI'] ) ) {
+            return;
+        } else {
+            $download_url = trailingslashit( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) . 'download_calendar';
+        }
+        return $download_url;
     }
 
     public function display_calendar() {
@@ -463,15 +472,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $calendar_title = $post['campaigns'][0]['post_title'];
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z";
-        $calendar_uid = md5( uniqid( mt_rand(), true ) ) . "@disciple.tools";
         $calendar_description = get_post_meta( $campaign_id, 'description', true );
-
-        $calendar_timezone_offset = self::get_timezone_offset( $calendar_timezone );
+        $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
         $my_commitments_reports = DT_Subscriptions_Management::instance()->get_subscriptions( $this->parts['post_id'] );
         $my_commitments = [];
 
         foreach ( $my_commitments_reports as $commitments_report ){
+            $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
+            $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
 
             $my_commitments[] = [
                 "time_begin" => gmdate( 'Ymd', $commitments_report["time_begin"] ) . 'T'. gmdate( 'His', $commitments_report["time_begin"] ),
@@ -499,13 +508,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         echo "END:VTIMEZONE\r\n";
 
         foreach ( $my_commitments as $mc ) {
+            $calendar_uid = md5( uniqid( mt_rand(), true ) ) . "@disciple.tools";
+
             echo "BEGIN:VEVENT\r\n";
             echo "UID:" . esc_html( $calendar_uid ) . "\r\n";
             echo "DTSTAMP:" . esc_html( $calendar_dtstamp ) . "\r\n";
             echo "SUMMARY:" . esc_html( $calendar_title ) . "\r\n";
             echo "DTSTART:" . esc_html( $mc['time_begin'] ) . "\r\n";
             echo "DTEND:" . esc_html( $mc['time_end'] ) . "\r\n";
-            echo "LOCATION:" . esc_html( $calendar_location ) . "\r\n";
             echo "DESCRIPTION:" . esc_html( $calendar_description ) . "\r\n";
             echo "STATUS:CONFIRMED\r\n";
             echo "SEQUENCE:3\r\n";
@@ -1056,6 +1066,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
                     Choose New Prayer Times
                 </button>
+                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( esc_url( self::get_download_url() ) ); ?>">Download Calendar</a>
             </div>
             <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
                 <h3 id="list-modal-title"></h3>
