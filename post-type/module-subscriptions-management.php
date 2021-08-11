@@ -448,7 +448,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public function get_timezone_offset( $timezone ) {
         $dt_now = new DateTime();
         $dt_now->setTimezone( new DateTimeZone( esc_html( $timezone ) ) );
-        $dt_now->setTimestamp( gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z" );
+        $dt_now->setTimestamp( gmdate( 'Ymd\THis\Z' ) );
         $timezone_offset = sprintf( '%+03d', $dt_now->getOffset() / 3600 );
         return $timezone_offset;
     }
