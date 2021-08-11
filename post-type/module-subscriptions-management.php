@@ -1,6 +1,5 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
-new DT_Prayer_Subscription_Management_Magic_Link();
 
 class DT_Subscriptions_Management extends DT_Module_Base {
     public $module = "subscriptions_management";
@@ -22,7 +21,6 @@ class DT_Subscriptions_Management extends DT_Module_Base {
         if ( !self::check_enabled_and_prerequisites() ){
             return;
         }
-
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
     }
 
