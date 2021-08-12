@@ -87,16 +87,21 @@ jQuery(document).ready(function($) {
     }
     set_campaign_date_range_title()
 
-
-
+    function days_for_locale(localeName = 'en-US', weekday = 'long') {
+      let now = new Date()
+      const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
+      return [...Array(7).keys()]
+        .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
+    }
+    let week_day_names = days_for_locale(navigator.language, 'narrow')
     let headers = `
-      <div class="day-cell week-day">Su</div>
-      <div class="day-cell week-day">Mo</div>
-      <div class="day-cell week-day">Tu</div>
-      <div class="day-cell week-day">We</div>
-      <div class="day-cell week-day">Th</div>
-      <div class="day-cell week-day">Fr</div>
-      <div class="day-cell week-day">Sa</div>
+      <div class="day-cell week-day">${week_day_names[0]}</div>
+      <div class="day-cell week-day">${week_day_names[1]}</div>
+      <div class="day-cell week-day">${week_day_names[2]}</div>
+      <div class="day-cell week-day">${week_day_names[3]}</div>
+      <div class="day-cell week-day">${week_day_names[4]}</div>
+      <div class="day-cell week-day">${week_day_names[5]}</div>
+      <div class="day-cell week-day">${week_day_names[6]}</div>
     `
 
     //display main calendar

@@ -560,16 +560,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         ?>
         <script>
             let calendar_subscribe_object = [<?php echo json_encode([
-                'map_key' => DT_Mapbox_API::get_key(),
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
-                'post' => $post,
                 'name' => get_the_title( $this->parts['post_id'] ),
-                'translations' => [
-                    'add' => __( 'Add Report', 'disciple-tools-subscriptions' ),
-                    'search_location' => 'Search for Location'
-                ],
+                'translations' => [],
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,
                 'current_commitments' => $current_commitments,
@@ -730,15 +725,22 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 /**
                  * add more times
                  */
+                function days_for_locale(localeName = 'en-US', weekday = 'long') {
+                    let now = new Date()
+                    const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
+                    return [...Array(7).keys()]
+                    .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
+                }
+                let week_day_names = days_for_locale(navigator.language, 'narrow')
                 let headers = `
-                    <div class="day-cell week-day">Su</div>
-                    <div class="day-cell week-day">Mo</div>
-                    <div class="day-cell week-day">Tu</div>
-                    <div class="day-cell week-day">We</div>
-                    <div class="day-cell week-day">Th</div>
-                    <div class="day-cell week-day">Fr</div>
-                    <div class="day-cell week-day">Sa</div>
-                    `
+                  <div class="day-cell week-day">${week_day_names[0]}</div>
+                  <div class="day-cell week-day">${week_day_names[1]}</div>
+                  <div class="day-cell week-day">${week_day_names[2]}</div>
+                  <div class="day-cell week-day">${week_day_names[3]}</div>
+                  <div class="day-cell week-day">${week_day_names[4]}</div>
+                  <div class="day-cell week-day">${week_day_names[5]}</div>
+                  <div class="day-cell week-day">${week_day_names[6]}</div>
+                `
 
                 //build time select input
                 let time_select = $('#daily_time_select')
