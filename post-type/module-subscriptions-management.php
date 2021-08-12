@@ -467,7 +467,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $post;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
+        $locale = $post["lang"] ?: "en_US";
+
+        //get summary from campaign strings
         $calendar_title = $post['campaigns'][0]['post_title'];
+        $campaign = DT_Posts::get_post( "campaigns", $campaign_id, true, false );
+        if ( isset( $campaign["campaign_strings"][$locale]["campaign_description"] ) ){
+            $calendar_title = $campaign["campaign_strings"][$locale]["campaign_description"];
+        } elseif ( isset( $campaign["campaign_strings"]["en_US"]["campaign_description"] ) ){
+            $calendar_title = $campaign["campaign_strings"]["en_US"]["campaign_description"];
+        }
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z";
         $calendar_description = get_post_meta( $campaign_id, 'description', true );
@@ -694,7 +703,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     $('#view-times-modal').foundation('open')
                     let list_title = jQuery('#list-modal-title')
                     let day=days.find(k=>k.key===day_timestamp)
-                    console.log(day);
                     list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(day.formatted)}</h2>`)
                     let day_times_content = $('#day-times-table-body')
                     let times_html = ``
