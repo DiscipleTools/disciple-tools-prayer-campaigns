@@ -192,6 +192,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match()){
             return;
         }
+        $this->page_title = __( "My Prayer Times", 'disciple-tools-prayer-campaigns' );
 
         // add dt_campaign_core to allowed scripts
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -289,6 +290,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 color: red;
                 cursor:pointer;
             }
+            .day-selector {
+                cursor: pointer;
+            }
             #calendar-content .day-cell {
                 max-width: 25%;
                 float:left;
@@ -314,7 +318,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             .day-extra {
                 text-align: start;
-                padding: 2px 5px;
+                padding: 5px 5px;
             }
 
             .day-cell {
@@ -562,10 +566,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'current_commitments' => $current_commitments,
                 'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id ) + 86400,
-                'slot_length' => 15
+                'slot_length' => 15,
+                'timezone' => $post["timezone"]
             ]) ?>][0]
-            console.log(calendar_subscribe_object)
+
+
             let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+            if ( calendar_subscribe_object.timezone ){
+                current_time_zone = calendar_subscribe_object.timezone
+            }
             const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
             let time_slot_coverage = {}
             let selected_calendar_color = 'green'
@@ -1007,19 +1016,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
-                Your prayer times have been verified!
+                <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
 
             <div class="center">
-                <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple_tools' ); ?></h2>
+                <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
             </div>
 
             <div id="type-individual-section">
-                <strong><?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
 
                 <div class="grid-x" style=" height: inherit !important;">
                     <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
-                    <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
+                    <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple-tools-prayer-campaigns' ); ?></div></div>
                     <div class="cell grid" id="error"></div>
                 </div>
             </div>
@@ -1044,10 +1053,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     ?>
                 </select>
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
                 <button class="button" type="button" id="confirm-timezone" data-close>
-                    <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+                    <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -1058,9 +1067,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             <div class="center">
                 <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
-                    Choose New Prayer Times
+                    <?php esc_html_e( 'Choose New Prayer Times', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
-                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">Download Calendar</a>
+                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
             <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
                 <h3 id="list-modal-title"></h3>
@@ -1087,7 +1096,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <div class="center">
                     <button class="button" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Close', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'Close', 'disciple-tools-prayer-campaigns' )?>
                     </button>
                 </div>
             </div>
@@ -1124,7 +1133,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </label>
                 <p class="select-view">
                     <strong>
-                        <?php esc_html_e( 'Using timezone for:', 'disciple_tools' ); ?></strong>
+                        <?php esc_html_e( 'Using timezone for:', 'disciple-tools-prayer-campaigns' ); ?></strong>
                     <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </p>
 
@@ -1141,14 +1150,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 <!--                        <div class="cell center">-->
 <!--                            <label for="receive_prayer_time_notifications">-->
 <!--                                <input type="checkbox" id="receive_prayer_time_notifications" name="receive_prayer_time_notifications" checked />-->
-<!--                                --><?php //esc_html_e( 'Receive Prayer Time Notifications (email verification needed).', 'disciple_tools' ); ?>
+<!--                                --><?php //esc_html_e( 'Receive Prayer Time Notifications (email verification needed).', 'disciple-tools-prayer-campaigns' ); ?>
 <!--                            </label>-->
 <!--                        </div>-->
                         <div class="cell center">
                                 <span id="selection-error" class="form-error">
-                                    <?php esc_html_e( 'You must select at least one time slot above.', 'disciple_tools' ); ?>
+                                    <?php esc_html_e( 'You must select at least one time slot above.', 'disciple-tools-prayer-campaigns' ); ?>
                                 </span>
-                            <button class="button loader" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?> <span class="loading-spinner"></span></button>
+                            <button class="button loader" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple-tools-prayer-campaigns' ); ?> <span class="loading-spinner"></span></button>
                         </div>
                     </div>
                 </div>
@@ -1162,15 +1171,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
                 <div class="center">
                     <button class="button button-cancel clear select-view" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                     </button>
 
                     <button class="button select-view" type="button" id="confirm-daily-time" disabled>
-                        <?php echo esc_html__( 'Next', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'Next', 'disciple-tools-prayer-campaigns' )?>
                     </button>
                 </div>
                 <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'back', 'disciple_tools' )?>
+                    <?php echo esc_html__( 'back', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -1178,7 +1187,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <div class="center">
                     <button class="button success-confirmation-section" id="close-ok-success" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'ok', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'ok', 'disciple-tools-prayer-campaigns' )?>
                     </button>
                 </div>
             </div>
@@ -1194,16 +1203,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <div id="delete-profile-modal" class="reveal tiny" data-reveal>
                     <h2>Are you sure you want to delete your profile?</h2>
                     <p>
-                        <?php esc_html_e( 'This can not be undone.', 'disciple_tools' ); ?>
+                        <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
                     </p>
                     <p id="delete-account-errors"></p>
 
 
                     <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                     </button>
                     <button class="button loader alert" type="button" id="confirm-delete-profile">
-                        <?php echo esc_html__( 'DELETE', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'DELETE', 'disciple-tools-prayer-campaigns' )?>
                     </button>
 
                     <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -1218,7 +1227,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public function error_body(){
         ?>
         <div class="center" style="margin-top:50px">
-            <h2 class=""><?php esc_html_e( 'This subscription has ended or is not configured correctly.', 'disciple_tools' ); ?></h2>
+            <h2 class=""><?php esc_html_e( 'This subscription has ended or is not configured correctly.', 'disciple-tools-prayer-campaigns' ); ?></h2>
         </div>
         <?php
     }
