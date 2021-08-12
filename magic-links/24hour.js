@@ -225,7 +225,7 @@ jQuery(document).ready(function($) {
         let time = day.key + daily_time_selected;
         let now = new Date().getTime()/1000
         let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
-        let already_added = selected_times.find(k=>k.time===current_time_selected)
+        let already_added = selected_times.find(k=>k.time===time)
         if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
           selected_times.push({time: time, duration: duration, label: time_label})
         }
