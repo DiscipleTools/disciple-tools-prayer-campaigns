@@ -66,6 +66,7 @@ DT_Campaigns_Base::instance();
 
 require_once 'module-subscriptions-management.php';
 DT_Subscriptions_Management::instance();
+require_once plugin_dir_path( __DIR__ ) . '/magic-links/subscription-management.php';
 new DT_Prayer_Subscription_Management_Magic_Link();
 
 require_once 'module-campaigns-24hour-prayer.php';
@@ -76,3 +77,4 @@ new DT_Prayer_Campaign_24_Hour_Magic_Link();
 //DT_Campaign_Progress::instance();
 
 require_once 'dt-subscriptions.php';
+
