@@ -19,6 +19,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match()){
             return;
         }
+        $post = DT_Posts::get_post( "subscriptions", $this->parts["post_id"], true, false );
+        if ( is_wp_error( $post ) ){
+            return;
+        }
+        if ( $post["lang"] && $post["lang"] !== "en_US" ){
+            $lang_code = $post["lang"];
+            add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
+                if ( !empty( $lang_code ) ){
+                    return $lang_code;
+                }
+                return $locale;
+            } );
+        }
         $this->page_title = __( "My Prayer Times", 'disciple-tools-prayer-campaigns' );
 
         // add dt_campaign_core to allowed scripts
@@ -307,7 +320,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z";
-        $calendar_description = get_post_meta( $campaign_id, 'description', true );
+        $calendar_description = "";
+        if ( isset( $campaign["campaign_strings"][$locale]["reminder_content"] ) ){
+            $calendar_description = $campaign["campaign_strings"][$locale]["reminder_content"];
+        } elseif ( isset( $campaign["campaign_strings"]["en_US"]["reminder_content"] ) ){
+            $calendar_description = $campaign["campaign_strings"]["en_US"]["reminder_content"];
+        }
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
         $my_commitments_reports = DT_Subscriptions_Management::instance()->get_subscriptions( $this->parts['post_id'] );
@@ -356,7 +374,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             echo "SEQUENCE:3\r\n";
             echo "BEGIN:VALARM\r\n";
             echo "TRIGGER:-PT10M\r\n";
-            echo "DESCRIPTION:Don't forget to pray your " . esc_html( $mc['time_duration'] ) . "!\r\n";
             echo "ACTION:DISPLAY\r\n";
             echo "END:VALARM\r\n";
             echo "END:VEVENT\r\n";
