@@ -35,6 +35,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 [
                     'methods'  => "POST",
                     'callback' => [ $this, 'manage_profile' ],
+                    'permission_callback' => '__return_true'
                 ],
             ]
         );
@@ -43,6 +44,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 [
                     'methods'  => "DELETE",
                     'callback' => [ $this, 'delete_profile' ],
+                    'permission_callback' => '__return_true'
                 ],
             ]
         );
