@@ -1200,7 +1200,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 .danger-zone-content {
                     display: flex;
                     justify-content: space-between;
-                    margin: 12px 10% 0 5%;
+                    margin: 24px 10% 0 5%;
                 }
                 .collapsed {
                     display: none;
