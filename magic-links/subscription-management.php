@@ -497,13 +497,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                                 <h2>${window.lodash.escape(day.month)}</h2>
                             </div>
                             <div class="new_calendar" id="cal2">
-                                <div class="new_day_cell new_weekday">S</div>
-                                <div class="new_day_cell new_weekday">M</div>
-                                <div class="new_day_cell new_weekday">T</div>
-                                <div class="new_day_cell new_weekday">W</div>
-                                <div class="new_day_cell new_weekday">T</div>
-                                <div class="new_day_cell new_weekday">F</div>
-                                <div class="new_day_cell new_weekday">S</div>
+                                <div class="new_weekday">S</div>
+                                <div class="new_weekday">M</div>
+                                <div class="new_weekday">T</div>
+                                <div class="new_weekday">W</div>
+                                <div class="new_weekday">T</div>
+                                <div class="new_weekday">F</div>
+                                <div class="new_weekday">S</div>
                             </div>
                             `)
                             //Current calendar is now #cal2
@@ -962,6 +962,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div class="grid-x">
                 <div class="cell center">
                     <h2 id="title"><?php echo esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <i><?php echo esc_html( $post["name"] ); ?></i>
                 </div>
             </div>
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
@@ -980,10 +981,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     margin-right: 3px;
                 }
                 .calendar-title {
-                    margin-top: 32px;
+                    margin: 32px auto 0 auto;
                     display: flex;
                     justify-content: space-between;
                     align-items: baseline;
+                    width: 84%;
                 }
                 .calendar-title h2{
                     color: dodgerblue;
@@ -991,39 +993,52 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 }
 
                 .new_calendar {
-                    margin-bottom: 20px;
                     display: flex;
                     flex-wrap: wrap;
+                    justify-content: left;
                     width: 84%;
                     margin: auto;
                 }
 
                 .new_day_cell {
-                    width: 14%;
+                    width: calc(100% / 7);
                     height: auto;
                     text-align: center;
+                    border-radius: 5%;
+                    cursor: pointer;
+                }
+
+                .new_day_cell:hover {
+                    background-color: #ddd;
                 }
 
                 .new_weekday {
+                    width: calc(100% / 7);
+                    height: auto;
                     text-align: center;
                     font-weight: bold;
-                    margin-top: 12px;
+                    margin: 12px auto 4px auto;
                     border-bottom: 2px solid black;
+                    border-radius: 0%;
+                    justify-content: left;
                 }
             </style>
             <div class="calendar-title">
                 <h2 id="cal1_title_month"></h2>
-                <div><i><?php echo esc_html( $post["name"] ); ?></i></div>
+                <div class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
+                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                </div>
             </div>
 
             <div class="new_calendar" id="cal1">
-                <div class="new_day_cell new_weekday">S</div>
-                <div class="new_day_cell new_weekday">M</div>
-                <div class="new_day_cell new_weekday">T</div>
-                <div class="new_day_cell new_weekday">W</div>
-                <div class="new_day_cell new_weekday">T</div>
-                <div class="new_day_cell new_weekday">F</div>
-                <div class="new_day_cell new_weekday">S</div>
+                <div class="new_weekday">S</div>
+                <div class="new_weekday">M</div>
+                <div class="new_weekday">T</div>
+                <div class="new_weekday">W</div>
+                <div class="new_weekday">T</div>
+                <div class="new_weekday">F</div>
+                <div class="new_weekday">S</div>
             </div>
 
             <!-- <div id="type-individual-section">
