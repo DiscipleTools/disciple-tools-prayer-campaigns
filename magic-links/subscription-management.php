@@ -144,6 +144,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 border-left: 0.5px;
                 border-right: 0.5px;
             }
+
+            .new-day-number {
+                margin-top: 12px;
+            }
+
             .progress-bar {
                 height:10px;
                 background: dodgerblue;
@@ -151,10 +156,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             }
             .progress-bar-container {
                 border: 1px solid #bfbfbf;
-                margin-left: 5px;
-                margin-right: 5px;
-                width: 33%;
-                margin: auto;
+                margin: 0 auto 12px auto;
+                width: 75%;
             }
 
             .remove-selection {
@@ -441,6 +444,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             let selected_calendar_color = 'green'
             let verified = false
 
+            // Function that adds an empty cell to the calendar for each
+            // day offset between Sunday and the first day of the campaign
+            function add_empty_days( day_offset ) {
+                let empty_cells = '';
+                for ( var i=0; i<=day_offset; i++ ) {
+                    empty_cells += `<div class="new_day_cell"></div>`;
+                }
+                return empty_cells;
+            } 
+            
             jQuery(document).ready(function($){
 
                 //set up array of days and time slots according to timezone
@@ -455,14 +468,65 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                  * Draw or refresh the main calendar
                  */
                 let draw_calendar = ( id = 'calendar-content') => {
-                    let content = $(`#${id}`)
-                    content.empty()
-                    let list = ''
-                    console.log(days);
+                    let content = $(`#${id}`);
+                    content.empty();
+                    let list = '';
+                    let current_calendar = '#cal1';
+                    let new_list = '';
+                    let first_cell = true;
                     days.forEach(day=>{
+                        if ( first_cell ) {
+                            // Write the first month name
+                            $('#cal1_title_month').text( window.lodash.escape( day.month ) );
+
+                            // If first campaign weekday isn't a Sunday, add necessary amount of empty cell-days
+                            if ( day.weekday != 1 ) {
+                                new_list += add_empty_days( day.weekday - 1 ); // 1 is the first day of the week
+                            }
+                        }
+
+                        // Create a new calendar
+                        if ( !first_cell && day.day === "1" ) {
+                            // A new month has started, let's append the accumulated days and clear the variable
+                            $( current_calendar ).append(new_list);
+                            new_list = '';
+
+                            // Add new calendar title after current calendar
+                            $( current_calendar ).after(`
+                            <div class="calendar-title">
+                                <h2>${window.lodash.escape(day.month)}</h2>
+                            </div>
+                            <div class="new_calendar" id="cal2">
+                                <div class="new_day_cell new_weekday">S</div>
+                                <div class="new_day_cell new_weekday">M</div>
+                                <div class="new_day_cell new_weekday">T</div>
+                                <div class="new_day_cell new_weekday">W</div>
+                                <div class="new_day_cell new_weekday">T</div>
+                                <div class="new_day_cell new_weekday">F</div>
+                                <div class="new_day_cell new_weekday">S</div>
+                            </div>
+                            `)
+                            //Current calendar is now #cal2
+                            current_calendar = '#cal2';
+
+                            // If first weekday of the new month isn't a Sunday, add necessary amount of empty cell-days
+                            if ( day.weekday != 1 ) {
+                                new_list += add_empty_days( day.weekday - 1 ); // 1 is the first day of the week
+                            }
+
+                        }
+                        new_list += `
+                        <div class="new_day_cell">
+                            <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}</div>
+                            <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
+                            <div class="progress-bar-container">
+                                    <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
+                                </div>
+                            </div>
+                        </div>`;
                         list += `<div class="cell day-cell" style="margin:8px 0 8px 0;">
                             <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
-                                <div>${window.lodash.escape(day.month).substring(0,3)} ${window.lodash.escape(day.day)}</div>
+                                <!-- <div>${window.lodash.escape(day.month).substring(0,3)} ${window.lodash.escape(day.day)}</div> -->
                                 <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
                                 <div class="progress-bar-container">
                                     <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
@@ -470,7 +534,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             </div>
                             <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                         </div>`
+                        first_cell = false;
                     })
+                    $( current_calendar ).append(new_list);
                     content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 }
                 draw_calendar()
@@ -893,6 +959,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         ?>
         <div id="wrapper">
+            <div class="grid-x">
+                <div class="cell center">
+                    <h2 id="title"><?php echo esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                </div>
+            </div>
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
                 <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
@@ -909,23 +980,53 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     margin-right: 3px;
                 }
                 .calendar-title {
-                    margin-top: 24px;
+                    margin-top: 32px;
                     display: flex;
                     justify-content: space-between;
                     align-items: baseline;
-                    border-bottom: 2px solid black;
                 }
                 .calendar-title h2{
                     color: dodgerblue;
                     font-weight: bold;
                 }
+
+                .new_calendar {
+                    margin-bottom: 20px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 84%;
+                    margin: auto;
+                }
+
+                .new_day_cell {
+                    width: 14%;
+                    height: auto;
+                    text-align: center;
+                }
+
+                .new_weekday {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-top: 12px;
+                    border-bottom: 2px solid black;
+                }
             </style>
             <div class="calendar-title">
-                <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                <h2 id="cal1_title_month"></h2>
                 <div><i><?php echo esc_html( $post["name"] ); ?></i></div>
             </div>
 
-            <div id="type-individual-section">
+            <div class="new_calendar" id="cal1">
+                <div class="new_day_cell new_weekday">S</div>
+                <div class="new_day_cell new_weekday">M</div>
+                <div class="new_day_cell new_weekday">T</div>
+                <div class="new_day_cell new_weekday">W</div>
+                <div class="new_day_cell new_weekday">T</div>
+                <div class="new_day_cell new_weekday">F</div>
+                <div class="new_day_cell new_weekday">S</div>
+            </div>
+
+            <!-- <div id="type-individual-section">
                 <div class="grid-x" style=" height: inherit !important;">
                     <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
                     <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple-tools-prayer-campaigns' ); ?></div></div>
@@ -935,7 +1036,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
                     <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </div>
-            </div>
+            </div> -->
 
 
             <!-- Reveal Modal Timezone Changer-->
