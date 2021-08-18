@@ -139,7 +139,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 max-width: 25%;
                 float:left;
                 text-align: center;
-                border: 1px solid grey;
+                border: 1px solid lightgray;
+                border-top: none;
+                border-left: 0.5px;
+                border-right: 0.5px;
             }
             .progress-bar {
                 height:10px;
@@ -150,6 +153,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 border: 1px solid #bfbfbf;
                 margin-left: 5px;
                 margin-right: 5px;
+                width: 33%;
+                margin: auto;
             }
 
             .remove-selection {
@@ -453,10 +458,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     let content = $(`#${id}`)
                     content.empty()
                     let list = ''
+                    console.log(days);
                     days.forEach(day=>{
-                        list += `<div class="cell day-cell">
+                        list += `<div class="cell day-cell" style="margin:8px 0 8px 0;">
                             <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
-                                <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
+                                <div>${window.lodash.escape(day.month).substring(0,3)} ${window.lodash.escape(day.day)}</div>
+                                <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
                                 <div class="progress-bar-container">
                                     <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
                                 </div>
@@ -906,6 +913,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     display: flex;
                     justify-content: space-between;
                     align-items: baseline;
+                    border-bottom: 2px solid black;
                 }
                 .calendar-title h2{
                     color: dodgerblue;
