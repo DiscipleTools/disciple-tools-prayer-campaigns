@@ -885,31 +885,47 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
         ?>
-        <div id="custom-style"></div>
         <div id="wrapper">
-            <div class="grid-x">
-                <div class="cell center">
-                    <h2 id="title"><?php echo esc_html( $post["name"] ); ?></h2>
-                </div>
-            </div>
-            <hr>
-
-
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
                 <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
 
-            <div class="center">
+            <style>
+                .timezone-label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    margin: 12px 0 24px 0;
+                    text-align: right;
+                }
+                .timezone-label svg {
+                    margin-right: 3px;
+                }
+                .calendar-title {
+                    margin-top: 24px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                }
+                .calendar-title h2{
+                    color: dodgerblue;
+                    font-weight: bold;
+                }
+            </style>
+            <div class="calendar-title">
                 <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                <div><i><?php echo esc_html( $post["name"] ); ?></i></div>
             </div>
 
             <div id="type-individual-section">
-                <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-
                 <div class="grid-x" style=" height: inherit !important;">
                     <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
                     <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple-tools-prayer-campaigns' ); ?></div></div>
                     <div class="cell grid" id="error"></div>
+                </div>
+                <div class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
+                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </div>
             </div>
 
@@ -966,8 +982,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
                     <select id="cp-prayer-time-duration-select" class="cp-time-duration-select"></select>
                 </label>
-                <p>
-                    <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <p class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
+                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </p>
 
                 <div class="success-confirmation-section">
@@ -1051,8 +1068,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <button class="button" id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>
                         <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
                     </div>
-                    <p>
-                        <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                    <p class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                     </p>
 
                     <div style="margin: 30px 0">
