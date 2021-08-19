@@ -556,26 +556,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
                             let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone).toString().replace(':00','')
                             let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
-                            
-                            let d1 = new Date(c.time_begin * 1000);
-                            let d2 = new Date(c.time_end * 1000);
-                            let time_duration = ( d2 - d1 ) / 60000;
-                            if ( time_duration < 60 ) {
-                                time_duration = time_duration + ' min';
-                            } 
-                            if (time_duration == 60 ) {
-                                time_duration = time_duration / 60 + ' hr';
-                            }
-
-                            if (time_duration > 60 ) {
-                                time_duration = time_duration / 60 + ' hrs';
-                            }
-                            console.log( time_duration );
+                            let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end)
                             $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
                                 <div class="prayer-commitment" id="selected-${window.lodash.escape(time)}"
                                     data-time="${window.lodash.escape(time)}">
                                     <div class="prayer-commitment-text">
-                                        ${window.lodash.escape(time_label)} (${window.lodash.escape(time_duration)})
+                                        ${window.lodash.escape(summary_text)}
                                         <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
                                     </div>
                                 </div>
