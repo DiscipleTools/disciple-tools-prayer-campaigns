@@ -146,7 +146,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             }
 
             .new-day-number {
-                margin-top: 12px;
+                margin-top: 18px;
             }
 
             .progress-bar {
@@ -162,7 +162,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             .remove-selection {
                 /*float: right;*/
-                color: red;
+                color: white;
                 cursor:pointer;
             }
 
@@ -513,7 +513,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             if ( day.weekday != 1 ) {
                                 new_list += add_empty_days( day.weekday - 1 ); // 1 is the first day of the week
                             }
-
                         }
                         new_list += `
                         <div class="new_day_cell">
@@ -527,7 +526,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         </div>`;
 
                         //todo delete the 'list +=' lines when time commitments and modal display functionality are added
-                        list += `<div class="cell day-cell" style="margin:8px 0 8px 0;">
+                        list += `
+                        <div class="cell day-cell" style="margin:8px 0 8px 0;">
                             <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
                                 <!-- <div>${window.lodash.escape(day.month).substring(0,3)} ${window.lodash.escape(day.day)}</div> -->
                                 <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
@@ -554,13 +554,30 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         let now = new Date().getTime()/1000
                         if ( time >= now){
                             let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
-                            let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone)
+                            let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone).toString().replace(':00','')
                             let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
+                            
+                            let d1 = new Date(c.time_begin * 1000);
+                            let d2 = new Date(c.time_end * 1000);
+                            let time_duration = ( d2 - d1 ) / 60000;
+                            if ( time_duration < 60 ) {
+                                time_duration = time_duration + ' min';
+                            } 
+                            if (time_duration == 60 ) {
+                                time_duration = time_duration / 60 + ' hr';
+                            }
+
+                            if (time_duration > 60 ) {
+                                time_duration = time_duration / 60 + ' hrs';
+                            }
+                            console.log( time_duration );
                             $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
-                                <div id="selected-${window.lodash.escape(time)}"
+                                <div class="prayer-commitment" id="selected-${window.lodash.escape(time)}"
                                     data-time="${window.lodash.escape(time)}">
-                                    ${window.lodash.escape(time_label)} - ${window.lodash.escape(time_end_label)}
-                                    <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
+                                    <div class="prayer-commitment-text">
+                                        ${window.lodash.escape(time_label)} (${window.lodash.escape(time_duration)})
+                                        <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
+                                    </div>
                                 </div>
                             `)
                         }
@@ -630,7 +647,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     day.slots.forEach(slot=>{
                         let background_color = 'white'
                         if ( slot.subscribers > 0) {
-                            background_color = 'lightblue'
+                            background_color = '#1e90ff75'
                         }
                         if ( row_index === 0 ){
                             times_html += `<tr><td>${window.lodash.escape(slot.formatted)}</td>`
@@ -1000,7 +1017,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: left;
-                    width: 84%;
+                    width: 92%;
                     margin: auto;
                 }
 
@@ -1008,7 +1025,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     width: calc(100% / 7);
                     height: auto;
                     text-align: center;
-                    border-radius: 5%;
                     cursor: pointer;
                 }
 
@@ -1025,6 +1041,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     border-bottom: 2px solid black;
                     border-radius: 0%;
                     justify-content: left;
+                }
+
+                .prayer-commitment {
+                    background-color: dodgerblue;
+                    border-radius: 5%;
+                    color: white;
+                    font-size: 12px;
+                    margin: 2px auto 2px auto;
+                    text-align: right;
+                }
+
+                .prayer-commitment-text {
+                    margin-right: 4px;
                 }
             </style>
             <div class="calendar-title">
