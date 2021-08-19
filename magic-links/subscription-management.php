@@ -517,13 +517,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         }
                         new_list += `
                         <div class="new_day_cell">
-                            <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}</div>
-                            <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
-                            <div class="progress-bar-container">
+                            <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}
+                                <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
+                                <div class="progress-bar-container">
                                     <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
                                 </div>
+                                <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                             </div>
                         </div>`;
+
+                        //todo delete the 'list +=' lines when time commitments and modal display functionality are added
                         list += `<div class="cell day-cell" style="margin:8px 0 8px 0;">
                             <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
                                 <!-- <div>${window.lodash.escape(day.month).substring(0,3)} ${window.lodash.escape(day.day)}</div> -->
@@ -531,8 +534,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                                 <div class="progress-bar-container">
                                     <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
                                 </div>
+                                <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                             </div>
-                            <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                         </div>`
                         first_cell = false;
                     })
@@ -542,7 +545,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 draw_calendar()
 
                 /**
-                 * SHow my commitment under each day
+                 * Show my commitment under each day
                  */
                 let add_my_commitments = ()=>{
                     $('.day-extra').empty()
@@ -615,7 +618,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 /**
                  * Modal for displaying on individual day
                  */
-                $('.day-selector').on( 'click', function (){
+                $('.new-day-number').on( 'click', function (){
                     let day_timestamp = $(this).data('day')
                     $('#view-times-modal').foundation('open')
                     let list_title = jQuery('#list-modal-title')
@@ -992,6 +995,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     font-weight: bold;
                 }
 
+                /* todo replace 'new_' with '' and unify css new styles with old ones */
                 .new_calendar {
                     display: flex;
                     flex-wrap: wrap;
