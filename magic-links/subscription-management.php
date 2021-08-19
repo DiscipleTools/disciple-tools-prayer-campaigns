@@ -1029,7 +1029,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 }
 
                 .new_day_cell:hover {
-                    background-color: #ddd;
+                    background-color: #eee;
                 }
 
                 .new_weekday {
@@ -1044,7 +1044,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 }
 
                 .prayer-commitment {
-                    background-color: dodgerblue;
+                    background-color: #57d449;
                     border-radius: 5%;
                     color: white;
                     font-size: 12px;
