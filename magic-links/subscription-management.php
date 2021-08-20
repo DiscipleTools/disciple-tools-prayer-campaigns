@@ -20,7 +20,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return;
         }
         $post = DT_Posts::get_post( "subscriptions", $this->parts["post_id"], true, false );
-        if ( is_wp_error( $post ) ){
+        if ( is_wp_error( $post ) || empty( $post["campaigns"] ) ){
             return;
         }
         if ( $post["lang"] && $post["lang"] !== "en_US" ){
