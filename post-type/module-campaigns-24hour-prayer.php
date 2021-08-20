@@ -77,7 +77,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             }
 
             if ( 'status' === $section ){
-                $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key. '/shortcode';
+                $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
                 ?>
                 <div class="cell small-12 medium-4">
                     <div class="section-subheader">
