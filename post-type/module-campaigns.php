@@ -314,7 +314,10 @@ class DT_Campaigns_Base extends DT_Module_Base {
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
             $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
-            $tiles["campaign_strings"] = [ "label" => __( "Campaign Strings", 'disciple-tools-campaigns' ) ];
+            $tiles["campaign_strings"] = [
+                "label" => __( "Campaign Strings", 'disciple-tools-campaigns' ),
+                "description" => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf"
+            ];
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
         }
         return $tiles;
