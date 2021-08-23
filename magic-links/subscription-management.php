@@ -1094,33 +1094,78 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </div>
             </div>
 
+            <style>
+                .danger-zone{
+                    margin: 0 8px 0 8px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                
+                .chevron img{
+                    vertical-align: middle;
+                    width: 20px;
+                    cursor: pointer;
+                }
+
+                .danger-zone-content {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 24px 10% 0 5%;
+                }
+                .collapsed {
+                    display: none;
+                }
+
+                .toggle_up {
+                    -moz-transform: scale(-1, -1);
+                    -o-transform: scale(-1, -1);
+                    -webkit-transform: scale(-1, -1);
+                    transform: scale(-1, -1);
+                }
+            </style>
+            <script>
+                function toggle_danger() {
+                    $('.danger-zone-content').toggleClass('collapsed');
+                    $('.chevron').toggleClass('toggle_up');
+                }
+            </script>
+
             <div style="margin-top: 50px">
                 <hr>
-                <h2><?php esc_html_e( 'Danger Zone', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                <label>
-                    <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
-                </label>
-                <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
-                <!-- Reveal Modal Daily time slot-->
-                <div id="delete-profile-modal" class="reveal tiny" data-reveal>
-                    <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <p>
-                        <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
-                    </p>
-                    <p id="delete-account-errors"></p>
+                <section>
+                    <div class="danger-zone">
+                        <h2>Danger Zone</h2>
+                        <button class="chevron" onclick="toggle_danger();">
+                            <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
+                        </button>
+                    </div>
+                    <div class="danger-zone-content collapsed">
+                        <label>
+                            Delete this profile and all the scheduled prayer times?
+                        </label>
+                        <button class="button alert" data-open="delete-profile-modal">Delete</button>
+                        <!-- Reveal Modal Daily time slot-->
+                        <div id="delete-profile-modal" class="reveal tiny" data-reveal>
+                            <h2>Are you sure you want to delete your profile?</h2>
+                            <p>
+                                <?php esc_html_e( 'This can not be undone.', 'disciple_tools' ); ?>
+                            </p>
+                            <p id="delete-account-errors"></p>
 
 
-                    <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                    </button>
-                    <button class="button loader alert" type="button" id="confirm-delete-profile">
-                        <?php echo esc_html__( 'DELETE', 'disciple-tools-prayer-campaigns' )?>
-                    </button>
+                            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                            </button>
+                            <button class="button loader alert" type="button" id="confirm-delete-profile">
+                                <?php echo esc_html__( 'DELETE', 'disciple_tools' )?>
+                            </button>
 
-                    <button class="close-button" data-close aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
         <?php
