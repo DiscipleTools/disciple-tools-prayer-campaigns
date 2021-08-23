@@ -1226,7 +1226,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <div class="danger-zone">
                         <h2>Danger Zone</h2>
                         <button class="chevron" onclick="toggle_danger();">
-                            <img src="https://dt-spotless.local/wp-content/themes/disciple-tools-theme/dt-assets/images/chevron_down.svg">
+                            <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
                         </button>
                     </div>
                     <div class="danger-zone-content collapsed">
