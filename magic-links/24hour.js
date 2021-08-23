@@ -95,13 +95,13 @@ jQuery(document).ready(function($) {
     }
     let week_day_names = days_for_locale(navigator.language, 'narrow')
     let headers = `
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">S</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">M</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">T</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">W</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">T</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">F</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">S</div>
+      <div class="day-cell week-day">${week_day_names[0]}</div>
+      <div class="day-cell week-day">${week_day_names[1]}</div>
+      <div class="day-cell week-day">${week_day_names[2]}</div>
+      <div class="day-cell week-day">${week_day_names[3]}</div>
+      <div class="day-cell week-day">${week_day_names[4]}</div>
+      <div class="day-cell week-day">${week_day_names[5]}</div>
+      <div class="day-cell week-day">${week_day_names[6]}</div>
     `
 
     //display main calendar
