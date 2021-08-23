@@ -117,13 +117,13 @@ jQuery(document).ready(function($) {
             let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
             if ( day_number !== 0 ){
               for ( let i = 1; i <= 7-day_number; i++ ){
-                list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                list +=  `<div class="day-cell disabled-calendar-day"></div>`
               }
             }
             list += `</div>`
           }
 
-          list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
+          list += `<h3 class="month-title" style="text-align:left;margin-top:20px;margin-bottom:5px;color:dodgerblue;"><b>${window.lodash.escape(day.month).substring(0,3)}</b> ${new Date(1628218800 * 1000).getFullYear()}</h3><div class="calendar" style="margin-bottom:20px;">`
           if( !last_month ){
             list += headers
           }
@@ -132,13 +132,12 @@ jQuery(document).ready(function($) {
           let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
           let start_of_week = window.campaign_scripts.start_of_week(day.key, current_time_zone);
           for ( let i = 0; i < day_number; i++ ){
-            list +=  `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate()+i)}</div>`
+            list +=  `<div class="day-cell disabled-calendar-day"></div>`
           }
           last_month = day.month
         }
         if ( day.disabled ){
           list += `<div class="day-cell disabled-calendar-day">
-              ${day.day}
           </div>`
         } else {
           list +=`
@@ -282,13 +281,13 @@ jQuery(document).ready(function($) {
             let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
             if ( day_number !== 0 ) {
               for (let i = 1; i <= 7 - day_number; i++) {
-                list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                list += `<div class="day-cell disabled-calendar-day"></div>`
               }
             }
             list += `</div>`
           }
 
-          list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
+          list += `<h3 class="month-title" style="text-align:left;margin-top:20px;margin-bottom:5px;color:dodgerblue;"><b>${window.lodash.escape(day.month).substring(0,3)}</b> ${new Date(1628218800 * 1000).getFullYear()}</h3><div class="calendar" style="margin-bottom:20px;">`
           if (!last_month) {
             list += headers
           }
@@ -297,7 +296,7 @@ jQuery(document).ready(function($) {
           let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
           let start_of_week = window.campaign_scripts.start_of_week(day.key, current_time_zone);
           for (let i = 0; i < day_number; i++) {
-            list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate() + i)}</div>`
+            list += `<div class="day-cell disabled-calendar-day"></div>`
           }
           last_month = day.month
         }

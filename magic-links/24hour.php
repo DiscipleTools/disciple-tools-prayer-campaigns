@@ -77,8 +77,11 @@ function dt_24hour_campaign_body(){
         }
         #cp-wrapper .week-day {
             height: 20px;
-            width:40px;
-            color: grey;
+            width:40px;            
+            color:black;
+            font-size:12px;
+            font-weight:550;
+            margin-bottom:5px;
         }
         #cp-wrapper #calendar-content h3 {
             margin-bottom: 0;
