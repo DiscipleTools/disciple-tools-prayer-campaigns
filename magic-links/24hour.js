@@ -87,16 +87,21 @@ jQuery(document).ready(function($) {
     }
     set_campaign_date_range_title()
 
-
-
+    function days_for_locale(localeName = 'en-US', weekday = 'long') {
+      let now = new Date()
+      const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
+      return [...Array(7).keys()]
+        .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
+    }
+    let week_day_names = days_for_locale(navigator.language, 'narrow')
     let headers = `
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">S</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">M</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">T</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">W</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">T</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">F</div>
-      <div class="day-cell week-day" style="color:black;font-size:12px;font-weight:550;margin-bottom:5px;">S</div>
+      <div class="day-cell week-day">${week_day_names[0]}</div>
+      <div class="day-cell week-day">${week_day_names[1]}</div>
+      <div class="day-cell week-day">${week_day_names[2]}</div>
+      <div class="day-cell week-day">${week_day_names[3]}</div>
+      <div class="day-cell week-day">${week_day_names[4]}</div>
+      <div class="day-cell week-day">${week_day_names[5]}</div>
+      <div class="day-cell week-day">${week_day_names[6]}</div>
     `
 
     //display main calendar
@@ -219,7 +224,7 @@ jQuery(document).ready(function($) {
         let time = day.key + daily_time_selected;
         let now = new Date().getTime()/1000
         let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
-        let already_added = selected_times.find(k=>k.time===current_time_selected)
+        let already_added = selected_times.find(k=>k.time===time)
         if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
           selected_times.push({time: time, duration: duration, label: time_label})
         }

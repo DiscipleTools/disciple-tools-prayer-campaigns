@@ -1,179 +1,4 @@
 <?php
-if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
-
-class DT_Subscriptions_Management extends DT_Module_Base {
-    public $module = "subscriptions_management";
-
-    public $magic_link_root = "subscriptions_app"; // define the root of the url {yoursite}/root/type/key/action
-    public $magic_link_type = 'manage'; // define the type
-    public $post_type = 'subscriptions';
-
-    private static $_instance = null;
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    } // End instance()
-
-    public function __construct() {
-        parent::__construct();
-        if ( !self::check_enabled_and_prerequisites() ){
-            return;
-        }
-        add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
-    }
-
-    /**
-     * Register REST Endpoints
-     * @link https://github.com/DiscipleTools/disciple-tools-theme/wiki/Site-to-Site-Link for outside of wordpress authentication
-     */
-    public function add_api_routes() {
-        $namespace = $this->magic_link_root . '/v1';
-        register_rest_route(
-            $namespace, '/'.$this->magic_link_type, [
-                [
-                    'methods'  => "POST",
-                    'callback' => [ $this, 'manage_profile' ],
-                    'permission_callback' => '__return_true'
-                ],
-            ]
-        );
-        register_rest_route(
-            $namespace, '/'.$this->magic_link_type . '/delete_profile', [
-                [
-                    'methods'  => "DELETE",
-                    'callback' => [ $this, 'delete_profile' ],
-                    'permission_callback' => '__return_true'
-                ],
-            ]
-        );
-    }
-
-    public function verify_magic_link_and_get_post_id( $meta_key, $public_key ){
-        $magic = new DT_Magic_URL( $this->magic_link_root );
-        $parts = $magic->parse_wp_rest_url_parts( $public_key );
-        if ( !$parts || $this->magic_link_type != $parts["type"] ){
-            return false;
-        }
-        if ( isset( $parts["post_id"] ) && !empty( $parts["post_id"] ) ){
-            return $parts["post_id"];
-        }
-        return false;
-    }
-
-    public function delete_profile( WP_REST_Request $request ){
-        $params = $request->get_params();
-
-        if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'] ) ) {
-            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
-        }
-        $params = dt_recursive_sanitize_array( $params );
-
-        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
-        if ( ! $post_id ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
-        }
-        global $wpdb;
-
-        //remove connection
-        $a = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts p SET post_title = 'Deleted Subscription', post_name = 'Deleted Subscription' WHERE p.ID = %s", $post_id ) );
-        $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_activity_log WHERE object_id = %s and action != 'add_subscription' and action !='delete_subscription'", $post_id ) );
-        //create activity for connection removed on the campaign
-        DT_Posts::update_post( 'subscriptions', $post_id, [ "campaigns" => [ "values" => [], "force_values" => true ] ], true, false );
-        $a = $wpdb->query( $wpdb->prepare( "DELETE pm FROM $wpdb->postmeta pm WHERE pm.post_id = %s", $post_id ) );
-        $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
-        DT_Posts::update_post( 'subscriptions', $post_id, [ "status" => 'inactive' ], true, false );
-
-        return true;
-    }
-
-    public function manage_profile( WP_REST_Request $request ) {
-        $params = $request->get_params();
-
-        if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'], $params['action'] ) ) {
-            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
-        }
-
-        $params = dt_recursive_sanitize_array( $params );
-        $action = sanitize_text_field( wp_unslash( $params['action'] ) );
-
-        // manage
-        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
-        if ( ! $post_id ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
-        }
-
-        switch ( $action ) {
-            case 'get':
-                return $this->get_subscriptions( $post_id );
-            case 'delete':
-                return $this->delete_subscriptions( $post_id, $params );
-            case 'add':
-                return $this->add_subscriptions( $post_id, $params );
-            default:
-                return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
-        }
-    }
-
-    public function get_subscriptions( $post_id ) {
-        $subs = Disciple_Tools_Reports::get( $post_id, 'post_id' );
-
-        if ( ! empty( $subs ) ){
-            foreach ( $subs as $index => $sub ) {
-                // verification step
-                if ( $sub['value'] < 1 ) {
-                    Disciple_Tools_Reports::update( [
-                        'id' => $sub['id'],
-                        'value' => 1
-                    ] );
-                    $subs[$index]['value'] = 1;
-                    $subs[$index]['verified'] = true;
-                }
-
-                $subs[$index]['formatted_time'] = gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' for ' . $sub['label'];
-            }
-        }
-
-        return $subs;
-    }
-
-    private function delete_subscriptions( $post_id, $params ) {
-        $sub = Disciple_Tools_Reports::get( $params["report_id"], 'id' );
-        $time_in_mins = ( $sub["time_end"] - $sub["time_begin"] ) / 60;
-        //@todo convert timezone?
-        $label = "Commitment deleted: " . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
-        Disciple_Tools_Reports::delete( $params['report_id'] );
-        dt_activity_insert([
-            'action' => 'delete_subscription',
-            'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
-            'object_subtype' => 'report',
-            'object_note' => $label,
-            'object_id' => $post_id
-        ] );
-        return $this->get_subscriptions( $post_id );
-    }
-
-    private function add_subscriptions( $post_id, $params ){
-        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
-        if ( !isset( $post["campaigns"][0]["ID"] ) ){
-            return false;
-        }
-        $campaign_id = $post["campaigns"][0]["ID"];
-
-        foreach ( $params['selected_times'] as $time ){
-            if ( !isset( $time["time"] ) ){
-                continue;
-            }
-            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time["time"], $time["duration"], $time['grid_id'] );
-            if ( !$new_report ){
-                return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
-            }
-        }
-        return $this->get_subscriptions( $params['parts']['post_id'] );
-    }
-}
-
 class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public $post_type = 'subscriptions';
@@ -194,6 +19,20 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match()){
             return;
         }
+        $post = DT_Posts::get_post( "subscriptions", $this->parts["post_id"], true, false );
+        if ( is_wp_error( $post ) || empty( $post["campaigns"] ) ){
+            return;
+        }
+        if ( $post["lang"] && $post["lang"] !== "en_US" ){
+            $lang_code = $post["lang"];
+            add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
+                if ( !empty( $lang_code ) ){
+                    return $lang_code;
+                }
+                return $locale;
+            } );
+        }
+        $this->page_title = __( "My Prayer Times", 'disciple-tools-prayer-campaigns' );
 
         // add dt_campaign_core to allowed scripts
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -221,10 +60,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        wp_enqueue_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'campaign_core.js', [
+        $a = trailingslashit( plugin_dir_url( __DIR__ ) ). 'post-type/campaign_core.js';
+        $b = plugin_dir_path( __DIR__ ) . 'post-type/campaign_core.js';
+        wp_enqueue_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'post-type/campaign_core.js', [
             'jquery',
             'lodash'
-        ], filemtime( plugin_dir_path( __FILE__ ) . 'campaign_core.js' ), true );
+        ], filemtime( plugin_dir_path( __DIR__ ) . 'post-type/campaign_core.js' ), true );
 
     }
 
@@ -291,6 +132,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 color: red;
                 cursor:pointer;
             }
+            .day-selector {
+                cursor: pointer;
+            }
             #calendar-content .day-cell {
                 max-width: 25%;
                 float:left;
@@ -316,7 +160,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             .day-extra {
                 text-align: start;
-                padding: 2px 5px;
+                padding: 5px 5px;
             }
 
             .day-cell {
@@ -448,7 +292,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public function get_timezone_offset( $timezone ) {
         $dt_now = new DateTime();
         $dt_now->setTimezone( new DateTimeZone( esc_html( $timezone ) ) );
-        $dt_now->setTimestamp( gmdate( 'Ymd\THis\Z' ) );
         $timezone_offset = sprintf( '%+03d', $dt_now->getOffset() / 3600 );
         return $timezone_offset;
     }
@@ -465,10 +308,24 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $post;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
+        $locale = $post["lang"] ?: "en_US";
+
+        //get summary from campaign strings
         $calendar_title = $post['campaigns'][0]['post_title'];
+        $campaign = DT_Posts::get_post( "campaigns", $campaign_id, true, false );
+        if ( isset( $campaign["campaign_strings"][$locale]["campaign_description"] ) ){
+            $calendar_title = $campaign["campaign_strings"][$locale]["campaign_description"];
+        } elseif ( isset( $campaign["campaign_strings"]["en_US"]["campaign_description"] ) ){
+            $calendar_title = $campaign["campaign_strings"]["en_US"]["campaign_description"];
+        }
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z";
-        $calendar_description = get_post_meta( $campaign_id, 'description', true );
+        $calendar_description = "";
+        if ( isset( $campaign["campaign_strings"][$locale]["reminder_content"] ) ){
+            $calendar_description = $campaign["campaign_strings"][$locale]["reminder_content"];
+        } elseif ( isset( $campaign["campaign_strings"]["en_US"]["reminder_content"] ) ){
+            $calendar_description = $campaign["campaign_strings"]["en_US"]["reminder_content"];
+        }
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
         $my_commitments_reports = DT_Subscriptions_Management::instance()->get_subscriptions( $this->parts['post_id'] );
@@ -517,7 +374,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             echo "SEQUENCE:3\r\n";
             echo "BEGIN:VALARM\r\n";
             echo "TRIGGER:-PT10M\r\n";
-            echo "DESCRIPTION:Don't forget to pray your " . esc_html( $mc['time_duration'] ) . "!\r\n";
             echo "ACTION:DISPLAY\r\n";
             echo "END:VALARM\r\n";
             echo "END:VEVENT\r\n";
@@ -546,28 +402,35 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             ];
         }
+        $field_settings = DT_Posts::get_post_field_settings( "campaigns" );
         ?>
         <script>
             let calendar_subscribe_object = [<?php echo json_encode([
-                'map_key' => DT_Mapbox_API::get_key(),
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
-                'post' => $post,
                 'name' => get_the_title( $this->parts['post_id'] ),
                 'translations' => [
-                    'add' => __( 'Add Report', 'disciple-tools-subscriptions' ),
-                    'search_location' => 'Search for Location'
+                    "select_a_time" => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                    "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
+                    "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
+                    "time_slot_label" => _x( '%1$s for %2$s minutes.', "Monday 5pm for 15 minutes", 'disciple-tools-prayer-campaigns' ),
                 ],
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,
                 'current_commitments' => $current_commitments,
                 'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id ) + 86400,
-                'slot_length' => 15
+                'slot_length' => 15,
+                'timezone' => $post["timezone"],
+                "duration_options" => $field_settings["duration_options"]["default"]
             ]) ?>][0]
-            console.log(calendar_subscribe_object)
+
+
             let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+            if ( calendar_subscribe_object.timezone ){
+                current_time_zone = calendar_subscribe_object.timezone
+            }
             const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
             let time_slot_coverage = {}
             let selected_calendar_color = 'green'
@@ -576,36 +439,23 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             jQuery(document).ready(function($){
 
                 //set up array of days and time slots according to timezone
-                let days = window.campaign_scripts.calculate_day_times();
+                let days = window.campaign_scripts.calculate_day_times(current_time_zone);
 
                 let update_timezone = function (){
                     $('.timezone-current').html(current_time_zone)
                     $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
                 }
                 update_timezone()
-
-                // add selection function
-                let add_selected = function (time, day, day_label, time_label, verified ){
-                    $("#progress-section").hide()
-                    $(`#calendar-extra-${day}`).append(`
-                        <div id="selected-${window.lodash.escape(time)}" class="selected-hour"
-                            data-time="${window.lodash.escape(time)}">
-                            ${window.lodash.escape(time_label)}
-                            <i class="fi-x remove-selection" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day)}"></i>
-                        </div>
-                    `)
-                    $('#confirmation-section').show()
-                }
-
+                /**
+                 * Draw or refresh the main calendar
+                 */
                 let draw_calendar = ( id = 'calendar-content') => {
                     let content = $(`#${id}`)
                     content.empty()
                     let list = ''
-                    let now = new Date().getTime()/1000
                     days.forEach(day=>{
-                        let disabled = ( day.key + ( 24*3600 ) ) > now ?  '' : "disabled-day";
-                        list += `<div class="cell day-cell ${disabled}">
-                            <div class="${disabled ? '' : 'day-selector'}" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
+                        list += `<div class="cell day-cell">
+                            <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
                                 <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
                                 <div class="progress-bar-container">
                                     <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
@@ -614,11 +464,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                         </div>`
                     })
-
                     content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
-
                 }
                 draw_calendar()
+
+                /**
+                 * SHow my commitment under each day
+                 */
                 let add_my_commitments = ()=>{
                     $('.day-extra').empty()
                     calendar_subscribe_object.my_commitments.forEach(c=>{
@@ -636,11 +488,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                                 </div>
                             `)
                         }
-
                     })
-
                 }
                 add_my_commitments()
+
+                /**
+                 * Add notice showing that my times have been verified
+                 */
                 if ( verified ){
                     $("#times-verified-notice").show()
                 }
@@ -655,6 +509,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     draw_modal_calendar()
                 })
 
+                /**
+                 * Remove a prayer time
+                 */
                 $(document).on("click", '.remove-my-prayer-time', function (){
                     let x = $(this)
                     let id = x.data("report")
@@ -682,12 +539,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 })
 
 
+                /**
+                 * Modal for displaying on individual day
+                 */
                 $('.day-selector').on( 'click', function (){
                     let day_timestamp = $(this).data('day')
                     $('#view-times-modal').foundation('open')
                     let list_title = jQuery('#list-modal-title')
                     let day=days.find(k=>k.key===day_timestamp)
-                    console.log(day);
                     list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(day.formatted)}</h2>`)
                     let day_times_content = $('#day-times-table-body')
                     let times_html = ``
@@ -712,26 +571,141 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 })
 
 
-                /**
-                 * add more times
-                 */
+
+                function days_for_locale(localeName = 'en-US', weekday = 'long') {
+                    let now = new Date()
+                    const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
+                    return [...Array(7).keys()]
+                    .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
+                }
+                let week_day_names = days_for_locale(navigator.language, 'narrow')
                 let headers = `
-                    <div class="day-cell week-day">Su</div>
-                    <div class="day-cell week-day">Mo</div>
-                    <div class="day-cell week-day">Tu</div>
-                    <div class="day-cell week-day">We</div>
-                    <div class="day-cell week-day">Th</div>
-                    <div class="day-cell week-day">Fr</div>
-                    <div class="day-cell week-day">Sa</div>
-                    `
+                  <div class="day-cell week-day">${week_day_names[0]}</div>
+                  <div class="day-cell week-day">${week_day_names[1]}</div>
+                  <div class="day-cell week-day">${week_day_names[2]}</div>
+                  <div class="day-cell week-day">${week_day_names[3]}</div>
+                  <div class="day-cell week-day">${week_day_names[4]}</div>
+                  <div class="day-cell week-day">${week_day_names[5]}</div>
+                  <div class="day-cell week-day">${week_day_names[6]}</div>
+                `
 
-                //build time select input
-                let time_select = $('#daily_time_select')
-                time_select.empty();
-                time_select.html(window.campaign_scripts.get_time_select_html())
 
-                //dawn calendar in date select modal
-                let modal_calendar = $('#modal-calendar')
+                /**
+                 * daily prayer time screen
+                 */
+                let daily_time_select = $('#cp-daily-time-select')
+
+                let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
+
+                let coverage = {}
+                days.forEach(val=> {
+                    let day = val.key
+                    for ( const key in calendar_subscribe_object.current_commitments ){
+                        if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
+                            continue;
+                        }
+                        if ( key >= day && key < day + 24 * 3600 ){
+                            let mod_time = key % (24 * 60 * 60)
+                            let time_formatted = '';
+                            if ( window.campaign_scripts.processing_save[mod_time] ){
+                                time_formatted = window.campaign_scripts.processing_save[mod_time]
+                            } else {
+                                time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
+                                window.campaign_scripts.processing_save[mod_time] = time_formatted
+                            }
+                            if ( !coverage[time_formatted]){
+                                coverage[time_formatted] = [];
+                            }
+                            coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
+                        }
+                    }
+                })
+                let key = 0;
+                let start_of_today = new Date()
+                start_of_today.setHours(0,0,0,0)
+                let start_time_stamp = start_of_today.getTime()/1000
+                while ( key < 24 * 3600 ){
+                    let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+                    let text = ''
+                    let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
+                    let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
+                    if ( fully_covered && level_covered > 1  ){
+                        text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
+                    } else if ( fully_covered ) {
+                        text = `(${calendar_subscribe_object.translations.fully_covered_once})`
+                    }
+                    select_html += `<option value="${window.lodash.escape(key)}">
+                      ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
+                  </option>`
+                    key += calendar_subscribe_object.slot_length * 60
+                }
+                daily_time_select.empty();
+                daily_time_select.html(select_html)
+
+                let duration_options_html = ``
+                for (const prop in calendar_subscribe_object.duration_options) {
+                    if (calendar_subscribe_object.duration_options.hasOwnProperty(prop) && parseInt(prop) >= parseInt(calendar_subscribe_object.slot_length) ) {
+                        duration_options_html += `<option value="${window.lodash.escape(prop)}">${window.lodash.escape(calendar_subscribe_object.duration_options[prop].label)}</option>`
+                    }
+                }
+                $(".cp-time-duration-select").html(duration_options_html)
+
+                daily_time_select.on("change", function (){
+                    $('#cp-confirm-daily-times').attr('disabled', false)
+                })
+
+                let selected_times = [];
+                $('#cp-confirm-daily-times').on("click", function (){
+                    let daily_time_selected = parseInt($("#cp-daily-time-select").val());
+                    let duration = parseInt($("#cp-prayer-time-duration-select").val())
+                    days.forEach( day=>{
+                        let time = day.key + daily_time_selected;
+                        let now = new Date().getTime()/1000
+                        let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+                        let already_added = selected_times.find(k=>k.time===time)
+                        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
+                            selected_times.push({time: time, duration: duration, label: time_label})
+                        }
+                    })
+                    submit_times();
+                })
+
+
+
+                /**
+                 * Individual prayer times screen
+                 */
+                let current_time_selected = $("cp-individual-time-select").val();
+
+                //build the list of individually selected times
+                let display_selected_times = function (){
+                    let html = ""
+                    selected_times.sort((a,b)=>{
+                        return a.time - b.time
+                    });
+                    selected_times.forEach(time=>{
+                        html += `<li>${calendar_subscribe_object.translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )} </li>`
+                    })
+                    $('.cp-display-selected-times').html(html)
+                }
+
+                //add a selected time to the array
+                $('#cp-add-prayer-time').on("click", function(){
+                    current_time_selected = $("#cp-individual-time-select").val();
+                    let duration = parseInt($("#cp-individual-prayer-time-duration-select").val())
+                    let time_label = window.campaign_scripts.timestamp_to_format( current_time_selected, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+                    let now = new Date().getTime()/1000
+                    let already_added = selected_times.find(k=>k.time===current_time_selected)
+                    if ( !already_added && current_time_selected > now && current_time_selected >= calendar_subscribe_object['start_timestamp'] ){
+                        $('#cp-time-added').show().fadeOut(1000)
+                        selected_times.push({time: current_time_selected, duration: duration, label: time_label })
+                    }
+                    display_selected_times()
+                    $('#cp-confirm-individual-times').attr('disabled', false)
+                })
+
+                //dawn calendar in date select view
+                let modal_calendar = $('#day-select-calendar')
                 let now = new Date().getTime()/1000
                 let draw_modal_calendar = ()=> {
                     let last_month = "";
@@ -741,9 +715,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         if (day.month!==last_month) {
                             if (last_month) {
                                 //add extra days at the month end
-                                let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
-                                for (let i = 1; i <= 7 - day_number; i++) {
-                                    list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                                let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
+                                if ( day_number !== 0 ) {
+                                    for (let i = 1; i <= 7 - day_number; i++) {
+                                        list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
+                                    }
                                 }
                                 list += `</div>`
                             }
@@ -754,8 +730,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             }
 
                             //add extra days at the month start
-                            let day_number = new Date(window.campaign_scripts.day_start(day.key, current_time_zone) * 1000).getDay()
-                            let start_of_week = new Date((day.key - day_number * 86400) * 1000)
+                            let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
+                            let start_of_week = window.campaign_scripts.start_of_week(day.key, current_time_zone);
                             for (let i = 0; i < day_number; i++) {
                                 list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate() + i)}</div>`
                             }
@@ -763,136 +739,50 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         }
                         let disabled = (day.key + (24 * 3600)) < now;
                         list += `
-                        <div class="day-cell ${disabled ? 'disabled-calendar-day':'selected-day day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
-                            ${window.lodash.escape(day.day)}
-                        </div>
-                    `
+            <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
+                ${window.lodash.escape(day.day)}
+            </div>
+        `
                     })
                     modal_calendar.html(list)
                 }
                 draw_modal_calendar()
 
-                let cal_select_all_div = $('#calendar-select-all-selected')
-                let cal_select_help_text = $('#calendar-select-help')
+                //when a day is clicked on from the calendar
                 $(document).on('click', '.day-in-select-calendar', function (){
+                    $('#day-select-calendar div').removeClass('selected-day')
                     $(this).toggleClass('selected-day')
-                    show_help_text()
-                })
+                    //get day and build content
+                    let day_key = parseInt($(this).data("day"))
+                    let day=days.find(k=>k.key===day_key);
+                    //set time key on add button
+                    $('#cp-add-prayer-time').data("day", day_key).attr('disabled', false)
 
-                $('#unselect-all-calendar-days').on( "click", function (){
-                    $('.selected-day').toggleClass('selected-day')
-                    show_help_text()
-                })
-                $('#select-all-calendar-days').on( "click", function (){
-                    $('.day-in-select-calendar').addClass('selected-day')
-                    show_help_text()
-                })
-
-                time_select.on( "change", function (){
-                    disable_button( $('.selected-day').length )
-                })
-
-                let disable_button = ( num_selected ) => {
-                    let select_val = $('#daily_time_select').val()
-                    $('#confirm-daily-time').prop('disabled', num_selected === 0 || select_val === "false" )
-                }
-                let show_help_text = () =>{
-                    let selected_days = $('.selected-day')
-                    let number_of_days_selected = selected_days.length
-                    if ( number_of_days_selected === days.length ){
-                        cal_select_all_div.show()
-                        cal_select_help_text.hide()
-                    } else {
-                        cal_select_all_div.hide()
-                        cal_select_help_text.show()
-                    }
-                    $('#calendar-select-help-text').html(`${window.lodash.escape(number_of_days_selected)} of ${window.lodash.escape(days.length)} days selected`)
-                    disable_button( number_of_days_selected )
-                    let coverage = {}
-                    let already_selected = parseInt(time_select.val())
-                    selected_days.each((index, val)=> {
-                        let day = $(val).data('day')
-                        for ( const key in calendar_subscribe_object.current_commitments ){
-                            if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
-                                continue;
-                            }
-                            if ( key >= day && key < day + 24 * 3600 ){
-                                let mod_time = key % (24 * 60 * 60)
-                                let time_formatted = '';
-                                if ( window.campaign_scripts.processing_save[mod_time] ){
-                                    time_formatted = window.campaign_scripts.processing_save[mod_time]
-                                } else {
-                                    time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
-                                    window.campaign_scripts.processing_save[mod_time] = time_formatted
-                                }
-                                if ( !coverage[time_formatted]){
-                                    coverage[time_formatted] = 0;
-                                }
-                                coverage[time_formatted]++;
-                            }
+                    //build time select
+                    let select_html = ``;
+                    day.slots.forEach(slot=> {
+                        let text = ``
+                        if ( slot.subscribers===1 ) {
+                            text = "(covered once)";
                         }
-                    })
-                    let select_html = `<option value="false">Select a time</option>`
-
-                    let key = 0;
-                    let start_of_today = new Date()
-                    start_of_today.setHours(0,0,0,0)
-                    let start_time_stamp = start_of_today.getTime()/1000
-                    while ( key < 24 * 3600 ){
-                        let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
-                        let text = ''
-                        let covered = coverage[time_formatted] ? coverage[time_formatted] === number_of_days_selected : false;
-                        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-                        if ( fully_covered ){
-                            text = "(fully covered)"
-                        } else if ( covered ){
-                            text = "(covered for selected days)"
-                        } else if ( coverage[time_formatted] > 0 ){
-                            text = `(${coverage[time_formatted]} out of ${number_of_days_selected} selected days covered)`
+                        if ( slot.subscribers > 1 ) {
+                            text = `(covered ${slot.subscribers} times)`;
                         }
-                        select_html += `<option value="${window.lodash.escape(key)}" ${already_selected===key ? "selected" : ''}>
-                            ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
+                        select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key%(24*3600)) === (current_time_selected%(24*3600)) ? "selected" : '' }>
+                            ${window.lodash.escape(slot.formatted)} ${window.lodash.escape(text)}
                         </option>`
-                        key += calendar_subscribe_object.slot_length * 60
-                    }
-                    time_select.empty();
-                    time_select.html(select_html)
-                }
-
-                $('#confirm-daily-time').on("click", function (){
-                    // $('#confirm-times-modal').foundation('open');
-                    $('#modal-calendar').toggleClass('small-view')
-                    $('.select-view').hide()
-                    $('.confirm-view').show()
-                    $('#time-confirmation').html( $('#daily_time_select option:selected').text())
-                    $('#time-duration-confirmation').html($('#prayer-time-duration-select option:selected').text())
-                })
-
-                $('#back-to-select').on('click', function (){
-                    $('#modal-calendar').toggleClass('small-view')
-                    $('.select-view').toggle()
-                    $('.confirm-view').toggle()
-                    show_help_text()
-                })
-
-                $('#submit-form').on('click', function (){
-                    let submit_button = jQuery('#submit-form')
-                    submit_button.addClass('loading')
-                    submit_button.prop('disabled', true)
-
-                    let selected_daily_time = time_select.val()
-                    let selected_times = []
-                    $('.selected-day').each((index, val)=>{
-                        let day = $(val).data('day')
-                        let time = parseInt(day) + parseInt(selected_daily_time)
-                        let now = new Date().getTime()/1000
-                        if ( time > now ){
-                            let duration = parseInt($('#prayer-time-duration-select').val())
-                            selected_times.push({time: time, duration: duration})
-                        }
                     })
+                    $('#cp-individual-time-select').html(select_html).attr('disabled', false)
+                })
 
 
+                $('#cp-confirm-individual-times').on( 'click', function (){
+                    submit_times();
+                })
+
+                let submit_times = function(){
+                    let submit_button = $('.submit-form-button')
+                    submit_button.addClass( 'loading' )
                     let data = {
                         action: 'add',
                         selected_times,
@@ -909,10 +799,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         }
                     })
                     .done(function(response){
+                        $('.hide-on-success').hide();
                         submit_button.removeClass('loading')
                         $('#modal-calendar').hide()
-                        $('.select-view').hide()
-                        $('.confirm-view').hide()
+
                         $(`.success-confirmation-section`).show()
                         calendar_subscribe_object.my_commitments = response
                         add_my_commitments()
@@ -927,12 +817,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         $('#error').html(e)
                         submit_button.removeClass('loading')
                     })
-                })
-                $('#close-ok-success').on("click", function (){
-                    $('#modal-calendar').show()
-                    $('.select-view').show()
-                    $('.confirm-view').hide()
-                    $(`.success-confirmation-section`).hide()
+                }
+                $('.close-ok-success').on("click", function (){
+                    window.location.reload()
                 })
 
 
@@ -1009,19 +896,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
-                Your prayer times have been verified!
+                <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
 
             <div class="center">
-                <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple_tools' ); ?></h2>
+                <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
             </div>
 
             <div id="type-individual-section">
-                <strong><?php esc_html_e( 'Showing times for:', 'disciple_tools' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
 
                 <div class="grid-x" style=" height: inherit !important;">
                     <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
-                    <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple_tools' ); ?></div></div>
+                    <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple-tools-prayer-campaigns' ); ?></div></div>
                     <div class="cell grid" id="error"></div>
                 </div>
             </div>
@@ -1046,10 +933,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     ?>
                 </select>
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
                 <button class="button" type="button" id="confirm-timezone" data-close>
-                    <?php echo esc_html__( 'Select', 'disciple_tools' )?>
+                    <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -1059,11 +946,58 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
             <div class="center">
-                <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
-                    Choose New Prayer Times
+                <button class="button" data-open="daily-select-modal" id="open-select-times-button" style="margin-top: 10px">
+                    <?php esc_html_e( 'Add a Daily Prayer Time', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
-                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">Download Calendar</a>
+                <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
+                    <?php esc_html_e( 'Add a New Prayer Time', 'disciple-tools-prayer-campaigns' ); ?>
+                </button>
+                <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
+
+            <div class="reveal" id="daily-select-modal" data-reveal>
+                <label>
+                    <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                    <select id="cp-daily-time-select">
+                        <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
+                    </select>
+                </label>
+                <label>
+                    <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                    <select id="cp-prayer-time-duration-select" class="cp-time-duration-select"></select>
+                </label>
+                <p>
+                    <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                </p>
+
+                <div class="success-confirmation-section">
+                    <div class="cell center">
+                        <h2><?php esc_html_e( 'Your new prayer times have been saved.', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    </div>
+                </div>
+
+
+                <div class="center hide-on-success">
+                    <button class="button button-cancel clear select-view" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
+
+                    <button disabled id="cp-confirm-daily-times" class="cp-nav button submit-form-button loader">
+                        <?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?>
+                    </button>
+                </div>
+
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="center">
+                    <button class="button success-confirmation-section close-ok-success" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'ok', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
+                </div>
+
+            </div>
+
             <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
                 <h3 id="list-modal-title"></h3>
 
@@ -1089,175 +1023,104 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <div class="center">
                     <button class="button" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Close', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'Close', 'disciple-tools-prayer-campaigns' )?>
                     </button>
                 </div>
             </div>
 
-
             <div class="reveal" id="select-times-modal" data-reveal data-close-on-click="false" data-multiple-opened="true">
 
-                <div id="modal-calendar">Modal Calendar</div>
-                <p id="calendar-select-all-selected" class="select-view center" style="margin-top: 10px">
-                    <strong>All days selected.</strong>
-                    <a id="unselect-all-calendar-days">unselect all</a>
-                </p>
-                <p id="calendar-select-help" class="select-view center" style="margin-top: 10px; display: none">
-                    <span id="calendar-select-help-text" style="font-weight: bold"></span>
-                    <a id="select-all-calendar-days">select all</a>
-                </p>
-
-                <label class="select-view" >
-                    <strong>Prayer Time</strong>
-                    <select id="daily_time_select" class="select-view">
-                        <option>Daily Time</option>
-                    </select>
-                </label>
-                <label class="select-view">
-                    <strong>For</strong>
-                    <select id="prayer-time-duration-select" class="select-view">
-                        <option value="15">15 Minutes</option>
-                        <option value="30">30 Minutes</option>
-                        <option value="45">45 Minutes</option>
-                        <option value="60">1 Hour</option>
-                        <option value="90">1 Hour 30 Minutes</option>
-                        <option value="120">2 Hours</option>
-                    </select>
-                </label>
-                <p class="select-view">
-                    <strong>
-                        <?php esc_html_e( 'Using timezone for:', 'disciple_tools' ); ?></strong>
-                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-                </p>
-
-                <div id="confirmation-section" class="confirm-view" style="margin-top:15px">
+                <h2 id="individual-day-title" class="cp-center">
+                    <?php esc_html_e( 'Select a day and choose a time', 'disciple-tools-prayer-campaigns' ); ?>
+                </h2>
+                <div id="cp-day-content" class="cp-center" >
+                    <div style="margin-bottom: 20px">
+                        <div id="day-select-calendar" class=""></div>
+                    </div>
+                    <label>
+                        <strong><?php esc_html_e( 'Select a prayer time', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                        <select id="cp-individual-time-select" disabled style="margin: auto">
+                            <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
+                        </select>
+                    </label>
+                    <label>
+                        <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                        <select id="cp-individual-prayer-time-duration-select" class="cp-time-duration-select" style="margin: auto"></select>
+                    </label>
+                    <div>
+                        <button class="button" id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>
+                        <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
+                    </div>
                     <p>
-                        You are signing up to praying for
-                        <span id="time-duration-confirmation" style="font-weight: bold" ></span>
-                        on each selected day at <span id="time-confirmation" style="font-weight: bold"></span>
-                        in <span class="timezone-current"></span> timezone.
+                        <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                     </p>
 
-
-                    <div class="grid-x grid-padding-x grid-padding-y">
-<!--                        <div class="cell center">-->
-<!--                            <label for="receive_prayer_time_notifications">-->
-<!--                                <input type="checkbox" id="receive_prayer_time_notifications" name="receive_prayer_time_notifications" checked />-->
-<!--                                --><?php //esc_html_e( 'Receive Prayer Time Notifications (email verification needed).', 'disciple_tools' ); ?>
-<!--                            </label>-->
-<!--                        </div>-->
-                        <div class="cell center">
-                                <span id="selection-error" class="form-error">
-                                    <?php esc_html_e( 'You must select at least one time slot above.', 'disciple_tools' ); ?>
-                                </span>
-                            <button class="button loader" id="submit-form"><?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple_tools' ); ?> <span class="loading-spinner"></span></button>
-                        </div>
+                    <div style="margin: 30px 0">
+                        <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
+                        <ul class="cp-display-selected-times">
+                            <li><?php esc_html_e( 'No selected Time', 'disciple-tools-prayer-campaigns' ); ?></li>
+                        </ul>
                     </div>
+
                 </div>
 
                 <div class="success-confirmation-section">
                     <div class="cell center">
-                        <h2>Your new prayer times have been saved.</h2>
+                        <h2><?php esc_html_e( 'Your new prayer times have been saved.', 'disciple-tools-prayer-campaigns' ); ?></h2>
                     </div>
                 </div>
 
 
-                <div class="center">
+                <div class="center hide-on-success">
                     <button class="button button-cancel clear select-view" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                     </button>
 
-                    <button class="button select-view" type="button" id="confirm-daily-time" disabled>
-                        <?php echo esc_html__( 'Next', 'disciple_tools' )?>
+                    <button disabled id="cp-confirm-individual-times" class="button submit-form-button loader">
+                        <?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?>
                     </button>
                 </div>
                 <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'back', 'disciple_tools' )?>
+                    <?php echo esc_html__( 'back', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="center">
-                    <button class="button success-confirmation-section" id="close-ok-success" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'ok', 'disciple_tools' )?>
+                    <button class="button success-confirmation-section close-ok-success" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'ok', 'disciple-tools-prayer-campaigns' )?>
                     </button>
                 </div>
             </div>
 
-
-            <style>
-                .danger-zone{
-                    margin: 0 8px 0 8px;
-                    display: flex;
-                    justify-content: space-between;
-                }
-                
-                .chevron img{
-                    vertical-align: middle;
-                    width: 20px;
-                    cursor: pointer;
-                }
-
-                .danger-zone-content {
-                    display: flex;
-                    justify-content: space-between;
-                    margin: 24px 10% 0 5%;
-                }
-                .collapsed {
-                    display: none;
-                }
-
-                .toggle_up {
-                    -moz-transform: scale(-1, -1);
-                    -o-transform: scale(-1, -1);
-                    -webkit-transform: scale(-1, -1);
-                    transform: scale(-1, -1);
-                }
-            </style>
-            <script>
-                function toggle_danger() {
-                    $('.danger-zone-content').toggleClass('collapsed');
-                    $('.chevron').toggleClass('toggle_up');
-                }
-            </script>
-
             <div style="margin-top: 50px">
                 <hr>
-                <section>
-                    <div class="danger-zone">
-                        <h2>Danger Zone</h2>
-                        <button class="chevron" onclick="toggle_danger();">
-                            <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
-                        </button>
-                    </div>
-                    <div class="danger-zone-content collapsed">
-                        <label>
-                            Delete this profile and all the scheduled prayer times?
-                        </label>
-                        <button class="button alert" data-open="delete-profile-modal">Delete</button>
-                        <!-- Reveal Modal Daily time slot-->
-                        <div id="delete-profile-modal" class="reveal tiny" data-reveal>
-                            <h2>Are you sure you want to delete your profile?</h2>
-                            <p>
-                                <?php esc_html_e( 'This can not be undone.', 'disciple_tools' ); ?>
-                            </p>
-                            <p id="delete-account-errors"></p>
+                <h2><?php esc_html_e( 'Danger Zone', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                <label>
+                    <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
+                </label>
+                <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
+                <!-- Reveal Modal Daily time slot-->
+                <div id="delete-profile-modal" class="reveal tiny" data-reveal>
+                    <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <p>
+                        <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
+                    </p>
+                    <p id="delete-account-errors"></p>
 
 
-                            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
-                            </button>
-                            <button class="button loader alert" type="button" id="confirm-delete-profile">
-                                <?php echo esc_html__( 'DELETE', 'disciple_tools' )?>
-                            </button>
+                    <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
+                    <button class="button loader alert" type="button" id="confirm-delete-profile">
+                        <?php echo esc_html__( 'DELETE', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
 
-                            <button class="close-button" data-close aria-label="Close modal" type="button">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                </section>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
         </div>
         <?php
@@ -1266,7 +1129,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public function error_body(){
         ?>
         <div class="center" style="margin-top:50px">
-            <h2 class=""><?php esc_html_e( 'This subscription has ended or is not configured correctly.', 'disciple_tools' ); ?></h2>
+            <h2 class=""><?php esc_html_e( 'This subscription has ended or is not configured correctly.', 'disciple-tools-prayer-campaigns' ); ?></h2>
         </div>
         <?php
     }

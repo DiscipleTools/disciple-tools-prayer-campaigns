@@ -77,8 +77,11 @@ function dt_24hour_campaign_body(){
         }
         #cp-wrapper .week-day {
             height: 20px;
-            width:40px;
-            color: grey;
+            width:40px;            
+            color:black;
+            font-size:12px;
+            font-weight:550;
+            margin-bottom:5px;
         }
         #cp-wrapper #calendar-content h3 {
             margin-bottom: 0;
@@ -302,7 +305,9 @@ function dt_24hour_campaign_body(){
 
                 <div style="margin: 30px 0">
                     <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
-                    <ul class="cp-display-selected-times"></ul>
+                    <ul class="cp-display-selected-times">
+                        <li><?php esc_html_e( 'No selected Time', 'disciple-tools-prayer-campaigns' ); ?></li>
+                    </ul>
                 </div>
                 <button style="margin-top:10px" disabled id="cp-confirm-individual-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-choose-individual-times"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
             </div>

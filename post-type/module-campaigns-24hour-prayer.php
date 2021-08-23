@@ -77,7 +77,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             }
 
             if ( 'status' === $section ){
-                $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key. '/shortcode';
+                $link = trailingslashit( site_url() ) . $this->magic_link_root . '/' . $this->magic_link_type . '/' . $key;
                 ?>
                 <div class="cell small-12 medium-4">
                     <div class="section-subheader">
@@ -95,13 +95,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 $plugin_root = trailingslashit( dirname( __FILE__, 2 ) );
                 $installed_translations = get_available_languages( $plugin_root . 'languages' );
                 array_unshift( $installed_translations, "en_US" );
+                $dt_languages = dt_get_translations();
                 ?>
                 <ul class="tabs" data-tabs id="language-strings-tabs" style="display: flex">
                     <?php
                     foreach ( $installed_translations as $index => $translation_key ) :
                         $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
+                        $label = isset( $dt_languages[$code] ) ? $dt_languages[$code]["native_name"] : ( $code === "en_US" ? "English" : $code );
                         ?>
-                        <li class="tabs-title <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>"><a href="#lang-<?php echo esc_html( $code ); ?>" data-tabs-target="lang-<?php echo esc_html( $code ); ?>"><?php echo esc_html( $code ); ?></a></li>
+                        <li class="tabs-title <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>"><a href="#lang-<?php echo esc_html( $code ); ?>" data-tabs-target="lang-<?php echo esc_html( $code ); ?>"><?php echo esc_html( $label ); ?></a></li>
                     <?php endforeach; ?>
                 </ul>
 
