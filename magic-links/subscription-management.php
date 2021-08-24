@@ -1134,19 +1134,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <hr>
                 <section>
                     <div class="danger-zone">
-                        <h2>Danger Zone</h2>
+                        <h2><?php esc_html_e( 'Danger Zone', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <button class="chevron" onclick="toggle_danger();">
                             <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
                         </button>
                     </div>
                     <div class="danger-zone-content collapsed">
                         <label>
-                            Delete this profile and all the scheduled prayer times?
+                            <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
                         </label>
                         <button class="button alert" data-open="delete-profile-modal">Delete</button>
                         <!-- Reveal Modal Daily time slot-->
                         <div id="delete-profile-modal" class="reveal tiny" data-reveal>
-                            <h2>Are you sure you want to delete your profile?</h2>
+                            <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
                             <p>
                                 <?php esc_html_e( 'This can not be undone.', 'disciple_tools' ); ?>
                             </p>
