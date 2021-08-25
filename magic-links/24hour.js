@@ -340,14 +340,13 @@ jQuery(document).ready(function($) {
 
     //submit form
     $('#cp-submit-form').on('click', function (){
-      let submit_spinner = $('#cp-submit-form-spinner');
+      let submit_spinner = $('#cp-submit-form-spinner-later');
       let submit_button = jQuery('#cp-submit-form')
       submit_button.prop('disabled', true)
       submit_spinner.show()
 
       let honey = jQuery('#email').val()
       if ( honey ) {
-        jQuery('#next_1').html('Shame, shame, shame. We know your name ... ROBOT!').prop('disabled', true )
         window.spinner.hide()
         return;
       }
@@ -387,6 +386,61 @@ jQuery(document).ready(function($) {
         receive_prayer_time_notifications,
         parts: jsObject.parts
       }
+      send_submission(data, submit_spinner)
+    })
+
+    //submit form later
+    $('#cp-submit-form-later').on('click', function (){
+      let submit_spinner = $('#cp-submit-form-spinner');
+      let submit_button = jQuery('#cp-submit-form-later')
+      submit_button.prop('disabled', true)
+      submit_spinner.show()
+
+      let honey = jQuery('#email-later').val()
+      if ( honey ) {
+        window.spinner.hide()
+        return;
+      }
+
+      let name_input = jQuery('#name-later')
+      let name = name_input.val()
+      if ( ! name ) {
+        jQuery('#name-error-later').show()
+        submit_spinner.hide()
+        name_input.focus(function(){
+          jQuery('#name-error-later').hide()
+        })
+        submit_button.prop('disabled', false)
+        return;
+      }
+
+      let email_input = jQuery('#e2-later')
+      let email = email_input.val()
+      if ( ! email ) {
+        jQuery('#email-error-later').show()
+        submit_spinner.hide()
+        email_input.focus(function(){
+          jQuery('#email-error-later').hide()
+        })
+        submit_button.prop('disabled', false)
+        return;
+      }
+
+      // let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
+
+      let data = {
+        name: name,
+        email: email,
+        selected_times: [],
+        campaign_id: calendar_subscribe_object.campaign_id,
+        timezone: current_time_zone,
+        // receive_prayer_time_notifications,
+        parts: jsObject.parts
+      }
+      send_submission(data, submit_spinner)
+    })
+
+    let send_submission = (data, submit_spinner)=>{
       jQuery.ajax({
         type: "POST",
         data: JSON.stringify(data),
@@ -400,7 +454,6 @@ jQuery(document).ready(function($) {
         $(`.success-confirmation-section`).show()
       })
       .fail(function(e) {
-        console.log(e)
         $('#selection-error').empty().html(`<div class="cell center">
                         So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
                         <a href="${window.lodash.escape(window.location.href)}">Try Again</a>
@@ -408,11 +461,11 @@ jQuery(document).ready(function($) {
         $('#error').html(e)
         submit_spinner.hide()
       })
-    })
+    }
 
 
     //when click ok after submit
-    $('#cp-ok-done-button').on( 'click', function (){
+    $('.cp-ok-done-button').on( 'click', function (){
       window.location.reload()
     })
 

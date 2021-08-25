@@ -239,7 +239,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
             return new WP_Error( __METHOD__, "Missing email", [ 'status' => 400 ] );
         }
-        if ( ! isset( $params['selected_times'] ) || empty( $params['selected_times'] ) ) {
+        if ( ! isset( $params['selected_times'] ) ) {
             return new WP_Error( __METHOD__, "Missing times and locations", [ 'status' => 400 ] );
         }
         if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
@@ -281,7 +281,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             }
         }
 
-        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params["campaign_id"] );
+        if ( !empty( $params['selected_times'] ) ){
+            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params["campaign_id"] );
+        } else {
+            $email_sent = DT_Prayer_Campaigns_Send_Email::send_pre_registration( $subscriber_id, $params["campaign_id"] );
+        }
+
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );
         }
