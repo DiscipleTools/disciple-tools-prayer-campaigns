@@ -40,10 +40,12 @@ function dt_24hour_campaign_body(){
         #cp-wrapper {
             max-width:1000px;
             margin: 10px auto;
-            padding: 2em .5em;
-            background-color: white;
+            padding: 2em 1em;
+            background-color: #f8f9fa;
             border-radius: 5px;
             min-height: 800px;
+            font-size: 1em;
+            min-width: 50%;
         }
         #cp-wrapper .cp-center {
             text-align: center;
@@ -77,7 +79,7 @@ function dt_24hour_campaign_body(){
         }
         #cp-wrapper .week-day {
             height: 20px;
-            width:40px;            
+            width:40px;
             color:black;
             font-size:12px;
             font-weight:550;
@@ -121,6 +123,7 @@ function dt_24hour_campaign_body(){
             background-color: transparent !important;
             color: black !important;
             display: block;
+            font-weight: bold;
         }
         #cp-wrapper select {
             font-size: 1rem;
@@ -130,6 +133,9 @@ function dt_24hour_campaign_body(){
             display: block;
             min-width: 250px;
             max-width: 400px;
+            background: white;
+            margin: auto;
+            min-height: 40px;
         }
         #cp-wrapper input {
             font-size: 1rem;
@@ -141,6 +147,10 @@ function dt_24hour_campaign_body(){
             min-width: 250px;
             max-width: 400px;
             margin: auto;
+            min-height: 40px;
+        }
+        #cp-wrapper strong, b {
+            font-weight: bold;
         }
         #cp-wrapper {
             font-size: 1rem;
@@ -167,10 +177,11 @@ function dt_24hour_campaign_body(){
             min-width: 100px;
             min-height: 20px;
             margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         #cp-wrapper button {
-            background-color: #366184;
+            background-color: dodgerblue;
             color: #fefefe;
             font-size: 1rem;
             border-radius: 5px;
@@ -204,7 +215,7 @@ function dt_24hour_campaign_body(){
             <p id="coverage-level" class="cp-center"></p>
             <!--main percentage circle-->
             <div id="main-progress" class="cp-center">
-                <div class="cp-center" style="margin:auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px"></div>
+                <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>
             </div>
             <!--pray button-->
             <div class="cp-center">
@@ -252,23 +263,22 @@ function dt_24hour_campaign_body(){
             <button class="cp-close-button cp-nav" data-open="cp-times-choose">
                 <span aria-hidden="true"> <?php esc_html_e( '< back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
-
-            <div style="display: flex; flex-wrap:wrap; justify-content: space-around;">
+            <div class="cp-center" style="display: flex; flex-direction: column;">
+                <label >
+                    <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                    <select id="cp-daily-time-select">
+                        <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
+                    </select>
+                </label>
+                <label>
+                    <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                    <select id="cp-prayer-time-duration-select" class="cp-time-duration-select"></select>
+                </label>
+                <p>
+                    <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
+                </p>
                 <div>
-                    <label>
-                        <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                        <select id="cp-daily-time-select">
-                            <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        </select>
-                    </label>
-                    <label>
-                        <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                        <select id="cp-prayer-time-duration-select" class="cp-time-duration-select"></select>
-                    </label>
-                    <p>
-                        <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
-                    </p>
-                    <button style="margin-top:10px" disabled id="cp-confirm-daily-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-daily-prayer-time"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
+                    <button style="margin-top:10px;" disabled id="cp-confirm-daily-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-daily-prayer-time"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
                 </div>
             </div>
         </div>
@@ -282,34 +292,38 @@ function dt_24hour_campaign_body(){
                 <?php esc_html_e( 'Select a day and choose a time', 'disciple-tools-prayer-campaigns' ); ?>
             </h2>
             <div id="cp-day-content" class="cp-center" >
-                <div style="margin-bottom: 20px">
+                <div style="margin-bottom: 20px;display: flex;flex-flow: wrap;justify-content: space-evenly;">
                     <div id="day-select-calendar" class=""></div>
                 </div>
-                <label>
-                    <strong><?php esc_html_e( 'Select a prayer time', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                    <select id="cp-individual-time-select" disabled style="margin: auto">
-                        <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
-                    </select>
-                </label>
-                <label>
-                    <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                    <select id="cp-individual-prayer-time-duration-select" class="cp-time-duration-select" style="margin: auto"></select>
-                </label>
-                <div>
-                    <button id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>
-                    <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
-                </div>
-                <p>
-                    <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
-                </p>
+                <div class="cp-center" style="display: flex; flex-direction: column">
+                    <label>
+                        <strong><?php esc_html_e( 'Select a prayer time', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                        <select id="cp-individual-time-select" disabled style="margin: auto">
+                            <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
+                        </select>
+                    </label>
+                    <label>
+                        <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
+                        <select id="cp-individual-prayer-time-duration-select" class="cp-time-duration-select" style="margin: auto"></select>
+                    </label>
+                    <div>
+                        <button id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>
+                        <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
+                    </div>
+                    <p>
+                        <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
+                    </p>
 
-                <div style="margin: 30px 0">
-                    <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
-                    <ul class="cp-display-selected-times">
-                        <li><?php esc_html_e( 'No selected Time', 'disciple-tools-prayer-campaigns' ); ?></li>
-                    </ul>
+                    <div style="margin: 30px 0">
+                        <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
+                        <ul class="cp-display-selected-times">
+                            <li><?php esc_html_e( 'No selected Time', 'disciple-tools-prayer-campaigns' ); ?></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button style="margin-top:10px" disabled id="cp-confirm-individual-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-choose-individual-times"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
+                    </div>
                 </div>
-                <button style="margin-top:10px" disabled id="cp-confirm-individual-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-choose-individual-times"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
             </div>
         </div>
 
