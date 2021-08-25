@@ -124,6 +124,7 @@ function dt_24hour_campaign_body(){
             color: black !important;
             display: block;
             font-weight: bold;
+            cursor:pointer;
         }
         #cp-wrapper select {
             font-size: 1rem;
@@ -136,6 +137,7 @@ function dt_24hour_campaign_body(){
             background: white;
             margin: auto;
             min-height: 40px;
+            padding:1em;
         }
         #cp-wrapper input {
             font-size: 1rem;
@@ -147,6 +149,7 @@ function dt_24hour_campaign_body(){
             min-width: 250px;
             max-width: 400px;
             margin: auto;
+            padding:1em;
             min-height: 40px;
         }
         #cp-wrapper strong, b {
@@ -346,7 +349,7 @@ function dt_24hour_campaign_body(){
                 <span id="name-error" class="form-error">
                     <?php echo esc_html( "You're name is required." ); ?>
                 </span>
-                <label for="name"><?php esc_html_e( 'Contact Name', 'disciple-tools-prayer-campaigns' ); ?><br>
+                <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="text" name="name" id="name" placeholder="<?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>" required/>
                 </label>
             </div>
@@ -354,7 +357,7 @@ function dt_24hour_campaign_body(){
                 <span id="email-error" class="form-error">
                     <?php esc_html_e( "You're email is required.", 'disciple-tools-prayer-campaigns' ); ?>
                 </span>
-                <label for="email"><?php esc_html_e( 'Contact Email', 'disciple-tools-prayer-campaigns' ); ?><br>
+                <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="email" name="email" id="email" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
                     <input class="cp-input" type="email" name="e2" id="e2" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" required />
                 </label>
