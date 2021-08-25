@@ -77,7 +77,7 @@ function dt_24hour_campaign_body(){
         }
         #cp-wrapper .week-day {
             height: 20px;
-            width:40px;            
+            width:40px;
             color:black;
             font-size:12px;
             font-weight:550;
@@ -121,6 +121,7 @@ function dt_24hour_campaign_body(){
             background-color: transparent !important;
             color: black !important;
             display: block;
+            cursor:pointer;
         }
         #cp-wrapper select {
             font-size: 1rem;
@@ -130,6 +131,7 @@ function dt_24hour_campaign_body(){
             display: block;
             min-width: 250px;
             max-width: 400px;
+            padding:1em;
         }
         #cp-wrapper input {
             font-size: 1rem;
@@ -141,6 +143,7 @@ function dt_24hour_campaign_body(){
             min-width: 250px;
             max-width: 400px;
             margin: auto;
+            padding:1em;
         }
         #cp-wrapper {
             font-size: 1rem;
