@@ -365,7 +365,7 @@ function dt_24hour_campaign_body(){
             </div>
             <div>
                 <span id="email-error" class="form-error">
-                    <?php esc_html_e( "You're email is required.", 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( "Your email is required.", 'disciple-tools-prayer-campaigns' ); ?>
                 </span>
                 <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="email" name="email" id="email" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
@@ -452,7 +452,7 @@ function dt_24hour_campaign_body(){
             </div>
             <div>
                 <span id="email-error-later" class="form-error">
-                    <?php esc_html_e( "You're email is required.", 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( "Your email is required.", 'disciple-tools-prayer-campaigns' ); ?>
                 </span>
                 <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="email" name="email" id="email-later" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
