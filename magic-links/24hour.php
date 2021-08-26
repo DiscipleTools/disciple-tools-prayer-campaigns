@@ -440,7 +440,7 @@ function dt_24hour_campaign_body(){
             <p><?php esc_html_e( "I'm interested in praying! Send me an email when it is time to choose prayer times.", 'disciple-tools-prayer-campaigns' ); ?></p>
             <div>
                 <span id="name-error-later" class="form-error">
-                    <?php echo esc_html( "You're name is required." ); ?>
+                    <?php echo esc_html( "Your name is required." ); ?>
                 </span>
                 <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="text" name="name" id="name-later" placeholder="<?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>" required/>
