@@ -102,6 +102,11 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
                 'type'        => 'key_select',
                 'default'     => [
+                    'pre_signup'   => [
+                        'label' => __( 'Pre Sign-Up', 'disciple_tools' ),
+                        'description' => _x( 'Getting Ready', 'field description', 'disciple_tools' ),
+                        'color' => "orange"
+                    ],
                     'active'   => [
                         'label' => __( 'Active', 'disciple_tools' ),
                         'description' => _x( 'Is active.', 'field description', 'disciple_tools' ),
@@ -117,6 +122,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#366184",
                 "show_in_table" => 10,
+                "select_cannot_be_empty" => true
             ];
             $fields['type'] = [
                 'name'        => __( 'Campaign Type', 'disciple_tools' ),

@@ -93,6 +93,72 @@ class DT_Prayer_Campaigns_Send_Email {
         return $sent;
     }
 
+
+    public static function send_pre_registration( $post_id, $campaign_id ) {
+
+        $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        if ( is_wp_error( $record ) ){
+            dt_write_log( 'failed to record' );
+            return;
+        }
+        if ( ! isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
+            return;
+        }
+
+        $lang_code = "en_US";
+        if ( isset( $record["lang"] ) ){
+            $lang_code = sanitize_text_field( wp_unslash( $record["lang"] ) );
+        }
+        add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
+            if ( !empty( $lang_code ) ){
+                return $lang_code;
+            }
+            return $locale;
+        } );
+        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+
+
+        $to = [];
+        foreach ( $record['contact_email'] as $value ){
+            $to[] = $value['value'];
+        }
+        $to = implode( ',', $to );
+
+        $headers = [];
+        $headers[] = 'Content-Type: text/html';
+        $headers[] = 'charset=UTF-8';
+
+        $subject = __( 'Registered to pray with us!', 'disciple-tools-prayer-campaigns' );
+        $message = '';
+        if ( !empty( $record["name"] ) ){
+            $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>';
+        }
+        $key_name = 'public_key';
+        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        }
+
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        $sign_up_email_extra_message = "";
+        if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["signup_content"] ) ){
+            $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
+        }
+
+        $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
+        $message .= '
+            <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
+            <p>' . __( 'We will send you another email when it is time to choose prayer times.', 'disciple-tools-prayer-campaigns' ) . '</p>
+            <p>' . __( 'If you are ready to choose prayer times you can do so at any time from this link:', 'disciple-tools-prayer-campaigns' ). '</p>
+            <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
+        ';
+
+        $sent = wp_mail( $to, $subject, $message, $headers );
+        if ( ! $sent ){
+            dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
+        }
+        return $sent;
+    }
+
     public static function send_account_access( $campaign_id, $email ) {
         // get post id for campaign
         global $wpdb;

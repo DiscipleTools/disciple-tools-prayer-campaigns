@@ -89,7 +89,7 @@ function dt_24hour_campaign_body(){
             margin-bottom: 0;
         }
 
-        #cp-wrapper #email {
+        #cp-wrapper #email, #email-later {
             display:none;
         }
 
@@ -169,6 +169,7 @@ function dt_24hour_campaign_body(){
         }
         #cp-wrapper label {
             font-size: 1rem;
+            margin-bottom: .5rem;
         }
 
         #cp-wrapper p {
@@ -210,9 +211,13 @@ function dt_24hour_campaign_body(){
     </style>
 
     <div id="cp-wrapper" class="loading-content">
-        <div id="cp-main-page" class="cp-view">
+        <div id="cp-loading-page" class="cp-view" >
+            <?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/>
+        </div>
+
+        <div id="cp-main-page" class="cp-view" style="display: none">
             <!--title-->
-            <h2 id="campaign-description" class="cp-center"><span><?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></span></h2>
+            <h2 id="campaign-description" class="cp-center"></h2>
 
             <!-- coverage tag -->
             <p id="coverage-level" class="cp-center"></p>
@@ -223,7 +228,7 @@ function dt_24hour_campaign_body(){
             <!--pray button-->
             <div class="cp-center">
                 <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose" data-force-scroll="true">
-                    <?php esc_html_e( 'Pray With Us', 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( 'Choose Times Now', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
             </div>
 
@@ -232,6 +237,12 @@ function dt_24hour_campaign_body(){
             <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 10px 0 10px 0">
                 <div id="calendar-content"></div>
             </div>
+
+<!--            <div class="cp-center">-->
+<!--                <p>--><?php //esc_html_e( "I'm interested in praying! Send me an email when it is time to choose prayer times.", 'disciple-tools-prayer-campaigns' ); ?><!--</p>-->
+<!--                <button class="button cp-nav" id="cp-pre-sign-up" data-open="cp-view-confirm" data-force-scroll="true">--><?php //esc_html_e( "Choose Times Later", 'disciple-tools-prayer-campaigns' ); ?><!--</button>-->
+<!--            </div>-->
+
             <!--time zone selector-->
             <p class="cp-center">
                 <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
@@ -385,7 +396,7 @@ function dt_24hour_campaign_body(){
                         <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
                     </p>
                     <p>
-                        <button class="cp-nav" id="cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
+                        <button class="cp-nav cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
                     </p>
                 </div>
             </div>
@@ -422,6 +433,52 @@ function dt_24hour_campaign_body(){
                 <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
             </button>
         </div>
+
+
+        <!-- confirm email later-->
+        <div id="cp-view-confirm-later" class="cp-view cp-center" style="display: none">
+            <p><?php esc_html_e( "I'm interested in praying! Send me an email when it is time to choose prayer times.", 'disciple-tools-prayer-campaigns' ); ?></p>
+            <div>
+                <span id="name-error-later" class="form-error">
+                    <?php echo esc_html( "You're name is required." ); ?>
+                </span>
+                <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
+                    <input class="cp-input" type="text" name="name" id="name-later" placeholder="<?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>" required/>
+                </label>
+            </div>
+            <div>
+                <span id="email-error-later" class="form-error">
+                    <?php esc_html_e( "Your email is required.", 'disciple-tools-prayer-campaigns' ); ?>
+                </span>
+                <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
+                    <input class="cp-input" type="email" name="email" id="email-later" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
+                    <input class="cp-input" type="email" name="e2" id="e2-later" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" required />
+                </label>
+            </div>
+            <div>
+                <div>
+                    <button class="button loader" id="cp-submit-form-later">
+                        <?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple-tools-prayer-campaigns' ); ?> <img id="cp-submit-form-spinner-later" style="display: none" src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></button>
+                </div>
+            </div>
+
+            <div class="success-confirmation-section">
+                <div class="cell center">
+                    <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <p>
+                        <button class="cp-nav cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- confirm email later-->
+        <div id="cp-view-closed" class="cp-view cp-center" style="display: none">
+            <p><?php esc_html_e( "We are not longer looking for sign ups", 'disciple-tools-prayer-campaigns' ); ?></p>
+            <p><?php esc_html_e( "Thanks for praying with us!", 'disciple-tools-prayer-campaigns' ); ?></p>
+        </div>
+
 
     </div> <!-- form wrapper -->
     <?php
