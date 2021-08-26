@@ -211,9 +211,13 @@ function dt_24hour_campaign_body(){
     </style>
 
     <div id="cp-wrapper" class="loading-content">
-        <div id="cp-main-page" class="cp-view">
+        <div id="cp-loading-page" class="cp-view" >
+            <?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/>
+        </div>
+
+        <div id="cp-main-page" class="cp-view" style="display: none">
             <!--title-->
-            <h2 id="campaign-description" class="cp-center"><span><?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></span></h2>
+            <h2 id="campaign-description" class="cp-center"></h2>
 
             <!-- coverage tag -->
             <p id="coverage-level" class="cp-center"></p>
@@ -225,9 +229,6 @@ function dt_24hour_campaign_body(){
             <div class="cp-center">
                 <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose" data-force-scroll="true">
                     <?php esc_html_e( 'Choose Times Now', 'disciple-tools-prayer-campaigns' ); ?>
-                </button>
-                <button class="button cp-nav" id="cp-pre-sign-up" data-open="cp-view-confirm-later" data-force-scroll="true">
-                    <?php esc_html_e( "Choose Times Later", 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
             </div>
 
@@ -436,11 +437,6 @@ function dt_24hour_campaign_body(){
 
         <!-- confirm email later-->
         <div id="cp-view-confirm-later" class="cp-view cp-center" style="display: none">
-            <button class="cp-close-button cp-nav" data-open="cp-main-page">
-                <span aria-hidden="true"> <?php esc_html_e( '< back', 'disciple-tools-prayer-campaigns' ); ?> </span>
-            </button>
-            <h2><?php esc_html_e( 'Confirm', 'disciple-tools-prayer-campaigns' ); ?></h2>
-            <br>
             <p><?php esc_html_e( "I'm interested in praying! Send me an email when it is time to choose prayer times.", 'disciple-tools-prayer-campaigns' ); ?></p>
             <div>
                 <span id="name-error-later" class="form-error">
@@ -475,6 +471,12 @@ function dt_24hour_campaign_body(){
                 </div>
             </div>
 
+        </div>
+
+        <!-- confirm email later-->
+        <div id="cp-view-closed" class="cp-view cp-center" style="display: none">
+            <p><?php esc_html_e( "We are not longer looking for sign ups", 'disciple-tools-prayer-campaigns' ); ?></p>
+            <p><?php esc_html_e( "Thanks for praying with us!", 'disciple-tools-prayer-campaigns' ); ?></p>
         </div>
 
 

@@ -361,7 +361,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'current_commitments' => $current_commitments,
             'slot_length' => (int) $min_time_duration,
             'second_level' => $second_level,
-            "duration_options" => $field_settings["duration_options"]["default"]
+            "duration_options" => $field_settings["duration_options"]["default"],
+            'status' => $record["status"]["key"]
         ];
 
     }
