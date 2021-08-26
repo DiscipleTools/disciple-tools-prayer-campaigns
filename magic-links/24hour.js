@@ -53,13 +53,13 @@ jQuery(document).ready(function($) {
       //display description from remote
       $('#campaign-description').text(calendar_subscribe_object.description)
       //show coverage level
-      if ( calendar_subscribe_object.coverage_levels[0].blocks_covered === calendar_subscribe_object.number_of_time_slots){
-          $('#coverage-level').text(calendar_subscribe_object.translations.going_for_twice.replace('%1$s', calendar_subscribe_object.number_of_time_slots));
-      } else {
-        let ppl_needed =  (60*24) / calendar_subscribe_object.slot_length;
-        //&#128100
-        $('#coverage-level').html(calendar_subscribe_object.translations.invitation.replace('%1$s', `<strong>${ppl_needed}</strong>`).replace('%2$s', `<strong>${window.lodash.escape(calendar_subscribe_object.slot_length)}</strong>`));
-      }
+      // if ( calendar_subscribe_object.coverage_levels[0].blocks_covered === calendar_subscribe_object.number_of_time_slots){
+      //     $('#coverage-level').text(calendar_subscribe_object.translations.going_for_twice.replace('%1$s', calendar_subscribe_object.number_of_time_slots));
+      // } else {
+      //   let ppl_needed =  (60*24) / calendar_subscribe_object.slot_length;
+      //   //&#128100
+      //   $('#coverage-level').html(calendar_subscribe_object.translations.invitation.replace('%1$s', `<strong>${ppl_needed}</strong>`).replace('%2$s', `<strong>${window.lodash.escape(calendar_subscribe_object.slot_length)}</strong>`));
+      // }
 
       //main progress circle
       $('#main-progress').html(`
@@ -91,13 +91,13 @@ jQuery(document).ready(function($) {
         $(`#${view_to_open} .cp-close-button`).data('open', back_to)
       })
 
-      let set_campaign_date_range_title = function (){
-        let start_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.start_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
-        let end_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.end_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
-        let start_end = window.lodash.escape(calendar_subscribe_object.translations.campaign_duration).replace('%1$s', `<strong>${start_time}</strong>`).replace(`%2$s`,`<strong>${end_time}</strong>`)
-        $('#cp-start-end').html(start_end);
-      }
-      set_campaign_date_range_title()
+      // let set_campaign_date_range_title = function (){
+      //   let start_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.start_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
+      //   let end_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.end_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
+      //   let start_end = window.lodash.escape(calendar_subscribe_object.translations.campaign_duration).replace('%1$s', `<strong>${start_time}</strong>`).replace(`%2$s`,`<strong>${end_time}</strong>`)
+      //   $('#cp-start-end').html(start_end);
+      // }
+      // set_campaign_date_range_title()
 
       function days_for_locale(localeName = 'en-US', weekday = 'long') {
         let now = new Date()
