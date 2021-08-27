@@ -187,7 +187,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'create_subscription' ],
-                    'permission_callback' => '__return_true',
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->magic_link_root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
                 ],
             ]
         );
@@ -196,7 +199,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
                     'callback' => [ $this, 'access_account' ],
-                    'permission_callback' => '__return_true',
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->magic_link_root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
                 ],
             ]
         );
@@ -215,23 +221,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
     }
 
-    public function verify_magic_link_and_get_post_id( $meta_key, $public_key ){
-        $magic = new DT_Magic_URL( $this->magic_link_root );
-        $parts = $magic->parse_wp_rest_url_parts( $public_key );
-        if ( !$parts || $this->magic_link_type != $parts["type"] ){
-            return false;
-        }
-        if ( isset( $parts["post_id"] ) && !empty( $parts["post_id"] ) ){
-            return (int) $parts["post_id"];
-        }
-        return false;
-    }
-
     public function create_subscription( WP_REST_Request $request ) {
         $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
 
-        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
-        if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== (int) $params["campaign_id"] ){
+        if ( !$post_id || !isset( $params["campaign_id"] ) || (int) $post_id !== (int) $params["campaign_id"] ){
             return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
         }
 
@@ -246,7 +241,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             return new WP_Error( __METHOD__, "Missing timezone", [ 'status' => 400 ] );
         }
 
-        $params = dt_recursive_sanitize_array( $params );
         $email = $params['email'];
         $title = $params['name'];
         if ( empty( $title ) ) {
@@ -296,14 +290,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
     public function access_account( WP_REST_Request $request ) {
         $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+
         if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== $params["campaign_id"] ){
             return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
         }
 
         // @todo insert email reset link
-        $params = dt_recursive_sanitize_array( $params );
         if ( ! isset( $params['email'], $params['campaign_id'] ) ) {
             return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
         }
@@ -316,10 +311,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     public function campaign_info( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        $magic = new DT_Magic_URL( $this->magic_link_root );
-        $parts = $magic->parse_wp_rest_url_parts( $params["parts"]["public_key"] );
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
 
-        $post_id = $parts['post_id'];
+
         $record = DT_Posts::get_post( "campaigns", $post_id, true, false );
         if ( is_wp_error( $record ) ){
             return;

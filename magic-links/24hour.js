@@ -2,6 +2,7 @@
 
 let time_slot_coverage = {}
 let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+let selected_times = [];
 
 let calendar_subscribe_object = {
   number_of_time_slots: 0,
@@ -252,7 +253,6 @@ jQuery(document).ready(function($) {
       let current_time_selected = $("cp-individual-time-select").val();
 
       //build the list of individually selected times
-      let selected_times = [];
       let display_selected_times = function (){
         let html = ""
         selected_times.sort((a,b)=>{

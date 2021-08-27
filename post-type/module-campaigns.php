@@ -42,15 +42,9 @@ class DT_Campaigns_Base extends DT_Module_Base {
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
-//        add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
 
         // hooks
-//        add_action( "post_connection_removed", [ $this, "post_connection_removed" ], 10, 4 );
-//        add_action( "post_connection_added", [ $this, "post_connection_added" ], 10, 4 );
-//        add_action( "dt_comment_created", [ $this, "dt_comment_created" ], 10, 4 );
-        add_filter( "dt_post_update_fields", [ $this, "dt_post_update_fields" ], 10, 3 );
         add_filter( "dt_post_create_fields", [ $this, "dt_post_create_fields" ], 10, 2 );
-        add_action( "dt_post_created", [ $this, "dt_post_created" ], 10, 3 );
 
         //list
         add_filter( "dt_user_list_filters", [ $this, "dt_user_list_filters" ], 10, 2 );
@@ -750,17 +744,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
         return 0;
     }
 
-    //filter when a comment is created
-    public function dt_comment_created( $post_type, $post_id, $comment_id, $type ){
-        // action when comment is created
-    }
-
-    //filter at the start of post update
-    public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        // filter the fields when being updated
-        return $fields;
-    }
-
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
         if ( $post_type === $this->post_type ) {
@@ -782,20 +765,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
             }
         }
         return $fields;
-    }
-
-    public function create_unique_key() : string {
-        try {
-            $hash = hash( 'sha256', bin2hex( random_bytes( 256 ) ) );
-        } catch ( Exception $exception ) {
-            $hash = hash( 'sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
-        }
-        return $hash;
-    }
-
-    //action when a post has been created
-    public function dt_post_created( $post_type, $post_id, $initial_fields ){
-
     }
 
     //list page filters function

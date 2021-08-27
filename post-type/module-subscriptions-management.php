@@ -35,7 +35,10 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 [
                     'methods'  => "POST",
                     'callback' => [ $this, 'manage_profile' ],
-                    'permission_callback' => '__return_true'
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->magic_link_root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
                 ],
             ]
         );
@@ -44,22 +47,13 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 [
                     'methods'  => "DELETE",
                     'callback' => [ $this, 'delete_profile' ],
-                    'permission_callback' => '__return_true'
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->magic_link_root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
                 ],
             ]
         );
-    }
-
-    public function verify_magic_link_and_get_post_id( $meta_key, $public_key ){
-        $magic = new DT_Magic_URL( $this->magic_link_root );
-        $parts = $magic->parse_wp_rest_url_parts( $public_key );
-        if ( !$parts || $this->magic_link_type != $parts["type"] ){
-            return false;
-        }
-        if ( isset( $parts["post_id"] ) && !empty( $parts["post_id"] ) ){
-            return $parts["post_id"];
-        }
-        return false;
     }
 
     public function delete_profile( WP_REST_Request $request ){
@@ -70,7 +64,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
         }
         $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
         if ( ! $post_id ){
             return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
         }
@@ -99,7 +93,7 @@ class DT_Subscriptions_Management extends DT_Module_Base {
         $action = sanitize_text_field( wp_unslash( $params['action'] ) );
 
         // manage
-        $post_id = $this->verify_magic_link_and_get_post_id( $params['parts']['meta_key'], $params['parts']['public_key'] );
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
         if ( ! $post_id ){
             return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
         }

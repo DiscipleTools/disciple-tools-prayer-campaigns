@@ -137,7 +137,7 @@ function dt_24hour_campaign_body(){
             background: white;
             margin: auto;
             min-height: 40px;
-            padding:1em;
+            padding:0.5em;
         }
         #cp-wrapper input {
             font-size: 1rem;
@@ -149,7 +149,7 @@ function dt_24hour_campaign_body(){
             min-width: 250px;
             max-width: 400px;
             margin: auto;
-            padding:1em;
+            padding:0.5em;
             min-height: 40px;
         }
         #cp-wrapper strong, b {
