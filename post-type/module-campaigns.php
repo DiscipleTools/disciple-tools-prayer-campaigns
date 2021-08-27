@@ -36,6 +36,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
         add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
+        add_filter( "dt_front_page", [ $this, "dt_front_page" ] );
 
         //setup tiles and fields
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
@@ -56,6 +57,10 @@ class DT_Campaigns_Base extends DT_Module_Base {
         if ( class_exists( 'Disciple_Tools_Post_Type_Template' )) {
             new Disciple_Tools_Post_Type_Template( $this->post_type, $this->single_name, $this->plural_name );
         }
+    }
+
+    public function dt_front_page(){
+        return site_url( '/campaigns' );
     }
 
     /**
