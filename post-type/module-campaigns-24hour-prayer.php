@@ -32,9 +32,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
-        if ( $post_type === 'campaigns' && ! isset( $tiles["apps"] ) ){
-            $tiles["apps"] = [ "label" => __( "Campaign Subscription Form Links", 'disciple-tools-campaigns' ) ];
-        }
+//        if ( $post_type === 'campaigns' && ! isset( $tiles["apps"] ) ){
+////            $tiles["apps"] = [ "label" => __( "Campaign Subscription Form Links", 'disciple-tools-campaigns' ) ];
+//        }
         return $tiles;
     }
 

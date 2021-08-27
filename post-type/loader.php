@@ -73,8 +73,5 @@ require_once 'module-campaigns-24hour-prayer.php';
 DT_Campaign_24Hour_Prayer::instance();
 new DT_Prayer_Campaign_24_Hour_Magic_Link();
 
-//require_once 'module-campaigns-progress.php';
-//DT_Campaign_Progress::instance();
-
 require_once 'dt-subscriptions.php';
 
