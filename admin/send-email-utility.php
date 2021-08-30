@@ -208,4 +208,44 @@ class DT_Prayer_Campaigns_Send_Email {
             }
         }
     }
+
+    /**
+     * Email sent to the subscribers who have no chosen any prayer times
+     * @param $campaign_id
+     * @return bool[]
+     */
+    public static function send_pre_sign_up_email( $campaign_id ): array{
+
+        $pre_sign_up_subscriptions = DT_Posts::list_posts( "subscriptions", [ "tags" => [ "pre-signup" ], "campaigns" => [ $campaign_id ] ] );
+        $subject = __( 'Choose your prayer times!', 'disciple-tools-prayer-campaigns' );
+        $headers = [];
+        $headers[] = 'Content-Type: text/html';
+        $headers[] = 'charset=UTF-8';
+        foreach ( $pre_sign_up_subscriptions["posts"] as $subscriber ){
+            //send email
+            $key_name = 'public_key';
+            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+            }
+            $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
+            if ( isset( $subscriber["contact_email"][0]["value"] ) ){
+                $message = '
+                    <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber["name"] ) ) . '</h3>
+                    <p>' . __( 'Thank you for signing up to pray with us!', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'It is time to choose your prayer times', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'Please do so from this link:', 'disciple-tools-prayer-campaigns' ). '</p>
+                    <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
+                ';
+                $sent = wp_mail( $subscriber["contact_email"][0]["value"], $subject, $message, $headers );
+                if ( ! $sent ){
+                    dt_write_log( __METHOD__ . ': Unable to send email. ' . $subscriber["contact_email"][0]["value"] );
+                } else {
+                    DT_Posts::update_post( "subscriptions", $subscriber["ID"], [ "tags" => [ "values" => [ [ "value" => 'pre-signup', "delete" => true ], [ "value" => "sent-pre-signup" ] ] ] ] );
+                    DT_Posts::add_post_comment( "subscriptions", $subscriber["ID"], "Sent email to " . $subscriber["contact_email"][0]["value"] . " asking them to choose prayer times" );
+                }
+            }
+        }
+
+        return [ "emails_sent" => true ];
+    }
 }

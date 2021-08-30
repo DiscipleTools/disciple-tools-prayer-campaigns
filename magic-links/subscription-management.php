@@ -950,7 +950,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <?php esc_html_e( 'Add a Daily Prayer Time', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
                 <button class="button" data-open="select-times-modal" id="open-select-times-button" style="margin-top: 10px">
-                    <?php esc_html_e( 'Add a New Prayer Time', 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( 'Add Individual Prayer Times', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
                 <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
@@ -1100,7 +1100,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     display: flex;
                     justify-content: space-between;
                 }
-                
+
                 .chevron img{
                     vertical-align: middle;
                     width: 20px;

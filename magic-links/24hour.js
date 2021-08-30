@@ -350,6 +350,15 @@ jQuery(document).ready(function($) {
         $('#cp-individual-time-select').html(select_html).attr('disabled', false)
       })
 
+      $('#confirm-timezone').on('click', function (){
+        current_time_zone = $("#timezone-select").val()
+        update_timezone()
+        days = window.campaign_scripts.calculate_day_times(current_time_zone)
+        set_campaign_date_range_title()
+        draw_calendar()
+        draw_modal_calendar()
+      })
+
     }
 
 
@@ -490,14 +499,6 @@ jQuery(document).ready(function($) {
     }
     update_timezone()
 
-    $('#confirm-timezone').on('click', function (){
-      current_time_zone = $("#timezone-select").val()
-      update_timezone()
-      days = window.campaign_scripts.calculate_day_times(current_time_zone)
-      set_campaign_date_range_title()
-      draw_calendar()
-      draw_modal_calendar()
-    })
 
 
 

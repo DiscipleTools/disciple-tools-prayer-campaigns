@@ -38,6 +38,9 @@ class DT_Subscriptions {
             $key_name => $hash,
             'receive_prayer_time_notifications' => $args["receive_prayer_time_notifications"],
         ];
+        if ( sizeof( $times ) === 0 ){
+            $fields["tags"] = [ "values" => [ [ "value" => 'pre-signup' ] ] ];
+        }
 
 
         // create post
@@ -51,6 +54,39 @@ class DT_Subscriptions {
             return $added_reports;
         }
         return $new_subscriber["ID"];
+    }
+
+    /*
+     * Get the subscribers of a prayer campaign
+     * return subscriber ID, name, commitments count and commitments verified
+     */
+    public static function get_subscribers( $campaign_id ){
+        global $wpdb;
+
+        return $wpdb->get_results( $wpdb->prepare( "
+            SELECT p.post_title as name, p.ID,
+                (SELECT COUNT(r.post_id)
+                  FROM $wpdb->dt_reports r
+                  WHERE r.post_type = 'subscriptions'
+                  AND r.parent_id = %s
+                  AND r.post_id = p.ID) as commitments,
+                (SELECT COUNT(r.post_id)
+                  FROM $wpdb->dt_reports r
+                  WHERE r.post_type = 'subscriptions'
+                 AND r.parent_id = %s
+                 AND r.value = 1
+                 AND r.post_id = p.ID) as verified
+            FROM $wpdb->p2p p2
+            LEFT JOIN $wpdb->posts p ON p.ID=p2.p2p_to
+            WHERE p2p_type = 'campaigns_to_subscriptions'
+            AND p2p_from = %s", $campaign_id, $campaign_id, $campaign_id
+        ), ARRAY_A );
+    }
+
+
+    public static function get_subscribers_count( $campaign_id ){
+        global $wpdb;
+        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s", $campaign_id ) );
     }
 
 
@@ -137,5 +173,17 @@ class DT_Subscriptions {
 
     }
 
+
+    public static function get_number_of_notification_emails_sent( $campaign_id ){
+        global $wpdb;
+        $a = $wpdb->get_var( $wpdb->prepare(
+            "SELECT count(r.id)
+            FROM $wpdb->dt_reports r
+            INNER JOIN $wpdb->dt_reportmeta as rm on ( r.id = rm.report_id AND rm.meta_key = 'prayer_time_reminder_sent' )
+            WHERE parent_id = %s
+            ", $campaign_id
+        ));
+        return (int) $a;
+    }
 
 }

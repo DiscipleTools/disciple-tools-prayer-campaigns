@@ -121,7 +121,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#366184",
                 "show_in_table" => 10,
-                "select_cannot_be_empty" => true
+                "select_cannot_be_empty" => true,
             ];
             $fields['type'] = [
                 'name'        => __( 'Campaign Type', 'disciple_tools' ),
@@ -131,7 +131,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'tile'     => 'status',
 //                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#F43636",
-                "show_in_table" => 10,
+                "show_in_table" => 15,
                 "in_create_form" => false
             ];
             // end basic framework fields
@@ -164,6 +164,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
                 "in_create_form" => true,
+                "show_in_table" => 101
             ];
             $fields['end_date'] = [
                 'name'        => __( 'End Date', 'disciple_tools' ),
@@ -174,7 +175,10 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
                 "in_create_form" => true,
+                "show_in_table" => 102
             ];
+            $fields["last_modified"]["show_in_table"] = false;
+            $fields["favorite"]["show_in_table"] = false;
 
             $timezones = [];
             $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
@@ -319,10 +323,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
             $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
-            $tiles["campaign_strings"] = [
-                "label" => __( "Campaign Strings", 'disciple-tools-campaigns' ),
-                "description" => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf"
-            ];
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
         }
         return $tiles;
@@ -335,7 +335,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
     public function dt_details_additional_section( $section, $post_type ){
 
         if ( $post_type === $this->post_type && $section === "commitments" ){
-            $subscribers_count = $this->query_subscriber_count( get_the_ID() );
+            $subscribers_count = DT_Subscriptions::get_subscribers_count( get_the_ID() );
             $coverage_count = $this->query_coverage_percentage( get_the_ID() );
             $scheduled_commitments = $this->query_scheduled_count( get_the_ID() );
             $past_commitments = $this->query_past_count( get_the_ID() );
@@ -388,7 +388,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 container.empty().html(`
                 <span class="loading-spinner active"></span>
                 `)
-                 makeRequest( 'GET', '/subscribers', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                 makeRequest( 'GET', 'subscribers', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
                 .done(function(data){
                     let content = `<ol>`
                     if ( data ) {
@@ -418,7 +418,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 container.empty().html(`
                     <span class="loading-spinner active"></span>
                 `)
-                window.makeRequest( 'GET', '/coverage-stats', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                window.makeRequest( 'GET', 'coverage-stats', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
                 .done(function(data){
                     let content = `<ul>`
                     if ( data ) {
@@ -446,7 +446,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
                 <span class="loading-spinner active"></span>
                 `)
 
-                makeRequest( 'GET', '/coverage', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                makeRequest( 'GET', 'coverage', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
                 .done(function(data){
                     console.log(data)
                     let content = `<style>#cover-table td:hover {border: 1px solid darkslateblue;}</style><div class="table-scroll"><table id="cover-table" class="center">`
@@ -507,7 +507,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
     public function add_api_routes() {
         $namespace = 'campaigns/v1';
         register_rest_route(
-            $namespace, '/subscribers', [
+            $namespace, 'subscribers', [
                 [
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => [ $this, 'subscribers_endpoint' ],
@@ -518,7 +518,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ]
         );
         register_rest_route(
-            $namespace, '/coverage', [
+            $namespace, 'coverage', [
                 [
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => [ $this, 'coverage_endpoint' ],
@@ -529,7 +529,7 @@ class DT_Campaigns_Base extends DT_Module_Base {
             ]
         );
         register_rest_route(
-            $namespace, '/coverage-stats', [
+            $namespace, 'coverage-stats', [
                 [
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => [ $this, 'coverage_stats_endpoint' ],
@@ -546,26 +546,8 @@ class DT_Campaigns_Base extends DT_Module_Base {
         if ( ! isset( $params['campaign_id'] ) ) {
             return new WP_Error( __METHOD__, 'Required parameter not set' );
         }
-        global $wpdb;
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
-        return $wpdb->get_results( $wpdb->prepare( "
-            SELECT p.post_title as name, p.ID,
-                   (SELECT COUNT(r.post_id)
-                      FROM $wpdb->dt_reports r
-                      WHERE r.post_type = 'subscriptions'
-                      AND r.parent_id = %s
-                      AND r.post_id = p.ID) as commitments,
-                   (SELECT COUNT(r.post_id)
-                      FROM $wpdb->dt_reports r
-                      WHERE r.post_type = 'subscriptions'
-                     AND r.parent_id = %s
-                     AND r.value = 1
-                     AND r.post_id = p.ID) as verified
-            FROM $wpdb->p2p p2
-            LEFT JOIN $wpdb->posts p ON p.ID=p2.p2p_to
-            WHERE p2p_type = 'campaigns_to_subscriptions'
-            AND p2p_from = %s", $campaign_post_id, $campaign_post_id, $campaign_post_id
-        ), ARRAY_A );
+        return DT_Subscriptions::get_subscribers( $campaign_post_id );
 
     }
 
@@ -627,11 +609,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
         return [
             "unique_days_covered" => $unique_days_covered,
         ];
-    }
-
-    public function query_subscriber_count( $campaign_post_id ){
-        global $wpdb;
-        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s", $campaign_post_id ) );
     }
 
     public function query_scheduled_count( $campaign_post_id ){

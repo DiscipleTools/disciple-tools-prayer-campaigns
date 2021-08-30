@@ -32,9 +32,18 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
 
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
-//        if ( $post_type === 'campaigns' && ! isset( $tiles["apps"] ) ){
-////            $tiles["apps"] = [ "label" => __( "Campaign Subscription Form Links", 'disciple-tools-campaigns' ) ];
-//        }
+        if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_strings"] ) ){
+            $tiles["campaign_strings"] = [
+                "label" => __( "Campaign Strings", 'disciple-tools-campaigns' ),
+                "description" => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf"
+            ];
+        }
+        if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_communication"] ) ){
+            $tiles["campaign_communication"] = [
+                "label" => __( "Campaign Communication", 'disciple-tools-campaigns' ),
+                "description" => ""
+            ];
+        }
         return $tiles;
     }
 
@@ -171,6 +180,50 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 </script>
                 <?php
             }
+
+            if ( "campaign_communication" === $section ){
+                $campaign_id = get_the_ID();
+                $prayer_time_reminder_emails_sent = DT_Subscriptions::get_number_of_notification_emails_sent( $campaign_id );
+                $to_send = DT_Posts::list_posts( "subscriptions", [ "tags" => [ "pre-signup" ], "campaigns" => [ $campaign_id ] ] );
+
+                ?>
+                <div class="cell small-12 medium-4">
+                    <div class="section-subheader">
+                        <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
+                    </div>
+                    <p>Prayer Time Reminder Emails sent: <?php echo esc_html( $prayer_time_reminder_emails_sent ); ?></p>
+                    <div class="section-subheader">
+                        Email to pre-signup subscribers
+                    </div>
+                    <p>(those who signed up with no time slots)</p>
+                    <p>Emails to send: <span id="emails_to_send_count"><?php echo esc_html( $to_send["total"] ); ?></span>
+                    <?php if ( $to_send["total"] > 0 ) :
+                        $disabled = $record["status"]["key"] !== "active"
+                        ?>
+                        <button id="send_email_to_pre_subscribers" class="button hollow small loader" style="margin: 0 10px" <?php disabled( $disabled ) ?>>Send now</button>
+                        <?php if ( $disabled ) :?>
+                            <br><span>Change campaign status to <strong>active</strong> to send emails (and refresh)</span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    </p>
+                </div>
+                <script>
+                jQuery(document).ready(function($) {
+                    $('#send_email_to_pre_subscribers').on("click", function (){
+                        $(this).addClass('loading')
+                        window.makeRequest( 'GET', '24hour/send-pre-signup-email', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaign_app/v1')
+                        .done(function(data){
+                            if( data.emails_sent ){
+                                $('#emails_to_send_count').html('0')
+                                $('#send_email_to_pre_subscribers').hide()
+                                $(this).removeClass('loading')
+                            }
+                        })
+                    })
+                })
+                </script>
+                <?php
+            }
             ?>
             <?php
         } // end if campaigns and enabled
@@ -218,6 +271,33 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 ],
             ]
         );
+        /**
+         * route for sending pre sign up email
+         */
+        register_rest_route(
+            $namespace, '/'.$this->magic_link_type . '/send-pre-signup-email', [
+                [
+                    'methods'  => "GET",
+                    'callback' => [ $this, 'send_pre_sign_up_email' ],
+                    'permission_callback' => function ( WP_REST_Request $request ){
+                        $params = $request->get_params();
+                        if ( !isset( $params["campaign_id"] ) ){
+                            return false;
+                        }
+                        return DT_Posts::can_update( "campaigns", $params["campaign_id"] );
+                    }
+                ],
+            ]
+        );
+    }
+
+    public function send_pre_sign_up_email( WP_REST_Request $request ){
+        $params = $request->get_params();
+        if ( !isset( $params["campaign_id"] ) ){
+             new WP_Error( __METHOD__, "Missing campaign id", [ 'status' => 400 ] );
+        }
+        $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
+        return DT_Prayer_Campaigns_Send_Email::send_pre_sign_up_email( $campaign_post_id );
 
     }
 
