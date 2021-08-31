@@ -5,7 +5,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
  * Class DT_Subscriptions_Base
  * Load the core post type hooks into the Disciple Tools system
  */
-class DT_Subscriptions_Base extends DT_Module_Base {
+class DT_Subscriptions_Base {
 
     /**
      * Define post type variables
@@ -28,10 +28,6 @@ class DT_Subscriptions_Base extends DT_Module_Base {
     }
 
     public function __construct() {
-        parent::__construct();
-        if ( !self::check_enabled_and_prerequisites() ){
-            return;
-        }
 
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );

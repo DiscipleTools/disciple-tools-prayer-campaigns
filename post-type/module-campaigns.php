@@ -5,7 +5,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
  * Class DT_Subscriptions_Base
  * Load the core post type hooks into the Disciple Tools system
  */
-class DT_Campaigns_Base extends DT_Module_Base {
+class DT_Campaigns_Base {
 
     /**
      * Define post type variables
@@ -28,10 +28,6 @@ class DT_Campaigns_Base extends DT_Module_Base {
     }
 
     public function __construct() {
-        parent::__construct();
-        if ( !self::check_enabled_and_prerequisites() ){
-            return;
-        }
 
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
@@ -732,15 +728,15 @@ class DT_Campaigns_Base extends DT_Module_Base {
             if ( !isset( $fields["status"] ) ) {
                 $fields["status"] = "active";
             }
+            if ( !isset( $fields["type"] ) ){
+                $fields["type"] = "24hour";
+            }
             $key_name = 'public_key';
             if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", $fields["type"] );
             }
             if ( !isset( $fields[$key_name] ) ) {
                 $fields[$key_name] = dt_create_unique_key();
-            }
-            if ( !isset( $fields["type"] ) ){
-                $fields["type"] = "24hour";
             }
             if ( !isset( $fields["min_time_duration"] ) ){
                 $fields["min_time_duration"] = "15";
