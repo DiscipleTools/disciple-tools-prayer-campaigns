@@ -14,36 +14,20 @@ if ( ! class_exists( 'DT_Module_Base' ) ) {
  */
 add_filter( 'dt_post_type_modules', function( $modules ){
 
-    $modules["subscriptions_base"] = [
-        "name" => "Subscriptions",
-        "enabled" => true,
-        "locked" => true,
-        "prerequisites" => [],
-        "post_type" => "subscriptions",
-        "description" => "Subscriptions base"
-    ];
     $modules["subscriptions_management"] = [
         "name" => "Subscriptions Management",
         "enabled" => true,
         "locked" => true,
-        "prerequisites" => [ "subscriptions_base" ],
+        "prerequisites" => [],
         "post_type" => "subscriptions",
         "description" => "Subscriptions Management"
     ];
 
-    $modules["campaigns_base"] = [
-        "name" => "Campaigns",
-        "enabled" => true,
-        "locked" => true,
-        "prerequisites" => [],
-        "post_type" => "campaigns",
-        "description" => "Campaigns base"
-    ];
     $modules["campaigns_24hour_prayer"] = [
         "name" => "Campaigns - 24Hour Prayer",
         "enabled" => true,
         "locked" => false,
-        "prerequisites" => [ "campaigns_base" ],
+        "prerequisites" => [],
         "post_type" => "campaigns",
         "description" => "Campaigns - 24Hour Prayer"
     ];
@@ -74,4 +58,10 @@ DT_Campaign_24Hour_Prayer::instance();
 new DT_Prayer_Campaign_24_Hour_Magic_Link();
 
 require_once 'dt-subscriptions.php';
+
+require_once 'module-campaigns-year.php';
+DT_Campaign_Year::instance();
+require_once plugin_dir_path( __DIR__ ) . '/magic-links/year/year-campaign.php';
+new DT_Prayer_Campaign_Year_Magic_Link();
+
 
