@@ -477,7 +477,7 @@ class DT_Subscriptions_Base {
             usort($subs, function( $a, $b) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
-            $timezone = $subscriber["timezone"] ?? 'America/Chicago';
+            $timezone = !empty( $subscriber["timezone"] ) ? $subscriber["timezone"] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             $notifications = isset( $subscriber["receive_prayer_time_notifications"] ) && !empty( $subscriber["receive_prayer_time_notifications"] );
             ?>

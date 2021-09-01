@@ -60,8 +60,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        $a = trailingslashit( plugin_dir_url( __DIR__ ) ). 'post-type/campaign_core.js';
-        $b = plugin_dir_path( __DIR__ ) . 'post-type/campaign_core.js';
         wp_enqueue_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'post-type/campaign_core.js', [
             'jquery',
             'lodash'
