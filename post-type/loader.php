@@ -59,9 +59,4 @@ new DT_Prayer_Campaign_24_Hour_Magic_Link();
 
 require_once 'dt-subscriptions.php';
 
-require_once 'module-campaigns-year.php';
-DT_Campaign_Year::instance();
-require_once plugin_dir_path( __DIR__ ) . '/magic-links/year/year-campaign.php';
-new DT_Prayer_Campaign_Year_Magic_Link();
-
 
