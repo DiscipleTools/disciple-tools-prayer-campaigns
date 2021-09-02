@@ -543,7 +543,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 }
                 draw_calendar()
-
+        
                 /**
                  * Show my commitment under each day
                  */
@@ -554,6 +554,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         let now = new Date().getTime()/1000
                         if ( time >= now){
                             let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
+
+                            let date = new Date( time * 1000 );
+                            let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; 
+                            let day_number = date.getDate();
+                            let day_weekday = weekdays[ date.getDay() ];
+
                             let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone).toString().replace(':00','')
                             let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
                             let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end)
@@ -566,6 +572,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                                     </div>
                                 </div>
                             `)
+                            $('#mobile-commitments-container').append(`
+                                <div class="mobile-commitments" id="mobile-commitment-${window.lodash.escape(time)}">
+                                    <div class="mobile-commitments-date">
+                                        <div class="mc-day"><b>${window.lodash.escape(day_weekday)}</b></div>
+                                        <div class="mc-day">${window.lodash.escape(day_number)}</div>
+                                    </div>
+                                    <div class="mc-prayer-commitment-description">
+                                        <div class="mc-prayer-commitment-text">
+                                            <div class="mc-description-duration">${window.lodash.escape(summary_text)}</div>
+                                            <div class="mc-description-time"> <i class="fi-x remove-selection remove-my-prayer-time" style="margin-left:6px;" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i></div>
+                                        </div>
+                                    </div>
+                                </div>`)
                         }
                     })
                 }
@@ -607,7 +626,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         }
                     })
                     .done(function(data){
-                        x.remove()
+                        $($(`*[data-report=${id}]`)[0].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
+                        $($(`*[data-report=${id}]`)[1].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
+                        x.removeClass("loading-spinner");
                         console.log("adding deleted time" + time);
                         $(`#selected-${time}`).addClass('deleted-time')
                     })
@@ -790,6 +811,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     let last_month = "";
                     modal_calendar.empty()
                     let list = ''
+                    let mobile_list = ''
                     days.forEach(day => {
                         if (day.month!==last_month) {
                             if (last_month) {
@@ -821,7 +843,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
                 ${window.lodash.escape(day.day)}
             </div>
-        `
+        `  
                     })
                     modal_calendar.html(list)
                 }
@@ -940,6 +962,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     })
                 })
 
+                /**
+                 * Display mobile commitments if screen dimension is narrow
+                 */
+                if ( innerWidth < 475 ) {
+                        $( '.prayer-commitment' ).attr( 'class', 'prayer-commitment-tiny' );
+                        $( '.mc-title' ).show();
+                        $( '#mobile-commitments-container' ).show();
+                }
             })
         </script>
         <?php
@@ -1060,19 +1090,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <div class="new_weekday">S</div>
             </div>
 
-            <!-- <div id="type-individual-section">
-                <div class="grid-x" style=" height: inherit !important;">
-                    <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
-                    <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple-tools-prayer-campaigns' ); ?></div></div>
-                    <div class="cell grid" id="error"></div>
-                </div>
-                <div class="timezone-label">
-                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
-                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-                </div>
-            </div> -->
-
-
             <!-- Reveal Modal Timezone Changer-->
             <div id="timezone-changer" class="reveal tiny" data-reveal>
                 <h2>Change your timezone:</h2>
@@ -1113,6 +1130,96 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
+
+            <style>
+                .prayer-commitment-tiny {
+                    background-color: #57d449;
+                    border-radius: 100%;
+                    text-indent: 200%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 12px;
+                    height: 12px;
+                    vertical-align: top;
+                    margin: -10px auto 0 auto;
+                }
+                
+                #mobile-commitments-container {
+                    display: none;
+                }
+
+                .mobile-commitments {
+                    display: flex;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    vertical-align: middle;
+                }
+                
+                .mobile-commitments-date { 
+                    color: #0a0a0a;
+                    border-right: 2px solid darkgray;
+                    text-align: center;
+                    width: 25%;
+                    height: 140px;
+                }
+                
+                .mc-day {
+                    font-size: 26px;
+                    color: darkgray;
+                }
+                
+                .mc-prayer-commitment-description {
+                    color: white;
+                    font-size: 12px;
+                    margin: 0px auto 0px auto;
+                    text-align: right;
+                    width: 75%;
+                    max-height: 100%;
+                    padding: 6px;
+                    vertical-align: middle;
+                }
+
+                .mc-prayer-commitment-text {
+                    width: 100%;
+                    background-color: #57d449;
+                    color: white;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-radius: 5px;
+                    margin: 0 0 5px 0;
+                }
+
+                .mc-title {
+                    display: none;
+                    margin: 50px 0 15px 10px;
+                    font-size: 32px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .mc-description-duration {
+                    font-size: 200%;
+                    font-weight: 400;
+                    margin-left: 15px;
+                }
+
+                .mc-description-time {
+                    font-size: 180%;
+                    margin-right: 10px;
+                }
+            </style>
+
+            <h3 class="mc-title">My commitments</h3>
+            <div id="mobile-commitments-container">
+            </div>
+            <script>
+                // Este código se ejecuta correctamente pero por algún motivo no modifica nada
+                jQuery(document).ready(function($){
+                    //todo
+                } );
+            </script>
 
             <div class="reveal" id="daily-select-modal" data-reveal>
                 <label>
