@@ -77,6 +77,7 @@ class DT_Subscriptions_Base extends DT_Module_Base {
             "label" => __( 'Campaigns Admin', 'disciple_tools' ),
             "description" => __( 'Campaigns admin can administrate the prayer campaigns and subscriptions section', 'disciple_tools' ),
             "permissions" => [
+                'access_disciple_tools' => true,
                 'access_'.$this->post_type => true,
                 'create_'.$this->post_type => true,
                 'update_any_'.$this->post_type => true,
