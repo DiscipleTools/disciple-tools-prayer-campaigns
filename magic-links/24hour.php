@@ -116,15 +116,18 @@ function dt_24hour_campaign_body(){
         }
 
         #cp-wrapper .cp-close-button {
-            position: relative;
             top: .5rem;
             font-size: 1em;
             line-height: 1;
-            background-color: transparent !important;
-            color: black !important;
             display: block;
-            font-weight: bold;
             cursor:pointer;
+            padding: 5px;
+        }
+        #cp-wrapper .cp-close-button img {
+            filter: invert(100%);
+            height: 15px;
+            width: 15px;
+            vertical-align: bottom;
         }
         #cp-wrapper select {
             font-size: 1rem;
@@ -253,7 +256,8 @@ function dt_24hour_campaign_body(){
         <!-- Daily or Individual-->
         <div id="cp-times-choose" class="cp-view" style="display: none">
             <button class="cp-close-button cp-nav" data-open="cp-main-page">
-                <span aria-hidden="true"> <?php esc_html_e( '< back', 'disciple-tools-prayer-campaigns' ); ?> </span>
+                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
+                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
             <h2 class="cp-center"><?php esc_html_e( 'Select an option', 'disciple-tools-prayer-campaigns' ); ?></h2>
             <div style="display: flex; flex-wrap:wrap; justify-content: space-around; margin-top: 20px">
@@ -275,7 +279,8 @@ function dt_24hour_campaign_body(){
         <!-- Daily time select -->
         <div id="cp-daily-prayer-time" class="cp-view" style="display: none">
             <button class="cp-close-button cp-nav" data-open="cp-times-choose">
-                <span aria-hidden="true"> <?php esc_html_e( '< back', 'disciple-tools-prayer-campaigns' ); ?> </span>
+                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
+                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
             <div class="cp-center" style="display: flex; flex-direction: column;">
                 <label >
@@ -300,7 +305,8 @@ function dt_24hour_campaign_body(){
         <!-- individual prayer times -->
         <div id="cp-choose-individual-times" class="cp-view" style="display: none">
             <button class="cp-close-button cp-nav" data-open="cp-times-choose">
-                <span aria-hidden="true"> <?php esc_html_e( '< back', 'disciple-tools-prayer-campaigns' ); ?> </span>
+                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
+                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
             <h2 id="individual-day-title" class="cp-center">
                 <?php esc_html_e( 'Select a day and choose a time', 'disciple-tools-prayer-campaigns' ); ?>
@@ -344,7 +350,8 @@ function dt_24hour_campaign_body(){
         <!-- confirm email -->
         <div id="cp-view-confirm" class="cp-view cp-center" style="display: none">
             <button class="cp-close-button cp-nav" data-open="cp-times-choose">
-                <span aria-hidden="true"> <?php esc_html_e( '< back', 'disciple-tools-prayer-campaigns' ); ?> </span>
+                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
+                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
             <h2><?php esc_html_e( 'Confirm', 'disciple-tools-prayer-campaigns' ); ?></h2>
             <br>
