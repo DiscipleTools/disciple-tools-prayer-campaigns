@@ -1161,11 +1161,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     border-right: 2px solid darkgray;
                     text-align: center;
                     width: 25%;
-                    height: 140px;
                 }
                 
                 .mc-day {
-                    font-size: 26px;
                     color: darkgray;
                 }
                 
@@ -1200,7 +1198,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 }
 
                 .mc-description-duration {
-                    font-size: 200%;
+                    font-size: 125%;
                     font-weight: 400;
                     margin-left: 15px;
                 }
