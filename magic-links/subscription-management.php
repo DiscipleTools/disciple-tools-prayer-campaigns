@@ -272,7 +272,146 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 color: grey;
                 text-decoration: line-through;
             }
+            .timezone-label {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                margin: 12px 0 24px 0;
+                text-align: right;
+            }
+            .timezone-label svg {
+                margin-right: 3px;
+            }
+            .calendar-title {
+                margin: 32px auto 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                width: 84%;
+            }
+            .calendar-title h2{
+                color: dodgerblue;
+                font-weight: bold;
+            }
 
+            /* todo replace 'new_' with '' and unify css new styles with old ones */
+            .new_calendar {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: left;
+                width: 92%;
+                margin: auto;
+            }
+
+            .new_day_cell {
+                width: calc(100% / 7);
+                height: auto;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .new_day_cell:hover {
+                background-color: #eee;
+            }
+
+            .new_weekday {
+                width: calc(100% / 7);
+                height: auto;
+                text-align: center;
+                font-weight: bold;
+                margin: 12px auto 4px auto;
+                border-bottom: 2px solid black;
+                border-radius: 0%;
+                justify-content: left;
+            }
+
+            .prayer-commitment {
+                background-color: #57d449;
+                border-radius: 5%;
+                color: white;
+                font-size: 12px;
+                margin: 2px auto 2px auto;
+                text-align: right;
+            }
+
+            .prayer-commitment-text {
+                margin-right: 4px;
+            }
+            .prayer-commitment-tiny {
+                background-color: #57d449;
+                border-radius: 100%;
+                text-indent: 200%;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 12px;
+                height: 12px;
+                vertical-align: top;
+                margin: -10px auto 0 auto;
+            }
+            
+            #mobile-commitments-container {
+                display: none;
+            }
+
+            .mobile-commitments {
+                display: flex;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                vertical-align: middle;
+            }
+            
+            .mobile-commitments-date { 
+                color: #0a0a0a;
+                border-right: 2px solid darkgray;
+                text-align: center;
+                width: 25%;
+            }
+            
+            .mc-day {
+                color: darkgray;
+            }
+            
+            .mc-prayer-commitment-description {
+                color: white;
+                font-size: 12px;
+                margin: 0px auto 0px auto;
+                text-align: right;
+                width: 75%;
+                max-height: 100%;
+                padding: 6px;
+                vertical-align: middle;
+            }
+
+            .mc-prayer-commitment-text {
+                width: 100%;
+                background-color: #57d449;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 5px;
+                margin: 0 0 5px 0;
+            }
+
+            .mc-title {
+                display: none;
+                margin: 50px 0 15px 10px;
+                font-size: 32px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .mc-description-duration {
+                font-size: 125%;
+                font-weight: 400;
+                margin-left: 15px;
+            }
+
+            .mc-description-time {
+                font-size: 180%;
+                margin-right: 10px;
+            }
         </style>
         <?php
     }
@@ -524,19 +663,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                                 <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                             </div>
                         </div>`;
-
-                        //todo delete the 'list +=' lines when time commitments and modal display functionality are added
-                        list += `
-                        <div class="cell day-cell" style="margin:8px 0 8px 0;">
-                            <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
-                                <!-- <div>${window.lodash.escape(day.month).substring(0,3)} ${window.lodash.escape(day.day)}</div> -->
-                                <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
-                                </div>
-                                <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
-                            </div>
-                        </div>`
                         first_cell = false;
                     })
                     $( current_calendar ).append(new_list);
@@ -1004,74 +1130,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
                 <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
-
-            <style>
-                .timezone-label {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                    margin: 12px 0 24px 0;
-                    text-align: right;
-                }
-                .timezone-label svg {
-                    margin-right: 3px;
-                }
-                .calendar-title {
-                    margin: 32px auto 0 auto;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: baseline;
-                    width: 84%;
-                }
-                .calendar-title h2{
-                    color: dodgerblue;
-                    font-weight: bold;
-                }
-
-                /* todo replace 'new_' with '' and unify css new styles with old ones */
-                .new_calendar {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: left;
-                    width: 92%;
-                    margin: auto;
-                }
-
-                .new_day_cell {
-                    width: calc(100% / 7);
-                    height: auto;
-                    text-align: center;
-                    cursor: pointer;
-                }
-
-                .new_day_cell:hover {
-                    background-color: #eee;
-                }
-
-                .new_weekday {
-                    width: calc(100% / 7);
-                    height: auto;
-                    text-align: center;
-                    font-weight: bold;
-                    margin: 12px auto 4px auto;
-                    border-bottom: 2px solid black;
-                    border-radius: 0%;
-                    justify-content: left;
-                }
-
-                .prayer-commitment {
-                    background-color: #57d449;
-                    border-radius: 5%;
-                    color: white;
-                    font-size: 12px;
-                    margin: 2px auto 2px auto;
-                    text-align: right;
-                }
-
-                .prayer-commitment-text {
-                    margin-right: 4px;
-                }
-            </style>
             <div class="calendar-title">
                 <h2 id="cal1_title_month"></h2>
                 <div class="timezone-label">
@@ -1130,95 +1188,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
-
-            <style>
-                .prayer-commitment-tiny {
-                    background-color: #57d449;
-                    border-radius: 100%;
-                    text-indent: 200%;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    width: 12px;
-                    height: 12px;
-                    vertical-align: top;
-                    margin: -10px auto 0 auto;
-                }
-                
-                #mobile-commitments-container {
-                    display: none;
-                }
-
-                .mobile-commitments {
-                    display: flex;
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    vertical-align: middle;
-                }
-                
-                .mobile-commitments-date { 
-                    color: #0a0a0a;
-                    border-right: 2px solid darkgray;
-                    text-align: center;
-                    width: 25%;
-                }
-                
-                .mc-day {
-                    color: darkgray;
-                }
-                
-                .mc-prayer-commitment-description {
-                    color: white;
-                    font-size: 12px;
-                    margin: 0px auto 0px auto;
-                    text-align: right;
-                    width: 75%;
-                    max-height: 100%;
-                    padding: 6px;
-                    vertical-align: middle;
-                }
-
-                .mc-prayer-commitment-text {
-                    width: 100%;
-                    background-color: #57d449;
-                    color: white;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    border-radius: 5px;
-                    margin: 0 0 5px 0;
-                }
-
-                .mc-title {
-                    display: none;
-                    margin: 50px 0 15px 10px;
-                    font-size: 32px;
-                    font-weight: bold;
-                    text-align: center;
-                }
-
-                .mc-description-duration {
-                    font-size: 125%;
-                    font-weight: 400;
-                    margin-left: 15px;
-                }
-
-                .mc-description-time {
-                    font-size: 180%;
-                    margin-right: 10px;
-                }
-            </style>
-
             <h3 class="mc-title">My commitments</h3>
             <div id="mobile-commitments-container">
             </div>
-            <script>
-                // Este código se ejecuta correctamente pero por algún motivo no modifica nada
-                jQuery(document).ready(function($){
-                    //todo
-                } );
-            </script>
-
             <div class="reveal" id="daily-select-modal" data-reveal>
                 <label>
                     <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
