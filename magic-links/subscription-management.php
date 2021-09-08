@@ -137,8 +137,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 max-width: 25%;
                 float:left;
                 text-align: center;
-                border: 1px solid grey;
+                border: 1px solid lightgray;
+                border-top: none;
+                border-left: 0.5px;
+                border-right: 0.5px;
             }
+
+            .new-day-number {
+                margin-top: 18px;
+            }
+
             .progress-bar {
                 height:10px;
                 background: dodgerblue;
@@ -146,13 +154,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             }
             .progress-bar-container {
                 border: 1px solid #bfbfbf;
-                margin-left: 5px;
-                margin-right: 5px;
+                margin: 0 auto 12px auto;
+                width: 75%;
             }
 
             .remove-selection {
                 /*float: right;*/
-                color: red;
+                color: white;
                 cursor:pointer;
             }
 
@@ -262,7 +270,146 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 color: grey;
                 text-decoration: line-through;
             }
+            .timezone-label {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                margin: 12px 0 24px 0;
+                text-align: right;
+            }
+            .timezone-label svg {
+                margin-right: 3px;
+            }
+            .calendar-title {
+                margin: 32px auto 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                width: 84%;
+            }
+            .calendar-title h2{
+                color: dodgerblue;
+                font-weight: bold;
+            }
 
+            /* todo replace 'new_' with '' and unify css new styles with old ones */
+            .new_calendar {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: left;
+                width: 92%;
+                margin: auto;
+            }
+
+            .new_day_cell {
+                width: calc(100% / 7);
+                height: auto;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .new_day_cell:hover {
+                background-color: #eee;
+            }
+
+            .new_weekday {
+                width: calc(100% / 7);
+                height: auto;
+                text-align: center;
+                font-weight: bold;
+                margin: 12px auto 4px auto;
+                border-bottom: 2px solid black;
+                border-radius: 0%;
+                justify-content: left;
+            }
+
+            .prayer-commitment {
+                background-color: #57d449;
+                border-radius: 5%;
+                color: white;
+                font-size: 12px;
+                margin: 2px auto 2px auto;
+                text-align: right;
+            }
+
+            .prayer-commitment-text {
+                margin-right: 4px;
+            }
+            .prayer-commitment-tiny {
+                background-color: #57d449;
+                border-radius: 100%;
+                text-indent: 200%;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 12px;
+                height: 12px;
+                vertical-align: top;
+                margin: -10px auto 0 auto;
+            }
+            
+            #mobile-commitments-container {
+                display: none;
+            }
+
+            .mobile-commitments {
+                display: flex;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                vertical-align: middle;
+            }
+            
+            .mobile-commitments-date { 
+                color: #0a0a0a;
+                border-right: 2px solid darkgray;
+                text-align: center;
+                width: 25%;
+            }
+            
+            .mc-day {
+                color: darkgray;
+            }
+            
+            .mc-prayer-commitment-description {
+                color: white;
+                font-size: 12px;
+                margin: 0px auto 0px auto;
+                text-align: right;
+                width: 75%;
+                max-height: 100%;
+                padding: 6px;
+                vertical-align: middle;
+            }
+
+            .mc-prayer-commitment-text {
+                width: 100%;
+                background-color: #57d449;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 5px;
+                margin: 0 0 5px 0;
+            }
+
+            .mc-title {
+                display: none;
+                margin: 50px 0 15px 10px;
+                font-size: 32px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .mc-description-duration {
+                font-size: 125%;
+                font-weight: 400;
+                margin-left: 15px;
+            }
+
+            .mc-description-time {
+                font-size: 180%;
+                margin-right: 10px;
+            }
         </style>
         <?php
     }
@@ -434,6 +581,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             let selected_calendar_color = 'green'
             let verified = false
 
+            // Function that adds an empty cell to the calendar for each
+            // day offset between Sunday and the first day of the campaign
+            function add_empty_days( day_offset ) {
+                let empty_cells = '';
+                for ( var i=0; i<=day_offset; i++ ) {
+                    empty_cells += `<div class="new_day_cell"></div>`;
+                }
+                return empty_cells;
+            } 
+            
             jQuery(document).ready(function($){
 
                 //set up array of days and time slots according to timezone
@@ -448,26 +605,71 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                  * Draw or refresh the main calendar
                  */
                 let draw_calendar = ( id = 'calendar-content') => {
-                    let content = $(`#${id}`)
-                    content.empty()
-                    let list = ''
+                    let content = $(`#${id}`);
+                    content.empty();
+                    let list = '';
+                    let current_calendar = '#cal1';
+                    let new_list = '';
+                    let first_cell = true;
                     days.forEach(day=>{
-                        list += `<div class="cell day-cell">
-                            <div class="day-selector" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">
-                                <div>${window.lodash.escape(day.formatted)} (${window.lodash.escape(parseInt(day.percent))}%)</div>
+                        if ( first_cell ) {
+                            // Write the first month name
+                            $('#cal1_title_month').text( window.lodash.escape( day.month ) );
+
+                            // If first campaign weekday isn't a Sunday, add necessary amount of empty cell-days
+                            if ( day.weekday != 1 ) {
+                                new_list += add_empty_days( day.weekday - 1 ); // 1 is the first day of the week
+                            }
+                        }
+
+                        // Create a new calendar
+                        if ( !first_cell && day.day === "1" ) {
+                            // A new month has started, let's append the accumulated days and clear the variable
+                            $( current_calendar ).append(new_list);
+                            new_list = '';
+
+                            // Add new calendar title after current calendar
+                            $( current_calendar ).after(`
+                            <div class="calendar-title">
+                                <h2>${window.lodash.escape(day.month)}</h2>
+                            </div>
+                            <div class="new_calendar" id="cal2">
+                                <div class="new_weekday">S</div>
+                                <div class="new_weekday">M</div>
+                                <div class="new_weekday">T</div>
+                                <div class="new_weekday">W</div>
+                                <div class="new_weekday">T</div>
+                                <div class="new_weekday">F</div>
+                                <div class="new_weekday">S</div>
+                            </div>
+                            `)
+                            //Current calendar is now #cal2
+                            current_calendar = '#cal2';
+
+                            // If first weekday of the new month isn't a Sunday, add necessary amount of empty cell-days
+                            if ( day.weekday != 1 ) {
+                                new_list += add_empty_days( day.weekday - 1 ); // 1 is the first day of the week
+                            }
+                        }
+                        new_list += `
+                        <div class="new_day_cell">
+                            <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}
+                                <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
                                 <div class="progress-bar-container">
                                     <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
                                 </div>
+                                <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
                             </div>
-                            <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
-                        </div>`
+                        </div>`;
+                        first_cell = false;
                     })
+                    $( current_calendar ).append(new_list);
                     content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 }
                 draw_calendar()
-
+        
                 /**
-                 * SHow my commitment under each day
+                 * Show my commitment under each day
                  */
                 let add_my_commitments = ()=>{
                     $('.day-extra').empty()
@@ -476,15 +678,37 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         let now = new Date().getTime()/1000
                         if ( time >= now){
                             let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
-                            let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone)
+
+                            let date = new Date( time * 1000 );
+                            let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; 
+                            let day_number = date.getDate();
+                            let day_weekday = weekdays[ date.getDay() ];
+
+                            let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone).toString().replace(':00','')
                             let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
+                            let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end)
                             $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
-                                <div id="selected-${window.lodash.escape(time)}"
+                                <div class="prayer-commitment" id="selected-${window.lodash.escape(time)}"
                                     data-time="${window.lodash.escape(time)}">
-                                    ${window.lodash.escape(time_label)} - ${window.lodash.escape(time_end_label)}
-                                    <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
+                                    <div class="prayer-commitment-text">
+                                        ${window.lodash.escape(summary_text)}
+                                        <i class="fi-x remove-selection remove-my-prayer-time" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i>
+                                    </div>
                                 </div>
                             `)
+                            $('#mobile-commitments-container').append(`
+                                <div class="mobile-commitments" id="mobile-commitment-${window.lodash.escape(time)}">
+                                    <div class="mobile-commitments-date">
+                                        <div class="mc-day"><b>${window.lodash.escape(day_weekday)}</b></div>
+                                        <div class="mc-day">${window.lodash.escape(day_number)}</div>
+                                    </div>
+                                    <div class="mc-prayer-commitment-description">
+                                        <div class="mc-prayer-commitment-text">
+                                            <div class="mc-description-duration">${window.lodash.escape(summary_text)}</div>
+                                            <div class="mc-description-time"> <i class="fi-x remove-selection remove-my-prayer-time" style="margin-left:6px;" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i></div>
+                                        </div>
+                                    </div>
+                                </div>`)
                         }
                     })
                 }
@@ -526,7 +750,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         }
                     })
                     .done(function(data){
-                        x.remove()
+                        $($(`*[data-report=${id}]`)[0].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
+                        $($(`*[data-report=${id}]`)[1].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
+                        x.removeClass("loading-spinner");
                         console.log("adding deleted time" + time);
                         $(`#selected-${time}`).addClass('deleted-time')
                     })
@@ -540,7 +766,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 /**
                  * Modal for displaying on individual day
                  */
-                $('.day-selector').on( 'click', function (){
+                $('.new-day-number').on( 'click', function (){
                     let day_timestamp = $(this).data('day')
                     $('#view-times-modal').foundation('open')
                     let list_title = jQuery('#list-modal-title')
@@ -552,7 +778,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     day.slots.forEach(slot=>{
                         let background_color = 'white'
                         if ( slot.subscribers > 0) {
-                            background_color = 'lightblue'
+                            background_color = '#1e90ff75'
                         }
                         if ( row_index === 0 ){
                             times_html += `<tr><td>${window.lodash.escape(slot.formatted)}</td>`
@@ -709,6 +935,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     let last_month = "";
                     modal_calendar.empty()
                     let list = ''
+                    let mobile_list = ''
                     days.forEach(day => {
                         if (day.month!==last_month) {
                             if (last_month) {
@@ -740,7 +967,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
                 ${window.lodash.escape(day.day)}
             </div>
-        `
+        `  
                     })
                     modal_calendar.html(list)
                 }
@@ -859,6 +1086,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     })
                 })
 
+                /**
+                 * Display mobile commitments if screen dimension is narrow
+                 */
+                if ( innerWidth < 475 ) {
+                        $( '.prayer-commitment' ).attr( 'class', 'prayer-commitment-tiny' );
+                        $( '.mc-title' ).show();
+                        $( '#mobile-commitments-container' ).show();
+                }
             })
         </script>
         <?php
@@ -883,34 +1118,33 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
         ?>
-        <div id="custom-style"></div>
         <div id="wrapper">
             <div class="grid-x">
                 <div class="cell center">
-                    <h2 id="title"><?php echo esc_html( $post["name"] ); ?></h2>
+                    <h2 id="title"><?php echo esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <i><?php echo esc_html( $post["name"] ); ?></i>
                 </div>
             </div>
-            <hr>
-
-
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
                 <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
-
-            <div class="center">
-                <h2 class=""><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
-            </div>
-
-            <div id="type-individual-section">
-                <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-
-                <div class="grid-x" style=" height: inherit !important;">
-                    <div class="cell center" id="bottom-spinner"><span class="loading-spinner"></span></div>
-                    <div class="cell" id="calendar-content"><div class="center">... <?php esc_html_e( 'loading', 'disciple-tools-prayer-campaigns' ); ?></div></div>
-                    <div class="cell grid" id="error"></div>
+            <div class="calendar-title">
+                <h2 id="cal1_title_month"></h2>
+                <div class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
+                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </div>
             </div>
 
+            <div class="new_calendar" id="cal1">
+                <div class="new_weekday">S</div>
+                <div class="new_weekday">M</div>
+                <div class="new_weekday">T</div>
+                <div class="new_weekday">W</div>
+                <div class="new_weekday">T</div>
+                <div class="new_weekday">F</div>
+                <div class="new_weekday">S</div>
+            </div>
 
             <!-- Reveal Modal Timezone Changer-->
             <div id="timezone-changer" class="reveal tiny" data-reveal>
@@ -952,7 +1186,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
-
+            <h3 class="mc-title">My commitments</h3>
+            <div id="mobile-commitments-container">
+            </div>
             <div class="reveal" id="daily-select-modal" data-reveal>
                 <label>
                     <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
@@ -964,8 +1200,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
                     <select id="cp-prayer-time-duration-select" class="cp-time-duration-select"></select>
                 </label>
-                <p>
-                    <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                <p class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
+                    <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                 </p>
 
                 <div class="success-confirmation-section">
@@ -1049,8 +1286,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <button class="button" id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>
                         <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
                     </div>
-                    <p>
-                        <strong><?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?></strong> <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
+                    <p class="timezone-label">
+                    <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg><a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
                     </p>
 
                     <div style="margin: 30px 0">

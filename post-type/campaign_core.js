@@ -14,11 +14,14 @@ window.campaign_scripts = {
       if ( !days.length || time_iterator >= ( start_of_day+24*3600 ) ){
         start_of_day = ( time_iterator >= start_of_day+24*3600 ) ? time_iterator : start_of_day
         let day = window.campaign_scripts.timestamp_to_month_day( time_iterator, custom_timezone )
+        let weekday = new Date(start_of_day * 1000).getDay()
+
         days.push({
           "key": start_of_day,
           "formatted": day,
           "month": window.campaign_scripts.timestamp_to_format( time_iterator, { month:"long" }, custom_timezone),
           "day": window.campaign_scripts.timestamp_to_format( time_iterator, { day:"numeric" }, custom_timezone),
+          "weekday": weekday,
           "percent": 0,
           "slots": [],
           "covered_slots": 0,
@@ -82,6 +85,36 @@ window.campaign_scripts = {
       timestamp * 1000
     );
   },
+
+  //clean formatted summary for prayer commitment display
+  timestamps_to_summary: function( timestamp_start, timestamp_end ) {
+    const options = { hour: "numeric", minute: "numeric" };
+    let summary = '';
+    let date_start_clean = new Intl.DateTimeFormat("en-US", options).format( timestamp_start * 1000 );
+    
+    // Don't show the minutes if there are none
+    summary = date_start_clean.toString().replace(':00', '');
+    
+    // Calculate time duration
+    let date_start = new Date( timestamp_start * 1000 );
+    let date_end = new Date( timestamp_end * 1000 );
+    let time_duration = ( date_end - date_start ) / 60000;
+
+    // Add minute, hour or hours suffix
+    if ( time_duration < 60 ) {
+        time_duration = time_duration + ' min';
+    }
+    if (time_duration == 60 ) {
+        time_duration = time_duration / 60 + ' hr';
+    }
+    if (time_duration > 60 ) {
+        time_duration = time_duration / 60 + ' hrs';
+    }
+
+    summary += ' (' + time_duration + ')';
+    return summary;
+  },
+
   /**
    * return the start of day timestamp of a particular timezone
    * @param timestamp
