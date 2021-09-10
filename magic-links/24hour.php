@@ -6,6 +6,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
         'jquery',
         'lodash'
     ], filemtime( plugin_dir_path( __FILE__ ) . '../post-type/campaign_core.js' ), true );
+    wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts["color"] ?? '' ] );
 
     //24 hour campaign js
     wp_enqueue_script( 'dt_campaign', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
@@ -33,7 +34,10 @@ function dt_24hour_campaign_register_scripts( $atts ){
     );
 }
 
-function dt_24hour_campaign_body(){
+function dt_24hour_campaign_body( $color = "" ){
+    if ( empty( $color ) ){
+        $color = "dogerblue";
+    }
     ?>
 
     <style>
@@ -74,8 +78,10 @@ function dt_24hour_campaign_body(){
             margin: auto
         }
         #cp-wrapper .month-title {
-            text-align: center;
-            margin-bottom: 0;
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: <?php echo esc_html( $color ) ?>;
         }
         #cp-wrapper .week-day {
             height: 20px;
@@ -104,7 +110,7 @@ function dt_24hour_campaign_body(){
             padding-top: 18px;
         }
         #cp-wrapper .selected-day {
-            background-color: dodgerblue;
+            background-color: <?php echo esc_html( $color ) ?>;
             color: white;
             border-radius: 50%;
             border: 2px solid;
@@ -188,7 +194,7 @@ function dt_24hour_campaign_body(){
         }
 
         #cp-wrapper button {
-            background-color: dodgerblue;
+            background-color: <?php echo esc_html( $color ) ?>;
             color: #fefefe;
             font-size: 1rem;
             border-radius: 5px;
@@ -211,9 +217,16 @@ function dt_24hour_campaign_body(){
             padding: 0;
         }
 
+        #cp-wrapper .first-circle {
+            stroke: <?php echo esc_html( $color ) ?>
+        }
+        #host::shadow .first-circle {
+            stroke: <?php echo esc_html( $color ) ?>
+        }
+
     </style>
 
-    <div id="cp-wrapper" class="loading-content">
+    <div id="" class="cp-wrapper loading-content">
         <div id="cp-loading-page" class="cp-view" >
             <?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/>
         </div>
@@ -514,6 +527,6 @@ function dt_24hour_campaign_shortcode( $atts ){
 
     dt_24hour_campaign_register_scripts( $atts );
 
-    dt_24hour_campaign_body();
+    dt_24hour_campaign_body( $atts["color"] ?? "" );
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );

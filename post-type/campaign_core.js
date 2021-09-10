@@ -91,10 +91,10 @@ window.campaign_scripts = {
     const options = { hour: "numeric", minute: "numeric" };
     let summary = '';
     let date_start_clean = new Intl.DateTimeFormat("en-US", options).format( timestamp_start * 1000 );
-    
+
     // Don't show the minutes if there are none
     summary = date_start_clean.toString().replace(':00', '');
-    
+
     // Calculate time duration
     let date_start = new Date( timestamp_start * 1000 );
     let date_end = new Date( timestamp_end * 1000 );
@@ -209,7 +209,12 @@ class ProgressRing extends HTMLElement {
     }
     this._root = this.attachShadow({mode: 'open'});
 
-    let color = parseInt( progress ) >= 100 ? 'mediumseagreen' : 'dodgerblue'
+    let base_color = 'dodgerblue'
+    if ( window.dt_campaign_core && window.dt_campaign_core.color ){
+      base_color = window.dt_campaign_core.color
+    }
+
+    let color = parseInt( progress ) >= 100 ? 'mediumseagreen' : base_color
     this._root.innerHTML = `
       <svg height="${radius * 2}"
            width="${radius * 2}" >
