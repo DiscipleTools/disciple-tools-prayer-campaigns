@@ -51,12 +51,20 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             min-width: 50%;
         }
         #cp-wrapper {
-            min-height: 500px;
+            min-height: 300px;
         }
         .cp-calendar-wrapper {
             background-color: #f8f9fad1;
             border-radius: 10px;
+            padding: 1em
         }
+        <?php if ( $section === "percentage" ): ?>
+        .cp-wrapper.cp-progress-wrapper {
+            background-color: #f8f9fa00;
+            width: fit-content;
+            margin: 0
+        }
+        <?php endif; ?>
 
         .cp-center {
             text-align: center;
@@ -86,7 +94,6 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
         }
         #cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
             text-align: left;
-            margin-top: 20px;
             margin-bottom: 5px;
             color: <?php echo esc_html( $color ) ?>;
         }
