@@ -412,7 +412,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
 
         $locale = $params["parts"]["lang"] ?: "en_US";
-        $description = "Campaign Description";
+        $description = "";
         if ( isset( $record["campaign_strings"][$locale]["campaign_description"] ) ){
             $description = $record["campaign_strings"][$locale]["campaign_description"];
         }
