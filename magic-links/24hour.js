@@ -37,7 +37,7 @@ jQuery(document).ready(function($) {
     calendar_subscribe_object.translations = escapeObject(jsObject.translations)
     $('#cp-wrapper').removeClass("loading-content")
 
-    $('#cp-loading-page').hide()
+    $('.cp-loading-page').hide()
     if ( calendar_subscribe_object.status === "pre_signup" ){
       $('#cp-view-confirm-later').show()
       $("#cp-wrapper").css("min-height", '500px')

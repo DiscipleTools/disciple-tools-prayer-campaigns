@@ -242,7 +242,7 @@ class ProgressRing extends HTMLElement {
           />
           <circle
              class="second-circle"
-             stroke="#eee"
+             stroke="#e2e2e2"
              stroke-dasharray="${this._circumference} ${this._circumference}"
              style="stroke-dashoffset:${-this._circumference}"
              stroke-width="${stroke}"

@@ -34,28 +34,35 @@ function dt_24hour_campaign_register_scripts( $atts ){
     );
 }
 
-function dt_24hour_campaign_body( $color = "" ){
+function dt_24hour_campaign_body( $color = "", $section = "" ){
     if ( empty( $color ) ){
-        $color = "dogerblue";
+        $color = "dodgerblue";
     }
     ?>
 
     <style>
-        #cp-wrapper {
+        .cp-wrapper {
             max-width:1000px;
-            margin: 10px auto;
+            margin: 0 auto;
             padding: 2em 1em;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            min-height: 800px;
+            background-color: #f8f9fad1;
+            border-radius: 10px;
             font-size: 1em;
             min-width: 50%;
         }
-        #cp-wrapper .cp-center {
+        #cp-wrapper {
+            min-height: 500px;
+        }
+        .cp-calendar-wrapper {
+            background-color: #f8f9fad1;
+            border-radius: 10px;
+        }
+
+        .cp-center {
             text-align: center;
         }
 
-        #cp-wrapper .day-cell {
+        #cp-wrapper .day-cell, .cp-calendar-wrapper .day-cell {
             /*flex-basis: 14%;*/
             text-align: center;
             flex-grow: 0;
@@ -71,28 +78,25 @@ function dt_24hour_campaign_body( $color = "" ){
             padding-top:10px;
             color: grey;
         }
-        #cp-wrapper .calendar {
+        #cp-wrapper .calendar, .cp-calendar-wrapper .calendar {
             display: flex;
             flex-wrap: wrap;
             width: 300px;
             margin: auto
         }
-        #cp-wrapper .month-title {
+        #cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
             text-align: left;
             margin-top: 20px;
             margin-bottom: 5px;
             color: <?php echo esc_html( $color ) ?>;
         }
-        #cp-wrapper .week-day {
+        #cp-wrapper .week-day, .cp-calendar-wrapper .week-day {
             height: 20px;
             width:40px;
             color:black;
             font-size:12px;
             font-weight:550;
             margin-bottom:5px;
-        }
-        #cp-wrapper #calendar-content h3 {
-            margin-bottom: 0;
         }
 
         #cp-wrapper #email, #email-later {
@@ -217,52 +221,36 @@ function dt_24hour_campaign_body( $color = "" ){
             padding: 0;
         }
 
-        #cp-wrapper .first-circle {
-            stroke: <?php echo esc_html( $color ) ?>
-        }
-        #host::shadow .first-circle {
-            stroke: <?php echo esc_html( $color ) ?>
-        }
-
     </style>
 
-    <div id="" class="cp-wrapper loading-content">
-        <div id="cp-loading-page" class="cp-view" >
+    <?php if ( $section === "percentage" || $section === "" ) :?>
+    <div class="cp-progress-wrapper cp-wrapper">
+        <div id="main-progress" class="cp-center">
+            <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if ( $section === "calendar" || $section === "" ) : ?>
+    <div class="cp-calendar-wrapper cp-wrapper">
+        <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 10px 0 10px 0">
+            <div id="calendar-content"></div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if ( $section === "sign_up" || $section === "" ) : ?>
+
+    <div id="cp-wrapper" class="cp-wrapper loading-content">
+        <div id="" class="cp-loading-page cp-view" >
             <?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/>
         </div>
 
         <div id="cp-main-page" class="cp-view" style="display: none">
-            <!--title-->
-            <h2 id="campaign-description" class="cp-center"></h2>
-
-            <!-- coverage tag -->
-            <p id="coverage-level" class="cp-center"></p>
-            <!--main percentage circle-->
-            <div id="main-progress" class="cp-center">
-                <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>
-            </div>
             <!--pray button-->
             <div class="cp-center">
                 <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose" data-force-scroll="true">
                     <?php esc_html_e( 'Choose Prayer Times', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
             </div>
-
-            <!--start and end dates-->
-            <p id="cp-start-end" class="cp-center"></p>
-            <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 10px 0 10px 0">
-                <div id="calendar-content"></div>
-            </div>
-
-<!--            <div class="cp-center">-->
-<!--                <p>--><?php //esc_html_e( "I'm interested in praying! Send me an email when it is time to choose prayer times.", 'disciple-tools-prayer-campaigns' ); ?><!--</p>-->
-<!--                <button class="button cp-nav" id="cp-pre-sign-up" data-open="cp-view-confirm" data-force-scroll="true">--><?php //esc_html_e( "Choose Times Later", 'disciple-tools-prayer-campaigns' ); ?><!--</button>-->
-<!--            </div>-->
-
-            <!--time zone selector-->
-<!--            <p class="cp-center">-->
-<!--                --><?php //esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?><!-- <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>-->
-<!--            </p>-->
 
         </div>
 
@@ -501,7 +489,7 @@ function dt_24hour_campaign_body( $color = "" ){
 
 
     </div> <!-- form wrapper -->
-    <?php
+    <?php endif;
 }
 
 function dt_24hour_campaign_shortcode( $atts ){
@@ -527,6 +515,6 @@ function dt_24hour_campaign_shortcode( $atts ){
 
     dt_24hour_campaign_register_scripts( $atts );
 
-    dt_24hour_campaign_body( $atts["color"] ?? "" );
+    dt_24hour_campaign_body( $atts["color"] ?? "", $atts["section"] ?? "" );
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
