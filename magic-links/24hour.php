@@ -235,6 +235,7 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
         <div id="main-progress" class="cp-center">
             <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>
         </div>
+        <div style="color: rgba(0,0,0,0.57)">Percentage of Ramadan covered in prayer</div>
     </div>
     <?php endif; ?>
     <?php if ( $section === "calendar" || $section === "" ) : ?>
