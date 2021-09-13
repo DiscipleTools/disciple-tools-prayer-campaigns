@@ -48,7 +48,7 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             background-color: #f8f9fad1;
             border-radius: 10px;
             font-size: 1em;
-            min-width: 50%;
+            min-width: 320px;
         }
         #cp-wrapper {
             min-height: 300px;
