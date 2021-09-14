@@ -110,17 +110,13 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 $plugin_root = trailingslashit( dirname( __FILE__, 2 ) );
                 $installed_translations = get_available_languages( $plugin_root . 'languages' );
                 array_unshift( $installed_translations, "en_US" );
-                $dt_languages = dt_get_translations();
-                $lang_keys = array_map( function ( $f ){
-                    return $f["language"];
-                }, $dt_languages );
+                $dt_languages = dt_get_available_languages( true );
                 ?>
                 <ul class="tabs" data-tabs id="language-strings-tabs" style="display: flex">
                     <?php
                     foreach ( $installed_translations as $index => $translation_key ) :
                         $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
-                        $lang_index = array_search( $code, $lang_keys );
-                        $label = isset( $dt_languages[$lang_index] ) ? $dt_languages[$lang_index]["native_name"] : ( $code === "en_US" ? "English" : $code );
+                        $label = isset( $dt_languages[$code] ) ? $dt_languages[$code]["native_name"] : ( $code === "en_US" ? "English" : $code );
                         ?>
                         <li class="tabs-title <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>"><a href="#lang-<?php echo esc_html( $code ); ?>" data-tabs-target="lang-<?php echo esc_html( $code ); ?>"><?php echo esc_html( $label ); ?></a></li>
                     <?php endforeach; ?>
