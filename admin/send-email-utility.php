@@ -128,7 +128,6 @@ class DT_Prayer_Campaigns_Send_Email {
         $headers[] = 'Content-Type: text/html';
         $headers[] = 'charset=UTF-8';
 
-        $subject = __( 'Registered to pray with us!', 'disciple-tools-prayer-campaigns' );
         $message = '';
         if ( !empty( $record["name"] ) ){
             $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>';
@@ -144,11 +143,12 @@ class DT_Prayer_Campaigns_Send_Email {
             $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
         }
 
+        $subject = __( 'Registration Confirmation', 'disciple-tools-prayer-campaigns' );
         $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
         $message .= '
-            <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
-            <p>' . __( 'We will send you another email when it is time to choose prayer times.', 'disciple-tools-prayer-campaigns' ) . '</p>
-            <p>' . __( 'If you are ready to choose prayer times you can do so at any time from this link:', 'disciple-tools-prayer-campaigns' ). '</p>
+            <h4>' . __( 'Thank you for signing up to pray!', 'disciple-tools-prayer-campaigns' ) . '</h4>
+            <p>' . __( 'We have some time before the campaign starts. We will send you another email a couple months before Ramadan starts asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer.', 'disciple-tools-prayer-campaigns' ) . '</p>
+            <p>' . __( 'If you know your schedule already you can choose your times here:', 'disciple-tools-prayer-campaigns' ). '</p>
             <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
         ';
 
@@ -217,7 +217,6 @@ class DT_Prayer_Campaigns_Send_Email {
     public static function send_pre_sign_up_email( $campaign_id ): array{
 
         $pre_sign_up_subscriptions = DT_Posts::list_posts( "subscriptions", [ "tags" => [ "pre-signup" ], "campaigns" => [ $campaign_id ] ] );
-        $subject = __( 'Choose your prayer times!', 'disciple-tools-prayer-campaigns' );
         $headers = [];
         $headers[] = 'Content-Type: text/html';
         $headers[] = 'charset=UTF-8';
@@ -229,11 +228,14 @@ class DT_Prayer_Campaigns_Send_Email {
             }
             $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
             if ( isset( $subscriber["contact_email"][0]["value"] ) ){
+                $subject = __( 'What time(s) will you pray?', 'disciple-tools-prayer-campaigns' );
                 $message = '
                     <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber["name"] ) ) . '</h3>
                     <p>' . __( 'Thank you for signing up to pray with us!', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'It is time to choose your prayer times', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'Please do so from this link:', 'disciple-tools-prayer-campaigns' ). '</p>
+                    <p>' . __( 'It is now time to choose the specific times you will pray. Below is a link prayer times tool.', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'To pray at the same time every day click the "Add a Daily Prayer Time" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'If you need to choose different times or can\'t make it every day click the "Add individual Prayer Times" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'Chose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
                     <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
                 ';
                 $sent = wp_mail( $subscriber["contact_email"][0]["value"], $subject, $message, $headers );
