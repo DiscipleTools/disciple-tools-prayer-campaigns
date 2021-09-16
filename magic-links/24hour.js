@@ -81,10 +81,10 @@ jQuery(document).ready(function($) {
       $(`#${view_to_open}`).show()
 
       //force the screen to scroll to the top of the wrapper
-      // if ( $(this).data('force-scroll')){
-      //   let elmnt = document.getElementById("cp-wrapper");
-      //   elmnt.scrollIntoView();
-      // }
+      if ( $(this).data('force-scroll')){
+        let elmnt = document.getElementById("cp-wrapper");
+        elmnt.scrollIntoView();
+      }
 
       //configure the view to go back to
       let back_to = $(this).data('back-to');
