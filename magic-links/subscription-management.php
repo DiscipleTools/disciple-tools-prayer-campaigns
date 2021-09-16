@@ -346,7 +346,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 vertical-align: top;
                 margin: -10px auto 0 auto;
             }
-            
+
             #mobile-commitments-container {
                 display: none;
             }
@@ -358,18 +358,18 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 justify-content: space-between;
                 vertical-align: middle;
             }
-            
-            .mobile-commitments-date { 
+
+            .mobile-commitments-date {
                 color: #0a0a0a;
                 border-right: 2px solid darkgray;
                 text-align: center;
                 width: 25%;
             }
-            
+
             .mc-day {
                 color: darkgray;
             }
-            
+
             .mc-prayer-commitment-description {
                 color: white;
                 font-size: 12px;
@@ -589,8 +589,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     empty_cells += `<div class="new_day_cell"></div>`;
                 }
                 return empty_cells;
-            } 
-            
+            }
+
             jQuery(document).ready(function($){
 
                 //set up array of days and time slots according to timezone
@@ -667,7 +667,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 }
                 draw_calendar()
-        
+
                 /**
                  * Show my commitment under each day
                  */
@@ -680,7 +680,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
 
                             let date = new Date( time * 1000 );
-                            let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; 
+                            let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                             let day_number = date.getDate();
                             let day_weekday = weekdays[ date.getDay() ];
 
@@ -967,7 +967,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
                 ${window.lodash.escape(day.day)}
             </div>
-        `  
+        `
                     })
                     modal_calendar.html(list)
                 }
@@ -1369,7 +1369,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <hr>
                 <section>
                     <div class="danger-zone">
-                        <h2><?php esc_html_e( 'Danger Zone', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                        <h2><?php esc_html_e( 'Profile Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <button class="chevron" onclick="toggle_danger();">
                             <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
                         </button>
@@ -1378,7 +1378,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <label>
                             <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
                         </label>
-                        <button class="button alert" data-open="delete-profile-modal">Delete</button>
+                        <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
                         <!-- Reveal Modal Daily time slot-->
                         <div id="delete-profile-modal" class="reveal tiny" data-reveal>
                             <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
