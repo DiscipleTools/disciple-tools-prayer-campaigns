@@ -1121,7 +1121,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <div id="wrapper">
             <div class="grid-x">
                 <div class="cell center">
-                    <h2 id="title"><?php echo esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <h2 id="title"><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
                     <i><?php echo esc_html( $post["name"] ); ?></i>
                 </div>
             </div>
