@@ -40,7 +40,6 @@ jQuery(document).ready(function($) {
     $('.cp-loading-page').hide()
     if ( calendar_subscribe_object.status === "pre_signup" ){
       $('#cp-view-confirm-later').show()
-      $("#cp-wrapper").css("min-height", '500px')
     } else if (  calendar_subscribe_object.status === "inactive"){
       $('#cp-view-closed').show()
       $("#cp-wrapper").css("min-height", '500px')
