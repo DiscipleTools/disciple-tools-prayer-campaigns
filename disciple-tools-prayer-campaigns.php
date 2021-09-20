@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Disciple Tools - Prayer Campaigns
+ *Plugin Name: Disciple.Tools - Prayer Campaigns
  * Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-campaigns
  * Description: Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
  * Text Domain: disciple-tools-prayer-campaigns
