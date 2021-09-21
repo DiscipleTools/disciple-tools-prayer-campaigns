@@ -232,7 +232,7 @@ class DT_Prayer_Campaigns_Send_Email {
                 $message = '
                     <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber["name"] ) ) . '</h3>
                     <p>' . __( 'Thank you for signing up to pray with us!', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'It is now time to choose the specific times you will pray. Below is a link prayer times tool.', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'It is now time to choose the specific times you will pray. Below is a link to the prayer times tool.', 'disciple-tools-prayer-campaigns' ) . '</p>
                     <p>' . __( 'To pray at the same time every day click the "Add a Daily Prayer Time" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
                     <p>' . __( 'If you need to choose different times or can\'t make it every day click the "Add individual Prayer Times" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
                     <p>' . __( 'Chose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
