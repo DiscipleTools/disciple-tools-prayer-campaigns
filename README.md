@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns)
 
-![Prayer Campaigns](https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/assets/prayer-campaigns-banner.png)
+![Plugin Banner](https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/assets/prayer-campaigns-banner.png)
 # Disciple.Tools - Prayer Campaigns
 
 Add prayer campaigns to your strategy inside Disciple.Tools. This module adds the ability to
