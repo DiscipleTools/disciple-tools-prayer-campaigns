@@ -147,7 +147,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
         $message .= '
             <h4>' . __( 'Thank you for signing up to pray!', 'disciple-tools-prayer-campaigns' ) . '</h4>
-            <p>' . __( 'We have some time before the campaign starts. We will send you another email a couple months before Ramadan starts asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer.', 'disciple-tools-prayer-campaigns' ) . '</p>
+            <p>' . __( 'We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer.', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>' . __( 'If you know your schedule already you can choose your times here:', 'disciple-tools-prayer-campaigns' ). '</p>
             <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
         ';
