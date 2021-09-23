@@ -8,6 +8,8 @@ function dt_24hour_campaign_register_scripts( $atts ){
     ], filemtime( plugin_dir_path( __FILE__ ) . '../post-type/campaign_core.js' ), true );
     wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts["color"] ?? '' ] );
 
+    wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.css', [], filemtime( plugin_dir_path( __FILE__ ) . '24hour.css' ));
+
     //24 hour campaign js
     wp_enqueue_script( 'dt_campaign', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
     wp_localize_script(
@@ -41,23 +43,6 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
     ?>
 
     <style>
-        .cp-wrapper {
-            max-width:1000px;
-            margin: 0 auto;
-            padding: 2em 1em;
-            background-color: #f8f9fad1;
-            border-radius: 10px;
-            font-size: 1em;
-            min-width: 320px;
-        }
-        #cp-wrapper {
-            /*min-height: 300px;*/
-        }
-        .cp-calendar-wrapper {
-            background-color: #f8f9fad1;
-            border-radius: 10px;
-            padding: 1em
-        }
         <?php if ( $section === "percentage" ): ?>
         .cp-wrapper.cp-progress-wrapper {
             background-color: #f8f9fa00;
@@ -65,176 +50,20 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             margin: 0
         }
         <?php endif; ?>
-
-        .cp-center {
-            text-align: center;
+        <?php if ( $section === "calendar" ): ?>
+        .cp-wrapper.cp-calendar-wrapper {
+            width: fit-content;
         }
-
-        #cp-wrapper .day-cell, .cp-calendar-wrapper .day-cell {
-            /*flex-basis: 14%;*/
-            text-align: center;
-            flex-grow: 0;
-
-        }
-        #cp-wrapper .display-day-cell {
-            height: 40px;
-        }
-        #cp-wrapper .disabled-calendar-day {
-            width:40px;
-            height:40px;
-            vertical-align: top;
-            padding-top:10px;
-            color: grey;
-        }
-        #cp-wrapper .calendar, .cp-calendar-wrapper .calendar {
-            display: flex;
-            flex-wrap: wrap;
-            width: 300px;
-            margin: auto
-        }
+        <?php endif; ?>
         #cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
-            text-align: left;
-            margin-bottom: 5px;
             color: <?php echo esc_html( $color ) ?>;
-        }
-        #cp-wrapper .week-day, .cp-calendar-wrapper .week-day {
-            height: 20px;
-            width:40px;
-            color:black;
-            font-size:12px;
-            font-weight:550;
-            margin-bottom:5px;
-        }
-
-        #cp-wrapper #email, #email-later {
-            display:none;
-        }
-
-        #cp-wrapper .day-in-select-calendar {
-            color: black;
-            display: inline-block;
-            height: 40px;
-            width: 40px;
-            line-height: 0;
-            vertical-align: middle;
-            text-align: center;
-            padding-top: 18px;
         }
         #cp-wrapper .selected-day {
             background-color: <?php echo esc_html( $color ) ?>;
-            color: white;
-            border-radius: 50%;
-            border: 2px solid;
         }
-
-        #cp-wrapper .success-confirmation-section {
-            display: none;
-            margin-top: 20px;
-        }
-
-        #cp-wrapper .cp-close-button {
-            top: .5rem;
-            font-size: 1em;
-            line-height: 1;
-            display: block;
-            cursor:pointer;
-            padding: 5px;
-        }
-        #cp-wrapper .cp-close-button img {
-            filter: invert(100%);
-            height: 15px;
-            width: 15px;
-            vertical-align: bottom;
-        }
-        #cp-wrapper select {
-            font-size: 1rem;
-            line-height: 1rem;
-            color: black;
-            border: 1px solid black ;
-            display: block;
-            min-width: 250px;
-            max-width: 400px;
-            background: white;
-            margin: auto;
-            min-height: 40px;
-            padding:0.5em;
-        }
-        #cp-wrapper input {
-            font-size: 1rem;
-            line-height: 1rem;
-            color: black;
-            border: 1px solid black;
-        }
-        #cp-wrapper .cp-input {
-            min-width: 250px;
-            max-width: 400px;
-            margin: auto;
-            padding:0.5em;
-            min-height: 40px;
-        }
-        #cp-wrapper strong, b {
-            font-weight: bold;
-        }
-        #cp-wrapper {
-            font-size: 1rem;
-        }
-        #cp-wrapper h3 {
-            font-size: 1.5rem;
-        }
-        #cp-wrapper h2 {
-            font-size: 1.7rem;
-        }
-        #cp-wrapper h1, #cp-wrapper h2, #cp-wrapper h3 {
-            color: black;
-        }
-        #cp-wrapper label {
-            font-size: 1rem;
-            margin-bottom: .5rem;
-        }
-
-        #cp-wrapper p {
-            margin: 10px;
-        }
-        #cp-wrapper.loading-content h2, #cp-wrapper.loading-content p {
-            background-color: #ededed;
-            border-radius: 100px;
-            min-width: 100px;
-            min-height: 20px;
-            margin-bottom: 10px;
-            margin-bottom: 5px;
-        }
-
         #cp-wrapper button {
             background-color: <?php echo esc_html( $color ) ?>;
-            color: #fefefe;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: 1px solid transparent;
-            font-weight: normal;
-            padding: .85em 1em;
         }
-        #cp-wrapper button[disabled] {
-            opacity: .25;
-            cursor: not-allowed;
-        }
-
-        #cp-wrapper .form-error {
-            display: none;
-            color: red;
-        }
-
-        #cp-wrapper .cp-display-selected-times {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        #cp-wrapper .remove-prayer-time-button {
-            background-color: transparent;
-            color: red;
-            /* border: black 1px solid; */
-            padding: 0 5px;
-        }
-
     </style>
 
     <?php if ( $section === "percentage" || $section === "" ) :?>
@@ -530,6 +359,8 @@ function dt_24hour_campaign_shortcode( $atts ){
 
     dt_24hour_campaign_register_scripts( $atts );
 
+    ob_start();
     dt_24hour_campaign_body( $atts["color"] ?? "", $atts["section"] ?? "" );
+    return ob_get_clean();
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
