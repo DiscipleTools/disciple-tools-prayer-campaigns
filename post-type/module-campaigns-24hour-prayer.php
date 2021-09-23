@@ -491,6 +491,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         }
 
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
+        add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
     }
 
     public function dt_blank_body(){
@@ -532,6 +533,11 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'dt_campaign';
         return $allowed_js;
+    }
+    // add dt_campaign_core to allowed scripts
+    public function dt_magic_url_base_allowed_css( $allowed_css ) {
+        $allowed_css[] = 'dt_campaign_style';
+        return $allowed_css;
     }
 
 }
