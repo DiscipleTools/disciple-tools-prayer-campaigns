@@ -45,9 +45,7 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
     <style>
         <?php if ( $section === "percentage" ): ?>
         .cp-wrapper.cp-progress-wrapper {
-            background-color: #f8f9fa00;
             width: fit-content;
-            margin: 0
         }
         <?php endif; ?>
         <?php if ( $section === "calendar" ): ?>
@@ -76,7 +74,7 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
     <?php endif; ?>
     <?php if ( $section === "calendar" || $section === "" ) : ?>
     <div class="cp-calendar-wrapper cp-wrapper">
-        <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 10px 0 10px 0">
+        <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 0">
             <div id="calendar-content"></div>
         </div>
     </div>

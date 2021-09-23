@@ -135,7 +135,7 @@ jQuery(document).ready(function($) {
             list += `</div>`
           }
 
-          list += `<h3 class="month-title"><b>${window.lodash.escape(day.month).substring(0,3)}</b> ${new Date(day.key * 1000).getFullYear()}</h3><div class="calendar" style="margin-bottom:20px;">`
+          list += `<h3 class="month-title"><b>${window.lodash.escape(day.month).substring(0,3)}</b> ${new Date(day.key * 1000).getFullYear()}</h3><div class="calendar">`
           if( !last_month ){
             list += headers
           }
