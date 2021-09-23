@@ -5,7 +5,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
  * Test that DT_Module_Base has loaded
  */
 if ( ! class_exists( 'DT_Module_Base' ) ) {
-    dt_write_log( 'Disciple Tools System not loaded. Cannot load custom post type.' );
+    dt_write_log( 'Disciple.Tools System not loaded. Cannot load custom post type.' );
     return;
 }
 

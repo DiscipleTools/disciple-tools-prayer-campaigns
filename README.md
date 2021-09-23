@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns)
 
 ![Prayer Campaigns](https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/assets/prayer-campaigns-banner.png)
-# Disciple Tools - Prayer Campaigns
+# Disciple.Tools - Prayer Campaigns
 
 Add prayer campaigns to your strategy inside Disciple.Tools. This module adds the ability to
 mobilize saturation prayer for specific locations. It creates embeddable mobilization forms
@@ -10,7 +10,7 @@ password.
 
 ## Purpose
 
-At the root of all movements you find extra-ordinary prayer. Adding this module to your disciple tools system, allows
+At the root of all movements you find extra-ordinary prayer. Adding this module to your Disciple.Tools system, allows
 you to publish a prayer subscriptions form with the supporting management tools for subscribers through email magic links.
 
 ## Usage
@@ -28,7 +28,7 @@ you to publish a prayer subscriptions form with the supporting management tools 
 
 ## Requirements
 
-- Disciple Tools Theme installed on a Wordpress Server
+- Disciple.Tools Theme installed on a Wordpress Server
 
 ## Installing
 

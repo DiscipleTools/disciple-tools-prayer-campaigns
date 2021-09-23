@@ -3,7 +3,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 /**
  * Class DT_Subscriptions_Base
- * Load the core post type hooks into the Disciple Tools system
+ * Load the core post type hooks into the Disciple.Tools system
  */
 class DT_Subscriptions_Base {
 
