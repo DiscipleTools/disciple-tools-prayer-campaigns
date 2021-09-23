@@ -228,6 +228,13 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             padding: 0;
         }
 
+        #cp-wrapper .remove-prayer-time-button {
+            background-color: transparent;
+            color: red;
+            /* border: black 1px solid; */
+            padding: 0 5px;
+        }
+
     </style>
 
     <?php if ( $section === "percentage" || $section === "" ) :?>

@@ -258,10 +258,18 @@ jQuery(document).ready(function($) {
         return a.time - b.time
       });
       selected_times.forEach(time=>{
-        html += `<li>${calendar_subscribe_object.translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )} </li>`
+        html += `<li>
+          ${calendar_subscribe_object.translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )}
+          <button class="remove-prayer-time-button" data-time="${time.time}">x</button>
+        </li>`
       })
       $('.cp-display-selected-times').html(html)
     }
+    $(document).on( 'click', '.remove-prayer-time-button', function (){
+      let time = parseInt($(this).data('time'))
+      selected_times = selected_times.filter(t=>parseInt(t.time) !== time)
+      display_selected_times()
+    })
 
     //add a selected time to the array
     $('#cp-add-prayer-time').on("click", function(){
