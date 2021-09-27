@@ -125,10 +125,9 @@ class DT_Subscriptions_Base {
             $fields['tags'] = [
                 'name'        => __( 'Tags', 'disciple_tools' ),
                 'description' => _x( 'A useful way to group related items.', 'Optional Documentation', 'disciple_tools' ),
-                'type'        => 'multi_select',
+                'type'        => 'tags',
                 'default'     => [],
                 'tile'        => 'other',
-                'custom_display' => true,
                 "customizable" => false,
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
