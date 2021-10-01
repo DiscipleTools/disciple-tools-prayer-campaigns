@@ -145,7 +145,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 <p>' . $prayer_content_message . '</p>
                 <br>
                 <hr>
-                <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here Manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
+                <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
             ';
 
             $sent = wp_mail( $e['to'], $e['subject'], $e['message'], $e['headers'] );

@@ -77,13 +77,15 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         $message .= '
-            <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
+            <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement! You\'re one click away from finishing your registration.', 'disciple-tools-prayer-campaigns' ) . '</h4>
             <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' . __( 'Click here to verify your email address and confirm your prayer times.', 'disciple-tools-prayer-campaigns' ) .  '</a></p>
             <p>' . __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>'.$commitment_list.'</p>
             <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
             ' . $sign_up_email_extra_message . '
-            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here Manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
+            <br>
+            <hr>
+            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
         ';
 
         $sent = wp_mail( $to, $subject, $message, $headers );
@@ -231,11 +233,11 @@ class DT_Prayer_Campaigns_Send_Email {
                 $subject = __( 'What time(s) will you pray?', 'disciple-tools-prayer-campaigns' );
                 $message = '
                     <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber["name"] ) ) . '</h3>
-                    <p>' . __( 'Thank you for signing up to pray with us!', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'Thank you for signing up to help us cover the region in nonstop prayer!!', 'disciple-tools-prayer-campaigns' ) . '</p>
                     <p>' . __( 'It is now time to choose the specific times you will pray. Below is a link to the prayer times tool.', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'To pray at the same time every day click the "Add a Daily Prayer Time" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'If you need to choose different times or can\'t make it every day click the "Add individual Prayer Times" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'Chose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
+                    <p>' . __( 'To pray at the same time every day (preferred!) click the "Add a Daily Prayer Time" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'If you need to choose different times or can\'t commit to pray every day click the "Add individual Prayer Times" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
+                    <p>' . __( 'Choose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
                     <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
                 ';
                 $sent = wp_mail( $subscriber["contact_email"][0]["value"], $subject, $message, $headers );
