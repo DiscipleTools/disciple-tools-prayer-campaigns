@@ -57,7 +57,7 @@ class DT_Subscriptions_Base {
     }
 
     public function after_setup_theme(){
-        if ( class_exists( 'Disciple_Tools_Post_Type_Template' )) {
+        if ( class_exists( 'Disciple_Tools_Post_Type_Template' ) ) {
             new Disciple_Tools_Post_Type_Template( $this->post_type, $this->single_name, $this->plural_name );
         }
     }
@@ -382,7 +382,7 @@ class DT_Subscriptions_Base {
             if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
             }
-            if ( isset( $record[$key_name] )) {
+            if ( isset( $record[$key_name] ) ) {
                 $key = $record[$key_name];
             } else {
 
@@ -474,7 +474,7 @@ class DT_Subscriptions_Base {
             $subscriber_id = get_the_ID();
             $subscriber = DT_Posts::get_post( "subscriptions", $subscriber_id, true, true );
             $subs = Disciple_Tools_Reports::get( $subscriber_id, 'post_id' );
-            usort($subs, function( $a, $b) {
+            usort($subs, function( $a, $b ) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
             $timezone = !empty( $subscriber["timezone"] ) ? $subscriber["timezone"] : 'America/Chicago';

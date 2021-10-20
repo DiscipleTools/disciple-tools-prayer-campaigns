@@ -79,7 +79,7 @@ class DT_Prayer_Campaigns_Menu {
             </h2>
 
             <?php
-            switch ($tab) {
+            switch ( $tab ) {
                 case "campaigns":
                     $object = new DT_Prayer_Campaigns_Campaigns();
                     $object->content();

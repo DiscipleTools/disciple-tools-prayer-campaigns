@@ -6,14 +6,14 @@ class DT_Time_Utilities {
         $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
 
         // process start and end of campaign
-        if ( !isset( $record['start_date'] )) {
+        if ( !isset( $record['start_date'] ) ) {
             $start = strtotime( gmdate( 'Y-m-d', time() ) );
         } else {
             $start = strtotime( gmdate( 'Y-m-d', $record['start_date']['timestamp'] ) ); // perfects the stamp to day beginning
         }
         $record['start_date'] = $start;
 
-        if ( !isset( $record['end_date'] )) {
+        if ( !isset( $record['end_date'] ) ) {
             $end = strtotime( '+30 days' );
         } else {
             $end = strtotime( gmdate( 'Y-m-d', $record['end_date']['timestamp'] ) ) + 86399; // end of selected day (-1 second)
@@ -44,13 +44,13 @@ class DT_Time_Utilities {
         $current_times_list = self::get_current_commitments( $record['ID'], (int) $start, (int) $end );
 
         // build time list array
-        while ($start <= $end) {
+        while ( $start <= $end ) {
 
             $time_begin = $start;
             $end_of_day = $start + 86400;
 
             while ( $time_begin < $end_of_day ) {
-                if ( !isset( $data[$start] )) {
+                if ( !isset( $data[$start] ) ) {
                     $data[$start] = [
                         'key' => $start,
                         'formatted' => gmdate( 'F d', $start ),

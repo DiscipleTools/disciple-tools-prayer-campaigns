@@ -96,7 +96,7 @@ class DT_Subscriptions {
      * @param $times
      * @return bool|WP_Error
      */
-    public static function add_subscriber_times( $campaign_id, $subscription_id, $times){
+    public static function add_subscriber_times( $campaign_id, $subscription_id, $times ){
         foreach ( $times as $time ){
             if ( !isset( $time["time"] ) ){
                 continue;

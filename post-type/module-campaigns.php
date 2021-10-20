@@ -50,7 +50,7 @@ class DT_Campaigns_Base {
     }
 
     public function after_setup_theme(){
-        if ( class_exists( 'Disciple_Tools_Post_Type_Template' )) {
+        if ( class_exists( 'Disciple_Tools_Post_Type_Template' ) ) {
             new Disciple_Tools_Post_Type_Template( $this->post_type, $this->single_name, $this->plural_name );
         }
     }
@@ -587,7 +587,7 @@ class DT_Campaigns_Base {
         $unique_days_covered = [];
         foreach ( $subscribers as &$sub ){
             $unique_days = [];
-            if ( $sub["commitments"] !== "0"){
+            if ( $sub["commitments"] !== "0" ){
                 $times = Disciple_Tools_Reports::get( $sub["ID"], 'post_id' );
                 foreach ( $times as $time ){
                     $day = gmdate( "Y-m-d", $time["time_begin"] );
@@ -689,14 +689,14 @@ class DT_Campaigns_Base {
             }
 
             foreach ( $blocks_covered as $number_of_prayers => $times_covered ){
-                foreach ($res as &$r ){
+                foreach ( $res as &$r ){
                     if ( $r["key"] <= $number_of_prayers ){
                         $r["blocks_covered"] += $times_covered;
                     }
                 }
             }
             $total_blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
-            foreach ($res as &$r ){
+            foreach ( $res as &$r ){
                 $r["percent"] = round( $r["blocks_covered"] / $total_blocks * 100, 2 );
             }
         }

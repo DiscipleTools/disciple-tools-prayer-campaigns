@@ -84,7 +84,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
             }
-            if ( isset( $record[$key_name] )) {
+            if ( isset( $record[$key_name] ) ) {
                 $key = $record[$key_name];
             } else {
                 $key = dt_create_unique_key();
@@ -478,7 +478,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
     public function __construct(){
         parent::__construct();
-        if ( !$this->check_parts_match()){
+        if ( !$this->check_parts_match() ){
             return;
         }
 

@@ -254,7 +254,7 @@ if ( ! function_exists( 'dt_prayer_campaigns_hook_admin_notice' ) ) {
 /**
  * AJAX handler to store the state of dismissible notices.
  */
-if ( ! function_exists( "dt_hook_ajax_notice_handler" )){
+if ( ! function_exists( "dt_hook_ajax_notice_handler" ) ){
     function dt_hook_ajax_notice_handler(){
         check_ajax_referer( 'wp_rest_dismiss', 'security' );
         if ( isset( $_POST["type"] ) ){

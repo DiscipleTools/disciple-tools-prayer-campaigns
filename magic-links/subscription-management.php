@@ -16,7 +16,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public function __construct(){
         parent::__construct();
-        if ( !$this->check_parts_match()){
+        if ( !$this->check_parts_match() ){
             return;
         }
         $post = DT_Posts::get_post( "subscriptions", $this->parts["post_id"], true, false );
