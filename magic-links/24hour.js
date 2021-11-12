@@ -24,12 +24,16 @@ let escapeObject = (obj) => {
 jQuery(document).ready(function($) {
   let jsObject = window.campaign_objects
 
+  let link =  jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type + '/campaign_info';
+  if ( window.campaign_objects.remote){
+    link =  jsObject.root + jsObject.parts.root + '/v1/24hour-router';
+  }
   jQuery.ajax({
     type: "GET",
-    data: {action: 'get', parts: jsObject.parts},
+    data: {action: 'get', parts: jsObject.parts, 'url': 'campaign_info' },
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    url: jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type + '/campaign_info'
+    url: link
   })
   .done(function (data) {
 
@@ -470,12 +474,17 @@ jQuery(document).ready(function($) {
     })
 
     let send_submission = (data, submit_spinner)=>{
+      let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type;
+      if ( window.campaign_objects.remote){
+        link =  jsObject.root + jsObject.parts.root + '/v1/24hour-router';
+      }
+      data.url = '';
       jQuery.ajax({
         type: "POST",
         data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        url: jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type
+        url: link
       })
       .done(function(){
         selected_times = [];

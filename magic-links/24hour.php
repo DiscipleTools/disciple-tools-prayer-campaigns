@@ -362,3 +362,57 @@ function dt_24hour_campaign_shortcode( $atts ){
     return ob_get_clean();
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
+
+ if ( ! function_exists( 'dt_recursive_sanitize_array' ) ) {
+    function dt_recursive_sanitize_array( array $array ) : array {
+        foreach ( $array as $key => &$value ) {
+            if ( is_array( $value ) ) {
+                $value = dt_recursive_sanitize_array( $value );
+            }
+            else {
+                $value = sanitize_text_field( wp_unslash( $value ) );
+            }
+        }
+        return $array;
+    }
+}
+
+function dt_campaign_router_endpoint( WP_REST_Request $request ){
+    $params = $request->get_params();
+    $params = dt_recursive_sanitize_array( $params );
+    if ( isset( $params["parts"]["post_id"] ) ){
+        $remote = get_transient( "dt_magic_link_remote_" . $params["parts"]["post_id"] );
+        $url = $remote . $params["root"] .  $params["parts"]["root"] . '/v1/' .  $params["parts"]["type"] . '/' . $params["url"];
+        if ( !empty( $remote )){
+            if ( $request->get_method() === "GET" ){
+                $fetch = wp_remote_get( $url, ["body" => $params ] );
+                if ( !is_wp_error( $fetch ) ){
+                    return json_decode( wp_remote_retrieve_body( $fetch ) );
+                }
+            }
+            if ( $request->get_method() === "POST" ){
+                $fetch = wp_remote_post( $url, ["body" => $params ] );
+                if ( !is_wp_error( $fetch ) ){
+                    return json_decode( wp_remote_retrieve_body( $fetch ) );
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+add_action( 'rest_api_init', function (){
+    $namespace = 'campaign_app/v1';
+    register_rest_route(
+        $namespace, '/24hour-router', [
+            [
+                'methods'  => [ "POST", "GET" ],
+                'callback' => "dt_campaign_router_endpoint",
+                'permission_callback' => '__return_true',
+            ],
+        ]
+    );
+} );
+
+
