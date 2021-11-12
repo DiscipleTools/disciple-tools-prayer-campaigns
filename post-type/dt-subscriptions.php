@@ -101,7 +101,7 @@ class DT_Subscriptions {
             if ( !isset( $time["time"] ) ){
                 continue;
             }
-            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time["time"], $time["duration"], $time['grid_id'] );
+            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time["time"], $time["duration"], $time['grid_id'] ?? null );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
             }
@@ -150,13 +150,15 @@ class DT_Subscriptions {
             'time_end' => $time + $duration_mins * 60,
         ];
 
-        $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
-        if ( ! empty( $grid_row ) ){
-            $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
-            $args['lng'] = $grid_row['longitude'];
-            $args['lat'] = $grid_row['latitude'];
-            $args['level'] = $grid_row['level_name'];
-            $args['label'] = $full_name;
+        if ( !empty( $location_id ) ){
+            $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
+            if ( ! empty( $grid_row ) ){
+                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
+                $args['lng'] = $grid_row['longitude'];
+                $args['lat'] = $grid_row['latitude'];
+                $args['level'] = $grid_row['level_name'];
+                $args['label'] = $full_name;
+            }
         }
         $new_report = Disciple_Tools_Reports::insert( $args );
 
