@@ -2,7 +2,7 @@
 
 function dt_24hour_campaign_register_scripts( $atts ){
     //campaigns core js
-    if ( !wp_script_is('dt_campaign', "registered" ) ){
+    if ( !wp_script_is( 'dt_campaign', "registered" ) ){
         wp_register_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __FILE__ ) ) . '../post-type/campaign_core.js', [
             'jquery',
             'lodash'
@@ -13,7 +13,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
     wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.css', [], filemtime( plugin_dir_path( __FILE__ ) . '24hour.css' ) );
 
     //24 hour campaign js
-    if ( !wp_script_is('dt_campaign' ) ){
+    if ( !wp_script_is( 'dt_campaign' ) ){
         wp_enqueue_script( 'dt_campaign', trailingslashit( plugin_dir_url( __FILE__ ) ) . '24hour.js', array( 'jquery', 'dt_campaign_core' ), filemtime( plugin_dir_path( __FILE__ ) . '24hour.js' ), true );
         wp_localize_script(
             'dt_campaign', 'campaign_objects', [
@@ -39,7 +39,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
             ]
         );
     }
-    set_transient( "dt_magic_link_remote_" . $atts["post_id"],  $atts["rest_url"], DAY_IN_SECONDS );
+    set_transient( "dt_magic_link_remote_" . $atts["post_id"], $atts["rest_url"], DAY_IN_SECONDS );
 }
 
 function dt_24hour_campaign_body( $color = "", $section = "" ){
@@ -369,7 +369,7 @@ function dt_24hour_campaign_shortcode( $atts ){
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
 
- if ( ! function_exists( 'dt_recursive_sanitize_array' ) ) {
+if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
     function dt_recursive_sanitize_array( array $array ) : array {
         foreach ( $array as $key => &$value ) {
             if ( is_array( $value ) ) {
@@ -389,15 +389,15 @@ function dt_campaign_router_endpoint( WP_REST_Request $request ){
     if ( isset( $params["parts"]["post_id"] ) ){
         $remote = get_transient( "dt_magic_link_remote_" . $params["parts"]["post_id"] );
         $url = $remote . $params["root"] .  $params["parts"]["root"] . '/v1/' .  $params["parts"]["type"] . '/' . $params["url"];
-        if ( !empty( $remote )){
+        if ( !empty( $remote ) ){
             if ( $request->get_method() === "GET" ){
-                $fetch = wp_remote_get( $url, ["body" => $params ] );
+                $fetch = wp_remote_get( $url, [ "body" => $params ] );
                 if ( !is_wp_error( $fetch ) ){
                     return json_decode( wp_remote_retrieve_body( $fetch ) );
                 }
             }
             if ( $request->get_method() === "POST" ){
-                $fetch = wp_remote_post( $url, ["body" => $params ] );
+                $fetch = wp_remote_post( $url, [ "body" => $params ] );
                 if ( !is_wp_error( $fetch ) ){
                     return json_decode( wp_remote_retrieve_body( $fetch ) );
                 }
