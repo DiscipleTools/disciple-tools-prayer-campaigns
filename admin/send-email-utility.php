@@ -1,6 +1,29 @@
 <?php
 
 class DT_Prayer_Campaigns_Send_Email {
+    public static function send_prayer_campaign_email( $to, $subject, $message, $headers ){
+        add_filter( 'wp_mail_from', function ( $email ) {
+            $prayer_campaign_email = get_option( 'dt_prayer_campaign_email' );
+            if ( !empty( $prayer_campaign_email ) ){
+                return $prayer_campaign_email;
+            }
+            return $email;
+        }, 200 );
+        add_filter( 'wp_mail_from_name', function ( $name ) {
+            $prayer_campaign_email_name = get_option( 'dt_prayer_campaign_email_name' );
+            if ( !empty( $prayer_campaign_email_name ) ){
+                return $prayer_campaign_email_name;
+            }
+            return dt_get_option( "dt_email_base_name" );
+        }, 200);
+        $sent = wp_mail( $to, $subject, $message, $headers );
+        if ( ! $sent ){
+            dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
+        }
+        return $sent;
+    }
+
+
     public static function send_registration( $post_id, $campaign_id ) {
 
         $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
@@ -88,7 +111,7 @@ class DT_Prayer_Campaigns_Send_Email {
             <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
         ';
 
-        $sent = wp_mail( $to, $subject, $message, $headers );
+        $sent = self::send_prayer_campaign_email( $to, $subject, $message, $headers );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         }
@@ -154,7 +177,7 @@ class DT_Prayer_Campaigns_Send_Email {
             <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
         ';
 
-        $sent = wp_mail( $to, $subject, $message, $headers );
+        $sent = self::send_prayer_campaign_email( $to, $subject, $message, $headers );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         }
@@ -203,7 +226,7 @@ class DT_Prayer_Campaigns_Send_Email {
                     <'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $public_key.'>
                     ';
 
-                $sent = wp_mail( $email, $subject, $message, $headers );
+                $sent = self::send_prayer_campaign_email( $email, $subject, $message, $headers );
                 if ( ! $sent ){
                     dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
                 }
@@ -240,7 +263,7 @@ class DT_Prayer_Campaigns_Send_Email {
                     <p>' . __( 'Choose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
                     <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
                 ';
-                $sent = wp_mail( $subscriber["contact_email"][0]["value"], $subject, $message, $headers );
+                $sent = self::send_prayer_campaign_email( $subscriber["contact_email"][0]["value"], $subject, $message, $headers );
                 if ( ! $sent ){
                     dt_write_log( __METHOD__ . ': Unable to send email. ' . $subscriber["contact_email"][0]["value"] );
                 } else {

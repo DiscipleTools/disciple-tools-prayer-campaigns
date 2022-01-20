@@ -43,7 +43,7 @@ class DT_Prayer_Campaigns_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_submenu_page( 'dt_extensions', 'Subscriptions', 'Subscriptions', 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_submenu_page( 'dt_extensions', 'Prayer Campaigns', 'Prayer Campaigns', 'manage_dt', $this->token, [ $this, 'content' ] );
     }
 
     /**
@@ -71,7 +71,7 @@ class DT_Prayer_Campaigns_Menu {
 
         ?>
         <div class="wrap">
-            <h2>Subscriptions</h2>
+            <h2>Prayer Campaigns</h2>
             <h2 class="nav-tab-wrapper">
                 <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
                    class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">Campaigns</a>
@@ -82,6 +82,7 @@ class DT_Prayer_Campaigns_Menu {
             switch ( $tab ) {
                 case "campaigns":
                     $object = new DT_Prayer_Campaigns_Campaigns();
+                    $object->process_email_settings();
                     $object->content();
                     break;
                 case "second":
@@ -104,6 +105,51 @@ DT_Prayer_Campaigns_Menu::instance();
  * Class DT_Prayer_Campaigns_Tab_General
  */
 class DT_Prayer_Campaigns_Campaigns {
+    private function default_email_address(): string {
+        $default_addr = apply_filters( 'wp_mail_from', '' );
+
+        if ( empty( $default_addr ) ) {
+
+            // Get the site domain and get rid of www.
+            $sitename = wp_parse_url( network_home_url(), PHP_URL_HOST );
+            if ( 'www.' === substr( $sitename, 0, 4 ) ) {
+                $sitename = substr( $sitename, 4 );
+            }
+
+            $default_addr = 'wordpress@' . $sitename;
+        }
+
+        return $default_addr;
+    }
+
+    private function default_email_name(): string {
+        $default_name = apply_filters( 'wp_mail_from_name', '' );
+
+        if ( empty( $default_name ) ) {
+            $default_name = 'WordPress';
+        }
+
+        return $default_name;
+    }
+
+    /**
+     * Process changes to the email settings
+     */
+    public function process_email_settings() {
+        if ( isset( $_POST['email_base_subject_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['email_base_subject_nonce'] ) ), 'email_subject' ) ) {
+
+            if ( isset( $_POST['email_address'] ) ) {
+                $email_subject = sanitize_text_field( wp_unslash( $_POST['email_address'] ) );
+                update_option( 'dt_prayer_campaign_email', $email_subject );
+            }
+
+            if ( isset( $_POST['email_name'] ) ) {
+                $email_subject = sanitize_text_field( wp_unslash( $_POST['email_name'] ) );
+                update_option( 'dt_prayer_campaign_email_name', $email_subject );
+            }
+        }
+    }
+
     public function content() {
         ?>
         <div class="wrap">
@@ -143,7 +189,41 @@ class DT_Prayer_Campaigns_Campaigns {
             <tbody>
                 <tr>
                     <td>
-                        Content
+                        <form method="POST">
+                            <input type="hidden" name="email_base_subject_nonce" id="email_base_subject_nonce"
+                                   value="<?php echo esc_attr( wp_create_nonce( 'email_subject' ) ) ?>"/>
+
+                            <table class="widefat">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <label
+                                            for="email_address"><?php echo esc_html( sprintf( "Specify Prayer Campaigns from email address. Leave blank to use default (%s)", self::default_email_address() ) ) ?></label>
+                                    </td>
+                                    <td>
+                                        <input name="email_address" id="email_address"
+                                               value="<?php echo esc_html( get_option( "dt_prayer_campaign_email" ) ) ?>"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label
+                                            for="email_name"><?php echo esc_html( sprintf( "Specify Prayer Campaigns from name. Leave blank to use default (%s)", self::default_email_name() ) ) ?></label>
+                                    </td>
+                                    <td>
+                                        <input name="email_name" id="email_name"
+                                               value="<?php echo esc_html( get_option( "dt_prayer_campaign_email_name" ) ) ?>"/>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <br>
+                            <span style="float:right;">
+                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
+                            </span>
+                        </form>
                     </td>
                 </tr>
             </tbody>
@@ -252,4 +332,3 @@ class DT_Prayer_Campaigns_Tab_Second {
         <?php
     }
 }
-

@@ -148,7 +148,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
             ';
 
-            $sent = wp_mail( $e['to'], $e['subject'], $e['message'], $e['headers'] );
+            $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( $e['to'], $e['subject'], $e['message'], $e['headers'] );
 
             if ( ! $sent ){
                 dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );

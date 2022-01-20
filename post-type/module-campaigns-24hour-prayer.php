@@ -212,6 +212,16 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                         <?php endif; ?>
                     <?php endif; ?>
                     </p>
+                    <p>
+                        <?php
+                        $prayer_campaign_email = get_option( 'dt_prayer_campaign_email' );
+                        if ( empty( $prayer_campaign_email ) ){
+                            $prayer_campaign_email = self::default_email_address();
+                        }
+                        ?>
+                        Prayer Campaign Emails are sent from <?php echo esc_html( $prayer_campaign_email ); ?>. <a target="_blank"
+                            href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">Configure</a>
+                    </p>
                 </div>
                 <script>
                 jQuery(document).ready(function($) {
@@ -233,6 +243,18 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             ?>
             <?php
         } // end if campaigns and enabled
+    }
+    private function default_email_address(): string {
+        $default_addr = apply_filters( 'wp_mail_from', '' );
+        if ( empty( $default_addr ) ) {
+            // Get the site domain and get rid of www.
+            $sitename = wp_parse_url( network_home_url(), PHP_URL_HOST );
+            if ( 'www.' === substr( $sitename, 0, 4 ) ) {
+                $sitename = substr( $sitename, 4 );
+            }
+            $default_addr = 'wordpress@' . $sitename;
+        }
+        return $default_addr;
     }
 
     /**
