@@ -483,7 +483,7 @@ class DT_Subscriptions_Base {
             $notifications = isset( $subscriber["receive_prayer_time_notifications"] ) && !empty( $subscriber["receive_prayer_time_notifications"] );
             ?>
             <div>Notifications allowed:
-                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </div>
             <p>
                 Showing times according to timezone: <strong><?php echo esc_html( $timezone ); ?></strong><br>
@@ -517,10 +517,10 @@ class DT_Subscriptions_Base {
                                 for <?php echo esc_html( $sub['label'] ) ?>
                             <?php endif;
                             if ( !empty( $sub["value"] ) ) : ?>
-                                <img class="dt-icon" title="<?php esc_html_e( 'Verified', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                                <img title="<?php esc_html_e( 'Verified', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
                             <?php endif;
                             if ( isset( $payload["prayer_time_reminder_sent"] ) ) : ?>
-                                <img class="dt-icon" title="<?php esc_html_e( 'Email Sent', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/email.svg' ) ?>"/>
+                                <img title="<?php esc_html_e( 'Email Sent', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/email.svg' ) ?>"/>
                             <?php endif; ?>
                         </span>
                     </div>
