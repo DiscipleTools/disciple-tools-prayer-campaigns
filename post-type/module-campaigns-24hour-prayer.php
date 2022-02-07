@@ -521,9 +521,11 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        $lang_code = "en_US";
-        if ( isset( $_GET["lang"] ) ){
-            $lang_code = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
+        $lang = "en_US";
+        if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
+            $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ));
+        } elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
+            $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
         }
         dt_24hour_campaign_register_scripts([
             "root" => $this->root,
@@ -532,19 +534,21 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
             "meta_key" => $this->parts["meta_key"],
             "post_id" => $this->parts["post_id"],
             "rest_url" => rest_url(),
-            "lang" => $lang_code,
+            "lang" => $lang,
         ]);
     }
 
 
     public function switch_language(){
-        $lang_code = "en_US";
-        if ( isset( $_GET["lang"] ) ){
-            $lang_code = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
+        $lang = "en_US";
+        if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
+            $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ));
+        } elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
+            $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
         }
-        add_filter( 'locale', function ( $locale ) use ( $lang_code ){
-            if ( !empty( $lang_code ) ){
-                return $lang_code;
+        add_filter( 'locale', function ( $locale ) use ( $lang ){
+            if ( !empty( $lang ) ){
+                return $lang;
             }
             return $locale;
         } );
