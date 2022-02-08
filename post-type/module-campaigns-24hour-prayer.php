@@ -523,7 +523,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
     public function wp_enqueue_scripts(){
         $lang = "en_US";
         if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
-            $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ));
+            $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
         } elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
             $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
         }
@@ -542,7 +542,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
     public function switch_language(){
         $lang = "en_US";
         if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
-            $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ));
+            $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
         } elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
             $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
         }
