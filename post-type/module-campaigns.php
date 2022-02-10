@@ -98,15 +98,15 @@ class DT_Campaigns_Base {
                 'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
                 'type'        => 'key_select',
                 'default'     => [
-                    'pre_signup'   => [
-                        'label' => __( 'Pre Sign-Up', 'disciple_tools' ),
-                        'description' => _x( 'Getting Ready', 'field description', 'disciple_tools' ),
-                        'color' => "orange"
-                    ],
                     'active'   => [
                         'label' => __( 'Active', 'disciple_tools' ),
                         'description' => _x( 'Is active.', 'field description', 'disciple_tools' ),
                         'color' => "#4CAF50"
+                    ],
+                    'pre_signup'   => [
+                        'label' => __( 'Pre Sign-Up', 'disciple_tools' ),
+                        'description' => _x( 'Getting Ready', 'field description', 'disciple_tools' ),
+                        'color' => "orange"
                     ],
                     'inactive' => [
                         'label' => __( 'Inactive', 'disciple_tools' ),
