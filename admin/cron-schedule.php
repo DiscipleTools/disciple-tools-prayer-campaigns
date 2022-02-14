@@ -77,7 +77,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
     // build message by campaign, and then by user, and grouping times per user message
     foreach ( $grouped_reminders as $campaign_id => $subscriber_values ) {
         // get campaign messages and links for the day
-        $campaign_subject_line = 'Prayer Time reminder!';
+        $campaign_subject_line = __( 'Prayer Time reminder!', 'disciple-tools-prayer-campaigns' );
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         foreach ( $subscriber_values as $key => $reports ) {
@@ -134,6 +134,8 @@ function dt_prayer_campaign_prayer_time_reminder(){
             if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["reminder_content"] ) ){
                 $prayer_content_message = $campaign["campaign_strings"][$record["lang"]]["reminder_content"];
             }
+
+            $prayer_content_message = add_filter( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
             $e['message'] =
                 '

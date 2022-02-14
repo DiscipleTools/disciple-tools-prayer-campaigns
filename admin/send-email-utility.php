@@ -99,6 +99,8 @@ class DT_Prayer_Campaigns_Send_Email {
             $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
         }
 
+        $sign_up_email_extra_message = add_filter( 'dt_campaign_signup_content', $sign_up_email_extra_message );
+
         $message .= '
             <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement! You\'re one click away from finishing your registration.', 'disciple-tools-prayer-campaigns' ) . '</h4>
             <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' . __( 'Click here to verify your email address and confirm your prayer times.', 'disciple-tools-prayer-campaigns' ) .  '</a></p>
@@ -163,10 +165,6 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        $sign_up_email_extra_message = "";
-        if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["signup_content"] ) ){
-            $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
-        }
 
         $subject = __( 'Registration Confirmation', 'disciple-tools-prayer-campaigns' );
         $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
