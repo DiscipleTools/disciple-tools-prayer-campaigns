@@ -341,7 +341,7 @@ msgstr "Ça ne peut pas être annulé."
 
 #: magic-links/subscription-management.php:1403
 msgid "DELETE"
-msgstr "EFFACER"
+msgstr "SUPPRIMER"
 
 #: magic-links/subscription-management.php:1420
 msgid "This subscription has ended or is not configured correctly."
