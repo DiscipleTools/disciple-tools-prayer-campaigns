@@ -99,7 +99,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
         }
 
-        $sign_up_email_extra_message = add_filter( 'dt_campaign_signup_content', $sign_up_email_extra_message );
+        $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
         $message .= '
             <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement! You\'re one click away from finishing your registration.', 'disciple-tools-prayer-campaigns' ) . '</h4>

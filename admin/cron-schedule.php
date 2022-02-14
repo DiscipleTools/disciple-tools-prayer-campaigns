@@ -135,7 +135,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 $prayer_content_message = $campaign["campaign_strings"][$record["lang"]]["reminder_content"];
             }
 
-            $prayer_content_message = add_filter( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
+            $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
             $e['message'] =
                 '
