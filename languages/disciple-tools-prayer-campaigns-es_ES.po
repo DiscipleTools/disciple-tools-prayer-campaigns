@@ -7,211 +7,182 @@ msgstr ""
 "Project-Id-Version: Prayer Campaigns\n"
 "Language: es\n"
 
-#: admin/cron-schedule.php:126 admin/send-email-utility.php:48
+#: admin/cron-schedule.php:121 admin/send-email-utility.php:48
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s de %2$s a %3$s"
 
-#: admin/cron-schedule.php:132
+#: admin/cron-schedule.php:127
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "por %s"
 
-#: admin/cron-schedule.php:145 admin/send-email-utility.php:66
+#: admin/cron-schedule.php:140 admin/send-email-utility.php:66
+#: admin/send-email-utility.php:135 admin/send-email-utility.php:235
 msgid "Hello %s,"
 msgstr "Hola %s,"
 
-#: admin/cron-schedule.php:146 admin/send-email-utility.php:80
+#: admin/cron-schedule.php:141
 msgid "Thank you for praying with us!"
 msgstr "¡Gracias por orar con nosotros!"
 
-#: admin/cron-schedule.php:147
+#: admin/cron-schedule.php:142
 msgid "Here are your upcoming prayer times:"
 msgstr "Aquí están sus próximos tiempos de oración:"
 
-#: admin/cron-schedule.php:149 admin/send-email-utility.php:84
+#: admin/cron-schedule.php:144 admin/send-email-utility.php:84
 msgid "Times are shown according to: %s time"
-msgstr "Horas mostradas según el huso horario de: %s"
-
-#: admin/cron-schedule.php:153 admin/send-email-utility.php:86
-msgid "Click here Manage your account and time commitments"
-msgstr "Click aquí para administrar tu cuenta y tus compromisos de oración"
+msgstr "Horas se muestran según el huso horario de: %s"
 
 #: admin/send-email-utility.php:63
 msgid "Registered to pray with us!"
-msgstr "¡Te has registrado para orar con nosotros!"
+msgstr "¡Registrate para orar con nosotros!"
 
 #: admin/send-email-utility.php:81
 msgid "Click here to verify your email address and confirm your prayer times."
-msgstr "Click aquí para verificar tu dirección de correo y confirmar tus tiempos de oración."
+msgstr "As click aquí para verificar tu dirección de correo y confirmar tus tiempos de oración."
 
 #: admin/send-email-utility.php:82
 msgid "Here are the times you have committed to pray:"
 msgstr "Aquí están los tiempos en los cuales te has comprometido a orar:"
 
-#: magic-links/24hour.php:15
-msgid "Everyday from %1$s to %2$s"
-msgstr "Todos los días de %1$s a %2$s"
-
-#: magic-links/24hour.php:16
+#: magic-links/24hour.php:22 magic-links/subscription-management.php:559
 msgid "Select a time"
 msgstr "Elige un tiempo"
 
-#: magic-links/24hour.php:17
+#: magic-links/24hour.php:23 magic-links/subscription-management.php:560
 msgid "fully covered once"
 msgstr "completamente cubierto una vez"
 
-#: magic-links/24hour.php:18
+#: magic-links/24hour.php:24 magic-links/subscription-management.php:561
 msgid "fully covered %1$s times"
 msgstr "completamente cubierto %1$s veces"
 
-#: magic-links/24hour.php:19
+#: magic-links/24hour.php:25 magic-links/subscription-management.php:562
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s por %2$s minutos."
 
-#: magic-links/24hour.php:20
-msgid "All of the %1$s time slots are covered in once prayer once. Help us cover them twice!"
-msgstr "Todas las franjas horarias de las %1$s están cubiertas en oración una vez. ¡Ayúdanos a cubrirlas dos veces!"
-
-#: magic-links/24hour.php:21
-msgid "%1$s people praying %2$s minutes everyday day will cover the region in 24h prayer."
-msgstr "%1$s personas orando %2$s minutos cada día cubriría a la región en oración 24 hs."
-
-#: magic-links/24hour.php:198
+#: magic-links/24hour.php:92
 msgid "Loading prayer campaign data..."
 msgstr "Cargando datos de la campaña de oración..."
 
-#: magic-links/24hour.php:209
-msgid "Pray With Us"
-msgstr "Ora con nosotros"
-
-#: magic-links/24hour.php:220 magic-links/24hour.php:266
-#: magic-links/24hour.php:300
+#: magic-links/24hour.php:146 magic-links/24hour.php:183
 msgid "Showing times for:"
 msgstr "Mostrando horarios para:"
 
-#: magic-links/24hour.php:228 magic-links/24hour.php:250
-#: magic-links/24hour.php:276 magic-links/24hour.php:314
-msgid "< back"
-msgstr "< volver"
-
-#: magic-links/24hour.php:230
+#: magic-links/24hour.php:111
 msgid "Select an option"
 msgstr "Seleccione una opción"
 
-#: magic-links/24hour.php:233
+#: magic-links/24hour.php:114
 msgid "Pray every day at the same time"
-msgstr "Orar todos los días a la misma hora"
+msgstr "Ore todos los días a la misma hora"
 
-#: magic-links/24hour.php:235
+#: magic-links/24hour.php:116
 msgid "Example: Everyday at 4pm for 15mins"
-msgstr "Ejemplo: Todos los días de 4pm por 15 min"
+msgstr "Ejemplo: Todos los días a las 4pm por 15 min"
 
-#: magic-links/24hour.php:238
+#: magic-links/24hour.php:119
 msgid "Select days and times to pray"
-msgstr "Elige los días y horarios para orar"
+msgstr "Elige los días y la hora para orar"
 
-#: magic-links/24hour.php:240
+#: magic-links/24hour.php:121
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Ejemplo: El lunes 12 a las 6pm por 15 min"
 
-#: magic-links/24hour.php:256
+#: magic-links/24hour.php:136 magic-links/subscription-management.php:1202
 msgid "Prayer Time"
 msgstr "Tiempo de oración"
 
-#: magic-links/24hour.php:258 magic-links/24hour.php:288
+#: magic-links/24hour.php:138 magic-links/24hour.php:171
+#: magic-links/subscription-management.php:1204
+#: magic-links/subscription-management.php:1286
 msgid "Daily Time"
 msgstr "Tiempo diario"
 
-#: magic-links/24hour.php:262 magic-links/24hour.php:292
+#: magic-links/24hour.php:142 magic-links/24hour.php:175
+#: magic-links/subscription-management.php:1208
+#: magic-links/subscription-management.php:1290
 msgid "For how long"
 msgstr "Por cuánto tiempo"
 
-#: magic-links/24hour.php:268 magic-links/24hour.php:307
+#: magic-links/24hour.php:149 magic-links/24hour.php:193
+#: magic-links/subscription-management.php:1229
+#: magic-links/subscription-management.php:1323
 msgid "Confirm Times"
-msgstr "Confirmar tiempos"
+msgstr "Tiempo Confirmado"
 
-#: magic-links/24hour.php:279
+#: magic-links/24hour.php:161 magic-links/subscription-management.php:1277
 msgid "Select a day and choose a time"
 msgstr "Seleccione un día y escoja una hora"
 
-#: magic-links/24hour.php:286
+#: magic-links/24hour.php:169 magic-links/subscription-management.php:1284
 msgid "Select a prayer time"
 msgstr "Seleccione un tiempo de oración"
 
-#: magic-links/24hour.php:296
+#: magic-links/24hour.php:179 magic-links/subscription-management.php:1294
 msgid "Add prayer time"
 msgstr "Agregar tiempo de oración"
 
-#: magic-links/24hour.php:297
+#: magic-links/24hour.php:180 magic-links/subscription-management.php:1295
 msgid "Time added"
 msgstr "Tiempo agregado"
 
-#: magic-links/24hour.php:304 magic-links/24hour.php:372
+#: magic-links/24hour.php:187 magic-links/24hour.php:261
+#: magic-links/subscription-management.php:1302
 msgid "Selected Times"
 msgstr "Tiempos seleccionados"
 
-#: magic-links/24hour.php:316
+#: magic-links/24hour.php:205
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: magic-links/24hour.php:330
-msgid "Contact Name"
-msgstr "Nombre de contacto"
-
-#: magic-links/24hour.php:331
+#: magic-links/24hour.php:219 magic-links/24hour.php:220
+#: magic-links/24hour.php:301 magic-links/24hour.php:302
 msgid "Name"
 msgstr "Nombre"
 
-#: magic-links/24hour.php:336
-msgid "You're email is required."
-msgstr "Su correo es requerido."
-
-#: magic-links/24hour.php:338
-msgid "Contact Email"
-msgstr "Correo de contacto"
-
-#: magic-links/24hour.php:339 magic-links/24hour.php:340
+#: magic-links/24hour.php:227 magic-links/24hour.php:228
+#: magic-links/24hour.php:229 magic-links/24hour.php:309
+#: magic-links/24hour.php:310 magic-links/24hour.php:311
 msgid "Email"
-msgstr "Correo"
+msgstr "Correo electrónico"
 
-#: magic-links/24hour.php:347
+#: magic-links/24hour.php:236
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "Recibir notificaciones de tiempos de oración (se requiere verificación por correo)"
 
-#: magic-links/24hour.php:352
+#: magic-links/24hour.php:241 magic-links/24hour.php:317
 msgid "Submit Your Prayer Commitment"
 msgstr "Enviar tu compromiso de oración"
 
-#: magic-links/24hour.php:358
+#: magic-links/24hour.php:247 magic-links/24hour.php:323
 msgid "Sent! Check your email."
 msgstr "¡Enviado! Revisa tu correo."
 
-#: magic-links/24hour.php:360
+#: magic-links/24hour.php:249
 msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
 msgstr "¡Cliquee el enlace incluído en el correo para verificar su compromiso y recibir notificaciones de tiempos de oración!"
 
-#: magic-links/24hour.php:363
+#: magic-links/24hour.php:252
 msgid "In the email is a link to manage your prayer times."
 msgstr "En el correo hay un enlace para administrar tus tiempos de oración."
 
-#: magic-links/24hour.php:366
+#: magic-links/24hour.php:255 magic-links/24hour.php:325
 msgid "OK"
 msgstr "OK"
 
-#: magic-links/24hour.php:397
+#: magic-links/24hour.php:286 magic-links/subscription-management.php:1176
+#: magic-links/subscription-management.php:1225
+#: magic-links/subscription-management.php:1319
+#: magic-links/subscription-management.php:1400
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: magic-links/24hour.php:400
+#: magic-links/24hour.php:289 magic-links/subscription-management.php:1179
 msgid "Select"
 msgstr "Seleccionar"
-
-#. Plugin Name of the plugin/theme
-#: 
-msgid "Disciple Tools - Prayer Campaigns"
-msgstr "Disciple Tools - Campañas de Oración"
 
 #. Plugin URI of the plugin/theme
 #: 
@@ -221,10 +192,164 @@ msgstr "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
 #. Description of the plugin/theme
 #: 
 msgid "Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project."
-msgstr "Agrega un módulo de subscripción a oración a Disciple.Tools que le permite a no-usuarios subscribirse para orar por ubicaciones específicas en tiempos específicos, apoyando saturaciones de tiempo y geográficas para su proyecto."
+msgstr "Agrega un módulo de subscripción a oración a Disciple.Tools que le permite a no-usuarios subscribirse para orar por ubicaciones específicas en tiempos específicos, lo que permite la  saturación de oración tanto en el tiempo \n"
+" como en la geografía para su proyecto."
 
 #. Author URI of the plugin/theme
 #: 
 msgid "https://github.com/DiscipleTools"
 msgstr "https://github.com/DiscipleTools"
+
+#: admin/cron-schedule.php:148 admin/send-email-utility.php:88
+msgid "Click here to manage your account and time commitments"
+msgstr "Has clic aqui para administrar su cuenta y compromiso de tiempo"
+
+#: admin/send-email-utility.php:80
+msgid "Thank you for joining us in strategic prayer for a disciple making movement! You're one click away from finishing your registration."
+msgstr "Gracias por unirse en oración estratégica al movimiento de hacer discípulos! Esta a un Clic de terminar su registración."
+
+#: admin/send-email-utility.php:148
+msgid "Registration Confirmation"
+msgstr "Registración confirmada"
+
+#: admin/send-email-utility.php:151
+msgid "Thank you for signing up to pray!"
+msgstr "Gracias por suscribirse a orar!"
+
+#: admin/send-email-utility.php:152
+msgid "We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer."
+msgstr "Tenemos tiempo antes de que la campaña empiece. Le enviaremos otro correo electrónico unos meses antes del primer día pidiéndole que escoja los tiempos específicos para orar. Trabajando unidos cubriremos la región en oración 24/7."
+
+#: admin/send-email-utility.php:153
+msgid "If you know your schedule already you can choose your times here:"
+msgstr "Si ya sabe su horario, usted puede escoger su tiempo aquí:"
+
+#: admin/send-email-utility.php:233
+msgid "What time(s) will you pray?"
+msgstr "A que hora(s) orara?"
+
+#: admin/send-email-utility.php:236
+msgid "Thank you for signing up to help us cover the region in nonstop prayer!!"
+msgstr "Gracias por suscribirse a ayudarnos a cubrir la región en oración sin parar!!"
+
+#: admin/send-email-utility.php:237
+msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
+msgstr "Este es el tiempo de escoger el tiempo especifico en que usted va a orar. De bajo esta el enlace par los tiempos de oración."
+
+#: admin/send-email-utility.php:238
+msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
+msgstr "Para orar a la misma hora todos los días (preferiblemente!) haga clic en el botón de \"Añadir Tiempo Diario de Oración.\""
+
+#: admin/send-email-utility.php:239
+msgid "If you need to choose different times or can't commit to pray every day click the \"Add individual Prayer Times\" button."
+msgstr "Si necesita escoger tiempos diferentes y no se puede comprometer a orar todos los días , haga clic en el botón de \"Anadir Tiempo de Oración Individual\"."
+
+#: admin/send-email-utility.php:240
+msgid "Choose prayer times link:"
+msgstr "Escoja el enlace de tiempos de oracion"
+
+#: magic-links/24hour.php:78
+msgid "Percentage covered in prayer"
+msgstr "Porcentaje de cobertura en oración"
+
+#: magic-links/24hour.php:99
+msgid "Choose Prayer Times"
+msgstr "Elija el tiempo de Oración"
+
+#: magic-links/24hour.php:109 magic-links/24hour.php:132
+#: magic-links/24hour.php:158 magic-links/24hour.php:203
+msgid "Back"
+msgstr "Regresar"
+
+#: magic-links/24hour.php:189 magic-links/subscription-management.php:1304
+msgid "No selected Time"
+msgstr "Tiempo no seleccionado"
+
+#: magic-links/24hour.php:225 magic-links/24hour.php:307
+msgid "Your email is required."
+msgstr "Su correo electrónico es requerido."
+
+#: magic-links/24hour.php:296
+msgid "I'm interested in praying! Send me an email when it is time to choose prayer times."
+msgstr "Estoy interesado en Orar! Envíeme un correo electrónico cuando sea el tiempo de escoger el horario de oración."
+
+#: magic-links/24hour.php:334
+msgid "We are not longer looking for sign ups"
+msgstr "No estamos necesitando mas suscripciones"
+
+#: magic-links/24hour.php:335
+msgid "Thanks for praying with us!"
+msgstr "Gracias por orar con nosotros!"
+
+#: magic-links/subscription-management.php:35
+#: magic-links/subscription-management.php:1132
+msgid "My Prayer Times"
+msgstr "Mi Tiempo de oración"
+
+#: magic-links/subscription-management.php:1137
+msgid "Your prayer times have been verified!"
+msgstr "Su tiempo de oración ha sido verificado!"
+
+#: magic-links/subscription-management.php:1190
+msgid "Add a Daily Prayer Time"
+msgstr "Añadir tiempo de Oración Diario"
+
+#: magic-links/subscription-management.php:1193
+msgid "Add Individual Prayer Times"
+msgstr "Añadir Tiempo de Oración Individual"
+
+#: magic-links/subscription-management.php:1195
+msgid "Download Calendar"
+msgstr "Descargar calendario"
+
+#: magic-links/subscription-management.php:1218
+#: magic-links/subscription-management.php:1312
+msgid "Your new prayer times have been saved."
+msgstr "Su nuevo tiempo de oración ha sido guardado."
+
+#: magic-links/subscription-management.php:1238
+#: magic-links/subscription-management.php:1335
+msgid "ok"
+msgstr "ok"
+
+#: magic-links/subscription-management.php:1269
+msgid "Close"
+msgstr "cerrar"
+
+#: magic-links/subscription-management.php:1327
+msgid "back"
+msgstr "Regresar"
+
+#: magic-links/subscription-management.php:1380
+msgid "Profile Settings"
+msgstr "Configuración de Perfil"
+
+#: magic-links/subscription-management.php:1387
+msgid "Delete this profile and all the scheduled prayer times?"
+msgstr "Borrar este perfil y todo el horario de Oración?"
+
+#: magic-links/subscription-management.php:1389
+msgid "Delete"
+msgstr "Borrar"
+
+#: magic-links/subscription-management.php:1392
+msgid "Are you sure you want to delete your profile?"
+msgstr "Esta seguro que desea borrar su perfil?"
+
+#: magic-links/subscription-management.php:1394
+msgid "This can not be undone."
+msgstr "Esto no podrá ser revertido."
+
+#: magic-links/subscription-management.php:1403
+msgid "DELETE"
+msgstr "BORRAR"
+
+#: magic-links/subscription-management.php:1420
+msgid "This subscription has ended or is not configured correctly."
+msgstr "Esta suscripción ha sido terminada o no esta correctamente configurada."
+
+#. Plugin Name of the plugin/theme
+#: 
+msgid "Disciple.Tools - Prayer Campaigns"
+msgstr "Discípulo. Herramientas - Campana de Oración"
 
