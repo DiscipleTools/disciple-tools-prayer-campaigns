@@ -164,8 +164,6 @@ class DT_Prayer_Campaigns_Send_Email {
             $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
         }
 
-        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-
         $subject = __( 'Registration Confirmation', 'disciple-tools-prayer-campaigns' );
         $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
         $message .= '
