@@ -432,6 +432,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $coverage_percentage = $coverage_levels[0]["percent"];
         $second_level = isset( $coverage_levels[1]["percent"] ) ? $coverage_levels[1]["percent"] : "";
 
+        $min_time_duration = 15;
+        if ( isset( $record["min_time_duration"]["key"] ) ){
+            $min_time_duration = $record["min_time_duration"]["key"];
+        }
+        $minutes_committed = 0;
+        foreach( $coverage_levels as $level ){
+            $minutes_committed += $level["blocks_covered"] * $min_time_duration;
+        }
 
         $locale = $params["parts"]["lang"] ?: "en_US";
         $description = "";
@@ -464,7 +472,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'slot_length' => (int) $min_time_duration,
             'second_level' => $second_level,
             "duration_options" => $field_settings["duration_options"]["default"],
-            'status' => $record["status"]["key"]
+            'status' => $record["status"]["key"],
+            'minutes_committed' => $minutes_committed,
         ];
 
     }
