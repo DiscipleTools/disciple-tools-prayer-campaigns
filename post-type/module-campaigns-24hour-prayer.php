@@ -437,7 +437,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             $min_time_duration = $record["min_time_duration"]["key"];
         }
         $minutes_committed = 0;
-        foreach( $coverage_levels as $level ){
+        foreach ( $coverage_levels as $level ){
             $minutes_committed += $level["blocks_covered"] * $min_time_duration;
         }
 
