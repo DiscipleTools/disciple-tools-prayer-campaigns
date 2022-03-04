@@ -68,6 +68,12 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
         #cp-wrapper button {
             background-color: <?php echo esc_html( $color ) ?>;
         }
+        #cp-wrapper button:hover {
+            background-color: transparent;
+            border-color: <?php echo esc_html( $color ) ?>;
+            color: <?php echo esc_html( $color ) ?>;
+        }
+
     </style>
 
     <?php if ( $section === "percentage" || $section === "" ) :?>

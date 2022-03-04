@@ -148,7 +148,6 @@
     border-radius: 100px;
     min-width: 100px;
     min-height: 20px;
-    margin-bottom: 10px;
     margin-bottom: 5px;
 }
 
@@ -159,6 +158,9 @@
     border: 1px solid transparent;
     font-weight: normal;
     padding: .85em 1em;
+}
+#cp-wrapper button:hover {
+    background-color: transparent;
 }
 #cp-wrapper button[disabled] {
     opacity: .25;
