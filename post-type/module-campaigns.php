@@ -321,6 +321,7 @@ class DT_Campaigns_Base {
         if ( $post_type === $this->post_type ){
             $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
+            $tiles["prayer_timer"] = [ "label" => __( "Prayer Timer", 'disciple_tools' ) ];
         }
         return $tiles;
     }
