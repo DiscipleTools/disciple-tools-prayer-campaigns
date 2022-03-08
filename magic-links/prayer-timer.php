@@ -22,7 +22,7 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
             }
 
             .prayer-timer-slot {
-                width: 75%;
+                width: 76%;
                 height: 51.6%;
                 clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
                 transform-origin: top;
@@ -72,8 +72,26 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 margin-top: 25px;
             }
 
-            .prayer-timer-start-praying {
+            .prayer-timer-start-praying-button {
+                color: #fefefe;
                 background-color: <?php echo esc_html( $color_hex ); ?>;
+                border-radius: 5px;
+                height: 3rem;
+                cursor: pointer;
+                font-size: .9rem;
+                line-height: 1;
+                padding: .85em 1em;
+                text-align: center;
+            }
+
+            .prayer-timer-now-praying {
+                color: #fefefe;
+                background-color: gray;
+            }
+
+            .prayer-timer-start-praying-button:hover {
+                color: #fefefe;
+                filter: brightness(0.9);
             }
 
             .prayer-timer-rotate {
@@ -82,6 +100,7 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
             }
 
             .prayer-timer-duration-label {
+                margin-top: 1.6rem;
                 color: gray;
                 font-style: italic;
             }
@@ -96,14 +115,19 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 <div class="prayer-timer-slot prayer-timer-slot-5"></div>
             </div>
             <div class="prayer-timer-button-container">
-                <a href="javascript:start_timer();" class="button cp-nav prayer-timer-start-praying" id="start-praying">Start Praying!</a>
+                <a href="javascript:start_timer();" class="prayer-timer-start-praying-button" id="start-praying">Start Praying!</a>
                 <p class="prayer-timer-duration-label">(Prayer time: <?php echo esc_html( $prayer_duration_min ); ?> min)</p>
             </div>
         </div>
         <script>
             function start_timer() {
-                jQuery( '#start-praying' ).text( 'Now praying...');
-                jQuery( '#start-praying' ).attr('style', 'background-color: gray');
+                var start_praying_button = jQuery( '#start-praying' )
+                
+                start_praying_button.attr( 'href', 'javascript:void();' );
+                start_praying_button.text( 'Now praying...');
+                start_praying_button.attr('class', 'prayer-timer-start-praying-button prayer-timer-now-praying');
+                start_praying_button.blur()
+                
                 jQuery( '.prayer-timer-needle' ).attr( 'class', 'prayer-timer-needle prayer-timer-rotate' );
                 
                 setTimeout( function() {
