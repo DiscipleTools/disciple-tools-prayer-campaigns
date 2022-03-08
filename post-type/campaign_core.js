@@ -87,8 +87,8 @@ window.campaign_scripts = {
   },
 
   //clean formatted summary for prayer commitment display
-  timestamps_to_summary: function( timestamp_start, timestamp_end ) {
-    const options = { hour: "numeric", minute: "numeric" };
+  timestamps_to_summary: function( timestamp_start, timestamp_end, timezone ) {
+    const options = { hour: "numeric", minute: "numeric", timeZone: timezone };
     let summary = '';
     let date_start_clean = new Intl.DateTimeFormat("en-US", options).format( timestamp_start * 1000 );
 

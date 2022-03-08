@@ -236,15 +236,19 @@ jQuery(document).ready(function($) {
     $('#cp-confirm-daily-times').on("click", function (){
       let daily_time_selected = parseInt($("#cp-daily-time-select").val());
       let duration = parseInt($("#cp-prayer-time-duration-select").val())
-      days.forEach( day=>{
-        let time = day.key + daily_time_selected;
-        let now = new Date().getTime()/1000
-        let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+
+      let start_time = days[0].key + daily_time_selected;
+      let start_date = window.luxon.DateTime.fromSeconds(start_time).setZone(current_time_zone)
+      let now = new Date().getTime()/1000
+      for ( let i = 0; i < days.length; i++){
+        let time_date = start_date.plus({day:i})
+        let time = parseInt( time_date.toFormat('X') );
+        let time_label = time_date.toFormat('MMMM dd HH:mm a');
         let already_added = selected_times.find(k=>k.time===time)
         if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
           selected_times.push({time: time, duration: duration, label: time_label})
         }
-      })
+      }
       display_selected_times();
     })
 

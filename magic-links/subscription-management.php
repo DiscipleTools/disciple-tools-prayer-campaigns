@@ -56,13 +56,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
         $allowed_js[] = 'dt_campaign_core';
+        $allowed_js[] = 'luxon';
         return $allowed_js;
     }
 
     public function wp_enqueue_scripts(){
+        wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, "2.3.1", true );
         wp_enqueue_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'post-type/campaign_core.js', [
             'jquery',
-            'lodash'
+            'lodash',
+            'luxon'
         ], filemtime( plugin_dir_path( __DIR__ ) . 'post-type/campaign_core.js' ), true );
 
     }
@@ -676,17 +679,20 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     calendar_subscribe_object.my_commitments.forEach(c=>{
                         let time = c.time_begin;
                         let now = new Date().getTime()/1000
-                        if ( time >= now){
-                            let day_timestamp = window.campaign_scripts.day_start(c.time_begin, current_time_zone)
+                        if ( time >= now ){
+                            let day_timestamp = 0
+                            days.forEach(d=>{
+                                if ( d.key < c.time_begin ){
+                                    day_timestamp = d.key
+                                }
+                            })
 
                             let date = new Date( time * 1000 );
                             let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                             let day_number = date.getDate();
                             let day_weekday = weekdays[ date.getDay() ];
 
-                            let time_label = window.campaign_scripts.timestamp_to_time(c.time_begin, current_time_zone).toString().replace(':00','')
-                            let time_end_label = window.campaign_scripts.timestamp_to_time(c.time_end, current_time_zone)
-                            let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end)
+                            let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end, current_time_zone)
                             $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
                                 <div class="prayer-commitment" id="selected-${window.lodash.escape(time)}"
                                     data-time="${window.lodash.escape(time)}">
@@ -882,15 +888,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 $('#cp-confirm-daily-times').on("click", function (){
                     let daily_time_selected = parseInt($("#cp-daily-time-select").val());
                     let duration = parseInt($("#cp-prayer-time-duration-select").val())
-                    days.forEach( day=>{
-                        let time = day.key + daily_time_selected;
-                        let now = new Date().getTime()/1000
-                        let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+
+                    let start_time = days[0].key + daily_time_selected;
+                    let start_date = window.luxon.DateTime.fromSeconds(start_time).setZone(current_time_zone)
+                    let now = new Date().getTime()/1000
+                    for ( let i = 0; i < days.length; i++){
+                        let time_date = start_date.plus({day:i})
+                        let time = parseInt( time_date.toFormat('X') );
+                        let time_label = time_date.toFormat('MMMM dd HH:mm a');
                         let already_added = selected_times.find(k=>k.time===time)
                         if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
                             selected_times.push({time: time, duration: duration, label: time_label})
                         }
-                    })
+                    }
                     submit_times();
                 })
 
