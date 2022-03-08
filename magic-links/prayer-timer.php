@@ -77,7 +77,7 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
             }
 
             .prayer-timer-rotate {
-                -webkit-transition:-webkit-transform <?php echo esc_html( $prayer_duration_min) * 60; ?>s linear;
+                -webkit-transition:-webkit-transform <?php echo esc_html( $prayer_duration_min ) * 60; ?>s linear;
                 transform: rotate(360deg);
             }
 
