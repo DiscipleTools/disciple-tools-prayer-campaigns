@@ -65,6 +65,7 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 z-index: 1;
                 transform-origin: bottom;
                 top: -44%;
+                border-radius: 50px;
             }
 
             .prayer-timer-button-container {
