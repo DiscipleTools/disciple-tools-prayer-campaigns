@@ -608,7 +608,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     let content = $(`#${id}`);
                     content.empty();
                     let list = '';
-                    let current_calendar = '#cal1';
+                    let current_calendar = 1;
                     let new_list = '';
                     let first_cell = true;
                     days.forEach(day=>{
@@ -625,15 +625,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         // Create a new calendar
                         if ( !first_cell && day.day === "1" ) {
                             // A new month has started, let's append the accumulated days and clear the variable
-                            $( current_calendar ).append(new_list);
+                            $( '#cal' + current_calendar ).append(new_list);
                             new_list = '';
 
                             // Add new calendar title after current calendar
-                            $( current_calendar ).after(`
+                            $( '#cal' + current_calendar ).after(`
                             <div class="calendar-title">
                                 <h2>${window.lodash.escape(day.month)}</h2>
                             </div>
-                            <div class="new_calendar" id="cal2">
+                            <div class="new_calendar" id="cal${current_calendar+1}">
                                 <div class="new_weekday">S</div>
                                 <div class="new_weekday">M</div>
                                 <div class="new_weekday">T</div>
@@ -644,7 +644,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             </div>
                             `)
                             //Current calendar is now #cal2
-                            current_calendar = '#cal2';
+                            current_calendar += 1;
 
                             // If first weekday of the new month isn't a Sunday, add necessary amount of empty cell-days
                             if ( day.weekday != 1 ) {
@@ -663,7 +663,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         </div>`;
                         first_cell = false;
                     })
-                    $( current_calendar ).append(new_list);
+                    $( '#cal' + current_calendar ).append(new_list);
                     content.html(`<div class="grid-x" id="selection-grid-wrapper">${list}</div>`)
                 }
                 draw_calendar()
