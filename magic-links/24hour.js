@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
   }
   jQuery.ajax({
     type: "GET",
-    data: {action: 'get', parts: jsObject.parts, 'url': 'campaign_info' },
+    data: {action: 'get', parts: jsObject.parts, 'url': 'campaign_info', time: new Date().getTime() },
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     url: link
@@ -479,7 +479,7 @@ jQuery(document).ready(function($) {
 
     let send_submission = (data, submit_spinner)=>{
       let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type;
-      if ( window.campaign_objects.remote){
+      if ( window.campaign_objects.remote ){
         link =  jsObject.root + jsObject.parts.root + '/v1/24hour-router';
       }
       data.url = '';
