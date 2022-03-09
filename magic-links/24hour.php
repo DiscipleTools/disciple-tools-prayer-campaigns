@@ -294,7 +294,7 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             <button class="button button-cancel clear cp-nav" data-open="cp-main-page" aria-label="Close reveal" type="button">
                 <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
             </button>
-            <button class="button cp-nav" type="button" id="confirm-timezone" data-open="cp-main-page">
+            <button class="button cp-nav" type="button" id="confirm-timezone" data-open="cp-times-choose">
                 <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
             </button>
         </div>

@@ -174,52 +174,56 @@ jQuery(document).ready(function($) {
      */
     let daily_time_select = $('#cp-daily-time-select')
 
-    let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
 
-    let coverage = {}
-    days.forEach(val=> {
-      let day = val.key
-      for ( const key in calendar_subscribe_object.current_commitments ){
-        if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
-          continue;
-        }
-        if ( key >= day && key < day + 24 * 3600 ){
-          let mod_time = key % (24 * 60 * 60)
-          let time_formatted = '';
-          if ( window.campaign_scripts.processing_save[mod_time] ){
-            time_formatted = window.campaign_scripts.processing_save[mod_time]
-          } else {
-            time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
-            window.campaign_scripts.processing_save[mod_time] = time_formatted
+    let populate_daily_select = function (){
+      let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
+
+      let coverage = {}
+      days.forEach(val=> {
+        let day = val.key
+        for ( const key in calendar_subscribe_object.current_commitments ){
+          if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
+            continue;
           }
-          if ( !coverage[time_formatted]){
-            coverage[time_formatted] = [];
+          if ( key >= day && key < day + 24 * 3600 ){
+            let mod_time = key % (24 * 60 * 60)
+            let time_formatted = '';
+            if ( window.campaign_scripts.processing_save[mod_time] ){
+              time_formatted = window.campaign_scripts.processing_save[mod_time]
+            } else {
+              time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
+              window.campaign_scripts.processing_save[mod_time] = time_formatted
+            }
+            if ( !coverage[time_formatted]){
+              coverage[time_formatted] = [];
+            }
+            coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
           }
-          coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
         }
-      }
-    })
-    let key = 0;
-    let start_of_today = new Date()
-    start_of_today.setHours(0,0,0,0)
-    let start_time_stamp = start_of_today.getTime()/1000
-    while ( key < 24 * 3600 ){
-      let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
-      let text = ''
-      let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-      let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
-      if ( fully_covered && level_covered > 1  ){
-        text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
-      } else if ( fully_covered ) {
-        text = `(${calendar_subscribe_object.translations.fully_covered_once})`
-      }
-      select_html += `<option value="${window.lodash.escape(key)}">
+      })
+      let key = 0;
+      let start_of_today = new Date()
+      start_of_today.setHours(0,0,0,0)
+      let start_time_stamp = start_of_today.getTime()/1000
+      while ( key < 24 * 3600 ){
+        let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+        let text = ''
+        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
+        let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
+        if ( fully_covered && level_covered > 1  ){
+          text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
+        } else if ( fully_covered ) {
+          text = `(${calendar_subscribe_object.translations.fully_covered_once})`
+        }
+        select_html += `<option value="${window.lodash.escape(key)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
       </option>`
-      key += calendar_subscribe_object.slot_length * 60
+        key += calendar_subscribe_object.slot_length * 60
+      }
+      daily_time_select.empty();
+      daily_time_select.html(select_html)
     }
-    daily_time_select.empty();
-    daily_time_select.html(select_html)
+    populate_daily_select()
 
     let duration_options_html = ``
     for (const prop in calendar_subscribe_object.duration_options) {
@@ -257,7 +261,7 @@ jQuery(document).ready(function($) {
     /**
      * Individual prayer times screen
      */
-    let current_time_selected = $("cp-individual-time-select").val();
+    let current_time_selected = $("#cp-individual-time-select").val();
 
     //build the list of individually selected times
     let display_selected_times = function (){
@@ -369,7 +373,8 @@ jQuery(document).ready(function($) {
       current_time_zone = $("#timezone-select").val()
       update_timezone()
       days = window.campaign_scripts.calculate_day_times(current_time_zone)
-      set_campaign_date_range_title()
+      // set_campaign_date_range_title()
+      populate_daily_select()
       draw_calendar()
       draw_modal_calendar()
     })
