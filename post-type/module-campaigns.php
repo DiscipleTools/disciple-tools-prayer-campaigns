@@ -321,6 +321,7 @@ class DT_Campaigns_Base {
         if ( $post_type === $this->post_type ){
             $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
+            $tiles["prayer_timer"] = [ "label" => __( "Prayer Timer", 'disciple_tools' ) ];
         }
         return $tiles;
     }
@@ -496,9 +497,11 @@ class DT_Campaigns_Base {
         })
         </script>
 
-
         <?php }
 
+        if ( $post_type === $this->post_type && $section === "prayer_timer" ) {
+            show_prayer_timer( null );
+        }
     }
 
     public function add_api_routes() {
