@@ -20,6 +20,8 @@ function show_prayer_timer( $atts ) {
             $prayer_duration_min = (float) $atts['duration'];
         }
     }
+    $color_hex = '#ffa000';
+    $prayer_duration_min = 0.175;
     wp_enqueue_script( 'jquery' );
     ?>
         <style>
@@ -168,7 +170,7 @@ function show_prayer_timer( $atts ) {
             function start_timer() {
                 var start_praying_button = jQuery( '#start-praying' )
                 
-                start_praying_button.attr( 'href', 'javascript:void();' );
+                start_praying_button.attr( 'onclick', 'javascript:void();' );
                 start_praying_button.text( 'Now praying...');
                 start_praying_button.attr('class', 'prayer-timer-now-praying');
                 start_praying_button.blur()
