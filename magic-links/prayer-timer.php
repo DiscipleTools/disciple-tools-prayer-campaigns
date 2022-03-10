@@ -17,7 +17,7 @@ function show_prayer_timer( $atts ) {
         }
 
         if ( isset( $atts['duration'] ) ) {
-            $prayer_duration_min = (float)$atts['duration'];
+            $prayer_duration_min = (float) $atts['duration'];
         }
     }
     wp_enqueue_script( 'jquery' );
