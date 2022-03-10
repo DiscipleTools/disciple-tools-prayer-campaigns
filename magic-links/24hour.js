@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
   }
   jQuery.ajax({
     type: "GET",
-    data: {action: 'get', parts: jsObject.parts, 'url': 'campaign_info' },
+    data: {action: 'get', parts: jsObject.parts, 'url': 'campaign_info', time: new Date().getTime() },
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     url: link
@@ -174,52 +174,56 @@ jQuery(document).ready(function($) {
      */
     let daily_time_select = $('#cp-daily-time-select')
 
-    let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
 
-    let coverage = {}
-    days.forEach(val=> {
-      let day = val.key
-      for ( const key in calendar_subscribe_object.current_commitments ){
-        if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
-          continue;
-        }
-        if ( key >= day && key < day + 24 * 3600 ){
-          let mod_time = key % (24 * 60 * 60)
-          let time_formatted = '';
-          if ( window.campaign_scripts.processing_save[mod_time] ){
-            time_formatted = window.campaign_scripts.processing_save[mod_time]
-          } else {
-            time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
-            window.campaign_scripts.processing_save[mod_time] = time_formatted
+    let populate_daily_select = function (){
+      let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
+
+      let coverage = {}
+      days.forEach(val=> {
+        let day = val.key
+        for ( const key in calendar_subscribe_object.current_commitments ){
+          if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
+            continue;
           }
-          if ( !coverage[time_formatted]){
-            coverage[time_formatted] = [];
+          if ( key >= day && key < day + 24 * 3600 ){
+            let mod_time = key % (24 * 60 * 60)
+            let time_formatted = '';
+            if ( window.campaign_scripts.processing_save[mod_time] ){
+              time_formatted = window.campaign_scripts.processing_save[mod_time]
+            } else {
+              time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
+              window.campaign_scripts.processing_save[mod_time] = time_formatted
+            }
+            if ( !coverage[time_formatted]){
+              coverage[time_formatted] = [];
+            }
+            coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
           }
-          coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
         }
-      }
-    })
-    let key = 0;
-    let start_of_today = new Date()
-    start_of_today.setHours(0,0,0,0)
-    let start_time_stamp = start_of_today.getTime()/1000
-    while ( key < 24 * 3600 ){
-      let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
-      let text = ''
-      let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-      let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
-      if ( fully_covered && level_covered > 1  ){
-        text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
-      } else if ( fully_covered ) {
-        text = `(${calendar_subscribe_object.translations.fully_covered_once})`
-      }
-      select_html += `<option value="${window.lodash.escape(key)}">
+      })
+      let key = 0;
+      let start_of_today = new Date()
+      start_of_today.setHours(0,0,0,0)
+      let start_time_stamp = start_of_today.getTime()/1000
+      while ( key < 24 * 3600 ){
+        let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+        let text = ''
+        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
+        let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
+        if ( fully_covered && level_covered > 1  ){
+          text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
+        } else if ( fully_covered ) {
+          text = `(${calendar_subscribe_object.translations.fully_covered_once})`
+        }
+        select_html += `<option value="${window.lodash.escape(key)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
       </option>`
-      key += calendar_subscribe_object.slot_length * 60
+        key += calendar_subscribe_object.slot_length * 60
+      }
+      daily_time_select.empty();
+      daily_time_select.html(select_html)
     }
-    daily_time_select.empty();
-    daily_time_select.html(select_html)
+    populate_daily_select()
 
     let duration_options_html = ``
     for (const prop in calendar_subscribe_object.duration_options) {
@@ -236,15 +240,19 @@ jQuery(document).ready(function($) {
     $('#cp-confirm-daily-times').on("click", function (){
       let daily_time_selected = parseInt($("#cp-daily-time-select").val());
       let duration = parseInt($("#cp-prayer-time-duration-select").val())
-      days.forEach( day=>{
-        let time = day.key + daily_time_selected;
-        let now = new Date().getTime()/1000
-        let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+
+      let start_time = days[0].key + daily_time_selected;
+      let start_date = window.luxon.DateTime.fromSeconds(start_time).setZone(current_time_zone)
+      let now = new Date().getTime()/1000
+      for ( let i = 0; i < days.length; i++){
+        let time_date = start_date.plus({day:i})
+        let time = parseInt( time_date.toFormat('X') );
+        let time_label = time_date.toFormat('MMMM dd HH:mm a');
         let already_added = selected_times.find(k=>k.time===time)
         if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
           selected_times.push({time: time, duration: duration, label: time_label})
         }
-      })
+      }
       display_selected_times();
     })
 
@@ -253,7 +261,7 @@ jQuery(document).ready(function($) {
     /**
      * Individual prayer times screen
      */
-    let current_time_selected = $("cp-individual-time-select").val();
+    let current_time_selected = $("#cp-individual-time-select").val();
 
     //build the list of individually selected times
     let display_selected_times = function (){
@@ -365,7 +373,8 @@ jQuery(document).ready(function($) {
       current_time_zone = $("#timezone-select").val()
       update_timezone()
       days = window.campaign_scripts.calculate_day_times(current_time_zone)
-      set_campaign_date_range_title()
+      // set_campaign_date_range_title()
+      populate_daily_select()
       draw_calendar()
       draw_modal_calendar()
     })
@@ -475,7 +484,7 @@ jQuery(document).ready(function($) {
 
     let send_submission = (data, submit_spinner)=>{
       let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type;
-      if ( window.campaign_objects.remote){
+      if ( window.campaign_objects.remote ){
         link =  jsObject.root + jsObject.parts.root + '/v1/24hour-router';
       }
       data.url = '';

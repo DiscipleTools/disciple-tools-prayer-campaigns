@@ -4,6 +4,7 @@ window.campaign_scripts = {
   calculate_day_times: function (custom_timezone=null){
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
+    window.campaign_scripts.time_slot_coverage = {}
     let days = [];
     let time_iterator = calendar_subscribe_object.start_timestamp;
 
@@ -87,8 +88,8 @@ window.campaign_scripts = {
   },
 
   //clean formatted summary for prayer commitment display
-  timestamps_to_summary: function( timestamp_start, timestamp_end ) {
-    const options = { hour: "numeric", minute: "numeric" };
+  timestamps_to_summary: function( timestamp_start, timestamp_end, timezone ) {
+    const options = { hour: "numeric", minute: "numeric", timeZone: timezone };
     let summary = '';
     let date_start_clean = new Intl.DateTimeFormat("en-US", options).format( timestamp_start * 1000 );
 

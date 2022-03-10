@@ -567,6 +567,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'dt_campaign';
+        $allowed_js[] = 'luxon';
         return $allowed_js;
     }
     // add dt_campaign_core to allowed scripts
