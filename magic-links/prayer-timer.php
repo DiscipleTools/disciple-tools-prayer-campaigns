@@ -1,7 +1,26 @@
 <?php
 add_shortcode( 'dt_prayer_timer', 'show_prayer_timer' );
 
-function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) {
+function show_prayer_timer( $atts ) {
+    ob_start();
+
+    $atts = shortcode_atts( [
+        'color'     => '#3e729a',
+        'duration'  => 15
+    ], $atts, '' );
+    $color_hex = '#3e729a';
+    $prayer_duration_min = 15;
+
+    if ( isset( $atts ) ) {
+        if ( isset( $atts['color'] ) ) {
+            $color_hex = $atts['color'];
+        }
+
+        if ( isset( $atts['duration'] ) ) {
+            $prayer_duration_min = (float)$atts['duration'];
+        }
+    }
+    wp_enqueue_script( 'jquery' );
     ?>
         <style>
             .prayer-timer-container {
@@ -51,9 +70,29 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 background-color: <?php echo esc_html( $color_hex ); ?>;
             }
 
-            .prayer-timer-slot-complete {
+            .prayer-timer-slot-1-incomplete {
                 opacity: 100;
-                background-color: gray;
+                background-color: #868b89;
+            }
+
+            .prayer-timer-slot-2-incomplete {
+                opacity: 100;
+                background-color: #7e8280;
+            }
+
+            .prayer-timer-slot-3-incomplete {
+                opacity: 100;
+                background-color: #787b7a;
+            }
+
+            .prayer-timer-slot-4-incomplete {
+                opacity: 100;
+                background-color: #727372;
+            }
+
+            .prayer-timer-slot-5-incomplete {
+                opacity: 100;
+                background-color: #6c6c6c;
             }
 
             .prayer-timer-needle {
@@ -74,9 +113,10 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 margin-top: 25px;
             }
 
-            .prayer-timer-start-praying-button {
+            #start-praying {
                 color: #fefefe;
                 background-color: <?php echo esc_html( $color_hex ); ?>;
+                border: none;
                 border-radius: 5px;
                 height: 3rem;
                 cursor: pointer;
@@ -86,15 +126,18 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 text-align: center;
             }
 
+            #start-praying:hover {
+                color: #fefefe;
+                background-color: <?php echo esc_html( $color_hex ); ?>;
+                border: none;
+                filter: brightness(0.9);
+            }
+
             .prayer-timer-now-praying {
                 color: #fefefe;
                 background-color: gray;
             }
 
-            .prayer-timer-start-praying-button:hover {
-                color: #fefefe;
-                filter: brightness(0.9);
-            }
 
             .prayer-timer-rotate {
                 -webkit-transition:-webkit-transform <?php echo esc_html( $prayer_duration_min ) * 60; ?>s linear;
@@ -117,7 +160,7 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 <div class="prayer-timer-slot prayer-timer-slot-5"></div>
             </div>
             <div class="prayer-timer-button-container">
-                <a href="javascript:start_timer();" class="prayer-timer-start-praying-button" id="start-praying">Start Praying!</a>
+                <button onclick="javascript:start_timer();" id="start-praying">Start Praying!</button>
                 <p class="prayer-timer-duration-label">(Prayer time: <?php echo esc_html( $prayer_duration_min ); ?> min)</p>
             </div>
         </div>
@@ -127,29 +170,33 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
                 
                 start_praying_button.attr( 'href', 'javascript:void();' );
                 start_praying_button.text( 'Now praying...');
-                start_praying_button.attr('class', 'prayer-timer-start-praying-button prayer-timer-now-praying');
+                start_praying_button.attr('class', 'prayer-timer-now-praying');
                 start_praying_button.blur()
                 
                 jQuery( '.prayer-timer-needle' ).attr( 'class', 'prayer-timer-needle prayer-timer-rotate' );
-                
+                jQuery( '.prayer-timer-slot-1').attr( 'class', 'prayer-timer-slot prayer-timer-slot-1 prayer-timer-slot-1-incomplete');
+                jQuery( '.prayer-timer-slot-2').attr( 'class', 'prayer-timer-slot prayer-timer-slot-2 prayer-timer-slot-2-incomplete');
+                jQuery( '.prayer-timer-slot-3').attr( 'class', 'prayer-timer-slot prayer-timer-slot-3 prayer-timer-slot-3-incomplete');
+                jQuery( '.prayer-timer-slot-4').attr( 'class', 'prayer-timer-slot prayer-timer-slot-4 prayer-timer-slot-4-incomplete');
+                jQuery( '.prayer-timer-slot-5').attr( 'class', 'prayer-timer-slot prayer-timer-slot-5 prayer-timer-slot-5-incomplete');
                 setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-1').attr( 'class', 'prayer-timer-slot prayer-timer-slot-1 prayer-timer-slot-complete');                    
+                    jQuery( '.prayer-timer-slot-1').attr( 'class', 'prayer-timer-slot prayer-timer-slot-1');
                 }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5; ?> );
 
                 setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-2').attr( 'class', 'prayer-timer-slot prayer-timer-slot-2 prayer-timer-slot-complete');                    
+                    jQuery( '.prayer-timer-slot-2').attr( 'class', 'prayer-timer-slot prayer-timer-slot-2');
                 }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 2; ?> );
 
                 setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-3').attr( 'class', 'prayer-timer-slot prayer-timer-slot-3 prayer-timer-slot-complete');                    
+                    jQuery( '.prayer-timer-slot-3').attr( 'class', 'prayer-timer-slot prayer-timer-slot-3');
                 }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 3; ?> );
 
                 setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-4').attr( 'class', 'prayer-timer-slot prayer-timer-slot-4 prayer-timer-slot-complete');                    
+                    jQuery( '.prayer-timer-slot-4').attr( 'class', 'prayer-timer-slot prayer-timer-slot-4');
                 }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 4; ?> );
 
                 setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-5').attr( 'class', 'prayer-timer-slot prayer-timer-slot-5 prayer-timer-slot-complete');                    
+                    jQuery( '.prayer-timer-slot-5').attr( 'class', 'prayer-timer-slot prayer-timer-slot-5');
                 }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 5; ?> );
 
                 setTimeout( function() {
@@ -158,4 +205,5 @@ function show_prayer_timer( $color_hex = '#3e729a', $prayer_duration_min = 15 ) 
             }
         </script>
     <?php
+        ob_get_flush();
 }

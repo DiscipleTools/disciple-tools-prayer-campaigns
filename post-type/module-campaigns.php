@@ -500,7 +500,7 @@ class DT_Campaigns_Base {
         <?php }
 
         if ( $post_type === $this->post_type && $section === "prayer_timer" ) {
-            show_prayer_timer();
+            show_prayer_timer( null );
         }
     }
 
