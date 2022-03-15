@@ -167,12 +167,12 @@ function show_prayer_timer( $atts ) {
         <script>
             function start_timer() {
                 var start_praying_button = jQuery( '#start-praying' )
-                
+
                 start_praying_button.attr( 'onclick', 'javascript:void();' );
                 start_praying_button.text( 'Now praying...');
                 start_praying_button.attr('class', 'prayer-timer-now-praying');
                 start_praying_button.blur()
-                
+
                 jQuery( '.prayer-timer-needle' ).attr( 'class', 'prayer-timer-needle prayer-timer-rotate' );
                 jQuery( '.prayer-timer-slot-1').attr( 'class', 'prayer-timer-slot prayer-timer-slot-1 prayer-timer-slot-1-incomplete');
                 jQuery( '.prayer-timer-slot-2').attr( 'class', 'prayer-timer-slot prayer-timer-slot-2 prayer-timer-slot-2-incomplete');
@@ -205,5 +205,5 @@ function show_prayer_timer( $atts ) {
             }
         </script>
     <?php
-        ob_get_flush();
+    return ob_get_clean();
 }
