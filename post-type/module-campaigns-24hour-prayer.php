@@ -458,7 +458,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         }
         $field_settings = DT_Posts::get_post_field_settings( "campaigns" );
 
-        return [
+        $return = [
             "description" => $description,
             "coverage_levels" => $coverage_levels,
             "number_of_time_slots" => $number_of_time_slots,
@@ -475,7 +475,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'status' => $record["status"]["key"],
             'minutes_committed' => $minutes_committed,
         ];
-
+        return apply_filters( "prayer_campaign_info_response", $return );
     }
 
     public function dt_campaign_types( $types ) {
