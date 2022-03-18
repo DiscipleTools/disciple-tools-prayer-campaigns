@@ -160,8 +160,18 @@ function show_prayer_timer( $atts ) {
                 <div class="prayer-timer-slot prayer-timer-slot-5"></div>
             </div>
             <div class="prayer-timer-button-container">
-                <button onclick="javascript:start_timer();" id="start-praying">Start Praying!</button>
-                <p class="prayer-timer-duration-label">(Prayer time: <?php echo esc_html( $prayer_duration_min ); ?> min)</p>
+                <button onclick="javascript:start_timer();" id="start-praying">
+                    <?php esc_html_e( 'Start Praying!', 'disciple-tools-prayer-campaigns' ); ?>
+                </button>
+                <p class="prayer-timer-duration-label">
+                    <?php
+                        echo '(';
+                        esc_html_e( 'Prayer time', 'disciple-tools-prayer-campaigns' );
+                        echo esc_html( ": $prayer_duration_min " );
+                        esc_html_e( 'min', 'disciple-tools-prayer-campaigns' );
+                        echo ')';
+                    ?>
+                </p>
             </div>
         </div>
         <script>
@@ -169,7 +179,7 @@ function show_prayer_timer( $atts ) {
                 var start_praying_button = jQuery( '#start-praying' )
 
                 start_praying_button.attr( 'onclick', 'javascript:void();' );
-                start_praying_button.text( 'Now praying...');
+                start_praying_button.text( '<?php esc_html_e( 'Now praying...', 'disciple-tools-prayer-campaigns' ); ?>');
                 start_praying_button.attr('class', 'prayer-timer-now-praying');
                 start_praying_button.blur()
 
