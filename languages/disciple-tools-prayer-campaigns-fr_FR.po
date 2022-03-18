@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Prayer Campaigns\n"
 "Language: fr\n"
 
-#: admin/cron-schedule.php:121 admin/send-email-utility.php:48
+#: admin/cron-schedule.php:121 admin/send-email-utility.php:71
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s de %2$s à %3$s"
@@ -17,170 +17,170 @@ msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "pour %s"
 
-#: admin/cron-schedule.php:140 admin/send-email-utility.php:66
-#: admin/send-email-utility.php:135 admin/send-email-utility.php:235
+#: admin/cron-schedule.php:142 admin/send-email-utility.php:89
+#: admin/send-email-utility.php:160 admin/send-email-utility.php:254
 msgid "Hello %s,"
 msgstr "Bonjour %s,"
 
-#: admin/cron-schedule.php:141
+#: admin/cron-schedule.php:143
 msgid "Thank you for praying with us!"
 msgstr "Merci de nous rejoindre en prière!"
 
-#: admin/cron-schedule.php:142
+#: admin/cron-schedule.php:144
 msgid "Here are your upcoming prayer times:"
 msgstr "Voici vos temps de prière à venir:"
 
-#: admin/cron-schedule.php:144 admin/send-email-utility.php:84
+#: admin/cron-schedule.php:146 admin/send-email-utility.php:109
 msgid "Times are shown according to: %s time"
 msgstr "Les temps sont affichés avec l'horaire de %s"
 
-#: admin/send-email-utility.php:63
+#: admin/send-email-utility.php:86
 msgid "Registered to pray with us!"
 msgstr "Inscrits pour prier avec nous!"
 
-#: admin/send-email-utility.php:81
+#: admin/send-email-utility.php:106
 msgid "Click here to verify your email address and confirm your prayer times."
 msgstr "Cliquer ici pour vérifier votre adresse et pour confirmer vos temps de prière."
 
-#: admin/send-email-utility.php:82
+#: admin/send-email-utility.php:107
 msgid "Here are the times you have committed to pray:"
 msgstr "Voici les temps que vous avez sélectionné pour prier:"
 
-#: magic-links/24hour.php:22 magic-links/subscription-management.php:559
+#: magic-links/24hour.php:25 magic-links/subscription-management.php:562
 msgid "Select a time"
 msgstr "Sélectionnez une heure"
 
-#: magic-links/24hour.php:23 magic-links/subscription-management.php:560
+#: magic-links/24hour.php:26 magic-links/subscription-management.php:563
 msgid "fully covered once"
 msgstr "entièrement couvert une fois"
 
-#: magic-links/24hour.php:24 magic-links/subscription-management.php:561
+#: magic-links/24hour.php:27 magic-links/subscription-management.php:564
 msgid "fully covered %1$s times"
 msgstr "entièrement couvert %1$s fois"
 
-#: magic-links/24hour.php:25 magic-links/subscription-management.php:562
+#: magic-links/24hour.php:28 magic-links/subscription-management.php:565
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s pour %2$s minutes."
 
-#: magic-links/24hour.php:92
+#: magic-links/24hour.php:101
 msgid "Loading prayer campaign data..."
 msgstr "Chargement des données de la campagne de prière..."
 
-#: magic-links/24hour.php:146 magic-links/24hour.php:183
+#: magic-links/24hour.php:155 magic-links/24hour.php:192
 msgid "Showing times for:"
 msgstr "Affichage des heures pour:"
 
-#: magic-links/24hour.php:111
+#: magic-links/24hour.php:120
 msgid "Select an option"
 msgstr "Sélectionner une option"
 
-#: magic-links/24hour.php:114
+#: magic-links/24hour.php:123
 msgid "Pray every day at the same time"
 msgstr "Prier tous les jours à la même heure"
 
-#: magic-links/24hour.php:116
+#: magic-links/24hour.php:125
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Exemple: Tous les jours à 16h pour 15minutes"
 
-#: magic-links/24hour.php:119
+#: magic-links/24hour.php:128
 msgid "Select days and times to pray"
 msgstr "Sélectionnez les jours et les heures pour prier"
 
-#: magic-links/24hour.php:121
+#: magic-links/24hour.php:130
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Exemple: Lundi 12 à 18h pour 15minutes"
 
-#: magic-links/24hour.php:136 magic-links/subscription-management.php:1202
+#: magic-links/24hour.php:145 magic-links/subscription-management.php:1212
 msgid "Prayer Time"
 msgstr "Temps de prière"
 
-#: magic-links/24hour.php:138 magic-links/24hour.php:171
-#: magic-links/subscription-management.php:1204
-#: magic-links/subscription-management.php:1286
+#: magic-links/24hour.php:147 magic-links/24hour.php:180
+#: magic-links/subscription-management.php:1214
+#: magic-links/subscription-management.php:1296
 msgid "Daily Time"
 msgstr "Heure tous les jours"
 
-#: magic-links/24hour.php:142 magic-links/24hour.php:175
-#: magic-links/subscription-management.php:1208
-#: magic-links/subscription-management.php:1290
+#: magic-links/24hour.php:151 magic-links/24hour.php:184
+#: magic-links/subscription-management.php:1218
+#: magic-links/subscription-management.php:1300
 msgid "For how long"
 msgstr "Pour combien de temps"
 
-#: magic-links/24hour.php:149 magic-links/24hour.php:193
-#: magic-links/subscription-management.php:1229
-#: magic-links/subscription-management.php:1323
+#: magic-links/24hour.php:158 magic-links/24hour.php:202
+#: magic-links/subscription-management.php:1239
+#: magic-links/subscription-management.php:1333
 msgid "Confirm Times"
 msgstr "Confirmer les heurs"
 
-#: magic-links/24hour.php:161 magic-links/subscription-management.php:1277
+#: magic-links/24hour.php:170 magic-links/subscription-management.php:1287
 msgid "Select a day and choose a time"
 msgstr "Sélectionnez un jour et choisissez une heure"
 
-#: magic-links/24hour.php:169 magic-links/subscription-management.php:1284
+#: magic-links/24hour.php:178 magic-links/subscription-management.php:1294
 msgid "Select a prayer time"
 msgstr "Sélectionnez une heure de prière"
 
-#: magic-links/24hour.php:179 magic-links/subscription-management.php:1294
+#: magic-links/24hour.php:188 magic-links/subscription-management.php:1304
 msgid "Add prayer time"
 msgstr "Ajouter la sélection"
 
-#: magic-links/24hour.php:180 magic-links/subscription-management.php:1295
+#: magic-links/24hour.php:189 magic-links/subscription-management.php:1305
 msgid "Time added"
 msgstr "Heur ajouté"
 
-#: magic-links/24hour.php:187 magic-links/24hour.php:261
-#: magic-links/subscription-management.php:1302
+#: magic-links/24hour.php:196 magic-links/24hour.php:270
+#: magic-links/subscription-management.php:1312
 msgid "Selected Times"
 msgstr "Heures sélectionnées"
 
-#: magic-links/24hour.php:205
+#: magic-links/24hour.php:214
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: magic-links/24hour.php:219 magic-links/24hour.php:220
-#: magic-links/24hour.php:301 magic-links/24hour.php:302
+#: magic-links/24hour.php:228 magic-links/24hour.php:229
+#: magic-links/24hour.php:310 magic-links/24hour.php:311
 msgid "Name"
 msgstr "Nom"
 
-#: magic-links/24hour.php:227 magic-links/24hour.php:228
-#: magic-links/24hour.php:229 magic-links/24hour.php:309
-#: magic-links/24hour.php:310 magic-links/24hour.php:311
+#: magic-links/24hour.php:236 magic-links/24hour.php:237
+#: magic-links/24hour.php:238 magic-links/24hour.php:318
+#: magic-links/24hour.php:319 magic-links/24hour.php:320
 msgid "Email"
 msgstr "Email"
 
-#: magic-links/24hour.php:236
+#: magic-links/24hour.php:245
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "Recevez des notifications d'heure de prière (vérification par e-mail requise)."
 
-#: magic-links/24hour.php:241 magic-links/24hour.php:317
+#: magic-links/24hour.php:250 magic-links/24hour.php:326
 msgid "Submit Your Prayer Commitment"
 msgstr "Soumettez votre engagement de prière"
 
-#: magic-links/24hour.php:247 magic-links/24hour.php:323
+#: magic-links/24hour.php:256 magic-links/24hour.php:332
 msgid "Sent! Check your email."
 msgstr "Envoyé! Vérifiez votre email."
 
-#: magic-links/24hour.php:249
+#: magic-links/24hour.php:258
 msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
 msgstr "Cliquez sur le lien inclus dans l'e-mail pour vérifier votre engagement et recevoir les notifications de l'heure de la prière !"
 
-#: magic-links/24hour.php:252
+#: magic-links/24hour.php:261
 msgid "In the email is a link to manage your prayer times."
 msgstr "Dans l'e-mail se trouve un lien pour gérer vos temps de prière."
 
-#: magic-links/24hour.php:255 magic-links/24hour.php:325
+#: magic-links/24hour.php:264 magic-links/24hour.php:334
 msgid "OK"
 msgstr "Ok"
 
-#: magic-links/24hour.php:286 magic-links/subscription-management.php:1176
-#: magic-links/subscription-management.php:1225
-#: magic-links/subscription-management.php:1319
-#: magic-links/subscription-management.php:1400
+#: magic-links/24hour.php:295 magic-links/subscription-management.php:1186
+#: magic-links/subscription-management.php:1235
+#: magic-links/subscription-management.php:1329
+#: magic-links/subscription-management.php:1410
 msgid "Cancel"
 msgstr "Annuler"
 
-#: magic-links/24hour.php:289 magic-links/subscription-management.php:1179
+#: magic-links/24hour.php:298 magic-links/subscription-management.php:1189
 msgid "Select"
 msgstr "Sélectionner"
 
@@ -199,151 +199,151 @@ msgstr "Add a prayer subscriptions module to Disciple.Tools that allows for non-
 msgid "https://github.com/DiscipleTools"
 msgstr "https://github.com/DiscipleTools"
 
-#: admin/cron-schedule.php:148 admin/send-email-utility.php:88
+#: admin/cron-schedule.php:150 admin/send-email-utility.php:113
 msgid "Click here to manage your account and time commitments"
 msgstr "Cliquez ici pour gérer votre compte et vos engagements de temps"
 
-#: admin/send-email-utility.php:80
+#: admin/send-email-utility.php:105
 msgid "Thank you for joining us in strategic prayer for a disciple making movement! You're one click away from finishing your registration."
 msgstr "Merci de vous joindre à nous dans la prière stratégique pour un mouvement de formation de disciples ! Vous êtes à un clic de terminer votre inscription."
 
-#: admin/send-email-utility.php:148
+#: admin/send-email-utility.php:167
 msgid "Registration Confirmation"
 msgstr "confirmation d'enregistrement"
 
-#: admin/send-email-utility.php:151
+#: admin/send-email-utility.php:170
 msgid "Thank you for signing up to pray!"
 msgstr "Merci de vous être inscrit pour prier !"
 
-#: admin/send-email-utility.php:152
+#: admin/send-email-utility.php:171
 msgid "We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer."
 msgstr "Nous avons un peu de temps avant le début de la campagne. Nous vous enverrons un autre e-mail quelques mois avant le premier jour vous demandant de choisir des heures spécifiques pour prier. En travaillant ensemble, nous couvrirons la région en prière 24h/24 et 7j/7."
 
-#: admin/send-email-utility.php:153
+#: admin/send-email-utility.php:172
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "Si vous connaissez déjà votre emploi du temps, vous pouvez choisir vos horaires ici :"
 
-#: admin/send-email-utility.php:233
+#: admin/send-email-utility.php:252
 msgid "What time(s) will you pray?"
 msgstr "A quelle(s) heure(s) prierez-vous ?"
 
-#: admin/send-email-utility.php:236
+#: admin/send-email-utility.php:255
 msgid "Thank you for signing up to help us cover the region in nonstop prayer!!"
 msgstr "Merci de vous être inscrit pour nous aider à couvrir la région en prière non-stop !!"
 
-#: admin/send-email-utility.php:237
+#: admin/send-email-utility.php:256
 msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
 msgstr "Il est maintenant temps de choisir les moments précis où vous prierez. Vous trouverez ci-dessous un lien vers l'outil pour sélectioner les heures de prière."
 
-#: admin/send-email-utility.php:238
+#: admin/send-email-utility.php:257
 msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
 msgstr "Pour prier à la même heure chaque jour (de préférence !), cliquez sur le bouton \"Ajouter une heure de prière quotidienne\"."
 
-#: admin/send-email-utility.php:239
+#: admin/send-email-utility.php:258
 msgid "If you need to choose different times or can't commit to pray every day click the \"Add individual Prayer Times\" button."
 msgstr "Si vous devez choisir des heures différentes ou si vous ne pouvez pas vous engager à prier tous les jours, cliquez sur le bouton \"Ajouter des heures de prière individuelles\"."
 
-#: admin/send-email-utility.php:240
+#: admin/send-email-utility.php:259
 msgid "Choose prayer times link:"
 msgstr "Lien pour choisir les heures de prière :"
 
-#: magic-links/24hour.php:78
+#: magic-links/24hour.php:87
 msgid "Percentage covered in prayer"
 msgstr "Pourcentage couvert par la prière"
 
-#: magic-links/24hour.php:99
+#: magic-links/24hour.php:108
 msgid "Choose Prayer Times"
 msgstr "Choisissez les heures de prière"
 
-#: magic-links/24hour.php:109 magic-links/24hour.php:132
-#: magic-links/24hour.php:158 magic-links/24hour.php:203
+#: magic-links/24hour.php:118 magic-links/24hour.php:141
+#: magic-links/24hour.php:167 magic-links/24hour.php:212
 msgid "Back"
 msgstr "Retour"
 
-#: magic-links/24hour.php:189 magic-links/subscription-management.php:1304
+#: magic-links/24hour.php:198 magic-links/subscription-management.php:1314
 msgid "No selected Time"
 msgstr "Aucune heure sélectionnée"
 
-#: magic-links/24hour.php:225 magic-links/24hour.php:307
+#: magic-links/24hour.php:234 magic-links/24hour.php:316
 msgid "Your email is required."
 msgstr "Votre e-mail est requis."
 
-#: magic-links/24hour.php:296
+#: magic-links/24hour.php:305
 msgid "I'm interested in praying! Send me an email when it is time to choose prayer times."
 msgstr "Je veux prier ! Envoyez-moi un e-mail lorsqu'il est temps de choisir les heures de prière."
 
-#: magic-links/24hour.php:334
+#: magic-links/24hour.php:343
 msgid "We are not longer looking for sign ups"
 msgstr "Nous ne recherchons plus d'inscriptions"
 
-#: magic-links/24hour.php:335
+#: magic-links/24hour.php:344
 msgid "Thanks for praying with us!"
 msgstr "Merci de prier avec nous !"
 
 #: magic-links/subscription-management.php:35
-#: magic-links/subscription-management.php:1132
+#: magic-links/subscription-management.php:1142
 msgid "My Prayer Times"
 msgstr "Mes horaires de prière"
 
-#: magic-links/subscription-management.php:1137
+#: magic-links/subscription-management.php:1147
 msgid "Your prayer times have been verified!"
 msgstr "Vos horaires de prière ont été vérifiés !"
 
-#: magic-links/subscription-management.php:1190
+#: magic-links/subscription-management.php:1200
 msgid "Add a Daily Prayer Time"
 msgstr "Ajouter une heure de prière quotidienne"
 
-#: magic-links/subscription-management.php:1193
+#: magic-links/subscription-management.php:1203
 msgid "Add Individual Prayer Times"
 msgstr "Ajouter des heures de prière individuelles"
 
-#: magic-links/subscription-management.php:1195
+#: magic-links/subscription-management.php:1205
 msgid "Download Calendar"
 msgstr "Télécharger le calendrier"
 
-#: magic-links/subscription-management.php:1218
-#: magic-links/subscription-management.php:1312
+#: magic-links/subscription-management.php:1228
+#: magic-links/subscription-management.php:1322
 msgid "Your new prayer times have been saved."
 msgstr "Vos nouveaux horaires de prière ont été enregistrés."
 
-#: magic-links/subscription-management.php:1238
-#: magic-links/subscription-management.php:1335
+#: magic-links/subscription-management.php:1248
+#: magic-links/subscription-management.php:1345
 msgid "ok"
 msgstr "d'accord"
 
-#: magic-links/subscription-management.php:1269
+#: magic-links/subscription-management.php:1279
 msgid "Close"
 msgstr "Fermer"
 
-#: magic-links/subscription-management.php:1327
+#: magic-links/subscription-management.php:1337
 msgid "back"
 msgstr "retour"
 
-#: magic-links/subscription-management.php:1380
+#: magic-links/subscription-management.php:1390
 msgid "Profile Settings"
 msgstr "Paramètres de profil"
 
-#: magic-links/subscription-management.php:1387
+#: magic-links/subscription-management.php:1397
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "Supprimer ce profil et toutes les heures de prière ?"
 
-#: magic-links/subscription-management.php:1389
+#: magic-links/subscription-management.php:1399
 msgid "Delete"
 msgstr "Supprimer"
 
-#: magic-links/subscription-management.php:1392
+#: magic-links/subscription-management.php:1402
 msgid "Are you sure you want to delete your profile?"
 msgstr "Êtes-vous sûr de vouloir supprimer votre profil ?"
 
-#: magic-links/subscription-management.php:1394
+#: magic-links/subscription-management.php:1404
 msgid "This can not be undone."
 msgstr "Ça ne peut pas être annulé."
 
-#: magic-links/subscription-management.php:1403
+#: magic-links/subscription-management.php:1413
 msgid "DELETE"
 msgstr "SUPPRIMER"
 
-#: magic-links/subscription-management.php:1420
+#: magic-links/subscription-management.php:1430
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Cet inscription est terminé ou n'est pas configuré correctement."
 
@@ -351,4 +351,25 @@ msgstr "Cet inscription est terminé ou n'est pas configuré correctement."
 #: 
 msgid "Disciple.Tools - Prayer Campaigns"
 msgstr "Disciple.Tools - Campagnes de prière"
+
+#: admin/admin-menu-and-tabs.php:224
+msgid "Update"
+msgstr ""
+
+#: admin/cron-schedule.php:80
+msgid "Prayer Time reminder!"
+msgstr ""
+
+#: magic-links/prayer-timer.php:164
+msgid "Start Praying!"
+msgstr ""
+
+#: magic-links/prayer-timer.php:167
+msgctxt "Prayer time: 15 min"
+msgid "Prayer time: %s min"
+msgstr ""
+
+#: magic-links/prayer-timer.php:176
+msgid "Now praying..."
+msgstr ""
 

@@ -5,194 +5,194 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Prayer Campaigns\n"
-"Language: pt\n"
+"Language: id\n"
 
 #: admin/cron-schedule.php:121 admin/send-email-utility.php:71
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr "%1$s de %2$s para %3$s"
+msgstr "%1$s dari %2$s hingga %3$s"
 
 #: admin/cron-schedule.php:127
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr "para %s"
+msgstr "untuk %s"
 
 #: admin/cron-schedule.php:142 admin/send-email-utility.php:89
 #: admin/send-email-utility.php:160 admin/send-email-utility.php:254
 msgid "Hello %s,"
-msgstr "Olá %s"
+msgstr "Halo %s,"
 
 #: admin/cron-schedule.php:143
 msgid "Thank you for praying with us!"
-msgstr "Obrigado por orar conosco!"
+msgstr "Terima kasih telah berdoa bersama kami!"
 
 #: admin/cron-schedule.php:144
 msgid "Here are your upcoming prayer times:"
-msgstr "Aqui estão seus próximos calendários de oração"
+msgstr "Berikut adalah waktu doa Anda yang akan datang:"
 
 #: admin/cron-schedule.php:146 admin/send-email-utility.php:109
 msgid "Times are shown according to: %s time"
-msgstr "As horas são mostradas de acordo com:"
+msgstr "Waktu ditampilkan menurut: %s waktu"
 
 #: admin/send-email-utility.php:86
 msgid "Registered to pray with us!"
-msgstr "Inscreva-se para orar conosco!"
+msgstr "Terdaftar untuk berdoa bersama kami!"
 
 #: admin/send-email-utility.php:106
 msgid "Click here to verify your email address and confirm your prayer times."
-msgstr "Clique aqui para verificar seu endereço de e-mail e confirmar seus horários de oração"
+msgstr "Klik di sini untuk memverifikasi alamat email Anda dan mengkonfirmasi waktu sholat Anda."
 
 #: admin/send-email-utility.php:107
 msgid "Here are the times you have committed to pray:"
-msgstr "Aqui estão as horas que você se comprometeu a orar"
+msgstr "Inilah waktu-waktu yang Anda telah berkomitmen untuk berdoa:"
 
 #: magic-links/24hour.php:25 magic-links/subscription-management.php:562
 msgid "Select a time"
-msgstr "Selecione um horário"
+msgstr "Pilih waktu"
 
 #: magic-links/24hour.php:26 magic-links/subscription-management.php:563
 msgid "fully covered once"
-msgstr "Horário totalmente coberto uma vez"
+msgstr "terpenuhi sekaligus"
 
 #: magic-links/24hour.php:27 magic-links/subscription-management.php:564
 msgid "fully covered %1$s times"
-msgstr "Horários totalmente preenchidos"
+msgstr "terpenuhi sepenuhnya %1$s kali"
 
 #: magic-links/24hour.php:28 magic-links/subscription-management.php:565
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr "%1$s para %2$s minutes."
+msgstr "%1$s selama %2$s menit."
 
 #: magic-links/24hour.php:101
 msgid "Loading prayer campaign data..."
-msgstr "Carregando dados da campanha de oração."
+msgstr "Memuat data kampanye doa..."
 
 #: magic-links/24hour.php:155 magic-links/24hour.php:192
 msgid "Showing times for:"
-msgstr "Mostrando horários para:"
+msgstr "Waktu tayang untuk:"
 
 #: magic-links/24hour.php:120
 msgid "Select an option"
-msgstr "Selecione uma opção"
+msgstr "Pilih satu opsi"
 
 #: magic-links/24hour.php:123
 msgid "Pray every day at the same time"
-msgstr "Ore todos os dias no mesmo horário"
+msgstr "Berdoa setiap hari pada waktu yang sama"
 
 #: magic-links/24hour.php:125
 msgid "Example: Everyday at 4pm for 15mins"
-msgstr "Exemplo: Todos os dias às 16h por 15 minutos"
+msgstr "Contoh: Setiap hari jam 4 sore selama 15 menit"
 
 #: magic-links/24hour.php:128
 msgid "Select days and times to pray"
-msgstr "Selecione dias e horários para orar"
+msgstr "Pilih hari dan waktu untuk berdoa"
 
 #: magic-links/24hour.php:130
 msgid "Example: Monday 12th at 6pm for 15mins"
-msgstr "Exemplo: segunda-feira, 12, às 18h, por 15 minutos"
+msgstr "Contoh: Senin 12 jam 6 sore selama 15 menit"
 
 #: magic-links/24hour.php:145 magic-links/subscription-management.php:1212
 msgid "Prayer Time"
-msgstr "Tempo de oração"
+msgstr "Waktunya sholat"
 
 #: magic-links/24hour.php:147 magic-links/24hour.php:180
 #: magic-links/subscription-management.php:1214
 #: magic-links/subscription-management.php:1296
 msgid "Daily Time"
-msgstr "Horário diário"
+msgstr "Waktu Harian"
 
 #: magic-links/24hour.php:151 magic-links/24hour.php:184
 #: magic-links/subscription-management.php:1218
 #: magic-links/subscription-management.php:1300
 msgid "For how long"
-msgstr "Por quanto tempo"
+msgstr "Untuk berapa lama"
 
 #: magic-links/24hour.php:158 magic-links/24hour.php:202
 #: magic-links/subscription-management.php:1239
 #: magic-links/subscription-management.php:1333
 msgid "Confirm Times"
-msgstr "Confirma horários"
+msgstr "Konfirmasi Waktu"
 
 #: magic-links/24hour.php:170 magic-links/subscription-management.php:1287
 msgid "Select a day and choose a time"
-msgstr "Escolhe um dia e um horário"
+msgstr "Pilih hari dan pilih waktu"
 
 #: magic-links/24hour.php:178 magic-links/subscription-management.php:1294
 msgid "Select a prayer time"
-msgstr "Escolhe um horário de oração"
+msgstr "Pilih waktu doa"
 
 #: magic-links/24hour.php:188 magic-links/subscription-management.php:1304
 msgid "Add prayer time"
-msgstr "Adicione o tempo de oração"
+msgstr "Tambahkan waktu doa"
 
 #: magic-links/24hour.php:189 magic-links/subscription-management.php:1305
 msgid "Time added"
-msgstr "Tempo adicionado"
+msgstr "Waktu ditambahkan"
 
 #: magic-links/24hour.php:196 magic-links/24hour.php:270
 #: magic-links/subscription-management.php:1312
 msgid "Selected Times"
-msgstr "Horários selecionados"
+msgstr "Waktu yang Dipilih"
 
 #: magic-links/24hour.php:214
 msgid "Confirm"
-msgstr "Confirme"
+msgstr "Mengonfirmasi"
 
 #: magic-links/24hour.php:228 magic-links/24hour.php:229
 #: magic-links/24hour.php:310 magic-links/24hour.php:311
 msgid "Name"
-msgstr "Nome"
+msgstr "Nama"
 
 #: magic-links/24hour.php:236 magic-links/24hour.php:237
 #: magic-links/24hour.php:238 magic-links/24hour.php:318
 #: magic-links/24hour.php:319 magic-links/24hour.php:320
 msgid "Email"
-msgstr "Email"
+msgstr "email"
 
 #: magic-links/24hour.php:245
 msgid "Receive Prayer Time Notifications (email verification needed)."
-msgstr "Receba Notificações de Tempo de Oração (é necessário verificar o e-mail)."
+msgstr "Terima Pemberitahuan Waktu Sholat (diperlukan verifikasi email)."
 
 #: magic-links/24hour.php:250 magic-links/24hour.php:326
 msgid "Submit Your Prayer Commitment"
-msgstr "Envie seu compromisso de oração"
+msgstr "Kirim Komitmen Doa Anda"
 
 #: magic-links/24hour.php:256 magic-links/24hour.php:332
 msgid "Sent! Check your email."
-msgstr "Enviado! Verifique seu e-mail"
+msgstr "Terkirim! Periksa email Anda."
 
 #: magic-links/24hour.php:258
 msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
-msgstr "Clique no link incluído no e-mail para verificar seu compromisso e receber notificações de horários de oração!"
+msgstr "Klik tautan yang disertakan dalam email untuk memverifikasi komitmen Anda dan menerima pemberitahuan waktu sholat!"
 
 #: magic-links/24hour.php:261
 msgid "In the email is a link to manage your prayer times."
-msgstr "No e-mail há um link para gerir seus tempos de oração."
+msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
 
 #: magic-links/24hour.php:264 magic-links/24hour.php:334
 msgid "OK"
-msgstr "Ok"
+msgstr "oke"
 
 #: magic-links/24hour.php:295 magic-links/subscription-management.php:1186
 #: magic-links/subscription-management.php:1235
 #: magic-links/subscription-management.php:1329
 #: magic-links/subscription-management.php:1410
 msgid "Cancel"
-msgstr "cancelar"
+msgstr "Membatalkan"
 
 #: magic-links/24hour.php:298 magic-links/subscription-management.php:1189
 msgid "Select"
-msgstr "Selecionar"
+msgstr "Pilih"
 
 #. Plugin URI of the plugin/theme
 #: 
 msgid "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
-msgstr "https://github.com/Disciple/Tools/disciple-tools-campanha de oração"
+msgstr "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
 
 #. Description of the plugin/theme
 #: 
 msgid "Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project."
-msgstr "Adicione um módulo de assinaturas de oração ao Disciple.Tools que permite não-usuários se inscreverem para orar por locais específicos em horários específicos, suportando tanto saturação horária e geográfica de oração para seu projeto."
+msgstr "Tambahkan modul langganan doa ke Disciple.Tools yang memungkinkan non-pengguna untuk berlangganan berdoa untuk lokasi tertentu pada waktu tertentu, mendukung baik waktu dan saturasi doa geografis untuk proyek Anda."
 
 #. Author URI of the plugin/theme
 #: 
@@ -201,157 +201,156 @@ msgstr "https://github.com/DiscipleTools"
 
 #: admin/cron-schedule.php:150 admin/send-email-utility.php:113
 msgid "Click here to manage your account and time commitments"
-msgstr "Clique aqui para gerir sua conta e compromissos de tempo"
+msgstr "Klik di sini untuk mengelola akun dan komitmen waktu Anda"
 
 #: admin/send-email-utility.php:105
 msgid "Thank you for joining us in strategic prayer for a disciple making movement! You're one click away from finishing your registration."
-msgstr "Obrigado por se juntar a nós em oração estratégica por um movimento de fazer discípulos! Você está a um clique de concluir seu cadastro."
+msgstr "Terima kasih telah bergabung dengan kami dalam doa strategis untuk gerakan pemuridan! Tinggal satu klik lagi untuk menyelesaikan pendaftaran Anda."
 
 #: admin/send-email-utility.php:167
 msgid "Registration Confirmation"
-msgstr "confirmação de cadastro"
+msgstr "konfirmasi registrasi"
 
 #: admin/send-email-utility.php:170
 msgid "Thank you for signing up to pray!"
-msgstr "Obrigado por se inscrever para orar!"
+msgstr "Terima kasih telah mendaftar untuk berdoa!"
 
 #: admin/send-email-utility.php:171
 msgid "We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer."
-msgstr "Temos tempo antes da campanha começar. Vamos lhe enviar um outro e-mail alguns meses antes do primeiro dia, pedindo lhe que escolha horários específicos para orar. Trabalhando juntos, cobriremos a região em oração 24/7."
+msgstr "Kami punya waktu sebelum kampanye dimulai. Kami akan mengirimkan email lagi beberapa bulan sebelum hari pertama meminta Anda untuk memilih waktu tertentu untuk berdoa. Bekerja sama kami akan mencakup wilayah dalam doa 24/7."
 
 #: admin/send-email-utility.php:172
 msgid "If you know your schedule already you can choose your times here:"
-msgstr "Se sabe do seu calendário, pode escolher seus horários aqui:"
+msgstr "Jika Anda sudah mengetahui jadwal Anda, Anda dapat memilih waktu Anda di sini:"
 
 #: admin/send-email-utility.php:252
 msgid "What time(s) will you pray?"
-msgstr "A que horas você vai orar?"
+msgstr "Jam berapa Anda akan berdoa?"
 
 #: admin/send-email-utility.php:255
 msgid "Thank you for signing up to help us cover the region in nonstop prayer!!"
-msgstr "Obrigado por se inscrever para nos ajudar a cobrir a região em oração sem parar!!"
+msgstr "Terima kasih telah mendaftar untuk membantu kami menutupi wilayah ini dengan doa tanpa henti!!"
 
 #: admin/send-email-utility.php:256
 msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
-msgstr "Agora é hora de escolher os horários específicos em que você vai orar. Abaixo está um link para a ferramenta de tempos de oração."
+msgstr "Sekarang saatnya untuk memilih waktu spesifik Anda akan berdoa. Di bawah ini adalah tautan ke alat waktu sholat."
 
 #: admin/send-email-utility.php:257
 msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
-msgstr "Para orar no mesmo horário todos os dias (de preferencia!), clique no botão \"Adicionar um horário diário de oração\"."
+msgstr "Untuk berdoa pada waktu yang sama setiap hari (lebih disukai!) klik tombol \"Tambahkan Waktu Sholat Harian\"."
 
 #: admin/send-email-utility.php:258
 msgid "If you need to choose different times or can't commit to pray every day click the \"Add individual Prayer Times\" button."
-msgstr "Se você precisar escolher horários diferentes ou não puder se comprometer a orar todos os dias, clique no botão \"Adicionar horários de oração individuais\"."
+msgstr "Jika Anda perlu memilih waktu yang berbeda atau tidak dapat berkomitmen untuk berdoa setiap hari, klik tombol \"Tambahkan Waktu Sholat individual\"."
 
 #: admin/send-email-utility.php:259
 msgid "Choose prayer times link:"
-msgstr "Escolha o link dos horários de oração:"
+msgstr "Pilih tautan waktu doa:"
 
 #: magic-links/24hour.php:87
 msgid "Percentage covered in prayer"
-msgstr "Porcentagem coberta em oração"
+msgstr "Persentase yang tercakup dalam doa"
 
 #: magic-links/24hour.php:108
 msgid "Choose Prayer Times"
-msgstr "Escolha momentos de oração"
+msgstr "Pilih Waktu Doa"
 
 #: magic-links/24hour.php:118 magic-links/24hour.php:141
 #: magic-links/24hour.php:167 magic-links/24hour.php:212
 msgid "Back"
-msgstr "Volta"
+msgstr "Kembali"
 
 #: magic-links/24hour.php:198 magic-links/subscription-management.php:1314
 msgid "No selected Time"
-msgstr "Sem hora selecionada"
+msgstr "Tidak ada Waktu yang dipilih"
 
 #: magic-links/24hour.php:234 magic-links/24hour.php:316
 msgid "Your email is required."
-msgstr "Seu e-mail é obrigatório."
+msgstr "Email Anda diperlukan."
 
 #: magic-links/24hour.php:305
 msgid "I'm interested in praying! Send me an email when it is time to choose prayer times."
-msgstr "Estou interessado em orar! Envie-me um e-mail quando for a hora de escolher os horários de oração."
+msgstr "Saya tertarik untuk berdoa! Kirimi saya email ketika tiba waktunya untuk memilih waktu doa."
 
 #: magic-links/24hour.php:343
 msgid "We are not longer looking for sign ups"
-msgstr "Não estamos mais procurando inscrições"
+msgstr "Kami tidak lagi mencari pendaftar"
 
 #: magic-links/24hour.php:344
 msgid "Thanks for praying with us!"
-msgstr "Obrigado por orar conosco!"
+msgstr "Terima kasih telah berdoa bersama kami!"
 
 #: magic-links/subscription-management.php:35
 #: magic-links/subscription-management.php:1142
 msgid "My Prayer Times"
-msgstr "Meus horários de oração"
+msgstr "Waktu Doaku"
 
 #: magic-links/subscription-management.php:1147
 msgid "Your prayer times have been verified!"
-msgstr "Seus horários de oração foram verificados!"
+msgstr "Waktu doa Anda telah diverifikasi!"
 
 #: magic-links/subscription-management.php:1200
 msgid "Add a Daily Prayer Time"
-msgstr "Adicione um horários de oração diário"
+msgstr "Tambahkan Waktu Doa Harian"
 
 #: magic-links/subscription-management.php:1203
 msgid "Add Individual Prayer Times"
-msgstr "\n"
-"Adicione horários de Oração Individual"
+msgstr "Tambahkan Waktu Doa Individu"
 
 #: magic-links/subscription-management.php:1205
 msgid "Download Calendar"
-msgstr "Baixe o calendário"
+msgstr "Unduh Kalender"
 
 #: magic-links/subscription-management.php:1228
 #: magic-links/subscription-management.php:1322
 msgid "Your new prayer times have been saved."
-msgstr "Seus novos horários de oração foram salvos."
+msgstr "Waktu doa  Anda yang baru telah disimpan."
 
 #: magic-links/subscription-management.php:1248
 #: magic-links/subscription-management.php:1345
 msgid "ok"
-msgstr "Ok"
+msgstr "oke"
 
 #: magic-links/subscription-management.php:1279
 msgid "Close"
-msgstr "Fechar"
+msgstr "Menutup"
 
 #: magic-links/subscription-management.php:1337
 msgid "back"
-msgstr "Volte"
+msgstr "kembali"
 
 #: magic-links/subscription-management.php:1390
 msgid "Profile Settings"
-msgstr "Configurações de perfil"
+msgstr "Pengaturan Profil"
 
 #: magic-links/subscription-management.php:1397
 msgid "Delete this profile and all the scheduled prayer times?"
-msgstr "Excluir este perfil e todos os horários de oração agendados?"
+msgstr "Hapus profil ini dan semua jadwal waktu sholat?"
 
 #: magic-links/subscription-management.php:1399
 msgid "Delete"
-msgstr "Excluir"
+msgstr "Menghapus"
 
 #: magic-links/subscription-management.php:1402
 msgid "Are you sure you want to delete your profile?"
-msgstr "Tem certeza de que deseja excluir seu perfil?"
+msgstr "Anda yakin ingin menghapus profil Anda?"
 
 #: magic-links/subscription-management.php:1404
 msgid "This can not be undone."
-msgstr "Isto não pode ser desfeito."
+msgstr "Ini tidak dapat dibatalkan."
 
 #: magic-links/subscription-management.php:1413
 msgid "DELETE"
-msgstr "Excluir"
+msgstr "MENGHAPUS"
 
 #: magic-links/subscription-management.php:1430
 msgid "This subscription has ended or is not configured correctly."
-msgstr "Esta assinatura foi encerrada ou não está configurada corretamente."
+msgstr "Langganan ini telah berakhir atau tidak dikonfigurasi dengan benar."
 
 #. Plugin Name of the plugin/theme
 #: 
 msgid "Disciple.Tools - Prayer Campaigns"
-msgstr "Disciple.Tools - Campanhas de Oração"
+msgstr "Disciple.Tools - Kampanye Doa"
 
 #: admin/admin-menu-and-tabs.php:224
 msgid "Update"
