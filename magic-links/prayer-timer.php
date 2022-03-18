@@ -179,7 +179,7 @@ function show_prayer_timer( $atts ) {
                 var start_praying_button = jQuery( '#start-praying' )
                 
                 start_praying_button.attr( 'onclick', 'javascript:void();' );
-                start_praying_button.text( 'Now praying...');
+                start_praying_button.text( '<?php esc_html_e( 'Now praying...', 'disciple-tools-prayer-campaigns' ); ?>');
                 start_praying_button.attr('class', 'prayer-timer-now-praying');
                 start_praying_button.blur()
                 
