@@ -164,13 +164,7 @@ function show_prayer_timer( $atts ) {
                     <?php esc_html_e( 'Start Praying!', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
                 <p class="prayer-timer-duration-label">
-                    <?php
-                        echo '(';
-                        esc_html_e( 'Prayer time', 'disciple-tools-prayer-campaigns' );
-                        echo esc_html( ": $prayer_duration_min " );
-                        esc_html_e( 'min', 'disciple-tools-prayer-campaigns' );
-                        echo ')';
-                    ?>
+                    (<?php echo esc_html( sprintf( _x( "Prayer time: %s min", 'Prayer time: 15 min', 'disciple-tools-prayer-campaigns' ), $prayer_duration_min ) ); ?>)
                 </p>
             </div>
         </div>
