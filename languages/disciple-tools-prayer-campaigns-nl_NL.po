@@ -1,0 +1,375 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Prayer Campaigns\n"
+"Language: nl\n"
+
+#: admin/cron-schedule.php:121 admin/send-email-utility.php:71
+msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
+msgid "%1$s from %2$s to %3$s"
+msgstr "%1$s van %2$s tot %3$s"
+
+#: admin/cron-schedule.php:127
+msgctxt "for Paris, France"
+msgid "for %s"
+msgstr "voor %s"
+
+#: admin/cron-schedule.php:142 admin/send-email-utility.php:89
+#: admin/send-email-utility.php:160 admin/send-email-utility.php:254
+msgid "Hello %s,"
+msgstr "Hallo %s,"
+
+#: admin/cron-schedule.php:143
+msgid "Thank you for praying with us!"
+msgstr "Bedankt dat je met ons mee bidt!"
+
+#: admin/cron-schedule.php:144
+msgid "Here are your upcoming prayer times:"
+msgstr "Dit zijn uw aanstaande gebedstijden:"
+
+#: admin/cron-schedule.php:146 admin/send-email-utility.php:109
+msgid "Times are shown according to: %s time"
+msgstr "Tijden worden weergegeven volgens: %s tijd"
+
+#: admin/send-email-utility.php:86
+msgid "Registered to pray with us!"
+msgstr "Geregistreerd om met ons te bidden!"
+
+#: admin/send-email-utility.php:106
+msgid "Click here to verify your email address and confirm your prayer times."
+msgstr "Klik hier om uw e-mailadres te verifiëren en uw gebedstijden te bevestigen."
+
+#: admin/send-email-utility.php:107
+msgid "Here are the times you have committed to pray:"
+msgstr "Dit zijn de tijden die je hebt toegezegd om te bidden:"
+
+#: magic-links/24hour.php:25 magic-links/subscription-management.php:562
+msgid "Select a time"
+msgstr "Selecteer een tijd"
+
+#: magic-links/24hour.php:26 magic-links/subscription-management.php:563
+msgid "fully covered once"
+msgstr "eenmaal volledig gedekt"
+
+#: magic-links/24hour.php:27 magic-links/subscription-management.php:564
+msgid "fully covered %1$s times"
+msgstr "%1$s keer volledig gedekt"
+
+#: magic-links/24hour.php:28 magic-links/subscription-management.php:565
+msgctxt "Monday 5pm for 15 minutes"
+msgid "%1$s for %2$s minutes."
+msgstr "%1$s voor %2$s minuten."
+
+#: magic-links/24hour.php:101
+msgid "Loading prayer campaign data..."
+msgstr "Gegevens gebedscampagne aan het laden..."
+
+#: magic-links/24hour.php:155 magic-links/24hour.php:192
+msgid "Showing times for:"
+msgstr "Toon tijden voor:"
+
+#: magic-links/24hour.php:120
+msgid "Select an option"
+msgstr "Kies een optie"
+
+#: magic-links/24hour.php:123
+msgid "Pray every day at the same time"
+msgstr "Bid elke dag op hetzelfde tijdstip"
+
+#: magic-links/24hour.php:125
+msgid "Example: Everyday at 4pm for 15mins"
+msgstr "Voorbeeld: elke dag om 16.00 uur gedurende 15 minuten"
+
+#: magic-links/24hour.php:128
+msgid "Select days and times to pray"
+msgstr "Selecteer dagen en tijden om te bidden"
+
+#: magic-links/24hour.php:130
+msgid "Example: Monday 12th at 6pm for 15mins"
+msgstr "Voorbeeld: maandag de 12e om 18:00 uur gedurende 15 minuten"
+
+#: magic-links/24hour.php:145 magic-links/subscription-management.php:1212
+msgid "Prayer Time"
+msgstr "Gebedstijd"
+
+#: magic-links/24hour.php:147 magic-links/24hour.php:180
+#: magic-links/subscription-management.php:1214
+#: magic-links/subscription-management.php:1296
+msgid "Daily Time"
+msgstr "Dagelijkse tijd"
+
+#: magic-links/24hour.php:151 magic-links/24hour.php:184
+#: magic-links/subscription-management.php:1218
+#: magic-links/subscription-management.php:1300
+msgid "For how long"
+msgstr "Voor hoelang"
+
+#: magic-links/24hour.php:158 magic-links/24hour.php:202
+#: magic-links/subscription-management.php:1239
+#: magic-links/subscription-management.php:1333
+msgid "Confirm Times"
+msgstr "Bevestig tijden"
+
+#: magic-links/24hour.php:170 magic-links/subscription-management.php:1287
+msgid "Select a day and choose a time"
+msgstr "Selecteer een dag en kies een tijd"
+
+#: magic-links/24hour.php:178 magic-links/subscription-management.php:1294
+msgid "Select a prayer time"
+msgstr "Selecteer een gebedstijd"
+
+#: magic-links/24hour.php:188 magic-links/subscription-management.php:1304
+msgid "Add prayer time"
+msgstr "Voeg gebedstijd toe"
+
+#: magic-links/24hour.php:189 magic-links/subscription-management.php:1305
+msgid "Time added"
+msgstr "Tijd toegevoegd"
+
+#: magic-links/24hour.php:196 magic-links/24hour.php:270
+#: magic-links/subscription-management.php:1312
+msgid "Selected Times"
+msgstr "Geselecteerde tijden"
+
+#: magic-links/24hour.php:214
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#: magic-links/24hour.php:228 magic-links/24hour.php:229
+#: magic-links/24hour.php:310 magic-links/24hour.php:311
+msgid "Name"
+msgstr "Naam"
+
+#: magic-links/24hour.php:236 magic-links/24hour.php:237
+#: magic-links/24hour.php:238 magic-links/24hour.php:318
+#: magic-links/24hour.php:319 magic-links/24hour.php:320
+msgid "Email"
+msgstr "E-mail"
+
+#: magic-links/24hour.php:245
+msgid "Receive Prayer Time Notifications (email verification needed)."
+msgstr "Ontvang gebedstijdmeldingen (e-mailverificatie vereist)."
+
+#: magic-links/24hour.php:250 magic-links/24hour.php:326
+msgid "Submit Your Prayer Commitment"
+msgstr "Dien uw gebedstoezegging in"
+
+#: magic-links/24hour.php:256 magic-links/24hour.php:332
+msgid "Sent! Check your email."
+msgstr "Verstuurd! Controleer uw e-mail."
+
+#: magic-links/24hour.php:258
+msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
+msgstr "Klik op de link in de e-mail om uw toewijding te verifiëren en gebedsmeldingen te ontvangen!"
+
+#: magic-links/24hour.php:261
+msgid "In the email is a link to manage your prayer times."
+msgstr "In de e-mail staat een link om uw gebedstijden te beheren."
+
+#: magic-links/24hour.php:264 magic-links/24hour.php:334
+msgid "OK"
+msgstr "Oke"
+
+#: magic-links/24hour.php:295 magic-links/subscription-management.php:1186
+#: magic-links/subscription-management.php:1235
+#: magic-links/subscription-management.php:1329
+#: magic-links/subscription-management.php:1410
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: magic-links/24hour.php:298 magic-links/subscription-management.php:1189
+msgid "Select"
+msgstr "Selecteer"
+
+#. Plugin URI of the plugin/theme
+#: 
+msgid "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
+msgstr "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
+
+#. Description of the plugin/theme
+#: 
+msgid "Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project."
+msgstr "Voeg een gebedsabonnementenmodule toe aan Disciple.Tools waarmee niet-gebruikers zich kunnen abonneren om te bidden voor specifieke locaties op specifieke tijden, waarbij zowel tijd als geografische gebedsverzadiging voor uw project wordt ondersteund."
+
+#. Author URI of the plugin/theme
+#: 
+msgid "https://github.com/DiscipleTools"
+msgstr "https://github.com/DiscipleTools"
+
+#: admin/cron-schedule.php:150 admin/send-email-utility.php:113
+msgid "Click here to manage your account and time commitments"
+msgstr "Klik hier om uw account en tijdsverplichtingen te beheren"
+
+#: admin/send-email-utility.php:105
+msgid "Thank you for joining us in strategic prayer for a disciple making movement! You're one click away from finishing your registration."
+msgstr "Bedankt dat je met ons meedoet in strategisch gebed voor een beweging die discipelen maakt! U bent één klik verwijderd van het voltooien van uw registratie."
+
+#: admin/send-email-utility.php:167
+msgid "Registration Confirmation"
+msgstr "Registratie Bevestiging"
+
+#: admin/send-email-utility.php:170
+msgid "Thank you for signing up to pray!"
+msgstr "Bedankt voor je aanmelding om te bidden!"
+
+#: admin/send-email-utility.php:171
+msgid "We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer."
+msgstr "We hebben nog even voordat de campagne begint. We sturen je een paar maanden voor de eerste dag nog een e-mail waarin we je vragen om specifieke tijden te kiezen om te bidden. Samen dekken we de regio in 24/7 gebed."
+
+#: admin/send-email-utility.php:172
+msgid "If you know your schedule already you can choose your times here:"
+msgstr "Als je je schema al kent, kun je hier je tijden kiezen:"
+
+#: admin/send-email-utility.php:252
+msgid "What time(s) will you pray?"
+msgstr "Op welke tijd(en) gaat u bidden?"
+
+#: admin/send-email-utility.php:255
+msgid "Thank you for signing up to help us cover the region in nonstop prayer!!"
+msgstr "Bedankt dat je je hebt aangemeld om ons te helpen de regio te dekken in non-stop gebed!!"
+
+#: admin/send-email-utility.php:256
+msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
+msgstr "Het is nu tijd om de specifieke tijden te kiezen waarop je gaat bidden. Hieronder vindt u een link naar het hulpmiddel voor gebedstijden."
+
+#: admin/send-email-utility.php:257
+msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
+msgstr "Om elke dag op hetzelfde tijdstip te bidden (bij voorkeur!) klikt u op de knop \"Een dagelijkse gebedstijd toevoegen\"."
+
+#: admin/send-email-utility.php:258
+msgid "If you need to choose different times or can't commit to pray every day click the \"Add individual Prayer Times\" button."
+msgstr "Als je andere tijden moet kiezen of je je niet kunt verplichten om elke dag te bidden, klik dan op de knop \"Individuele gebedstijden toevoegen\"."
+
+#: admin/send-email-utility.php:259
+msgid "Choose prayer times link:"
+msgstr "Kies gebedstijden link:"
+
+#: magic-links/24hour.php:87
+msgid "Percentage covered in prayer"
+msgstr "Percentage bedekt met gebed"
+
+#: magic-links/24hour.php:108
+msgid "Choose Prayer Times"
+msgstr "Kies gebedstijden"
+
+#: magic-links/24hour.php:118 magic-links/24hour.php:141
+#: magic-links/24hour.php:167 magic-links/24hour.php:212
+msgid "Back"
+msgstr "Terug"
+
+#: magic-links/24hour.php:198 magic-links/subscription-management.php:1314
+msgid "No selected Time"
+msgstr "Geen geselecteerde tijd"
+
+#: magic-links/24hour.php:234 magic-links/24hour.php:316
+msgid "Your email is required."
+msgstr "Uw e-mail is vereist."
+
+#: magic-links/24hour.php:305
+msgid "I'm interested in praying! Send me an email when it is time to choose prayer times."
+msgstr "Ik ben geïnteresseerd in bidden! Stuur me een e-mail wanneer het tijd is om gebedstijden te kiezen."
+
+#: magic-links/24hour.php:343
+msgid "We are not longer looking for sign ups"
+msgstr "We zijn niet meer op zoek naar aanmeldingen"
+
+#: magic-links/24hour.php:344
+msgid "Thanks for praying with us!"
+msgstr "Dank u wel dat u met ons mee bidt!"
+
+#: magic-links/subscription-management.php:35
+#: magic-links/subscription-management.php:1142
+msgid "My Prayer Times"
+msgstr "Mijn gebedstijden"
+
+#: magic-links/subscription-management.php:1147
+msgid "Your prayer times have been verified!"
+msgstr "Uw gebedstijden zijn geverifieerd!"
+
+#: magic-links/subscription-management.php:1200
+msgid "Add a Daily Prayer Time"
+msgstr "Voeg een dagelijkse gebedstijd toe"
+
+#: magic-links/subscription-management.php:1203
+msgid "Add Individual Prayer Times"
+msgstr "Individuele gebedstijden toevoegen"
+
+#: magic-links/subscription-management.php:1205
+msgid "Download Calendar"
+msgstr "Kalender downloaden"
+
+#: magic-links/subscription-management.php:1228
+#: magic-links/subscription-management.php:1322
+msgid "Your new prayer times have been saved."
+msgstr "Je nieuwe gebedstijden zijn opgeslagen."
+
+#: magic-links/subscription-management.php:1248
+#: magic-links/subscription-management.php:1345
+msgid "ok"
+msgstr "Oke"
+
+#: magic-links/subscription-management.php:1279
+msgid "Close"
+msgstr "Sluiten"
+
+#: magic-links/subscription-management.php:1337
+msgid "back"
+msgstr "terug"
+
+#: magic-links/subscription-management.php:1390
+msgid "Profile Settings"
+msgstr "Profielinstellingen"
+
+#: magic-links/subscription-management.php:1397
+msgid "Delete this profile and all the scheduled prayer times?"
+msgstr "Dit profiel en alle geplande gebedstijden verwijderen?"
+
+#: magic-links/subscription-management.php:1399
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: magic-links/subscription-management.php:1402
+msgid "Are you sure you want to delete your profile?"
+msgstr "Weet je zeker dat je je profiel wilt verwijderen?"
+
+#: magic-links/subscription-management.php:1404
+msgid "This can not be undone."
+msgstr "Dit kan niet ongedaan gemaakt worden."
+
+#: magic-links/subscription-management.php:1413
+msgid "DELETE"
+msgstr "VERWIJDEREN"
+
+#: magic-links/subscription-management.php:1430
+msgid "This subscription has ended or is not configured correctly."
+msgstr "Dit abonnement is beëindigd of niet correct geconfigureerd."
+
+#. Plugin Name of the plugin/theme
+#: 
+msgid "Disciple.Tools - Prayer Campaigns"
+msgstr "Disciple.Tools - Gebedscampagnes"
+
+#: admin/admin-menu-and-tabs.php:224
+msgid "Update"
+msgstr "Bijwerken"
+
+#: admin/cron-schedule.php:80
+msgid "Prayer Time reminder!"
+msgstr "Gebedstijd herinnering!"
+
+#: magic-links/prayer-timer.php:164
+msgid "Start Praying!"
+msgstr "Begin met bidden!"
+
+#: magic-links/prayer-timer.php:167
+msgctxt "Prayer time: 15 min"
+msgid "Prayer time: %s min"
+msgstr "Gebedstijd: %s min"
+
+#: magic-links/prayer-timer.php:176
+msgid "Now praying..."
+msgstr "Nu aan het bidden..."
+
