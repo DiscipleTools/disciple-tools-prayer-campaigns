@@ -40,7 +40,7 @@ msgstr "Terdaftar untuk berdoa bersama kami!"
 
 #: admin/send-email-utility.php:106
 msgid "Click here to verify your email address and confirm your prayer times."
-msgstr "Klik di sini untuk memverifikasi alamat email Anda dan mengkonfirmasi waktu sholat Anda."
+msgstr "Klik di sini untuk memverifikasi alamat email Anda dan mengkonfirmasi waktu doa Anda."
 
 #: admin/send-email-utility.php:107
 msgid "Here are the times you have committed to pray:"
@@ -93,7 +93,7 @@ msgstr "Contoh: Senin 12 jam 6 sore selama 15 menit"
 
 #: magic-links/24hour.php:145 magic-links/subscription-management.php:1212
 msgid "Prayer Time"
-msgstr "Waktunya sholat"
+msgstr "Waktu doa"
 
 #: magic-links/24hour.php:147 magic-links/24hour.php:180
 #: magic-links/subscription-management.php:1214
@@ -136,7 +136,7 @@ msgstr "Waktu yang Dipilih"
 
 #: magic-links/24hour.php:214
 msgid "Confirm"
-msgstr "Mengonfirmasi"
+msgstr "Konfirmasi"
 
 #: magic-links/24hour.php:228 magic-links/24hour.php:229
 #: magic-links/24hour.php:310 magic-links/24hour.php:311
@@ -151,11 +151,11 @@ msgstr "email"
 
 #: magic-links/24hour.php:245
 msgid "Receive Prayer Time Notifications (email verification needed)."
-msgstr "Terima Pemberitahuan Waktu Sholat (diperlukan verifikasi email)."
+msgstr "Menerima Pemberitahuan Waktu Doa (diperlukan verifikasi email)."
 
 #: magic-links/24hour.php:250 magic-links/24hour.php:326
 msgid "Submit Your Prayer Commitment"
-msgstr "Kirim Komitmen Doa Anda"
+msgstr "Serahkan Komitmen Doa Anda"
 
 #: magic-links/24hour.php:256 magic-links/24hour.php:332
 msgid "Sent! Check your email."
@@ -163,7 +163,7 @@ msgstr "Terkirim! Periksa email Anda."
 
 #: magic-links/24hour.php:258
 msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
-msgstr "Klik tautan yang disertakan dalam email untuk memverifikasi komitmen Anda dan menerima pemberitahuan waktu sholat!"
+msgstr "Klik tautan yang disertakan dalam email untuk memverifikasi komitmen Anda dan menerima pemberitahuan waktu doa!"
 
 #: magic-links/24hour.php:261
 msgid "In the email is a link to manage your prayer times."
@@ -233,7 +233,7 @@ msgstr "Terima kasih telah mendaftar untuk membantu kami menutupi wilayah ini de
 
 #: admin/send-email-utility.php:256
 msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
-msgstr "Sekarang saatnya untuk memilih waktu spesifik Anda akan berdoa. Di bawah ini adalah tautan ke alat waktu sholat."
+msgstr "Sekarang saatnya untuk memilih waktu spesifik Anda akan berdoa. Di bawah ini adalah tautan ke alat waktu doa."
 
 #: admin/send-email-utility.php:257
 msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
@@ -325,7 +325,7 @@ msgstr "Pengaturan Profil"
 
 #: magic-links/subscription-management.php:1397
 msgid "Delete this profile and all the scheduled prayer times?"
-msgstr "Hapus profil ini dan semua jadwal waktu sholat?"
+msgstr "Hapus profil ini dan semua jadwal waktu doa"
 
 #: magic-links/subscription-management.php:1399
 msgid "Delete"
@@ -350,26 +350,26 @@ msgstr "Langganan ini telah berakhir atau tidak dikonfigurasi dengan benar."
 #. Plugin Name of the plugin/theme
 #: 
 msgid "Disciple.Tools - Prayer Campaigns"
-msgstr "Disciple.Tools - Kampanye Doa"
+msgstr "Alat-alat Murid - Kampanye Doa"
 
 #: admin/admin-menu-and-tabs.php:224
 msgid "Update"
-msgstr ""
+msgstr "Memperbarui"
 
 #: admin/cron-schedule.php:80
 msgid "Prayer Time reminder!"
-msgstr ""
+msgstr "Pengingat waktu berdoa!"
 
 #: magic-links/prayer-timer.php:164
 msgid "Start Praying!"
-msgstr ""
+msgstr "Mulailah Berdoa!"
 
 #: magic-links/prayer-timer.php:167
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr ""
+msgstr "Waktu berdoa: %s mnt"
 
 #: magic-links/prayer-timer.php:176
 msgid "Now praying..."
-msgstr ""
+msgstr "Berdoa sekarang..."
 
