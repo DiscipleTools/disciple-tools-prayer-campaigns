@@ -354,22 +354,22 @@ msgstr "Disciple.Tools - Campagnes de prière"
 
 #: admin/admin-menu-and-tabs.php:224
 msgid "Update"
-msgstr ""
+msgstr "Mettre à jour"
 
 #: admin/cron-schedule.php:80
 msgid "Prayer Time reminder!"
-msgstr ""
+msgstr "Rappel de l'heure de la prière !"
 
 #: magic-links/prayer-timer.php:164
 msgid "Start Praying!"
-msgstr ""
+msgstr "Commencez à prier !"
 
 #: magic-links/prayer-timer.php:167
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr ""
+msgstr "Temps de prière : %s min"
 
 #: magic-links/prayer-timer.php:176
 msgid "Now praying..."
-msgstr ""
+msgstr "Prier maintenant..."
 
