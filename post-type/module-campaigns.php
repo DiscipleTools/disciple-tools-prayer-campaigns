@@ -66,8 +66,8 @@ class DT_Campaigns_Base {
     public function dt_set_roles_and_permissions( $expected_roles ){
 
         $expected_roles["campaigns_admin"] = [
-            "label" => __( 'Campaigns Admin', 'disciple_tools' ),
-            "description" => __( 'Campaigns admin can administrate the prayer campaigns and subscriptions section', 'disciple_tools' ),
+            "label" => 'Campaigns Admin',
+            "description" => 'Campaigns admin can administrate the prayer campaigns and subscriptions section',
             "permissions" => [
                 'access_disciple_tools' => true,
                 'access_'.$this->post_type => true,
@@ -94,23 +94,23 @@ class DT_Campaigns_Base {
     public function dt_custom_fields_settings( $fields, $post_type ){
         if ( $post_type === $this->post_type ){
             $fields['status'] = [
-                'name'        => __( 'Status', 'disciple_tools' ),
-                'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
+                'name'        => 'Status',
+                'description' => 'Set the current status.',
                 'type'        => 'key_select',
                 'default'     => [
                     'active'   => [
-                        'label' => __( 'Active', 'disciple_tools' ),
-                        'description' => _x( 'Is active.', 'field description', 'disciple_tools' ),
+                        'label' => 'Active',
+                        'description' => 'Is active.',
                         'color' => "#4CAF50"
                     ],
                     'pre_signup'   => [
-                        'label' => __( 'Pre Sign-Up', 'disciple_tools' ),
-                        'description' => _x( 'Getting Ready', 'field description', 'disciple_tools' ),
+                        'label' => 'Pre Sign-Up',
+                        'description' => 'Getting Ready',
                         'color' => "orange"
                     ],
                     'inactive' => [
-                        'label' => __( 'Inactive', 'disciple_tools' ),
-                        'description' => _x( 'No longer active.', 'field description', 'disciple_tools' ),
+                        'label' => 'Inactive',
+                        'description' => 'No longer active.',
                         'color' => "#F43636"
                     ],
                 ],
@@ -121,8 +121,8 @@ class DT_Campaigns_Base {
                 "select_cannot_be_empty" => true,
             ];
             $fields['type'] = [
-                'name'        => __( 'Campaign Type', 'disciple_tools' ),
-                'description' => _x( 'Set the current type.', 'field description', 'disciple_tools' ),
+                'name'        => 'Campaign Type',
+                'description' => 'Set the current type.',
                 'type'        => 'key_select',
                 'default'     => apply_filters( 'dt_campaign_types', [] ),
                 'tile'     => 'status',
@@ -135,16 +135,16 @@ class DT_Campaigns_Base {
 
 
             $fields["languages"] = [
-                'name' => __( 'Subscriber Preferred Language', 'disciple_tools' ),
-                'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
+                'name' => 'Subscriber Preferred Language',
+                'description' => 'Subscriber preferred language',
                 'type' => 'key_select',
                 "tile" => "details",
                 'default' => dt_get_option( "dt_working_languages" ) ?: [ 'en' ],
                 'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
             ];
             $fields["peoplegroups"] = [
-                "name" => __( 'People Groups', 'disciple_tools' ),
-                'description' => _x( 'The people groups connected to this record.', 'Optional Documentation', 'disciple_tools' ),
+                "name" => 'People Groups',
+                'description' => 'The people groups connected to this record.',
                 "type" => "connection",
                 "post_type" => "peoplegroups",
                 "tile" => "details",
@@ -153,7 +153,7 @@ class DT_Campaigns_Base {
             ];
 
             $fields['start_date'] = [
-                'name'        => __( 'Start Date', 'disciple_tools' ),
+                'name'        => 'Start Date',
                 'required' => true,
                 'description' => '',
                 'type'        => 'date',
@@ -164,7 +164,7 @@ class DT_Campaigns_Base {
                 "show_in_table" => 101
             ];
             $fields['end_date'] = [
-                'name'        => __( 'End Date', 'disciple_tools' ),
+                'name'        => 'End Date',
                 'required' => true,
                 'description' => '',
                 'type'        => 'date',
@@ -185,7 +185,7 @@ class DT_Campaigns_Base {
                 ];
             }
             $fields["campaign_timezone"] = [
-                "name" => __( "Campaign Time Zone", 'disciple_tools' ),
+                "name" => "Campaign Time Zone",
                 'required' => true,
                 "in_create_form" => true,
                 "default" => $timezones,
@@ -194,7 +194,7 @@ class DT_Campaigns_Base {
             ];
 
             $fields["min_time_duration"] = [
-                "name" => __( "Prayer Time Duration", 'disciple_tools' ),
+                "name" => "Prayer Time Duration",
                 "type" => "key_select",
                 "default" => [
                     "15" => [ "label" => "15 Minutes", "default" => true ], //keep as first item
@@ -205,7 +205,7 @@ class DT_Campaigns_Base {
             ];
 
             $fields["duration_options"] = [
-                "name" => __( "Duration options", 'disciple-tools-prayer-campaigns' ),
+                "name" => "Duration options",
                 "type" => "key_select",
                 "default" => [
                     "5" => [ "label" => __( "5 minutes", 'disciple-tools-prayer-campaigns' ) ],
@@ -232,8 +232,8 @@ class DT_Campaigns_Base {
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
             }
             $fields[$key_name] = [
-                'name'   => __( 'Private Key', 'disciple_tools' ),
-                'description' => __( 'Private key for subscriber access', 'disciple_tools' ),
+                'name'   => 'Private Key',
+                'description' => 'Private key for subscriber access',
                 'type'   => 'hash',
                 'default' => dt_create_unique_key(),
                 'hidden' => true,
@@ -244,8 +244,8 @@ class DT_Campaigns_Base {
              * location elements
              */
             $fields['location_grid'] = [
-                'name'        => __( 'Locations', 'disciple_tools' ),
-                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+                'name'        => 'Locations',
+                'description' => 'The general location where this contact is located.',
                 'type'        => 'location',
                 'mapbox'    => false,
                 "customizable" => false,
@@ -254,8 +254,8 @@ class DT_Campaigns_Base {
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
             $fields['location_grid_meta'] = [
-                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
-                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+                'name'        => 'Locations', //system string does not need translation
+                'description' => 'The general location where this contact is located.',
                 'type'        => 'location_meta',
                 "tile"      => "campaign_setup",
                 'mapbox'    => false,
@@ -263,7 +263,7 @@ class DT_Campaigns_Base {
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
             $fields["contact_address"] = [
-                "name" => __( 'Address', 'disciple_tools' ),
+                "name" => 'Address',
                 "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
                 "type" => "communication_channel",
                 "tile" => "",
@@ -281,8 +281,8 @@ class DT_Campaigns_Base {
             }
 
             $fields["subscriptions"] = [
-                "name" => __( 'Subscriptions', 'disciple_tools' ),
-                'description' => _x( 'The contacts who are members of this group.', 'Optional Documentation', 'disciple_tools' ),
+                "name" => 'Subscriptions',
+                'description' => 'The contacts who are members of this group.',
                 "type" => "connection",
                 "post_type" => "subscriptions",
                 "p2p_direction" => "from",
@@ -319,9 +319,9 @@ class DT_Campaigns_Base {
      */
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
-            $tiles["campaign_setup"] = [ "label" => __( "Campaign Setup", 'disciple_tools' ) ];
-            $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple_tools' ) ];
-            $tiles["prayer_timer"] = [ "label" => __( "Prayer Timer", 'disciple_tools' ) ];
+            $tiles["campaign_setup"] = [ "label" => "Campaign Setup" ];
+            $tiles["commitments"] = [ "label" => "Commitments" ];
+            $tiles["prayer_timer"] = [ "label" => "Prayer Timer" ];
         }
         return $tiles;
     }
@@ -784,7 +784,7 @@ class DT_Campaigns_Base {
             }
             $filters["tabs"][] = [
                 "key" => "all",
-                "label" => _x( "All", 'List Filters', 'disciple_tools' ),
+                "label" => "All",
                 "count" => $total_all,
                 "order" => 10
             ];
@@ -792,7 +792,7 @@ class DT_Campaigns_Base {
             $filters["filters"][] = [
                 'ID' => 'all',
                 'tab' => 'all',
-                'name' => _x( "All", 'List Filters', 'disciple_tools' ),
+                'name' => "All",
                 'query' => [
                     'sort' => '-post_date'
                 ],
