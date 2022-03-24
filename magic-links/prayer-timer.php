@@ -6,7 +6,8 @@ function show_prayer_timer( $atts ) {
 
     $atts = shortcode_atts( [
         'color'     => '#3e729a',
-        'duration'  => 15
+        'duration'  => 15,
+        'lang' => 'en_US'
     ], $atts, '' );
     $color_hex = '#3e729a';
     $prayer_duration_min = 15;
@@ -18,6 +19,16 @@ function show_prayer_timer( $atts ) {
 
         if ( isset( $atts['duration'] ) ) {
             $prayer_duration_min = (float) $atts['duration'];
+        }
+        if ( isset( $atts["lang"] ) && $atts["lang"] !== 'en_US' ){
+            add_filter( 'determine_locale', function ( $locale ) use ( $atts ){
+                $lang_code = sanitize_text_field( wp_unslash( $atts["lang"] ) );
+                if ( !empty( $lang_code ) ){
+                    return $lang_code;
+                }
+                return $locale;
+            } );
+            load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
         }
     }
     wp_enqueue_script( 'jquery' );
