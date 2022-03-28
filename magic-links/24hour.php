@@ -62,16 +62,16 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             width: fit-content;
         }
         <?php endif; ?>
-        #cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
+        .cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
             color: <?php echo esc_html( $color ) ?>;
         }
-        #cp-wrapper .selected-day {
+        .cp-wrapper .selected-day {
             background-color: <?php echo esc_html( $color ) ?>;
         }
-        #cp-wrapper button {
+        .cp-wrapper button {
             background-color: <?php echo esc_html( $color ) ?>;
         }
-        #cp-wrapper button:hover {
+        .cp-wrapper button:hover {
             background-color: transparent;
             border-color: <?php echo esc_html( $color ) ?>;
             color: <?php echo esc_html( $color ) ?>;
