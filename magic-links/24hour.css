@@ -6,9 +6,7 @@
     font-size: 1em;
     min-width: 320px;
 }
-#cp-wrapper {
-    /*min-height: 300px;*/
-}
+
 .cp-calendar-wrapper {
     background-color: #f8f9fad1;
     border-radius: 10px;
@@ -16,36 +14,31 @@
 }
 
 .cp-center {
-  text-align: center;
+    text-align: center;
 }
 
-#cp-wrapper .day-cell, .cp-calendar-wrapper .day-cell {
-    /*flex-basis: 14%;*/
+.cp-wrapper .day-cell, .cp-calendar-wrapper .day-cell {
     text-align: center;
     flex-grow: 0;
-
 }
-#cp-wrapper .display-day-cell {
-    height: 40px;
-}
-#cp-wrapper .disabled-calendar-day {
+.cp-wrapper .disabled-calendar-day {
     width:40px;
     height:40px;
     vertical-align: top;
     padding-top:10px;
     color: grey;
 }
-#cp-wrapper .calendar, .cp-calendar-wrapper .calendar {
+.cp-wrapper .calendar, .cp-calendar-wrapper .calendar {
     display: flex;
     flex-wrap: wrap;
     width: 300px;
     margin: auto
 }
-#cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
+.cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
     text-align: left;
     margin-bottom: 5px;
 }
-#cp-wrapper .week-day, .cp-calendar-wrapper .week-day {
+.cp-wrapper .week-day, .cp-calendar-wrapper .week-day {
     height: 20px;
     width:40px;
     color:black;
@@ -54,11 +47,11 @@
     margin-bottom:5px;
 }
 
-#cp-wrapper #email, #email-later {
+.cp-wrapper #email, #email-later {
     display:none;
 }
 
-#cp-wrapper .day-in-select-calendar {
+.cp-wrapper .day-in-select-calendar {
     color: black;
     display: inline-block;
     height: 40px;
@@ -68,18 +61,18 @@
     text-align: center;
     padding-top: 18px;
 }
-#cp-wrapper .selected-day {
+.cp-wrapper .selected-day {
     color: white;
     border-radius: 50%;
     border: 2px solid;
 }
 
-#cp-wrapper .success-confirmation-section {
+.cp-wrapper .success-confirmation-section {
     display: none;
     margin-top: 20px;
 }
 
-#cp-wrapper .cp-close-button {
+.cp-wrapper .cp-close-button {
     top: .5rem;
     font-size: 1em;
     line-height: 1;
@@ -87,13 +80,13 @@
     cursor:pointer;
     padding: 5px;
 }
-#cp-wrapper .cp-close-button img {
+.cp-wrapper .cp-close-button img {
     filter: invert(100%);
     height: 15px;
     width: 15px;
     vertical-align: bottom;
 }
-#cp-wrapper select {
+.cp-wrapper select {
     font-size: 1rem;
     line-height: 1rem;
     color: black;
@@ -106,43 +99,43 @@
     min-height: 40px;
     padding:0.5em;
 }
-#cp-wrapper input {
+.cp-wrapper input {
     font-size: 1rem;
     line-height: 1rem;
     color: black;
     border: 1px solid black;
 }
-#cp-wrapper .cp-input {
+.cp-wrapper .cp-input {
     min-width: 250px;
     max-width: 400px;
     margin: auto;
     padding:0.5em;
     min-height: 40px;
 }
-#cp-wrapper strong, b {
+.cp-wrapper strong, b {
     font-weight: bold;
 }
-#cp-wrapper {
+.cp-wrapper {
     font-size: 1rem;
 }
-#cp-wrapper h3 {
+.cp-wrapper h3 {
     font-size: 1.5rem;
 }
-#cp-wrapper h2 {
+.cp-wrapper h2 {
     font-size: 1.7rem;
 }
-#cp-wrapper h1, #cp-wrapper h2, #cp-wrapper h3 {
+.cp-wrapper h1, .cp-wrapper h2, .cp-wrapper h3 {
     color: black;
 }
-#cp-wrapper label {
+.cp-wrapper label {
     font-size: 1rem;
     margin-bottom: .5rem;
 }
 
-#cp-wrapper p {
+.cp-wrapper p {
     margin: 10px;
 }
-#cp-wrapper.loading-content h2, #cp-wrapper.loading-content p {
+.cp-wrapper.loading-content h2, .cp-wrapper.loading-content p {
     background-color: #ededed;
     border-radius: 100px;
     min-width: 100px;
@@ -150,7 +143,7 @@
     margin-bottom: 5px;
 }
 
-#cp-wrapper button {
+.cp-wrapper button {
     color: #fefefe;
     font-size: 1rem;
     border-radius: 5px;
@@ -158,25 +151,25 @@
     font-weight: normal;
     padding: .85em 1em;
 }
-#cp-wrapper button:hover {
+.cp-wrapper button:hover {
     background-color: transparent;
 }
-#cp-wrapper button[disabled] {
+.cp-wrapper button[disabled] {
     opacity: .25;
     cursor: not-allowed;
 }
 
-#cp-wrapper .form-error {
+.cp-wrapper .form-error {
     display: none;
     color: red;
 }
 
-#cp-wrapper .cp-display-selected-times {
+.cp-wrapper .cp-display-selected-times {
     list-style-type: none;
     padding: 0;
 }
 
-#cp-wrapper .remove-prayer-time-button {
+.cp-wrapper .remove-prayer-time-button {
     background-color: transparent;
     color: red;
     /* border: black 1px solid; */
