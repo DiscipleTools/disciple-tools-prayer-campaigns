@@ -112,7 +112,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 array_unshift( $installed_translations, "en_US" );
                 $dt_languages = dt_get_available_languages( true );
                 ?>
-                <ul class="tabs" data-tabs id="language-strings-tabs" style="display: flex">
+                <ul class="tabs" data-tabs id="language-strings-tabs" style="display: block">
                     <?php
                     foreach ( $installed_translations as $index => $translation_key ) :
                         $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
