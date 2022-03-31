@@ -153,7 +153,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
             $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( $e['to'], $e['subject'], $e['message'], $e['headers'] );
 
             if ( ! $sent ){
-                dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
+                dt_write_log( __METHOD__ . ': Unable to send email. ' . $e['to'] );
             } else {
                 // note in report that email was sent
                 foreach ( $reports as $row ){
