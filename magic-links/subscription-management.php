@@ -982,10 +982,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         }
                         let disabled = (day.key + (24 * 3600)) < now;
                         list += `
-            <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
-                ${window.lodash.escape(day.day)}
-            </div>
-        `
+                            <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
+                                ${window.lodash.escape(day.day)}
+                            </div>
+                        `
                     })
                     modal_calendar.html(list)
                 }
@@ -1066,6 +1066,25 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 })
 
 
+                $('#allow_notifications').on('change', function (){
+                    let selected_option = $(this).val();
+                    $('.notifications_allowed_spinner').addClass('active')
+                    jQuery.ajax({
+                        type: "POST",
+                        data: JSON.stringify({parts: calendar_subscribe_object.parts, allowed:selected_option==="allowed"}),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type + '/allow-notifications',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
+                        }
+                    }).done(function(){
+                        $('.notifications_allowed_spinner').removeClass('active')
+                    })
+                    .fail(function(e) {
+
+                    })
+                })
 
                 /**
                  * Delete profile
@@ -1347,6 +1366,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </div>
             </div>
 
+
+            <?php
+                $notifications = isset( $post["receive_prayer_time_notifications"] ) && !empty( $post["receive_prayer_time_notifications"] );
+            ?>
+
+
             <style>
                 .danger-zone{
                     margin: 0 8px 0 8px;
@@ -1385,40 +1410,45 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             <div style="margin-top: 50px">
                 <hr>
-                <section>
-                    <div class="danger-zone">
-                        <h2><?php esc_html_e( 'Profile Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                        <button class="chevron" onclick="toggle_danger();">
-                            <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
+                <h2><?php esc_html_e( 'Profile Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                <div><?php esc_html_e( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ); ?> <span class="notifications_allowed_spinner loading-spinner"></span>
+                    <select name="allow_notifications" id="allow_notifications">
+                        <option <?php selected( $notifications ) ?> value="allowed"><?php esc_html_e( 'Notifications allowed', 'disciple-tools-prayer-campaigns' ); ?> ✅</option>
+                        <option <?php selected( !$notifications ) ?> value="disallowed"><?php esc_html_e( 'Notifications not allowed', 'disciple-tools-prayer-campaigns' ); ?> ❌</option>
+                    </select>
+                </div>
+                <div class="danger-zone">
+                    <h2><?php esc_html_e( 'Advanced Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <button class="chevron" onclick="toggle_danger();">
+                        <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
+                    </button>
+                </div>
+                <div class="danger-zone-content collapsed">
+                    <label>
+                        <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
+                    </label>
+                    <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
+                    <!-- Reveal Modal Daily time slot-->
+                    <div id="delete-profile-modal" class="reveal tiny" data-reveal>
+                        <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                        <p>
+                            <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
+                        </p>
+                        <p id="delete-account-errors"></p>
+
+
+                        <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                            <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                        </button>
+                        <button class="button loader alert" type="button" id="confirm-delete-profile">
+                            <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' )?>
+                        </button>
+
+                        <button class="close-button" data-close aria-label="Close modal" type="button">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="danger-zone-content collapsed">
-                        <label>
-                            <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
-                        </label>
-                        <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
-                        <!-- Reveal Modal Daily time slot-->
-                        <div id="delete-profile-modal" class="reveal tiny" data-reveal>
-                            <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                            <p>
-                                <?php esc_html_e( 'This can not be undone.', 'disciple_tools' ); ?>
-                            </p>
-                            <p id="delete-account-errors"></p>
-
-
-                            <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                                <?php echo esc_html__( 'Cancel', 'disciple_tools' )?>
-                            </button>
-                            <button class="button loader alert" type="button" id="confirm-delete-profile">
-                                <?php echo esc_html__( 'DELETE', 'disciple_tools' )?>
-                            </button>
-
-                            <button class="close-button" data-close aria-label="Close modal" type="button">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                </section>
+                </div>
             </div>
         </div>
         <?php

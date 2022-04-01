@@ -54,6 +54,18 @@ class DT_Subscriptions_Management extends DT_Module_Base {
                 ],
             ]
         );
+        register_rest_route(
+            $namespace, '/'.$this->magic_link_type . '/allow-notifications', [
+                [
+                    'methods'  => "POST",
+                    'callback' => [ $this, 'allow_notifications' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->magic_link_root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
     }
 
     public function delete_profile( WP_REST_Request $request ){
@@ -165,5 +177,23 @@ class DT_Subscriptions_Management extends DT_Module_Base {
             }
         }
         return $this->get_subscriptions( $params['parts']['post_id'] );
+    }
+
+
+    public function allow_notifications( WP_REST_Request $request ){
+        $params = $request->get_params();
+
+        if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'] ) ) {
+            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
+        }
+        $params = dt_recursive_sanitize_array( $params );
+
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        if ( ! $post_id ){
+            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        }
+
+        return update_post_meta( $post_id, "receive_prayer_time_notifications", !empty( $params["allowed"] ) );
+
     }
 }
