@@ -112,6 +112,13 @@ class DT_Prayer_Campaigns {
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 );
         }
 
+        try {
+            require_once( plugin_dir_path( __FILE__ ) . '/admin/class-migration-engine.php' );
+            DT_Prayer_Campaigns_Migration_Engine::migrate( DT_Prayer_Campaigns_Migration_Engine::$migration_number );
+        } catch ( Throwable $e ) {
+            new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
+        }
+        DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
     }
 
     /**
