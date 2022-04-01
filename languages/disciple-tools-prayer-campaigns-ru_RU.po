@@ -362,7 +362,7 @@ msgstr "Напоминание о молитве!"
 
 #: magic-links/prayer-timer.php:164
 msgid "Start Praying!"
-msgstr "Начинай молиться!"
+msgstr "Начать молиться!"
 
 #: magic-links/prayer-timer.php:167
 msgctxt "Prayer time: 15 min"
