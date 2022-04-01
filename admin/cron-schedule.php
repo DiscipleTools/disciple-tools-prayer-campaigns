@@ -98,7 +98,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 continue;
             }
             $lang_code = "en_US";
-            if ( isset( $record["lang"] ) ){
+            if ( isset( $record["lang"] ) && !empty( $lang_code ) ){
                 $lang_code = sanitize_text_field( wp_unslash( $record["lang"] ) );
             }
             add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
