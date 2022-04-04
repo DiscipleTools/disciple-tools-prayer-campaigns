@@ -371,6 +371,23 @@ class DT_Subscriptions_Base {
         return $tiles;
     }
 
+    private function get_subscription_link( $post_type ){
+        $record = DT_Posts::get_post( $post_type, get_the_ID() );
+
+        $key_name = 'public_key';
+        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        }
+        if ( isset( $record[$key_name] ) ) {
+            $key = $record[$key_name];
+        } else {
+
+            $key = dt_create_unique_key();
+            update_post_meta( get_the_ID(), $key_name, $key );
+        }
+        return trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $key;
+    }
+
     /**
      * Documentation
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md#add-custom-content
@@ -381,18 +398,7 @@ class DT_Subscriptions_Base {
             $record = DT_Posts::get_post( $post_type, get_the_ID() );
             $fields = DT_Posts::get_post_field_settings( $post_type );
 
-            $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
-            }
-            if ( isset( $record[$key_name] ) ) {
-                $key = $record[$key_name];
-            } else {
-
-                $key = dt_create_unique_key();
-                update_post_meta( get_the_ID(), $key_name, $key );
-            }
-            $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $key;
+            $link = $this->get_subscription_link( $post_type );
 
             ?>
             <div class="cell small-12 medium-4">
@@ -489,15 +495,20 @@ class DT_Subscriptions_Base {
             $timezone = !empty( $subscriber["timezone"] ) ? $subscriber["timezone"] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             $notifications = isset( $subscriber["receive_prayer_time_notifications"] ) && !empty( $subscriber["receive_prayer_time_notifications"] );
+            $link = $this->get_subscription_link( $post_type );
             ?>
-            <div>Notifications allowed:
-                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
-            </div>
-            <p>
-                Email address verified.
-                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
-                <button class="loader button tiny" type="button" id="resend_confirmation_email">Resend confirmation email</button>
+            <p>Conformation Email Sent:
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                <button class="loader button hollow tiny" type="button" id="resend_confirmation_email">Resend confirmation email</button>
                 <span id="confirmation_email_sent" style="display: none">Conformation Email Sent</span>
+            </p>
+            <p>
+                Email address verified:
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
+                <a class="button hollow tiny" target="_blank" href="<?php echo esc_url( $link ) ?>')">manually verify</a>
+            </p>
+            <p>Notifications allowed:
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </p>
             <p>
                 Showing times according to timezone: <strong><?php echo esc_html( $timezone ); ?></strong><br>
