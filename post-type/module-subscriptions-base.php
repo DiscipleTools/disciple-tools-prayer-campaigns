@@ -592,7 +592,7 @@ class DT_Subscriptions_Base {
                 "description" => "The id of the post",
                 "type" => 'integer',
                 "required" => true,
-                "validate_callback" => [ $this, "prefix_validate_args" ]
+                "validate_callback" => [ 'Disciple_Tools_Posts_Endpoints', "prefix_validate_args_static" ]
             ],
         ];
         register_rest_route( $namespace, '/(?P<id>\d+)/confirmation-email', [
