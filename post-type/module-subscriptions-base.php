@@ -54,6 +54,8 @@ class DT_Subscriptions_Base {
         add_filter( "dt_user_list_filters", [ $this, "dt_user_list_filters" ], 10, 2 );
         add_filter( "dt_filter_access_permissions", [ $this, "dt_filter_access_permissions" ], 20, 2 );
 
+        add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
+
     }
 
     public function after_setup_theme(){
@@ -478,6 +480,12 @@ class DT_Subscriptions_Base {
             usort($subs, function( $a, $b ) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
+            $email_verified = false;
+            foreach ( $subs ?? [] as $sub ){
+                if ( !empty( $sub["value"] ) ){
+                    $email_verified = true;
+                }
+            }
             $timezone = !empty( $subscriber["timezone"] ) ? $subscriber["timezone"] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             $notifications = isset( $subscriber["receive_prayer_time_notifications"] ) && !empty( $subscriber["receive_prayer_time_notifications"] );
@@ -485,6 +493,12 @@ class DT_Subscriptions_Base {
             <div>Notifications allowed:
                 <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </div>
+            <p>
+                Email address verified.
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
+                <button class="loader button tiny" type="button" id="resend_confirmation_email">Resend confirmation email</button>
+                <span id="confirmation_email_sent" style="display: none">Conformation Email Sent</span>
+            </p>
             <p>
                 Showing times according to timezone: <strong><?php echo esc_html( $timezone ); ?></strong><br>
                 Subscriber language: <strong><?php echo esc_html( $subscriber["lang"] ?? "en_US" ); ?></strong>
@@ -533,8 +547,68 @@ class DT_Subscriptions_Base {
                 </div>
                 <?php
             }
+
+            ?>
+                <script type="application/javascript">
+                    $('#resend_confirmation_email').on("click", function (){
+                        $(this).addClass('loading')
+                        $.ajax({
+                            type: 'POST',
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/confirmation-email',
+                            beforeSend: (xhr) => {
+                                xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                            },
+                        }).then(()=>{
+                            $(this).removeClass('loading')
+                            $('#confirmation_email_sent').show()
+                        })
+                    })
+
+                </script>
+            <?php
         }
     }
+
+    public function rest_api_init(){
+        $namespace = 'dt-subscriptions/v1';
+        $arg_schemas = [
+            "id" => [
+                "description" => "The id of the post",
+                "type" => 'integer',
+                "required" => true,
+                "validate_callback" => [ $this, "prefix_validate_args" ]
+            ],
+        ];
+        register_rest_route( $namespace, '/(?P<id>\d+)/confirmation-email', [
+            [
+                'methods'             => "POST",
+                'callback'            => [ $this, 'send_confirmation_email' ],
+                "args" => [
+                        "id" => $arg_schemas["id"],
+                    ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( "subscriptions", $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+    }
+
+    public function send_confirmation_email( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscription_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( "subscriptions", $subscription_id );
+        if ( !isset( $subscription["campaigns"][0]["ID"] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $campaign = $subscription["campaigns"][0]["ID"];
+
+        return DT_Prayer_Campaigns_Send_Email::send_registration( $subscription_id, $campaign );
+    }
+
+
 
     public function post_connection_added( $post_type, $post_id, $field_key, $value ){
         // placeholder for future
