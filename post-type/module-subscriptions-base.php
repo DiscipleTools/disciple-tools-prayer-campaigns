@@ -533,7 +533,7 @@ class DT_Subscriptions_Base {
                             if ( !empty( $sub["value"] ) ) : ?>
                                 <img title="<?php esc_html_e( 'Verified', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
                             <?php endif;
-                            if ( isset( $payload["prayer_time_reminder_sent"] ) ) : ?>
+                            if ( isset( $payload["prayer_time_reminder_sent"] ) || strpos( $payload, "prayer_time_reminder_sent" ) !== false ) : ?>
                                 <img title="<?php esc_html_e( 'Email Sent', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/email.svg' ) ?>"/>
                             <?php endif; ?>
                         </span>

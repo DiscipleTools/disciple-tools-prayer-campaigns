@@ -157,7 +157,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
             } else {
                 // note in report that email was sent
                 foreach ( $reports as $row ){
-                    $payload = maybe_serialize( [ 'prayer_time_reminder_sent' => time() ] );
+                    $payload = [ 'prayer_time_reminder_sent' => time() ];
                     Disciple_Tools_Reports::update( [
                         'id' => $row['id'],
                         'payload' => $payload
