@@ -62,7 +62,7 @@ class DT_Time_Utilities {
 
                 $data[$start]['hours'][] = [
                     'key' => $time_begin,
-                    'formatted' => gmdate( 'H:i', $time_begin ),
+                    'formatted' => gmdate( 'H:i', $time_begin - $start ),
                     'subscribers' => $current_times_list[$time_begin] ?? 0,
                 ];
 
