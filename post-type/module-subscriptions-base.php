@@ -203,6 +203,7 @@ class DT_Subscriptions_Base {
                 "tile" => "details",
                 "customizable" => false,
                 "in_create_form" => true,
+                'show_in_table' => 20
             ];
             $fields["contact_phone"] = [
                 "name" => __( 'Phone', 'disciple_tools' ),
@@ -313,7 +314,9 @@ class DT_Subscriptions_Base {
                 "tile" => "details",
                 "default" => false,
                 "hidden" => false,
+                "show_in_table" => 50,
             ];
+            $fields["last_modified"]["show_in_table"] = false;
         }
 
         if ( $post_type === "contacts" && current_user_can( 'view_all_'.$this->post_type ) ){
