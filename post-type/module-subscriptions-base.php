@@ -71,17 +71,22 @@ class DT_Subscriptions_Base {
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        $expected_roles["campaigns_admin"] = [
-            "label" => __( 'Campaigns Admin', 'disciple_tools' ),
-            "description" => __( 'Campaigns admin can administrate the prayer campaigns and subscriptions section', 'disciple_tools' ),
-            "permissions" => [
-                'access_disciple_tools' => true,
-                'access_'.$this->post_type => true,
-                'create_'.$this->post_type => true,
-                'update_any_'.$this->post_type => true,
-                'view_any_'.$this->post_type => true,
-            ]
+        if ( !isset( $expected_roles["campaigns_admin"] ) ){
+            $expected_roles["campaigns_admin"] = [
+                "label" => 'Campaigns Admin',
+                "description" => 'Campaigns admin can administrate the prayer campaigns and subscriptions section',
+                "permissions" => [
+                    'access_disciple_tools' => true,
+                ]
+            ];
+        }
+        $subscriptions_permissions = [
+            'access_'.$this->post_type => true,
+            'create_'.$this->post_type => true,
+            'update_any_'.$this->post_type => true,
+            'view_any_'.$this->post_type => true,
         ];
+        $expected_roles["campaigns_admin"]["permissions"] = array_merge( $expected_roles["campaigns_admin"]["permissions"], $subscriptions_permissions );
 
         if ( isset( $expected_roles["administrator"] ) ){
             $expected_roles["administrator"]["permissions"]['access_' . $this->post_type ] = true;
