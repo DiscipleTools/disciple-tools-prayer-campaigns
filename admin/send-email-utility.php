@@ -188,16 +188,16 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
             $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
         }
-        $keys = $wpdb->get_col(  $wpdb->prepare( "SELECT pk.meta_value as public_key
-                FROM $wpdb->p2p p2
-                    JOIN $wpdb->postmeta pm ON pm.post_id=p2.p2p_to
-                       AND pm.meta_key LIKE %s
-                       AND pm.meta_key NOT LIKE %s
-                    JOIN $wpdb->postmeta pk ON pk.post_id=p2.p2p_to AND pk.meta_key = %s
-                WHERE p2.p2p_type = 'campaigns_to_subscriptions'
-                    AND p2.p2p_from = %s
-                    AND pm.meta_value = %s",
-            $wpdb->esc_like( 'contact_email' ). '%',
+        //find subscribers management links for the email and campaign provided
+        $keys = $wpdb->get_col(  $wpdb->prepare( "
+            SELECT pk.meta_value as public_key
+            FROM $wpdb->p2p p2
+            JOIN $wpdb->postmeta pm ON ( pm.post_id=p2.p2p_to AND pm.meta_key LIKE %s AND pm.meta_key NOT LIKE %s )
+            JOIN $wpdb->postmeta pk ON ( pk.post_id=p2.p2p_to AND pk.meta_key = %s )
+            WHERE p2.p2p_type = 'campaigns_to_subscriptions'
+            AND p2.p2p_from = %s
+            AND pm.meta_value = %s",
+            $wpdb->esc_like( 'contact_email' ) . '%',
             '%'.$wpdb->esc_like( 'details' ),
             $key_name,
             $campaign_id,
@@ -226,6 +226,15 @@ class DT_Prayer_Campaigns_Send_Email {
                 if ( ! $sent ){
                     dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
                 }
+            }
+        } else {
+            $message = '
+                <h3>Thank you for praying with us!</h3>
+                <p>Sorry, we were unable to find a profile associated with this email address</p>';
+
+            $sent = self::send_prayer_campaign_email( $email, $subject, $message, $headers );
+            if ( ! $sent ){
+                dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
             }
         }
     }
