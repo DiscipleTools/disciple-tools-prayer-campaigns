@@ -327,6 +327,12 @@ class DT_Campaigns_Base {
             $tiles["campaign_setup"] = [ "label" => "Campaign Setup" ];
             $tiles["commitments"] = [ "label" => "Commitments" ];
             $tiles["prayer_timer"] = [ "label" => "Prayer Timer" ];
+            if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_magic_links"] ) ){
+                $tiles["campaign_magic_links"] = [
+                    "label" => __( "Magic Urls", 'disciple-tools-plugin-starter-template' ),
+                    "description" => "The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates."
+                ];
+            }
         }
         return $tiles;
     }

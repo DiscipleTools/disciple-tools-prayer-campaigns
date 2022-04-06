@@ -61,7 +61,6 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
          * post type and module section
          */
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
-        add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_filter( 'dt_settings_apps_list', [ $this, 'dt_settings_apps_list' ], 10, 1 );
         add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
@@ -118,26 +117,13 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         return $allowed_css;
     }
 
-    /**
-     * Post Type Tile Examples
-     */
-    public function dt_details_additional_tiles( $tiles, $post_type = "" ) {
-        if ( $post_type === $this->post_type ){
-            $tiles["dt_starters_magic_url"] = [
-                "label" => __( "Magic Url", 'disciple-tools-plugin-starter-template' ),
-                "description" => "The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates."
-            ];
-        }
-        return $tiles;
-    }
     public function dt_details_additional_section( $section, $post_type ) {
         // test if campaigns post type and campaigns_app_module enabled
         if ( $post_type === $this->post_type ) {
-            if ( 'dt_starters_magic_url' === $section ) {
+            if ( 'campaign_magic_links' === $section ) {
                 $link = DT_Magic_URL::get_link_url_for_post( $post_type, get_the_ID(), $this->root, $this->type )
                 ?>
-                <p>See help <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/help.svg' ) ?>"/> for description.</p>
-                <a class="button" href="<?php echo esc_html( $link ); ?>" target="_blank">Open magic link</a>
+                <a class="button hollow" style="display: block" href="<?php echo esc_html( $link ); ?>" target="_blank">Retrieve Prayer Time Management Link</a>
                 <?php
             }
         }
@@ -172,7 +158,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         <div id="magic-link-wrapper">
             <div class="grid-x">
                 <div class="cell center">
-                    <h2 id="title">Prayer Time Management Link</h2>
+                    <h2 id="title">Retrieve Prayer Time Management Link</h2>
                 </div>
             </div>
             <hr>
@@ -181,17 +167,17 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
 <!--                <h3>Form</h3>-->
                 <form id="form-content" onSubmit="submit_form();return false;">
 
-                    <p>Enter you email address and receive a link to your prayer times management profile.</p>
+                    <p>Enter you email address and receive a link to your prayer times.</p>
                     <label>
                         <strong>Email address</strong>
                         <input type="email" id="email" style="display: none">
                         <input type="email" id="email-2" required>
                     </label>
 
-                    <button type="submit" class="button loader" id="submit-form">Submit</button>
+                    <button type="submit" class="button loader" id="submit-form">Email My Access Link</button>
                 </form>
                 <div id="form-confirm" style="display: none">
-                    Please check you email address now for your Prayer Time Management link.
+                    Please check you email address now for your access link.
                 </div>
             </div>
 
