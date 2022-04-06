@@ -211,7 +211,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
 
         $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
 
-        if ( ! isset( $params['email'] ) ) {
+        if ( empty( $params['email'] ) ){
             return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
         }
 
