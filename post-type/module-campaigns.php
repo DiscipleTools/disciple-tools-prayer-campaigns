@@ -717,14 +717,14 @@ class DT_Campaigns_Base {
     }
 
     public function timeline_endpoint( WP_REST_Request $request ) {
-        $params = $request->get_params();   
+        $params = $request->get_params();
         if ( ! isset( $params['campaign_id'] ) ) {
             return new WP_Error( __METHOD__, 'Required parameter not set' );
         }
         global $wpdb;
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         $timeline_slots = $wpdb->get_results( $wpdb->prepare(
-        "SELECT
+            "SELECT
             p.post_title AS name,
             r.post_id,
             FROM_UNIXTIME( r.time_begin, '%H:%i' ) AS time_slot_begin,
@@ -735,9 +735,9 @@ class DT_Campaigns_Base {
         FROM $wpdb->dt_reports r
         INNER JOIN $wpdb->posts p ON p.ID = r.post_id
         WHERE r.post_type = 'subscriptions'
-        AND r.parent_id = 3
+        AND r.parent_id = %s
         GROUP BY time_slot_begin, time_slot_end;
-        " ), ARRAY_A);
+        ", $campaign_post_id ), ARRAY_A);
         return $timeline_slots;
     }
 
