@@ -502,24 +502,24 @@ class DT_Campaigns_Base {
                             }
                         })
                             
-                            // Write the timeline
-                            jQuery.each(time_slots, function(i,v){
-                                var has_subscribers = false
-                                content += `<li><b>${window.lodash.escape(i)}</b> - `
-                                jQuery.each(data, function(ii,vv){
-                                    if (vv.time_slot_begin == i) {
-                                        has_subscribers = true
-                                        content += `<a href="/subscriptions/${window.lodash.escape(vv.post_id)}/">${vv.name}</a> (${vv.all_subscriptions} slots), `
-                                    }
-                                })
-                                if (!has_subscribers){
-                                    content += '(0 slots)'
+                        // Write the timeline
+                        jQuery.each(time_slots, function(i,v){
+                            var has_subscribers = false
+                            content += `<li><b>${window.lodash.escape(i)}</b> - `
+                            jQuery.each(data, function(ii,vv){
+                                if (vv.time_slot_begin == i) {
+                                    has_subscribers = true
+                                    content += `<a href="/subscriptions/${window.lodash.escape(vv.post_id)}/">${vv.name}</a> (${vv.all_subscriptions} slots), `
                                 }
-                                content += '</li>'
                             })
-                            // Remove trailing commas, if any
-                            content = content.replaceAll(', </li>', '</li>')
-                            content += `</ul>`
+                            if (!has_subscribers){
+                                content += '(0 slots)'
+                            }
+                            content += '</li>'
+                        })
+                        // Remove trailing commas, if any
+                        content = content.replaceAll(', </li>', '</li>')
+                        content += `</ul>`
                     } else {
                         content += `<div class="cell">No subscribers found</div></ul>`
                     }
@@ -722,14 +722,15 @@ class DT_Campaigns_Base {
             return new WP_Error( __METHOD__, 'Required parameter not set' );
         }
         global $wpdb;
+        $time_format = '%H:%i';
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         $timeline_slots = $wpdb->get_results( $wpdb->prepare(
             "SELECT
             p.post_title AS name,
             r.post_id,
-            FROM_UNIXTIME( r.time_begin, '%H:%i' ) AS time_slot_begin,
-            FROM_UNIXTIME( r.time_end, '%H:%i' ) AS time_slot_end,
-            FLOOR( TIME_TO_SEC(TIMEDIFF( FROM_UNIXTIME( time_end, '%H:%i' ), FROM_UNIXTIME( time_begin, '%H:%i' ) ) ) / 60 ) AS minutes,
+            FROM_UNIXTIME( r.time_begin, %s ) AS time_slot_begin,
+            FROM_UNIXTIME( r.time_end, %s ) AS time_slot_end,
+            FLOOR( TIME_TO_SEC(TIMEDIFF( FROM_UNIXTIME( time_end, %s ), FROM_UNIXTIME( time_begin, %s ) ) ) / 60 ) AS minutes,
             SUM( r.value ) AS verified_subscriptions,
             COUNT( r.value ) AS all_subscriptions
         FROM $wpdb->dt_reports r
@@ -737,7 +738,7 @@ class DT_Campaigns_Base {
         WHERE r.post_type = 'subscriptions'
         AND r.parent_id = %s
         GROUP BY time_slot_begin, time_slot_end;
-        ", $campaign_post_id ), ARRAY_A);
+        ", $time_format, $time_format, $time_format, $time_format, $campaign_post_id ), ARRAY_A);
         return $timeline_slots;
     }
 
