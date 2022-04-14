@@ -718,7 +718,7 @@ class DT_Campaigns_Base {
 
     public function timeline_endpoint( WP_REST_Request $request ) {
         $params = $request->get_params();
-        $post = DT_Posts::get_post( 'campaigns', $params['campaign_id'], true, false);
+        $post = DT_Posts::get_post( 'campaigns', $params['campaign_id'], true, false );
         if ( ! isset( $post['campaign_timezone']['label'] ) ) {
             $time_zone = 'America/Chicago';
         } else {
@@ -730,10 +730,10 @@ class DT_Campaigns_Base {
         }
         global $wpdb;
         $time_format = '%H:%i';
-        
+
         // Get time zone offset
         $tz_offset_info = new DateTime( 'now', new DateTimeZone( $time_zone ) );
-        $tz_offset = $tz_offset_info->format('P');
+        $tz_offset = $tz_offset_info->format( 'P' );
 
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         $timeline_slots = $wpdb->get_results( $wpdb->prepare(
