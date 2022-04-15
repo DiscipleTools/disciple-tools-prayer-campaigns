@@ -348,6 +348,8 @@ class DT_Campaigns_Base {
             $coverage_count = $this->query_coverage_percentage( get_the_ID() );
             $scheduled_commitments = $this->query_scheduled_count( get_the_ID() );
             $past_commitments = $this->query_past_count( get_the_ID() );
+            $scheduled_hours = $this->query_scheduled_minutes( get_the_ID() ) / 60;
+            $hours_prayed = $this->query_minutes_prayed( get_the_ID() ) / 60;
             ?>
             <div class="cell small-12">
             <div class="grid-x">
@@ -381,6 +383,22 @@ class DT_Campaigns_Base {
                 </div>
                 <div>
                     <span style="font-size:2rem;"><?php echo esc_html( $past_commitments ) ?></span>
+                </div>
+            </div>
+            <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Scheduled Hours
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( $scheduled_hours ) ?></span>
+                </div>
+            </div>
+            <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Hours Prayed
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( $hours_prayed ) ?></span>
                 </div>
             </div>
             <div class="cell small-6 ">
@@ -643,6 +661,32 @@ class DT_Campaigns_Base {
             LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
             WHERE r.post_id IS NOT NULL
             AND r.time_begin <= UNIX_TIMESTAMP();", $campaign_post_id
+        ) );
+    }
+
+    public function query_scheduled_minutes( $campaign_post_id ){
+        $time_format = '%H:%i';
+        global $wpdb;
+        return $wpdb->get_var( $wpdb->prepare( "SELECT
+        SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+        FROM wp_119_dt_reports r
+            INNER JOIN wp_119_posts p ON p.ID = r.post_id
+            WHERE r.post_type = 'subscriptions'
+            AND r.parent_id = %s", $time_format, $time_format, $campaign_post_id
+        ) );
+    }
+
+    public function query_minutes_prayed( $campaign_post_id ){
+        $time_format = '%H:%i';
+        global $wpdb;
+        return $wpdb->get_var( $wpdb->prepare( "SELECT
+        SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+        FROM wp_119_dt_reports r
+            INNER JOIN wp_119_posts p ON p.ID = r.post_id
+            WHERE r.post_type = 'subscriptions'
+            AND r.parent_id = %s
+            AND r.time_end <= UNIX_TIMESTAMP();
+            ", $time_format, $time_format, $campaign_post_id
         ) );
     }
 
