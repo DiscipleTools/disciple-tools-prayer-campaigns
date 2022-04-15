@@ -387,7 +387,7 @@ class DT_Campaigns_Base {
                 container.empty().html(`
                 <span class="loading-spinner active"></span>
                 `)
-                 makeRequest( 'GET', 'subscribers', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                 makeRequest( 'GET', 'subscribers', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
                     let content = `<ol>`
                     if ( data ) {
