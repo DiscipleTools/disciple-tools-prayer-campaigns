@@ -669,8 +669,8 @@ class DT_Campaigns_Base {
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
         SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
-        FROM wp_119_dt_reports r
-            INNER JOIN wp_119_posts p ON p.ID = r.post_id
+        FROM $wpdb->dt_reports r
+            INNER JOIN $wpdb->posts p ON p.ID = r.post_id
             WHERE r.post_type = 'subscriptions'
             AND r.parent_id = %s", $time_format, $time_format, $campaign_post_id
         ) );
@@ -681,8 +681,8 @@ class DT_Campaigns_Base {
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
         SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
-        FROM wp_119_dt_reports r
-            INNER JOIN wp_119_posts p ON p.ID = r.post_id
+        FROM $wpdb->dt_reports r
+            INNER JOIN $wpdb->posts p ON p.ID = r.post_id
             WHERE r.post_type = 'subscriptions'
             AND r.parent_id = %s
             AND r.time_end <= UNIX_TIMESTAMP();
