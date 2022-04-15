@@ -509,7 +509,7 @@ class DT_Campaigns_Base {
                             jQuery.each(data, function(ii,vv){
                                 if (vv.time_slot_begin == i) {
                                     has_subscribers = true
-                                    content += `<a href="/subscriptions/${window.lodash.escape(vv.post_id)}/">${vv.name}</a> (${vv.all_subscriptions} slots), `
+                                    content += `<a href="/subscriptions/${window.lodash.escape(vv.post_id)}/">${window.lodash.escape(vv.name)}</a> (${window.lodash.escape(vv.all_subscriptions)} slots), `
                                 }
                             })
                             if (!has_subscribers){
