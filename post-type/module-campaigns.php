@@ -417,7 +417,7 @@ class DT_Campaigns_Base {
                 container.empty().html(`
                     <span class="loading-spinner active"></span>
                 `)
-                window.makeRequest( 'GET', 'coverage-stats', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                window.makeRequest( 'GET', 'coverage-stats', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
                     let content = `<ul>`
                     if ( data ) {
@@ -443,7 +443,7 @@ class DT_Campaigns_Base {
                 container.empty().html(`
                     <span class="loading-spinner active"></span>
                 `)
-                window.makeRequest( 'GET', 'timeline', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                window.makeRequest( 'GET', 'timeline', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
                     let time_slots = {'00:00':null, '00:15':null, '00:30':null, '00:45':null, '01:00':null, '01:15':null, '01:30':null, '01:45':null, '02:00':null, '02:15':null, '02:30':null, '02:45':null, '03:00':null, '03:15':null, '03:30':null, '03:45':null, '04:00':null, '04:15':null, '04:30':null, '04:45':null, '05:00':null, '05:15':null, '05:30':null, '05:45':null, '06:00':null, '06:15':null, '06:30':null, '06:45':null, '07:00':null, '07:15':null, '07:30':null, '07:45':null, '08:00':null, '08:15':null, '08:30':null, '08:45':null, '09:00':null, '09:15':null, '09:30':null, '09:45':null, '10:00':null, '10:15':null, '10:30':null, '10:45':null, '11:00':null, '11:15':null, '11:30':null, '11:45':null, '12:00':null, '12:15':null, '12:30':null, '12:45':null, '13:00':null, '13:15':null, '13:30':null, '13:45':null, '14:00':null, '14:15':null, '14:30':null, '14:45':null, '15:00':null, '15:15':null, '15:30':null, '15:45':null, '16:00':null, '16:15':null, '16:30':null, '16:45':null, '17:00':null, '17:15':null, '17:30':null, '17:45':null, '18:00':null, '18:15':null, '18:30':null, '18:45':null, '19:00':null, '19:15':null, '19:30':null, '19:45':null, '20:00':null, '20:15':null, '20:30':null, '20:45':null, '21:00':null, '21:15':null, '21:30':null, '21:45':null, '22:00':null, '22:15':null, '22:30':null, '22:45':null, '23:00':null, '23:15':null, '23:30':null, '23:45':null};
                     let content = `<ul>`
