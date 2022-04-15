@@ -669,10 +669,11 @@ class DT_Campaigns_Base {
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
         SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
-        FROM $wpdb->dt_reports r
-            INNER JOIN $wpdb->posts p ON p.ID = r.post_id
-            WHERE r.post_type = 'subscriptions'
-            AND r.parent_id = %s", $time_format, $time_format, $campaign_post_id
+        FROM (SELECT p2p_to as post_id
+        FROM $wpdb->p2p
+        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
+        LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+        WHERE r.post_id IS NOT NULL;", $time_format, $time_format, $campaign_post_id
         ) );
     }
 
@@ -681,12 +682,12 @@ class DT_Campaigns_Base {
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
         SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
-        FROM $wpdb->dt_reports r
-            INNER JOIN $wpdb->posts p ON p.ID = r.post_id
-            WHERE r.post_type = 'subscriptions'
-            AND r.parent_id = %s
-            AND r.time_end <= UNIX_TIMESTAMP();
-            ", $time_format, $time_format, $campaign_post_id
+        FROM (SELECT p2p_to as post_id
+        FROM $wpdb->p2p
+        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
+        LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+        WHERE r.post_id IS NOT NULL
+        AND r.time_end <= UNIX_TIMESTAMP();", $time_format, $time_format, $campaign_post_id
         ) );
     }
 
