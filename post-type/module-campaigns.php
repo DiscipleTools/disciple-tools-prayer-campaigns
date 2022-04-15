@@ -464,7 +464,7 @@ class DT_Campaigns_Base {
                                         "verified_subscriptions":v.verified_subscriptions
                                     }
                                 )
-                                
+
                                 // Adjust first half of the timeslot
                                 data[i].minutes = 15
                                 data[i].time_slot_end = time_subslot_begin
@@ -501,7 +501,7 @@ class DT_Campaigns_Base {
                                 data[i].time_slot_end = time_subslot_1_begin
                             }
                         })
-                            
+
                         // Write the timeline
                         jQuery.each(time_slots, function(i,v){
                             var has_subscribers = false
@@ -538,7 +538,7 @@ class DT_Campaigns_Base {
                 <span class="loading-spinner active"></span>
                 `)
 
-                makeRequest( 'GET', 'coverage', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                makeRequest( 'GET', 'coverage', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
                     //console.log(data)
                     let content = `<style>#cover-table td:hover {border: 1px solid darkslateblue;}</style><div class="table-scroll"><table id="cover-table" class="center">`
@@ -553,26 +553,26 @@ class DT_Campaigns_Base {
                             } else {
                                 c++
                             }
-                            content += `<th>${vv.formatted}</th>`
+                            content += `<th>${window.lodash.escape(vv.formatted)}</th>`
                         })
                         content += `</tr>`
                         return false // looping only once for the column titles
                     })
                     /* table body */
                     jQuery.each(data, function(i,v){
-                        content += `<tr><th style="white-space:nowrap">${v.formatted}</th>`
+                        content += `<tr><th style="white-space:nowrap">${window.lodash.escape(v.formatted)}</th>`
                         let c = 0
                         jQuery.each(v.hours, function(ii,vv){
                             if ( c >= 20 ){
-                                 content += `<th style="white-space:nowrap">${v.formatted}</th>`
+                                 content += `<th style="white-space:nowrap">${window.lodash.escape(v.formatted)}</th>`
                                 c = 0
                             } else {
                                 c++
                             }
                             if ( vv.subscribers > 0 ){
-                                    content += `<td style="background-color:lightblue;">${vv.subscribers}</td>`
+                                    content += `<td style="background-color:lightblue;">${window.lodash.escape(vv.subscribers)}</td>`
                                 } else {
-                                    content += `<td>${vv.subscribers}</td>`
+                                    content += `<td>${window.lodash.escape(vv.subscribers)}</td>`
                                 }
                         })
 
