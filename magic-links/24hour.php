@@ -4,12 +4,12 @@ function dt_24hour_campaign_register_scripts( $atts ){
 
     wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, "2.3.1", true );
     //campaigns core js
-    if ( !wp_script_is( 'dt_campaign', "registered" ) ){
-        wp_register_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __FILE__ ) ) . '../post-type/campaign_core.js', [
+    if ( !wp_script_is( 'dt_campaign_core', "registered" ) ){
+        wp_register_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'post-type/campaign_core.js', [
             'jquery',
             'lodash',
             'luxon'
-        ], filemtime( plugin_dir_path( __FILE__ ) . '../post-type/campaign_core.js' ), true );
+        ], filemtime( plugin_dir_path( __DIR__ ) . 'post-type/campaign_core.js' ), true );
         wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts["color"] ?? '' ] );
     }
 
