@@ -403,6 +403,7 @@ class DT_Campaigns_Base {
             </div>
             <div class="cell small-6 ">
                 <button class="button hollow" id="campaign_coverage_stats">Stats</button>
+                <button class="button hollow" id="campaign_coverage_timeline">Timeline</button>
             </div>
         </div>
         <script>
@@ -415,7 +416,7 @@ class DT_Campaigns_Base {
                 container.empty().html(`
                 <span class="loading-spinner active"></span>
                 `)
-                 makeRequest( 'GET', 'subscribers', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                 makeRequest( 'GET', 'subscribers', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
                     let content = `<ol>`
                     if ( data ) {
@@ -445,7 +446,7 @@ class DT_Campaigns_Base {
                 container.empty().html(`
                     <span class="loading-spinner active"></span>
                 `)
-                window.makeRequest( 'GET', 'coverage-stats', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                window.makeRequest( 'GET', 'coverage-stats', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
                     let content = `<ul>`
                     if ( data ) {
@@ -464,6 +465,99 @@ class DT_Campaigns_Base {
                 $('#modal-small').foundation('open')
             })
 
+            $('#campaign_coverage_timeline').on('click', function(e){
+                $('#modal-small-title').empty().html(`<h2>Timeline</h2><hr>`)
+
+                let container = $('#modal-small-content')
+                container.empty().html(`
+                    <span class="loading-spinner active"></span>
+                `)
+                window.makeRequest( 'GET', 'timeline', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
+                .done(function(data){
+                    let time_slots = {'00:00':null, '00:15':null, '00:30':null, '00:45':null, '01:00':null, '01:15':null, '01:30':null, '01:45':null, '02:00':null, '02:15':null, '02:30':null, '02:45':null, '03:00':null, '03:15':null, '03:30':null, '03:45':null, '04:00':null, '04:15':null, '04:30':null, '04:45':null, '05:00':null, '05:15':null, '05:30':null, '05:45':null, '06:00':null, '06:15':null, '06:30':null, '06:45':null, '07:00':null, '07:15':null, '07:30':null, '07:45':null, '08:00':null, '08:15':null, '08:30':null, '08:45':null, '09:00':null, '09:15':null, '09:30':null, '09:45':null, '10:00':null, '10:15':null, '10:30':null, '10:45':null, '11:00':null, '11:15':null, '11:30':null, '11:45':null, '12:00':null, '12:15':null, '12:30':null, '12:45':null, '13:00':null, '13:15':null, '13:30':null, '13:45':null, '14:00':null, '14:15':null, '14:30':null, '14:45':null, '15:00':null, '15:15':null, '15:30':null, '15:45':null, '16:00':null, '16:15':null, '16:30':null, '16:45':null, '17:00':null, '17:15':null, '17:30':null, '17:45':null, '18:00':null, '18:15':null, '18:30':null, '18:45':null, '19:00':null, '19:15':null, '19:30':null, '19:45':null, '20:00':null, '20:15':null, '20:30':null, '20:45':null, '21:00':null, '21:15':null, '21:30':null, '21:45':null, '22:00':null, '22:15':null, '22:30':null, '22:45':null, '23:00':null, '23:15':null, '23:30':null, '23:45':null};
+                    let content = `<ul>`
+                    if ( data ) {
+                        jQuery.each(data, function(i,v){
+                            // Split longer prayer subscriptions into more time slots
+                            if (v.minutes == 30) {
+                                // Calculate 15 mins after time_slot_begin time
+                                var time_subslot_begin = new Date(new Date("1970/01/01 " + v.time_slot_begin).getTime() + 15 * 60000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+                                data.push(
+                                    {
+                                        "name":v.name,
+                                        "post_id":v.post_id,
+                                        "time_slot_begin":time_subslot_begin,
+                                        "time_slot_end":v.time_slot_end,
+                                        "minutes":"15",
+                                        "all_subscriptions":v.all_subscriptions,
+                                        "verified_subscriptions":v.verified_subscriptions
+                                    }
+                                )
+
+                                // Adjust first half of the timeslot
+                                data[i].minutes = 15
+                                data[i].time_slot_end = time_subslot_begin
+                            }
+
+                            if (v.minutes == 45) {
+                                // Calculate 15 mins after time_slot_begin time
+                                var time_subslot_1_begin = new Date(new Date("1970/01/01 " + v.time_slot_begin).getTime() + 15 * 60000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+                                var time_subslot_2_begin = new Date(new Date("1970/01/01 " + v.time_slot_begin).getTime() + 30 * 60000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+                                data.push(
+                                    {
+                                        "name":v.name,
+                                        "post_id":v.post_id,
+                                        "time_slot_begin":time_subslot_1_begin,
+                                        "time_slot_end":time_subslot_2_begin,
+                                        "minutes":"15",
+                                        "all_subscriptions":v.all_subscriptions,
+                                        "verified_subscriptions":v.verified_subscriptions
+                                    },
+                                    {
+                                        "name":v.name,
+                                        "post_id":v.post_id,
+                                        "time_slot_begin":time_subslot_2_begin,
+                                        "time_slot_end":v.time_slot_end,
+                                        "minutes":"15",
+                                        "all_subscriptions":v.all_subscriptions,
+                                        "verified_subscriptions":v.verified_subscriptions
+                                    }
+                                )
+
+                                // Adjust first half of the timeslot
+                                data[i].minutes = "15"
+                                data[i].time_slot_end = time_subslot_1_begin
+                            }
+                        })
+
+                        // Write the timeline
+                        jQuery.each(time_slots, function(i,v){
+                            var has_subscribers = false
+                            content += `<li><b>${window.lodash.escape(i)}</b> - `
+                            jQuery.each(data, function(ii,vv){
+                                if (vv.time_slot_begin == i) {
+                                    has_subscribers = true
+                                    content += `<a href="/subscriptions/${window.lodash.escape(vv.post_id)}/">${window.lodash.escape(vv.name)}</a> (${window.lodash.escape(vv.all_subscriptions)} slots), `
+                                }
+                            })
+                            if (!has_subscribers){
+                                content += '(0 slots)'
+                            }
+                            content += '</li>'
+                        })
+                        // Remove trailing commas, if any
+                        content = content.replaceAll(', </li>', '</li>')
+                        content += `</ul>`
+                    } else {
+                        content += `<div class="cell">No subscribers found</div></ul>`
+                    }
+                    container.empty().html(content)
+                })
+
+                $('#modal-small').foundation('open')
+            })
+
             /* campaign coverage */
             $('#campaign_coverage_chart').on('click', function(e){
                 $('#modal-full-title').empty().html(`<h2>Coverage Chart</h2><span style="font-size:.7em;">Cells contain subscriber count per block of time.</span><hr>`)
@@ -473,9 +567,9 @@ class DT_Campaigns_Base {
                 <span class="loading-spinner active"></span>
                 `)
 
-                makeRequest( 'GET', 'coverage', { campaign_id: '<?php echo get_the_ID() ?>' }, 'campaigns/v1')
+                makeRequest( 'GET', 'coverage', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
-                    console.log(data)
+                    //console.log(data)
                     let content = `<style>#cover-table td:hover {border: 1px solid darkslateblue;}</style><div class="table-scroll"><table id="cover-table" class="center">`
                     /* top row */
                     jQuery.each(data, function(i,v){
@@ -488,26 +582,26 @@ class DT_Campaigns_Base {
                             } else {
                                 c++
                             }
-                            content += `<th>${vv.formatted}</th>`
+                            content += `<th>${window.lodash.escape(vv.formatted)}</th>`
                         })
                         content += `</tr>`
                         return false // looping only once for the column titles
                     })
                     /* table body */
                     jQuery.each(data, function(i,v){
-                        content += `<tr><th style="white-space:nowrap">${v.formatted}</th>`
+                        content += `<tr><th style="white-space:nowrap">${window.lodash.escape(v.formatted)}</th>`
                         let c = 0
                         jQuery.each(v.hours, function(ii,vv){
                             if ( c >= 20 ){
-                                 content += `<th style="white-space:nowrap">${v.formatted}</th>`
+                                 content += `<th style="white-space:nowrap">${window.lodash.escape(v.formatted)}</th>`
                                 c = 0
                             } else {
                                 c++
                             }
                             if ( vv.subscribers > 0 ){
-                                    content += `<td style="background-color:lightblue;">${vv.subscribers}</td>`
+                                    content += `<td style="background-color:lightblue;">${window.lodash.escape(vv.subscribers)}</td>`
                                 } else {
-                                    content += `<td>${vv.subscribers}</td>`
+                                    content += `<td>${window.lodash.escape(vv.subscribers)}</td>`
                                 }
                         })
 
@@ -568,6 +662,18 @@ class DT_Campaigns_Base {
                 ],
             ]
         );
+
+        register_rest_route(
+            $namespace, 'timeline', [
+                [
+                    'methods'  => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'timeline_endpoint' ],
+                    'permission_callback' => function( WP_REST_Request $request ) {
+                        return dt_has_permissions( [ 'view_any_subscriptions' ] );
+                    },
+                ],
+            ]
+        );
     }
 
     public function subscribers_endpoint( WP_REST_Request $request ) {
@@ -597,8 +703,8 @@ class DT_Campaigns_Base {
         }
         global $wpdb;
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
-        $subscribers = $wpdb->get_results( $wpdb->prepare( "
-            SELECT p.post_title as name, p.ID,
+        $subscribers = $wpdb->get_results( $wpdb->prepare(
+            "SELECT p.post_title as name, p.ID,
                 (SELECT COUNT(r.post_id)
                     FROM $wpdb->dt_reports r
                     WHERE r.post_type = 'subscriptions'
@@ -615,7 +721,6 @@ class DT_Campaigns_Base {
             WHERE p2p_type = 'campaigns_to_subscriptions'
             AND p2p_from = %s", $campaign_post_id, $campaign_post_id, $campaign_post_id, $campaign_post_id
         ), ARRAY_A );
-
         $unique_days_covered = [];
         foreach ( $subscribers as &$sub ){
             $unique_days = [];
@@ -638,6 +743,44 @@ class DT_Campaigns_Base {
         return [
             "unique_days_covered" => $unique_days_covered,
         ];
+    }
+
+    public function timeline_endpoint( WP_REST_Request $request ) {
+        $params = $request->get_params();
+        $post = DT_Posts::get_post( 'campaigns', $params['campaign_id'], true, false );
+        if ( ! isset( $post['campaign_timezone']['label'] ) ) {
+            $time_zone = 'America/Chicago';
+        } else {
+            $time_zone = $post['campaign_timezone']['label'];
+        }
+
+        if ( ! isset( $params['campaign_id'] ) ) {
+            return new WP_Error( __METHOD__, 'Required parameter not set' );
+        }
+        global $wpdb;
+        $time_format = '%H:%i';
+
+        // Get time zone offset
+        $tz_offset_info = new DateTime( 'now', new DateTimeZone( $time_zone ) );
+        $tz_offset = $tz_offset_info->format( 'P' );
+
+        $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
+        $timeline_slots = $wpdb->get_results( $wpdb->prepare(
+            "SELECT
+            p.post_title AS name,
+            r.post_id,
+            DATE_FORMAT( CONVERT_TZ( FROM_UNIXTIME( r.time_begin ), 'SYSTEM', %s ), %s ) AS time_slot_begin,
+            DATE_FORMAT( CONVERT_TZ( FROM_UNIXTIME( r.time_end ), 'SYSTEM', %s ), %s ) AS time_slot_end,
+            FLOOR( TIME_TO_SEC(TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) AS minutes,
+            SUM( r.value ) AS verified_subscriptions,
+            COUNT( r.value ) AS all_subscriptions
+        FROM $wpdb->dt_reports r
+        INNER JOIN $wpdb->posts p ON p.ID = r.post_id
+        WHERE r.post_type = 'subscriptions'
+        AND r.parent_id = %s
+        GROUP BY time_slot_begin, time_slot_end;
+        ", $tz_offset, $time_format, $tz_offset, $time_format, $time_format, $time_format, $campaign_post_id ), ARRAY_A);
+        return $timeline_slots;
     }
 
     public function query_scheduled_count( $campaign_post_id ){
