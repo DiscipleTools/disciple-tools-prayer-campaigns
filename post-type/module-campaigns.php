@@ -297,7 +297,9 @@ class DT_Campaigns_Base {
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
 
-
+            if ( isset( $fields["tags"] ) ){
+                $fields["tags"]["tile"] = "details";
+            }
         }
 
         if ( $post_type === "subscriptions" ){
