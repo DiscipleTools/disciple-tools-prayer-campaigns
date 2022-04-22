@@ -850,7 +850,7 @@ class DT_Campaigns_Base {
     public static function query_coverage_percentage( $campaign_post_id ) {
         $percent = 0;
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
-        $record = DT_Posts::get_post( "campaigns", $campaign_post_id );
+        $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
         $min_time_duration = 15;
         if ( isset( $record["min_time_duration"]["key"] ) ){
             $min_time_duration = $record["min_time_duration"]["key"];
