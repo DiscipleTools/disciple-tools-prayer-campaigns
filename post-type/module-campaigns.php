@@ -785,9 +785,9 @@ class DT_Campaigns_Base {
         return $timeline_slots;
     }
 
-    public function query_scheduled_count( $campaign_post_id ){
+    public static function query_scheduled_count( $campaign_post_id ){
         global $wpdb;
-        return $wpdb->get_var( $wpdb->prepare(  "SELECT COUNT(r.post_id) as count
+        return (int) $wpdb->get_var( $wpdb->prepare(  "SELECT COUNT(r.post_id) as count
             FROM (SELECT p2p_to as post_id
             FROM $wpdb->p2p
             WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
@@ -797,7 +797,18 @@ class DT_Campaigns_Base {
         ) );
     }
 
-    public function query_past_count( $campaign_post_id ){
+    public static function query_total_events_count( $campaign_post_id ){
+        global $wpdb;
+        return (int) $wpdb->get_var( $wpdb->prepare(  "SELECT COUNT(r.post_id) as count
+            FROM (SELECT p2p_to as post_id
+            FROM $wpdb->p2p
+            WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
+            LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+            WHERE r.post_id IS NOT NULL", $campaign_post_id
+        ) );
+    }
+
+    public static function query_past_count( $campaign_post_id ){
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(r.post_id) as count
             FROM (SELECT p2p_to as post_id
@@ -809,7 +820,7 @@ class DT_Campaigns_Base {
         ) );
     }
 
-    public function query_scheduled_minutes( $campaign_post_id ){
+    public static function query_scheduled_minutes( $campaign_post_id ){
         $time_format = '%H:%i';
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
@@ -822,7 +833,7 @@ class DT_Campaigns_Base {
         ) );
     }
 
-    public function query_minutes_prayed( $campaign_post_id ){
+    public static function query_minutes_prayed( $campaign_post_id ){
         $time_format = '%H:%i';
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
