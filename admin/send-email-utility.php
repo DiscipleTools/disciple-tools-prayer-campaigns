@@ -280,34 +280,5 @@ class DT_Prayer_Campaigns_Send_Email {
 
 
 
-    public static function end_of_campaign_email( $subscriber_id, $campaign_id ){
-        $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
-        if ( is_wp_error( $record ) ){
-            dt_write_log( 'failed to record' );
-            return;
-        }
-        if ( !isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
-            return;
-        }
 
-        self::switch_email_locale( $record["lang"] ?? null );
-
-        $to = [];
-        foreach ( $record['contact_email'] as $value ){
-            $to[] = $value['value'];
-        }
-        $to = implode( ',', $to );
-
-        $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
-
-        $message = '
-            <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>
-            <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
-        ';
-
-        $sent = self::send_prayer_campaign_email( $to, $subject, $message );
-        if ( ! $sent ){
-            dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
-        }
-    }
 }

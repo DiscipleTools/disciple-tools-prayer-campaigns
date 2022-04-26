@@ -8,10 +8,6 @@ if ( !wp_next_scheduled( 'dt_prayer_campaign_reminders' ) ) {
     wp_schedule_event( time(), '15min', 'dt_prayer_campaign_reminders' );
 }
 add_action( 'dt_prayer_campaign_reminders', 'dt_prayer_campaign_prayer_time_reminder' );
-if ( !wp_next_scheduled( 'dt_prayer_campaign_daily' ) ) {
-    wp_schedule_event( time(), 'daily', 'dt_prayer_campaign_daily' );
-}
-add_action( 'dt_prayer_campaign_daily', 'dt_end_of_prayer_campaign_email' );
 
 function dt_prayer_campaign_prayer_time_reminder(){
     global $wpdb;
@@ -175,29 +171,3 @@ function dt_prayer_campaign_prayer_time_reminder(){
 }
 
 
-
-function dt_end_of_prayer_campaign_email(){
-    global $wpdb;
-    //get all the campaigns that are after the end date and that are still active.
-    $active_ended_campaigns = $wpdb->get_results( $wpdb->prepare( "
-        SELECT p.ID
-        FROM $wpdb->postmeta pm
-        INNER JOIN $wpdb->posts p ON ( p.ID = pm.post_ID AND p.post_type = 'campaigns' )
-        INNER JOIN $wpdb->postmeta active_campaign_meta on ( active_campaign_meta.post_ID = p.ID AND active_campaign_meta.meta_key = 'status' AND active_campaign_meta.meta_value = 'active' )
-        WHERE pm.meta_key = 'end_date' AND pm.meta_value < %s
-    ", time() ), ARRAY_A );
-
-    foreach ( $active_ended_campaigns as $campaign ){
-        //find subscribers and send emails
-        $campaign_post = DT_Posts::get_post( "campaigns", $campaign["ID"], true, false );
-        if ( !in_array( "end-of-campaign-email-sent", $campaign_post['tags'], true ) ){
-            $subscribers = $campaign_post["subscriptions"] ?? [];
-            foreach ( $subscribers as $sub ){
-                DT_Prayer_Campaigns_Send_Email::end_of_campaign_email( $sub["ID"], $campaign["ID"] );
-            }
-        }
-        //close campaign
-        DT_Posts::update_post( "campaigns", $campaign["ID"], [ "status" => "inactive", "tags" => [ "values" => [ [ "value" => "end-of-campaign-email-sent" ] ] ] ], true, false );
-    }
-
-}
