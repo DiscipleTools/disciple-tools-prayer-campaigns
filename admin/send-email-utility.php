@@ -1,7 +1,12 @@
 <?php
 
 class DT_Prayer_Campaigns_Send_Email {
-    public static function send_prayer_campaign_email( $to, $subject, $message, $headers ){
+    public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [] ){
+        $headers = [];
+        if ( empty( $headers ) ){
+            $headers[] = 'Content-Type: text/html';
+            $headers[] = 'charset=UTF-8';
+        }
         add_filter( 'wp_mail_from', function ( $email ) {
             $prayer_campaign_email = get_option( 'dt_prayer_campaign_email' );
             if ( !empty( $prayer_campaign_email ) ){
@@ -23,6 +28,21 @@ class DT_Prayer_Campaigns_Send_Email {
         return $sent;
     }
 
+    public static function switch_email_locale( $subscriber_locale = null ){
+        $lang_code = "en_US";
+        if ( !empty( $subscriber_locale ) ){
+            $lang_code = $subscriber_locale;
+        }
+        add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
+            if ( !empty( $lang_code ) ){
+                return $lang_code;
+            }
+            return $locale;
+        } );
+        unload_textdomain( 'disciple-tools-prayer-campaigns' );
+        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+    }
+
 
     public static function send_registration( $post_id, $campaign_id ) {
 
@@ -40,18 +60,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
-        $lang_code = "en_US";
-        if ( isset( $record["lang"] ) ){
-            $lang_code = sanitize_text_field( wp_unslash( $record["lang"] ) );
-        }
-        add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
-            if ( !empty( $lang_code ) ){
-                return $lang_code;
-            }
-            return $locale;
-        } );
-        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
-
+        self::switch_email_locale( $record["lang"] ?? null );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -132,18 +141,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
-        $lang_code = "en_US";
-        if ( isset( $record["lang"] ) ){
-            $lang_code = sanitize_text_field( wp_unslash( $record["lang"] ) );
-        }
-        add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
-            if ( !empty( $lang_code ) ){
-                return $lang_code;
-            }
-            return $locale;
-        } );
-        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
-
+        self::switch_email_locale( $record["lang"] ?? null );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -240,7 +238,7 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
     /**
-     * Email sent to the subscribers who have no chosen any prayer times
+     * Email sent to the subscribers who have not chosen any prayer times
      * @param $campaign_id
      * @return bool[]
      */
@@ -280,4 +278,8 @@ class DT_Prayer_Campaigns_Send_Email {
 
         return [ "emails_sent" => true ];
     }
+
+
+
+
 }

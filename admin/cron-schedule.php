@@ -169,3 +169,5 @@ function dt_prayer_campaign_prayer_time_reminder(){
 
     } // campaign loop
 }
+
+
