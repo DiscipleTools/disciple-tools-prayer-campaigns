@@ -474,6 +474,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             "duration_options" => $field_settings["duration_options"]["default"],
             'status' => $record["status"]["key"],
             'minutes_committed' => $minutes_committed,
+            'prayers_count' => sizeof( $record["subscriptions"] ?? [] ),
         ];
         return apply_filters( "prayer_campaign_info_response", $return );
     }
