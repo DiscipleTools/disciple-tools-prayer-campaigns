@@ -46,6 +46,7 @@ class DT_Campaigns_Base {
         //list
         add_filter( "dt_user_list_filters", [ $this, "dt_user_list_filters" ], 10, 2 );
         add_filter( "dt_filter_access_permissions", [ $this, "dt_filter_access_permissions" ], 20, 2 );
+        add_filter( "dt_comments_additional_sections", [ $this, "dt_comments_additional_sections" ], 10, 2 );
 
     }
 
@@ -319,6 +320,17 @@ class DT_Campaigns_Base {
         }
 
         return $fields;
+    }
+
+    public function dt_comments_additional_sections( $sections, $post_type ){
+        if ( $post_type === "campaigns" || $post_type === "subscriptions" ){
+            $sections[] = [
+                "key" => "stories",
+                "label" => "Stories",
+                "selected_by_default" => true
+            ];
+        }
+        return $sections;
     }
 
     /**
