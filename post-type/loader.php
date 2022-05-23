@@ -42,14 +42,12 @@ add_filter( 'dt_post_type_modules', function( $modules ){
     return $modules;
 }, 20, 1 );
 
-require_once 'module-subscriptions-base.php';
+require_once 'subscriptions.php';
 DT_Subscriptions_Base::instance();
 
-require_once 'module-campaigns.php';
+require_once 'campaigns.php';
 DT_Campaigns_Base::instance();
 
-require_once 'module-subscriptions-management.php';
-DT_Subscriptions_Management::instance();
 require_once plugin_dir_path( __DIR__ ) . '/magic-links/subscription-management.php';
 new DT_Prayer_Subscription_Management_Magic_Link();
 

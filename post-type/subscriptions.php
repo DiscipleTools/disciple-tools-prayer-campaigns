@@ -35,7 +35,6 @@ class DT_Subscriptions_Base {
         add_filter( 'desktop_navbar_menu_options', [ $this, 'desktop_navbar_menu_options' ], 1000, 1 );
 
         //setup tiles and fields
-        add_action( 'p2p_init', [ $this, 'p2p_init' ] );
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 20, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
@@ -343,29 +342,6 @@ class DT_Subscriptions_Base {
         return $fields;
     }
 
-    /**
-     * Documentation
-     * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/fields.md#declaring-connection-fields
-     */
-    public function p2p_init(){
-        /**
-         * Group members field
-         */
-        p2p_register_connection_type(
-            [
-                'name'           => $this->post_type."_to_contacts",
-                'from'           => 'contacts',
-                'to'             => $this->post_type,
-                'admin_box' => [
-                    'show' => false,
-                ],
-                'title'          => [
-                    'from' => __( 'Contacts', 'disciple_tools' ),
-                    'to'   => $this->plural_name,
-                ]
-            ]
-        );
-    }
 
     /**
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md

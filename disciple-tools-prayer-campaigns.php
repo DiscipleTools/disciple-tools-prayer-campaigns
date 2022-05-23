@@ -81,7 +81,6 @@ class DT_Prayer_Campaigns {
         require_once( 'admin/time-utilities.php' );
         require_once( 'admin/send-email-utility.php' );
         require_once( 'post-type/loader.php' );
-        require_once( 'post-type/list-page-tile.php' );
         require_once( 'admin/cron-schedule.php' );
 
         if ( is_admin() ) {

@@ -135,7 +135,8 @@ class DT_Campaigns_Base {
 //                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 "default_color" => "#F43636",
                 "show_in_table" => 15,
-                "in_create_form" => false
+                "in_create_form" => false,
+                "select_cannot_be_empty" => true,
             ];
             // end basic framework fields
 
