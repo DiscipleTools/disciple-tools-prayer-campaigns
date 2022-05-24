@@ -42,19 +42,42 @@ add_filter( 'dt_post_type_modules', function( $modules ){
     return $modules;
 }, 20, 1 );
 
+
+/*
+ * Subscriptions post type
+ */
 require_once 'subscriptions.php';
 DT_Subscriptions_Base::instance();
 
+/**
+ * Campaigns Post Type
+ */
 require_once 'campaigns.php';
 DT_Campaigns_Base::instance();
 
+/**
+ * Subscription Management Magic Link
+ */
 require_once plugin_dir_path( __DIR__ ) . '/magic-links/subscription-management.php';
 new DT_Prayer_Subscription_Management_Magic_Link();
 
+/**
+ * 247 Prayer Campaign type module
+ */
 require_once 'module-campaigns-24hour-prayer.php';
 DT_Campaign_24Hour_Prayer::instance();
 new DT_Prayer_Campaign_24_Hour_Magic_Link();
 require_once plugin_dir_path( __DIR__ ) . '/magic-links/campaign-resend-email/magic-link-post-type.php';
+
+/*
+ * 247 Ongoing campaign type module
+ */
+require_once 'module-campaigns-ongoing-prayer.php';
+DT_Campaign_Ongoing_Prayer::instance();
+
+/*
+ * Subscriptions API
+ */
 
 require_once 'dt-subscriptions.php';
 

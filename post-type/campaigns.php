@@ -234,19 +234,6 @@ class DT_Campaigns_Base {
                 "hidden" => true
             ];
 
-            $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
-            }
-            $fields[$key_name] = [
-                'name'   => 'Private Key',
-                'description' => 'Private key for subscriber access',
-                'type'   => 'hash',
-                'default' => dt_create_unique_key(),
-                'hidden' => true,
-                "customizable" => false,
-            ];
-
             /**
              * location elements
              */

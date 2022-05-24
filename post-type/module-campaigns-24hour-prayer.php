@@ -22,12 +22,36 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         }
         parent::__construct();
         // register tiles if on details page
-        add_filter( 'dt_campaign_types', [ $this, 'dt_campaign_types' ], 20, 1 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 30, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
         add_filter( 'dt_post_update_fields', [ $this, 'dt_post_update_fields' ], 20, 3 );
+        add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
 
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
+    }
+
+    public function dt_custom_fields_settings( $fields, $post_type ){
+        if ( $post_type === $this->post_type ){
+            $fields["type"]["default"]["24hour"] = [
+                'label' => __( '24hr Prayer Calendar', 'disciple_tools' ),
+                'description' => __( 'Cover a region with 24h prayer.', 'disciple_tools' ),
+                "visibility" => __( "Collaborators", 'disciple_tools' ),
+                'color' => "#4CAF50",
+            ];
+        }
+        $key_name = 'public_key';
+        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", $this->magic_link_type );
+        }
+        $fields[$key_name] = [
+            'name'   => 'Private Key',
+            'description' => 'Private key for subscriber access',
+            'type'   => 'hash',
+            'default' => dt_create_unique_key(),
+            'hidden' => true,
+            "customizable" => false,
+        ];
+        return $fields;
     }
 
 
@@ -479,15 +503,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         return apply_filters( "prayer_campaign_info_response", $return );
     }
 
-    public function dt_campaign_types( $types ) {
-        $types['24hour'] = [
-            'label' => __( '24hr Prayer Calendar', 'disciple_tools' ),
-            'description' => __( 'Cover a region with 24h prayer.', 'disciple_tools' ),
-            "visibility" => __( "Collaborators", 'disciple_tools' ),
-            'color' => "#4CAF50",
-        ];
-        return $types;
-    }
 }
 
 

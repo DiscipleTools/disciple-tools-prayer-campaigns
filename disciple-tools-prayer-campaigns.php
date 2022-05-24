@@ -59,6 +59,8 @@ function dt_prayer_campaigns() {
 
 }
 add_action( 'after_setup_theme', 'dt_prayer_campaigns', 20 );
+require_once( 'campaign-functions/setup-functions.php' );
+
 
 /**
  * Singleton class for setting up the plugin.
@@ -78,10 +80,10 @@ class DT_Prayer_Campaigns {
 
     private function __construct() {
 
-        require_once( 'admin/time-utilities.php' );
-        require_once( 'admin/send-email-utility.php' );
+        require_once( 'campaign-functions/time-utilities.php' );
+        require_once( 'campaign-functions/send-email-utility.php' );
         require_once( 'post-type/loader.php' );
-        require_once( 'admin/cron-schedule.php' );
+        require_once( 'campaign-functions/cron-schedule.php' );
 
         if ( is_admin() ) {
             require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
@@ -97,7 +99,6 @@ class DT_Prayer_Campaigns {
                 require( get_template_directory() . '/dt-core/libraries/plugin-update-checker/plugin-update-checker.php' );
             }
 
-            // @todo change this url
             $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json";
 
             Puc_v4_Factory::buildUpdateChecker(
@@ -126,10 +127,7 @@ class DT_Prayer_Campaigns {
      */
     public function plugin_description_links( $links_array, $plugin_file_name, $plugin_data, $status ) {
         if ( strpos( $plugin_file_name, basename( __FILE__ ) ) ) {
-            // You can still use `array_unshift()` to add links at the beginning.
-
-            $links_array[] = '<a href="https://disciple.tools">Disciple.Tools Community</a>'; // @todo replace with your links.
-            // @todo add other links here
+            $links_array[] = '<a href="https://disciple.tools/plugins/prayer-campaigns/">Disciple.Tools Prayer Campaigns</a>';
         }
 
         return $links_array;
@@ -270,17 +268,3 @@ if ( ! function_exists( "dt_hook_ajax_notice_handler" ) ){
     }
 }
 
-add_filter( 'cron_schedules', 'dt_prayer_campaign_cron_schedules' );
-
-function dt_prayer_campaign_cron_schedules( $schedules ){
-    if ( !isset( $schedules["15min"] ) ) {
-        $schedules["15min"] = array(
-            'interval' => 15 * 60,
-            'display'  => __( 'Once every 15 minutes' )
-        );
-    }
-    return $schedules;
-}
-
-require_once( 'magic-links/24hour.php' );
-require_once( 'magic-links/prayer-timer.php' );
