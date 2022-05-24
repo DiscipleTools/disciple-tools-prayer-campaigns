@@ -82,8 +82,13 @@ class DT_Prayer_Campaigns {
 
         require_once( 'campaign-functions/time-utilities.php' );
         require_once( 'campaign-functions/send-email-utility.php' );
-        require_once( 'post-type/loader.php' );
         require_once( 'campaign-functions/cron-schedule.php' );
+
+        require_once( 'post-type/loader.php' );
+
+        require_once( 'magic-links/24hour/24hour.php' );
+        require_once( 'magic-links/ongoing/ongoing.php' );
+        require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
 
         if ( is_admin() ) {
             require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin

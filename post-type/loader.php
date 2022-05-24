@@ -66,8 +66,7 @@ new DT_Prayer_Subscription_Management_Magic_Link();
  */
 require_once 'module-campaigns-24hour-prayer.php';
 DT_Campaign_24Hour_Prayer::instance();
-new DT_Prayer_Campaign_24_Hour_Magic_Link();
-require_once plugin_dir_path( __DIR__ ) . '/magic-links/campaign-resend-email/magic-link-post-type.php';
+
 
 /*
  * 247 Ongoing campaign type module

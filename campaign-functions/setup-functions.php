@@ -14,5 +14,5 @@ function dt_prayer_campaign_cron_schedules( $schedules ){
     return $schedules;
 }
 
-require_once( plugin_dir_path( __DIR__ ) . 'magic-links/24hour.php' );
-require_once( plugin_dir_path( __DIR__ ) . 'magic-links/prayer-timer.php' );
+require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/24hour.php' );
+require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/prayer-timer.php' );

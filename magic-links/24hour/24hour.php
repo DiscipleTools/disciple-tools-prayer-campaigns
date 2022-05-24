@@ -3,16 +3,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
+class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
-    public $module = "campaigns_ongoing_prayer";
+    public $module = "campaigns_24hour_prayer";
     public $post_type = 'campaigns';
     public $page_title = "Sign up to pray";
 
     public $magic = false;
     public $parts = false;
-    public $root = "campaign_app";
-    public $type = 'ongoing'; // define the type
+    public $root = "campaign_app"; // define the root of the url {yoursite}/root/type/key/action
+    public $type = '24hour'; // define the type
     public $type_name = "Campaigns";
     public $type_actions = [
         '' => "Manage",
@@ -90,4 +90,4 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
     }
 
 }
-new DT_Prayer_Campaign_Ongoing_Magic_Link();
+new DT_Prayer_Campaign_24_Hour_Magic_Link();
