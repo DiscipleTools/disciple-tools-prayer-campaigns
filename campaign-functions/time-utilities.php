@@ -2,46 +2,17 @@
 
 class DT_Time_Utilities {
 
-    public static function subscribed_times_list( $post_id ){
-        $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
-
-        // process start and end of campaign
-        if ( !isset( $record['start_date'] ) ) {
-            $start = strtotime( gmdate( 'Y-m-d', time() ) );
-        } else {
-            $start = strtotime( gmdate( 'Y-m-d', $record['start_date']['timestamp'] ) ); // perfects the stamp to day beginning
-        }
-        $record['start_date'] = $start;
-
-        if ( !isset( $record['end_date'] ) ) {
-            $end = strtotime( '+30 days' );
-        } else {
-            $end = strtotime( gmdate( 'Y-m-d', $record['end_date']['timestamp'] ) ) + 86399; // end of selected day (-1 second)
-        }
-        $record['end_date'] = $end;
-
-        $current_times_list = self::get_current_commitments( $record['ID'], (int) $start, (int) $end );
-        return $current_times_list;
-    }
-
-
-    public static function campaign_times_list( $post_id ) {
+    //Get each day with each time chuck counts
+    public static function campaign_times_list( $post_id, $month_limit = null ) {
         $data = [];
 
         $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
 
-        $min_time_duration = 15;
-        if ( isset( $record["min_time_duration"]["key"] ) ){
-            $min_time_duration = $record["min_time_duration"]["key"];
-        }
-
+        $min_time_duration = self::campaign_min_prayer_duration( $post_id );
         $start = self::start_of_campaign_with_timezone( $post_id );
-        $record['start_date'] = $start;
+        $end = self::end_of_campaign_with_timezone( $post_id, $month_limit, $start );
 
-        $end = self::end_of_campaign_with_timezone( $post_id );
-        $record['end_date'] = $end;
-
-        $current_times_list = self::get_current_commitments( $record['ID'], (int) $start, (int) $end );
+        $current_times_list = self::get_current_commitments( $record['ID'], $month_limit );
 
         // build time list array
         while ( $start <= $end ) {
@@ -90,7 +61,12 @@ class DT_Time_Utilities {
         return $data;
     }
 
-    public static function get_current_commitments( $campaign_post_id, int $campaign_start_date, int $campaign_end_date ) {
+    public static function get_current_commitments( $campaign_post_id, $month_limit = null ) {
+
+        $min_time_duration = self::campaign_min_prayer_duration( $campaign_post_id );
+        $start = self::start_of_campaign_with_timezone( $campaign_post_id );
+        $end = self::end_of_campaign_with_timezone( $campaign_post_id, $month_limit, $start );
+
         global $wpdb;
         $commitments = $wpdb->get_results($wpdb->prepare( "
             SELECT time_begin, time_end, COUNT(id) as count
@@ -100,16 +76,11 @@ class DT_Time_Utilities {
                 AND time_begin >= %d
                 AND time_begin <= %d
                 GROUP BY time_begin, time_end
-            ", $campaign_post_id, $campaign_start_date - 86400, $campaign_end_date + 86400
+            ", $campaign_post_id, $start - 86400, $end
         ), ARRAY_A );
 
         $times_list = [];
 
-        $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
-        $min_time_duration = 15;
-        if ( isset( $record["min_time_duration"]["key"] ) ){
-            $min_time_duration = $record["min_time_duration"]["key"];
-        }
 
         if ( !empty( $commitments ) ){
             foreach ( $commitments as $commitment ){
@@ -125,6 +96,16 @@ class DT_Time_Utilities {
         }
 
         return $times_list;
+
+    }
+
+    public static function campaign_min_prayer_duration( $post_id ){
+        $post = DT_Posts::get_post( 'campaigns', $post_id, true, false );
+        $min_time_duration = 15;
+        if ( isset( $post["min_time_duration"]["key"] ) ){
+            $min_time_duration = $post["min_time_duration"]["key"];
+        }
+        return $min_time_duration;
     }
 
     public static function start_of_campaign_with_timezone( $post_id ){
@@ -141,19 +122,30 @@ class DT_Time_Utilities {
         }
         return isset( $post["start_date"]["timestamp"] ) ? $post["start_date"]["timestamp"] : time();
     }
-    public static function end_of_campaign_with_timezone( $post_id ){
+
+    public static function end_of_campaign_with_timezone( $post_id, $month_limit = null, $start = null ){
         $post = DT_Posts::get_post( 'campaigns', $post_id, true, false );
+        $end = isset( $post["end_date"]["timestamp"] ) ? $post["end_date"]["timestamp"] : null;
+        if ( $end && $start && $month_limit && $end > ( $start + $month_limit * MONTH_IN_SECONDS ) ){
+            $end = $start + $month_limit * MONTH_IN_SECONDS;
+        }
+        if ( !$end && $start ){
+            $end = $start + ( $month_limit ?? 2 ) * MONTH_IN_SECONDS;
+        }
+
         if ( isset( $post["campaign_timezone"]["key"] ) ){
-            if ( isset( $post["end_date"]["timestamp"] ) && !empty( $post["end_date"]["timestamp"] ) ){
+            if ( $end ){
                 $dt_now = new DateTime();
                 // Set a non-default timezone if needed
                 $dt_now->setTimezone( new DateTimeZone( $post["campaign_timezone"]["key"] ) );
-                $dt_now->setTimestamp( $post["end_date"]["timestamp"] );
+                $dt_now->setTimestamp( $end );
                 $off = $dt_now->getOffset();
-                return $dt_now->getTimestamp() - $off;
+                $end = $dt_now->getTimestamp() - $off;
             }
         }
-        return isset( $post["end_date"]["timestamp"] ) ? $post["end_date"]["timestamp"] : time();
+
+        //if we want to restrict the data returned and the end date is after the limit
+        return $end + 86399; // end of selected day (-1 second);
     }
 
 }

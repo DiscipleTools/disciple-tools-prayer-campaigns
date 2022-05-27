@@ -474,7 +474,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         if ( isset( $record['location_grid'] ) && ! empty( $record['location_grid'] ) ) {
             $grid_id = $record['location_grid'][0]['id'];
         }
-        $current_commitments = DT_Time_Utilities::subscribed_times_list( $post_id );
+        $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id );
 
         $min_time_duration = 15;
         if ( isset( $record["min_time_duration"]["key"] ) ){

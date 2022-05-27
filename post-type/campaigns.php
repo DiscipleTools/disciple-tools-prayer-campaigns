@@ -870,8 +870,8 @@ class DT_Campaigns_Base {
         return round( $percent, 1 );
     }
 
-    public static function query_coverage_levels_progress( $campaign_post_id ) {
-        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
+    public static function query_coverage_levels_progress( $campaign_post_id, $month_limit = 2 ) {
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
         $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
         $min_time_duration = 15;
         if ( isset( $record["min_time_duration"]["key"] ) ){

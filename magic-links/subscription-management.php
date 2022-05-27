@@ -538,7 +538,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $post;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
-        $current_commitments = DT_Time_Utilities::subscribed_times_list( $campaign_id );
+        $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id );
         $my_commitments_reports = DT_Subscriptions_Management::instance()->get_subscriptions( $this->parts['post_id'] );
         $my_commitments = [];
         foreach ( $my_commitments_reports as $commitments_report ){
