@@ -1,0 +1,51 @@
+.cp-wrapper {
+    max-width:1000px;
+    margin: 0 auto;
+    padding: 2em 1em;
+    border-radius: 10px;
+    font-size: 1em;
+    min-width: 320px;
+}
+
+.cp-calendar-wrapper {
+    background-color: #f8f9fad1;
+    border-radius: 10px;
+    padding: 1em
+}
+
+.cp-center {
+    text-align: center;
+}
+.cp-wrapper .day-cell, .cp-calendar-wrapper .day-cell {
+    text-align: center;
+    flex-grow: 0;
+}
+.cp-wrapper .disabled-calendar-day {
+    width:40px;
+    height:40px;
+    vertical-align: top;
+    padding-top:10px;
+    color: grey;
+}
+.cp-wrapper .calendar, .cp-calendar-wrapper .calendar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    margin: auto
+}
+.cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
+    text-align: left;
+    margin-bottom: 5px;
+}
+.cp-wrapper .calendar-month {
+    display: inline-block;
+    vertical-align: top;
+}
+.cp-wrapper .week-day, .cp-calendar-wrapper .week-day {
+    height: 20px;
+    width:40px;
+    color:black;
+    font-size:12px;
+    font-weight:550;
+    margin-bottom:5px;
+}
