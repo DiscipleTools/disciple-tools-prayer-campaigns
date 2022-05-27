@@ -1,13 +1,9 @@
 "use strict";
 
-let time_slot_coverage = {}
 let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
 let selected_times = [];
 
 let calendar_subscribe_object = {
-  number_of_time_slots: 0,
-  coverage_levels: [],
-  description: "",
   coverage_percentage: 0,
   second_level: 0,
   start_timestamp: 0,
@@ -53,17 +49,6 @@ jQuery(document).ready(function($) {
     const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
     calendar_subscribe_object.end_timestamp -= 1;
     let days = window.campaign_scripts.calculate_day_times()
-
-    //display description from remote
-    $('#campaign-description').text(calendar_subscribe_object.description)
-    //show coverage level
-    // if ( calendar_subscribe_object.coverage_levels[0].blocks_covered === calendar_subscribe_object.number_of_time_slots){
-    //     $('#coverage-level').text(calendar_subscribe_object.translations.going_for_twice.replace('%1$s', calendar_subscribe_object.number_of_time_slots));
-    // } else {
-    //   let ppl_needed =  (60*24) / calendar_subscribe_object.slot_length;
-    //   //&#128100
-    //   $('#coverage-level').html(calendar_subscribe_object.translations.invitation.replace('%1$s', `<strong>${ppl_needed}</strong>`).replace('%2$s', `<strong>${window.lodash.escape(calendar_subscribe_object.slot_length)}</strong>`));
-    // }
 
     //main progress circle
     $('#main-progress').html(`
