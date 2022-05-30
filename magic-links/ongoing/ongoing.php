@@ -7,7 +7,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
 
     public $module = "campaigns_ongoing_prayer";
     public $post_type = 'campaigns';
-    public $page_title = "Sign up to pray";
+    public $page_title = "Ongoing Coverage";
 
     public $magic = false;
     public $parts = false;
@@ -66,6 +66,20 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 ],
             ]
         );
+        register_rest_route(
+            $namespace, '/'.$this->type, [
+                [
+                    'methods'  => WP_REST_Server::CREATABLE,
+                    'callback' => [ $this, 'create_subscription' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+
+
     }
     public function campaign_info( WP_REST_Request $request ){
         $params = $request->get_params();
@@ -87,11 +101,77 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         return [
             "current_commitments" => $current_commitments,
             'start_timestamp' => $start,
-            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 2, $start ),
+            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 3, time() ),
             'slot_length' => (int) $min_time_duration,
             "duration_options" => $field_settings["duration_options"]["default"],
             'status' => $record["status"]["key"],
         ];
+    }
+
+    public function create_subscription( WP_REST_Request $request ) {
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+
+        if ( empty( $post_id ) ){
+            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        }
+
+        // create
+        if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
+            return new WP_Error( __METHOD__, "Missing email", [ 'status' => 400 ] );
+        }
+        if ( ! isset( $params['selected_times'] ) ) {
+            return new WP_Error( __METHOD__, "Missing times and locations", [ 'status' => 400 ] );
+        }
+        if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
+            return new WP_Error( __METHOD__, "Missing timezone", [ 'status' => 400 ] );
+        }
+
+        $email = $params['email'];
+        $title = $params['name'];
+        if ( empty( $title ) ) {
+            $title = $email;
+        }
+
+        $receive_prayer_time_notifications = isset( $params["receive_prayer_time_notifications"] ) && !empty( $params["receive_prayer_time_notifications"] );
+
+        $existing_posts = DT_Posts::list_posts( "subscriptions", [
+            "campaigns" => [ $post_id ],
+            "contact_email" => [ $email ]
+        ], false );
+
+        if ( (int) $existing_posts["total"] === 1 ){
+            $subscriber_id = $existing_posts["posts"][0]["ID"];
+            $added_times = DT_Subscriptions::add_subscriber_times( $post_id, $subscriber_id, $params['selected_times'] );
+            if ( is_wp_error( $added_times ) ){
+                return $added_times;
+            }
+        } else {
+            $lang = "en_US";
+            if ( isset( $params["parts"]["lang"] ) ){
+                $lang = $params["parts"]["lang"];
+            }
+            $subscriber_id = DT_Subscriptions::create_subscriber( $post_id, $email, $title, $params['selected_times'], [
+                "receive_prayer_time_notifications" => $receive_prayer_time_notifications,
+                "timezone" => $params["timezone"],
+                "lang" => $lang,
+            ]);
+            if ( is_wp_error( $subscriber_id ) ){
+                return new WP_Error( __METHOD__, "Could not create record", [ 'status' => 400 ] );
+            }
+        }
+
+        $email_sent = null;
+        if ( !empty( $params['selected_times'] ) ){
+            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $post_id );
+        }
+
+        if ( !$email_sent ){
+            return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );
+        }
+
+        return true;
     }
 
 }

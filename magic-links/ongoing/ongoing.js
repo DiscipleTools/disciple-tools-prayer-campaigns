@@ -24,7 +24,7 @@ jQuery(document).ready(async function ($) {
   calendar_subscribe_object = { ...calendar_subscribe_object, ...data }
   calendar_subscribe_object.translations = escapeObject( jsObject.translations )
   let days = window.campaign_scripts.calculate_day_times()
-
+  const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
 
   let week_day_names = days_for_locale(navigator.language, 'narrow')
   let headers = `
@@ -113,7 +113,10 @@ jQuery(document).ready(async function ($) {
           selected_times.push({time: time, duration: duration, label: time_label, key:now})
         }
       }
-      let text = calendar_subscribe_object.translations.praying_everyday.replace( '%1$s', selected_times[selected_times.length-1].label).replace( '%2$s', selected_times[selected_times.length-1].duration )
+      let date_label = window.campaign_scripts.timestamp_to_format( selected_times[selected_times.length - 1].time, { month: "long", day: "numeric" }, current_time_zone)
+      console.log(selected_times[selected_times.length - 1]);
+      let time_text = calendar_subscribe_object.duration_options[selected_times[selected_times.length-1].duration]?.label || selected_times[selected_times.length-1].duration;
+      let text = calendar_subscribe_object.translations.praying_everyday.replace( '%1$s', selected_times[selected_times.length-1].label).replace( '%2$s', time_text ).replace( '%3$s', date_label )
       $('.cp-daily-selected-times').append(`<li id="cp-daily-key-${now}">${window.lodash.escape(text)}<button class="remove-daily-time-button" data-key="${now}">x</button></li>`)
     })
     $(document).on( 'click', '.remove-daily-time-button', function (){

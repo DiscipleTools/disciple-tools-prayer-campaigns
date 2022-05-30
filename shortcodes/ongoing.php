@@ -64,7 +64,7 @@ class DT_Ongoing_Shortcode {
                 'dt_campaign', 'campaign_objects', [
                     'translations' => [
                         //"campaign_duration" => __( 'Everyday from %1$s to %2$s', "disciple-tools-prayer-campaigns" ),
-                        "praying_everyday" => __( 'Everyday at %1$s for %2$s', "disciple-tools-prayer-campaigns" ),
+                        "praying_everyday" => _x( 'Everyday at %1$s for %2$s until %3$s', 'everyday at 3pm for 15 minutes until Jan 3 2031', "disciple-tools-prayer-campaigns" ),
                         "select_a_time" => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
                         "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
                         "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
@@ -134,7 +134,6 @@ function dt_ongoing_campaign_signup( $atts ){
             }
 
         </style>
-        <h2>Shortcode Content</h2>
         <div id="cp-wrapper" class="cp-wrapper loading-content">
             <div id="" class="cp-loading-page cp-view" >
                 <?php esc_html_e( 'Loading prayer campaign data...', 'disciple-tools-prayer-campaigns' ); ?><img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/>
