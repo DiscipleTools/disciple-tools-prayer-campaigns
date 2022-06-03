@@ -66,6 +66,7 @@ class DT_Ongoing_Shortcode {
                         //"campaign_duration" => __( 'Everyday from %1$s to %2$s', "disciple-tools-prayer-campaigns" ),
                         "praying_everyday" => _x( 'Everyday at %1$s for %2$s until %3$s', 'everyday at 3pm for 15 minutes until Jan 3 2031', "disciple-tools-prayer-campaigns" ),
                         "select_a_time" => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                        "covered" => __( 'covered', 'disciple-tools-prayer-campaigns' ),
                         "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
                         "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                         "time_slot_label" => _x( '%1$s for %2$s minutes.', "Monday 5pm for 15 minutes", 'disciple-tools-prayer-campaigns' ),

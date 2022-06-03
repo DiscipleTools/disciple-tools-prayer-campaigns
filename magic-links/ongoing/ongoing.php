@@ -93,7 +93,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         }
 
 
-        $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id, 2 );
+        $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id, 3 );
         $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id );
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );
         $field_settings = DT_Posts::get_post_field_settings( "campaigns" );

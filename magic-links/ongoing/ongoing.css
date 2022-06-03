@@ -76,6 +76,10 @@
 .cp-calendar-wrapper .goto-month-container {
     display: flex;
     align-items: center;
+    width:40px;
+}
+.cp-calendar-wrapper .cp-goto-month {
+    width:40px;
 }
 
 /**

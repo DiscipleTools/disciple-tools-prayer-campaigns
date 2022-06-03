@@ -126,6 +126,9 @@ class DT_Time_Utilities {
     public static function end_of_campaign_with_timezone( $post_id, $month_limit = null, $start = null ){
         $post = DT_Posts::get_post( 'campaigns', $post_id, true, false );
         $end = isset( $post["end_date"]["timestamp"] ) ? $post["end_date"]["timestamp"] : null;
+        if ( $start && $start < time() ){
+            $start = time();
+        }
         if ( $end && $start && $month_limit && $end > ( $start + $month_limit * MONTH_IN_SECONDS ) ){
             $end = $start + $month_limit * MONTH_IN_SECONDS;
         }

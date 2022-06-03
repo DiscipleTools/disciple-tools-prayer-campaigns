@@ -1,12 +1,13 @@
 "use strict";
 
 let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
-
+const now = new Date().getTime()/1000;
 let calendar_subscribe_object = {
   start_timestamp: 0,
   end_timestamp: 0,
   slot_length: 15,
-  duration_options: {}
+  duration_options: {},
+  coverage_by_month: {}
 }
 let escapeObject = (obj) => {
   return Object.fromEntries(Object.entries(obj).map(([key, value]) => {
@@ -24,7 +25,6 @@ jQuery(document).ready(async function ($) {
   calendar_subscribe_object = { ...calendar_subscribe_object, ...data }
   calendar_subscribe_object.translations = escapeObject( jsObject.translations )
   let days = window.campaign_scripts.calculate_day_times()
-  const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
 
   let week_day_names = days_for_locale(navigator.language, 'narrow')
   let headers = `
@@ -40,6 +40,8 @@ jQuery(document).ready(async function ($) {
   let selected_times = [];
   let current_time_selected = $("#cp-individual-time-select").val();
   let modal_calendar = $('#day-select-calendar')
+
+  // coverage_by_month();
 
   draw_calendar()
 
@@ -272,42 +274,22 @@ jQuery(document).ready(async function ($) {
   function populate_daily_select(){
     let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
 
-    let coverage = {}
-    days.forEach(val=> {
-      let day = val.key
-      for ( const key in calendar_subscribe_object.current_commitments ){
-        if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
-          continue;
-        }
-        if ( key >= day && key < day + 24 * 3600 ){
-          let mod_time = key % (24 * 60 * 60)
-          let time_formatted = '';
-          if ( window.campaign_scripts.processing_save[mod_time] ){
-            time_formatted = window.campaign_scripts.processing_save[mod_time]
-          } else {
-            time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
-            window.campaign_scripts.processing_save[mod_time] = time_formatted
-          }
-          if ( !coverage[time_formatted]){
-            coverage[time_formatted] = [];
-          }
-          coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
-        }
-      }
-    })
+    let months = coverage_by_month(true)
     let key = 0;
     let start_of_today = new Date()
     start_of_today.setHours(0,0,0,0)
     let start_time_stamp = start_of_today.getTime()/1000
     while ( key < 24 * 3600 ){
       let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+      let months_covered = [];
+      Object.keys(months).forEach(m=>{
+        if (months[m].coverage[time_formatted] && months[m].coverage[time_formatted].length === months[m].days_in_month){
+          months_covered.push(m);
+        }
+      })
       let text = ''
-      let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-      let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
-      if ( fully_covered && level_covered > 1  ){
-        text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
-      } else if ( fully_covered ) {
-        text = `(${calendar_subscribe_object.translations.fully_covered_once})`
+      if ( months_covered.length ){
+        text = months_covered.join(', ') + ' ' + calendar_subscribe_object.translations.covered
       }
       select_html += `<option value="${window.lodash.escape(key)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
@@ -326,6 +308,32 @@ jQuery(document).ready(async function ($) {
     }
     $(".cp-time-duration-select").html(duration_options_html)
   }
+
+  function coverage_by_month( after_now = false ){
+    let months = {};
+    days.forEach(day=> {
+      if ( !after_now || day.key > now ){
+        if (!months[day.month]) {
+          let date = new Date( day.key * 1000 );
+          let days_in_month = new Date( date.getFullYear(), date.getMonth()+1, 0).getDate()
+          if ( date.getMonth() === new Date().getMonth() ){
+            days_in_month = days_in_month - new Date().getDate()
+          }
+          months[day.month] = {key: day.key, coverage:{}, days_in_month}
+        }
+        day.slots.filter(s => s.subscribers > 0).forEach(slot=>{
+          if ( !months[day.month].coverage[slot.formatted] ){
+            months[day.month].coverage[slot.formatted] = []
+          }
+           months[day.month].coverage[slot.formatted].push(slot.subscribers)
+        })
+      }
+    })
+    calendar_subscribe_object.coverage_by_month = months
+    return months
+  }
+
+
   function display_selected_times(  ){
     let html = ""
     selected_times.sort((a,b)=>{
@@ -348,13 +356,15 @@ jQuery(document).ready(async function ($) {
 
   //Calendar Functions
   function draw_modal_calendar(){
-    let now = new Date().getTime()/1000
+    let current_month = window.campaign_scripts.timestamp_to_format( now, { month:"long" }, current_time_zone);
     modal_calendar.empty()
     let list = ''
     let months = {};
     days.forEach(day=> {
-      if (!months[day.month]) {
-        months[day.month] = {key:day.key}
+      if (day.month === current_month || day.key > now) {
+        if (!months[day.month]) {
+          months[day.month] = {key: day.key}
+        }
       }
     })
     Object.keys(months).forEach( (key, index) =>{
@@ -406,41 +416,38 @@ jQuery(document).ready(async function ($) {
     })
     modal_calendar.html(list)
   }
+
   function draw_calendar( id = 'calendar-content' ){
     let content = $(`#${window.lodash.escape(id)}`)
     content.empty()
     let list = ``
     let months = {};
+    let now = new Date().getTime()/1000;
+    let current_month = window.campaign_scripts.timestamp_to_format( now, { month:"long" }, current_time_zone);
+
     days.forEach(day=> {
-      if (!months[day.month]) {
-        months[day.month] = {with: 0, without: 0, key:day.key}
+      if ( day.month === current_month || day.key > now ){
+        if (!months[day.month]) {
+          months[day.month] = {with: 0, without: 0, key:day.key}
+        }
+
+        months[day.month].with += day.covered_slots
+        months[day.month].without += day.slots.length - day.covered_slots
       }
-      months[day.month].without += day.slots.length- day.covered_slots
     })
 
     Object.keys(months).forEach( (key, index) =>{
       //only show 2 months
       if ( index < 2 ){
-        list += `<div class="calendar-month">
-          <h3 class="month-title"><strong>${window.lodash.escape(key).substring(0,3)}</strong> ${new Date(months[key].key * 1000).getFullYear()}
-          ${ months[key].with / months[key].without * 100 }%
-          </h3>
-          <div class="calendar">
-        `
-        list += headers
-        let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
-        //add extra days at the month start
-        for (let i = 0; i < day_number; i++) {
-          list += `<div class="day-cell disabled-calendar-day"></div>`
-        }
 
+        let calendar_days = ``
         // fill in calendar
         days.filter(k=>k.month===key).forEach(day=>{
           if ( day.disabled ){
-            list += `<div class="day-cell disabled-calendar-day">
+            calendar_days += `<div class="day-cell disabled-calendar-day">
           </div>`
           } else {
-            list +=`
+            calendar_days +=`
               <div class="display-day-cell" data-day=${window.lodash.escape(day.key)}>
                   <progress-ring stroke="3" radius="20" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
               </div>
@@ -448,13 +455,27 @@ jQuery(document).ready(async function ($) {
           }
         })
 
+        let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
+        //add extra days at the month start
+        for (let i = 0; i < day_number; i++) {
+          calendar_days += `<div class="day-cell disabled-calendar-day"></div>`
+        }
         //add extra days at the month end
         if (day_number!==0) {
           for (let i = 1; i <= 7 - day_number; i++) {
-            list += `<div class="day-cell disabled-calendar-day"></div>`
+            calendar_days += `<div class="day-cell disabled-calendar-day"></div>`
           }
         }
-        list += `</div></div>`
+        list += `<div class="calendar-month">
+          <h3 class="month-title"><strong>${window.lodash.escape(key).substring(0,3)}</strong> ${new Date(months[key].key * 1000).getFullYear()}
+            <span style="color: black; font-size:1.3rem">${ (months[key].with / months[key].without * 100).toFixed( 2 ) }%</span>
+          </h3>
+          <div class="calendar">
+            ${headers}
+            ${calendar_days}
+          </div>
+        </div>`
+
       }
     })
 

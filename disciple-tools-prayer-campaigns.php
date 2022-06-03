@@ -70,6 +70,9 @@ require_once( 'campaign-functions/setup-functions.php' );
  */
 class DT_Prayer_Campaigns {
 
+    public $plugin_dir_path = null;
+    public $plugin_dir_url = null;
+
     private static $_instance = null;
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -79,6 +82,8 @@ class DT_Prayer_Campaigns {
     }
 
     private function __construct() {
+        $this->plugin_dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
+        $this->plugin_dir_url = trailingslashit( plugin_dir_url( __FILE__ ) );
 
         require_once( 'campaign-functions/time-utilities.php' );
         require_once( 'campaign-functions/send-email-utility.php' );
