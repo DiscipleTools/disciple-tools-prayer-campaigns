@@ -320,7 +320,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <h3 class="mc-title">My commitments</h3>
             <div id="mobile-commitments-container">
             </div>
-            <div class="reveal" id="daily-select-modal" data-reveal>
+            <div class="reveal cp-wrapper" id="daily-select-modal" data-reveal>
                 <label>
                     <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
                     <select id="cp-daily-time-select">
@@ -394,7 +394,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </div>
             </div>
 
-            <div class="reveal" id="select-times-modal" data-reveal data-close-on-click="false" data-multiple-opened="true">
+            <div class="reveal cp-wrapper" id="select-times-modal" data-reveal data-close-on-click="false" data-multiple-opened="true">
 
                 <h2 id="individual-day-title" class="cp-center">
                     <?php esc_html_e( 'Select a day and choose a time', 'disciple-tools-prayer-campaigns' ); ?>
@@ -446,18 +446,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?>
                     </button>
                 </div>
-                <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'back', 'disciple-tools-prayer-campaigns' )?>
-                </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <div class="center">
-                    <button class="button success-confirmation-section close-ok-success" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'ok', 'disciple-tools-prayer-campaigns' )?>
-                    </button>
-                </div>
             </div>
 
 

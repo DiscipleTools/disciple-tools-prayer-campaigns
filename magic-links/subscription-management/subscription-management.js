@@ -108,7 +108,7 @@ jQuery(document).ready(function($){
     content.html(`<div class="grid-x" id="selection-grid-wrapper">${calendar}</div>`)
   }
   draw_calendar()
-  $(document).on('click', '.cp-goto-month', function (){
+  $(document).on('click', '#calendar-content .cp-goto-month', function (){
     let target = $(this).data('month-target');
     $('#calendar-content .calendar-month').hide()
     $(`#calendar-content .calendar-month[data-month-index='${target}']`).show()
@@ -384,46 +384,73 @@ jQuery(document).ready(function($){
   let modal_calendar = $('#day-select-calendar')
   let now = new Date().getTime()/1000
   let draw_modal_calendar = ()=> {
-    let last_month = "";
+    let current_month = window.campaign_scripts.timestamp_to_format( now, { month:"long" }, current_time_zone);
     modal_calendar.empty()
     let list = ''
-    let mobile_list = ''
-    days.forEach(day => {
-      if (day.month!==last_month) {
-        if (last_month) {
-          //add extra days at the month end
-          let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
-          if ( day_number !== 0 ) {
-            for (let i = 1; i <= 7 - day_number; i++) {
-              list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(i)}</div>`
-            }
-          }
-          list += `</div>`
+    let months = {};
+    days.forEach(day=> {
+      if (day.month === current_month || day.key > now) {
+        if (!months[day.month]) {
+          months[day.month] = {key: day.key}
         }
-
-        list += `<h3 class="month-title">${window.lodash.escape(day.month)}</h3><div class="calendar">`
-        if (!last_month) {
-          list += headers
-        }
-
-        //add extra days at the month start
-        let day_number = window.campaign_scripts.get_day_number(day.key, current_time_zone);
-        let start_of_week = window.campaign_scripts.start_of_week(day.key, current_time_zone);
-        for (let i = 0; i < day_number; i++) {
-          list += `<div class="day-cell disabled-calendar-day">${window.lodash.escape(start_of_week.getDate() + i)}</div>`
-        }
-        last_month = day.month
       }
-      let disabled = (day.key + (24 * 3600)) < now;
-      list += `
+    })
+    Object.keys(months).forEach( (key, index) =>{
+
+      let this_month_content = ``
+      let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
+
+      //add extra days at the month start
+      for (let i = 0; i < day_number; i++) {
+        this_month_content += `<div class="day-cell disabled-calendar-day"></div>`
+      }
+      // fill in calendar
+      days.filter(k=>k.month===key).forEach(day=>{
+        let disabled = (day.key + (24 * 3600)) < now;
+        this_month_content += `
           <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
               ${window.lodash.escape(day.day)}
           </div>
+        `
+      })
+      //add extra days at the month end
+      if (day_number!==0) {
+        for (let i = 1; i <= 7 - day_number; i++) {
+          this_month_content += `<div class="day-cell disabled-calendar-day"></div>`
+        }
+      }
+
+      let display_calendar = index === 0 ? 'display:block' : 'display:none';
+      let next_month_button = index < Object.keys(months).length -1 ? '' : 'display:none'
+      let prev_month_button = index > 0 ? '' : 'display:none'
+
+      list += `<div class="calendar-month" data-month-index="${index}" style="${display_calendar}">
+        <div style="display: flex; justify-content: center">
+          <div class="goto-month-container"><button class="cp-goto-month" data-month-target="${index-1}" style="${prev_month_button}"><</button></div>
+          <div>
+            <h3 class="month-title center">
+                <strong>${window.lodash.escape(key).substring(0,3)}</strong>
+                ${new Date(months[key].key * 1000).getFullYear()}
+            </h3>
+            <div class="calendar">
+              ${headers}
+              ${this_month_content}
+            </div>
+          </div>
+          <div class="goto-month-container"><button class="cp-goto-month" data-month-target="${index+1}" style="${next_month_button}">></button></div>
+        </div>
+        </div></div>
       `
     })
     modal_calendar.html(list)
   }
   draw_modal_calendar()
+
+  $(document).on('click', '#day-select-calendar .cp-goto-month', function (){
+    let target = $(this).data('month-target');
+    $('#day-select-calendar .calendar-month').hide()
+    $(`#day-select-calendar .calendar-month[data-month-index='${target}']`).show()
+  })
 
   //when a day is clicked on from the calendar
   $(document).on('click', '.day-in-select-calendar', function (){
