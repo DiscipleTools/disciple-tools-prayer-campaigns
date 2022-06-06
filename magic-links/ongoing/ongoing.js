@@ -309,6 +309,11 @@ jQuery(document).ready(async function ($) {
     $(".cp-time-duration-select").html(duration_options_html)
   }
 
+  /**
+   * Calculate which times slots are filled for each month
+   * @param after_now
+   * @returns {{}}
+   */
   function coverage_by_month( after_now = false ){
     let months = {};
     days.forEach(day=> {
@@ -408,11 +413,11 @@ jQuery(document).ready(async function ($) {
               ${headers}
               ${this_month_content}
             </div>
-            </div>
+          </div>
           <div class="goto-month-container"><button class="cp-goto-month" data-month-target="${index+1}" style="${next_month_button}">></button></div>
         </div>
+        </div></div>
       `
-      list += `</div></div>`
     })
     modal_calendar.html(list)
   }
@@ -441,6 +446,12 @@ jQuery(document).ready(async function ($) {
       if ( index < 2 ){
 
         let calendar_days = ``
+        let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
+        //add extra days at the month start
+        for (let i = 0; i < day_number; i++) {
+          calendar_days += `<div class="day-cell disabled-calendar-day"></div>`
+        }
+
         // fill in calendar
         days.filter(k=>k.month===key).forEach(day=>{
           if ( day.disabled ){
@@ -455,11 +466,6 @@ jQuery(document).ready(async function ($) {
           }
         })
 
-        let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
-        //add extra days at the month start
-        for (let i = 0; i < day_number; i++) {
-          calendar_days += `<div class="day-cell disabled-calendar-day"></div>`
-        }
         //add extra days at the month end
         if (day_number!==0) {
           for (let i = 1; i <= 7 - day_number; i++) {
