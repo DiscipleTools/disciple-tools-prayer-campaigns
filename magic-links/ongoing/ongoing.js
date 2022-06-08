@@ -116,7 +116,7 @@ jQuery(document).ready(async function ($) {
         }
       }
       let date_label = window.campaign_scripts.timestamp_to_format( selected_times[selected_times.length - 1].time, { month: "long", day: "numeric" }, current_time_zone)
-      console.log(selected_times[selected_times.length - 1]);
+
       let time_text = calendar_subscribe_object.duration_options[selected_times[selected_times.length-1].duration]?.label || selected_times[selected_times.length-1].duration;
       let text = calendar_subscribe_object.translations.praying_everyday.replace( '%1$s', selected_times[selected_times.length-1].label).replace( '%2$s', time_text ).replace( '%3$s', date_label )
       $('.cp-daily-selected-times').append(`<li id="cp-daily-key-${now}">${window.lodash.escape(text)}<button class="remove-daily-time-button" data-key="${now}">x</button></li>`)
@@ -224,6 +224,12 @@ jQuery(document).ready(async function ($) {
         name: name,
         email: email,
         selected_times: selected_times,
+        daily_selected_time: [{
+          time: 7200,
+          start: 123,
+          end: 123,
+
+        }],
         campaign_id: calendar_subscribe_object.campaign_id,
         timezone: current_time_zone,
         receive_prayer_time_notifications,

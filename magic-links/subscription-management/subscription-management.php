@@ -317,7 +317,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
-            <h3 class="mc-title">My commitments</h3>
+            <h3 class="mc-title"><?php esc_html_e( 'My commitments', 'disciple-tools-prayer-campaigns' ); ?></h3>
             <div id="mobile-commitments-container">
             </div>
             <div class="reveal cp-wrapper" id="daily-select-modal" data-reveal>
@@ -446,12 +446,25 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?>
                     </button>
                 </div>
+                <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
+                    <?php echo esc_html__( 'back', 'disciple-tools-prayer-campaigns' )?>
+                </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <div class="center">
+                    <button class="button success-confirmation-section close-ok-success" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'ok', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
+                </div>
             </div>
 
+
+            <!-- Extra setting depending on the campaign type -->
+            <div>
+                <?php do_action( 'dt_subscription_management_extra' ) ?>
+            </div>
 
             <?php
                 $notifications = isset( $post["receive_prayer_time_notifications"] ) && !empty( $post["receive_prayer_time_notifications"] );

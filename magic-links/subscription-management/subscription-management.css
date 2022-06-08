@@ -12,7 +12,7 @@ body {
 }
 #wrapper {
     max-width:1000px;
-    margin:0 auto;
+    margin:0 auto 300px auto;
     padding: .5em;
     background-color: white;
 }
@@ -63,7 +63,8 @@ select::-ms-expand {
 }
 
 .new-day-number {
-    margin-top: 18px;
+    padding-top: 18px;
+    padding-bottom: 1px;
 }
 
 .progress-bar {
@@ -179,10 +180,16 @@ select::-ms-expand {
     font-size:8px;
 }
 
-.confirm-view {
+.cp-wrapper .confirm-view {
     display: none;
 }
-.success-confirmation-section {
+.cp-wrapper .close-button {
+    font-size: 2em;
+    color:#8a8a8a;
+    background-color: transparent;
+    padding:0;
+}
+.cp-wrapper .success-confirmation-section {
     display: none;
 }
 .deleted-time {
@@ -228,7 +235,7 @@ select::-ms-expand {
     cursor: pointer;
 }
 
-.new_day_cell:hover {
+.new-day-number:hover {
     background-color: #eee;
 }
 .calendar-month {

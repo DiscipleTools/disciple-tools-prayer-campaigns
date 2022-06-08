@@ -173,8 +173,13 @@ window.campaign_scripts = {
     }
     return select_html
 
-  }
-
+  },
+  days_for_locale: (localeName = 'en-US', weekday = 'long')=>{
+    let now = new Date()
+    const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
+    return [...Array(7).keys()]
+    .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
+  },
 }
 
 //based off of:

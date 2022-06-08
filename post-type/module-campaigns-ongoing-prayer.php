@@ -23,7 +23,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
         parent::__construct();
         // register tiles if on details page
 //        add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 30, 2 );
-//        add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
+        add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 30, 2 );
 //        add_filter( 'dt_post_update_fields', [ $this, 'dt_post_update_fields' ], 20, 3 );
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
 //        add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
@@ -63,6 +63,24 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
     }
 
     public function dt_details_additional_section( $section, $post_type ) {
+        if ( $post_type === $this->post_type ) {
+            $record = DT_Posts::get_post( $post_type, get_the_ID() );
+            if ( !isset( $record['type']['key'] ) || 'ongoing' !== $record['type']['key'] ){
+                return;
+            }
+            if ( $section === "status" ){
+                $link = DT_Magic_URL::get_link_url_for_post( $post_type, $record["ID"], $this->magic_link_root, $this->magic_link_type );
+                ?>
+                <div class="cell small-12 medium-4">
+                    <div class="section-subheader">
+                        <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
+                    </div>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple_tools' ); ?></a>
+                </div>
+                <?php
+            }
+        }
+
     }
 
     /**
