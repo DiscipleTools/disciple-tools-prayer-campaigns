@@ -20,7 +20,7 @@ if ( class_exists( 'DT_Generic_Porch' ) ) {
 /**
  * A light weight factory class that provides all of the functionality needed for the porch
  */
-class DT_Generic_Porch {
+class DT_Generic_Porch implements DT_Porch_Interface {
 
     public $id = 'generic-porch';
     public $label;
@@ -35,6 +35,18 @@ class DT_Generic_Porch {
             'label' => $this->label,
             'class' => $this,
         ];
+    }
+
+    public function load_admin(): DT_Porch_Admin_Menu_Interface {
+        $this->load_porch();
+
+        require_once __DIR__ . '/admin/admin-menu-and-tabs.php';
+
+        return new DT_Ramadan_Porch_Landing_Menu();
+    }
+
+    public function load_porch() {
+        require_once __DIR__ . '/site/functions.php';
     }
 
 }

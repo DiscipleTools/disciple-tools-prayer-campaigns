@@ -10,6 +10,8 @@ class DT_Prayer_Campaigns_Menu {
 
     private static $_instance = null;
 
+    private DT_Prayer_Campaigns_Campaigns $campaign;
+
     /**
      * DT_Prayer_Campaigns_Menu Instance
      *
@@ -24,8 +26,7 @@ class DT_Prayer_Campaigns_Menu {
             self::$_instance = new self();
         }
         return self::$_instance;
-    } // End instance()
-
+    }
 
     /**
      * Constructor function.
@@ -35,8 +36,8 @@ class DT_Prayer_Campaigns_Menu {
     public function __construct() {
         add_action( "admin_menu", array( $this, "register_menu" ) );
 
-    } // End __construct()
-
+        $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
+    }
 
     /**
      * Loads the subnav page
@@ -69,6 +70,21 @@ class DT_Prayer_Campaigns_Menu {
 
         $link = 'admin.php?page='.$this->token.'&tab=';
 
+
+        switch ( $tab ) {
+            case "campaigns":
+                $this->campaigns->process_email_settings();
+                $this->campaigns->process_porch_settings();
+                break;
+            default:
+                break;
+        }
+
+        if ( $this->has_selected_porch() ) {
+            $porch = $this->get_selected_porch_instance();
+            $porch_admin = $porch->load_admin();
+        }
+
         ?>
 
         <div class="wrap">
@@ -79,29 +95,50 @@ class DT_Prayer_Campaigns_Menu {
                     Campaigns
                 </a>
 
-                <!-- 2. Get the tab links for the currently selected porch -->
+                <?php
+                if ( $this->has_selected_porch() ) {
+                    $porch_admin->tab_headers( $link );
+                }
+                ?>
             </h2>
 
             <?php
             switch ( $tab ) {
                 case "campaigns":
-                    $object = new DT_Prayer_Campaigns_Campaigns();
-                    $object->process_email_settings();
-                    $object->process_porch_settings();
-                    $object->content();
+                    $this->campaigns->content();
                     break;
                 default:
                     break;
             }
-            ?>
 
-            <!-- Manage the porch tabs here -->
+            if ( $this->has_selected_porch() ) {
+                $porch_admin->tab_content();
+            }
+            ?>
 
         </div>
 
         <?php
     }
+
+    /**
+     * @return DT_Porch_Interface
+     */
+    private function get_selected_porch_instance() {
+        $porches = $this->campaigns->get_porches();
+
+        $selected_porch_id = $this->campaigns->get_selected_porch_id();
+
+        return $porches[$selected_porch_id]["class"];
+    }
+
+    private function has_selected_porch() {
+        $selected_porch_id = $this->campaigns->get_selected_porch_id();
+
+        return $selected_porch_id && !empty( $selected_porch_id ) ? true : false;
+    }
 }
+
 DT_Prayer_Campaigns_Menu::instance();
 
 /**
@@ -110,6 +147,12 @@ DT_Prayer_Campaigns_Menu::instance();
 class DT_Prayer_Campaigns_Campaigns {
 
     private $settings_key = 'dt_prayer_campaign_settings';
+
+    private $selected_porch_id;
+
+    public function __construct() {
+        $this->selected_porch_id = $this->get_setting( 'selected_porch' );
+    }
 
     private function default_email_address(): string {
         $default_addr = apply_filters( 'wp_mail_from', '' );
@@ -160,6 +203,9 @@ class DT_Prayer_Campaigns_Campaigns {
 
     /**
      * Process changes to the porch settings
+     *
+     * ? Do we delete the porch settings if they deselect a porch? or save them to be restored later?
+     * ? or does it even matter?
      */
     public function process_porch_settings() {
         if ( isset( $_POST['campaign_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['campaign_settings_nonce'] ) ), 'campaign_settings' ) ) {
@@ -168,6 +214,8 @@ class DT_Prayer_Campaigns_Campaigns {
                 $selected_porch = sanitize_text_field( wp_unslash( $_POST['select_porch'] ) );
 
                 $this->update_setting( 'selected_porch', $selected_porch );
+
+                $this->selected_porch_id = $selected_porch;
             }
         }
     }
@@ -176,7 +224,7 @@ class DT_Prayer_Campaigns_Campaigns {
         return get_option( $this->settings_key, [] );
     }
 
-    private function get_setting( string $name ) {
+    public function get_setting( string $name ) {
         $settings = $this->get_all_settings();
 
         if ( isset( $settings[$name] ) ) {
@@ -189,11 +237,25 @@ class DT_Prayer_Campaigns_Campaigns {
     private function update_setting( string $name, mixed $value ) {
         $settings = $this->get_all_settings();
 
-        $new_setting = [];
+        if ( !$value || empty( $value ) ) {
+            unset( $settings[$name] );
+        } else {
+            $new_setting = [];
 
-        $new_setting[$name] = $value;
+            $new_setting[$name] = $value;
 
-        update_option( $this->settings_key, array_merge( $settings, $new_setting ) );
+            $settings = array_merge( $settings, $new_setting );
+        }
+
+        update_option( $this->settings_key, $settings );
+    }
+
+    public function get_porches() {
+        return apply_filters( 'dt_register_prayer_campaign_porch', [] );
+    }
+
+    public function get_selected_porch_id() {
+        return $this->selected_porch_id;
     }
 
     public function content() {
@@ -274,7 +336,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
         <?php
 
-        $porches = apply_filters( 'dt_register_prayer_campaign_porch', [] );
+        $porches = $this->get_porches();
         ?>
 
         <table class="widefat striped">
@@ -299,11 +361,11 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                         <td>
                                             <select name="select_porch" id="select_porch"
-                                                    selected="<?php echo esc_html( $this->get_setting( "selected_porch" ) ? $this->get_setting( "selected_porch" ) : '' ) ?>">
+                                                    selected="<?php echo esc_html( $this->get_selected_porch_id() ? $this->get_selected_porch_id() : '' ) ?>">
 
                                                     <option
-                                                        selected="<?php echo !isset( $settings["selected_porch"] ) ? true : false ?>"
-                                                        value="none"
+                                                        <?php echo !isset( $settings["selected_porch"] ) ? "selected" : "" ?>
+                                                        value=""
                                                     >
                                                         <?php esc_html_e( 'None', 'disciple-tools-prayer-campaign' ) ?>
                                                     </option>
@@ -312,7 +374,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                                     <option
                                                         value="<?php echo esc_html( $id ) ?>"
-                                                        selected="<?php echo $this->get_setting( "selected_porch" ) && $this->get_setting( "selected_porch" ) === $id ? true : false ?>"
+                                                        <?php echo $this->get_selected_porch_id() && $this->get_selected_porch_id() === $id ? "selected" : "" ?>
                                                     >
                                                         <?php echo esc_html( $porch["label"] ) ?>
                                                     </option>
