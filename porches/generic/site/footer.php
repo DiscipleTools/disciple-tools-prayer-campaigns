@@ -52,6 +52,8 @@
 </div>
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
+<!-- TODO: put these into enqueue scripts properly -->
+<?php // phpcs:disable ?>
 <script src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>js/jquery-min.js"></script>
 <script src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>js/tether.min.js"></script>
 <script src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>js/bootstrap.min.js"></script>
@@ -72,3 +74,4 @@
 <!--<script src="--><?php //echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?><!--js/form-validator.min.js"></script>-->
 <!--<script src="--><?php //echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?><!--js/contact-form-script.js"></script>-->
 <script src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>js/main.js?ver=<?php echo esc_attr( filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/main.js' ) ) ?>"></script>
+<?php // phpcs:enable ?>

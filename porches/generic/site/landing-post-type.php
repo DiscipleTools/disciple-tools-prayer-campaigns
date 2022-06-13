@@ -87,10 +87,12 @@ class P4_Ramadan_Porch_Landing_Post_Type
     }
 
     public function save_post( $id ){
-        if ( isset( $_POST["dt-landing-language-selector"] ) ){
+        /* TODO Check nonce first then uncomment the below code */
+
+        /* if ( isset( $_POST["dt-landing-language-selector"] ) ){
             $post_submission = dt_recursive_sanitize_array( $_POST );
             update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
-        }
+        } */
     }
 
 

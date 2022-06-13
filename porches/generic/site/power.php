@@ -68,7 +68,7 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
 //        require_once( 'top-section.php' );
 
         $porch_fields = DT_Porch_Settings::porch_fields();
-        $campaign_fields =  DT_Campaign_Settings::get_campaign()();
+        $campaign_fields = DT_Campaign_Settings::get_campaign()();
         $langs = dt_ramadan_list_languages();
         $post_id = $campaign_fields["ID"];
 

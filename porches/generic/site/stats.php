@@ -69,7 +69,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
 //        require_once( 'top-section.php' );
 
         $porch_fields = DT_Porch_Settings::porch_fields();
-        $campaign_fields =  DT_Campaign_Settings::get_campaign()();
+        $campaign_fields = DT_Campaign_Settings::get_campaign()();
         $langs = dt_ramadan_list_languages();
         $post_id = $campaign_fields["ID"];
         $lang = dt_campaign_get_current_lang();
@@ -359,6 +359,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
 
                     <p class="center"><?php esc_html_e( 'Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?', 'pray4ramadan-porch' ); ?></p>
                     <!-- Begin Mailchimp Signup Form -->
+                    <?php // phpcs:ignore ?>
                     <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
                     <style type="text/css">
                         #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:600px;}
@@ -416,6 +417,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                             </div>
                         </form>
                     </div>
+                    <?php // phpcs:ignore ?>
                     <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
                     <!--End mc_embed_signup-->
 
@@ -457,7 +459,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
         }
         $params["story"] = wp_kses_post( $request->get_params()["story"] );
 
-        $campaign_fields =  DT_Campaign_Settings::get_campaign()();
+        $campaign_fields = DT_Campaign_Settings::get_campaign()();
         $post_id = $campaign_fields["ID"];
 
         $comment = "Story feedback from " . site_url( "prayer/stats" ) . " by " . $params["email"] . ": \n" . $params["story"];

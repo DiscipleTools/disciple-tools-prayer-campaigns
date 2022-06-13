@@ -10,7 +10,7 @@ if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
 dt_ramadan_set_translation( $lang );
 
 $porch_fields = DT_Porch_Settings::porch_fields();
-$campaign_fields =  DT_Campaign_Settings::get_campaign();
+$campaign_fields = DT_Campaign_Settings::get_campaign();
 $langs = dt_ramadan_list_languages();
 ?>
 

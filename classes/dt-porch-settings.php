@@ -1,7 +1,13 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
+/**
+ * Encapsulates getting and setting of porch settings
+ */
 class DT_Porch_Settings {
+
+    public function __construct() {}
+
     public static function porch_fields() {
         $defaults = [
             'theme_color' => [
@@ -80,7 +86,6 @@ class DT_Porch_Settings {
                 'type' => 'text',
             ],
 
-            //strings
             'what_content' => [
                 'label' => 'What is Ramadan Content',
                 'default' =>__( 'Ramadan is one of the five requirements (or pillars) of Islam. During each of its 30 days, Muslims are obligated to fast from dawn until sunset. During this time they are supposed to abstain from food, drinking liquids, smoking, and sexual relations.
