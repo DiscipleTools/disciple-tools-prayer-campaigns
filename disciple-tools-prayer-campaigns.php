@@ -70,28 +70,38 @@ require_once( 'campaign-functions/setup-functions.php' );
  */
 class DT_Prayer_Campaigns {
 
-    private static $_instance = null;
+    private static $instance = null;
     public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
+        if ( is_null( self::$instance ) ) {
+            $i = new DT_Prayer_Campaigns();
+            self::$instance = $i;
         }
-        return self::$_instance;
+        return self::$instance;
     }
+
+    private $settings_manager;
+    private $selected_porch_id;
 
     private function __construct() {
 
+        require_once( 'campaign-functions/utils.php' );
         require_once( 'campaign-functions/time-utilities.php' );
         require_once( 'campaign-functions/send-email-utility.php' );
         require_once( 'campaign-functions/cron-schedule.php' );
 
         require_once( 'post-type/loader.php' );
+        require_once( 'classes/dt-campaign-settings.php' );
+        require_once( 'classes/dt-porch-settings.php' );
+
+        require_once( 'porches/loader.php' );
 
         require_once( 'magic-links/24hour/24hour.php' );
         require_once( 'magic-links/ongoing/ongoing.php' );
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
 
         if ( is_admin() ) {
-            require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
+            require_once __DIR__ . '/admin/dt-prayer-campaigns.php';
+            require_once __DIR__ . '/admin/admin-menu-and-tabs.php'; // adds starter admin page and section for plugin
         }
 
         $this->i18n();
@@ -124,6 +134,21 @@ class DT_Prayer_Campaigns {
             new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
         }
         DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
+
+        $this->settings_manager = new DT_Campaign_Settings();
+        $this->selected_porch_id = $this->settings_manager->get( 'selected_porch' );
+
+        if ( !is_admin() ) {
+            $this->load_selected_porch();
+        }
+    }
+
+    private function load_selected_porch() {
+        if ( $this->selected_porch_id && !empty( $this->selected_porch_id ) ) {
+            $porch_loader = $this->get_selected_porch_loader();
+
+            $porch_loader->load_porch();
+        }
     }
 
     /**
@@ -136,6 +161,29 @@ class DT_Prayer_Campaigns {
         }
 
         return $links_array;
+    }
+
+    public function get_porch_loaders() {
+        return apply_filters( 'dt_register_prayer_campaign_porch', [] );
+    }
+
+    public function get_selected_porch_id() {
+        return $this->selected_porch_id;
+    }
+
+    public function set_selected_porch_id( $new_selected_porch_id ) {
+        $this->selected_porch_id = $new_selected_porch_id;
+    }
+
+    /**
+     * @return IDT_Porch_Loader
+     */
+    public function get_selected_porch_loader() {
+        $porches = $this->get_porch_loaders();
+
+        $selected_porch_id = $this->get_selected_porch_id();
+
+        return $porches[$selected_porch_id]["class"];
     }
 
     /**
