@@ -1,6 +1,6 @@
 <?php
-$porch_fields = DT_Prayer_Campaigns::instance()->porch_fields();
-$lang = dt_ramadan_get_current_lang();
+$porch_fields = DT_Porch_Settings::porch_fields();
+$lang = dt_campaign_get_current_lang();
 
 
 // query for getting posts in the selected language.

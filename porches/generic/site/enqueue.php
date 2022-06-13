@@ -2,10 +2,10 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 // Add Open Graph Protocol meta tags in header
 function og_protocol() {
-    $fields = DT_Prayer_Campaigns::instance()->porch_fields();
+    $fields = DT_Porch_Settings::porch_fields();
 
     $og_title = PORCH_TITLE;
-    $og_description = get_field_translation( $fields['goal'], PORCH_DEFAULT_LANGUAGE );
+    $og_description = DT_Porch_Settings::get_field_translation( $fields['goal'], PORCH_DEFAULT_LANGUAGE );
     $og_url = get_site_url();
     ?>
 

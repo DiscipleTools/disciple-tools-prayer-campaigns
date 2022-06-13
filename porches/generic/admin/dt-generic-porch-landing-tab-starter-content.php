@@ -18,7 +18,7 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
                         $object = new DT_Generic_Porch_Landing_Tab_Home();
                         $object->box_campaign();
 
-                        $fields = DT_Prayer_Campaigns::instance()->get_campaign();
+                        $fields = DT_Campaign_Settings::get_campaign();
                         if ( ! empty( $fields ) ) {
                             $this->main_column();
                         }
@@ -96,7 +96,7 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
             }
         }
         $languages = dt_ramadan_list_languages();
-        $fields = DT_Prayer_Campaigns::instance()->porch_fields();
+        $fields = DT_Porch_Settings::porch_fields();
 
         $installed_langs_query = $wpdb->get_results( "
             SELECT pm.meta_value, count(*) as count
@@ -148,8 +148,8 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
                         <tbody>
 
                         <?php foreach ( $languages as $language_key => $language ) :
-                            $people_name = get_field_translation( $fields["people_name"], $language_key );
-                            $country_name = get_field_translation( $fields["country_name"], $language_key );
+                            $people_name = DT_Porch_Settings::get_field_translation( $fields["people_name"], $language_key );
+                            $country_name = DT_Porch_Settings::get_field_translation( $fields["country_name"], $language_key );
                             $already_installed = ( $installed_langs[$language_key] ?? 0 ) > 0;
                             $available_in_language = $language["prayer_fuel"] ?? false;
                             $delete_enabled = ( $installed_langs[$language_key] ?? 0 ) > 1

@@ -43,7 +43,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
             update_option( 'pray4ramadan_selected_campaign', $campaign_id );
         }
-        $fields = DT_Prayer_Campaigns::instance()->get_campaign();
+        $fields = DT_Campaign_Settings::get_campaign();
         if ( empty( $fields ) ) {
             $fields = [ 'ID' => 0 ];
         }
@@ -160,7 +160,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             'async' => array(),
             'src' => array()
         );
-        $fields = DT_Prayer_Campaigns::instance()->porch_fields();
+        $fields = DT_Porch_Settings::porch_fields();
         $langs = dt_ramadan_list_languages();
         $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
         $list = [];
@@ -210,7 +210,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
 
             if ( isset( $_POST['reset_values'] ) ) {
                 update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', [] );
-                $fields = DT_Prayer_Campaigns::instance()->porch_fields();
+                $fields = DT_Porch_Settings::porch_fields();
             }
             if ( isset( $_POST['night_of_power'] ) ){
                 $post_fields = dt_recursive_sanitize_array( $_POST );
@@ -364,7 +364,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             $start_time = (int) $power_fields["start_time"];
             $end_time = (int) $power_fields["end_time"];
 
-            $campaign_fields = DT_Prayer_Campaigns::instance()->get_campaign();
+            $campaign_fields = DT_Campaign_Settings::get_campaign();
             $timezone = "America/Chicago";
             if ( isset( $campaign_fields["campaign_timezone"]["key"] ) ){
                 $timezone = $campaign_fields["campaign_timezone"]["key"];

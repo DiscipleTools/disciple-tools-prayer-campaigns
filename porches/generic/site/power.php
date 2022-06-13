@@ -67,8 +67,8 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
     public function body(){
 //        require_once( 'top-section.php' );
 
-        $porch_fields = DT_Prayer_Campaigns::instance()->porch_fields();
-        $campaign_fields = p4r_get_campaign();
+        $porch_fields = DT_Porch_Settings::porch_fields();
+        $campaign_fields =  DT_Campaign_Settings::get_campaign()();
         $langs = dt_ramadan_list_languages();
         $post_id = $campaign_fields["ID"];
 
@@ -107,7 +107,7 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
 
 
 
-        $lang = dt_ramadan_get_current_lang();
+        $lang = dt_campaign_get_current_lang();
 
         $campaign_root = "campaign_app";
         $campaign_type = $campaign_fields["type"]["key"];

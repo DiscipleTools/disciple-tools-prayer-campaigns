@@ -1,6 +1,6 @@
 <?php
-$lang = dt_ramadan_get_current_lang();
-$porch_fields = DT_Prayer_Campaigns::instance()->porch_fields();
+$lang = dt_campaign_get_current_lang();
+$porch_fields = DT_Porch_Settings::porch_fields();
 $content = 'No post found';
 if ( isset( $this->parts['post_id'] ) && ! empty( $this->parts['post_id'] ) ) {
     $my_postid = $this->parts['post_id'];//This is page id or post id

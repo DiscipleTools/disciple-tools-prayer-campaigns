@@ -59,7 +59,7 @@ class P4_Ramadan_Porch_Home_5 extends DT_Magic_Url_Base
         }
     }
     public function wp_enqueue_scripts(){
-        $lang = dt_ramadan_get_current_lang();
+        $lang = dt_campaign_get_current_lang();
         $translations = dt_ramadan_list_languages();
         if ( isset( $translations[$lang]["dir"] ) && $translations[$lang]['dir'] === 'rtl' ){
             wp_enqueue_style( 'porch-style-css', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/rtl.css', array(), filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/rtl.css' ), 'all' );

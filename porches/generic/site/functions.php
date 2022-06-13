@@ -83,29 +83,6 @@ function dt_ramadan_list_languages(){
     return apply_filters( 'dt_ramadan_list_languages', $available_translations );
 }
 
-function get_field_translation( $field, $code ){
-    if ( empty( $field ) ){
-        return "";
-    }
-    if ( isset( $field["translations"][$code] ) && !empty( $field["translations"][$code] ) ){
-        return $field["translations"][$code];
-    }
-    return $field["value"] ?: ( $field["default"] ?? "" );
-}
-
-function dt_ramadan_get_current_lang(){
-    $lang = "en_US";
-    if ( defined( "PORCH_DEFAULT_LANGUAGE" ) ){
-        $lang = PORCH_DEFAULT_LANGUAGE;
-    }
-    if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
-        $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
-    } elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
-        $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
-    }
-    return $lang;
-}
-
 function dt_ramadan_set_translation( $lang ){
     if ( $lang !== "en_US" ){
         add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
@@ -123,7 +100,7 @@ function ramadan_custom_dir_attr( $lang ){
         return $lang;
     }
 
-    $lang = dt_ramadan_get_current_lang();
+    $lang = dt_campaign_get_current_lang();
 
     $translations = dt_ramadan_list_languages();
     $dir = "ltr";

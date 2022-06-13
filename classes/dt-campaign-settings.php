@@ -37,4 +37,20 @@ class DT_Campaign_Settings {
 
         update_option( $this->settings_key, $settings );
     }
+
+    public static function get_campaign() {
+
+        $selected_campaign = get_option( 'pray4ramadan_selected_campaign', false );
+
+        if ( empty( $selected_campaign ) ) {
+            return [];
+        }
+
+        $campaign = DT_Posts::get_post( 'campaigns', (int) $selected_campaign, true, false );
+        if ( is_wp_error( $campaign ) ) {
+            return [];
+        }
+
+        return $campaign;
+    }
 }

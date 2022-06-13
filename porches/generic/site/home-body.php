@@ -1,8 +1,8 @@
 <?php
-$lang = dt_ramadan_get_current_lang();
+$lang = dt_campaign_get_current_lang();
 
-$porch_fields = DT_Prayer_Campaigns::instance()->porch_fields();
-$campaign_fields = p4r_get_campaign();
+$porch_fields = DT_Porch_Settings::porch_fields();
+$campaign_fields =  DT_Campaign_Settings::get_campaign();
 
 $campaign_root = "campaign_app";
 $campaign_type = $campaign_fields["type"]["key"];
@@ -39,7 +39,7 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
                 <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo nl2br( esc_html( get_field_translation( $porch_fields["goal"], $lang ) ) ); ?>
+                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( $porch_fields["goal"], $lang ) ) ); ?>
                 </p>
                 </div>
             </div>
@@ -108,7 +108,7 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
         </div>
         <div class="row" style="margin-top: 30px">
             <div class="col-sm-12 col-md-8" style="color: white">
-                <?php echo nl2br( esc_html( get_field_translation( $porch_fields["what_content"], $lang ) ) ); ?>
+                <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( $porch_fields["what_content"], $lang ) ) ); ?>
             </div>
             <div class="col-sm-12 col-md-4">
                 <?php
