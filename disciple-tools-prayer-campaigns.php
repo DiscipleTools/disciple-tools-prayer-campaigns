@@ -80,6 +80,9 @@ class DT_Prayer_Campaigns {
 
     private $selected_campaign;
 
+    private $settings_manager;
+    private $selected_porch_id;
+
     private function __construct() {
 
         require_once( 'campaign-functions/time-utilities.php' );
@@ -130,6 +133,11 @@ class DT_Prayer_Campaigns {
             new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
         }
         DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
+
+        $this->settings_manager = new DT_Campaign_Settings();
+
+        $this->selected_porch_id = $this->settings_manager->get( 'selected_porch' );
+
     }
 
     /**
@@ -331,6 +339,30 @@ class DT_Prayer_Campaigns {
 
         return $this->recursive_parse_args( $saved_fields, $defaults );
     }
+
+    public function get_porch_loaders() {
+        return apply_filters( 'dt_register_prayer_campaign_porch', [] );
+    }
+
+    public function get_selected_porch_id() {
+        return $this->selected_porch_id;
+    }
+
+    public function set_selected_porch_id( $new_selected_porch_id ) {
+        $this->selected_porch_id = $new_selected_porch_id;
+    }
+
+    /**
+     * @return IDT_Porch_Loader
+     */
+    public function get_selected_porch_loader() {
+        $porches = $this->get_porch_loaders();
+
+        $selected_porch_id = $this->get_selected_porch_id();
+
+        return $porches[$selected_porch_id]["class"];
+    }
+
 
     /**
      * This function may be better off somewhere else, but putting it here for now

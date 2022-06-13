@@ -81,7 +81,7 @@ class DT_Prayer_Campaigns_Menu {
         }
 
         if ( $this->has_selected_porch() ) {
-            $porch = $this->get_selected_porch_instance();
+            $porch = DT_Prayer_Campaigns::instance()->get_selected_porch_loader();
             $porch_admin = $porch->load_admin();
         }
 
@@ -121,19 +121,8 @@ class DT_Prayer_Campaigns_Menu {
         <?php
     }
 
-    /**
-     * @return IDT_Porch_Loader
-     */
-    private function get_selected_porch_instance() {
-        $porches = $this->campaigns->get_porches();
-
-        $selected_porch_id = $this->campaigns->get_selected_porch_id();
-
-        return $porches[$selected_porch_id]["class"];
-    }
-
     private function has_selected_porch() {
-        $selected_porch_id = $this->campaigns->get_selected_porch_id();
+        $selected_porch_id = DT_Prayer_Campaigns::instance()->get_selected_porch_id();
 
         return $selected_porch_id && !empty( $selected_porch_id ) ? true : false;
     }

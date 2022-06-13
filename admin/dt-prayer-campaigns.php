@@ -8,8 +8,6 @@ class DT_Prayer_Campaigns_Campaigns {
 
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
-
-        $this->selected_porch_id = $this->settings_manager->get( 'selected_porch' );
     }
 
     private function default_email_address(): string {
@@ -73,17 +71,9 @@ class DT_Prayer_Campaigns_Campaigns {
 
                 $this->settings_manager->update( 'selected_porch', $selected_porch );
 
-                $this->selected_porch_id = $selected_porch;
+                DT_Prayer_Campaigns::instance()->set_selected_porch_id( $selected_porch );
             }
         }
-    }
-
-    public function get_porches() {
-        return apply_filters( 'dt_register_prayer_campaign_porch', [] );
-    }
-
-    public function get_selected_porch_id() {
-        return $this->selected_porch_id;
     }
 
     public function content() {
@@ -163,8 +153,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <br>
 
         <?php
-
-        $porches = $this->get_porches();
+        $porches = DT_Prayer_Campaigns::instance()->get_porch_loaders();
         ?>
 
         <table class="widefat striped">
@@ -189,7 +178,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                         <td>
                                             <select name="select_porch" id="select_porch"
-                                                    selected="<?php echo esc_html( $this->get_selected_porch_id() ? $this->get_selected_porch_id() : '' ) ?>">
+                                                    selected="<?php echo esc_html( DT_Prayer_Campaigns::instance()->get_selected_porch_id() ? DT_Prayer_Campaigns::instance()->get_selected_porch_id() : '' ) ?>">
 
                                                     <option
                                                         <?php echo !isset( $settings["selected_porch"] ) ? "selected" : "" ?>
@@ -202,7 +191,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                                     <option
                                                         value="<?php echo esc_html( $id ) ?>"
-                                                        <?php echo $this->get_selected_porch_id() && $this->get_selected_porch_id() === $id ? "selected" : "" ?>
+                                                        <?php echo DT_Prayer_Campaigns::instance()->get_selected_porch_id() && DT_Prayer_Campaigns::instance()->get_selected_porch_id() === $id ? "selected" : "" ?>
                                                     >
                                                         <?php echo esc_html( $porch["label"] ) ?>
                                                     </option>
