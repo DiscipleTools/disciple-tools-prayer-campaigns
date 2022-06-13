@@ -22,7 +22,7 @@ class DT_Campaign_Settings {
         return null;
     }
 
-    public function update( string $name, mixed $value ) {
+    public function update( string $name, $value ) {
         $settings = $this->get_all();
 
         if ( !$value || empty( $value ) ) {

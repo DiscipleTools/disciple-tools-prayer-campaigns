@@ -79,8 +79,6 @@ class DT_Prayer_Campaigns {
         return self::$instance;
     }
 
-    private $selected_campaign;
-
     private $settings_manager;
     private $selected_porch_id;
 
