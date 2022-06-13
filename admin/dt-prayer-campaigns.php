@@ -4,12 +4,12 @@
  */
 class DT_Prayer_Campaigns_Campaigns {
 
-    private $settings_key = 'dt_prayer_campaign_settings';
-
-    private $selected_porch_id;
+    private $settings_manager;
 
     public function __construct() {
-        $this->selected_porch_id = $this->get_setting( 'selected_porch' );
+        $this->settings_manager = new DT_Campaign_Settings();
+
+        $this->selected_porch_id = $this->settings_manager->get( 'selected_porch' );
     }
 
     private function default_email_address(): string {
@@ -48,13 +48,13 @@ class DT_Prayer_Campaigns_Campaigns {
             if ( isset( $_POST['email_address'] ) ) {
                 $email_address = sanitize_text_field( wp_unslash( $_POST['email_address'] ) );
 
-                $this->update_setting( 'email_address', $email_address );
+                $this->settings_manager->update( 'email_address', $email_address );
             }
 
             if ( isset( $_POST['email_name'] ) ) {
                 $email_name = sanitize_text_field( wp_unslash( $_POST['email_name'] ) );
 
-                $this->update_setting( 'email_name', $email_name );
+                $this->settings_manager->update( 'email_name', $email_name );
             }
         }
     }
@@ -71,41 +71,11 @@ class DT_Prayer_Campaigns_Campaigns {
             if ( isset( $_POST['select_porch'] ) ) {
                 $selected_porch = sanitize_text_field( wp_unslash( $_POST['select_porch'] ) );
 
-                $this->update_setting( 'selected_porch', $selected_porch );
+                $this->settings_manager->update( 'selected_porch', $selected_porch );
 
                 $this->selected_porch_id = $selected_porch;
             }
         }
-    }
-
-    private function get_all_settings() {
-        return get_option( $this->settings_key, [] );
-    }
-
-    public function get_setting( string $name ) {
-        $settings = $this->get_all_settings();
-
-        if ( isset( $settings[$name] ) ) {
-            return $settings[$name];
-        }
-
-        return null;
-    }
-
-    private function update_setting( string $name, mixed $value ) {
-        $settings = $this->get_all_settings();
-
-        if ( !$value || empty( $value ) ) {
-            unset( $settings[$name] );
-        } else {
-            $new_setting = [];
-
-            $new_setting[$name] = $value;
-
-            $settings = array_merge( $settings, $new_setting );
-        }
-
-        update_option( $this->settings_key, $settings );
     }
 
     public function get_porches() {
@@ -164,7 +134,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                     </td>
                                     <td>
                                         <input name="email_address" id="email_address"
-                                                value="<?php echo esc_html( $this->get_setting( "email_address" ) ) ?>"/>
+                                                value="<?php echo esc_html( $this->settings_manager->get( "email_address" ) ) ?>"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -174,7 +144,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                     </td>
                                     <td>
                                         <input name="email_name" id="email_name"
-                                                value="<?php echo esc_html( $this->get_setting( "email_name" ) ) ?>"/>
+                                                value="<?php echo esc_html( $this->settings_manager->get( "email_name" ) ) ?>"/>
                                     </td>
                                 </tr>
 
