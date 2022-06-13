@@ -1,6 +1,6 @@
 <?php
 
-interface DT_Porch_Admin_Menu_Interface {
+interface IDT_Porch_Admin_Menu {
 
     public function tab_headers( string $link );
 

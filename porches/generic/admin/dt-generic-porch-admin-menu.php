@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 /**
  * Class DT_Ramadan_Porch_Menu
  */
-class DT_Generic_Porch_Admin_Menu implements DT_Porch_Admin_Menu_Interface {
+class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 
     public $token = 'dt_porch_generic';
     public $title = 'Settings';

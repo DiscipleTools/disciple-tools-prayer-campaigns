@@ -122,7 +122,7 @@ class DT_Prayer_Campaigns_Menu {
     }
 
     /**
-     * @return DT_Porch_Interface
+     * @return IDT_Porch_Loader
      */
     private function get_selected_porch_instance() {
         $porches = $this->campaigns->get_porches();

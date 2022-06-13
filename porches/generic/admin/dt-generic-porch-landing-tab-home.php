@@ -205,11 +205,11 @@ class DT_Generic_Porch_Landing_Tab_Home {
 
                 $fields = DT_Prayer_Campaigns::instance()->recursive_parse_args( $saved_fields, $fields );
 
-                update_option( 'p4r_porch_fields', $fields );
+                update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', $fields );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
-                update_option( 'p4r_porch_fields', [] );
+                update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', [] );
                 $fields = DT_Prayer_Campaigns::instance()->porch_fields();
             }
             if ( isset( $_POST['night_of_power'] ) ){
@@ -218,7 +218,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 $fields["power"]["value"]["start_time"] = $post_fields["start_time"];
                 $fields["power"]["value"]["end"] = $post_fields["end"];
                 $fields["power"]["value"]["end_time"] = $post_fields["end_time"];
-                update_option( 'p4r_porch_fields', $fields );
+                update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', $fields );
             }
         }
         ?>
