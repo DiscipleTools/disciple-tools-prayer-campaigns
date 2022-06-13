@@ -40,9 +40,9 @@ class DT_Generic_Porch implements DT_Porch_Interface {
     public function load_admin(): DT_Porch_Admin_Menu_Interface {
         $this->load_porch();
 
-        require_once __DIR__ . '/admin/admin-menu-and-tabs.php';
+        require_once __DIR__ . '/admin/dt-generic-porch-admin-menu.php';
 
-        return new DT_Ramadan_Porch_Landing_Menu();
+        return new DT_Generic_Porch_Admin_Menu();
     }
 
     public function load_porch() {

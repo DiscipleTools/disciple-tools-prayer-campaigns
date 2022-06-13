@@ -95,7 +95,8 @@ class DT_Prayer_Campaigns {
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
 
         if ( is_admin() ) {
-            require_once( 'admin/admin-menu-and-tabs.php' ); // adds starter admin page and section for plugin
+            require_once __DIR__ . '/admin/dt-prayer-campaigns.php';
+            require_once __DIR__ . '/admin/admin-menu-and-tabs.php'; // adds starter admin page and section for plugin
         }
 
         $this->i18n();
@@ -146,11 +147,11 @@ class DT_Prayer_Campaigns {
 
         $this->selected_campaign = get_option( 'pray4ramadan_selected_campaign', false );
 
-        if ( empty( $selected_campaign ) ) {
+        if ( empty( $this->selected_campaign ) ) {
             return [];
         }
 
-        $campaign = DT_Posts::get_post( 'campaigns', (int) $selected_campaign, true, false );
+        $campaign = DT_Posts::get_post( 'campaigns', (int) $this->selected_campaign, true, false );
         if ( is_wp_error( $campaign ) ) {
             return [];
         }
