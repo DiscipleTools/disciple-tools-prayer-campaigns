@@ -1,0 +1,3 @@
+img.color-img {
+    filter:  invert(62%) sepia(74%) saturate(3376%) hue-rotate(102deg) brightness(97%) contrast(76%);
+}
