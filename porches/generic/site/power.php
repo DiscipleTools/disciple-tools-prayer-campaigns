@@ -145,21 +145,21 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
         <section class="section" data-stellar-background-ratio="0.2" style="padding-bottom: 0">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'How many hours of prayer can we mobilize for this night?', 'pray4ramadan-porch' ); ?></h2>
+                    <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'How many hours of prayer can we mobilize for this night?', 'dt-campaign-generic-porch' ); ?></h2>
                     <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 </div>
                 <p>
-                    <?php esc_html_e( 'Ramadan is the most important month of the Islamic calendar for Muslims, however, there is one night considered more important than all the others -- Laylat al-Qadr (Night of Power). This is the night Muslims believe Mohammed began to receive the Qu’ran. Though Mohammed did not remember which night this happened exactly, most Muslims believe it was the 27th night of Ramadan. Any good deed performed on this one night -- giving of charity, praying, reciting the Qu’ran -- is considered better than a thousand months. Muslims believe the throne of God is opened on this night and if one is found praying, the chances of receiving their requests are increased.', 'pray4ramadan-porch' ); ?>
+                    <?php esc_html_e( 'Ramadan is the most important month of the Islamic calendar for Muslims, however, there is one night considered more important than all the others -- Laylat al-Qadr (Night of Power). This is the night Muslims believe Mohammed began to receive the Qu’ran. Though Mohammed did not remember which night this happened exactly, most Muslims believe it was the 27th night of Ramadan. Any good deed performed on this one night -- giving of charity, praying, reciting the Qu’ran -- is considered better than a thousand months. Muslims believe the throne of God is opened on this night and if one is found praying, the chances of receiving their requests are increased.', 'dt-campaign-generic-porch' ); ?>
                 </p>
                 <p>
-                    <?php esc_html_e( 'The Night of Power is a significant time for Christians to engage in extraordinary prayer for Muslims. As ones who already have access to the throne of God (Hebrews 4:16), let us pray fervently for Jesus to make Himself known to Muslims this night.', 'pray4ramadan-porch' ); ?>
+                    <?php esc_html_e( 'The Night of Power is a significant time for Christians to engage in extraordinary prayer for Muslims. As ones who already have access to the throne of God (Hebrews 4:16), let us pray fervently for Jesus to make Himself known to Muslims this night.', 'dt-campaign-generic-porch' ); ?>
                 </p>
             </div>
         </section>
         <section class="section" data-stellar-background-ratio="0.2" style="padding-bottom: 0">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Sign Up to', 'pray4ramadan-porch' ); ?> <span><?php esc_html_e( 'Pray', 'pray4ramadan-porch' ); ?></span></h2>
+                    <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Sign Up to', 'dt-campaign-generic-porch' ); ?> <span><?php esc_html_e( 'Pray', 'dt-campaign-generic-porch' ); ?></span></h2>
                     <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 </div>
                 <div class="row">
@@ -168,11 +168,11 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
                             <div class="icon">
                                 <img style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/calendar.svg' ) ?>" alt="Praying hands icon"/>
                             </div>
-                            <h4><?php esc_html_e( 'Starting', 'pray4ramadan-porch' ); ?></h4>
+                            <h4><?php esc_html_e( 'Starting', 'dt-campaign-generic-porch' ); ?></h4>
                             <p>
                                 <strong style="font-weight: 600" id="power_start_time"></strong>
                                 <br>
-                                <span class="timezone-disp"><?php echo esc_html( $timezone ); ?></span> <?php esc_html_e( 'time', 'pray4ramadan-porch' ); ?>
+                                <span class="timezone-disp"><?php echo esc_html( $timezone ); ?></span> <?php esc_html_e( 'time', 'dt-campaign-generic-porch' ); ?>
                             </p>
                         </div>
                     </div>
@@ -181,11 +181,11 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
                             <div class="icon">
                                 <img style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/calendar.svg' ) ?>" alt="a network icon indicating movement"/>
                             </div>
-                            <h4><?php esc_html_e( 'Ending', 'pray4ramadan-porch' ); ?></h4>
+                            <h4><?php esc_html_e( 'Ending', 'dt-campaign-generic-porch' ); ?></h4>
                             <p>
                                 <strong style="font-weight: 600" id="power_end_time"></strong>
                                 <br>
-                                <span class="timezone-disp"><?php echo esc_html( $timezone ); ?></span> <?php esc_html_e( 'time', 'pray4ramadan-porch' ); ?>
+                                <span class="timezone-disp"><?php echo esc_html( $timezone ); ?></span> <?php esc_html_e( 'time', 'dt-campaign-generic-porch' ); ?>
                             </p>
                         </div>
                     </div>
@@ -194,11 +194,11 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
                             <div class="icon">
                                 <img style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/24_7.svg' ) ?>" alt="clock icon"/>
                             </div>
-                            <h4><?php esc_html_e( 'Duration', 'pray4ramadan-porch' ); ?></h4>
+                            <h4><?php esc_html_e( 'Duration', 'dt-campaign-generic-porch' ); ?></h4>
                             <p>
                                 <strong style="font-weight: 600"><?php echo esc_html( $hours ); ?></strong>
                                 <br>
-                                <?php esc_html_e( 'Hours', 'pray4ramadan-porch' ); ?>
+                                <?php esc_html_e( 'Hours', 'dt-campaign-generic-porch' ); ?>
                             </p>
                         </div>
                     </div>
@@ -207,11 +207,11 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
                             <div class="icon">
                                 <img style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/24_7.svg' ) ?>" alt="clock icon"/>
                             </div>
-                            <h4><?php esc_html_e( 'Prayer time committed', 'pray4ramadan-porch' ); ?></h4>
+                            <h4><?php esc_html_e( 'Prayer time committed', 'dt-campaign-generic-porch' ); ?></h4>
                             <p>
                                 <strong style="font-weight: 600"><?php echo esc_html( $committed_time_in_hours ); ?></strong>
                                 <br>
-                                <?php esc_html_e( 'Hours', 'pray4ramadan-porch' ); ?>
+                                <?php esc_html_e( 'Hours', 'dt-campaign-generic-porch' ); ?>
                             </p>
                         </div>
                     </div>
@@ -224,7 +224,7 @@ class P4_Ramadan_Porch_Power extends DT_Magic_Url_Base
                 <div class="row">
                     <?php
                     if ( empty( $dt_ramadan_selected_campaign_magic_link_settings ) ) :?>
-                        <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'pray4ramadan-porch' ); ?></a></p>
+                        <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'dt-campaign-generic-porch' ); ?></a></p>
                     <?php else :
                         $dt_ramadan_selected_campaign_magic_link_settings["section"] = "sign_up";
                         echo dt_24hour_campaign_shortcode( //phpcs:ignore

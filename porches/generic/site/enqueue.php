@@ -17,7 +17,7 @@ function og_protocol() {
     <meta property="og:url" content="<?php echo esc_attr( $og_url ); ?>"/>
     <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo() ); ?>"/>
     <meta property="og:image" content="https://pray4movement.org/wp-content/uploads/2021/08/cropped-p4m-logo-192x192.png"/>
-     <?php
+    <?php
 }
 add_action( 'wp_head', 'og_protocol' );
 

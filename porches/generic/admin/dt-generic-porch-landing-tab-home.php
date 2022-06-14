@@ -42,7 +42,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             && isset( $_POST['selected_campaign'] )
         ) {
             $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
-            update_option( 'pray4ramadan_selected_campaign', $campaign_id === $this->no_campaign_key ? null : $campaign_id );
+            update_option( 'dt_campaign_selected_campaign', $campaign_id === $this->no_campaign_key ? null : $campaign_id );
         }
         $fields = DT_Campaign_Settings::get_campaign();
         if ( empty( $fields ) ) {
@@ -174,12 +174,11 @@ class DT_Generic_Porch_Landing_Tab_Home {
             }
         }
 
-        if ( isset( $_POST['ramadan_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ramadan_settings_nonce'] ) ), 'ramadan_settings' ) ) {
+        if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
             if ( isset( $_POST['list'] ) ) {
                 $saved_fields = $fields;
 
-                $post_fields = dt_recursive_sanitize_array( $_POST );
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
                 foreach ( $post_list as $field_key => $value ){
                     if ( isset( $saved_fields[$field_key]["type"], $_POST['list'][$field_key] ) && $saved_fields[$field_key]["type"] === "textarea" ){ // if textarea
@@ -204,27 +203,19 @@ class DT_Generic_Porch_Landing_Tab_Home {
                     }
                 }
 
-                $fields = DT_Prayer_Campaigns::instance()->recursive_parse_args( $saved_fields, $fields );
+                $fields = recursive_parse_args( $saved_fields, $fields );
 
-                update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', $fields );
+                update_option( 'dt_campaign_porch_settings', $fields );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
-                update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', [] );
+                update_option( 'dt_campaign_porch_settings', [] );
                 $fields = DT_Porch_Settings::porch_fields();
-            }
-            if ( isset( $_POST['night_of_power'] ) ){
-                $post_fields = dt_recursive_sanitize_array( $_POST );
-                $fields["power"]["value"]["start"] = $post_fields["start"];
-                $fields["power"]["value"]["start_time"] = $post_fields["start_time"];
-                $fields["power"]["value"]["end"] = $post_fields["end"];
-                $fields["power"]["value"]["end_time"] = $post_fields["end_time"];
-                update_option( 'DT_Prayer_Campaigns::instance()->porch_fields', $fields );
             }
         }
         ?>
         <form method="post" class="metabox-table">
-            <?php wp_nonce_field( 'ramadan_settings', 'ramadan_settings_nonce' ) ?>
+            <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
             <!-- Box -->
             <table class="widefat striped">
                 <thead>
@@ -292,11 +283,11 @@ class DT_Generic_Porch_Landing_Tab_Home {
                                 <td>
                                     <select name="list[<?php echo esc_html( $key ); ?>]">
                                     <?php if ( $field['value'] === 'yes' || ! isset( $field['value'] ) || empty( $field['value'] ) ) : ?>
-                                        <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'pray4ramadan-porch' ) ); ?></option>
-                                        <option value="no"><?php echo esc_html( __( 'No', 'pray4ramadan-porch' ) ); ?></option>
+                                        <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
+                                        <option value="no"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
                                     <?php else : ?>
-                                        <option value="yes"><?php echo esc_html( __( 'Yes', 'pray4ramadan-porch' ) ); ?></option>
-                                        <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'pray4ramadan-porch' ) ); ?></option>
+                                        <option value="yes"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
+                                        <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
                                     <?php endif; ?>
                                     </select>
                                 </td>
@@ -356,91 +347,8 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 </tbody>
             </table>
             <br>
-            <!-- End Box -->
         </form>
 
-        <form method="post" class="metabox-table">
-            <?php wp_nonce_field( 'ramadan_settings', 'ramadan_settings_nonce' );
-            $power_fields = $fields["power"]["value"];
-            $start_time = (int) $power_fields["start_time"];
-            $end_time = (int) $power_fields["end_time"];
-
-            $campaign_fields = DT_Campaign_Settings::get_campaign();
-            $timezone = "America/Chicago";
-            if ( isset( $campaign_fields["campaign_timezone"]["key"] ) ){
-                $timezone = $campaign_fields["campaign_timezone"]["key"];
-            }
-
-            ?>
-            <!-- Box -->
-            <table class="widefat striped">
-                <thead>
-                <tr>
-                    <th style="width:20%">Night of Power</th>
-                    <th style="width:50%"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Link</td>
-                    <td><a href="<?php echo esc_html( home_url( '/prayer/power' ) ); ?>"><?php echo esc_html( home_url( '/prayer/power' ) ); ?></a></td>
-                </tr>
-<!--                <tr>-->
-<!--                    <td>Enabled</td>-->
-<!--                    <td><input type="checkbox" --><?php //checked( $power_fields["enabled"] ); ?><!-- style="width:fit-content"></td>-->
-<!--                </tr>-->
-                <tr>
-                    <td>
-                        Start time
-                    </td>
-                    <td>
-                        <input type="date" name="start"
-                               value="<?php echo esc_html( $power_fields["start"] ); ?>"><br>
-                        <select name="start_time">
-                            <?php
-                            $int = 0;
-                            while ( $int < DAY_IN_SECONDS ): ?>
-                                <option value="<?php echo esc_html( $int ); ?>" <?php selected( $int === $start_time ) ?>> <?php echo esc_html( gmdate( 'h:i a', $int ) ) ?></option>
-                                <?php
-                                $int += 30 * MINUTE_IN_SECONDS;
-                            endwhile; ?>
-                        </select>
-                        <br>
-                        Suggestion: Night of Power 7pm
-                        <br>
-                        Set times according to <?php echo esc_html( $timezone ); ?> timezone
-                    </td>
-                </tr>
-                <tr>
-                    <td>End time</td>
-                    <td>
-                        <input type="date" name="end" value="<?php echo esc_html( $power_fields["end"] ); ?>">
-                        <select name="end_time">
-                            <?php
-                            $int = 0;
-                            while ( $int < DAY_IN_SECONDS ): ?>
-                                <option value="<?php echo esc_html( $int ); ?>" <?php selected( $int === $end_time ) ?>> <?php echo esc_html( gmdate( 'h:i a', $int ) ) ?></option>
-                                <?php
-                                $int += 30 * MINUTE_IN_SECONDS;
-                            endwhile; ?>
-                        </select>
-                        <br>
-                        Suggestion: Night of Power 4am
-                        <br>
-                        Set times according to <?php echo esc_html( $timezone ); ?> timezone
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <button class="button" type="submit" name="night_of_power">Update</button>
-                    </td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <!-- End Box -->
-        </form>
         <?php
     }
 

@@ -20,13 +20,13 @@ $langs = dt_ramadan_list_languages();
         <div class="icon-list navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/"><?php esc_html_e( 'Home', 'pray4ramadan-porch' ); ?></a>
+                    <a class="nav-link" href="/"><?php esc_html_e( 'Home', 'dt-campaign-generic-porch' ); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>#sign-up"><?php esc_html_e( 'Sign Up', 'pray4ramadan-porch' ); ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>#sign-up"><?php esc_html_e( 'Sign Up', 'dt-campaign-generic-porch' ); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php esc_html_e( 'Prayer Fuel', 'pray4ramadan-porch' ); ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php esc_html_e( 'Prayer Fuel', 'dt-campaign-generic-porch' ); ?></a>
                 </li>
             </ul>
         </div>
@@ -63,15 +63,15 @@ $langs = dt_ramadan_list_languages();
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( $porch_fields["title"], $lang ) ) ?></h1>
                     <?php endif; ?>
                     <?php if ( !empty( $porch_fields["country_name"]["value"] ) ) : ?>
-                        <h4><?php echo esc_html( sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'pray4ramadan-porch' ), DT_Porch_Settings::get_field_translation( $porch_fields["country_name"], $lang ) ) ); ?></h4>
+                        <h4><?php echo esc_html( sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'dt-campaign-generic-porch' ), DT_Porch_Settings::get_field_translation( $porch_fields["country_name"], $lang ) ) ); ?></h4>
                     <?php else : ?>
-                        <h4><?php esc_html_e( 'Strategic prayer for a disciple making movement', 'pray4ramadan-porch' ); ?>
+                        <h4><?php esc_html_e( 'Strategic prayer for a disciple making movement', 'dt-campaign-generic-porch' ); ?>
                     <?php endif; ?>
                     <?php
                     if ( time() <= strtotime( $campaign_fields['end_date']['formatted'] ?? '' ) ) :
                         ?>
                         <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <a href="<?php echo esc_url( site_url() ) ?>#sign-up" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'pray4ramadan-porch' ); ?></a>
+                            <a href="<?php echo esc_url( site_url() ) ?>#sign-up" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'dt-campaign-generic-porch' ); ?></a>
                         </p>
                     <?php endif; ?>
                 </div>
