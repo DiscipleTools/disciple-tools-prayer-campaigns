@@ -2,6 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 class DT_Generic_Porch_Landing_Tab_Home {
+
+    private $no_campaign_key = "none";
+
     public function content() {
         ?>
         <style>
@@ -20,17 +23,15 @@ class DT_Generic_Porch_Landing_Tab_Home {
             <div id="poststuff">
                 <div id="post-body" class="metabox-holder columns-1">
                     <div id="post-body-content">
-                        <!-- Main Column -->
 
                         <?php $this->box_campaign() ?>
 
                         <?php $this->main_column() ?>
 
-                        <!-- End Main Column -->
-                    </div><!-- end post-body-content -->
-                </div><!-- post-body meta box container -->
-            </div><!--poststuff end -->
-        </div><!-- wrap end -->
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php
     }
 
@@ -41,7 +42,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             && isset( $_POST['selected_campaign'] )
         ) {
             $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
-            update_option( 'pray4ramadan_selected_campaign', $campaign_id );
+            update_option( 'pray4ramadan_selected_campaign', $campaign_id === $this->no_campaign_key ? null : $campaign_id );
         }
         $fields = DT_Campaign_Settings::get_campaign();
         if ( empty( $fields ) ) {
@@ -76,7 +77,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                         </td>
                         <td>
                             <select name="selected_campaign">
-                                <option value="none"></option>
+                                <option value=<?php echo esc_html( $this->no_campaign_key ) ?>></option>
                                 <?php foreach ( $campaigns["posts"] as $campaign ) :?>
                                     <option value="<?php echo esc_html( $campaign["ID"] ) ?>"
                                         <?php selected( (int) $campaign["ID"] === (int) $fields['ID'] ) ?>
