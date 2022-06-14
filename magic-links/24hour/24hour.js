@@ -88,13 +88,7 @@ jQuery(document).ready(function($) {
     // }
     // set_campaign_date_range_title()
 
-    function days_for_locale(localeName = 'en-US', weekday = 'long') {
-      let now = new Date()
-      const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
-      return [...Array(7).keys()]
-        .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
-    }
-    let week_day_names = days_for_locale(navigator.language, 'narrow')
+    let week_day_names = window.campaign_scripts.days_for_locale(navigator.language, 'narrow')
     let headers = `
       <div class="day-cell week-day">${week_day_names[0]}</div>
       <div class="day-cell week-day">${week_day_names[1]}</div>

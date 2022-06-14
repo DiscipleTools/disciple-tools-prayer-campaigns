@@ -243,11 +243,12 @@ select::-ms-expand {
 }
 .calendar-month .goto-month-container {
     display: flex;
-    align-items: center;
+    padding-top:150px;
     width:40px;
 }
 .calendar-month .cp-goto-month {
     width:40px;
+    height:40px;
 }
 
 .new_weekday {

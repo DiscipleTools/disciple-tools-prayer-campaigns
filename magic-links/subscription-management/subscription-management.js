@@ -33,6 +33,7 @@ jQuery(document).ready(function($){
   let modal_calendar = $('#day-select-calendar')
   let now = new Date().getTime()/1000
   let selected_times = [];
+  calendar_subscribe_object.my_recurring = {}
 
   /**
    * Add notice showing that my times have been verified
@@ -41,9 +42,11 @@ jQuery(document).ready(function($){
     $("#times-verified-notice").show()
   }
 
+
   update_timezone()
   draw_calendar()
-  display_my_commitments()
+
+  calculate_my_time_slot_coverage()
 
   setup_duration_options()
 
@@ -100,8 +103,87 @@ jQuery(document).ready(function($){
   })
 
 
+  function calculate_my_time_slot_coverage(){
+    console.log(calendar_subscribe_object.my_recurring);
+    let html = ``
+    for ( const time in calendar_subscribe_object.my_recurring ){
+      console.log(time);
+      if ( calendar_subscribe_object.my_recurring[time].count > 1 ){
+        html += `<tr>
+          <td>${time}</td>
+          <td>${calendar_subscribe_object.my_recurring[time].count}</td>
+          <td><button class="button change-time-bulk" data-key="${time}">Change start time</button></td>
+          <td><button class="button outline delete-time-bulk" data-key="${time}">x</button></td>
+          </tr>
+        `
+      }
+    }
+    $('#recurring_time_slots').empty().html(html)
+  }
 
+  let opened_daily_time_changed_modal = null
+  $(document).on('click', '.change-time-bulk', function (){
+    opened_daily_time_changed_modal = $(this).data('key');
+    $('#change-times-modal').foundation('open')
+  })
+  $('#update-daily-time').on('click', function (){
+    $(this).addClass('loading')
+    const time = parseInt($('#change-time-select').val())
+    const new_time = window.campaign_scripts.day_start(calendar_subscribe_object.my_recurring[opened_daily_time_changed_modal].time, current_time_zone) + time
+    let data = {
+      action: 'change_times',
+      offset: new_time - calendar_subscribe_object.my_recurring[opened_daily_time_changed_modal].time,
+      report_ids: calendar_subscribe_object.my_recurring[opened_daily_time_changed_modal].report_ids,
+      parts: calendar_subscribe_object.parts
+    }
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
+      }
+    }).then(data=>{
+      calendar_subscribe_object.my_commitments = data;
+      draw_calendar();
+      calculate_my_time_slot_coverage()
+      $(this).removeClass('loading')
+      $('#change-times-modal').foundation('close')
+    })
+  })
 
+  let opened_delete_time_modal = null
+  $(document).on('click', '.delete-time-bulk', function (){
+    opened_delete_time_modal = $(this).data('key');
+    $('#delete-time-slot-text').text(opened_delete_time_modal)
+    $('#delete-times-modal').foundation('open')
+  })
+  $('#confirm-delete-daily-time').on('click', function (){
+    $(this).addClass('loading')
+    let data = {
+      action: 'delete_times',
+      report_ids: calendar_subscribe_object.my_recurring[opened_delete_time_modal].report_ids,
+      parts: calendar_subscribe_object.parts
+    }
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
+      }
+    }).then(data=>{
+      calendar_subscribe_object.my_commitments = data;
+      draw_calendar();
+      calculate_my_time_slot_coverage()
+      $(this).removeClass('loading')
+      $('#delete-times-modal').foundation('close')
+    })
+  })
 
   function update_timezone(){
     $('.timezone-current').html(current_time_zone)
@@ -110,7 +192,7 @@ jQuery(document).ready(function($){
   /**
    * Draw or refresh the main calendar
    */
-  function  draw_calendar( id = 'calendar-content'){
+  function draw_calendar( id = 'calendar-content'){
     let now = new Date().getTime()/1000
     let content = $(`#${id}`);
     content.empty();
@@ -179,6 +261,7 @@ jQuery(document).ready(function($){
 
 
     content.html(`<div class="grid-x" id="selection-grid-wrapper">${calendar}</div>`)
+    display_my_commitments()
   }
   $(document).on('click', '#calendar-content .cp-goto-month', function (){
     let target = $(this).data('month-target');
@@ -191,6 +274,7 @@ jQuery(document).ready(function($){
    */
   function display_my_commitments(){
     $('.day-extra').empty()
+    calendar_subscribe_object.my_recurring = {}
     calendar_subscribe_object.my_commitments.forEach(c=>{
       let time = c.time_begin;
       let now = new Date().getTime()/1000
@@ -208,6 +292,12 @@ jQuery(document).ready(function($){
         let day_weekday = weekdays[ date.getDay() ];
 
         let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end, current_time_zone)
+        if ( !calendar_subscribe_object.my_recurring[summary_text] ){
+          calendar_subscribe_object.my_recurring[summary_text] = { count: 0, report_ids: [], time:parseInt(c.time_begin) }
+        }
+        calendar_subscribe_object.my_recurring[summary_text].count++;
+        calendar_subscribe_object.my_recurring[summary_text].report_ids.push(c.report_id)
+
         $(`#calendar-extra-${window.lodash.escape(day_timestamp)}`).append(`
             <div class="prayer-commitment" id="selected-${window.lodash.escape(time)}"
                 data-time="${window.lodash.escape(time)}">
@@ -255,8 +345,8 @@ jQuery(document).ready(function($){
         times_html += `<tr><td>${window.lodash.escape(slot.formatted)}</td>`
       }
       times_html +=`<td style="background-color:${background_color}">
-                            ${window.lodash.escape(slot.subscribers)} <i class="fi-torsos"></i>
-                        </td>`
+          ${window.lodash.escape(slot.subscribers)} <i class="fi-torsos"></i>
+      </td>`
       if ( times_html === 3 ){
         times_html += `</tr>`
       }
@@ -316,7 +406,7 @@ jQuery(document).ready(function($){
       key += calendar_subscribe_object.slot_length * 60
     }
     daily_time_select.empty();
-    daily_time_select.html(select_html)
+    $('.cp-daily-time-select').html(select_html)
 
   }
 

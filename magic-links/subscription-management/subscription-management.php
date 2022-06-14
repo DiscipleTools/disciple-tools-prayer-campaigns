@@ -79,7 +79,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $post;
         }
         $campaign_id = $post["campaigns"][0]["ID"];
-        $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id );
+        $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id, 12 );
         $my_commitments_reports = $this->get_subscriptions( $this->parts['post_id'] );
         $my_commitments = [];
         foreach ( $my_commitments_reports as $commitments_report ){
@@ -112,7 +112,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'campaign_id' => $campaign_id,
                 'current_commitments' => $current_commitments,
                 'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
-                'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 3, time() ) ,
+                'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
                 'slot_length' => 15,
                 'timezone' => $post["timezone"],
                 "duration_options" => $field_settings["duration_options"]["default"]
@@ -323,7 +323,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div class="reveal cp-wrapper" id="daily-select-modal" data-reveal>
                 <label>
                     <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                    <select id="cp-daily-time-select">
+                    <select id="cp-daily-time-select" class="cp-daily-time-select">
                         <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
                     </select>
                 </label>
@@ -460,6 +460,57 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </div>
             </div>
 
+            <hr>
+
+            <table >
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Count</th>
+                        <th>Change start on all prayer times</th>
+                        <th>Delete prayer times</th>
+                    </tr>
+
+                </thead>
+                <tbody id="recurring_time_slots">
+
+                </tbody>
+
+            </table>
+
+            <!-- bulk time change modal -->
+            <div id="change-times-modal" class="reveal tiny" data-reveal>
+                <h2><?php esc_html_e( 'Choose a different time:', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                <select id="change-time-select" class="cp-daily-time-select">
+
+                </select>
+                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                </button>
+                <button class="button loader" type="button" id="update-daily-time">
+                    <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
+                </button>
+
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- bulk time delete modal -->
+            <div id="delete-times-modal" class="reveal tiny" data-reveal>
+                <h2><?php esc_html_e( 'Delete all', 'disciple-tools-prayer-campaigns' ); ?></h2>
+
+                <p id="delete-time-slot-text"></p>
+                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                </button>
+                <button class="button loader" type="button" id="confirm-delete-daily-time">
+                    <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' )?>
+                </button>
+
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
             <!-- Extra setting depending on the campaign type -->
             <div>
@@ -610,9 +661,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             case 'get':
                 return $this->get_subscriptions( $post_id );
             case 'delete':
-                return $this->delete_subscriptions( $post_id, $params );
+                return $this->delete_subscription_endpoint( $post_id, $params );
             case 'add':
                 return $this->add_subscriptions( $post_id, $params );
+            case 'change_times':
+                return $this->change_times( $post_id, $params );
+            case 'delete_times':
+                return $this->delete_times( $post_id, $params );
             default:
                 return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
         }
@@ -640,12 +695,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         return $subs;
     }
 
-    private function delete_subscriptions( $post_id, $params ) {
-        $sub = Disciple_Tools_Reports::get( $params["report_id"], 'id' );
+    private function delete_subscription( $post_id, $report_id ){
+        $sub = Disciple_Tools_Reports::get( $report_id, 'id' );
         $time_in_mins = ( $sub["time_end"] - $sub["time_begin"] ) / 60;
-        //@todo convert timezone?
         $label = "Commitment deleted: " . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
-        Disciple_Tools_Reports::delete( $params['report_id'] );
+        Disciple_Tools_Reports::delete( $report_id );
         dt_activity_insert([
             'action' => 'delete_subscription',
             'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
@@ -653,6 +707,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             'object_note' => $label,
             'object_id' => $post_id
         ] );
+        return true;
+    }
+
+    private function delete_subscription_endpoint( $post_id, $params ) {
+        $this->delete_subscription( $post_id, $params["report_id"] );
         return $this->get_subscriptions( $post_id );
     }
 
@@ -671,6 +730,39 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
             }
+        }
+        return $this->get_subscriptions( $params['parts']['post_id'] );
+    }
+
+    private function change_times( $post_id, $params ){
+        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+            return false;
+        }
+        if ( !isset( $params["offset"] ) ){
+            return false;
+        }
+
+        $ids = dt_array_to_sql( $params["report_ids"] );
+        global $wpdb;
+        //phpcs:disable.
+        //Cannot pass in array in prepare
+        $wpdb->query( $wpdb->prepare( "
+            UPDATE $wpdb->dt_reports
+            SET time_begin = time_begin + %d, time_end = time_end + %d
+            WHERE id IN ($ids)
+        ", (int) $params["offset"], (int) $params["offset"] ) );
+        //phpcs:enable
+
+        return $this->get_subscriptions( $params['parts']['post_id'] );
+    }
+    private function delete_times( $post_id, $params ){
+        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+            return false;
+        }
+        foreach ( $params["report_ids"] as $id ){
+            $this->delete_subscription( $post["ID"], $id );
         }
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
