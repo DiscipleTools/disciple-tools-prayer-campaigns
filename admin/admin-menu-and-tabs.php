@@ -35,6 +35,7 @@ class DT_Prayer_Campaigns_Menu {
      */
     public function __construct() {
         add_action( "admin_menu", array( $this, "register_menu" ) );
+        add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );
 
         $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
     }
@@ -45,6 +46,10 @@ class DT_Prayer_Campaigns_Menu {
      */
     public function register_menu() {
         add_submenu_page( 'dt_extensions', 'Prayer Campaigns', 'Prayer Campaigns', 'manage_dt', $this->token, [ $this, 'content' ] );
+    }
+
+    public function enqueue_scripts() {
+        wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery' ], filemtime( __DIR__ . '/admin.js' ), true );
     }
 
     /**

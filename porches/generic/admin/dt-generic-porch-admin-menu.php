@@ -27,7 +27,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
             });
         } else {
             add_action( "admin_menu", array( $this, "register_menu" ) );
-            add_action( 'admin_enqueue_scripts', [ $this, 'scripts' ] );
+            add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
         }
 
 
@@ -43,11 +43,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
         }
     }
 
-    public function scripts(){
-        wp_enqueue_script( 'dt_ramadan_script', plugin_dir_url( __FILE__ ) . '/admin.js', [
-            'jquery',
-        ], filemtime( plugin_dir_path( __FILE__ ) . '/admin.js' ), true );
-    }
+    public function scripts() {}
 
     /**
      * Menu stub. Replaced when Disciple.Tools Theme fully loads.

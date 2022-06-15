@@ -156,12 +156,6 @@ class DT_Generic_Porch_Landing_Tab_Home {
     }
 
     public function main_column() {
-        global $allowed_tags;
-        $allowed_tags['script'] = array(
-            'async' => array(),
-            'src' => array()
-        );
-        $fields = DT_Porch_Settings::fields();
         $langs = dt_ramadan_list_languages();
 
         $site_colors = $this->get_site_colors();
@@ -169,36 +163,16 @@ class DT_Generic_Porch_Landing_Tab_Home {
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
             if ( isset( $_POST['list'] ) ) {
-                $new_settings = DT_Porch_Settings::settings();
-
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
-                /* make any text area stuff safe */
-                foreach ( $post_list as $field_key => $value ){
-                    if ( isset( $fields[$field_key]["type"], $_POST['list'][$field_key] ) && $fields[$field_key]["type"] === "textarea" ){ // if textarea
-                        $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
-                    }
-                }
+                $new_settings = $this->get_new_settings( $post_list );
+                $new_translations = $this->get_new_translations( $_POST );
 
-                foreach ( $post_list as $key => $value ) {
-                    $new_settings[$key] = $value;
-                }
-
-                /* foreach ( $fields as $field_key => $field ){
-                    if ( isset( $field["translations"] ) ){
-                        foreach ( $langs as $lang_code => $lang_values ){
-                            if ( isset( $_POST["field_key_" . $field_key . "_translation-" . $lang_code] ) ){
-                                $new_settings[$field_key]["translations"][$lang_code] = wp_kses( wp_unslash( $_POST["field_key_" . $field_key . "_translation-" . $lang_code] ), $allowed_tags );
-                            }
-                        }
-                    }
-                } */
-
+                DT_Porch_Settings::update_translations( $new_translations );
                 DT_Porch_Settings::update_values( $new_settings );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
                 DT_Porch_Settings::reset();
-                $fields = DT_Porch_Settings::settings();
             }
         }
         ?>
@@ -353,6 +327,54 @@ class DT_Generic_Porch_Landing_Tab_Home {
         }
 
         return $colors;
+    }
+
+    private function get_new_settings( $post_list ) {
+        $new_settings = DT_Porch_Settings::settings();
+        $fields = DT_Porch_Settings::fields();
+        $allowed_tags = $this->get_allowed_tags();
+
+        /* make any text area stuff safe */
+        foreach ( $post_list as $field_key => $value ){
+            if ( isset( $fields[$field_key]["type"], $post_list[$field_key] ) && $fields[$field_key]["type"] === "textarea" ){ // if textarea
+                $post_list[$field_key] = wp_kses( wp_unslash( $post_list[$field_key] ), $allowed_tags );
+            }
+        }
+
+        foreach ( $post_list as $key => $value ) {
+            $new_settings[$key] = $value;
+        }
+
+        return $new_settings;
+    }
+
+    private function get_new_translations( $post ) {
+        $fields = DT_Porch_Settings::fields();
+        $allowed_tags = $this->get_allowed_tags();
+        $langs = dt_ramadan_list_languages();
+
+        $new_translations = [];
+        foreach ( $fields as $field_key => $field ){
+            if ( isset( $field["translations"] ) ){
+                foreach ( $langs as $lang_code => $lang_values ){
+                    if ( isset( $post["field_key_" . $field_key . "_translation-" . $lang_code] ) ){
+                        $new_translations[$field_key][$lang_code] = wp_kses( wp_unslash( $post["field_key_" . $field_key . "_translation-" . $lang_code] ), $allowed_tags );
+                    }
+                }
+            }
+        }
+
+        return $new_translations;
+    }
+
+    private function get_allowed_tags() {
+        global $allowed_tags;
+        $allowed_tags['script'] = array(
+            'async' => array(),
+            'src' => array()
+        );
+
+        return $allowed_tags;
     }
 
 }

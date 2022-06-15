@@ -6,10 +6,13 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Settings {
 
+    private static $values_option = 'dt_campaign_porch_settings';
+    private static $translations_option = 'dt_campaign_porch_translations';
+
     public static function settings() {
         $defaults = self::fields();
 
-        $saved_fields = get_option( 'dt_campaign_porch_settings', [] );
+        $saved_fields = self::get_values();
 
         $lang = dt_campaign_get_current_lang();
 
@@ -27,10 +30,32 @@ class DT_Porch_Settings {
         return $merged_settings;
     }
 
+    private static function get_values() {
+        return get_option( self::$values_option, [] );
+    }
+
+    private static function get_translations() {
+        return get_option( self::$translations_option, [] );
+    }
+
     public static function update_values( $updates ) {
+        $current_settings = self::get_values();
+
         $updated_settings = dt_validate_settings( $updates, self::fields() );
 
-        update_option( 'dt_campaign_porch_settings', $updated_settings );
+        $updated_settings = array_merge( $current_settings, $updated_settings );
+
+        update_option( self::$values_option, $updated_settings );
+    }
+
+    public static function update_translations( $new_translations ) {
+        $current_translations = self::get_translations();
+
+        $updated_translations = dt_validate_settings( $new_translations, self::fields() );
+
+        $updated_translations = array_merge( $current_translations, $updated_translations );
+
+        update_option( self::$translations_option, $updated_translations );
     }
 
     public static function reset() {
