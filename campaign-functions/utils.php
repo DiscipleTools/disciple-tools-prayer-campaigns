@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This may be obsolete and need to be replaced if we are only saving the key value pairs for the
+ * settings rather than the whole of the defaults array in the db.
+ */
 function recursive_parse_args( $args, $defaults ) {
     $new_args = (array) $defaults;
 
@@ -7,7 +11,7 @@ function recursive_parse_args( $args, $defaults ) {
         if ( is_array( $value ) && isset( $new_args[ $key ] ) ) {
             $new_args[ $key ] = recursive_parse_args( $value, $new_args[ $key ] );
         }
-        elseif ( $key !== "default" ){
+        elseif ( $key !== "default" && isset( $new_args[$key] ) ){
             $new_args[ $key ] = $value;
         }
     }
