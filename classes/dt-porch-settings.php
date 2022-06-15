@@ -6,15 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Settings {
 
-    public static function porch_fields() {
-        $defaults = self::get_defaults();
-
-        /**
-         * Filter to allow porches to add their own specific settings when they are loaded
-         *
-         * @param array $defaults contains the settings common to all porches
-         */
-        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults );
+    public static function settings() {
+        $defaults = self::porch_fields();
 
         $saved_fields = get_option( 'dt_campaign_porch_settings', [] );
 
@@ -30,6 +23,19 @@ class DT_Porch_Settings {
         $defaults = apply_filters( 'dt_campaign_after_get_porch_fields', $defaults, $saved_fields, $lang );
 
         return recursive_parse_args( $saved_fields, $defaults );
+    }
+
+    public static function porch_fields() {
+        $defaults = self::get_defaults();
+
+        /**
+         * Filter to allow porches to add their own specific settings when they are loaded
+         *
+         * @param array $defaults contains the settings common to all porches
+         */
+        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults );
+
+        return $defaults;
     }
 
     public static function get_field_translation( $field, $code ) {

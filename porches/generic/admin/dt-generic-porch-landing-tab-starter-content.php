@@ -96,7 +96,7 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
             }
         }
         $languages = dt_ramadan_list_languages();
-        $fields = DT_Porch_Settings::porch_fields();
+        $fields = DT_Porch_Settings::settings();
 
         $installed_langs_query = $wpdb->get_results( "
             SELECT pm.meta_value, count(*) as count

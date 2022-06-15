@@ -1,7 +1,7 @@
 <?php
 $lang = dt_campaign_get_current_lang();
 
-$porch_fields = DT_Porch_Settings::porch_fields();
+$porch_fields = DT_Porch_Settings::settings();
 $campaign_fields = DT_Campaign_Settings::get_campaign();
 
 $campaign_root = "campaign_app";

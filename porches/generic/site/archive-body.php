@@ -1,5 +1,5 @@
 <?php
-$porch_fields = DT_Porch_Settings::porch_fields();
+$porch_fields = DT_Porch_Settings::settings();
 $lang = dt_campaign_get_current_lang();
 
 

@@ -161,7 +161,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             'async' => array(),
             'src' => array()
         );
-        $fields = DT_Porch_Settings::porch_fields();
+        $fields = DT_Porch_Settings::settings();
         $langs = dt_ramadan_list_languages();
         $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
         $list = [];
@@ -210,7 +210,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
 
             if ( isset( $_POST['reset_values'] ) ) {
                 update_option( 'dt_campaign_porch_settings', [] );
-                $fields = DT_Porch_Settings::porch_fields();
+                $fields = DT_Porch_Settings::settings();
             }
         }
         ?>

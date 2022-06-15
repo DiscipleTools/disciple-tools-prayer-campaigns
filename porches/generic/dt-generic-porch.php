@@ -12,7 +12,7 @@ class DT_Generic_Porch {
 
     private function __construct() {
         require_once __DIR__ . '/site/functions.php';
-        $fields = DT_Porch_Settings::porch_fields();
+        $fields = DT_Porch_Settings::settings();
         if ( ! defined( 'PORCH_TITLE' ) ) {
             $title = $fields['title']['value'] ?? 'Ramadan';
             define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
