@@ -163,16 +163,8 @@ class DT_Generic_Porch_Landing_Tab_Home {
         );
         $fields = DT_Porch_Settings::fields();
         $langs = dt_ramadan_list_languages();
-        $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
-        $list = [];
-        foreach ( $dir as $file ) {
-            if ( substr( $file, -4, 4 ) === '.css' ){
-                $f = explode( '.', $file );
-                $l_key = $f[0];
-                $label = ucwords( $l_key );
-                $list[$l_key] = $label;
-            }
-        }
+
+        $site_colors = $this->get_site_colors();
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
@@ -182,23 +174,16 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
                 /* make any text area stuff safe */
                 foreach ( $post_list as $field_key => $value ){
-                    if ( isset( $new_settings[$field_key]["type"], $_POST['list'][$field_key] ) && $new_settings[$field_key]["type"] === "textarea" ){ // if textarea
+                    if ( isset( $fields[$field_key]["type"], $_POST['list'][$field_key] ) && $fields[$field_key]["type"] === "textarea" ){ // if textarea
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
 
-                /* add the submitted form values to the settings */
                 foreach ( $post_list as $key => $value ) {
-                    if ( ! isset( $new_settings[$key] ) ) {
-                        $new_settings[$key] = [];
-                    }
-                    $new_settings[$key]['value'] = $value;
+                    $new_settings[$key] = $value;
                 }
 
-                /* If a field has translations get any translations from the submitted form values */
-                /* If the settings array that is saved should only contain the values, then the translations
-                should all be saved in a seperate translations option. */
-                foreach ( $fields as $field_key => $field ){
+                /* foreach ( $fields as $field_key => $field ){
                     if ( isset( $field["translations"] ) ){
                         foreach ( $langs as $lang_code => $lang_values ){
                             if ( isset( $_POST["field_key_" . $field_key . "_translation-" . $lang_code] ) ){
@@ -206,9 +191,9 @@ class DT_Generic_Porch_Landing_Tab_Home {
                             }
                         }
                     }
-                }
+                } */
 
-                DT_Porch_Settings::update( $new_settings );
+                DT_Porch_Settings::update_values( $new_settings );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
@@ -325,11 +310,11 @@ class DT_Generic_Porch_Landing_Tab_Home {
                                         <?php
                                         if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) {
                                             ?>
-                                            <option value="<?php echo esc_attr( $field['value'] ) ?>"><?php echo esc_html( $list[$field['value']] ) ?? ''?></option>
+                                            <option value="<?php echo esc_attr( $field['value'] ) ?>"><?php echo esc_html( $site_colors[$field['value']] ) ?? ''?></option>
                                             <option disabled>-----</option>
                                             <?php
                                         }
-                                        foreach ( $list as $list_key => $list_label ) {
+                                        foreach ( $site_colors as $list_key => $list_label ) {
                                             ?>
                                             <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $list_label ) ?></option>
                                             <?php
@@ -353,6 +338,21 @@ class DT_Generic_Porch_Landing_Tab_Home {
         </form>
 
         <?php
+    }
+
+    private function get_site_colors() {
+        $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
+        $colors = [];
+        foreach ( $dir as $file ) {
+            if ( substr( $file, -4, 4 ) === '.css' ){
+                $f = explode( '.', $file );
+                $l_key = $f[0];
+                $label = ucwords( $l_key );
+                $colors[$l_key] = $label;
+            }
+        }
+
+        return $colors;
     }
 
 }

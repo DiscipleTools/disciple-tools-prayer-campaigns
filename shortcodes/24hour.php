@@ -381,6 +381,7 @@ function dt_24hour_campaign_shortcode( $atts ){
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
 
+/* TODO: could we move this to a more generic functions.php area, as this could be used anywhere around the plugin? */
 if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
     function dt_recursive_sanitize_array( array $array ) : array {
         foreach ( $array as $key => &$value ) {

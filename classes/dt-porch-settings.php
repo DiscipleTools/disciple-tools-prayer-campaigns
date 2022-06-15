@@ -22,11 +22,13 @@ class DT_Porch_Settings {
          */
         $defaults = apply_filters( 'dt_campaign_fields_after_get_saved_settings', $defaults, $saved_fields, $lang );
 
-        return recursive_parse_args( $saved_fields, $defaults );
+        $merged_settings = dt_merge_settings( $saved_fields, $defaults );
+
+        return $merged_settings;
     }
 
-    public static function update( $updates ) {
-        $updated_settings = recursive_parse_args( $updates, self::fields() );
+    public static function update_values( $updates ) {
+        $updated_settings = dt_validate_settings( $updates, self::fields() );
 
         update_option( 'dt_campaign_porch_settings', $updated_settings );
     }
