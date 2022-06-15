@@ -32,9 +32,6 @@ class DT_Generic_Porch_Settings {
                 'type' => 'text',
                 'translations' => [],
             ],
-        ];
-
-        $translations = [
             /* translations */
             'title' => [
                 'label' => 'Campaign/Site Title',

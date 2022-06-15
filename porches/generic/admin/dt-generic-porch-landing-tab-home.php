@@ -161,7 +161,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             'async' => array(),
             'src' => array()
         );
-        $fields = DT_Porch_Settings::porch_fields();
+        $fields = DT_Porch_Settings::fields();
         $langs = dt_ramadan_list_languages();
         $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
         $list = [];
@@ -180,12 +180,14 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 $new_settings = DT_Porch_Settings::settings();
 
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
+                /* make any text area stuff safe */
                 foreach ( $post_list as $field_key => $value ){
                     if ( isset( $new_settings[$field_key]["type"], $_POST['list'][$field_key] ) && $new_settings[$field_key]["type"] === "textarea" ){ // if textarea
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
 
+                /* add the submitted form values to the settings */
                 foreach ( $post_list as $key => $value ) {
                     if ( ! isset( $new_settings[$key] ) ) {
                         $new_settings[$key] = [];
@@ -193,6 +195,9 @@ class DT_Generic_Porch_Landing_Tab_Home {
                     $new_settings[$key]['value'] = $value;
                 }
 
+                /* If a field has translations get any translations from the submitted form values */
+                /* If the settings array that is saved should only contain the values, then the translations
+                should all be saved in a seperate translations option. */
                 foreach ( $fields as $field_key => $field ){
                     if ( isset( $field["translations"] ) ){
                         foreach ( $langs as $lang_code => $lang_values ){
@@ -224,7 +229,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ( $fields as $key => $field ) :
+                    <?php foreach ( DT_Porch_Settings::settings() as $key => $field ) :
                         if ( isset( $field["enabled"] ) && $field["enabled"] === false ){
                             continue;
                         }
