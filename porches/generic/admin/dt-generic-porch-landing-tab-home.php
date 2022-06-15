@@ -161,7 +161,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
             'async' => array(),
             'src' => array()
         );
-        $fields = DT_Porch_Settings::settings();
+        $fields = DT_Porch_Settings::porch_fields();
         $langs = dt_ramadan_list_languages();
         $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
         $list = [];
@@ -177,39 +177,37 @@ class DT_Generic_Porch_Landing_Tab_Home {
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
             if ( isset( $_POST['list'] ) ) {
-                $saved_fields = $fields;
+                $new_settings = DT_Porch_Settings::settings();
 
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
                 foreach ( $post_list as $field_key => $value ){
-                    if ( isset( $saved_fields[$field_key]["type"], $_POST['list'][$field_key] ) && $saved_fields[$field_key]["type"] === "textarea" ){ // if textarea
+                    if ( isset( $new_settings[$field_key]["type"], $_POST['list'][$field_key] ) && $new_settings[$field_key]["type"] === "textarea" ){ // if textarea
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
 
                 foreach ( $post_list as $key => $value ) {
-                    if ( ! isset( $saved_fields[$key] ) ) {
-                        $saved_fields[$key] = [];
+                    if ( ! isset( $new_settings[$key] ) ) {
+                        $new_settings[$key] = [];
                     }
-                    $saved_fields[$key]['value'] = $value;
+                    $new_settings[$key]['value'] = $value;
                 }
 
                 foreach ( $fields as $field_key => $field ){
                     if ( isset( $field["translations"] ) ){
                         foreach ( $langs as $lang_code => $lang_values ){
                             if ( isset( $_POST["field_key_" . $field_key . "_translation-" . $lang_code] ) ){
-                                $saved_fields[$field_key]["translations"][$lang_code] = wp_kses( wp_unslash( $_POST["field_key_" . $field_key . "_translation-" . $lang_code] ), $allowed_tags );
+                                $new_settings[$field_key]["translations"][$lang_code] = wp_kses( wp_unslash( $_POST["field_key_" . $field_key . "_translation-" . $lang_code] ), $allowed_tags );
                             }
                         }
                     }
                 }
 
-                $fields = recursive_parse_args( $saved_fields, $fields );
-
-                update_option( 'dt_campaign_porch_settings', $fields );
+                DT_Porch_Settings::update( $new_settings );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
-                update_option( 'dt_campaign_porch_settings', [] );
+                DT_Porch_Settings::reset();
                 $fields = DT_Porch_Settings::settings();
             }
         }
