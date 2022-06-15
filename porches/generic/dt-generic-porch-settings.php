@@ -18,81 +18,39 @@ class DT_Generic_Porch_Settings {
 
     private function load_defaults() {
         $this->defaults = [
-            'theme_color' => [
-                'label' => 'Theme Color',
-                'value' => 'preset',
-                'type' => 'theme_select',
-            ],
-            'custom_theme_color' => [
-                'label' => 'Custom Theme Color',
-                'value' => '',
-                'type' => 'text'
-            ],
+            /* specific */
             'country_name' => [
                 'label' => 'Location Name',
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
             ],
+            /* specific */
             'people_name' => [
                 'label' => 'People Name',
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
             ],
+        ];
+
+        $translations = [
+            /* translations */
             'title' => [
                 'label' => 'Campaign/Site Title',
                 'value' => get_bloginfo( 'name' ),
                 'type' => 'text',
                 'translations' => [],
             ],
-            'logo_url' => [
-                'label' => 'Logo Image URL',
-                'value' => '',
+            /* translations */
+            'goal' => [
+                'label' => 'Goal',
+                'default' => __( "We want to cover the country of %s with continuous 24/7 prayer during the entire 30 days of Ramadan.", 'dt-campaign-generic-porch' ),
+                'value' => "",
                 'type' => 'text',
+                'translations' => [],
             ],
-            'logo_link_url' => [
-                'label' => 'Logo Link to URL',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'header_background_url' => [
-                'label' => 'Header Background URL',
-                'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
-                'type' => 'text',
-            ],
-            'what_image' => [
-                'label' => 'What is Ramadan Image',
-                'value' => '',
-                'type' => 'text',
-                'enabled' => false
-            ],
-            'show_prayer_timer' => [
-                'label' => 'Show Prayer Timer',
-                'default' => 'Yes',
-                'value' => 'yes',
-                'type' => 'prayer_timer_toggle',
-            ],
-            "email" => [
-                "label" => "Address to send sign-up and notification emails from",
-                "value" => "no-reply@" . parse_url( home_url() )["host"],
-                'type' => 'text'
-            ],
-            'facebook' => [
-                'label' => 'Facebook Url',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'instagram' => [
-                'label' => 'Instagram Url',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'twitter' => [
-                'label' => 'Twitter Url',
-                'value' => '',
-                'type' => 'text',
-            ],
+            /* translations */
             'what_content' => [
                 'label' => 'What is Ramadan Content',
                 'default' =>__( 'Ramadan is one of the five requirements (or pillars) of Islam. During each of its 30 days, Muslims are obligated to fast from dawn until sunset. During this time they are supposed to abstain from food, drinking liquids, smoking, and sexual relations.
@@ -102,31 +60,6 @@ class DT_Generic_Porch_Settings {
                 'type' => 'textarea',
                 'translations' => [],
             ],
-            'goal' => [
-                'label' => 'Goal',
-                'default' => __( "We want to cover the country of %s with continuous 24/7 prayer during the entire 30 days of Ramadan.", 'dt-campaign-generic-porch' ),
-                'value' => "",
-                'type' => 'text',
-                'translations' => [],
-            ],
-            'google_analytics' => [
-                'label' => 'Google Analytics',
-                'default' => get_site_option( "p4r_porch_google_analytics" ),
-                'value' => '',
-                'type' => 'textarea',
-            ],
-            'default_language' => [
-                'label' => 'Default Language',
-                'default' => 'en_US',
-                'value' => '',
-                'type' => 'default_language_select',
-            ],
-            'stats-p4m' => [
-                'label' => 'Show Pray4Movement sign-up on ' . esc_html( home_url( '/prayer/stats' ) ),
-                'default' => 'Yes',
-                'value' => 'yes',
-                'type' => 'prayer_timer_toggle',
-            ]
         ];
     }
 }
