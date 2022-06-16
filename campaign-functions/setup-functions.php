@@ -16,7 +16,7 @@ function dt_prayer_campaign_cron_schedules( $schedules ){
 
 //need to be accessible outside of D.T
 require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/24hour.php' );
-// require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/ongoing.php' ); // This was erroring for me as the ongoing.php file doesn't exist yet. so commented out for now
+require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/ongoing.php' );
 require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/prayer-timer.php' );
 
 

@@ -6,7 +6,7 @@ window.campaign_scripts = {
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
     let days = [];
-    let time_iterator = calendar_subscribe_object.start_timestamp;
+    let time_iterator = parseInt( calendar_subscribe_object.start_timestamp );
 
     let start_of_day = window.campaign_scripts.day_start( time_iterator, current_time_zone)
 
@@ -173,8 +173,14 @@ window.campaign_scripts = {
     }
     return select_html
 
-  }
-
+  },
+  get_days_of_the_week_initials: (localeName = 'en-US', weekday = 'long')=>{
+    let now = new Date()
+    const day_in_seconds = 86400000
+    const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
+    return [...Array(7).keys()]
+    .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * day_in_seconds  ));
+  },
 }
 
 //based off of:
