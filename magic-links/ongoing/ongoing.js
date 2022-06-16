@@ -85,8 +85,9 @@ jQuery(document).ready(async function ($) {
 
       //configure the view to go back to
       let back_to = $(this).data('back-to');
-      if ( back_to )
-      $(`#${view_to_open} .cp-close-button`).data('open', back_to)
+      if ( back_to ){
+        $(`#${view_to_open} .cp-close-button`).data('open', back_to)
+      }
     })
 
 
