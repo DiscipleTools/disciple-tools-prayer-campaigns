@@ -25,7 +25,15 @@ class DT_Porch_Settings {
          */
         $defaults = apply_filters( 'dt_campaign_fields_after_get_saved_settings', $defaults, $saved_fields, $lang );
 
+        $saved_translations = self::get_translations();
+
+        /**
+         * Filter to allow the translations to be run through any porch specific massaging
+         */
+        $saved_translations = apply_filters( 'dt_campaign_translations', $saved_translations, $lang );
+
         $merged_settings = dt_merge_settings( $saved_fields, $defaults );
+        $merged_settings = dt_merge_settings( $saved_translations, $defaults, 'translations' );
 
         return $merged_settings;
     }
