@@ -26,7 +26,7 @@ jQuery(document).ready(async function ($) {
   calendar_subscribe_object.translations = escapeObject( jsObject.translations )
   let days = window.campaign_scripts.calculate_day_times()
 
-  let week_day_names = window.campaign_scripts.days_for_locale(navigator.language, 'narrow')
+  let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
   let headers = `
     <div class="day-cell week-day">${week_day_names[0]}</div>
     <div class="day-cell week-day">${week_day_names[1]}</div>
@@ -47,14 +47,14 @@ jQuery(document).ready(async function ($) {
 
   setup_signup();
 
-  update_timezone()
+  update_timezone(current_time_zone)
 
   //draw progress circles
   window.customElements.define('progress-ring', ProgressRing);
 
   $('#confirm-timezone').on('click', function (){
     current_time_zone = $("#timezone-select").val()
-    update_timezone()
+    update_timezone(current_time_zone)
     days = window.campaign_scripts.calculate_day_times(current_time_zone)
     // set_campaign_date_range_title()
     populate_daily_select()
@@ -358,9 +358,9 @@ jQuery(document).ready(async function ($) {
     $('.cp-display-selected-times').html(html)
   }
 
-  function update_timezone(){
-    $('.timezone-current').html(current_time_zone)
-    $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
+  function update_timezone(tz){
+    $('.timezone-current').html(tz)
+    $('#selected-time-zone').val(tz).text(tz)
   }
 
 

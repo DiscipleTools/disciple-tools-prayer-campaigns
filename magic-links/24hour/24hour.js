@@ -88,7 +88,7 @@ jQuery(document).ready(function($) {
     // }
     // set_campaign_date_range_title()
 
-    let week_day_names = window.campaign_scripts.days_for_locale(navigator.language, 'narrow')
+    let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
     let headers = `
       <div class="day-cell week-day">${week_day_names[0]}</div>
       <div class="day-cell week-day">${week_day_names[1]}</div>

@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
   let days = window.campaign_scripts.calculate_day_times(current_time_zone);
 
 
-  let week_day_names = window.campaign_scripts.days_for_locale(navigator.language, 'narrow')
+  let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
   let headers = `
     <div class="new_weekday">${week_day_names[0]}</div>
     <div class="new_weekday">${week_day_names[1]}</div>
