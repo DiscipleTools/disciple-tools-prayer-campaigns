@@ -33,7 +33,7 @@ class DT_Porch_Settings {
         $saved_translations = apply_filters( 'dt_campaign_translations', $saved_translations, $lang );
 
         $merged_settings = dt_merge_settings( $saved_fields, $defaults );
-        $merged_settings = dt_merge_settings( $saved_translations, $defaults, 'translations' );
+        $merged_settings = dt_merge_settings( $saved_translations, $merged_settings, 'translations' );
 
         return $merged_settings;
     }

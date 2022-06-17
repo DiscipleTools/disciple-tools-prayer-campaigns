@@ -157,6 +157,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
 
     public function main_column() {
         $langs = dt_ramadan_list_languages();
+        $allowed_tags = $this->get_allowed_tags();
 
         $site_colors = $this->get_site_colors();
 
@@ -184,7 +185,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 <tr>
                     <th style="width:20%">Home Page Details</th>
                     <th style="width:50%"></th>
-<!--                    <th ><span style="float:right;"><button type="submit" name="reset_values" value='delete'>Reset all to default</button></span></th>-->
+                    <th style="width:30%"></th>
                 </tr>
                 </thead>
                 <tbody>
