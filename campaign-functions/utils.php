@@ -1,8 +1,14 @@
 <?php
 
 /**
- * This may be obsolete if we are only saving the key value pairs for the
- * settings rather than the whole of the defaults array in the db.
+ * Merges the $args and $defaults array recursively through sub arrays
+ *
+ * Both arrays are expected to have the same shape
+ *
+ * @param array $args
+ * @param array $defaults
+ *
+ * @return array
  */
 function recursive_parse_args( $args, $defaults ) {
     $new_args = (array) $defaults;
@@ -19,6 +25,16 @@ function recursive_parse_args( $args, $defaults ) {
     return $new_args;
 }
 
+/**
+ * Returns merged values stored in $settings into the $defaults array with the $value_key
+ * as the key to store the $settings values in.
+ *
+ * @param array $settings contains the values to merge in
+ * @param array $defaults e.g. contains the information for some fields
+ * @param string $value_key stores the contents of $settings at this key in the $defaults array
+ *
+ * @return array
+ */
 function dt_merge_settings( $settings, $defaults, $value_key = "value" ) {
     $new_settings = (array) $defaults;
 
@@ -31,6 +47,14 @@ function dt_merge_settings( $settings, $defaults, $value_key = "value" ) {
     return $new_settings;
 }
 
+/**
+ * Returns filtered array of settings whose keys are found in the defaults array
+ *
+ * @param array $settings
+ * @param array $defaults
+ *
+ * @return array
+ */
 function dt_validate_settings( $settings, $defaults ) {
     $keep_settings_in_defaults = function( $value, $key ) use ( $defaults ) {
         return isset( $defaults[$key] );
@@ -39,7 +63,14 @@ function dt_validate_settings( $settings, $defaults ) {
     return array_filter( $settings, $keep_settings_in_defaults, ARRAY_FILTER_USE_BOTH );
 }
 
-function dt_campaign_get_current_lang(){
+/**
+ * Return the code of the language that the campaign is currently being viewed in.
+ *
+ * This could come from the GET request or be stored in the browser's cookies
+ *
+ * @return string
+ */
+function dt_campaign_get_current_lang(): string {
     $lang = "en_US";
     if ( defined( "PORCH_DEFAULT_LANGUAGE" ) ){
         $lang = PORCH_DEFAULT_LANGUAGE;
