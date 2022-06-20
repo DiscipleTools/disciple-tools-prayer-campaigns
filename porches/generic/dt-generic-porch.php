@@ -56,43 +56,20 @@ class DT_Generic_Porch {
             define( 'PORCH_DEFAULT_LANGUAGE', $default_language );
         }
 
-        /**
-         * This template includes 6 color schemes set by the definition below.
-         * preset, teal, forestgreen, green, purple, orange
-         */
-        $theme = 'preset';
-        $hex = '#4676fa';
+        $theme_manager = new DT_Porch_Theme();
+        $theme = $theme_manager->get_default_theme();
         if ( isset( $fields['theme_color']['value'] ) && ! empty( $fields['theme_color']['value'] ) && ! defined( 'PORCH_COLOR_SCHEME' ) ) {
-            $theme = $fields['theme_color']['value'];
-            $hex = $fields['theme_color']['value'];
-            switch ( $theme ) {
-                case 'preset':
-                    $hex = '#4676fa';
-                    break;
-                case 'forestgreen':
-                    $hex = '#1EB858';
-                    break;
-                case 'green':
-                    $hex = '#94C523';
-                    break;
-                case 'orange':
-                    $hex = '#F57D41';
-                    break;
-                case 'purple':
-                    $hex = '#6B58CD';
-                    break;
-                case 'teal':
-                    $hex = '#1AB7D8';
-                    break;
-            }
+            $theme_name = $fields['theme_color']['value'];
+            $theme = $theme_manager->get_theme( $theme_name );
         }
 
-        if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ){
-            $theme = 'custom';
-            $hex = $fields['custom_theme_color']['value'];
+        if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ) {
+            $theme = [];
+            $theme["name"] = 'custom';
+            $theme["color"] = $fields['custom_theme_color']['value'];
         }
-        define( 'PORCH_COLOR_SCHEME', $theme );
-        define( 'PORCH_COLOR_SCHEME_HEX', $hex );
+        define( 'PORCH_COLOR_SCHEME', $theme["name"] );
+        define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
 
         // POST TYPE and ACCESS
         require_once( 'site/roles-and-permissions.php' );
@@ -112,6 +89,7 @@ class DT_Generic_Porch {
         if ( is_admin() ){
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 ); // admin plugin page description
         }
+
         $this->i18n();
     }
 

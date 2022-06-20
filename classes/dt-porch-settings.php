@@ -101,65 +101,77 @@ class DT_Porch_Settings {
                         'label' => 'Theme Color',
                         'value' => 'preset',
                         'type' => 'theme_select',
+                        'tab' => 'settings',
                     ],
                     'custom_theme_color' => [
                         'label' => 'Custom Theme Color',
                         'value' => '',
-                        'type' => 'text'
+                        'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'logo_url' => [
                         'label' => 'Logo Image URL',
                         'value' => '',
                         'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'logo_link_url' => [
                         'label' => 'Logo Link to URL',
                         'value' => '',
                         'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'header_background_url' => [
                         'label' => 'Header Background URL',
                         'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
                         'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'what_image' => [
                         'label' => 'What is Ramadan Image',
                         'value' => '',
                         'type' => 'text',
-                        'enabled' => false
+                        'enabled' => false,
+                        'tab' => 'settings',
                     ],
                     'show_prayer_timer' => [
                         'label' => 'Show Prayer Timer',
                         'default' => 'Yes',
                         'value' => 'yes',
                         'type' => 'prayer_timer_toggle',
+                        'tab' => 'settings',
                     ],
                     'facebook' => [
                         'label' => 'Facebook Url',
                         'value' => '',
                         'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'instagram' => [
                         'label' => 'Instagram Url',
                         'value' => '',
                         'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'twitter' => [
                         'label' => 'Twitter Url',
                         'value' => '',
                         'type' => 'text',
+                        'tab' => 'settings',
                     ],
                     'google_analytics' => [
                         'label' => 'Google Analytics',
                         'default' => get_site_option( "p4r_porch_google_analytics" ),
                         'value' => '',
                         'type' => 'textarea',
+                        'tab' => 'settings',
                     ],
                     'default_language' => [
                         'label' => 'Default Language',
                         'default' => 'en_US',
                         'value' => '',
                         'type' => 'default_language_select',
+                        'tab' => 'settings',
                     ],
                 ];
     }

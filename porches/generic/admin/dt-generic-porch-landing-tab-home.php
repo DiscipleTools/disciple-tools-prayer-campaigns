@@ -5,6 +5,12 @@ class DT_Generic_Porch_Landing_Tab_Home {
 
     private $no_campaign_key = "none";
 
+    private $theme_file_dir;
+
+    public function __construct() {
+        $this->theme_file_dir = plugin_dir_path( __DIR__ ) . 'site/css/colors';
+    }
+
     public function content() {
         ?>
         <style>
@@ -316,18 +322,11 @@ class DT_Generic_Porch_Landing_Tab_Home {
     }
 
     private function get_site_colors() {
-        $dir = scandir( plugin_dir_path( __DIR__ ) . 'site/css/colors' );
-        $colors = [];
-        foreach ( $dir as $file ) {
-            if ( substr( $file, -4, 4 ) === '.css' ){
-                $f = explode( '.', $file );
-                $l_key = $f[0];
-                $label = ucwords( $l_key );
-                $colors[$l_key] = $label;
-            }
-        }
+        $theme_manager = new DT_Porch_Theme();
 
-        return $colors;
+        $available_themes = $theme_manager->get_available_theme_names( $this->theme_file_dir );
+
+        return $available_themes;
     }
 
     private function get_new_settings( $post_list ) {

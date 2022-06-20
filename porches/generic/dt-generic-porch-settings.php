@@ -10,10 +10,19 @@ class DT_Generic_Porch_Settings {
     public function __construct() {
         $this->load_defaults();
         add_filter( 'dt_campaign_porch_settings', [ $this, 'dt_prayer_campaigns_porch_settings' ], 10, 1 );
+        add_filter( 'dt_campaign_porch_theme_options', [ $this, 'dt_generic_porch_themes' ], 10, 1 );
     }
 
     public function dt_prayer_campaigns_porch_settings( $settings ) {
         return array_merge( $this->defaults, $settings );
+    }
+
+    public function dt_generic_porch_themes( $theme_options ) {
+        $theme_options['pink'] = [
+            'color' => '#FF55AA',
+        ];
+
+        return $theme_options;
     }
 
     private function load_defaults() {
@@ -24,6 +33,7 @@ class DT_Generic_Porch_Settings {
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
+                'tab' => 'translations',
             ],
             /* specific */
             'people_name' => [
@@ -31,6 +41,7 @@ class DT_Generic_Porch_Settings {
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
+                'tab' => 'translations',
             ],
             /* translations */
             'title' => [
@@ -38,6 +49,7 @@ class DT_Generic_Porch_Settings {
                 'value' => get_bloginfo( 'name' ),
                 'type' => 'text',
                 'translations' => [],
+                'tab' => 'translations',
             ],
             /* translations */
             'goal' => [
@@ -46,6 +58,7 @@ class DT_Generic_Porch_Settings {
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
+                'tab' => 'translations',
             ],
             /* translations */
             'what_content' => [
@@ -56,6 +69,7 @@ class DT_Generic_Porch_Settings {
                 'value' => '',
                 'type' => 'textarea',
                 'translations' => [],
+                'tab' => 'translations',
             ],
         ];
     }
