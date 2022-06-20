@@ -1,14 +1,19 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-class DT_Generic_Porch_Landing_Tab_Home {
+/**
+ * Base class to create a porch admin tab
+ */
+class DT_Porch_Admin_Tab_Base {
 
-    private $no_campaign_key = "none";
+    private static $no_campaign_key = "none";
 
     private $theme_file_dir;
 
-    public function __construct() {
-        $this->theme_file_dir = plugin_dir_path( __DIR__ ) . 'site/css/colors';
+    public function __construct( string $settings_key, string $porch_dir ) {
+        $this->settings_key = $settings_key;
+
+        $this->theme_file_dir = $porch_dir . 'site/css/colors';
     }
 
     public function content() {
@@ -30,7 +35,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 <div id="post-body" class="metabox-holder columns-1">
                     <div id="post-body-content">
 
-                        <?php $this->box_campaign() ?>
+                        <?php self::box_campaign() ?>
 
                         <?php $this->main_column() ?>
 
@@ -41,14 +46,14 @@ class DT_Generic_Porch_Landing_Tab_Home {
         <?php
     }
 
-    public function box_campaign() {
+    public static function box_campaign() {
 
         if ( isset( $_POST['install_campaign_nonce'] )
             && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_campaign_nonce'] ) ), 'install_campaign_nonce' )
             && isset( $_POST['selected_campaign'] )
         ) {
             $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
-            update_option( 'dt_campaign_selected_campaign', $campaign_id === $this->no_campaign_key ? null : $campaign_id );
+            update_option( 'dt_campaign_selected_campaign', $campaign_id === self::$no_campaign_key ? null : $campaign_id );
         }
         $fields = DT_Campaign_Settings::get_campaign();
         if ( empty( $fields ) ) {
@@ -83,7 +88,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                         </td>
                         <td>
                             <select name="selected_campaign">
-                                <option value=<?php echo esc_html( $this->no_campaign_key ) ?>></option>
+                                <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
                                 <?php foreach ( $campaigns["posts"] as $campaign ) :?>
                                     <option value="<?php echo esc_html( $campaign["ID"] ) ?>"
                                         <?php selected( (int) $campaign["ID"] === (int) $fields['ID'] ) ?>
@@ -195,7 +200,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
                 </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ( DT_Porch_Settings::settings() as $key => $field ) :
+                    <?php foreach ( DT_Porch_Settings::settings( $this->settings_key ) as $key => $field ) :
                         if ( isset( $field["enabled"] ) && $field["enabled"] === false ){
                             continue;
                         }
@@ -330,7 +335,7 @@ class DT_Generic_Porch_Landing_Tab_Home {
     }
 
     private function get_new_settings( $post_list ) {
-        $new_settings = DT_Porch_Settings::settings();
+        $new_settings = DT_Porch_Settings::settings( $this->settings_key );
         $fields = DT_Porch_Settings::fields();
         $allowed_tags = $this->get_allowed_tags();
 
@@ -376,5 +381,4 @@ class DT_Generic_Porch_Landing_Tab_Home {
 
         return $allowed_tags;
     }
-
 }

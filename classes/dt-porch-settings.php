@@ -9,7 +9,7 @@ class DT_Porch_Settings {
     private static $values_option = 'dt_campaign_porch_settings';
     private static $translations_option = 'dt_campaign_porch_translations';
 
-    public static function settings() {
+    public static function settings( string $key = '' ): array {
         $defaults = self::fields();
 
         $saved_fields = self::get_values();
@@ -35,7 +35,23 @@ class DT_Porch_Settings {
         $merged_settings = dt_merge_settings( $saved_fields, $defaults );
         $merged_settings = dt_merge_settings( $saved_translations, $merged_settings, 'translations' );
 
+        if ( $key !== '' ) {
+            $merged_settings = self::filter_settings( $merged_settings, $key );
+        }
+
         return $merged_settings;
+    }
+
+    private static function filter_settings( array $settings, string $key ): array {
+        $match_settings_with_key = function( $setting ) use ( $key ) {
+            if ( isset( $setting['tab'] ) && $setting['tab'] === $key ) {
+                return true;
+            }
+
+            return false;
+        };
+
+        return array_filter( $settings, $match_settings_with_key );
     }
 
     private static function get_values() {
@@ -96,7 +112,7 @@ class DT_Porch_Settings {
     }
 
     private static function get_defaults() {
-        return [
+        $defaults = [
                     'theme_color' => [
                         'label' => 'Theme Color',
                         'value' => 'preset',
@@ -174,5 +190,11 @@ class DT_Porch_Settings {
                         'tab' => 'settings',
                     ],
                 ];
+
+        $keep_enabled_settings = function ( $setting ) {
+            return !isset( $setting['enabled'] ) || $setting['enabled'] !== false;
+        };
+
+        return array_filter( $defaults, $keep_enabled_settings );
     }
 }

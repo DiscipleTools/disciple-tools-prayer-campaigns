@@ -15,8 +15,7 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
                         <!-- Main Column -->
 
                         <?php
-                        $object = new DT_Generic_Porch_Landing_Tab_Home();
-                        $object->box_campaign();
+                        DT_Porch_Admin_Tab_Base::box_campaign();
 
                         $fields = DT_Campaign_Settings::get_campaign();
                         if ( ! empty( $fields ) ) {

@@ -92,8 +92,9 @@ class DT_Prayer_Campaigns {
         require_once( 'post-type/loader.php' );
         require_once( 'classes/dt-campaign-settings.php' );
         require_once( 'classes/dt-porch-settings.php' );
-
         require_once( 'classes/dt-porch-theme.php' );
+        require_once( 'classes/dt-porch-admin-tab-base.php' );
+
         require_once( 'porches/loader.php' );
 
         require_once( 'magic-links/24hour/24hour.php' );

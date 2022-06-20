@@ -43,7 +43,9 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
         $this->load_functions();
         $this->load_porch_settings();
 
-        return new DT_Generic_Porch_Admin_Menu();
+        $plugin_dir = plugin_dir_path( __FILE__ );
+
+        return new DT_Generic_Porch_Admin_Menu( $plugin_dir );
     }
 
     private function load_functions() {
