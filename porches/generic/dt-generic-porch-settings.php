@@ -45,6 +45,7 @@ class DT_Generic_Porch_Settings {
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::$hero,
             ],
             'subtitle' => [
                 'label' => 'Subtitle',
@@ -52,6 +53,7 @@ class DT_Generic_Porch_Settings {
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::$hero,
             ],
             'goal' => [
                 'label' => 'Goal',
@@ -60,6 +62,7 @@ class DT_Generic_Porch_Settings {
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::$vision,
             ],
             'what_content' => [
                 'label' => 'What is 24/7 Prayer Content',
@@ -67,6 +70,7 @@ class DT_Generic_Porch_Settings {
                 'type' => 'textarea',
                 'translations' => [],
                 'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::$what,
             ],
             'prayer_fuel_description' => [
                 'label' => 'Prayer Fuel Description',
@@ -74,6 +78,7 @@ class DT_Generic_Porch_Settings {
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::$prayer_fuel,
             ],
             'country_name' => [
                 'label' => 'Location Name',
@@ -91,4 +96,15 @@ class DT_Generic_Porch_Settings {
             ],
         ];
     }
+}
+
+/**
+ * Replacement for proper enum types in pre PHP8
+ */
+class DT_Generic_Porch_Translation_Sections {
+    public static $hero = "Hero";
+    public static $vision = "Vision";
+    public static $three_sections = "Three Sections";
+    public static $what = "What";
+    public static $prayer_fuel = "Prayer Fuel"
 }
