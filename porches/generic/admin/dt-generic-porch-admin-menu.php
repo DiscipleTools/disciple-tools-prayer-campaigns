@@ -9,7 +9,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
     public $token = 'dt_porch_generic';
     public $title = 'Settings';
 
-    private string $porch_dir;
+    private $porch_dir;
 
     public function __construct( string $porch_dir ) {
         if ( ! is_admin() ) {
