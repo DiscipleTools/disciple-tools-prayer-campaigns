@@ -82,3 +82,14 @@ function dt_campaign_get_current_lang(): string {
     }
     return $lang;
 }
+
+/**
+ * Set the magic link lang in the cookie
+ *
+ * @param string $lang
+ */
+function dt_campaign_add_lang_to_cookie( string $lang ) {
+    if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
+        setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
+    }
+}

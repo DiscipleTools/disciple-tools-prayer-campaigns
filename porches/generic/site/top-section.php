@@ -2,13 +2,8 @@
 
 /* TODO: (make more DRY) we can refactor this to use dt_campaign_get_current_lang
 and just set the cookie in this bit of code */
-$lang = PORCH_DEFAULT_LANGUAGE;
-if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
-    $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
-    setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
-} elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
-    $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
-}
+$lang = dt_campaign_get_current_lang();
+dt_campaign_add_lang_to_cookie( $lang );
 dt_campaign_set_translation( $lang );
 
 $porch_fields = DT_Porch_Settings::settings();
