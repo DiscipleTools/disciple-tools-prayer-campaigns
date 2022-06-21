@@ -71,7 +71,7 @@ class P4_Ramadan_Porch_Landing_Post_Type
 
     public function meta_box_page_language( $post ) {
         $lang = get_post_meta( $post->ID, 'post_language', true );
-        $langs = dt_ramadan_list_languages();
+        $langs = dt_campaign_list_languages();
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }
@@ -228,7 +228,7 @@ class P4_Ramadan_Porch_Landing_Post_Type
                 if ( empty( $language ) ){
                     $language = "en_US";
                 }
-                $languages = dt_ramadan_list_languages();
+                $languages = dt_campaign_list_languages();
                 if ( !isset( $languages[$language]["flag"] ) ){
                     echo esc_html( $language );
                 } else {

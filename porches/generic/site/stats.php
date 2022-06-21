@@ -47,7 +47,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
         add_filter( 'language_attributes', [ $this, 'dt_custom_dir_attr' ] );
     }
     public function dt_custom_dir_attr( $lang ){
-        return ramadan_custom_dir_attr( $lang );
+        return dt_campaign_custom_dir_attr( $lang );
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -70,10 +70,10 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
 
         $porch_fields = DT_Porch_Settings::settings();
         $campaign_fields = DT_Campaign_Settings::get_campaign()();
-        $langs = dt_ramadan_list_languages();
+        $langs = dt_campaign_list_languages();
         $post_id = $campaign_fields["ID"];
         $lang = dt_campaign_get_current_lang();
-        dt_ramadan_set_translation( $lang );
+        dt_campaign_set_translation( $lang );
 
 
         $timezone = "America/Chicago";

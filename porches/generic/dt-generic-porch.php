@@ -14,7 +14,7 @@ class DT_Generic_Porch {
         require_once __DIR__ . '/site/functions.php';
         $fields = DT_Porch_Settings::settings();
         if ( ! defined( 'PORCH_TITLE' ) ) {
-            $title = $fields['title']['value'] ?? 'Ramadan';
+            $title = $fields['title']['value'] ?? '24/7 Prayer';
             define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
         }
         if ( ! defined( 'PORCH_ROOT' ) ) {

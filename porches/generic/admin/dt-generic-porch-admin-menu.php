@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class DT_Ramadan_Porch_Menu
+ * Class DT_Generic_Porch_Admin_Menu
  */
 class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 

@@ -99,10 +99,18 @@ class DT_Porch_Settings {
         return $defaults;
     }
 
-    public static function get_field_translation( $field, $code ) {
-        if ( empty( $field ) ) {
+    public static function get_field_translation( $field_name, $code = '' ) {
+        if ( !$code ) {
+            $code = dt_campaign_get_current_lang();
+        }
+
+        $fields = self::settings();
+
+        if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
             return "";
         }
+
+        $field = $fields[$field_name];
 
         if ( isset( $field["translations"][$code] ) && !empty( $field["translations"][$code] ) ) {
             return $field["translations"][$code];
@@ -144,7 +152,7 @@ class DT_Porch_Settings {
                         'tab' => 'settings',
                     ],
                     'what_image' => [
-                        'label' => 'What is Ramadan Image',
+                        'label' => 'What is 24/7 Image',
                         'value' => '',
                         'type' => 'text',
                         'enabled' => false,

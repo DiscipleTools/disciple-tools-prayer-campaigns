@@ -167,7 +167,7 @@ class DT_Porch_Admin_Tab_Base {
     }
 
     public function main_column() {
-        $langs = dt_ramadan_list_languages();
+        $langs = dt_campaign_list_languages();
         $allowed_tags = $this->get_allowed_tags();
 
         $site_colors = $this->get_site_colors();
@@ -356,7 +356,7 @@ class DT_Porch_Admin_Tab_Base {
     private function get_new_translations( $post ) {
         $fields = DT_Porch_Settings::fields();
         $allowed_tags = $this->get_allowed_tags();
-        $langs = dt_ramadan_list_languages();
+        $langs = dt_campaign_list_languages();
 
         $new_translations = [];
         foreach ( $fields as $field_key => $field ){

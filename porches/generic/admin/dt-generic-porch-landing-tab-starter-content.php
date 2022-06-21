@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class DT_Ramadan_Porch_Tab_Starter_Content
+ * Class DT_Generic_Porch_Landing_Tab_Starter_Content
  */
 class DT_Generic_Porch_Landing_Tab_Starter_Content {
     public function content() {
@@ -36,14 +36,14 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
 
 
         global $wpdb;
-        if ( isset( $_POST['install_ramadan_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_ramadan_nonce'] ) ), 'install_ramadan' ) ) {
+        if ( isset( $_POST['install_content_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_content_nonce'] ) ), 'install_content' ) ) {
             $language = null;
-            if ( isset( $_POST["install_ramadan_language"] ) ){
-                $language = sanitize_text_field( wp_unslash( $_POST["install_ramadan_language"] ) );
+            if ( isset( $_POST["install_content_language"] ) ){
+                $language = sanitize_text_field( wp_unslash( $_POST["install_content_language"] ) );
             }
             $from_translation = null;
-            if ( isset( $_POST["install_ramadan_language_english"] ) ){
-                $language = sanitize_text_field( wp_unslash( $_POST["install_ramadan_language_english"] ) );
+            if ( isset( $_POST["install_content_language_english"] ) ){
+                $language = sanitize_text_field( wp_unslash( $_POST["install_content_language_english"] ) );
                 $from_translation = 'en_US';
             }
             if ( $language ){
@@ -94,7 +94,7 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
                 }
             }
         }
-        $languages = dt_ramadan_list_languages();
+        $languages = dt_campaign_list_languages();
         $fields = DT_Porch_Settings::settings();
 
         $installed_langs_query = $wpdb->get_results( "
@@ -117,12 +117,12 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
 
         ?>
         <form method="post">
-            <?php wp_nonce_field( 'install_ramadan', 'install_ramadan_nonce' ) ?>
+            <?php wp_nonce_field( 'install_content', 'install_content_nonce' ) ?>
             <!-- Box -->
             <table class="widefat striped">
                 <thead>
                 <tr>
-                    <th>Install Starter Ramadan Content</th>
+                    <th>Install Starter 24/7 Content</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -147,8 +147,8 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
                         <tbody>
 
                         <?php foreach ( $languages as $language_key => $language ) :
-                            $people_name = DT_Porch_Settings::get_field_translation( $fields["people_name"], $language_key );
-                            $country_name = DT_Porch_Settings::get_field_translation( $fields["country_name"], $language_key );
+                            $people_name = DT_Porch_Settings::get_field_translation( "people_name", $language_key );
+                            $country_name = DT_Porch_Settings::get_field_translation( "country_name", $language_key );
                             $already_installed = ( $installed_langs[$language_key] ?? 0 ) > 0;
                             $available_in_language = $language["prayer_fuel"] ?? false;
                             $delete_enabled = ( $installed_langs[$language_key] ?? 0 ) > 1
@@ -162,12 +162,12 @@ class DT_Generic_Porch_Landing_Tab_Starter_Content {
                                 <td><input style="width:150px" name="<?php echo esc_html( $language_key ); ?>_people_plural_masculine" value="" autocomplete="off"></td>
                                 <td><input style="width:150px" name="<?php echo esc_html( $language_key ); ?>_people_plural_feminine" value="" autocomplete="off"></td>
                                 <td>
-                                    <button type="submit" name="install_ramadan_language" class="button" value="<?php echo esc_html( $language_key ); ?>" <?php disabled( $already_installed || !$available_in_language ) ?>>
-                                        Install Ramadan Starter Content
+                                    <button type="submit" name="install_content_language" class="button" value="<?php echo esc_html( $language_key ); ?>" <?php disabled( $already_installed || !$available_in_language ) ?>>
+                                        Install 24/7 Starter Content
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="submit" name="install_ramadan_language_english" class="button" value="<?php echo esc_html( $language_key ); ?>" <?php disabled( $already_installed ) ?>>
+                                    <button type="submit" name="install_content_language_english" class="button" value="<?php echo esc_html( $language_key ); ?>" <?php disabled( $already_installed ) ?>>
                                         Install Content in English
                                     </button>
                                 </td>
