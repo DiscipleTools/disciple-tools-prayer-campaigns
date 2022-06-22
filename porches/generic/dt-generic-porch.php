@@ -78,7 +78,6 @@ class DT_Generic_Porch {
         // MICROSITE Magic Links
         require_once( 'site/home.php' );
         require_once( 'site/archive.php' );
-        require_once( 'site/power.php' );
         require_once( 'site/stats.php' );
         require_once( 'site/landing.php' );
         require_once( 'site/rest.php' );
