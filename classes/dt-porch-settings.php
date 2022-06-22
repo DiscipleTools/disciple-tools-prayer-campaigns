@@ -9,7 +9,13 @@ class DT_Porch_Settings {
     private static $values_option = 'dt_campaign_porch_settings';
     private static $translations_option = 'dt_campaign_porch_translations';
 
-    public static function settings( string $key = '' ): array {
+    /**
+     * Get all of the settings for the porch
+     *
+     * @param string $tab The name of the tab that we want the settings for
+     * @param string $section The name of the section we want the settings for
+     */
+    public static function settings( string $tab = null, string $section = null ): array {
         $defaults = self::fields();
 
         $saved_fields = self::get_values();
@@ -35,23 +41,37 @@ class DT_Porch_Settings {
         $merged_settings = dt_merge_settings( $saved_fields, $defaults );
         $merged_settings = dt_merge_settings( $saved_translations, $merged_settings, 'translations' );
 
-        if ( $key !== '' ) {
-            $merged_settings = self::filter_settings( $merged_settings, $key );
+        if ( $tab !== null ) {
+            $merged_settings = self::filter_settings( $merged_settings, 'tab', $tab );
+        }
+        if ( $section !== null ) {
+            $merged_settings = self::filter_settings( $merged_settings, 'section', $section );
         }
 
         return $merged_settings;
     }
 
-    private static function filter_settings( array $settings, string $key ): array {
-        $match_settings_with_key = function( $setting ) use ( $key ) {
-            if ( isset( $setting['tab'] ) && $setting['tab'] === $key ) {
+    /**
+     * Filter the settings according to a key and a value
+     *
+     * If the $value is an empty string, settings which don't include the key or which are falsey will be returned.
+     *
+     * @param array $settings
+     * @param string $key
+     * @param string $value
+     */
+    private static function filter_settings( array $settings, string $key, string $value ): array {
+        $match_settings_with_tab = function( $setting ) use ( $key, $value ) {
+            if ( $value === "" && ( !isset( $setting[$key] ) || !$setting[$key] ) ) {
+                return true;
+            } elseif ( isset( $setting[$key] ) && $setting[$key] === $value ) {
                 return true;
             }
 
             return false;
         };
 
-        return array_filter( $settings, $match_settings_with_key );
+        return array_filter( $settings, $match_settings_with_tab );
     }
 
     private static function get_values() {
@@ -97,6 +117,37 @@ class DT_Porch_Settings {
         $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults );
 
         return $defaults;
+    }
+
+    /**
+     * Get the list of sections defined in the fields for a particular tab
+     *
+     * Fields with no section are considered to be in the "Other" section
+     *
+     * @param string $tab
+     */
+    public static function sections( string $tab ) {
+        $fields = self::fields();
+
+        $fields = self::filter_settings( $fields, 'tab', $tab );
+
+        $sections = [];
+
+        $has_fields_with_no_section = false;
+        foreach ( $fields as $key => $field ) {
+            if ( !$has_fields_with_no_section && ( !isset( $field["section"] ) || !$field["section"] ) ) {
+                $has_fields_with_no_section = true;
+            }
+            if ( isset( $field["section"] ) && !in_array( $field["section"], $sections, true ) ) {
+                $sections[] = $field["section"];
+            }
+        }
+
+        if ( $has_fields_with_no_section ) {
+            array_push( $sections, "" );
+        }
+
+        return $sections;
     }
 
     public static function get_field_translation( $field_name, $code = '' ) {

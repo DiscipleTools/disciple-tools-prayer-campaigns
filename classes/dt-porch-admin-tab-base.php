@@ -11,7 +11,7 @@ class DT_Porch_Admin_Tab_Base {
     private $theme_file_dir;
 
     public function __construct( string $settings_key, string $porch_dir ) {
-        $this->settings_key = $settings_key;
+        $this->tab = $settings_key;
 
         $this->theme_file_dir = $porch_dir . 'site/css/colors';
     }
@@ -169,6 +169,7 @@ class DT_Porch_Admin_Tab_Base {
     public function main_column() {
         $langs = dt_campaign_list_languages();
         $allowed_tags = $this->get_allowed_tags();
+        $sections = DT_Porch_Settings::sections( $this->tab );
 
         $site_colors = $this->get_site_colors();
 
@@ -188,141 +189,146 @@ class DT_Porch_Admin_Tab_Base {
             }
         }
         ?>
-        <form method="post" class="metabox-table">
-            <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
-            <!-- Box -->
-            <table class="widefat striped">
-                <thead>
-                <tr>
-                    <th style="width:20%">Home Page Details</th>
-                    <th style="width:50%"></th>
-                    <th style="width:30%"></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ( DT_Porch_Settings::settings( $this->settings_key ) as $key => $field ) :
-                        if ( isset( $field["enabled"] ) && $field["enabled"] === false ){
-                            continue;
-                        }
-                        if ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo esc_html( $field['label'] ); ?>
-                                </td>
-                                <td>
-                                    <?php if ( !empty( $field["default"] ) && isset( $field["translations"] ) ) {
-                                        echo '<h3>Default translated text:</h3>';
-                                        echo nl2br( esc_html( $field["default"] ) );
-                                        echo '<br><br>';
-                                    }
-                                    if ( isset( $field["translations"] ) ){
-                                        echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ) . '"> button to set a value for each language. Custom text for all languages: </p>';
-                                    }
-                                    ?>
-                                    <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"/>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <?php if ( isset( $field["translations"] ) ){
-                                        self::translation_cell( $langs, $key, $field );
-                                    } ?>
-                                </td>
-                            </tr>
-                        <?php elseif ( 'textarea' === $field['type'] ) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo esc_html( $field['label'] ); ?>
-                                </td>
-                                <td>
-                                    <?php if ( !empty( $field["default"] ) && isset( $field["translations"] ) ) {
-                                        echo '<h3>Default translated text:</h3>';
-                                        echo nl2br( esc_html( $field["default"] ) );
-                                        echo '<br><br>';
-                                    }
-                                    if ( isset( $field["translations"] ) ){
-                                        echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ) . '"> button to set a value for each language. Custom text for all languages:</p>';
-                                    } ?>
-                                    <textarea name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <?php if ( isset( $field["translations"] ) ){
-                                        self::translation_cell( $langs, $key, $field );
-                                    } ?>
-                                </td>
-                            </tr>
-                        <?php elseif ( 'prayer_timer_toggle' === $field['type'] ) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo esc_html( $field['label'] ); ?>
-                                </td>
-                                <td>
-                                    <select name="list[<?php echo esc_html( $key ); ?>]">
-                                    <?php if ( $field['value'] === 'yes' || ! isset( $field['value'] ) || empty( $field['value'] ) ) : ?>
-                                        <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
-                                        <option value="no"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
-                                    <?php else : ?>
-                                        <option value="yes"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
-                                        <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
-                                    <?php endif; ?>
-                                    </select>
-                                </td>
-                            </tr>
-                        <?php elseif ( 'default_language_select' === $field['type'] ) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo esc_html( $field['label'] ); ?>
-                                </td>
-                                <td>
-                                    <select name="list[<?php echo esc_html( $key ); ?>]">
-                                        <?php if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) : ?>
-                                            <?php
-                                                $default_translation_label = $langs[ $field['value'] ]['native_name'];
-                                            ?>
-                                            <option value="<?php echo esc_html( $field['value'] ); ?>" selected="selected"><?php echo esc_html( $default_translation_label ); ?></option>
-                                            <option disabled>-----</option>
-                                        <?php endif; ?>
-                                        <?php foreach ( $langs as $lang ) : ?>
-                                            <option value="<?php echo esc_attr( $lang['language'] ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </td>
-                            </tr>
-                        <?php elseif ( 'theme_select' === $field['type'] ) : ?>
-                            <tr>
-                                <td>
-                                    <?php echo esc_html( $field['label'] ); ?>
-                                </td>
-                                <td>
-                                    <select name="list[<?php echo esc_html( $key ); ?>]">
-                                        <?php
-                                        if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) {
-                                            ?>
-                                            <option value="<?php echo esc_attr( $field['value'] ) ?>"><?php echo esc_html( $site_colors[$field['value']] ) ?? ''?></option>
-                                            <option disabled>-----</option>
-                                            <?php
+        <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
+
+            <form method="post" class="metabox-table">
+                <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
+                <!-- Box -->
+                <table class="widefat striped">
+                    <thead>
+                    <tr>
+                        <th style="width:20%"><?php echo esc_html( $section === "" ? "Other" : $section ) ?> Content</th>
+                        <th style="width:50%"></th>
+                        <th style="width:30%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php foreach ( DT_Porch_Settings::settings( $this->tab, $section ) as $key => $field ) :
+                            if ( isset( $field["enabled"] ) && $field["enabled"] === false ){
+                                continue;
+                            }
+                            if ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['label'] ); ?>
+                                    </td>
+                                    <td>
+                                        <?php if ( !empty( $field["default"] ) && isset( $field["translations"] ) ) {
+                                            echo '<h3>Default translated text:</h3>';
+                                            echo nl2br( esc_html( $field["default"] ) );
+                                            echo '<br><br>';
                                         }
-                                        foreach ( $site_colors as $list_key => $list_label ) {
-                                            ?>
-                                            <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $list_label ) ?></option>
-                                            <?php
+                                        if ( isset( $field["translations"] ) ){
+                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ) . '"> button to set a value for each language. Custom text for all languages: </p>';
                                         }
                                         ?>
-                                    </select>
-                                </td>
-                                <td></td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                    <tr>
-                        <td colspan="2">
-                            <button class="button" type="submit">Update</button>
-                        </td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-        </form>
+                                        <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"/>
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        <?php if ( isset( $field["translations"] ) ){
+                                            self::translation_cell( $langs, $key, $field );
+                                        } ?>
+                                    </td>
+                                </tr>
+                            <?php elseif ( 'textarea' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['label'] ); ?>
+                                    </td>
+                                    <td>
+                                        <?php if ( !empty( $field["default"] ) && isset( $field["translations"] ) ) {
+                                            echo '<h3>Default translated text:</h3>';
+                                            echo nl2br( esc_html( $field["default"] ) );
+                                            echo '<br><br>';
+                                        }
+                                        if ( isset( $field["translations"] ) ){
+                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ) . '"> button to set a value for each language. Custom text for all languages:</p>';
+                                        } ?>
+                                        <textarea name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        <?php if ( isset( $field["translations"] ) ){
+                                            self::translation_cell( $langs, $key, $field );
+                                        } ?>
+                                    </td>
+                                </tr>
+                            <?php elseif ( 'prayer_timer_toggle' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['label'] ); ?>
+                                    </td>
+                                    <td>
+                                        <select name="list[<?php echo esc_html( $key ); ?>]">
+                                        <?php if ( $field['value'] === 'yes' || ! isset( $field['value'] ) || empty( $field['value'] ) ) : ?>
+                                            <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
+                                            <option value="no"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
+                                        <?php else : ?>
+                                            <option value="yes"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
+                                            <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
+                                        <?php endif; ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php elseif ( 'default_language_select' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['label'] ); ?>
+                                    </td>
+                                    <td>
+                                        <select name="list[<?php echo esc_html( $key ); ?>]">
+                                            <?php if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) : ?>
+                                                <?php
+                                                    $default_translation_label = $langs[ $field['value'] ]['native_name'];
+                                                ?>
+                                                <option value="<?php echo esc_html( $field['value'] ); ?>" selected="selected"><?php echo esc_html( $default_translation_label ); ?></option>
+                                                <option disabled>-----</option>
+                                            <?php endif; ?>
+                                            <?php foreach ( $langs as $lang ) : ?>
+                                                <option value="<?php echo esc_attr( $lang['language'] ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php elseif ( 'theme_select' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['label'] ); ?>
+                                    </td>
+                                    <td>
+                                        <select name="list[<?php echo esc_html( $key ); ?>]">
+                                            <?php
+                                            if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) {
+                                                ?>
+                                                <option value="<?php echo esc_attr( $field['value'] ) ?>"><?php echo esc_html( $site_colors[$field['value']] ) ?? ''?></option>
+                                                <option disabled>-----</option>
+                                                <?php
+                                            }
+                                            foreach ( $site_colors as $list_key => $list_label ) {
+                                                ?>
+                                                <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $list_label ) ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
 
+                        <tr>
+                            <td colspan="2">
+                                <button class="button" type="submit">Update</button>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </form>
+
+            <?php endforeach; ?>
         <?php
     }
 
@@ -335,7 +341,7 @@ class DT_Porch_Admin_Tab_Base {
     }
 
     private function get_new_settings( $post_list ) {
-        $new_settings = DT_Porch_Settings::settings( $this->settings_key );
+        $new_settings = DT_Porch_Settings::settings( $this->tab );
         $fields = DT_Porch_Settings::fields();
         $allowed_tags = $this->get_allowed_tags();
 
