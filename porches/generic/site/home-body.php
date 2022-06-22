@@ -41,7 +41,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
                 <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "goal" ) ) ); ?>
+                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "vision" ) ) ); ?>
                 </p>
                 </div>
             </div>

@@ -75,7 +75,7 @@ class DT_Generic_Porch_Settings {
             ],
             'vision' => [
                 'label' => 'Vision',
-                'default' => __( "We want to cover the country of %s with continuous 24/7 prayer.", 'dt-campaign-generic-porch' ),
+                'default' => __( "We want to cover these 30 days with continuous 24/7 prayer.", 'dt-campaign-generic-porch' ),
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
