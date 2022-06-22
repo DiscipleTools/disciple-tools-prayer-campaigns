@@ -177,7 +177,7 @@ class DT_Porch_Admin_Tab_Base {
 
             if ( isset( $_POST['list'] ) ) {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
-                $new_settings = $this->get_new_settings( $post_list );
+                $new_settings = $this->sanitize_settings( $post_list );
                 $new_translations = $this->get_new_translations( $_POST );
 
                 DT_Porch_Settings::update_translations( $new_translations );
@@ -340,8 +340,7 @@ class DT_Porch_Admin_Tab_Base {
         return $available_themes;
     }
 
-    private function get_new_settings( $post_list ) {
-        $new_settings = DT_Porch_Settings::settings( $this->tab );
+    private function sanitize_settings( $post_list ) {
         $fields = DT_Porch_Settings::fields();
         $allowed_tags = $this->get_allowed_tags();
 
@@ -352,11 +351,7 @@ class DT_Porch_Admin_Tab_Base {
             }
         }
 
-        foreach ( $post_list as $key => $value ) {
-            $new_settings[$key] = $value;
-        }
-
-        return $new_settings;
+        return $post_list;
     }
 
     private function get_new_translations( $post ) {
