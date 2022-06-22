@@ -91,7 +91,7 @@ function dt_campaign_set_translation( $lang ){
             }
             return $locale;
         }, 1000, 1 );
-        load_plugin_textdomain( 'dt-campaign-generic-porch', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'support/languages' );
+        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'support/languages' );
     }
 }
 

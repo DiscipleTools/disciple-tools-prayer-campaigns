@@ -130,9 +130,9 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
 
         $thank_you = "";
         if ( !empty( $porch_fields["people_name"]["value"] ) && !empty( $porch_fields["country_name"]["value"] ) ){
-            $thank_you = sprintf( _x( 'Thank you for joining us in prayer for the %1$s in %2$s.', 'Thank you for joining us in prayer for the French in France.', 'dt-campaign-generic-porch' ), $porch_fields["people_name"]["value"], $porch_fields["country_name"]["value"] );
+            $thank_you = sprintf( _x( 'Thank you for joining us in prayer for the %1$s in %2$s.', 'Thank you for joining us in prayer for the French in France.', 'disciple-tools-prayer-campaigns' ), $porch_fields["people_name"]["value"], $porch_fields["country_name"]["value"] );
         } else {
-            $thank_you = __( 'Thank you for praying with us!', 'dt-campaign-generic-porch' );
+            $thank_you = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
         }
         ?>
 
@@ -156,7 +156,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
             <section class="section" data-stellar-background-ratio="0.2" style="padding-bottom: 0; min-height: 800px">
                 <div class="container">
                     <div class="section-header" style="margin-bottom: 20px">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Campaign Stats', 'dt-campaign-generic-porch' ); ?></h2>
+                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Campaign Stats', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <div class="center" style="margin: 30px">
@@ -175,7 +175,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Prayer Commitments Needed', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( $total_number_of_time_slots ); ?>
                                         </p>
@@ -183,7 +183,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Percentage Covered', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Percentage Covered', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( $coverage_percent ); ?>%
                                         </p>
@@ -191,7 +191,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Prayer Commitments', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( $committed_time_slots ); ?>
                                         </p>
@@ -199,16 +199,16 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Time Committed', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Time Committed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
-                                            <?php echo esc_html( $total_mins_prayed / 60 ); ?> <?php esc_html_e( 'hours', 'dt-campaign-generic-porch' ); ?><br>
-                                            (<?php echo esc_html( round( $total_mins_prayed / 60 / 24, 2 ) ); ?> <?php esc_html_e( 'days', 'dt-campaign-generic-porch' ); ?>)
+                                            <?php echo esc_html( $total_mins_prayed / 60 ); ?> <?php esc_html_e( 'hours', 'disciple-tools-prayer-campaigns' ); ?><br>
+                                            (<?php echo esc_html( round( $total_mins_prayed / 60 / 24, 2 ) ); ?> <?php esc_html_e( 'days', 'disciple-tools-prayer-campaigns' ); ?>)
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Number of People who Prayed', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Number of People who Prayed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( $subscribers_count ); ?>
                                         </p>
@@ -219,7 +219,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                         <div class="col-sm-12 col-md-3">
                             <?php
                             if ( empty( $dt_ramadan_selected_campaign_magic_link_settings ) ) :?>
-                                <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'dt-campaign-generic-porch' ); ?></a></p>
+                                <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
                             <?php else :
                                 $dt_ramadan_selected_campaign_magic_link_settings["section"] = "calendar";
                                 echo dt_24hour_campaign_shortcode( //phpcs:ignore
@@ -236,13 +236,13 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
             <section class="section" data-stellar-background-ratio="0.2">
                 <div class="container">
                     <div class="section-header" style="padding-bottom: 40px;">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'dt-campaign-generic-porch' ); ?></h2>
+                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <form onSubmit="submit_feedback_form();return false;" id="form-content">
                         <p>
                             <label style="width: 100%">
-                                <?php esc_html_e( 'Email', 'dt-campaign-generic-porch' ); ?>
+                                <?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>
                                 <br>
                                 <input type="email" id="email" style="display: none">
                                 <input type="email" id="email-2" required style="width: 100%">
@@ -250,12 +250,12 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                         </p>
                         <p>
                             <label style="width: 100%">
-                                <?php esc_html_e( 'Share with us about your Ramadan prayer time (E.g. testimonies, insights, blessings, etc)', 'dt-campaign-generic-porch' ); ?>
+                                <?php esc_html_e( 'Share with us about your Ramadan prayer time (E.g. testimonies, insights, blessings, etc)', 'disciple-tools-prayer-campaigns' ); ?>
                                 <br>
                                 <textarea id="ramadan-stories" required rows="4" type="text" style="width: 100%"></textarea>
                             </label>
                             <button id="stories-submit-button" class="btn btn-common" style="font-weight: bold">
-                                <?php esc_html_e( 'Submit', 'dt-campaign-generic-porch' ); ?>
+                                <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
                                 <img id="stories-submit-spinner" style="display: none; margin-left: 10px" src="<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg" width="22px;" alt="spinner "/>
                             </button>
                         </p>
@@ -303,14 +303,14 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                     <section class="section" data-stellar-background-ratio="0.2" style="padding-top: 0;">
                         <div class="container">
                             <div class="section-header" style="padding-bottom: 40px;">
-                                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Global Ramadan Prayer Campaigns Stats', 'dt-campaign-generic-porch' ); ?></h2>
+                                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Global Ramadan Prayer Campaigns Stats', 'disciple-tools-prayer-campaigns' ); ?></h2>
                                 <p class="center" style="color: black">See <a target="_blank" href="https://pray4movement.org/ramadan/"> https://pray4movement.org/ramadan/</a> for more.</p>
                                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Number of Prayer Campaigns', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Number of Prayer Campaigns', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( $p4m_stats["campaigns"] ?? "" ); ?>
                                         </p>
@@ -318,7 +318,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Countries Prayed For', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Countries Prayed For', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( $p4m_stats["countries_prayed_for"] ?? "" ); ?>
                                         </p>
@@ -326,7 +326,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Number of People who Prayed', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Number of People who Prayed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( number_format( $p4m_stats["prayers_count"] ?? "" ) ); ?>
                                         </p>
@@ -334,7 +334,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Time Prayed', 'dt-campaign-generic-porch' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Time Prayed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php if ( !empty( $years_committed ) ) :
                                                 echo esc_html( $years_committed . " year" . ( $years_committed > 1 ? 's' : '' ) );
@@ -353,11 +353,11 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
             <section class="section" data-stellar-background-ratio="0.2" style="padding-top: 0;">
                 <div class="container">
                     <div class="section-header" style="padding-bottom: 40px;">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'More Prayer Opportunities', 'dt-campaign-generic-porch' ); ?></h2>
+                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'More Prayer Opportunities', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
 
-                    <p class="center"><?php esc_html_e( 'Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?', 'dt-campaign-generic-porch' ); ?></p>
+                    <p class="center"><?php esc_html_e( 'Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?', 'disciple-tools-prayer-campaigns' ); ?></p>
                     <!-- Begin Mailchimp Signup Form -->
                     <?php // phpcs:ignore ?>
                     <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">

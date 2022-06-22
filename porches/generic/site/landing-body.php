@@ -139,7 +139,7 @@ if ( empty( $list->posts ) ){
                             <p>
                                 <?php echo wp_kses_post( $item->post_excerpt ) ?>
                             </p>
-                            <a href="/prayer/fuel/<?php echo esc_attr( $public_key ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'dt-campaign-generic-porch' ); ?></a>
+                            <a href="/prayer/fuel/<?php echo esc_attr( $public_key ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
                         </div>
                     </div>
                     <!-- Blog Item Wrapper Ends-->

@@ -57,7 +57,7 @@ class DT_Generic_Porch_Settings {
             ],
             'vision_title_plain' => [
                 'label' => 'Vision Title (uncolored part)',
-                'default' => __( "Our", 'dt-campaign-generic-porch' ),
+                'default' => __( "Our", 'disciple-tools-prayer-campaigns' ),
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
@@ -66,7 +66,7 @@ class DT_Generic_Porch_Settings {
             ],
             'vision_title_colored' => [
                 'label' => 'Vision Title (colored part)',
-                'default' => __( "Vision", 'dt-campaign-generic-porch' ),
+                'default' => __( "Vision", 'disciple-tools-prayer-campaigns' ),
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
@@ -75,7 +75,7 @@ class DT_Generic_Porch_Settings {
             ],
             'vision' => [
                 'label' => 'Vision',
-                'default' => __( "We want to cover these 30 days with continuous 24/7 prayer.", 'dt-campaign-generic-porch' ),
+                'default' => __( "We want to cover these 30 days with continuous 24/7 prayer.", 'disciple-tools-prayer-campaigns' ),
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
@@ -84,7 +84,7 @@ class DT_Generic_Porch_Settings {
             ],
             'pray_section_title' => [
                 'label' => 'Prayer section Title',
-                'default' => __( 'Extraordinary Prayer', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Extraordinary Prayer', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -93,7 +93,7 @@ class DT_Generic_Porch_Settings {
             ],
             'pray_section_text' => [
                 'label' => 'Prayer section Text',
-                'default' => __( 'Every disciple making movement in history has happened in the context of extraordinary prayer.', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Every disciple making movement in history has happened in the context of extraordinary prayer.', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -102,7 +102,7 @@ class DT_Generic_Porch_Settings {
             ],
             'movement_section_title' => [
                 'label' => 'Movement section Title',
-                'default' => __( 'Movement Focused', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Movement Focused', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -111,7 +111,7 @@ class DT_Generic_Porch_Settings {
             ],
             'movement_section_text' => [
                 'label' => 'Movement section Text',
-                'default' => __( 'Join us in asking, seeking, and knocking for streams of disciples and churches to be made.', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Join us in asking, seeking, and knocking for streams of disciples and churches to be made.', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -120,7 +120,7 @@ class DT_Generic_Porch_Settings {
             ],
             'time_section_title' => [
                 'label' => 'Time section Title',
-                'default' => __( '24/7 for 30 Days', 'dt-campaign-generic-porch' ),
+                'default' => __( '24/7 for 30 Days', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -129,7 +129,7 @@ class DT_Generic_Porch_Settings {
             ],
             'time_section_text' => [
                 'label' => 'Time section Text',
-                'default' => __( 'Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too.', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too.', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -146,7 +146,7 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_name' => [
                 'label' => 'Prayer Fuel Name',
-                'default' => __( 'Prayer Fuel', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -155,7 +155,7 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_title_plain' => [
                 'label' => 'Prayer Fuel Title (uncolored part)',
-                'default' => __( '15-Minute', 'dt-campaign-generic-porch' ),
+                'default' => __( '15-Minute', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -164,7 +164,7 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_title_colored' => [
                 'label' => 'Prayer Fuel Title (colored part)',
-                'default' => __( 'Prayer Fuel', 'dt-campaign-generic-porch' ),
+                'default' => __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -181,7 +181,7 @@ class DT_Generic_Porch_Settings {
             ],
             'todays_fuel_title' => [
                 'label' => 'Todays Prayer Fuel Title',
-                'default' => __( "Today's Prayer Fuel", 'dt-campaign-generic-porch' ),
+                'default' => __( "Today's Prayer Fuel", 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -190,7 +190,7 @@ class DT_Generic_Porch_Settings {
             ],
             'all_fuel_title' => [
                 'label' => 'All Prayer Fuel Title',
-                'default' => __( "All Days", 'dt-campaign-generic-porch' ),
+                'default' => __( "All Days", 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],

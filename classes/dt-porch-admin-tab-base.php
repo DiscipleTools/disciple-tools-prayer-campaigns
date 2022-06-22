@@ -261,11 +261,11 @@ class DT_Porch_Admin_Tab_Base {
                                     <td>
                                         <select name="list[<?php echo esc_html( $key ); ?>]">
                                         <?php if ( $field['value'] === 'yes' || ! isset( $field['value'] ) || empty( $field['value'] ) ) : ?>
-                                            <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
-                                            <option value="no"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
+                                            <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
+                                            <option value="no"><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
                                         <?php else : ?>
-                                            <option value="yes"><?php echo esc_html( __( 'Yes', 'dt-campaign-generic-porch' ) ); ?></option>
-                                            <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'dt-campaign-generic-porch' ) ); ?></option>
+                                            <option value="yes"><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
+                                            <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
                                         <?php endif; ?>
                                         </select>
                                     </td>
