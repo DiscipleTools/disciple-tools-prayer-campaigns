@@ -144,6 +144,15 @@ class DT_Generic_Porch_Settings {
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::WHAT,
             ],
+            'prayer_fuel_name' => [
+                'label' => 'Prayer Fuel Name',
+                'default' => __( 'Prayer Fuel', 'dt-campaign-generic-porch' ),
+                'value' => '',
+                'type' => 'text',
+                'translations' => [],
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
             'prayer_fuel_title_plain' => [
                 'label' => 'Prayer Fuel Title (uncolored part)',
                 'default' => __( '15-Minute', 'dt-campaign-generic-porch' ),
@@ -210,9 +219,9 @@ class DT_Generic_Porch_Settings {
  * Replacement for proper enum types in pre PHP8
  */
 class DT_Generic_Porch_Translation_Sections {
-    public const HERO = "Hero";
-    public const VISION = "Vision";
-    public const THREE = "Three Sections";
-    public const WHAT = "What";
-    public const FUEL = "Prayer Fuel";
+    const HERO = "Hero";
+    const VISION = "Vision";
+    const THREE = "Three Sections";
+    const WHAT = "What";
+    const FUEL = "Prayer Fuel";
 }

@@ -1,7 +1,5 @@
 <?php
 
-/* TODO: (make more DRY) we can refactor this to use dt_campaign_get_current_lang
-and just set the cookie in this bit of code */
 $lang = dt_campaign_get_current_lang();
 dt_campaign_add_lang_to_cookie( $lang );
 dt_campaign_set_translation( $lang );
@@ -23,7 +21,7 @@ $langs = dt_campaign_list_languages();
                     <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>#sign-up"><?php esc_html_e( 'Sign Up', 'dt-campaign-generic-porch' ); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php esc_html_e( 'Prayer Fuel', 'dt-campaign-generic-porch' ); ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
                 </li>
             </ul>
         </div>
