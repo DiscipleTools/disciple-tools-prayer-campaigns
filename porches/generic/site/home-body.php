@@ -36,7 +36,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         <div class="section-header row">
             <div class="col-sm-12 col-md-8">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                    <?php esc_html_e( 'Our', 'dt-campaign-generic-porch' ); ?> <span><?php esc_html_e( 'Vision', 'dt-campaign-generic-porch' ); ?></span>
+                    <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'vision_title_plain' ) ) ?> <span><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'vision_title_colored' ) ) ?></span>
                 </h2>
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
@@ -60,8 +60,8 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                     <div class="icon">
                         <img class="color-img" style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/pray.svg' ) ?>" alt="Praying hands icon"/>
                     </div>
-                    <h4><?php esc_html_e( 'Extraordinary Prayer', 'dt-campaign-generic-porch' ); ?></h4>
-                    <p><?php esc_html_e( 'Every disciple making movement in history has happened in the context of extraordinary prayer.', 'dt-campaign-generic-porch' ); ?></p>
+                    <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_title' ) ) ?></h4>
+                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_text' ) ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -69,8 +69,8 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                     <div class="icon">
                         <img class="color-img" style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/movement.svg' ) ?>" alt="a network icon indicating movement"/>
                     </div>
-                    <h4><?php esc_html_e( 'Movement Focused', 'dt-campaign-generic-porch' ); ?></h4>
-                    <p><?php esc_html_e( 'Join us in asking, seeking, and knocking for streams of disciples and churches to be made.', 'dt-campaign-generic-porch' ); ?></p>
+                    <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_title' ) ) ?></h4>
+                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_text' ) ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -78,9 +78,8 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                     <div class="icon">
                         <img class="color-img" style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/24_7.svg' ) ?>" alt="clock icon"/>
                     </div>
-                    <!-- Should this time slot be dynamic based on the amount of time that they have scheduled their prayer to have? -->
-                    <h4><?php esc_html_e( '24/7 for 30 Days', 'dt-campaign-generic-porch' ); ?></h4>
-                    <p><?php esc_html_e( 'Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too.', 'dt-campaign-generic-porch' ); ?></p>
+                    <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_title' ) ) ?></h4>
+                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_text' ) ) ?></p>
                 </div>
             </div>
         </div>
@@ -262,7 +261,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
     <!-- Container Starts -->
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( '15-Minute', 'dt-campaign-generic-porch' ); ?> <span><?php esc_html_e( 'Prayer Fuel', 'dt-campaign-generic-porch' ); ?></span></h2>
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title_plain' ) ) ?> <span><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title_colored' ) ) ?></span></h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( "prayer_fuel_description" ) ); ?></p>
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><a href="/prayer/list" class="btn btn-common btn-rm"><?php esc_html_e( 'View All', 'dt-campaign-generic-porch' ); ?></a></p>
