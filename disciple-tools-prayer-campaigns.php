@@ -70,6 +70,9 @@ require_once( 'campaign-functions/setup-functions.php' );
  */
 class DT_Prayer_Campaigns {
 
+    public $plugin_dir_path = null;
+    public $plugin_dir_url = null;
+
     private static $instance = null;
     public static function instance() {
         if ( is_null( self::$instance ) ) {
@@ -83,6 +86,8 @@ class DT_Prayer_Campaigns {
     private $selected_porch_id;
 
     private function __construct() {
+        $this->plugin_dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
+        $this->plugin_dir_url = trailingslashit( plugin_dir_url( __FILE__ ) );
 
         require_once( 'campaign-functions/utils.php' );
         require_once( 'campaign-functions/time-utilities.php' );
@@ -99,6 +104,7 @@ class DT_Prayer_Campaigns {
 
         require_once( 'magic-links/24hour/24hour.php' );
         require_once( 'magic-links/ongoing/ongoing.php' );
+        require_once( 'magic-links/subscription-management/subscription-management.php' );
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
 
         if ( is_admin() ) {

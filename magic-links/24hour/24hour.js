@@ -1,13 +1,9 @@
 "use strict";
 
-let time_slot_coverage = {}
 let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
 let selected_times = [];
 
 let calendar_subscribe_object = {
-  number_of_time_slots: 0,
-  coverage_levels: [],
-  description: "",
   coverage_percentage: 0,
   second_level: 0,
   start_timestamp: 0,
@@ -54,17 +50,6 @@ jQuery(document).ready(function($) {
     calendar_subscribe_object.end_timestamp -= 1;
     let days = window.campaign_scripts.calculate_day_times()
 
-    //display description from remote
-    $('#campaign-description').text(calendar_subscribe_object.description)
-    //show coverage level
-    // if ( calendar_subscribe_object.coverage_levels[0].blocks_covered === calendar_subscribe_object.number_of_time_slots){
-    //     $('#coverage-level').text(calendar_subscribe_object.translations.going_for_twice.replace('%1$s', calendar_subscribe_object.number_of_time_slots));
-    // } else {
-    //   let ppl_needed =  (60*24) / calendar_subscribe_object.slot_length;
-    //   //&#128100
-    //   $('#coverage-level').html(calendar_subscribe_object.translations.invitation.replace('%1$s', `<strong>${ppl_needed}</strong>`).replace('%2$s', `<strong>${window.lodash.escape(calendar_subscribe_object.slot_length)}</strong>`));
-    // }
-
     //main progress circle
     $('#main-progress').html(`
       <progress-ring stroke="10" radius="80" font="18"
@@ -91,8 +76,9 @@ jQuery(document).ready(function($) {
 
       //configure the view to go back to
       let back_to = $(this).data('back-to');
-      if ( back_to )
-      $(`#${view_to_open} .cp-close-button`).data('open', back_to)
+      if ( back_to ) {
+        $(`#${view_to_open} .cp-close-button`).data('open', back_to)
+      }
     })
 
     // let set_campaign_date_range_title = function (){
@@ -103,13 +89,7 @@ jQuery(document).ready(function($) {
     // }
     // set_campaign_date_range_title()
 
-    function days_for_locale(localeName = 'en-US', weekday = 'long') {
-      let now = new Date()
-      const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
-      return [...Array(7).keys()]
-        .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * 86400000 ));
-    }
-    let week_day_names = days_for_locale(navigator.language, 'narrow')
+    let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
     let headers = `
       <div class="day-cell week-day">${week_day_names[0]}</div>
       <div class="day-cell week-day">${week_day_names[1]}</div>

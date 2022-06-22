@@ -56,12 +56,6 @@ require_once 'campaigns.php';
 DT_Campaigns_Base::instance();
 
 /**
- * Subscription Management Magic Link
- */
-require_once plugin_dir_path( __DIR__ ) . '/magic-links/subscription-management.php';
-new DT_Prayer_Subscription_Management_Magic_Link();
-
-/**
  * 247 Prayer Campaign type module
  */
 require_once 'module-campaigns-24hour-prayer.php';

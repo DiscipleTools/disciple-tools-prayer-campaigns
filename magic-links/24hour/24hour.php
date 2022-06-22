@@ -7,7 +7,7 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
     public $module = "campaigns_24hour_prayer";
     public $post_type = 'campaigns';
-    public $page_title = "Sign up to pray";
+    public $page_title = "24 Hour Coverage";
 
     public $magic = false;
     public $parts = false;
