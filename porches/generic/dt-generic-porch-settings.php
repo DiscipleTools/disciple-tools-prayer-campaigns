@@ -55,18 +55,9 @@ class DT_Generic_Porch_Settings {
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::HERO,
             ],
-            'vision_title_plain' => [
-                'label' => 'Vision Title (uncolored part)',
-                'default' => __( "Our", 'disciple-tools-prayer-campaigns' ),
-                'value' => "",
-                'type' => 'text',
-                'translations' => [],
-                'tab' => 'translations',
-                'section' => DT_Generic_Porch_Translation_Sections::VISION,
-            ],
-            'vision_title_colored' => [
-                'label' => 'Vision Title (colored part)',
-                'default' => __( "Vision", 'disciple-tools-prayer-campaigns' ),
+            'vision_title' => [
+                'label' => 'Vision Title',
+                'default' => __( "Our Vision", 'disciple-tools-prayer-campaigns' ),
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
@@ -153,18 +144,9 @@ class DT_Generic_Porch_Settings {
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::FUEL,
             ],
-            'prayer_fuel_title_plain' => [
-                'label' => 'Prayer Fuel Title (uncolored part)',
-                'default' => __( '15-Minute', 'disciple-tools-prayer-campaigns' ),
-                'value' => '',
-                'type' => 'text',
-                'translations' => [],
-                'tab' => 'translations',
-                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
-            ],
-            'prayer_fuel_title_colored' => [
-                'label' => 'Prayer Fuel Title (colored part)',
-                'default' => __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+            'prayer_fuel_title' => [
+                'label' => 'Prayer Fuel Title',
+                'default' => __( '15-Minute Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],

@@ -150,7 +150,7 @@ class DT_Porch_Settings {
         return $sections;
     }
 
-    public static function get_field_translation( $field_name, $code = '' ) {
+    public static function get_field_translation( string $field_name, string $code = '' ) {
         if ( !$code ) {
             $code = dt_campaign_get_current_lang();
         }

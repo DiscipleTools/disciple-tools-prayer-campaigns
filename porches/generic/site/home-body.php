@@ -36,7 +36,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         <div class="section-header row">
             <div class="col-sm-12 col-md-8">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                    <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'vision_title_plain' ) ) ?> <span><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'vision_title_colored' ) ) ?></span>
+                    <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'vision_title' ) ) ?>
                 </h2>
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
@@ -261,7 +261,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
     <!-- Container Starts -->
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title_plain' ) ) ?> <span><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title_colored' ) ) ?></span></h2>
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title' ) ) ?> </h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( "prayer_fuel_description" ) ); ?></p>
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><a href="/prayer/list" class="btn btn-common btn-rm"><?php esc_html_e( 'View All', 'disciple-tools-prayer-campaigns' ); ?></a></p>
