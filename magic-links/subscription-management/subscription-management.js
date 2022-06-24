@@ -104,16 +104,17 @@ jQuery(document).ready(function($){
 
 
   function calculate_my_time_slot_coverage(){
-    console.log(calendar_subscribe_object.my_recurring);
     let html = ``
+    let in_three_months_in_seconds = now + 3600 * 24 * 90;
+    let label = window.campaign_scripts.timestamp_to_format( in_three_months_in_seconds, { year:"numeric", month: "long", day: "numeric" }, current_time_zone )
     for ( const time in calendar_subscribe_object.my_recurring ){
-      console.log(time);
       if ( calendar_subscribe_object.my_recurring[time].count > 1 ){
         html += `<tr>
           <td>${time}</td>
           <td>${calendar_subscribe_object.my_recurring[time].count}</td>
           <td><button class="button change-time-bulk" data-key="${time}">Change start time</button></td>
           <td><button class="button outline delete-time-bulk" data-key="${time}">x</button></td>
+          <td><button class="button outline" data-key="${time}">Extend till ${label}</button></td>
           </tr>
         `
       }

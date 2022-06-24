@@ -469,8 +469,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <th>Count</th>
                         <th>Change start on all prayer times</th>
                         <th>Delete prayer times</th>
+                        <th>Extend Time</th>
                     </tr>
-
                 </thead>
                 <tbody id="recurring_time_slots">
 
