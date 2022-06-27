@@ -4,7 +4,7 @@ $allowed_tags['script'] = array(
     'async' => array(),
     'src' => array()
 );
-$porch_fields = DT_Porch_Settings::porch_fields();
+$porch_fields = DT_Porch_Settings::settings();
 ?>
 
 <!-- Required meta tags -->

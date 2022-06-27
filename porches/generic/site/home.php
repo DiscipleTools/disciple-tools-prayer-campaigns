@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class P4_Ramadan_Porch_Home_5 extends DT_Magic_Url_Base
+class DT_Campaign_Porch_Home extends DT_Magic_Url_Base
 {
     public $magic = false;
     public $parts = false;
@@ -64,7 +64,7 @@ class P4_Ramadan_Porch_Home_5 extends DT_Magic_Url_Base
     }
 
     public function dt_custom_dir_attr( $lang ){
-        return ramadan_custom_dir_attr( $lang );
+        return dt_campaign_custom_dir_attr( $lang );
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -96,7 +96,6 @@ class P4_Ramadan_Porch_Home_5 extends DT_Magic_Url_Base
     public function body(){
         require_once( 'top-section.php' );
         require_once( 'home-body.php' );
-//        require_once( 'temp-body.php' );
     }
 }
-P4_Ramadan_Porch_Home_5::instance();
+DT_Campaign_Porch_Home::instance();
