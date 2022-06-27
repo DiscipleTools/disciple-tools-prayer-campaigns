@@ -93,3 +93,30 @@ function dt_campaign_add_lang_to_cookie( string $lang ) {
         setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
     }
 }
+
+function blah() {
+
+}
+
+/**
+ * Split a sentence of $words into $parts and return the $part that you want.
+ *
+ * @param string $words The sentence or string of words
+ * @param int $part The part of the split sentence to be returned
+ * @param int $parts How many parts to split the sentence into
+ *
+ * @return string
+ */
+function dt_split_sentence( string $words, int $part, int $parts ) {
+    $seperator = ' ';
+    $split_words = explode( $seperator, $words );
+
+    /* split the array into two halves with the smaller half last */
+    $part_length = floor( count( $split_words ) / $parts );
+
+    if ( $part === $parts ) {
+        return implode( $seperator, array_slice( $split_words, ( $part - 1 ) * $part_length ) );
+    } else {
+        return implode( $seperator, array_slice( $split_words, ( $part - 1 ) * $part_length, $part_length ) );
+    }
+}
