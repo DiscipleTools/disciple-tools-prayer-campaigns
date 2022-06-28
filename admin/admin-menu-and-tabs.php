@@ -84,6 +84,7 @@ class DT_Prayer_Campaigns_Menu {
                 $this->campaigns->process_email_settings();
                 $this->campaigns->process_porch_settings();
                 $this->campaigns->process_language_settings();
+                $this->campaigns->process_new_language();
                 break;
             default:
                 break;

@@ -41,6 +41,18 @@ class DT_Campaign_Languages {
         return $languages;
     }
 
+    public function add_from_code( $code ) {
+        $available_languages = $this->language_list();
+
+        if ( !array_key_exists( $code, $available_languages ) ) {
+            return;
+        }
+
+        $new_language = $available_languages[$code];
+
+        $this->add( $new_language["english_name"], $new_language["language"], $new_language["native_name"], $new_language["flag"] );
+    }
+
     /**
      * Get the available languages
     */
@@ -140,7 +152,7 @@ class DT_Campaign_Languages {
         array_unshift( $available_language_codes, $this->default_language );
 
         $available_languages = [];
-        $language_info = $this->language_info();
+        $language_info = $this->language_list();
         foreach ( $available_language_codes as $code ) {
             $code = str_replace( "disciple-tools-prayer-campaigns-", "", $code );
             if ( isset( $language_info[$code] ) ) {
@@ -223,7 +235,12 @@ class DT_Campaign_Languages {
         return $languages;
     }
 
-    private function language_info() {
+    /**
+     * The master list of ready made languages
+     *
+     * @return array
+     */
+    public function language_list() {
         return [
                 'en_US' => [
                     'language' => 'en_US',

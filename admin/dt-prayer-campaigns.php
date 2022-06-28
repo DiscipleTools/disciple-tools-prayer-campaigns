@@ -95,6 +95,17 @@ class DT_Prayer_Campaigns_Campaigns {
         }
     }
 
+    /**
+     * Process changes to the language settings
+     */
+    public function process_new_language() {
+        if ( isset( $_POST['add_language_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['add_language_nonce'] ) ), 'add_language' ) ) {
+            if ( isset( $_POST['add_language'] ) ) {
+                $this->languages_manager->add_from_code( $this->sanitized_post_field( $_POST, 'new_language' ) );
+            }
+        }
+    }
+
     private function sanitized_post_field( $post, $key ) {
         return sanitize_text_field( wp_unslash( $post[$key] ) );
     }
@@ -252,7 +263,7 @@ class DT_Prayer_Campaigns_Campaigns {
                 <tr>
                     <td>
                         <form method="POST">
-                    z        <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
+                            <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'language_settings' ) ) ?>"/>
 
                             <table class="widefat">
@@ -301,11 +312,29 @@ class DT_Prayer_Campaigns_Campaigns {
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="add_language_nonce" id="add_language_nonce"
+                                    value="<?php echo esc_attr( wp_create_nonce( 'add_language' ) ) ?>"/>
 
-                            <br>
-                            <span style="float:right;">
-                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
-                            </span>
+                            <?php $language_list = $this->languages_manager->language_list() ?>
+
+                            <select name="new_language" id="language_list">
+
+                            <?php foreach ( $language_list as $code => $language ): ?>
+
+                                <option value="<?php echo esc_html( $code ) ?>"><?php echo esc_html( $language["flag"] . " " . $language["english_name"] ) ?></option>
+
+                            <?php endforeach; ?>
+
+                            </select>
+                            <button name="add_language">
+                                Add language
+                            </button>
                         </form>
                     </td>
                 </tr>
