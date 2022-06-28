@@ -5,9 +5,11 @@
 class DT_Prayer_Campaigns_Campaigns {
 
     private $settings_manager;
+    private $languages_manager;
 
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
+        $this->languages_manager = new DT_Campaign_Languages();
     }
 
     private function default_email_address(): string {
@@ -59,9 +61,6 @@ class DT_Prayer_Campaigns_Campaigns {
 
     /**
      * Process changes to the porch settings
-     *
-     * ? Do we delete the porch settings if they deselect a porch? or save them to be restored later?
-     * ? or does it even matter?
      */
     public function process_porch_settings() {
         if ( isset( $_POST['campaign_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['campaign_settings_nonce'] ) ), 'campaign_settings' ) ) {
@@ -74,6 +73,30 @@ class DT_Prayer_Campaigns_Campaigns {
                 DT_Prayer_Campaigns::instance()->set_selected_porch_id( $selected_porch );
             }
         }
+    }
+
+    /**
+     * Process changes to the language settings
+     */
+    public function process_language_settings() {
+        if ( isset( $_POST['language_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['language_settings_nonce'] ) ), 'language_settings' ) ) {
+
+            if ( isset( $_POST['language_settings_disable'] ) ) {
+                $this->languages_manager->disable( $this->sanitized_post_field( $_POST, 'language_settings_disable' ) );
+            }
+
+            if ( isset( $_POST['language_settings_enable'] ) ) {
+                $this->languages_manager->enable( $this->sanitized_post_field( $_POST, 'language_settings_enable' ) );
+            }
+
+            if ( isset( $_POST['language_settings_remove'] ) ) {
+                $this->languages_manager->remove( $this->sanitized_post_field( $_POST, 'language_settings_remove' ) );
+            }
+        }
+    }
+
+    private function sanitized_post_field( $post, $key ) {
+        return sanitize_text_field( wp_unslash( $post[$key] ) );
     }
 
     public function content() {
@@ -214,6 +237,80 @@ class DT_Prayer_Campaigns_Campaigns {
             </tbody>
         </table>
         <br>
+
+        <?php
+            $languages = $this->languages_manager->get();
+        ?>
+
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th>Language Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form method="POST">
+                    z        <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
+                                    value="<?php echo esc_attr( wp_create_nonce( 'language_settings' ) ) ?>"/>
+
+                            <table class="widefat">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Flag</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ( $languages as $code => $language ): ?>
+
+                                        <tr>
+                                            <td><?php echo esc_html( $language["english_name"] ) ?></td>
+                                            <td><?php echo esc_html( $code ) ?></td>
+                                            <td><?php echo esc_html( $language["flag"] ) ?></td>
+                                            <td>
+
+                                                <?php if ( isset( $language["enabled"] ) && $language["enabled"] === true ): ?>
+
+                                                <button name="language_settings_disable" value="<?php echo esc_html( $code ) ?>">
+                                                    Disable
+                                                </button>
+
+                                                <?php else : ?>
+
+                                                <button name="language_settings_enable" value="<?php echo esc_html( $code ) ?>">
+                                                    Enable
+                                                </button>
+
+                                                <?php endif; ?>
+
+                                                <?php if ( !isset( $language["default"] ) || $language["default"] !== true ): ?>
+
+                                                <button name="language_settings_remove" value="<?php echo esc_html( $code ) ?>">
+                                                    Remove
+                                                </button>
+
+                                                <?php endif; ?>
+
+                                            </td>
+                                        </tr>
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+
+                            <br>
+                            <span style="float:right;">
+                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
+                            </span>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <?php
     }
