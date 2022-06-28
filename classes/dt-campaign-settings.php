@@ -40,7 +40,7 @@ class DT_Campaign_Settings {
 
     public static function get_campaign() {
 
-        $selected_campaign = get_option( 'pray4ramadan_selected_campaign', false );
+        $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
 
         if ( empty( $selected_campaign ) ) {
             return [];

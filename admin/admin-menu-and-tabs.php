@@ -34,7 +34,11 @@ class DT_Prayer_Campaigns_Menu {
      * @since   0.1.0
      */
     public function __construct() {
+        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-home.php';
+        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
+
         add_action( "admin_menu", array( $this, "register_menu" ) );
+        add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );
 
         $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
     }
@@ -45,6 +49,10 @@ class DT_Prayer_Campaigns_Menu {
      */
     public function register_menu() {
         add_submenu_page( 'dt_extensions', 'Prayer Campaigns', 'Prayer Campaigns', 'manage_dt', $this->token, [ $this, 'content' ] );
+    }
+
+    public function enqueue_scripts() {
+        wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery' ], filemtime( __DIR__ . '/admin.js' ), true );
     }
 
     /**
@@ -84,6 +92,10 @@ class DT_Prayer_Campaigns_Menu {
         if ( $this->has_selected_porch() ) {
             $porch = DT_Prayer_Campaigns::instance()->get_selected_porch_loader();
             $porch_admin = $porch->load_admin();
+            $porch_dir = $porch_admin->get_porch_dir();
+
+            $home_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
+            $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
         }
 
         ?>
@@ -96,11 +108,18 @@ class DT_Prayer_Campaigns_Menu {
                     Campaigns
                 </a>
 
-                <?php
-                if ( $this->has_selected_porch() ) {
-                    $porch_admin->tab_headers( $link );
-                }
-                ?>
+                <?php if ( $this->has_selected_porch() ) : ?>
+
+                    <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $home_tab->title ) ?>
+                    </a>
+                    <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $translations_tab->title ) ?>
+                    </a>
+
+                    <?php $porch_admin->tab_headers( $link ); ?>
+
+                <?php endif; ?>
             </h2>
 
             <?php
@@ -113,6 +132,17 @@ class DT_Prayer_Campaigns_Menu {
             }
 
             if ( $this->has_selected_porch() ) {
+                switch ( $tab ) {
+                    case $home_tab->key:
+                        $home_tab->content();
+                        break;
+                    case $translations_tab->key:
+                        $translations_tab->content();
+                        break;
+                    default:
+                        break;
+                }
+
                 $porch_admin->tab_content();
             }
             ?>

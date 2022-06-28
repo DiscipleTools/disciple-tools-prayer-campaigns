@@ -6,179 +6,254 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Settings {
 
-    public function __construct() {}
+    private static $values_option = 'dt_campaign_porch_settings';
+    private static $translations_option = 'dt_campaign_porch_translations';
 
-    public static function porch_fields() {
-        $defaults = [
-            'theme_color' => [
-                'label' => 'Theme Color',
-                'value' => 'preset',
-                'type' => 'theme_select',
-            ],
-            'custom_theme_color' => [
-                'label' => 'Custom Theme Color',
-                'value' => '',
-                'type' => 'text'
-            ],
-            'country_name' => [
-                'label' => 'Location Name',
-                'value' => '',
-                'type' => 'text',
-                'translations' => [],
-            ],
-            'people_name' => [
-                'label' => 'People Name',
-                'value' => '',
-                'type' => 'text',
-                'translations' => [],
-            ],
-            'title' => [
-                'label' => 'Campaign/Site Title',
-                'value' => get_bloginfo( 'name' ),
-                'type' => 'text',
-                'translations' => [],
-            ],
-            'logo_url' => [
-                'label' => 'Logo Image URL',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'logo_link_url' => [
-                'label' => 'Logo Link to URL',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'header_background_url' => [
-                'label' => 'Header Background URL',
-                'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
-                'type' => 'text',
-            ],
-            'what_image' => [
-                'label' => 'What is Ramadan Image',
-                'value' => '',
-                'type' => 'text',
-                'enabled' => false
-            ],
-            'show_prayer_timer' => [
-                'label' => 'Show Prayer Timer',
-                'default' => 'Yes',
-                'value' => 'yes',
-                'type' => 'prayer_timer_toggle',
-            ],
-            "email" => [
-                "label" => "Address to send sign-up and notification emails from",
-                "value" => "no-reply@" . parse_url( home_url() )["host"],
-                'type' => 'text'
-            ],
-            'facebook' => [
-                'label' => 'Facebook Url',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'instagram' => [
-                'label' => 'Instagram Url',
-                'value' => '',
-                'type' => 'text',
-            ],
-            'twitter' => [
-                'label' => 'Twitter Url',
-                'value' => '',
-                'type' => 'text',
-            ],
+    /**
+     * Get all of the settings for the porch
+     *
+     * @param string $tab The name of the tab that we want the settings for
+     * @param string $section The name of the section we want the settings for
+     */
+    public static function settings( string $tab = null, string $section = null ): array {
+        $defaults = self::fields();
 
-            'what_content' => [
-                'label' => 'What is Ramadan Content',
-                'default' =>__( 'Ramadan is one of the five requirements (or pillars) of Islam. During each of its 30 days, Muslims are obligated to fast from dawn until sunset. During this time they are supposed to abstain from food, drinking liquids, smoking, and sexual relations.
-
- In %1$s, women typically spend the afternoons preparing a big meal. At sunset, families often gather to break the fast. Traditionally the families break the fast with a drink of water, then three dried date fruits, and a multi-course meal. After watching the new Ramadan TV series, men (and some women) go out to coffee shops where they drink coffee, and smoke with friends until late into the night.
-
- Though many %2$s have stopped fasting in recent years, and lots of %2$s are turned off by the hypocrisy, increased crime rates, and rudeness that is pervasive through the month, lots of %2$s become more serious about religion during this time. Many attend the evening prayer services and do the other ritual prayers. Some even read the entire Quran (about a tenth the length of the Bible). This sincere seeking makes it a strategic time for us to pray for them.', 'pray4ramadan-porch' ),
-                'value' => '',
-                'type' => 'textarea',
-                'translations' => [],
-            ],
-            'goal' => [
-                'label' => 'Goal',
-                'default' => __( "We want to cover the country of %s with continuous 24/7 prayer during the entire 30 days of Ramadan.", 'pray4ramadan-porch' ),
-                'value' => "",
-                'type' => 'text',
-                'translations' => [],
-            ],
-            'google_analytics' => [
-                'label' => 'Google Analytics',
-                'default' => get_site_option( "p4r_porch_google_analytics" ),
-                'value' => '',
-                'type' => 'textarea',
-            ],
-            'default_language' => [
-                'label' => 'Default Language',
-                'default' => 'en_US',
-                'value' => '',
-                'type' => 'default_language_select',
-            ],
-            'power' => [
-                'label' => "Night of power",
-                'type' => "array",
-                'value' => [
-                    "start" => "",
-                    "start_time" => 0,
-                    "end" => "",
-                    "end_time" => 100000,
-                ],
-            ],
-            'stats-p4m' => [
-                'label' => 'Show Pray4Movement sign-up on ' . esc_html( home_url( '/prayer/stats' ) ),
-                'default' => 'Yes',
-                'value' => 'yes',
-                'type' => 'prayer_timer_toggle',
-            ]
-        ];
-
-        $defaults = apply_filters( 'p4r_porch_fields', $defaults );
-
-        $saved_fields = get_option( 'p4r_porch_fields', [] );
+        $saved_fields = self::get_values();
 
         $lang = dt_campaign_get_current_lang();
-        $people_name = self::get_field_translation( $saved_fields["people_name"] ?? [], $lang );
-        $country_name = self::get_field_translation( $saved_fields["country_name"] ?? [], $lang );
 
-        $defaults["goal"]["default"] = sprintf( $defaults["goal"]["default"], !empty( $country_name ) ? $country_name : "COUNTRY" );
+        /**
+         * Filter to allow the defaults to be changed according to the saved settings and the current language
+         *
+         * @param array $defaults contains all possible porch settings
+         * @param array $saved_fields contains the current saved porch settings
+         * @param string $lang the current language the campaign is being viewed in
+         */
+        $defaults = apply_filters( 'dt_campaign_fields_after_get_saved_settings', $defaults, $saved_fields, $lang );
 
-        $defaults["what_content"]["default"] = sprintf(
-            $defaults["what_content"]["default"],
-            !empty( $country_name ) ? $country_name : "COUNTRY",
-            !empty( $people_name ) ? $people_name : "PEOPLE"
-        );
+        $saved_translations = self::get_translations();
 
-        if ( !isset( $saved_fields["power"] ) ){
-            $selected_campaign = get_option( 'pray4ramadan_selected_campaign', false );
-            $start = get_post_meta( $selected_campaign, 'start_date', true );
-            $end = get_post_meta( $selected_campaign, 'end_date', true );
-            if ( !empty( $selected_campaign ) && !empty( $start ) && !empty( $end ) ){
-                $saved_fields["power"] = $defaults["power"];
-                $saved_fields["power"]["value"] = [
-                    "start" => dt_format_date( $start + DAY_IN_SECONDS * 26 ),
-                    "start_time" => 19 * HOUR_IN_SECONDS,
-                    "end" => dt_format_date( $start + DAY_IN_SECONDS * 27 ),
-                    "end_time" => (int) ( 4.5 * HOUR_IN_SECONDS ),
-                    "enabled" => true
-                ];
-                update_option( 'p4r_porch_fields', $saved_fields );
+        /**
+         * Filter to allow the translations to be run through any porch specific massaging
+         */
+        $saved_translations = apply_filters( 'dt_campaign_translations', $saved_translations, $lang );
+
+        $merged_settings = dt_merge_settings( $saved_fields, $defaults );
+        $merged_settings = dt_merge_settings( $saved_translations, $merged_settings, 'translations' );
+
+        if ( $tab !== null ) {
+            $merged_settings = self::filter_settings( $merged_settings, 'tab', $tab );
+        }
+        if ( $section !== null ) {
+            $merged_settings = self::filter_settings( $merged_settings, 'section', $section );
+        }
+
+        return $merged_settings;
+    }
+
+    /**
+     * Filter the settings according to a key and a value
+     *
+     * If the $value is an empty string, settings which don't include the key or which are falsey will be returned.
+     *
+     * @param array $settings
+     * @param string $key
+     * @param string $value
+     */
+    private static function filter_settings( array $settings, string $key, string $value ): array {
+        $match_settings_with_tab = function( $setting ) use ( $key, $value ) {
+            if ( $value === "" && ( !isset( $setting[$key] ) || !$setting[$key] ) ) {
+                return true;
+            } elseif ( isset( $setting[$key] ) && $setting[$key] === $value ) {
+                return true;
+            }
+
+            return false;
+        };
+
+        return array_filter( $settings, $match_settings_with_tab );
+    }
+
+    private static function get_values() {
+        return get_option( self::$values_option, [] );
+    }
+
+    private static function get_translations() {
+        return get_option( self::$translations_option, [] );
+    }
+
+    public static function update_values( $updates ) {
+        $current_settings = self::get_values();
+
+        $updated_settings = dt_validate_settings( $updates, self::fields() );
+
+        $updated_settings = array_merge( $current_settings, $updated_settings );
+
+        update_option( self::$values_option, $updated_settings );
+    }
+
+    public static function update_translations( $new_translations ) {
+        $current_translations = self::get_translations();
+
+        $updated_translations = dt_validate_settings( $new_translations, self::fields() );
+
+        $updated_translations = array_merge( $current_translations, $updated_translations );
+
+        update_option( self::$translations_option, $updated_translations );
+    }
+
+    public static function reset() {
+        update_option( 'dt_campaign_porch_settings', [] );
+    }
+
+    public static function fields() {
+        $defaults = self::get_defaults();
+
+        /**
+         * Filter to allow porches to add their own specific settings when they are loaded
+         *
+         * @param array $defaults contains the settings common to all porches
+         */
+        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults );
+
+        return $defaults;
+    }
+
+    /**
+     * Get the list of sections defined in the fields for a particular tab
+     *
+     * Fields with no section are considered to be in the "Other" section
+     *
+     * @param string $tab
+     */
+    public static function sections( string $tab ) {
+        $fields = self::fields();
+
+        $fields = self::filter_settings( $fields, 'tab', $tab );
+
+        $sections = [];
+
+        $has_fields_with_no_section = false;
+        foreach ( $fields as $key => $field ) {
+            if ( !$has_fields_with_no_section && ( !isset( $field["section"] ) || !$field["section"] ) ) {
+                $has_fields_with_no_section = true;
+            }
+            if ( isset( $field["section"] ) && !in_array( $field["section"], $sections, true ) ) {
+                $sections[] = $field["section"];
             }
         }
 
-        return recursive_parse_args( $saved_fields, $defaults );
+        if ( $has_fields_with_no_section ) {
+            array_push( $sections, "" );
+        }
+
+        return $sections;
     }
 
-    public static function get_field_translation( $field, $code ) {
-        if ( empty( $field ) ) {
+    public static function get_field_translation( string $field_name, string $code = '' ) {
+        if ( !$code ) {
+            $code = dt_campaign_get_current_lang();
+        }
+
+        $fields = self::settings();
+
+        if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
             return "";
         }
+
+        $field = $fields[$field_name];
 
         if ( isset( $field["translations"][$code] ) && !empty( $field["translations"][$code] ) ) {
             return $field["translations"][$code];
         }
 
         return $field["value"] ?: ( $field["default"] ?? "" );
+    }
+
+    private static function get_defaults() {
+        $defaults = [
+                    'theme_color' => [
+                        'label' => 'Theme Color',
+                        'value' => 'preset',
+                        'type' => 'theme_select',
+                        'tab' => 'settings',
+                    ],
+                    'custom_theme_color' => [
+                        'label' => 'Custom Theme Color',
+                        'value' => '',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'logo_url' => [
+                        'label' => 'Logo Image URL',
+                        'value' => '',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'logo_link_url' => [
+                        'label' => 'Logo Link to URL',
+                        'value' => '',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'header_background_url' => [
+                        'label' => 'Header Background URL',
+                        'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'what_image' => [
+                        'label' => 'What is 24/7 Image',
+                        'value' => '',
+                        'type' => 'text',
+                        'enabled' => false,
+                        'tab' => 'settings',
+                    ],
+                    'show_prayer_timer' => [
+                        'label' => 'Show Prayer Timer',
+                        'default' => 'Yes',
+                        'value' => 'yes',
+                        'type' => 'prayer_timer_toggle',
+                        'tab' => 'settings',
+                    ],
+                    'facebook' => [
+                        'label' => 'Facebook Url',
+                        'value' => '',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'instagram' => [
+                        'label' => 'Instagram Url',
+                        'value' => '',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'twitter' => [
+                        'label' => 'Twitter Url',
+                        'value' => '',
+                        'type' => 'text',
+                        'tab' => 'settings',
+                    ],
+                    'google_analytics' => [
+                        'label' => 'Google Analytics',
+                        'default' => get_site_option( "p4r_porch_google_analytics" ),
+                        'value' => '',
+                        'type' => 'textarea',
+                        'tab' => 'settings',
+                    ],
+                    'default_language' => [
+                        'label' => 'Default Language',
+                        'default' => 'en_US',
+                        'value' => '',
+                        'type' => 'default_language_select',
+                        'tab' => 'settings',
+                    ],
+                ];
+
+        $keep_enabled_settings = function ( $setting ) {
+            return !isset( $setting['enabled'] ) || $setting['enabled'] !== false;
+        };
+
+        return array_filter( $defaults, $keep_enabled_settings );
     }
 }

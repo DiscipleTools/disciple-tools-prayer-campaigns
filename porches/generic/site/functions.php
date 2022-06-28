@@ -1,7 +1,7 @@
 <?php
 
 
-function dt_ramadan_list_languages(){
+function dt_campaign_list_languages(){
     $available_language_codes = get_available_languages( plugin_dir_path( __DIR__ ) .'/support/languages' );
     array_unshift( $available_language_codes, 'en_US' );
 
@@ -80,10 +80,10 @@ function dt_ramadan_list_languages(){
             $available_translations[$code] = $translations[$code];
         }
     }
-    return apply_filters( 'dt_ramadan_list_languages', $available_translations );
+    return apply_filters( 'dt_campaign_list_languages', $available_translations );
 }
 
-function dt_ramadan_set_translation( $lang ){
+function dt_campaign_set_translation( $lang ){
     if ( $lang !== "en_US" ){
         add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
             if ( !empty( $lang ) ){
@@ -91,18 +91,18 @@ function dt_ramadan_set_translation( $lang ){
             }
             return $locale;
         }, 1000, 1 );
-        load_plugin_textdomain( 'pray4ramadan-porch', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'support/languages' );
+        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'support/languages' );
     }
 }
 
-function ramadan_custom_dir_attr( $lang ){
+function dt_campaign_custom_dir_attr( $lang ){
     if ( is_admin() ) {
         return $lang;
     }
 
     $lang = dt_campaign_get_current_lang();
 
-    $translations = dt_ramadan_list_languages();
+    $translations = dt_campaign_list_languages();
     $dir = "ltr";
     if ( isset( $translations[$lang]["dir"] ) && $translations[$lang]['dir'] === 'rtl' ){
         $dir = "rtl";

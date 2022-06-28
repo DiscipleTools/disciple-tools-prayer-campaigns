@@ -2,19 +2,22 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class DT_Ramadan_Porch_Menu
+ * Class DT_Generic_Porch_Admin_Menu
  */
 class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 
     public $token = 'dt_porch_generic';
     public $title = 'Settings';
 
-    public function __construct() {
+    private $porch_dir;
+
+    public function __construct( string $porch_dir ) {
         if ( ! is_admin() ) {
             return;
         }
 
-        require_once __DIR__ . '/dt-generic-porch-landing-tab-home.php';
+        $this->porch_dir = $porch_dir;
+
         require_once __DIR__ . '/dt-generic-porch-landing-tab-starter-content.php';
 
         if ( isset( $_POST['install_campaign_nonce'], $_POST["download_csv"], $_POST['selected_campaign'] )
@@ -27,7 +30,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
             });
         } else {
             add_action( "admin_menu", array( $this, "register_menu" ) );
-            add_action( 'admin_enqueue_scripts', [ $this, 'scripts' ] );
+            add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
         }
 
 
@@ -43,17 +46,6 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
         }
     }
 
-    public function scripts(){
-        wp_enqueue_script( 'dt_ramadan_script', plugin_dir_url( __FILE__ ) . '/admin.js', [
-            'jquery',
-        ], filemtime( plugin_dir_path( __FILE__ ) . '/admin.js' ), true );
-    }
-
-    /**
-     * Menu stub. Replaced when Disciple.Tools Theme fully loads.
-     */
-    public function extensions_menu() {}
-
     /**
      * Builds porch tab links
      * @since 0.1
@@ -64,7 +56,6 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 
         ?>
 
-        <a href="<?php echo esc_attr( $link ) . 'home' ?>" class="nav-tab <?php echo esc_html( ( $tab == 'home' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">Home Page</a>
         <a href="<?php echo esc_attr( $link ) . 'content' ?>" class="nav-tab <?php echo esc_html( ( $tab == 'content' ) ? 'nav-tab-active' : '' ); ?>">Install Starter Content</a>
 
         <?php
@@ -75,17 +66,16 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
         $tab = $this->get_tab();
 
         switch ( $tab ){
-            case "home":
-                $object = new DT_Generic_Porch_Landing_Tab_Home();
-                $object->content();
-                break;
             case "content":
-                $object = new DT_Generic_Porch_Landing_Tab_Starter_Content();
-                $object->content();
+                ( new DT_Generic_Porch_Landing_Tab_Starter_Content() )->content();
                 break;
             default:
                 break;
         }
+    }
+
+    public function get_porch_dir() {
+        return $this->porch_dir;
     }
 
     private function get_tab(): string {
