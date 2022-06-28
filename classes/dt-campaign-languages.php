@@ -11,6 +11,7 @@ class DT_Campaign_Languages {
         'flag',
         'enabled',
     ];
+    private $default_language = "en_US";
 
     /**
      * Add new langu/age
@@ -42,7 +43,7 @@ class DT_Campaign_Languages {
 
     /**
      * Get the available languages
-     */
+    */
     public function get() {
         $languages = $this->get_from_cache();
 
@@ -53,6 +54,19 @@ class DT_Campaign_Languages {
         }
 
         return $languages;
+    }
+
+    /**
+     * Get the enabled languages
+     */
+    public function get_enabled_languages() {
+        $languages = $this->get();
+
+        $filter_by_enabled = function ( $language ) {
+            return isset( $language['enabled'] ) && $language["enabled"] === true;
+        };
+
+        return array_filter( $languages, $filter_by_enabled );
     }
 
     /**
@@ -123,6 +137,7 @@ class DT_Campaign_Languages {
         $languages = get_option( $this->option_name, [] );
 
         $available_language_codes = get_available_languages( plugin_dir_path( __DIR__ ) .'../languages' );
+        array_unshift( $available_language_codes, $this->default_language );
 
         $available_languages = [];
         $language_info = $this->language_info();
