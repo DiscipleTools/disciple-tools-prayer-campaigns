@@ -100,13 +100,16 @@ class DT_Prayer_Campaigns_Campaigns {
      */
     public function process_new_language() {
         if ( isset( $_POST['add_language_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['add_language_nonce'] ) ), 'add_language' ) ) {
-            if ( isset( $_POST['add_language'] ) ) {
+            if ( isset( $_POST['new_language'] ) ) {
                 $this->languages_manager->add_from_code( $this->sanitized_post_field( $_POST, 'new_language' ) );
             }
         }
     }
 
     private function sanitized_post_field( $post, $key ) {
+        if ( !isset( $post[$key] ) ) {
+            return '';
+        }
         return sanitize_text_field( wp_unslash( $post[$key] ) );
     }
 
@@ -257,11 +260,12 @@ class DT_Prayer_Campaigns_Campaigns {
             <thead>
                 <tr>
                     <th>Language Settings</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <form method="POST">
                             <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'language_settings' ) ) ?>"/>
@@ -279,20 +283,20 @@ class DT_Prayer_Campaigns_Campaigns {
                                     <?php foreach ( $languages as $code => $language ): ?>
 
                                         <tr>
-                                            <td><?php echo esc_html( $language["english_name"] ) ?></td>
+                                            <td><?php echo esc_html( $language["label"] ) ?></td>
                                             <td><?php echo esc_html( $code ) ?></td>
                                             <td><?php echo esc_html( $language["flag"] ) ?></td>
                                             <td>
 
                                                 <?php if ( isset( $language["enabled"] ) && $language["enabled"] === true ): ?>
 
-                                                <button name="language_settings_disable" value="<?php echo esc_html( $code ) ?>">
+                                                <button class="button" name="language_settings_disable" value="<?php echo esc_html( $code ) ?>">
                                                     Disable
                                                 </button>
 
                                                 <?php else : ?>
 
-                                                <button name="language_settings_enable" value="<?php echo esc_html( $code ) ?>">
+                                                <button class="button" name="language_settings_enable" value="<?php echo esc_html( $code ) ?>">
                                                     Enable
                                                 </button>
 
@@ -300,7 +304,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                                 <?php if ( !isset( $language["default"] ) || $language["default"] !== true ): ?>
 
-                                                <button name="language_settings_remove" value="<?php echo esc_html( $code ) ?>">
+                                                <button class="button" name="language_settings_remove" value="<?php echo esc_html( $code ) ?>">
                                                     Remove
                                                 </button>
 
@@ -317,6 +321,9 @@ class DT_Prayer_Campaigns_Campaigns {
                 </tr>
                 <tr>
                     <td>
+                        Add existing language
+                    </td>
+                    <td>
                         <form method="POST">
                             <input type="hidden" name="add_language_nonce" id="add_language_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'add_language' ) ) ?>"/>
@@ -327,13 +334,13 @@ class DT_Prayer_Campaigns_Campaigns {
 
                             <?php foreach ( $language_list as $code => $language ): ?>
 
-                                <option value="<?php echo esc_html( $code ) ?>"><?php echo esc_html( $language["flag"] . " " . $language["english_name"] ) ?></option>
+                                <option value="<?php echo esc_html( $code ) ?>"><?php echo esc_html( $language["flag"] . " " . $language["label"] ) ?></option>
 
                             <?php endforeach; ?>
 
                             </select>
-                            <button name="add_language">
-                                Add language
+                            <button class="button">
+                                Add
                             </button>
                         </form>
                     </td>

@@ -6,7 +6,7 @@ class DT_Campaign_Languages {
     private $option_name = "dt_campaign_languages";
     private $allowed_fields = [
         'language',
-        'english_name',
+        'label',
         'native_name',
         'flag',
         'enabled',
@@ -30,7 +30,7 @@ class DT_Campaign_Languages {
 
         $new_language = [
             'language' => $code,
-            'english_name' => $name,
+            'label' => $name,
             'native_name' => $native_name,
             'flag' => $flag,
             'enabled' => true,
@@ -43,6 +43,11 @@ class DT_Campaign_Languages {
         return $languages;
     }
 
+    /**
+     * Add a language from the list of names, codes, flags etc.
+     *
+     * @param string $code
+     */
     public function add_from_code( $code ) {
         $available_languages = $this->language_list();
 
@@ -52,7 +57,7 @@ class DT_Campaign_Languages {
 
         $new_language = $available_languages[$code];
 
-        $this->add( $new_language["english_name"], $new_language["language"], $new_language["native_name"], $new_language["flag"] );
+        $this->add( $new_language["label"], $code, $new_language["native_name"], $new_language["flag"] );
     }
 
     /**
@@ -150,22 +155,32 @@ class DT_Campaign_Languages {
     private function get_from_options_or_defaults() {
         $languages = get_option( $this->option_name, [] );
 
-        $available_language_codes = get_available_languages( plugin_dir_path( __DIR__ ) .'../languages' );
-        array_unshift( $available_language_codes, $this->default_language );
-
-        $available_languages = [];
-        $language_info = $this->language_list();
-        foreach ( $available_language_codes as $code ) {
-            $code = str_replace( "disciple-tools-prayer-campaigns-", "", $code );
-            if ( isset( $language_info[$code] ) ) {
-                $available_languages[$code] = array_merge( $language_info[$code], [
-                    'enabled' => true,
-                    'default' => true,
-                ] );
-            }
-        }
+        $available_languages = $this->get_from_defaults();
 
         return array_merge( $available_languages, $languages );
+    }
+
+    /**
+     * Get the languages from the already translated languages
+     */
+    private function get_from_defaults() {
+        $available_language_codes = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
+        array_unshift( $available_language_codes, $this->default_language );
+
+        $remove_plugin_name = function ( $code ) {
+            return str_replace( "disciple-tools-prayer-campaigns-", "", $code );
+        };
+
+        $available_language_codes = array_map( $remove_plugin_name, $available_language_codes );
+
+        $available_languages = dt_get_available_languages( true, false, $available_language_codes );
+
+        foreach ( $available_languages as $code => $language_info ) {
+            $available_languages[$code]['enabled'] = true;
+            $available_languages[$code]['default'] = true;
+        }
+
+        return $available_languages;
     }
 
     /**
@@ -243,235 +258,6 @@ class DT_Campaign_Languages {
      * @return array
      */
     public function language_list() {
-        return [
-                'en_US' => [
-                    'language' => 'en_US',
-                    'english_name' => 'English (United States)',
-                    'native_name' => 'English (United States)',
-                    'flag' => '🇺🇸'
-                ],
-                'am_ET' => [
-                    'language' => 'am_ET',
-                    'native_name' => 'Amharic (Ethiopia)',
-                    'english_name' => 'Amharic (Ethiopia)',
-                    'flag' => '🇪🇹'
-                ],
-                'ar' => [
-                    'language' => 'ar',
-                    'english_name' => 'Arabic',
-                    'native_name' => 'العربية',
-                    'flag' => '🇦🇪'
-                ],
-                'ar_MA' => [
-                    'language' => 'ar_MA',
-                    'native_name' => 'العربية (المغرب)',
-                    'english_name' => 'Arabic (Morocco)',
-                    'flag' => '🇲🇦'
-                ],
-                'bg_BG' => [
-                    'language' => 'bg_BG',
-                    'english_name' => 'Bulgarian',
-                    'native_name' => 'Български',
-                    'flag' => '🇧🇬'
-                ],
-                'bn_BD' => [
-                    'language' => 'bn_BD',
-                    'english_name' => 'Bengali (Bangladesh)',
-                    'native_name' => 'বাংলা',
-                    'flag' => '🇧🇩'
-                ],
-                'bs_BA' => [
-                    'language' => 'bs_BA',
-                    'english_name' => 'Bosnian',
-                    'native_name' => 'Bosanski',
-                    'flag' => '🇧🇦'
-                ],
-                'de_DE' => [
-                    'language' => 'de_DE',
-                    'english_name' => 'German',
-                    'native_name' => 'Deutsch',
-                    'flag' => '🇩🇪'
-                ],
-                'es_419' => [
-                    'language' => 'es_419',
-                    'native_name' => 'Español (Latinoamérica) ',
-                    'english_name' => 'Spanish (Latin America)',
-                    'flag' => '🇦🇷'
-                ],
-                'es_ES' => [
-                    'language' => 'es_ES',
-                    'english_name' => 'Spanish (Spain)',
-                    'native_name' => 'Español',
-                    'flag' => '🇪🇸'
-                ],
-                'fa_IR' => [
-                    'language' => 'fa_IR',
-                    'english_name' => 'Persian',
-                    'native_name' => 'فارسی',
-                    'flag' => '🇮🇷'
-                ],
-                'fr_FR' => [
-                    'language' => 'fr_FR',
-                    'english_name' => 'French (France)',
-                    'native_name' => 'Français',
-                    'flag' => '🇫🇷'
-                ],
-                'hi_IN' => [
-                    'language' => 'hi_IN',
-                    'english_name' => 'Hindi',
-                    'native_name' => 'हिन्दी',
-                    'flag' => '🇮🇳'
-                ],
-                'hr' => [
-                    'language' => 'hr',
-                    'english_name' => 'Croatian',
-                    'native_name' => 'Hrvatski',
-                    'flag' => '🇭🇷'
-                ],
-                'hu_HU' => [
-                    'language' => 'hu_HU',
-                    'english_name' => 'Hungarian',
-                    'native_name' => 'Magyar',
-                    'flag' => '🇭🇺'
-                ],
-                'id_ID' => [
-                    'language' => 'id_ID',
-                    'english_name' => 'Indonesian',
-                    'native_name' => 'Bahasa Indonesia',
-                    'flag' => '🇮🇩'
-                ],
-                'it_IT' => [
-                    'language' => 'it_IT',
-                    'english_name' => 'Italian',
-                    'native_name' => 'Italiano',
-                    'flag' => '🇮🇹'
-                ],
-                'ja' => [
-                    'language' => 'ja',
-                    'english_name' => 'Japanese',
-                    'native_name' => '日本語',
-                    'flag' => '🇯🇵'
-                ],
-                'ko_KR' => [
-                    'language' => 'ko_KR',
-                    'english_name' => 'Korean',
-                    'native_name' => '한국어',
-                    'flag' => '🇰🇷'
-                ],
-                'mk_MK' => [
-                    'language' => 'mk_MK',
-                    'english_name' => 'Macedonian',
-                    'native_name' => 'Македонски јазик',
-                    'flag' => '🇲🇰'
-                ],
-                'mr' => [
-                    'language' => 'mr',
-                    'english_name' => 'Marathi',
-                    'native_name' => 'मराठी',
-                    'flag' => '🇮🇳'
-                ],
-                'my_MM' => [
-                    'language' => 'my_MM',
-                    'english_name' => 'Myanmar (Burmese)',
-                    'native_name' => 'ဗမာစာ',
-                    'flag' => '🇲🇲'
-                ],
-                'ne_NP' => [
-                    'language' => 'ne_NP',
-                    'english_name' => 'Nepali',
-                    'native_name' => 'नेपाली',
-                    'flag' => '🇳🇵'
-                ],
-                'nl_NL' => [
-                    'language' => 'nl_NL',
-                    'english_name' => 'Dutch',
-                    'native_name' => 'Nederlands',
-                    'flag' => '🇳🇱'
-                ],
-                'pa_IN' => [
-                    'language' => 'pa_IN',
-                    'english_name' => 'Punjabi',
-                    'native_name' => 'ਪੰਜਾਬੀ',
-                    'flag' => '🇮🇳'
-                ],
-                'pt_BR' => [
-                    'language' => 'pt_BR',
-                    'english_name' => 'Portuguese (Brazil)',
-                    'native_name' => 'Português do Brasil',
-                    'flag' => '🇧🇷'
-                ],
-                'ro_RO' => [
-                    'language' => 'ro_RO',
-                    'english_name' => 'Romanian',
-                    'native_name' => 'Română',
-                    'flag' => '🇷🇴'
-                ],
-                'ru_RU' => [
-                    'language' => 'ru_RU',
-                    'english_name' => 'Russian',
-                    'native_name' => 'Русский',
-                    'flag' => '🇷🇺'
-                ],
-                'sl_SI' => [
-                    'language' => 'sl_SI',
-                    'english_name' => 'Slovenian',
-                    'native_name' => 'Slovenščina',
-                    'flag' => '🇸🇮'
-                ],
-                'sr_BA' => [
-                    'language' => 'sr_BA',
-                    'native_name' => 'српски',
-                    'english_name' => 'Serbian',
-                    'flag' => '🇷🇸'
-                ],
-                'sw' => [
-                    'language' => 'sw',
-                    'native_name' => 'Kiswahili',
-                    'english_name' => 'Swahili',
-                    'flag' => '🇹🇿'
-                ],
-                'th' => [
-                    'language' => 'th',
-                    'english_name' => 'Thai',
-                    'native_name' => 'ไทย',
-                    'flag' => '🇹🇭'
-                ],
-                'tl' => [
-                    'language' => 'tl',
-                    'english_name' => 'Tagalog',
-                    'native_name' => 'Tagalog',
-                    'flag' => '🇵🇭'
-                ],
-                'tr_TR' => [
-                    'language' => 'tr_TR',
-                    'english_name' => 'Turkish',
-                    'native_name' => 'Türkçe',
-                    'flag' => '🇹🇷'
-                ],
-                'uk' => [
-                    'language' => 'uk',
-                    'english_name' => 'Ukrainian',
-                    'native_name' => 'український',
-                    'flag' => '🇺🇦'
-                ],
-                'vi' => [
-                    'language' => 'vi',
-                    'english_name' => 'Vietnamese',
-                    'native_name' => 'Tiếng Việt',
-                    'flag' => '🇻🇳'
-                ],
-                'zh_CN' => [
-                    'language' => 'zh_CN',
-                    'english_name' => 'Chinese (China)',
-                    'native_name' => '简体中文',
-                    'flag' => '🇨🇳'
-                ],
-                'zh_TW' => [
-                    'language' => 'zh_TW',
-                    'english_name' => 'Chinese (Taiwan)',
-                    'native_name' => '繁體中文',
-                    'flag' => '🇹🇼'
-                ],
-            ];
+        return dt_get_available_languages( false, true );
     }
 }

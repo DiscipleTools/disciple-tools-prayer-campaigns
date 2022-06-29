@@ -97,7 +97,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </option>
                                 <?php endforeach; ?>
                             </select>
-                            <button class="button" type="submit">Update</button>
+                            <button class="button float-right" type="submit">Update</button>
                         </td>
                     </tr>
                     <?php if ( ! empty( $fields['ID'] ) ) : ?>
@@ -140,8 +140,8 @@ class DT_Porch_Admin_Tab_Base {
         <button class="button small expand_translations">
             <?php
             $number_of_translations = 0;
-            foreach ( $langs as $lang => $val ){
-                if ( !empty( $field["translations"][$val['language']] ) ){
+            foreach ( $langs as $code => $val ){
+                if ( !empty( $field["translations"][$code] ) ){
                     $number_of_translations++;
                 }
             }
@@ -151,13 +151,13 @@ class DT_Porch_Admin_Tab_Base {
         </button>
         <div class="translation_container hide">
             <table style="width:100%">
-                <?php foreach ( $langs as $lang => $val ) : ?>
+                <?php foreach ( $langs as $code => $val ) : ?>
                     <tr>
-                        <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $val['language'] )?>"><?php echo esc_html( $val['native_name'] )?></label></td>
+                        <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo esc_html( $val["native_name"] )?></label></td>
                         <?php if ( $field["type"] === "textarea" ) :?>
-                            <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $val['language'] )?>"><?php echo wp_kses_post( $field["translations"][$val['language']] ?? "" );?></textarea></td>
+                            <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo wp_kses_post( $field["translations"][$code] ?? "" );?></textarea></td>
                         <?php else : ?>
-                            <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $val['language'] )?>" type="text" value="<?php echo esc_html( $field["translations"][$val['language']] ?? "" );?>"/></td>
+                            <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>" type="text" value="<?php echo esc_html( $field["translations"][$code] ?? "" );?>"/></td>
                         <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
@@ -284,8 +284,8 @@ class DT_Porch_Admin_Tab_Base {
                                                 <option value="<?php echo esc_html( $field['value'] ); ?>" selected="selected"><?php echo esc_html( $default_translation_label ); ?></option>
                                                 <option disabled>-----</option>
                                             <?php endif; ?>
-                                            <?php foreach ( $langs as $lang ) : ?>
-                                                <option value="<?php echo esc_attr( $lang['language'] ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
+                                            <?php foreach ( $langs as $code => $lang ) : ?>
+                                                <option value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
@@ -319,7 +319,7 @@ class DT_Porch_Admin_Tab_Base {
 
                         <tr>
                             <td colspan="2">
-                                <button class="button" type="submit">Update</button>
+                                <button class="button float-right" type="submit">Update</button>
                             </td>
                             <td></td>
                         </tr>
