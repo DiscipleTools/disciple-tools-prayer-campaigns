@@ -7,6 +7,12 @@ function dt_campaign_list_languages(){
     return $languages_manager->get_enabled_languages();
 }
 
+function dt_campaign_list_all_languages() {
+    $languages_manager = new DT_Campaign_Languages();
+
+    return $languages_manager->get();
+}
+
 function dt_campaign_set_translation( $lang ){
     if ( $lang !== "en_US" ){
         add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
