@@ -22,9 +22,11 @@ class DT_Campaign_Languages {
      * @param string $flag
      */
     public function add( string $name, string $code, string $native_name, string $flag ) {
-        /* Check that the code doesn't already exist */
-
         $languages = $this->get();
+
+        if ( $this->is_language_in_list( $code, $languages ) ) {
+            return;
+        }
 
         $new_language = [
             'language' => $code,
@@ -129,7 +131,7 @@ class DT_Campaign_Languages {
             return;
         }
 
-        if ( !isset( $languages[$code]['default'] ) ) {
+        if ( isset( $languages[$code]['default'] ) ) {
             return;
         }
         /* remove the element relating to $code from the array */
