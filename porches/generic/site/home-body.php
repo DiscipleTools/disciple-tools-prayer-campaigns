@@ -194,7 +194,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
             <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
 
-            <?php else: ?>
+            <?php else : ?>
 
                 <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
 
