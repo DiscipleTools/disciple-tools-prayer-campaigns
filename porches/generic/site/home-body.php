@@ -46,12 +46,9 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php
-                $dt_campaign_selected_campaign_magic_link_settings["section"] = "percentage";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_campaign_selected_campaign_magic_link_settings
-                );
-                ?>
+
+                <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
             </div>
         </div>
         <div class="row">
@@ -113,12 +110,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "what_content" ) ) ); ?>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php
-                $dt_campaign_selected_campaign_magic_link_settings["section"] = "calendar";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_campaign_selected_campaign_magic_link_settings
-                );
-                ?>
+                <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
             </div>
         </div>
     </div>
@@ -193,15 +185,14 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         <div class="row">
             <?php
             if ( empty( $dt_campaign_selected_campaign_magic_link_settings ) ) :?>
-                <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
-            <?php else :
 
-                $dt_campaign_selected_campaign_magic_link_settings["section"] = "sign_up";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_campaign_selected_campaign_magic_link_settings
-                );
-            endif;
-            ?>
+            <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
+
+            <?php else: ?>
+
+                <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
+            <?php endif; ?>
         </div>
     </div>
 </section>
