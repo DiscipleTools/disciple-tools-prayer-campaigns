@@ -280,9 +280,23 @@ class DT_Prayer_Campaigns_Campaigns {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                        $enabled_column = array_column( $languages, 'enabled' );
+                                        array_multisort( $enabled_column, SORT_DESC, $languages );
+                                    ?>
+
+                                    <style>
+                                        .disabled-language {
+                                            background-color: darkgrey;
+                                        }
+                                        .widefat .disabled-language td {
+                                            color: white;
+                                        }
+                                    </style>
+
                                     <?php foreach ( $languages as $code => $language ): ?>
 
-                                        <tr>
+                                        <tr class="<?php echo $language["enabled"] === false ? 'disabled-language' : '' ?>">
                                             <td><?php echo esc_html( $language["label"] ) ?></td>
                                             <td><?php echo esc_html( $code ) ?></td>
                                             <td><?php echo esc_html( $language["flag"] ) ?></td>
@@ -296,7 +310,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                                 <?php else : ?>
 
-                                                <button class="button" name="language_settings_enable" value="<?php echo esc_html( $code ) ?>">
+                                                <button class="button button-primary" name="language_settings_enable" value="<?php echo esc_html( $code ) ?>">
                                                     Enable
                                                 </button>
 
