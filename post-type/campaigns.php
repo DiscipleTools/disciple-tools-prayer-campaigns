@@ -833,6 +833,39 @@ class DT_Campaigns_Base {
         ) );
     }
 
+    public static function number_of_hours_next_month() {
+        $days_next_month = self::number_of_days_next_month();
+        return $days_next_month * 24;
+    }
+
+    public static function number_of_days_next_month() {
+        return intval( gmdate( 'd', strtotime( 'last day of +1 month' ) ) );
+    }
+
+    public static function query_scheduled_minutes_next_month( $campaign_post_id ) {
+        $time_format = '%H:%i';
+        $time_begin = strtotime( gmdate( 'M d', strtotime( 'first day of +1 month' ) ) . ' 00:00' );
+        $time_end = strtotime( gmdate( 'M d', strtotime( 'first day of +2 month' ) ) . ' 00:00' );
+        global $wpdb;
+
+        return $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT
+                    SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+                FROM (
+                        SELECT p2p_to as post_id
+                        FROM $wpdb->p2p
+                        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s
+                    ) as t1
+                LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+                WHERE r.post_id IS NOT NULL
+                AND r.time_begin > %d
+                AND r.time_end < %d;",
+                $time_format, $time_format, $campaign_post_id, $time_begin, $time_end
+            )
+        );
+    }
+
     public static function query_minutes_prayed( $campaign_post_id ){
         $time_format = '%H:%i';
         global $wpdb;
