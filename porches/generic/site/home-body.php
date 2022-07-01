@@ -133,7 +133,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         ?>
         let countDownDate = '<?php echo esc_html( $timezone_adjusted_start_date )?>'
         let endCountDownDate = '<?php echo esc_html( $timezone_adjusted_end_date ) ?>'
-        let hasEndDate = "<?php echo $has_end_date; ?>"
+        let hasEndDate = "<?php echo esc_html( $has_end_date ); ?>"
 
 
         let now = new Date().getTime() / 1000
