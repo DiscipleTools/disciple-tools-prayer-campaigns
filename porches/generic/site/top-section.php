@@ -36,20 +36,28 @@ $langs = dt_campaign_list_languages();
         <div class="container">
             <div class="logo-menu">
                 <a href="<?php echo esc_url( $porch_fields['logo_link_url']['value'] ?: site_url() ) ?>" class="logo"><?php echo esc_html( $porch_fields['title']['value'] ) ?></a>
-                <select class="dt-magic-link-language-selector">
+                <div class="d-flex align-items-center">
 
-                    <?php foreach ( $langs as $code => $language ) : ?>
+                    <?php if ( count( $langs ) > 1 ): ?>
 
-                        <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
+                    <select class="dt-magic-link-language-selector">
+
+                        <?php foreach ( $langs as $code => $language ) : ?>
+
+                            <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
 
                             <?php echo esc_html( $language["flag"] ); ?> <?php echo esc_html( $language["native_name"] ); ?>
 
-                        </option>
+                            </option>
 
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
 
-                </select>
-                <button class="menu-button" id="open-button" aria-label="Menu Open"><i class="lnr lnr-menu"></i></button>
+                    </select>
+
+                    <?php endif; ?>
+
+                    <button class="menu-button" id="open-button" aria-label="Menu Open"><i class="lnr lnr-menu"></i></button>
+                </div>
             </div>
         </div>
     </div>
