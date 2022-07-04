@@ -36,7 +36,6 @@ class DT_Prayer_Campaigns_Menu {
     public function __construct() {
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-home.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
-        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
 
         add_action( "admin_menu", array( $this, "register_menu" ) );
         add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );
@@ -96,7 +95,6 @@ class DT_Prayer_Campaigns_Menu {
 
             $home_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
             $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
-            $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
         }
 
         ?>
@@ -114,11 +112,8 @@ class DT_Prayer_Campaigns_Menu {
                     <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $home_tab->title ) ?>
                     </a>
-                    <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
+                    <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
-                    </a>
-                    <a href="<?php echo esc_attr( $link . $prayer_content_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_content_tab->key ) ? 'nav-tab-active' : '' ); ?>">
-                        <?php echo esc_html( $prayer_content_tab->title ) ?>
                     </a>
 
                     <?php $porch_admin->tab_headers( $link ); ?>
@@ -142,9 +137,6 @@ class DT_Prayer_Campaigns_Menu {
                         break;
                     case $translations_tab->key:
                         $translations_tab->content();
-                        break;
-                    case $prayer_content_tab->key:
-                        $prayer_content_tab->content();
                         break;
                     default:
                         break;

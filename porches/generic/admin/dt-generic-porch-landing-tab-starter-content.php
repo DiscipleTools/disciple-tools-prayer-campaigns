@@ -4,17 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 /**
  * Class DT_Generic_Porch_Landing_Tab_Starter_Content
  */
-class DT_Porch_Admin_Tab_Starter_Content {
-    public $key = 'starter-content';
-    public $title = 'Install Starter Content';
-    public $porch_dir;
-
-    public function __construct( $porch_dir ) {
-        $this->porch_dir = $porch_dir;
-
-        require_once( trailingslashit( __DIR__ ) . '../classes/dt-campaign-porch-starter-content.php' );
-    }
-
+class DT_Generic_Porch_Landing_Tab_Starter_Content {
     public function content() {
 
         ?>
@@ -34,10 +24,11 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
                         ?>
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <!-- End Main Column -->
+                    </div><!-- end post-body-content -->
+                </div><!-- post-body meta box container -->
+            </div><!--poststuff end -->
+        </div><!-- wrap end -->
         <?php
     }
 
@@ -65,7 +56,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                     "people_plural_feminine" => isset( $_POST[ $language . "_people_plural_feminine"] ) ? sanitize_text_field( wp_unslash( $_POST[ $language . "_people_plural_feminine"] ) ) : $default_people_name,
                 ];
 
-                DT_Campaign_Porch_Starter_Content::load_content( $language, $args, $from_translation );
+                P4_Ramadan_Porch_Starter_Content::load_content( $language, $args, $from_translation );
             }
 
             if ( isset( $_POST["delete_duplicates"] ) ){
