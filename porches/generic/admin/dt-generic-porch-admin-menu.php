@@ -18,23 +18,9 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 
         $this->porch_dir = $porch_dir;
 
-        require_once __DIR__ . '/dt-generic-porch-landing-tab-starter-content.php';
+        add_action( "admin_menu", array( $this, "register_menu" ) );
 
-        if ( isset( $_POST['install_campaign_nonce'], $_POST["download_csv"], $_POST['selected_campaign'] )
-            && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_campaign_nonce'] ) ), 'install_campaign_nonce' )
-        ){
-            add_action( "init", function (){
-                $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) ); //phpcs:ignore
-                $this->download_campaign_csv( $campaign_id );
-                exit;
-            });
-        } else {
-            add_action( "admin_menu", array( $this, "register_menu" ) );
-            add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
-        }
-
-
-    } // End __construct()
+    }
 
     /**
      * Loads the subnav page
@@ -56,7 +42,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 
         ?>
 
-        <a href="<?php echo esc_attr( $link ) . 'content' ?>" class="nav-tab <?php echo esc_html( ( $tab == 'content' ) ? 'nav-tab-active' : '' ); ?>">Install Starter Content</a>
+        <!-- Put tab header links here -->
 
         <?php
     }
@@ -66,9 +52,6 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
         $tab = $this->get_tab();
 
         switch ( $tab ){
-            case "content":
-                ( new DT_Generic_Porch_Landing_Tab_Starter_Content() )->content();
-                break;
             default:
                 break;
         }
@@ -84,33 +67,5 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
         }
 
         return "";
-    }
-
-    public function download_campaign_csv( $campaign_id, $filename = "subscribers.csv", $delimiter = "," ){
-        $subscribers = DT_Posts::list_posts( "subscriptions", [ "campaigns" => [ $campaign_id ], "status" => [ "active" ], 'limit' => 1000 ], false );
-        if ( is_wp_error( $subscribers ) ){
-            return;
-        }
-        header( 'Content-Type: application/csv' );
-        header( 'Content-Disposition: attachment; filename="' . $filename . '";' );
-        $f = fopen( 'php://output', 'w' );
-
-        $array = [
-            [ "Name", "Email" ],
-        ];
-        foreach ( $subscribers["posts"] as $sub ){
-            $a = [
-                $sub['name'],
-            ];
-            if ( isset( $sub['contact_email'][0]["value"] ) ){
-                $a[] = $sub['contact_email'][0]["value"];
-            } else {
-                $a[] = '';
-            }
-            $array[] = $a;
-        }
-        foreach ( $array as $line ){
-            fputcsv( $f, $line, $delimiter );
-        }
     }
 }
