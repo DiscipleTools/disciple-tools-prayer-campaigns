@@ -135,9 +135,9 @@ class DT_Porch_Admin_Tab_Base {
         <?php
     }
 
-    private function translation_cell( $langs, $key, $field ){
+    private function translation_cell( $langs, $key, $field, $form_name ){
         ?>
-        <button class="button small expand_translations">
+        <button class="button small expand_translations" data-form_name="<?php echo esc_html( $form_name ) ?>>
             <?php
             $number_of_translations = 0;
             foreach ( $langs as $code => $val ){
@@ -191,7 +191,7 @@ class DT_Porch_Admin_Tab_Base {
         ?>
         <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
 
-            <form method="post" class="metabox-table">
+            <form method="post" class="metabox-table" name="<?php echo esc_html( $section ) ?>">
                 <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
                 <!-- Box -->
                 <table class="widefat striped">
@@ -227,7 +227,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field["translations"] ) ){
-                                            self::translation_cell( $langs, $key, $field );
+                                            self::translation_cell( $langs, $key, $field, $section );
                                         } ?>
                                     </td>
                                 </tr>
@@ -249,7 +249,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field["translations"] ) ){
-                                            self::translation_cell( $langs, $key, $field );
+                                            self::translation_cell( $langs, $key, $field, $section );
                                         } ?>
                                     </td>
                                 </tr>
@@ -329,6 +329,9 @@ class DT_Porch_Admin_Tab_Base {
             </form>
 
             <?php endforeach; ?>
+
+            <?php dt_display_translation_dialog() ?>
+
         <?php
     }
 
