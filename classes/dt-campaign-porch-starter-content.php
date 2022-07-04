@@ -120,7 +120,7 @@ class DT_Campaign_Porch_Starter_Content {
     }
 
     public static function content( $language, $names, $from_translation = 'en_US' ) {
-        $values = p4r_porch_fields();
+        $values = DT_Campaign_Settings::get_campaign();
         $fields = [
             "location_name" => $names["location_name"],
             "people_name" => $names["people_plural_masculine"],
