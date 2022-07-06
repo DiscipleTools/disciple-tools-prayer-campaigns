@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 class DT_Prayer_Campaigns_Menu {
 
     public $token = 'dt_prayer_campaigns';
-
+    private $title = 'Prayer Campaigns';
     private static $_instance = null;
 
     private $campaigns;
@@ -49,7 +49,7 @@ class DT_Prayer_Campaigns_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_menu_page( 'Prayer Campaigns', 'Prayer Campaigns', 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ] );
     }
 
     public function enqueue_scripts() {
@@ -120,6 +120,9 @@ class DT_Prayer_Campaigns_Menu {
                     <a href="<?php echo esc_attr( $link . $prayer_content_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_content_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_content_tab->title ) ?>
                     </a>
+                    <a href="<?php echo esc_attr( 'edit.php?post_type=' . PORCH_LANDING_POST_TYPE ) ?>" class="nav-tab" >
+                        Prayer Fuel Posts
+                    </a>
 
                     <?php $porch_admin->tab_headers( $link ); ?>
 
@@ -165,5 +168,3 @@ class DT_Prayer_Campaigns_Menu {
         return $selected_porch_id && !empty( $selected_porch_id ) ? true : false;
     }
 }
-
-DT_Prayer_Campaigns_Menu::instance();

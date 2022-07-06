@@ -26,11 +26,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
      * Loads the subnav page
      * @since 0.1
      */
-    public function register_menu() {
-        if ( current_user_can( 'wp_api_allowed_user' ) ) {
-            add_submenu_page( 'edit.php?post_type=' . PORCH_LANDING_POST_TYPE, $this->title, $this->title, "edit_" . PORCH_LANDING_POST_TYPE, $this->token, [ $this, 'content' ], 0 );
-        }
-    }
+    public function register_menu() {}
 
     /**
      * Builds porch tab links

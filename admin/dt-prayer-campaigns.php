@@ -72,6 +72,9 @@ class DT_Prayer_Campaigns_Campaigns {
                 $this->settings_manager->update( 'selected_porch', $selected_porch );
 
                 DT_Prayer_Campaigns::instance()->set_selected_porch_id( $selected_porch );
+
+                /* Make sure that the prayer fuel custom post type is flushed or set up straight after the porch has been changed */
+                header( "Refresh:0.01" );
             }
         }
     }

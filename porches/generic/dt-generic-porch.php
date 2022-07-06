@@ -44,10 +44,6 @@ class DT_Generic_Porch {
         define( 'PORCH_COLOR_SCHEME', $theme["name"] );
         define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
 
-        // POST TYPE and ACCESS
-        require_once( 'site/roles-and-permissions.php' );
-        require_once( 'site/landing-post-type.php' );
-
         // MICROSITE Magic Links
         require_once( 'site/home.php' );
         require_once( 'site/archive.php' );
@@ -63,36 +59,6 @@ class DT_Generic_Porch {
         }
 
         $this->i18n();
-    }
-
-    public static function define_porch_constants() {
-        if ( ! defined( 'PORCH_ROOT' ) ) {
-            define( 'PORCH_ROOT', 'porch_app' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
-        }
-        if ( ! defined( 'PORCH_TYPE' ) ) {
-            define( 'PORCH_TYPE', '5' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
-        }
-        if ( ! defined( 'PORCH_TOKEN' ) ) {
-            define( 'PORCH_TOKEN', 'porch_app_5' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_ROOT' ) ) {
-            define( 'PORCH_LANDING_ROOT', 'prayer' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
-        }
-        if ( ! defined( 'PORCH_LANDING_TYPE' ) ) {
-            define( 'PORCH_LANDING_TYPE', 'fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_META_KEY' ) ) {
-            define( 'PORCH_LANDING_META_KEY', PORCH_LANDING_ROOT . '_' . PORCH_LANDING_TYPE . '_magic_key' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE', 'landing' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE_SINGLE' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE_SINGLE', 'Porch' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE_PLURAL' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE_PLURAL', 'Porch' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
     }
 
     /**

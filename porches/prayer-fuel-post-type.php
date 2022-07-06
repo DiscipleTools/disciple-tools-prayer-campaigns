@@ -9,13 +9,13 @@ if ( !defined( 'ABSPATH' ) ){
 
 
 /**
- * P4_Ramadan_Porch_Landing_Post_Type Class
- * All functionality pertaining to project update post types in P4_Ramadan_Porch_Landing_Post_Type.
+ * DT_Campaign_Prayer_Fuel_Post_Type Class
+ * All functionality pertaining to project update post types in DT_Campaign_Prayer_Fuel_Post_Type.
  *
  * @package  Disciple_Tools
  * @since    0.1.0
  */
-class P4_Ramadan_Porch_Landing_Post_Type
+class DT_Campaign_Prayer_Fuel_Post_Type
 {
 
     public $post_type;
@@ -71,7 +71,9 @@ class P4_Ramadan_Porch_Landing_Post_Type
 
     public function meta_box_page_language( $post ) {
         $lang = get_post_meta( $post->ID, 'post_language', true );
-        $langs = dt_campaign_list_languages();
+
+        // TODO: replace this function call with the languages class call from the languages PR once it's merged in
+        $langs = dt_get_available_languages();
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }
@@ -163,7 +165,14 @@ class P4_Ramadan_Porch_Landing_Post_Type
             return;
         }
 
+        require_once( ABSPATH . 'wp-admin/includes/screen.php' );
+
         $screen = get_current_screen();
+
+        if ( !$screen ) {
+            return;
+        }
+
         if ( 'edit' == $screen->base
             && 'landing' == $screen->post_type
             && !isset( $_GET['orderby'] ) ){
@@ -228,7 +237,8 @@ class P4_Ramadan_Porch_Landing_Post_Type
                 if ( empty( $language ) ){
                     $language = "en_US";
                 }
-                $languages = dt_campaign_list_languages();
+                /* This is waiting for the language PR to be merged in before it can use that functionality */
+                $languages = dt_get_available_languages();
                 if ( !isset( $languages[$language]["flag"] ) ){
                     echo esc_html( $language );
                 } else {
@@ -243,4 +253,4 @@ class P4_Ramadan_Porch_Landing_Post_Type
         }
     }
 } // End Class
-P4_Ramadan_Porch_Landing_Post_Type::instance();
+DT_Campaign_Prayer_Fuel_Post_Type::instance();

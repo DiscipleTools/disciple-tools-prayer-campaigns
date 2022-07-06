@@ -64,8 +64,6 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
         require_once __DIR__ . '/dt-generic-porch-settings.php';
 
         new DT_Generic_Porch_Settings();
-
-        DT_Generic_Porch::define_porch_constants();
     }
 
 }
