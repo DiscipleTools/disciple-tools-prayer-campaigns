@@ -245,6 +245,17 @@ class DT_Porch_Admin_Tab_Starter_Content {
             } else {
                 $message = "File size is too large.";
             }
+
+            if ( $all_good_to_go ) {
+                ob_start();
+
+                ( new WP_Import() )->import( $tmp_file );
+
+                $import_output = ob_get_contents();
+                ob_end_clean();
+
+                $post_start_date = $prayer_post_importer->find_latest_prayer_fuel_date();
+            }
         }
 
         ?>
@@ -257,6 +268,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 <thead>
                 <tr>
                     <th>Install Prayer Fuel Posts</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -296,7 +308,8 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
                     <tr>
                         <td>
-                            <?php ( new WP_Import() )->import( $tmp_file ); ?>
+                            <?php //phpcs:ignore ?>
+                            <?php echo $import_output ?>
                         </td>
                     </tr>
 
