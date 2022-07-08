@@ -217,6 +217,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
     public function upload_prayer_content_box() {
         /* Note: the url must have the import query param in it to trigger the admin system to require the correct files
         for the import to work */
+        $post_start_date = dt_find_latest_prayer_fuel_date();
 
         $all_good_to_go = false;
         $message = "";
@@ -225,11 +226,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
             $max_file_size = 1024 * 1024 * 5;
 
-            $append_date = isset( $_POST['append_date'] ) ? sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) : "";
-
-            if ( empty( $append_date ) ) {
-                $append_date = dt_find_latest_prayer_fuel_date();
-            }
+            $append_date = isset( $_POST['append_date'] ) ? strtotime( sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) ) : $post_start_date;
 
             $file = isset( $_FILES['file'] ) ? dt_recursive_sanitize_array( wp_unslash( $_FILES['file'] ) ) : '';
 
@@ -262,13 +259,18 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 <tbody>
                     <tr>
                         <td>
-                            <!-- When the date changes the import date needs to change globally -->
                             <input name="append_date" type="date" />
+                            <p>
+                                Posts will automatically be scheduled to start from the date <?php echo esc_html( gmdate( 'd M Y', $post_start_date ) ) ?>
+                            </p>
                         </td>
                         <td>
                             What date should the imported posts be scheduled to start at:
-                            <!-- Put in something here to do the query for when it is going to append it to -->
-                            <!-- If a date isn't used it will use that date, or otherwise the date that is given. -->
+
+                            <p>
+                                If the campaign has had posts imported previously, then they will be appended to the last scheduled post.
+                                If no posts have been imported yet, then it will either schedule the posts to start today or the first day of the campaign, whichever comes last.
+                            </p>
                         </td>
                     </tr>
                     <tr>
