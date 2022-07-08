@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Admin_Tab_Starter_Content {
     public $key = 'starter-content';
-    public $title = 'Install Starter Content';
+    public $title = 'Install Prayer Content';
     public $porch_dir;
 
     public function __construct( $porch_dir ) {
@@ -43,7 +43,12 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
     public function main_column() {
 
+        $this->starter_content_box();
+        $this->upload_prayer_content_box();
 
+    }
+
+    public function starter_content_box() {
         global $wpdb;
         if ( isset( $_POST['install_content_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_content_nonce'] ) ), 'install_content' ) ) {
             $language = null;
@@ -206,6 +211,103 @@ class DT_Porch_Admin_Tab_Starter_Content {
             <br>
             <!-- End Box -->
         </form>
+        <?php
+    }
+
+    public function upload_prayer_content_box() {
+        /* Note: the url must have the import query param in it to trigger the admin system to require the correct files
+        for the import to work */
+
+        $all_good_to_go = false;
+        $message = "";
+        $tmp_file = "";
+        if ( isset( $_POST['install_from_file_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_from_file_nonce'] ) ), 'install_from_file' ) ) {
+
+            $max_file_size = 1024 * 1024 * 5;
+
+            $append_date = isset( $_POST['append_date'] ) ? sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) : "";
+
+            if ( empty( $append_date ) ) {
+                $append_date = dt_find_latest_prayer_fuel_date();
+            }
+
+            $file = isset( $_FILES['file'] ) ? dt_recursive_sanitize_array( wp_unslash( $_FILES['file'] ) ) : '';
+
+            $tmp_file = $file["tmp_name"];
+
+            if ( in_array( $file["type"], [ "application/xml", "text/xml" ], true ) ) {
+                $all_good_to_go = true;
+            } else {
+                $message = "Please upload an xml file";
+            }
+            if ( $all_good_to_go && $file["size"] < $max_file_size ) {
+                $all_good_to_go = true;
+            } else {
+                $message = "File size is too large.";
+            }
+        }
+
+        ?>
+
+
+        <form method="post" enctype="multipart/form-data">
+            <?php wp_nonce_field( 'install_from_file', 'install_from_file_nonce' ) ?>
+        <!-- Box -->
+            <table class="widefat striped">
+                <thead>
+                <tr>
+                    <th>Install Prayer Fuel Posts</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <!-- When the date changes the import date needs to change globally -->
+                            <input name="append_date" type="date" />
+                        </td>
+                        <td>
+                            What date should the imported posts be scheduled to start at:
+                            <!-- Put in something here to do the query for when it is going to append it to -->
+                            <!-- If a date isn't used it will use that date, or otherwise the date that is given. -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="file" type="file" accept="application/xml text/xml" required>
+                            <?php if ( $message !== "" ): ?>
+
+                                <p>
+                                    <?php echo esc_html( $message ) ?>
+                                </p>
+
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            The xml file of prayer posts to import.
+                        </td>
+                    </tr>
+
+                    <?php if ( $all_good_to_go ): ?>
+
+                    <tr>
+                        <td>
+                            <?php ( new WP_Import() )->import( $tmp_file ); ?>
+                        </td>
+                    </tr>
+
+                    <?php endif; ?>
+
+                   <tr>
+                        <td>
+                            <button class="button">Upload</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+
+
         <?php
     }
 }
