@@ -262,8 +262,8 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 <tbody>
                     <tr>
                         <td>
-                            <input name="append_date" type="date" />
-                            <p>
+                            <input id="install_from_file_append_date" name="append_date" type="date" />
+                            <p id="install_from_file_append_date_text">
                                 Posts will automatically be scheduled to start from the date <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
                             </p>
                         </td>
