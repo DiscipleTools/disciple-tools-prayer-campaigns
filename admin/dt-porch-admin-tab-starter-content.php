@@ -217,7 +217,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
     public function upload_prayer_content_box() {
         /* Note: the url must have the import query param in it to trigger the admin system to require the correct files
         for the import to work */
-        $post_start_date = dt_find_latest_prayer_fuel_date();
+        $post_start_date = DT_Campaign_Prayer_Post_Importer::dt_find_latest_prayer_fuel_date();
 
         $all_good_to_go = false;
         $message = "";
