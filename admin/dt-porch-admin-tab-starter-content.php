@@ -228,7 +228,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
             $max_file_size = 1024 * 1024 * 5;
 
             if ( isset( $_POST['append_date'] ) ) {
-                $prayer_post_importer->set_append_date( strtotime( sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) ) );
+                $prayer_post_importer->set_append_date( sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) );
             }
 
             $file = isset( $_FILES['file'] ) ? dt_recursive_sanitize_array( wp_unslash( $_FILES['file'] ) ) : '';
@@ -264,7 +264,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                         <td>
                             <input name="append_date" type="date" />
                             <p>
-                            Posts will automatically be scheduled to start from the date <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
+                                Posts will automatically be scheduled to start from the date <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
                             </p>
                         </td>
                         <td>
