@@ -53,4 +53,29 @@ class DT_Campaign_Settings {
 
         return $campaign;
     }
+
+    /**
+     * Get the day number that a certain date is in the campaign
+     *
+     * @param string $date
+     *
+     * @return int
+     */
+    public static function what_day_in_campaign( string $date ) {
+        $campaign = self::get_campaign();
+        $campaign_start_date = $campaign["start_date"]["formatted"];
+
+        $given = new DateTime( $date );
+        $campaign_start = new DateTime( $campaign_start_date );
+
+        $diff = intval( $campaign_start->diff( $given )->format( "%r%a" ) );
+
+        /* If the date given is the same as the start, then this is day 1 not day 0 */
+        /* If the date given is before the start, then this is a negative day */
+        if ( $diff >= 0 ) {
+            return $diff + 1;
+        } else {
+            return $diff;
+        }
+    }
 }

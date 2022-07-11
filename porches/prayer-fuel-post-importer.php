@@ -64,11 +64,21 @@ class DT_Campaign_Prayer_Post_Importer {
                 "value" => $this->import_meta_value,
             ];
 
-            /*
-            If the meta-key has got the date in it, then it's going to look wierd having the date be different to the
-            actual date in the URL. But I'm not sure there is much that can be done about it in the code without parsing
-            everything to catch those kinds of things. So best thing is to tell people not to name their posts certain dates
-            */
+            $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $start_date );
+            $is_meta_day_set = false;
+            foreach ( $post["postmeta"] as $i => $meta ) {
+                if ( $meta["key"] === "day" ) {
+                    $post["postmeta"][$i]["value"] = $campaign_day;
+                    $is_meta_day_set = true;
+                }
+            }
+
+            if ( !$is_meta_day_set ) {
+                $post["postmeta"][] = [
+                    "key" => "day",
+                    "value" => $campaign_day,
+                ];
+            }
 
             $new_posts[$i] = $post;
 
@@ -76,12 +86,6 @@ class DT_Campaign_Prayer_Post_Importer {
         }
 
         /*
-            So we can change the title, dates for publishing, day meta key
-            absolutely anything that we want to do.
-
-            So then the code part of it would be to get the latest post in the db
-            and start adjusting these posts, publish dates to go be published after these ones.
-
             If the posts coming in have the day meta tag, then at least we can connect translated
             posts together with that
 
@@ -96,7 +100,7 @@ class DT_Campaign_Prayer_Post_Importer {
     }
 
     /**
-     * Return the timestamp of the latest prayer fuel post that was imported
+     * Return the date of the latest prayer fuel post that was imported in mysql format
      *
      * @return string
      */
@@ -109,27 +113,32 @@ class DT_Campaign_Prayer_Post_Importer {
                 MAX( post_date ) as post_date,
                 MAX( post_date_gmt ) as post_date_gmt
             FROM
-                `wp_postmeta` AS pm
+                $wpdb->postmeta AS pm
             JOIN
-                `wp_posts` AS p
+                $wpdb->posts AS p
             ON
                 pm.post_id = p.ID
             WHERE
-                meta_key = %s
+                pm.meta_key = %s
             AND
-                meta_value = %s
+                pm.meta_value = %s
+            AND
+                p.post_status = 'publish'
+            OR
+                p.post_status = 'draft'
+
         ", [ $this->import_meta_key, $this->import_meta_value ] ), ARRAY_A );
 
-        if ( !$latest_prayer_fuel["post_date"] || !$latest_prayer_fuel["post_date_gmt"] ) {
-            $today_timestamp = date_timestamp_get( new DateTime() );
-            $campaign = DT_Campaign_Settings::get_campaign();
-            $campaign_start = $campaign["start_date"]["timestamp"];
+        $today_timestamp = date_timestamp_get( new DateTime() );
+        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign_start = $campaign["start_date"]["timestamp"];
 
-            if ( $today_timestamp > $campaign_start ) {
-                return $today_timestamp;
-            } else {
-                return $campaign_start;
-            }
+        $start_posting_from = max( $campaign_start, $today_timestamp );
+
+        $latest_prayer_fuel_timestamp = !empty( $latest_prayer_fuel ) ? strtotime( $latest_prayer_fuel["post_date"] ) : null;
+
+        if ( !$latest_prayer_fuel_timestamp || $latest_prayer_fuel_timestamp < $start_posting_from ) {
+            return $this->mysql_date( $start_posting_from );
         } else {
             return $this->mysql_date( $this->next_day_timestamp( $latest_prayer_fuel["post_date"] ) );
         }
