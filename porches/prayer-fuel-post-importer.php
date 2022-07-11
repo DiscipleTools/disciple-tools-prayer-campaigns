@@ -123,11 +123,11 @@ class DT_Campaign_Prayer_Post_Importer {
             AND
                 pm.meta_value = %s
             AND
-                p.post_status = 'publish'
-            OR
-                p.post_status = 'draft'
+                p.post_type = %s
+            AND
+                ( p.post_status = 'publish' OR p.post_status = 'draft' )
 
-        ", [ $this->import_meta_key, $this->import_meta_value ] ), ARRAY_A );
+        ", [ $this->import_meta_key, $this->import_meta_value, PORCH_LANDING_POST_TYPE ] ), ARRAY_A );
 
         $today_timestamp = date_timestamp_get( new DateTime() );
         $campaign = DT_Campaign_Settings::get_campaign();
@@ -135,7 +135,7 @@ class DT_Campaign_Prayer_Post_Importer {
 
         $start_posting_from = max( $campaign_start, $today_timestamp );
 
-        $latest_prayer_fuel_timestamp = !empty( $latest_prayer_fuel ) ? strtotime( $latest_prayer_fuel["post_date"] ) : null;
+        $latest_prayer_fuel_timestamp = $latest_prayer_fuel["post_date"] !== null ? strtotime( $latest_prayer_fuel["post_date"] ) : null;
 
         if ( !$latest_prayer_fuel_timestamp || $latest_prayer_fuel_timestamp < $start_posting_from ) {
             return $this->mysql_date( $start_posting_from );
