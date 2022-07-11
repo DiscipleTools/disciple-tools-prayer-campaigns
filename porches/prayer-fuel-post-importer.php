@@ -45,7 +45,7 @@ class DT_Campaign_Prayer_Post_Importer {
         if ( $this->append_date ) {
             $start_date = $this->append_date;
         } else {
-            $start_date = $this->find_latest_prayer_fuel_date();
+            $start_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
         }
 
         $start_date = $this->mysql_date( strtotime( $start_date ) );
@@ -66,9 +66,9 @@ class DT_Campaign_Prayer_Post_Importer {
 
             $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $start_date );
             $is_meta_day_set = false;
-            foreach ( $post["postmeta"] as $i => $meta ) {
+            foreach ( $post["postmeta"] as $j => $meta ) {
                 if ( $meta["key"] === "day" ) {
-                    $post["postmeta"][$i]["value"] = $campaign_day;
+                    $post["postmeta"][$j]["value"] = $campaign_day;
                     $is_meta_day_set = true;
                 }
             }
@@ -125,7 +125,12 @@ class DT_Campaign_Prayer_Post_Importer {
             AND
                 p.post_type = %s
             AND
-                ( p.post_status = 'publish' OR p.post_status = 'draft' )
+                (   p.post_status = 'publish'
+                OR
+                    p.post_status = 'draft'
+                OR
+                    p.post_status = 'future'
+                )
 
         ", [ $this->import_meta_key, $this->import_meta_value, PORCH_LANDING_POST_TYPE ] ), ARRAY_A );
 
