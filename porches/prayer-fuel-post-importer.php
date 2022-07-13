@@ -145,7 +145,7 @@ class DT_Campaign_Prayer_Post_Importer {
         if ( !$latest_prayer_fuel_timestamp || $latest_prayer_fuel_timestamp < $start_posting_from ) {
             return $this->mysql_date( $start_posting_from );
         } else {
-            return $this->mysql_date( $this->next_day_timestamp( $latest_prayer_fuel["post_date"] ) );
+            return $latest_prayer_fuel["post_date"];
         }
     }
 

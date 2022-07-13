@@ -78,9 +78,12 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             $lang = 'en_US';
         }
         ?>
+
+        <?php wp_nonce_field( 'landing-language-selector', 'landing-language-selector' ); ?>
+
         <select class="dt-magic-link-language-selector" name="dt-landing-language-selector">
             <?php foreach ( $langs as $code => $language ) : ?>
-                <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
+                <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang == $code ) ?>>
                     <?php echo esc_html( $language["flag"] ); ?> <?php echo esc_html( $language["native_name"] ); ?>
                 </option>
             <?php endforeach; ?>
@@ -89,12 +92,13 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     }
 
     public function save_post( $id ){
-        /* TODO Check nonce first then uncomment the below code */
 
-        /* if ( isset( $_POST["dt-landing-language-selector"] ) ){
-            $post_submission = dt_recursive_sanitize_array( $_POST );
-            update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
-        } */
+        if ( isset( $_POST['landing-language-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-language-selector'] ) ), 'landing-language-selector' ) ) {
+            if ( isset( $_POST["dt-landing-language-selector"] ) ){
+                $post_submission = dt_recursive_sanitize_array( $_POST );
+                update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
+            }
+        }
     }
 
 

@@ -99,7 +99,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'translations' => [
-                    'add' => __( 'Add Magic', 'disciple-tools-plugin-starter-template' ),
+                    'add' => __( 'Add Magic', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'rest_namespace' => $this->root . '/v1/' . $this->type,
             ]
