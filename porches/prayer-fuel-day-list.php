@@ -42,11 +42,11 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         }
         $this->items = $posts_sorted_by_campaign_day;
  */
-
+        $post_count = wp_count_posts( PORCH_LANDING_POST_TYPE );
 
         $this->set_pagination_args(
             array(
-            'total_items' => count( $this->items ),
+            'total_items' => $post_count->future,
             'per_page'    => $per_page,
             )
         );
@@ -96,5 +96,11 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 break;
         }
 
+    }
+
+    public function get_bulk_actions() {
+        return [
+            "delete" => "Delete",
+        ];
     }
 }
