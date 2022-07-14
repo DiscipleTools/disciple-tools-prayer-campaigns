@@ -254,7 +254,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
             if ( isset( $_POST["rss-feed-url"] ) ) {
                 $rss_feed_url = sanitize_text_field( wp_unslash( $_POST["rss-feed-url"] ) );
 
-                libxml_use_internal_errors(true);
+                libxml_use_internal_errors( true );
                 $feeds = simplexml_load_file( $rss_feed_url );
 
                 $errors = libxml_get_errors();
@@ -269,11 +269,10 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
                     fwrite( $tmp_file, $data );
 
-                    $tmp_file_name = stream_get_meta_data($tmp_file)['uri'];
+                    $tmp_file_name = stream_get_meta_data( $tmp_file )['uri'];
                 } else {
                     $invalidurl = true;
                 }
-
             }
 
             if ( $all_good_to_go ) {
@@ -291,7 +290,6 @@ class DT_Porch_Admin_Tab_Starter_Content {
             if ( $tmp_file ) {
                 fclose( $tmp_file );
             }
-
         }
 
         ?>
