@@ -26,6 +26,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $args["post_type"] = PORCH_LANDING_POST_TYPE;
         $args["post_status"] = array( "draft", "publish", "future" );
 
+        // TODO: get the query args and get the posts based on the post_status given
+
         /* Get the prayer fuel posts with their language and day meta tags included */
         $this->items = get_posts( $args );
 /*
@@ -101,6 +103,18 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     public function get_bulk_actions() {
         return [
             "delete" => "Delete",
+        ];
+    }
+
+    public function get_views() {
+        $post_counts = wp_count_posts( PORCH_LANDING_POST_TYPE );
+
+        $total = intval( $post_counts->future ) + intval( $post_counts->draft ) + intval( $post_counts->publish );
+
+        return [
+            "all" => "<a href='admin.php?page=dt_prayer_fuel'>All ($total)</a>",
+            "draft" => "<a href='admin.php?page=dt_prayer_fuel&post_status=draft'>Draft ($post_counts->draft)</a>",
+            "scheduled" => "<a href='admin.php?page=dt_prayer_fuel&post_status=future'>Scheduled ($post_counts->future)</a>",
         ];
     }
 }

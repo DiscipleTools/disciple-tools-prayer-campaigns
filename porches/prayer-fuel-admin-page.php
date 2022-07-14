@@ -67,7 +67,21 @@ class DT_Campaign_Prayer_Fuel_Menu {
         $table = new DT_Campaign_Prayer_Fuel_Day_List();
 
         $table->prepare_items();
-        $table->display();
+
+        ?>
+
+        <div class="wrap">
+            <h1 class="wp-heading-inline">Prayer Fuel</h1>
+
+            <a href="post-new.php?post_type=landing" class="page-title-action">Add New</a>
+            <hr class="wp-header-end">
+
+            <?php $table->views(); ?>
+            <?php $table->display(); ?>
+
+        </div>
+
+        <?php
     }
 }
 
