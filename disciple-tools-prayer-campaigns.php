@@ -163,7 +163,7 @@ class DT_Prayer_Campaigns {
         }
     }
 
-    private function has_selected_porch() {
+    public function has_selected_porch() {
         return $this->selected_porch_id && !empty( $this->selected_porch_id );
     }
 

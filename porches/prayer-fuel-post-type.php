@@ -61,6 +61,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         if ( PORCH_LANDING_POST_TYPE === $post_type ) {
             add_meta_box( PORCH_LANDING_POST_TYPE . '_custom_permalink', PORCH_LANDING_POST_TYPE_SINGLE . ' Url', [ $this, 'meta_box_custom_permalink' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
             add_meta_box( PORCH_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
+            add_meta_box( PORCH_LANDING_POST_TYPE . '_campaign_day', 'Campaign Day', [ $this, 'meta_box_campaign_day' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
         }
     }
 
@@ -73,7 +74,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         $lang = get_post_meta( $post->ID, 'post_language', true );
 
         // TODO: replace this function call with the languages class call from the languages PR once it's merged in
-        $langs = dt_get_available_languages();
+        $langs = dt_get_available_languages( true );
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }
@@ -91,14 +92,35 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         <?php
     }
 
+    public function meta_box_campaign_day( $post ) {
+        $campaign_day = get_post_meta( $post->ID, 'day', true );
+
+        ?>
+
+        <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
+        <input name="dt-landing-day-selector" type="number" min="1" value="<?php echo $campaign_day ?? 1 ?>">
+
+        <p>Calculated day here</p>
+
+        <?php
+    }
+
     public function save_post( $id ){
+
+        $post_submission = dt_recursive_sanitize_array( $_POST );
 
         if ( isset( $_POST['landing-language-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-language-selector'] ) ), 'landing-language-selector' ) ) {
             if ( isset( $_POST["dt-landing-language-selector"] ) ){
-                $post_submission = dt_recursive_sanitize_array( $_POST );
                 update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
             }
         }
+
+        if ( isset( $_POST['landing-day-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-day-selector'] ) ), 'landing-day-selector' ) ) {
+            if ( isset( $_POST["dt-landing-day-selector"] ) ){
+                update_post_meta( $post_submission["ID"], 'day', $post_submission["dt-landing-day-selector"] );
+            }
+        }
+
     }
 
 
@@ -242,7 +264,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                     $language = "en_US";
                 }
                 /* This is waiting for the language PR to be merged in before it can use that functionality */
-                $languages = dt_get_available_languages();
+                $languages = dt_get_available_languages( true );
                 if ( !isset( $languages[$language]["flag"] ) ){
                     echo esc_html( $language );
                 } else {

@@ -78,4 +78,14 @@ class DT_Campaign_Settings {
             return $diff;
         }
     }
+
+    /**
+     * Get the mysql date string for the day of the campaign
+     */
+    public static function date_of_campaign_day( int $day ) {
+        $campaign = self::get_campaign();
+        $campaign_start_date = $campaign["start_date"]["formatted"];
+
+        return gmdate( "Y-m-d H:i:s", strtotime( $campaign_start_date . " +" . $day - 1 . " days" ) );
+    }
 }
