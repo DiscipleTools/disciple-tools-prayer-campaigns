@@ -141,35 +141,8 @@ class DT_Campaign_Prayer_Post_Importer {
      *
      * @return string
      */
-    public function find_latest_prayer_fuel_date( $lang ) {
-        global $wpdb;
-
-        /* get the latest prayer fuel with the imported meta tag */
-        $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( "
-            SELECT
-                MAX( post_date ) as post_date,
-                MAX( post_date_gmt ) as post_date_gmt
-            FROM
-                $wpdb->postmeta AS pm
-            JOIN
-                $wpdb->posts AS p
-            ON
-                pm.post_id = p.ID
-            WHERE
-                pm.meta_key = 'post_language'
-            AND
-                pm.meta_value = %s
-            AND
-                p.post_type = %s
-            AND
-                (   p.post_status = 'publish'
-                OR
-                    p.post_status = 'draft'
-                OR
-                    p.post_status = 'future'
-                )
-
-        ", [ $lang, PORCH_LANDING_POST_TYPE ] ), ARRAY_A );
+    public function find_latest_prayer_fuel_date( $lang = null ) {
+        $latest_prayer_fuel = $this->find_latest_prayer_fuel_data( $lang );
 
         $today_timestamp = date_timestamp_get( new DateTime() );
         $campaign = DT_Campaign_Settings::get_campaign();
@@ -184,6 +157,78 @@ class DT_Campaign_Prayer_Post_Importer {
         } else {
             return $latest_prayer_fuel["post_date"];
         }
+    }
+
+    /**
+     * Return the campaign day of thetest prayer fuel post
+     *
+     * @param string $lang
+     *
+     * @return int
+     */
+    public function find_latest_prayer_fuel_day( $lang = null ) {
+        $latest_prayer_fuel = $this->find_latest_prayer_fuel_data( $lang );
+
+        if ( $latest_prayer_fuel["day"] === null ) {
+            return 0;
+        }
+
+        return $latest_prayer_fuel["day"];
+    }
+
+    /**
+     * Return the day and date of the latest prayer fuel
+     *
+     * @param string $lang If given will give the day and date of the latest prayer fuel in that language
+     *
+     * @return array
+     */
+    private function find_latest_prayer_fuel_data( $lang = null ) {
+        global $wpdb;
+
+        $query = "
+            SELECT
+                MAX( post_date ) as post_date,
+                MAX( post_date_gmt ) as post_date_gmt,
+                MAX( CAST( pm2.meta_value AS unsigned )  ) as day
+            FROM
+                $wpdb->postmeta AS pm
+            JOIN
+                $wpdb->posts AS p
+            ON
+                pm.post_id = p.ID
+            JOIN
+                $wpdb->postmeta AS pm2
+            ON
+                pm2.post_id = p.ID
+            WHERE
+               pm2.meta_key = 'day'
+            AND
+                p.post_type = %s
+            AND
+                (   p.post_status = 'publish'
+                OR
+                    p.post_status = 'draft'
+                OR
+                    p.post_status = 'future'
+                )
+            ";
+        $args = [ PORCH_LANDING_POST_TYPE ];
+
+        if ( $lang ) {
+            $query .= "
+            AND
+                pm.meta_key = 'post_language'
+            AND
+                pm.meta_value = %s
+            ";
+            $args[] = $lang;
+        }
+
+        /* get the latest prayer fuel with the imported meta tag */
+        $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( $query, $args ), ARRAY_A );
+
+        return $latest_prayer_fuel;
     }
 
     /**
