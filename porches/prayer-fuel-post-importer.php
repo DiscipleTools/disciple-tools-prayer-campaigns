@@ -24,6 +24,15 @@ class DT_Campaign_Prayer_Post_Importer {
 
     public function __construct() {
         add_filter( 'wp_import_posts', array( $this, 'dt_import_prayer_posts' ) );
+        add_filter( 'wp_import_existing_post', array( $this, 'dt_import_existing_post' ) );
+    }
+
+    /**
+     * Forces the WP_Import to always import posts regardless of whether a post exists with the same name
+     * and post_date
+     */
+    public function dt_import_existing_post() {
+        return 0;
     }
 
     /**
@@ -42,69 +51,97 @@ class DT_Campaign_Prayer_Post_Importer {
         // Copy the post. Recommended
         $new_posts = $posts;
 
-        if ( $this->append_date ) {
-            $start_date = $this->append_date;
-        } else {
-            $start_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
+        // TODO: get the list of languages for this campaign
+        $available_languages = [ "en_US", "fr_FR", "ar_EG", "es_ES" ];
+        $start_date = [];
+
+        foreach ( $available_languages as $lang ) {
+            if ( $this->append_date ) {
+                $start_date[$lang] = $this->append_date;
+            } else {
+                $start_date[$lang] = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date( $lang ) ) );
+            }
+            $start_date[$lang] = $this->mysql_date( strtotime( $start_date[$lang] ) );
         }
 
-        $start_date = $this->mysql_date( strtotime( $start_date ) );
-
         foreach ( $new_posts as $i => $post ) {
-            $post_exists = post_exists( $post["post_title"], "", $post["post_date"] );
-            if ( $post_exists && get_post_type( $post_exists ) == $post["post_type"] ) {
-                $post["post_title"] = $post["post_title"] . ' - ' . $this->day_month_year( strtotime( $start_date ) );
+            $post_lang = $this->get_post_meta( $post["postmeta"], "post_language" );
+            if ( empty( $post_lang ) || !in_array( $post_lang, $available_languages, true ) ) {
+                continue;
             }
 
-            $post["post_date"] = $start_date;
-            $post["post_date_gmt"] = $start_date;
+            $post_start_date = $start_date[$post_lang];
 
-            $post["postmeta"][] = [
-                "key" => $this->import_meta_key,
-                "value" => $this->import_meta_value,
-            ];
+            $post["post_date"] = $post_start_date;
+            $post["post_date_gmt"] = $post_start_date;
 
-            $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $start_date );
-            $is_meta_day_set = false;
-            foreach ( $post["postmeta"] as $j => $meta ) {
-                if ( $meta["key"] === "day" ) {
-                    $post["postmeta"][$j]["value"] = $campaign_day;
-                    $is_meta_day_set = true;
-                }
-            }
+            $this->set_post_meta( $post["postmeta"], $this->import_meta_key, $this->import_meta_value );
 
-            if ( !$is_meta_day_set ) {
-                $post["postmeta"][] = [
-                    "key" => "day",
-                    "value" => $campaign_day,
-                ];
-            }
+            $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $post_start_date );
+
+            $this->set_post_meta( $post["postmeta"], "day", $campaign_day );
+
+            // TODO: give each post the correct magic_link_key
 
             $new_posts[$i] = $post;
 
-            $start_date = $this->mysql_date( $this->next_day_timestamp( $start_date ) );
+            $start_date[$post_lang] = $this->mysql_date( $this->next_day_timestamp( $start_date[$post_lang] ) );
         }
 
-        /*
-            If the posts coming in have the day meta tag, then at least we can connect translated
-            posts together with that
-
-            How does doing translations of posts work with this.
-
-            Try installing one of the post translator plugins and see how that deals with linking posts
-            and what happens when you export those  .
-        */
         $this->append_date = null;
 
         return $new_posts;
     }
 
     /**
-     * Return the date of the latest prayer fuel post that was imported in mysql format
+     * Get the meta matching the $key from the $postmeta
+     *
+     * @param array postmeta
+     * @param string $key
      *
      * @return string
      */
-    public function find_latest_prayer_fuel_date() {
+    private function get_post_meta( $postmeta, $key ) {
+        foreach ( $postmeta as $i => $meta ) {
+            if ( $meta["key"] === $key ) {
+                return $meta["value"];
+            }
+        }
+        return "";
+    }
+
+    /**
+     * Set the meta with $key and $value in the $postmeta
+     *
+     * @param array postmeta
+     * @param string $key
+     * @param string $value
+     */
+    private function set_post_meta( &$postmeta, $key, $value ) {
+        $is_meta_set = false;
+        foreach ( $postmeta as $j => $meta ) {
+            if ( $meta["key"] === $key ) {
+                    $postmeta[$j]["value"] = $value;
+                    $is_meta_set = true;
+            }
+        }
+
+        if ( !$is_meta_set ) {
+            $postmeta[] = [
+                "key" => $key,
+                "value" => $value,
+            ];
+        }
+    }
+
+    /**
+     * Return the date of the latest prayer fuel post that was imported in mysql format
+     *
+     * @param string $lang
+     *
+     * @return string
+     */
+    public function find_latest_prayer_fuel_date( $lang ) {
         global $wpdb;
 
         /* get the latest prayer fuel with the imported meta tag */
@@ -119,7 +156,7 @@ class DT_Campaign_Prayer_Post_Importer {
             ON
                 pm.post_id = p.ID
             WHERE
-                pm.meta_key = %s
+                pm.meta_key = 'post_language'
             AND
                 pm.meta_value = %s
             AND
@@ -132,7 +169,7 @@ class DT_Campaign_Prayer_Post_Importer {
                     p.post_status = 'future'
                 )
 
-        ", [ $this->import_meta_key, $this->import_meta_value, PORCH_LANDING_POST_TYPE ] ), ARRAY_A );
+        ", [ $lang, PORCH_LANDING_POST_TYPE ] ), ARRAY_A );
 
         $today_timestamp = date_timestamp_get( new DateTime() );
         $campaign = DT_Campaign_Settings::get_campaign();
