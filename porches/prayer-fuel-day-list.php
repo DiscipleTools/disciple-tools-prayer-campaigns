@@ -112,6 +112,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 echo esc_html( $date );
                 break;
             case 'language':
+                // TODO: change this to loop through available languages once language PR is merged in.
                 foreach ( $items as $post ) {
                     DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $post->ID );
                 }

@@ -98,7 +98,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         ?>
 
         <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
-        <input name="dt-landing-day-selector" type="number" min="1" value="<?php echo $campaign_day ?? 1 ?>">
+        <input name="dt-landing-day-selector" type="number" min="1" value="<?php echo esc_html( $campaign_day ) ?? 1 ?>">
 
         <p>Calculated day here</p>
 
@@ -107,7 +107,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     public function save_post( $id ){
 
-        $post_submission = dt_recursive_sanitize_array( $_POST );
+        $post_submission = dt_recursive_sanitize_array( wp_unslash( $_POST ) );
 
         if ( isset( $_POST['landing-language-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-language-selector'] ) ), 'landing-language-selector' ) ) {
             if ( isset( $_POST["dt-landing-language-selector"] ) ){
