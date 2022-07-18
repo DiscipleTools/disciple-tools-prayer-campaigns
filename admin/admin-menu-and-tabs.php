@@ -40,6 +40,7 @@ class DT_Prayer_Campaigns_Menu {
 
         add_action( "admin_menu", array( $this, "register_menu" ) );
         add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );
+        add_filter( "dt_options_script_pages", array( $this, "dt_options_script_pages" ) );
 
         $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
     }
@@ -55,6 +56,12 @@ class DT_Prayer_Campaigns_Menu {
     public function enqueue_scripts() {
         wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery' ], filemtime( __DIR__ . '/admin.js' ), true );
         wp_enqueue_style( 'dt_campaign_admin_style', plugin_dir_url( __FILE__ ) . 'admin.css', [], filemtime( __DIR__. '/admin.css' ) );
+    }
+
+    public function dt_options_script_pages( $allowed_pages ) {
+        $allowed_pages[] = $this->token;
+
+        return $allowed_pages;
     }
 
     /**
@@ -85,6 +92,8 @@ class DT_Prayer_Campaigns_Menu {
             case "campaigns":
                 $this->campaigns->process_email_settings();
                 $this->campaigns->process_porch_settings();
+                $this->campaigns->process_language_settings();
+                $this->campaigns->process_new_language();
                 break;
             default:
                 break;
