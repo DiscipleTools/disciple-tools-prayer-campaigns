@@ -97,7 +97,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </option>
                                 <?php endforeach; ?>
                             </select>
-                            <button class="button" type="submit">Update</button>
+                            <button class="button float-right" type="submit">Update</button>
                         </td>
                     </tr>
                     <?php if ( ! empty( $fields['ID'] ) ) : ?>
@@ -135,13 +135,13 @@ class DT_Porch_Admin_Tab_Base {
         <?php
     }
 
-    private function translation_cell( $langs, $key, $field ){
+    private function translation_cell( $langs, $key, $field, $form_name ){
         ?>
-        <button class="button small expand_translations">
+        <button class="button small expand_translations" data-form_name="<?php echo esc_html( $form_name ) ?>>
             <?php
             $number_of_translations = 0;
-            foreach ( $langs as $lang => $val ){
-                if ( !empty( $field["translations"][$val['language']] ) ){
+            foreach ( $langs as $code => $val ){
+                if ( !empty( $field["translations"][$code] ) ){
                     $number_of_translations++;
                 }
             }
@@ -151,13 +151,13 @@ class DT_Porch_Admin_Tab_Base {
         </button>
         <div class="translation_container hide">
             <table style="width:100%">
-                <?php foreach ( $langs as $lang => $val ) : ?>
+                <?php foreach ( $langs as $code => $val ) : ?>
                     <tr>
-                        <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $val['language'] )?>"><?php echo esc_html( $val['native_name'] )?></label></td>
+                        <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo esc_html( $val["native_name"] )?></label></td>
                         <?php if ( $field["type"] === "textarea" ) :?>
-                            <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $val['language'] )?>"><?php echo wp_kses_post( $field["translations"][$val['language']] ?? "" );?></textarea></td>
+                            <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo wp_kses_post( $field["translations"][$code] ?? "" );?></textarea></td>
                         <?php else : ?>
-                            <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $val['language'] )?>" type="text" value="<?php echo esc_html( $field["translations"][$val['language']] ?? "" );?>"/></td>
+                            <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>" type="text" value="<?php echo esc_html( $field["translations"][$code] ?? "" );?>"/></td>
                         <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
@@ -167,7 +167,7 @@ class DT_Porch_Admin_Tab_Base {
     }
 
     public function main_column() {
-        $langs = dt_campaign_list_languages();
+        $langs = dt_campaign_list_all_languages();
         $allowed_tags = $this->get_allowed_tags();
         $sections = DT_Porch_Settings::sections( $this->tab );
 
@@ -191,7 +191,7 @@ class DT_Porch_Admin_Tab_Base {
         ?>
         <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
 
-            <form method="post" class="metabox-table">
+            <form method="post" class="metabox-table" name="<?php echo esc_html( $section ) ?>">
                 <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
                 <!-- Box -->
                 <table class="widefat striped">
@@ -227,7 +227,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field["translations"] ) ){
-                                            self::translation_cell( $langs, $key, $field );
+                                            self::translation_cell( $langs, $key, $field, $section );
                                         } ?>
                                     </td>
                                 </tr>
@@ -249,7 +249,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field["translations"] ) ){
-                                            self::translation_cell( $langs, $key, $field );
+                                            self::translation_cell( $langs, $key, $field, $section );
                                         } ?>
                                     </td>
                                 </tr>
@@ -284,8 +284,8 @@ class DT_Porch_Admin_Tab_Base {
                                                 <option value="<?php echo esc_html( $field['value'] ); ?>" selected="selected"><?php echo esc_html( $default_translation_label ); ?></option>
                                                 <option disabled>-----</option>
                                             <?php endif; ?>
-                                            <?php foreach ( $langs as $lang ) : ?>
-                                                <option value="<?php echo esc_attr( $lang['language'] ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
+                                            <?php foreach ( $langs as $code => $lang ) : ?>
+                                                <option value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
@@ -319,7 +319,7 @@ class DT_Porch_Admin_Tab_Base {
 
                         <tr>
                             <td colspan="2">
-                                <button class="button" type="submit">Update</button>
+                                <button class="button float-right" type="submit">Update</button>
                             </td>
                             <td></td>
                         </tr>
@@ -329,6 +329,9 @@ class DT_Porch_Admin_Tab_Base {
             </form>
 
             <?php endforeach; ?>
+
+            <?php dt_display_translation_dialog() ?>
+
         <?php
     }
 
