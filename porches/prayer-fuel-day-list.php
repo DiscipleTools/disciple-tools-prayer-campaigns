@@ -1,6 +1,14 @@
 <?php
 
 class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
+
+    private $languages_manager;
+
+    public function __construct() {
+        $this->languages_manager = new DT_Campaign_Languages();
+        parent::__construct();
+    }
+
     public function prepare_items() {
 
         $columns = $this->get_columns();
@@ -112,9 +120,24 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 echo esc_html( $date );
                 break;
             case 'language':
-                // TODO: change this to loop through available languages once language PR is merged in.
+                $languages = $this->languages_manager->get();
+
+                $translated_languages = [];
                 foreach ( $items as $post ) {
-                    DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $post->ID );
+                    $translated_languages[] = get_post_meta( $post->ID, 'post_language', true );
+                }
+
+                foreach ( $languages as $code => $language ) {
+                    $button_on = in_array( $code, $translated_languages, true );
+                    ?>
+
+                    <a class="button language-button <?php echo $button_on ? '' : 'no-language' ?>">
+
+                        <?php echo esc_html( $language["flag"] ); ?>
+
+                    </a>
+
+                    <?php
                 }
                 break;
             case 'url':

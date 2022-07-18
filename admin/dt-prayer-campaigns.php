@@ -300,7 +300,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                     <?php foreach ( $languages as $code => $language ): ?>
 
                                         <tr class="<?php echo $language["enabled"] === false ? 'disabled-language' : '' ?>">
-                                            <td><?php echo esc_html( $language["label"] ) ?></td>
+                                            <td><?php echo esc_html( $language["english_name"] ) ?></td>
                                             <td><?php echo esc_html( $code ) ?></td>
                                             <td><?php echo esc_html( $language["flag"] ) ?></td>
                                             <td>
