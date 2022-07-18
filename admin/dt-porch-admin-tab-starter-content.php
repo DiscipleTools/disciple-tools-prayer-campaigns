@@ -327,7 +327,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                             <p id="install_from_file_append_date_text">
                                 Posts will automatically be scheduled to start from the dates
                                 <ul>
-                                    <?php foreach ($post_start_dates as $lang => $post_start_date): ?>
+                                    <?php foreach ( $post_start_dates as $lang => $post_start_date ): ?>
 
                                        <li>
                                            <?php echo esc_html( $lang . ': ' . gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>

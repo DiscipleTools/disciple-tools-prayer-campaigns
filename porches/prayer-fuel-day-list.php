@@ -11,10 +11,10 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $current_page = $this->get_pagenum();
         $offset = ( $current_page - 1 ) * $per_page;
 
-        $this->_column_headers = array($columns, $hidden, $sortable);
+        $this->_column_headers = array( $columns, $hidden, $sortable );
 
         $days = [];
-        for ( $i = ( $current_page - 1 ) * $per_page; $i < $current_page * $per_page; $i++) {
+        for ( $i = ( $current_page - 1 ) * $per_page; $i < $current_page * $per_page; $i++ ) {
             $days[] = $i + 1;
         }
 
@@ -29,9 +29,9 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 ),
         );
 
-        if( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
-            $args['orderby'] = $_REQUEST['orderby'];
-            $args['order'] = $_REQUEST['order'];
+        if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
+            $args['orderby'] = sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
+            $args['order'] = sanitize_text_field( wp_unslash( $_REQUEST['order'] ) );
         }
 
         $args["post_type"] = PORCH_LANDING_POST_TYPE;
@@ -104,7 +104,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         switch ( $column_name ) {
             case 'day':
-                echo "Day " . $day;
+                echo esc_html( "Day " . $day );
                 break;
             case 'date':
                 $date = DT_Campaign_Settings::date_of_campaign_day( intval( $day ) );

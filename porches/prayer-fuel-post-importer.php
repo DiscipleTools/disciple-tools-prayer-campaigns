@@ -226,6 +226,7 @@ class DT_Campaign_Prayer_Post_Importer {
         }
 
         /* get the latest prayer fuel with the imported meta tag */
+        //phpcs:ignore
         $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( $query, $args ), ARRAY_A );
 
         return $latest_prayer_fuel;
