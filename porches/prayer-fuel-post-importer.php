@@ -51,8 +51,8 @@ class DT_Campaign_Prayer_Post_Importer {
         // Copy the post. Recommended
         $new_posts = $posts;
 
-        // TODO: get the list of languages for this campaign
-        $available_languages = [ "en_US", "fr_FR", "ar_EG", "es_ES" ];
+        $language_settings = new DT_Campaign_Languages();
+        $available_languages = $language_settings->get();
         $start_date = [];
 
         $last_post_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
