@@ -23,6 +23,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     public $plural;
     public $args;
     public $taxonomies;
+    private $language_settings;
     private static $_instance = null;
     public static function instance() {
         if ( is_null( self::$_instance ) ){
@@ -43,6 +44,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         $this->plural = PORCH_LANDING_POST_TYPE_PLURAL;
         $this->args = $args;
         $this->taxonomies = $taxonomies;
+        $this->language_settings = new DT_Campaign_Languages();
 
         add_action( 'init', [ $this, 'register_post_type' ] );
         add_action( 'transition_post_status', [ $this, 'transition_post' ], 10, 3 );
@@ -60,8 +62,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     public function add_meta_box( $post_type ) {
         if ( PORCH_LANDING_POST_TYPE === $post_type ) {
             add_meta_box( PORCH_LANDING_POST_TYPE . '_custom_permalink', PORCH_LANDING_POST_TYPE_SINGLE . ' Url', [ $this, 'meta_box_custom_permalink' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
-            add_meta_box( PORCH_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
-            add_meta_box( PORCH_LANDING_POST_TYPE . '_campaign_day', 'Campaign Day', [ $this, 'meta_box_campaign_day' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
+            add_meta_box( PORCH_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], PORCH_LANDING_POST_TYPE, 'side', 'core' );
+            add_meta_box( PORCH_LANDING_POST_TYPE . '_campaign_day', 'Campaign Day', [ $this, 'meta_box_campaign_day' ], PORCH_LANDING_POST_TYPE, 'side', 'core' );
         }
     }
 
@@ -73,8 +75,11 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     public function meta_box_page_language( $post ) {
         $lang = get_post_meta( $post->ID, 'post_language', true );
 
-        // TODO: replace this function call with the languages class call from the languages PR once it's merged in
-        $langs = dt_get_available_languages( true );
+        if ( empty( $lang ) ) {
+            $lang = isset( $_GET["post_language"] ) ? sanitize_text_field( wp_unslash( $_GET["post_language"] ) ) : null;
+        }
+
+        $langs = $this->language_settings->get_enabled_languages();
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }
@@ -95,12 +100,36 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     public function meta_box_campaign_day( $post ) {
         $campaign_day = get_post_meta( $post->ID, 'day', true );
 
+        $latest_campaign_day = DT_Campaign_Prayer_Post_Importer::instance()->find_latest_prayer_fuel_day();
+        $day = isset( $_GET["day"] ) ? sanitize_text_field( wp_unslash( $_GET["day"] ) ) : $latest_campaign_day + 1;
+
+        $value = !empty( $campaign_day ) ? $campaign_day : $day;
+
+        $date = DT_Campaign_Settings::date_of_campaign_day( $value );
         ?>
 
         <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
-        <input name="dt-landing-day-selector" type="number" min="1" value="<?php echo esc_html( $campaign_day ) ?? 1 ?>">
+        <input
+            id="dt-landing-day-selector"
+            name="dt-landing-day-selector"
+            type="number"
+            min="1"
+            value="<?php echo esc_html( $value ) ?>"
+            data-day="<?php echo esc_html( $value ) ?>"
+        >
 
-        <p>Calculated day here</p>
+        <p id="dt-landing-date-display" data-date="<?php echo esc_html( $date ) ?>">
+            <?php echo esc_html( gmdate( 'Y/m/d', strtotime( $date ) ) ) ?>
+        </p>
+        <p>
+            Or give a specific date that you want this post to be published on.
+        </p>
+
+        <input
+            id="dt-landing-date-selector"
+            name="dt-landing-date-selector"
+            type="date"
+        >
 
         <?php
     }
@@ -116,9 +145,38 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         }
 
         if ( isset( $_POST['landing-day-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-day-selector'] ) ), 'landing-day-selector' ) ) {
-            if ( isset( $_POST["dt-landing-day-selector"] ) ){
-                update_post_meta( $post_submission["ID"], 'day', $post_submission["dt-landing-day-selector"] );
+
+            $post_date = '';
+            if ( !empty( $_POST["dt-landing-date-selector"] ) ) {
+                update_post_meta( $id, 'fixed', true );
+                $post_date = $post_submission["dt-landing-date-selector"];
+            } else if ( isset( $_POST["dt-landing-day-selector"] ) ){
+                $day = $post_submission["dt-landing-day-selector"];
+                update_post_meta( $post_submission["ID"], 'day', $day );
+
+                $post_date = DT_Campaign_Settings::date_of_campaign_day( $day );
             }
+
+            /* double check whether the date is in the future or not */
+
+            $start_date = strtotime( $post_date );
+            $current_date = strtotime( gmdate( 'Y-m-d' ) );
+            if ( $start_date > $current_date ) {
+                $post_status = "future";
+            } else {
+                $post_status = "publish";
+            }
+
+            remove_action( 'save_post', [ $this, 'save_post' ] );
+
+            wp_update_post( [
+                "ID" => $id,
+                "post_status" => $post_status,
+                "post_date" => $post_date,
+                "post_date_gmt" => $post_date,
+            ] );
+
+            add_action( 'save_post', [ $this, 'save_post' ] );
         }
 
     }
@@ -127,7 +185,6 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     /**
      * Register the post type.
      *
-     * @access public
      * @return void
      */
     public function register_post_type() {

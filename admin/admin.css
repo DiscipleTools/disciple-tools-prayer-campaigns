@@ -13,3 +13,7 @@
 .language-button.no-language {
     filter: grayscale( 100% );
 }
+
+.components-panel__row.edit-post-post-schedule {
+    display: none;
+}

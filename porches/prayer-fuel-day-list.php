@@ -120,18 +120,27 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 echo esc_html( $date );
                 break;
             case 'language':
-                $languages = $this->languages_manager->get();
+                $languages = $this->languages_manager->get_enabled_languages();
 
                 $translated_languages = [];
+                // TODO: at the moment this assumes one post per language per day, but what if there are 2 posts?
+                // * one thought is to have 2 flags show up for them if that is the case.
+                // * If there were only one way to add posts then you could forcibly restrict them to one post per day,
+                // * Or maybe if there are posts which are set for a particular date, then they don't show up in this list
                 foreach ( $items as $post ) {
-                    $translated_languages[] = get_post_meta( $post->ID, 'post_language', true );
+                    $translated_languages[get_post_meta( $post->ID, 'post_language', true )] = $post->ID;
                 }
 
                 foreach ( $languages as $code => $language ) {
-                    $button_on = in_array( $code, $translated_languages, true );
+                    $button_on = in_array( $code, array_keys( $translated_languages ), true );
+                    $ID = $translated_languages[$code] ?? null;
+                    $link = $button_on ? "post.php?post=$ID&action=edit" : 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&post_language=$code&day=$day" ;
                     ?>
 
-                    <a class="button language-button <?php echo $button_on ? '' : 'no-language' ?>">
+                    <a
+                        class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
+                        href="<?php echo esc_html( $link ) ?>"
+                    >
 
                         <?php echo esc_html( $language["flag"] ); ?>
 
