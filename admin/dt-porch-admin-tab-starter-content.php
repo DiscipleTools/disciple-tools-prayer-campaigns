@@ -214,26 +214,19 @@ class DT_Porch_Admin_Tab_Starter_Content {
         <?php
     }
 
-    private function get_post_language_start_dates() {
+    private function get_post_language_start_date() {
         $prayer_post_importer = DT_Campaign_Prayer_Post_Importer::instance();
 
-        // TODO get the correct list of languages for the campaign
-        $available_languages = [ "en_US", "fr_FR", "ar_EG", "es_ES" ];
+        $post_start_date = $prayer_post_importer->find_latest_prayer_fuel_date();
 
-        $post_start_dates = [];
-
-        foreach ( $available_languages as $lang ) {
-            $post_start_dates[$lang] = $prayer_post_importer->find_latest_prayer_fuel_date( $lang );
-        }
-
-        return $post_start_dates;
+        return $post_start_date;
     }
 
     public function upload_prayer_content_box() {
         /* Note: the url must have the import query param in it to trigger the admin system to require the correct files
         for the import to work */
         $prayer_post_importer = DT_Campaign_Prayer_Post_Importer::instance();
-        $post_start_dates = $this->get_post_language_start_dates();
+        $post_start_date = $this->get_post_language_start_date();
 
         $all_good_to_go = false;
         $message = "";
@@ -298,7 +291,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 $import_output = ob_get_contents();
                 ob_end_clean();
 
-                $post_start_dates = $this->get_post_language_start_dates();
+                $post_start_date = $this->get_post_language_start_date();
 
             }
 
@@ -325,16 +318,8 @@ class DT_Porch_Admin_Tab_Starter_Content {
                         <td>
                             <input id="install_from_file_append_date" name="append_date" type="date" />
                             <p id="install_from_file_append_date_text">
-                                Posts will automatically be scheduled to start from the dates
-                                <ul>
-                                    <?php foreach ( $post_start_dates as $lang => $post_start_date ): ?>
-
-                                       <li>
-                                           <?php echo esc_html( $lang . ': ' . gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
-                                       </li>
-
-                                    <?php endforeach; ?>
-                                </ul>
+                                Posts will automatically be scheduled to start from the date
+                                <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
                             </p>
                         </td>
                         <td>

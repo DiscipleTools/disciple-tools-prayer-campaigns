@@ -55,11 +55,12 @@ class DT_Campaign_Prayer_Post_Importer {
         $available_languages = [ "en_US", "fr_FR", "ar_EG", "es_ES" ];
         $start_date = [];
 
+        $last_post_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
         foreach ( $available_languages as $lang ) {
             if ( $this->append_date ) {
                 $start_date[$lang] = $this->append_date;
             } else {
-                $start_date[$lang] = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date( $lang ) ) );
+                $start_date[$lang] = $last_post_date;
             }
             $start_date[$lang] = $this->mysql_date( strtotime( $start_date[$lang] ) );
         }
