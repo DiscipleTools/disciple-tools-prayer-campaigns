@@ -11,7 +11,8 @@
 }
 
 .language-button.no-language {
-    filter: grayscale( 100% );
+    filter: opacity( 0.3 );
+    border-color: rgba(0, 0, 0, 0);
 }
 
 .components-panel__row.edit-post-post-schedule {
