@@ -15,7 +15,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $hidden = array();
         $sortable = $this->get_sortable_columns();
 
-        $per_page = 10;
+        $per_page = 50;
         $current_page = $this->get_pagenum();
         $offset = ( $current_page - 1 ) * $per_page;
 
@@ -29,7 +29,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         global $wpdb;
         $query = "
-            SELECT ID, meta_value as day FROM $wpdb->posts p
+            SELECT ID, CAST( meta_value as unsigned ) as day FROM $wpdb->posts p
             JOIN $wpdb->postmeta pm
             ON p.ID = pm.post_id
             WHERE p.post_type = %s
@@ -41,7 +41,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
             $query .= "
-                ORDERBY %s %s
+                ORDER BY %2s %3s
             ";
             $args[] = sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
             $args[] = sanitize_text_field( wp_unslash( $_REQUEST['order'] ) );
@@ -83,7 +83,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
     public function get_sortable_columns() {
         return [
-            "date" => array( "date", "asc" ),
+            "date" => array( "post_date", "asc" ),
+            "day" => array( "day", "asc" ),
         ];
     }
 
