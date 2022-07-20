@@ -163,6 +163,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     <a
                         class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
                         href="<?php echo esc_html( $link ) ?>"
+                        title="<?php echo esc_html( $language["native_name"] ) ?>"
                     >
 
                         <?php echo esc_html( $language["flag"] ); ?>
