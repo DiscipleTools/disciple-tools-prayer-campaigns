@@ -80,6 +80,31 @@ class DT_Campaign_Settings {
     }
 
     /**
+     * How long is the campaign. -1 if is ongoing
+     *
+     * @return int
+     */
+    public static function campaign_length() {
+        $campaign = self::get_campaign();
+
+        if ( !isset( $campaign["end_date"] ) ) {
+            return -1;
+        }
+
+        $campaign_start_date = $campaign["start_date"]["formatted"];
+        $campaign_end_date = $campaign["end_date"]["formatted"];
+
+        $campaign_start = new DateTime( $campaign_start_date );
+        $campaign_end = new DateTime( $campaign_end_date );
+
+        $diff = intval( $campaign_start->diff( $campaign_end )->format( "%r%a" ) );
+
+        /* If the date given is the same as the start, then this is day 1 not day 0 */
+        /* If the date given is before the start, then this is a negative day */
+        return $diff;
+    }
+
+    /**
      * Get the mysql date string for the day of the campaign
      */
     public static function date_of_campaign_day( int $day ) {

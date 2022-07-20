@@ -18,11 +18,16 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $per_page = 50;
         $current_page = $this->get_pagenum();
         $offset = ( $current_page - 1 ) * $per_page;
+        $max_days = 1000;
 
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
         $days = [];
-        for ( $i = ( $current_page - 1 ) * $per_page; $i < $current_page * $per_page; $i++ ) {
+        $campaign_length = DT_Campaign_Settings::campaign_length();
+        for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
+            if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
+                continue;
+            }
             $days[] = $i + 1;
         }
         $days_string = implode( ', ', $days );
@@ -70,12 +75,18 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         $this->items = $sorted_posts;
 
-        /* Find the maximum day in the campaign posts */
-        $last_imported_post_day = DT_Campaign_Prayer_Post_Importer::instance()->find_latest_prayer_fuel_day();
+        /* Find the last day of the campaign, or 1000 days on from the start if there is no end */
+        $campaign_length = DT_Campaign_Settings::campaign_length();
+
+        if ( $campaign_length > 0 ) {
+            $total_days = $campaign_length;
+        } else {
+            $total_days = $max_days;
+        }
 
         $this->set_pagination_args(
             array(
-            'total_items' => $last_imported_post_day,
+            'total_items' => $total_days,
             'per_page'    => $per_page,
             )
         );
