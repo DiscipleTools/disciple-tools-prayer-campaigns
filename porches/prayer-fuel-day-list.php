@@ -54,12 +54,12 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         /* Get the prayer fuel posts with their language and day meta tags included */
         //phpcs:ignore
-        $posts = $wpdb->get_results( $wpdb->prepare( $query, $args ) );
+        $posts = $wpdb->get_results( $wpdb->prepare( $query, $args ), ARRAY_A );
 
         $posts_sorted_by_campaign_day = [];
 
         foreach ( $posts as $post ) {
-            $day = intval( $post->day );
+            $day = intval( $post["day"] );
 
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [];
@@ -68,15 +68,22 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             $posts_sorted_by_campaign_day[$day][] = $post;
         }
 
+        /* flesh out the posts array to include empty days */
+        foreach ( $days as $day ) {
+            if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
+                $posts_sorted_by_campaign_day[$day] = [
+                    [ "ID" => null, "day" => $day ],
+                ];
+            }
+        }
+
         $sorted_posts = [];
         foreach ( $posts_sorted_by_campaign_day as $day => $days_posts ) {
             $sorted_posts[] = $days_posts;
         }
 
-        $this->items = $sorted_posts;
 
-        /* Find the last day of the campaign, or 1000 days on from the start if there is no end */
-        $campaign_length = DT_Campaign_Settings::campaign_length();
+        $this->items = $sorted_posts;
 
         if ( $campaign_length > 0 ) {
             $total_days = $campaign_length;
@@ -110,7 +117,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     }
 
     public function column_cb( $items ) {
-        $day = $items[0]->day;
+        $day = $items[0]["day"];
 
         ?>
 
@@ -120,7 +127,11 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     }
 
     public function column_default( $items, $column_name ) {
-        $day = $items[0]->day;
+        $day = $items[0]["day"];
+
+        if ( $items[0]["ID"] === null ) {
+            unset( $items[0] );
+        }
 
         switch ( $column_name ) {
             case 'day':
@@ -140,7 +151,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 // * If there were only one way to add posts then you could forcibly restrict them to one post per day,
                 // * Or maybe if there are posts which are set for a particular date, then they don't show up in this list
                 foreach ( $items as $post ) {
-                    $translated_languages[get_post_meta( $post->ID, 'post_language', true )] = $post->ID;
+                    $translated_languages[get_post_meta( $post["ID"], 'post_language', true )] = $post["ID"];
                 }
 
                 foreach ( $languages as $code => $language ) {
@@ -162,10 +173,16 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 }
                 break;
             case 'url':
-                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]->ID );
+                if ( empty( $items ) ) {
+                    break;
+                }
+                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]["ID"] );
                 break;
             default:
-                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]->ID );
+                if ( empty( $items ) ) {
+                    break;
+                }
+                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]["ID"] );
                 break;
         }
 
