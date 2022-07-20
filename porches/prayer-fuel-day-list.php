@@ -25,35 +25,36 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         for ( $i = ( $current_page - 1 ) * $per_page; $i < $current_page * $per_page; $i++ ) {
             $days[] = $i + 1;
         }
+        $days_string = implode( ', ', $days );
 
-        $args = array(
-                'numberposts' => -1,
-                'meta_query' => array(
-                    array(
-                        "key" => "day",
-                        "value" => $days,
-                        "compare" => "IN",
-                    )
-                ),
-        );
+        global $wpdb;
+        $query = "
+            SELECT ID, meta_value as day FROM $wpdb->posts p
+            JOIN $wpdb->postmeta pm
+            ON p.ID = pm.post_id
+            WHERE p.post_type = %s
+            AND p.post_status IN ( 'draft', 'publish', 'future' )
+            AND pm.meta_key = 'day'
+            AND pm.meta_value IN ( %1s )
+        ";
+        $args = [ PORCH_LANDING_POST_TYPE, $days_string ];
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
-            $args['orderby'] = sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
-            $args['order'] = sanitize_text_field( wp_unslash( $_REQUEST['order'] ) );
+            $query .= "
+                ORDERBY %s %s
+            ";
+            $args[] = sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
+            $args[] = sanitize_text_field( wp_unslash( $_REQUEST['order'] ) );
         }
 
-        $args["post_type"] = PORCH_LANDING_POST_TYPE;
-        $args["post_status"] = array( "draft", "publish", "future" );
-
-        // TODO: get the query args and get the posts based on the post_status given
-
         /* Get the prayer fuel posts with their language and day meta tags included */
-        $posts = get_posts( $args );
+        //phpcs:ignore
+        $posts = $wpdb->get_results( $wpdb->prepare( $query, $args ) );
 
         $posts_sorted_by_campaign_day = [];
 
         foreach ( $posts as $post ) {
-            $day = intval( get_post_meta( $post->ID, "day", true ) );
+            $day = intval( $post->day );
 
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [];
@@ -97,8 +98,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     }
 
     public function column_cb( $items ) {
-        $a_post = $items[0];
-        $day = get_post_meta( $a_post->ID, "day", true );
+        $day = $items[0]->day;
 
         ?>
 
@@ -108,7 +108,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     }
 
     public function column_default( $items, $column_name ) {
-        $day = get_post_meta( $items[0]->ID, "day", true );
+        $day = $items[0]->day;
 
         switch ( $column_name ) {
             case 'day':
@@ -133,8 +133,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                 foreach ( $languages as $code => $language ) {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );
-                    $ID = $translated_languages[$code] ?? null;
-                    $link = $button_on ? "post.php?post=$ID&action=edit" : 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&post_language=$code&day=$day" ;
+                    $id = $translated_languages[$code] ?? null;
+                    $link = $button_on ? "post.php?post=$id&action=edit" : 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&post_language=$code&day=$day";
                     ?>
 
                     <a
