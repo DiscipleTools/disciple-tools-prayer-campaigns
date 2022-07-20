@@ -76,6 +76,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 ];
             }
         }
+        ksort( $posts_sorted_by_campaign_day );
 
         $sorted_posts = [];
         foreach ( $posts_sorted_by_campaign_day as $day => $days_posts ) {
@@ -177,7 +178,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 if ( empty( $items ) ) {
                     break;
                 }
-                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]["ID"] );
+                $url = trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $day;
+                echo '<a href="' . esc_url( $url ) . '">'. esc_html( $url ) .'</a>';
                 break;
             default:
                 if ( empty( $items ) ) {

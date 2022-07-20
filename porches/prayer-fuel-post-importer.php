@@ -56,7 +56,7 @@ class DT_Campaign_Prayer_Post_Importer {
         $start_date = [];
 
         $last_post_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
-        foreach ( $available_languages as $lang ) {
+        foreach ( $available_languages as $lang => $lang_details ) {
             if ( $this->append_date ) {
                 $start_date[$lang] = $this->append_date;
             } else {
@@ -67,7 +67,7 @@ class DT_Campaign_Prayer_Post_Importer {
 
         foreach ( $new_posts as $i => $post ) {
             $post_lang = $this->get_post_meta( $post["postmeta"], "post_language" );
-            if ( empty( $post_lang ) || !in_array( $post_lang, $available_languages, true ) ) {
+            if ( empty( $post_lang ) || !in_array( $post_lang, array_keys( $available_languages ), true ) ) {
                 continue;
             }
 
@@ -76,13 +76,26 @@ class DT_Campaign_Prayer_Post_Importer {
             $post["post_date"] = $post_start_date;
             $post["post_date_gmt"] = $post_start_date;
 
-            $this->set_post_meta( $post["postmeta"], $this->import_meta_key, $this->import_meta_value );
-
             $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $post_start_date );
 
-            $this->set_post_meta( $post["postmeta"], "day", $campaign_day );
-
-            // TODO: give each post the correct magic_link_key
+            $post["postmeta"] = [
+                [
+                    "key" => "post_language",
+                    "value" => $post_lang,
+                ],
+                [
+                    "key" => $this->import_meta_key,
+                    "value" => $this->import_meta_value,
+                ],
+                [
+                    "key" => "day",
+                    "value" => $campaign_day,
+                ],
+                [
+                    "key" => PORCH_LANDING_META_KEY,
+                    "value" => $campaign_day,
+                ]
+            ];
 
             $new_posts[$i] = $post;
 
@@ -118,8 +131,9 @@ class DT_Campaign_Prayer_Post_Importer {
      * @param string $key
      * @param string $value
      */
-    private function set_post_meta( &$postmeta, $key, $value ) {
+    private function set_post_meta( &$post, $key, $value ) {
         $is_meta_set = false;
+        $postmeta = $post["postmeta"];
         foreach ( $postmeta as $j => $meta ) {
             if ( $meta["key"] === $key ) {
                     $postmeta[$j]["value"] = $value;
@@ -133,6 +147,8 @@ class DT_Campaign_Prayer_Post_Importer {
                 "value" => $value,
             ];
         }
+
+        $post["postmeta"] = $postmeta;
     }
 
     /**
