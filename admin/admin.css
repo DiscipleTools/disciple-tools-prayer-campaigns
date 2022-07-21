@@ -18,3 +18,43 @@
 .components-panel__row.edit-post-post-schedule {
     display: none;
 }
+
+.dropdown-button {
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 25px;
+    background-color: white;
+    border: 1px solid #C3C4C7;
+    z-index: 1000;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+}
+
+.dropdown__link {
+    display: block;
+}
+
+.dropdown-button:hover > .dropdown,
+.dropdown:hover {
+    display: block;
+}
+
+.badge-count {
+    position: absolute;
+    font-size: 12px;
+    top: -10px;
+    right: -6px;
+    color: white;
+    background-color: #0073aa;
+    padding: 3px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12px;
+    width: 12px;
+}

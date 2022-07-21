@@ -34,7 +34,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         global $wpdb;
         $query = "
-            SELECT ID, CAST( meta_value as unsigned ) as day FROM $wpdb->posts p
+            SELECT ID, post_title, CAST( meta_value as unsigned ) as day FROM $wpdb->posts p
             JOIN $wpdb->postmeta pm
             ON p.ID = pm.post_id
             WHERE p.post_type = %s
@@ -147,29 +147,63 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 $languages = $this->languages_manager->get_enabled_languages();
 
                 $translated_languages = [];
-                // TODO: at the moment this assumes one post per language per day, but what if there are 2 posts?
-                // * one thought is to have 2 flags show up for them if that is the case.
-                // * If there were only one way to add posts then you could forcibly restrict them to one post per day,
-                // * Or maybe if there are posts which are set for a particular date, then they don't show up in this list
                 foreach ( $items as $post ) {
-                    $translated_languages[get_post_meta( $post["ID"], 'post_language', true )] = $post["ID"];
+                    $lang = get_post_meta( $post["ID"], 'post_language', true );
+                    if ( !isset( $translated_languages[$lang] ) ) {
+                        $translated_languages[$lang] = [];
+                    }
+
+                    $translated_languages[$lang][] = $post;
                 }
 
                 foreach ( $languages as $code => $language ) {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );
-                    $id = $translated_languages[$code] ?? null;
-                    $link = $button_on ? "post.php?post=$id&action=edit" : 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&post_language=$code&day=$day";
+                    $posts_in_language = $translated_languages[$code] ?? [];
+
+
+                    if ( count( $posts_in_language ) === 0 ) {
+                        $link = 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&post_language=$code&day=$day";
+                    } else if ( count( $posts_in_language ) === 1 ) {
+                        $id = $posts_in_language[0]["ID"];
+                        $link = "post.php?post=$id&action=edit";
+                    }
                     ?>
 
-                    <a
-                        class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
-                        href="<?php echo esc_html( $link ) ?>"
-                        title="<?php echo esc_html( $language["native_name"] ) ?>"
-                    >
+                    <?php if ( count( $posts_in_language ) < 2 ): ?>
 
-                        <?php echo esc_html( $language["flag"] ); ?>
+                        <a
+                            class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
+                            href="<?php echo esc_html( $link ) ?>"
+                            title="<?php echo esc_html( $language["native_name"] ) ?>"
+                        >
 
-                    </a>
+                            <?php echo esc_html( $language["flag"] ); ?>
+
+                        </a>
+
+                    <?php else : ?>
+
+                        <span
+                            class="button language-button dropdown-button"
+                            title="<?php echo esc_html( $language["native_name"] ) ?>"
+                        >
+
+                            <?php echo esc_html( $language["flag"] ); ?>
+
+                            <span class="badge-count"><?php echo count( $posts_in_language ) ?></span>
+
+                            <div class="dropdown">
+
+                                <?php foreach ( $posts_in_language as $post ): ?>
+
+                                    <a class="dropdown__link" href="post.php?post=<?php echo esc_attr( $post["ID"] ) ?>&action=edit"><?php echo esc_html( $post["post_title"] ) ?></a>
+
+                                <?php endforeach; ?>
+                            </div>
+                        </span>
+
+
+                    <?php endif; ?>
 
                     <?php
                 }
