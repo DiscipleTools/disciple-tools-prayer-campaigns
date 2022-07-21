@@ -2,7 +2,7 @@
 $porch_fields = DT_Porch_Settings::settings();
 $lang = dt_campaign_get_current_lang();
 
-$campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
+$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
 
 // query for getting posts in the selected language.
 $lang_query = [
@@ -24,7 +24,7 @@ $meta_query = [
     "relation" => "AND",
     [
         "key" => "day",
-        "value" => $campaign_day,
+        "value" => $todays_campaign_day,
         "compare" => "=",
     ],
     $lang_query,
@@ -33,7 +33,7 @@ $meta_query = [
 //get latest published post
 $today = new WP_Query( [
     'post_type' => PORCH_LANDING_POST_TYPE,
-    'post_status' => 'publish',
+    'post_status' => [ 'publish', 'future' ] ,
     'posts_per_page' => -1,
     'orderby' => 'post_date',
     'order' => 'DESC',
@@ -47,7 +47,7 @@ if ( empty( $today->posts ) ){
         'posts_per_page' => 1,
         'orderby' => 'post_date',
         'order' => 'ASC',
-        'meta_query' => $meta_query
+        'meta_query' => $lang_query,
     ] );
 }
 if ( empty( $today->posts ) ){
@@ -71,7 +71,7 @@ if ( empty( $today->posts ) ){
             ],
             [
                 "key" => "day",
-                "value" => $campaign_day,
+                "value" => $todays_campaign_day,
             ]
         ]
     );
@@ -156,16 +156,23 @@ add_action( 'wp_head', 'og_protocol' );
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_description' ) )  ?></p>
         </div>
         <div class="row">
+            <?php $days_displayed = [] ?>
             <?php foreach ( $list->posts as $item ) :
                 $date = gmdate( $item->post_date );
+                $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $date );
+
+                if ( in_array( $campaign_day, $days_displayed ) || $campaign_day === $todays_campaign_day ) {
+                    continue;
+                }
+
+                $days_displayed[] = $campaign_day;
                 ?>
 
-                <?php $public_key = get_post_meta( $item->ID, PORCH_LANDING_META_KEY, true ); ?>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
                 <!-- Blog Item Starts -->
                 <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
                     <div class="blog-item-img">
-                        <a href="/prayer/fuel/<?php echo esc_attr( $public_key ) ?>">
+                        <a href="/prayer/fuel/<?php echo esc_attr( $campaign_day ) ?>">
                             <img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __DIR__ ) ) ) ?>landing-pages/img/300x1.png" alt="">
                         </a>
                     </div>
@@ -179,7 +186,7 @@ add_action( 'wp_head', 'og_protocol' );
                         <p>
                             <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
                         </p>
-                        <a href="/prayer/fuel/<?php echo esc_attr( $public_key ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        <a href="/prayer/fuel/<?php echo esc_attr( $campaign_day ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
                     </div>
                 </div>
                 <!-- Blog Item Wrapper Ends-->
