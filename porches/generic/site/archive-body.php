@@ -2,6 +2,7 @@
 $porch_fields = DT_Porch_Settings::settings();
 $lang = dt_campaign_get_current_lang();
 
+$campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
 
 // query for getting posts in the selected language.
 $lang_query = [
@@ -19,14 +20,24 @@ if ( $lang === "en_US" ){
     $lang_query["relation"] = "OR";
 }
 
+$meta_query = [
+    "relation" => "AND",
+    [
+        "key" => "day",
+        "value" => $campaign_day,
+        "compare" => "=",
+    ],
+    $lang_query,
+];
+
 //get latest published post
 $today = new WP_Query( [
     'post_type' => PORCH_LANDING_POST_TYPE,
     'post_status' => 'publish',
-    'posts_per_page' => 1,
+    'posts_per_page' => -1,
     'orderby' => 'post_date',
     'order' => 'DESC',
-    'meta_query' => $lang_query
+    'meta_query' => $meta_query,
 ] );
 if ( empty( $today->posts ) ){
     //get earliest unpublished post
@@ -36,7 +47,7 @@ if ( empty( $today->posts ) ){
         'posts_per_page' => 1,
         'orderby' => 'post_date',
         'order' => 'ASC',
-        'meta_query' => $lang_query
+        'meta_query' => $meta_query
     ] );
 }
 if ( empty( $today->posts ) ){
@@ -58,6 +69,10 @@ if ( empty( $today->posts ) ){
                 'key'     => 'post_language',
                 'compare' => 'NOT EXISTS',
             ],
+            [
+                "key" => "day",
+                "value" => $campaign_day,
+            ]
         ]
     );
     $today = new WP_Query( $args );
