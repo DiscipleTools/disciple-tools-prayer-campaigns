@@ -154,6 +154,7 @@ class DT_Prayer_Campaigns {
         }
 
         if ( !is_admin() ) {
+            require_once( plugin_dir_path( __FILE__ ) . '/parts/components.php' );
             $this->load_selected_porch();
         }
     }

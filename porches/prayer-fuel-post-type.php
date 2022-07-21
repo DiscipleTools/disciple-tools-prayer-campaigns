@@ -335,5 +335,94 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 }
         }
     }
+
+    /**
+     * Get the days posts
+     *
+     * @param int $day
+     *
+     * @return WP_Query
+     */
+    public function get_days_posts( int $day ) {
+
+        $lang = dt_campaign_get_current_lang();
+
+        // query for getting posts in the selected language.
+        $lang_query = [
+            [
+                'key'     => 'post_language',
+                'value'   => $lang,
+                'compare' => '=',
+            ]
+        ];
+        if ( $lang === "en_US" ){
+            $lang_query[] = [
+                'key'     => 'post_language',
+                'compare' => 'NOT EXISTS',
+            ];
+            $lang_query["relation"] = "OR";
+        }
+
+        $meta_query = [
+            "relation" => "AND",
+            [
+                "key" => "day",
+                "value" => $day,
+                "compare" => "=",
+            ],
+            $lang_query,
+        ];
+
+        //get latest published post
+        $today = new WP_Query( [
+            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_status' => [ 'publish', 'future' ] ,
+            'posts_per_page' => -1,
+            'orderby' => 'post_date',
+            'order' => 'DESC',
+            'meta_query' => $meta_query,
+        ] );
+        if ( empty( $today->posts ) ){
+            //get earliest unpublished post
+            $today = new WP_Query( [
+                'post_type' => PORCH_LANDING_POST_TYPE,
+                'post_status' => 'future',
+                'posts_per_page' => 1,
+                'orderby' => 'post_date',
+                'order' => 'ASC',
+                'meta_query' => $lang_query,
+            ] );
+        }
+        if ( empty( $today->posts ) ){
+            //post in english
+            $args = array(
+                'post_type' => PORCH_LANDING_POST_TYPE,
+                'post_status' => [ 'publish', 'future' ],
+                'posts_per_page' => 1,
+                'orderby' => 'post_date',
+                'order' => 'DESC',
+                'meta_query' => [
+                    'relation' => 'OR',
+                    [
+                        'key'     => 'post_language',
+                        'value'   => 'en_US',
+                        'compare' => '=',
+                    ],
+                    [
+                        'key'     => 'post_language',
+                        'compare' => 'NOT EXISTS',
+                    ],
+                    [
+                        "key" => "day",
+                        "value" => $day,
+                    ]
+                ]
+            );
+            $today = new WP_Query( $args );
+        }
+
+        return $today;
+
+    }
 } // End Class
 DT_Campaign_Prayer_Fuel_Post_Type::instance();
