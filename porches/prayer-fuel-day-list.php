@@ -160,9 +160,11 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );
                     $posts_in_language = $translated_languages[$code] ?? [];
 
+                    $add_link = 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&day=$day";
+
 
                     if ( count( $posts_in_language ) === 0 ) {
-                        $link = 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&post_language=$code&day=$day";
+                        $link = $add_link . "&post_language=$code";
                     } else if ( count( $posts_in_language ) === 1 ) {
                         $id = $posts_in_language[0]["ID"];
                         $link = "post.php?post=$id&action=edit";
@@ -173,8 +175,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                         <a
                             class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
-                            href="<?php echo esc_html( $link ) ?>"
-                            title="<?php echo esc_html( $language["native_name"] ) ?>"
+                            href="<?php echo esc_attr( $link ) ?>"
+                            title="<?php echo esc_attr( $language["native_name"] ) ?>"
                         >
 
                             <?php echo esc_html( $language["flag"] ); ?>
@@ -185,7 +187,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                         <span
                             class="button language-button dropdown-button"
-                            title="<?php echo esc_html( $language["native_name"] ) ?>"
+                            title="<?php echo esc_attr( $language["native_name"] ) ?>"
                         >
 
                             <?php echo esc_html( $language["flag"] ); ?>
@@ -207,6 +209,13 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                     <?php
                 }
+                ?>
+
+                <a class="button language-button" href="<?php echo esc_attr( $add_link ) ?>" title="Add new post">
+                    <span class="plus-icon"></span>
+                </a>
+
+                <?php
                 break;
             case 'url':
                 if ( empty( $items ) ) {

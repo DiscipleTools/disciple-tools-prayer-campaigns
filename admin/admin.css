@@ -58,3 +58,13 @@
     height: 12px;
     width: 12px;
 }
+
+.plus-icon {
+    font: normal 20px/1 dashicons;
+    display: flex;
+    align-items: center;
+}
+
+.plus-icon::before {
+    content: '\f132';
+}

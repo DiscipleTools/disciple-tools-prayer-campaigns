@@ -3,11 +3,10 @@ jQuery(document).ready(function ($) {
   const dtLandingDateDisplay = document.getElementById("dt-landing-date-display")
   const dtLandingDateSelector = document.getElementById("dt-landing-date-selector")
 
-  const currentDay = parseInt( dtLandingDaySelector.dataset["day"] )
-  const currentDate = dtLandingDateDisplay.dataset["date"]
-
   $(dtLandingDaySelector).on( 'change', handleDayChange)
   function handleDayChange(e) {
+    const [ currentDay, currentDate ] = getCurrentDayDate()
+
     const newDay = parseInt(e.target.value)
 
     const dayDifference = newDay - currentDay
@@ -33,5 +32,12 @@ jQuery(document).ready(function ($) {
 
   function makeWpDate(date) {
     return moment(date).format('MMMM D, YYYY')
+  }
+
+  function getCurrentDayDate() {
+    const currentDay = parseInt( dtLandingDaySelector.dataset["day"] )
+    const currentDate = dtLandingDateDisplay.dataset["date"]
+
+    return [ currentDay, currentDate ]
   }
 })
