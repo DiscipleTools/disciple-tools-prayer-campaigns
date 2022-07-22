@@ -134,9 +134,25 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             unset( $items[0] );
         }
 
+        $todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
+
         switch ( $column_name ) {
             case 'day':
-                echo esc_html( "Day " . $day );
+                ?>
+
+                <span class="row-title">
+
+                    Day <?php echo esc_html( $day ) ?>
+
+                    <?php if ( $day > $todays_campaign_day ): ?>
+
+                     — <span class="post-status">Scheduled</span>
+
+                    <?php endif; ?>
+
+                </span>
+
+                <?php
                 break;
             case 'date':
                 $date = DT_Campaign_Settings::date_of_campaign_day( intval( $day ) );
