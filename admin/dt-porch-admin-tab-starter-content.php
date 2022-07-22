@@ -233,6 +233,11 @@ class DT_Porch_Admin_Tab_Starter_Content {
         $tmp_file_name = "";
         $invalidurl = false;
         $feeds = null;
+        $has_installed_importer_plugin = true;
+        if ( !class_exists( "WP_Import" ) ) {
+            $has_installed_importer_plugin = false;
+        }
+
         if ( isset( $_POST['install_from_file_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_from_file_nonce'] ) ), 'install_from_file' ) ) {
 
             $max_file_size = 1024 * 1024 * 5;
@@ -314,78 +319,94 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input id="install_from_file_append_date" name="append_date" type="date" />
-                            <p id="install_from_file_append_date_text">
-                                Posts will automatically be scheduled to start from the date
-                                <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
-                            </p>
-                        </td>
-                        <td>
-                            What date should the imported posts be scheduled to start at:
 
-                            <p>
-                                If the campaign has had posts imported previously, then they will be appended to the last scheduled post.
-                                If no posts have been imported yet, then it will either schedule the posts to start today or the first day of the campaign, whichever comes last.
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input id="rss-feed-url" name="rss-feed-url" type="text" placeholder="RSS Feed URL">
-                            <?php if ( $invalidurl ): ?>
+                    <?php if ( !$has_installed_importer_plugin ): ?>
+                        <tr>
+                            <td>
+                                <p>
+                                    In order to import prayer fuel you need to install/activate the Wordpress Installer plugin
+                                </p>
+                                <a class="button" href="plugins.php?page=tgmpa-install-plugins">Click here to fix this</a>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                    <?php else : ?>
+
+                        <tr>
+                            <td>
+                                <input id="install_from_file_append_date" name="append_date" type="date" />
+                                <p id="install_from_file_append_date_text">
+                                    Posts will automatically be scheduled to start from the date
+                                    <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
+                                </p>
+                            </td>
+                            <td>
+                                What date should the imported posts be scheduled to start at:
 
                                 <p>
-                                    The url is invalid
+                                    If the campaign has had posts imported previously, then they will be appended to the last scheduled post.
+                                    If no posts have been imported yet, then it will either schedule the posts to start today or the first day of the campaign, whichever comes last.
                                 </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="rss-feed-url" name="rss-feed-url" type="text" placeholder="RSS Feed URL">
+                                <?php if ( $invalidurl ): ?>
 
-                            <?php endif; ?>
+                                    <p>
+                                        The url is invalid
+                                    </p>
 
-                            <?php if ( $feeds && empty( $feeds ) ): ?>
+                                <?php endif; ?>
 
-                                <p>
-                                    The feed is empty
-                                </p>
+                                <?php if ( $feeds && empty( $feeds ) ): ?>
 
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <label for="rss-reed-url">RSS Feed URL</label>
-                        </td>
-                    </tr>
+                                    <p>
+                                        The feed is empty
+                                    </p>
+
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <label for="rss-reed-url">RSS Feed URL</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="file" type="file" accept="application/xml text/xml">
+                                <?php if ( $message !== "" ): ?>
+
+                                    <p>
+                                        <?php echo esc_html( $message ) ?>
+                                    </p>
+
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                The xml file of prayer posts to import.
+                            </td>
+                        </tr>
+
+                        <?php if ( $all_good_to_go ): ?>
+
+                        <tr>
+                            <td>
+                                <?php //phpcs:ignore ?>
+                                <?php echo $import_output ?>
+                            </td>
+                        </tr>
+
+                        <?php endif; ?>
+
                     <tr>
-                        <td>
-                            <input name="file" type="file" accept="application/xml text/xml">
-                            <?php if ( $message !== "" ): ?>
-
-                                <p>
-                                    <?php echo esc_html( $message ) ?>
-                                </p>
-
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            The xml file of prayer posts to import.
-                        </td>
-                    </tr>
-
-                    <?php if ( $all_good_to_go ): ?>
-
-                    <tr>
-                        <td>
-                            <?php //phpcs:ignore ?>
-                            <?php echo $import_output ?>
-                        </td>
-                    </tr>
+                            <td>
+                                <button class="button">Upload</button>
+                            </td>
+                        </tr>
 
                     <?php endif; ?>
-
-                   <tr>
-                        <td>
-                            <button class="button">Upload</button>
-                        </td>
-                    </tr>
 
                 </tbody>
             </table>
