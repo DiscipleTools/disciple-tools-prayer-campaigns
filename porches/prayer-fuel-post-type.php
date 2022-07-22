@@ -150,12 +150,12 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             if ( !empty( $_POST["dt-landing-date-selector"] ) ) {
                 update_post_meta( $id, 'fixed', true );
                 $post_date = $post_submission["dt-landing-date-selector"];
+                $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
             } else if ( isset( $_POST["dt-landing-day-selector"] ) ){
                 $day = $post_submission["dt-landing-day-selector"];
-                update_post_meta( $post_submission["ID"], 'day', $day );
-
                 $post_date = DT_Campaign_Settings::date_of_campaign_day( $day );
             }
+            update_post_meta( $id, 'day', $day );
 
             /* double check whether the date is in the future or not */
 

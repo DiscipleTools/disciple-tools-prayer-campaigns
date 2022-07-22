@@ -16,7 +16,7 @@
 }
 
 .components-panel__row.edit-post-post-schedule {
-    display: none;
+    pointer-events: none;
 }
 
 .dropdown-button {
