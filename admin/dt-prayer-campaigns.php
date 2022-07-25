@@ -65,7 +65,7 @@ class DT_Prayer_Campaigns_Campaigns {
     public function process_porch_settings() {
         if ( isset( $_POST['campaign_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['campaign_settings_nonce'] ) ), 'campaign_settings' ) ) {
 
-            if ( isset( $_POST['select_porch'] ) ) {
+            if ( isset( $_POST['select_porch'], $_POST['porch_type_submit'] ) ) {
                 $selected_porch = sanitize_text_field( wp_unslash( $_POST['select_porch'] ) );
 
                 $this->settings_manager->update( 'selected_porch', $selected_porch );
@@ -74,6 +74,40 @@ class DT_Prayer_Campaigns_Campaigns {
 
                 /* Make sure that the prayer fuel custom post type is flushed or set up straight after the porch has been changed */
                 header( "Refresh:0.01" );
+            }
+            if ( isset( $_POST["setup_default"] ) ){
+                $type = sanitize_text_field( wp_unslash( $_POST['setup_default'] ) );
+                if ( $type === "ongoing" ){
+                    $fields = [
+                        "name" => "Campaign",
+                        "type" => "ongoing",
+                        "start_date" => time(),
+                        "status" => "active",
+                    ];
+                    $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
+                    if ( is_wp_error( $new_campaign ) ){
+                        return;
+                    }
+                    update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
+                    $this->settings_manager->update( 'selected_porch', 'generic-porch' );
+                    DT_Porch_Selector::instance()->set_selected_porch_id( 'generic-porch' );
+                }
+                if ( $type === "24hour" ){
+                    $fields = [
+                        "name" => "Campaign",
+                        "type" => "24hour",
+                        "start_date" => time(),
+                        "end_date" => time() + 30 * DAY_IN_SECONDS,
+                        "status" => "active",
+                    ];
+                    $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
+                    if ( is_wp_error( $new_campaign ) ){
+                        return;
+                    }
+                    update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
+                    $this->settings_manager->update( 'selected_porch', 'generic-porch' );
+                    DT_Porch_Selector::instance()->set_selected_porch_id( 'generic-porch' );
+                }
             }
         }
     }
@@ -145,7 +179,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Header</th>
+                    <th>Sign Up and Notification Email Settings</th>
                 </tr>
             </thead>
             <tbody>
@@ -163,7 +197,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             for="email_address"><?php echo esc_html( sprintf( "Specify Prayer Campaigns from email address. Leave blank to use default (%s)", self::default_email_address() ) ) ?></label>
                                     </td>
                                     <td>
-                                        <input name="email_address" id="email_address"
+                                        <input name="email_address" id="email_address" type="email"
                                                 value="<?php echo esc_html( $this->settings_manager->get( "email_address" ) ) ?>"/>
                                     </td>
                                 </tr>
@@ -173,7 +207,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             for="email_name"><?php echo esc_html( sprintf( "Specify Prayer Campaigns from name. Leave blank to use default (%s)", self::default_email_name() ) ) ?></label>
                                     </td>
                                     <td>
-                                        <input name="email_name" id="email_name"
+                                        <input name="email_name" id="email_name" type="text"
                                                 value="<?php echo esc_html( $this->settings_manager->get( "email_name" ) ) ?>"/>
                                     </td>
                                 </tr>
@@ -209,12 +243,20 @@ class DT_Prayer_Campaigns_Campaigns {
                             <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
 
+
+                            <?php if ( empty( DT_Porch_Selector::instance()->get_selected_porch_id() ) && empty( DT_Posts::list_posts( "campaigns", [] )["posts"] ) ) : ?>
+                            <h2>Setup Wizard</h2>
+                            <p>
+                                <button type="submit" class="button" name="setup_default" value="ongoing">Setup Landing page for Ongoing Campaign</button>
+                                <button type="submit" class="button" name="setup_default" value="24hour">Setup Landing page Month 24/7 Campaign</button>
+                            </p>
+                            <?php endif; ?>
+
                             <table class="widefat">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <label
-                                                for="select_porch"><?php echo esc_html( "Select Porch" ) ?></label>
+                                            <label for="select_porch"><?php echo esc_html( "Select Landing Page Type" ) ?></label>
                                         </td>
                                         <td>
                                             <select name="select_porch" id="select_porch"
@@ -241,12 +283,15 @@ class DT_Prayer_Campaigns_Campaigns {
                                             </select>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td> </td>
+                                    </tr>
                                 </tbody>
                             </table>
 
                             <br>
                             <span style="float:right;">
-                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
+                                <button type="submit" name="porch_type_submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
                             </span>
                         </form>
                     </td>
