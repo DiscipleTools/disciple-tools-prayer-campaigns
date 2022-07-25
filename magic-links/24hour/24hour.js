@@ -17,6 +17,10 @@ let escapeObject = (obj) => {
   }))
 }
 
+var displayMailChimpStatus = function (data) {
+  console.log(data)
+}
+
 jQuery(document).ready(function($) {
   let jsObject = window.campaign_objects
 
@@ -359,9 +363,13 @@ jQuery(document).ready(function($) {
       draw_modal_calendar()
     })
 
-
     //submit form
-    $('#cp-submit-form').on('click', function (){
+    $('#cp-submit-form').on('click', async function () {
+      if ( document.querySelector('#receive_pray4movement_news').checked ) {
+        const form = document.getElementById('mc-embedded-subscribe-form')
+        submitMailChimpSubscribe(form)
+      }
+
       let submit_spinner = $('#cp-submit-form-spinner-later');
       let submit_button = jQuery('#cp-submit-form')
       submit_button.prop('disabled', true)
