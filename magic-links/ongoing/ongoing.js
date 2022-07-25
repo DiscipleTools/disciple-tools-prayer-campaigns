@@ -184,6 +184,10 @@ jQuery(document).ready(async function ($) {
 
     //submit form
     $('#cp-submit-form').on('click', function (){
+      if ( document.querySelector('#receive_pray4movement_news').checked ) {
+        const form = document.getElementById('mc-embedded-subscribe-form')
+        submitMailChimpSubscribe(form)
+      }
       let submit_spinner = $('#cp-submit-form-spinner');
       let submit_button = jQuery('#cp-submit-form')
       submit_button.prop('disabled', true)
