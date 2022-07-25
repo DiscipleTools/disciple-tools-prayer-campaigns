@@ -209,6 +209,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
+            <?php $days_in_campaign = DT_Campaigns_Base::total_days_in_campaign() ?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">
@@ -219,7 +220,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
                             <?php if ( $campaign_type === "24hour" ): ?>
 
-                                <h3><span class="counter">30</span></h3>
+                                <h3><span class="counter"><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign ) : "30" ?></span></h3>
                                 <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
                             <?php elseif ( $campaign_type === "ongoing" ): ?>
@@ -246,7 +247,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
                             <?php if ( $campaign_type === "24hour" ): ?>
 
-                                <h3>720</h3>
+                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 ) : "720" ?></h3>
                                 <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
                             <?php elseif ( $campaign_type === "ongoing" ): ?>
@@ -269,7 +270,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
                             <?php if ( $campaign_type === "24hour" ): ?>
 
-                                <h3>2880</h3>
+                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : "2880" ?></h3>
                                 <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
                             <?php elseif ( $campaign_type === "ongoing" ): ?>
