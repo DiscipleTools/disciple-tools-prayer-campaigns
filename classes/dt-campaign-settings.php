@@ -109,8 +109,8 @@ class DT_Campaign_Settings {
      */
     public static function date_of_campaign_day( int $day ) {
         $campaign = self::get_campaign();
-        $campaign_start_date = $campaign["start_date"]["formatted"];
+        $campaign_start_time = $campaign["start_date"]["timestamp"];
 
-        return gmdate( "Y-m-d H:i:s", strtotime( $campaign_start_date . " +" . $day - 1 . " days" ) );
+        return gmdate( "Y-m-d H:i:s", $campaign_start_time + ( $day - 1 ) * DAY_IN_SECONDS );
     }
 }
