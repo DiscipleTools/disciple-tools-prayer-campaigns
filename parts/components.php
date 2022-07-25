@@ -36,6 +36,7 @@ function dt_campaign_sign_up_form() {
                         <input class="cp-input" type="email" name="email" id="email" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
                         <input class="cp-input" type="email" name="EMAIL" id="e2" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" required />
                     </label>
+                    <div hidden="true"><input type="hidden" name="tags" value="7315913"></div>
                     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d9ad41b66865008d664ac28bf_4df6e5ea4e" tabindex="-1" value=""></div>
                     <div id="mce-responses" class="clear">
