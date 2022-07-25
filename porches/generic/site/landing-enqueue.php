@@ -30,7 +30,6 @@ class P4_Ramadan_Porch_Landing_Enqueue
     public static function load_allowed_scripts() {
         return [
             'my-jquery',
-            'jquery-ui',
             'porch-site-js',
             'tether',
             'bootstrap',
@@ -38,7 +37,6 @@ class P4_Ramadan_Porch_Landing_Enqueue
             'jquery.stellar',
             'jquery.nav',
             'smooth-scroll',
-            'smooth-on-scroll',
             'wow',
             'menu',
             'jquery.counterup',

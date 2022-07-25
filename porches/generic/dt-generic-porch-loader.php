@@ -27,6 +27,8 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
 
     public function __construct() {
         $this->label = __( 'Generic Porch', 'disciple-tools-prayer-campaign' );
+
+        require_once __DIR__ . '/dt-generic-porch.php';
     }
 
     public function get_porch_details() {
@@ -53,8 +55,6 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     }
 
     public function load_porch() {
-        require_once __DIR__ . '/dt-generic-porch.php';
-
         $this->load_porch_settings();
 
         DT_Generic_Porch::instance();

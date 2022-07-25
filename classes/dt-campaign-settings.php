@@ -53,4 +53,64 @@ class DT_Campaign_Settings {
 
         return $campaign;
     }
+
+    /**
+     * Get the day number that a certain date is in the campaign
+     *
+     * @param string $date
+     *
+     * @return int
+     */
+    public static function what_day_in_campaign( string $date ) {
+        $campaign = self::get_campaign();
+        $campaign_start_date = $campaign["start_date"]["formatted"];
+
+        $given = new DateTime( $date );
+        $campaign_start = new DateTime( $campaign_start_date );
+
+        $diff = intval( $campaign_start->diff( $given )->format( "%r%a" ) );
+
+        /* If the date given is the same as the start, then this is day 1 not day 0 */
+        /* If the date given is before the start, then this is a negative day */
+        if ( $diff >= 0 ) {
+            return $diff + 1;
+        } else {
+            return $diff;
+        }
+    }
+
+    /**
+     * How long is the campaign. -1 if is ongoing
+     *
+     * @return int
+     */
+    public static function campaign_length() {
+        $campaign = self::get_campaign();
+
+        if ( !isset( $campaign["end_date"] ) ) {
+            return -1;
+        }
+
+        $campaign_start_date = $campaign["start_date"]["formatted"];
+        $campaign_end_date = $campaign["end_date"]["formatted"];
+
+        $campaign_start = new DateTime( $campaign_start_date );
+        $campaign_end = new DateTime( $campaign_end_date );
+
+        $diff = intval( $campaign_start->diff( $campaign_end )->format( "%r%a" ) );
+
+        /* If the date given is the same as the start, then this is day 1 not day 0 */
+        /* If the date given is before the start, then this is a negative day */
+        return $diff;
+    }
+
+    /**
+     * Get the mysql date string for the day of the campaign
+     */
+    public static function date_of_campaign_day( int $day ) {
+        $campaign = self::get_campaign();
+        $campaign_start_time = $campaign["start_date"]["timestamp"];
+
+        return gmdate( "Y-m-d H:i:s", $campaign_start_time + ( $day - 1 ) * DAY_IN_SECONDS );
+    }
 }

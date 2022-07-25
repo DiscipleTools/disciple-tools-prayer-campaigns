@@ -120,3 +120,12 @@ function dt_split_sentence( string $words, int $part, int $parts ) {
         return implode( $seperator, array_slice( $split_words, ( $part - 1 ) * $part_length, $part_length ) );
     }
 }
+
+/**
+ * Added to dummy out missing function as it was deprecated at PHP7 and is depended on by rss-importer plugin
+ */
+if ( !function_exists( 'set_magic_quotes_runtime' ) ) {
+    function set_magic_quotes_runtime( $f = null ) {
+        return true;
+    }
+}

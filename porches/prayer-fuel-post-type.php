@@ -9,13 +9,13 @@ if ( !defined( 'ABSPATH' ) ){
 
 
 /**
- * P4_Ramadan_Porch_Landing_Post_Type Class
- * All functionality pertaining to project update post types in P4_Ramadan_Porch_Landing_Post_Type.
+ * DT_Campaign_Prayer_Fuel_Post_Type Class
+ * All functionality pertaining to project update post types in DT_Campaign_Prayer_Fuel_Post_Type.
  *
  * @package  Disciple_Tools
  * @since    0.1.0
  */
-class P4_Ramadan_Porch_Landing_Post_Type
+class DT_Campaign_Prayer_Fuel_Post_Type
 {
 
     public $post_type;
@@ -23,6 +23,7 @@ class P4_Ramadan_Porch_Landing_Post_Type
     public $plural;
     public $args;
     public $taxonomies;
+    private $language_settings;
     private static $_instance = null;
     public static function instance() {
         if ( is_null( self::$_instance ) ){
@@ -43,11 +44,12 @@ class P4_Ramadan_Porch_Landing_Post_Type
         $this->plural = PORCH_LANDING_POST_TYPE_PLURAL;
         $this->args = $args;
         $this->taxonomies = $taxonomies;
+        $this->language_settings = new DT_Campaign_Languages();
 
         add_action( 'init', [ $this, 'register_post_type' ] );
         add_action( 'transition_post_status', [ $this, 'transition_post' ], 10, 3 );
         add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
-        add_action( 'save_post', [ $this, 'save_post' ] );
+        add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 
         if ( is_admin() && isset( $_GET['post_type'] ) && PORCH_LANDING_POST_TYPE === $_GET['post_type'] ){
             add_action( 'pre_get_posts', [ $this, 'dt_landing_order_by_date' ] );
@@ -60,7 +62,8 @@ class P4_Ramadan_Porch_Landing_Post_Type
     public function add_meta_box( $post_type ) {
         if ( PORCH_LANDING_POST_TYPE === $post_type ) {
             add_meta_box( PORCH_LANDING_POST_TYPE . '_custom_permalink', PORCH_LANDING_POST_TYPE_SINGLE . ' Url', [ $this, 'meta_box_custom_permalink' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
-            add_meta_box( PORCH_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
+            add_meta_box( PORCH_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], PORCH_LANDING_POST_TYPE, 'side', 'core' );
+            add_meta_box( PORCH_LANDING_POST_TYPE . '_campaign_day', 'Campaign Day', [ $this, 'meta_box_campaign_day' ], PORCH_LANDING_POST_TYPE, 'side', 'core' );
         }
     }
 
@@ -71,14 +74,22 @@ class P4_Ramadan_Porch_Landing_Post_Type
 
     public function meta_box_page_language( $post ) {
         $lang = get_post_meta( $post->ID, 'post_language', true );
-        $langs = dt_campaign_list_languages();
+
+        if ( empty( $lang ) ) {
+            $lang = isset( $_GET["post_language"] ) ? sanitize_text_field( wp_unslash( $_GET["post_language"] ) ) : null;
+        }
+
+        $langs = $this->language_settings->get_enabled_languages();
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }
         ?>
+
+        <?php wp_nonce_field( 'landing-language-selector', 'landing-language-selector' ); ?>
+
         <select class="dt-magic-link-language-selector" name="dt-landing-language-selector">
             <?php foreach ( $langs as $code => $language ) : ?>
-                <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
+                <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang == $code ) ?>>
                     <?php echo esc_html( $language["flag"] ); ?> <?php echo esc_html( $language["native_name"] ); ?>
                 </option>
             <?php endforeach; ?>
@@ -86,20 +97,101 @@ class P4_Ramadan_Porch_Landing_Post_Type
         <?php
     }
 
-    public function save_post( $id ){
-        /* TODO Check nonce first then uncomment the below code */
+    public function meta_box_campaign_day( $post ) {
+        $campaign_day = get_post_meta( $post->ID, 'day', true );
 
-        /* if ( isset( $_POST["dt-landing-language-selector"] ) ){
-            $post_submission = dt_recursive_sanitize_array( $_POST );
-            update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
-        } */
+        $latest_campaign_day = DT_Campaign_Prayer_Post_Importer::instance()->find_latest_prayer_fuel_day();
+        $day = isset( $_GET["day"] ) ? sanitize_text_field( wp_unslash( $_GET["day"] ) ) : $latest_campaign_day + 1;
+
+        $value = !empty( $campaign_day ) ? $campaign_day : $day;
+
+        $date = DT_Campaign_Settings::date_of_campaign_day( $value );
+        ?>
+
+        <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
+        <input
+            id="dt-landing-day-selector"
+            name="dt-landing-day-selector"
+            type="number"
+            min="1"
+            value="<?php echo esc_html( $value ) ?>"
+            data-day="<?php echo esc_html( $value ) ?>"
+        >
+
+        <p id="dt-landing-date-display" data-date="<?php echo esc_html( $date ) ?>">
+            <?php echo esc_html( gmdate( 'Y/m/d', strtotime( $date ) ) ) ?>
+        </p>
+        <p>
+            Or give a specific date that you want this post to be published on.
+        </p>
+
+        <input
+            id="dt-landing-date-selector"
+            name="dt-landing-date-selector"
+            type="date"
+        >
+
+        <?php
+    }
+
+    public function save_post( $id, $post ){
+
+        $post_submission = dt_recursive_sanitize_array( wp_unslash( $_POST ) );
+
+        if ( isset( $_POST['landing-language-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-language-selector'] ) ), 'landing-language-selector' ) ) {
+            if ( isset( $_POST["dt-landing-language-selector"] ) ){
+                update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
+            }
+        }
+
+        if ( isset( $_POST['landing-day-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-day-selector'] ) ), 'landing-day-selector' ) ) {
+
+            $post_date = '';
+            if ( !empty( $_POST["dt-landing-date-selector"] ) ) {
+                update_post_meta( $id, 'fixed', true );
+                $post_date = $post_submission["dt-landing-date-selector"];
+                $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
+            } else if ( isset( $_POST["dt-landing-day-selector"] ) ){
+                $day = $post_submission["dt-landing-day-selector"];
+                $post_date = DT_Campaign_Settings::date_of_campaign_day( $day );
+            }
+            update_post_meta( $id, 'day', $day );
+
+            /* double check whether the date is in the future or not */
+
+            $start_date = strtotime( $post_date );
+            $current_date = strtotime( gmdate( 'Y-m-d' ) );
+            if ( $start_date > $current_date ) {
+                $post_status = "future";
+            } else {
+                $post_status = "publish";
+            }
+
+            remove_action( 'save_post', [ $this, 'save_post' ] );
+
+            wp_update_post( [
+                "ID" => $id,
+                "post_status" => $post_status,
+                "post_date" => $post_date,
+                "post_date_gmt" => $post_date,
+            ] );
+
+            add_action( 'save_post', [ $this, 'save_post' ] );
+        }
+
+        if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
+            $day = get_post_meta( $id, "day", true );
+
+            if ( $day !== false && !empty( $day ) ) {
+                update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
+            }
+        }
     }
 
 
     /**
      * Register the post type.
      *
-     * @access public
      * @return void
      */
     public function register_post_type() {
@@ -163,7 +255,14 @@ class P4_Ramadan_Porch_Landing_Post_Type
             return;
         }
 
+        require_once( ABSPATH . 'wp-admin/includes/screen.php' );
+
         $screen = get_current_screen();
+
+        if ( !$screen ) {
+            return;
+        }
+
         if ( 'edit' == $screen->base
             && 'landing' == $screen->post_type
             && !isset( $_GET['orderby'] ) ){
@@ -228,7 +327,8 @@ class P4_Ramadan_Porch_Landing_Post_Type
                 if ( empty( $language ) ){
                     $language = "en_US";
                 }
-                $languages = dt_campaign_list_languages();
+                /* This is waiting for the language PR to be merged in before it can use that functionality */
+                $languages = dt_get_available_languages( true );
                 if ( !isset( $languages[$language]["flag"] ) ){
                     echo esc_html( $language );
                 } else {
@@ -242,5 +342,94 @@ class P4_Ramadan_Porch_Landing_Post_Type
                 }
         }
     }
+
+    /**
+     * Get the days posts
+     *
+     * @param int $day
+     *
+     * @return WP_Query
+     */
+    public function get_days_posts( int $day ) {
+
+        $lang = dt_campaign_get_current_lang();
+
+        // query for getting posts in the selected language.
+        $lang_query = [
+            [
+                'key'     => 'post_language',
+                'value'   => $lang,
+                'compare' => '=',
+            ]
+        ];
+        if ( $lang === "en_US" ){
+            $lang_query[] = [
+                'key'     => 'post_language',
+                'compare' => 'NOT EXISTS',
+            ];
+            $lang_query["relation"] = "OR";
+        }
+
+        $meta_query = [
+            "relation" => "AND",
+            [
+                "key" => "day",
+                "value" => $day,
+                "compare" => "=",
+            ],
+            $lang_query,
+        ];
+
+        //get latest published post
+        $today = new WP_Query( [
+            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_status' => [ 'publish', 'future' ] ,
+            'posts_per_page' => -1,
+            'orderby' => 'post_date',
+            'order' => 'DESC',
+            'meta_query' => $meta_query,
+        ] );
+        if ( empty( $today->posts ) ){
+            //get earliest unpublished post
+            $today = new WP_Query( [
+                'post_type' => PORCH_LANDING_POST_TYPE,
+                'post_status' => 'future',
+                'posts_per_page' => 1,
+                'orderby' => 'post_date',
+                'order' => 'ASC',
+                'meta_query' => $lang_query,
+            ] );
+        }
+        if ( empty( $today->posts ) ){
+            //post in english
+            $args = array(
+                'post_type' => PORCH_LANDING_POST_TYPE,
+                'post_status' => [ 'publish', 'future' ],
+                'posts_per_page' => 1,
+                'orderby' => 'post_date',
+                'order' => 'DESC',
+                'meta_query' => [
+                    'relation' => 'OR',
+                    [
+                        'key'     => 'post_language',
+                        'value'   => 'en_US',
+                        'compare' => '=',
+                    ],
+                    [
+                        'key'     => 'post_language',
+                        'compare' => 'NOT EXISTS',
+                    ],
+                    [
+                        "key" => "day",
+                        "value" => $day,
+                    ]
+                ]
+            );
+            $today = new WP_Query( $args );
+        }
+
+        return $today;
+
+    }
 } // End Class
-P4_Ramadan_Porch_Landing_Post_Type::instance();
+DT_Campaign_Prayer_Fuel_Post_Type::instance();
