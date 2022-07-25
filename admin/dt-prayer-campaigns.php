@@ -70,7 +70,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                 $this->settings_manager->update( 'selected_porch', $selected_porch );
 
-                DT_Prayer_Campaigns::instance()->set_selected_porch_id( $selected_porch );
+                DT_Porch_Selector::instance()->set_selected_porch_id( $selected_porch );
 
                 /* Make sure that the prayer fuel custom post type is flushed or set up straight after the porch has been changed */
                 header( "Refresh:0.01" );
@@ -193,7 +193,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <br>
 
         <?php
-        $porches = DT_Prayer_Campaigns::instance()->get_porch_loaders();
+        $porches = DT_Porch_Selector::instance()->get_porch_loaders();
         ?>
 
         <table class="widefat striped">
@@ -218,7 +218,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                         <td>
                                             <select name="select_porch" id="select_porch"
-                                                    selected="<?php echo esc_html( DT_Prayer_Campaigns::instance()->get_selected_porch_id() ? DT_Prayer_Campaigns::instance()->get_selected_porch_id() : '' ) ?>">
+                                                    selected="<?php echo esc_html( DT_Porch_Selector::instance()->get_selected_porch_id() ? DT_Porch_Selector::instance()->get_selected_porch_id() : '' ) ?>">
 
                                                     <option
                                                         <?php echo !isset( $settings["selected_porch"] ) ? "selected" : "" ?>
@@ -231,7 +231,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                                     <option
                                                         value="<?php echo esc_html( $id ) ?>"
-                                                        <?php echo DT_Prayer_Campaigns::instance()->get_selected_porch_id() && DT_Prayer_Campaigns::instance()->get_selected_porch_id() === $id ? "selected" : "" ?>
+                                                        <?php echo DT_Porch_Selector::instance()->get_selected_porch_id() && DT_Porch_Selector::instance()->get_selected_porch_id() === $id ? "selected" : "" ?>
                                                     >
                                                         <?php echo esc_html( $porch["label"] ) ?>
                                                     </option>

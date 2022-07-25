@@ -11,6 +11,7 @@ class DT_Prayer_Campaigns_Menu {
     private static $_instance = null;
 
     private $campaigns;
+    private $porch_selector;
 
     /**
      * DT_Prayer_Campaigns_Menu Instance
@@ -43,6 +44,7 @@ class DT_Prayer_Campaigns_Menu {
         add_filter( "dt_options_script_pages", array( $this, "dt_options_script_pages" ) );
 
         $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
+        $this->porch_selector = DT_Porch_Selector::instance();
     }
 
     /**
@@ -100,7 +102,7 @@ class DT_Prayer_Campaigns_Menu {
         }
 
         if ( $this->has_selected_porch() ) {
-            $porch = DT_Prayer_Campaigns::instance()->get_selected_porch_loader();
+            $porch = $this->porch_selector->get_selected_porch_loader();
             $porch_admin = $porch->load_admin();
             $porch_dir = $porch_admin->get_porch_dir();
 
@@ -173,8 +175,6 @@ class DT_Prayer_Campaigns_Menu {
     }
 
     private function has_selected_porch() {
-        $selected_porch_id = DT_Prayer_Campaigns::instance()->get_selected_porch_id();
-
-        return $selected_porch_id && !empty( $selected_porch_id ) ? true : false;
+        return $this->porch_selector->has_selected_porch();
     }
 }

@@ -14,7 +14,7 @@ class DT_Campaign_Prayer_Fuel_Menu {
      *
      * @since 0.1.0
      * @static
-     * @return DT_Prayer_Campaigns_Menu instance
+     * @return DT_Campaign_Prayer_Fuel_Menu instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -29,7 +29,7 @@ class DT_Campaign_Prayer_Fuel_Menu {
      * @since   0.1.0
      */
     public function __construct() {
-        if ( !DT_Prayer_Campaigns::instance()->has_selected_porch() ) {
+        if ( !DT_Porch_Selector::instance()->has_selected_porch() ) {
             return;
         }
 
