@@ -181,7 +181,10 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
             $day = get_post_meta( $id, "day", true );
-            update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
+
+            if ( $day !== false && !empty( $day ) ) {
+                update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
+            }
         }
     }
 
