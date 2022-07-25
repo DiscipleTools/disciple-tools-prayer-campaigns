@@ -49,7 +49,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         add_action( 'init', [ $this, 'register_post_type' ] );
         add_action( 'transition_post_status', [ $this, 'transition_post' ], 10, 3 );
         add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
-        add_action( 'save_post', [ $this, 'save_post' ] );
+        add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 
         if ( is_admin() && isset( $_GET['post_type'] ) && PORCH_LANDING_POST_TYPE === $_GET['post_type'] ){
             add_action( 'pre_get_posts', [ $this, 'dt_landing_order_by_date' ] );
@@ -134,7 +134,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         <?php
     }
 
-    public function save_post( $id ){
+    public function save_post( $id, $post ){
 
         $post_submission = dt_recursive_sanitize_array( wp_unslash( $_POST ) );
 
@@ -179,6 +179,10 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             add_action( 'save_post', [ $this, 'save_post' ] );
         }
 
+        if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
+            $day = get_post_meta( $id, "day", true );
+            update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
+        }
     }
 
 
