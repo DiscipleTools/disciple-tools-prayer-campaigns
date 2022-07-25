@@ -243,8 +243,18 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-user"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><?php echo esc_html( $hours_next_month ) ?></h3>
-                            <h4><?php esc_html_e( 'Hours', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3>720</h3>
+                                <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php echo esc_html( $hours_next_month ) ?></h3>
+                                <h4><?php esc_html_e( 'Hours', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -256,8 +266,19 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-heart"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
-                            <h4><?php esc_html_e( 'More Hours to be covered', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3>2880</h3>
+                                <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
+                                <h4><?php esc_html_e( 'More Hours to be covered', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
