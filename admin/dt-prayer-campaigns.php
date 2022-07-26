@@ -283,9 +283,6 @@ class DT_Prayer_Campaigns_Campaigns {
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td> </td>
-                                    </tr>
                                 </tbody>
                             </table>
 
