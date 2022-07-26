@@ -146,37 +146,14 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         if ( isset( $_POST['landing-day-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-day-selector'] ) ), 'landing-day-selector' ) ) {
 
-            $post_date = '';
             if ( !empty( $_POST["dt-landing-date-selector"] ) ) {
                 update_post_meta( $id, 'fixed', true );
                 $post_date = $post_submission["dt-landing-date-selector"];
                 $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
             } else if ( isset( $_POST["dt-landing-day-selector"] ) ){
                 $day = $post_submission["dt-landing-day-selector"];
-                $post_date = DT_Campaign_Settings::date_of_campaign_day( $day );
             }
             update_post_meta( $id, 'day', $day );
-
-            /* double check whether the date is in the future or not */
-
-            $start_date = strtotime( $post_date );
-            $current_date = strtotime( gmdate( 'Y-m-d' ) );
-            if ( $start_date > $current_date ) {
-                $post_status = "future";
-            } else {
-                $post_status = "publish";
-            }
-
-            remove_action( 'save_post', [ $this, 'save_post' ] );
-
-            wp_update_post( [
-                "ID" => $id,
-                "post_status" => $post_status,
-                "post_date" => $post_date,
-                "post_date_gmt" => $post_date,
-            ] );
-
-            add_action( 'save_post', [ $this, 'save_post' ] );
         }
 
         if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
