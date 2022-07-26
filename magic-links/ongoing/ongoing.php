@@ -168,7 +168,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         }
 
         if ( !$email_sent ){
-            return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, "Could not send email confirmation", [ 'status' => 400 ] );
         }
 
         return true;

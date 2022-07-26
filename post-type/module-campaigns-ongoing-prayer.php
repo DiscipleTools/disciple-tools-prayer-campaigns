@@ -216,7 +216,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
         }
 
         if ( !$email_sent ){
-            return new WP_Error( __METHOD__, "Could not sent email confirmation", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, "Could not send email confirmation", [ 'status' => 400 ] );
         }
 
         return true;

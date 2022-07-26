@@ -46,12 +46,9 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php
-                $dt_campaign_selected_campaign_magic_link_settings["section"] = "percentage";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_campaign_selected_campaign_magic_link_settings
-                );
-                ?>
+
+                <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
             </div>
         </div>
         <div class="row">
@@ -96,7 +93,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 <div id="days_until" class="counters section" data-stellar-background-ratio="0.5" >
     <div class="overlay"></div>
     <div class="container">
-        <div class="row">
+        <div id="counter_row" class="row">
             <div class="col-sm-12">
                 <div class="wow fadeInUp" data-wow-delay=".3s">
                     <div class="facts-item">
@@ -113,12 +110,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "what_content" ) ) ); ?>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php
-                $dt_campaign_selected_campaign_magic_link_settings["section"] = "calendar";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_campaign_selected_campaign_magic_link_settings
-                );
-                ?>
+                <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
             </div>
         </div>
     </div>
@@ -136,22 +128,24 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
         $timezone_adjusted_start_date = $campaign_fields['start_date']['timestamp'] - $timezone_offset;
 
-        $timezone_adjusted_end_date = $campaign_fields['end_date']['timestamp'] - $timezone_offset;
+        $has_end_date = isset( $campaign_fields['end_date'] );
+        $timezone_adjusted_end_date = $has_end_date ? $campaign_fields['end_date']['timestamp'] - $timezone_offset : 0;
         ?>
         let countDownDate = '<?php echo esc_html( $timezone_adjusted_start_date )?>'
         let endCountDownDate = '<?php echo esc_html( $timezone_adjusted_end_date ) ?>'
+        let hasEndDate = "<?php echo esc_html( $has_end_date ); ?>"
 
 
         let now = new Date().getTime() / 1000
-        let timeleft = countDownDate - now;
-        let endtimeleft = endCountDownDate - now ;
+        let timeLeft = countDownDate - now;
+        let endTimeLeft = endCountDownDate - now ;
 
-        let days = Math.floor(timeleft / (60 * 60 * 24));
-        let hours = Math.floor((timeleft % (60 * 60 * 24)) / (60 * 60));
-        let minutes = Math.floor((timeleft % (60 * 60)) / 60);
-        let seconds = Math.floor(timeleft % 60);
+        let days = Math.floor(timeLeft / (60 * 60 * 24));
+        let hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
+        let minutes = Math.floor((timeLeft % (60 * 60)) / 60);
+        let seconds = Math.floor(timeLeft % 60);
 
-        if ( endtimeleft < 0 ) {
+        if ( hasEndDate && endTimeLeft < 0 ) {
             clearInterval(myfunc);
             document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s is Finished", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
             document.getElementById("days").innerHTML = ""
@@ -159,12 +153,12 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
             document.getElementById("mins").innerHTML = ""
             document.getElementById("secs").innerHTML = ""
         }
-        else if ( timeleft < 0 ) {
+        else if ( hasEndDate && timeLeft < 0 ) {
 
-            days = Math.floor(endtimeleft / (60 * 60 * 24));
-            hours = Math.floor((endtimeleft % (60 * 60 * 24)) / (60 * 60));
-            minutes = Math.floor((endtimeleft % (60 * 60)) / 60);
-            seconds = Math.floor(endtimeleft % 60);
+            days = Math.floor(endTimeLeft / (60 * 60 * 24));
+            hours = Math.floor((endTimeLeft % (60 * 60 * 24)) / (60 * 60));
+            minutes = Math.floor((endTimeLeft % (60 * 60)) / 60);
+            seconds = Math.floor(endTimeLeft % 60);
 
             document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s Ends ...", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
             document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
@@ -180,6 +174,10 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
             document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'disciple-tools-prayer-campaigns' ); ?>"
         }
 
+        if ( !hasEndDate && timeLeft < 0 ) {
+            document.getElementById("counter_row").style.display = 'none'
+        }
+
     }, 1000)
 </script>
 
@@ -193,15 +191,14 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         <div class="row">
             <?php
             if ( empty( $dt_campaign_selected_campaign_magic_link_settings ) ) :?>
-                <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
-            <?php else :
 
-                $dt_campaign_selected_campaign_magic_link_settings["section"] = "sign_up";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_campaign_selected_campaign_magic_link_settings
-                );
-            endif;
-            ?>
+            <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
+
+            <?php else : ?>
+
+                <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -212,6 +209,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
+            <?php $days_in_campaign = DT_Campaigns_Base::total_days_in_campaign() ?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">
@@ -219,12 +217,26 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-calendar-full"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><span class="counter">30</span></h3>
-                            <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3><span class="counter"><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign ) : "30" ?></span></h3>
+                                <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php esc_html_e( 'Next', 'disciple-tools-prayer-campaigns' ) ?></h3>
+                                <h4><?php esc_html_e( 'Month', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <?php $hours_next_month = DT_Campaigns_Base::number_of_hours_next_month() ?>
+            <?php $more_hours_needed = $hours_next_month - ceil( DT_Campaigns_Base::query_scheduled_minutes_next_month( $campaign_fields["ID"] ) / 60 ) ?>
+            <?php /* 96 daily prayer warriors would be needed to cover the campaign... Do I use that number? */ ?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".6s">
                     <div class="facts-item">
@@ -232,8 +244,18 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-user"></i>
                         </div>
                         <div class="fact-count">
-                            <h3>720</h3>
-                            <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 ) : "720" ?></h3>
+                                <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php echo esc_html( $hours_next_month ) ?></h3>
+                                <h4><?php esc_html_e( 'Hours', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -245,8 +267,19 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-heart"></i>
                         </div>
                         <div class="fact-count">
-                            <h3>2880</h3>
-                            <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : "2880" ?></h3>
+                                <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
+                                <h4><?php esc_html_e( 'More Hours to be covered', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
