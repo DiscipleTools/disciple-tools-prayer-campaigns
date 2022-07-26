@@ -53,16 +53,16 @@ class DT_Campaign_Prayer_Post_Importer {
 
         $language_settings = new DT_Campaign_Languages();
         $available_languages = $language_settings->get();
-        $start_date = [];
+        $post_scheduled_start_date = [];
 
         $last_post_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
         foreach ( $available_languages as $lang => $lang_details ) {
             if ( $this->append_date ) {
-                $start_date[$lang] = $this->append_date;
+                $post_scheduled_start_date[$lang] = $this->append_date;
             } else {
-                $start_date[$lang] = $last_post_date;
+                $post_scheduled_start_date[$lang] = $last_post_date;
             }
-            $start_date[$lang] = $this->mysql_date( strtotime( $start_date[$lang] ) );
+            $post_scheduled_start_date[$lang] = $this->mysql_date( strtotime( $post_scheduled_start_date[$lang] ) );
         }
 
         foreach ( $new_posts as $i => $post ) {
@@ -71,10 +71,11 @@ class DT_Campaign_Prayer_Post_Importer {
                 continue;
             }
 
-            $post_start_date = $start_date[$post_lang];
+            $post_start_date = $post_scheduled_start_date[$post_lang];
 
-            $post["post_date"] = $post_start_date;
-            $post["post_date_gmt"] = $post_start_date;
+            $post["post_date"] = $this->mysql_date( time() );
+            $post["post_date_gmt"] = $this->mysql_date( time() );
+            $post["post_status"] = "publish";
 
             $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $post_start_date );
 
@@ -99,7 +100,7 @@ class DT_Campaign_Prayer_Post_Importer {
 
             $new_posts[$i] = $post;
 
-            $start_date[$post_lang] = $this->mysql_date( $this->next_day_timestamp( $start_date[$post_lang] ) );
+            $post_scheduled_start_date[$post_lang] = $this->mysql_date( $this->next_day_timestamp( $post_scheduled_start_date[$post_lang] ) );
         }
 
         $this->append_date = null;
