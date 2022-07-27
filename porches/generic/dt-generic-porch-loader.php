@@ -1,18 +1,5 @@
 <?php
 
-
-add_filter( 'dt_register_prayer_campaign_porch', 'dt_register_generic_porch', 10, 1 );
-
-if ( !function_exists( 'dt_register_generic_porch' ) ) {
-    function dt_register_generic_porch( $porches ) {
-        $porch = new DT_Generic_Porch_Loader();
-
-        $porches[$porch->id] = $porch->get_porch_details();
-
-        return $porches;
-    }
-}
-
 if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
     return;
 }
@@ -84,4 +71,14 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
         new DT_Generic_Porch_Settings();
     }
 
+    public function register_porch() {
+        add_filter( 'dt_register_prayer_campaign_porch', array( $this, 'dt_register_porch' ), 10, 1 );
+    }
+
+    public function dt_register_porch( $porches ) {
+        $porches[$this->id] = $this->get_porch_details();
+
+        return $porches;
+    }
 }
+( new DT_Generic_Porch_Loader() )->register_porch();
