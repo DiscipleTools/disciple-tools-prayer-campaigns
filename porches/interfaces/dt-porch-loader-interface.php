@@ -7,4 +7,6 @@ interface IDT_Porch_Loader {
     public function load_admin(): IDT_Porch_Admin_Menu;
 
     public function load_porch();
+
+    public function register_porch();
 }
