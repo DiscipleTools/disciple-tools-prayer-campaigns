@@ -183,7 +183,8 @@ function dt_ongoing_campaign_signup( $atts ){
                     <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
                 </button>
                 <div class="cp-center" style="display: flex; flex-direction: column;">
-                    <label >
+                    <p style="max-width: 410px"><strong><?php esc_html_e( "Chose a time to pray everyday for the next 3 months. Near the end you'll have the option to sign up for more.", 'disciple-tools-prayer-campaigns' ); ?></strong></p>
+                    <label>
                         <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
                         <select id="cp-daily-time-select">
                             <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
@@ -278,7 +279,7 @@ function dt_ongoing_campaign_signup( $atts ){
                 </div>
             </div>
             <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
-                <h2>Change your timezone:</h2>
+                <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
                 <select id="timezone-select" style="margin: 20px auto">
                     <?php
                     $selected_tz = 'America/Denver';
