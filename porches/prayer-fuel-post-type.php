@@ -168,8 +168,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     public function update_post( $post_type, $post_id, $initial_fields, $existing_post, $post ) {
 
-        if (  $post_type === "campaigns" ) {
-            if (  array_key_exists( "start_date", $initial_fields ) ) {
+        if ( $post_type === "campaigns" ) {
+            if ( array_key_exists( "start_date", $initial_fields ) ) {
                 if ( $post["start_date"]["timestamp"] !== $existing_post["start_date"]["timestamp"] ) {
                     global $wpdb;
 
@@ -190,6 +190,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                         pm3.meta_value = pm3.meta_value - %1s
                         WHERE pm.meta_key = 'day'
                     ", PORCH_LANDING_POST_TYPE, PORCH_LANDING_META_KEY, $diff_in_start_days, $diff_in_start_days  );
+                    //phpcs:ignore
                     $result = $wpdb->query( $prepped_sql );
                 }
             }
