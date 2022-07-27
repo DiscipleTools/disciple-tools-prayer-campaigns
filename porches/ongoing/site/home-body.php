@@ -105,6 +105,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "what_content" ) ) ); ?>
             </div>
             <div class="col-sm-12 col-md-4">
+                <?php //phpcs:ignore ?>
                 <?php echo dt_ongoing_campaign_calendar( $dt_campaign_selected_campaign_magic_link_settings ); ?>
             </div>
         </div>
@@ -191,6 +192,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
             <?php else : ?>
 
+                <?php //phpcs:ignore ?>
                 <?php echo dt_ongoing_campaign_signup( $dt_campaign_selected_campaign_magic_link_settings ); ?>
 
             <?php endif; ?>
