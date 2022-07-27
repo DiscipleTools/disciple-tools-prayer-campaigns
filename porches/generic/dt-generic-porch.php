@@ -2,15 +2,18 @@
 
 class DT_Generic_Porch {
 
+    private $child_porch_dir;
     private static $instance = null;
-    public static function instance() {
+    public static function instance( $child_porch_dir = "" ) {
         if ( is_null( self::$instance ) ) {
-            self::$instance = new self();
+            self::$instance = new self( $child_porch_dir );
         }
         return self::$instance;
     }
 
-    private function __construct() {
+    private function __construct( $child_porch_dir ) {
+        $this->child_porch_dir = $child_porch_dir;
+
         require_once __DIR__ . '/site/functions.php';
         $fields = DT_Porch_Settings::settings();
         if ( ! defined( 'PORCH_TITLE' ) ) {
@@ -71,6 +74,28 @@ class DT_Generic_Porch {
     public function i18n() {
         $domain = 'dt-generic-porch';
         load_plugin_textdomain( $domain, false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ). 'support/languages' );
+    }
+
+    /**
+     * Conditionally require a file based on whether we are using a child porch or not
+     *
+     * @param string $file_name
+     */
+    public function require_once( $file_name ) {
+        $file_path = trailingslashit( $this->child_porch_dir ) . "site/$file_name";
+
+        if ( !empty( $this->child_porch_dir ) && file_exists( $file_path ) ) {
+            require_once( $file_path );
+        } else {
+            require_once( __DIR__ . "/site/$file_name" );
+        }
+    }
+
+    /**
+     * Return the directory that the generic porch assets can be found in
+     */
+    public static function assets_dir() {
+        return trailingslashit( plugin_dir_url( __File__ ) ) . 'site/';
     }
 
     /**

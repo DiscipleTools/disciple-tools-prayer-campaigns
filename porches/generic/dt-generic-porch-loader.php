@@ -70,7 +70,7 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     public function load_porch() {
         $this->load_porch_settings();
 
-        DT_Generic_Porch::instance();
+        DT_Generic_Porch::instance( $this->porch_dir );
     }
 
     /**
