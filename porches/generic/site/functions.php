@@ -13,6 +13,17 @@ function dt_campaign_list_all_languages() {
     return $languages_manager->get();
 }
 
+/**
+ * What is the direction of the language
+ *
+ * @param string $lang
+ *
+ * @return string
+ */
+function dt_campaign_language_direction( string $lang ) {
+    return ( new DT_Campaign_Languages() )->get_language_direction( $lang );
+}
+
 function dt_campaign_set_translation( $lang ){
     if ( $lang !== "en_US" ){
         add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
@@ -32,12 +43,7 @@ function dt_campaign_custom_dir_attr( $lang ){
 
     $lang = dt_campaign_get_current_lang();
 
-    $translations = dt_campaign_list_languages();
-    $dir = "ltr";
-    if ( isset( $translations[$lang]["dir"] ) && $translations[$lang]['dir'] === 'rtl' ){
-        $dir = "rtl";
-    }
-
+    $dir = dt_campaign_language_direction( $lang );
     $dir_attr = 'dir="' . $dir . '"';
 
     return 'lang="' . $lang .'" ' .$dir_attr;

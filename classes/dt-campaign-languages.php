@@ -89,6 +89,25 @@ class DT_Campaign_Languages {
     }
 
     /**
+     * Get the direction of the language
+     *
+     * @param string $lang
+     * @return string
+     */
+    public function get_language_direction( string $lang ) {
+        $languages = $this->get_enabled_languages();
+        if ( $this->is_language_in_list( $lang, $languages ) ) {
+            $language = $languages[$lang];
+
+            if ( isset( $language["rtl"] ) && $language["rtl"] === true ) {
+                return "rtl";
+            }
+        }
+
+         return "ltr";
+    }
+
+    /**
      * Update a language
      *
      * @param string $code
