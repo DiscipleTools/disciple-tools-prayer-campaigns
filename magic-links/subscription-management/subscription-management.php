@@ -279,7 +279,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             <!-- Reveal Modal Timezone Changer-->
             <div id="timezone-changer" class="reveal tiny" data-reveal>
-                <h2>Change your timezone:</h2>
+                <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
                 <select id="timezone-select">
                     <?php
                     $selected_tz = 'America/Denver';
