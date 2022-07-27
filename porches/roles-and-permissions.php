@@ -5,12 +5,12 @@ if ( !defined( 'ABSPATH' ) ) {
 
 
 /**
- * P4_Ramadan_Porch_Landing_Roles Class
+ * DT_Campaign_Porch_Roles Class
  *
  * @package  Disciple_Tools
  * @since    0.1.0
  */
-class P4_Ramadan_Porch_Landing_Roles
+class DT_Campaign_Porch_Roles
 {
     // needs to match post-type.php
     public $post_type = PORCH_LANDING_POST_TYPE;
@@ -115,4 +115,5 @@ class P4_Ramadan_Porch_Landing_Roles
     }
 
 } // End Class
-P4_Ramadan_Porch_Landing_Roles::instance();
+DT_Campaign_Porch_Roles::instance();
+

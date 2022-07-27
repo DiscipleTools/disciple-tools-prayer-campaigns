@@ -12,37 +12,10 @@ class DT_Generic_Porch {
 
     private function __construct() {
         require_once __DIR__ . '/site/functions.php';
-        $fields = DT_Porch_Settings::porch_fields();
+        $fields = DT_Porch_Settings::settings();
         if ( ! defined( 'PORCH_TITLE' ) ) {
-            $title = $fields['title']['value'] ?? 'Ramadan';
+            $title = $fields['title']['value'] ?? '24/7 Prayer';
             define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
-        }
-        if ( ! defined( 'PORCH_ROOT' ) ) {
-            define( 'PORCH_ROOT', 'porch_app' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
-        }
-        if ( ! defined( 'PORCH_TYPE' ) ) {
-            define( 'PORCH_TYPE', '5' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
-        }
-        if ( ! defined( 'PORCH_TOKEN' ) ) {
-            define( 'PORCH_TOKEN', 'porch_app_5' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_ROOT' ) ) {
-            define( 'PORCH_LANDING_ROOT', 'prayer' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
-        }
-        if ( ! defined( 'PORCH_LANDING_TYPE' ) ) {
-            define( 'PORCH_LANDING_TYPE', 'fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_META_KEY' ) ) {
-            define( 'PORCH_LANDING_META_KEY', PORCH_LANDING_ROOT . '_' . PORCH_LANDING_TYPE . '_magic_key' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE', 'landing' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE_SINGLE' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE_SINGLE', 'Porch' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE_PLURAL' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE_PLURAL', 'Porch' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
 
         // Set Default Language
@@ -56,52 +29,24 @@ class DT_Generic_Porch {
             define( 'PORCH_DEFAULT_LANGUAGE', $default_language );
         }
 
-        /**
-         * This template includes 6 color schemes set by the definition below.
-         * preset, teal, forestgreen, green, purple, orange
-         */
-        $theme = 'preset';
-        $hex = '#4676fa';
+        $theme_manager = new DT_Porch_Theme();
+        $theme = $theme_manager->get_default_theme();
         if ( isset( $fields['theme_color']['value'] ) && ! empty( $fields['theme_color']['value'] ) && ! defined( 'PORCH_COLOR_SCHEME' ) ) {
-            $theme = $fields['theme_color']['value'];
-            $hex = $fields['theme_color']['value'];
-            switch ( $theme ) {
-                case 'preset':
-                    $hex = '#4676fa';
-                    break;
-                case 'forestgreen':
-                    $hex = '#1EB858';
-                    break;
-                case 'green':
-                    $hex = '#94C523';
-                    break;
-                case 'orange':
-                    $hex = '#F57D41';
-                    break;
-                case 'purple':
-                    $hex = '#6B58CD';
-                    break;
-                case 'teal':
-                    $hex = '#1AB7D8';
-                    break;
-            }
+            $theme_name = $fields['theme_color']['value'];
+            $theme = $theme_manager->get_theme( $theme_name );
         }
 
-        if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ){
-            $theme = 'custom';
-            $hex = $fields['custom_theme_color']['value'];
+        if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ) {
+            $theme = [];
+            $theme["name"] = 'custom';
+            $theme["color"] = $fields['custom_theme_color']['value'];
         }
-        define( 'PORCH_COLOR_SCHEME', $theme );
-        define( 'PORCH_COLOR_SCHEME_HEX', $hex );
-
-        // POST TYPE and ACCESS
-        require_once( 'site/roles-and-permissions.php' );
-        require_once( 'site/landing-post-type.php' );
+        define( 'PORCH_COLOR_SCHEME', $theme["name"] );
+        define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
 
         // MICROSITE Magic Links
         require_once( 'site/home.php' );
         require_once( 'site/archive.php' );
-        require_once( 'site/power.php' );
         require_once( 'site/stats.php' );
         require_once( 'site/landing.php' );
         require_once( 'site/rest.php' );
@@ -112,6 +57,7 @@ class DT_Generic_Porch {
         if ( is_admin() ){
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 ); // admin plugin page description
         }
+
         $this->i18n();
     }
 

@@ -5,6 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function dt_24hour_campaign_register_scripts( $atts ){
 
+    require_once( trailingslashit( __DIR__ ) . '../parts/components.php' );
+
     wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, "2.3.1", true );
     //campaigns core js
     if ( !wp_script_is( 'dt_campaign_core', "registered" ) ){
@@ -20,6 +22,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
 
     //24 hour campaign js
     if ( !wp_script_is( 'dt_campaign' ) ){
+        wp_enqueue_script( 'dt_mailchimp', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'assets/js/mailchimp.js', [], filemtime( plugin_dir_path( __DIR__ ) . 'assets/js/mailchimp.js' ), true );
         wp_enqueue_script( 'dt_campaign', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'magic-links/24hour/24hour.js', [ 'luxon', 'jquery', 'dt_campaign_core' ], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.js' ), true );
         wp_localize_script(
             'dt_campaign', 'campaign_objects', [
@@ -214,45 +217,8 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
                 <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
                 <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
-            <h2><?php esc_html_e( 'Confirm', 'disciple-tools-prayer-campaigns' ); ?></h2>
-            <br>
-            <!-- @todo summary -->
-            <!--            <p>-->
-            <!--                You are signing up to praying for-->
-            <!--                <span id="time-duration-confirmation" style="font-weight: bold" ></span>-->
-            <!--                on each selected day at <span id="time-confirmation" style="font-weight: bold"></span>-->
-            <!--                in <span class="timezone-current"></span> timezone.-->
-            <!--            </p>-->
 
-            <div>
-                <span id="name-error" class="form-error">
-                    <?php echo esc_html( "Your name is required" ); ?>
-                </span>
-                <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
-                    <input class="cp-input" type="text" name="name" id="name" placeholder="<?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>" required/>
-                </label>
-            </div>
-            <div>
-                <span id="email-error" class="form-error">
-                    <?php esc_html_e( "Your email is required.", 'disciple-tools-prayer-campaigns' ); ?>
-                </span>
-                <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
-                    <input class="cp-input" type="email" name="email" id="email" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
-                    <input class="cp-input" type="email" name="e2" id="e2" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" required />
-                </label>
-            </div>
-            <div>
-                <p>
-                    <label for="receive_prayer_time_notifications">
-                        <input type="checkbox" id="receive_prayer_time_notifications" name="receive_prayer_time_notifications" checked />
-                        <?php esc_html_e( 'Receive Prayer Time Notifications (email verification needed).', 'disciple-tools-prayer-campaigns' ); ?>
-                    </label>
-                </p>
-                <div>
-                    <button class="button loader" id="cp-submit-form">
-                        <?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple-tools-prayer-campaigns' ); ?> <img id="cp-submit-form-spinner" style="display: none" src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></button>
-                </div>
-            </div>
+            <?php dt_campaign_sign_up_form() ?>
 
             <div class="success-confirmation-section">
                 <div class="cell center">
@@ -381,6 +347,7 @@ function dt_24hour_campaign_shortcode( $atts ){
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
 
+/* TODO: could we move this to a more generic functions.php area, as this could be used anywhere around the plugin? */
 if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
     function dt_recursive_sanitize_array( array $array ) : array {
         foreach ( $array as $key => &$value ) {

@@ -331,7 +331,7 @@ class DT_Campaigns_Base {
             $tiles["prayer_timer"] = [ "label" => "Prayer Timer" ];
             if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_magic_links"] ) ){
                 $tiles["campaign_magic_links"] = [
-                    "label" => __( "Magic Urls", 'disciple-tools-plugin-starter-template' ),
+                    "label" => __( "Magic Urls", 'disciple-tools-prayer-campaigns' ),
                     "description" => "The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates."
                 ];
             }
@@ -831,6 +831,58 @@ class DT_Campaigns_Base {
         LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
         WHERE r.post_id IS NOT NULL;", $time_format, $time_format, $campaign_post_id
         ) );
+    }
+
+    public static function number_of_hours_next_month() {
+        $days_next_month = self::number_of_days_next_month();
+        return $days_next_month * 24;
+    }
+
+    public static function number_of_days_next_month() {
+        return intval( gmdate( 'd', strtotime( 'last day of +1 month' ) ) );
+    }
+
+    /**
+     * Return the total number of days in the campaign.  If no start/end date, return -1.
+     *
+     * @return int
+     */
+    public static function total_days_in_campaign(): int {
+        $campaign = DT_Campaign_Settings::get_campaign();
+        $start_date = $campaign["start_date"]["timestamp"];
+        $end_date = $campaign["end_date"]["timestamp"];
+
+        if ( !$start_date || !$end_date ) {
+            return -1;
+        }
+
+        $diff = $end_date - $start_date;
+        $days = round( $diff / DAY_IN_SECONDS );
+        return $days;
+    }
+
+    public static function query_scheduled_minutes_next_month( $campaign_post_id ) {
+        $time_format = '%H:%i';
+        $time_begin = strtotime( gmdate( 'M d', strtotime( 'first day of +1 month' ) ) . ' 00:00' );
+        $time_end = strtotime( gmdate( 'M d', strtotime( 'first day of +2 month' ) ) . ' 00:00' );
+        global $wpdb;
+
+        return $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT
+                    SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+                FROM (
+                        SELECT p2p_to as post_id
+                        FROM $wpdb->p2p
+                        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s
+                    ) as t1
+                LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+                WHERE r.post_id IS NOT NULL
+                AND r.time_begin > %d
+                AND r.time_end < %d;",
+                $time_format, $time_format, $campaign_post_id, $time_begin, $time_end
+            )
+        );
     }
 
     public static function query_minutes_prayed( $campaign_post_id ){

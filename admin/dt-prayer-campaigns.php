@@ -5,9 +5,11 @@
 class DT_Prayer_Campaigns_Campaigns {
 
     private $settings_manager;
+    private $languages_manager;
 
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
+        $this->languages_manager = new DT_Campaign_Languages();
     }
 
     private function default_email_address(): string {
@@ -59,21 +61,93 @@ class DT_Prayer_Campaigns_Campaigns {
 
     /**
      * Process changes to the porch settings
-     *
-     * ? Do we delete the porch settings if they deselect a porch? or save them to be restored later?
-     * ? or does it even matter?
      */
     public function process_porch_settings() {
         if ( isset( $_POST['campaign_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['campaign_settings_nonce'] ) ), 'campaign_settings' ) ) {
 
-            if ( isset( $_POST['select_porch'] ) ) {
+            if ( isset( $_POST['select_porch'], $_POST['porch_type_submit'] ) ) {
                 $selected_porch = sanitize_text_field( wp_unslash( $_POST['select_porch'] ) );
 
                 $this->settings_manager->update( 'selected_porch', $selected_porch );
 
-                DT_Prayer_Campaigns::instance()->set_selected_porch_id( $selected_porch );
+                DT_Porch_Selector::instance()->set_selected_porch_id( $selected_porch );
+
+                /* Make sure that the prayer fuel custom post type is flushed or set up straight after the porch has been changed */
+                header( "Refresh:0.01" );
+            }
+            if ( isset( $_POST["setup_default"] ) ){
+                $type = sanitize_text_field( wp_unslash( $_POST['setup_default'] ) );
+                if ( $type === "ongoing" ){
+                    $fields = [
+                        "name" => "Campaign",
+                        "type" => "ongoing",
+                        "start_date" => time(),
+                        "status" => "active",
+                    ];
+                    $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
+                    if ( is_wp_error( $new_campaign ) ){
+                        return;
+                    }
+                    update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
+                    $this->settings_manager->update( 'selected_porch', 'generic-porch' );
+                    DT_Porch_Selector::instance()->set_selected_porch_id( 'generic-porch' );
+                }
+                if ( $type === "24hour" ){
+                    $fields = [
+                        "name" => "Campaign",
+                        "type" => "24hour",
+                        "start_date" => time(),
+                        "end_date" => time() + 30 * DAY_IN_SECONDS,
+                        "status" => "active",
+                    ];
+                    $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
+                    if ( is_wp_error( $new_campaign ) ){
+                        return;
+                    }
+                    update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
+                    $this->settings_manager->update( 'selected_porch', 'generic-porch' );
+                    DT_Porch_Selector::instance()->set_selected_porch_id( 'generic-porch' );
+                }
             }
         }
+    }
+
+    /**
+     * Process changes to the language settings
+     */
+    public function process_language_settings() {
+        if ( isset( $_POST['language_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['language_settings_nonce'] ) ), 'language_settings' ) ) {
+
+            if ( isset( $_POST['language_settings_disable'] ) ) {
+                $this->languages_manager->disable( $this->sanitized_post_field( $_POST, 'language_settings_disable' ) );
+            }
+
+            if ( isset( $_POST['language_settings_enable'] ) ) {
+                $this->languages_manager->enable( $this->sanitized_post_field( $_POST, 'language_settings_enable' ) );
+            }
+
+            if ( isset( $_POST['language_settings_remove'] ) ) {
+                $this->languages_manager->remove( $this->sanitized_post_field( $_POST, 'language_settings_remove' ) );
+            }
+        }
+    }
+
+    /**
+     * Process changes to the language settings
+     */
+    public function process_new_language() {
+        if ( isset( $_POST['add_language_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['add_language_nonce'] ) ), 'add_language' ) ) {
+            if ( isset( $_POST['new_language'] ) ) {
+                $this->languages_manager->add_from_code( $this->sanitized_post_field( $_POST, 'new_language' ) );
+            }
+        }
+    }
+
+    private function sanitized_post_field( $post, $key ) {
+        if ( !isset( $post[$key] ) ) {
+            return '';
+        }
+        return sanitize_text_field( wp_unslash( $post[$key] ) );
     }
 
     public function content() {
@@ -105,7 +179,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Header</th>
+                    <th>Sign Up and Notification Email Settings</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,7 +197,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             for="email_address"><?php echo esc_html( sprintf( "Specify Prayer Campaigns from email address. Leave blank to use default (%s)", self::default_email_address() ) ) ?></label>
                                     </td>
                                     <td>
-                                        <input name="email_address" id="email_address"
+                                        <input name="email_address" id="email_address" type="email"
                                                 value="<?php echo esc_html( $this->settings_manager->get( "email_address" ) ) ?>"/>
                                     </td>
                                 </tr>
@@ -133,7 +207,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             for="email_name"><?php echo esc_html( sprintf( "Specify Prayer Campaigns from name. Leave blank to use default (%s)", self::default_email_name() ) ) ?></label>
                                     </td>
                                     <td>
-                                        <input name="email_name" id="email_name"
+                                        <input name="email_name" id="email_name" type="text"
                                                 value="<?php echo esc_html( $this->settings_manager->get( "email_name" ) ) ?>"/>
                                     </td>
                                 </tr>
@@ -153,7 +227,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <br>
 
         <?php
-        $porches = DT_Prayer_Campaigns::instance()->get_porch_loaders();
+        $porches = DT_Porch_Selector::instance()->get_porch_loaders();
         ?>
 
         <table class="widefat striped">
@@ -169,16 +243,24 @@ class DT_Prayer_Campaigns_Campaigns {
                             <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
 
+
+                            <?php if ( empty( DT_Porch_Selector::instance()->get_selected_porch_id() ) && empty( DT_Posts::list_posts( "campaigns", [] )["posts"] ) ) : ?>
+                            <h2>Setup Wizard</h2>
+                            <p>
+                                <button type="submit" class="button" name="setup_default" value="ongoing">Setup Landing page for Ongoing Campaign</button>
+                                <button type="submit" class="button" name="setup_default" value="24hour">Setup Landing page Month 24/7 Campaign</button>
+                            </p>
+                            <?php endif; ?>
+
                             <table class="widefat">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <label
-                                                for="select_porch"><?php echo esc_html( "Select Porch" ) ?></label>
+                                            <label for="select_porch"><?php echo esc_html( "Select Landing Page Type" ) ?></label>
                                         </td>
                                         <td>
                                             <select name="select_porch" id="select_porch"
-                                                    selected="<?php echo esc_html( DT_Prayer_Campaigns::instance()->get_selected_porch_id() ? DT_Prayer_Campaigns::instance()->get_selected_porch_id() : '' ) ?>">
+                                                    selected="<?php echo esc_html( DT_Porch_Selector::instance()->get_selected_porch_id() ? DT_Porch_Selector::instance()->get_selected_porch_id() : '' ) ?>">
 
                                                     <option
                                                         <?php echo !isset( $settings["selected_porch"] ) ? "selected" : "" ?>
@@ -191,7 +273,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                                     <option
                                                         value="<?php echo esc_html( $id ) ?>"
-                                                        <?php echo DT_Prayer_Campaigns::instance()->get_selected_porch_id() && DT_Prayer_Campaigns::instance()->get_selected_porch_id() === $id ? "selected" : "" ?>
+                                                        <?php echo DT_Porch_Selector::instance()->get_selected_porch_id() && DT_Porch_Selector::instance()->get_selected_porch_id() === $id ? "selected" : "" ?>
                                                     >
                                                         <?php echo esc_html( $porch["label"] ) ?>
                                                     </option>
@@ -206,7 +288,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                             <br>
                             <span style="float:right;">
-                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
+                                <button type="submit" name="porch_type_submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
                             </span>
                         </form>
                     </td>
@@ -214,6 +296,116 @@ class DT_Prayer_Campaigns_Campaigns {
             </tbody>
         </table>
         <br>
+
+        <?php
+            $languages = $this->languages_manager->get();
+        ?>
+
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th>Language Settings</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <form method="POST">
+                            <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
+                                    value="<?php echo esc_attr( wp_create_nonce( 'language_settings' ) ) ?>"/>
+
+                            <table class="widefat">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Flag</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $enabled_column = array_column( $languages, 'enabled' );
+                                        array_multisort( $enabled_column, SORT_DESC, $languages );
+                                    ?>
+
+                                    <style>
+                                        .disabled-language {
+                                            background-color: darkgrey;
+                                        }
+                                        .widefat .disabled-language td {
+                                            color: white;
+                                        }
+                                    </style>
+
+                                    <?php foreach ( $languages as $code => $language ): ?>
+
+                                        <tr class="<?php echo $language["enabled"] === false ? 'disabled-language' : '' ?>">
+                                            <td><?php echo esc_html( $language["english_name"] ) ?></td>
+                                            <td><?php echo esc_html( $code ) ?></td>
+                                            <td><?php echo esc_html( $language["flag"] ) ?></td>
+                                            <td>
+
+                                                <?php if ( isset( $language["enabled"] ) && $language["enabled"] === true ): ?>
+
+                                                <button class="button" name="language_settings_disable" value="<?php echo esc_html( $code ) ?>">
+                                                    Disable
+                                                </button>
+
+                                                <?php else : ?>
+
+                                                <button class="button button-primary" name="language_settings_enable" value="<?php echo esc_html( $code ) ?>">
+                                                    Enable
+                                                </button>
+
+                                                <?php endif; ?>
+
+                                                <?php if ( !isset( $language["default"] ) || $language["default"] !== true ): ?>
+
+                                                <button class="button" name="language_settings_remove" value="<?php echo esc_html( $code ) ?>">
+                                                    Remove
+                                                </button>
+
+                                                <?php endif; ?>
+
+                                            </td>
+                                        </tr>
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Add existing language
+                    </td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="add_language_nonce" id="add_language_nonce"
+                                    value="<?php echo esc_attr( wp_create_nonce( 'add_language' ) ) ?>"/>
+
+                            <?php $language_list = $this->languages_manager->language_list() ?>
+
+                            <select name="new_language" id="language_list">
+
+                            <?php foreach ( $language_list as $code => $language ): ?>
+
+                                <option value="<?php echo esc_html( $code ) ?>"><?php echo esc_html( $language["flag"] . " " . $language["label"] ) ?></option>
+
+                            <?php endforeach; ?>
+
+                            </select>
+                            <button class="button">
+                                Add
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <?php
     }

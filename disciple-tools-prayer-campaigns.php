@@ -82,12 +82,10 @@ class DT_Prayer_Campaigns {
         return self::$instance;
     }
 
-    private $settings_manager;
-    private $selected_porch_id;
-
     private function __construct() {
         $this->plugin_dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
         $this->plugin_dir_url = trailingslashit( plugin_dir_url( __FILE__ ) );
+        $this->define_porch_constants();
 
         require_once( 'campaign-functions/utils.php' );
         require_once( 'campaign-functions/time-utilities.php' );
@@ -97,6 +95,10 @@ class DT_Prayer_Campaigns {
         require_once( 'post-type/loader.php' );
         require_once( 'classes/dt-campaign-settings.php' );
         require_once( 'classes/dt-porch-settings.php' );
+        require_once( 'classes/dt-campaign-languages.php' );
+        require_once( 'classes/dt-porch-theme.php' );
+        require_once( 'classes/dt-porch-admin-tab-base.php' );
+        require_once( 'classes/dt-porch-selector.php' );
 
         require_once( 'porches/loader.php' );
 
@@ -106,8 +108,10 @@ class DT_Prayer_Campaigns {
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
 
         if ( is_admin() ) {
+            require_once( __DIR__ . '/admin/config-required-plugins.php' );
             require_once __DIR__ . '/admin/dt-prayer-campaigns.php';
             require_once __DIR__ . '/admin/admin-menu-and-tabs.php'; // adds starter admin page and section for plugin
+            DT_Prayer_Campaigns_Menu::instance();
         }
 
         $this->i18n();
@@ -141,19 +145,45 @@ class DT_Prayer_Campaigns {
         }
         DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
 
-        $this->settings_manager = new DT_Campaign_Settings();
-        $this->selected_porch_id = $this->settings_manager->get( 'selected_porch' );
+        $porch_selector = DT_Porch_Selector::instance();
+
+        if ( $porch_selector->has_selected_porch() ) {
+            require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
+        }
 
         if ( !is_admin() ) {
-            $this->load_selected_porch();
+            require_once( plugin_dir_path( __FILE__ ) . '/parts/components.php' );
+            $porch_selector->load_selected_porch();
         }
     }
 
-    private function load_selected_porch() {
-        if ( $this->selected_porch_id && !empty( $this->selected_porch_id ) ) {
-            $porch_loader = $this->get_selected_porch_loader();
-
-            $porch_loader->load_porch();
+    private function define_porch_constants() {
+        if ( ! defined( 'PORCH_ROOT' ) ) {
+            define( 'PORCH_ROOT', 'porch_app' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
+        }
+        if ( ! defined( 'PORCH_TYPE' ) ) {
+            define( 'PORCH_TYPE', '5' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
+        }
+        if ( ! defined( 'PORCH_TOKEN' ) ) {
+            define( 'PORCH_TOKEN', 'porch_app_5' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        }
+        if ( ! defined( 'PORCH_LANDING_ROOT' ) ) {
+            define( 'PORCH_LANDING_ROOT', 'prayer' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
+        }
+        if ( ! defined( 'PORCH_LANDING_TYPE' ) ) {
+            define( 'PORCH_LANDING_TYPE', 'fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        }
+        if ( ! defined( 'PORCH_LANDING_META_KEY' ) ) {
+            define( 'PORCH_LANDING_META_KEY', PORCH_LANDING_ROOT . '_' . PORCH_LANDING_TYPE . '_magic_key' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        }
+        if ( ! defined( 'PORCH_LANDING_POST_TYPE' ) ) {
+            define( 'PORCH_LANDING_POST_TYPE', 'landing' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        }
+        if ( ! defined( 'PORCH_LANDING_POST_TYPE_SINGLE' ) ) {
+            define( 'PORCH_LANDING_POST_TYPE_SINGLE', 'Prayer Fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        }
+        if ( ! defined( 'PORCH_LANDING_POST_TYPE_PLURAL' ) ) {
+            define( 'PORCH_LANDING_POST_TYPE_PLURAL', 'Prayer Fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
     }
 
@@ -167,29 +197,6 @@ class DT_Prayer_Campaigns {
         }
 
         return $links_array;
-    }
-
-    public function get_porch_loaders() {
-        return apply_filters( 'dt_register_prayer_campaign_porch', [] );
-    }
-
-    public function get_selected_porch_id() {
-        return $this->selected_porch_id;
-    }
-
-    public function set_selected_porch_id( $new_selected_porch_id ) {
-        $this->selected_porch_id = $new_selected_porch_id;
-    }
-
-    /**
-     * @return IDT_Porch_Loader
-     */
-    public function get_selected_porch_loader() {
-        $porches = $this->get_porch_loaders();
-
-        $selected_porch_id = $this->get_selected_porch_id();
-
-        return $porches[$selected_porch_id]["class"];
     }
 
     /**

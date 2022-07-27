@@ -27,6 +27,8 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
 
     public function __construct() {
         $this->label = __( 'Generic Porch', 'disciple-tools-prayer-campaign' );
+
+        require_once __DIR__ . '/dt-generic-porch.php';
     }
 
     public function get_porch_details() {
@@ -38,23 +40,30 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     }
 
     public function load_admin(): IDT_Porch_Admin_Menu {
-        $this->load_functions();
-
         require_once __DIR__ . '/admin/dt-generic-porch-admin-menu.php';
 
-        return new DT_Generic_Porch_Admin_Menu();
+        $this->load_functions();
+        $this->load_porch_settings();
+
+        $plugin_dir = plugin_dir_path( __FILE__ );
+
+        return new DT_Generic_Porch_Admin_Menu( $plugin_dir );
     }
 
     private function load_functions() {
-        /* The functions that are needed in here (recursive and the other one) are more of a campaigns level functions */
-        /* TODO move them up into the plugin level functions file */
         require_once __DIR__ . '/site/functions.php';
     }
 
     public function load_porch() {
-        require_once __DIR__ . '/dt-generic-porch.php';
+        $this->load_porch_settings();
 
         DT_Generic_Porch::instance();
+    }
+
+    public function load_porch_settings() {
+        require_once __DIR__ . '/dt-generic-porch-settings.php';
+
+        new DT_Generic_Porch_Settings();
     }
 
 }

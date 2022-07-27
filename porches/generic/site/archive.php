@@ -46,7 +46,7 @@ class P4_Ramadan_Porch_Landing_Archive extends DT_Magic_Url_Base
         add_filter( 'language_attributes', [ $this, 'dt_custom_dir_attr' ] );
     }
     public function dt_custom_dir_attr( $lang ){
-        return ramadan_custom_dir_attr( $lang );
+        return dt_campaign_custom_dir_attr( $lang );
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -64,6 +64,7 @@ class P4_Ramadan_Porch_Landing_Archive extends DT_Magic_Url_Base
     public function body(){
         require_once( 'top-section.php' );
         require_once( 'archive-body.php' );
+        require_once( 'post-list-body.php' );
     }
 
     public function footer_javascript(){

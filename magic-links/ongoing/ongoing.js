@@ -15,16 +15,12 @@ let escapeObject = (obj) => {
   }))
 }
 
-jQuery(document).ready(async function ($) {
+jQuery(document).ready(function($) {
   let jsObject = window.campaign_objects
 
-  let data = await get_campaign_data()
-  $('.cp-wrapper').removeClass("loading-content")
-  $('.cp-loading-page').hide()
 
-  calendar_subscribe_object = { ...calendar_subscribe_object, ...data }
   calendar_subscribe_object.translations = escapeObject( jsObject.translations )
-  let days = window.campaign_scripts.calculate_day_times()
+  let days
 
   let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
   let headers = `
@@ -43,9 +39,14 @@ jQuery(document).ready(async function ($) {
 
   // coverage_by_month();
 
-  draw_calendar()
-
-  setup_signup();
+  get_campaign_data().then((data) => {
+    $('.cp-wrapper').removeClass("loading-content")
+    $('.cp-loading-page').hide()
+    calendar_subscribe_object = { ...calendar_subscribe_object, ...data }
+    days = window.campaign_scripts.calculate_day_times()
+    draw_calendar()
+    setup_signup();
+  })
 
   update_timezone(current_time_zone)
 
@@ -184,6 +185,10 @@ jQuery(document).ready(async function ($) {
 
     //submit form
     $('#cp-submit-form').on('click', function (){
+      if ( document.querySelector('#receive_pray4movement_news').checked ) {
+        const form = document.getElementById('mc-embedded-subscribe-form')
+        submitMailChimpSubscribe(form)
+      }
       let submit_spinner = $('#cp-submit-form-spinner');
       let submit_button = jQuery('#cp-submit-form')
       submit_button.prop('disabled', true)

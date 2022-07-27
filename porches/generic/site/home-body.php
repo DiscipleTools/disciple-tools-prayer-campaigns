@@ -1,7 +1,7 @@
 <?php
 $lang = dt_campaign_get_current_lang();
 
-$porch_fields = DT_Porch_Settings::porch_fields();
+$porch_fields = DT_Porch_Settings::settings();
 $campaign_fields = DT_Campaign_Settings::get_campaign();
 
 $campaign_root = "campaign_app";
@@ -23,10 +23,10 @@ $atts = [
     "rest_url" => rest_url(),
     "lang" => $lang
 ];
-$dt_ramadan_selected_campaign_magic_link_settings = $atts;
-$dt_ramadan_selected_campaign_magic_link_settings["color"] = PORCH_COLOR_SCHEME_HEX;
-if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
-    $dt_ramadan_selected_campaign_magic_link_settings["color"] = '#4676fa';
+$dt_campaign_selected_campaign_magic_link_settings = $atts;
+$dt_campaign_selected_campaign_magic_link_settings["color"] = PORCH_COLOR_SCHEME_HEX;
+if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
+    $dt_campaign_selected_campaign_magic_link_settings["color"] = '#4676fa';
 }
 ?>
 
@@ -35,21 +35,20 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
     <div class="container">
         <div class="section-header row">
             <div class="col-sm-12 col-md-8">
-                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Our', 'pray4ramadan-porch' ); ?> <span><?php esc_html_e( 'Vision', 'pray4ramadan-porch' ); ?></span></h2>
+                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">
+                    <?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'vision_title' ), 1, 2 ) ) ?> <span><?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'vision_title' ), 2, 2 ) ) ?></span>
+                </h2>
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
                 <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( $porch_fields["goal"], $lang ) ) ); ?>
+                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "vision" ) ) ); ?>
                 </p>
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php
-                $dt_ramadan_selected_campaign_magic_link_settings["section"] = "percentage";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_ramadan_selected_campaign_magic_link_settings
-                );
-                ?>
+
+                <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
             </div>
         </div>
         <div class="row">
@@ -58,8 +57,8 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                     <div class="icon">
                         <img class="color-img" style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/pray.svg' ) ?>" alt="Praying hands icon"/>
                     </div>
-                    <h4><?php esc_html_e( 'Extraordinary Prayer', 'pray4ramadan-porch' ); ?></h4>
-                    <p><?php esc_html_e( 'Every disciple making movement in history has happened in the context of extraordinary prayer.', 'pray4ramadan-porch' ); ?></p>
+                    <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_title' ) ) ?></h4>
+                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_text' ) ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -67,8 +66,8 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                     <div class="icon">
                         <img class="color-img" style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/movement.svg' ) ?>" alt="a network icon indicating movement"/>
                     </div>
-                    <h4><?php esc_html_e( 'Movement Focused', 'pray4ramadan-porch' ); ?></h4>
-                    <p><?php esc_html_e( 'Join us in asking, seeking, and knocking for streams of disciples and churches to be made.', 'pray4ramadan-porch' ); ?></p>
+                    <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_title' ) ) ?></h4>
+                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_text' ) ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -76,13 +75,13 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                     <div class="icon">
                         <img class="color-img" style="height: 40px; margin-top:10px" src="<?php echo esc_html( plugin_dir_url( __File__ ) . 'img/24_7.svg' ) ?>" alt="clock icon"/>
                     </div>
-                    <h4><?php esc_html_e( '24/7 for 30 Days', 'pray4ramadan-porch' ); ?></h4>
-                    <p><?php esc_html_e( 'Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too.', 'pray4ramadan-porch' ); ?></p>
+                    <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_title' ) ) ?></h4>
+                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_text' ) ) ?></p>
                 </div>
             </div>
         </div>
         <div class="row" style="justify-content: center">
-            <a href="<?php echo esc_url( site_url() ) ?>#sign-up" class="btn btn-common"><?php esc_html_e( 'Sign Up to Pray', 'pray4ramadan-porch' ); ?></a>
+            <a href="<?php echo esc_url( site_url() ) ?>#sign-up" class="btn btn-common"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
         </div>
 
     </div>
@@ -94,7 +93,7 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
 <div id="days_until" class="counters section" data-stellar-background-ratio="0.5" >
     <div class="overlay"></div>
     <div class="container">
-        <div class="row">
+        <div id="counter_row" class="row">
             <div class="col-sm-12">
                 <div class="wow fadeInUp" data-wow-delay=".3s">
                     <div class="facts-item">
@@ -108,15 +107,10 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
         </div>
         <div class="row" style="margin-top: 30px">
             <div class="col-sm-12 col-md-8" style="color: white">
-                <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( $porch_fields["what_content"], $lang ) ) ); ?>
+                <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "what_content" ) ) ); ?>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php
-                $dt_ramadan_selected_campaign_magic_link_settings["section"] = "calendar";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_ramadan_selected_campaign_magic_link_settings
-                );
-                ?>
+                <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
             </div>
         </div>
     </div>
@@ -134,48 +128,54 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
 
         $timezone_adjusted_start_date = $campaign_fields['start_date']['timestamp'] - $timezone_offset;
 
-        $timezone_adjusted_end_date = $campaign_fields['end_date']['timestamp'] - $timezone_offset;
+        $has_end_date = isset( $campaign_fields['end_date'] );
+        $timezone_adjusted_end_date = $has_end_date ? $campaign_fields['end_date']['timestamp'] - $timezone_offset : 0;
         ?>
         let countDownDate = '<?php echo esc_html( $timezone_adjusted_start_date )?>'
         let endCountDownDate = '<?php echo esc_html( $timezone_adjusted_end_date ) ?>'
+        let hasEndDate = "<?php echo esc_html( $has_end_date ); ?>"
 
 
         let now = new Date().getTime() / 1000
-        let timeleft = countDownDate - now;
-        let endtimeleft = endCountDownDate - now ;
+        let timeLeft = countDownDate - now;
+        let endTimeLeft = endCountDownDate - now ;
 
-        let days = Math.floor(timeleft / (60 * 60 * 24));
-        let hours = Math.floor((timeleft % (60 * 60 * 24)) / (60 * 60));
-        let minutes = Math.floor((timeleft % (60 * 60)) / 60);
-        let seconds = Math.floor(timeleft % 60);
+        let days = Math.floor(timeLeft / (60 * 60 * 24));
+        let hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
+        let minutes = Math.floor((timeLeft % (60 * 60)) / 60);
+        let seconds = Math.floor(timeLeft % 60);
 
-        if ( endtimeleft < 0 ) {
+        if ( hasEndDate && endTimeLeft < 0 ) {
             clearInterval(myfunc);
-            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( "Ramadan is Finished", 'pray4ramadan-porch' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s is Finished", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
             document.getElementById("days").innerHTML = ""
             document.getElementById("hours").innerHTML = ""
             document.getElementById("mins").innerHTML = ""
             document.getElementById("secs").innerHTML = ""
         }
-        else if ( timeleft < 0 ) {
+        else if ( hasEndDate && timeLeft < 0 ) {
 
-            days = Math.floor(endtimeleft / (60 * 60 * 24));
-            hours = Math.floor((endtimeleft % (60 * 60 * 24)) / (60 * 60));
-            minutes = Math.floor((endtimeleft % (60 * 60)) / 60);
-            seconds = Math.floor(endtimeleft % 60);
+            days = Math.floor(endTimeLeft / (60 * 60 * 24));
+            hours = Math.floor((endTimeLeft % (60 * 60 * 24)) / (60 * 60));
+            minutes = Math.floor((endTimeLeft % (60 * 60)) / 60);
+            seconds = Math.floor(endTimeLeft % 60);
 
-            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( "Ramadan Ends ...", 'pray4ramadan-porch' ); ?>"
-            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'pray4ramadan-porch' ); ?>, "
-            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'pray4ramadan-porch' ); ?>, "
-            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'pray4ramadan-porch' ); ?>, "
-            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'pray4ramadan-porch' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s Ends ...", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
+            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'disciple-tools-prayer-campaigns' ); ?>"
 
         } else {
-            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( "Ramadan Begins ...", 'pray4ramadan-porch' ); ?>"
-            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'pray4ramadan-porch' ); ?>, "
-            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'pray4ramadan-porch' ); ?>, "
-            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'pray4ramadan-porch' ); ?>, "
-            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'pray4ramadan-porch' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s Begins ...", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
+            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'disciple-tools-prayer-campaigns' ); ?>"
+        }
+
+        if ( !hasEndDate && timeLeft < 0 ) {
+            document.getElementById("counter_row").style.display = 'none'
         }
 
     }, 1000)
@@ -185,21 +185,20 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
 <section id="features" class="section" data-stellar-background-ratio="0.2">
     <div id="sign-up" name="sign-up" class="container">
         <div class="section-header">
-            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Sign Up to', 'pray4ramadan-porch' ); ?> <span><?php esc_html_e( 'Pray', 'pray4ramadan-porch' ); ?></span></h2>
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Sign Up to', 'disciple-tools-prayer-campaigns' ); ?> <span><?php esc_html_e( 'Pray', 'disciple-tools-prayer-campaigns' ); ?></span></h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">
             <?php
-            if ( empty( $dt_ramadan_selected_campaign_magic_link_settings ) ) :?>
-                <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'pray4ramadan-porch' ); ?></a></p>
-            <?php else :
+            if ( empty( $dt_campaign_selected_campaign_magic_link_settings ) ) :?>
 
-                $dt_ramadan_selected_campaign_magic_link_settings["section"] = "sign_up";
-                echo dt_24hour_campaign_shortcode( //phpcs:ignore
-                    $dt_ramadan_selected_campaign_magic_link_settings
-                );
-            endif;
-            ?>
+            <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
+
+            <?php else : ?>
+
+                <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -210,6 +209,7 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
+            <?php $days_in_campaign = DT_Campaigns_Base::total_days_in_campaign() ?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">
@@ -217,12 +217,26 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-calendar-full"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><span class="counter">30</span></h3>
-                            <h4><?php esc_html_e( 'Days', 'pray4ramadan-porch' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3><span class="counter"><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign ) : "30" ?></span></h3>
+                                <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php esc_html_e( 'Next', 'disciple-tools-prayer-campaigns' ) ?></h3>
+                                <h4><?php esc_html_e( 'Month', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <?php $hours_next_month = DT_Campaigns_Base::number_of_hours_next_month() ?>
+            <?php $more_hours_needed = $hours_next_month - ceil( DT_Campaigns_Base::query_scheduled_minutes_next_month( $campaign_fields["ID"] ) / 60 ) ?>
+            <?php /* 96 daily prayer warriors would be needed to cover the campaign... Do I use that number? */ ?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".6s">
                     <div class="facts-item">
@@ -230,8 +244,18 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-user"></i>
                         </div>
                         <div class="fact-count">
-                            <h3>720</h3>
-                            <h4><?php esc_html_e( 'Hours of Prayer', 'pray4ramadan-porch' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 ) : "720" ?></h3>
+                                <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php echo esc_html( $hours_next_month ) ?></h3>
+                                <h4><?php esc_html_e( 'Hours', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -243,8 +267,19 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <i class="lnr lnr-heart"></i>
                         </div>
                         <div class="fact-count">
-                            <h3>2880</h3>
-                            <h4><?php esc_html_e( 'Prayer Commitments Needed', 'pray4ramadan-porch' ); ?></h4>
+
+                            <?php if ( $campaign_type === "24hour" ): ?>
+
+                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : "2880" ?></h3>
+                                <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php elseif ( $campaign_type === "ongoing" ): ?>
+
+                                <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
+                                <h4><?php esc_html_e( 'More Hours to be covered', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
@@ -259,10 +294,10 @@ if ( $dt_ramadan_selected_campaign_magic_link_settings["color"] === "preset" ){
     <!-- Container Starts -->
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( '15-Minute', 'pray4ramadan-porch' ); ?> <span><?php esc_html_e( 'Prayer Fuel', 'pray4ramadan-porch' ); ?></span></h2>
+            <h2 class="section-title split-color wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title' ), 1, 2 ) ) ?> <span><?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title' ), 2, 2 ) ) ?></span> </h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Use these resources to help pray specifically each day for the month of Ramadan', 'pray4ramadan-porch' ); ?></p>
-            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><a href="/prayer/list" class="btn btn-common btn-rm"><?php esc_html_e( 'View All', 'pray4ramadan-porch' ); ?></a></p>
+            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( "prayer_fuel_description" ) ); ?></p>
+            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><a href="/prayer/list" class="btn btn-common btn-rm"><?php esc_html_e( 'View All', 'disciple-tools-prayer-campaigns' ); ?></a></p>
         </div>
     </div>
 </section>
