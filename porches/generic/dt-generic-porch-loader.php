@@ -22,11 +22,24 @@ if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
  */
 class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
 
+    /**
+     * Child porches must overwrite this with their own unique porch id
+     */
     public $id = 'generic-porch';
+    /**
+     * Child porches must overwrite this in their own constructor
+     */
     public $label;
+    private $porch_dir;
 
-    public function __construct() {
+    /**
+     * Child porches need to provide the directory path for themselves
+     * so that the generic porch can find any files that it might need to
+     * override it's own.
+     */
+    public function __construct( $porch_dir = '' ) {
         $this->label = __( 'Generic Porch', 'disciple-tools-prayer-campaign' );
+        $this->porch_dir = $porch_dir;
 
         require_once __DIR__ . '/dt-generic-porch.php';
     }
@@ -60,6 +73,11 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
         DT_Generic_Porch::instance();
     }
 
+    /**
+     * To control the translation strings that the porch uses, and
+     * any other themes/colours that this porch wants to provide
+     * extend or overload this function.
+     */
     public function load_porch_settings() {
         require_once __DIR__ . '/dt-generic-porch-settings.php';
 
