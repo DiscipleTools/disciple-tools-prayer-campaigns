@@ -1,18 +1,5 @@
 <?php
 
-
-add_filter( 'dt_register_prayer_campaign_porch', 'dt_register_generic_porch', 10, 1 );
-
-if ( !function_exists( 'dt_register_generic_porch' ) ) {
-    function dt_register_generic_porch( $porches ) {
-        $porch = new DT_Generic_Porch_Loader();
-
-        $porches[$porch->id] = $porch->get_porch_details();
-
-        return $porches;
-    }
-}
-
 if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
     return;
 }
@@ -22,11 +9,24 @@ if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
  */
 class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
 
+    /**
+     * Child porches must overwrite this with their own unique porch id
+     */
     public $id = 'generic-porch';
+    /**
+     * Child porches must overwrite this in their own constructor
+     */
     public $label;
+    private $porch_dir;
 
-    public function __construct() {
+    /**
+     * Child porches need to provide the directory path for themselves
+     * so that the generic porch can find any files that it might need to
+     * override it's own.
+     */
+    public function __construct( $porch_dir = '' ) {
         $this->label = __( 'Generic Porch', 'disciple-tools-prayer-campaign' );
+        $this->porch_dir = $porch_dir;
 
         require_once __DIR__ . '/dt-generic-porch.php';
     }
@@ -57,13 +57,28 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     public function load_porch() {
         $this->load_porch_settings();
 
-        DT_Generic_Porch::instance();
+        DT_Generic_Porch::instance( $this->porch_dir );
     }
 
+    /**
+     * To control the translation strings that the porch uses, and
+     * any other themes/colours that this porch wants to provide
+     * extend or overload this function.
+     */
     public function load_porch_settings() {
         require_once __DIR__ . '/dt-generic-porch-settings.php';
 
         new DT_Generic_Porch_Settings();
     }
 
+    public function register_porch() {
+        add_filter( 'dt_register_prayer_campaign_porch', array( $this, 'dt_register_porch' ), 10, 1 );
+    }
+
+    public function dt_register_porch( $porches ) {
+        $porches[$this->id] = $this->get_porch_details();
+
+        return $porches;
+    }
 }
+( new DT_Generic_Porch_Loader() )->register_porch();

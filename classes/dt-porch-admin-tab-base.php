@@ -137,7 +137,7 @@ class DT_Porch_Admin_Tab_Base {
 
     private function translation_cell( $langs, $key, $field, $form_name ){
         ?>
-        <button class="button small expand_translations" data-form_name="<?php echo esc_html( $form_name ) ?>>
+        <button class="button small expand_translations" data-form_name="<?php echo esc_html( $form_name ) ?>">
             <?php
             $number_of_translations = 0;
             foreach ( $langs as $code => $val ){
@@ -167,7 +167,7 @@ class DT_Porch_Admin_Tab_Base {
     }
 
     public function main_column() {
-        $langs = dt_campaign_list_all_languages();
+        $langs = dt_campaign_list_languages();
         $allowed_tags = $this->get_allowed_tags();
         $sections = DT_Porch_Settings::sections( $this->tab );
 

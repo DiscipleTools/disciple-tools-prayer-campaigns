@@ -26,7 +26,13 @@ class DT_Porch_Selector {
     }
 
     public function has_selected_porch() {
-        return $this->selected_porch_id && !empty( $this->selected_porch_id );
+        return $this->selected_porch_id && !empty( $this->selected_porch_id ) && $this->porch_exists( $this->selected_porch_id );
+    }
+
+    public function porch_exists( $porch_id ) {
+        $porches = $this->get_porch_loaders();
+
+        return array_key_exists( $porch_id, $porches );
     }
 
     public function get_porch_loaders() {

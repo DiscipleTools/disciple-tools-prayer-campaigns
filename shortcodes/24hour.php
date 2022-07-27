@@ -243,7 +243,7 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             </div>
         </div>
         <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
-            <h2>Change your timezone:</h2>
+            <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
             <select id="timezone-select" style="margin: 20px auto">
                 <?php
                 $selected_tz = 'America/Denver';

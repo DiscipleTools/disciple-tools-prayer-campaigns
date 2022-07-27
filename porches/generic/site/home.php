@@ -94,8 +94,8 @@ class DT_Campaign_Porch_Home extends DT_Magic_Url_Base
     }
 
     public function body(){
-        require_once( 'top-section.php' );
-        require_once( 'home-body.php' );
+        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
+        DT_Generic_Porch::instance()->require_once( 'home-body.php' );
     }
 }
 DT_Campaign_Porch_Home::instance();
