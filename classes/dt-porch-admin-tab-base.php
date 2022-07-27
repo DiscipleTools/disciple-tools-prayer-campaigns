@@ -147,7 +147,7 @@ class DT_Porch_Admin_Tab_Base {
             }
             ?>
             <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ); ?>">
-            (<?php echo esc_html( $number_of_translations ); ?>
+            (<?php echo esc_html( $number_of_translations ); ?>)
         </button>
         <div class="translation_container hide">
             <table style="width:100%">
