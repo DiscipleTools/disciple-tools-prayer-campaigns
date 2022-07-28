@@ -178,20 +178,18 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
                     $diff_in_start_days = DT_Campaign_Settings::diff_days_between_dates( $old_start_date, $new_start_date );
 
-                    $prepped_sql = $wpdb->prepare( "
-                        UPDATE wp_postmeta as pm
-                        JOIN wp_posts as p
+                    $result = $wpdb->query( $wpdb->prepare( "
+                        UPDATE $wpdb->postmeta as pm
+                        JOIN $wpdb->posts as p
                         ON ( p.ID = pm.post_id AND p.post_type = %s )
-                        JOIN wp_postmeta as pm2
+                        JOIN $wpdb->postmeta as pm2
                         ON ( p.ID = pm2.post_id AND pm2.meta_key = 'fixed' AND pm2.meta_value = '1' )
-                        JOIN wp_postmeta as pm3
+                        JOIN $wpdb->postmeta as pm3
                         ON ( p.ID = pm3.post_id AND pm3.meta_key = %s )
                         SET pm.meta_value = pm.meta_value - %1s,
                         pm3.meta_value = pm3.meta_value - %1s
                         WHERE pm.meta_key = 'day'
-                    ", PORCH_LANDING_POST_TYPE, PORCH_LANDING_META_KEY, $diff_in_start_days, $diff_in_start_days  );
-                    //phpcs:ignore
-                    $result = $wpdb->query( $prepped_sql );
+                    ", PORCH_LANDING_POST_TYPE, PORCH_LANDING_META_KEY, $diff_in_start_days, $diff_in_start_days  ) );
                 }
             }
         }
