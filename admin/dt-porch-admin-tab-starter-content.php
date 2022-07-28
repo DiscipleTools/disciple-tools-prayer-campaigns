@@ -215,9 +215,9 @@ class DT_Porch_Admin_Tab_Starter_Content {
     }
 
     private function get_post_language_start_date() {
-        $prayer_post_importer = DT_Campaign_Prayer_Post_Importer::instance();
+        $importer = DT_Campaign_Prayer_Post_Importer::instance();
 
-        $post_start_date = $prayer_post_importer->find_latest_prayer_fuel_date();
+        $post_start_date = $importer->start_posting_from_date();
 
         return $post_start_date;
     }
