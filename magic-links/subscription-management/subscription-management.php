@@ -107,6 +107,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
                     "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                     "time_slot_label" => _x( '%1$s for %2$s minutes.', "Monday 5pm for 15 minutes", 'disciple-tools-prayer-campaigns' ),
+                    "extend_3_months" => __( 'Extend for 3 months', 'disciple-tools-prayer-campaigns' ),
+                    "change_daily_time" => __( 'Change daily time', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,
@@ -504,6 +506,22 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
                 <button class="button loader" type="button" id="confirm-delete-daily-time">
+                    <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' )?>
+                </button>
+
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- bulk time extend modal -->
+            <div id="extend-times-modal" class="reveal tiny" data-reveal>
+                <h2><?php esc_html_e( 'Extend', 'disciple-tools-prayer-campaigns' ); ?></h2>
+
+                <p><?php esc_html_e( 'Extend my prayer commitments until:', 'disciple_tools' ); ?> <span id="extend-time-slot-text"></span></p>
+                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                </button>
+                <button class="button loader submit-form-button" type="button" id="confirm-extend-daily-time">
                     <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
