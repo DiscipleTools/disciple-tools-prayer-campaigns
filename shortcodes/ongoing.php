@@ -256,27 +256,28 @@ function dt_ongoing_campaign_signup( $atts ){
 
                 <?php dt_campaign_sign_up_form() ?>
 
-                <div class="success-confirmation-section">
-                    <div class="cell center">
-                        <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                        <p>
-                            &#9993; <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
-                        </p>
-                        <p>
-                            <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
-                        </p>
-                        <p>
-                            <button class="cp-nav cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
-                        </p>
-                    </div>
-                </div>
-
                 <div id="confirmation-times" style="margin-top: 40px">
                     <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
                     <ul class="cp-daily-selected-times"></ul>
                     <ul class="cp-display-selected-times"></ul>
                 </div>
             </div>
+
+            <div id="cp-success-confirmation-section" class="cp-view cp-center success-confirmation-section">
+                <div class="cell center">
+                    <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <p>
+                        &#9993; <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
+                    </p>
+                    <p>
+                        <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
+                    </p>
+                    <p>
+                        <button class="cp-nav cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
+                    </p>
+                </div>
+            </div>
+
             <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
                 <h2>Change your timezone:</h2>
                 <select id="timezone-select" style="margin: 20px auto">

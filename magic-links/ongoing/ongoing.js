@@ -271,6 +271,7 @@ jQuery(document).ready(function($) {
     .done(function(){
       selected_times = [];
       submit_spinner.hide()
+      $('.cp-view').hide()
       $(`.success-confirmation-section`).show()
     })
     .fail(function(e) {
