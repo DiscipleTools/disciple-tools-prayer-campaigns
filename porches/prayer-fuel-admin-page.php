@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 class DT_Campaign_Prayer_Fuel_Menu {
 
     public $token = 'dt_prayer_fuel';
-    private $title = 'Prayer Fuel';
+    public $title = 'Prayer Fuel';
     private static $_instance = null;
 
     /**
@@ -22,37 +22,6 @@ class DT_Campaign_Prayer_Fuel_Menu {
         }
         return self::$_instance;
     }
-
-    /**
-     * Constructor function.
-     * @access  public
-     * @since   0.1.0
-     */
-    public function __construct() {
-        if ( !DT_Porch_Selector::instance()->has_selected_porch() ) {
-            return;
-        }
-
-        add_action( "admin_menu", array( $this, "register_menu" ) );
-        add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );
-    }
-
-    /**
-     * Loads the subnav page
-     * @since 0.1
-     */
-    public function register_menu() {
-        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ] );
-    }
-
-    public function enqueue_scripts() {
-        // wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery' ], filemtime( __DIR__ . '/admin.js' ), true );
-    }
-
-    /**
-     * Menu stub. Replaced when Disciple.Tools Theme fully loads.
-     */
-    public function extensions_menu() {}
 
     /**
      * Builds page contents
@@ -76,7 +45,6 @@ class DT_Campaign_Prayer_Fuel_Menu {
             <a href="post-new.php?post_type=landing" class="page-title-action">Add New</a>
             <hr class="wp-header-end">
 
-            <?php $table->views(); ?>
             <?php $table->display(); ?>
 
         </div>
