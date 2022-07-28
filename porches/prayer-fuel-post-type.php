@@ -106,7 +106,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         $value = !empty( $campaign_day ) ? $campaign_day : $day;
 
-        $date = DT_Campaign_Settings::date_of_campaign_day( $value );
+        $date = DT_Campaign_Settings::date_of_campaign_day( (int) $value );
         ?>
 
         <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
