@@ -92,20 +92,20 @@ if ( empty( $list->posts ) ){
                 }
 
                 $days_displayed[] = $campaign_day;
-                $url = "/prayer/fuel/$campaign_day"
+                $url = site_url( "/prayer/fuel/$campaign_day" );
                 ?>
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
                 <!-- Blog Item Starts -->
                 <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
                     <div class="blog-item-img">
-                        <a href="<?php echo esc_attr( $url ) ?>">
+                        <a href="<?php echo esc_url( $url ) ?>">
                             <img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __DIR__ ) ) ) ?>landing-pages/img/300x1.png" alt="">
                         </a>
                     </div>
                     <div class="blog-item-text">
                         <h3>
-                            <a href="<?php echo esc_attr( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
+                            <a href="<?php echo esc_url( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
                         </h3>
                         <div class="meta-tags">
                             <span class="date"><i class="lnr lnr-calendar-full"></i>on <?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
@@ -113,7 +113,7 @@ if ( empty( $list->posts ) ){
                         <p>
                             <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
                         </p>
-                        <a href="<?php echo esc_attr( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        <a href="<?php echo esc_url( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
                     </div>
                 </div>
                 <!-- Blog Item Wrapper Ends-->
