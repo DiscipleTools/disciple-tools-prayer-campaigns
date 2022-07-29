@@ -33,13 +33,17 @@ class DT_Porch_Admin_Tab_Base {
                 <div id="post-body" class="metabox-holder columns-1">
                     <div id="post-body-content">
 
-                        <?php $this->main_column() ?>
+                        <?php $this->body_content() ?>
 
                     </div>
                 </div>
             </div>
         </div>
         <?php
+    }
+
+    public function body_content() {
+        $this->main_column();
     }
 
     private function translation_cell( $langs, $key, $field, $form_name ){
