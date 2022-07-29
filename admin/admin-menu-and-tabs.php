@@ -118,7 +118,7 @@ class DT_Prayer_Campaigns_Menu {
             <h2 class="nav-tab-wrapper">
                 <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
                     class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
-                    Campaigns
+                    General Settings
                 </a>
 
                 <?php if ( $this->has_selected_porch() ) : ?>
