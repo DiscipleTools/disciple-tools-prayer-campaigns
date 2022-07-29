@@ -322,12 +322,6 @@ class DT_Prayer_Campaigns_Campaigns {
                                 <?php wp_nonce_field( 'install_campaign_nonce', 'install_campaign_nonce' ) ?>
                                 <!-- Box -->
                                 <table class="widefat striped">
-                                    <thead>
-                                    <tr>
-                                        <th style="width:20%">Link Campaign</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
                                     <tbody>
                                         <tr>
                                             <td>
