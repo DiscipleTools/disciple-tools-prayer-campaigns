@@ -67,13 +67,15 @@ require_once( 'campaign-functions/setup-functions.php' );
  * We can safely run functions regarding registered porches at 60
  */
 function dt_after_all_porches_have_loaded() {
-    $porch_selector = DT_Porch_Selector::instance();
+    if ( class_exists( "DT_Porch_Selector" ) ){
+        $porch_selector = DT_Porch_Selector::instance();
 
-    if ( $porch_selector->has_selected_porch() ) {
-        require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
+        if ( $porch_selector->has_selected_porch() ) {
+            require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
+        }
+
+        $porch_selector->load_selected_porch();
     }
-
-    $porch_selector->load_selected_porch();
 }
 add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 150 );
 
