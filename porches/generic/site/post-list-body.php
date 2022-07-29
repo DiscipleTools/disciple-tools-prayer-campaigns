@@ -15,13 +15,27 @@ if ( $lang === "en_US" ){
     ];
     $lang_query["relation"] = "OR";
 }
+
+$todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ) );
+
+$meta_query = [
+   "relation" => "AND",
+    [
+        "key" => "day",
+        "value" => $todays_day_in_campaign,
+        "compare" => "<=",
+        "type" => "numeric",
+    ],
+    $lang_query,
+];
 $list = new WP_Query( [
     'post_type' => PORCH_LANDING_POST_TYPE,
     'post_status' => [ 'publish' ],
     'posts_per_page' => -1,
-    'orderby' => 'post_date',
+    'meta_key' => 'day',
+    'orderby' => 'meta_value_num',
     'order' => 'DESC',
-    'meta_query' => $lang_query
+    'meta_query' => $meta_query
 ] );
 
 if ( empty( $list->posts ) ){
@@ -32,16 +46,25 @@ if ( empty( $list->posts ) ){
         'orderby' => 'post_date',
         'order' => 'DESC',
         'meta_query' => [
-            'relation' => 'OR',
+            "relation" => "AND",
             [
-                'key'     => 'post_language',
-                'value'   => 'en_US',
-                'compare' => '=',
+                "key" => "day",
+                "value" => $todays_day_in_campaign,
+                "compare" => "<=",
+                "type" => "numeric",
             ],
             [
-                'key'     => 'post_language',
-                'compare' => 'NOT EXISTS',
-            ],
+                'relation' => 'OR',
+                [
+                    'key'     => 'post_language',
+                    'value'   => 'en_US',
+                    'compare' => '=',
+                ],
+                [
+                    'key'     => 'post_language',
+                    'compare' => 'NOT EXISTS',
+                ],
+            ]
         ]
     );
     $list = new WP_Query( $args );
@@ -60,8 +83,9 @@ if ( empty( $list->posts ) ){
         <div class="row">
             <?php $days_displayed = [] ?>
             <?php foreach ( $list->posts as $item ) :
-                $date = gmdate( $item->post_date );
-                $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $date );
+
+                $campaign_day = get_post_meta( $item->ID, "day", true );
+                $date = DT_Campaign_Settings::date_of_campaign_day( $campaign_day );
 
                 if ( in_array( $campaign_day, $days_displayed ) || ( isset( $todays_campaign_day ) && $campaign_day === $todays_campaign_day ) ) {
                     continue;
@@ -84,7 +108,7 @@ if ( empty( $list->posts ) ){
                             <a href="<?php echo esc_attr( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
                         </h3>
                         <div class="meta-tags">
-                            <span class="date"><i class="lnr lnr-calendar-full"></i>on <?php echo esc_html( gmdate( 'Y-m-d', strtotime( $item->post_date ) ) )  ?></span>
+                            <span class="date"><i class="lnr lnr-calendar-full"></i>on <?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
                         </div>
                         <p>
                             <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>

@@ -40,14 +40,19 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     }
 
     public function load_admin(): IDT_Porch_Admin_Menu {
-        require_once __DIR__ . '/admin/dt-generic-porch-admin-menu.php';
 
         $this->load_functions();
         $this->load_porch_settings();
 
         $plugin_dir = plugin_dir_path( __FILE__ );
 
-        return new DT_Generic_Porch_Admin_Menu( $plugin_dir );
+        $admin_menu_class = $this->require_admin();
+        return new $admin_menu_class( $plugin_dir );
+    }
+
+    public function require_admin(): string {
+        require_once __DIR__ . '/admin/dt-generic-porch-admin-menu.php';
+        return DT_Generic_Porch_Admin_Menu::class;
     }
 
     private function load_functions() {

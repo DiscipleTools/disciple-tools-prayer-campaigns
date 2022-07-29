@@ -53,16 +53,16 @@ class DT_Campaign_Prayer_Post_Importer {
 
         $language_settings = new DT_Campaign_Languages();
         $available_languages = $language_settings->get();
-        $start_date = [];
+        $post_scheduled_start_date = [];
 
-        $last_post_date = $this->mysql_date( $this->next_day_timestamp( $this->find_latest_prayer_fuel_date() ) );
+        $start_posting_from_date = $this->start_posting_from_date();
         foreach ( $available_languages as $lang => $lang_details ) {
             if ( $this->append_date ) {
-                $start_date[$lang] = $this->append_date;
+                $post_scheduled_start_date[$lang] = $this->append_date;
             } else {
-                $start_date[$lang] = $last_post_date;
+                $post_scheduled_start_date[$lang] = $start_posting_from_date;
             }
-            $start_date[$lang] = $this->mysql_date( strtotime( $start_date[$lang] ) );
+            $post_scheduled_start_date[$lang] = $this->mysql_date( strtotime( $post_scheduled_start_date[$lang] ) );
         }
 
         foreach ( $new_posts as $i => $post ) {
@@ -71,10 +71,11 @@ class DT_Campaign_Prayer_Post_Importer {
                 continue;
             }
 
-            $post_start_date = $start_date[$post_lang];
+            $post_start_date = $post_scheduled_start_date[$post_lang];
 
-            $post["post_date"] = $post_start_date;
-            $post["post_date_gmt"] = $post_start_date;
+            $post["post_date"] = $this->mysql_date( time() );
+            $post["post_date_gmt"] = $this->mysql_date( time() );
+            $post["post_status"] = "publish";
 
             $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $post_start_date );
 
@@ -99,7 +100,7 @@ class DT_Campaign_Prayer_Post_Importer {
 
             $new_posts[$i] = $post;
 
-            $start_date[$post_lang] = $this->mysql_date( $this->next_day_timestamp( $start_date[$post_lang] ) );
+            $post_scheduled_start_date[$post_lang] = $this->mysql_date( $this->next_day_timestamp( $post_scheduled_start_date[$post_lang] ) );
         }
 
         $this->append_date = null;
@@ -159,7 +160,14 @@ class DT_Campaign_Prayer_Post_Importer {
      * @return string
      */
     public function find_latest_prayer_fuel_date( $lang = null ) {
-        $latest_prayer_fuel = $this->find_latest_prayer_fuel_data( $lang );
+        $latest_prayer_fuel_day = $this->find_latest_prayer_fuel_data( $lang );
+        $latest_prayer_fuel_date = DT_Campaign_Settings::date_of_campaign_day( $latest_prayer_fuel_day );
+
+        return $latest_prayer_fuel_date;
+    }
+
+    public function start_posting_from_date( $lang = null ) {
+        $latest_prayer_fuel_date = $this->find_latest_prayer_fuel_date( $lang );
 
         $today_timestamp = date_timestamp_get( new DateTime() );
         $campaign = DT_Campaign_Settings::get_campaign();
@@ -167,12 +175,12 @@ class DT_Campaign_Prayer_Post_Importer {
 
         $start_posting_from = max( $campaign_start, $today_timestamp );
 
-        $latest_prayer_fuel_timestamp = $latest_prayer_fuel["post_date"] !== null ? strtotime( $latest_prayer_fuel["post_date"] ) : null;
+        $latest_prayer_fuel_timestamp = $latest_prayer_fuel_date !== null ? strtotime( $latest_prayer_fuel_date ) : null;
 
         if ( !$latest_prayer_fuel_timestamp || $latest_prayer_fuel_timestamp < $start_posting_from ) {
             return $this->mysql_date( $start_posting_from );
         } else {
-            return $latest_prayer_fuel["post_date"];
+            return $this->mysql_date( $this->next_day_timestamp( $latest_prayer_fuel_date ) );
         }
     }
 
@@ -184,13 +192,7 @@ class DT_Campaign_Prayer_Post_Importer {
      * @return int
      */
     public function find_latest_prayer_fuel_day( $lang = null ) {
-        $latest_prayer_fuel = $this->find_latest_prayer_fuel_data( $lang );
-
-        if ( $latest_prayer_fuel["day"] === null ) {
-            return 0;
-        }
-
-        return $latest_prayer_fuel["day"];
+        return $this->find_latest_prayer_fuel_data( $lang );
     }
 
     /**
@@ -198,28 +200,32 @@ class DT_Campaign_Prayer_Post_Importer {
      *
      * @param string $lang If given will give the day and date of the latest prayer fuel in that language
      *
-     * @return array
+     * @return int
      */
     private function find_latest_prayer_fuel_data( $lang = null ) {
         global $wpdb;
 
         $query = "
             SELECT
-                MAX( post_date ) as post_date,
-                MAX( post_date_gmt ) as post_date_gmt,
-                MAX( CAST( pm2.meta_value AS unsigned )  ) as day
+                pm.meta_value as day
             FROM
                 $wpdb->postmeta AS pm
             JOIN
                 $wpdb->posts AS p
             ON
                 pm.post_id = p.ID
-            JOIN
-                $wpdb->postmeta AS pm2
-            ON
-                pm2.post_id = p.ID
-            WHERE
-               pm2.meta_key = 'day'
+            ";
+
+        if ( $lang ) {
+            $query .= "JOIN
+                    $wpdb->postmeta AS pm2
+                ON
+                    pm2.post_id = p.ID
+                ";
+        }
+
+        $query .= "WHERE
+               pm.meta_key = 'day'
             AND
                 p.post_type = %s
             AND
@@ -235,18 +241,27 @@ class DT_Campaign_Prayer_Post_Importer {
         if ( $lang ) {
             $query .= "
             AND
-                pm.meta_key = 'post_language'
+                pm2.meta_key = 'post_language'
             AND
-                pm.meta_value = %s
+                pm2.meta_value = %s
             ";
             $args[] = $lang;
         }
+
+        $query .= "
+            ORDER BY CAST( pm.meta_value as signed ) DESC
+            LIMIT 1
+        ";
 
         /* get the latest prayer fuel with the imported meta tag */
         //phpcs:ignore
         $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( $query, $args ), ARRAY_A );
 
-        return $latest_prayer_fuel;
+        if ( $latest_prayer_fuel["day"] === null ) {
+            return 1;
+        }
+
+        return intval( $latest_prayer_fuel["day"] );
     }
 
     /**

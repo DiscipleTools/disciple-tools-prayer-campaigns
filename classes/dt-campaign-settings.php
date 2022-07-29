@@ -65,10 +65,8 @@ class DT_Campaign_Settings {
         $campaign = self::get_campaign();
         $campaign_start_date = $campaign["start_date"]["formatted"];
 
-        $given = new DateTime( $date );
-        $campaign_start = new DateTime( $campaign_start_date );
 
-        $diff = intval( $campaign_start->diff( $given )->format( "%r%a" ) );
+        $diff = self::diff_days_between_dates( $campaign_start_date, $date );
 
         /* If the date given is the same as the start, then this is day 1 not day 0 */
         /* If the date given is before the start, then this is a negative day */
@@ -77,6 +75,13 @@ class DT_Campaign_Settings {
         } else {
             return $diff;
         }
+    }
+
+    public static function diff_days_between_dates( string $start, string $end ) {
+        $end_date = new DateTime( $end );
+        $start_date = new DateTime( $start );
+
+        return intval( $start_date->diff( $end_date )->format( "%r%a" ) );
     }
 
     /**

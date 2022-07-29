@@ -50,6 +50,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         add_action( 'transition_post_status', [ $this, 'transition_post' ], 10, 3 );
         add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
         add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
+        add_action( "dt_post_updated", [ $this, 'update_post' ], 10, 5 );
 
         if ( is_admin() && isset( $_GET['post_type'] ) && PORCH_LANDING_POST_TYPE === $_GET['post_type'] ){
             add_action( 'pre_get_posts', [ $this, 'dt_landing_order_by_date' ] );
@@ -105,7 +106,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         $value = !empty( $campaign_day ) ? $campaign_day : $day;
 
-        $date = DT_Campaign_Settings::date_of_campaign_day( $value );
+        $date = DT_Campaign_Settings::date_of_campaign_day( (int) $value );
         ?>
 
         <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
@@ -146,37 +147,14 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         if ( isset( $_POST['landing-day-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-day-selector'] ) ), 'landing-day-selector' ) ) {
 
-            $post_date = '';
             if ( !empty( $_POST["dt-landing-date-selector"] ) ) {
                 update_post_meta( $id, 'fixed', true );
                 $post_date = $post_submission["dt-landing-date-selector"];
                 $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
             } else if ( isset( $_POST["dt-landing-day-selector"] ) ){
                 $day = $post_submission["dt-landing-day-selector"];
-                $post_date = DT_Campaign_Settings::date_of_campaign_day( $day );
             }
             update_post_meta( $id, 'day', $day );
-
-            /* double check whether the date is in the future or not */
-
-            $start_date = strtotime( $post_date );
-            $current_date = strtotime( gmdate( 'Y-m-d' ) );
-            if ( $start_date > $current_date ) {
-                $post_status = "future";
-            } else {
-                $post_status = "publish";
-            }
-
-            remove_action( 'save_post', [ $this, 'save_post' ] );
-
-            wp_update_post( [
-                "ID" => $id,
-                "post_status" => $post_status,
-                "post_date" => $post_date,
-                "post_date_gmt" => $post_date,
-            ] );
-
-            add_action( 'save_post', [ $this, 'save_post' ] );
         }
 
         if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
@@ -188,6 +166,34 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         }
     }
 
+    public function update_post( $post_type, $post_id, $initial_fields, $existing_post, $post ) {
+
+        if ( $post_type === "campaigns" ) {
+            if ( array_key_exists( "start_date", $initial_fields ) ) {
+                if ( $post["start_date"]["timestamp"] !== $existing_post["start_date"]["timestamp"] ) {
+                    global $wpdb;
+
+                    $old_start_date = $existing_post["start_date"]["formatted"];
+                    $new_start_date = $post["start_date"]["formatted"];
+
+                    $diff_in_start_days = DT_Campaign_Settings::diff_days_between_dates( $old_start_date, $new_start_date );
+
+                    $result = $wpdb->query( $wpdb->prepare( "
+                        UPDATE $wpdb->postmeta as pm
+                        JOIN $wpdb->posts as p
+                        ON ( p.ID = pm.post_id AND p.post_type = %s )
+                        JOIN $wpdb->postmeta as pm2
+                        ON ( p.ID = pm2.post_id AND pm2.meta_key = 'fixed' AND pm2.meta_value = '1' )
+                        JOIN $wpdb->postmeta as pm3
+                        ON ( p.ID = pm3.post_id AND pm3.meta_key = %s )
+                        SET pm.meta_value = pm.meta_value - %1s,
+                        pm3.meta_value = pm3.meta_value - %1s
+                        WHERE pm.meta_key = 'day'
+                    ", PORCH_LANDING_POST_TYPE, PORCH_LANDING_META_KEY, $diff_in_start_days, $diff_in_start_days  ) );
+                }
+            }
+        }
+    }
 
     /**
      * Register the post type.
