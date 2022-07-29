@@ -109,7 +109,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
     public function get_columns() {
         return [
-            "cb" => "cb",
+            /* "cb" => "cb", */
             "day" => "Campaign Day",
             "date" => "Date",
             "url" => "URL",
@@ -248,12 +248,6 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 break;
         }
 
-    }
-
-    public function get_bulk_actions() {
-        return [
-            "delete" => "Delete",
-        ];
     }
 
     public function get_views() {

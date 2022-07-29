@@ -109,6 +109,7 @@ class DT_Prayer_Campaigns_Menu {
             $home_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
             $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
             $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
+            $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
         }
 
         ?>
@@ -132,8 +133,8 @@ class DT_Prayer_Campaigns_Menu {
                     <a href="<?php echo esc_attr( $link . $prayer_content_tab->key . '&import=wordpress' ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_content_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_content_tab->title ) ?>
                     </a>
-                    <a href="<?php echo esc_attr( 'edit.php?post_type=' . PORCH_LANDING_POST_TYPE ) ?>" class="nav-tab" >
-                        Prayer Fuel Posts
+                    <a href="<?php echo esc_attr( $link . $prayer_fuel_tab->token ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_fuel_tab->token ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $prayer_fuel_tab->title ) ?>
                     </a>
 
                     <?php $porch_admin->tab_headers( $link ); ?>
@@ -160,6 +161,9 @@ class DT_Prayer_Campaigns_Menu {
                         break;
                     case $prayer_content_tab->key:
                         $prayer_content_tab->content();
+                        break;
+                    case $prayer_fuel_tab->token:
+                        $prayer_fuel_tab->content();
                         break;
                     default:
                         break;
