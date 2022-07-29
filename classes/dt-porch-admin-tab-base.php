@@ -6,8 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Admin_Tab_Base {
 
-    private static $no_campaign_key = "none";
-
     private $theme_file_dir;
 
     public function __construct( string $settings_key, string $porch_dir ) {
@@ -35,9 +33,7 @@ class DT_Porch_Admin_Tab_Base {
                 <div id="post-body" class="metabox-holder columns-1">
                     <div id="post-body-content">
 
-                        <?php self::box_campaign() ?>
-
-                        <?php $this->main_column() ?>
+                        <?php $this->body_content() ?>
 
                     </div>
                 </div>
@@ -46,93 +42,8 @@ class DT_Porch_Admin_Tab_Base {
         <?php
     }
 
-    public static function box_campaign() {
-
-        if ( isset( $_POST['install_campaign_nonce'] )
-            && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_campaign_nonce'] ) ), 'install_campaign_nonce' )
-            && isset( $_POST['selected_campaign'] )
-        ) {
-            $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
-            update_option( 'dt_campaign_selected_campaign', $campaign_id === self::$no_campaign_key ? null : $campaign_id );
-        }
-        $fields = DT_Campaign_Settings::get_campaign();
-        if ( empty( $fields ) ) {
-            $fields = [ 'ID' => 0 ];
-        }
-
-        $campaigns = DT_Posts::list_posts( "campaigns", [ "status" => [ "active", "pre_signup", "inactive" ] ] );
-        if ( is_wp_error( $campaigns ) ){
-            $campaigns = [ "posts" => [] ];
-        }
-
-        ?>
-        <style>
-            .metabox-table select {
-                width: 100%;
-            }
-        </style>
-        <form method="post" class="metabox-table">
-            <?php wp_nonce_field( 'install_campaign_nonce', 'install_campaign_nonce' ) ?>
-            <!-- Box -->
-            <table class="widefat striped">
-                <thead>
-                <tr>
-                    <th style="width:20%">Link Campaign</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            Select Campaign
-                        </td>
-                        <td>
-                            <select name="selected_campaign">
-                                <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
-                                <?php foreach ( $campaigns["posts"] as $campaign ) :?>
-                                    <option value="<?php echo esc_html( $campaign["ID"] ) ?>"
-                                        <?php selected( (int) $campaign["ID"] === (int) $fields['ID'] ) ?>
-                                    >
-                                        <?php echo esc_html( $campaign["name"] ) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <button class="button float-right" type="submit">Update</button>
-                        </td>
-                    </tr>
-                    <?php if ( ! empty( $fields['ID'] ) ) : ?>
-                        <?php foreach ( $fields as $key => $value ) :
-                            if ( in_array( $key, [ 'start_date', 'end_date', 'status' ] ) ) :
-                                ?>
-                                <tr>
-                                    <td><?php echo esc_attr( ucwords( str_replace( '_', ' ', $key ) ) ) ?></td>
-                                    <td><?php echo esc_html( ( is_array( $value ) ) ? $value['formatted'] ?? $value['label'] : $value ); ?></td>
-                                </tr>
-                            <?php endif;
-                        endforeach; ?>
-                        <tr>
-                            <td>Edit Campaign Details</td>
-                            <td>
-                                <a href="<?php echo esc_html( site_url() . "/campaigns/" . $fields['ID'] ); ?>" target="_blank">Edit Campaign</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>See subscribers</td>
-                            <td>
-                                <a href="<?php echo esc_html( site_url() . "/subscriptions/" ); ?>" target="_blank">See Subscribers</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Export Campaign Subscribers</td>
-                            <td><button type="submit" name="download_csv">Download CSV</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-            <br>
-            <!-- End Box -->
-        </form>
-        <?php
+    public function body_content() {
+        $this->main_column();
     }
 
     private function translation_cell( $langs, $key, $field, $form_name ){

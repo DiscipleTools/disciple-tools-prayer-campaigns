@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Admin_Tab_Starter_Content {
     public $key = 'starter-content';
-    public $title = 'Install Prayer Content';
+    public $title = 'Install Prayer Fuel';
     public $porch_dir;
 
     public function __construct( $porch_dir ) {
@@ -25,8 +25,6 @@ class DT_Porch_Admin_Tab_Starter_Content {
                         <!-- Main Column -->
 
                         <?php
-                        DT_Porch_Admin_Tab_Base::box_campaign();
-
                         $fields = DT_Campaign_Settings::get_campaign();
                         if ( ! empty( $fields ) ) {
                             $this->main_column();

@@ -112,8 +112,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             /* "cb" => "cb", */
             "day" => "Campaign Day",
             "date" => "Date",
-            "url" => "URL",
             "language" => "Languages",
+            "url" => "URL",
         ];
     }
 

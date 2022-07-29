@@ -16,12 +16,10 @@ class DT_Campaign_Languages {
     /**
      * Add new langu/age
      *
-     * @param string $name
      * @param string $code
-     * @param string $native_name
-     * @param string $flag
+     * @param array $language
      */
-    public function add( string $name, string $code, string $native_name, string $flag ) {
+    public function add( string $code, array $language ) {
         $languages = $this->get();
 
         if ( $this->is_language_in_list( $code, $languages ) ) {
@@ -30,9 +28,11 @@ class DT_Campaign_Languages {
 
         $new_language = [
             'language' => $code,
-            'label' => $name,
-            'native_name' => $native_name,
-            'flag' => $flag,
+            'label' => $language["label"],
+            'english_name' => $language["label"],
+            'native_name' => $language["native_name"],
+            'flag' => $language["flag"],
+            'rtl' => $language["rtl"],
             'enabled' => true,
         ];
 
@@ -57,7 +57,7 @@ class DT_Campaign_Languages {
 
         $new_language = $available_languages[$code];
 
-        $this->add( $new_language["label"], $code, $new_language["native_name"], $new_language["flag"] );
+        $this->add( $code, $new_language );
     }
 
     /**
