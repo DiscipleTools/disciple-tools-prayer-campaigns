@@ -75,7 +75,7 @@ function dt_after_all_porches_have_loaded() {
 
     $porch_selector->load_selected_porch();
 }
-add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 60 );
+add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 150 );
 
 /**
  * Singleton class for setting up the plugin.
