@@ -11,7 +11,7 @@ jQuery(document).ready(function ($) {
 
     const dayDifference = newDay - currentDay
 
-    const newDate = moment(currentDate).add(dayDifference, 'days').format('Y/MM/DD')
+    const newDate = moment(currentDate).add(dayDifference, 'days')
 
     dtLandingDateDisplay.innerHTML = makeWpDate(newDate)
     dtLandingDateSelector.value = ''
