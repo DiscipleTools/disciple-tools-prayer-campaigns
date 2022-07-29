@@ -61,6 +61,11 @@ function dt_prayer_campaigns() {
 add_action( 'after_setup_theme', 'dt_prayer_campaigns', 20 );
 require_once( 'campaign-functions/setup-functions.php' );
 
+/**
+ * The mother porch loads at 20
+ * Child porches need to load between 20 and 60
+ * We can safely run functions regarding registered porches at 60
+ */
 function dt_after_all_porches_have_loaded() {
     $porch_selector = DT_Porch_Selector::instance();
 
