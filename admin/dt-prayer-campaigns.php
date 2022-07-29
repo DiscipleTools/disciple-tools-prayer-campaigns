@@ -10,6 +10,8 @@ class DT_Prayer_Campaigns_Campaigns {
 
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
+
+        add_filter( 'dt_campaigns_wizard_types', array( $this, 'dt_campaigns_wizard_types' ), 10, 1 );
     }
 
     private function default_email_address(): string {
@@ -37,6 +39,22 @@ class DT_Prayer_Campaigns_Campaigns {
         }
 
         return $default_name;
+    }
+
+    public function dt_campaigns_wizard_types( $wizard_types ) {
+        $default_wizards = [
+            "24hour" => [
+                "type" => "24hour",
+                "porch" => "generic-porch",
+                "label" => "Setup Landing page for Ongoing Campaign"
+            ],
+            "ongoing" => [
+                "type" => "ongoing",
+                "porch" => "ongoing-porch",
+                "label" => "Setup Landing page for 24/7 month Campaign"
+            ],
+        ];
+        return array_merge( $wizard_types, $default_wizards );
     }
 
     /**
@@ -76,38 +94,37 @@ class DT_Prayer_Campaigns_Campaigns {
                 header( "Refresh:0.01" );
             }
             if ( isset( $_POST["setup_default"] ) ){
-                $type = sanitize_text_field( wp_unslash( $_POST['setup_default'] ) );
-                if ( $type === "ongoing" ){
-                    $fields = [
-                        "name" => "Campaign",
-                        "type" => "ongoing",
-                        "start_date" => time(),
-                        "status" => "active",
-                    ];
-                    $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
-                    if ( is_wp_error( $new_campaign ) ){
-                        return;
-                    }
-                    update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
-                    $this->settings_manager->update( 'selected_porch', 'generic-porch' );
-                    DT_Porch_Selector::instance()->set_selected_porch_id( 'generic-porch' );
+                $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_default'] ) );
+
+                $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
+
+                $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
+                $porch_type = isset( $wizard_details["porch"] ) ? $wizard_details["porch"] : 'generic-porch';
+                $campaign_type = isset( $wizard_details["type"] ) ? $wizard_details["type"] : "ongoing";
+
+                if ( empty( $wizard_details ) ) {
+                    return;
                 }
-                if ( $type === "24hour" ){
-                    $fields = [
-                        "name" => "Campaign",
-                        "type" => "24hour",
-                        "start_date" => time(),
-                        "end_date" => time() + 30 * DAY_IN_SECONDS,
-                        "status" => "active",
-                    ];
-                    $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
-                    if ( is_wp_error( $new_campaign ) ){
-                        return;
-                    }
-                    update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
-                    $this->settings_manager->update( 'selected_porch', 'generic-porch' );
-                    DT_Porch_Selector::instance()->set_selected_porch_id( 'generic-porch' );
+
+                $fields = [
+                    "name" => "Campaign",
+                    "type" => $campaign_type,
+                    "start_date" => time(),
+                    "status" => "active",
+                ];
+
+                if ( $campaign_type === "24hour" ) {
+                    $fields["end_date"] = time() + 30 * DAY_IN_SECONDS;
                 }
+
+                $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );
+                if ( is_wp_error( $new_campaign ) ){
+                    return;
+                }
+                update_option( 'dt_campaign_selected_campaign', $new_campaign["ID"] );
+                $this->settings_manager->update( 'selected_porch', $porch_type );
+                DT_Porch_Selector::instance()->set_selected_porch_id( $porch_type );
+
             }
         }
     }
@@ -217,11 +234,22 @@ class DT_Prayer_Campaigns_Campaigns {
 
 
                             <?php if ( !DT_Porch_Selector::instance()->has_selected_porch() && $this->no_campaigns() ) : ?>
-                            <h2>Setup Wizard</h2>
-                            <p>
-                                <button type="submit" class="button" name="setup_default" value="ongoing">Setup Landing page for Ongoing Campaign</button>
-                                <button type="submit" class="button" name="setup_default" value="24hour">Setup Landing page Month 24/7 Campaign</button>
-                            </p>
+                                <?php $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] ) ?>
+
+                                <h2>Setup Wizard</h2>
+                                <p>
+
+                                <?php foreach ( $wizard_types as $wizard_type => $wizard_details ): ?>
+
+                                    <button type="submit" class="button" name="setup_default" value="<?php echo esc_attr( $wizard_type ) ?>">
+
+                                        <?php echo isset( $wizard_details["label"] ) ? esc_html( $wizard_details["label"] ) : esc_html( "Setup Campaign for $wizard_type" ) ?>
+
+                                    </button>
+
+                                <?php endforeach; ?>
+
+                                </p>
                             <?php endif; ?>
 
                             <table class="widefat">
