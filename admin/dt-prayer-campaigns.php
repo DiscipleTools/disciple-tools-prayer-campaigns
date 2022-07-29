@@ -44,17 +44,12 @@ class DT_Prayer_Campaigns_Campaigns {
     public function dt_campaigns_wizard_types( $wizard_types ) {
         $default_wizards = [
             "24hour" => [
-                "type" => "24hour",
+                "campaign_type" => "24hour",
                 "porch" => "generic-porch",
-                "label" => "Setup Landing page for Ongoing Campaign"
-            ],
-            "ongoing" => [
-                "type" => "ongoing",
-                "porch" => "ongoing-porch",
                 "label" => "Setup Landing page for 24/7 month Campaign"
             ],
         ];
-        return array_merge( $wizard_types, $default_wizards );
+        return array_merge( $default_wizards, $wizard_types );
     }
 
     /**
@@ -96,11 +91,25 @@ class DT_Prayer_Campaigns_Campaigns {
             if ( isset( $_POST["setup_default"] ) ){
                 $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_default'] ) );
 
+                /**
+                 * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
+                 * automatically
+                 *
+                 * The array of wizards looks like
+                 *
+                 * [
+                 *     'wizard_type' => [
+                 *          'campaign_type' => 'campaign_type_key',
+                 *          'porch' => 'porch_key',
+                 *          'label' => 'Text to display in the wizard button',
+                 *     ]
+                 * ]
+                 */
                 $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
 
                 $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
                 $porch_type = isset( $wizard_details["porch"] ) ? $wizard_details["porch"] : 'generic-porch';
-                $campaign_type = isset( $wizard_details["type"] ) ? $wizard_details["type"] : "ongoing";
+                $campaign_type = isset( $wizard_details["campaign_type"] ) ? $wizard_details["campaign_type"] : "ongoing";
 
                 if ( empty( $wizard_details ) ) {
                     return;
@@ -234,22 +243,14 @@ class DT_Prayer_Campaigns_Campaigns {
 
 
                             <?php if ( !DT_Porch_Selector::instance()->has_selected_porch() && $this->no_campaigns() ) : ?>
-                                <?php $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] ) ?>
-
                                 <h2>Setup Wizard</h2>
+
                                 <p>
 
-                                <?php foreach ( $wizard_types as $wizard_type => $wizard_details ): ?>
-
-                                    <button type="submit" class="button" name="setup_default" value="<?php echo esc_attr( $wizard_type ) ?>">
-
-                                        <?php echo isset( $wizard_details["label"] ) ? esc_html( $wizard_details["label"] ) : esc_html( "Setup Campaign for $wizard_type" ) ?>
-
-                                    </button>
-
-                                <?php endforeach; ?>
+                                    <?php $this->display_wizard_buttons() ?>
 
                                 </p>
+
                             <?php endif; ?>
 
                             <table class="widefat">
@@ -300,6 +301,23 @@ class DT_Prayer_Campaigns_Campaigns {
         <?php
     }
 
+    private function display_wizard_buttons() {
+        $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] )
+        ?>
+
+        <?php foreach ( $wizard_types as $wizard_type => $wizard_details ): ?>
+
+            <button type="submit" class="button" name="setup_default" value="<?php echo esc_attr( $wizard_type ) ?>">
+
+                <?php echo isset( $wizard_details["label"] ) ? esc_html( $wizard_details["label"] ) : esc_html( "Setup Campaign for $wizard_type" ) ?>
+
+            </button>
+
+        <?php endforeach; ?>
+
+        <?php
+    }
+
     public function box_campaign() {
 
         if ( isset( $_POST['install_campaign_nonce'] )
@@ -342,8 +360,9 @@ class DT_Prayer_Campaigns_Campaigns {
                             <form method="post">
                                 <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
                                         value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
-                                <button type="submit" class="button" name="setup_default" value="ongoing">Setup Ongoing Campaign</button>
-                                <button type="submit" class="button" name="setup_default" value="24hour">Setup 24/7 Month Campaign</button>
+
+                                <?php $this->display_wizard_buttons() ?>
+
                             </form>
                         <?php else : ?>
                             <form method="post" class="metabox-table">
@@ -379,6 +398,10 @@ class DT_Prayer_Campaigns_Campaigns {
                                                     </tr>
                                                 <?php endif;
                                             endforeach; ?>
+                                            <tr>
+                                                <td>Campaign Type</td>
+                                                <td><?php echo esc_html( $fields["type"]["label"] ) ?></td>
+                                            </tr>
                                             <tr>
                                                 <td>Edit Campaign Details</td>
                                                 <td>
