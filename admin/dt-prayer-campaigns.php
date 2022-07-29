@@ -7,6 +7,8 @@ class DT_Prayer_Campaigns_Campaigns {
     private $settings_manager;
     private $languages_manager;
 
+    private static $no_campaign_key = "none";
+
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
         $this->languages_manager = new DT_Campaign_Languages();
@@ -157,23 +159,26 @@ class DT_Prayer_Campaigns_Campaigns {
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
-                        <?php $this->main_column() ?>
+                        <?php $this->box_email_settings() ?>
 
-                    </div>
-                    <div id="postbox-container-1" class="postbox-container">
+                        <?php $this->box_select_porch() ?>
 
-                        <?php $this->right_column() ?>
+                        <?php
+                        if ( DT_Porch_Selector::instance()->has_selected_porch() ) {
+                            $this->box_campaign();
 
-                    </div>
-                    <div id="postbox-container-2" class="postbox-container">
-                    </div>
+                            $this->box_languages();
+                        }
+                        ?>
+
+                     </div>
                 </div>
             </div>
         </div>
         <?php
     }
 
-    public function main_column() {
+    public function box_email_settings() {
         ?>
 
         <table class="widefat striped">
@@ -227,13 +232,16 @@ class DT_Prayer_Campaigns_Campaigns {
         <br>
 
         <?php
+    }
+
+    private function box_select_porch() {
         $porches = DT_Porch_Selector::instance()->get_porch_loaders();
         ?>
 
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Campaign Settings</th>
+                    <th>Landing page selection</th>
                 </tr>
             </thead>
             <tbody>
@@ -244,7 +252,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                     value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
 
 
-                            <?php if ( empty( DT_Porch_Selector::instance()->get_selected_porch_id() ) && empty( DT_Posts::list_posts( "campaigns", [] )["posts"] ) ) : ?>
+                            <?php if ( !DT_Porch_Selector::instance()->has_selected_porch() && $this->no_campaigns() ) : ?>
                             <h2>Setup Wizard</h2>
                             <p>
                                 <button type="submit" class="button" name="setup_default" value="ongoing">Setup Landing page for Ongoing Campaign</button>
@@ -298,6 +306,9 @@ class DT_Prayer_Campaigns_Campaigns {
         <br>
 
         <?php
+    }
+
+    private function box_languages() {
             $languages = $this->languages_manager->get();
         ?>
 
@@ -408,6 +419,126 @@ class DT_Prayer_Campaigns_Campaigns {
         </table>
 
         <?php
+    }
+
+    public function box_campaign() {
+
+        if ( isset( $_POST['install_campaign_nonce'] )
+            && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_campaign_nonce'] ) ), 'install_campaign_nonce' )
+            && isset( $_POST['selected_campaign'] )
+        ) {
+            $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
+            update_option( 'dt_campaign_selected_campaign', $campaign_id === self::$no_campaign_key ? null : $campaign_id );
+        }
+        $fields = DT_Campaign_Settings::get_campaign();
+        if ( empty( $fields ) ) {
+            $fields = [ 'ID' => 0 ];
+        }
+
+        $campaigns = DT_Posts::list_posts( "campaigns", [ "status" => [ "active", "pre_signup", "inactive" ] ] );
+        if ( is_wp_error( $campaigns ) ){
+            $campaigns = [ "posts" => [] ];
+        }
+
+        ?>
+        <style>
+            .metabox-table select {
+                width: 100%;
+            }
+        </style>
+       <table class="widefat striped">
+            <thead>
+                <tr>
+                    <?php if ( $this->no_campaigns() ): ?>
+                        <th>Setup Campaign</th>
+                    <?php else : ?>
+                        <th>Link Campaign</th>
+                    <?php endif; ?>
+                </tr>
+            </thead>
+           <tbody>
+               <tr>
+                   <td>
+                        <?php if ( $this->no_campaigns() ) : ?>
+                            <form method="post">
+                                <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
+                                        value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
+                                <button type="submit" class="button" name="setup_default" value="ongoing">Setup Ongoing Campaign</button>
+                                <button type="submit" class="button" name="setup_default" value="24hour">Setup 24/7 Month Campaign</button>
+                            </form>
+                        <?php else : ?>
+                            <form method="post" class="metabox-table">
+                                <?php wp_nonce_field( 'install_campaign_nonce', 'install_campaign_nonce' ) ?>
+                                <!-- Box -->
+                                <table class="widefat striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:20%">Link Campaign</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Select Campaign
+                                            </td>
+                                            <td>
+                                                <select name="selected_campaign">
+                                                    <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
+                                                    <?php foreach ( $campaigns["posts"] as $campaign ) :?>
+                                                        <option value="<?php echo esc_html( $campaign["ID"] ) ?>"
+                                                            <?php selected( (int) $campaign["ID"] === (int) $fields['ID'] ) ?>
+                                                        >
+                                                            <?php echo esc_html( $campaign["name"] ) ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                                <button class="button float-right" type="submit">Update</button>
+                                            </td>
+                                        </tr>
+                                        <?php if ( ! empty( $fields['ID'] ) ) : ?>
+                                            <?php foreach ( $fields as $key => $value ) :
+                                                if ( in_array( $key, [ 'start_date', 'end_date', 'status' ] ) ) :
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo esc_attr( ucwords( str_replace( '_', ' ', $key ) ) ) ?></td>
+                                                        <td><?php echo esc_html( ( is_array( $value ) ) ? $value['formatted'] ?? $value['label'] : $value ); ?></td>
+                                                    </tr>
+                                                <?php endif;
+                                            endforeach; ?>
+                                            <tr>
+                                                <td>Edit Campaign Details</td>
+                                                <td>
+                                                    <a href="<?php echo esc_html( site_url() . "/campaigns/" . $fields['ID'] ); ?>" target="_blank">Edit Campaign</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>See subscribers</td>
+                                                <td>
+                                                    <a href="<?php echo esc_html( site_url() . "/subscriptions/" ); ?>" target="_blank">See Subscribers</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Export Campaign Subscribers</td>
+                                                <td><button type="submit" name="download_csv">Download CSV</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <!-- End Box -->
+                            </form>
+                        <?php endif; ?>
+                   </td>
+               </tr>
+           </tbody>
+       </table>
+       <br/>
+        <?php
+    }
+
+    private function no_campaigns() {
+        return empty( DT_Posts::list_posts( "campaigns", [] )["posts"] );
     }
 
     public function right_column() {
