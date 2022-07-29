@@ -24,7 +24,10 @@ jQuery(document).ready(function ($) {
   function handleDateChange(e) {
     const wpDateDisplay = getWpDateDisplay()
 
-    wpDateDisplay.innerHTML = makeWpDate(e.target.value)
+    const newDate = e.target.value
+
+    wpDateDisplay.innerHTML = makeWpDate(newDate)
+    dtLandingDaySelector.value = calculateNewDay(newDate)
   }
 
   function getWpDateDisplay() {
@@ -40,5 +43,17 @@ jQuery(document).ready(function ($) {
     const currentDate = dtLandingDateDisplay.dataset["date"]
 
     return [ currentDay, currentDate ]
+  }
+
+  function calculateNewDay(newDate) {
+    const [ currentDay, currentDate ] = getCurrentDayDate()
+
+    /* calculate the difference of days between the dates */
+    givenDate = moment(newDate).startOf('day')
+    oldDate = moment(currentDate).startOf('day')
+    diffInDays = moment.duration(givenDate.diff(oldDate)).asDays()
+
+    /* return the currentDay adjusted by this difference */
+    return parseInt( Math.round(currentDay + diffInDays) )
   }
 })
