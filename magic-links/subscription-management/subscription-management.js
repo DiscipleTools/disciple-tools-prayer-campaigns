@@ -3,10 +3,10 @@ let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Ame
 if ( calendar_subscribe_object.timezone ){
   current_time_zone = calendar_subscribe_object.timezone
 }
-const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / ( 24*3600)
+const day_in_seconds = 24 * 3600
+const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / day_in_seconds
 
 let verified = false
-
 
 function toggle_danger() {
   $('.danger-zone-content').toggleClass('collapsed');
@@ -104,16 +104,18 @@ jQuery(document).ready(function($){
 
 
   function calculate_my_time_slot_coverage(){
-    console.log(calendar_subscribe_object.my_recurring);
     let html = ``
     for ( const time in calendar_subscribe_object.my_recurring ){
-      console.log(time);
       if ( calendar_subscribe_object.my_recurring[time].count > 1 ){
+        let last_report_id = calendar_subscribe_object.my_recurring[time].report_ids[calendar_subscribe_object.my_recurring[time].report_ids.length-1]
+        let last_report = calendar_subscribe_object.my_commitments.filter(x=>x.report_id === last_report_id )[0]
+        let last_report_time = parseInt(last_report.time_begin)
         html += `<tr>
           <td>${time}</td>
           <td>${calendar_subscribe_object.my_recurring[time].count}</td>
-          <td><button class="button change-time-bulk" data-key="${time}">Change start time</button></td>
+          <td><button class="button change-time-bulk" data-key="${time}">${calendar_subscribe_object.translations.change_daily_time}</button></td>
           <td><button class="button outline delete-time-bulk" data-key="${time}">x</button></td>
+          <td><button class="button outline extend-time-bulk" data-key="${time}" ${last_report_time >= (now+21*day_in_seconds) ? "disabled":""}>${calendar_subscribe_object.translations.extend_3_months}</button></td>
           </tr>
         `
       }
@@ -185,6 +187,46 @@ jQuery(document).ready(function($){
     })
   })
 
+  let opened_extend_time_modal = null;
+  $(document).on('click', '.extend-time-bulk', function (){
+    opened_extend_time_modal = $(this).data('key');
+    let last_report_id = calendar_subscribe_object.my_recurring[opened_extend_time_modal].report_ids[calendar_subscribe_object.my_recurring[opened_extend_time_modal].report_ids.length-1]
+    let last_report = calendar_subscribe_object.my_commitments.filter(x=>x.report_id === last_report_id )[0]
+    let last_report_time = parseInt(last_report.time_begin)
+
+    let in_three_months_in_seconds = last_report_time + day_in_seconds * 90;
+    let label = window.campaign_scripts.timestamp_to_format( in_three_months_in_seconds, { year:"numeric", month: "long", day: "numeric" }, current_time_zone )
+    $('#extend-time-slot-text').text(label)
+    $('#extend-times-modal').foundation('open')
+  })
+  $('#confirm-extend-daily-time').on('click', function (){
+    //add 3 months after latest time
+    let recurring = calendar_subscribe_object.my_recurring[opened_extend_time_modal]
+    let last_report_id = recurring.report_ids[recurring.report_ids.length-1]
+    let last_report = calendar_subscribe_object.my_commitments.filter(x=>x.report_id === last_report_id )[0]
+    let last_report_time = parseInt(last_report.time_begin)
+
+    let duration = recurring.duration
+
+    let start_time = last_report_time + day_in_seconds
+    let start_date = window.luxon.DateTime.fromSeconds(start_time).setZone(current_time_zone)
+
+    selected_times = [];
+    for ( let i = 0; i < 90; i++){
+      let time_date = start_date.plus({day:i})
+      let time = parseInt( time_date.toFormat('X') );
+      let time_label = time_date.toFormat('MMMM dd HH:mm a');
+      let already_added = selected_times.find(k=>k.time===time)
+      if ( !already_added && time > last_report_time && time >= calendar_subscribe_object['start_timestamp'] ) {
+        selected_times.push({time: time, duration: duration, label: time_label})
+      }
+    }
+    submit_times().then(a=>{
+      $('#extend-times-modal').foundation('close')
+      $(`.extend-time-bulk[data-key="${opened_extend_time_modal}"]`).prop( "disabled", true );
+    })
+  })
+
   function update_timezone(){
     $('.timezone-current').html(current_time_zone)
     $('#selected-time-zone').val(current_time_zone).text(current_time_zone)
@@ -212,12 +254,10 @@ jQuery(document).ready(function($){
       let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
       //add extra days at the month start
       for (let i = 0; i < day_number; i++) {
-        //this_month_content += `<!--<div class="day-cell disabled-calendar-day"></div>-->`
         this_month_content += `<div class="new_day_cell"></div>`
-
       }
       // fill in calendar
-      days.filter(k=>k.month===key).forEach(day=>{
+      days.filter(k=>k.month===key && k.key < months[key].key+31*day_in_seconds ).forEach(day=>{
         this_month_content +=`
           <div class="new_day_cell">
             <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}
@@ -233,7 +273,6 @@ jQuery(document).ready(function($){
       //add extra days at the month end
       if (day_number!==0) {
         for (let i = 1; i <= 7 - day_number; i++) {
-          // calendar_days += `<div class="day-cell disabled-calendar-day"></div>`
           this_month_content += `<div class="new_day_cell"></div>`
         }
       }
@@ -293,7 +332,7 @@ jQuery(document).ready(function($){
 
         let summary_text = window.campaign_scripts.timestamps_to_summary(c.time_begin, c.time_end, current_time_zone)
         if ( !calendar_subscribe_object.my_recurring[summary_text] ){
-          calendar_subscribe_object.my_recurring[summary_text] = { count: 0, report_ids: [], time:parseInt(c.time_begin) }
+          calendar_subscribe_object.my_recurring[summary_text] = { count: 0, report_ids: [], time:parseInt(c.time_begin), duration: (parseInt(c.time_end) - parseInt(c.time_begin))/60 }
         }
         calendar_subscribe_object.my_recurring[summary_text].count++;
         calendar_subscribe_object.my_recurring[summary_text].report_ids.push(c.report_id)
@@ -370,8 +409,8 @@ jQuery(document).ready(function($){
         if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
           continue;
         }
-        if ( key >= day && key < day + 24 * 3600 ){
-          let mod_time = key % (24 * 60 * 60)
+        if ( key >= day && key < day + day_in_seconds ){
+          let mod_time = key % day_in_seconds
           let time_formatted = '';
           if ( window.campaign_scripts.processing_save[mod_time] ){
             time_formatted = window.campaign_scripts.processing_save[mod_time]
@@ -390,7 +429,7 @@ jQuery(document).ready(function($){
     let start_of_today = new Date()
     start_of_today.setHours(0,0,0,0)
     let start_time_stamp = start_of_today.getTime()/1000
-    while ( key < 24 * 3600 ){
+    while ( key < day_in_seconds ){
       let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
       let text = ''
       let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
@@ -503,7 +542,7 @@ jQuery(document).ready(function($){
         if ( slot.subscribers > 1 ) {
           text = `(covered ${slot.subscribers} times)`;
         }
-        select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key%(24*3600)) === (current_time_selected%(24*3600)) ? "selected" : '' }>
+        select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key % day_in_seconds) === (current_time_selected % day_in_seconds) ? "selected" : '' }>
           ${window.lodash.escape(slot.formatted)} ${window.lodash.escape(text)}
       </option>`
       })
@@ -560,7 +599,7 @@ jQuery(document).ready(function($){
       }
       // fill in calendar
       days.filter(k=>k.month===key).forEach(day=>{
-        let disabled = (day.key + (24 * 3600)) < now;
+        let disabled = (day.key + day_in_seconds) < now;
         this_month_content += `
           <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
               ${window.lodash.escape(day.day)}
@@ -610,7 +649,7 @@ jQuery(document).ready(function($){
       selected_times,
       parts: calendar_subscribe_object.parts
     }
-    jQuery.ajax({
+    return jQuery.ajax({
       type: "POST",
       data: JSON.stringify(data),
       contentType: "application/json; charset=utf-8",
