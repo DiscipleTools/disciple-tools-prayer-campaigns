@@ -61,10 +61,16 @@ function dt_prayer_campaigns() {
 add_action( 'after_setup_theme', 'dt_prayer_campaigns', 20 );
 require_once( 'campaign-functions/setup-functions.php' );
 
-function dt_load_selected_porch() {
-    ( DT_Porch_Selector::instance() )->load_selected_porch();
+function dt_after_all_porches_have_loaded() {
+    $porch_selector = DT_Porch_Selector::instance();
+
+    if ( $porch_selector->has_selected_porch() ) {
+        require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
+    }
+
+    $porch_selector->load_selected_porch();
 }
-add_action( 'after_setup_theme', 'dt_load_selected_porch', 60 );
+add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 60 );
 
 /**
  * Singleton class for setting up the plugin.
@@ -149,11 +155,6 @@ class DT_Prayer_Campaigns {
         }
         DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
 
-        $porch_selector = DT_Porch_Selector::instance();
-
-        if ( $porch_selector->has_selected_porch() ) {
-            require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
-        }
 
         if ( !is_admin() ) {
             require_once( plugin_dir_path( __FILE__ ) . '/parts/components.php' );
