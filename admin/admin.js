@@ -14,6 +14,7 @@ jQuery(document).ready(function ($) {
     const newDate = moment(currentDate).add(dayDifference, 'days').format('Y/MM/DD')
 
     dtLandingDateDisplay.innerHTML = makeWpDate(newDate)
+    dtLandingDateSelector.value = ''
 
     const wpDateDisplay = getWpDateDisplay()
     wpDateDisplay.innerHTML = makeWpDate(newDate)
