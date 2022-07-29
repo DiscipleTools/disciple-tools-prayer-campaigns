@@ -15,7 +15,7 @@ $langs = dt_campaign_list_languages();
         <div class="icon-list navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>#sign-up"><?php esc_html_e( 'Sign Up', 'disciple-tools-prayer-campaigns' ); ?></a>
