@@ -257,7 +257,7 @@ class DT_Campaign_Prayer_Post_Importer {
         //phpcs:ignore
         $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( $query, $args ), ARRAY_A );
 
-        if ( $latest_prayer_fuel["day"] === null ) {
+        if ( $latest_prayer_fuel === null || $latest_prayer_fuel["day"] === null ) {
             return 1;
         }
 
