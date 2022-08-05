@@ -13,7 +13,7 @@ class DT_Prayer_Campaign_Migration_0004 extends DT_Prayer_Campaign_Migration {
         $selected_campaign_id = get_option( "pray4ramadan_selected_campaign" );
         $selected_campaign = DT_Campaign_Settings::get_campaign( $selected_campaign_id );
 
-        if ( !$selected_campaign["start_date"]["formatted"] ) {
+        if ( !isset( $selected_campaign["start_date"]["formatted"] ) ) {
             return;
         }
 
