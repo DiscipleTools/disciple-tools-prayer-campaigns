@@ -172,7 +172,6 @@ class DT_Campaigns_Base {
             ];
             $fields['end_date'] = [
                 'name'        => 'End Date',
-                'required' => true,
                 'description' => '',
                 'type'        => 'date',
                 'default'     => '',
