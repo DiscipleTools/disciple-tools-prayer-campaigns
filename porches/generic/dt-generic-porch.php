@@ -57,9 +57,9 @@ class DT_Generic_Porch {
         /* TODO: Porch emails need setting up like the ramadan porch in this file... */
         /* require_once( 'admin/campaigns-config.php' ); */
 
-        if ( is_admin() ){
-            add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 ); // admin plugin page description
-        }
+//        if ( is_admin() ){
+//            add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 ); // admin plugin page description
+//        }
 
         $this->i18n();
     }

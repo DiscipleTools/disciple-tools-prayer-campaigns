@@ -58,7 +58,8 @@ function dt_campaign_custom_dir_attr( $lang ){
  *
  * @return array
  */
-function custom_wpkses_post_tags( $tags, $context ){
+
+add_filter( 'wp_kses_allowed_html', function ( $tags, $context ){
     if ( 'post' === $context ){
         $tags['iframe'] = [
             'src' => true,
@@ -70,5 +71,4 @@ function custom_wpkses_post_tags( $tags, $context ){
     }
 
     return $tags;
-}
-add_filter( 'wp_kses_allowed_html', 'custom_wpkses_post_tags', 10, 2 );
+}, 10, 2 );
