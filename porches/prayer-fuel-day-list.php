@@ -112,6 +112,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             /* "cb" => "cb", */
             "day" => "Campaign Day",
             "date" => "Date",
+            "titles" => "Titles",
             "language" => "Languages",
             "url" => "URL",
         ];
@@ -158,6 +159,17 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 $date = DT_Campaign_Settings::date_of_campaign_day( intval( $day ) );
                 $date = gmdate( "Y/m/d", strtotime( $date ) );
                 echo esc_html( $date );
+                break;
+            case 'titles':
+                $titles = implode( ", ", array_map( function( $item ) {
+                    return $item["post_title"];
+                }, $items ) );
+
+                ?>
+
+                <p class="post-titles"><?php echo esc_html( $titles ) ?></p>
+
+                <?php
                 break;
             case 'language':
                 $languages = $this->languages_manager->get_enabled_languages();

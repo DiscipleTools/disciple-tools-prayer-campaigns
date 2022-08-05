@@ -15,6 +15,12 @@
     border-color: rgba(0, 0, 0, 0);
 }
 
+.wp-list-table .post-titles {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .components-panel__row.edit-post-post-schedule {
     pointer-events: none;
 }
