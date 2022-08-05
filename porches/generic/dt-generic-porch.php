@@ -47,7 +47,7 @@ class DT_Generic_Porch {
         if ( !defined( 'PORCH_COLOR_SCHEME' ) ) {
             define( 'PORCH_COLOR_SCHEME', $theme["name"] );
         }
-        if ( !defined( 'PORCH_COLOR_SCHEME_HEX' )) {
+        if ( !defined( 'PORCH_COLOR_SCHEME_HEX' ) ) {
             define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
         }
 
