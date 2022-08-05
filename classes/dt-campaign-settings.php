@@ -38,9 +38,11 @@ class DT_Campaign_Settings {
         update_option( $this->settings_key, $settings );
     }
 
-    public static function get_campaign() {
+    public static function get_campaign( $selected_campaign = null ) {
 
-        $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
+        if ( $selected_campaign === null ) {
+            $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
+        }
 
         if ( empty( $selected_campaign ) ) {
             return [];
