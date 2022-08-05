@@ -66,7 +66,7 @@ class DT_Generic_Porch_Settings {
             ],
             'vision' => [
                 'label' => 'Vision',
-                'default' => __( "We want to cover these 30 days with continuous 24/7 prayer.", 'disciple-tools-prayer-campaigns' ),
+                'default' => __( "We want to cover this region days with continuous 24/7 prayer.", 'disciple-tools-prayer-campaigns' ),
                 'value' => "",
                 'type' => 'text',
                 'translations' => [],
@@ -111,7 +111,7 @@ class DT_Generic_Porch_Settings {
             ],
             'time_section_title' => [
                 'label' => 'Time section Title',
-                'default' => __( '24/7 for 30 Days', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( '24/7 Every Day', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -146,7 +146,7 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_title' => [
                 'label' => 'Prayer Fuel Title',
-                'default' => __( '15-Minute Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],

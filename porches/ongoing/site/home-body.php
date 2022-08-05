@@ -143,7 +143,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
         if ( hasEndDate && endTimeLeft < 0 ) {
             clearInterval(myfunc);
-            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s is Finished", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( "%s is Finished", 'Campaign Name is Finished', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
             document.getElementById("days").innerHTML = ""
             document.getElementById("hours").innerHTML = ""
             document.getElementById("mins").innerHTML = ""
@@ -156,14 +156,14 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
             minutes = Math.floor((endTimeLeft % (60 * 60)) / 60);
             seconds = Math.floor(endTimeLeft % 60);
 
-            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s Ends ...", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( "%s Ends In", 'Campaign Name End in [4 days]', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
             document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'disciple-tools-prayer-campaigns' ); ?>"
 
         } else {
-            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html__( "%s Begins ...", 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( "%s Begins In", 'Campaign Name End in [4 days]', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
             document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'disciple-tools-prayer-campaigns' ); ?>, "
@@ -181,7 +181,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 <section id="features" class="section" data-stellar-background-ratio="0.2">
     <div id="sign-up" name="sign-up" class="container">
         <div class="section-header">
-            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Sign Up to', 'disciple-tools-prayer-campaigns' ); ?> <span><?php esc_html_e( 'Pray', 'disciple-tools-prayer-campaigns' ); ?></span></h2>
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">

@@ -449,7 +449,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     </button>
                 </div>
                 <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'back', 'disciple-tools-prayer-campaigns' )?>
+                    <?php echo esc_html__( 'Back', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">

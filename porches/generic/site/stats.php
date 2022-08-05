@@ -69,7 +69,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
 //        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
 
         $porch_fields = DT_Porch_Settings::settings();
-        $campaign_fields = DT_Campaign_Settings::get_campaign()();
+        $campaign_fields = DT_Campaign_Settings::get_campaign();
         $langs = dt_campaign_list_languages();
         $post_id = $campaign_fields["ID"];
         $lang = dt_campaign_get_current_lang();
@@ -261,7 +261,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
                         </p>
                     </form>
                     <div id="form-confirm" class="center" style="display: none">
-                        <h3><?php esc_html_e( 'Thank You!', 'disciple_tools' ); ?></h3>
+                        <h3><?php esc_html_e( 'Thank You', 'disciple_tools' ); ?></h3>
                     </div>
                 </div>
             </section>
@@ -290,7 +290,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
             </script>
 
 
-            <?php if ( $porch_fields["stats-p4m"]["value"] === "yes" ) :
+            <?php if ( isset( $porch_fields["stats-p4m"]["value"] ) && $porch_fields["stats-p4m"]["value"] === "yes" ) :
                 $p4m_stats = dt_cached_api_call( "https://pray4movement.org/wp-json/p4m/maps/p4m-stats" );
                 $p4m_stats = json_decode( $p4m_stats, true );
                 if ( isset( $p4m_stats["minutes_prayed"] ) ){
@@ -459,7 +459,7 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
         }
         $params["story"] = wp_kses_post( $request->get_params()["story"] );
 
-        $campaign_fields = DT_Campaign_Settings::get_campaign()();
+        $campaign_fields = DT_Campaign_Settings::get_campaign();
         $post_id = $campaign_fields["ID"];
 
         $comment = "Story feedback from " . site_url( "prayer/stats" ) . " by " . $params["email"] . ": \n" . $params["story"];

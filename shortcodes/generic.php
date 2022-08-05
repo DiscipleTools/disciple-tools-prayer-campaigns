@@ -2,9 +2,9 @@
 
 function dt_generic_percentage_shortcode( $attrs ) {
     if ( $attrs["type"] === "24hour" ) {
-        $dt_campaign_selected_campaign_magic_link_settings["section"] = "percentage";
+        $attrs["section"] = "percentage";
         echo dt_24hour_campaign_shortcode(//phpcs:ignore
-            $dt_campaign_selected_campaign_magic_link_settings
+            $attrs
         );
     } else if ( $attrs["type"] === "ongoing" ) {
         return;

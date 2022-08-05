@@ -25,7 +25,7 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
      * override it's own.
      */
     public function __construct( $porch_dir = '' ) {
-        $this->label = __( 'Generic Porch', 'disciple-tools-prayer-campaign' );
+        $this->label = 'Generic Porch';
         $this->porch_dir = $porch_dir;
 
         require_once __DIR__ . '/dt-generic-porch.php';
