@@ -3,6 +3,12 @@ $lang = dt_campaign_get_current_lang();
 
 $porch_fields = DT_Porch_Settings::settings();
 $campaign_fields = DT_Campaign_Settings::get_campaign();
+if ( empty( $campaign_fields ) ): ?>
+    <div class="container">
+        <p style="margin:auto">Choose a campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) );?>">here</a></p>
+    </div>
+    <?php die();
+endif;
 
 $campaign_root = "campaign_app";
 $campaign_type = $campaign_fields["type"]["key"];
@@ -185,17 +191,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">
-            <?php
-            if ( empty( $dt_campaign_selected_campaign_magic_link_settings ) ) :?>
-
-            <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
-
-            <?php else : ?>
-
-                <?php //phpcs:ignore ?>
-                <?php echo dt_ongoing_campaign_signup( $dt_campaign_selected_campaign_magic_link_settings ); ?>
-
-            <?php endif; ?>
+            <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
         </div>
     </div>
 </section>

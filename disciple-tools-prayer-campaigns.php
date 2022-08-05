@@ -154,15 +154,6 @@ class DT_Prayer_Campaigns {
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 );
         }
 
-        try {
-            require_once( plugin_dir_path( __FILE__ ) . '/admin/class-migration-engine.php' );
-            DT_Prayer_Campaigns_Migration_Engine::migrate( DT_Prayer_Campaigns_Migration_Engine::$migration_number );
-        } catch ( Throwable $e ) {
-            new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
-        }
-        DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
-
-
         if ( !is_admin() ) {
             require_once( plugin_dir_path( __FILE__ ) . '/parts/components.php' );
         }
@@ -294,6 +285,19 @@ class DT_Prayer_Campaigns {
     }
 }
 
+
+/**
+ * Run migrations after theme is loaded
+ */
+add_action( 'init', function (){
+    try {
+        require_once( plugin_dir_path( __FILE__ ) . '/admin/class-migration-engine.php' );
+        DT_Prayer_Campaigns_Migration_Engine::migrate( DT_Prayer_Campaigns_Migration_Engine::$migration_number );
+    } catch ( Throwable $e ) {
+        new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
+    }
+    DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
+} );
 
 // Register activation hook.
 register_activation_hook( __FILE__, [ 'DT_Prayer_Campaigns', 'activation' ] );
