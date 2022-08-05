@@ -44,8 +44,12 @@ class DT_Generic_Porch {
             $theme["name"] = 'custom';
             $theme["color"] = $fields['custom_theme_color']['value'];
         }
-        define( 'PORCH_COLOR_SCHEME', $theme["name"] );
-        define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
+        if ( !defined( 'PORCH_COLOR_SCHEME' ) ) {
+            define( 'PORCH_COLOR_SCHEME', $theme["name"] );
+        }
+        if ( !defined( 'PORCH_COLOR_SCHEME_HEX' )) {
+            define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
+        }
 
         // MICROSITE Magic Links
         require_once( 'site/home.php' );
