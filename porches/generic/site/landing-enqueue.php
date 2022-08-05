@@ -2,7 +2,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 
-class P4_Ramadan_Porch_Landing_Enqueue
+class DT_GenericPorch_Landing_Enqueue
 {
     public static function load_scripts() {
         $lang = dt_campaign_get_current_lang();

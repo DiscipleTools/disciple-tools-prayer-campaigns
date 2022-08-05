@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
+class DT_GenericPorch_Stats extends DT_Magic_Url_Base
 {
     public $page_title = 'Ramadan Posts';
     public $root = PORCH_LANDING_ROOT;
@@ -54,15 +54,15 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'dt_campaign';
         $allowed_js[] = 'luxon';
-        return array_merge( $allowed_js, P4_Ramadan_Porch_Landing_Enqueue::load_allowed_scripts() );
+        return array_merge( $allowed_js, DT_GenericPorch_Landing_Enqueue::load_allowed_scripts() );
     }
 
     public function dt_magic_url_base_allowed_css( $allowed_css ) {
-        return P4_Ramadan_Porch_Landing_Enqueue::load_allowed_styles();
+        return DT_GenericPorch_Landing_Enqueue::load_allowed_styles();
     }
 
     public function wp_enqueue_scripts() {
-        P4_Ramadan_Porch_Landing_Enqueue::load_scripts();
+        DT_GenericPorch_Landing_Enqueue::load_scripts();
     }
 
     public function body(){
@@ -474,4 +474,4 @@ class P4_Ramadan_Porch_Stats extends DT_Magic_Url_Base
     }
 
 }
-P4_Ramadan_Porch_Stats::instance();
+DT_GenericPorch_Stats::instance();
