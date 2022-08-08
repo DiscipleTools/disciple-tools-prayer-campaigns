@@ -46,7 +46,7 @@ class DT_Prayer_Campaigns_Campaigns {
             "24hour" => [
                 "campaign_type" => "24hour",
                 "porch" => "generic-porch",
-                "label" => "Setup Landing page for 24/7 month Campaign"
+                "label" => "Setup Landing page for 24/7 Fixed Campaign"
             ],
         ];
         return array_merge( $default_wizards, $wizard_types );

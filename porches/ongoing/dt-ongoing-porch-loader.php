@@ -15,7 +15,7 @@ class DT_Ongoing_Porch_Loader extends DT_Generic_Porch_Loader {
         $ongoing_wizard = [
             "campaign_type" => "ongoing",
             "porch" => $this->id,
-            "label" => "Setup Landing page for Ongoing Campaign",
+            "label" => "Setup Landing page for 24/7 Ongoing Campaign",
         ];
         $wizard_types[$this->id] = $ongoing_wizard;
 
