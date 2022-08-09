@@ -37,7 +37,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
     public function dt_custom_fields_settings( $fields, $post_type ){
         if ( $post_type === $this->post_type ){
             $fields["type"]["default"]["ongoing"] = [
-                "label" => "Ongoing",
+                "label" => "24/7 Ongoing Campaign",
                 'description' => __( '247 Prayer for months', 'disciple_tools' ),
                 "visibility" => __( "Collaborators", 'disciple_tools' ),
                 'color' => "#4CAF50",

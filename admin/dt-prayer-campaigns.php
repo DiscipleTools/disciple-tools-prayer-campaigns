@@ -124,6 +124,9 @@ class DT_Prayer_Campaigns_Campaigns {
 
                 if ( $campaign_type === "24hour" ) {
                     $fields["end_date"] = time() + 30 * DAY_IN_SECONDS;
+                    $fields["name"] = "Fixed Dates Campaign";
+                } elseif ( $campaign_type === "ongoing" ){
+                    $fields["name"] = "Ongoing Campaign";
                 }
 
                 $new_campaign = DT_Posts::create_post( "campaigns", $fields, true );

@@ -36,10 +36,12 @@ class DT_Prayer_Campaign_24_Hour_Magic_Link extends DT_Magic_Url_Base {
 
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
+        require_once( 'shortcode-display.php' );
     }
 
     public function dt_blank_body(){
-        dt_24hour_campaign_body();
+        $disp = new DT_Campaigns_Fixed_Shortcode_Display( $this->parts );
+        $disp->body();
     }
 
     public function wp_enqueue_scripts(){

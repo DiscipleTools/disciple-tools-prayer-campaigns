@@ -33,7 +33,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     public function dt_custom_fields_settings( $fields, $post_type ){
         if ( $post_type === $this->post_type ){
             $fields["type"]["default"]["24hour"] = [
-                'label' => __( '24hr Prayer Calendar', 'disciple_tools' ),
+                'label' => __( '24/7 Fixed Dates Campaign', 'disciple_tools' ),
                 'description' => __( 'Cover a region with 24h prayer.', 'disciple_tools' ),
                 "visibility" => __( "Collaborators", 'disciple_tools' ),
                 'color' => "#4CAF50",
@@ -122,7 +122,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                     <div class="section-subheader">
                         <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
                     </div>
-                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple_tools' ); ?></a>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple_tools' ); ?></a>
                 </div>
                 <?php
             }

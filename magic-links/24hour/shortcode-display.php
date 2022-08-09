@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class DT_Campaigns_Ongoing_Shortcode_Display {
+class DT_Campaigns_Fixed_Shortcode_Display {
     public $parts;
     public function __construct( $magic_link_parts ){
         $this->parts = $magic_link_parts;
@@ -11,8 +11,10 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
     public function body(){
         $atts = $this->parts;
         $atts["rest_url"] = rest_url();
-        $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-calendar', $atts );
-        $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-signup', $atts );
+        $atts['backdrop'] = 'true';
+        $progress_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-fixed-campaign-percentage', $atts );
+        $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-fixed-campaign-calendar', $atts );
+        $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-fixed-campaign-signup', $atts );
         $prayer_timer_shortcode = dt_campaigns_build_shortcode_from_array( 'dt_prayer_timer', [ "color" => '#3e729a', 'duration' => '15' ] );
         ?>
         <style>
@@ -38,6 +40,11 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
                     <h1>The Calendar</h1>
                     <?php echo do_shortcode( $calendar_shortcode ); ?>
                     <code><?php echo esc_html( $calendar_shortcode ); ?></code>
+                </div>
+                <div class="display-section">
+                    <h1>The Percentage Circle</h1>
+                    <?php echo do_shortcode( $progress_shortcode ); ?>
+                    <code><?php echo esc_html( $progress_shortcode ); ?></code>
                 </div>
                 <div class="display-section">
                     <h1>The Sign Up Tool</h1>

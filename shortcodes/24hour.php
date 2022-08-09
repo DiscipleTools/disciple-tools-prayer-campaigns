@@ -51,7 +51,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
     set_transient( "dt_magic_link_remote_" . $atts["post_id"], $atts["rest_url"], DAY_IN_SECONDS );
 }
 
-function dt_24hour_campaign_body( $color = "", $section = "" ){
+function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false ){
     if ( empty( $color ) ){
         $color = "dodgerblue";
     }
@@ -82,6 +82,13 @@ function dt_24hour_campaign_body( $color = "", $section = "" ){
             border-color: <?php echo esc_html( $color ) ?>;
             color: <?php echo esc_html( $color ) ?>;
         }
+        <?php if ( $backdrop ) : ?>
+            .cp-wrapper {
+                background-color: #f8f9fad1;
+                border-radius: 10px;
+                padding: 1em;
+            }
+        <?php endif; ?>
 
     </style>
 
@@ -342,7 +349,7 @@ function dt_24hour_campaign_shortcode( $atts ){
     dt_24hour_campaign_register_scripts( $atts );
 
     ob_start();
-    dt_24hour_campaign_body( $atts["color"] ?? "", $atts["section"] ?? "" );
+    dt_24hour_campaign_body( $atts["color"] ?? "", $atts["section"] ?? "", $atts["backdrop"] ?? false );
     return ob_get_clean();
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
@@ -400,4 +407,27 @@ add_action( 'rest_api_init', function (){
     );
 } );
 
+function dt_fixed_campaign_percentage( $atts ){
+    ob_start();
+    $atts["section"] = "percentage";
+    echo dt_24hour_campaign_shortcode( $atts );
+    return ob_get_clean();
+}
+add_shortcode( 'dt-fixed-campaign-percentage', 'dt_fixed_campaign_percentage' );
 
+function dt_fixed_campaign_calendar( $atts ){
+    ob_start();
+    $atts["section"] = "calendar";
+    echo dt_24hour_campaign_shortcode( $atts );
+    return ob_get_clean();
+
+}
+add_shortcode( 'dt-fixed-campaign-calendar', 'dt_fixed_campaign_calendar' );
+
+function dt_fixed_campaign_signup( $atts ){
+    ob_start();
+    $atts["section"] = "sign_up";
+    echo dt_24hour_campaign_shortcode( $atts );
+    return ob_get_clean();
+}
+add_shortcode( 'dt-fixed-campaign-signup', 'dt_fixed_campaign_signup' );

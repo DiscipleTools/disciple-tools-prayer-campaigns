@@ -327,7 +327,6 @@ class DT_Campaigns_Base {
         if ( $post_type === $this->post_type ){
             $tiles["campaign_setup"] = [ "label" => "Campaign Setup" ];
             $tiles["commitments"] = [ "label" => "Commitments" ];
-            $tiles["prayer_timer"] = [ "label" => "Prayer Timer" ];
             if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_magic_links"] ) ){
                 $tiles["campaign_magic_links"] = [
                     "label" => __( "Magic Urls", 'disciple-tools-prayer-campaigns' ),
@@ -622,10 +621,6 @@ class DT_Campaigns_Base {
         </script>
 
         <?php }
-
-        if ( $post_type === $this->post_type && $section === "prayer_timer" ) {
-            echo do_shortcode( '[dt_prayer_timer]' );
-        }
     }
 
     public function add_api_routes() {
