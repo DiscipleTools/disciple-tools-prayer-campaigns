@@ -410,7 +410,7 @@ add_action( 'rest_api_init', function (){
 function dt_fixed_campaign_percentage( $atts ){
     ob_start();
     $atts["section"] = "percentage";
-    echo dt_24hour_campaign_shortcode( $atts );
+    echo dt_24hour_campaign_shortcode( $atts ); //phpcs:ignore
     return ob_get_clean();
 }
 add_shortcode( 'dt-fixed-campaign-percentage', 'dt_fixed_campaign_percentage' );
@@ -418,7 +418,7 @@ add_shortcode( 'dt-fixed-campaign-percentage', 'dt_fixed_campaign_percentage' );
 function dt_fixed_campaign_calendar( $atts ){
     ob_start();
     $atts["section"] = "calendar";
-    echo dt_24hour_campaign_shortcode( $atts );
+    echo dt_24hour_campaign_shortcode( $atts ); //phpcs:ignore
     return ob_get_clean();
 
 }
@@ -427,7 +427,7 @@ add_shortcode( 'dt-fixed-campaign-calendar', 'dt_fixed_campaign_calendar' );
 function dt_fixed_campaign_signup( $atts ){
     ob_start();
     $atts["section"] = "sign_up";
-    echo dt_24hour_campaign_shortcode( $atts );
+    echo dt_24hour_campaign_shortcode( $atts ); //phpcs:ignore
     return ob_get_clean();
 }
 add_shortcode( 'dt-fixed-campaign-signup', 'dt_fixed_campaign_signup' );
