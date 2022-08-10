@@ -215,7 +215,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                             <br>
                             <span style="float:right;">
-                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
+                                <button type="submit" class="button float-right"><?php esc_html_e( "Update", 'disciple-tools-prayer-campaigns' ) ?></button>
                             </span>
                         </form>
                     </td>
@@ -292,7 +292,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                             <br>
                             <span style="float:right;">
-                                <button type="submit" name="porch_type_submit" class="button float-right"><?php esc_html_e( "Update", 'disciple_tools' ) ?></button>
+                                <button type="submit" name="porch_type_submit" class="button float-right"><?php esc_html_e( "Update", 'disciple-tools-prayer-campaigns' ) ?></button>
                             </span>
                         </form>
                     </td>

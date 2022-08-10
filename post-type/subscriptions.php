@@ -110,7 +110,7 @@ class DT_Subscriptions_Base {
             $tabs['campaigns']['submenu']['campaigns'] = $tabs['campaigns'];
             $tabs['campaigns']['submenu']['subscriptions'] = [
                 "link" => site_url( "/subscriptions/" ),
-                "label" => __( 'Subscriptions', 'disciple_tools' ),
+                "label" => __( 'Subscriptions', 'disciple-tools-prayer-campaigns' ),
                 'icon' => '',
                 'hidden' => false,
             ];
@@ -129,8 +129,8 @@ class DT_Subscriptions_Base {
              * recommended to leave these alone
              */
             $fields['tags'] = [
-                'name'        => __( 'Tags', 'disciple_tools' ),
-                'description' => _x( 'A useful way to group related items.', 'Optional Documentation', 'disciple_tools' ),
+                'name'        => __( 'Tags', 'disciple-tools-prayer-campaigns' ),
+                'description' => _x( 'A useful way to group related items.', 'Optional Documentation', 'disciple-tools-prayer-campaigns' ),
                 'type'        => 'tags',
                 'default'     => [],
                 'tile'        => 'other',
@@ -138,7 +138,7 @@ class DT_Subscriptions_Base {
                 'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
             ];
             $fields["follow"] = [
-                'name'        => __( 'Follow', 'disciple_tools' ),
+                'name'        => __( 'Follow', 'disciple-tools-prayer-campaigns' ),
                 'type'        => 'multi_select',
                 'default'     => [],
                 'section'     => 'misc',
@@ -146,20 +146,20 @@ class DT_Subscriptions_Base {
                 "customizable" => false,
             ];
             $fields["unfollow"] = [
-                'name'        => __( 'Un-Follow', 'disciple_tools' ),
+                'name'        => __( 'Un-Follow', 'disciple-tools-prayer-campaigns' ),
                 'type'        => 'multi_select',
                 'default'     => [],
                 'hidden'      => true,
                 "customizable" => false,
             ];
             $fields['tasks'] = [
-                'name' => __( 'Tasks', 'disciple_tools' ),
+                'name' => __( 'Tasks', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'post_user_meta',
                 "customizable" => false,
             ];
 //            $fields['assigned_to'] = [
-//                'name'        => __( 'Assigned To', 'disciple_tools' ),
-//                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple_tools' ),
+//                'name'        => __( 'Assigned To', 'disciple-tools-prayer-campaigns' ),
+//                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple-tools-prayer-campaigns' ),
 //                'type'        => 'user_select',
 //                'default'     => '',
 //                'tile' => 'status',
@@ -168,7 +168,7 @@ class DT_Subscriptions_Base {
 //                'custom_display' => true,
 //            ];
 //            $fields["requires_update"] = [
-//                'name'        => __( 'Requires Update', 'disciple_tools' ),
+//                'name'        => __( 'Requires Update', 'disciple-tools-prayer-campaigns' ),
 //                'description' => '',
 //                'type'        => 'boolean',
 //                'default'     => false,
@@ -177,18 +177,18 @@ class DT_Subscriptions_Base {
 
 
             $fields['status'] = [
-                'name'        => __( 'Status', 'disciple_tools' ),
-                'description' => _x( 'Set the current status.', 'field description', 'disciple_tools' ),
+                'name'        => __( 'Status', 'disciple-tools-prayer-campaigns' ),
+                'description' => _x( 'Set the current status.', 'field description', 'disciple-tools-prayer-campaigns' ),
                 'type'        => 'key_select',
                 'default'     => [
                     'inactive' => [
-                        'label' => __( 'Inactive', 'disciple_tools' ),
-                        'description' => _x( 'No longer active.', 'field description', 'disciple_tools' ),
+                        'label' => __( 'Inactive', 'disciple-tools-prayer-campaigns' ),
+                        'description' => _x( 'No longer active.', 'field description', 'disciple-tools-prayer-campaigns' ),
                         'color' => "#F43636"
                     ],
                     'active'   => [
-                        'label' => __( 'Active', 'disciple_tools' ),
-                        'description' => _x( 'Is active.', 'field description', 'disciple_tools' ),
+                        'label' => __( 'Active', 'disciple-tools-prayer-campaigns' ),
+                        'description' => _x( 'Is active.', 'field description', 'disciple-tools-prayer-campaigns' ),
                         'color' => "#4CAF50"
                     ],
                 ],
@@ -201,7 +201,7 @@ class DT_Subscriptions_Base {
 
 
             $fields["contact_email"] = [
-                "name" => __( 'Email', 'disciple_tools' ),
+                "name" => __( 'Email', 'disciple-tools-prayer-campaigns' ),
                 "icon" => get_template_directory_uri() . "/dt-assets/images/email.svg",
                 "type" => "communication_channel",
                 "tile" => "details",
@@ -210,8 +210,8 @@ class DT_Subscriptions_Base {
                 'show_in_table' => 20
             ];
             $fields["contact_phone"] = [
-                "name" => __( 'Phone', 'disciple_tools' ),
-                'description' => __( 'Subscriber phone number', 'disciple_tools' ),
+                "name" => __( 'Phone', 'disciple-tools-prayer-campaigns' ),
+                'description' => __( 'Subscriber phone number', 'disciple-tools-prayer-campaigns' ),
                 "icon" => get_template_directory_uri() . "/dt-assets/images/phone.svg",
                 "type" => "communication_channel",
                 "tile" => "details",
@@ -219,8 +219,8 @@ class DT_Subscriptions_Base {
                 "in_create_form" => false,
             ];
             $fields["languages"] = [
-                'name' => __( 'Languages', 'disciple_tools' ),
-                'description' => __( 'Subscriber preferred language', 'disciple_tools' ),
+                'name' => __( 'Languages', 'disciple-tools-prayer-campaigns' ),
+                'description' => __( 'Subscriber preferred language', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'key_select',
                 "tile" => "details",
                 "in_create_form" => true,
@@ -233,14 +233,14 @@ class DT_Subscriptions_Base {
                 $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
             }
             $fields[$key_name] = [
-                'name'   => __( 'Private Key', 'disciple_tools' ),
-                'description' => __( 'Private key for subscriber access', 'disciple_tools' ),
+                'name'   => __( 'Private Key', 'disciple-tools-prayer-campaigns' ),
+                'description' => __( 'Private key for subscriber access', 'disciple-tools-prayer-campaigns' ),
                 'type'   => 'hash',
                 'hidden' => true,
                 "customizable" => false,
             ];
             $fields['subscriber_last_modified'] = [
-                'name'   => __( 'Last Modified by Subscriber', 'disciple_tools' ),
+                'name'   => __( 'Last Modified by Subscriber', 'disciple-tools-prayer-campaigns' ),
                 'description' => '',
                 'type' => 'time',
                 'default' => '',
@@ -254,8 +254,8 @@ class DT_Subscriptions_Base {
              * location elements
              */
             $fields['location_grid'] = [
-                'name'        => __( 'Locations', 'disciple_tools' ),
-                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+                'name'        => __( 'Locations', 'disciple-tools-prayer-campaigns' ),
+                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple-tools-prayer-campaigns' ),
                 'type'        => 'location',
                 'mapbox'    => false,
                 "customizable" => false,
@@ -264,8 +264,8 @@ class DT_Subscriptions_Base {
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
             ];
             $fields['location_grid_meta'] = [
-                'name'        => __( 'Locations', 'disciple_tools' ), //system string does not need translation
-                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple_tools' ),
+                'name'        => __( 'Locations', 'disciple-tools-prayer-campaigns' ), //system string does not need translation
+                'description' => _x( 'The general location where this contact is located.', 'Optional Documentation', 'disciple-tools-prayer-campaigns' ),
                 'type'        => 'location_meta',
                 "tile"      => "details",
                 'mapbox'    => false,
@@ -273,7 +273,7 @@ class DT_Subscriptions_Base {
                 "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg?v=2",
             ];
             $fields["contact_address"] = [
-                "name" => __( 'Address', 'disciple_tools' ),
+                "name" => __( 'Address', 'disciple-tools-prayer-campaigns' ),
                 "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
                 "type" => "communication_channel",
                 "tile" => "",
@@ -292,8 +292,8 @@ class DT_Subscriptions_Base {
             // end locations
 
             $fields["contacts"] = [
-                "name" => __( 'Contact', 'disciple_tools' ),
-                'description' => _x( 'The contacts who are members of this group.', 'Optional Documentation', 'disciple_tools' ),
+                "name" => __( 'Contact', 'disciple-tools-prayer-campaigns' ),
+                'description' => _x( 'The contacts who are members of this group.', 'Optional Documentation', 'disciple-tools-prayer-campaigns' ),
                 "type" => "connection",
                 "post_type" => "contacts",
                 "p2p_direction" => "from",
@@ -303,17 +303,17 @@ class DT_Subscriptions_Base {
             ];
 
             $fields["timezone"] = [
-                "name" => __( 'Timezone', 'disciple_tools' ),
+                "name" => __( 'Timezone', 'disciple-tools-prayer-campaigns' ),
                 "type" => "text",
                 "hidden" => true
             ];
             $fields["lang"] = [
-                "name" => __( 'Language', 'disciple_tools' ),
+                "name" => __( 'Language', 'disciple-tools-prayer-campaigns' ),
                 "type" => "text",
                 "hidden" => true
             ];
             $fields["receive_prayer_time_notifications"] = [
-                "name" => __( 'Receive Prayer Time Notifications', 'disciple_tools' ),
+                "name" => __( 'Receive Prayer Time Notifications', 'disciple-tools-prayer-campaigns' ),
                 "type" => "boolean",
                 "tile" => "details",
                 "default" => false,
@@ -349,7 +349,7 @@ class DT_Subscriptions_Base {
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === $this->post_type ){
             $tiles["commitments"] = [ "label" => __( "Commitments", 'disciple-tools-subscriptions' ) ];
-            $tiles["other"] = [ "label" => __( "Other", 'disciple_tools' ) ];
+            $tiles["other"] = [ "label" => __( "Other", 'disciple-tools-prayer-campaigns' ) ];
         }
 
         return $tiles;
@@ -447,7 +447,7 @@ class DT_Subscriptions_Base {
                             <span class="typeahead__query">
                                 <input class="js-typeahead-tags input-height"
                                        name="tags[query]"
-                                       placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields["tags"]['name'] ) )?>"
+                                       placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple-tools-prayer-campaigns' ), $fields["tags"]['name'] ) )?>"
                                        autocomplete="off">
                             </span>
                             <span class="typeahead__button">
@@ -526,10 +526,10 @@ class DT_Subscriptions_Base {
                                 for <?php echo esc_html( $sub['label'] ) ?>
                             <?php endif;
                             if ( !empty( $sub["value"] ) ) : ?>
-                                <img title="<?php esc_html_e( 'Verified', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                                <img title="<?php esc_html_e( 'Verified', 'disciple-tools-prayer-campaigns' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
                             <?php endif;
                             if ( isset( $payload["prayer_time_reminder_sent"] ) || strpos( $payload, "prayer_time_reminder_sent" ) !== false ) : ?>
-                                <img title="<?php esc_html_e( 'Email Sent', 'disciple_tools' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/email.svg' ) ?>"/>
+                                <img title="<?php esc_html_e( 'Email Sent', 'disciple-tools-prayer-campaigns' ); ?>" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/email.svg' ) ?>"/>
                             <?php endif; ?>
                         </span>
                     </div>
@@ -697,7 +697,7 @@ class DT_Subscriptions_Base {
             }
             $filters["tabs"][] = [
                 "key" => "all",
-                "label" => _x( "All", 'List Filters', 'disciple_tools' ),
+                "label" => _x( "All", 'List Filters', 'disciple-tools-prayer-campaigns' ),
                 "count" => $total_all,
                 "order" => 10
             ];
@@ -705,7 +705,7 @@ class DT_Subscriptions_Base {
             $filters["filters"][] = [
                 'ID' => 'all',
                 'tab' => 'all',
-                'name' => _x( "All", 'List Filters', 'disciple_tools' ),
+                'name' => _x( "All", 'List Filters', 'disciple-tools-prayer-campaigns' ),
                 'query' => [
                     'sort' => '-post_date'
                 ],

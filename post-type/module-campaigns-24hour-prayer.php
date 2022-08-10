@@ -33,9 +33,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     public function dt_custom_fields_settings( $fields, $post_type ){
         if ( $post_type === $this->post_type ){
             $fields["type"]["default"]["24hour"] = [
-                'label' => __( '24/7 Fixed Dates Campaign', 'disciple_tools' ),
-                'description' => __( 'Cover a region with 24h prayer.', 'disciple_tools' ),
-                "visibility" => __( "Collaborators", 'disciple_tools' ),
+                'label' => __( '24/7 Fixed Dates Campaign', 'disciple-tools-prayer-campaigns' ),
+                'description' => __( 'Cover a region with 24h prayer.', 'disciple-tools-prayer-campaigns' ),
+                "visibility" => __( "Collaborators", 'disciple-tools-prayer-campaigns' ),
                 'color' => "#4CAF50",
             ];
         }
@@ -58,7 +58,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     public function dt_details_additional_tiles( $tiles, $post_type = "" ){
         if ( $post_type === 'campaigns' && !isset( $tiles["campaign_strings"] ) ){
             $tiles["campaign_strings"] = [
-                "label" => __( "Campaign Strings", 'disciple-tools-campaigns' ),
+                "label" => __( "Campaign Strings", 'disciple-tools-prayer-campaigns' ),
                 "description" => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf \r\n\r\n Setup instructions: https://disciple.tools/user-docs/prayer/24-7-prayer-campaign-setup/",
                 "display_for" => [
                     "type" => [ $this->magic_link_type ],
@@ -67,7 +67,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         }
         if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_communication"] ) ){
             $tiles["campaign_communication"] = [
-                "label" => __( "Campaign Communication", 'disciple-tools-campaigns' ),
+                "label" => __( "Campaign Communication", 'disciple-tools-prayer-campaigns' ),
                 "description" => "",
                 "display_for" => [
                     "type" => [ $this->magic_link_type ],
@@ -120,9 +120,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 ?>
                 <div class="cell small-12 medium-4">
                     <div class="section-subheader">
-                        <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
+                        <?php esc_html_e( 'Magic Link', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
-                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple_tools' ); ?></a>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </div>
                 <?php
             }
@@ -176,11 +176,11 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                             ?>
 
                             <div class="section-subheader">
-                                <?php esc_html_e( 'Magic Links', 'disciple_tools' ); ?>
+                                <?php esc_html_e( 'Magic Links', 'disciple-tools-prayer-campaigns' ); ?>
                             </div>
-                            <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple_tools' ); ?></a>
-                            <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple_tools' ); ?></a>
-                            <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple_tools' ); ?></a>
+                            <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple-tools-prayer-campaigns' ); ?></a>
+                            <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple-tools-prayer-campaigns' ); ?></a>
+                            <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'Open Link', 'disciple-tools-prayer-campaigns' ); ?></a>
 
                         </div>
                     <?php endforeach; ?>
@@ -219,7 +219,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 ?>
                 <div class="cell small-12 medium-4">
                     <div class="section-subheader">
-                        <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
+                        <?php esc_html_e( 'Magic Link', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
                     <p>Prayer Time Reminder Emails sent: <?php echo esc_html( $prayer_time_reminder_emails_sent ); ?></p>
                     <div class="section-subheader">

@@ -37,7 +37,6 @@ class DT_Prayer_Campaigns_Menu {
     public function __construct() {
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-home.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
-        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
 
         add_action( "admin_menu", array( $this, "register_menu" ) );
         add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );

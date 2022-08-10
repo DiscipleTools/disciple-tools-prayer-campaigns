@@ -38,8 +38,8 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
         if ( $post_type === $this->post_type ){
             $fields["type"]["default"]["ongoing"] = [
                 "label" => "24/7 Ongoing Campaign",
-                'description' => __( '247 Prayer for months', 'disciple_tools' ),
-                "visibility" => __( "Collaborators", 'disciple_tools' ),
+                'description' => __( '247 Prayer for months', 'disciple-tools-prayer-campaigns' ),
+                "visibility" => __( "Collaborators", 'disciple-tools-prayer-campaigns' ),
                 'color' => "#4CAF50",
             ];
         }
@@ -78,9 +78,9 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
                 ?>
                 <div class="cell small-12 medium-4">
                     <div class="section-subheader">
-                        <?php esc_html_e( 'Magic Link', 'disciple_tools' ); ?>
+                        <?php esc_html_e( 'Magic Link', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
-                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple_tools' ); ?></a>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </div>
                 <?php
             }

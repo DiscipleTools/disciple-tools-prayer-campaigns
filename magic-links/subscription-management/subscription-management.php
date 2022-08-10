@@ -517,7 +517,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div id="extend-times-modal" class="reveal tiny" data-reveal>
                 <h2><?php esc_html_e( 'Extend', 'disciple-tools-prayer-campaigns' ); ?></h2>
 
-                <p><?php esc_html_e( 'Extend my prayer commitments until:', 'disciple_tools' ); ?> <span id="extend-time-slot-text"></span></p>
+                <p><?php esc_html_e( 'Extend my prayer commitments until:', 'disciple-tools-prayer-campaigns' ); ?> <span id="extend-time-slot-text"></span></p>
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
                     <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
