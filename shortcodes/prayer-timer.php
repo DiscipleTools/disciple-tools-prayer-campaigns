@@ -28,7 +28,7 @@ function show_prayer_timer( $atts ) {
                 }
                 return $locale;
             } );
-            load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+            dt_campaign_reload_text_domain();
         }
     }
     wp_enqueue_script( 'jquery' );

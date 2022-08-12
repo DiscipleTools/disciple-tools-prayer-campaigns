@@ -107,7 +107,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 }
                 return $locale;
             } );
-            load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+            dt_campaign_reload_text_domain();
             $timezone = !empty( $record["timezone"] ) ? $record["timezone"] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             foreach ( $reports as $row ){

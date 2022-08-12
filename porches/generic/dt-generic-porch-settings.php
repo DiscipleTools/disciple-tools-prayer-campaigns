@@ -14,6 +14,7 @@ class DT_Generic_Porch_Settings {
     }
 
     public function dt_prayer_campaigns_porch_settings( $settings ) {
+        $this->load_defaults(); //load defaults again to get current translations
         return array_merge( $this->defaults, $settings );
     }
 

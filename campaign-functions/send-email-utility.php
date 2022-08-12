@@ -40,7 +40,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return $locale;
         } );
         unload_textdomain( 'disciple-tools-prayer-campaigns' );
-        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+        dt_campaign_reload_text_domain();
     }
 
 

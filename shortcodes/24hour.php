@@ -342,7 +342,7 @@ function dt_24hour_campaign_shortcode( $atts ){
             }
             return $locale;
         } );
-        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+        dt_campaign_reload_text_domain();
     }
 
     dt_24hour_campaign_register_scripts( $atts );

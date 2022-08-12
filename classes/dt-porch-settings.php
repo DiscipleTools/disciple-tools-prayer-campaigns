@@ -151,7 +151,7 @@ class DT_Porch_Settings {
     }
 
     public static function get_field_translation( string $field_name, string $code = '' ) {
-        if ( !$code ) {
+        if ( empty( $code ) ) {
             $code = dt_campaign_get_current_lang();
         }
 

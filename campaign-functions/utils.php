@@ -83,6 +83,10 @@ function dt_campaign_get_current_lang(): string {
     return $lang;
 }
 
+function dt_campaign_reload_text_domain(){
+    load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+}
+
 /**
  * Set the magic link lang in the cookie
  *

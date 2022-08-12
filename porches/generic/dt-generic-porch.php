@@ -65,7 +65,7 @@ class DT_Generic_Porch {
 //            add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 ); // admin plugin page description
 //        }
 
-        $this->i18n();
+//        $this->i18n();
     }
 
     /**
@@ -77,7 +77,7 @@ class DT_Generic_Porch {
      */
     public function i18n() {
         $domain = 'dt-generic-porch';
-        load_plugin_textdomain( $domain, false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ). 'support/languages' );
+        dt_campaign_reload_text_domain();
     }
 
     /**
