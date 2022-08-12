@@ -7,7 +7,7 @@ class DT_Ongoing_Porch_Loader extends DT_Generic_Porch_Loader {
     public function __construct() {
         parent::__construct( __DIR__ );
 
-        $this->label = __( 'Ongoing Landing Page', 'disciple-tools-prayer-campaign' );
+        $this->label = 'Ongoing Landing Page';
         add_filter( 'dt_campaigns_wizard_types', array( $this, 'wizard_types' ) );
     }
 

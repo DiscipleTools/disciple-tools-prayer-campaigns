@@ -27,13 +27,12 @@ function dt_24hour_campaign_register_scripts( $atts ){
         wp_localize_script(
             'dt_campaign', 'campaign_objects', [
                 'translations' => [
-                    //"campaign_duration" => __( 'Everyday from %1$s to %2$s', "disciple-tools-prayer-campaigns" ),
                     "select_a_time" => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
                     "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
                     "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
+                    "covered_once" => __( 'covered once', 'disciple-tools-prayer-campaigns' ),
+                    "covered_x_times" => __( 'covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                     "time_slot_label" => _x( '%1$s for %2$s minutes.', "Monday 5pm for 15 minutes", 'disciple-tools-prayer-campaigns' ),
-                    //"going_for_twice" => __( 'All of the %1$s time slots are covered in once prayer once. Help us cover them twice!', 'disciple-tools-prayer-campaigns' ),
-                    //"invitation" => __( '%1$s people praying %2$s minutes everyday day will cover the region in 24h prayer.', 'disciple-tools-prayer-campaigns' ),
                 ],
                 "parts" => [
                     "root" => $atts['root'],

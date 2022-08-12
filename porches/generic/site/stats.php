@@ -217,7 +217,9 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
                         <div class="col-sm-12 col-md-3">
                             <?php
                             if ( empty( $selected_campaign_magic_link_settings ) ) :?>
-                                <p style="margin:auto">Choose campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_porch_template&tab=general' ) );?>"><?php esc_html_e( 'here', 'disciple-tools-prayer-campaigns' ); ?></a></p>
+                                <div class="container">
+                                    <p style="margin:auto">Choose a campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) );?>">here</a></p>
+                                </div>
                             <?php else :
                                 $selected_campaign_magic_link_settings["section"] = "calendar";
                                 echo dt_24hour_campaign_shortcode( //phpcs:ignore

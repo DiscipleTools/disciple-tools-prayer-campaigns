@@ -273,7 +273,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                             <?php elseif ( $campaign_type === "ongoing" ): ?>
 
                                 <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
-                                <h4><?php esc_html_e( 'More Hours to be covered', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                <h4><?php esc_html_e( 'Hours Remaining', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
                             <?php endif; ?>
 
