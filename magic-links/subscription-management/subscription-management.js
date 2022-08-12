@@ -3,7 +3,6 @@ let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Ame
 if ( calendar_subscribe_object.timezone ){
   current_time_zone = calendar_subscribe_object.timezone
 }
-const day_in_seconds = 24 * 3600
 const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / day_in_seconds
 
 let verified = false
