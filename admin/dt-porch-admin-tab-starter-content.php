@@ -11,8 +11,6 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
     public function __construct( $porch_dir ) {
         $this->porch_dir = $porch_dir;
-
-        require_once( trailingslashit( __DIR__ ) . '../classes/dt-campaign-porch-starter-content.php' );
     }
 
     public function content() {
