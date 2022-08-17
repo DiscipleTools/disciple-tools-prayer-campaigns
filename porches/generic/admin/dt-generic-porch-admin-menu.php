@@ -18,7 +18,7 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
 
         $this->porch_dir = $porch_dir;
 
-        add_action( "admin_menu", array( $this, "register_menu" ) );
+        add_action( 'admin_menu', array( $this, 'register_menu' ) );
 
     }
 
@@ -58,10 +58,10 @@ class DT_Generic_Porch_Admin_Menu implements IDT_Porch_Admin_Menu {
     }
 
     private function get_tab(): string {
-        if ( isset( $_GET["tab"] ) ) {
-            return sanitize_key( wp_unslash( $_GET["tab"] ) );
+        if ( isset( $_GET['tab'] ) ) {
+            return sanitize_key( wp_unslash( $_GET['tab'] ) );
         }
 
-        return "";
+        return '';
     }
 }

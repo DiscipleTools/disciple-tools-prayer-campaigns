@@ -3,7 +3,7 @@
 class DT_Campaign_Languages {
 
     const CACHE_EXPIRY = 3600000;
-    private $option_name = "dt_campaign_languages";
+    private $option_name = 'dt_campaign_languages';
     private $allowed_fields = [
         'language',
         'label',
@@ -11,7 +11,7 @@ class DT_Campaign_Languages {
         'flag',
         'enabled',
     ];
-    private $default_language = "en_US";
+    private $default_language = 'en_US';
 
     /**
      * Add new langu/age
@@ -28,11 +28,11 @@ class DT_Campaign_Languages {
 
         $new_language = [
             'language' => $code,
-            'label' => $language["label"],
-            'english_name' => $language["label"],
-            'native_name' => $language["native_name"],
-            'flag' => $language["flag"],
-            'rtl' => $language["rtl"],
+            'label' => $language['label'],
+            'english_name' => $language['label'],
+            'native_name' => $language['native_name'],
+            'flag' => $language['flag'],
+            'rtl' => $language['rtl'],
             'enabled' => true,
         ];
 
@@ -82,7 +82,7 @@ class DT_Campaign_Languages {
         $languages = $this->get();
 
         $filter_by_enabled = function ( $language ) {
-            return isset( $language['enabled'] ) && $language["enabled"] === true;
+            return isset( $language['enabled'] ) && $language['enabled'] === true;
         };
 
         return array_filter( $languages, $filter_by_enabled );
@@ -99,12 +99,12 @@ class DT_Campaign_Languages {
         if ( $this->is_language_in_list( $lang, $languages ) ) {
             $language = $languages[$lang];
 
-            if ( isset( $language["rtl"] ) && $language["rtl"] === true ) {
-                return "rtl";
+            if ( isset( $language['rtl'] ) && $language['rtl'] === true ) {
+                return 'rtl';
             }
         }
 
-         return "ltr";
+         return 'ltr';
     }
 
     /**
@@ -187,7 +187,7 @@ class DT_Campaign_Languages {
         array_unshift( $available_language_codes, $this->default_language );
 
         $remove_plugin_name = function ( $code ) {
-            return str_replace( "disciple-tools-prayer-campaigns-", "", $code );
+            return str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
         };
 
         $available_language_codes = array_map( $remove_plugin_name, $available_language_codes );

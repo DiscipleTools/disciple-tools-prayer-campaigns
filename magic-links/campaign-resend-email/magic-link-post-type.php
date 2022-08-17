@@ -11,7 +11,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
     public $parts = false;
     public $page_title = 'Resend Subscription Link';
     public $page_description = 'Post Type - Magic Links.';
-    public $root = "campaign_app";
+    public $root = 'campaign_app';
     public $type = 'resend';
     public $post_type = 'campaigns';
     private $meta_key = '';
@@ -192,7 +192,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         register_rest_route(
             $namespace, '/' . $this->type, [
                 [
-                    'methods'  => "POST",
+                    'methods'  => 'POST',
                     'callback' => [ $this, 'access_account' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
@@ -207,10 +207,10 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
         if ( empty( $params['email'] ) ){
-            return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing required parameter.', [ 'status' => 400 ] );
         }
 
         DT_Prayer_Campaigns_Send_Email::send_account_access( $post_id, $params['email'] );

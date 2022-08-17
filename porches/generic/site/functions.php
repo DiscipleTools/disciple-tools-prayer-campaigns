@@ -25,7 +25,7 @@ function dt_campaign_language_direction( string $lang ) {
 }
 
 function dt_campaign_set_translation( $lang ){
-    if ( $lang !== "en_US" ){
+    if ( $lang !== 'en_US' ){
         add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
             if ( !empty( $lang ) ){
                 return $lang;

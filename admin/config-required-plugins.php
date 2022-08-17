@@ -40,10 +40,10 @@ add_action( 'tgmpa_register', function() {
      */
     $plugins = [
         [
-            "name" => 'Wordpress Importer',
-            "slug" => 'wordpress-importer',
-            "required" => true,
-            "version" => '0.7',
+            'name' => 'Wordpress Importer',
+            'slug' => 'wordpress-importer',
+            'required' => true,
+            'version' => '0.7',
         ]
     ];
     if ( is_multisite() ){

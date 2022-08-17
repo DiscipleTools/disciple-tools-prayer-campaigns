@@ -71,19 +71,19 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
         $porch_fields = DT_Porch_Settings::settings();
         $campaign_fields = DT_Campaign_Settings::get_campaign();
         $langs = dt_campaign_list_languages();
-        $post_id = $campaign_fields["ID"];
+        $post_id = $campaign_fields['ID'];
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
 
 
-        $timezone = "America/Chicago";
-        if ( isset( $campaign_fields["campaign_timezone"]["key"] ) ){
-            $timezone = $campaign_fields["campaign_timezone"]["key"];
+        $timezone = 'America/Chicago';
+        if ( isset( $campaign_fields['campaign_timezone']['key'] ) ){
+            $timezone = $campaign_fields['campaign_timezone']['key'];
         }
 
         $min_time_duration = 15;
-        if ( isset( $campaign_fields["min_time_duration"]["key"] ) ){
-            $min_time_duration = (int) $campaign_fields["min_time_duration"]["key"];
+        if ( isset( $campaign_fields['min_time_duration']['key'] ) ){
+            $min_time_duration = (int) $campaign_fields['min_time_duration']['key'];
         }
         $subscribers_count = DT_Subscriptions::get_subscribers_count( $post_id );
         $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
@@ -95,42 +95,42 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
         arsort( $current_commitments );
         $total_mins_prayed = 0;
         $committed_time_slots = 0;
-        if ( method_exists( "DT_Campaigns_Base", "query_total_events_count" ) ){
+        if ( method_exists( 'DT_Campaigns_Base', 'query_total_events_count' ) ){
             $committed_time_slots = DT_Campaigns_Base::query_total_events_count( $post_id );
         }
         foreach ( $coverage_levels as $level ){
-            $total_mins_prayed += $level["blocks_covered"] * $min_time_duration;
+            $total_mins_prayed += $level['blocks_covered'] * $min_time_duration;
         }
         $lang = dt_campaign_get_current_lang();
 
-        $campaign_root = "campaign_app";
-        $campaign_type = $campaign_fields["type"]["key"];
+        $campaign_root = 'campaign_app';
+        $campaign_type = $campaign_fields['type']['key'];
         $key_name = 'public_key';
-        $key = "";
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+        $key = '';
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
             $key_name = DT_Magic_URL::get_public_key_meta_key( $campaign_root, $campaign_type );
         }
         if ( isset( $campaign_fields[$key_name] ) ){
             $key = $campaign_fields[$key_name];
         }
         $atts = [
-            "root" => $campaign_root,
-            "type" => $campaign_type,
-            "public_key" => $key,
-            "meta_key" => $key_name,
-            "post_id" => (int) $campaign_fields["ID"],
-            "rest_url" => rest_url(),
-            "lang" => $lang
+            'root' => $campaign_root,
+            'type' => $campaign_type,
+            'public_key' => $key,
+            'meta_key' => $key_name,
+            'post_id' => (int) $campaign_fields['ID'],
+            'rest_url' => rest_url(),
+            'lang' => $lang
         ];
         $selected_campaign_magic_link_settings = $atts;
-        $selected_campaign_magic_link_settings["color"] = PORCH_COLOR_SCHEME_HEX;
-        if ( $selected_campaign_magic_link_settings["color"] === "preset" ){
-            $selected_campaign_magic_link_settings["color"] = '#4676fa';
+        $selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME_HEX;
+        if ( $selected_campaign_magic_link_settings['color'] === 'preset' ){
+            $selected_campaign_magic_link_settings['color'] = '#4676fa';
         }
 
         $thank_you = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
-        if ( !empty( $porch_fields["people_name"]["value"] ) && !empty( $porch_fields["country_name"]["value"] ) ){
-            $thank_you = sprintf( _x( 'Thank you for joining us in prayer for the %1$s in %2$s.', 'Thank you for joining us in prayer for the French in France.', 'disciple-tools-prayer-campaigns' ), $porch_fields["people_name"]["value"], $porch_fields["country_name"]["value"] );
+        if ( !empty( $porch_fields['people_name']['value'] ) && !empty( $porch_fields['country_name']['value'] ) ){
+            $thank_you = sprintf( _x( 'Thank you for joining us in prayer for the %1$s in %2$s.', 'Thank you for joining us in prayer for the French in France.', 'disciple-tools-prayer-campaigns' ), $porch_fields['people_name']['value'], $porch_fields['country_name']['value'] );
         }
         ?>
 
@@ -161,7 +161,7 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
                         <select class="dt-magic-link-language-selector">
                             <?php foreach ( $langs as $code => $language ) : ?>
                                 <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
-                                    <?php echo esc_html( $language["flag"] ); ?> <?php echo esc_html( $language["native_name"] ); ?>
+                                    <?php echo esc_html( $language['flag'] ); ?> <?php echo esc_html( $language['native_name'] ); ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -221,7 +221,7 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
                                     <p style="margin:auto">Choose a campaign in settings <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) );?>">here</a></p>
                                 </div>
                             <?php else :
-                                $selected_campaign_magic_link_settings["section"] = "calendar";
+                                $selected_campaign_magic_link_settings['section'] = 'calendar';
                                 echo dt_24hour_campaign_shortcode( //phpcs:ignore
                                     $selected_campaign_magic_link_settings
                                 );
@@ -388,7 +388,7 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
         register_rest_route(
             $namespace, 'stories', [
                 [
-                    'methods'  => "POST",
+                    'methods'  => 'POST',
                     'callback' => [ $this, 'add_story' ],
                     'permission_callback' => '__return_true',
                 ],
@@ -399,20 +399,20 @@ class DT_GenericPorch_Stats extends DT_Magic_Url_Base
     public function add_story( WP_REST_Request $request ) {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        if ( !isset( $params["story"], $params["email"] ) ){
+        if ( !isset( $params['story'], $params['email'] ) ){
             return false;
         }
-        $params["story"] = wp_kses_post( $request->get_params()["story"] );
+        $params['story'] = wp_kses_post( $request->get_params()['story'] );
 
         $campaign_fields = DT_Campaign_Settings::get_campaign();
-        $post_id = $campaign_fields["ID"];
+        $post_id = $campaign_fields['ID'];
 
-        $comment = "Story feedback from " . site_url( "prayer/stats" ) . " by " . $params["email"] . ": \n" . $params["story"];
-        DT_Posts::add_post_comment( "campaigns", $post_id, $comment, 'stories', [], false );
+        $comment = 'Story feedback from ' . site_url( 'prayer/stats' ) . ' by ' . $params['email'] . ": \n" . $params['story'];
+        DT_Posts::add_post_comment( 'campaigns', $post_id, $comment, 'stories', [], false );
 
-        $subs = DT_Posts::list_posts( "subscriptions", [ "campaigns" => [ $post_id ], "contact_email" => [ $params["email"] ] ], false );
-        if ( sizeof( $subs["posts"] ) === 1 ){
-            DT_Posts::add_post_comment( "subscriptions", $subs["posts"][0]["ID"], $comment, 'stories', [], false, true );
+        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );
+        if ( sizeof( $subs['posts'] ) === 1 ){
+            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
         }
 
         return true;

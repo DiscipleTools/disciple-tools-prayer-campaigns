@@ -67,13 +67,13 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
 
                                     <?php foreach ( $languages as $code => $language ): ?>
 
-                                        <tr class="<?php echo $language["enabled"] === false ? 'disabled-language' : '' ?>">
-                                            <td><?php echo esc_html( $language["english_name"] ) ?></td>
+                                        <tr class="<?php echo $language['enabled'] === false ? 'disabled-language' : '' ?>">
+                                            <td><?php echo esc_html( $language['english_name'] ) ?></td>
                                             <td><?php echo esc_html( $code ) ?></td>
-                                            <td><?php echo esc_html( $language["flag"] ) ?></td>
+                                            <td><?php echo esc_html( $language['flag'] ) ?></td>
                                             <td>
 
-                                                <?php if ( isset( $language["enabled"] ) && $language["enabled"] === true ): ?>
+                                                <?php if ( isset( $language['enabled'] ) && $language['enabled'] === true ): ?>
 
                                                 <button class="button" name="language_settings_disable" value="<?php echo esc_html( $code ) ?>">
                                                     Disable
@@ -87,7 +87,7 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
 
                                                 <?php endif; ?>
 
-                                                <?php if ( !isset( $language["default"] ) || $language["default"] !== true ): ?>
+                                                <?php if ( !isset( $language['default'] ) || $language['default'] !== true ): ?>
 
                                                 <button class="button" name="language_settings_remove" value="<?php echo esc_html( $code ) ?>">
                                                     Remove
@@ -119,7 +119,7 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
 
                             <?php foreach ( $language_list as $code => $language ): ?>
 
-                                <option value="<?php echo esc_html( $code ) ?>"><?php echo esc_html( $language["flag"] . " " . $language["label"] ) ?></option>
+                                <option value="<?php echo esc_html( $code ) ?>"><?php echo esc_html( $language['flag'] . ' ' . $language['label'] ) ?></option>
 
                             <?php endforeach; ?>
 

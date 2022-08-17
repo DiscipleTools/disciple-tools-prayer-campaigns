@@ -7,15 +7,15 @@ function dt_24hour_campaign_register_scripts( $atts ){
 
     require_once( trailingslashit( __DIR__ ) . '../parts/components.php' );
 
-    wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, "2.3.1", true );
+    wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
     //campaigns core js
-    if ( !wp_script_is( 'dt_campaign_core', "registered" ) ){
+    if ( !wp_script_is( 'dt_campaign_core', 'registered' ) ){
         wp_register_script( 'dt_campaign_core', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'post-type/campaign_core.js', [
             'jquery',
             'lodash',
             'luxon'
         ], filemtime( plugin_dir_path( __DIR__ ) . 'post-type/campaign_core.js' ), true );
-        wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts["color"] ?? '' ] );
+        wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts['color'] ?? '' ] );
     }
 
     wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'magic-links/24hour/24hour.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.css' ) );
@@ -27,42 +27,42 @@ function dt_24hour_campaign_register_scripts( $atts ){
         wp_localize_script(
             'dt_campaign', 'campaign_objects', [
                 'translations' => [
-                    "select_a_time" => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
-                    "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
-                    "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
-                    "covered_once" => __( 'covered once', 'disciple-tools-prayer-campaigns' ),
-                    "covered_x_times" => __( 'covered %1$s times', 'disciple-tools-prayer-campaigns' ),
-                    "time_slot_label" => _x( '%1$s for %2$s minutes.', "Monday 5pm for 15 minutes", 'disciple-tools-prayer-campaigns' ),
+                    'select_a_time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                    'fully_covered_once' => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
+                    'fully_covered_x_times' => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
+                    'covered_once' => __( 'covered once', 'disciple-tools-prayer-campaigns' ),
+                    'covered_x_times' => __( 'covered %1$s times', 'disciple-tools-prayer-campaigns' ),
+                    'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
                 ],
-                "parts" => [
-                    "root" => $atts['root'],
-                    "type" => $atts['type'],
-                    "public_key" => $atts['public_key'],
-                    "meta_key" => $atts['meta_key'],
-                    "post_id" => $atts["post_id"],
-                    "lang" => $atts["lang"] ?? "en_US"
+                'parts' => [
+                    'root' => $atts['root'],
+                    'type' => $atts['type'],
+                    'public_key' => $atts['public_key'],
+                    'meta_key' => $atts['meta_key'],
+                    'post_id' => $atts['post_id'],
+                    'lang' => $atts['lang'] ?? 'en_US'
                 ],
-                "root" => get_rest_url(),
-                "remote" => $atts["rest_url"] !== get_rest_url(),
+                'root' => get_rest_url(),
+                'remote' => $atts['rest_url'] !== get_rest_url(),
             ]
         );
     }
-    set_transient( "dt_magic_link_remote_" . $atts["post_id"], $atts["rest_url"], DAY_IN_SECONDS );
+    set_transient( 'dt_magic_link_remote_' . $atts['post_id'], $atts['rest_url'], DAY_IN_SECONDS );
 }
 
-function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false ){
+function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false ){
     if ( empty( $color ) ){
-        $color = "dodgerblue";
+        $color = 'dodgerblue';
     }
     ?>
 
     <style>
-        <?php if ( $section === "percentage" ): ?>
+        <?php if ( $section === 'percentage' ): ?>
         .cp-wrapper.cp-progress-wrapper {
             width: fit-content;
         }
         <?php endif; ?>
-        <?php if ( $section === "calendar" ): ?>
+        <?php if ( $section === 'calendar' ): ?>
         .cp-wrapper.cp-calendar-wrapper {
             width: fit-content;
         }
@@ -91,7 +91,7 @@ function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false 
 
     </style>
 
-    <?php if ( $section === "percentage" || $section === "" ) :?>
+    <?php if ( $section === 'percentage' || $section === '' ) :?>
     <div class="cp-progress-wrapper cp-wrapper">
         <div id="main-progress" class="cp-center">
             <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>
@@ -99,14 +99,14 @@ function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false 
         <div style="color: rgba(0,0,0,0.57); text-align: center"><?php esc_html_e( 'Percentage covered in prayer', 'disciple-tools-prayer-campaigns' ); ?></div>
     </div>
     <?php endif; ?>
-    <?php if ( $section === "calendar" || $section === "" ) : ?>
+    <?php if ( $section === 'calendar' || $section === '' ) : ?>
     <div class="cp-calendar-wrapper cp-wrapper">
         <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 0">
             <div id="calendar-content"></div>
         </div>
     </div>
     <?php endif; ?>
-    <?php if ( $section === "sign_up" || $section === "" ) : ?>
+    <?php if ( $section === 'sign_up' || $section === '' ) : ?>
 
     <div id="cp-wrapper" class="cp-wrapper loading-content">
         <div id="" class="cp-loading-page cp-view" >
@@ -280,7 +280,7 @@ function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false 
             <p><?php esc_html_e( "I'm interested in praying! Send me an email when it is time to choose prayer times.", 'disciple-tools-prayer-campaigns' ); ?></p>
             <div>
                 <span id="name-error-later" class="form-error">
-                    <?php echo esc_html( "Your name is required." ); ?>
+                    <?php echo esc_html( 'Your name is required.' ); ?>
                 </span>
                 <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="text" name="name" id="name-later" placeholder="<?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>" required/>
@@ -288,7 +288,7 @@ function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false 
             </div>
             <div>
                 <span id="email-error-later" class="form-error">
-                    <?php esc_html_e( "Your email is required.", 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( 'Your email is required.', 'disciple-tools-prayer-campaigns' ); ?>
                 </span>
                 <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
                     <input class="cp-input" type="email" name="email" id="email-later" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
@@ -315,8 +315,8 @@ function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false 
 
         <!-- confirm email later-->
         <div id="cp-view-closed" class="cp-view cp-center" style="display: none">
-            <p><?php esc_html_e( "We are not longer looking for sign ups", 'disciple-tools-prayer-campaigns' ); ?></p>
-            <p><?php esc_html_e( "Thanks for praying with us!", 'disciple-tools-prayer-campaigns' ); ?></p>
+            <p><?php esc_html_e( 'We are not longer looking for sign ups', 'disciple-tools-prayer-campaigns' ); ?></p>
+            <p><?php esc_html_e( 'Thanks for praying with us!', 'disciple-tools-prayer-campaigns' ); ?></p>
         </div>
 
 
@@ -326,17 +326,17 @@ function dt_24hour_campaign_body( $color = "", $section = "", $backdrop = false 
 
 function dt_24hour_campaign_shortcode( $atts ){
 
-    if ( !isset( $atts["root"], $atts["type"], $atts["public_key"], $atts["meta_key"], $atts["post_id"], $atts["rest_url"] ) ){
+    if ( !isset( $atts['root'], $atts['type'], $atts['public_key'], $atts['meta_key'], $atts['post_id'], $atts['rest_url'] ) ){
         return;
     }
 
-    if ( $atts["type"] !== "24hour" && $atts["root"] !== "campaign_app" ){
+    if ( $atts['type'] !== '24hour' && $atts['root'] !== 'campaign_app' ){
         return;
     }
 
-    if ( isset( $atts["lang"] ) ){
+    if ( isset( $atts['lang'] ) ){
         add_filter( 'determine_locale', function ( $locale ) use ( $atts ){
-            $lang_code = sanitize_text_field( wp_unslash( $atts["lang"] ) );
+            $lang_code = sanitize_text_field( wp_unslash( $atts['lang'] ) );
             if ( !empty( $lang_code ) ){
                 return $lang_code;
             }
@@ -348,7 +348,7 @@ function dt_24hour_campaign_shortcode( $atts ){
     dt_24hour_campaign_register_scripts( $atts );
 
     ob_start();
-    dt_24hour_campaign_body( $atts["color"] ?? "", $atts["section"] ?? "", $atts["backdrop"] ?? false );
+    dt_24hour_campaign_body( $atts['color'] ?? '', $atts['section'] ?? '', $atts['backdrop'] ?? false );
     return ob_get_clean();
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
@@ -371,18 +371,18 @@ if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
 function dt_campaign_router_endpoint( WP_REST_Request $request ){
     $params = $request->get_params();
     $params = dt_recursive_sanitize_array( $params );
-    if ( isset( $params["parts"]["post_id"] ) ){
-        $remote = get_transient( "dt_magic_link_remote_" . $params["parts"]["post_id"] );
-        $url = $remote . $params["root"] .  $params["parts"]["root"] . '/v1/' .  $params["parts"]["type"] . '/' . $params["url"];
+    if ( isset( $params['parts']['post_id'] ) ){
+        $remote = get_transient( 'dt_magic_link_remote_' . $params['parts']['post_id'] );
+        $url = $remote . $params['root'] .  $params['parts']['root'] . '/v1/' .  $params['parts']['type'] . '/' . $params['url'];
         if ( !empty( $remote ) ){
-            if ( $request->get_method() === "GET" ){
-                $fetch = wp_remote_get( $url, [ "body" => $params ] );
+            if ( $request->get_method() === 'GET' ){
+                $fetch = wp_remote_get( $url, [ 'body' => $params ] );
                 if ( !is_wp_error( $fetch ) ){
                     return json_decode( wp_remote_retrieve_body( $fetch ) );
                 }
             }
-            if ( $request->get_method() === "POST" ){
-                $fetch = wp_remote_post( $url, [ "body" => $params ] );
+            if ( $request->get_method() === 'POST' ){
+                $fetch = wp_remote_post( $url, [ 'body' => $params ] );
                 if ( !is_wp_error( $fetch ) ){
                     return json_decode( wp_remote_retrieve_body( $fetch ) );
                 }
@@ -398,8 +398,8 @@ add_action( 'rest_api_init', function (){
     register_rest_route(
         $namespace, '/24hour-router', [
             [
-                'methods'  => [ "POST", "GET" ],
-                'callback' => "dt_campaign_router_endpoint",
+                'methods'  => [ 'POST', 'GET' ],
+                'callback' => 'dt_campaign_router_endpoint',
                 'permission_callback' => '__return_true',
             ],
         ]
@@ -408,7 +408,7 @@ add_action( 'rest_api_init', function (){
 
 function dt_fixed_campaign_percentage( $atts ){
     ob_start();
-    $atts["section"] = "percentage";
+    $atts['section'] = 'percentage';
     echo dt_24hour_campaign_shortcode( $atts ); //phpcs:ignore
     return ob_get_clean();
 }
@@ -416,7 +416,7 @@ add_shortcode( 'dt-fixed-campaign-percentage', 'dt_fixed_campaign_percentage' );
 
 function dt_fixed_campaign_calendar( $atts ){
     ob_start();
-    $atts["section"] = "calendar";
+    $atts['section'] = 'calendar';
     echo dt_24hour_campaign_shortcode( $atts ); //phpcs:ignore
     return ob_get_clean();
 
@@ -425,7 +425,7 @@ add_shortcode( 'dt-fixed-campaign-calendar', 'dt_fixed_campaign_calendar' );
 
 function dt_fixed_campaign_signup( $atts ){
     ob_start();
-    $atts["section"] = "sign_up";
+    $atts['section'] = 'sign_up';
     echo dt_24hour_campaign_shortcode( $atts ); //phpcs:ignore
     return ob_get_clean();
 }

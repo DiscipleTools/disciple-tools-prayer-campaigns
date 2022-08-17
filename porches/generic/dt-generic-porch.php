@@ -4,7 +4,7 @@ class DT_Generic_Porch {
 
     private $child_porch_dir;
     private static $instance = null;
-    public static function instance( $child_porch_dir = "" ) {
+    public static function instance( $child_porch_dir = '' ) {
         if ( is_null( self::$instance ) ) {
             self::$instance = new self( $child_porch_dir );
         }
@@ -41,14 +41,14 @@ class DT_Generic_Porch {
 
         if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ) {
             $theme = [];
-            $theme["name"] = 'custom';
-            $theme["color"] = $fields['custom_theme_color']['value'];
+            $theme['name'] = 'custom';
+            $theme['color'] = $fields['custom_theme_color']['value'];
         }
         if ( !defined( 'PORCH_COLOR_SCHEME' ) ) {
-            define( 'PORCH_COLOR_SCHEME', $theme["name"] );
+            define( 'PORCH_COLOR_SCHEME', $theme['name'] );
         }
         if ( !defined( 'PORCH_COLOR_SCHEME_HEX' ) ) {
-            define( 'PORCH_COLOR_SCHEME_HEX', $theme["color"] );
+            define( 'PORCH_COLOR_SCHEME_HEX', $theme['color'] );
         }
 
         // MICROSITE Magic Links
@@ -145,7 +145,7 @@ class DT_Generic_Porch {
      * @access public
      */
     public function __call( $method = '', $args = array() ) {
-        _doing_it_wrong( "dt-generic-porch::" . esc_html( $method ), 'Method does not exist.', '0.1' );
+        _doing_it_wrong( 'dt-generic-porch::' . esc_html( $method ), 'Method does not exist.', '0.1' );
         unset( $method, $args );
         return null;
     }

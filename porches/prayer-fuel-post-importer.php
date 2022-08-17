@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Campaign_Prayer_Post_Importer {
 
-    public $import_meta_key = "import_source";
-    public $import_meta_value = "disciple-tools-prayer-campaigns";
+    public $import_meta_key = 'import_source';
+    public $import_meta_value = 'disciple-tools-prayer-campaigns';
     public static $instance;
     /**
      * In date string format
@@ -66,35 +66,35 @@ class DT_Campaign_Prayer_Post_Importer {
         }
 
         foreach ( $new_posts as $i => $post ) {
-            $post_lang = $this->get_post_meta( $post["postmeta"], "post_language" );
+            $post_lang = $this->get_post_meta( $post['postmeta'], 'post_language' );
             if ( empty( $post_lang ) || !in_array( $post_lang, array_keys( $available_languages ), true ) ) {
                 continue;
             }
 
             $post_start_date = $post_scheduled_start_date[$post_lang];
 
-            $post["post_date"] = $this->mysql_date( time() );
-            $post["post_date_gmt"] = $this->mysql_date( time() );
-            $post["post_status"] = "publish";
+            $post['post_date'] = $this->mysql_date( time() );
+            $post['post_date_gmt'] = $this->mysql_date( time() );
+            $post['post_status'] = 'publish';
 
             $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $post_start_date );
 
-            $post["postmeta"] = [
+            $post['postmeta'] = [
                 [
-                    "key" => "post_language",
-                    "value" => $post_lang,
+                    'key' => 'post_language',
+                    'value' => $post_lang,
                 ],
                 [
-                    "key" => $this->import_meta_key,
-                    "value" => $this->import_meta_value,
+                    'key' => $this->import_meta_key,
+                    'value' => $this->import_meta_value,
                 ],
                 [
-                    "key" => "day",
-                    "value" => $campaign_day,
+                    'key' => 'day',
+                    'value' => $campaign_day,
                 ],
                 [
-                    "key" => PORCH_LANDING_META_KEY,
-                    "value" => $campaign_day,
+                    'key' => PORCH_LANDING_META_KEY,
+                    'value' => $campaign_day,
                 ]
             ];
 
@@ -118,11 +118,11 @@ class DT_Campaign_Prayer_Post_Importer {
      */
     private function get_post_meta( $postmeta, $key ) {
         foreach ( $postmeta as $i => $meta ) {
-            if ( $meta["key"] === $key ) {
-                return $meta["value"];
+            if ( $meta['key'] === $key ) {
+                return $meta['value'];
             }
         }
-        return "";
+        return '';
     }
 
     /**
@@ -134,22 +134,22 @@ class DT_Campaign_Prayer_Post_Importer {
      */
     private function set_post_meta( &$post, $key, $value ) {
         $is_meta_set = false;
-        $postmeta = $post["postmeta"];
+        $postmeta = $post['postmeta'];
         foreach ( $postmeta as $j => $meta ) {
-            if ( $meta["key"] === $key ) {
-                    $postmeta[$j]["value"] = $value;
+            if ( $meta['key'] === $key ) {
+                    $postmeta[$j]['value'] = $value;
                     $is_meta_set = true;
             }
         }
 
         if ( !$is_meta_set ) {
             $postmeta[] = [
-                "key" => $key,
-                "value" => $value,
+                'key' => $key,
+                'value' => $value,
             ];
         }
 
-        $post["postmeta"] = $postmeta;
+        $post['postmeta'] = $postmeta;
     }
 
     /**
@@ -171,7 +171,7 @@ class DT_Campaign_Prayer_Post_Importer {
 
         $today_timestamp = date_timestamp_get( new DateTime() );
         $campaign = DT_Campaign_Settings::get_campaign();
-        $campaign_start = $campaign["start_date"]["timestamp"];
+        $campaign_start = $campaign['start_date']['timestamp'];
 
         $start_posting_from = max( $campaign_start, $today_timestamp );
 
@@ -248,20 +248,20 @@ class DT_Campaign_Prayer_Post_Importer {
             $args[] = $lang;
         }
 
-        $query .= "
+        $query .= '
             ORDER BY CAST( pm.meta_value as signed ) DESC
             LIMIT 1
-        ";
+        ';
 
         /* get the latest prayer fuel with the imported meta tag */
         //phpcs:ignore
         $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( $query, $args ), ARRAY_A );
 
-        if ( $latest_prayer_fuel === null || $latest_prayer_fuel["day"] === null ) {
+        if ( $latest_prayer_fuel === null || $latest_prayer_fuel['day'] === null ) {
             return 1;
         }
 
-        return intval( $latest_prayer_fuel["day"] );
+        return intval( $latest_prayer_fuel['day'] );
     }
 
     /**

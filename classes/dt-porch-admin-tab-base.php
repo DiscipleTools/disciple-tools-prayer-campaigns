@@ -52,23 +52,23 @@ class DT_Porch_Admin_Tab_Base {
             <?php
             $number_of_translations = 0;
             foreach ( $langs as $code => $val ){
-                if ( !empty( $field["translations"][$code] ) ){
+                if ( !empty( $field['translations'][$code] ) ){
                     $number_of_translations++;
                 }
             }
             ?>
-            <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ); ?>">
+            <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
             (<?php echo esc_html( $number_of_translations ); ?>)
         </button>
         <div class="translation_container hide">
             <table style="width:100%">
                 <?php foreach ( $langs as $code => $val ) : ?>
                     <tr>
-                        <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo esc_html( $val["native_name"] )?></label></td>
-                        <?php if ( $field["type"] === "textarea" ) :?>
-                            <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo wp_kses_post( $field["translations"][$code] ?? "" );?></textarea></td>
+                        <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo esc_html( $val['native_name'] )?></label></td>
+                        <?php if ( $field['type'] === 'textarea' ) :?>
+                            <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo wp_kses_post( $field['translations'][$code] ?? '' );?></textarea></td>
                         <?php else : ?>
-                            <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>" type="text" value="<?php echo esc_html( $field["translations"][$code] ?? "" );?>"/></td>
+                            <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>" type="text" value="<?php echo esc_html( $field['translations'][$code] ?? '' );?>"/></td>
                         <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
@@ -108,7 +108,7 @@ class DT_Porch_Admin_Tab_Base {
                 <table class="widefat striped">
                     <thead>
                     <tr>
-                        <th style="width:20%"><?php echo esc_html( $section === "" ? "Other" : $section ) ?> Content</th>
+                        <th style="width:20%"><?php echo esc_html( $section === '' ? 'Other' : $section ) ?> Content</th>
                         <th style="width:50%"></th>
                         <th style="width:30%"></th>
                     </tr>
@@ -116,7 +116,7 @@ class DT_Porch_Admin_Tab_Base {
                     <tbody>
 
                         <?php foreach ( DT_Porch_Settings::settings( $this->tab, $section ) as $key => $field ) :
-                            if ( isset( $field["enabled"] ) && $field["enabled"] === false ){
+                            if ( isset( $field['enabled'] ) && $field['enabled'] === false ){
                                 continue;
                             }
                             if ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
@@ -125,19 +125,19 @@ class DT_Porch_Admin_Tab_Base {
                                         <?php echo esc_html( $field['label'] ); ?>
                                     </td>
                                     <td>
-                                        <?php if ( !empty( $field["default"] ) && isset( $field["translations"] ) ) {
+                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) {
                                             echo '<h3>Default translated text:</h3>';
-                                            echo nl2br( esc_html( $field["default"] ) );
+                                            echo nl2br( esc_html( $field['default'] ) );
                                             echo '<br><br>';
                                         }
-                                        if ( isset( $field["translations"] ) ){
-                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ) . '"> button to set a value for each language. Custom text for all languages: </p>';
+                                        if ( isset( $field['translations'] ) ){
+                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ) . '"> button to set a value for each language. Custom text for all languages: </p>';
                                         }
                                         ?>
                                         <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"/>
                                     </td>
                                     <td style="vertical-align: middle;">
-                                        <?php if ( isset( $field["translations"] ) ){
+                                        <?php if ( isset( $field['translations'] ) ){
                                             self::translation_cell( $langs, $key, $field, $section );
                                         } ?>
                                     </td>
@@ -148,18 +148,18 @@ class DT_Porch_Admin_Tab_Base {
                                         <?php echo esc_html( $field['label'] ); ?>
                                     </td>
                                     <td>
-                                        <?php if ( !empty( $field["default"] ) && isset( $field["translations"] ) ) {
+                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) {
                                             echo '<h3>Default translated text:</h3>';
-                                            echo nl2br( esc_html( $field["default"] ) );
+                                            echo nl2br( esc_html( $field['default'] ) );
                                             echo '<br><br>';
                                         }
-                                        if ( isset( $field["translations"] ) ){
-                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . "/dt-assets/images/languages.svg" ) . '"> button to set a value for each language. Custom text for all languages:</p>';
+                                        if ( isset( $field['translations'] ) ){
+                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ) . '"> button to set a value for each language. Custom text for all languages:</p>';
                                         } ?>
                                         <textarea name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
                                     </td>
                                     <td style="vertical-align: middle;">
-                                        <?php if ( isset( $field["translations"] ) ){
+                                        <?php if ( isset( $field['translations'] ) ){
                                             self::translation_cell( $langs, $key, $field, $section );
                                         } ?>
                                     </td>
@@ -260,7 +260,7 @@ class DT_Porch_Admin_Tab_Base {
 
         /* make any text area stuff safe */
         foreach ( $post_list as $field_key => $value ){
-            if ( isset( $fields[$field_key]["type"], $post_list[$field_key] ) && $fields[$field_key]["type"] === "textarea" ){ // if textarea
+            if ( isset( $fields[$field_key]['type'], $post_list[$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
                 $post_list[$field_key] = wp_kses( wp_unslash( $post_list[$field_key] ), $allowed_tags );
             }
         }
@@ -275,10 +275,10 @@ class DT_Porch_Admin_Tab_Base {
 
         $new_translations = [];
         foreach ( $fields as $field_key => $field ){
-            if ( isset( $field["translations"] ) ){
+            if ( isset( $field['translations'] ) ){
                 foreach ( $langs as $lang_code => $lang_values ){
-                    if ( isset( $post["field_key_" . $field_key . "_translation-" . $lang_code] ) ){
-                        $new_translations[$field_key][$lang_code] = wp_kses( wp_unslash( $post["field_key_" . $field_key . "_translation-" . $lang_code] ), $allowed_tags );
+                    if ( isset( $post['field_key_' . $field_key . '_translation-' . $lang_code] ) ){
+                        $new_translations[$field_key][$lang_code] = wp_kses( wp_unslash( $post['field_key_' . $field_key . '_translation-' . $lang_code] ), $allowed_tags );
                     }
                 }
             }

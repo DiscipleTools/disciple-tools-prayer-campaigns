@@ -2,10 +2,10 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
-    public $module = "campaigns_24hour_prayer";
+    public $module = 'campaigns_24hour_prayer';
     public $post_type = 'campaigns';
-    public $magic_link_root = "campaign_app";
-    public $magic_link_type = "24hour";
+    public $magic_link_root = 'campaign_app';
+    public $magic_link_type = '24hour';
 
     private static $_instance = null;
     public static function instance() {
@@ -16,7 +16,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     } // End instance()
 
     public function __construct() {
-        $module_enabled = dt_is_module_enabled( "subscriptions_management", true );
+        $module_enabled = dt_is_module_enabled( 'subscriptions_management', true );
         if ( !$module_enabled ){
             return;
         }
@@ -32,16 +32,16 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
     public function dt_custom_fields_settings( $fields, $post_type ){
         if ( $post_type === $this->post_type ){
-            $fields["type"]["default"]["24hour"] = [
+            $fields['type']['default']['24hour'] = [
                 'label' => __( '24/7 Fixed Dates Campaign', 'disciple-tools-prayer-campaigns' ),
                 'description' => __( 'Cover a region with 24h prayer.', 'disciple-tools-prayer-campaigns' ),
-                "visibility" => __( "Collaborators", 'disciple-tools-prayer-campaigns' ),
-                'color' => "#4CAF50",
+                'visibility' => __( 'Collaborators', 'disciple-tools-prayer-campaigns' ),
+                'color' => '#4CAF50',
             ];
         }
         $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", $this->magic_link_type );
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $this->magic_link_type );
         }
         $fields[$key_name] = [
             'name'   => 'Private Key',
@@ -49,28 +49,28 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'type'   => 'hash',
             'default' => dt_create_unique_key(),
             'hidden' => true,
-            "customizable" => false,
+            'customizable' => false,
         ];
         return $fields;
     }
 
 
-    public function dt_details_additional_tiles( $tiles, $post_type = "" ){
-        if ( $post_type === 'campaigns' && !isset( $tiles["campaign_strings"] ) ){
-            $tiles["campaign_strings"] = [
-                "label" => __( "Campaign Strings", 'disciple-tools-prayer-campaigns' ),
-                "description" => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf \r\n\r\n Setup instructions: https://disciple.tools/user-docs/prayer/24-7-prayer-campaign-setup/",
-                "display_for" => [
-                    "type" => [ $this->magic_link_type ],
+    public function dt_details_additional_tiles( $tiles, $post_type = '' ){
+        if ( $post_type === 'campaigns' && !isset( $tiles['campaign_strings'] ) ){
+            $tiles['campaign_strings'] = [
+                'label' => __( 'Campaign Strings', 'disciple-tools-prayer-campaigns' ),
+                'description' => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf \r\n\r\n Setup instructions: https://disciple.tools/user-docs/prayer/24-7-prayer-campaign-setup/",
+                'display_for' => [
+                    'type' => [ $this->magic_link_type ],
                 ]
             ];
         }
-        if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_communication"] ) ){
-            $tiles["campaign_communication"] = [
-                "label" => __( "Campaign Communication", 'disciple-tools-prayer-campaigns' ),
-                "description" => "",
-                "display_for" => [
-                    "type" => [ $this->magic_link_type ],
+        if ( $post_type === 'campaigns' && ! isset( $tiles['campaign_communication'] ) ){
+            $tiles['campaign_communication'] = [
+                'label' => __( 'Campaign Communication', 'disciple-tools-prayer-campaigns' ),
+                'description' => '',
+                'display_for' => [
+                    'type' => [ $this->magic_link_type ],
                 ]
             ];
         }
@@ -78,13 +78,13 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     }
 
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        if ( $post_type === "campaigns" ){
+        if ( $post_type === 'campaigns' ){
             foreach ( $fields as $field_key => $field_value ){
-                if ( strpos( $field_key, "hack-campaign_strings" ) === 0 ){
-                    $temp = explode( '--', str_replace( "hack-campaign_strings-", "", $field_key ) );
+                if ( strpos( $field_key, 'hack-campaign_strings' ) === 0 ){
+                    $temp = explode( '--', str_replace( 'hack-campaign_strings-', '', $field_key ) );
                     $string_key = $temp[0];
                     $lang_code = $temp[1];
-                    $campaign_strings = get_post_meta( $post_id, "campaign_strings", true ) ?? [];
+                    $campaign_strings = get_post_meta( $post_id, 'campaign_strings', true ) ?? [];
                     if ( empty( $campaign_strings ) ){
                         $campaign_strings = [];
                     }
@@ -105,8 +105,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 return;
             }
             $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", "24hour" );
+            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', '24hour' );
             }
             if ( isset( $record[$key_name] ) ) {
                 $key = $record[$key_name];
@@ -127,46 +127,46 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 <?php
             }
 
-            if ( "campaign_strings" === $section ){
+            if ( 'campaign_strings' === $section ){
 
                 $post = DT_Posts::get_post( $post_type, GET_THE_ID() );
-                $strings = $post["campaign_strings"] ?? [];
+                $strings = $post['campaign_strings'] ?? [];
                 $plugin_root = trailingslashit( dirname( __FILE__, 2 ) );
                 $installed_translations = get_available_languages( $plugin_root . 'languages' );
-                array_unshift( $installed_translations, "en_US" );
+                array_unshift( $installed_translations, 'en_US' );
                 $dt_languages = dt_get_available_languages( true );
                 ?>
                 <ul class="tabs" data-tabs id="language-strings-tabs" style="display: block">
                     <?php
                     foreach ( $installed_translations as $index => $translation_key ) :
-                        $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
-                        $label = isset( $dt_languages[$code] ) ? $dt_languages[$code]["native_name"] : ( $code === "en_US" ? "English" : $code );
+                        $code = str_replace( 'disciple-tools-prayer-campaigns-', '', $translation_key );
+                        $label = isset( $dt_languages[$code] ) ? $dt_languages[$code]['native_name'] : ( $code === 'en_US' ? 'English' : $code );
                         ?>
-                        <li class="tabs-title <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>"><a href="#lang-<?php echo esc_html( $code ); ?>" data-tabs-target="lang-<?php echo esc_html( $code ); ?>"><?php echo esc_html( $label ); ?></a></li>
+                        <li class="tabs-title <?php echo esc_html( $code === 'en_US' ? 'is-active' : '' ); ?>"><a href="#lang-<?php echo esc_html( $code ); ?>" data-tabs-target="lang-<?php echo esc_html( $code ); ?>"><?php echo esc_html( $label ); ?></a></li>
                     <?php endforeach; ?>
                 </ul>
 
                 <div class="tabs-content" data-tabs-content="language-strings-tabs">
                     <?php
                     foreach ( $installed_translations as $index => $translation_key ) :
-                        $code = str_replace( "disciple-tools-prayer-campaigns-", "", $translation_key );
+                        $code = str_replace( 'disciple-tools-prayer-campaigns-', '', $translation_key );
                         ?>
-                        <div class="tabs-panel <?php echo esc_html( $code === "en_US" ? 'is-active' : '' ); ?>" id="lang-<?php echo esc_html( $code ); ?>">
+                        <div class="tabs-panel <?php echo esc_html( $code === 'en_US' ? 'is-active' : '' ); ?>" id="lang-<?php echo esc_html( $code ); ?>">
                             <label class="section-subheader">
                                 Campaign Description
-                                <input id="hack-campaign_strings-campaign_description--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]["campaign_description"] ?? '' ); ?>">
+                                <input id="hack-campaign_strings-campaign_description--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]['campaign_description'] ?? '' ); ?>">
                             </label>
                             <label class="section-subheader" >
                                 Extra content in sign up email
-                                <input id="hack-campaign_strings-signup_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]["signup_content"] ?? '' ); ?>">
+                                <input id="hack-campaign_strings-signup_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]['signup_content'] ?? '' ); ?>">
                             </label>
                             <label class="section-subheader">
                                 Extra content in prayer time reminder email
-                                <input id="hack-campaign_strings-reminder_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]["reminder_content"] ?? '' ); ?>">
+                                <input id="hack-campaign_strings-reminder_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]['reminder_content'] ?? '' ); ?>">
                             </label>
 
                             <?php
-                            if ( !isset( $record["start_date"]["timestamp"], $record["end_date"]["timestamp"] ) ) :
+                            if ( !isset( $record['start_date']['timestamp'], $record['end_date']['timestamp'] ) ) :
                                 ?><p>A Start Date and End Date are required for the 24 hour campaign</p><?php
                                 return;
                             endif;
@@ -211,10 +211,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 <?php
             }
 
-            if ( "campaign_communication" === $section ){
+            if ( 'campaign_communication' === $section ){
                 $campaign_id = get_the_ID();
                 $prayer_time_reminder_emails_sent = DT_Subscriptions::get_number_of_notification_emails_sent( $campaign_id );
-                $to_send = DT_Posts::list_posts( "subscriptions", [ "tags" => [ "pre-signup" ], "campaigns" => [ $campaign_id ] ] );
+                $to_send = DT_Posts::list_posts( 'subscriptions', [ 'tags' => [ 'pre-signup' ], 'campaigns' => [ $campaign_id ] ] );
 
                 ?>
                 <div class="cell small-12 medium-4">
@@ -226,9 +226,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                         Email to pre-signup subscribers
                     </div>
                     <p>(those who signed up with no time slots)</p>
-                    <p>Emails to send: <span id="emails_to_send_count"><?php echo esc_html( $to_send["total"] ); ?></span>
-                    <?php if ( $to_send["total"] > 0 ) :
-                        $disabled = $record["status"]["key"] !== "active"
+                    <p>Emails to send: <span id="emails_to_send_count"><?php echo esc_html( $to_send['total'] ); ?></span>
+                    <?php if ( $to_send['total'] > 0 ) :
+                        $disabled = $record['status']['key'] !== 'active'
                         ?>
                         <button id="send_email_to_pre_subscribers" class="button hollow small loader" style="margin: 0 10px" <?php disabled( $disabled ) ?>>Send now</button>
                         <?php if ( $disabled ) :?>
@@ -314,7 +314,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         register_rest_route(
             $namespace, '/'.$this->magic_link_type . '/campaign_info', [
                 [
-                    'methods'  => "GET",
+                    'methods'  => 'GET',
                     'callback' => [ $this, 'campaign_info' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->magic_link_root );
@@ -329,14 +329,14 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         register_rest_route(
             $namespace, '/'.$this->magic_link_type . '/send-pre-signup-email', [
                 [
-                    'methods'  => "GET",
+                    'methods'  => 'GET',
                     'callback' => [ $this, 'send_pre_sign_up_email' ],
                     'permission_callback' => function ( WP_REST_Request $request ){
                         $params = $request->get_params();
-                        if ( !isset( $params["campaign_id"] ) ){
+                        if ( !isset( $params['campaign_id'] ) ){
                             return false;
                         }
-                        return DT_Posts::can_update( "campaigns", $params["campaign_id"] );
+                        return DT_Posts::can_update( 'campaigns', $params['campaign_id'] );
                     }
                 ],
             ]
@@ -345,8 +345,8 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
     public function send_pre_sign_up_email( WP_REST_Request $request ){
         $params = $request->get_params();
-        if ( !isset( $params["campaign_id"] ) ){
-             new WP_Error( __METHOD__, "Missing campaign id", [ 'status' => 400 ] );
+        if ( !isset( $params['campaign_id'] ) ){
+             new WP_Error( __METHOD__, 'Missing campaign id', [ 'status' => 400 ] );
         }
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         return DT_Prayer_Campaigns_Send_Email::send_pre_sign_up_email( $campaign_post_id );
@@ -356,21 +356,21 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     public function create_subscription( WP_REST_Request $request ) {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
-        if ( !$post_id || !isset( $params["campaign_id"] ) || (int) $post_id !== (int) $params["campaign_id"] ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        if ( !$post_id || !isset( $params['campaign_id'] ) || (int) $post_id !== (int) $params['campaign_id'] ){
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
         }
 
         // create
         if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
-            return new WP_Error( __METHOD__, "Missing email", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing email', [ 'status' => 400 ] );
         }
         if ( ! isset( $params['selected_times'] ) ) {
-            return new WP_Error( __METHOD__, "Missing times and locations", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing times and locations', [ 'status' => 400 ] );
         }
         if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
-            return new WP_Error( __METHOD__, "Missing timezone", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing timezone', [ 'status' => 400 ] );
         }
 
         $email = $params['email'];
@@ -379,42 +379,42 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             $title = $email;
         }
 
-        $receive_prayer_time_notifications = isset( $params["receive_prayer_time_notifications"] ) && !empty( $params["receive_prayer_time_notifications"] );
+        $receive_prayer_time_notifications = isset( $params['receive_prayer_time_notifications'] ) && !empty( $params['receive_prayer_time_notifications'] );
 
-        $existing_posts = DT_Posts::list_posts( "subscriptions", [
-            "campaigns" => [ $params["campaign_id"] ],
-            "contact_email" => [ $email ]
+        $existing_posts = DT_Posts::list_posts( 'subscriptions', [
+            'campaigns' => [ $params['campaign_id'] ],
+            'contact_email' => [ $email ]
         ], false );
 
-        if ( (int) $existing_posts["total"] === 1 ){
-            $subscriber_id = $existing_posts["posts"][0]["ID"];
-            $added_times = DT_Subscriptions::add_subscriber_times( $params["campaign_id"], $subscriber_id, $params['selected_times'] );
+        if ( (int) $existing_posts['total'] === 1 ){
+            $subscriber_id = $existing_posts['posts'][0]['ID'];
+            $added_times = DT_Subscriptions::add_subscriber_times( $params['campaign_id'], $subscriber_id, $params['selected_times'] );
             if ( is_wp_error( $added_times ) ){
                 return $added_times;
             }
         } else {
-            $lang = "en_US";
-            if ( isset( $params["parts"]["lang"] ) ){
-                $lang = $params["parts"]["lang"];
+            $lang = 'en_US';
+            if ( isset( $params['parts']['lang'] ) ){
+                $lang = $params['parts']['lang'];
             }
-            $subscriber_id = DT_Subscriptions::create_subscriber( $params["campaign_id"], $email, $title, $params['selected_times'], [
-                "receive_prayer_time_notifications" => $receive_prayer_time_notifications,
-                "timezone" => $params["timezone"],
-                "lang" => $lang,
+            $subscriber_id = DT_Subscriptions::create_subscriber( $params['campaign_id'], $email, $title, $params['selected_times'], [
+                'receive_prayer_time_notifications' => $receive_prayer_time_notifications,
+                'timezone' => $params['timezone'],
+                'lang' => $lang,
             ]);
             if ( is_wp_error( $subscriber_id ) ){
-                return new WP_Error( __METHOD__, "Could not create record", [ 'status' => 400 ] );
+                return new WP_Error( __METHOD__, 'Could not create record', [ 'status' => 400 ] );
             }
         }
 
         if ( !empty( $params['selected_times'] ) ){
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params["campaign_id"] );
+            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params['campaign_id'] );
         } else {
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_pre_registration( $subscriber_id, $params["campaign_id"] );
+            $email_sent = DT_Prayer_Campaigns_Send_Email::send_pre_registration( $subscriber_id, $params['campaign_id'] );
         }
 
         if ( !$email_sent ){
-            return new WP_Error( __METHOD__, "Could not send email confirmation", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );
         }
 
         return true;
@@ -424,15 +424,15 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
-        if ( !$post_id || !isset( $params["campaign_id"] ) || $post_id !== $params["campaign_id"] ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+        if ( !$post_id || !isset( $params['campaign_id'] ) || $post_id !== $params['campaign_id'] ){
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
         }
 
         // @todo insert email reset link
         if ( ! isset( $params['email'], $params['campaign_id'] ) ) {
-            return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing required parameter.', [ 'status' => 400 ] );
         }
 
         DT_Prayer_Campaigns_Send_Email::send_account_access( $params['campaign_id'], $params['email'] );
@@ -443,32 +443,32 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
     public function campaign_info( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
 
-        $record = DT_Posts::get_post( "campaigns", $post_id, true, false );
+        $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
         if ( is_wp_error( $record ) ){
             return;
         }
         $coverage_levels = DT_Campaigns_Base::query_coverage_levels_progress( $post_id );
         $number_of_time_slots = DT_Campaigns_Base::query_coverage_total_time_slots( $post_id );
 
-        $coverage_percentage = $coverage_levels[0]["percent"];
-        $second_level = isset( $coverage_levels[1]["percent"] ) ? $coverage_levels[1]["percent"] : "";
+        $coverage_percentage = $coverage_levels[0]['percent'];
+        $second_level = isset( $coverage_levels[1]['percent'] ) ? $coverage_levels[1]['percent'] : '';
 
         $min_time_duration = 15;
-        if ( isset( $record["min_time_duration"]["key"] ) ){
-            $min_time_duration = $record["min_time_duration"]["key"];
+        if ( isset( $record['min_time_duration']['key'] ) ){
+            $min_time_duration = $record['min_time_duration']['key'];
         }
         $minutes_committed = 0;
         foreach ( $coverage_levels as $level ){
-            $minutes_committed += $level["blocks_covered"] * $min_time_duration;
+            $minutes_committed += $level['blocks_covered'] * $min_time_duration;
         }
 
-        $locale = $params["parts"]["lang"] ?: "en_US";
-        $description = "";
-        if ( isset( $record["campaign_strings"][$locale]["campaign_description"] ) ){
-            $description = $record["campaign_strings"][$locale]["campaign_description"];
+        $locale = $params['parts']['lang'] ?: 'en_US';
+        $description = '';
+        if ( isset( $record['campaign_strings'][$locale]['campaign_description'] ) ){
+            $description = $record['campaign_strings'][$locale]['campaign_description'];
         }
         $grid_id = 1;
         if ( isset( $record['location_grid'] ) && ! empty( $record['location_grid'] ) ) {
@@ -476,13 +476,13 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         }
         $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id );
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );
-        $field_settings = DT_Posts::get_post_field_settings( "campaigns" );
+        $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
         $return = [
-            "description" => $description,
-            "coverage_levels" => $coverage_levels,
-            "number_of_time_slots" => $number_of_time_slots,
-            "coverage_percentage" => $coverage_percentage,
+            'description' => $description,
+            'coverage_levels' => $coverage_levels,
+            'number_of_time_slots' => $number_of_time_slots,
+            'coverage_percentage' => $coverage_percentage,
             'campaign_id' => $post_id,
             'campaign_grid_id' => $grid_id,
             'translations' => [],
@@ -491,12 +491,12 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'current_commitments' => $current_commitments,
             'slot_length' => (int) $min_time_duration,
             'second_level' => $second_level,
-            "duration_options" => $field_settings["duration_options"]["default"],
-            'status' => $record["status"]["key"],
+            'duration_options' => $field_settings['duration_options']['default'],
+            'status' => $record['status']['key'],
             'minutes_committed' => $minutes_committed,
-            'prayers_count' => sizeof( $record["subscriptions"] ?? [] ),
+            'prayers_count' => sizeof( $record['subscriptions'] ?? [] ),
         ];
-        return apply_filters( "prayer_campaign_info_response", $return );
+        return apply_filters( 'prayer_campaign_info_response', $return );
     }
 
 }

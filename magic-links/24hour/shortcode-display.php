@@ -10,12 +10,12 @@ class DT_Campaigns_Fixed_Shortcode_Display {
     }
     public function body(){
         $atts = $this->parts;
-        $atts["rest_url"] = rest_url();
+        $atts['rest_url'] = rest_url();
         $atts['backdrop'] = 'true';
         $progress_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-fixed-campaign-percentage', $atts );
         $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-fixed-campaign-calendar', $atts );
         $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-fixed-campaign-signup', $atts );
-        $prayer_timer_shortcode = dt_campaigns_build_shortcode_from_array( 'dt_prayer_timer', [ "color" => '#3e729a', 'duration' => '15' ] );
+        $prayer_timer_shortcode = dt_campaigns_build_shortcode_from_array( 'dt_prayer_timer', [ 'color' => '#3e729a', 'duration' => '15' ] );
         ?>
         <style>
             #dt-ongoing-display {

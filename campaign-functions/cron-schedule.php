@@ -19,8 +19,8 @@ function dt_prayer_campaign_prayer_time_reminder(){
     $end_time_range = time() + $lead_time_in_hours * 3600;
 
     $key_name = 'public_key';
-    if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-        $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+    if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+        $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
     }
     /**
      * Get reports
@@ -97,9 +97,9 @@ function dt_prayer_campaign_prayer_time_reminder(){
             if ( is_wp_error( $record ) ){
                 continue;
             }
-            $lang_code = "en_US";
-            if ( isset( $record["lang"] ) && !empty( $lang_code ) ){
-                $lang_code = sanitize_text_field( wp_unslash( $record["lang"] ) );
+            $lang_code = 'en_US';
+            if ( isset( $record['lang'] ) && !empty( $lang_code ) ){
+                $lang_code = sanitize_text_field( wp_unslash( $record['lang'] ) );
             }
             add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
                 if ( !empty( $lang_code ) ){
@@ -108,13 +108,13 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 return $locale;
             } );
             dt_campaign_reload_text_domain();
-            $timezone = !empty( $record["timezone"] ) ? $record["timezone"] : 'America/Chicago';
+            $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             foreach ( $reports as $row ){
 
                 $to[$row['email']] = $row['email'];
-                $begin_date = new DateTime( "@".$row['time_begin'] );
-                $end_date = new DateTime( "@".$row['time_end'] );
+                $begin_date = new DateTime( '@'.$row['time_begin'] );
+                $end_date = new DateTime( '@'.$row['time_end'] );
                 $begin_date->setTimezone( $tz );
                 $end_date->setTimezone( $tz );
                 $commitment_list .= sprintf(
@@ -123,23 +123,23 @@ function dt_prayer_campaign_prayer_time_reminder(){
                     '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
                     '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
                 );
-                if ( !empty( $row["label"] ) ){
-                    $commitment_list .= " " . sprintf( _x( 'for %s', 'for Paris, France', 'disciple-tools-prayer-campaigns' ), $row["label"] );
+                if ( !empty( $row['label'] ) ){
+                    $commitment_list .= ' ' . sprintf( _x( 'for %s', 'for Paris, France', 'disciple-tools-prayer-campaigns' ), $row['label'] );
                 }
                 $commitment_list .= '<br>';
             }
             $e['to'] = implode( ',', $to );
 
-            $prayer_content_message = "";
-            if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["reminder_content"] ) ){
-                $prayer_content_message = $campaign["campaign_strings"][$record["lang"]]["reminder_content"];
+            $prayer_content_message = '';
+            if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) ){
+                $prayer_content_message = $campaign['campaign_strings'][$record['lang']]['reminder_content'];
             }
 
             $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
             $e['message'] =
                 '
-                <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>
+                <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) . '</h3>
                 <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
                 <p>' . __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) . '</p>
                 <p>'.$commitment_list.'</p>

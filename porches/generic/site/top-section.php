@@ -46,7 +46,7 @@ $langs = dt_campaign_list_languages();
 
                             <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
 
-                            <?php echo esc_html( $language["flag"] ); ?> <?php echo esc_html( $language["native_name"] ); ?>
+                            <?php echo esc_html( $language['flag'] ); ?> <?php echo esc_html( $language['native_name'] ); ?>
 
                             </option>
 
@@ -74,13 +74,13 @@ $langs = dt_campaign_list_languages();
                     <?php else : ?>
 
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( "title", $lang ) ) ?>
+                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'title', $lang ) ) ?>
                         </h1>
 
                     <?php endif; ?>
 
                     <h4>
-                        <?php echo esc_html( DT_Porch_Settings::get_field_translation( "subtitle", $lang ) ); ?>
+                        <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'subtitle', $lang ) ); ?>
                     </h4>
 
                     <?php

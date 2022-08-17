@@ -65,7 +65,7 @@ class DT_Campaign_Settings {
      */
     public static function what_day_in_campaign( string $date ) {
         $campaign = self::get_campaign();
-        $campaign_start_date = $campaign["start_date"]["formatted"];
+        $campaign_start_date = $campaign['start_date']['formatted'];
 
 
         $diff = self::diff_days_between_dates( $campaign_start_date, $date );
@@ -83,7 +83,7 @@ class DT_Campaign_Settings {
         $end_date = new DateTime( $end );
         $start_date = new DateTime( $start );
 
-        return intval( $start_date->diff( $end_date )->format( "%r%a" ) );
+        return intval( $start_date->diff( $end_date )->format( '%r%a' ) );
     }
 
     /**
@@ -94,17 +94,17 @@ class DT_Campaign_Settings {
     public static function campaign_length() {
         $campaign = self::get_campaign();
 
-        if ( !isset( $campaign["end_date"] ) ) {
+        if ( !isset( $campaign['end_date'] ) ) {
             return -1;
         }
 
-        $campaign_start_date = $campaign["start_date"]["formatted"];
-        $campaign_end_date = $campaign["end_date"]["formatted"];
+        $campaign_start_date = $campaign['start_date']['formatted'];
+        $campaign_end_date = $campaign['end_date']['formatted'];
 
         $campaign_start = new DateTime( $campaign_start_date );
         $campaign_end = new DateTime( $campaign_end_date );
 
-        $diff = intval( $campaign_start->diff( $campaign_end )->format( "%r%a" ) );
+        $diff = intval( $campaign_start->diff( $campaign_end )->format( '%r%a' ) );
 
         /* If the date given is the same as the start, then this is day 1 not day 0 */
         /* If the date given is before the start, then this is a negative day */
@@ -116,8 +116,8 @@ class DT_Campaign_Settings {
      */
     public static function date_of_campaign_day( int $day ) {
         $campaign = self::get_campaign();
-        $campaign_start_time = $campaign["start_date"]["timestamp"];
+        $campaign_start_time = $campaign['start_date']['timestamp'];
 
-        return gmdate( "Y-m-d H:i:s", $campaign_start_time + ( $day - 1 ) * DAY_IN_SECONDS );
+        return gmdate( 'Y-m-d H:i:s', $campaign_start_time + ( $day - 1 ) * DAY_IN_SECONDS );
     }
 }

@@ -17,7 +17,7 @@ function recursive_parse_args( $args, $defaults ) {
         if ( is_array( $value ) && isset( $new_args[ $key ] ) ) {
             $new_args[ $key ] = recursive_parse_args( $value, $new_args[ $key ] );
         }
-        elseif ( $key !== "default" && isset( $new_args[$key] ) ){
+        elseif ( $key !== 'default' && isset( $new_args[$key] ) ){
             $new_args[ $key ] = $value;
         }
     }
@@ -35,7 +35,7 @@ function recursive_parse_args( $args, $defaults ) {
  *
  * @return array
  */
-function dt_merge_settings( $settings, $defaults, $value_key = "value" ) {
+function dt_merge_settings( $settings, $defaults, $value_key = 'value' ) {
     $new_settings = (array) $defaults;
 
     foreach ( $settings as $key => $value ) {
@@ -71,14 +71,14 @@ function dt_validate_settings( $settings, $defaults ) {
  * @return string
  */
 function dt_campaign_get_current_lang(): string {
-    $lang = "en_US";
-    if ( defined( "PORCH_DEFAULT_LANGUAGE" ) ){
+    $lang = 'en_US';
+    if ( defined( 'PORCH_DEFAULT_LANGUAGE' ) ){
         $lang = PORCH_DEFAULT_LANGUAGE;
     }
-    if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
-        $lang = sanitize_text_field( wp_unslash( $_GET["lang"] ) );
-    } elseif ( isset( $_COOKIE["dt-magic-link-lang"] ) && !empty( $_COOKIE["dt-magic-link-lang"] ) ){
-        $lang = sanitize_text_field( wp_unslash( $_COOKIE["dt-magic-link-lang"] ) );
+    if ( isset( $_GET['lang'] ) && !empty( $_GET['lang'] ) ){
+        $lang = sanitize_text_field( wp_unslash( $_GET['lang'] ) );
+    } elseif ( isset( $_COOKIE['dt-magic-link-lang'] ) && !empty( $_COOKIE['dt-magic-link-lang'] ) ){
+        $lang = sanitize_text_field( wp_unslash( $_COOKIE['dt-magic-link-lang'] ) );
     }
     return $lang;
 }
@@ -93,7 +93,7 @@ function dt_campaign_reload_text_domain(){
  * @param string $lang
  */
 function dt_campaign_add_lang_to_cookie( string $lang ) {
-    if ( isset( $_GET["lang"] ) && !empty( $_GET["lang"] ) ){
+    if ( isset( $_GET['lang'] ) && !empty( $_GET['lang'] ) ){
         setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
     }
 }

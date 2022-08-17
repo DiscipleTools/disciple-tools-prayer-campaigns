@@ -62,7 +62,7 @@ class DT_Porch_Settings {
      */
     private static function filter_settings( array $settings, string $key, string $value ): array {
         $match_settings_with_tab = function( $setting ) use ( $key, $value ) {
-            if ( $value === "" && ( !isset( $setting[$key] ) || !$setting[$key] ) ) {
+            if ( $value === '' && ( !isset( $setting[$key] ) || !$setting[$key] ) ) {
                 return true;
             } elseif ( isset( $setting[$key] ) && $setting[$key] === $value ) {
                 return true;
@@ -135,16 +135,16 @@ class DT_Porch_Settings {
 
         $has_fields_with_no_section = false;
         foreach ( $fields as $key => $field ) {
-            if ( !$has_fields_with_no_section && ( !isset( $field["section"] ) || !$field["section"] ) ) {
+            if ( !$has_fields_with_no_section && ( !isset( $field['section'] ) || !$field['section'] ) ) {
                 $has_fields_with_no_section = true;
             }
-            if ( isset( $field["section"] ) && !in_array( $field["section"], $sections, true ) ) {
-                $sections[] = $field["section"];
+            if ( isset( $field['section'] ) && !in_array( $field['section'], $sections, true ) ) {
+                $sections[] = $field['section'];
             }
         }
 
         if ( $has_fields_with_no_section ) {
-            array_push( $sections, "" );
+            array_push( $sections, '' );
         }
 
         return $sections;
@@ -158,16 +158,16 @@ class DT_Porch_Settings {
         $fields = self::settings();
 
         if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
-            return "";
+            return '';
         }
 
         $field = $fields[$field_name];
 
-        if ( isset( $field["translations"][$code] ) && !empty( $field["translations"][$code] ) ) {
-            return $field["translations"][$code];
+        if ( isset( $field['translations'][$code] ) && !empty( $field['translations'][$code] ) ) {
+            return $field['translations'][$code];
         }
 
-        return $field["value"] ?: ( $field["default"] ?? "" );
+        return $field['value'] ?: ( $field['default'] ?? '' );
     }
 
     private static function get_defaults() {
@@ -236,7 +236,7 @@ class DT_Porch_Settings {
             ],
             'google_analytics' => [
                 'label' => 'Google Analytics',
-                'default' => get_site_option( "p4r_porch_google_analytics" ),
+                'default' => get_site_option( 'p4r_porch_google_analytics' ),
                 'value' => '',
                 'type' => 'textarea',
                 'tab' => 'settings',

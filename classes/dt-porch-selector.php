@@ -55,6 +55,6 @@ class DT_Porch_Selector {
 
         $selected_porch_id = $this->get_selected_porch_id();
 
-        return $porches[$selected_porch_id]["class"];
+        return $porches[$selected_porch_id]['class'];
     }
 }

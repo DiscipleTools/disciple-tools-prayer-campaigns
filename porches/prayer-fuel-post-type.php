@@ -50,7 +50,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         add_action( 'transition_post_status', [ $this, 'transition_post' ], 10, 3 );
         add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
         add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
-        add_action( "dt_post_updated", [ $this, 'update_post' ], 10, 5 );
+        add_action( 'dt_post_updated', [ $this, 'update_post' ], 10, 5 );
 
         if ( is_admin() && isset( $_GET['post_type'] ) && PORCH_LANDING_POST_TYPE === $_GET['post_type'] ){
             add_action( 'pre_get_posts', [ $this, 'dt_landing_order_by_date' ] );
@@ -77,7 +77,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         $lang = get_post_meta( $post->ID, 'post_language', true );
 
         if ( empty( $lang ) ) {
-            $lang = isset( $_GET["post_language"] ) ? sanitize_text_field( wp_unslash( $_GET["post_language"] ) ) : null;
+            $lang = isset( $_GET['post_language'] ) ? sanitize_text_field( wp_unslash( $_GET['post_language'] ) ) : null;
         }
 
         $langs = $this->language_settings->get_enabled_languages();
@@ -91,7 +91,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         <select class="dt-magic-link-language-selector" name="dt-landing-language-selector">
             <?php foreach ( $langs as $code => $language ) : ?>
                 <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang == $code ) ?>>
-                    <?php echo esc_html( $language["flag"] ); ?> <?php echo esc_html( $language["native_name"] ); ?>
+                    <?php echo esc_html( $language['flag'] ); ?> <?php echo esc_html( $language['native_name'] ); ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -102,7 +102,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         $campaign_day = get_post_meta( $post->ID, 'day', true );
 
         $latest_campaign_day = DT_Campaign_Prayer_Post_Importer::instance()->find_latest_prayer_fuel_day();
-        $day = isset( $_GET["day"] ) ? sanitize_text_field( wp_unslash( $_GET["day"] ) ) : $latest_campaign_day + 1;
+        $day = isset( $_GET['day'] ) ? sanitize_text_field( wp_unslash( $_GET['day'] ) ) : $latest_campaign_day + 1;
 
         $value = !empty( $campaign_day ) ? $campaign_day : $day;
 
@@ -140,25 +140,25 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         $post_submission = dt_recursive_sanitize_array( wp_unslash( $_POST ) );
 
         if ( isset( $_POST['landing-language-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-language-selector'] ) ), 'landing-language-selector' ) ) {
-            if ( isset( $_POST["dt-landing-language-selector"] ) ){
-                update_post_meta( $post_submission["ID"], 'post_language', $post_submission["dt-landing-language-selector"] );
+            if ( isset( $_POST['dt-landing-language-selector'] ) ){
+                update_post_meta( $post_submission['ID'], 'post_language', $post_submission['dt-landing-language-selector'] );
             }
         }
 
         if ( isset( $_POST['landing-day-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-day-selector'] ) ), 'landing-day-selector' ) ) {
 
-            if ( !empty( $_POST["dt-landing-date-selector"] ) ) {
+            if ( !empty( $_POST['dt-landing-date-selector'] ) ) {
                 update_post_meta( $id, 'fixed', true );
-                $post_date = $post_submission["dt-landing-date-selector"];
+                $post_date = $post_submission['dt-landing-date-selector'];
                 $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
-            } else if ( isset( $_POST["dt-landing-day-selector"] ) ){
-                $day = $post_submission["dt-landing-day-selector"];
+            } else if ( isset( $_POST['dt-landing-day-selector'] ) ){
+                $day = $post_submission['dt-landing-day-selector'];
             }
             update_post_meta( $id, 'day', $day );
         }
 
         if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
-            $day = get_post_meta( $id, "day", true );
+            $day = get_post_meta( $id, 'day', true );
 
             if ( $day !== false && !empty( $day ) ) {
                 update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
@@ -168,13 +168,13 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     public function update_post( $post_type, $post_id, $initial_fields, $existing_post, $post ) {
 
-        if ( $post_type === "campaigns" ) {
-            if ( array_key_exists( "start_date", $initial_fields ) ) {
-                if ( $post["start_date"]["timestamp"] !== $existing_post["start_date"]["timestamp"] ) {
+        if ( $post_type === 'campaigns' ) {
+            if ( array_key_exists( 'start_date', $initial_fields ) ) {
+                if ( $post['start_date']['timestamp'] !== $existing_post['start_date']['timestamp'] ) {
                     global $wpdb;
 
-                    $old_start_date = $existing_post["start_date"]["formatted"];
-                    $new_start_date = $post["start_date"]["formatted"];
+                    $old_start_date = $existing_post['start_date']['formatted'];
+                    $new_start_date = $post['start_date']['formatted'];
 
                     $diff_in_start_days = DT_Campaign_Settings::diff_days_between_dates( $old_start_date, $new_start_date );
 
@@ -288,11 +288,11 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             $slug = str_replace( '"', '', $slug );
             $slug = str_replace( '&', '', $slug );
             $slug = str_replace( "'", '', $slug );
-            $slug = str_replace( ",", '', $slug );
-            $slug = str_replace( ":", '', $slug );
-            $slug = str_replace( ";", '', $slug );
-            $slug = str_replace( ".", '', $slug );
-            $slug = str_replace( "/", '', $slug );
+            $slug = str_replace( ',', '', $slug );
+            $slug = str_replace( ':', '', $slug );
+            $slug = str_replace( ';', '', $slug );
+            $slug = str_replace( '.', '', $slug );
+            $slug = str_replace( '/', '', $slug );
             $slug = urlencode( $slug );
 
             $current_public_key = get_post_meta( $post_id, PORCH_LANDING_META_KEY, true );
@@ -323,7 +323,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 $public_key = get_post_meta( $post_id, PORCH_LANDING_META_KEY, true );
                 $language = get_post_meta( $post_id, 'post_language', true );
                 if ( empty( $language ) ){
-                    $language = "en_US";
+                    $language = 'en_US';
                 }
                 $url = trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key . '?lang=' . $language;
                 echo '<a href="' . esc_url( $url ) . '">'. esc_html( $url ) .'</a>';
@@ -331,14 +331,14 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             case 'language' :
                 $language = get_post_meta( $post_id, 'post_language', true );
                 if ( empty( $language ) ){
-                    $language = "en_US";
+                    $language = 'en_US';
                 }
                 /* This is waiting for the language PR to be merged in before it can use that functionality */
                 $languages = dt_get_available_languages( true );
-                if ( !isset( $languages[$language]["flag"] ) ){
+                if ( !isset( $languages[$language]['flag'] ) ){
                     echo esc_html( $language );
                 } else {
-                    echo esc_html( $languages[$language]["flag"] );
+                    echo esc_html( $languages[$language]['flag'] );
                 }
                 break;
             case 'last_modified':
@@ -368,20 +368,20 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 'compare' => '=',
             ]
         ];
-        if ( $lang === "en_US" ){
+        if ( $lang === 'en_US' ){
             $lang_query[] = [
                 'key'     => 'post_language',
                 'compare' => 'NOT EXISTS',
             ];
-            $lang_query["relation"] = "OR";
+            $lang_query['relation'] = 'OR';
         }
 
         $meta_query = [
-            "relation" => "AND",
+            'relation' => 'AND',
             [
-                "key" => "day",
-                "value" => $day,
-                "compare" => "=",
+                'key' => 'day',
+                'value' => $day,
+                'compare' => '=',
             ],
             $lang_query,
         ];
@@ -426,8 +426,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                         'compare' => 'NOT EXISTS',
                     ],
                     [
-                        "key" => "day",
-                        "value" => $day,
+                        'key' => 'day',
+                        'value' => $day,
                     ]
                 ]
             );

@@ -8,8 +8,8 @@ class DT_Subscriptions {
             $args,
             [
                 'receive_prayer_time_notifications' => false,
-                "timezone" => "",
-                "lang" => "en_US"
+                'timezone' => '',
+                'lang' => 'en_US'
             ]
         );
 
@@ -20,26 +20,26 @@ class DT_Subscriptions {
 
 
         $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
         $fields = [
             'title' => $title,
-            "contact_email" => [
-                [ "value" => $email ],
+            'contact_email' => [
+                [ 'value' => $email ],
             ],
             'campaigns' => [
-                "values" => [
-                    [ "value" => $campaign_id ],
+                'values' => [
+                    [ 'value' => $campaign_id ],
                 ],
             ],
-            'timezone' => $args["timezone"],
-            'lang' => $args["lang"],
+            'timezone' => $args['timezone'],
+            'lang' => $args['lang'],
             $key_name => $hash,
-            'receive_prayer_time_notifications' => $args["receive_prayer_time_notifications"],
+            'receive_prayer_time_notifications' => $args['receive_prayer_time_notifications'],
         ];
         if ( sizeof( $times ) === 0 ){
-            $fields["tags"] = [ "values" => [ [ "value" => 'pre-signup' ] ] ];
+            $fields['tags'] = [ 'values' => [ [ 'value' => 'pre-signup' ] ] ];
         }
 
 
@@ -49,11 +49,11 @@ class DT_Subscriptions {
             return $new_subscriber;
         }
 
-        $added_reports = self::add_subscriber_times( $campaign_id, $new_subscriber["ID"], $times );
+        $added_reports = self::add_subscriber_times( $campaign_id, $new_subscriber['ID'], $times );
         if ( is_wp_error( $added_reports ) ){
             return $added_reports;
         }
-        return $new_subscriber["ID"];
+        return $new_subscriber['ID'];
     }
 
     /*
@@ -98,12 +98,12 @@ class DT_Subscriptions {
      */
     public static function add_subscriber_times( $campaign_id, $subscription_id, $times ){
         foreach ( $times as $time ){
-            if ( !isset( $time["time"] ) ){
+            if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time["time"], $time["duration"], $time['grid_id'] ?? null );
+            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null );
             if ( !$new_report ){
-                return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
+                return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
         return true;
@@ -122,11 +122,11 @@ class DT_Subscriptions {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
-            return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
         }
 
-        if ( empty( $location_id ) && isset( $campaign["location_grid"][0]['id'] ) ){
-            $location_id = $campaign["location_grid"][0]['id'];
+        if ( empty( $location_id ) && isset( $campaign['location_grid'][0]['id'] ) ){
+            $location_id = $campaign['location_grid'][0]['id'];
         }
 
         $duration_mins = 15;
@@ -138,7 +138,7 @@ class DT_Subscriptions {
             'post_id' => $subscription_id,
             'post_type' => 'subscriptions',
             'type' => 'campaign_app',
-            'subtype' => $campaign["type"]["key"],
+            'subtype' => $campaign['type']['key'],
             'payload' => null,
             'value' => 0,
             'lng' => null,
@@ -162,13 +162,13 @@ class DT_Subscriptions {
         }
         $new_report = Disciple_Tools_Reports::insert( $args );
 
-        $label = "Commitment added: " . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
+        $label = 'Commitment added: ' . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
         dt_activity_insert([
             'action' => 'add_subscription',
-            'object_type' => $args["post_type"], // If this could be contacts/groups, that would be best
+            'object_type' => $args['post_type'], // If this could be contacts/groups, that would be best
             'object_subtype' => 'report',
             'object_note' => $label,
-            'object_id' => $args["post_id"]
+            'object_id' => $args['post_id']
         ] );
 
         return $new_report;

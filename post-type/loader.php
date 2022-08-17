@@ -14,29 +14,29 @@ if ( ! class_exists( 'DT_Module_Base' ) ) {
  */
 add_filter( 'dt_post_type_modules', function( $modules ){
 
-    $modules["subscriptions_management"] = [
-        "name" => "Subscriptions Management",
-        "enabled" => true,
-        "locked" => true,
-        "prerequisites" => [],
-        "post_type" => "subscriptions",
-        "description" => "Subscriptions Management"
+    $modules['subscriptions_management'] = [
+        'name' => 'Subscriptions Management',
+        'enabled' => true,
+        'locked' => true,
+        'prerequisites' => [],
+        'post_type' => 'subscriptions',
+        'description' => 'Subscriptions Management'
     ];
 
-    $modules["campaigns_24hour_prayer"] = [
-        "name" => "Campaigns - 24Hour Prayer",
-        "enabled" => true,
-        "locked" => false,
-        "prerequisites" => [],
-        "post_type" => "campaigns",
-        "description" => "Campaigns - 24Hour Prayer"
+    $modules['campaigns_24hour_prayer'] = [
+        'name' => 'Campaigns - 24Hour Prayer',
+        'enabled' => true,
+        'locked' => false,
+        'prerequisites' => [],
+        'post_type' => 'campaigns',
+        'description' => 'Campaigns - 24Hour Prayer'
     ];
 
-    if ( isset( $modules["contacts_base"] ) ){
-        $modules["contacts_base"]["locked"] = false;
+    if ( isset( $modules['contacts_base'] ) ){
+        $modules['contacts_base']['locked'] = false;
     }
-    if ( isset( $modules["groups_base"] ) ){
-        $modules["groups_base"]["locked"] = false;
+    if ( isset( $modules['groups_base'] ) ){
+        $modules['groups_base']['locked'] = false;
     }
 
     return $modules;

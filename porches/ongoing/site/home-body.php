@@ -10,29 +10,29 @@ if ( empty( $campaign_fields ) ): ?>
     <?php die();
 endif;
 
-$campaign_root = "campaign_app";
-$campaign_type = $campaign_fields["type"]["key"];
+$campaign_root = 'campaign_app';
+$campaign_type = $campaign_fields['type']['key'];
 $key_name = 'public_key';
-$key = "";
-if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
+$key = '';
+if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
     $key_name = DT_Magic_URL::get_public_key_meta_key( $campaign_root, $campaign_type );
 }
 if ( isset( $campaign_fields[$key_name] ) ){
     $key = $campaign_fields[$key_name];
 }
 $atts = [
-    "root" => $campaign_root,
-    "type" => $campaign_type,
-    "public_key" => $key,
-    "meta_key" => $key_name,
-    "post_id" => (int) $campaign_fields["ID"],
-    "rest_url" => rest_url(),
-    "lang" => $lang
+    'root' => $campaign_root,
+    'type' => $campaign_type,
+    'public_key' => $key,
+    'meta_key' => $key_name,
+    'post_id' => (int) $campaign_fields['ID'],
+    'rest_url' => rest_url(),
+    'lang' => $lang
 ];
 $dt_campaign_selected_campaign_magic_link_settings = $atts;
-$dt_campaign_selected_campaign_magic_link_settings["color"] = PORCH_COLOR_SCHEME_HEX;
-if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
-    $dt_campaign_selected_campaign_magic_link_settings["color"] = '#4676fa';
+$dt_campaign_selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME_HEX;
+if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
+    $dt_campaign_selected_campaign_magic_link_settings['color'] = '#4676fa';
 }
 ?>
 
@@ -47,7 +47,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
                 <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "vision" ) ) ); ?>
+                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( 'vision' ) ) ); ?>
                 </p>
                 </div>
             </div>
@@ -108,7 +108,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         </div>
         <div class="row" style="margin-top: 30px">
             <div class="col-sm-12 col-md-8" style="color: white">
-                <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( "what_content" ) ) ); ?>
+                <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( 'what_content' ) ) ); ?>
             </div>
             <div class="col-sm-12 col-md-4">
                 <?php //phpcs:ignore ?>
@@ -122,9 +122,9 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
     let myfunc = setInterval(function() {
         // The data/time we want to countdown to
         <?php
-        $timezone = !empty( $campaign_fields["campaign_timezone"] ) ? $campaign_fields["campaign_timezone"]["key"] : 'America/Chicago';
+        $timezone = !empty( $campaign_fields['campaign_timezone'] ) ? $campaign_fields['campaign_timezone']['key'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
-        $begin_date = new DateTime( "@".$campaign_fields['start_date']['timestamp'] );
+        $begin_date = new DateTime( '@'.$campaign_fields['start_date']['timestamp'] );
         $begin_date->setTimezone( $tz );
         $timezone_offset = $tz->getOffset( $begin_date );
 
@@ -149,7 +149,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
 
         if ( hasEndDate && endTimeLeft < 0 ) {
             clearInterval(myfunc);
-            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( "%s is Finished", 'Campaign Name is Finished', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( '%s is Finished', 'Campaign Name is Finished', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( 'campaign_name' ) ) ); ?>"
             document.getElementById("days").innerHTML = ""
             document.getElementById("hours").innerHTML = ""
             document.getElementById("mins").innerHTML = ""
@@ -162,18 +162,18 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
             minutes = Math.floor((endTimeLeft % (60 * 60)) / 60);
             seconds = Math.floor(endTimeLeft % 60);
 
-            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( "%s Ends In", 'Campaign Name End in [4 days]', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
-            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
-            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'disciple-tools-prayer-campaigns' ); ?>, "
-            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'disciple-tools-prayer-campaigns' ); ?>, "
-            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'disciple-tools-prayer-campaigns' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( '%s Ends In', 'Campaign Name End in [4 days]', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( 'campaign_name' ) ) ); ?>"
+            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( 'days', 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( 'hours', 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( 'minutes', 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( 'seconds', 'disciple-tools-prayer-campaigns' ); ?>"
 
         } else {
-            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( "%s Begins In", 'Campaign Name End in [4 days]', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( "campaign_name" ) ) ); ?>"
-            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( "days", 'disciple-tools-prayer-campaigns' ); ?>, "
-            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( "hours", 'disciple-tools-prayer-campaigns' ); ?>, "
-            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( "minutes", 'disciple-tools-prayer-campaigns' ); ?>, "
-            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( "seconds", 'disciple-tools-prayer-campaigns' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo sprintf( esc_html_x( '%s Begins In', 'Campaign Name End in [4 days]', 'disciple-tools-prayer-campaigns' ), esc_html( DT_Porch_Settings::get_field_translation( 'campaign_name' ) ) ); ?>"
+            document.getElementById("days").innerHTML = days + " <?php echo esc_html__( 'days', 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( 'hours', 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( 'minutes', 'disciple-tools-prayer-campaigns' ); ?>, "
+            document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( 'seconds', 'disciple-tools-prayer-campaigns' ); ?>"
         }
 
         if ( !hasEndDate && timeLeft < 0 ) {
@@ -218,7 +218,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
                 </div>
             </div>
             <?php $hours_next_month = DT_Campaigns_Base::number_of_hours_next_month() ?>
-            <?php $more_hours_needed = $hours_next_month - ceil( DT_Campaigns_Base::query_scheduled_minutes_next_month( $campaign_fields["ID"] ) / 60 ) ?>
+            <?php $more_hours_needed = $hours_next_month - ceil( DT_Campaigns_Base::query_scheduled_minutes_next_month( $campaign_fields['ID'] ) / 60 ) ?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".6s">
                     <div class="facts-item">
@@ -261,7 +261,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings["color"] === "preset" ){
         <div class="section-header">
             <h2 class="section-title split-color wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title' ), 1, 2 ) ) ?> <span><?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'prayer_fuel_title' ), 2, 2 ) ) ?></span> </h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( "prayer_fuel_description" ) ); ?></p>
+            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_description' ) ); ?></p>
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><a href="<?php echo esc_html( home_url( '/prayer/list' ) ); ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'View All', 'disciple-tools-prayer-campaigns' ); ?></a></p>
         </div>
     </div>
