@@ -52,7 +52,7 @@ class DT_Prayer_Campaigns_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ], null, 7 );
     }
 
     public function enqueue_scripts() {
