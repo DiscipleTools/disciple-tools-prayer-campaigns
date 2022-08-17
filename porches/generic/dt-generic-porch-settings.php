@@ -58,8 +58,8 @@ class DT_Generic_Porch_Settings {
             ],
             'vision_title' => [
                 'label' => 'Vision Title',
-                'default' => __( "Our Vision", 'disciple-tools-prayer-campaigns' ),
-                'value' => "",
+                'default' => __( 'Our Vision', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
