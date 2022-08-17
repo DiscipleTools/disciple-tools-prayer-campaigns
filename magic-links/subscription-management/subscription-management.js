@@ -256,7 +256,7 @@ jQuery(document).ready(function($){
         this_month_content += `<div class="new_day_cell"></div>`
       }
       // fill in calendar
-      days.filter(k=>k.month===key && k.key < months[key].key+31*day_in_seconds ).forEach(day=>{
+      days.filter(k=>k.month===key && k.key < months[key].key+35*day_in_seconds ).forEach(day=>{
         this_month_content +=`
           <div class="new_day_cell">
             <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}
@@ -597,7 +597,7 @@ jQuery(document).ready(function($){
         this_month_content += `<div class="day-cell disabled-calendar-day"></div>`
       }
       // fill in calendar
-      days.filter(k=>k.month===key).forEach(day=>{
+      days.filter(k=>{ return k.month === key && k.key < months[key].key + 35*day_in_seconds }).forEach(day=>{
         let disabled = (day.key + day_in_seconds) < now;
         this_month_content += `
           <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
