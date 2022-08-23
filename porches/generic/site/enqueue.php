@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 // Add Open Graph Protocol meta tags in header
-function og_protocol() {
+function dt_og_protocol() {
     $fields = DT_Porch_Settings::settings();
 
     $og_title = PORCH_TITLE;
@@ -19,7 +19,7 @@ function og_protocol() {
     <meta property="og:image" content="https://pray4movement.org/wp-content/uploads/2021/08/cropped-p4m-logo-192x192.png"/>
     <?php
 }
-add_action( 'wp_head', 'og_protocol' );
+add_action( 'wp_head', 'dt_og_protocol' );
 
 add_action( 'wp_enqueue_scripts', function (){
     wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', array(), '4.5.0' );
