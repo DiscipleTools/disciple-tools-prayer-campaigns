@@ -22,5 +22,11 @@ class DT_Ongoing_Porch_Loader extends DT_Generic_Porch_Loader {
         return $wizard_types;
     }
 
+    public function load_porch_settings() {
+        parent::load_porch_settings();
+
+        require_once( __DIR__ . '/dt-ongoing-porch-settings.php' );
+    }
+
 }
 ( new DT_Ongoing_Porch_Loader() )->register_porch();
