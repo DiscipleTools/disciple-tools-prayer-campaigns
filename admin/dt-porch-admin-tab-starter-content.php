@@ -22,13 +22,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                     <div id="post-body-content">
                         <!-- Main Column -->
 
-                        <?php
-                        $fields = DT_Campaign_Settings::get_campaign();
-                        if ( ! empty( $fields ) ) {
-                            $this->main_column();
-                        }
-
-                        ?>
+                        <?php $this->main_column(); ?>
 
                     </div>
                 </div>
@@ -39,7 +33,13 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
     public function main_column() {
 
-        $this->upload_prayer_content_box();
+        $fields = DT_Campaign_Settings::get_campaign();
+
+        if ( !empty( $fields ) ) {
+            $this->upload_prayer_content_box();
+        } else {
+            DT_Porch_Admin_Tab_Base::message_box( 'Upload Prayer Fuel', 'You need to select a campaign to start importing prayer fuel' );
+        }
 
     }
 

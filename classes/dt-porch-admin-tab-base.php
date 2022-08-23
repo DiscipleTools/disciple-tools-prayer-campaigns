@@ -246,6 +246,27 @@ class DT_Porch_Admin_Tab_Base {
         <?php
     }
 
+    public static function message_box( string $title, string $content ) {
+        ?>
+
+        <div class="metabox-table">
+            <table class="widefat striped">
+                <thead>
+                    <tr>
+                        <td><?php echo esc_html( $title ) ?></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo esc_html( $content ) ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <?php
+    }
+
     private function get_site_colors() {
         $theme_manager = new DT_Porch_Theme();
 
