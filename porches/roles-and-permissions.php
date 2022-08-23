@@ -50,14 +50,14 @@ class DT_Campaign_Porch_Roles
             // wp-admin dashboard access
             'read' => true,
         ];
-        if ( !isset( $expected_roles["porch_admin"] ) ){
-            $expected_roles["porch_admin"] = [
-                "label" => 'Porch Admin',
-                "description" => "Administrates porch public pages",
-                "permissions" => $landing_page_permissions
+        if ( !isset( $expected_roles['porch_admin'] ) ){
+            $expected_roles['porch_admin'] = [
+                'label' => 'Porch Admin',
+                'description' => 'Administrates porch public pages',
+                'permissions' => $landing_page_permissions
             ];
         }
-        $expected_roles["administrator"]["permissions"] = wp_parse_args( $expected_roles["administrator"]["permissions"], $landing_page_permissions );
+        $expected_roles['administrator']['permissions'] = wp_parse_args( $expected_roles['administrator']['permissions'], $landing_page_permissions );
         return $expected_roles;
     }
 

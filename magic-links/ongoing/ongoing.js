@@ -170,12 +170,12 @@ jQuery(document).ready(function($) {
       day.slots.forEach(slot=> {
         let text = ``
         if ( slot.subscribers===1 ) {
-          text = "(covered once)";
+          text = `(${calendar_subscribe_object.translations.covered_once})`;
         }
         if ( slot.subscribers > 1 ) {
-          text = `(covered ${slot.subscribers} times)`;
+          text = `(${calendar_subscribe_object.translations.covered_x_times.replace( '%1$s', slot.subscribers)})`
         }
-        select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key%(24*3600)) === (current_time_selected%(24*3600)) ? "selected" : '' }>
+        select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key % day_in_seconds) === (current_time_selected % day_in_seconds) ? "selected" : '' }>
             ${window.lodash.escape(slot.formatted)} ${window.lodash.escape(text)}
         </option>`
       })
@@ -291,7 +291,7 @@ jQuery(document).ready(function($) {
     let start_of_today = new Date()
     start_of_today.setHours(0,0,0,0)
     let start_time_stamp = start_of_today.getTime()/1000
-    while ( key < 24 * 3600 ){
+    while ( key < day_in_seconds ){
       let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
       let months_covered = [];
       Object.keys(months).forEach(m=>{
@@ -395,7 +395,7 @@ jQuery(document).ready(function($) {
       }
       // fill in calendar
       days.filter(k=>k.month===key).forEach(day=>{
-        let disabled = (day.key + (24 * 3600)) < now;
+        let disabled = (day.key + day_in_seconds) < now;
         this_month_content += `
           <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
               ${window.lodash.escape(day.day)}

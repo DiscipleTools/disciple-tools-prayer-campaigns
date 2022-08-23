@@ -120,7 +120,7 @@ class DT_Porch_Theme {
     private function add_theme_names( $options ) {
 
         foreach ( $options as $key => $value ) {
-            $options[$key]["name"] = $key;
+            $options[$key]['name'] = $key;
         }
 
         return $options;

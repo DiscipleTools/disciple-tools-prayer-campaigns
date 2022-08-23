@@ -19,7 +19,7 @@ class DT_Prayer_Campaigns_Send_Email {
             if ( !empty( $prayer_campaign_email_name ) ){
                 return $prayer_campaign_email_name;
             }
-            return dt_get_option( "dt_email_base_name" );
+            return dt_get_option( 'dt_email_base_name' );
         }, 200);
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
@@ -29,7 +29,7 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
     public static function switch_email_locale( $subscriber_locale = null ){
-        $lang_code = "en_US";
+        $lang_code = 'en_US';
         if ( !empty( $subscriber_locale ) ){
             $lang_code = $subscriber_locale;
         }
@@ -40,7 +40,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return $locale;
         } );
         unload_textdomain( 'disciple-tools-prayer-campaigns' );
-        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+        dt_campaign_reload_text_domain();
     }
 
 
@@ -60,7 +60,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
-        self::switch_email_locale( $record["lang"] ?? null );
+        self::switch_email_locale( $record['lang'] ?? null );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -68,12 +68,12 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $to = implode( ',', $to );
 
-        $timezone = !empty( $record["timezone"] ) ? $record["timezone"] : 'America/Chicago';
+        $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
         $commitment_list = '';
         foreach ( $commitments as $row ){
-            $begin_date = new DateTime( "@".$row['time_begin'] );
-            $end_date = new DateTime( "@".$row['time_end'] );
+            $begin_date = new DateTime( '@'.$row['time_begin'] );
+            $end_date = new DateTime( '@'.$row['time_end'] );
             $begin_date->setTimezone( $tz );
             $end_date->setTimezone( $tz );
             $commitment_list .= sprintf(
@@ -82,8 +82,8 @@ class DT_Prayer_Campaigns_Send_Email {
                 '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
                 '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
             );
-            if ( !empty( $row["label"] ) ){
-                $commitment_list .= " for " . $row["label"];
+            if ( !empty( $row['label'] ) ){
+                $commitment_list .= ' for ' . $row['label'];
             }
             $commitment_list .= '<br>';
         }
@@ -94,18 +94,18 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $subject = __( 'Registered to pray with us!', 'disciple-tools-prayer-campaigns' );
         $message = '';
-        if ( !empty( $record["name"] ) ){
-            $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>';
+        if ( !empty( $record['name'] ) ){
+            $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) . '</h3>';
         }
         $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        $sign_up_email_extra_message = "";
-        if ( isset( $record["lang"], $campaign["campaign_strings"][$record["lang"]]["signup_content"] ) ){
-            $sign_up_email_extra_message = '<p>' .  $campaign["campaign_strings"][$record["lang"]]["signup_content"] . '</p>';
+        $sign_up_email_extra_message = '';
+        if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['signup_content'] ) ){
+            $sign_up_email_extra_message = '<p>' .  $campaign['campaign_strings'][$record['lang']]['signup_content'] . '</p>';
         }
 
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
@@ -141,7 +141,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
-        self::switch_email_locale( $record["lang"] ?? null );
+        self::switch_email_locale( $record['lang'] ?? null );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -154,12 +154,12 @@ class DT_Prayer_Campaigns_Send_Email {
         $headers[] = 'charset=UTF-8';
 
         $message = '';
-        if ( !empty( $record["name"] ) ){
-            $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record["name"] ) ) . '</h3>';
+        if ( !empty( $record['name'] ) ){
+            $message .= '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) . '</h3>';
         }
         $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
 
         $subject = __( 'Registration Confirmation', 'disciple-tools-prayer-campaigns' );
@@ -183,8 +183,8 @@ class DT_Prayer_Campaigns_Send_Email {
         global $wpdb;
         $email = trim( $email );
         $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
         //find subscribers management links for the email and campaign provided
         $keys = $wpdb->get_col(  $wpdb->prepare( "
@@ -244,19 +244,19 @@ class DT_Prayer_Campaigns_Send_Email {
      */
     public static function send_pre_sign_up_email( $campaign_id ): array{
 
-        $pre_sign_up_subscriptions = DT_Posts::list_posts( "subscriptions", [ "tags" => [ "pre-signup" ], "campaigns" => [ $campaign_id ] ] );
+        $pre_sign_up_subscriptions = DT_Posts::list_posts( 'subscriptions', [ 'tags' => [ 'pre-signup' ], 'campaigns' => [ $campaign_id ] ] );
 
-        foreach ( $pre_sign_up_subscriptions["posts"] as $subscriber ){
+        foreach ( $pre_sign_up_subscriptions['posts'] as $subscriber ){
             //send email
             $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
             }
             $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
-            if ( isset( $subscriber["contact_email"][0]["value"] ) ){
+            if ( isset( $subscriber['contact_email'][0]['value'] ) ){
                 $subject = __( 'What time(s) will you pray?', 'disciple-tools-prayer-campaigns' );
                 $message = '
-                    <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber["name"] ) ) . '</h3>
+                    <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) . '</h3>
                     <p>' . __( 'Thank you for signing up to help us cover the region in nonstop prayer!!', 'disciple-tools-prayer-campaigns' ) . '</p>
                     <p>' . __( 'It is now time to choose the specific times you will pray. Below is a link to the prayer times tool.', 'disciple-tools-prayer-campaigns' ) . '</p>
                     <p>' . __( 'To pray at the same time every day (preferred!) click the "Add a Daily Prayer Time" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
@@ -264,43 +264,43 @@ class DT_Prayer_Campaigns_Send_Email {
                     <p>' . __( 'Choose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
                     <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
                 ';
-                $sent = self::send_prayer_campaign_email( $subscriber["contact_email"][0]["value"], $subject, $message );
+                $sent = self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $message );
                 if ( ! $sent ){
-                    dt_write_log( __METHOD__ . ': Unable to send email. ' . $subscriber["contact_email"][0]["value"] );
+                    dt_write_log( __METHOD__ . ': Unable to send email. ' . $subscriber['contact_email'][0]['value'] );
                 } else {
-                    DT_Posts::update_post( "subscriptions", $subscriber["ID"], [ "tags" => [ "values" => [ [ "value" => 'pre-signup', "delete" => true ], [ "value" => "sent-pre-signup" ] ] ] ] );
-                    DT_Posts::add_post_comment( "subscriptions", $subscriber["ID"], "Sent email to " . $subscriber["contact_email"][0]["value"] . " asking them to choose prayer times" );
+                    DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'tags' => [ 'values' => [ [ 'value' => 'pre-signup', 'delete' => true ], [ 'value' => 'sent-pre-signup' ] ] ] ] );
+                    DT_Posts::add_post_comment( 'subscriptions', $subscriber['ID'], 'Sent email to ' . $subscriber['contact_email'][0]['value'] . ' asking them to choose prayer times' );
                 }
             }
         }
 
-        return [ "emails_sent" => true ];
+        return [ 'emails_sent' => true ];
     }
 
 
     public static function sent_resubscribe_tickler( $subscriber_id ){
-        $subscriber = DT_Posts::get_post( "subscriptions", $subscriber_id, true, false );
-        if ( is_wp_error( $subscriber ) || !isset( $subscriber["contact_email"][0]["value"] ) ){
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
         $key_name = 'public_key';
-        if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( "subscriptions_app", "manage" );
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
         $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
         $porch_fields = DT_Porch_Settings::settings();
 
-        $subject = "Continue Praying";
+        $subject = 'Continue Praying';
         $message = '
-            <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber["name"] ) ) . '</h3>
-            <p> ' . __( "You are 2 weeks out for your last prayer time. Would you like to keep praying?", 'disciple-tools-prayer-campaigns' ) . '</p>
-            <p>' . __( "Sign up for more prayer times or extend your recurring time here:", 'disciple-tools-prayer-campaigns' ) . '</p>
+            <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) . '</h3>
+            <p> ' . __( 'You are 2 weeks out for your last prayer time. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) . '</p>
+            <p>' . __( 'Sign up for more prayer times or extend your recurring time here:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
-            <p>' . __( "Thank you", 'disciple-tools-prayer-campaigns' ) . ',</p>
+            <p>' . __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',</p>
             <p>' .  isset( $porch_fields['title']['value'] ) ? $porch_fields['title']['value'] : site_url() . '</p>
 
         ';
-        return self::send_prayer_campaign_email( $subscriber["contact_email"][0]["value"], $subject, $message );
+        return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $message );
     }
 
 }

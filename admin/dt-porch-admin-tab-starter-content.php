@@ -11,8 +11,6 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
     public function __construct( $porch_dir ) {
         $this->porch_dir = $porch_dir;
-
-        require_once( trailingslashit( __DIR__ ) . '../classes/dt-campaign-porch-starter-content.php' );
     }
 
     public function content() {
@@ -60,12 +58,12 @@ class DT_Porch_Admin_Tab_Starter_Content {
         $post_start_date = $this->get_post_language_start_date();
 
         $all_good_to_go = false;
-        $message = "";
-        $tmp_file_name = "";
+        $message = '';
+        $tmp_file_name = '';
         $invalidurl = false;
         $feeds = null;
         $has_installed_importer_plugin = true;
-        if ( !class_exists( "WP_Import" ) ) {
+        if ( !class_exists( 'WP_Import' ) ) {
             $has_installed_importer_plugin = false;
         }
 
@@ -81,22 +79,22 @@ class DT_Porch_Admin_Tab_Starter_Content {
             if ( !empty( $_FILES['file']['tmp_name'] ) ) {
                 $file = !empty( $_FILES['file']['tmp_name'] ) ? dt_recursive_sanitize_array( wp_unslash( $_FILES['file'] ) ) : null;
 
-                $tmp_file_name = $file["tmp_name"];
+                $tmp_file_name = $file['tmp_name'];
 
-                if ( in_array( $file["type"], [ "application/xml", "text/xml" ], true ) ) {
+                if ( in_array( $file['type'], [ 'application/xml', 'text/xml' ], true ) ) {
                     $all_good_to_go = true;
                 } else {
-                    $message = "Please upload an xml file";
+                    $message = 'Please upload an xml file';
                 }
-                if ( $all_good_to_go && $file["size"] < $max_file_size ) {
+                if ( $all_good_to_go && $file['size'] < $max_file_size ) {
                     $all_good_to_go = true;
                 } else {
-                    $message = "File size is too large.";
+                    $message = 'File size is too large.';
                 }
             }
 
-            if ( isset( $_POST["rss-feed-url"] ) ) {
-                $rss_feed_url = sanitize_text_field( wp_unslash( $_POST["rss-feed-url"] ) );
+            if ( isset( $_POST['rss-feed-url'] ) ) {
+                $rss_feed_url = sanitize_text_field( wp_unslash( $_POST['rss-feed-url'] ) );
 
                 libxml_use_internal_errors( true );
                 $feeds = simplexml_load_file( $rss_feed_url );
@@ -207,7 +205,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                         <tr>
                             <td>
                                 <input name="file" type="file" accept="application/xml text/xml">
-                                <?php if ( $message !== "" ): ?>
+                                <?php if ( $message !== '' ): ?>
 
                                     <p>
                                         <?php echo esc_html( $message ) ?>

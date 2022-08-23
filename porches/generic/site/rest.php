@@ -31,7 +31,7 @@ if ( ! class_exists( 'DT_GenericPorch_Lead_Form' ) ) {
             register_rest_route(
                 $namespace, '/' . PORCH_TYPE, [
                     [
-                        'methods'  => "POST",
+                        'methods'  => 'POST',
                         'callback' => [ $this, 'endpoint' ],
                         'permission_callback' => '__return_true',
                     ],
@@ -43,7 +43,7 @@ if ( ! class_exists( 'DT_GenericPorch_Lead_Form' ) ) {
             $params = $request->get_params();
 
             if ( ! isset( $params['parts'], $params['action'] ) ) {
-                return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
+                return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
             }
 
             $params = dt_recursive_sanitize_array( $params );
@@ -56,7 +56,7 @@ if ( ! class_exists( 'DT_GenericPorch_Lead_Form' ) ) {
                     return $this->save_newsletter( $params['data'] );
 
                 default:
-                    return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
+                    return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
             }
         }
 
@@ -130,12 +130,12 @@ if ( ! class_exists( 'DT_GenericPorch_Lead_Form' ) ) {
             $fields['title'] = $full_name;
             if ( ! empty( $email ) ) {
                 $fields['contact_email'] = [
-                    [ "value" => $email ]
+                    [ 'value' => $email ]
                 ];
             }
             if ( ! empty( $phone ) ) {
                 $fields['contact_phone'] = [
-                    [ "value" => $phone ]
+                    [ 'value' => $phone ]
                 ];
             }
             $fields['type'] = 'access';
@@ -150,8 +150,8 @@ if ( ! class_exists( 'DT_GenericPorch_Lead_Form' ) ) {
 
             if ( isset( $content['source_for_subscriptions'] ) && ! empty( $content['source_for_subscriptions'] ) ) {
                 $fields['sources'] = [
-                    "values" => [
-                        [ "value" => $content['source_for_subscriptions'] ],
+                    'values' => [
+                        [ 'value' => $content['source_for_subscriptions'] ],
                     ]
                 ];
             }

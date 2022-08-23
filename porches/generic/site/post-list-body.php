@@ -8,23 +8,23 @@ $lang_query = [
         'compare' => '=',
     ]
 ];
-if ( $lang === "en_US" ){
+if ( $lang === 'en_US' ){
     $lang_query[] = [
         'key'     => 'post_language',
         'compare' => 'NOT EXISTS',
     ];
-    $lang_query["relation"] = "OR";
+    $lang_query['relation'] = 'OR';
 }
 
 $todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ) );
 
 $meta_query = [
-   "relation" => "AND",
+   'relation' => 'AND',
     [
-        "key" => "day",
-        "value" => $todays_day_in_campaign,
-        "compare" => "<=",
-        "type" => "numeric",
+        'key' => 'day',
+        'value' => $todays_day_in_campaign,
+        'compare' => '<=',
+        'type' => 'numeric',
     ],
     $lang_query,
 ];
@@ -46,12 +46,12 @@ if ( empty( $list->posts ) ){
         'orderby' => 'post_date',
         'order' => 'DESC',
         'meta_query' => [
-            "relation" => "AND",
+            'relation' => 'AND',
             [
-                "key" => "day",
-                "value" => $todays_day_in_campaign,
-                "compare" => "<=",
-                "type" => "numeric",
+                'key' => 'day',
+                'value' => $todays_day_in_campaign,
+                'compare' => '<=',
+                'type' => 'numeric',
             ],
             [
                 'relation' => 'OR',
@@ -84,7 +84,7 @@ if ( empty( $list->posts ) ){
             <?php $days_displayed = [] ?>
             <?php foreach ( $list->posts as $item ) :
 
-                $campaign_day = get_post_meta( $item->ID, "day", true );
+                $campaign_day = get_post_meta( $item->ID, 'day', true );
                 $date = DT_Campaign_Settings::date_of_campaign_day( $campaign_day );
 
                 if ( in_array( $campaign_day, $days_displayed ) || ( isset( $todays_campaign_day ) && $campaign_day === $todays_campaign_day ) ) {

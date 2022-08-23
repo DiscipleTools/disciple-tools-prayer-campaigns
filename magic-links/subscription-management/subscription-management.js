@@ -3,7 +3,6 @@ let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Ame
 if ( calendar_subscribe_object.timezone ){
   current_time_zone = calendar_subscribe_object.timezone
 }
-const day_in_seconds = 24 * 3600
 const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / day_in_seconds
 
 let verified = false
@@ -257,7 +256,7 @@ jQuery(document).ready(function($){
         this_month_content += `<div class="new_day_cell"></div>`
       }
       // fill in calendar
-      days.filter(k=>k.month===key && k.key < months[key].key+31*day_in_seconds ).forEach(day=>{
+      days.filter(k=>k.month===key && k.key < months[key].key+35*day_in_seconds ).forEach(day=>{
         this_month_content +=`
           <div class="new_day_cell">
             <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}
@@ -598,7 +597,7 @@ jQuery(document).ready(function($){
         this_month_content += `<div class="day-cell disabled-calendar-day"></div>`
       }
       // fill in calendar
-      days.filter(k=>k.month===key).forEach(day=>{
+      days.filter(k=>{ return k.month === key && k.key < months[key].key + 35*day_in_seconds }).forEach(day=>{
         let disabled = (day.key + day_in_seconds) < now;
         this_month_content += `
           <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">

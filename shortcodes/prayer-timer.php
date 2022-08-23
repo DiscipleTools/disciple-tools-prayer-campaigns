@@ -20,15 +20,15 @@ function show_prayer_timer( $atts ) {
         if ( isset( $atts['duration'] ) ) {
             $prayer_duration_min = (float) $atts['duration'];
         }
-        if ( isset( $atts["lang"] ) && $atts["lang"] !== 'en_US' ){
+        if ( isset( $atts['lang'] ) && $atts['lang'] !== 'en_US' ){
             add_filter( 'determine_locale', function ( $locale ) use ( $atts ){
-                $lang_code = sanitize_text_field( wp_unslash( $atts["lang"] ) );
+                $lang_code = sanitize_text_field( wp_unslash( $atts['lang'] ) );
                 if ( !empty( $lang_code ) ){
                     return $lang_code;
                 }
                 return $locale;
             } );
-            load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
+            dt_campaign_reload_text_domain();
         }
     }
     wp_enqueue_script( 'jquery' );
@@ -175,7 +175,7 @@ function show_prayer_timer( $atts ) {
                     <?php esc_html_e( 'Start Praying!', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
                 <p class="prayer-timer-duration-label">
-                    (<?php echo esc_html( sprintf( _x( "Prayer time: %s min", 'Prayer time: 15 min', 'disciple-tools-prayer-campaigns' ), $prayer_duration_min ) ); ?>)
+                    (<?php echo esc_html( sprintf( _x( 'Prayer time: %s min', 'Prayer time: 15 min', 'disciple-tools-prayer-campaigns' ), $prayer_duration_min ) ); ?>)
                 </p>
             </div>
         </div>

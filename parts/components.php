@@ -41,7 +41,7 @@ function dt_campaign_sign_up_form() {
             >
                 <div>
                     <span id="name-error" class="form-error">
-                        <?php echo esc_html( "Your name is required" ); ?>
+                        <?php echo esc_html( 'Your name is required' ); ?>
                     </span>
                     <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
                         <input class="cp-input" type="text" name="name" id="name" placeholder="<?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>" required/>
@@ -49,7 +49,7 @@ function dt_campaign_sign_up_form() {
                 </div>
                 <div>
                     <span id="email-error" class="form-error">
-                        <?php esc_html_e( "Your email is required.", 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php esc_html_e( 'Your email is required.', 'disciple-tools-prayer-campaigns' ); ?>
                     </span>
                     <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?><br>
                         <input class="cp-input" type="email" name="email" id="email" placeholder="<?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>" />
@@ -71,7 +71,7 @@ function dt_campaign_sign_up_form() {
                     </p>
                     <p>
                         <label for="receive_pray4movement_news">
-                            <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" checked <?php echo esc_html( WP_DEBUG ?: "disabled" ); ?>/>
+                            <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" <?php checked( !WP_DEBUG ) ?>/>
                             <?php esc_html_e( 'Receive Pray4Movement Newsletter (email verification needed).', 'disciple-tools-prayer-campaigns' ); ?>
                         </label>
                     </p>

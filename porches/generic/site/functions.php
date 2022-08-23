@@ -25,14 +25,14 @@ function dt_campaign_language_direction( string $lang ) {
 }
 
 function dt_campaign_set_translation( $lang ){
-    if ( $lang !== "en_US" ){
+    if ( $lang !== 'en_US' ){
         add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
             if ( !empty( $lang ) ){
                 return $lang;
             }
             return $locale;
         }, 1000, 1 );
-        load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'support/languages' );
+        dt_campaign_reload_text_domain();
     }
 }
 

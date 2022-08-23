@@ -1,3 +1,4 @@
+const day_in_seconds = 86400
 window.campaign_scripts = {
   time_slot_coverage: {},
   processing_save: {},
@@ -6,14 +7,14 @@ window.campaign_scripts = {
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
     let days = [];
-    let time_iterator = parseInt( calendar_subscribe_object.start_timestamp );
 
-    let start_of_day = window.campaign_scripts.day_start( time_iterator, current_time_zone)
+    let start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, current_time_zone )
+    let time_iterator = parseInt( start_of_day );
 
     while ( time_iterator < calendar_subscribe_object.end_timestamp ){
 
-      if ( !days.length || time_iterator >= ( start_of_day+24*3600 ) ){
-        start_of_day = ( time_iterator >= start_of_day+24*3600 ) ? time_iterator : start_of_day
+      if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
+        start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
         let day = window.campaign_scripts.timestamp_to_month_day( time_iterator, custom_timezone )
         let weekday = new Date(start_of_day * 1000).getDay()
 
@@ -28,7 +29,7 @@ window.campaign_scripts = {
           "covered_slots": 0,
         })
       }
-      let mod_time = time_iterator % (24 * 60 * 60)
+      let mod_time = time_iterator % day_in_seconds
       let time_formatted = '';
       if ( window.campaign_scripts.processing_save[mod_time] ){
         time_formatted = window.campaign_scripts.processing_save[mod_time]
@@ -154,32 +155,12 @@ window.campaign_scripts = {
     return invdate;
 
   },
-  get_time_select_html: () => {
-    let select_html = `<option value="false">Select a time</option>`
-
-    let key = 0;
-    let start_of_today = new Date()
-    start_of_today.setHours(0,0,0,0)
-    let start_time_stamp = start_of_today.getTime()/1000
-    while ( key < 24 * 3600 ){
-      let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
-
-      let covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-
-      select_html += `<option value="${window.lodash.escape(key)}">
-                        ${window.lodash.escape(time_formatted)} ${ covered ? "(fully covered)": '' }
-                    </option>`
-      key += calendar_subscribe_object.slot_length * 60
-    }
-    return select_html
-
-  },
   get_days_of_the_week_initials: (localeName = 'en-US', weekday = 'long')=>{
     let now = new Date()
-    const day_in_seconds = 86400000
+    const day_in_milliseconds = 86400000
     const format = new Intl.DateTimeFormat(localeName, { weekday }).format;
     return [...Array(7).keys()]
-    .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * day_in_seconds  ));
+    .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * day_in_milliseconds  ));
   },
 }
 

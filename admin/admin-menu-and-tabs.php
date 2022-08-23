@@ -39,9 +39,9 @@ class DT_Prayer_Campaigns_Menu {
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
 
-        add_action( "admin_menu", array( $this, "register_menu" ) );
-        add_action( "admin_enqueue_scripts", array( $this, "enqueue_scripts" ) );
-        add_filter( "dt_options_script_pages", array( $this, "dt_options_script_pages" ) );
+        add_action( 'admin_menu', array( $this, 'register_menu' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        add_filter( 'dt_options_script_pages', array( $this, 'dt_options_script_pages' ) );
 
         $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
         $this->porch_selector = DT_Porch_Selector::instance();
@@ -52,7 +52,7 @@ class DT_Prayer_Campaigns_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ], null, 7 );
     }
 
     public function enqueue_scripts() {
@@ -81,8 +81,8 @@ class DT_Prayer_Campaigns_Menu {
             wp_die( 'You do not have sufficient permissions to access this page.' );
         }
 
-        if ( isset( $_GET["tab"] ) ) {
-            $tab = sanitize_key( wp_unslash( $_GET["tab"] ) );
+        if ( isset( $_GET['tab'] ) ) {
+            $tab = sanitize_key( wp_unslash( $_GET['tab'] ) );
         } else {
             $tab = 'campaigns';
         }
@@ -91,7 +91,7 @@ class DT_Prayer_Campaigns_Menu {
 
 
         switch ( $tab ) {
-            case "campaigns":
+            case 'campaigns':
                 $this->campaigns->process_email_settings();
                 $this->campaigns->process_porch_settings();
                 break;
@@ -142,7 +142,7 @@ class DT_Prayer_Campaigns_Menu {
 
             <?php
             switch ( $tab ) {
-                case "campaigns":
+                case 'campaigns':
                     $this->campaigns->content();
                     break;
                 default:

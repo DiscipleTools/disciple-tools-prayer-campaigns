@@ -45,9 +45,9 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $args = [ PORCH_LANDING_POST_TYPE, $days_string ];
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
-            $query .= "
+            $query .= '
                 ORDER BY %2s %3s
-            ";
+            ';
             $args[] = sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
             $args[] = sanitize_text_field( wp_unslash( $_REQUEST['order'] ) );
         }
@@ -59,7 +59,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $posts_sorted_by_campaign_day = [];
 
         foreach ( $posts as $post ) {
-            $day = intval( $post["day"] );
+            $day = intval( $post['day'] );
 
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [];
@@ -72,7 +72,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         foreach ( $days as $day ) {
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [
-                    [ "ID" => null, "day" => $day ],
+                    [ 'ID' => null, 'day' => $day ],
                 ];
             }
         }
@@ -102,23 +102,24 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
     public function get_sortable_columns() {
         return [
-            "date" => array( "post_date", "asc" ),
-            "day" => array( "day", "asc" ),
+            'date' => array( 'post_date', 'asc' ),
+            'day' => array( 'day', 'asc' ),
         ];
     }
 
     public function get_columns() {
         return [
             /* "cb" => "cb", */
-            "day" => "Campaign Day",
-            "date" => "Date",
-            "language" => "Languages",
-            "url" => "URL",
+            'day' => 'Campaign Day',
+            'date' => 'Date',
+            'titles' => 'Titles',
+            'language' => 'Languages',
+            'url' => 'URL',
         ];
     }
 
     public function column_cb( $items ) {
-        $day = $items[0]["day"];
+        $day = $items[0]['day'];
 
         ?>
 
@@ -128,9 +129,9 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     }
 
     public function column_default( $items, $column_name ) {
-        $day = $items[0]["day"];
+        $day = $items[0]['day'];
 
-        if ( $items[0]["ID"] === null ) {
+        if ( $items[0]['ID'] === null ) {
             unset( $items[0] );
         }
 
@@ -156,15 +157,26 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 break;
             case 'date':
                 $date = DT_Campaign_Settings::date_of_campaign_day( intval( $day ) );
-                $date = gmdate( "Y/m/d", strtotime( $date ) );
+                $date = gmdate( 'Y/m/d', strtotime( $date ) );
                 echo esc_html( $date );
+                break;
+            case 'titles':
+                $titles = implode( ', ', array_map( function( $item ) {
+                    return $item['post_title'];
+                }, $items ) );
+
+                ?>
+
+                <p class="post-titles"><?php echo esc_html( $titles ) ?></p>
+
+                <?php
                 break;
             case 'language':
                 $languages = $this->languages_manager->get_enabled_languages();
 
                 $translated_languages = [];
                 foreach ( $items as $post ) {
-                    $lang = get_post_meta( $post["ID"], 'post_language', true );
+                    $lang = get_post_meta( $post['ID'], 'post_language', true );
                     if ( !isset( $translated_languages[$lang] ) ) {
                         $translated_languages[$lang] = [];
                     }
@@ -182,7 +194,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     if ( count( $posts_in_language ) === 0 ) {
                         $link = $add_link . "&post_language=$code";
                     } else if ( count( $posts_in_language ) === 1 ) {
-                        $id = $posts_in_language[0]["ID"];
+                        $id = $posts_in_language[0]['ID'];
                         $link = "post.php?post=$id&action=edit";
                     }
                     ?>
@@ -192,10 +204,10 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                         <a
                             class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
                             href="<?php echo esc_attr( $link ) ?>"
-                            title="<?php echo esc_attr( $language["native_name"] ) ?>"
+                            title="<?php echo esc_attr( $language['native_name'] ) ?>"
                         >
 
-                            <?php echo esc_html( $language["flag"] ); ?>
+                            <?php echo esc_html( $language['flag'] ); ?>
 
                         </a>
 
@@ -203,10 +215,10 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                         <span
                             class="button language-button dropdown-button"
-                            title="<?php echo esc_attr( $language["native_name"] ) ?>"
+                            title="<?php echo esc_attr( $language['native_name'] ) ?>"
                         >
 
-                            <?php echo esc_html( $language["flag"] ); ?>
+                            <?php echo esc_html( $language['flag'] ); ?>
 
                             <span class="badge-count"><?php echo count( $posts_in_language ) ?></span>
 
@@ -214,7 +226,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                                 <?php foreach ( $posts_in_language as $post ): ?>
 
-                                    <a class="dropdown__link" href="post.php?post=<?php echo esc_attr( $post["ID"] ) ?>&action=edit"><?php echo esc_html( $post["post_title"] ) ?></a>
+                                    <a class="dropdown__link" href="post.php?post=<?php echo esc_attr( $post['ID'] ) ?>&action=edit"><?php echo esc_html( $post['post_title'] ) ?></a>
 
                                 <?php endforeach; ?>
                             </div>
@@ -244,7 +256,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 if ( empty( $items ) ) {
                     break;
                 }
-                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]["ID"] );
+                DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]['ID'] );
                 break;
         }
 
@@ -256,9 +268,9 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $total = intval( $post_counts->future ) + intval( $post_counts->draft ) + intval( $post_counts->publish );
 
         return [
-            "all" => "<a href='admin.php?page=dt_prayer_fuel'>All ($total)</a>",
-            "draft" => "<a href='admin.php?page=dt_prayer_fuel&post_status=draft'>Draft ($post_counts->draft)</a>",
-            "scheduled" => "<a href='admin.php?page=dt_prayer_fuel&post_status=future'>Scheduled ($post_counts->future)</a>",
+            'all' => "<a href='admin.php?page=dt_prayer_fuel'>All ($total)</a>",
+            'draft' => "<a href='admin.php?page=dt_prayer_fuel&post_status=draft'>Draft ($post_counts->draft)</a>",
+            'scheduled' => "<a href='admin.php?page=dt_prayer_fuel&post_status=future'>Scheduled ($post_counts->future)</a>",
         ];
     }
 }

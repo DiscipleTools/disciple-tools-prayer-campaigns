@@ -62,7 +62,7 @@ class DT_Porch_Settings {
      */
     private static function filter_settings( array $settings, string $key, string $value ): array {
         $match_settings_with_tab = function( $setting ) use ( $key, $value ) {
-            if ( $value === "" && ( !isset( $setting[$key] ) || !$setting[$key] ) ) {
+            if ( $value === '' && ( !isset( $setting[$key] ) || !$setting[$key] ) ) {
                 return true;
             } elseif ( isset( $setting[$key] ) && $setting[$key] === $value ) {
                 return true;
@@ -135,120 +135,120 @@ class DT_Porch_Settings {
 
         $has_fields_with_no_section = false;
         foreach ( $fields as $key => $field ) {
-            if ( !$has_fields_with_no_section && ( !isset( $field["section"] ) || !$field["section"] ) ) {
+            if ( !$has_fields_with_no_section && ( !isset( $field['section'] ) || !$field['section'] ) ) {
                 $has_fields_with_no_section = true;
             }
-            if ( isset( $field["section"] ) && !in_array( $field["section"], $sections, true ) ) {
-                $sections[] = $field["section"];
+            if ( isset( $field['section'] ) && !in_array( $field['section'], $sections, true ) ) {
+                $sections[] = $field['section'];
             }
         }
 
         if ( $has_fields_with_no_section ) {
-            array_push( $sections, "" );
+            array_push( $sections, '' );
         }
 
         return $sections;
     }
 
     public static function get_field_translation( string $field_name, string $code = '' ) {
-        if ( !$code ) {
+        if ( empty( $code ) ) {
             $code = dt_campaign_get_current_lang();
         }
 
         $fields = self::settings();
 
         if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
-            return "";
+            return '';
         }
 
         $field = $fields[$field_name];
 
-        if ( isset( $field["translations"][$code] ) && !empty( $field["translations"][$code] ) ) {
-            return $field["translations"][$code];
+        if ( isset( $field['translations'][$code] ) && !empty( $field['translations'][$code] ) ) {
+            return $field['translations'][$code];
         }
 
-        return $field["value"] ?: ( $field["default"] ?? "" );
+        return $field['value'] ?: ( $field['default'] ?? '' );
     }
 
     private static function get_defaults() {
         $defaults = [
-                    'theme_color' => [
-                        'label' => 'Theme Color',
-                        'value' => 'preset',
-                        'type' => 'theme_select',
-                        'tab' => 'settings',
-                    ],
-                    'custom_theme_color' => [
-                        'label' => 'Custom Theme Color',
-                        'value' => '',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'logo_url' => [
-                        'label' => 'Logo Image URL',
-                        'value' => '',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'logo_link_url' => [
-                        'label' => 'Logo Link to URL',
-                        'value' => '',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'header_background_url' => [
-                        'label' => 'Header Background URL',
-                        'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'what_image' => [
-                        'label' => 'What is 24/7 Image',
-                        'value' => '',
-                        'type' => 'text',
-                        'enabled' => false,
-                        'tab' => 'settings',
-                    ],
-                    'show_prayer_timer' => [
-                        'label' => 'Show Prayer Timer',
-                        'default' => 'Yes',
-                        'value' => 'yes',
-                        'type' => 'prayer_timer_toggle',
-                        'tab' => 'settings',
-                    ],
-                    'facebook' => [
-                        'label' => 'Facebook Url',
-                        'value' => '',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'instagram' => [
-                        'label' => 'Instagram Url',
-                        'value' => '',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'twitter' => [
-                        'label' => 'Twitter Url',
-                        'value' => '',
-                        'type' => 'text',
-                        'tab' => 'settings',
-                    ],
-                    'google_analytics' => [
-                        'label' => 'Google Analytics',
-                        'default' => get_site_option( "p4r_porch_google_analytics" ),
-                        'value' => '',
-                        'type' => 'textarea',
-                        'tab' => 'settings',
-                    ],
-                    'default_language' => [
-                        'label' => 'Default Language',
-                        'default' => 'en_US',
-                        'value' => '',
-                        'type' => 'default_language_select',
-                        'tab' => 'settings',
-                    ],
-                ];
+            'theme_color' => [
+                'label' => 'Theme Color',
+                'value' => 'preset',
+                'type' => 'theme_select',
+                'tab' => 'settings',
+            ],
+            'custom_theme_color' => [
+                'label' => 'Custom Theme Color',
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'logo_url' => [
+                'label' => 'Logo Image URL',
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'logo_link_url' => [
+                'label' => 'Logo Link to URL',
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'header_background_url' => [
+                'label' => 'Header Background URL',
+                'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'what_image' => [
+                'label' => 'What is 24/7 Image',
+                'value' => '',
+                'type' => 'text',
+                'enabled' => false,
+                'tab' => 'settings',
+            ],
+            'show_prayer_timer' => [
+                'label' => 'Show Prayer Timer',
+                'default' => 'Yes',
+                'value' => 'yes',
+                'type' => 'prayer_timer_toggle',
+                'tab' => 'settings',
+            ],
+            'facebook' => [
+                'label' => 'Facebook Url',
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'instagram' => [
+                'label' => 'Instagram Url',
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'twitter' => [
+                'label' => 'Twitter Url',
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'settings',
+            ],
+            'google_analytics' => [
+                'label' => 'Google Analytics',
+                'default' => get_site_option( 'p4r_porch_google_analytics' ),
+                'value' => '',
+                'type' => 'textarea',
+                'tab' => 'settings',
+            ],
+            'default_language' => [
+                'label' => 'Default Language',
+                'default' => 'en_US',
+                'value' => '',
+                'type' => 'default_language_select',
+                'tab' => 'settings',
+            ],
+        ];
 
         $keep_enabled_settings = function ( $setting ) {
             return !isset( $setting['enabled'] ) || $setting['enabled'] !== false;

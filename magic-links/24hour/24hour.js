@@ -341,10 +341,10 @@ jQuery(document).ready(function($) {
       day.slots.forEach(slot=> {
         let text = ``
         if ( slot.subscribers===1 ) {
-          text = "(covered once)";
+          text = `(${calendar_subscribe_object.translations.covered_once})`;
         }
         if ( slot.subscribers > 1 ) {
-          text = `(covered ${slot.subscribers} times)`;
+          text = `(${calendar_subscribe_object.translations.covered_x_times.replace( '%1$s', slot.subscribers)})`
         }
         select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key%(24*3600)) === (current_time_selected%(24*3600)) ? "selected" : '' }>
             ${window.lodash.escape(slot.formatted)} ${window.lodash.escape(text)}

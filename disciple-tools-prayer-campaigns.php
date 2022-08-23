@@ -39,8 +39,8 @@ function dt_prayer_campaigns() {
     /*
      * Check if the Disciple.Tools theme is loaded and is the latest required version
      */
-    $is_theme_dt = class_exists( "Disciple_Tools" );
-    if ( $is_theme_dt && version_compare( $version, $dt_prayer_campaigns_required_dt_theme_version, "<" ) ) {
+    $is_theme_dt = class_exists( 'Disciple_Tools' );
+    if ( $is_theme_dt && version_compare( $version, $dt_prayer_campaigns_required_dt_theme_version, '<' ) ) {
         add_action( 'admin_notices', 'dt_prayer_campaigns_hook_admin_notice' );
         add_action( 'wp_ajax_dismissed_notice_handler', 'dt_hook_ajax_notice_handler' );
         return false;
@@ -67,7 +67,7 @@ require_once( 'campaign-functions/setup-functions.php' );
  * We can safely run functions regarding registered porches at 60
  */
 function dt_after_all_porches_have_loaded() {
-    if ( class_exists( "DT_Porch_Selector" ) ){
+    if ( class_exists( 'DT_Porch_Selector' ) ){
         $porch_selector = DT_Porch_Selector::instance();
 
         if ( $porch_selector->has_selected_porch() ) {
@@ -141,7 +141,7 @@ class DT_Prayer_Campaigns {
                 require( get_template_directory() . '/dt-core/libraries/plugin-update-checker/plugin-update-checker.php' );
             }
 
-            $hosted_json = "https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json";
+            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
 
             Puc_v4_Factory::buildUpdateChecker(
                 $hosted_json,
@@ -153,15 +153,6 @@ class DT_Prayer_Campaigns {
         if ( is_admin() ) { // adds links to the plugin description area in the plugin admin list.
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 );
         }
-
-        try {
-            require_once( plugin_dir_path( __FILE__ ) . '/admin/class-migration-engine.php' );
-            DT_Prayer_Campaigns_Migration_Engine::migrate( DT_Prayer_Campaigns_Migration_Engine::$migration_number );
-        } catch ( Throwable $e ) {
-            new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
-        }
-        DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
-
 
         if ( !is_admin() ) {
             require_once( plugin_dir_path( __FILE__ ) . '/parts/components.php' );
@@ -288,12 +279,25 @@ class DT_Prayer_Campaigns {
      * @access public
      */
     public function __call( $method = '', $args = array() ) {
-        _doing_it_wrong( "dt_prayer_campaigns::" . esc_html( $method ), 'Method does not exist.', '0.1' );
+        _doing_it_wrong( 'dt_prayer_campaigns::' . esc_html( $method ), 'Method does not exist.', '0.1' );
         unset( $method, $args );
         return null;
     }
 }
 
+
+/**
+ * Run migrations after theme is loaded
+ */
+add_action( 'init', function (){
+    try {
+        require_once( plugin_dir_path( __FILE__ ) . '/admin/class-migration-engine.php' );
+        DT_Prayer_Campaigns_Migration_Engine::migrate( DT_Prayer_Campaigns_Migration_Engine::$migration_number );
+    } catch ( Throwable $e ) {
+        new WP_Error( 'migration_error', 'Migration engine failed to migrate.' );
+    }
+    DT_Prayer_Campaigns_Migration_Engine::display_migration_and_lock();
+} );
 
 // Register activation hook.
 register_activation_hook( __FILE__, [ 'DT_Prayer_Campaigns', 'activation' ] );
@@ -306,7 +310,7 @@ if ( ! function_exists( 'dt_prayer_campaigns_hook_admin_notice' ) ) {
         $wp_theme = wp_get_theme();
         $current_version = $wp_theme->version;
         $message = "'Disciple.Tools - Subscriptions' plugin requires 'Disciple.Tools' theme to work. Please activate 'Disciple.Tools' theme or make sure it is latest version.";
-        if ( $wp_theme->get_template() === "disciple-tools-theme" ){
+        if ( $wp_theme->get_template() === 'disciple-tools-theme' ){
             $message .= ' ' . sprintf( esc_html( 'Current Disciple.Tools version: %1$s, required version: %2$s' ), esc_html( $current_version ), esc_html( $dt_prayer_campaigns_required_dt_theme_version ) );
         }
         // Check if it's been dismissed...
@@ -335,11 +339,11 @@ if ( ! function_exists( 'dt_prayer_campaigns_hook_admin_notice' ) ) {
 /**
  * AJAX handler to store the state of dismissible notices.
  */
-if ( ! function_exists( "dt_hook_ajax_notice_handler" ) ){
+if ( ! function_exists( 'dt_hook_ajax_notice_handler' ) ){
     function dt_hook_ajax_notice_handler(){
         check_ajax_referer( 'wp_rest_dismiss', 'security' );
-        if ( isset( $_POST["type"] ) ){
-            $type = sanitize_text_field( wp_unslash( $_POST["type"] ) );
+        if ( isset( $_POST['type'] ) ){
+            $type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
             update_option( 'dismissed-' . $type, true );
         }
     }

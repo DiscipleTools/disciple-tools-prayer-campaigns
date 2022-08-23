@@ -2,15 +2,15 @@
 class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public $post_type = 'subscriptions';
-    public $page_title = "My Prayer Times";
+    public $page_title = 'My Prayer Times';
 
     public $magic = false;
     public $parts = [];
-    public $root = "subscriptions_app"; // define the root of the url {yoursite}/root/type/key/action
+    public $root = 'subscriptions_app'; // define the root of the url {yoursite}/root/type/key/action
     public $type = 'manage'; // define the type
     public $type_name = 'Subscriptions';
     public $type_actions = [
-        '' => "Manage",
+        '' => 'Manage',
         'download_calendar' => 'Download Calendar',
     ];
 
@@ -20,12 +20,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match() ){
             return;
         }
-        $post = DT_Posts::get_post( "subscriptions", $this->parts["post_id"], true, false );
-        if ( is_wp_error( $post ) || empty( $post["campaigns"] ) ){
+        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        if ( is_wp_error( $post ) || empty( $post['campaigns'] ) ){
             return;
         }
-        if ( $post["lang"] && $post["lang"] !== "en_US" ){
-            $lang_code = $post["lang"];
+        if ( $post['lang'] && $post['lang'] !== 'en_US' ){
+            $lang_code = $post['lang'];
             add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
                 if ( !empty( $lang_code ) ){
                     return $lang_code;
@@ -33,7 +33,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 return $locale;
             } );
         }
-        $this->page_title = __( "My Prayer Times", 'disciple-tools-prayer-campaigns' );
+        $this->page_title = __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' );
 
         // add dt_campaign_core to allowed scripts
         add_action( 'dt_blank_head', [ $this, 'form_head' ] );
@@ -67,7 +67,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, "2.3.1", true );
+        wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
         wp_enqueue_script( 'dt_campaign_core', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'post-type/campaign_core.js', [
             'jquery',
             'lodash',
@@ -78,21 +78,21 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( is_wp_error( $post ) ) {
             return $post;
         }
-        $campaign_id = $post["campaigns"][0]["ID"];
+        $campaign_id = $post['campaigns'][0]['ID'];
         $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id, 12 );
         $my_commitments_reports = $this->get_subscriptions( $this->parts['post_id'] );
         $my_commitments = [];
         foreach ( $my_commitments_reports as $commitments_report ){
             $my_commitments[] = [
-                "time_begin" => $commitments_report["time_begin"],
-                "time_end" => $commitments_report["time_end"],
-                "value" => $commitments_report["value"],
-                "report_id" => $commitments_report["id"],
-                "verified" => $commitments_report["verified"] ?? false,
+                'time_begin' => $commitments_report['time_begin'],
+                'time_end' => $commitments_report['time_end'],
+                'value' => $commitments_report['value'],
+                'report_id' => $commitments_report['id'],
+                'verified' => $commitments_report['verified'] ?? false,
 
             ];
         }
-        $field_settings = DT_Posts::get_post_field_settings( "campaigns" );
+        $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
@@ -103,12 +103,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
                 'translations' => [
-                    "select_a_time" => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
-                    "fully_covered_once" => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
-                    "fully_covered_x_times" => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
-                    "time_slot_label" => _x( '%1$s for %2$s minutes.', "Monday 5pm for 15 minutes", 'disciple-tools-prayer-campaigns' ),
-                    "extend_3_months" => __( 'Extend for 3 months', 'disciple-tools-prayer-campaigns' ),
-                    "change_daily_time" => __( 'Change daily time', 'disciple-tools-prayer-campaigns' ),
+                    'select_a_time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                    'fully_covered_once' => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
+                    'fully_covered_x_times' => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
+                    'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
+                    'extend_3_months' => __( 'Extend for 3 months', 'disciple-tools-prayer-campaigns' ),
+                    'change_daily_time' => __( 'Change daily time', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,
@@ -116,8 +116,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
                 'slot_length' => 15,
-                'timezone' => $post["timezone"],
-                "duration_options" => $field_settings["duration_options"]["default"]
+                'timezone' => $post['timezone'],
+                'duration_options' => $field_settings['duration_options']['default']
             ]
         );
 
@@ -169,24 +169,24 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( is_wp_error( $post ) ) {
             return $post;
         }
-        $campaign_id = $post["campaigns"][0]["ID"];
-        $locale = $post["lang"] ?: "en_US";
+        $campaign_id = $post['campaigns'][0]['ID'];
+        $locale = $post['lang'] ?: 'en_US';
 
         //get summary from campaign strings
         $calendar_title = $post['campaigns'][0]['post_title'];
-        $campaign = DT_Posts::get_post( "campaigns", $campaign_id, true, false );
-        if ( isset( $campaign["campaign_strings"][$locale]["campaign_description"] ) ){
-            $calendar_title = $campaign["campaign_strings"][$locale]["campaign_description"];
-        } elseif ( isset( $campaign["campaign_strings"]["en_US"]["campaign_description"] ) ){
-            $calendar_title = $campaign["campaign_strings"]["en_US"]["campaign_description"];
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        if ( isset( $campaign['campaign_strings'][$locale]['campaign_description'] ) ){
+            $calendar_title = $campaign['campaign_strings'][$locale]['campaign_description'];
+        } elseif ( isset( $campaign['campaign_strings']['en_US']['campaign_description'] ) ){
+            $calendar_title = $campaign['campaign_strings']['en_US']['campaign_description'];
         }
         $calendar_timezone = $post['timezone'];
-        $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . "Z";
-        $calendar_description = "";
-        if ( isset( $campaign["campaign_strings"][$locale]["reminder_content"] ) ){
-            $calendar_description = $campaign["campaign_strings"][$locale]["reminder_content"];
-        } elseif ( isset( $campaign["campaign_strings"]["en_US"]["reminder_content"] ) ){
-            $calendar_description = $campaign["campaign_strings"]["en_US"]["reminder_content"];
+        $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
+        $calendar_description = '';
+        if ( isset( $campaign['campaign_strings'][$locale]['reminder_content'] ) ){
+            $calendar_description = $campaign['campaign_strings'][$locale]['reminder_content'];
+        } elseif ( isset( $campaign['campaign_strings']['en_US']['reminder_content'] ) ){
+            $calendar_description = $campaign['campaign_strings']['en_US']['reminder_content'];
         }
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
@@ -198,10 +198,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
 
             $my_commitments[] = [
-                "time_begin" => gmdate( 'Ymd', $commitments_report["time_begin"] ) . 'T'. gmdate( 'His', $commitments_report["time_begin"] ),
-                "time_end" => gmdate( 'Ymd', $commitments_report["time_end"] ) . 'T'. gmdate( 'His', $commitments_report["time_end"] ),
-                "time_duration" => self::get_clean_duration( $commitments_report["time_end"], $commitments_report["time_begin"] ),
-                "location" => $commitments_report['label'],
+                'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T'. gmdate( 'His', $commitments_report['time_begin'] ),
+                'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T'. gmdate( 'His', $commitments_report['time_end'] ),
+                'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
+                'location' => $commitments_report['label'],
             ];
         }
 
@@ -213,25 +213,25 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         echo "PRODID:-//disciple.tools\r\n";
         echo "CALSCALE:GREGORIAN\r\n";
         echo "BEGIN:VTIMEZONE\r\n";
-        echo "TZID:" . esc_html( $calendar_timezone ) . "\r\n";
+        echo 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
         echo "BEGIN:STANDARD\r\n";
-        echo "TZNAME:" . esc_html( $calendar_timezone_offset ) . "\r\n";
-        echo "TZOFFSETFROM:" . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        echo "TZOFFSETTO:" . esc_html( $calendar_timezone_offset ) . "00\r\n";
+        echo 'TZNAME:' . esc_html( $calendar_timezone_offset ) . "\r\n";
+        echo 'TZOFFSETFROM:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
+        echo 'TZOFFSETTO:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
         echo "DTSTART:19700101T000000\r\n";
         echo "END:STANDARD\r\n";
         echo "END:VTIMEZONE\r\n";
 
         foreach ( $my_commitments as $mc ) {
-            $calendar_uid = md5( uniqid( mt_rand(), true ) ) . "@disciple.tools";
+            $calendar_uid = md5( uniqid( mt_rand(), true ) ) . '@disciple.tools';
 
             echo "BEGIN:VEVENT\r\n";
-            echo "UID:" . esc_html( $calendar_uid ) . "\r\n";
-            echo "DTSTAMP:" . esc_html( $calendar_dtstamp ) . "\r\n";
-            echo "SUMMARY:" . esc_html( $calendar_title ) . "\r\n";
-            echo "DTSTART:" . esc_html( $mc['time_begin'] ) . "\r\n";
-            echo "DTEND:" . esc_html( $mc['time_end'] ) . "\r\n";
-            echo "DESCRIPTION:" . esc_html( $calendar_description ) . "\r\n";
+            echo 'UID:' . esc_html( $calendar_uid ) . "\r\n";
+            echo 'DTSTAMP:' . esc_html( $calendar_dtstamp ) . "\r\n";
+            echo 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
+            echo 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
+            echo 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
+            echo 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
             echo "STATUS:CONFIRMED\r\n";
             echo "SEQUENCE:3\r\n";
             echo "BEGIN:VALARM\r\n";
@@ -247,10 +247,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public function manage_body(){
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
-        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+        if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        $campaign_id = $post["campaigns"][0]["ID"];
+        $campaign_id = $post['campaigns'][0]['ID'];
         //cannot manage a subscription that has no campaign
         if ( empty( $campaign_id ) ){
             $this->error_body();
@@ -267,7 +267,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div class="grid-x">
                 <div class="cell center">
                     <h2 id="title"><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <i><?php echo esc_html( $post["name"] ); ?></i>
+                    <i><?php echo esc_html( $post['name'] ); ?></i>
                 </div>
             </div>
             <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
@@ -449,7 +449,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     </button>
                 </div>
                 <button class="button button-cancel clear confirm-view" id="back-to-select" aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'back', 'disciple-tools-prayer-campaigns' )?>
+                    <?php echo esc_html__( 'Back', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -517,7 +517,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div id="extend-times-modal" class="reveal tiny" data-reveal>
                 <h2><?php esc_html_e( 'Extend', 'disciple-tools-prayer-campaigns' ); ?></h2>
 
-                <p><?php esc_html_e( 'Extend my prayer commitments until:', 'disciple_tools' ); ?> <span id="extend-time-slot-text"></span></p>
+                <p><?php esc_html_e( 'Extend my prayer commitments until:', 'disciple-tools-prayer-campaigns' ); ?> <span id="extend-time-slot-text"></span></p>
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
                     <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
@@ -536,7 +536,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             </div>
 
             <?php
-                $notifications = isset( $post["receive_prayer_time_notifications"] ) && !empty( $post["receive_prayer_time_notifications"] );
+                $notifications = isset( $post['receive_prayer_time_notifications'] ) && !empty( $post['receive_prayer_time_notifications'] );
             ?>
 
             <div style="margin-top: 50px">
@@ -598,7 +598,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         register_rest_route(
             $namespace, '/'.$this->type, [
                 [
-                    'methods'  => "POST",
+                    'methods'  => 'POST',
                     'callback' => [ $this, 'manage_profile' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
@@ -610,7 +610,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         register_rest_route(
             $namespace, '/'.$this->type . '/delete_profile', [
                 [
-                    'methods'  => "DELETE",
+                    'methods'  => 'DELETE',
                     'callback' => [ $this, 'delete_profile' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
@@ -622,7 +622,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         register_rest_route(
             $namespace, '/'.$this->type . '/allow-notifications', [
                 [
-                    'methods'  => "POST",
+                    'methods'  => 'POST',
                     'callback' => [ $this, 'allow_notifications' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
@@ -637,13 +637,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $params = $request->get_params();
 
         if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'] ) ) {
-            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
         }
         $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
         if ( ! $post_id ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
         }
         global $wpdb;
 
@@ -651,10 +651,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $a = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts p SET post_title = 'Deleted Subscription', post_name = 'Deleted Subscription' WHERE p.ID = %s", $post_id ) );
         $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_activity_log WHERE object_id = %s and action != 'add_subscription' and action !='delete_subscription'", $post_id ) );
         //create activity for connection removed on the campaign
-        DT_Posts::update_post( 'subscriptions', $post_id, [ "campaigns" => [ "values" => [], "force_values" => true ] ], true, false );
+        DT_Posts::update_post( 'subscriptions', $post_id, [ 'campaigns' => [ 'values' => [], 'force_values' => true ] ], true, false );
         $a = $wpdb->query( $wpdb->prepare( "DELETE pm FROM $wpdb->postmeta pm WHERE pm.post_id = %s", $post_id ) );
         $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
-        DT_Posts::update_post( 'subscriptions', $post_id, [ "status" => 'inactive' ], true, false );
+        DT_Posts::update_post( 'subscriptions', $post_id, [ 'status' => 'inactive' ], true, false );
 
         return true;
     }
@@ -663,16 +663,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $params = $request->get_params();
 
         if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'], $params['action'] ) ) {
-            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
         }
 
         $params = dt_recursive_sanitize_array( $params );
         $action = sanitize_text_field( wp_unslash( $params['action'] ) );
 
         // manage
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
         if ( ! $post_id ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
         }
 
         switch ( $action ) {
@@ -687,7 +687,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             case 'delete_times':
                 return $this->delete_times( $post_id, $params );
             default:
-                return new WP_Error( __METHOD__, "Missing valid action", [ 'status' => 400 ] );
+                return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
         }
     }
 
@@ -715,8 +715,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     private function delete_subscription( $post_id, $report_id ){
         $sub = Disciple_Tools_Reports::get( $report_id, 'id' );
-        $time_in_mins = ( $sub["time_end"] - $sub["time_begin"] ) / 60;
-        $label = "Commitment deleted: " . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
+        $time_in_mins = ( $sub['time_end'] - $sub['time_begin'] ) / 60;
+        $label = 'Commitment deleted: ' . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
         Disciple_Tools_Reports::delete( $report_id );
         dt_activity_insert([
             'action' => 'delete_subscription',
@@ -729,24 +729,24 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     private function delete_subscription_endpoint( $post_id, $params ) {
-        $this->delete_subscription( $post_id, $params["report_id"] );
+        $this->delete_subscription( $post_id, $params['report_id'] );
         return $this->get_subscriptions( $post_id );
     }
 
     private function add_subscriptions( $post_id, $params ){
         $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
-        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+        if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        $campaign_id = $post["campaigns"][0]["ID"];
+        $campaign_id = $post['campaigns'][0]['ID'];
 
         foreach ( $params['selected_times'] as $time ){
-            if ( !isset( $time["time"] ) ){
+            if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time["time"], $time["duration"], $time['grid_id'] );
+            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time['time'], $time['duration'], $time['grid_id'] );
             if ( !$new_report ){
-                return new WP_Error( __METHOD__, "Sorry, Something went wrong", [ 'status' => 400 ] );
+                return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
         return $this->get_subscriptions( $params['parts']['post_id'] );
@@ -754,14 +754,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     private function change_times( $post_id, $params ){
         $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
-        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+        if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        if ( !isset( $params["offset"] ) ){
+        if ( !isset( $params['offset'] ) ){
             return false;
         }
 
-        $ids = dt_array_to_sql( $params["report_ids"] );
+        $ids = dt_array_to_sql( $params['report_ids'] );
         global $wpdb;
         //phpcs:disable.
         //Cannot pass in array in prepare
@@ -776,11 +776,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
     private function delete_times( $post_id, $params ){
         $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
-        if ( !isset( $post["campaigns"][0]["ID"] ) ){
+        if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        foreach ( $params["report_ids"] as $id ){
-            $this->delete_subscription( $post["ID"], $id );
+        foreach ( $params['report_ids'] as $id ){
+            $this->delete_subscription( $post['ID'], $id );
         }
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
@@ -790,16 +790,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $params = $request->get_params();
 
         if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'] ) ) {
-            return new WP_Error( __METHOD__, "Missing parameters", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
         }
         $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
         if ( ! $post_id ){
-            return new WP_Error( __METHOD__, "Missing post record", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
         }
 
-        return update_post_meta( $post_id, "receive_prayer_time_notifications", !empty( $params["allowed"] ) );
+        return update_post_meta( $post_id, 'receive_prayer_time_notifications', !empty( $params['allowed'] ) );
 
     }
 }

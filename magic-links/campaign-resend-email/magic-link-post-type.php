@@ -11,7 +11,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
     public $parts = false;
     public $page_title = 'Resend Subscription Link';
     public $page_description = 'Post Type - Magic Links.';
-    public $root = "campaign_app";
+    public $root = 'campaign_app';
     public $type = 'resend';
     public $post_type = 'campaigns';
     private $meta_key = '';
@@ -98,9 +98,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
                 'rest_base' => esc_url( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
-                'translations' => [
-                    'add' => __( 'Add Magic', 'disciple-tools-prayer-campaigns' ),
-                ],
+                'translations' => [],
                 'rest_namespace' => $this->root . '/v1/' . $this->type,
             ]
         );
@@ -158,7 +156,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         <div id="magic-link-wrapper">
             <div class="grid-x">
                 <div class="cell center">
-                    <h2 id="title">Retrieve Prayer Time Management Link</h2>
+                    <h2 id="title"><?php esc_html_e( 'Retrieve Prayer Time Management Link', 'disciple-tools-prayer-campaign' ); ?></h2>
                 </div>
             </div>
             <hr>
@@ -167,17 +165,17 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
 <!--                <h3>Form</h3>-->
                 <form id="form-content" onSubmit="submit_form();return false;">
 
-                    <p>Enter you email address and receive a link to your prayer times.</p>
+                    <p><?php esc_html_e( 'Enter you email address and receive a link to your prayer times.', 'disciple-tools-prayer-campaign' ); ?></p>
                     <label>
-                        <strong>Email address</strong>
+                        <strong><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaign' ); ?></strong>
                         <input type="email" id="email" style="display: none">
                         <input type="email" id="email-2" required>
                     </label>
 
-                    <button type="submit" class="button loader" id="submit-form">Email My Access Link</button>
+                    <button type="submit" class="button loader" id="submit-form"><?php esc_html_e( 'Email My Access Link', 'disciple-tools-prayer-campaign' ); ?></button>
                 </form>
                 <div id="form-confirm" style="display: none">
-                    Please check you email address now for your access link.
+                    <?php esc_html_e( 'Please check you email address now for your access link.', 'disciple-tools-prayer-campaign' ); ?>
                 </div>
             </div>
 
@@ -194,7 +192,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         register_rest_route(
             $namespace, '/' . $this->type, [
                 [
-                    'methods'  => "POST",
+                    'methods'  => 'POST',
                     'callback' => [ $this, 'access_account' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
@@ -209,10 +207,10 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $params["parts"]["post_id"]; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
         if ( empty( $params['email'] ) ){
-            return new WP_Error( __METHOD__, "Missing required parameter.", [ 'status' => 400 ] );
+            return new WP_Error( __METHOD__, 'Missing required parameter.', [ 'status' => 400 ] );
         }
 
         DT_Prayer_Campaigns_Send_Email::send_account_access( $post_id, $params['email'] );

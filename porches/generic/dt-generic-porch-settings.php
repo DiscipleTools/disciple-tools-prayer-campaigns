@@ -14,6 +14,7 @@ class DT_Generic_Porch_Settings {
     }
 
     public function dt_prayer_campaigns_porch_settings( $settings ) {
+        $this->load_defaults(); //load defaults again to get current translations
         return array_merge( $this->defaults, $settings );
     }
 
@@ -29,7 +30,7 @@ class DT_Generic_Porch_Settings {
 
         $current_campaign = DT_Campaign_Settings::get_campaign();
 
-        $campaign_name = isset( $current_campaign["name"] ) ? $current_campaign["name"] : "";
+        $campaign_name = isset( $current_campaign['name'] ) ? $current_campaign['name'] : '';
 
         $this->defaults = [
             'campaign_name' => [
@@ -57,8 +58,8 @@ class DT_Generic_Porch_Settings {
             ],
             'vision_title' => [
                 'label' => 'Vision Title',
-                'default' => __( "Our Vision", 'disciple-tools-prayer-campaigns' ),
-                'value' => "",
+                'default' => __( 'Our Vision', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
@@ -66,8 +67,8 @@ class DT_Generic_Porch_Settings {
             ],
             'vision' => [
                 'label' => 'Vision',
-                'default' => __( "We want to cover these 30 days with continuous 24/7 prayer.", 'disciple-tools-prayer-campaigns' ),
-                'value' => "",
+                'default' => __( 'We want to cover this region days with continuous 24/7 prayer.', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
@@ -111,7 +112,7 @@ class DT_Generic_Porch_Settings {
             ],
             'time_section_title' => [
                 'label' => 'Time section Title',
-                'default' => __( '24/7 for 30 Days', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( '24/7 Every Day', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -128,8 +129,8 @@ class DT_Generic_Porch_Settings {
                 'section' => DT_Generic_Porch_Translation_Sections::THREE,
             ],
             'what_content' => [
-                'label' => 'What is 24/7 Prayer Content',
-                'value' => '',
+                'label' => 'Prayer Content Message next to calendar',
+                'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 'type' => 'textarea',
                 'translations' => [],
                 'tab' => 'translations',
@@ -146,7 +147,7 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_title' => [
                 'label' => 'Prayer Fuel Title',
-                'default' => __( '15-Minute Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -172,7 +173,7 @@ class DT_Generic_Porch_Settings {
             ],
             'all_fuel_title' => [
                 'label' => 'All Prayer Fuel Title',
-                'default' => __( "All Days", 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'All Days', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
@@ -201,9 +202,9 @@ class DT_Generic_Porch_Settings {
  * Replacement for proper enum types in pre PHP8
  */
 class DT_Generic_Porch_Translation_Sections {
-    const HERO = "Hero";
-    const VISION = "Vision";
-    const THREE = "Three Sections";
-    const WHAT = "What";
-    const FUEL = "Prayer Fuel";
+    const HERO = 'Hero';
+    const VISION = 'Vision';
+    const THREE = 'Three Sections';
+    const WHAT = 'What';
+    const FUEL = 'Prayer Fuel';
 }

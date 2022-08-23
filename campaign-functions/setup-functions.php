@@ -5,8 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_filter( 'cron_schedules', 'dt_prayer_campaign_cron_schedules' );
 
 function dt_prayer_campaign_cron_schedules( $schedules ){
-    if ( !isset( $schedules["15min"] ) ){
-        $schedules["15min"] = array(
+    if ( !isset( $schedules['15min'] ) ){
+        $schedules['15min'] = array(
             'interval' => 15 * 60,
             'display' => __( 'Once every 15 minutes' )
         );

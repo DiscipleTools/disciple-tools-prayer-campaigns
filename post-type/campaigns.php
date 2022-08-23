@@ -11,8 +11,8 @@ class DT_Campaigns_Base {
      * Define post type variables
      * @var string
      */
-    public $post_type = "campaigns";
-    public $module = "campaigns_base";
+    public $post_type = 'campaigns';
+    public $module = 'campaigns_base';
     public $single_name = 'Campaign';
     public $plural_name = 'Campaigns';
     public static function post_type(){
@@ -32,7 +32,7 @@ class DT_Campaigns_Base {
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
         add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
-        add_filter( "dt_front_page", [ $this, "dt_front_page" ] );
+        add_filter( 'dt_front_page', [ $this, 'dt_front_page' ] );
 
         //setup tiles and fields
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
@@ -41,12 +41,12 @@ class DT_Campaigns_Base {
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
 
         // hooks
-        add_filter( "dt_post_create_fields", [ $this, "dt_post_create_fields" ], 10, 2 );
+        add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
 
         //list
-        add_filter( "dt_user_list_filters", [ $this, "dt_user_list_filters" ], 10, 2 );
-        add_filter( "dt_filter_access_permissions", [ $this, "dt_filter_access_permissions" ], 20, 2 );
-        add_filter( "dt_comments_additional_sections", [ $this, "dt_comments_additional_sections" ], 10, 2 );
+        add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 10, 2 );
+        add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
+        add_filter( 'dt_comments_additional_sections', [ $this, 'dt_comments_additional_sections' ], 10, 2 );
 
     }
 
@@ -66,11 +66,11 @@ class DT_Campaigns_Base {
      */
     public function dt_set_roles_and_permissions( $expected_roles ){
 
-        if ( !isset( $expected_roles["campaigns_admin"] ) ){
-            $expected_roles["campaigns_admin"] = [
-                "label" => 'Campaigns Admin',
-                "description" => 'Campaigns admin can administrate the prayer campaigns and subscriptions section',
-                "permissions" => [
+        if ( !isset( $expected_roles['campaigns_admin'] ) ){
+            $expected_roles['campaigns_admin'] = [
+                'label' => 'Campaigns Admin',
+                'description' => 'Campaigns admin can administrate the prayer campaigns and subscriptions section',
+                'permissions' => [
                     'access_disciple_tools' => true,
                 ]
             ];
@@ -81,13 +81,13 @@ class DT_Campaigns_Base {
             'update_any_'.$this->post_type => true,
             'view_any_'.$this->post_type => true,
         ];
-        $expected_roles["campaigns_admin"]["permissions"] = array_merge( $expected_roles["campaigns_admin"]["permissions"], $campaigns_permissions );
+        $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $campaigns_permissions );
 
-        if ( isset( $expected_roles["administrator"] ) ){
-            $expected_roles["administrator"]["permissions"]['access_' . $this->post_type ] = true;
-            $expected_roles["administrator"]["permissions"]['create_' . $this->post_type] = true;
-            $expected_roles["administrator"]["permissions"]['view_any_'.$this->post_type ] = true;
-            $expected_roles["administrator"]["permissions"]['update_any_'.$this->post_type ] = true;
+        if ( isset( $expected_roles['administrator'] ) ){
+            $expected_roles['administrator']['permissions']['access_' . $this->post_type ] = true;
+            $expected_roles['administrator']['permissions']['create_' . $this->post_type] = true;
+            $expected_roles['administrator']['permissions']['view_any_'.$this->post_type ] = true;
+            $expected_roles['administrator']['permissions']['update_any_'.$this->post_type ] = true;
         }
 
         return $expected_roles;
@@ -107,24 +107,24 @@ class DT_Campaigns_Base {
                     'active'   => [
                         'label' => 'Active',
                         'description' => 'Is active.',
-                        'color' => "#4CAF50"
+                        'color' => '#4CAF50'
                     ],
                     'pre_signup'   => [
                         'label' => 'Pre Sign-Up',
                         'description' => 'Getting Ready',
-                        'color' => "orange"
+                        'color' => 'orange'
                     ],
                     'inactive' => [
                         'label' => 'Inactive',
                         'description' => 'No longer active.',
-                        'color' => "#F43636"
+                        'color' => '#F43636'
                     ],
                 ],
                 'tile'     => 'status',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
-                "default_color" => "#366184",
-                "show_in_table" => 10,
-                "select_cannot_be_empty" => true,
+                'default_color' => '#366184',
+                'show_in_table' => 10,
+                'select_cannot_be_empty' => true,
             ];
             $fields['type'] = [
                 'name'        => 'Campaign Type',
@@ -133,30 +133,30 @@ class DT_Campaigns_Base {
                 'default'     => apply_filters( 'dt_campaign_types', [] ),
                 'tile'     => 'status',
 //                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
-                "default_color" => "#F43636",
-                "show_in_table" => 15,
-                "in_create_form" => false,
-                "select_cannot_be_empty" => true,
+                'default_color' => '#F43636',
+                'show_in_table' => 15,
+                'in_create_form' => false,
+                'select_cannot_be_empty' => true,
             ];
             // end basic framework fields
 
 
-            $fields["languages"] = [
+            $fields['languages'] = [
                 'name' => 'Subscriber Preferred Language',
                 'description' => 'Subscriber preferred language',
                 'type' => 'key_select',
-                "tile" => "details",
-                'default' => dt_get_option( "dt_working_languages" ) ?: [ 'en' ],
-                'icon' => get_template_directory_uri() . "/dt-assets/images/languages.svg",
+                'tile' => 'details',
+                'default' => dt_get_option( 'dt_working_languages' ) ?: [ 'en' ],
+                'icon' => get_template_directory_uri() . '/dt-assets/images/languages.svg',
             ];
-            $fields["peoplegroups"] = [
-                "name" => 'People Groups',
+            $fields['peoplegroups'] = [
+                'name' => 'People Groups',
                 'description' => 'The people groups connected to this record.',
-                "type" => "connection",
-                "post_type" => "peoplegroups",
-                "tile" => "details",
-                "p2p_direction" => "to",
-                "p2p_key" => $this->post_type."_to_peoplegroups"
+                'type' => 'connection',
+                'post_type' => 'peoplegroups',
+                'tile' => 'details',
+                'p2p_direction' => 'to',
+                'p2p_key' => $this->post_type.'_to_peoplegroups'
             ];
 
             $fields['start_date'] = [
@@ -167,71 +167,70 @@ class DT_Campaigns_Base {
                 'default'     => time(),
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
-                "in_create_form" => true,
-                "show_in_table" => 101
+                'in_create_form' => true,
+                'show_in_table' => 101
             ];
             $fields['end_date'] = [
                 'name'        => 'End Date',
-                'required' => true,
                 'description' => '',
                 'type'        => 'date',
                 'default'     => '',
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
-                "in_create_form" => true,
-                "show_in_table" => 102
+                'in_create_form' => true,
+                'show_in_table' => 102
             ];
-            $fields["last_modified"]["show_in_table"] = false;
-            $fields["favorite"]["show_in_table"] = false;
+            $fields['last_modified']['show_in_table'] = false;
+            $fields['favorite']['show_in_table'] = false;
 
             $timezones = [];
             $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
             foreach ( $tzlist as $tz ){
                 $timezones[$tz] = [
-                    "label" => $tz
+                    'label' => $tz
                 ];
             }
-            $fields["campaign_timezone"] = [
-                "name" => "Campaign Time Zone",
+            $fields['campaign_timezone'] = [
+                'name' => 'Campaign Time Zone',
                 'required' => true,
-                "in_create_form" => true,
-                "default" => $timezones,
-                "type" => "key_select",
-                "tile" => "campaign_setup",
+                'in_create_form' => true,
+                'default' => $timezones,
+                'type' => 'key_select',
+                'tile' => 'campaign_setup',
             ];
 
-            $fields["min_time_duration"] = [
-                "name" => "Prayer Time Duration",
-                "type" => "key_select",
-                "default" => [
-                    "15" => [ "label" => "15 Minutes", "default" => true ], //keep as first item
-                    "10" => [ "label" => "10 Minutes" ],
-                    "5" => [ "label" => "5 Minutes" ],
+            $fields['min_time_duration'] = [
+                'name' => 'Prayer Time Duration',
+                'type' => 'key_select',
+                'default' => [
+                    '15' => [ 'label' => '15 Minutes', 'default' => true ], //keep as first item
+                    '10' => [ 'label' => '10 Minutes' ],
+                    '5' => [ 'label' => '5 Minutes' ],
                 ],
-                "tile" => "campaign_setup"
+                'tile' => 'campaign_setup'
             ];
 
-            $fields["duration_options"] = [
-                "name" => "Duration options",
-                "type" => "key_select",
-                "default" => [
-                    "5" => [ "label" => __( "5 minutes", 'disciple-tools-prayer-campaigns' ) ],
-                    "10" => [ "label" => __( "10 minutes", 'disciple-tools-prayer-campaigns' ) ],
-                    "15" => [ "label" => __( "15 minutes", 'disciple-tools-prayer-campaigns' ) ],
-                    "30" => [ "label" => __( "30 minutes", 'disciple-tools-prayer-campaigns' ) ],
-                    "60" => [ "label" => __( "1 hour", 'disciple-tools-prayer-campaigns' ) ],
+            $fields['duration_options'] = [
+                'name' => 'Duration options',
+                'type' => 'key_select',
+                'default' => [
+                    '5' => [ 'label' => __( '5 minutes', 'disciple-tools-prayer-campaigns' ) ],
+                    '10' => [ 'label' => __( '10 minutes', 'disciple-tools-prayer-campaigns' ) ],
+                    '15' => [ 'label' => __( '15 minutes', 'disciple-tools-prayer-campaigns' ) ],
+                    '30' => [ 'label' => __( '30 minutes', 'disciple-tools-prayer-campaigns' ) ],
+                    '60' => [ 'label' => __( '1 hour', 'disciple-tools-prayer-campaigns' ) ],
                 ]
             ];
 
-            $fields["strings_translations"] = [
-                "name" => "String Translations",
-                "type" => "array",
+            $fields['strings_translations'] = [
+                'name' => 'String Translations',
+                'type' => 'array',
                 $default = [
-                    "en_US" => [
-                        "title" => "Campaign Description"
+                    'en_US' => [
+                        'title' => 'Campaign Description'
                     ]
                 ],
-                "hidden" => true
+                'hidden' => true
             ];
 
             /**
@@ -242,68 +241,68 @@ class DT_Campaigns_Base {
                 'description' => 'The general location where this contact is located.',
                 'type'        => 'location',
                 'mapbox'    => false,
-                "customizable" => false,
-                "in_create_form" => true,
-                "tile" => "campaign_setup",
-                "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
+                'customizable' => false,
+                'in_create_form' => true,
+                'tile' => 'campaign_setup',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/location.svg',
             ];
             $fields['location_grid_meta'] = [
                 'name'        => 'Locations', //system string does not need translation
                 'description' => 'The general location where this contact is located.',
                 'type'        => 'location_meta',
-                "tile"      => "campaign_setup",
+                'tile'      => 'campaign_setup',
                 'mapbox'    => false,
                 'hidden' => true,
-                "icon" => get_template_directory_uri() . "/dt-assets/images/location.svg",
+                'icon' => get_template_directory_uri() . '/dt-assets/images/location.svg',
             ];
-            $fields["contact_address"] = [
-                "name" => 'Address',
-                "icon" => get_template_directory_uri() . "/dt-assets/images/house.svg",
-                "type" => "communication_channel",
-                "tile" => "",
+            $fields['contact_address'] = [
+                'name' => 'Address',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/house.svg',
+                'type' => 'communication_channel',
+                'tile' => '',
                 'mapbox'    => false,
-                "customizable" => false
+                'customizable' => false
             ];
             if ( DT_Mapbox_API::get_key() ){
-                $fields["contact_address"]["custom_display"] = true;
-                $fields["contact_address"]["mapbox"] = true;
-                unset( $fields["contact_address"]["tile"] );
-                $fields["location_grid"]["mapbox"] = true;
-                $fields["location_grid_meta"]["mapbox"] = true;
-                $fields["location_grid"]["hidden"] = true;
-                $fields["location_grid_meta"]["hidden"] = false;
+                $fields['contact_address']['custom_display'] = true;
+                $fields['contact_address']['mapbox'] = true;
+                unset( $fields['contact_address']['tile'] );
+                $fields['location_grid']['mapbox'] = true;
+                $fields['location_grid_meta']['mapbox'] = true;
+                $fields['location_grid']['hidden'] = true;
+                $fields['location_grid_meta']['hidden'] = false;
             }
 
-            $fields["subscriptions"] = [
-                "name" => 'Subscriptions',
+            $fields['subscriptions'] = [
+                'name' => 'Subscriptions',
                 'description' => 'The contacts who are members of this group.',
-                "type" => "connection",
-                "post_type" => "subscriptions",
-                "p2p_direction" => "from",
-                "customizable" => false,
+                'type' => 'connection',
+                'post_type' => 'subscriptions',
+                'p2p_direction' => 'from',
+                'customizable' => false,
                 'hidden' => true,
-                "p2p_key" => 'campaigns_to_subscriptions',
-                'icon' => get_template_directory_uri() . "/dt-assets/images/nametag.svg",
+                'p2p_key' => 'campaigns_to_subscriptions',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/nametag.svg',
             ];
 
-            if ( isset( $fields["tags"] ) ){
-                $fields["tags"]["tile"] = "details";
+            if ( isset( $fields['tags'] ) ){
+                $fields['tags']['tile'] = 'details';
             }
         }
 
-        if ( $post_type === "subscriptions" ){
+        if ( $post_type === 'subscriptions' ){
             $fields['campaigns'] = [
-                "name" => $this->plural_name,
-                "description" => '',
-                "type" => "connection",
-                "post_type" => $this->post_type,
-                "p2p_direction" => "to",
-                "p2p_key" => 'campaigns_to_subscriptions',
-                "tile" => "",
-                'icon' => get_template_directory_uri() . "/dt-assets/images/group-type.svg",
-                'create-icon' => get_template_directory_uri() . "/dt-assets/images/add-group.svg",
-                "show_in_table" => 35,
-                "customizable" => false,
+                'name' => $this->plural_name,
+                'description' => '',
+                'type' => 'connection',
+                'post_type' => $this->post_type,
+                'p2p_direction' => 'to',
+                'p2p_key' => 'campaigns_to_subscriptions',
+                'tile' => '',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/group-type.svg',
+                'create-icon' => get_template_directory_uri() . '/dt-assets/images/add-group.svg',
+                'show_in_table' => 35,
+                'customizable' => false,
             ];
         }
 
@@ -311,11 +310,11 @@ class DT_Campaigns_Base {
     }
 
     public function dt_comments_additional_sections( $sections, $post_type ){
-        if ( $post_type === "campaigns" || $post_type === "subscriptions" ){
+        if ( $post_type === 'campaigns' || $post_type === 'subscriptions' ){
             $sections[] = [
-                "key" => "stories",
-                "label" => "Stories",
-                "selected_by_default" => true
+                'key' => 'stories',
+                'label' => 'Stories',
+                'selected_by_default' => true
             ];
         }
         return $sections;
@@ -324,15 +323,14 @@ class DT_Campaigns_Base {
     /**
      * @link https://github.com/DiscipleTools/Documentation/blob/master/Theme-Core/field-and-tiles.md
      */
-    public function dt_details_additional_tiles( $tiles, $post_type = "" ){
+    public function dt_details_additional_tiles( $tiles, $post_type = '' ){
         if ( $post_type === $this->post_type ){
-            $tiles["campaign_setup"] = [ "label" => "Campaign Setup" ];
-            $tiles["commitments"] = [ "label" => "Commitments" ];
-            $tiles["prayer_timer"] = [ "label" => "Prayer Timer" ];
-            if ( $post_type === 'campaigns' && ! isset( $tiles["campaign_magic_links"] ) ){
-                $tiles["campaign_magic_links"] = [
-                    "label" => __( "Magic Urls", 'disciple-tools-prayer-campaigns' ),
-                    "description" => "The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates."
+            $tiles['campaign_setup'] = [ 'label' => 'Campaign Setup' ];
+            $tiles['commitments'] = [ 'label' => 'Commitments' ];
+            if ( $post_type === 'campaigns' && ! isset( $tiles['campaign_magic_links'] ) ){
+                $tiles['campaign_magic_links'] = [
+                    'label' => __( 'Magic Urls', 'disciple-tools-prayer-campaigns' ),
+                    'description' => 'The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates.'
                 ];
             }
         }
@@ -345,7 +343,7 @@ class DT_Campaigns_Base {
      */
     public function dt_details_additional_section( $section, $post_type ){
 
-        if ( $post_type === $this->post_type && $section === "commitments" ){
+        if ( $post_type === $this->post_type && $section === 'commitments' ){
             $subscribers_count = DT_Subscriptions::get_subscribers_count( get_the_ID() );
             $coverage_count = $this->query_coverage_percentage( get_the_ID() );
             $scheduled_commitments = $this->query_scheduled_count( get_the_ID() );
@@ -623,10 +621,6 @@ class DT_Campaigns_Base {
         </script>
 
         <?php }
-
-        if ( $post_type === $this->post_type && $section === "prayer_timer" ) {
-            echo do_shortcode( '[dt_prayer_timer]' );
-        }
     }
 
     public function add_api_routes() {
@@ -726,10 +720,10 @@ class DT_Campaigns_Base {
         $unique_days_covered = [];
         foreach ( $subscribers as &$sub ){
             $unique_days = [];
-            if ( $sub["commitments"] !== "0" ){
-                $times = Disciple_Tools_Reports::get( $sub["ID"], 'post_id' );
+            if ( $sub['commitments'] !== '0' ){
+                $times = Disciple_Tools_Reports::get( $sub['ID'], 'post_id' );
                 foreach ( $times as $time ){
-                    $day = gmdate( "Y-m-d", $time["time_begin"] );
+                    $day = gmdate( 'Y-m-d', $time['time_begin'] );
                     if ( !in_array( $day, $unique_days, true ) ){
                         $unique_days[] = $day;
                     }
@@ -740,10 +734,10 @@ class DT_Campaigns_Base {
                 $unique_days_covered[$number_of_days_covered] =0;
             }
             $unique_days_covered[$number_of_days_covered]++;
-            $sub["unique_days_covered"] = sizeof( $unique_days );
+            $sub['unique_days_covered'] = sizeof( $unique_days );
         }
         return [
-            "unique_days_covered" => $unique_days_covered,
+            'unique_days_covered' => $unique_days_covered,
         ];
     }
 
@@ -849,8 +843,8 @@ class DT_Campaigns_Base {
      */
     public static function total_days_in_campaign(): int {
         $campaign = DT_Campaign_Settings::get_campaign();
-        $start_date = $campaign["start_date"]["timestamp"];
-        $end_date = $campaign["end_date"]["timestamp"];
+        $start_date = $campaign['start_date']['timestamp'];
+        $end_date = $campaign['end_date']['timestamp'];
 
         if ( !$start_date || !$end_date ) {
             return -1;
@@ -902,10 +896,10 @@ class DT_Campaigns_Base {
     public static function query_coverage_percentage( $campaign_post_id ) {
         $percent = 0;
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
-        $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        $record = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $min_time_duration = 15;
-        if ( isset( $record["min_time_duration"]["key"] ) ){
-            $min_time_duration = $record["min_time_duration"]["key"];
+        if ( isset( $record['min_time_duration']['key'] ) ){
+            $min_time_duration = $record['min_time_duration']['key'];
         }
 
         $day_count = 0;
@@ -924,10 +918,10 @@ class DT_Campaigns_Base {
 
     public static function query_coverage_levels_progress( $campaign_post_id, $month_limit = 2 ) {
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
-        $record = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        $record = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $min_time_duration = 15;
-        if ( isset( $record["min_time_duration"]["key"] ) ){
-            $min_time_duration = $record["min_time_duration"]["key"];
+        if ( isset( $record['min_time_duration']['key'] ) ){
+            $min_time_duration = $record['min_time_duration']['key'];
         }
 
         $day_count = 0;
@@ -937,34 +931,34 @@ class DT_Campaigns_Base {
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
                 $day_count++;
-                foreach ( $day["hours"] as $hour ){
-                    if ( $hour["subscribers"] > 0 ){
-                        $highest_number = max( $hour["subscribers"], $highest_number );
-                        if ( !isset( $blocks_covered[$hour["subscribers"]] ) ){
-                            $blocks_covered[$hour["subscribers"]] = 0;
+                foreach ( $day['hours'] as $hour ){
+                    if ( $hour['subscribers'] > 0 ){
+                        $highest_number = max( $hour['subscribers'], $highest_number );
+                        if ( !isset( $blocks_covered[$hour['subscribers']] ) ){
+                            $blocks_covered[$hour['subscribers']] = 0;
                         }
-                        $blocks_covered[$hour["subscribers"]]++;
+                        $blocks_covered[$hour['subscribers']]++;
                     }
                 }
             }
             for ( $i = 1; $i <= $highest_number; $i++ ){
                 $res[] = [
-                    "key" => $i,
-                    "blocks_covered" => 0,
-                    "percent" => 0
+                    'key' => $i,
+                    'blocks_covered' => 0,
+                    'percent' => 0
                 ];
             }
 
             foreach ( $blocks_covered as $number_of_prayers => $times_covered ){
                 foreach ( $res as &$r ){
-                    if ( $r["key"] <= $number_of_prayers ){
-                        $r["blocks_covered"] += $times_covered;
+                    if ( $r['key'] <= $number_of_prayers ){
+                        $r['blocks_covered'] += $times_covered;
                     }
                 }
             }
             $total_blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
             foreach ( $res as &$r ){
-                $r["percent"] = round( $r["blocks_covered"] / $total_blocks * 100, 2 );
+                $r['percent'] = round( $r['blocks_covered'] / $total_blocks * 100, 2 );
             }
         }
         return $res;
@@ -976,13 +970,13 @@ class DT_Campaigns_Base {
      * @return int
      */
     public static function query_coverage_total_time_slots( $campaign_post_id ){
-        $campaign = DT_Posts::get_post( "campaigns", $campaign_post_id, true, false );
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $min_time_duration = 15;
-        if ( isset( $campaign["min_time_duration"]["key"] ) ){
-            $min_time_duration = $campaign["min_time_duration"]["key"];
+        if ( isset( $campaign['min_time_duration']['key'] ) ){
+            $min_time_duration = $campaign['min_time_duration']['key'];
         }
-        if ( isset( $campaign["start_date"]["timestamp"], $campaign["end_date"]["timestamp"] ) ){
-            $duration_in_seconds = (int) $campaign["end_date"]["timestamp"] - (int) $campaign["start_date"]["timestamp"];
+        if ( isset( $campaign['start_date']['timestamp'], $campaign['end_date']['timestamp'] ) ){
+            $duration_in_seconds = (int) $campaign['end_date']['timestamp'] - (int) $campaign['start_date']['timestamp'];
             $duration_in_seconds += 86400; // end of last day.
             $number_of_time_slots = $duration_in_seconds / ( $min_time_duration * 60 );
             return $number_of_time_slots;
@@ -993,21 +987,21 @@ class DT_Campaigns_Base {
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
         if ( $post_type === $this->post_type ) {
-            if ( !isset( $fields["status"] ) ) {
-                $fields["status"] = "active";
+            if ( !isset( $fields['status'] ) ) {
+                $fields['status'] = 'active';
             }
-            if ( !isset( $fields["type"] ) ){
-                $fields["type"] = "24hour";
+            if ( !isset( $fields['type'] ) ){
+                $fields['type'] = '24hour';
             }
             $key_name = 'public_key';
-            if ( method_exists( "DT_Magic_URL", "get_public_key_meta_key" ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( "campaign_app", $fields["type"] );
+            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $fields['type'] );
             }
             if ( !isset( $fields[$key_name] ) ) {
                 $fields[$key_name] = dt_create_unique_key();
             }
-            if ( !isset( $fields["min_time_duration"] ) ){
-                $fields["min_time_duration"] = "15";
+            if ( !isset( $fields['min_time_duration'] ) ){
+                $fields['min_time_duration'] = '15';
             }
         }
         return $fields;
@@ -1040,52 +1034,52 @@ class DT_Campaigns_Base {
             $status_counts = [];
             $total_all = 0;
             foreach ( $counts as $count ){
-                $total_all += $count["count"];
-                dt_increment( $status_counts[$count["status"]], $count["count"] );
-                if ( $count["status"] === "active" ){
-                    dt_increment( $active_counts[$count["status"]], $count["count"] );
+                $total_all += $count['count'];
+                dt_increment( $status_counts[$count['status']], $count['count'] );
+                if ( $count['status'] === 'active' ){
+                    dt_increment( $active_counts[$count['status']], $count['count'] );
                 }
             }
-            $filters["tabs"][] = [
-                "key" => "all",
-                "label" => "All",
-                "count" => $total_all,
-                "order" => 10
+            $filters['tabs'][] = [
+                'key' => 'all',
+                'label' => 'All',
+                'count' => $total_all,
+                'order' => 10
             ];
             // add assigned to me filters
-            $filters["filters"][] = [
+            $filters['filters'][] = [
                 'ID' => 'all',
                 'tab' => 'all',
-                'name' => "All",
+                'name' => 'All',
                 'query' => [
                     'sort' => '-post_date'
                 ],
-                "count" => $total_all
+                'count' => $total_all
             ];
 
-            foreach ( $fields["status"]["default"] as $status_key => $status_value ) {
+            foreach ( $fields['status']['default'] as $status_key => $status_value ) {
                 if ( isset( $status_counts[$status_key] ) ){
-                    $filters["filters"][] = [
-                        "ID" => 'all_' . $status_key,
-                        "tab" => 'all',
-                        "name" => $status_value["label"],
-                        "query" => [
+                    $filters['filters'][] = [
+                        'ID' => 'all_' . $status_key,
+                        'tab' => 'all',
+                        'name' => $status_value['label'],
+                        'query' => [
                             'status' => [ $status_key ],
                             'sort' => '-post_date'
                         ],
-                        "count" => $status_counts[$status_key]
+                        'count' => $status_counts[$status_key]
                     ];
-                    if ( $status_key === "active" ){
+                    if ( $status_key === 'active' ){
                         if ( $update_needed > 0 ){
-                            $filters["filters"][] = [
-                                "ID" => 'all_update_needed',
-                                "tab" => 'all',
-                                "name" => $fields["requires_update"]["name"],
-                                "query" => [
+                            $filters['filters'][] = [
+                                'ID' => 'all_update_needed',
+                                'tab' => 'all',
+                                'name' => $fields['requires_update']['name'],
+                                'query' => [
                                     'status' => [ 'active' ],
                                     'requires_update' => [ true ],
                                 ],
-                                "count" => $update_needed,
+                                'count' => $update_needed,
                                 'subfilter' => true
                             ];
                         }
