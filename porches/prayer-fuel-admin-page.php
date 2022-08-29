@@ -33,19 +33,35 @@ class DT_Campaign_Prayer_Fuel_Menu {
             wp_die( 'You do not have sufficient permissions to access this page.' );
         }
 
-        $table = new DT_Campaign_Prayer_Fuel_Day_List();
+        $campaign = DT_Campaign_Settings::get_campaign();
 
-        $table->prepare_items();
+
 
         ?>
 
         <div class="wrap">
-            <h1 class="wp-heading-inline">Prayer Fuel</h1>
+            <?php if ( empty( $campaign ) ): ?>
 
-            <a href="post-new.php?post_type=landing" class="page-title-action">Add New</a>
-            <hr class="wp-header-end">
+                <?php DT_Porch_Admin_Tab_Base::message_box( 'Prayer Fuel', 'Select a campaign to be able to view the prayer fuel in this table' ); ?>
 
-            <?php $table->display(); ?>
+            <?php else : ?>
+
+                <h1 class="wp-heading-inline">Prayer Fuel</h1>
+
+                <a href="post-new.php?post_type=landing" class="page-title-action">Add New</a>
+                <hr class="wp-header-end">
+
+                <?php
+
+                $table = new DT_Campaign_Prayer_Fuel_Day_List();
+
+                $table->prepare_items();
+
+                $table->display();
+
+                ?>
+
+            <?php endif; ?>
 
         </div>
 

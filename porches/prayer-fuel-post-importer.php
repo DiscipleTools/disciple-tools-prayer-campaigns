@@ -51,6 +51,12 @@ class DT_Campaign_Prayer_Post_Importer {
         // Copy the post. Recommended
         $new_posts = $posts;
 
+        $campaign = DT_Campaign_Settings::get_campaign();
+
+        if ( empty( $campaign ) ) {
+            return [];
+        }
+
         $language_settings = new DT_Campaign_Languages();
         $available_languages = $language_settings->get();
         $post_scheduled_start_date = [];
