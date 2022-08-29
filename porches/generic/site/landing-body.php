@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 $lang = dt_campaign_get_current_lang();
 $porch_fields = DT_Porch_Settings::settings();
 $content = 'No post found';

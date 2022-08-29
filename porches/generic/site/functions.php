@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 function dt_campaign_list_languages(){
     $languages_manager = new DT_Campaign_Languages();

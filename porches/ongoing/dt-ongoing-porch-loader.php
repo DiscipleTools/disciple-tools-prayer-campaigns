@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Ongoing_Porch_Loader extends DT_Generic_Porch_Loader {
 

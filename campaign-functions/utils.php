@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
  * Merges the $args and $defaults array recursively through sub arrays

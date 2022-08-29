@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 /**
  * The cron runs hourly and looks at the next x hours for reminders needed.
  * Effectively this gives a soft buffer where most emails will go out between x hours

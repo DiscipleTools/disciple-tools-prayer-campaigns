@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 add_shortcode( 'dt_prayer_timer', 'show_prayer_timer' );
 
 function show_prayer_timer( $atts ) {

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 

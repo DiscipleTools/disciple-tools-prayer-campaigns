@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 $lang = dt_campaign_get_current_lang();
 //  for getting posts in the selected language.
 $lang_query = [

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 function dt_generic_percentage_shortcode( $attrs ) {
     if ( $attrs['type'] === '24hour' ) {

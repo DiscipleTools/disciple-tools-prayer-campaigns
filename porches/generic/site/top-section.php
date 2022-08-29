@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
 dt_campaign_add_lang_to_cookie( $lang );

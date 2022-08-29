@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
     return;

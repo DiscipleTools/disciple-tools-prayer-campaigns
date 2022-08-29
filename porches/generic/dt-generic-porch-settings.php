@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 /**
  * Adds the porch specific settings to the porch settings array
  */

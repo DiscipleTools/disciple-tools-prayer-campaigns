@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 function dt_campaign_post( $post ) {
     $content = apply_filters( 'the_content', $post->post_content );

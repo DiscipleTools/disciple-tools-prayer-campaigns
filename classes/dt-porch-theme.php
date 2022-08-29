@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
  * Class for defining the theme options available to the porches for usage

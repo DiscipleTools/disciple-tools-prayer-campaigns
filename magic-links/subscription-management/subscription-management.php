@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public $post_type = 'subscriptions';

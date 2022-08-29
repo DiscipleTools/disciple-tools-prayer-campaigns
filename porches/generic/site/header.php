@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 global $allowed_tags;
 $allowed_tags['script'] = array(
     'async' => array(),

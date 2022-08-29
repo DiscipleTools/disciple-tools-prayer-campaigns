@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Prayer_Campaigns_Send_Email {
     public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [] ){
