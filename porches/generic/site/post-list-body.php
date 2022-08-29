@@ -108,7 +108,7 @@ if ( empty( $list->posts ) ){
                             <a href="<?php echo esc_url( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
                         </h3>
                         <div class="meta-tags">
-                            <span class="date"><i class="lnr lnr-calendar-full"></i>on <?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
+                            <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
                         </div>
                         <p>
                             <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
