@@ -198,7 +198,7 @@ class DT_Porch_Settings {
             ],
             'header_background_url' => [
                 'label' => 'Header Background URL',
-                'value' => trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/img/stencil-header.png',
+                'value' => DT_Prayer_Campaigns::instance()->plugin_dir_url . 'porches/generic/site/img/stencil-header.png',
                 'type' => 'text',
                 'tab' => 'settings',
             ],
