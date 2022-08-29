@@ -50,7 +50,7 @@ class DT_Generic_Porch_Settings {
             ],
             'subtitle' => [
                 'label' => 'Subtitle',
-                'value' => '',
+                'value' => __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
@@ -67,7 +67,7 @@ class DT_Generic_Porch_Settings {
             ],
             'vision' => [
                 'label' => 'Vision',
-                'default' => __( 'We want to cover this region days with continuous 24/7 prayer.', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'We want to cover this region with continuous 24/7 prayer.', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
