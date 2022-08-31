@@ -2,7 +2,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 
-class DT_GenericPorch_Landing extends DT_Magic_Url_Base
+class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
 {
     public $page_title = PORCH_LANDING_POST_TYPE_SINGLE;
     public $root = PORCH_LANDING_ROOT;
@@ -52,15 +52,15 @@ class DT_GenericPorch_Landing extends DT_Magic_Url_Base
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
-        return DT_GenericPorch_Landing_Enqueue::load_allowed_scripts();
+        return DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts();
     }
 
     public function dt_magic_url_base_allowed_css( $allowed_css ) {
-        return DT_GenericPorch_Landing_Enqueue::load_allowed_styles();
+        return DT_Generic_Porch_Landing_Enqueue::load_allowed_styles();
     }
 
     public function wp_enqueue_scripts() {
-        DT_GenericPorch_Landing_Enqueue::load_scripts();
+        DT_Generic_Porch_Landing_Enqueue::load_scripts();
     }
 
     public function body(){
@@ -77,4 +77,4 @@ class DT_GenericPorch_Landing extends DT_Magic_Url_Base
         require_once( 'header.php' );
     }
 }
-DT_GenericPorch_Landing::instance();
+DT_Generic_Porch_Landing::instance();

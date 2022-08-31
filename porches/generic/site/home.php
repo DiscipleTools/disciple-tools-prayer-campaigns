@@ -60,7 +60,7 @@ class DT_Campaign_Porch_Home extends DT_Magic_Url_Base
     }
     public function wp_enqueue_scripts(){
         require_once( 'landing-enqueue.php' );
-        DT_GenericPorch_Landing_Enqueue::load_scripts();
+        DT_Generic_Porch_Landing_Enqueue::load_scripts();
     }
 
     public function dt_custom_dir_attr( $lang ){
@@ -68,7 +68,7 @@ class DT_Campaign_Porch_Home extends DT_Magic_Url_Base
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
-        return array_merge( [ 'jquery', 'lodash', 'lodash-core' ], DT_GenericPorch_Landing_Enqueue::load_allowed_scripts() );
+        return array_merge( [ 'jquery', 'lodash', 'lodash-core' ], DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
     }
 
     public function dt_magic_url_base_allowed_css( $allowed_css ) {
