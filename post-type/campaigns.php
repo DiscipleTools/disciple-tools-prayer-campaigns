@@ -57,7 +57,7 @@ class DT_Campaigns_Base {
     }
 
     public function dt_front_page(){
-        return site_url( '/campaigns' );
+        return admin_url( 'admin.php?page=dt_prayer_campaigns' );
     }
 
     /**
