@@ -156,9 +156,9 @@ class DT_Prayer_Campaigns_Campaigns {
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
-                        <?php $this->box_email_settings() ?>
-
                         <?php $this->box_select_porch() ?>
+
+                        <?php $this->box_email_settings() ?>
 
                         <?php
                         if ( DT_Porch_Selector::instance()->has_selected_porch() ) {
