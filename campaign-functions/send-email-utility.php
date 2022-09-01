@@ -20,7 +20,11 @@ class DT_Prayer_Campaigns_Send_Email {
             if ( !empty( $prayer_campaign_email_name ) ){
                 return $prayer_campaign_email_name;
             }
-            return dt_get_option( 'dt_email_base_name' );
+            $base_name = dt_get_option( 'dt_email_base_name' );
+            if ( !empty( $base_name ) ){
+                return $base_name;
+            }
+            return $name;
         }, 200);
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
