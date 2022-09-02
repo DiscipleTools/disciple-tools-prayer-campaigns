@@ -130,35 +130,8 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
                 ],
             ]
         );
-        /**
-         * route for sending pre sign up email
-         */
-        register_rest_route(
-            $namespace, '/'.$this->magic_link_type . '/send-pre-signup-email', [
-                [
-                    'methods'  => 'GET',
-                    'callback' => [ $this, 'send_pre_sign_up_email' ],
-                    'permission_callback' => function ( WP_REST_Request $request ){
-                        $params = $request->get_params();
-                        if ( !isset( $params['campaign_id'] ) ){
-                            return false;
-                        }
-                        return DT_Posts::can_update( 'campaigns', $params['campaign_id'] );
-                    }
-                ],
-            ]
-        );
     }
 
-    public function send_pre_sign_up_email( WP_REST_Request $request ){
-        $params = $request->get_params();
-        if ( !isset( $params['campaign_id'] ) ){
-             new WP_Error( __METHOD__, 'Missing campaign id', [ 'status' => 400 ] );
-        }
-        $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
-        return DT_Prayer_Campaigns_Send_Email::send_pre_sign_up_email( $campaign_post_id );
-
-    }
 
     public function create_subscription( WP_REST_Request $request ) {
         $params = $request->get_params();

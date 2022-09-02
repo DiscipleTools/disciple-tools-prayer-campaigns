@@ -404,6 +404,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                                         <?php selected( (int) $campaign['ID'] === (int) $fields['ID'] ) ?>
                                                     >
                                                         <?php echo esc_html( $campaign['name'] ) ?>
+
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
