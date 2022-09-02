@@ -152,10 +152,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                         $code = str_replace( 'disciple-tools-prayer-campaigns-', '', $translation_key );
                         ?>
                         <div class="tabs-panel <?php echo esc_html( $code === 'en_US' ? 'is-active' : '' ); ?>" id="lang-<?php echo esc_html( $code ); ?>">
-                            <label class="section-subheader">
-                                Campaign Description
-                                <input id="hack-campaign_strings-campaign_description--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]['campaign_description'] ?? '' ); ?>">
-                            </label>
                             <label class="section-subheader" >
                                 Extra content in sign up email
                                 <input id="hack-campaign_strings-signup_content--<?php echo esc_html( $code ); ?>" type="text" class="text-input" value="<?php echo esc_html( $strings[$code]['signup_content'] ?? '' ); ?>">
@@ -466,10 +462,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         }
 
         $locale = $params['parts']['lang'] ?: 'en_US';
-        $description = '';
-        if ( isset( $record['campaign_strings'][$locale]['campaign_description'] ) ){
-            $description = $record['campaign_strings'][$locale]['campaign_description'];
-        }
         $grid_id = 1;
         if ( isset( $record['location_grid'] ) && ! empty( $record['location_grid'] ) ) {
             $grid_id = $record['location_grid'][0]['id'];
@@ -479,7 +471,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
         $return = [
-            'description' => $description,
             'coverage_levels' => $coverage_levels,
             'number_of_time_slots' => $number_of_time_slots,
             'coverage_percentage' => $coverage_percentage,

@@ -177,11 +177,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         //get summary from campaign strings
         $calendar_title = $post['campaigns'][0]['post_title'];
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        if ( isset( $campaign['campaign_strings'][$locale]['campaign_description'] ) ){
-            $calendar_title = $campaign['campaign_strings'][$locale]['campaign_description'];
-        } elseif ( isset( $campaign['campaign_strings']['en_US']['campaign_description'] ) ){
-            $calendar_title = $campaign['campaign_strings']['en_US']['campaign_description'];
-        }
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
         $calendar_description = '';
