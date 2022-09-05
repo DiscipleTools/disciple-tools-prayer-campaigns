@@ -36,26 +36,23 @@ add_filter( 'wp_mail_from', function ( $email ) {
     $prayer_campaign_email = get_option( 'dt_prayer_campaign_email' );
     if ( !empty( $prayer_campaign_email ) ){
         return $prayer_campaign_email;
-    } else if ( strpos( $email, 'wordpress' ) !== false ){
+    } else if ( empty( $email ) || strpos( $email, 'wordpress' ) !== false ){
         $domain = parse_url( home_url() )['host'];
         $email = 'no-reply@' . $domain;
     }
     return $email;
 }, 200 );
+
 add_filter( 'wp_mail_from_name', function ( $name ) {
     $prayer_campaign_email_name = get_option( 'dt_prayer_campaign_email_name' );
     if ( !empty( $prayer_campaign_email_name ) ){
-        return $prayer_campaign_email_name;
+        $name = $prayer_campaign_email_name;
     }
-    if ( class_exists( 'DT_Porch_Settings' ) ){
-        $campaign_name = DT_Porch_Settings::get_field_translation( 'campaign_name' );
+    if ( empty( $name ) && class_exists( 'DT_Porch_Settings' ) ){
+        $campaign_name = DT_Porch_Settings::get_field_translation( 'title' );
         if ( !empty( $campaign_name ) ){
-            return $campaign_name;
+            $name = $campaign_name;
         }
-    }
-    $base_name = get_option( 'dt_email_base_name' );
-    if ( !empty( $base_name ) ){
-        return $base_name;
     }
     return $name;
 }, 200 );
