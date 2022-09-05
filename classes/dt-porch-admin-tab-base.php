@@ -88,11 +88,18 @@ class DT_Porch_Admin_Tab_Base {
 
             if ( isset( $_POST['list'] ) ) {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
-                $new_settings = $this->keep_line_breaks_on_textareas( $post_list );
-                $new_translations = $this->get_new_translations( $_POST );
+                $fields = DT_Porch_Settings::fields();
+                $allowed_tags = $this->get_allowed_tags();
 
+                foreach ( $post_list as $field_key => $value ){
+                    if ( isset( $fields[$field_key]['type'], $_POST['list'][$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
+                        $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
+                    }
+                }
+                DT_Porch_Settings::update_values( $post_list );
+
+                $new_translations = $this->get_new_translations( $_POST );
                 DT_Porch_Settings::update_translations( $new_translations );
-                DT_Porch_Settings::update_values( $new_settings );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
@@ -275,25 +282,6 @@ class DT_Porch_Admin_Tab_Base {
         return $available_themes;
     }
 
-    /**
-     * Keep line breaks by using wp_kses to sanitize.
-     *
-     * @param $post_list
-     * @return mixed
-     */
-    private function keep_line_breaks_on_textareas( $post_list ) {
-        $fields = DT_Porch_Settings::fields();
-        $allowed_tags = $this->get_allowed_tags();
-
-        /* make any text area stuff safe */
-        foreach ( $post_list as $field_key => $value ){
-            if ( isset( $fields[$field_key]['type'], $_POST['list'][$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
-                $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
-            }
-        }
-
-        return $post_list;
-    }
 
     private function get_new_translations( $post ) {
         $fields = DT_Porch_Settings::fields();
