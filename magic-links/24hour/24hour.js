@@ -42,9 +42,7 @@ jQuery(document).ready(function($) {
     $('#cp-wrapper').removeClass("loading-content")
 
     $('.cp-loading-page').hide()
-    if ( calendar_subscribe_object.status === "pre_signup" ){
-      $('#cp-view-confirm-later').show()
-    } else if (  calendar_subscribe_object.status === "inactive"){
+    if (  calendar_subscribe_object.status === "inactive"){
       $('#cp-view-closed').show()
       $("#cp-wrapper").css("min-height", '500px')
     } else {

@@ -38,10 +38,6 @@ class DT_Subscriptions {
             $key_name => $hash,
             'receive_prayer_time_notifications' => $args['receive_prayer_time_notifications'],
         ];
-        if ( sizeof( $times ) === 0 ){
-            $fields['tags'] = [ 'values' => [ [ 'value' => 'pre-signup' ] ] ];
-        }
-
 
         // create post
         $new_subscriber = DT_Posts::create_post( 'subscriptions', $fields, true );

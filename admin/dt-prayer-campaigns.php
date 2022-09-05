@@ -404,11 +404,16 @@ class DT_Prayer_Campaigns_Campaigns {
                                                         <?php selected( (int) $campaign['ID'] === (int) $fields['ID'] ) ?>
                                                     >
                                                         <?php echo esc_html( $campaign['name'] ) ?>
+
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <button class="button float-right" type="submit">Update</button>
                                             <br>
+                                            <br>
+                                            <a href="<?php echo esc_html( site_url( '/campaigns' ) ); ?>" target="_blank" style="margin: 10px">See campaigns list</a>
+                                            <a href="<?php echo esc_html( site_url( '/campaigns/new' ) ); ?>"  target="_blank" >Create a campaign</a>
+                                        <br>
                                             <br>
                                             <a href="<?php echo esc_html( site_url( '/campaigns' ) ); ?>" target="_blank" style="margin: 10px">See campaigns list</a>
                                             <a href="<?php echo esc_html( site_url( '/campaigns/new' ) ); ?>"  target="_blank" >Create a campaign</a>
