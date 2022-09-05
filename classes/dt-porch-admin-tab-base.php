@@ -125,15 +125,16 @@ class DT_Porch_Admin_Tab_Base {
                                         <?php echo esc_html( $field['label'] ); ?>
                                     </td>
                                     <td>
-                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) {
-                                            echo '<h3>Default translated text:</h3>';
-                                            echo nl2br( esc_html( $field['default'] ) );
-                                            echo '<br><br>';
-                                        }
-                                        if ( isset( $field['translations'] ) ){
-                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ) . '"> button to set a value for each language. Custom text for all languages: </p>';
-                                        }
-                                        ?>
+                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) : ?>
+                                            <h3>Default translated text:</h3>
+                                            <?php echo nl2br( esc_html( $field['default'] ) ); ?>
+                                            <br><br>
+                                        <?php endif;
+                                        if ( isset( $field['translations'] ) ) : ?>
+                                            <p>Set a custom text for all languages (below) or click the
+                                                <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
+                                                button to set a value for each language:</p>
+                                        <?php endif; ?>
                                         <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"/>
                                     </td>
                                     <td style="vertical-align: middle;">
@@ -148,14 +149,16 @@ class DT_Porch_Admin_Tab_Base {
                                         <?php echo esc_html( $field['label'] ); ?>
                                     </td>
                                     <td>
-                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) {
-                                            echo '<h3>Default translated text:</h3>';
-                                            echo nl2br( esc_html( $field['default'] ) );
-                                            echo '<br><br>';
-                                        }
-                                        if ( isset( $field['translations'] ) ){
-                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ) . '"> button to set a value for each language. Custom text for all languages:</p>';
-                                        } ?>
+                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) : ?>
+                                            <h3>Default translated text:</h3>
+                                            <?php echo nl2br( esc_html( $field['default'] ) ); ?>
+                                            <br><br>
+                                        <?php endif;
+                                        if ( isset( $field['translations'] ) ) : ?>
+                                            <p>Set a custom text for all languages (below) or click the
+                                                <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
+                                                button to set a value for each language:</p>
+                                        <?php endif; ?>
                                         <textarea name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
                                     </td>
                                     <td style="vertical-align: middle;">
