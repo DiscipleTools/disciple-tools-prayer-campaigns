@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
  *
  * @return array
  */
-if ( !function_exists( "recursive_parse_args" ) ){
+if ( !function_exists( 'recursive_parse_args' ) ){
     function recursive_parse_args( $args, $defaults ) {
         $new_args = (array) $defaults;
 
