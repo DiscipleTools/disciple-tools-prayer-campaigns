@@ -48,7 +48,7 @@ class DT_Prayer_Campaigns_Campaigns {
             '24hour' => [
                 'campaign_type' => '24hour',
                 'porch' => 'generic-porch',
-                'label' => 'Setup Landing page for 24/7 Fixed Campaign'
+                'label' => '24/7 Fixed Start and End Dates Campaign'
             ],
         ];
         return array_merge( $default_wizards, $wizard_types );
@@ -90,8 +90,8 @@ class DT_Prayer_Campaigns_Campaigns {
                 /* Make sure that the prayer fuel custom post type is flushed or set up straight after the porch has been changed */
                 header( 'Refresh:0.01' );
             }
-            if ( isset( $_POST['setup_default'] ) ){
-                $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_default'] ) );
+            if ( isset( $_POST['setup_wizard_submit'], $_POST['setup_wizard_type'] ) ){
+                $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_wizard_type'] ) );
 
                 /**
                  * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
@@ -156,16 +156,21 @@ class DT_Prayer_Campaigns_Campaigns {
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
-                        <?php $this->box_email_settings() ?>
-
-                        <?php $this->box_select_porch() ?>
 
                         <?php
+                        if ( !DT_Porch_Selector::instance()->has_selected_porch() || $this->no_campaigns() ) {
+                            $this->setup_wizard();
+                        }
+
+                        $this->box_select_porch();
+
                         if ( DT_Porch_Selector::instance()->has_selected_porch() ) {
                             $this->box_campaign();
                         }
-                        ?>
 
+                        $this->box_email_settings();
+
+                        ?>
                      </div>
                 </div>
             </div>
@@ -229,6 +234,41 @@ class DT_Prayer_Campaigns_Campaigns {
         <?php
     }
 
+    private function setup_wizard(){
+        ?>
+
+        <table class="widefat striped">
+            <thead>
+            <tr>
+                <th>Setup Wizard</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
+                               value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
+
+                        <h2>Setup up the landing page for this campaign type:</h2>
+                        <p>
+                            <?php $this->display_wizard_buttons() ?>
+                        </p>
+
+                        <p>
+                            <button type="submit" class="button" name="setup_wizard_submit">Continue</button>
+                        </p>
+                        <p>This selects landing page and creates a corresponding campaign</p>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <?php
+    }
+
     private function box_select_porch() {
         $porches = DT_Porch_Selector::instance()->get_porch_loaders();
         ?>
@@ -236,7 +276,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Landing page selection</th>
+                    <th>Landing page Selection</th>
                 </tr>
             </thead>
             <tbody>
@@ -246,17 +286,6 @@ class DT_Prayer_Campaigns_Campaigns {
                             <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
 
-
-                            <?php if ( !DT_Porch_Selector::instance()->has_selected_porch() && $this->no_campaigns() ) : ?>
-                                <h2>Setup Wizard</h2>
-
-                                <p>
-
-                                    <?php $this->display_wizard_buttons() ?>
-
-                                </p>
-
-                            <?php endif; ?>
 
                             <table class="widefat">
                                 <tbody>
@@ -312,11 +341,10 @@ class DT_Prayer_Campaigns_Campaigns {
 
         <?php foreach ( $wizard_types as $wizard_type => $wizard_details ): ?>
 
-            <button type="submit" class="button" name="setup_default" value="<?php echo esc_attr( $wizard_type ) ?>">
-
-                <?php echo isset( $wizard_details['label'] ) ? esc_html( $wizard_details['label'] ) : esc_html( "Setup Campaign for $wizard_type" ) ?>
-
-            </button>
+            <label style="display: block; padding: 8px">
+                <input type="radio" name="setup_wizard_type" value="<?php echo esc_html( $wizard_type ); ?>" required>
+                <?php echo isset( $wizard_details['label'] ) ? esc_html( $wizard_details['label'] ) : esc_html( "$wizard_type" ) ?>
+            </label>
 
         <?php endforeach; ?>
 
@@ -351,85 +379,77 @@ class DT_Prayer_Campaigns_Campaigns {
        <table class="widefat striped">
             <thead>
                 <tr>
-                    <?php if ( $this->no_campaigns() ): ?>
-                        <th>Setup Campaign</th>
-                    <?php else : ?>
-                        <th>Link Campaign</th>
-                    <?php endif; ?>
+                    <th>
+                        Link Campaign
+                    </th>
                 </tr>
             </thead>
            <tbody>
                <tr>
                    <td>
-                        <?php if ( $this->no_campaigns() ) : ?>
-                            <form method="post">
-                                <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
-                                        value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
-
-                                <?php $this->display_wizard_buttons() ?>
-
-                            </form>
-                        <?php else : ?>
-                            <form method="post" class="metabox-table">
-                                <?php wp_nonce_field( 'install_campaign_nonce', 'install_campaign_nonce' ) ?>
-                                <!-- Box -->
-                                <table class="widefat striped">
-                                    <tbody>
+                        <form method="post" class="metabox-table">
+                            <?php wp_nonce_field( 'install_campaign_nonce', 'install_campaign_nonce' ) ?>
+                            <!-- Box -->
+                            <table class="widefat striped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Select Campaign
+                                        </td>
+                                        <td>
+                                            <select name="selected_campaign">
+                                                <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
+                                                <?php foreach ( $campaigns['posts'] as $campaign ) :?>
+                                                    <option value="<?php echo esc_html( $campaign['ID'] ) ?>"
+                                                        <?php selected( (int) $campaign['ID'] === (int) $fields['ID'] ) ?>
+                                                    >
+                                                        <?php echo esc_html( $campaign['name'] ) ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <button class="button float-right" type="submit">Update</button>
+                                            <br>
+                                            <br>
+                                            <a href="<?php echo esc_html( site_url( '/campaigns' ) ); ?>" target="_blank" style="margin: 10px">See campaigns list</a>
+                                            <a href="<?php echo esc_html( site_url( '/campaigns/new' ) ); ?>"  target="_blank" >Create a campaign</a>
+                                        </td>
+                                    </tr>
+                                    <?php if ( ! empty( $fields['ID'] ) ) : ?>
+                                        <?php foreach ( $fields as $key => $value ) :
+                                            if ( in_array( $key, [ 'start_date', 'end_date', 'status' ] ) ) :
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo esc_attr( ucwords( str_replace( '_', ' ', $key ) ) ) ?></td>
+                                                    <td><?php echo esc_html( ( is_array( $value ) ) ? $value['formatted'] ?? $value['label'] : $value ); ?></td>
+                                                </tr>
+                                            <?php endif;
+                                        endforeach; ?>
                                         <tr>
+                                            <td>Campaign Type</td>
+                                            <td><?php echo esc_html( $fields['type']['label'] ) ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Edit Campaign Details</td>
                                             <td>
-                                                Select Campaign
-                                            </td>
-                                            <td>
-                                                <select name="selected_campaign">
-                                                    <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
-                                                    <?php foreach ( $campaigns['posts'] as $campaign ) :?>
-                                                        <option value="<?php echo esc_html( $campaign['ID'] ) ?>"
-                                                            <?php selected( (int) $campaign['ID'] === (int) $fields['ID'] ) ?>
-                                                        >
-                                                            <?php echo esc_html( $campaign['name'] ) ?>
-                                                        </option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                                <button class="button float-right" type="submit">Update</button>
+                                                <a href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>" target="_blank">Edit Campaign</a>
                                             </td>
                                         </tr>
-                                        <?php if ( ! empty( $fields['ID'] ) ) : ?>
-                                            <?php foreach ( $fields as $key => $value ) :
-                                                if ( in_array( $key, [ 'start_date', 'end_date', 'status' ] ) ) :
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo esc_attr( ucwords( str_replace( '_', ' ', $key ) ) ) ?></td>
-                                                        <td><?php echo esc_html( ( is_array( $value ) ) ? $value['formatted'] ?? $value['label'] : $value ); ?></td>
-                                                    </tr>
-                                                <?php endif;
-                                            endforeach; ?>
-                                            <tr>
-                                                <td>Campaign Type</td>
-                                                <td><?php echo esc_html( $fields['type']['label'] ) ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Edit Campaign Details</td>
-                                                <td>
-                                                    <a href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>" target="_blank">Edit Campaign</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>See subscribers</td>
-                                                <td>
-                                                    <a href="<?php echo esc_html( site_url() . '/subscriptions/' ); ?>" target="_blank">See Subscribers</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Export Campaign Subscribers</td>
-                                                <td><button type="submit" name="download_csv">Download CSV</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <!-- End Box -->
-                            </form>
-                        <?php endif; ?>
+                                        <tr>
+                                            <td>See subscribers</td>
+                                            <td>
+                                                <a href="<?php echo esc_html( site_url() . '/subscriptions/' ); ?>" target="_blank">See Subscribers</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Export Campaign Subscribers</td>
+                                            <td><button type="submit" name="download_csv">Download CSV</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                            <br>
+                            <!-- End Box -->
+                        </form>
                    </td>
                </tr>
            </tbody>
