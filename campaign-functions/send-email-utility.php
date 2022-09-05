@@ -242,46 +242,6 @@ class DT_Prayer_Campaigns_Send_Email {
         }
     }
 
-    /**
-     * Email sent to the subscribers who have not chosen any prayer times
-     * @param $campaign_id
-     * @return bool[]
-     */
-    public static function send_pre_sign_up_email( $campaign_id ): array{
-
-        $pre_sign_up_subscriptions = DT_Posts::list_posts( 'subscriptions', [ 'tags' => [ 'pre-signup' ], 'campaigns' => [ $campaign_id ] ] );
-
-        foreach ( $pre_sign_up_subscriptions['posts'] as $subscriber ){
-            //send email
-            $key_name = 'public_key';
-            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
-            }
-            $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
-            if ( isset( $subscriber['contact_email'][0]['value'] ) ){
-                $subject = __( 'What time(s) will you pray?', 'disciple-tools-prayer-campaigns' );
-                $message = '
-                    <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) . '</h3>
-                    <p>' . __( 'Thank you for signing up to help us cover the region in nonstop prayer!!', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'It is now time to choose the specific times you will pray. Below is a link to the prayer times tool.', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'To pray at the same time every day (preferred!) click the "Add a Daily Prayer Time" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'If you need to choose different times or can\'t commit to pray every day click the "Add individual Prayer Times" button.', 'disciple-tools-prayer-campaigns' ) . '</p>
-                    <p>' . __( 'Choose prayer times link:', 'disciple-tools-prayer-campaigns' ). '</p>
-                    <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
-                ';
-                $sent = self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $message );
-                if ( ! $sent ){
-                    dt_write_log( __METHOD__ . ': Unable to send email. ' . $subscriber['contact_email'][0]['value'] );
-                } else {
-                    DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'tags' => [ 'values' => [ [ 'value' => 'pre-signup', 'delete' => true ], [ 'value' => 'sent-pre-signup' ] ] ] ] );
-                    DT_Posts::add_post_comment( 'subscriptions', $subscriber['ID'], 'Sent email to ' . $subscriber['contact_email'][0]['value'] . ' asking them to choose prayer times' );
-                }
-            }
-        }
-
-        return [ 'emails_sent' => true ];
-    }
-
 
     public static function sent_resubscribe_tickler( $subscriber_id ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
