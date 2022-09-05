@@ -109,11 +109,6 @@ class DT_Campaigns_Base {
                         'description' => 'Is active.',
                         'color' => '#4CAF50'
                     ],
-                    'pre_signup'   => [
-                        'label' => 'Pre Sign-Up',
-                        'description' => 'Getting Ready',
-                        'color' => 'orange'
-                    ],
                     'inactive' => [
                         'label' => 'Inactive',
                         'description' => 'No longer active.',
