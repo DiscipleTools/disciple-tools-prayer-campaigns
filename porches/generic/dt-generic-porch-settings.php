@@ -156,7 +156,8 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_description' => [
                 'label' => 'Prayer Fuel Description',
-                'value' => __( 'Use these resources to help pray specifically each day', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'Use these resources to help pray specifically each day.', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
