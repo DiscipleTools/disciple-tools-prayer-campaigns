@@ -8,24 +8,6 @@ class DT_Prayer_Campaigns_Send_Email {
             $headers[] = 'Content-Type: text/html';
             $headers[] = 'charset=UTF-8';
         }
-        add_filter( 'wp_mail_from', function ( $email ) {
-            $prayer_campaign_email = get_option( 'dt_prayer_campaign_email' );
-            if ( !empty( $prayer_campaign_email ) ){
-                return $prayer_campaign_email;
-            }
-            return $email;
-        }, 200 );
-        add_filter( 'wp_mail_from_name', function ( $name ) {
-            $prayer_campaign_email_name = get_option( 'dt_prayer_campaign_email_name' );
-            if ( !empty( $prayer_campaign_email_name ) ){
-                return $prayer_campaign_email_name;
-            }
-            $base_name = dt_get_option( 'dt_email_base_name' );
-            if ( !empty( $base_name ) ){
-                return $base_name;
-            }
-            return $name;
-        }, 200);
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
