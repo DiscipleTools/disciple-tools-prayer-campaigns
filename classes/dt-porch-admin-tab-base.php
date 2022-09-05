@@ -91,8 +91,9 @@ class DT_Porch_Admin_Tab_Base {
                 $fields = DT_Porch_Settings::fields();
                 $allowed_tags = $this->get_allowed_tags();
 
+                //Keep line breaks by using wp_kses to sanitize.
                 foreach ( $post_list as $field_key => $value ){
-                    if ( isset( $fields[$field_key]['type'], $_POST['list'][$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
+                    if ( isset( $fields[$field_key]['type'], $_POST['list'][$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
