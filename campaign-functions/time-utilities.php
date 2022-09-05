@@ -152,4 +152,14 @@ class DT_Time_Utilities {
         return $end + 86399; // end of selected day (-1 second);
     }
 
+    public static function get_slot_duration_options(){
+        return [
+            '5' => [ 'label' => __( '5 minutes', 'disciple-tools-prayer-campaigns' ) ],
+            '10' => [ 'label' => __( '10 minutes', 'disciple-tools-prayer-campaigns' ) ],
+            '15' => [ 'label' => __( '15 minutes', 'disciple-tools-prayer-campaigns' ) ],
+            '30' => [ 'label' => __( '30 minutes', 'disciple-tools-prayer-campaigns' ) ],
+            '60' => [ 'label' => __( '1 hour', 'disciple-tools-prayer-campaigns' ) ],
+        ];
+    }
+
 }
