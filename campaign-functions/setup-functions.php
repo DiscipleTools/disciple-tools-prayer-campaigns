@@ -53,7 +53,7 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
             return $campaign_name;
         }
     }
-    $base_name = dt_get_option( 'dt_email_base_name' );
+    $base_name = get_option( 'dt_email_base_name' );
     if ( !empty( $base_name ) ){
         return $base_name;
     }
