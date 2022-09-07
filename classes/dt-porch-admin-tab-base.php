@@ -279,10 +279,12 @@ class DT_Porch_Admin_Tab_Base {
         $fields = DT_Porch_Settings::fields();
         $allowed_tags = $this->get_allowed_tags();
 
+        if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
         /* make any text area stuff safe */
-        foreach ( $post_list as $field_key => $value ){
-            if ( isset( $fields[$field_key]['type'], $post_list[$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
-                $post_list[$field_key] = wp_kses( wp_unslash( $post_list[$field_key] ), $allowed_tags );
+            foreach ( $post_list as $field_key => $value ){
+                if ( isset( $fields[$field_key]['type'], $post_list[$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
+                    $post_list[$field_key] = wp_kses( wp_unslash( $post_list[$field_key] ), $allowed_tags );
+                }
             }
         }
 
