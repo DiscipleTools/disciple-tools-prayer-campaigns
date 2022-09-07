@@ -289,7 +289,6 @@ class DT_Porch_Admin_Tab_Base {
         return $available_themes;
     }
 
-
     private function get_new_translations( $post ) {
         $fields = DT_Porch_Settings::fields();
         $allowed_tags = $this->get_allowed_tags();
