@@ -103,7 +103,7 @@ class DT_Porch_Admin_Tab_Base {
         <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
 
             <?php if ( empty( $section ) ) {
-                $section_name = "Other";
+                $section_name = 'Other';
             } else {
                 $section_name = $section;
             } ?>
