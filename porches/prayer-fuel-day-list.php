@@ -168,7 +168,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                 ?>
 
-                <p class="post-titles"><?php echo esc_html( $titles ) ?></p>
+                <p class="post-titles" title="<?php echo esc_html( $titles ) ?>"><?php echo esc_html( $titles ) ?></p>
 
                 <?php
                 break;
