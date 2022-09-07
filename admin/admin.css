@@ -17,7 +17,7 @@
 
 .wp-list-table .post-titles {
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
 }
 
