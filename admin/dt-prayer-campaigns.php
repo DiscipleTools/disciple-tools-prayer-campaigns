@@ -156,11 +156,22 @@ class DT_Prayer_Campaigns_Campaigns {
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
+                        <?php $is_wizard_open = !DT_Porch_Selector::instance()->has_selected_porch() || $this->no_campaigns(); ?>
+
+                        <button
+                            class="button"
+                            id="campaign-wizard-toggle"
+                            style="display: <?php echo esc_attr( $is_wizard_open ? "none" : "block" ) ?>; margin-bottom: 1rem;"
+                        >
+                            Campaign Wizard
+                        </button>
+
+                        <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? "block" : "none" ) ?>;">
+                            <?php $this->setup_wizard(); ?>
+                        </div>
+
 
                         <?php
-                        if ( !DT_Porch_Selector::instance()->has_selected_porch() || $this->no_campaigns() ) {
-                            $this->setup_wizard();
-                        }
 
                         $this->box_select_porch();
 

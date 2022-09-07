@@ -2,6 +2,8 @@ jQuery(document).ready(function ($) {
   const dtLandingDaySelector = document.getElementById("dt-landing-day-selector")
   const dtLandingDateDisplay = document.getElementById("dt-landing-date-display")
   const dtLandingDateSelector = document.getElementById("dt-landing-date-selector")
+  const dtCampaignWizardToggle = document.getElementById("campaign-wizard-toggle")
+  const dtCampaignWizard = document.getElementById("campaign-wizard")
 
   $(dtLandingDaySelector).on( 'change', handleDayChange)
   function handleDayChange(e) {
@@ -28,6 +30,11 @@ jQuery(document).ready(function ($) {
 
     wpDateDisplay.innerHTML = makeWpDate(newDate)
     dtLandingDaySelector.value = calculateNewDay(newDate)
+  }
+
+  $(dtCampaignWizardToggle).on( 'click', handleToggleClick)
+  function handleToggleClick(e) {
+    $(dtCampaignWizard).toggle()
   }
 
   function getWpDateDisplay() {
