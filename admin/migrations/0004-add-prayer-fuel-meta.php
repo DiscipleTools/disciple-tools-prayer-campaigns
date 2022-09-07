@@ -31,8 +31,8 @@ class DT_Prayer_Campaign_Migration_0004 extends DT_Prayer_Campaign_Migration {
                 ++$day_in_campaign;
             }
 
-            add_post_meta( $post->ID, 'day', $day_in_campaign );
-            add_post_meta( $post->ID, PORCH_LANDING_META_KEY, $day_in_campaign );
+            update_post_meta( $post->ID, 'day', $day_in_campaign );
+            update_post_meta( $post->ID, PORCH_LANDING_META_KEY, $day_in_campaign );
         }
     }
 
