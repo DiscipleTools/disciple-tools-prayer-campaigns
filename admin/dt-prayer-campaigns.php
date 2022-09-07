@@ -8,7 +8,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
     private $settings_manager;
 
-    private static $no_campaign_key = 'none';
+    public static $no_campaign_key = 'none';
 
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
@@ -376,10 +376,6 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields = [ 'ID' => 0 ];
         }
 
-        $campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active', 'pre_signup', 'inactive' ] ] );
-        if ( is_wp_error( $campaigns ) ){
-            $campaigns = [ 'posts' => [] ];
-        }
 
         ?>
         <style>
@@ -409,15 +405,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                         <td>
                                             <select name="selected_campaign">
-                                                <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
-                                                <?php foreach ( $campaigns['posts'] as $campaign ) :?>
-                                                    <option value="<?php echo esc_html( $campaign['ID'] ) ?>"
-                                                        <?php selected( (int) $campaign['ID'] === (int) $fields['ID'] ) ?>
-                                                    >
-                                                        <?php echo esc_html( $campaign['name'] ) ?>
-
-                                                    </option>
-                                                <?php endforeach; ?>
+                                                <?php $this->campaign_options( $fields['ID'] ) ?>
                                             </select>
                                             <button class="button float-right" type="submit">Update</button>
                                             <br>
@@ -468,6 +456,26 @@ class DT_Prayer_Campaigns_Campaigns {
            </tbody>
        </table>
        <br/>
+        <?php
+    }
+
+    public static function campaign_options( $selected_id ) {
+        $campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active', 'pre_signup', 'inactive' ] ] );
+        if ( is_wp_error( $campaigns ) ){
+            $campaigns = [ 'posts' => [] ];
+        }
+        ?>
+
+        <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
+        <?php foreach ( $campaigns['posts'] as $campaign ) :?>
+            <option value="<?php echo esc_html( $campaign['ID'] ) ?>"
+                <?php selected( (int) $campaign['ID'] === (int) $selected_id ) ?>
+            >
+                <?php echo esc_html( $campaign['name'] ) ?>
+
+            </option>
+        <?php endforeach; ?>
+
         <?php
     }
 

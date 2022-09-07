@@ -38,6 +38,7 @@ class DT_Prayer_Campaigns_Menu {
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-home.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
+        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-email-settings.php';
 
         add_action( 'admin_menu', array( $this, 'register_menu' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -110,6 +111,8 @@ class DT_Prayer_Campaigns_Menu {
             $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
         }
 
+        $email_settings_tab = new DT_Porch_Admin_Tab_Email_Settings();
+
         ?>
 
         <div class="wrap">
@@ -118,6 +121,10 @@ class DT_Prayer_Campaigns_Menu {
                 <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
                     class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                     General Settings
+                </a>
+                <a href="<?php echo esc_attr( $link . $email_settings_tab->key ) ?>"
+                    class="nav-tab <?php echo esc_html( ( $tab == $email_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $email_settings_tab->title ) ?>
                 </a>
 
                 <?php if ( $this->has_selected_porch() ) : ?>
@@ -144,6 +151,9 @@ class DT_Prayer_Campaigns_Menu {
             switch ( $tab ) {
                 case 'campaigns':
                     $this->campaigns->content();
+                    break;
+                case $email_settings_tab->key:
+                    $email_settings_tab->content();
                     break;
                 default:
                     break;
