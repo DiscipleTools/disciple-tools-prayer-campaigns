@@ -47,11 +47,13 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
     if ( !empty( $prayer_campaign_email_name ) ){
         return $prayer_campaign_email_name;
     }
-    $campaign_name = DT_Porch_Settings::get_field_translation( 'campaign_name' );
-    if ( !empty( $campaign_name ) ){
-        return $campaign_name;
+    if ( class_exists( 'DT_Porch_Settings' ) ){
+        $campaign_name = DT_Porch_Settings::get_field_translation( 'campaign_name' );
+        if ( !empty( $campaign_name ) ){
+            return $campaign_name;
+        }
     }
-    $base_name = dt_get_option( 'dt_email_base_name' );
+    $base_name = get_option( 'dt_email_base_name' );
     if ( !empty( $base_name ) ){
         return $base_name;
     }

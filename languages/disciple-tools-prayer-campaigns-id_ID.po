@@ -4,183 +4,214 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Prayer Campaigns\n"
+"Project-Id-Version: P4M Prayer Campaigns\n"
 "Language: id\n"
 
-#: admin/cron-schedule.php:121 admin/send-email-utility.php:71
+#: campaign-functions/cron-schedule.php:123
+#: campaign-functions/send-email-utility.php:85
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s dari %2$s hingga %3$s"
 
-#: admin/cron-schedule.php:127
+#: campaign-functions/cron-schedule.php:129
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "untuk %s"
 
-#: admin/cron-schedule.php:142 admin/send-email-utility.php:89
-#: admin/send-email-utility.php:160 admin/send-email-utility.php:254
+#: campaign-functions/cron-schedule.php:144
+#: campaign-functions/send-email-utility.php:103
+#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:264
+#: campaign-functions/send-email-utility.php:300
 msgid "Hello %s,"
 msgstr "Halo %s,"
 
-#: admin/cron-schedule.php:143
+#: campaign-functions/cron-schedule.php:145
+#: porches/generic/site/stats.php:131
 msgid "Thank you for praying with us!"
 msgstr "Terima kasih telah berdoa bersama kami!"
 
-#: admin/cron-schedule.php:144
+#: campaign-functions/cron-schedule.php:146
 msgid "Here are your upcoming prayer times:"
 msgstr "Berikut adalah waktu doa Anda yang akan datang:"
 
-#: admin/cron-schedule.php:146 admin/send-email-utility.php:109
+#: campaign-functions/cron-schedule.php:148
+#: campaign-functions/send-email-utility.php:123
 msgid "Times are shown according to: %s time"
 msgstr "Waktu ditampilkan menurut: %s waktu"
 
-#: admin/send-email-utility.php:86
+#: campaign-functions/send-email-utility.php:100
 msgid "Registered to pray with us!"
 msgstr "Terdaftar untuk berdoa bersama kami!"
 
-#: admin/send-email-utility.php:106
+#: campaign-functions/send-email-utility.php:120
 msgid "Click here to verify your email address and confirm your prayer times."
 msgstr "Klik di sini untuk memverifikasi alamat email Anda dan mengkonfirmasi waktu doa Anda."
 
-#: admin/send-email-utility.php:107
+#: campaign-functions/send-email-utility.php:121
 msgid "Here are the times you have committed to pray:"
 msgstr "Inilah waktu-waktu yang Anda telah berkomitmen untuk berdoa:"
 
-#: magic-links/24hour.php:25 magic-links/subscription-management.php:562
+#: magic-links/subscription-management/subscription-management.php:108
+#: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
 msgid "Select a time"
 msgstr "Pilih waktu"
 
-#: magic-links/24hour.php:26 magic-links/subscription-management.php:563
+#: magic-links/subscription-management/subscription-management.php:109
+#: shortcodes/24hour.php:31
 msgid "fully covered once"
 msgstr "terpenuhi sekaligus"
 
-#: magic-links/24hour.php:27 magic-links/subscription-management.php:564
+#: magic-links/subscription-management/subscription-management.php:110
+#: shortcodes/24hour.php:32
 msgid "fully covered %1$s times"
 msgstr "terpenuhi sepenuhnya %1$s kali"
 
-#: magic-links/24hour.php:28 magic-links/subscription-management.php:565
+#: magic-links/subscription-management/subscription-management.php:111
+#: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s selama %2$s menit."
 
-#: magic-links/24hour.php:101
+#: shortcodes/24hour.php:113 shortcodes/ongoing.php:141
 msgid "Loading prayer campaign data..."
 msgstr "Memuat data kampanye doa..."
 
-#: magic-links/24hour.php:155 magic-links/24hour.php:192
+#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
+#: shortcodes/ongoing.php:196 shortcodes/ongoing.php:233
 msgid "Showing times for:"
 msgstr "Waktu tayang untuk:"
 
-#: magic-links/24hour.php:120
+#: shortcodes/24hour.php:132 shortcodes/ongoing.php:160
 msgid "Select an option"
 msgstr "Pilih satu opsi"
 
-#: magic-links/24hour.php:123
+#: shortcodes/24hour.php:135 shortcodes/ongoing.php:163
 msgid "Pray every day at the same time"
 msgstr "Berdoa setiap hari pada waktu yang sama"
 
-#: magic-links/24hour.php:125
+#: shortcodes/24hour.php:137 shortcodes/ongoing.php:165
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Contoh: Setiap hari jam 4 sore selama 15 menit"
 
-#: magic-links/24hour.php:128
+#: shortcodes/24hour.php:140 shortcodes/ongoing.php:168
 msgid "Select days and times to pray"
 msgstr "Pilih hari dan waktu untuk berdoa"
 
-#: magic-links/24hour.php:130
+#: shortcodes/24hour.php:142 shortcodes/ongoing.php:170
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Contoh: Senin 12 jam 6 sore selama 15 menit"
 
-#: magic-links/24hour.php:145 magic-links/subscription-management.php:1212
+#: magic-links/subscription-management/subscription-management.php:329
+#: shortcodes/24hour.php:157 shortcodes/ongoing.php:186
 msgid "Prayer Time"
 msgstr "Waktu doa"
 
-#: magic-links/24hour.php:147 magic-links/24hour.php:180
-#: magic-links/subscription-management.php:1214
-#: magic-links/subscription-management.php:1296
+#: magic-links/subscription-management/subscription-management.php:331
+#: magic-links/subscription-management/subscription-management.php:413
+#: shortcodes/24hour.php:159 shortcodes/24hour.php:192
+#: shortcodes/ongoing.php:188 shortcodes/ongoing.php:221
 msgid "Daily Time"
 msgstr "Waktu Harian"
 
-#: magic-links/24hour.php:151 magic-links/24hour.php:184
-#: magic-links/subscription-management.php:1218
-#: magic-links/subscription-management.php:1300
+#: magic-links/subscription-management/subscription-management.php:335
+#: magic-links/subscription-management/subscription-management.php:417
+#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 msgid "For how long"
 msgstr "Untuk berapa lama"
 
-#: magic-links/24hour.php:158 magic-links/24hour.php:202
-#: magic-links/subscription-management.php:1239
-#: magic-links/subscription-management.php:1333
+#: magic-links/subscription-management/subscription-management.php:356
+#: magic-links/subscription-management/subscription-management.php:450
+#: shortcodes/24hour.php:170 shortcodes/24hour.php:214
+#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:243
 msgid "Confirm Times"
 msgstr "Konfirmasi Waktu"
 
-#: magic-links/24hour.php:170 magic-links/subscription-management.php:1287
+#: magic-links/subscription-management/subscription-management.php:404
+#: shortcodes/24hour.php:182 shortcodes/ongoing.php:211
 msgid "Select a day and choose a time"
 msgstr "Pilih hari dan pilih waktu"
 
-#: magic-links/24hour.php:178 magic-links/subscription-management.php:1294
+#: magic-links/subscription-management/subscription-management.php:411
+#: shortcodes/24hour.php:190 shortcodes/ongoing.php:219
 msgid "Select a prayer time"
 msgstr "Pilih waktu doa"
 
-#: magic-links/24hour.php:188 magic-links/subscription-management.php:1304
+#: magic-links/subscription-management/subscription-management.php:421
+#: shortcodes/24hour.php:200 shortcodes/ongoing.php:229
 msgid "Add prayer time"
 msgstr "Tambahkan waktu doa"
 
-#: magic-links/24hour.php:189 magic-links/subscription-management.php:1305
+#: magic-links/subscription-management/subscription-management.php:422
+#: shortcodes/24hour.php:201 shortcodes/ongoing.php:230
 msgid "Time added"
 msgstr "Waktu ditambahkan"
 
-#: magic-links/24hour.php:196 magic-links/24hour.php:270
-#: magic-links/subscription-management.php:1312
+#: magic-links/subscription-management/subscription-management.php:429
+#: shortcodes/24hour.php:208 shortcodes/24hour.php:245
+#: shortcodes/ongoing.php:237 shortcodes/ongoing.php:259
 msgid "Selected Times"
 msgstr "Waktu yang Dipilih"
 
-#: magic-links/24hour.php:214
+#: magic-links/subscription-management/subscription-management.php:511
+#: magic-links/subscription-management/subscription-management.php:527
+#: parts/components.php:25
 msgid "Confirm"
 msgstr "Konfirmasi"
 
-#: magic-links/24hour.php:228 magic-links/24hour.php:229
-#: magic-links/24hour.php:310 magic-links/24hour.php:311
+#: parts/components.php:47 parts/components.php:48 shortcodes/24hour.php:285
+#: shortcodes/24hour.php:286
 msgid "Name"
 msgstr "Nama"
 
-#: magic-links/24hour.php:236 magic-links/24hour.php:237
-#: magic-links/24hour.php:238 magic-links/24hour.php:318
-#: magic-links/24hour.php:319 magic-links/24hour.php:320
+#: magic-links/campaign-resend-email/magic-link-post-type.php:170
+#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: porches/generic/site/stats.php:248 shortcodes/24hour.php:293
+#: shortcodes/24hour.php:294 shortcodes/24hour.php:295
 msgid "Email"
 msgstr "email"
 
-#: magic-links/24hour.php:245
+#: parts/components.php:70
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "Menerima Pemberitahuan Waktu Doa (diperlukan verifikasi email)."
 
-#: magic-links/24hour.php:250 magic-links/24hour.php:326
+#: parts/components.php:81 shortcodes/24hour.php:301
 msgid "Submit Your Prayer Commitment"
 msgstr "Serahkan Komitmen Doa Anda"
 
-#: magic-links/24hour.php:256 magic-links/24hour.php:332
+#: shortcodes/24hour.php:231 shortcodes/24hour.php:307
+#: shortcodes/ongoing.php:267
 msgid "Sent! Check your email."
 msgstr "Terkirim! Periksa email Anda."
 
-#: magic-links/24hour.php:258
+#: shortcodes/24hour.php:233 shortcodes/ongoing.php:269
 msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
 msgstr "Klik tautan yang disertakan dalam email untuk memverifikasi komitmen Anda dan menerima pemberitahuan waktu doa!"
 
-#: magic-links/24hour.php:261
+#: shortcodes/24hour.php:236 shortcodes/ongoing.php:272
 msgid "In the email is a link to manage your prayer times."
 msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
 
-#: magic-links/24hour.php:264 magic-links/24hour.php:334
+#: shortcodes/24hour.php:239 shortcodes/24hour.php:309
+#: shortcodes/ongoing.php:275
 msgid "OK"
 msgstr "oke"
 
-#: magic-links/24hour.php:295 magic-links/subscription-management.php:1186
-#: magic-links/subscription-management.php:1235
-#: magic-links/subscription-management.php:1329
-#: magic-links/subscription-management.php:1410
+#: magic-links/subscription-management/subscription-management.php:303
+#: magic-links/subscription-management/subscription-management.php:352
+#: magic-links/subscription-management/subscription-management.php:446
+#: magic-links/subscription-management/subscription-management.php:492
+#: magic-links/subscription-management/subscription-management.php:508
+#: magic-links/subscription-management/subscription-management.php:524
+#: magic-links/subscription-management/subscription-management.php:574
+#: shortcodes/24hour.php:270 shortcodes/ongoing.php:299
 msgid "Cancel"
 msgstr "Membatalkan"
 
-#: magic-links/24hour.php:298 magic-links/subscription-management.php:1189
+#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:495
+#: shortcodes/24hour.php:273 shortcodes/ongoing.php:302
 msgid "Select"
 msgstr "Pilih"
 
@@ -199,151 +230,149 @@ msgstr "Tambahkan modul langganan doa ke Disciple.Tools yang memungkinkan non-pe
 msgid "https://github.com/DiscipleTools"
 msgstr "https://github.com/DiscipleTools"
 
-#: admin/cron-schedule.php:150 admin/send-email-utility.php:113
+#: campaign-functions/cron-schedule.php:152
+#: campaign-functions/send-email-utility.php:127
 msgid "Click here to manage your account and time commitments"
 msgstr "Klik di sini untuk mengelola akun dan komitmen waktu Anda"
 
-#: admin/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:119
 msgid "Thank you for joining us in strategic prayer for a disciple making movement! You're one click away from finishing your registration."
 msgstr "Terima kasih telah bergabung dengan kami dalam doa strategis untuk gerakan pemuridan! Tinggal satu klik lagi untuk menyelesaikan pendaftaran Anda."
 
-#: admin/send-email-utility.php:167
+#: campaign-functions/send-email-utility.php:170
 msgid "Registration Confirmation"
 msgstr "konfirmasi registrasi"
 
-#: admin/send-email-utility.php:170
+#: campaign-functions/send-email-utility.php:173
 msgid "Thank you for signing up to pray!"
 msgstr "Terima kasih telah mendaftar untuk berdoa!"
 
-#: admin/send-email-utility.php:171
+#: campaign-functions/send-email-utility.php:174
 msgid "We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer."
 msgstr "Kami punya waktu sebelum kampanye dimulai. Kami akan mengirimkan email lagi beberapa bulan sebelum hari pertama meminta Anda untuk memilih waktu tertentu untuk berdoa. Bekerja sama kami akan mencakup wilayah dalam doa 24/7."
 
-#: admin/send-email-utility.php:172
+#: campaign-functions/send-email-utility.php:175
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "Jika Anda sudah mengetahui jadwal Anda, Anda dapat memilih waktu Anda di sini:"
 
-#: admin/send-email-utility.php:252
+#: campaign-functions/send-email-utility.php:262
 msgid "What time(s) will you pray?"
 msgstr "Jam berapa Anda akan berdoa?"
 
-#: admin/send-email-utility.php:255
+#: campaign-functions/send-email-utility.php:265
 msgid "Thank you for signing up to help us cover the region in nonstop prayer!!"
 msgstr "Terima kasih telah mendaftar untuk membantu kami menutupi wilayah ini dengan doa tanpa henti!!"
 
-#: admin/send-email-utility.php:256
+#: campaign-functions/send-email-utility.php:266
 msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
 msgstr "Sekarang saatnya untuk memilih waktu spesifik Anda akan berdoa. Di bawah ini adalah tautan ke alat waktu doa."
 
-#: admin/send-email-utility.php:257
+#: campaign-functions/send-email-utility.php:267
 msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
 msgstr "Untuk berdoa pada waktu yang sama setiap hari (lebih disukai!) klik tombol \"Tambahkan Waktu Sholat Harian\"."
 
-#: admin/send-email-utility.php:258
+#: campaign-functions/send-email-utility.php:268
 msgid "If you need to choose different times or can't commit to pray every day click the \"Add individual Prayer Times\" button."
 msgstr "Jika Anda perlu memilih waktu yang berbeda atau tidak dapat berkomitmen untuk berdoa setiap hari, klik tombol \"Tambahkan Waktu Sholat individual\"."
 
-#: admin/send-email-utility.php:259
+#: campaign-functions/send-email-utility.php:269
 msgid "Choose prayer times link:"
 msgstr "Pilih tautan waktu doa:"
 
-#: magic-links/24hour.php:87
+#: shortcodes/24hour.php:99
 msgid "Percentage covered in prayer"
 msgstr "Persentase yang tercakup dalam doa"
 
-#: magic-links/24hour.php:108
+#: shortcodes/24hour.php:120 shortcodes/ongoing.php:148
 msgid "Choose Prayer Times"
 msgstr "Pilih Waktu Doa"
 
-#: magic-links/24hour.php:118 magic-links/24hour.php:141
-#: magic-links/24hour.php:167 magic-links/24hour.php:212
+#: magic-links/subscription-management/subscription-management.php:454
+#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
+#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
+#: shortcodes/ongoing.php:158 shortcodes/ongoing.php:181
+#: shortcodes/ongoing.php:208 shortcodes/ongoing.php:253
 msgid "Back"
 msgstr "Kembali"
 
-#: magic-links/24hour.php:198 magic-links/subscription-management.php:1314
+#: magic-links/subscription-management/subscription-management.php:431
+#: shortcodes/24hour.php:210 shortcodes/ongoing.php:239
 msgid "No selected Time"
 msgstr "Tidak ada Waktu yang dipilih"
 
-#: magic-links/24hour.php:234 magic-links/24hour.php:316
+#: parts/components.php:53 shortcodes/24hour.php:291
 msgid "Your email is required."
 msgstr "Email Anda diperlukan."
 
-#: magic-links/24hour.php:305
+#: shortcodes/24hour.php:280
 msgid "I'm interested in praying! Send me an email when it is time to choose prayer times."
 msgstr "Saya tertarik untuk berdoa! Kirimi saya email ketika tiba waktunya untuk memilih waktu doa."
 
-#: magic-links/24hour.php:343
+#: shortcodes/24hour.php:318 shortcodes/ongoing.php:308
 msgid "We are not longer looking for sign ups"
 msgstr "Kami tidak lagi mencari pendaftar"
 
-#: magic-links/24hour.php:344
+#: shortcodes/24hour.php:319 shortcodes/ongoing.php:309
 msgid "Thanks for praying with us!"
 msgstr "Terima kasih telah berdoa bersama kami!"
 
-#: magic-links/subscription-management.php:35
-#: magic-links/subscription-management.php:1142
+#: magic-links/subscription-management/subscription-management.php:38
+#: magic-links/subscription-management/subscription-management.php:271
 msgid "My Prayer Times"
 msgstr "Waktu Doaku"
 
-#: magic-links/subscription-management.php:1147
+#: magic-links/subscription-management/subscription-management.php:276
 msgid "Your prayer times have been verified!"
 msgstr "Waktu doa Anda telah diverifikasi!"
 
-#: magic-links/subscription-management.php:1200
+#: magic-links/subscription-management/subscription-management.php:317
 msgid "Add a Daily Prayer Time"
 msgstr "Tambahkan Waktu Doa Harian"
 
-#: magic-links/subscription-management.php:1203
+#: magic-links/subscription-management/subscription-management.php:320
 msgid "Add Individual Prayer Times"
 msgstr "Tambahkan Waktu Doa Individu"
 
-#: magic-links/subscription-management.php:1205
+#: magic-links/subscription-management/subscription-management.php:322
 msgid "Download Calendar"
 msgstr "Unduh Kalender"
 
-#: magic-links/subscription-management.php:1228
-#: magic-links/subscription-management.php:1322
+#: magic-links/subscription-management/subscription-management.php:345
+#: magic-links/subscription-management/subscription-management.php:439
 msgid "Your new prayer times have been saved."
 msgstr "Waktu doa  Anda yang baru telah disimpan."
 
-#: magic-links/subscription-management.php:1248
-#: magic-links/subscription-management.php:1345
+#: magic-links/subscription-management/subscription-management.php:365
+#: magic-links/subscription-management/subscription-management.php:462
 msgid "ok"
 msgstr "oke"
 
-#: magic-links/subscription-management.php:1279
+#: magic-links/subscription-management/subscription-management.php:396
 msgid "Close"
 msgstr "Menutup"
 
-#: magic-links/subscription-management.php:1337
-msgid "back"
-msgstr "kembali"
-
-#: magic-links/subscription-management.php:1390
+#: magic-links/subscription-management/subscription-management.php:546
 msgid "Profile Settings"
 msgstr "Pengaturan Profil"
 
-#: magic-links/subscription-management.php:1397
+#: magic-links/subscription-management/subscription-management.php:561
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "Hapus profil ini dan semua jadwal waktu doa"
 
-#: magic-links/subscription-management.php:1399
+#: magic-links/subscription-management/subscription-management.php:563
+#: magic-links/subscription-management/subscription-management.php:577
 msgid "Delete"
 msgstr "Menghapus"
 
-#: magic-links/subscription-management.php:1402
+#: magic-links/subscription-management/subscription-management.php:566
 msgid "Are you sure you want to delete your profile?"
 msgstr "Anda yakin ingin menghapus profil Anda?"
 
-#: magic-links/subscription-management.php:1404
+#: magic-links/subscription-management/subscription-management.php:568
 msgid "This can not be undone."
 msgstr "Ini tidak dapat dibatalkan."
 
-#: magic-links/subscription-management.php:1413
-msgid "DELETE"
-msgstr "MENGHAPUS"
-
-#: magic-links/subscription-management.php:1430
+#: magic-links/subscription-management/subscription-management.php:593
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Langganan ini telah berakhir atau tidak dikonfigurasi dengan benar."
 
@@ -352,24 +381,352 @@ msgstr "Langganan ini telah berakhir atau tidak dikonfigurasi dengan benar."
 msgid "Disciple.Tools - Prayer Campaigns"
 msgstr "Alat-alat Murid - Kampanye Doa"
 
-#: admin/admin-menu-and-tabs.php:224
-msgid "Update"
-msgstr "Memperbarui"
-
-#: admin/cron-schedule.php:80
+#: campaign-functions/cron-schedule.php:82
 msgid "Prayer Time reminder!"
 msgstr "Pengingat waktu berdoa!"
 
-#: magic-links/prayer-timer.php:164
+#: shortcodes/prayer-timer.php:177
 msgid "Start Praying!"
 msgstr "Mulailah Berdoa!"
 
-#: magic-links/prayer-timer.php:167
+#: shortcodes/prayer-timer.php:180
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "Waktu berdoa: %s mnt"
 
-#: magic-links/prayer-timer.php:176
+#: shortcodes/prayer-timer.php:189
 msgid "Now praying..."
 msgstr "Berdoa sekarang..."
+
+#: campaign-functions/time-utilities.php:157
+msgid "5 minutes"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:158
+msgid "10 minutes"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:159
+msgid "15 minutes"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:160
+msgid "30 minutes"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:161
+msgid "1 hour"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:301
+msgid "You are 2 weeks out for your last prayer time. Would you like to keep praying?"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:302
+msgid "Sign up for more prayer times or extend your recurring time here:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:304
+msgid "Thank you"
+msgstr ""
+
+#: campaign-functions/setup-functions.php:11
+msgid "Once every 15 minutes"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:159
+msgid "Retrieve Prayer Time Management Link"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:168
+msgid "Enter you email address and receive a link to your prayer times."
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:175
+msgid "Email My Access Link"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:178
+msgid "Please check you email address now for your access link."
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:112
+msgid "Extend for 3 months"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:113
+msgid "Change daily time"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:286
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:281
+msgid "Change your timezone:"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:324
+msgid "My commitments"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:487
+msgid "Choose a different time:"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:504
+msgid "Delete all"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:520
+msgid "Extend"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:522
+msgid "Extend my prayer commitments until:"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:547
+msgid "Receive prayer time notifications"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:549
+msgid "Notifications allowed"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:550
+msgid "Notifications not allowed"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:554
+msgid "Advanced Settings"
+msgstr ""
+
+#: parts/components.php:76
+msgid "Receive Pray4Movement Newsletter (email verification needed)."
+msgstr ""
+
+#: porches/generic/dt-generic-porch-settings.php:61
+msgid "Our Vision"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-settings.php:79
+msgid "Extraordinary Prayer"
+msgstr "Doa yang luar biasa"
+
+#: porches/generic/dt-generic-porch-settings.php:88
+msgid "Every disciple making movement in history has happened in the context of extraordinary prayer."
+msgstr "Setiap gerakan pemuridan di dalam sejarah telah terjadi dalam konteks doa yang luar biasa"
+
+#: porches/generic/dt-generic-porch-settings.php:97
+msgid "Movement Focused"
+msgstr "Fokus pada Kegerakan"
+
+#: porches/generic/dt-generic-porch-settings.php:106
+msgid "Join us in asking, seeking, and knocking for streams of disciples and churches to be made."
+msgstr "Bergabunglah dengan kami dalam meminta, mencari, dan mengetuk bagi aliran-aliran pemuridan dan gereja-gereja dibentuk"
+
+#: porches/generic/dt-generic-porch-settings.php:115
+msgid "24/7 Every Day"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-settings.php:124
+msgid "Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too."
+msgstr "Pilih 15 menit (atau lebih) slot waktu dimana Anda dapat berdoa tiap hari. Undang seseorang untuk mendaftar juga"
+
+#: porches/generic/dt-generic-porch-settings.php:141
+#: porches/generic/dt-generic-porch-settings.php:150
+msgid "Prayer Fuel"
+msgstr "Bahan Bakar Doa"
+
+#: porches/generic/dt-generic-porch-settings.php:168
+msgid "Today's Prayer Fuel"
+msgstr "Bahan Bakar Doa Hari Ini"
+
+#: porches/generic/dt-generic-porch-settings.php:177
+msgid "All Days"
+msgstr "Sepanjang Hari"
+
+#: porches/generic/site/home-body.php:92
+#: porches/generic/site/home-body.php:196
+#: porches/generic/site/top-section.php:91
+#: porches/ongoing/site/home-body.php:87
+#: porches/ongoing/site/home-body.php:192
+msgid "Sign Up to Pray"
+msgstr "Mendaftar untuk berdoa"
+
+#: porches/generic/site/home-body.php:158
+#: porches/ongoing/site/home-body.php:154
+msgctxt "Campaign Name is Finished"
+msgid "%s is Finished"
+msgstr ""
+
+#: porches/generic/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:167
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Ends In"
+msgstr ""
+
+#: porches/generic/site/home-body.php:172
+#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:203
+#: porches/ongoing/site/home-body.php:168
+#: porches/ongoing/site/home-body.php:175
+msgid "days"
+msgstr "hari-hari"
+
+#: porches/generic/site/home-body.php:173
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
+#: porches/ongoing/site/home-body.php:169
+#: porches/ongoing/site/home-body.php:176
+msgid "hours"
+msgstr "jam-jam"
+
+#: porches/generic/site/home-body.php:174
+#: porches/generic/site/home-body.php:181
+#: porches/ongoing/site/home-body.php:170
+#: porches/ongoing/site/home-body.php:177
+msgid "minutes"
+msgstr "menit-menit"
+
+#: porches/generic/site/home-body.php:175
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:178
+msgid "seconds"
+msgstr "detik-detik"
+
+#: porches/generic/site/home-body.php:178
+#: porches/ongoing/site/home-body.php:174
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Begins In"
+msgstr ""
+
+#: porches/generic/site/home-body.php:223
+msgid "Days"
+msgstr "Hari-hari"
+
+#: porches/generic/site/home-body.php:227
+#: porches/ongoing/site/home-body.php:215
+msgid "Next"
+msgstr ""
+
+#: porches/generic/site/home-body.php:228
+#: porches/ongoing/site/home-body.php:216
+msgid "Month"
+msgstr ""
+
+#: porches/generic/site/home-body.php:250
+msgid "Hours of Prayer"
+msgstr "Jam-jam Doa"
+
+#: porches/generic/site/home-body.php:255
+#: porches/ongoing/site/home-body.php:233
+msgid "Hours"
+msgstr ""
+
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
+msgid "Prayer Commitments Needed"
+msgstr "Komitmen Doa Diperlukan"
+
+#: porches/generic/site/home-body.php:299
+#: porches/ongoing/site/home-body.php:267
+msgid "View All"
+msgstr "Tampilkan Keseluruhan"
+
+#: porches/generic/site/post-list-body.php:118
+msgid "Read"
+msgstr "Baca"
+
+#: porches/generic/site/stats.php:133
+msgctxt "Thank you for joining us in prayer for the French in France."
+msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+msgstr ""
+
+#: porches/generic/site/stats.php:157
+msgid "Campaign Stats"
+msgstr ""
+
+#: porches/generic/site/stats.php:184
+msgid "Percentage Covered"
+msgstr ""
+
+#: porches/generic/site/stats.php:192
+msgid "Prayer Commitments"
+msgstr ""
+
+#: porches/generic/site/stats.php:200
+msgid "Time Committed"
+msgstr ""
+
+#: porches/generic/site/stats.php:209
+msgid "Number of People who Prayed"
+msgstr ""
+
+#: porches/generic/site/stats.php:242
+msgid "Share with us your Prayer Stories"
+msgstr ""
+
+#: porches/generic/site/stats.php:256
+msgid "Share with us about your prayer time (E.g. testimonies, insights, blessings, etc)"
+msgstr ""
+
+#: porches/generic/site/stats.php:261
+msgid "Submit"
+msgstr ""
+
+#: porches/generic/site/stats.php:267
+msgid "Thank You"
+msgstr ""
+
+#: porches/generic/site/stats.php:302
+msgid "More Prayer Opportunities"
+msgstr ""
+
+#: porches/generic/site/stats.php:306
+msgid "Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?"
+msgstr ""
+
+#: porches/generic/site/top-section.php:19
+msgid "Home"
+msgstr "Home"
+
+#: porches/generic/site/top-section.php:22
+msgid "Sign Up"
+msgstr "Mendaftar"
+
+#: shortcodes/ongoing.php:70
+msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
+msgid "Everyday at %1$s for %2$s until %3$s"
+msgstr ""
+
+#: shortcodes/ongoing.php:184
+msgid "Chose a time to pray everyday for the next 3 months. Near the end you'll have the option to sign up for more."
+msgstr ""
+
+#: porches/generic/site/home-body.php:278
+#: porches/ongoing/site/home-body.php:248
+msgid "Hours Remaining"
+msgstr ""
+
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+msgid "covered once"
+msgstr ""
+
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+msgid "covered %1$s times"
+msgstr ""
+
+#: shortcodes/ongoing.php:72
+msgctxt "Jun, Jul, Aug covered"
+msgid "covered"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-settings.php:53
+msgid "Strategic prayer for a Disciple Making Movement"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-settings.php:70
+msgid "We want to cover this region with continuous 24/7 prayer."
+msgstr ""
+
+#: porches/generic/dt-generic-porch-settings.php:159
+msgid "Use these resources to help pray specifically each day."
+msgstr ""
 

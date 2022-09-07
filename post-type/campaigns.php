@@ -208,13 +208,7 @@ class DT_Campaigns_Base {
             $fields['duration_options'] = [
                 'name' => 'Duration options',
                 'type' => 'key_select',
-                'default' => [
-                    '5' => [ 'label' => __( '5 minutes', 'disciple-tools-prayer-campaigns' ) ],
-                    '10' => [ 'label' => __( '10 minutes', 'disciple-tools-prayer-campaigns' ) ],
-                    '15' => [ 'label' => __( '15 minutes', 'disciple-tools-prayer-campaigns' ) ],
-                    '30' => [ 'label' => __( '30 minutes', 'disciple-tools-prayer-campaigns' ) ],
-                    '60' => [ 'label' => __( '1 hour', 'disciple-tools-prayer-campaigns' ) ],
-                ]
+                'default' => DT_Time_Utilities::get_slot_duration_options(),
             ];
 
             $fields['strings_translations'] = [
@@ -324,7 +318,7 @@ class DT_Campaigns_Base {
             $tiles['commitments'] = [ 'label' => 'Commitments' ];
             if ( $post_type === 'campaigns' && ! isset( $tiles['campaign_magic_links'] ) ){
                 $tiles['campaign_magic_links'] = [
-                    'label' => __( 'Magic Urls', 'disciple-tools-prayer-campaigns' ),
+                    'label' => 'Magic Urls',
                     'description' => 'The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates.'
                 ];
             }

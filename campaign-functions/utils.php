@@ -11,19 +11,21 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
  *
  * @return array
  */
-function recursive_parse_args( $args, $defaults ) {
-    $new_args = (array) $defaults;
+if ( !function_exists( 'recursive_parse_args' ) ){
+    function recursive_parse_args( $args, $defaults ) {
+        $new_args = (array) $defaults;
 
-    foreach ( $args ?: [] as $key => $value ) {
-        if ( is_array( $value ) && isset( $new_args[ $key ] ) ) {
-            $new_args[ $key ] = recursive_parse_args( $value, $new_args[ $key ] );
+        foreach ( $args ?: [] as $key => $value ) {
+            if ( is_array( $value ) && isset( $new_args[ $key ] ) ) {
+                $new_args[ $key ] = recursive_parse_args( $value, $new_args[ $key ] );
+            }
+            elseif ( $key !== 'default' && isset( $new_args[$key] ) ){
+                $new_args[ $key ] = $value;
+            }
         }
-        elseif ( $key !== 'default' && isset( $new_args[$key] ) ){
-            $new_args[ $key ] = $value;
-        }
+
+        return $new_args;
     }
-
-    return $new_args;
 }
 
 /**
@@ -99,9 +101,6 @@ function dt_campaign_add_lang_to_cookie( string $lang ) {
     }
 }
 
-function blah() {
-
-}
 
 /**
  * Split a sentence of $words into $parts and return the $part that you want.

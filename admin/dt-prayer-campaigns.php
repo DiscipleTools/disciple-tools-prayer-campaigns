@@ -424,6 +424,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             <br>
                                             <a href="<?php echo esc_html( site_url( '/campaigns' ) ); ?>" target="_blank" style="margin: 10px">See campaigns list</a>
                                             <a href="<?php echo esc_html( site_url( '/campaigns/new' ) ); ?>"  target="_blank" >Create a campaign</a>
+                                            <br>
                                         </td>
                                     </tr>
                                     <?php if ( ! empty( $fields['ID'] ) ) : ?>

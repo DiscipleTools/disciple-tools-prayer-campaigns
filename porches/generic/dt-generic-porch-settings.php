@@ -50,7 +50,8 @@ class DT_Generic_Porch_Settings {
             ],
             'subtitle' => [
                 'label' => 'Subtitle',
-                'value' => __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
@@ -130,7 +131,8 @@ class DT_Generic_Porch_Settings {
             ],
             'what_content' => [
                 'label' => 'Prayer Content Message next to calendar',
-                'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                'default' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                'value' => '',
                 'type' => 'textarea',
                 'translations' => [],
                 'tab' => 'translations',
@@ -156,7 +158,8 @@ class DT_Generic_Porch_Settings {
             ],
             'prayer_fuel_description' => [
                 'label' => 'Prayer Fuel Description',
-                'value' => __( 'Use these resources to help pray specifically each day', 'disciple-tools-prayer-campaigns' ),
+                'default' => __( 'Use these resources to help pray specifically each day.', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',

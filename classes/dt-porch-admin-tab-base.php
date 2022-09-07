@@ -88,11 +88,19 @@ class DT_Porch_Admin_Tab_Base {
 
             if ( isset( $_POST['list'] ) ) {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
-                $new_settings = $this->sanitize_settings( $post_list );
-                $new_translations = $this->get_new_translations( $_POST );
+                $fields = DT_Porch_Settings::fields();
+                $allowed_tags = $this->get_allowed_tags();
 
+                //Keep line breaks by using wp_kses to sanitize.
+                foreach ( $post_list as $field_key => $value ){
+                    if ( isset( $fields[$field_key]['type'], $_POST['list'][$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){
+                        $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
+                    }
+                }
+                DT_Porch_Settings::update_values( $post_list );
+
+                $new_translations = $this->get_new_translations( $_POST );
                 DT_Porch_Settings::update_translations( $new_translations );
-                DT_Porch_Settings::update_values( $new_settings );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
@@ -273,22 +281,6 @@ class DT_Porch_Admin_Tab_Base {
         $available_themes = $theme_manager->get_available_theme_names( $this->theme_file_dir );
 
         return $available_themes;
-    }
-
-    private function sanitize_settings( $post_list ) {
-        $fields = DT_Porch_Settings::fields();
-        $allowed_tags = $this->get_allowed_tags();
-
-        if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
-        /* make any text area stuff safe */
-            foreach ( $post_list as $field_key => $value ){
-                if ( isset( $fields[$field_key]['type'], $post_list[$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){ // if textarea
-                    $post_list[$field_key] = wp_kses( wp_unslash( $post_list[$field_key] ), $allowed_tags );
-                }
-            }
-        }
-
-        return $post_list;
     }
 
     private function get_new_translations( $post ) {
