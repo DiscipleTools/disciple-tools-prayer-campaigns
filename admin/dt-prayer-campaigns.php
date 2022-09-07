@@ -161,12 +161,12 @@ class DT_Prayer_Campaigns_Campaigns {
                         <button
                             class="button"
                             id="campaign-wizard-toggle"
-                            style="display: <?php echo esc_attr( $is_wizard_open ? "none" : "block" ) ?>; margin-bottom: 1rem;"
+                            style="display: <?php echo esc_attr( $is_wizard_open ? 'none' : 'block' ) ?>; margin-bottom: 1rem;"
                         >
                             Campaign Wizard
                         </button>
 
-                        <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? "block" : "none" ) ?>;">
+                            <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? 'block' : 'none' ) ?>;">
                             <?php $this->setup_wizard(); ?>
                         </div>
 
