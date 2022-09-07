@@ -110,13 +110,19 @@ class DT_Porch_Admin_Tab_Base {
         ?>
         <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
 
+            <?php if ( empty( $section ) ) {
+                $section_name = 'Other';
+            } else {
+                $section_name = $section;
+            } ?>
+
             <form method="post" class="metabox-table" name="<?php echo esc_html( $section ) ?>">
                 <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
                 <!-- Box -->
                 <table class="widefat striped">
                     <thead>
                     <tr>
-                        <th style="width:20%"><?php echo esc_html( $section === '' ? 'Other' : $section ) ?> Content</th>
+                        <th style="width:20%"><?php echo esc_html( $section_name ) ?> Content</th>
                         <th style="width:50%"></th>
                         <th style="width:30%"></th>
                     </tr>
@@ -146,7 +152,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field['translations'] ) ){
-                                            self::translation_cell( $langs, $key, $field, $section );
+                                            self::translation_cell( $langs, $key, $field, $section_name );
                                         } ?>
                                     </td>
                                 </tr>
