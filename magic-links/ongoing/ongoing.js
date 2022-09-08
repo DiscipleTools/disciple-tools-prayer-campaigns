@@ -486,7 +486,7 @@ jQuery(document).ready(function($) {
         }
         list += `<div class="calendar-month">
           <h3 class="month-title"><strong>${window.lodash.escape(key).substring(0,3)}</strong> ${new Date(months[key].key * 1000).getFullYear()}
-            <span style="color: black; font-size:1.3rem">${ (months[key].with / months[key].without * 100).toFixed( 2 ) }%</span>
+            <span class="month-percentage">${ (months[key].with / ( months[key].without + months[key].with )* 100).toFixed( 2 ) }%</span>
           </h3>
           <div class="calendar">
             ${headers}
