@@ -19,7 +19,7 @@ class DT_Campaign_Specific_Settings {
      *
      * @return array
      */
-    private function get_all( string $campaign_id ): array {
+    private function get_all( int $campaign_id ): array {
         $campaign_key = $this->campaign_key( $campaign_id );
         $serialized_settings = $this->settings_manager->get( $campaign_key );
         $campaign_settings = unserialize( $serialized_settings );
@@ -52,7 +52,7 @@ class DT_Campaign_Specific_Settings {
      * @param string $name
      * @param mixed $value
      */
-    public function update( int $campaign_id, string $name, mixed $value ) {
+    public function update( int $campaign_id, string $name, $value ) {
         $campaign_settings = $this->get_all( $campaign_id );
         $campaign_key = $this->campaign_key( $campaign_id );
 
@@ -70,7 +70,7 @@ class DT_Campaign_Specific_Settings {
     /**
      * Creates a settings key with the $campaign_id
      *
-     * @param string $campaign_id
+     * @param int $campaign_id
      *
      * @return string
      */

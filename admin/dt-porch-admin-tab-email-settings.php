@@ -20,6 +20,18 @@ class DT_Porch_Admin_Tab_Email_Settings {
     public function content() {
 
         ?>
+        <style>
+            .metabox-table input {
+                width: 100%;
+            }
+            .metabox-table select {
+                width: 100%;
+            }
+            .metabox-table textarea {
+                width: 100%;
+                height: 100px;
+            }
+        </style>
         <div class="wrap">
             <div id="poststuff">
                 <div id="post-body" class="metabox-holder columns-1">
@@ -66,7 +78,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
         ?>
         <form method="post" id="campaign-selection-form">
             <?php wp_nonce_field( 'campaign_selection', 'campaign_selection_nonce' ) ?>
-            <table class="widefat striped">
+            <table class="widefat striped metabox-table">
                 <thead>
                     <tr>
                         <th>Select Campaign to edit the email settings</th>
@@ -75,7 +87,6 @@ class DT_Porch_Admin_Tab_Email_Settings {
                 <tbody>
                     <tr>
                         <td>
-                            <label for="campaign-selection">Select Campaign</label>
                             <select name="campaign-selection" id="campaign-selection" onchange="this.form.submit()">
                                 <?php DT_Prayer_Campaigns_Campaigns::campaign_options( $this->selected_campaign ) ?>
                             </select>
@@ -89,53 +100,53 @@ class DT_Porch_Admin_Tab_Email_Settings {
     }
 
     public function email_settings_box() {
+
+        $langs = dt_campaign_list_languages();
+        $campaign = DT_Campaign_Settings::get_campaign();
+
+        $email_fields = [
+            'campaign_description' => [
+                'label' => __( 'Campaign Description', 'disciple-tools-prayer-campaigns' ),
+                'translations' => [],
+            ],
+            'signup_content' => [
+                'label' => __( 'Content to be added to the signup email', 'disciple-tools-prayer-campaigns' ),
+                'translations' => [],
+            ],
+            'reminder_content' => [
+                'label' =>  __( 'Content to be added to the reminder email', 'disciple-tools-prayer-campaigns' ),
+                'translations' => [],
+            ],
+        ];
+
+        $form_name = 'email_settings';
         ?>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" name="<?php echo esc_attr( $form_name ) ?>">
             <?php wp_nonce_field( 'email_settings', 'install_from_file_nonce' ) ?>
         <!-- Box -->
-            <table class="widefat striped">
+            <table class="widefat striped metabox-table">
                 <thead>
                 <tr>
                     <th>Email Settings</th>
                     <th></th> <!-- extends the header bottom border across the right hand column -->
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
 
-                    <tr>
-                        <td>
-                            <label for="campaign-description">Campaign Description</label>
-                        </td>
-                        <td>
-                            <input type="text" name="campaign-description" id="campaign-description">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="sign-up-content">Extra content in sign up email</label>
-                        </td>
-                        <td>
-                            <input type="text" name="sign-up-content" id="sign-up-content">
-                        </input>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="reminder-content">Extra content in prayer reminder email</label>
-                        </td>
-                        <td>
-                            <input type="text" name="reminder-content" id="reminder-content">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="button">Upload</button>
-                        </td>
-                    </tr>
+                    <?php
+
+                        foreach ( $email_fields as $key => $field ) {
+                            DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name );
+                        }
+
+                    ?>
 
                 </tbody>
             </table>
         </form>
 
+        <?php dt_display_translation_dialog() ?>
 
         <?php
     }
