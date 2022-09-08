@@ -56,15 +56,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
 
 
     public function dt_details_additional_tiles( $tiles, $post_type = '' ){
-        if ( $post_type === 'campaigns' && !isset( $tiles['campaign_strings'] ) ){
-            $tiles['campaign_strings'] = [
-                'label' => __( 'Campaign Strings', 'disciple-tools-prayer-campaigns' ),
-                'description' => "In this section: set Translation strings for custom elements. \r\n\r\n Translate core campaign strings here: https://poeditor.com/join/project?hash=yik32Z3OEf \r\n\r\n Setup instructions: https://disciple.tools/user-docs/prayer/24-7-prayer-campaign-setup/",
-                'display_for' => [
-                    'type' => [ $this->magic_link_type ],
-                ]
-            ];
-        }
         if ( $post_type === 'campaigns' && ! isset( $tiles['campaign_communication'] ) ){
             $tiles['campaign_communication'] = [
                 'label' => __( 'Campaign Communication', 'disciple-tools-prayer-campaigns' ),
