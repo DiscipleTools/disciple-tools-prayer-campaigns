@@ -103,6 +103,8 @@ class DT_Porch_Admin_Tab_Email_Settings {
 
         $langs = dt_campaign_list_languages();
         $campaign = DT_Campaign_Settings::get_campaign();
+        $settings = DT_Porch_Settings::settings( 'settings' );
+        $default_language = isset( $settings['default_language'] ) ? $settings['default_language']['value'] : PORCH_DEFAULT_LANGUAGE;
 
         $email_fields = [
             'campaign_description' => [
@@ -114,10 +116,27 @@ class DT_Porch_Admin_Tab_Email_Settings {
                 'translations' => [],
             ],
             'reminder_content' => [
-                'label' =>  __( 'Content to be added to the reminder email', 'disciple-tools-prayer-campaigns' ),
+                'label' => __( 'Content to be added to the reminder email', 'disciple-tools-prayer-campaigns' ),
                 'translations' => [],
             ],
         ];
+
+        /* turn the translations array into the shape [ $key => [ $code => $translation ] ] */
+        if ( isset( $campaign['campaign_strings'] ) && is_array( $campaign['campaign_strings'] ) ) {
+            foreach ( $campaign['campaign_strings'] as $code => $strings ) {
+                if ( is_array( $strings ) ) {
+                    foreach ( $strings as $key => $translation ) {
+                        if ( isset( $email_fields[$key] ) ) {
+                            $email_fields[$key]['translations'][$code] = $translation;
+
+                            if ( $code === $default_language ) {
+                                $email_fields[$key]['value'] = $translation;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         $form_name = 'email_settings';
         ?>
@@ -136,9 +155,9 @@ class DT_Porch_Admin_Tab_Email_Settings {
 
                     <?php
 
-                        foreach ( $email_fields as $key => $field ) {
-                            DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name );
-                        }
+                    foreach ( $email_fields as $key => $field ) {
+                        DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name );
+                    }
 
                     ?>
 
