@@ -72,7 +72,38 @@ class DT_Porch_Admin_Tab_Email_Settings {
         }
     }
 
-    private function process_campaign_email_settings() {}
+    private function process_campaign_email_settings() {
+        $make_campaign_strings_key = function( $key, $lang ) {
+            return "hack-campaign_strings-$key--$lang";
+        };
+
+        if ( isset( $_POST['email_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['email_settings_nonce'] ) ), 'email_settings' ) ) {
+            $updates = [];
+            foreach ( $_POST as $name => $value ) {
+                if ( strpos( $name, 'field_key_' ) === 0 ) {
+                    $key_lang = explode( '-', $name );
+                    $lang = $key_lang[1];
+                    $key = str_replace( '_translation', '', str_replace( 'field_key_', '', $key_lang[0] ) );
+                    $updates[$make_campaign_strings_key( $key, $lang )] = sanitize_text_field( wp_unslash( $value ) );
+                }
+            }
+            $default_language = PORCH_DEFAULT_LANGUAGE;
+            if ( isset( $_POST['default_language'] ) ) {
+                $default_language = sanitize_text_field( wp_unslash( $_POST['default_language'] ) );
+            }
+
+            if ( isset( $_POST['form-update-button'] ) ) {
+                if ( isset( $_POST['list'] ) ) {
+                    $list = dt_recursive_sanitize_array( $_POST['list'] );
+                    foreach ( $list as $key => $translation ) {
+                        $updates[$make_campaign_strings_key( $key, $default_language )] = sanitize_text_field( wp_unslash( $translation ) );
+                    }
+                }
+            }
+
+            DT_Posts::update_post( 'campaigns', $this->selected_campaign, $updates );
+        }
+    }
 
     private function campaign_selector() {
         ?>
@@ -102,7 +133,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
     public function email_settings_box() {
 
         $langs = dt_campaign_list_languages();
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Settings::get_campaign( $this->selected_campaign );
         $settings = DT_Porch_Settings::settings( 'settings' );
         $default_language = isset( $settings['default_language'] ) ? $settings['default_language']['value'] : PORCH_DEFAULT_LANGUAGE;
 
@@ -141,7 +172,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
         $form_name = 'email_settings';
         ?>
         <form method="post" enctype="multipart/form-data" name="<?php echo esc_attr( $form_name ) ?>">
-            <?php wp_nonce_field( 'email_settings', 'install_from_file_nonce' ) ?>
+            <?php wp_nonce_field( 'email_settings', 'email_settings_nonce' ) ?>
         <!-- Box -->
             <table class="widefat striped metabox-table">
                 <thead>
@@ -160,7 +191,13 @@ class DT_Porch_Admin_Tab_Email_Settings {
                     }
 
                     ?>
-
+                    <input type="hidden" name="default_language" value="<?php echo esc_attr( $default_language ) ?>">
+                    <tr>
+                        <td colspan="2">
+                            <button class="button float-right" name="form-update-button" type="submit">Update</button>
+                        </td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </form>
