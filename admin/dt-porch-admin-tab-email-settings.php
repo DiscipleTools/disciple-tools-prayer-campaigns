@@ -138,10 +138,6 @@ class DT_Porch_Admin_Tab_Email_Settings {
         $default_language = isset( $settings['default_language'] ) ? $settings['default_language']['value'] : PORCH_DEFAULT_LANGUAGE;
 
         $email_fields = [
-            'campaign_description' => [
-                'label' => __( 'Campaign Description', 'disciple-tools-prayer-campaigns' ),
-                'translations' => [],
-            ],
             'signup_content' => [
                 'label' => __( 'Content to be added to the signup email', 'disciple-tools-prayer-campaigns' ),
                 'translations' => [],

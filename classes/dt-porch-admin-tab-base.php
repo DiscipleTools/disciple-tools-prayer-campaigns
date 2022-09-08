@@ -269,9 +269,7 @@ class DT_Porch_Admin_Tab_Base {
                     name="list[<?php echo esc_html( $key ); ?>]"
                     id="<?php echo esc_html( $key ); ?>"
                     placeholder="<?php echo esc_html( $field['label'] ); ?>"
-                >
-                    <?php echo wp_kses( $field['value'], $allowed_tags ); ?>
-                </textarea>
+                ><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
             </td>
             <td style="vertical-align: middle;">
                 <?php if ( isset( $field['translations'] ) ){
