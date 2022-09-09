@@ -247,7 +247,7 @@ class DT_Porch_Admin_Tab_Base {
      * @param string $key The field key name
      * @param array $field Contains label: field label, default: default text, translations: array( $lang_code => $translation ),
      * @param string $form_name Name of the form to update when the translation modal is closed
-     * @param array $allowed_tags The html tags allowed in the translation strings
+     * @param array|string $allowed_tags The html tags allowed in the translation strings
      */
     public static function textarea( $langs, $key, $field, $form_name, $allowed_tags = [] ) {
         ?>

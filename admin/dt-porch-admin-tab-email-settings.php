@@ -87,17 +87,11 @@ class DT_Porch_Admin_Tab_Email_Settings {
                     $updates[$make_campaign_strings_key( $key, $lang )] = sanitize_text_field( wp_unslash( $value ) );
                 }
             }
-            $default_language = PORCH_DEFAULT_LANGUAGE;
-            if ( isset( $_POST['default_language'] ) ) {
-                $default_language = sanitize_text_field( wp_unslash( $_POST['default_language'] ) );
-            }
 
-            if ( isset( $_POST['form-update-button'] ) ) {
-                if ( isset( $_POST['list'] ) ) {
-                    $list = dt_recursive_sanitize_array( $_POST['list'] );
-                    foreach ( $list as $key => $translation ) {
-                        $updates[$make_campaign_strings_key( $key, $default_language )] = sanitize_text_field( wp_unslash( $translation ) );
-                    }
+            if ( isset( $_POST['list'] ) ) {
+                $list = dt_recursive_sanitize_array( $_POST['list'] );
+                foreach ( $list as $key => $translation ) {
+                    $updates[$make_campaign_strings_key( $key, '=' )] = sanitize_text_field( wp_unslash( $translation ) );
                 }
             }
 
@@ -154,11 +148,12 @@ class DT_Porch_Admin_Tab_Email_Settings {
                 if ( is_array( $strings ) ) {
                     foreach ( $strings as $key => $translation ) {
                         if ( isset( $email_fields[$key] ) ) {
-                            $email_fields[$key]['translations'][$code] = $translation;
-
-                            if ( $code === $default_language ) {
+                            if ( $code === '=' ) {
                                 $email_fields[$key]['value'] = $translation;
+                                continue;
                             }
+
+                            $email_fields[$key]['translations'][$code] = $translation;
                         }
                     }
                 }
@@ -183,7 +178,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
                     <?php
 
                     foreach ( $email_fields as $key => $field ) {
-                        DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name );
+                        DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name, 'post' );
                     }
 
                     ?>
