@@ -91,7 +91,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
             if ( isset( $_POST['list'] ) ) {
                 $list = dt_recursive_sanitize_array( $_POST['list'] );
                 foreach ( $list as $key => $translation ) {
-                    $updates[$make_campaign_strings_key( $key, '=' )] = sanitize_text_field( wp_unslash( $translation ) );
+                    $updates[$make_campaign_strings_key( $key, '' )] = sanitize_text_field( wp_unslash( $translation ) );
                 }
             }
 
@@ -148,7 +148,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
                 if ( is_array( $strings ) ) {
                     foreach ( $strings as $key => $translation ) {
                         if ( isset( $email_fields[$key] ) ) {
-                            if ( $code === '=' ) {
+                            if ( $code === '' ) {
                                 $email_fields[$key]['value'] = $translation;
                                 continue;
                             }
