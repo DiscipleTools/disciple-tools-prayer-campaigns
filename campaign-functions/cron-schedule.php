@@ -75,6 +75,13 @@ function dt_prayer_campaign_prayer_time_reminder(){
         $grouped_reminders[$reminder['parent_id']][$reminder['post_id']][] = $reminder;
     }
 
+    $porch_selected = DT_Porch_Selector::instance()->get_selected_porch_id();
+    $prayer_fuel_link = '';
+    if ( !empty( $porch_selected ) ){
+        $url = site_url() . '/prayer/list';
+        $link = '<a href="' . $url . '">' . $url . '</a>';
+        $prayer_fuel_link = '<p>' . sprintf( __( 'Click here to see the prayer prompts for today: %s', 'disciple-tools-prayer-campaigns' ), $link ) . '</p>';
+    }
 
     // build message by campaign, and then by user, and grouping times per user message
     foreach ( $grouped_reminders as $campaign_id => $subscriber_values ) {
@@ -146,6 +153,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 <p>' . __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) . '</p>
                 <p>'.$commitment_list.'</p>
                 <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
+                ' . $prayer_fuel_link . '
                 <p>' . $prayer_content_message . '</p>
                 <br>
                 <hr>
