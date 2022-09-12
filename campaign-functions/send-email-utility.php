@@ -105,7 +105,7 @@ class DT_Prayer_Campaigns_Send_Email {
             <p>' . __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>'.$commitment_list.'</p>
             <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
-            ' . $sign_up_email_extra_message . '
+            ' . nl2br( $sign_up_email_extra_message ) . '
             <br>
             <hr>
             <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>

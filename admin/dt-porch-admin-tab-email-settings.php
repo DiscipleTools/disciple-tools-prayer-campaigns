@@ -84,14 +84,16 @@ class DT_Porch_Admin_Tab_Email_Settings {
                     $key_lang = explode( '-', $name );
                     $lang = $key_lang[1];
                     $key = str_replace( '_translation', '', str_replace( 'field_key_', '', $key_lang[0] ) );
-                    $updates[$make_campaign_strings_key( $key, $lang )] = sanitize_text_field( wp_unslash( $value ) );
+                    $updates[$make_campaign_strings_key( $key, $lang )] = wp_kses_post( $value );
                 }
             }
 
             if ( isset( $_POST['list'] ) ) {
                 $list = dt_recursive_sanitize_array( $_POST['list'] );
                 foreach ( $list as $key => $translation ) {
-                    $updates[$make_campaign_strings_key( $key, 'default' )] = sanitize_text_field( wp_unslash( $translation ) );
+                    if ( isset( $_POST['list'][$key] ) ){
+                        $updates[$make_campaign_strings_key( $key, 'default' )] = wp_kses_post( wp_unslash( $_POST['list'][$key] ) );
+                    }
                 }
             }
 
@@ -134,10 +136,12 @@ class DT_Porch_Admin_Tab_Email_Settings {
         $email_fields = [
             'signup_content' => [
                 'label' => __( 'Content to be added to the signup email', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'textarea',
                 'translations' => [],
             ],
             'reminder_content' => [
                 'label' => __( 'Content to be added to the reminder email', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'textarea',
                 'translations' => [],
             ],
         ];

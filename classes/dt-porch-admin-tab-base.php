@@ -65,7 +65,7 @@ class DT_Porch_Admin_Tab_Base {
                 <?php foreach ( $langs as $code => $val ) : ?>
                     <tr>
                         <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo esc_html( $val['native_name'] )?></label></td>
-                        <?php if ( $field['type'] === 'textarea' ) :?>
+                        <?php if ( isset( $field['type'] ) && $field['type'] === 'textarea' ) :?>
                             <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo wp_kses_post( $field['translations'][$code] ?? '' );?></textarea></td>
                         <?php else : ?>
                             <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>" type="text" value="<?php echo esc_html( $field['translations'][$code] ?? '' );?>"/></td>
