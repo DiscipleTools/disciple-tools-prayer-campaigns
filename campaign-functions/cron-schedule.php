@@ -133,9 +133,9 @@ function dt_prayer_campaign_prayer_time_reminder(){
             $e['to'] = implode( ',', $to );
 
             $prayer_content_message = '';
-            if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) && $campaign['campaign_strings'][$record['lang']]['reminder_content'] !== "" ){
+            if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) && $campaign['campaign_strings'][$record['lang']]['reminder_content'] !== '' ){
                 $prayer_content_message = $campaign['campaign_strings'][$record['lang']]['reminder_content'];
-            } else if ( isset( $campaign['campaign_strings']['default']['reminder_content'] ) && $campaign['campaign_strings']['default']['reminder_content'] !== "" ) {
+            } else if ( isset( $campaign['campaign_strings']['default']['reminder_content'] ) && $campaign['campaign_strings']['default']['reminder_content'] !== '' ) {
                 $prayer_content_message = $campaign['campaign_strings']['default']['reminder_content'];
             }
 
