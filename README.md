@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns.svg?branch=master)](https://travis-ci.com/DiscipleTools/disciple-tools-prayer-campaigns)
+![Build Status](https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/actions/workflows/ci.yml/badge.svg?branch=master)
 
 ![Plugin Banner](https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/assets/prayer-campaigns-banner.png)
 # Disciple.Tools - Prayer Campaigns

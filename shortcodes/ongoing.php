@@ -103,6 +103,9 @@ function dt_ongoing_campaign_calendar( $atts ){
             .cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
                 color: <?php echo esc_html( $shortcode_instance->atts['color'] ) ?>;
             }
+            .cp-wrapper .month-title .month-percentage {
+                color: black; font-size:1.3rem;
+            }
         </style>
         <div class="cp-calendar-wrapper cp-wrapper">
             <div style="display: flex; flex-flow: wrap; justify-content: space-evenly; margin: 0">

@@ -305,9 +305,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             <label for="select_porch"><?php echo esc_html( 'Select Landing Page Type' ) ?></label>
                                         </td>
                                         <td>
-                                            <select name="select_porch" id="select_porch"
-                                                    selected="<?php echo esc_html( DT_Porch_Selector::instance()->get_selected_porch_id() ? DT_Porch_Selector::instance()->get_selected_porch_id() : '' ) ?>">
-
+                                            <select name="select_porch" id="select_porch" <?php selected( DT_Porch_Selector::instance()->get_selected_porch_id() ) ?>>
                                                     <option
                                                         <?php echo !isset( $settings['selected_porch'] ) ? 'selected' : '' ?>
                                                         value=""
