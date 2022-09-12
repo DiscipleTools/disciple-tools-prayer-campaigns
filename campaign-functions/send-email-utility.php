@@ -91,8 +91,10 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
-        if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['signup_content'] ) ){
+        if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['signup_content'] ) && $campaign['campaign_strings'][$record['lang']]['signup_content'] !== "" ){
             $sign_up_email_extra_message = '<p>' .  $campaign['campaign_strings'][$record['lang']]['signup_content'] . '</p>';
+        } else if ( isset( $campaign['campaign_strings']['default']['signup_content'] ) && $campaign['campaign_strings']['default']['signup_content'] !== "" ) {
+            $sign_up_email_extra_message = '<p>' .  $campaign['campaign_strings']['default']['signup_content'] . '</p>';
         }
 
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
