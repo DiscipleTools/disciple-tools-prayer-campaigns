@@ -46,7 +46,7 @@ class DT_Porch_Admin_Tab_Base {
         $this->main_column();
     }
 
-    private function translation_cell( $langs, $key, $field, $form_name ){
+    public static function translation_cell( $langs, $key, $field, $form_name ){
         ?>
         <button class="button small expand_translations" data-form_name="<?php echo esc_html( $form_name ) ?>">
             <?php
@@ -65,7 +65,7 @@ class DT_Porch_Admin_Tab_Base {
                 <?php foreach ( $langs as $code => $val ) : ?>
                     <tr>
                         <td><label for="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo esc_html( $val['native_name'] )?></label></td>
-                        <?php if ( $field['type'] === 'textarea' ) :?>
+                        <?php if ( isset( $field['type'] ) && $field['type'] === 'textarea' ) :?>
                             <td><textarea name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>"><?php echo wp_kses_post( $field['translations'][$code] ?? '' );?></textarea></td>
                         <?php else : ?>
                             <td><input name="field_key_<?php echo esc_html( $key )?>_translation-<?php echo esc_html( $code )?>" type="text" value="<?php echo esc_html( $field['translations'][$code] ?? '' );?>"/></td>
@@ -157,27 +157,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                             <?php elseif ( 'textarea' === $field['type'] ) : ?>
-                                <tr>
-                                    <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
-                                    </td>
-                                    <td>
-                                        <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) {
-                                            echo '<h3>Default translated text:</h3>';
-                                            echo nl2br( esc_html( $field['default'] ) );
-                                            echo '<br><br>';
-                                        }
-                                        if ( isset( $field['translations'] ) ){
-                                            echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ) . '"> button to set a value for each language. Custom text for all languages:</p>';
-                                        } ?>
-                                        <textarea name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
-                                    </td>
-                                    <td style="vertical-align: middle;">
-                                        <?php if ( isset( $field['translations'] ) ){
-                                            self::translation_cell( $langs, $key, $field, $section );
-                                        } ?>
-                                    </td>
-                                </tr>
+                                <?php self::textarea( $langs, $key, $field, $section_name, $allowed_tags ) ?>
                             <?php elseif ( 'prayer_timer_toggle' === $field['type'] ) : ?>
                                 <tr>
                                     <td>
@@ -258,6 +238,48 @@ class DT_Porch_Admin_Tab_Base {
             <?php dt_display_translation_dialog() ?>
 
         <?php
+    }
+
+    /**
+     * Display a field text area with translation as a row in a table
+     *
+     * @param array $langs The languages available for translation code => array( of details )
+     * @param string $key The field key name
+     * @param array $field Contains label: field label, default: default text, translations: array( $lang_code => $translation ),
+     * @param string $form_name Name of the form to update when the translation modal is closed
+     * @param array|string $allowed_tags The html tags allowed in the translation strings
+     */
+    public static function textarea( $langs, $key, $field, $form_name, $allowed_tags = [] ) {
+        ?>
+
+        <tr>
+            <td>
+                <?php echo esc_html( $field['label'] ); ?>
+            </td>
+            <td>
+                <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) {
+                    echo '<h3>Default translated text:</h3>';
+                    echo nl2br( esc_html( $field['default'] ) );
+                    echo '<br><br>';
+                }
+                if ( isset( $field['translations'] ) ){
+                    echo '<p>Click the <img style="height: 15px; vertical-align: middle" src="' . esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ) . '"> button to set a value for each language. Custom text for all languages:</p>';
+                } ?>
+                <textarea
+                    name="list[<?php echo esc_html( $key ); ?>]"
+                    id="<?php echo esc_html( $key ); ?>"
+                    placeholder="<?php echo esc_html( $field['label'] ); ?>"
+                ><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
+            </td>
+            <td style="vertical-align: middle;">
+                <?php if ( isset( $field['translations'] ) ){
+                    self::translation_cell( $langs, $key, $field, $form_name );
+                } ?>
+            </td>
+        </tr>
+
+        <?php
+
     }
 
     public static function message_box( string $title, string $content ) {

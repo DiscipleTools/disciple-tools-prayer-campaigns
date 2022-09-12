@@ -140,8 +140,10 @@ function dt_prayer_campaign_prayer_time_reminder(){
             $e['to'] = implode( ',', $to );
 
             $prayer_content_message = '';
-            if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) ){
+            if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) && $campaign['campaign_strings'][$record['lang']]['reminder_content'] !== '' ){
                 $prayer_content_message = $campaign['campaign_strings'][$record['lang']]['reminder_content'];
+            } else if ( isset( $campaign['campaign_strings']['default']['reminder_content'] ) && $campaign['campaign_strings']['default']['reminder_content'] !== '' ) {
+                $prayer_content_message = $campaign['campaign_strings']['default']['reminder_content'];
             }
 
             $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
@@ -154,7 +156,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 <p>'.$commitment_list.'</p>
                 <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
                 ' . $prayer_fuel_link . '
-                <p>' . $prayer_content_message . '</p>
+                <p>' . nl2br( $prayer_content_message ) . '</p>
                 <br>
                 <hr>
                 <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
