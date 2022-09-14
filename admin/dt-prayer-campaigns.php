@@ -161,12 +161,15 @@ class DT_Prayer_Campaigns_Campaigns {
                         <button
                             class="button"
                             id="campaign-wizard-toggle"
-                            style="display: <?php echo esc_attr( $is_wizard_open ? 'none' : 'block' ) ?>; margin-bottom: 1rem;"
+                            style="display: <?php echo esc_attr( $is_wizard_open ? 'none' : 'inline-block' ) ?>; margin-bottom: 1rem;"
                         >
-                            Campaign Wizard
+                            Show Campaign Wizard
                         </button>
 
-                            <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? 'block' : 'none' ) ?>;">
+                        <a class="button" href="<?php echo esc_html( home_url() ); ?>">Go to Landing Page</a>
+                        <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
+
+                        <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? 'block' : 'none' ) ?>;">
                             <?php $this->setup_wizard(); ?>
                         </div>
 
@@ -183,6 +186,13 @@ class DT_Prayer_Campaigns_Campaigns {
 
                         ?>
                      </div>
+                    <div id="postbox-container-1" class="postbox-container">
+                        <!-- Right Column -->
+
+                        <?php $this->right_column() ?>
+
+                        <!-- End Right Column -->
+                    </div><!-- postbox-container 1 -->
                 </div>
             </div>
         </div>
@@ -325,6 +335,12 @@ class DT_Prayer_Campaigns_Campaigns {
                                                 <?php endforeach; ?>
 
                                             </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Configure on <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=settings' ) ); ?>">Landing Page Settings</a> tab.<br>
+                                            Set <strong>Landing Page Title</strong> and other text in the <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">Translations</a> tab.
                                         </td>
                                     </tr>
                                 </tbody>
@@ -487,13 +503,18 @@ class DT_Prayer_Campaigns_Campaigns {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Information</th>
+                    <th>Links</th>
                 </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    Content
+                    <ul>
+                        <li><a href="<?php echo esc_html( home_url() ); ?>">Landing Page</a></li>
+                        <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>">Campaigns</a></li>
+                        <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>">Prayer Warriors (Subscribers)</a></li>
+                        <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
+                    </ul>
                 </td>
             </tr>
             </tbody>

@@ -37,6 +37,10 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
             <tbody>
                 <tr>
                     <td colspan="2">
+                        <p>
+                            These are the languages with existing translations, where the landing page and emails are translated. <br>
+                            Please help us and new translations and improve existing ones <a href="https://poeditor.com/join/project/yik32Z3OEf" target="_blank">on peoditor</a>.
+                        </p>
                         <form method="POST">
                             <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'language_settings' ) ) ?>"/>
@@ -106,7 +110,7 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
                 </tr>
                 <tr>
                     <td>
-                        Add existing language
+                        Add a new untranslated language (usually used to create prayer fuel):
                     </td>
                     <td>
                         <form method="POST">
