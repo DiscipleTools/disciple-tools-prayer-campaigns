@@ -30,6 +30,18 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
         $this->porch_dir = $porch_dir;
 
         require_once __DIR__ . '/dt-generic-porch.php';
+        add_filter( 'dt_campaigns_wizard_types', array( $this, 'dt_campaigns_wizard_types' ), 10, 1 );
+    }
+
+    public function dt_campaigns_wizard_types( $wizard_types ) {
+        $default_wizards = [
+            '24hour' => [
+                'campaign_type' => '24hour',
+                'porch' => 'generic-porch',
+                'label' => '24/7 Fixed Start and End Dates Campaign'
+            ],
+        ];
+        return array_merge( $default_wizards, $wizard_types );
     }
 
     public function get_porch_details() {

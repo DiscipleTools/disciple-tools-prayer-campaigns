@@ -13,7 +13,6 @@ class DT_Prayer_Campaigns_Campaigns {
     public function __construct() {
         $this->settings_manager = new DT_Campaign_Settings();
 
-        add_filter( 'dt_campaigns_wizard_types', array( $this, 'dt_campaigns_wizard_types' ), 10, 1 );
     }
 
     private function default_email_address(): string {
@@ -43,15 +42,54 @@ class DT_Prayer_Campaigns_Campaigns {
         return $default_name;
     }
 
-    public function dt_campaigns_wizard_types( $wizard_types ) {
-        $default_wizards = [
-            '24hour' => [
-                'campaign_type' => '24hour',
-                'porch' => 'generic-porch',
-                'label' => '24/7 Fixed Start and End Dates Campaign'
-            ],
+    public static function setup_wizard_for_type( $wizard_type ){
+        /**
+         * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
+         * automatically
+         *
+         * The array of wizards looks like
+         *
+         * [
+         *     'wizard_type' => [
+         *          'campaign_type' => 'campaign_type_key',
+         *          'porch' => 'porch_key',
+         *          'label' => 'Text to display in the wizard button',
+         *     ]
+         * ]
+         */
+        $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
+
+        $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
+        $porch_type = isset( $wizard_details['porch'] ) ? $wizard_details['porch'] : 'generic-porch';
+        $campaign_type = isset( $wizard_details['campaign_type'] ) ? $wizard_details['campaign_type'] : 'ongoing';
+
+        if ( empty( $wizard_details ) ) {
+            return;
+        }
+
+        $fields = [
+            'name' => 'Campaign',
+            'type' => $campaign_type,
+            'start_date' => time(),
+            'status' => 'active',
         ];
-        return array_merge( $default_wizards, $wizard_types );
+
+        if ( $campaign_type === '24hour' ) {
+            $fields['end_date'] = time() + 30 * DAY_IN_SECONDS;
+            $fields['name'] = 'Fixed Dates Campaign';
+        } elseif ( $campaign_type === 'ongoing' ){
+            $fields['name'] = 'Ongoing Campaign';
+        }
+
+        $new_campaign = DT_Posts::create_post( 'campaigns', $fields, true, false );
+        if ( is_wp_error( $new_campaign ) ){
+            return;
+        }
+        update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
+        $settings_manager = new DT_Campaign_Settings();
+        $settings_manager->update( 'selected_porch', $porch_type );
+        DT_Porch_Selector::instance()->set_selected_porch_id( $porch_type );
+
     }
 
     /**
@@ -92,52 +130,7 @@ class DT_Prayer_Campaigns_Campaigns {
             }
             if ( isset( $_POST['setup_wizard_submit'], $_POST['setup_wizard_type'] ) ){
                 $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_wizard_type'] ) );
-
-                /**
-                 * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
-                 * automatically
-                 *
-                 * The array of wizards looks like
-                 *
-                 * [
-                 *     'wizard_type' => [
-                 *          'campaign_type' => 'campaign_type_key',
-                 *          'porch' => 'porch_key',
-                 *          'label' => 'Text to display in the wizard button',
-                 *     ]
-                 * ]
-                 */
-                $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
-
-                $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
-                $porch_type = isset( $wizard_details['porch'] ) ? $wizard_details['porch'] : 'generic-porch';
-                $campaign_type = isset( $wizard_details['campaign_type'] ) ? $wizard_details['campaign_type'] : 'ongoing';
-
-                if ( empty( $wizard_details ) ) {
-                    return;
-                }
-
-                $fields = [
-                    'name' => 'Campaign',
-                    'type' => $campaign_type,
-                    'start_date' => time(),
-                    'status' => 'active',
-                ];
-
-                if ( $campaign_type === '24hour' ) {
-                    $fields['end_date'] = time() + 30 * DAY_IN_SECONDS;
-                    $fields['name'] = 'Fixed Dates Campaign';
-                } elseif ( $campaign_type === 'ongoing' ){
-                    $fields['name'] = 'Ongoing Campaign';
-                }
-
-                $new_campaign = DT_Posts::create_post( 'campaigns', $fields, true );
-                if ( is_wp_error( $new_campaign ) ){
-                    return;
-                }
-                update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
-                $this->settings_manager->update( 'selected_porch', $porch_type );
-                DT_Porch_Selector::instance()->set_selected_porch_id( $porch_type );
+                self::setup_wizard_for_type( $wizard_type );
 
             }
         }
