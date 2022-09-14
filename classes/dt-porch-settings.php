@@ -114,7 +114,8 @@ class DT_Porch_Settings {
          *
          * @param array $defaults contains the settings common to all porches
          */
-        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults );
+        $porch = DT_Porch_Selector::instance()->get_selected_porch_id();
+        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults, $porch );
 
         return $defaults;
     }
