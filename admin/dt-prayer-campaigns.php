@@ -153,21 +153,21 @@ class DT_Prayer_Campaigns_Campaigns {
         ?>
         <div class="wrap">
             <div id="poststuff">
+                <?php $is_wizard_open = !DT_Porch_Selector::instance()->has_selected_porch() || $this->no_campaigns(); ?>
+
+                <button
+                    class="button"
+                    id="campaign-wizard-toggle"
+                    style="display: <?php echo esc_attr( $is_wizard_open ? 'none' : 'inline-block' ) ?>; margin-bottom: 1rem;"
+                >
+                    Show Campaign Wizard
+                </button>
+
+                <a class="button" href="<?php echo esc_html( home_url() ); ?>">Go to Landing Page</a>
+                <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
-                        <?php $is_wizard_open = !DT_Porch_Selector::instance()->has_selected_porch() || $this->no_campaigns(); ?>
-
-                        <button
-                            class="button"
-                            id="campaign-wizard-toggle"
-                            style="display: <?php echo esc_attr( $is_wizard_open ? 'none' : 'inline-block' ) ?>; margin-bottom: 1rem;"
-                        >
-                            Show Campaign Wizard
-                        </button>
-
-                        <a class="button" href="<?php echo esc_html( home_url() ); ?>">Go to Landing Page</a>
-                        <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
 
                         <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? 'block' : 'none' ) ?>;">
                             <?php $this->setup_wizard(); ?>
