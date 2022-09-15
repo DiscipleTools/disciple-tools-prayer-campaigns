@@ -331,9 +331,11 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                     </tr>
                                     <tr>
+
+                                        <td>Landing Page Title</td>
                                         <td>
-                                            Configure on <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=settings' ) ); ?>">Landing Page Settings</a> tab.<br>
-                                            Set <strong>Landing Page Title</strong> and other text in the <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">Translations</a> tab.
+                                            <strong><?php echo esc_html( isset( DT_Porch_Settings::fields()['title']['value'] ) ? DT_Porch_Settings::fields()['title']['value'] : '' ); ?></strong>
+                                            <a style="margin-inline-start: 10px" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">change</a>
                                         </td>
                                     </tr>
                                 </tbody>
