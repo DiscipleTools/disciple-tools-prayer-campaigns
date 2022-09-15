@@ -52,8 +52,8 @@ class DT_Campaign_Porch_Roles
         ];
         if ( !isset( $expected_roles['porch_admin'] ) ){
             $expected_roles['porch_admin'] = [
-                'label' => 'Porch Admin',
-                'description' => 'Administrates porch public pages',
+                'label' => 'Prayer Fuel Admin',
+                'description' => 'Create and Edit Prayer Fuel',
                 'permissions' => $landing_page_permissions
             ];
         }

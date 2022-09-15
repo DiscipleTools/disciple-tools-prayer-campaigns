@@ -46,7 +46,9 @@ class DT_Campaigns_Base {
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 10, 2 );
         add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
-        add_filter( 'dt_comments_additional_sections', [ $this, 'dt_comments_additional_sections' ], 10, 2 );
+        add_filter( 'dt_comments_additional_sections', [ $this, 'dt_comments_additional_sections' ], 50, 2 );
+
+        add_filter( 'dt_nav', [ $this, 'dt_nav' ], 10, 1 );
 
     }
 
@@ -58,6 +60,13 @@ class DT_Campaigns_Base {
 
     public function dt_front_page(){
         return admin_url( 'admin.php?page=dt_prayer_campaigns' );
+    }
+
+    public function dt_nav( $nav ){
+        if ( isset( $nav['admin']['settings']['submenu']['admin'] ) ){
+            $nav['admin']['settings']['submenu']['admin']['hidden'] = !current_user_can( 'manage_dt' ) && !current_user_can( 'edit_' . PORCH_LANDING_POST_TYPE );
+        }
+        return $nav;
     }
 
     /**
@@ -81,7 +90,28 @@ class DT_Campaigns_Base {
             'update_any_'.$this->post_type => true,
             'view_any_'.$this->post_type => true,
         ];
+        $landing_page_permissions = [
+            // landing page access
+            'create_' . PORCH_LANDING_POST_TYPE => true,
+            'edit_' . PORCH_LANDING_POST_TYPE => true,
+            'read_' . PORCH_LANDING_POST_TYPE => true,
+            'delete_' . PORCH_LANDING_POST_TYPE => true,
+            'delete_others_' . PORCH_LANDING_POST_TYPE . 's',
+            'delete_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'edit' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'edit_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'publish_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'read_private_' . PORCH_LANDING_POST_TYPE . 's' => true,
+
+            // rest access for blocks editor
+            'wp_api_allowed_user' => true,
+            'edit_files' => true,
+            'upload_files' => true,
+            // wp-admin dashboard access
+            'read' => true,
+        ];
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $campaigns_permissions );
+        $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $landing_page_permissions );
 
         if ( isset( $expected_roles['administrator'] ) ){
             $expected_roles['administrator']['permissions']['access_' . $this->post_type ] = true;
