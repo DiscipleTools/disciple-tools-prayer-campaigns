@@ -163,7 +163,7 @@ class DT_Prayer_Campaigns_Campaigns {
                     Show Campaign Wizard
                 </button>
 
-                <a class="button" href="<?php echo esc_html( home_url() ); ?>">Go to Landing Page</a>
+                <a class="button" href="<?php echo esc_html( home_url() ); ?>" target="_blank">Go to Landing Page</a>
                 <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
@@ -510,9 +510,9 @@ class DT_Prayer_Campaigns_Campaigns {
             <tr>
                 <td>
                     <ul>
-                        <li><a href="<?php echo esc_html( home_url() ); ?>">Landing Page</a></li>
-                        <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>">Campaigns</a></li>
-                        <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>">Prayer Warriors (Subscribers)</a></li>
+                        <li><a href="<?php echo esc_html( home_url() ); ?>" target="_blank">Landing Page</a></li>
+                        <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>" target="_blank">Campaigns</a></li>
+                        <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
                         <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
                     </ul>
                 </td>
