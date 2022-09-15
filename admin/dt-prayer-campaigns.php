@@ -478,7 +478,7 @@ class DT_Prayer_Campaigns_Campaigns {
     }
 
     private function no_campaigns() {
-        return empty( DT_Posts::list_posts( 'campaigns', [] )['posts'] );
+        return empty( DT_Posts::list_posts( 'campaigns', [], false )['posts'] );
     }
 
     public function right_column() {

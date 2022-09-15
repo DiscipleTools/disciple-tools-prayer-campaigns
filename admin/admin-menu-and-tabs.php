@@ -53,7 +53,7 @@ class DT_Prayer_Campaigns_Menu {
      * @since 0.1
      */
     public function register_menu() {
-        add_menu_page( $this->title, $this->title, 'manage_dt', $this->token, [ $this, 'content' ], null, 7 );
+        add_menu_page( $this->title, $this->title, 'wp_api_allowed_user', $this->token, [ $this, 'content' ], null, 7 );
     }
 
     public function enqueue_scripts() {
@@ -78,14 +78,18 @@ class DT_Prayer_Campaigns_Menu {
      */
     public function content() {
 
-        if ( !current_user_can( 'manage_dt' ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
+        if ( !( current_user_can( 'manage_dt' ) || current_user_can( 'wp_api_allowed_user' ) ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
             wp_die( 'You do not have sufficient permissions to access this page.' );
         }
 
         if ( isset( $_GET['tab'] ) ) {
             $tab = sanitize_key( wp_unslash( $_GET['tab'] ) );
         } else {
-            $tab = 'campaigns';
+            if ( current_user_can( 'create_campaigns' ) ){
+                $tab = 'campaigns';
+            } else {
+                $tab = 'dt_prayer_fuel';
+            }
         }
 
         $link = 'admin.php?page='.$this->token.'&tab=';
@@ -118,6 +122,7 @@ class DT_Prayer_Campaigns_Menu {
         <div class="wrap">
             <h2>Prayer Campaigns</h2>
             <h2 class="nav-tab-wrapper">
+                <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
                 <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
                     class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                     General Settings
@@ -126,15 +131,18 @@ class DT_Prayer_Campaigns_Menu {
                     class="nav-tab <?php echo esc_html( ( $tab == $email_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $email_settings_tab->title ) ?>
                 </a>
+                <?php endif; ?>
 
                 <?php if ( $this->has_selected_porch() ) : ?>
 
+                    <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $home_tab->title ) ?>
                     </a>
                     <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
                     </a>
+                    <?php endif; ?>
                     <a href="<?php echo esc_attr( $link . $prayer_content_tab->key . '&import=wordpress' ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_content_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_content_tab->title ) ?>
                     </a>
