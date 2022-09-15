@@ -123,36 +123,40 @@ class DT_Prayer_Campaigns_Menu {
             <h2>Prayer Campaigns</h2>
             <h2 class="nav-tab-wrapper">
                 <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
-                <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
-                    class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
-                    General Settings
-                </a>
-                <a href="<?php echo esc_attr( $link . $email_settings_tab->key ) ?>"
-                    class="nav-tab <?php echo esc_html( ( $tab == $email_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
-                        <?php echo esc_html( $email_settings_tab->title ) ?>
-                </a>
-                <?php endif; ?>
-
-                <?php if ( $this->has_selected_porch() ) : ?>
-
-                    <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
-                    <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
-                        <?php echo esc_html( $home_tab->title ) ?>
+                    <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
+                        class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        General Settings
                     </a>
+                <?php endif; ?>
+                <?php if ( $this->has_selected_porch() || current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
                     </a>
-                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ( $this->has_selected_porch() || current_user_can( 'create_campaigns' ) ) : ?>
+                    <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $home_tab->title ) ?>
+                    </a>
+                <?php endif; ?>
+                <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
+                    <a href="<?php echo esc_attr( $link . $email_settings_tab->key ) ?>"
+                       class="nav-tab <?php echo esc_html( ( $tab == $email_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $email_settings_tab->title ) ?>
+                    </a>
+                <?php endif; ?>
+                <?php if ( $this->has_selected_porch() ) : ?>
                     <a href="<?php echo esc_attr( $link . $prayer_content_tab->key . '&import=wordpress' ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_content_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_content_tab->title ) ?>
                     </a>
+                <?php endif; ?>
+                <?php if ( $this->has_selected_porch() ) : ?>
                     <a href="<?php echo esc_attr( $link . $prayer_fuel_tab->token ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_fuel_tab->token ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_fuel_tab->title ) ?>
                     </a>
-
-                    <?php $porch_admin->tab_headers( $link ); ?>
-
                 <?php endif; ?>
+
+                <?php $porch_admin->tab_headers( $link ); ?>
+
             </h2>
 
             <?php

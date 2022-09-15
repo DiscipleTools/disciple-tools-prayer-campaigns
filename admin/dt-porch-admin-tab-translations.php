@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 class DT_Porch_Admin_Tab_Translations extends DT_Porch_Admin_Tab_Base {
 
-    public $title = 'Translations';
+    public $title = 'Landing Page Title & Content';
 
     public $key = 'translations';
 
