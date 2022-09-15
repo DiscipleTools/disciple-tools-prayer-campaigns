@@ -56,7 +56,14 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             add_action( 'pre_get_posts', [ $this, 'dt_landing_order_by_date' ] );
             add_filter( 'manage_'.$this->post_type.'_posts_columns', [ $this, 'set_custom_edit_columns' ] );
             add_action( 'manage_'.$this->post_type.'_posts_custom_column', [ $this, 'custom_column' ], 10, 2 );
+            add_action( 'admin_head', [ $this, 'admin_head' ] );
         }
+        global $pagenow;
+        if ( is_admin() && $pagenow === 'post.php' && isset( $_GET['action'] ) && $_GET['action'] === 'edit' ){
+            add_action( 'admin_head', [ $this, 'admin_head' ] );
+        }
+
+        add_filter( 'post_type_link', [ $this, 'post_type_link' ], 20, 3 );
 
     } // End __construct()
 
@@ -68,9 +75,15 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         }
     }
 
-    public function meta_box_custom_permalink( $post ) {
+    public static function get_prayer_fuel_permalink( $post ){
         $public_key = get_post_meta( $post->ID, PORCH_LANDING_META_KEY, true );
-        echo '<a href="' . esc_url( trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key ) . '">'. esc_url( trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key ) .'</a>';
+        $lang = get_post_meta( $post->ID, 'post_language', true );
+        return trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key . '?lang=' . $lang;
+    }
+
+    public function meta_box_custom_permalink( $post ) {
+        $link = self::get_prayer_fuel_permalink( $post );
+        echo '<a href="' . esc_url( $link ) . '">'. esc_url( $link ) .'</a>';
     }
 
     public function meta_box_page_language( $post ) {
@@ -135,6 +148,25 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         <?php
     }
 
+    public function post_type_link( $link, $post, $leavename ){
+        if ( $post->post_type === PORCH_LANDING_POST_TYPE ){
+            return self::get_prayer_fuel_permalink( $post );
+        }
+        return $link;
+    }
+
+    public function admin_head(){
+        ?>
+        <script>
+            jQuery(document).ready(function($) {
+                setTimeout(function (){
+                    $('.edit-post-fullscreen-mode-close').attr('href', '<?php echo esc_url_raw( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=dt_prayer_fuel' ) ) ?>')
+                }, 2000)
+            })
+        </script>
+        <?php
+    }
+
     public function save_post( $id, $post ){
 
         $post_submission = dt_recursive_sanitize_array( wp_unslash( $_POST ) );
@@ -159,8 +191,18 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
             $day = get_post_meta( $id, 'day', true );
+            $lang = get_post_meta( $id, 'post_language', true );
 
-            if ( $day !== false && !empty( $day ) ) {
+            if ( empty( $day ) && isset( $_GET['day'] ) && !empty( $_GET['day'] ) ){
+                $day = sanitize_key( wp_unslash( $_GET['day'] ) );
+                update_post_meta( $id, 'day', $day );
+            }
+            if ( empty( $lang ) && isset( $_GET['post_language'] ) && !empty( $_GET['post_language'] ) ){
+                $lang = sanitize_text_field( wp_unslash( $_GET['post_language'] ) );
+                update_post_meta( $id, 'post_language', $lang );
+            }
+
+            if ( !empty( $day ) ) {
                 update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
             }
         }
@@ -283,7 +325,10 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         if ( ( 'publish' == $new_status || 'future' == $new_status ) && $post->post_type == PORCH_LANDING_POST_TYPE ) {
 
             $post_id = $post->ID;
-            $slug = trim( strtolower( $post->post_title ) );
+            $day = get_post_meta( $post_id, 'day', true );
+            $lang = get_post_meta( $post_id, 'post_language', true );
+
+            $slug = !empty( $day ) ? $day : trim( strtolower( $post->post_title ) );
             $slug = str_replace( ' ', '-', $slug );
             $slug = str_replace( '"', '', $slug );
             $slug = str_replace( '&', '', $slug );
@@ -299,7 +344,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             if ( $slug !== $current_public_key ) {
                 update_post_meta( $post_id, PORCH_LANDING_META_KEY, $slug );
                 global $wpdb;
-                $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET guid = %s WHERE ID = %s;", trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $slug, $post_id ) );
+                $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET guid = %s WHERE ID = %s;", trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $slug . ( !empty( $lang ) ? '&lang=' . $lang : '' ), $post_id ) );
             }
         }
     }
