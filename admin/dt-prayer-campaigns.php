@@ -334,7 +334,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                                         <td>Landing Page Title</td>
                                         <td>
-                                            <strong><?php echo esc_html( isset( DT_Porch_Settings::fields()['title']['value'] ) ? DT_Porch_Settings::fields()['title']['value'] : '' ); ?></strong>
+                                            <strong><?php echo esc_html( isset( DT_Porch_Settings::settings()['title']['value'] ) ? DT_Porch_Settings::settings()['title']['value'] : '' ); ?></strong>
                                             <a style="margin-inline-start: 10px" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">change</a>
                                         </td>
                                     </tr>
