@@ -331,9 +331,11 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                     </tr>
                                     <tr>
+
+                                        <td>Landing Page Title</td>
                                         <td>
-                                            Configure on <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=settings' ) ); ?>">Landing Page Settings</a> tab.<br>
-                                            Set <strong>Landing Page Title</strong> and other text in the <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">Translations</a> tab.
+                                            <strong><?php echo esc_html( isset( DT_Porch_Settings::settings()['title']['value'] ) ? DT_Porch_Settings::settings()['title']['value'] : '' ); ?></strong>
+                                            <a style="margin-inline-start: 10px" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">change</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -507,6 +509,7 @@ class DT_Prayer_Campaigns_Campaigns {
                         <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>" target="_blank">Campaigns</a></li>
                         <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
                         <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
+                        <li><a href="https://poeditor.com/join/project/yik32Z3OEf" target="_blank">Translate Pages and Emails</a></li>
                     </ul>
                 </td>
             </tr>

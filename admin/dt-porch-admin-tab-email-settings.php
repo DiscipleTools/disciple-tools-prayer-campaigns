@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Admin_Tab_Email_Settings {
     public $key = 'email-settings';
-    public $title = 'Email Settings';
+    public $title = 'Email Extra Content';
     private $selected_campaign;
 
     public function __construct() {
