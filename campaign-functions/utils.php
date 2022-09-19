@@ -161,16 +161,16 @@ function dt_get_next_ramadan_start_date() {
 /*
 https://www.qppstudio.net/global-holidays-observances/start-of-ramadan.htm
 
-2022	Start of Ramadan (Umm al-Qura)	Saturday	Apr 2
-2023	Start of Ramadan (Umm al-Qura)	Thursday	Mar 23
-2024	Start of Ramadan (Umm al-Qura)	Monday	Mar 11
-2025	Start of Ramadan (Umm al-Qura)	Saturday	Mar 1
-2026	Start of Ramadan (Umm al-Qura)	Wednesday	Feb 18
-2027	Start of Ramadan (Umm al-Qura)	Monday	Feb 8
-2028	Start of Ramadan (Umm al-Qura)	Friday	Jan 28
-2029	Start of Ramadan (Umm al-Qura)	Tuesday	Jan 16
-2030	Start of Ramadan (Umm al-Qura)	Saturday	Jan 5
-2030	Start of Ramadan (Umm al-Qura)	Thursday	Dec 26
-2031	Start of Ramadan (Umm al-Qura)	Monday	Dec 15
-2032	Start of Ramadan (Umm al-Qura)	Saturday	Dec 4
+2022 Start of Ramadan (Umm al-Qura) Saturday Apr 2
+2023 Start of Ramadan (Umm al-Qura) Thursday Mar 23
+2024 Start of Ramadan (Umm al-Qura) Monday Mar 11
+2025 Start of Ramadan (Umm al-Qura) Saturday Mar 1
+2026 Start of Ramadan (Umm al-Qura) Wednesday Feb 18
+2027 Start of Ramadan (Umm al-Qura) Monday Feb 8
+2028 Start of Ramadan (Umm al-Qura) Friday Jan 28
+2029 Start of Ramadan (Umm al-Qura) Tuesday Jan 16
+2030 Start of Ramadan (Umm al-Qura) Saturday Jan 5
+2030 Start of Ramadan (Umm al-Qura) Thursday Dec 26
+2031 Start of Ramadan (Umm al-Qura) Monday Dec 15
+2032 Start of Ramadan (Umm al-Qura) Saturday Dec 4
 */
