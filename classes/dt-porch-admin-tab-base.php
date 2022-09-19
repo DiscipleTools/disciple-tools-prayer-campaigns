@@ -183,9 +183,9 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                         <select name="list[<?php echo esc_html( $key ); ?>]">
-                                            <?php if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) : ?>
-                                                <?php
-                                                    $default_translation_label = $langs[ $field['value'] ]['native_name'];
+                                            <?php if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) :
+
+                                                $default_translation_label = isset( $langs[ $field['value'] ] ) ? $langs[ $field['value'] ]['native_name'] : $field['value'];
                                                 ?>
                                                 <option value="<?php echo esc_html( $field['value'] ); ?>" selected="selected"><?php echo esc_html( $default_translation_label ); ?></option>
                                                 <option disabled>-----</option>
