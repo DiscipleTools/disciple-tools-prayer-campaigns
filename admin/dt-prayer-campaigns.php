@@ -295,7 +295,12 @@ class DT_Prayer_Campaigns_Campaigns {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Landing page Selection</th>
+                    <th>
+                        Landing page Selection
+                        <?php if ( DT_Porch_Selector::instance()->get_selected_porch_id() ) : ?>
+                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/verified.svg' ); ?>">
+                        <?php endif;?>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -401,7 +406,10 @@ class DT_Prayer_Campaigns_Campaigns {
             <thead>
                 <tr>
                     <th>
-                        Link Campaign
+                        Campaign Selection
+                        <?php if ( $fields['ID'] ) : ?>
+                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/verified.svg' ); ?>">
+                        <?php endif;?>
                     </th>
                 </tr>
             </thead>
