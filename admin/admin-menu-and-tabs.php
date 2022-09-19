@@ -131,6 +131,7 @@ class DT_Prayer_Campaigns_Menu {
                 <?php if ( $this->has_selected_porch() && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
+                        <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
                     </a>
                 <?php endif; ?>
                 <?php if ( $this->has_selected_porch() && current_user_can( 'create_campaigns' ) ) : ?>
