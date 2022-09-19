@@ -146,11 +146,11 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                     Day <?php echo esc_html( $day ) ?>
 
-                    <?php if ( $day > $todays_campaign_day ): ?>
-
-                     — <span class="post-status">Scheduled</span>
-
-                    <?php endif; ?>
+<!--                    --><?php //if ( $day > $todays_campaign_day ): ?>
+<!---->
+<!--                     — <span class="post-status">Scheduled</span>-->
+<!---->
+<!--                    --><?php //endif; ?>
 
                 </span>
 
