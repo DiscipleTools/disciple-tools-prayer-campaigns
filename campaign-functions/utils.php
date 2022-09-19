@@ -136,9 +136,9 @@ if ( !function_exists( 'set_magic_quotes_runtime' ) ) {
 
 function dt_get_next_ramadan_start_date() {
     $ramadan_start_dates = [
-        '2024-03-23',
+        '2023-03-23',
         '2024-03-11',
-        '2026-03-01',
+        '2025-03-01',
         '2026-02-18',
         '2027-02-08',
         '2028-01-28',
