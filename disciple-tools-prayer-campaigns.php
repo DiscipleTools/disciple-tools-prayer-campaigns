@@ -65,7 +65,7 @@ require_once( 'campaign-functions/setup-functions.php' );
  * Fires after WordPress has finished loading but before any headers are sent.
  *
  */
-add_action( 'init', function() : void {
+add_action( 'after_setup_theme', function() : void {
     require_once __DIR__ . '/porches/interfaces/dt-porch-loader-interface.php';
     require_once __DIR__ . '/porches/generic/dt-generic-porch-loader.php';
     require_once __DIR__ . '/porches/ongoing/dt-ongoing-porch-loader.php';
