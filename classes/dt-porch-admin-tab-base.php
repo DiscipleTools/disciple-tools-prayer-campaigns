@@ -149,7 +149,7 @@ class DT_Porch_Admin_Tab_Base {
                                                 <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
                                                 button to set a value for each language:</p>
                                         <?php endif; ?>
-                                        <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['label'] ); ?>"/>
+                                        <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"/>
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field['translations'] ) ){
@@ -272,7 +272,7 @@ class DT_Porch_Admin_Tab_Base {
                 <textarea
                     name="list[<?php echo esc_html( $key ); ?>]"
                     id="<?php echo esc_html( $key ); ?>"
-                    placeholder="<?php echo esc_html( $field['label'] ); ?>"
+                    placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"
                 ><?php echo wp_kses( $field['value'], $allowed_tags ); ?></textarea>
             </td>
             <td style="vertical-align: middle;">

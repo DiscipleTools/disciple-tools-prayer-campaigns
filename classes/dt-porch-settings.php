@@ -184,18 +184,21 @@ class DT_Porch_Settings {
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
+                'placeholder' => 'Hex value'
             ],
             'logo_url' => [
-                'label' => 'Logo Image URL',
+                'label' => 'Custom Logo',
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
+                'placeholder' => 'Url of image'
             ],
             'logo_link_url' => [
-                'label' => 'Logo Link to URL',
+                'label' => 'Logo URL',
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
+                'placeholder' => 'URL where clicking the logo should bring you to'
             ],
             'header_background_url' => [
                 'label' => 'Header Background URL',
@@ -211,32 +214,32 @@ class DT_Porch_Settings {
                 'tab' => 'settings',
             ],
             'show_prayer_timer' => [
-                'label' => 'Show Prayer Timer',
+                'label' => 'Show Timer on Prayer Fuel',
                 'default' => 'Yes',
                 'value' => 'yes',
                 'type' => 'prayer_timer_toggle',
                 'tab' => 'settings',
             ],
             'facebook' => [
-                'label' => 'Facebook Url',
+                'label' => 'Footer Facebook Link',
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
             ],
             'instagram' => [
-                'label' => 'Instagram Url',
+                'label' => 'Footer Instagram Link',
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
             ],
             'twitter' => [
-                'label' => 'Twitter Url',
+                'label' => 'Footer Twitter Link',
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
             ],
             'google_analytics' => [
-                'label' => 'Google Analytics',
+                'label' => 'Google Analytics (optional)',
                 'default' => get_site_option( 'p4r_porch_google_analytics' ),
                 'value' => '',
                 'type' => 'textarea',
