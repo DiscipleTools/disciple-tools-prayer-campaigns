@@ -74,7 +74,12 @@ class DT_Prayer_Campaigns_Campaigns {
             'status' => 'active',
         ];
 
-        if ( $campaign_type === '24hour' ) {
+        if ( $porch_type === 'ramadan-porch' ) {
+            $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
+            $fields['start_date'] = $next_ramadan_start_date;
+            $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
+            $fields['name'] = 'Ramadan Campaign';
+        } else if ( $campaign_type === '24hour' ) {
             $fields['end_date'] = time() + 30 * DAY_IN_SECONDS;
             $fields['name'] = 'Fixed Dates Campaign';
         } elseif ( $campaign_type === 'ongoing' ){
