@@ -145,7 +145,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
 
         if ( hasEndDate && endTimeLeft < 0 ) {
             clearInterval(myfunc);
-            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( 'Ramadan is Finished', 'pray4ramadan-porch' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( 'Ramadan is Finished', 'disciple-tools-prayer-campaigns' ); ?>"
             document.getElementById("days").innerHTML = ""
             document.getElementById("hours").innerHTML = ""
             document.getElementById("mins").innerHTML = ""
@@ -158,14 +158,14 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             minutes = Math.floor((endTimeLeft % (60 * 60)) / 60);
             seconds = Math.floor(endTimeLeft % 60);
 
-            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( 'Ramadan Ends ...', 'pray4ramadan-porch' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( 'Ramadan Ends ...', 'disciple-tools-prayer-campaigns' ); ?>"
             document.getElementById("days").innerHTML = days + " <?php echo esc_html__( 'days', 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( 'hours', 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( 'minutes', 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("secs").innerHTML = seconds + " <?php echo esc_html__( 'seconds', 'disciple-tools-prayer-campaigns' ); ?>"
 
         } else {
-            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( 'Ramadan Begins ...', 'pray4ramadan-porch' ); ?>"
+            document.getElementById("counter_title").innerHTML = "<?php echo esc_html__( 'Ramadan Begins ...', 'disciple-tools-prayer-campaigns' ); ?>"
             document.getElementById("days").innerHTML = days + " <?php echo esc_html__( 'days', 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("hours").innerHTML = hours + " <?php echo esc_html__( 'hours', 'disciple-tools-prayer-campaigns' ); ?>, "
             document.getElementById("mins").innerHTML = minutes + " <?php echo esc_html__( 'minutes', 'disciple-tools-prayer-campaigns' ); ?>, "
