@@ -128,12 +128,12 @@ class DT_Prayer_Campaigns_Menu {
                         General Settings
                     </a>
                 <?php endif; ?>
-                <?php if ( $this->has_selected_porch() || current_user_can( 'create_campaigns' ) ) : ?>
+                <?php if ( $this->has_selected_porch() && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
                     </a>
                 <?php endif; ?>
-                <?php if ( $this->has_selected_porch() || current_user_can( 'create_campaigns' ) ) : ?>
+                <?php if ( $this->has_selected_porch() && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $home_tab->title ) ?>
                     </a>
@@ -155,7 +155,7 @@ class DT_Prayer_Campaigns_Menu {
                     </a>
                 <?php endif; ?>
 
-                <?php $porch_admin->tab_headers( $link ); ?>
+                <?php $this->has_selected_porch() && $porch_admin->tab_headers( $link ); ?>
 
             </h2>
 
