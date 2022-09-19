@@ -1,6 +1,6 @@
 <?php
 
-class Pray4movement_Ramadan_Porch_Loader extends DT_Generic_Porch_Loader {
+class DT_Ramadan_Porch_Loader extends DT_Generic_Porch_Loader {
 
     public $id = 'ramadan-porch';
 
@@ -23,4 +23,4 @@ class Pray4movement_Ramadan_Porch_Loader extends DT_Generic_Porch_Loader {
         return $wizard_types;
     }
 }
-( new Pray4movement_Ramadan_Porch_Loader() )->register_porch();
+( new DT_Ramadan_Porch_Loader() )->register_porch();
