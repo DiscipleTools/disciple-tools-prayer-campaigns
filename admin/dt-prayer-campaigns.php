@@ -136,6 +136,7 @@ class DT_Prayer_Campaigns_Campaigns {
             if ( isset( $_POST['setup_wizard_submit'], $_POST['setup_wizard_type'] ) ){
                 $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_wizard_type'] ) );
                 self::setup_wizard_for_type( $wizard_type );
+                return wp_redirect( home_url() );
 
             }
         }
