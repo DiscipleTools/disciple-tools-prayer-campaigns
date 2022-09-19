@@ -218,22 +218,24 @@ class DT_Prayer_Campaigns_Campaigns {
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <label
-                                            for="email_address"><?php echo esc_html( sprintf( 'Specify Prayer Campaigns from email address. Leave blank to use default (%s)', self::default_email_address() ) ) ?></label>
+                                        <label for="email_address">
+                                            The email address campaign emails will be sent from</label>
                                     </td>
                                     <td>
                                         <input name="email_address" id="email_address" type="email"
-                                                value="<?php echo esc_html( $this->settings_manager->get( 'email_address' ) ) ?>"/>
+                                               placeholder="<?php echo esc_html( self::default_email_address() ); ?>"
+                                               value="<?php echo esc_html( $this->settings_manager->get( 'email_address' ) ) ?>"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label
-                                            for="email_name"><?php echo esc_html( sprintf( 'Specify Prayer Campaigns from name. Leave blank to use default (%s)', self::default_email_name() ) ) ?></label>
+                                        <label for="email_name">
+                                            The name campaign emails will be sent from</label>
                                     </td>
                                     <td>
                                         <input name="email_name" id="email_name" type="text"
-                                                value="<?php echo esc_html( $this->settings_manager->get( 'email_name' ) ) ?>"/>
+                                               placeholder="<?php echo esc_html( self::default_email_name() ); ?>"
+                                               value="<?php echo esc_html( $this->settings_manager->get( 'email_name' ) ) ?>"/>
                                     </td>
                                 </tr>
 
