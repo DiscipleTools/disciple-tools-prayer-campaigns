@@ -196,7 +196,7 @@ class DT_Campaign_Languages {
         $available_languages = dt_get_available_languages( true, false, $available_language_codes );
 
         foreach ( $available_languages as $code => $language_info ) {
-            $available_languages[$code]['enabled'] = true;
+            $available_languages[$code]['enabled'] = $code === 'en_US';
             $available_languages[$code]['default'] = true;
         }
 

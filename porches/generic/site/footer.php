@@ -7,6 +7,7 @@
             <div class="col-md-12">
                 <div class="social-icons wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
                     <ul>
+                        <?php $porch_fields = DT_Porch_Settings::settings(); ?>
                         <!-- facebook -->
                         <?php if ( isset( $porch_fields['facebook']['value'] ) && !empty( $porch_fields['facebook']['value'] ) ) : ?>
                             <li class="facebook"><a href="<?php echo esc_url( $porch_fields['facebook']['value'] ) ?>"><i class="fa fa-facebook"></i></a></li>
