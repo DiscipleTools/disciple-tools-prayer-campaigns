@@ -38,7 +38,7 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
             '24hour' => [
                 'campaign_type' => '24hour',
                 'porch' => 'generic-porch',
-                'label' => '24/7 Fixed Start and End Dates Campaign'
+                'label' => '24/7 Campaign with a start and end date'
             ],
         ];
         return array_merge( $default_wizards, $wizard_types );

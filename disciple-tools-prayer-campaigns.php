@@ -24,6 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
+add_filter( 'dt_plugins', function ( $plugins ){
+    $plugins['disciple-tools-prayer-campaigns'] = [];
+    return $plugins;
+});
+
 /**
  * Gets the instance of the `DT_Prayer_Campaigns` class.
  *

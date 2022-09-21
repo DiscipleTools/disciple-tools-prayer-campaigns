@@ -17,7 +17,7 @@ class DT_Ramadan_Porch_Loader extends DT_Generic_Porch_Loader {
         $wizard_types[$this->id] = [
             'campaign_type' => '24hour',
             'porch' => $this->id,
-            'label' => 'Ramadan Campaign',
+            'label' => '24/7 Ramadan Template',
         ];
 
         return $wizard_types;
