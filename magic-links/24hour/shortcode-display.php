@@ -52,7 +52,7 @@ class DT_Campaigns_Fixed_Shortcode_Display {
                     <code><?php echo esc_html( $sign_up_shortcode ); ?></code>
                 </div>
                 <div class="display-section">
-                    <h1>The Prayer Clock</h1>
+                    <h1>The Prayer Timer</h1>
                     <?php echo do_shortcode( $prayer_timer_shortcode ); ?>
                     <code><?php echo esc_html( $prayer_timer_shortcode ); ?></code>
                     <p style="text-align: start">
