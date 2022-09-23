@@ -311,6 +311,8 @@ class DT_Prayer_Campaigns_Campaigns {
                         Landing page Selection
                         <?php if ( DT_Porch_Selector::instance()->get_selected_porch_id() ) : ?>
                             <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                        <?php else: ?>
+                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
                         <?php endif;?>
                     </th>
                 </tr>
@@ -421,6 +423,8 @@ class DT_Prayer_Campaigns_Campaigns {
                         Campaign Selection
                         <?php if ( $fields['ID'] ) : ?>
                             <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                        <?php else: ?>
+                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
                         <?php endif;?>
                     </th>
                 </tr>
