@@ -272,7 +272,7 @@ class DT_Prayer_Campaigns_Campaigns {
                         <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
                                value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
 
-                        <h2>Setup up the landing page for this campaign type:</h2>
+                        <h2>Choose the type of campaign to create:</h2>
                         <p>
                             <?php $this->display_wizard_buttons() ?>
                         </p>
