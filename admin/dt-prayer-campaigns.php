@@ -42,7 +42,7 @@ class DT_Prayer_Campaigns_Campaigns {
         return $default_name;
     }
 
-    public static function setup_wizard_for_type( $wizard_type ){
+    public static function setup_wizard_for_type( $wizard_type, $new_campaign_name = null ){
         /**
          * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
          * automatically
@@ -84,6 +84,10 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields['name'] = 'Fixed Dates Campaign';
         } elseif ( $campaign_type === 'ongoing' ){
             $fields['name'] = 'Ongoing Campaign';
+        }
+
+        if ( $new_campaign_name ) {
+            $fields['name'] = $new_campaign_name;
         }
 
         $new_campaign = DT_Posts::create_post( 'campaigns', $fields, true, false );
@@ -135,7 +139,8 @@ class DT_Prayer_Campaigns_Campaigns {
             }
             if ( isset( $_POST['setup_wizard_submit'], $_POST['setup_wizard_type'] ) ){
                 $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_wizard_type'] ) );
-                self::setup_wizard_for_type( $wizard_type );
+                $new_campaign_name = sanitize_text_field( wp_unslash( $_POST['new-campaign-name'] ) );
+                self::setup_wizard_for_type( $wizard_type, $new_campaign_name );
                 return wp_redirect( home_url() );
 
             }
@@ -275,6 +280,10 @@ class DT_Prayer_Campaigns_Campaigns {
                         <h2>Choose the type of campaign to create:</h2>
                         <p>
                             <?php $this->display_wizard_buttons() ?>
+                        </p>
+                        <p>
+                            <label for="new-campaign-name">Campaign Name</label>
+                            <input id="new-campaign-name" name="new-campaign-name" required type="text" placeholder="My next prayer campaign name">
                         </p>
 
                         <p>
