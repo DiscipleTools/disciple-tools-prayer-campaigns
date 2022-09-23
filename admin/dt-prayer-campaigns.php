@@ -262,7 +262,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <table class="widefat striped">
             <thead>
             <tr>
-                <th>Setup Wizard</th>
+                <th>Campaign Wizard</th>
             </tr>
             </thead>
             <tbody>
