@@ -11,6 +11,7 @@ class DT_Generic_Porch_Settings {
         $this->load_defaults();
         add_filter( 'dt_campaign_porch_settings', [ $this, 'dt_prayer_campaigns_porch_settings' ], 10, 1 );
         add_filter( 'dt_campaign_porch_theme_options', [ $this, 'dt_generic_porch_themes' ], 10, 1 );
+        add_filter( 'dt_campaign_porch_default_settings', [ $this, 'dt_campaign_porch_default_settings' ], 10, 1 );
     }
 
     public function dt_prayer_campaigns_porch_settings( $settings ) {
@@ -24,6 +25,11 @@ class DT_Generic_Porch_Settings {
         ];
 
         return $theme_options;
+    }
+
+    public function dt_campaign_porch_default_settings( $defaults ) {
+        $this->load_defaults();
+        return array_merge( $this->defaults, $defaults );
     }
 
     private function load_defaults() {
