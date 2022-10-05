@@ -9,7 +9,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: 7.4
+          php-version: "7.4"
       - run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
       - run: chmod +x wp-cli.phar
       - run: sudo mv wp-cli.phar /usr/local/bin/wp
