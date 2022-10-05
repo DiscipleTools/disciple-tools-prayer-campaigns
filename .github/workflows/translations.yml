@@ -1,5 +1,5 @@
 name: test-github-workflow
-run-name: ${{github.actor}} is learning github actions
+run-name: ${{github.actor}} is generating pot files 
 on: [push]
 jobs:
   run-pot-generator:
