@@ -1,9 +1,14 @@
 name: test-github-workflow
-run-name: ${{github.actor}} is testing wp installation
+run-name: ${{github.actor}} is regenerating default.pot
 
 on:
   push:
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   run-pot-generator:
     runs-on: ubuntu-latest
