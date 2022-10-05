@@ -1,5 +1,5 @@
 name: test-github-workflow
-run-name: ${{github.actor}} is generating pot files 
+run-name: ${{github.actor}} is testing wp installation
 on: [push]
 jobs:
   run-pot-generator:
