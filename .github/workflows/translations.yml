@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  run-pot-generator:
+  update-pot-file:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
