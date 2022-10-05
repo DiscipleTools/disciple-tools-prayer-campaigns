@@ -1,5 +1,5 @@
 name: translation-workflow
-run-name: ${{github.actor}} is regenerating default.pot on translation branch
+run-name: regenerating pot file on translation branch
 
 on:
   push:
