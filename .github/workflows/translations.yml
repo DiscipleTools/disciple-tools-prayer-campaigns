@@ -22,4 +22,8 @@ jobs:
       - run: chmod +x wp-cli.phar
       - run: sudo mv wp-cli.phar /usr/local/bin/wp
       - run: wp i18n make-pot . languages/default.pot
-      - run: git diff
+      # Create the translation branch if it doesn't exist
+      - run: git branch | grep -q translation || git branch translation
+      - run: git checkout translation
+      - run: git add .
+      - run: git commit -m "update pot"
