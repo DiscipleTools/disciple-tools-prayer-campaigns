@@ -1,5 +1,5 @@
-name: test-github-workflow
-run-name: ${{github.actor}} is regenerating default.pot
+name: translation-workflow
+run-name: ${{github.actor}} is regenerating default.pot on translation branch
 
 on:
   push:
@@ -25,5 +25,10 @@ jobs:
       # Create the translation branch if it doesn't exist
       - run: git branch | grep -q translation || git branch translation
       - run: git checkout translation
-      - run: git add .
-      - run: git commit -m "update pot"
+      - run: git add -A
+      - name: push changes to translation branch
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: master
+          commit-message: 'update pot translation file'
