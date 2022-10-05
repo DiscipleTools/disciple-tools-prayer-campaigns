@@ -5,8 +5,8 @@ jobs:
   run-pot-generator:
     runs-on: ubuntu-latest
     steps:
-      uses: actions/checkout@v3
-      run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-      run: chmod +x wp-cli.phar
-      run: sudo mv wp-cli.phar /usr/local/bin/wp
-      run: wp --info
+      - uses: actions/checkout@v3
+      - run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      - run: chmod +x wp-cli.phar
+      - run: sudo mv wp-cli.phar /usr/local/bin/wp
+      - run: wp --info
