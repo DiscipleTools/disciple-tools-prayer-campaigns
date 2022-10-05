@@ -1,6 +1,9 @@
 name: test-github-workflow
 run-name: ${{github.actor}} is testing wp installation
-on: [push]
+
+on:
+  push:
+  workflow_dispatch:
 jobs:
   run-pot-generator:
     runs-on: ubuntu-latest
