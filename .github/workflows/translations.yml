@@ -27,7 +27,7 @@ jobs:
         uses: devmasx/merge-branch@master
         with:
           type: now
-          from_branch: master
+          from_branch: feat/pot-creation
           target_branch: translation
           github_token: ${{ github.token }}
       - run: wp i18n make-pot . languages/default.pot
