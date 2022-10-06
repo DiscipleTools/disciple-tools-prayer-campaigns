@@ -3,6 +3,8 @@ run-name: regenerating pot file on translation branch
 
 on:
   push:
+    branches:
+      - feat/pot-creation
   workflow_dispatch:
 
 concurrency:
@@ -13,12 +15,8 @@ jobs:
   update-pot-file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: feat/pot-creation
-
-      - name: Checkout &| create translation branch
-        run: git branch | grep -q translation && git checkout translation || git checkout -b translation
+      - name: Checkout master branch
+        uses: actions/checkout@v3
 
       - name: Install PHP
         uses: shivammathur/setup-php@master
@@ -28,20 +26,21 @@ jobs:
       - name: Setup WP-CLI
         uses: godaddy-wordpress/setup-wp-cli@1
 
-      - name: Merge master -> translation
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: feat/pot-creation
-          target_branch: translation
-          github_token: ${{ github.token }}
-
+      ### MAKE EDITS HERE ###
+      # edit .pot location
+      # remove/edit --subtract option
+      # edit --domain option
+      # add any folders for excluding if necessary in --exclude option
       - name: Generate new pot file
-        run: wp i18n make-pot . languages/default.pot
+        run: >
+              wp i18n make-pot . languages/default.pot  --skip-audit --subtract="languages/terms_to_exclude.pot"
+              --domain="disciple-tools-prayer-campaigns"
+              --exclude=""
+      ### --------------- ###
 
-      - name: push changes to translation branch
+      - name: push changes
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: translation
+          push-branch: feat/pot-creation
           commit-message: 'update pot translation file'

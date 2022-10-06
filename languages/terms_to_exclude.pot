@@ -1,0 +1,15 @@
+#. Author URI of the plugin
+msgid "https://github.com/DiscipleTools"
+msgstr ""
+
+#. Plugin Name of the plugin
+msgid "Disciple Tools - Facebook"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/DiscipleTools/disciple-tools-facebook"
+msgstr ""
+
+#. Description of the plugin
+msgid "Disciple Tools - Facebook plugin extends the Disciple Tools system to collect data and contacts from Facebook."
+msgstr ""
