@@ -18,7 +18,7 @@ jobs:
           ref: feat/pot-creation
 
       - name: Checkout &| create translation branch
-        run: git branch | grep -q translation && git co translation || git co -b translation
+        run: git branch | grep -q translation && git checkout translation || git checkout -b translation
 
       - name: Install PHP
         uses: shivammathur/setup-php@master
