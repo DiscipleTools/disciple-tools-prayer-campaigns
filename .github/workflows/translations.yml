@@ -18,12 +18,14 @@ jobs:
         uses: shivammathur/setup-php@master
         with:
           php-version: "7.4"
-      - run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-      - run: chmod +x wp-cli.phar
-      - run: sudo mv wp-cli.phar /usr/local/bin/wp
-      - run: wp i18n make-pot . languages/default.pot
+      - name: Setup WP-CLI
+        uses: godaddy-wordpress/setup-wp-cli@1
       # Create the translation branch if it doesn't exist
       - run: git branch | grep -q translation || git branch translation
+      - run: git checkout translation
+      - run: git merge master
+      - run: wp i18n make-pot . languages/default.pot
+      - run: git add -A
       - name: push changes to translation branch
         uses: github-actions-x/commit@v2.9
         with:
