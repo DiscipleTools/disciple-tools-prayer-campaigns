@@ -13,16 +13,17 @@ jobs:
   update-pot-file:
     runs-on: ubuntu-latest
     steps:
+      # Create the translation branch if it doesn't exist
+      - run: git branch | grep -q translation || git branch translation
       - uses: actions/checkout@v3
+        with:
+          ref: translation
       - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
           php-version: "7.4"
       - name: Setup WP-CLI
         uses: godaddy-wordpress/setup-wp-cli@1
-      # Create the translation branch if it doesn't exist
-      - run: git branch | grep -q translation || git branch translation
-      - run: git checkout translation
       - name: Merge master -> translation
         uses: devmasx/merge-branch@master
         with:
