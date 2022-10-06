@@ -17,8 +17,8 @@ jobs:
         with:
           ref: feat/pot-creation
 
-      # Create the translation branch if it doesn't exist
-      - run: git branch | grep -q translation || git branch translation
+      - name: Create translation branch if it doesn't exist already
+        run: git branch | grep -q translation || git branch translation
       - uses: actions/checkout@v3
         with:
           ref: translation
@@ -40,7 +40,7 @@ jobs:
           github_token: ${{ github.token }}
 
       - name: Generate new pot file
-      - run: wp i18n make-pot . languages/default.pot
+        run: wp i18n make-pot . languages/default.pot
 
       - name: push changes to translation branch
         uses: github-actions-x/commit@v2.9
