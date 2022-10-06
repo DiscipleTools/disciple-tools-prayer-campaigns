@@ -19,6 +19,7 @@ jobs:
 
       - name: Create translation branch if it doesn't exist already
         run: git branch | grep -q translation || git branch translation
+
       - uses: actions/checkout@v3
         with:
           ref: translation
