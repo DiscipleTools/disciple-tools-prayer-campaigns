@@ -23,9 +23,14 @@ jobs:
       # Create the translation branch if it doesn't exist
       - run: git branch | grep -q translation || git branch translation
       - run: git checkout translation
-      - run: git merge master
+      - name: Merge master -> translation
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: master
+          target_branch: translation
+          github_token: ${{ github.token }}
       - run: wp i18n make-pot . languages/default.pot
-      - run: git add -A
       - name: push changes to translation branch
         uses: github-actions-x/commit@v2.9
         with:
