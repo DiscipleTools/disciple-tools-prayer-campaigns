@@ -1,10 +1,13 @@
 name: translation-workflow
-run-name: regenerating pot file on translation branch
+run-name: regenerating pot file
 
 on:
-  push:
-    branches:
-      - feat/pot-creation
+  workflow_run:
+    workflows: ["Release"]
+    types: [requested]
+#  push:
+#    branches:
+#      - master
   workflow_dispatch:
 
 concurrency:
@@ -26,21 +29,44 @@ jobs:
       - name: Setup WP-CLI
         uses: godaddy-wordpress/setup-wp-cli@1
 
+      #######################
       ### MAKE EDITS HERE ###
+      #######################
       # edit .pot location
       # remove/edit --subtract option
       # edit --domain option
       # add any folders for excluding if necessary in --exclude option
+      #######################
       - name: Generate new pot file
         run: >
               wp i18n make-pot . languages/default.pot  --skip-audit --subtract="languages/terms_to_exclude.pot"
               --domain="disciple-tools-prayer-campaigns"
               --exclude=""
-      ### --------------- ###
+      #######################
 
+      - name: Check diff output
+        run: git diff | wc -l
+
+      - name: Add changes
+        run: git add -A
+
+      - name: Check status
+        run: git status
+
+      #######################
+      ### MAKE EDITS HERE ###
+      #######################
+      # edit name and email
+      #######################
       - name: push changes
-        uses: github-actions-x/commit@v2.9
+        uses: github-actions-x/commit@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: feat/pot-creation
+          push-branch: master
           commit-message: 'update pot translation file'
+          name: squigglybob
+          email: nathinabob@gmail.com
+      #######################
+
+      - name: Check git config
+        run: git config --list --show-origin
