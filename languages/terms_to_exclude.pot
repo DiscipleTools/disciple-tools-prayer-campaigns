@@ -3,13 +3,13 @@ msgid "https://github.com/DiscipleTools"
 msgstr ""
 
 #. Plugin Name of the plugin
-msgid "Disciple Tools - Facebook"
+msgid "Disciple.Tools - Prayer Campaigns"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/DiscipleTools/disciple-tools-facebook"
+msgid "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
 msgstr ""
 
 #. Description of the plugin
-msgid "Disciple Tools - Facebook plugin extends the Disciple Tools system to collect data and contacts from Facebook."
+msgid "Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project."
 msgstr ""

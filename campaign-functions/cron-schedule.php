@@ -80,7 +80,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
     if ( !empty( $porch_selected ) ){
         $url = site_url() . '/prayer/list';
         $link = '<a href="' . $url . '">' . $url . '</a>';
-        $prayer_fuel_link = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'disciple-tools-prayer-campaigns', 'Click here to see the prayer prompts for today: link-html-code-here' ), $link ) . '</p>';
+        $prayer_fuel_link = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), $link ) . '</p>';
     }
 
     // build message by campaign, and then by user, and grouping times per user message
