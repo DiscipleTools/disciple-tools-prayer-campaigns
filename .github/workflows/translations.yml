@@ -65,7 +65,7 @@ jobs:
           push-branch: master
           commit-message: 'update pot translation file'
           name: ${{ github.actor }}
-          email: ${{github_actor}}@users.noreply.github.com
+          email: ${{github.actor}}@users.noreply.github.com
       #######################
 
       - name: Check git config
