@@ -78,7 +78,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
                 ?>
                 <div class="cell small-12 medium-4">
                     <div class="section-subheader">
-                        <?php esc_html_e( 'Magic Link', 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php esc_html_e( 'Shortcodes', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
                     <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </div>

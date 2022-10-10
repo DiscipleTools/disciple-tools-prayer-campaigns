@@ -163,7 +163,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                             ?>
 
                             <div class="section-subheader">
-                                <?php esc_html_e( 'Magic Links', 'disciple-tools-prayer-campaigns' ); ?>
+                                <?php esc_html_e( 'Shortcodes', 'disciple-tools-prayer-campaigns' ); ?>
                             </div>
                             <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_html( $shortcode ) ?>')"><?php esc_html_e( 'Copy Shortcode', 'disciple-tools-prayer-campaigns' ); ?></a>
                             <a class="button hollow small" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')"><?php esc_html_e( 'Copy Link', 'disciple-tools-prayer-campaigns' ); ?></a>
