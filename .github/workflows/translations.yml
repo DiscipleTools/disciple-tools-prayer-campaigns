@@ -64,8 +64,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: master
           commit-message: 'update pot translation file'
-          name: squigglybob
-          email: nathinabob@gmail.com
+          name: discipletoolsbot
+          email: github@disciple.tools
       #######################
 
       - name: Check git config
