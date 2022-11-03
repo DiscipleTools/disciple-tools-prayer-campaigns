@@ -36,7 +36,8 @@ class DT_Porch_Admin_Tab_Starter_Content {
         $fields = DT_Campaign_Settings::get_campaign();
 
         if ( !empty( $fields ) ) {
-            $this->upload_prayer_content_box();
+//            $this->upload_prayer_content_box();
+            do_action( 'dt_prayer_campaigns_admin_install_fuel' );
         } else {
             DT_Porch_Admin_Tab_Base::message_box( 'Upload Prayer Fuel', 'You need to select a campaign to start importing prayer fuel' );
         }
