@@ -1,0 +1,991 @@
+# Copyright (C) 2022 
+# This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
+"prayer-campaigns\n"
+"POT-Creation-Date: 2022-11-07T11:12:44+00:00\n"
+"PO-Revision-Date: 2022-11-05 13:32+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Romanian <https://translate.disciple.tools/projects/disciple-"
+"tools/disciple-tools-prayer-campaigns/ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14.1\n"
+"X-Domain: disciple-tools-prayer-campaigns\n"
+
+#: campaign-functions/cron-schedule.php:83
+#, fuzzy
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr ""
+"Faceți clic aici pentru a vedea solicitările de rugăciune pentru astăzi: %s"
+
+#: campaign-functions/cron-schedule.php:89
+#, fuzzy
+msgid "Prayer Time reminder!"
+msgstr "Memento pentru timpul rugăciunii!"
+
+#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/send-email-utility.php:67
+#, fuzzy
+msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
+msgid "%1$s from %2$s to %3$s"
+msgstr "%1$s de la %2$s la %3$s"
+
+#: campaign-functions/cron-schedule.php:136
+#, fuzzy
+msgctxt "for Paris, France"
+msgid "for %s"
+msgstr "pentru s"
+
+#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/send-email-utility.php:85
+#: campaign-functions/send-email-utility.php:147
+#: campaign-functions/send-email-utility.php:244
+#, fuzzy
+msgid "Hello %s,"
+msgstr "Bună %s,"
+
+#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:131
+#, fuzzy
+msgid "Thank you for praying with us!"
+msgstr "Vă mulțumim că vă rugați cu noi!"
+
+#: campaign-functions/cron-schedule.php:155
+#, fuzzy
+msgid "Here are your upcoming prayer times:"
+msgstr "Iată orele de rugăciune viitoare:"
+
+#: campaign-functions/cron-schedule.php:157
+#: campaign-functions/send-email-utility.php:107
+#, fuzzy
+msgid "Times are shown according to: %s time"
+msgstr "Orele sunt afișate în funcție de: %s timp"
+
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:111
+#, fuzzy
+msgid "Click here to manage your account and time commitments"
+msgstr "Faceți clic aici pentru a vă gestiona contul și angajamentele de timp"
+
+#: campaign-functions/send-email-utility.php:82
+#, fuzzy
+msgid "Registered to pray with us!"
+msgstr "Înscris pentru a vă ruga cu noi!"
+
+#: campaign-functions/send-email-utility.php:103
+#, fuzzy
+msgid ""
+"Thank you for joining us in strategic prayer for a disciple making movement! "
+"You're one click away from finishing your registration."
+msgstr ""
+"Vă mulțumim că v-ați alăturat nouă în rugăciune strategică pentru o mișcare "
+"de a face ucenici! Ești la un clic distanță de a-ți finaliza înregistrarea."
+
+#: campaign-functions/send-email-utility.php:104
+#, fuzzy
+msgid "Click here to verify your email address and confirm your prayer times."
+msgstr ""
+"Faceți clic aici pentru a vă verifica adresa de e-mail și pentru a vă "
+"confirma orele de rugăciune."
+
+#: campaign-functions/send-email-utility.php:105
+#, fuzzy
+msgid "Here are the times you have committed to pray:"
+msgstr "Iată momentele în care v-ați angajat să vă rugați:"
+
+#: campaign-functions/send-email-utility.php:154
+#, fuzzy
+msgid "Registration Confirmation"
+msgstr "Confirmarea înregistrării"
+
+#: campaign-functions/send-email-utility.php:157
+#, fuzzy
+msgid "Thank you for signing up to pray!"
+msgstr "Vă mulțumim că v-ați înscris să vă rugați!"
+
+#: campaign-functions/send-email-utility.php:158
+#, fuzzy
+msgid ""
+"We have some time before the campaign starts. We will send you another email "
+"a couple months before the first day asking you to choose specific times to "
+"pray. Working together we will cover the region in 24/7 prayer."
+msgstr ""
+"Avem ceva timp până să înceapă campania. Vă vom trimite un alt e-mail cu "
+"câteva luni înainte de prima zi, prin care vă vom cere să alegeți anumite "
+"ore de rugăciune. Lucrând împreună, vom acoperi regiunea în rugăciune 24/7."
+
+#: campaign-functions/send-email-utility.php:159
+#, fuzzy
+msgid "If you know your schedule already you can choose your times here:"
+msgstr "Dacă vă cunoașteți deja programul, vă puteți alege orele aici:"
+
+#: campaign-functions/send-email-utility.php:245
+#, fuzzy
+msgid ""
+"You are 2 weeks out for your last prayer time. Would you like to keep "
+"praying?"
+msgstr ""
+"Ai 2 săptămâni afară pentru ultima ta rugăciune. Ți-ar plăcea să te rogi în "
+"continuare?"
+
+#: campaign-functions/send-email-utility.php:246
+#, fuzzy
+msgid "Sign up for more prayer times or extend your recurring time here:"
+msgstr ""
+"Înscrie-te pentru mai multe ore de rugăciune sau extinde-ți timpul recurent "
+"aici:"
+
+#: campaign-functions/send-email-utility.php:248
+#, fuzzy
+msgid "Thank you"
+msgstr "Mulțumesc"
+
+#: campaign-functions/time-utilities.php:157
+#, fuzzy
+msgid "5 minutes"
+msgstr "5 minute"
+
+#: campaign-functions/time-utilities.php:158
+#, fuzzy
+msgid "10 minutes"
+msgstr "10 minute"
+
+#: campaign-functions/time-utilities.php:159
+#, fuzzy
+msgid "15 minutes"
+msgstr "15 minute"
+
+#: campaign-functions/time-utilities.php:160
+#, fuzzy
+msgid "30 minutes"
+msgstr "30 minute"
+
+#: campaign-functions/time-utilities.php:161
+#, fuzzy
+msgid "1 hour"
+msgstr "1 oră"
+
+#: magic-links/subscription-management/subscription-management.php:38
+#: magic-links/subscription-management/subscription-management.php:266
+#, fuzzy
+msgid "My Prayer Times"
+msgstr "Timpurile mele de rugăciune"
+
+#: magic-links/subscription-management/subscription-management.php:108
+#: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
+#, fuzzy
+msgid "Select a time"
+msgstr "Selectați o oră"
+
+#: magic-links/subscription-management/subscription-management.php:109
+#: shortcodes/24hour.php:31
+#, fuzzy
+msgid "fully covered once"
+msgstr "acoperit complet o dată"
+
+#: magic-links/subscription-management/subscription-management.php:110
+#: shortcodes/24hour.php:32
+#, fuzzy
+msgid "fully covered %1$s times"
+msgstr "acoperit complet de %1$s ori"
+
+#: magic-links/subscription-management/subscription-management.php:111
+#: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
+#, fuzzy
+msgctxt "Monday 5pm for 15 minutes"
+msgid "%1$s for %2$s minutes."
+msgstr "%1$s pentru %2$s minute."
+
+#: magic-links/subscription-management/subscription-management.php:112
+#, fuzzy
+msgid "Extend for 3 months"
+msgstr "Prelungiți timp de 3 luni"
+
+#: magic-links/subscription-management/subscription-management.php:113
+#, fuzzy
+msgid "Change daily time"
+msgstr "Schimbați ora zilnică"
+
+#: magic-links/subscription-management/subscription-management.php:271
+#, fuzzy
+msgid "Your prayer times have been verified!"
+msgstr "Timpii de rugăciune au fost verificați!"
+
+#: magic-links/subscription-management/subscription-management.php:281
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:284
+#, fuzzy
+msgid "Change your timezone:"
+msgstr "Schimbați-vă fusul orar:"
+
+#: magic-links/subscription-management/subscription-management.php:298
+#: magic-links/subscription-management/subscription-management.php:347
+#: magic-links/subscription-management/subscription-management.php:441
+#: magic-links/subscription-management/subscription-management.php:487
+#: magic-links/subscription-management/subscription-management.php:503
+#: magic-links/subscription-management/subscription-management.php:519
+#: magic-links/subscription-management/subscription-management.php:569
+#: shortcodes/24hour.php:270 shortcodes/ongoing.php:302
+#, fuzzy
+msgid "Cancel"
+msgstr "Anulare"
+
+#: magic-links/subscription-management/subscription-management.php:301
+#: magic-links/subscription-management/subscription-management.php:490
+#: shortcodes/24hour.php:273 shortcodes/ongoing.php:305
+#, fuzzy
+msgid "Select"
+msgstr "Selectați"
+
+#: magic-links/subscription-management/subscription-management.php:312
+#, fuzzy
+msgid "Add a Daily Prayer Time"
+msgstr "Adăugați un timp de rugăciune zilnic"
+
+#: magic-links/subscription-management/subscription-management.php:315
+#, fuzzy
+msgid "Add Individual Prayer Times"
+msgstr "Adăugați orele de rugăciune individuale"
+
+#: magic-links/subscription-management/subscription-management.php:317
+#, fuzzy
+msgid "Download Calendar"
+msgstr "Descărcați Calendar"
+
+#: magic-links/subscription-management/subscription-management.php:319
+#, fuzzy
+msgid "My commitments"
+msgstr "Angajamentele mele"
+
+#: magic-links/subscription-management/subscription-management.php:324
+#: shortcodes/24hour.php:157 shortcodes/ongoing.php:189
+#, fuzzy
+msgid "Prayer Time"
+msgstr "Timpul de rugaciune"
+
+#: magic-links/subscription-management/subscription-management.php:326
+#: magic-links/subscription-management/subscription-management.php:408
+#: shortcodes/24hour.php:159 shortcodes/24hour.php:192
+#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#, fuzzy
+msgid "Daily Time"
+msgstr "Ora zilnică"
+
+#: magic-links/subscription-management/subscription-management.php:330
+#: magic-links/subscription-management/subscription-management.php:412
+#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#, fuzzy
+msgid "For how long"
+msgstr "Pentru cât timp"
+
+#: magic-links/subscription-management/subscription-management.php:340
+#: magic-links/subscription-management/subscription-management.php:434
+#, fuzzy
+msgid "Your new prayer times have been saved."
+msgstr "Noile tale perioade de rugăciune au fost salvate."
+
+#: magic-links/subscription-management/subscription-management.php:351
+#: magic-links/subscription-management/subscription-management.php:445
+#: shortcodes/24hour.php:170 shortcodes/24hour.php:214
+#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#, fuzzy
+msgid "Confirm Times"
+msgstr "Confirmați orele"
+
+#: magic-links/subscription-management/subscription-management.php:360
+#: magic-links/subscription-management/subscription-management.php:457
+#, fuzzy
+msgid "ok"
+msgstr "O.K"
+
+#: magic-links/subscription-management/subscription-management.php:391
+#, fuzzy
+msgid "Close"
+msgstr "Închide"
+
+#: magic-links/subscription-management/subscription-management.php:399
+#: shortcodes/24hour.php:182 shortcodes/ongoing.php:214
+#, fuzzy
+msgid "Select a day and choose a time"
+msgstr "Selectați o zi și alegeți o oră"
+
+#: magic-links/subscription-management/subscription-management.php:406
+#: shortcodes/24hour.php:190 shortcodes/ongoing.php:222
+#, fuzzy
+msgid "Select a prayer time"
+msgstr "Alegeți un timp de rugăciune"
+
+#: magic-links/subscription-management/subscription-management.php:416
+#: shortcodes/24hour.php:200 shortcodes/ongoing.php:232
+#, fuzzy
+msgid "Add prayer time"
+msgstr "Adăugați timp de rugăciune"
+
+#: magic-links/subscription-management/subscription-management.php:417
+#: shortcodes/24hour.php:201 shortcodes/ongoing.php:233
+#, fuzzy
+msgid "Time added"
+msgstr "Timp adăugat"
+
+#: magic-links/subscription-management/subscription-management.php:424
+#: shortcodes/24hour.php:208 shortcodes/24hour.php:245
+#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#, fuzzy
+msgid "Selected Times"
+msgstr "Timp selectat"
+
+#: magic-links/subscription-management/subscription-management.php:426
+#: shortcodes/24hour.php:210 shortcodes/ongoing.php:242
+#, fuzzy
+msgid "No selected Time"
+msgstr "Nicio oră selectată"
+
+#: magic-links/subscription-management/subscription-management.php:449
+#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
+#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
+#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
+#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#, fuzzy
+msgid "Back"
+msgstr "Înapoi"
+
+#: magic-links/subscription-management/subscription-management.php:482
+#, fuzzy
+msgid "Choose a different time:"
+msgstr "Alegeți o altă oră:"
+
+#: magic-links/subscription-management/subscription-management.php:499
+#, fuzzy
+msgid "Delete all"
+msgstr "Sterge tot"
+
+#: magic-links/subscription-management/subscription-management.php:506
+#: magic-links/subscription-management/subscription-management.php:522
+#: parts/components.php:25
+#, fuzzy
+msgid "Confirm"
+msgstr "A confirma"
+
+#: magic-links/subscription-management/subscription-management.php:515
+#, fuzzy
+msgid "Extend"
+msgstr "Extinde"
+
+#: magic-links/subscription-management/subscription-management.php:517
+#, fuzzy
+msgid "Extend my prayer commitments until:"
+msgstr "Extinde-mi angajamentele de rugăciune până la:"
+
+#: magic-links/subscription-management/subscription-management.php:541
+#, fuzzy
+msgid "Profile Settings"
+msgstr "Setarile profilului"
+
+#: magic-links/subscription-management/subscription-management.php:542
+#, fuzzy
+msgid "Receive prayer time notifications"
+msgstr "Primiți notificări pentru timpul de rugăciune"
+
+#: magic-links/subscription-management/subscription-management.php:544
+#, fuzzy
+msgid "Notifications allowed"
+msgstr "Notificări permise"
+
+#: magic-links/subscription-management/subscription-management.php:545
+#, fuzzy
+msgid "Notifications not allowed"
+msgstr "Notificările nu sunt permise"
+
+#: magic-links/subscription-management/subscription-management.php:549
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Setari avansate"
+
+#: magic-links/subscription-management/subscription-management.php:556
+#, fuzzy
+msgid "Delete this profile and all the scheduled prayer times?"
+msgstr "Ștergeți acest profil și toate orele de rugăciune programate?"
+
+#: magic-links/subscription-management/subscription-management.php:558
+#: magic-links/subscription-management/subscription-management.php:572
+#, fuzzy
+msgid "Delete"
+msgstr "Șterge"
+
+#: magic-links/subscription-management/subscription-management.php:561
+#, fuzzy
+msgid "Are you sure you want to delete your profile?"
+msgstr "Sigur vrei să-ți ștergi profilul?"
+
+#: magic-links/subscription-management/subscription-management.php:563
+#, fuzzy
+msgid "This can not be undone."
+msgstr "Acest lucru nu poate fi anulat."
+
+#: magic-links/subscription-management/subscription-management.php:588
+#, fuzzy
+msgid "This subscription has ended or is not configured correctly."
+msgstr "Acest abonament s-a încheiat sau nu este configurat corect."
+
+#: parts/components.php:47 parts/components.php:48
+#, fuzzy
+msgid "Name"
+msgstr "Nume"
+
+#: parts/components.php:53
+#, fuzzy
+msgid "Your email is required."
+msgstr "E-mailul dvs. este necesar."
+
+#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: porches/generic/site/stats.php:248
+#, fuzzy
+msgid "Email"
+msgstr "E-mail"
+
+#: parts/components.php:70
+#, fuzzy
+msgid "Receive Prayer Time Notifications (email verification needed)."
+msgstr ""
+"Primiți notificări de rugăciune (este necesară verificarea prin e-mail)."
+
+#: parts/components.php:76
+#, fuzzy
+msgid "Receive Pray4Movement Newsletter (email verification needed)."
+msgstr ""
+"Primiți buletinul informativ Pray4Movement (este necesară verificarea prin e-"
+"mail)."
+
+#: parts/components.php:81
+#, fuzzy
+msgid "Submit Your Prayer Commitment"
+msgstr "Trimiteți-vă angajamentul de rugăciune"
+
+#: porches/generic/dt-generic-porch-settings.php:59
+#, fuzzy
+msgid "Strategic prayer for a Disciple Making Movement"
+msgstr "Rugăciunea strategică pentru o mișcare de a face ucenici"
+
+#: porches/generic/dt-generic-porch-settings.php:68
+#, fuzzy
+msgid "Our Vision"
+msgstr "Viziunea noastra"
+
+#: porches/generic/dt-generic-porch-settings.php:77
+#, fuzzy
+msgid "We want to cover this region with continuous 24/7 prayer."
+msgstr "Dorim să acoperim această regiune cu rugăciune continuă 24/7."
+
+#: porches/generic/dt-generic-porch-settings.php:86
+#, fuzzy
+msgid "Extraordinary Prayer"
+msgstr "Rugăciunea extraordinară"
+
+#: porches/generic/dt-generic-porch-settings.php:95
+#, fuzzy
+msgid ""
+"Every disciple making movement in history has happened in the context of "
+"extraordinary prayer."
+msgstr ""
+"Fiecare ucenic care face mișcare în istorie s-a întâmplat în contextul unei "
+"rugăciuni extraordinare."
+
+#: porches/generic/dt-generic-porch-settings.php:104
+#, fuzzy
+msgid "Movement Focused"
+msgstr "Concentrat asupra mișcării"
+
+#: porches/generic/dt-generic-porch-settings.php:113
+#, fuzzy
+msgid ""
+"Join us in asking, seeking, and knocking for streams of disciples and "
+"churches to be made."
+msgstr ""
+"Alăturați-vă nouă în a cere, a căuta și a bate pentru a se face șiruri de "
+"ucenici și biserici."
+
+#: porches/generic/dt-generic-porch-settings.php:122
+#, fuzzy
+msgid "24/7 Every Day"
+msgstr "24/7 în fiecare zi"
+
+#: porches/generic/dt-generic-porch-settings.php:131
+#, fuzzy
+msgid ""
+"Choose a 15-minute (or more!) time slot that you can pray during each day. "
+"Invite someone else to sign up too."
+msgstr ""
+"Alegeți un interval orar de 15 minute (sau mai mult!) la care vă puteți ruga "
+"în fiecare zi. Invitați și pe altcineva să se înscrie."
+
+#: porches/generic/dt-generic-porch-settings.php:149
+#: porches/generic/dt-generic-porch-settings.php:158
+#, fuzzy
+msgid "Prayer Fuel"
+msgstr "Combustibil pentru rugăciune"
+
+#: porches/generic/dt-generic-porch-settings.php:167
+#, fuzzy
+msgid "Use these resources to help pray specifically each day."
+msgstr ""
+"Folosiți aceste resurse pentru a vă ajuta să vă rugați în mod specific în "
+"fiecare zi."
+
+#: porches/generic/dt-generic-porch-settings.php:176
+#, fuzzy
+msgid "Today's Prayer Fuel"
+msgstr "Combustibil pentru rugăciune de astăzi"
+
+#: porches/generic/dt-generic-porch-settings.php:185
+#, fuzzy
+msgid "All Days"
+msgstr "Toate zilele"
+
+#: porches/generic/site/404-body.php:14
+#, fuzzy
+msgid "Epic 404"
+msgstr "Epopeea 404"
+
+#: porches/generic/site/404-body.php:15
+#, fuzzy
+msgid "It looks like you may have strayed from the narrow path."
+msgstr "Se pare că te-ai abătut de pe poteca îngustă."
+
+#: porches/generic/site/404-body.php:16
+#, fuzzy
+msgid "Wide is the path that leads to the 404."
+msgstr "Lată este poteca care duce la 404."
+
+#: porches/generic/site/404-body.php:17
+#, fuzzy
+msgid "Try using some of the links in the menu to get back on track."
+msgstr ""
+"Încercați să utilizați unele dintre linkurile din meniu pentru a reveni pe "
+"drumul cel bun."
+
+#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
+#: porches/generic/site/top-section.php:91
+#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
+#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
+#, fuzzy
+msgid "Sign Up to Pray"
+msgstr "Înscrie-te pentru a te ruga"
+
+#: porches/generic/site/home-body.php:158
+#: porches/ongoing/site/home-body.php:154
+#, fuzzy
+msgctxt "Campaign Name is Finished"
+msgid "%s is Finished"
+msgstr "%s este terminat"
+
+#: porches/generic/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:167
+#, fuzzy
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Ends In"
+msgstr "%s se termină în"
+
+#: porches/generic/site/home-body.php:172
+#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:203
+#: porches/ongoing/site/home-body.php:168
+#: porches/ongoing/site/home-body.php:175
+#: porches/ramadan/site/home-body.php:162
+#: porches/ramadan/site/home-body.php:169
+#, fuzzy
+msgid "days"
+msgstr "zile"
+
+#: porches/generic/site/home-body.php:173
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
+#: porches/ongoing/site/home-body.php:169
+#: porches/ongoing/site/home-body.php:176
+#: porches/ramadan/site/home-body.php:163
+#: porches/ramadan/site/home-body.php:170
+#, fuzzy
+msgid "hours"
+msgstr "ore"
+
+#: porches/generic/site/home-body.php:174
+#: porches/generic/site/home-body.php:181
+#: porches/ongoing/site/home-body.php:170
+#: porches/ongoing/site/home-body.php:177
+#: porches/ramadan/site/home-body.php:164
+#: porches/ramadan/site/home-body.php:171
+#, fuzzy
+msgid "minutes"
+msgstr "minute"
+
+#: porches/generic/site/home-body.php:175
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:178
+#: porches/ramadan/site/home-body.php:165
+#: porches/ramadan/site/home-body.php:172
+#, fuzzy
+msgid "seconds"
+msgstr "secunde"
+
+#: porches/generic/site/home-body.php:178
+#: porches/ongoing/site/home-body.php:174
+#, fuzzy
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Begins In"
+msgstr "%s Începe în"
+
+#: porches/generic/site/home-body.php:223
+#: porches/ramadan/site/home-body.php:222
+#, fuzzy
+msgid "Days"
+msgstr "Zile"
+
+#: porches/generic/site/home-body.php:227
+#: porches/ongoing/site/home-body.php:215
+#: porches/ramadan/site/home-body.php:226
+#, fuzzy
+msgid "Next"
+msgstr "Următorul"
+
+#: porches/generic/site/home-body.php:228
+#: porches/ongoing/site/home-body.php:216
+#: porches/ramadan/site/home-body.php:227
+#, fuzzy
+msgid "Month"
+msgstr "Lună"
+
+#: porches/generic/site/home-body.php:250
+#: porches/ramadan/site/home-body.php:249
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "Orele de rugăciune"
+
+#: porches/generic/site/home-body.php:255
+#: porches/ongoing/site/home-body.php:233
+#: porches/ramadan/site/home-body.php:254
+#, fuzzy
+msgid "Hours"
+msgstr "Ore"
+
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
+#: porches/ramadan/site/home-body.php:272
+#, fuzzy
+msgid "Prayer Commitments Needed"
+msgstr "Sunt necesare angajamente de rugăciune"
+
+#: porches/generic/site/home-body.php:278
+#: porches/ongoing/site/home-body.php:248
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Ore ramase"
+
+#: porches/generic/site/home-body.php:299
+#: porches/ongoing/site/home-body.php:267
+#: porches/ramadan/site/home-body.php:298
+#, fuzzy
+msgid "View All"
+msgstr "A vedea tot"
+
+#: porches/generic/site/post-list-body.php:118
+#, fuzzy
+msgid "Read"
+msgstr "Citit"
+
+#: porches/generic/site/stats.php:133
+#, fuzzy
+msgctxt "Thank you for joining us in prayer for the French in France."
+msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+msgstr "Vă mulțumim că v-ați alăturat nouă în rugăciune pentru %1$s din %2$s."
+
+#: porches/generic/site/stats.php:157
+#, fuzzy
+msgid "Campaign Stats"
+msgstr "Statisticile campaniei"
+
+#: porches/generic/site/stats.php:184
+#, fuzzy
+msgid "Percentage Covered"
+msgstr "Procent acoperit"
+
+#: porches/generic/site/stats.php:192
+#, fuzzy
+msgid "Prayer Commitments"
+msgstr "Angajamente de rugăciune"
+
+#: porches/generic/site/stats.php:200
+#, fuzzy
+msgid "Time Committed"
+msgstr "Timp angajat"
+
+#: porches/generic/site/stats.php:209
+#, fuzzy
+msgid "Number of People who Prayed"
+msgstr "Numărul de oameni care s-au rugat"
+
+#: porches/generic/site/stats.php:242
+#, fuzzy
+msgid "Share with us your Prayer Stories"
+msgstr "Împărtășește-ne poveștile tale de rugăciune"
+
+#: porches/generic/site/stats.php:256
+#, fuzzy
+msgid ""
+"Share with us about your prayer time (E.g. testimonies, insights, blessings, "
+"etc)"
+msgstr ""
+"Împărtășește-ne despre timpul tău de rugăciune (de exemplu, mărturii, "
+"perspective, binecuvântări etc.)"
+
+#: porches/generic/site/stats.php:261
+#, fuzzy
+msgid "Submit"
+msgstr "Trimite"
+
+#: porches/generic/site/stats.php:267
+#, fuzzy
+msgid "Thank You"
+msgstr "Mulțumesc"
+
+#: porches/generic/site/stats.php:302
+#, fuzzy
+msgid "More Prayer Opportunities"
+msgstr "Mai multe oportunități de rugăciune"
+
+#: porches/generic/site/stats.php:306
+#, fuzzy
+msgid ""
+"Would you like to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org?"
+msgstr ""
+"Ați dori să aflați despre alte eforturi și oportunități de rugăciune cu "
+"Pray4Movement.org?"
+
+#: porches/generic/site/top-section.php:19
+#, fuzzy
+msgid "Home"
+msgstr "Acasă"
+
+#: porches/generic/site/top-section.php:22
+#, fuzzy
+msgid "Sign Up"
+msgstr "Inscrie-te"
+
+#: porches/ramadan/settings.php:6
+#, fuzzy
+msgid ""
+"Ramadan is one of the five requirements (or pillars) of Islam. During each "
+"of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
+"this time they are supposed to abstain from food, drinking liquids, smoking, "
+"and sexual relations.\n"
+"\n"
+"     Women typically spend the afternoons preparing a big meal. At sunset, "
+"families often gather to break the fast. Traditionally the families break "
+"the fast with a drink of water, then three dried date fruits, and a multi-"
+"course meal. After watching the new Ramadan TV series, men (and some women) "
+"go out to coffee shops where they drink coffee, and smoke with friends until "
+"late into the night.\n"
+"\n"
+"     Though many have stopped fasting in recent years, and are turned off by "
+"the hypocrisy, increased crime rates, and rudeness that is pervasive through "
+"the month, others have become more serious about religion during this time. "
+"Many attend the evening prayer services and do the other ritual prayers. "
+"Some even read the entire Quran (about a tenth the length of the Bible). "
+"This sincere seeking makes it a strategic time for us to pray for them."
+msgstr ""
+"Ramadanul este unul dintre cei cinci cerințe (sau piloni) ai islamului. În "
+"fiecare dintre cele 30 de zile, musulmanii sunt obligați să postească din "
+"zori până la apus. În acest timp, ei ar trebui să se abțină de la mâncare, "
+"să bea lichide, să fumeze și să facă relații sexuale.\n"
+"\n"
+"     Femeile petrec de obicei după-amiezii pregătind o masă copioasă. La "
+"apus, familiile se adună adesea pentru a întrerupe postul. În mod "
+"tradițional, familiile întrerup postul cu o băutură de apă, apoi trei fructe "
+"de curmale uscate și o masă cu mai multe feluri. După ce vizionează noul "
+"serial TV Ramadan, bărbații (și unele femei) ies la cafenele unde beau cafea "
+"și fumează cu prietenii până târziu în noapte.\n"
+"\n"
+"     Deși mulți s-au oprit din post în ultimii ani și sunt opriți de "
+"ipocrizie, rate crescute ale criminalității și grosolănie care este "
+"omniprezentă de-a lungul lunii, alții au devenit mai serioși cu privire la "
+"religie în acest timp. Mulți participă la slujbele de rugăciune de seară și "
+"fac celelalte rugăciuni rituale. Unii chiar citesc întregul Coran "
+"(aproximativ o zecime din lungimea Bibliei). Această căutare sinceră face ca "
+"este un moment strategic pentru noi să ne rugăm pentru ei."
+
+#: porches/ramadan/site/home-body.php:148
+#, fuzzy
+msgid "Ramadan is Finished"
+msgstr "Ramadanul s-a terminat"
+
+#: porches/ramadan/site/home-body.php:161
+#, fuzzy
+msgid "Ramadan Ends ..."
+msgstr "Ramadanul se incheie..."
+
+#: porches/ramadan/site/home-body.php:168
+#, fuzzy
+msgid "Ramadan Begins ..."
+msgstr "Ramadanul incepe..."
+
+#: porches/ramadan/site/home-body.php:193
+#, fuzzy
+msgid "here"
+msgstr "Aici"
+
+#: porches/ramadan/site/home-body.php:277
+#, fuzzy
+msgid "More Hours to be covered"
+msgstr "Mai multe ore de acoperit"
+
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+#, fuzzy
+msgid "covered once"
+msgstr "acoperit o dată"
+
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+#, fuzzy
+msgid "covered %1$s times"
+msgstr "acoperit de %1$s ori"
+
+#: shortcodes/24hour.php:99
+#, fuzzy
+msgid "Percentage covered in prayer"
+msgstr "Procentul acoperit în rugăciune"
+
+#: shortcodes/24hour.php:113 shortcodes/ongoing.php:144
+#, fuzzy
+msgid "Loading prayer campaign data..."
+msgstr "Se încarcă datele campaniei de rugăciune..."
+
+#: shortcodes/24hour.php:120 shortcodes/ongoing.php:151
+#, fuzzy
+msgid "Choose Prayer Times"
+msgstr "Alegeți Orele de rugăciune"
+
+#: shortcodes/24hour.php:132 shortcodes/ongoing.php:163
+#, fuzzy
+msgid "Select an option"
+msgstr "Selecteaza o optiune"
+
+#: shortcodes/24hour.php:135 shortcodes/ongoing.php:166
+#, fuzzy
+msgid "Pray every day at the same time"
+msgstr "Rugați-vă în fiecare zi la aceeași oră"
+
+#: shortcodes/24hour.php:137 shortcodes/ongoing.php:168
+#, fuzzy
+msgid "Example: Everyday at 4pm for 15mins"
+msgstr "Exemplu: în fiecare zi la 16:00 timp de 15 minute"
+
+#: shortcodes/24hour.php:140 shortcodes/ongoing.php:171
+#, fuzzy
+msgid "Select days and times to pray"
+msgstr "Alegeți zile și ore pentru a vă ruga"
+
+#: shortcodes/24hour.php:142 shortcodes/ongoing.php:173
+#, fuzzy
+msgid "Example: Monday 12th at 6pm for 15mins"
+msgstr "Exemplu: luni, 12, la 18:00, timp de 15 minute"
+
+#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
+#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#, fuzzy
+msgid "Showing times for:"
+msgstr "Se afișează orele pentru:"
+
+#: shortcodes/24hour.php:231 shortcodes/ongoing.php:270
+#, fuzzy
+msgid "Sent! Check your email."
+msgstr "Trimis! Verifica-ti email-ul."
+
+#: shortcodes/24hour.php:233 shortcodes/ongoing.php:272
+#, fuzzy
+msgid ""
+"Click on the link included in the email to verify your commitment and "
+"receive prayer time notifications!"
+msgstr ""
+"Faceți clic pe linkul inclus în e-mail pentru a vă verifica angajamentul și "
+"pentru a primi notificări de rugăciune!"
+
+#: shortcodes/24hour.php:236 shortcodes/ongoing.php:275
+#, fuzzy
+msgid "In the email is a link to manage your prayer times."
+msgstr "În e-mail există un link pentru a vă gestiona orele de rugăciune."
+
+#: shortcodes/24hour.php:239 shortcodes/ongoing.php:278
+#, fuzzy
+msgid "OK"
+msgstr "O.K"
+
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:311
+#, fuzzy
+msgid "We are not longer looking for sign ups"
+msgstr "Nu mai căutăm înscrieri"
+
+#: shortcodes/24hour.php:280 shortcodes/ongoing.php:312
+#, fuzzy
+msgid "Thanks for praying with us!"
+msgstr "Mulțumim că te-ai rugat cu noi!"
+
+#: shortcodes/ongoing.php:70
+#, fuzzy
+msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
+msgid "Everyday at %1$s for %2$s until %3$s"
+msgstr "Zilnic la %1$s pentru %2$s până la %3$s"
+
+#: shortcodes/ongoing.php:72
+#, fuzzy
+msgctxt "Jun, Jul, Aug covered"
+msgid "covered"
+msgstr "acoperit"
+
+#: shortcodes/ongoing.php:187
+#, fuzzy
+msgid ""
+"Chose a time to pray everyday for the next 3 months. Near the end you'll "
+"have the option to sign up for more."
+msgstr ""
+"Alegeți un moment în care să vă rugați în fiecare zi pentru următoarele 3 "
+"luni. Aproape de sfârșit, veți avea opțiunea de a vă înscrie pentru mai "
+"multe."
+
+#: shortcodes/prayer-timer.php:177
+#, fuzzy
+msgid "Start Praying!"
+msgstr "Începeți să vă rugați!"
+
+#: shortcodes/prayer-timer.php:180
+#, fuzzy
+msgctxt "Prayer time: 15 min"
+msgid "Prayer time: %s min"
+msgstr "Timp de rugăciune: %s min"
+
+#: shortcodes/prayer-timer.php:189
+#, fuzzy
+msgid "Now praying..."
+msgstr "Acum ma rog..."
+
+#, fuzzy
+#~ msgid "Content to be added to the signup email"
+#~ msgstr "Conținut care urmează să fie adăugat la e-mailul de înscriere"
+
+#, fuzzy
+#~ msgid "Content to be added to the reminder email"
+#~ msgstr "Conținut de adăugat la e-mailul de memento"
+
+#, fuzzy
+#~ msgid "Update"
+#~ msgstr "Actualizați"
+
+#, fuzzy
+#~ msgid "Yes"
+#~ msgstr "da"
+
+#, fuzzy
+#~ msgid "No"
+#~ msgstr "Nu"

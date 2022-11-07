@@ -1,0 +1,970 @@
+# Copyright (C) 2022 
+# This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
+"prayer-campaigns\n"
+"POT-Creation-Date: 2022-11-07T11:12:44+00:00\n"
+"PO-Revision-Date: 2022-11-05 13:32+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Gujarati <https://translate.disciple.tools/projects/disciple-"
+"tools/disciple-tools-prayer-campaigns/gu/>\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+"X-Domain: disciple-tools-prayer-campaigns\n"
+
+#: campaign-functions/cron-schedule.php:83
+#, fuzzy
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr "આજના પ્રાર્થના સંકેતો જોવા માટે અહીં ક્લિક કરો: %s"
+
+#: campaign-functions/cron-schedule.php:89
+#, fuzzy
+msgid "Prayer Time reminder!"
+msgstr "પ્રાર્થના સમય રીમાઇન્ડર!"
+
+#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/send-email-utility.php:67
+#, fuzzy
+msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
+msgid "%1$s from %2$s to %3$s"
+msgstr "%1$s %2$s થી %3$s"
+
+#: campaign-functions/cron-schedule.php:136
+#, fuzzy
+msgctxt "for Paris, France"
+msgid "for %s"
+msgstr "%s માટે"
+
+#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/send-email-utility.php:85
+#: campaign-functions/send-email-utility.php:147
+#: campaign-functions/send-email-utility.php:244
+#, fuzzy
+msgid "Hello %s,"
+msgstr "હેલો %s,"
+
+#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:131
+#, fuzzy
+msgid "Thank you for praying with us!"
+msgstr "અમારી સાથે પ્રાર્થના કરવા બદલ આભાર!"
+
+#: campaign-functions/cron-schedule.php:155
+#, fuzzy
+msgid "Here are your upcoming prayer times:"
+msgstr "અહીં તમારા આગામી પ્રાર્થના સમય છે:"
+
+#: campaign-functions/cron-schedule.php:157
+#: campaign-functions/send-email-utility.php:107
+#, fuzzy
+msgid "Times are shown according to: %s time"
+msgstr "સમય આ પ્રમાણે બતાવવામાં આવે છે: %s સમય"
+
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:111
+#, fuzzy
+msgid "Click here to manage your account and time commitments"
+msgstr "તમારા એકાઉન્ટ અને સમયની પ્રતિબદ્ધતાઓનું સંચાલન કરવા માટે અહીં ક્લિક કરો"
+
+#: campaign-functions/send-email-utility.php:82
+#, fuzzy
+msgid "Registered to pray with us!"
+msgstr "અમારી સાથે પ્રાર્થના કરવા માટે નોંધણી કરાવી!"
+
+#: campaign-functions/send-email-utility.php:103
+#, fuzzy
+msgid ""
+"Thank you for joining us in strategic prayer for a disciple making movement! "
+"You're one click away from finishing your registration."
+msgstr ""
+"શિષ્ય બનાવવાની ચળવળ માટે વ્યૂહાત્મક પ્રાર્થનામાં અમારી સાથે જોડાવા બદલ આભાર! તમે તમારી "
+"નોંધણી પૂર્ણ કરવાથી એક ક્લિક દૂર છો."
+
+#: campaign-functions/send-email-utility.php:104
+#, fuzzy
+msgid "Click here to verify your email address and confirm your prayer times."
+msgstr ""
+"તમારું ઇમેઇલ સરનામું ચકાસવા અને તમારા પ્રાર્થના સમયની પુષ્ટિ કરવા માટે અહીં ક્લિક કરો."
+
+#: campaign-functions/send-email-utility.php:105
+#, fuzzy
+msgid "Here are the times you have committed to pray:"
+msgstr "તમે પ્રાર્થના કરવા માટે પ્રતિબદ્ધ કરેલ સમય અહીં છે:"
+
+#: campaign-functions/send-email-utility.php:154
+#, fuzzy
+msgid "Registration Confirmation"
+msgstr "નોંધણી પુષ્ટિ"
+
+#: campaign-functions/send-email-utility.php:157
+#, fuzzy
+msgid "Thank you for signing up to pray!"
+msgstr "પ્રાર્થના કરવા માટે સાઇન અપ કરવા બદલ આભાર!"
+
+#: campaign-functions/send-email-utility.php:158
+#, fuzzy
+msgid ""
+"We have some time before the campaign starts. We will send you another email "
+"a couple months before the first day asking you to choose specific times to "
+"pray. Working together we will cover the region in 24/7 prayer."
+msgstr ""
+"ઝુંબેશ શરૂ થાય તે પહેલાં અમારી પાસે થોડો સમય છે. અમે તમને પ્રથમ દિવસના થોડા મહિના પહેલા "
+"બીજો ઈમેલ મોકલીશું જેમાં તમને પ્રાર્થના કરવા માટે ચોક્કસ સમય પસંદ કરવાનું કહેવામાં આવશે. સાથે "
+"મળીને કામ કરીને અમે 24/7 પ્રાર્થનામાં પ્રદેશને આવરી લઈશું."
+
+#: campaign-functions/send-email-utility.php:159
+#, fuzzy
+msgid "If you know your schedule already you can choose your times here:"
+msgstr "જો તમે તમારું શેડ્યૂલ પહેલેથી જ જાણો છો, તો તમે અહીં તમારો સમય પસંદ કરી શકો છો:"
+
+#: campaign-functions/send-email-utility.php:245
+#, fuzzy
+msgid ""
+"You are 2 weeks out for your last prayer time. Would you like to keep "
+"praying?"
+msgstr ""
+"તમે તમારા છેલ્લા પ્રાર્થના સમય માટે 2 અઠવાડિયા બહાર છો. શું તમે પ્રાર્થના કરતા રહેવા "
+"માંગો છો?"
+
+#: campaign-functions/send-email-utility.php:246
+#, fuzzy
+msgid "Sign up for more prayer times or extend your recurring time here:"
+msgstr "પ્રાર્થનાના વધુ સમય માટે સાઇન અપ કરો અથવા તમારો પુનરાવર્તિત સમય અહીં લંબાવો:"
+
+#: campaign-functions/send-email-utility.php:248
+#, fuzzy
+msgid "Thank you"
+msgstr "આભાર"
+
+#: campaign-functions/time-utilities.php:157
+#, fuzzy
+msgid "5 minutes"
+msgstr "5 મિનિટ"
+
+#: campaign-functions/time-utilities.php:158
+#, fuzzy
+msgid "10 minutes"
+msgstr "10 મિનીટ"
+
+#: campaign-functions/time-utilities.php:159
+#, fuzzy
+msgid "15 minutes"
+msgstr "15 મિનિટ"
+
+#: campaign-functions/time-utilities.php:160
+#, fuzzy
+msgid "30 minutes"
+msgstr "30 મિનિટ"
+
+#: campaign-functions/time-utilities.php:161
+#, fuzzy
+msgid "1 hour"
+msgstr "1 કલાક"
+
+#: magic-links/subscription-management/subscription-management.php:38
+#: magic-links/subscription-management/subscription-management.php:266
+#, fuzzy
+msgid "My Prayer Times"
+msgstr "મારા પ્રાર્થના સમય"
+
+#: magic-links/subscription-management/subscription-management.php:108
+#: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
+#, fuzzy
+msgid "Select a time"
+msgstr "સમય પસંદ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:109
+#: shortcodes/24hour.php:31
+#, fuzzy
+msgid "fully covered once"
+msgstr "એકવાર સંપૂર્ણપણે આવરી લે છે"
+
+#: magic-links/subscription-management/subscription-management.php:110
+#: shortcodes/24hour.php:32
+#, fuzzy
+msgid "fully covered %1$s times"
+msgstr "%1$s વખત સંપૂર્ણપણે આવરી લેવામાં આવ્યું"
+
+#: magic-links/subscription-management/subscription-management.php:111
+#: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
+#, fuzzy
+msgctxt "Monday 5pm for 15 minutes"
+msgid "%1$s for %2$s minutes."
+msgstr "%2$s મિનિટ માટે %1$s."
+
+#: magic-links/subscription-management/subscription-management.php:112
+#, fuzzy
+msgid "Extend for 3 months"
+msgstr "3 મહિના સુધી લંબાવો"
+
+#: magic-links/subscription-management/subscription-management.php:113
+#, fuzzy
+msgid "Change daily time"
+msgstr "દૈનિક સમય બદલો"
+
+#: magic-links/subscription-management/subscription-management.php:271
+#, fuzzy
+msgid "Your prayer times have been verified!"
+msgstr "તમારા પ્રાર્થનાના સમયની ચકાસણી કરવામાં આવી છે!"
+
+#: magic-links/subscription-management/subscription-management.php:281
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:284
+#, fuzzy
+msgid "Change your timezone:"
+msgstr "તમારો સમય ઝોન બદલો:"
+
+#: magic-links/subscription-management/subscription-management.php:298
+#: magic-links/subscription-management/subscription-management.php:347
+#: magic-links/subscription-management/subscription-management.php:441
+#: magic-links/subscription-management/subscription-management.php:487
+#: magic-links/subscription-management/subscription-management.php:503
+#: magic-links/subscription-management/subscription-management.php:519
+#: magic-links/subscription-management/subscription-management.php:569
+#: shortcodes/24hour.php:270 shortcodes/ongoing.php:302
+#, fuzzy
+msgid "Cancel"
+msgstr "રદ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:301
+#: magic-links/subscription-management/subscription-management.php:490
+#: shortcodes/24hour.php:273 shortcodes/ongoing.php:305
+#, fuzzy
+msgid "Select"
+msgstr "પસંદ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:312
+#, fuzzy
+msgid "Add a Daily Prayer Time"
+msgstr "દૈનિક પ્રાર્થનાનો સમય ઉમેરો"
+
+#: magic-links/subscription-management/subscription-management.php:315
+#, fuzzy
+msgid "Add Individual Prayer Times"
+msgstr "વ્યક્તિગત પ્રાર્થના સમય ઉમેરો"
+
+#: magic-links/subscription-management/subscription-management.php:317
+#, fuzzy
+msgid "Download Calendar"
+msgstr "કેલેન્ડર ડાઉનલોડ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:319
+#, fuzzy
+msgid "My commitments"
+msgstr "મારી પ્રતિબદ્ધતાઓ"
+
+#: magic-links/subscription-management/subscription-management.php:324
+#: shortcodes/24hour.php:157 shortcodes/ongoing.php:189
+#, fuzzy
+msgid "Prayer Time"
+msgstr "પ્રાર્થનાનો સમય"
+
+#: magic-links/subscription-management/subscription-management.php:326
+#: magic-links/subscription-management/subscription-management.php:408
+#: shortcodes/24hour.php:159 shortcodes/24hour.php:192
+#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#, fuzzy
+msgid "Daily Time"
+msgstr "દૈનિક સમય"
+
+#: magic-links/subscription-management/subscription-management.php:330
+#: magic-links/subscription-management/subscription-management.php:412
+#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#, fuzzy
+msgid "For how long"
+msgstr "કેટલા સમય સુધી"
+
+#: magic-links/subscription-management/subscription-management.php:340
+#: magic-links/subscription-management/subscription-management.php:434
+#, fuzzy
+msgid "Your new prayer times have been saved."
+msgstr "તમારા નવા પ્રાર્થના સમય સાચવવામાં આવ્યા છે."
+
+#: magic-links/subscription-management/subscription-management.php:351
+#: magic-links/subscription-management/subscription-management.php:445
+#: shortcodes/24hour.php:170 shortcodes/24hour.php:214
+#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#, fuzzy
+msgid "Confirm Times"
+msgstr "સમયની પુષ્ટિ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:360
+#: magic-links/subscription-management/subscription-management.php:457
+#, fuzzy
+msgid "ok"
+msgstr "બરાબર"
+
+#: magic-links/subscription-management/subscription-management.php:391
+#, fuzzy
+msgid "Close"
+msgstr "બંધ"
+
+#: magic-links/subscription-management/subscription-management.php:399
+#: shortcodes/24hour.php:182 shortcodes/ongoing.php:214
+#, fuzzy
+msgid "Select a day and choose a time"
+msgstr "એક દિવસ પસંદ કરો અને સમય પસંદ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:406
+#: shortcodes/24hour.php:190 shortcodes/ongoing.php:222
+#, fuzzy
+msgid "Select a prayer time"
+msgstr "પ્રાર્થનાનો સમય પસંદ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:416
+#: shortcodes/24hour.php:200 shortcodes/ongoing.php:232
+#, fuzzy
+msgid "Add prayer time"
+msgstr "પ્રાર્થનાનો સમય ઉમેરો"
+
+#: magic-links/subscription-management/subscription-management.php:417
+#: shortcodes/24hour.php:201 shortcodes/ongoing.php:233
+#, fuzzy
+msgid "Time added"
+msgstr "સમય ઉમેર્યો"
+
+#: magic-links/subscription-management/subscription-management.php:424
+#: shortcodes/24hour.php:208 shortcodes/24hour.php:245
+#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#, fuzzy
+msgid "Selected Times"
+msgstr "પસંદ કરેલ સમય"
+
+#: magic-links/subscription-management/subscription-management.php:426
+#: shortcodes/24hour.php:210 shortcodes/ongoing.php:242
+#, fuzzy
+msgid "No selected Time"
+msgstr "પસંદ કરેલ સમય નથી"
+
+#: magic-links/subscription-management/subscription-management.php:449
+#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
+#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
+#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
+#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#, fuzzy
+msgid "Back"
+msgstr "પાછળ"
+
+#: magic-links/subscription-management/subscription-management.php:482
+#, fuzzy
+msgid "Choose a different time:"
+msgstr "અલગ સમય પસંદ કરો:"
+
+#: magic-links/subscription-management/subscription-management.php:499
+#, fuzzy
+msgid "Delete all"
+msgstr "બધું કાઢી નાંખો"
+
+#: magic-links/subscription-management/subscription-management.php:506
+#: magic-links/subscription-management/subscription-management.php:522
+#: parts/components.php:25
+#, fuzzy
+msgid "Confirm"
+msgstr "પુષ્ટિ કરો"
+
+#: magic-links/subscription-management/subscription-management.php:515
+#, fuzzy
+msgid "Extend"
+msgstr "વિસ્તૃત કરો"
+
+#: magic-links/subscription-management/subscription-management.php:517
+#, fuzzy
+msgid "Extend my prayer commitments until:"
+msgstr "મારી પ્રાર્થના પ્રતિબદ્ધતાઓને ત્યાં સુધી લંબાવો:"
+
+#: magic-links/subscription-management/subscription-management.php:541
+#, fuzzy
+msgid "Profile Settings"
+msgstr "પ્રોફાઇલ સેટિંગ્સ"
+
+#: magic-links/subscription-management/subscription-management.php:542
+#, fuzzy
+msgid "Receive prayer time notifications"
+msgstr "પ્રાર્થના સમયની સૂચનાઓ પ્રાપ્ત કરો"
+
+#: magic-links/subscription-management/subscription-management.php:544
+#, fuzzy
+msgid "Notifications allowed"
+msgstr "સૂચનાઓ મંજૂર"
+
+#: magic-links/subscription-management/subscription-management.php:545
+#, fuzzy
+msgid "Notifications not allowed"
+msgstr "સૂચનાઓને મંજૂરી નથી"
+
+#: magic-links/subscription-management/subscription-management.php:549
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "અદ્યતન સેટિંગ્સ"
+
+#: magic-links/subscription-management/subscription-management.php:556
+#, fuzzy
+msgid "Delete this profile and all the scheduled prayer times?"
+msgstr "આ પ્રોફાઇલ અને બધા શેડ્યૂલ કરેલ પ્રાર્થના સમય કાઢી નાખીએ?"
+
+#: magic-links/subscription-management/subscription-management.php:558
+#: magic-links/subscription-management/subscription-management.php:572
+#, fuzzy
+msgid "Delete"
+msgstr "કા .ી નાખો"
+
+#: magic-links/subscription-management/subscription-management.php:561
+#, fuzzy
+msgid "Are you sure you want to delete your profile?"
+msgstr "શું તમે ખરેખર તમારી પ્રોફાઇલ કાઢી નાખવા માંગો છો?"
+
+#: magic-links/subscription-management/subscription-management.php:563
+#, fuzzy
+msgid "This can not be undone."
+msgstr "આ પૂર્વવત્ કરી શકાતું નથી."
+
+#: magic-links/subscription-management/subscription-management.php:588
+#, fuzzy
+msgid "This subscription has ended or is not configured correctly."
+msgstr "આ સબ્સ્ક્રિપ્શન સમાપ્ત થઈ ગયું છે અથવા યોગ્ય રીતે ગોઠવેલ નથી."
+
+#: parts/components.php:47 parts/components.php:48
+#, fuzzy
+msgid "Name"
+msgstr "નામ"
+
+#: parts/components.php:53
+#, fuzzy
+msgid "Your email is required."
+msgstr "તમારો ઈમેલ જરૂરી છે."
+
+#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: porches/generic/site/stats.php:248
+#, fuzzy
+msgid "Email"
+msgstr "ઇમેઇલ"
+
+#: parts/components.php:70
+#, fuzzy
+msgid "Receive Prayer Time Notifications (email verification needed)."
+msgstr "પ્રાર્થના સમયની સૂચનાઓ પ્રાપ્ત કરો (ઇમેઇલ ચકાસણી જરૂરી)."
+
+#: parts/components.php:76
+#, fuzzy
+msgid "Receive Pray4Movement Newsletter (email verification needed)."
+msgstr "Pray4Movement ન્યૂઝલેટર પ્રાપ્ત કરો (ઇમેઇલ ચકાસણી જરૂરી)."
+
+#: parts/components.php:81
+#, fuzzy
+msgid "Submit Your Prayer Commitment"
+msgstr "તમારી પ્રાર્થના પ્રતિબદ્ધતા સબમિટ કરો"
+
+#: porches/generic/dt-generic-porch-settings.php:59
+#, fuzzy
+msgid "Strategic prayer for a Disciple Making Movement"
+msgstr "શિષ્ય બનાવવાની ચળવળ માટે વ્યૂહાત્મક પ્રાર્થના"
+
+#: porches/generic/dt-generic-porch-settings.php:68
+#, fuzzy
+msgid "Our Vision"
+msgstr "આપણું વિઝન"
+
+#: porches/generic/dt-generic-porch-settings.php:77
+#, fuzzy
+msgid "We want to cover this region with continuous 24/7 prayer."
+msgstr "અમે આ પ્રદેશને સતત 24/7 પ્રાર્થના સાથે આવરી લેવા માંગીએ છીએ."
+
+#: porches/generic/dt-generic-porch-settings.php:86
+#, fuzzy
+msgid "Extraordinary Prayer"
+msgstr "અસાધારણ પ્રાર્થના"
+
+#: porches/generic/dt-generic-porch-settings.php:95
+#, fuzzy
+msgid ""
+"Every disciple making movement in history has happened in the context of "
+"extraordinary prayer."
+msgstr "ઇતિહાસમાં દરેક શિષ્યની ચળવળ અસાધારણ પ્રાર્થનાના સંદર્ભમાં બની છે."
+
+#: porches/generic/dt-generic-porch-settings.php:104
+#, fuzzy
+msgid "Movement Focused"
+msgstr "ચળવળ કેન્દ્રિત"
+
+#: porches/generic/dt-generic-porch-settings.php:113
+#, fuzzy
+msgid ""
+"Join us in asking, seeking, and knocking for streams of disciples and "
+"churches to be made."
+msgstr ""
+"શિષ્યો અને ચર્ચના પ્રવાહો માટે પૂછવામાં, શોધવામાં અને કઠણ કરવામાં અમારી સાથે જોડાઓ."
+
+#: porches/generic/dt-generic-porch-settings.php:122
+#, fuzzy
+msgid "24/7 Every Day"
+msgstr "24/7 દરરોજ"
+
+#: porches/generic/dt-generic-porch-settings.php:131
+#, fuzzy
+msgid ""
+"Choose a 15-minute (or more!) time slot that you can pray during each day. "
+"Invite someone else to sign up too."
+msgstr ""
+"15-મિનિટ (અથવા વધુ!) સમય સ્લોટ પસંદ કરો કે જે તમે દરરોજ પ્રાર્થના કરી શકો. સાઇન અપ "
+"કરવા માટે અન્ય કોઈને પણ આમંત્રિત કરો."
+
+#: porches/generic/dt-generic-porch-settings.php:149
+#: porches/generic/dt-generic-porch-settings.php:158
+#, fuzzy
+msgid "Prayer Fuel"
+msgstr "પ્રાર્થના બળતણ"
+
+#: porches/generic/dt-generic-porch-settings.php:167
+#, fuzzy
+msgid "Use these resources to help pray specifically each day."
+msgstr "દરરોજ ખાસ કરીને પ્રાર્થના કરવામાં મદદ કરવા માટે આ સંસાધનોનો ઉપયોગ કરો."
+
+#: porches/generic/dt-generic-porch-settings.php:176
+#, fuzzy
+msgid "Today's Prayer Fuel"
+msgstr "આજનું પ્રાર્થનાનું બળતણ"
+
+#: porches/generic/dt-generic-porch-settings.php:185
+#, fuzzy
+msgid "All Days"
+msgstr "બધા દિવસો"
+
+#: porches/generic/site/404-body.php:14
+#, fuzzy
+msgid "Epic 404"
+msgstr "એપિક 404"
+
+#: porches/generic/site/404-body.php:15
+#, fuzzy
+msgid "It looks like you may have strayed from the narrow path."
+msgstr "એવું લાગે છે કે તમે સાંકડા માર્ગ પરથી ભટકી ગયા છો."
+
+#: porches/generic/site/404-body.php:16
+#, fuzzy
+msgid "Wide is the path that leads to the 404."
+msgstr "પહોળો રસ્તો છે જે 404 તરફ દોરી જાય છે."
+
+#: porches/generic/site/404-body.php:17
+#, fuzzy
+msgid "Try using some of the links in the menu to get back on track."
+msgstr "ટ્રેક પર પાછા આવવા માટે મેનૂમાંની કેટલીક લિંક્સનો ઉપયોગ કરવાનો પ્રયાસ કરો."
+
+#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
+#: porches/generic/site/top-section.php:91
+#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
+#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
+#, fuzzy
+msgid "Sign Up to Pray"
+msgstr "પ્રાર્થના કરવા માટે સાઇન અપ કરો"
+
+#: porches/generic/site/home-body.php:158
+#: porches/ongoing/site/home-body.php:154
+#, fuzzy
+msgctxt "Campaign Name is Finished"
+msgid "%s is Finished"
+msgstr "%s સમાપ્ત થયું"
+
+#: porches/generic/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:167
+#, fuzzy
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Ends In"
+msgstr "%s માં સમાપ્ત થાય છે"
+
+#: porches/generic/site/home-body.php:172
+#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:203
+#: porches/ongoing/site/home-body.php:168
+#: porches/ongoing/site/home-body.php:175
+#: porches/ramadan/site/home-body.php:162
+#: porches/ramadan/site/home-body.php:169
+#, fuzzy
+msgid "days"
+msgstr "દિવસ"
+
+#: porches/generic/site/home-body.php:173
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
+#: porches/ongoing/site/home-body.php:169
+#: porches/ongoing/site/home-body.php:176
+#: porches/ramadan/site/home-body.php:163
+#: porches/ramadan/site/home-body.php:170
+#, fuzzy
+msgid "hours"
+msgstr "કલાક"
+
+#: porches/generic/site/home-body.php:174
+#: porches/generic/site/home-body.php:181
+#: porches/ongoing/site/home-body.php:170
+#: porches/ongoing/site/home-body.php:177
+#: porches/ramadan/site/home-body.php:164
+#: porches/ramadan/site/home-body.php:171
+#, fuzzy
+msgid "minutes"
+msgstr "મિનિટ"
+
+#: porches/generic/site/home-body.php:175
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:178
+#: porches/ramadan/site/home-body.php:165
+#: porches/ramadan/site/home-body.php:172
+#, fuzzy
+msgid "seconds"
+msgstr "સેકન્ડ"
+
+#: porches/generic/site/home-body.php:178
+#: porches/ongoing/site/home-body.php:174
+#, fuzzy
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Begins In"
+msgstr "%s માં શરૂ થાય છે"
+
+#: porches/generic/site/home-body.php:223
+#: porches/ramadan/site/home-body.php:222
+#, fuzzy
+msgid "Days"
+msgstr "દિવસ"
+
+#: porches/generic/site/home-body.php:227
+#: porches/ongoing/site/home-body.php:215
+#: porches/ramadan/site/home-body.php:226
+#, fuzzy
+msgid "Next"
+msgstr "આગળ"
+
+#: porches/generic/site/home-body.php:228
+#: porches/ongoing/site/home-body.php:216
+#: porches/ramadan/site/home-body.php:227
+#, fuzzy
+msgid "Month"
+msgstr "માસ"
+
+#: porches/generic/site/home-body.php:250
+#: porches/ramadan/site/home-body.php:249
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "પ્રાર્થનાના કલાકો"
+
+#: porches/generic/site/home-body.php:255
+#: porches/ongoing/site/home-body.php:233
+#: porches/ramadan/site/home-body.php:254
+#, fuzzy
+msgid "Hours"
+msgstr "કલાકો"
+
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
+#: porches/ramadan/site/home-body.php:272
+#, fuzzy
+msgid "Prayer Commitments Needed"
+msgstr "પ્રાર્થના પ્રતિબદ્ધતાઓ જરૂરી છે"
+
+#: porches/generic/site/home-body.php:278
+#: porches/ongoing/site/home-body.php:248
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "કલાકો બાકી"
+
+#: porches/generic/site/home-body.php:299
+#: porches/ongoing/site/home-body.php:267
+#: porches/ramadan/site/home-body.php:298
+#, fuzzy
+msgid "View All"
+msgstr "બધુજ જુઓ"
+
+#: porches/generic/site/post-list-body.php:118
+#, fuzzy
+msgid "Read"
+msgstr "વાંચવું"
+
+#: porches/generic/site/stats.php:133
+#, fuzzy
+msgctxt "Thank you for joining us in prayer for the French in France."
+msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+msgstr "%2$s માં %1$s માટે પ્રાર્થનામાં અમારી સાથે જોડાવા બદલ આભાર."
+
+#: porches/generic/site/stats.php:157
+#, fuzzy
+msgid "Campaign Stats"
+msgstr "ઝુંબેશના આંકડા"
+
+#: porches/generic/site/stats.php:184
+#, fuzzy
+msgid "Percentage Covered"
+msgstr "આવરી લેવામાં આવેલ ટકાવારી"
+
+#: porches/generic/site/stats.php:192
+#, fuzzy
+msgid "Prayer Commitments"
+msgstr "પ્રાર્થના પ્રતિબદ્ધતાઓ"
+
+#: porches/generic/site/stats.php:200
+#, fuzzy
+msgid "Time Committed"
+msgstr "સમય પ્રતિબદ્ધ"
+
+#: porches/generic/site/stats.php:209
+#, fuzzy
+msgid "Number of People who Prayed"
+msgstr "પ્રાર્થના કરનારા લોકોની સંખ્યા"
+
+#: porches/generic/site/stats.php:242
+#, fuzzy
+msgid "Share with us your Prayer Stories"
+msgstr "તમારી પ્રાર્થના વાર્તાઓ અમારી સાથે શેર કરો"
+
+#: porches/generic/site/stats.php:256
+#, fuzzy
+msgid ""
+"Share with us about your prayer time (E.g. testimonies, insights, blessings, "
+"etc)"
+msgstr ""
+"તમારા પ્રાર્થના સમય વિશે અમારી સાથે શેર કરો (દા.ત. પુરાવાઓ, આંતરદૃષ્ટિ, આશીર્વાદ, વગેરે)"
+
+#: porches/generic/site/stats.php:261
+#, fuzzy
+msgid "Submit"
+msgstr "સબમિટ કરો"
+
+#: porches/generic/site/stats.php:267
+#, fuzzy
+msgid "Thank You"
+msgstr "આભાર"
+
+#: porches/generic/site/stats.php:302
+#, fuzzy
+msgid "More Prayer Opportunities"
+msgstr "વધુ પ્રાર્થના તકો"
+
+#: porches/generic/site/stats.php:306
+#, fuzzy
+msgid ""
+"Would you like to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org?"
+msgstr ""
+"શું તમે Pray4Movement.org સાથે અન્ય પ્રાર્થના પ્રયાસો અને તકો વિશે સાંભળવા માંગો છો?"
+
+#: porches/generic/site/top-section.php:19
+#, fuzzy
+msgid "Home"
+msgstr "ખેર"
+
+#: porches/generic/site/top-section.php:22
+#, fuzzy
+msgid "Sign Up"
+msgstr "સાઇન અપ કરો"
+
+#: porches/ramadan/settings.php:6
+#, fuzzy
+msgid ""
+"Ramadan is one of the five requirements (or pillars) of Islam. During each "
+"of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
+"this time they are supposed to abstain from food, drinking liquids, smoking, "
+"and sexual relations.\n"
+"\n"
+"     Women typically spend the afternoons preparing a big meal. At sunset, "
+"families often gather to break the fast. Traditionally the families break "
+"the fast with a drink of water, then three dried date fruits, and a multi-"
+"course meal. After watching the new Ramadan TV series, men (and some women) "
+"go out to coffee shops where they drink coffee, and smoke with friends until "
+"late into the night.\n"
+"\n"
+"     Though many have stopped fasting in recent years, and are turned off by "
+"the hypocrisy, increased crime rates, and rudeness that is pervasive through "
+"the month, others have become more serious about religion during this time. "
+"Many attend the evening prayer services and do the other ritual prayers. "
+"Some even read the entire Quran (about a tenth the length of the Bible). "
+"This sincere seeking makes it a strategic time for us to pray for them."
+msgstr ""
+"રમઝાન એ ઇસ્લામની પાંચ આવશ્યકતાઓ (અથવા સ્તંભો) પૈકીની એક છે. તેના દરેક 30 દિવસોમાં, "
+"મુસ્લિમો સવારથી સૂર્યાસ્ત સુધી ઉપવાસ કરવા માટે બંધાયેલા છે. આ સમય દરમિયાન તેઓએ ખોરાક, "
+"પીવાના પ્રવાહી, ધૂમ્રપાન અને જાતીય સંબંધોથી દૂર રહેવાનું માનવામાં આવે છે.\n"
+"\n"
+"     સ્ત્રીઓ સામાન્ય રીતે બપોરનો સમય મોટા ભોજનની તૈયારીમાં વિતાવે છે. સૂર્યાસ્ત સમયે, "
+"પરિવારો વારંવાર ઉપવાસ તોડવા ભેગા થાય છે. પરંપરાગત રીતે પરિવારો પાણી પીને ઉપવાસ તોડે "
+"છે, પછી ત્રણ સુકા ખજૂર, અને બહુ-કોર્સ ભોજન. નવી રમઝાન ટીવી શ્રેણી જોયા પછી, પુરુષો (અને "
+"કેટલીક સ્ત્રીઓ) કોફી શોપમાં જાય છે જ્યાં તેઓ કોફી પીવે છે અને મોડી રાત સુધી મિત્રો સાથે "
+"ધૂમ્રપાન કરે છે.\n"
+"\n"
+"     જો કે તાજેતરના વર્ષોમાં ઘણા લોકોએ ઉપવાસ કરવાનું બંધ કરી દીધું છે, અને દંભ, અપરાધના "
+"દરમાં વધારો અને મહિના દરમિયાન ફેલાયેલી અસંસ્કારીતાને કારણે બંધ થઈ ગયા છે, અન્ય લોકો આ "
+"સમય દરમિયાન ધર્મ પ્રત્યે વધુ ગંભીર બન્યા છે. ઘણા લોકો સાંજની પ્રાર્થના સેવાઓમાં હાજરી આપે "
+"છે અને અન્ય ધાર્મિક પ્રાર્થના કરે છે. કેટલાક તો આખું કુરાન વાંચે છે (લગભગ બાઇબલની લંબાઈનો "
+"દસમો ભાગ). આ નિષ્ઠાવાન શોધ આપણા માટે તેમના માટે પ્રાર્થના કરવાનો વ્યૂહાત્મક સમય બનાવે "
+"છે."
+
+#: porches/ramadan/site/home-body.php:148
+#, fuzzy
+msgid "Ramadan is Finished"
+msgstr "રમઝાન પૂરો થયો"
+
+#: porches/ramadan/site/home-body.php:161
+#, fuzzy
+msgid "Ramadan Ends ..."
+msgstr "રમઝાનનો અંત..."
+
+#: porches/ramadan/site/home-body.php:168
+#, fuzzy
+msgid "Ramadan Begins ..."
+msgstr "રમઝાન શરૂ..."
+
+#: porches/ramadan/site/home-body.php:193
+#, fuzzy
+msgid "here"
+msgstr "અહીં"
+
+#: porches/ramadan/site/home-body.php:277
+#, fuzzy
+msgid "More Hours to be covered"
+msgstr "વધુ કલાકો આવરી લેવાના છે"
+
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+#, fuzzy
+msgid "covered once"
+msgstr "એકવાર આવરી લેવામાં આવે છે"
+
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+#, fuzzy
+msgid "covered %1$s times"
+msgstr "%1$s વખત આવરી લીધું"
+
+#: shortcodes/24hour.php:99
+#, fuzzy
+msgid "Percentage covered in prayer"
+msgstr "પ્રાર્થનામાં આવરી લેવામાં આવેલ ટકાવારી"
+
+#: shortcodes/24hour.php:113 shortcodes/ongoing.php:144
+#, fuzzy
+msgid "Loading prayer campaign data..."
+msgstr "પ્રાર્થના ઝુંબેશ ડેટા લોડ કરી રહ્યું છે..."
+
+#: shortcodes/24hour.php:120 shortcodes/ongoing.php:151
+#, fuzzy
+msgid "Choose Prayer Times"
+msgstr "પ્રાર્થનાનો સમય પસંદ કરો"
+
+#: shortcodes/24hour.php:132 shortcodes/ongoing.php:163
+#, fuzzy
+msgid "Select an option"
+msgstr "એક વિકલ્પ પસંદ કરો"
+
+#: shortcodes/24hour.php:135 shortcodes/ongoing.php:166
+#, fuzzy
+msgid "Pray every day at the same time"
+msgstr "દરરોજ એક જ સમયે પ્રાર્થના કરો"
+
+#: shortcodes/24hour.php:137 shortcodes/ongoing.php:168
+#, fuzzy
+msgid "Example: Everyday at 4pm for 15mins"
+msgstr "ઉદાહરણ: દરરોજ સાંજે 4 વાગે 15 મિનિટ માટે"
+
+#: shortcodes/24hour.php:140 shortcodes/ongoing.php:171
+#, fuzzy
+msgid "Select days and times to pray"
+msgstr "પ્રાર્થના કરવા માટે દિવસો અને સમય પસંદ કરો"
+
+#: shortcodes/24hour.php:142 shortcodes/ongoing.php:173
+#, fuzzy
+msgid "Example: Monday 12th at 6pm for 15mins"
+msgstr "ઉદાહરણ: સોમવાર 12મીએ સાંજે 6 વાગ્યે 15 મિનિટ માટે"
+
+#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
+#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#, fuzzy
+msgid "Showing times for:"
+msgstr "માટે સમય બતાવી રહ્યાં છે:"
+
+#: shortcodes/24hour.php:231 shortcodes/ongoing.php:270
+#, fuzzy
+msgid "Sent! Check your email."
+msgstr "મોકલ્યું! તમારા ઇમેઇલ તપાસો."
+
+#: shortcodes/24hour.php:233 shortcodes/ongoing.php:272
+#, fuzzy
+msgid ""
+"Click on the link included in the email to verify your commitment and "
+"receive prayer time notifications!"
+msgstr ""
+"તમારી પ્રતિબદ્ધતાને ચકાસવા અને પ્રાર્થના સમયની સૂચનાઓ પ્રાપ્ત કરવા માટે ઇમેઇલમાં સમાવિષ્ટ "
+"લિંક પર ક્લિક કરો!"
+
+#: shortcodes/24hour.php:236 shortcodes/ongoing.php:275
+#, fuzzy
+msgid "In the email is a link to manage your prayer times."
+msgstr "ઈમેલમાં તમારા પ્રાર્થનાના સમયને મેનેજ કરવા માટેની લિંક છે."
+
+#: shortcodes/24hour.php:239 shortcodes/ongoing.php:278
+#, fuzzy
+msgid "OK"
+msgstr "બરાબર"
+
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:311
+#, fuzzy
+msgid "We are not longer looking for sign ups"
+msgstr "અમે હવે સાઇન અપની શોધમાં નથી"
+
+#: shortcodes/24hour.php:280 shortcodes/ongoing.php:312
+#, fuzzy
+msgid "Thanks for praying with us!"
+msgstr "અમારી સાથે પ્રાર્થના કરવા બદલ આભાર!"
+
+#: shortcodes/ongoing.php:70
+#, fuzzy
+msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
+msgid "Everyday at %1$s for %2$s until %3$s"
+msgstr "દરરોજ %1$s પર %2$s માટે %3$s સુધી"
+
+#: shortcodes/ongoing.php:72
+#, fuzzy
+msgctxt "Jun, Jul, Aug covered"
+msgid "covered"
+msgstr "આવરી"
+
+#: shortcodes/ongoing.php:187
+#, fuzzy
+msgid ""
+"Chose a time to pray everyday for the next 3 months. Near the end you'll "
+"have the option to sign up for more."
+msgstr ""
+"આગામી 3 મહિના માટે દરરોજ પ્રાર્થના કરવાનો સમય પસંદ કરો. અંતની નજીક તમારી પાસે વધુ "
+"માટે સાઇન અપ કરવાનો વિકલ્પ હશે."
+
+#: shortcodes/prayer-timer.php:177
+#, fuzzy
+msgid "Start Praying!"
+msgstr "પ્રાર્થના શરૂ કરો!"
+
+#: shortcodes/prayer-timer.php:180
+#, fuzzy
+msgctxt "Prayer time: 15 min"
+msgid "Prayer time: %s min"
+msgstr "પ્રાર્થનાનો સમય: %s મિનિટ"
+
+#: shortcodes/prayer-timer.php:189
+#, fuzzy
+msgid "Now praying..."
+msgstr "હવે પ્રાર્થના..."
+
+#, fuzzy
+#~ msgid "Content to be added to the signup email"
+#~ msgstr "સાઇનઅપ ઇમેઇલમાં ઉમેરવા માટેની સામગ્રી"
+
+#, fuzzy
+#~ msgid "Content to be added to the reminder email"
+#~ msgstr "રીમાઇન્ડર ઇમેઇલમાં ઉમેરવા માટેની સામગ્રી"
+
+#, fuzzy
+#~ msgid "Update"
+#~ msgstr "અપડેટ"
+
+#, fuzzy
+#~ msgid "Yes"
+#~ msgstr "હા"
+
+#, fuzzy
+#~ msgid "No"
+#~ msgstr "ના"

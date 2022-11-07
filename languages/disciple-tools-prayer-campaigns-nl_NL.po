@@ -1,56 +1,158 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: P4M Prayer Campaigns\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
+"prayer-campaigns\n"
+"POT-Creation-Date: 2022-11-07T11:12:44+00:00\n"
+"PO-Revision-Date: 2022-11-07 11:14+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Dutch <https://translate.disciple.tools/projects/disciple-"
+"tools/disciple-tools-prayer-campaigns/nl_NL/>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: P4M Prayer Campaigns\n"
-"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:123
-#: campaign-functions/send-email-utility.php:85
+#: campaign-functions/cron-schedule.php:83
+#, fuzzy
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr "Klik hier om de gebedsprompts voor vandaag te zien: %s"
+
+#: campaign-functions/cron-schedule.php:89
+msgid "Prayer Time reminder!"
+msgstr "Gebedstijd herinnering!"
+
+#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/send-email-utility.php:67
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s van %2$s tot %3$s"
 
-#: campaign-functions/cron-schedule.php:129
+#: campaign-functions/cron-schedule.php:136
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "voor %s"
 
-#: campaign-functions/cron-schedule.php:144
-#: campaign-functions/send-email-utility.php:103
-#: campaign-functions/send-email-utility.php:163
-#: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:300
+#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/send-email-utility.php:85
+#: campaign-functions/send-email-utility.php:147
+#: campaign-functions/send-email-utility.php:244
 msgid "Hello %s,"
 msgstr "Hallo %s,"
 
-#: campaign-functions/cron-schedule.php:145
-#: porches/generic/site/stats.php:131
+#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:131
 msgid "Thank you for praying with us!"
 msgstr "Bedankt dat je met ons mee bidt!"
 
-#: campaign-functions/cron-schedule.php:146
+#: campaign-functions/cron-schedule.php:155
 msgid "Here are your upcoming prayer times:"
 msgstr "Dit zijn uw aanstaande gebedstijden:"
 
-#: campaign-functions/cron-schedule.php:148
-#: campaign-functions/send-email-utility.php:123
+#: campaign-functions/cron-schedule.php:157
+#: campaign-functions/send-email-utility.php:107
 msgid "Times are shown according to: %s time"
 msgstr "Tijden worden weergegeven volgens: %s tijd"
 
-#: campaign-functions/send-email-utility.php:100
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:111
+msgid "Click here to manage your account and time commitments"
+msgstr "Klik hier om uw account en tijdsverplichtingen te beheren"
+
+#: campaign-functions/send-email-utility.php:82
 msgid "Registered to pray with us!"
 msgstr "Geregistreerd om met ons te bidden!"
 
-#: campaign-functions/send-email-utility.php:120
-msgid "Click here to verify your email address and confirm your prayer times."
-msgstr "Klik hier om uw e-mailadres te verifiëren en uw gebedstijden te bevestigen."
+#: campaign-functions/send-email-utility.php:103
+msgid ""
+"Thank you for joining us in strategic prayer for a disciple making movement! "
+"You're one click away from finishing your registration."
+msgstr ""
+"Bedankt dat je met ons meedoet in strategisch gebed voor een beweging die "
+"discipelen maakt! U bent één klik verwijderd van het voltooien van uw "
+"registratie."
 
-#: campaign-functions/send-email-utility.php:121
+#: campaign-functions/send-email-utility.php:104
+msgid "Click here to verify your email address and confirm your prayer times."
+msgstr ""
+"Klik hier om uw e-mailadres te verifiëren en uw gebedstijden te bevestigen."
+
+#: campaign-functions/send-email-utility.php:105
 msgid "Here are the times you have committed to pray:"
 msgstr "Dit zijn de tijden die je hebt toegezegd om te bidden:"
+
+#: campaign-functions/send-email-utility.php:154
+msgid "Registration Confirmation"
+msgstr "Registratie Bevestiging"
+
+#: campaign-functions/send-email-utility.php:157
+msgid "Thank you for signing up to pray!"
+msgstr "Bedankt voor je aanmelding om te bidden!"
+
+#: campaign-functions/send-email-utility.php:158
+msgid ""
+"We have some time before the campaign starts. We will send you another email "
+"a couple months before the first day asking you to choose specific times to "
+"pray. Working together we will cover the region in 24/7 prayer."
+msgstr ""
+"We hebben nog even voordat de campagne begint. We sturen je een paar maanden "
+"voor de eerste dag nog een e-mail waarin we je vragen om specifieke tijden "
+"te kiezen om te bidden. Samen dekken we de regio in 24/7 gebed."
+
+#: campaign-functions/send-email-utility.php:159
+msgid "If you know your schedule already you can choose your times here:"
+msgstr "Als je je schema al kent, kun je hier je tijden kiezen:"
+
+#: campaign-functions/send-email-utility.php:245
+#, fuzzy
+msgid ""
+"You are 2 weeks out for your last prayer time. Would you like to keep "
+"praying?"
+msgstr ""
+"Je bent 2 weken onderweg voor je laatste gebedstijd. Wil je blijven bidden?"
+
+#: campaign-functions/send-email-utility.php:246
+#, fuzzy
+msgid "Sign up for more prayer times or extend your recurring time here:"
+msgstr ""
+"Meld u hier aan voor meer gebedstijden of verleng uw terugkerende tijd:"
+
+#: campaign-functions/send-email-utility.php:248
+#, fuzzy
+msgid "Thank you"
+msgstr "Dank je"
+
+#: campaign-functions/time-utilities.php:157
+#, fuzzy
+msgid "5 minutes"
+msgstr "5 minuten"
+
+#: campaign-functions/time-utilities.php:158
+#, fuzzy
+msgid "10 minutes"
+msgstr "10 minuten"
+
+#: campaign-functions/time-utilities.php:159
+#, fuzzy
+msgid "15 minutes"
+msgstr "15 minuten"
+
+#: campaign-functions/time-utilities.php:160
+#, fuzzy
+msgid "30 minutes"
+msgstr "30 minuten"
+
+#: campaign-functions/time-utilities.php:161
+#, fuzzy
+msgid "1 hour"
+msgstr "1 uur"
+
+#: magic-links/subscription-management/subscription-management.php:38
+#: magic-links/subscription-management/subscription-management.php:266
+msgid "My Prayer Times"
+msgstr "Mijn gebedstijden"
 
 #: magic-links/subscription-management/subscription-management.php:108
 #: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
@@ -73,102 +175,220 @@ msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s voor %2$s minuten."
 
-#: shortcodes/24hour.php:113 shortcodes/ongoing.php:141
-msgid "Loading prayer campaign data..."
-msgstr "Gegevens gebedscampagne aan het laden..."
+#: magic-links/subscription-management/subscription-management.php:112
+#, fuzzy
+msgid "Extend for 3 months"
+msgstr "Verlengen met 3 maanden"
 
-#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
-#: shortcodes/ongoing.php:196 shortcodes/ongoing.php:233
-msgid "Showing times for:"
-msgstr "Toon tijden voor:"
+#: magic-links/subscription-management/subscription-management.php:113
+#, fuzzy
+msgid "Change daily time"
+msgstr "Dagelijkse tijd wijzigen"
 
-#: shortcodes/24hour.php:132 shortcodes/ongoing.php:160
-msgid "Select an option"
-msgstr "Kies een optie"
+#: magic-links/subscription-management/subscription-management.php:271
+msgid "Your prayer times have been verified!"
+msgstr "Uw gebedstijden zijn geverifieerd!"
 
-#: shortcodes/24hour.php:135 shortcodes/ongoing.php:163
-msgid "Pray every day at the same time"
-msgstr "Bid elke dag op hetzelfde tijdstip"
+#: magic-links/subscription-management/subscription-management.php:281
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:284
+#, fuzzy
+msgid "Change your timezone:"
+msgstr "Verander je tijdzone:"
 
-#: shortcodes/24hour.php:137 shortcodes/ongoing.php:165
-msgid "Example: Everyday at 4pm for 15mins"
-msgstr "Voorbeeld: elke dag om 16.00 uur gedurende 15 minuten"
+#: magic-links/subscription-management/subscription-management.php:298
+#: magic-links/subscription-management/subscription-management.php:347
+#: magic-links/subscription-management/subscription-management.php:441
+#: magic-links/subscription-management/subscription-management.php:487
+#: magic-links/subscription-management/subscription-management.php:503
+#: magic-links/subscription-management/subscription-management.php:519
+#: magic-links/subscription-management/subscription-management.php:569
+#: shortcodes/24hour.php:270 shortcodes/ongoing.php:302
+msgid "Cancel"
+msgstr "Annuleren"
 
-#: shortcodes/24hour.php:140 shortcodes/ongoing.php:168
-msgid "Select days and times to pray"
-msgstr "Selecteer dagen en tijden om te bidden"
+#: magic-links/subscription-management/subscription-management.php:301
+#: magic-links/subscription-management/subscription-management.php:490
+#: shortcodes/24hour.php:273 shortcodes/ongoing.php:305
+msgid "Select"
+msgstr "Selecteer"
 
-#: shortcodes/24hour.php:142 shortcodes/ongoing.php:170
-msgid "Example: Monday 12th at 6pm for 15mins"
-msgstr "Voorbeeld: maandag de 12e om 18:00 uur gedurende 15 minuten"
+#: magic-links/subscription-management/subscription-management.php:312
+msgid "Add a Daily Prayer Time"
+msgstr "Voeg een dagelijkse gebedstijd toe"
 
-#: magic-links/subscription-management/subscription-management.php:329
-#: shortcodes/24hour.php:157 shortcodes/ongoing.php:186
+#: magic-links/subscription-management/subscription-management.php:315
+msgid "Add Individual Prayer Times"
+msgstr "Individuele gebedstijden toevoegen"
+
+#: magic-links/subscription-management/subscription-management.php:317
+msgid "Download Calendar"
+msgstr "Kalender downloaden"
+
+#: magic-links/subscription-management/subscription-management.php:319
+#, fuzzy
+msgid "My commitments"
+msgstr "Mijn verplichtingen"
+
+#: magic-links/subscription-management/subscription-management.php:324
+#: shortcodes/24hour.php:157 shortcodes/ongoing.php:189
 msgid "Prayer Time"
 msgstr "Gebedstijd"
 
-#: magic-links/subscription-management/subscription-management.php:331
-#: magic-links/subscription-management/subscription-management.php:413
+#: magic-links/subscription-management/subscription-management.php:326
+#: magic-links/subscription-management/subscription-management.php:408
 #: shortcodes/24hour.php:159 shortcodes/24hour.php:192
-#: shortcodes/ongoing.php:188 shortcodes/ongoing.php:221
+#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
 msgid "Daily Time"
 msgstr "Dagelijkse tijd"
 
-#: magic-links/subscription-management/subscription-management.php:335
-#: magic-links/subscription-management/subscription-management.php:417
+#: magic-links/subscription-management/subscription-management.php:330
+#: magic-links/subscription-management/subscription-management.php:412
 #: shortcodes/24hour.php:163 shortcodes/24hour.php:196
-#: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
+#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
 msgid "For how long"
 msgstr "Voor hoelang"
 
-#: magic-links/subscription-management/subscription-management.php:356
-#: magic-links/subscription-management/subscription-management.php:450
+#: magic-links/subscription-management/subscription-management.php:340
+#: magic-links/subscription-management/subscription-management.php:434
+msgid "Your new prayer times have been saved."
+msgstr "Je nieuwe gebedstijden zijn opgeslagen."
+
+#: magic-links/subscription-management/subscription-management.php:351
+#: magic-links/subscription-management/subscription-management.php:445
 #: shortcodes/24hour.php:170 shortcodes/24hour.php:214
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:243
+#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
 msgid "Confirm Times"
 msgstr "Bevestig tijden"
 
-#: magic-links/subscription-management/subscription-management.php:404
-#: shortcodes/24hour.php:182 shortcodes/ongoing.php:211
+#: magic-links/subscription-management/subscription-management.php:360
+#: magic-links/subscription-management/subscription-management.php:457
+msgid "ok"
+msgstr "Oke"
+
+#: magic-links/subscription-management/subscription-management.php:391
+msgid "Close"
+msgstr "Sluiten"
+
+#: magic-links/subscription-management/subscription-management.php:399
+#: shortcodes/24hour.php:182 shortcodes/ongoing.php:214
 msgid "Select a day and choose a time"
 msgstr "Selecteer een dag en kies een tijd"
 
-#: magic-links/subscription-management/subscription-management.php:411
-#: shortcodes/24hour.php:190 shortcodes/ongoing.php:219
+#: magic-links/subscription-management/subscription-management.php:406
+#: shortcodes/24hour.php:190 shortcodes/ongoing.php:222
 msgid "Select a prayer time"
 msgstr "Selecteer een gebedstijd"
 
-#: magic-links/subscription-management/subscription-management.php:421
-#: shortcodes/24hour.php:200 shortcodes/ongoing.php:229
+#: magic-links/subscription-management/subscription-management.php:416
+#: shortcodes/24hour.php:200 shortcodes/ongoing.php:232
 msgid "Add prayer time"
 msgstr "Voeg gebedstijd toe"
 
-#: magic-links/subscription-management/subscription-management.php:422
-#: shortcodes/24hour.php:201 shortcodes/ongoing.php:230
+#: magic-links/subscription-management/subscription-management.php:417
+#: shortcodes/24hour.php:201 shortcodes/ongoing.php:233
 msgid "Time added"
 msgstr "Tijd toegevoegd"
 
-#: magic-links/subscription-management/subscription-management.php:429
+#: magic-links/subscription-management/subscription-management.php:424
 #: shortcodes/24hour.php:208 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:237 shortcodes/ongoing.php:259
+#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
 msgid "Selected Times"
 msgstr "Geselecteerde tijden"
 
-#: magic-links/subscription-management/subscription-management.php:511
-#: magic-links/subscription-management/subscription-management.php:527
+#: magic-links/subscription-management/subscription-management.php:426
+#: shortcodes/24hour.php:210 shortcodes/ongoing.php:242
+msgid "No selected Time"
+msgstr "Geen geselecteerde tijd"
+
+#: magic-links/subscription-management/subscription-management.php:449
+#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
+#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
+#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
+#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+msgid "Back"
+msgstr "Terug"
+
+#: magic-links/subscription-management/subscription-management.php:482
+#, fuzzy
+msgid "Choose a different time:"
+msgstr "Kies een ander tijdstip:"
+
+#: magic-links/subscription-management/subscription-management.php:499
+#, fuzzy
+msgid "Delete all"
+msgstr "Verwijder alles"
+
+#: magic-links/subscription-management/subscription-management.php:506
+#: magic-links/subscription-management/subscription-management.php:522
 #: parts/components.php:25
 msgid "Confirm"
 msgstr "Bevestigen"
 
-#: parts/components.php:47 parts/components.php:48 shortcodes/24hour.php:285
-#: shortcodes/24hour.php:286
+#: magic-links/subscription-management/subscription-management.php:515
+#, fuzzy
+msgid "Extend"
+msgstr "Verlengen"
+
+#: magic-links/subscription-management/subscription-management.php:517
+#, fuzzy
+msgid "Extend my prayer commitments until:"
+msgstr "Verleng mijn gebedsverplichtingen tot:"
+
+#: magic-links/subscription-management/subscription-management.php:541
+msgid "Profile Settings"
+msgstr "Profielinstellingen"
+
+#: magic-links/subscription-management/subscription-management.php:542
+#, fuzzy
+msgid "Receive prayer time notifications"
+msgstr "Ontvang meldingen over gebedstijd"
+
+#: magic-links/subscription-management/subscription-management.php:544
+#, fuzzy
+msgid "Notifications allowed"
+msgstr "Meldingen toegestaan"
+
+#: magic-links/subscription-management/subscription-management.php:545
+#, fuzzy
+msgid "Notifications not allowed"
+msgstr "Meldingen niet toegestaan"
+
+#: magic-links/subscription-management/subscription-management.php:549
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Geavanceerde instellingen"
+
+#: magic-links/subscription-management/subscription-management.php:556
+msgid "Delete this profile and all the scheduled prayer times?"
+msgstr "Dit profiel en alle geplande gebedstijden verwijderen?"
+
+#: magic-links/subscription-management/subscription-management.php:558
+#: magic-links/subscription-management/subscription-management.php:572
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: magic-links/subscription-management/subscription-management.php:561
+msgid "Are you sure you want to delete your profile?"
+msgstr "Weet je zeker dat je je profiel wilt verwijderen?"
+
+#: magic-links/subscription-management/subscription-management.php:563
+msgid "This can not be undone."
+msgstr "Dit kan niet ongedaan gemaakt worden."
+
+#: magic-links/subscription-management/subscription-management.php:588
+msgid "This subscription has ended or is not configured correctly."
+msgstr "Dit abonnement is beëindigd of niet correct geconfigureerd."
+
+#: parts/components.php:47 parts/components.php:48
 msgid "Name"
 msgstr "Naam"
 
-#: magic-links/campaign-resend-email/magic-link-post-type.php:170
+#: parts/components.php:53
+msgid "Your email is required."
+msgstr "Uw e-mail is vereist."
+
 #: parts/components.php:55 parts/components.php:56 parts/components.php:57
-#: porches/generic/site/stats.php:248 shortcodes/24hour.php:293
-#: shortcodes/24hour.php:294 shortcodes/24hour.php:295
+#: porches/generic/site/stats.php:248
 msgid "Email"
 msgstr "E-mail"
 
@@ -176,214 +396,462 @@ msgstr "E-mail"
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "Ontvang gebedstijdmeldingen (e-mailverificatie vereist)."
 
-#: parts/components.php:81 shortcodes/24hour.php:301
+#: parts/components.php:76
+#, fuzzy
+msgid "Receive Pray4Movement Newsletter (email verification needed)."
+msgstr "Ontvang de Pray4Movement-nieuwsbrief (e-mailverificatie vereist)."
+
+#: parts/components.php:81
 msgid "Submit Your Prayer Commitment"
 msgstr "Dien uw gebedstoezegging in"
 
-#: shortcodes/24hour.php:231 shortcodes/24hour.php:307
-#: shortcodes/ongoing.php:267
-msgid "Sent! Check your email."
-msgstr "Verstuurd! Controleer uw e-mail."
+#: porches/generic/dt-generic-porch-settings.php:59
+#, fuzzy
+msgid "Strategic prayer for a Disciple Making Movement"
+msgstr "Strategisch gebed voor een beweging voor het maken van discipelen"
 
-#: shortcodes/24hour.php:233 shortcodes/ongoing.php:269
-msgid "Click on the link included in the email to verify your commitment and receive prayer time notifications!"
-msgstr "Klik op de link in de e-mail om uw toewijding te verifiëren en gebedsmeldingen te ontvangen!"
+#: porches/generic/dt-generic-porch-settings.php:68
+#, fuzzy
+msgid "Our Vision"
+msgstr "Onze visie"
 
-#: shortcodes/24hour.php:236 shortcodes/ongoing.php:272
-msgid "In the email is a link to manage your prayer times."
-msgstr "In de e-mail staat een link om uw gebedstijden te beheren."
+#: porches/generic/dt-generic-porch-settings.php:77
+#, fuzzy
+msgid "We want to cover this region with continuous 24/7 prayer."
+msgstr "We willen deze regio bedekken met continu 24/7 gebed."
 
-#: shortcodes/24hour.php:239 shortcodes/24hour.php:309
-#: shortcodes/ongoing.php:275
-msgid "OK"
-msgstr "Oke"
+#: porches/generic/dt-generic-porch-settings.php:86
+msgid "Extraordinary Prayer"
+msgstr "Buitengewoon gebed"
 
-#: magic-links/subscription-management/subscription-management.php:303
-#: magic-links/subscription-management/subscription-management.php:352
-#: magic-links/subscription-management/subscription-management.php:446
-#: magic-links/subscription-management/subscription-management.php:492
-#: magic-links/subscription-management/subscription-management.php:508
-#: magic-links/subscription-management/subscription-management.php:524
-#: magic-links/subscription-management/subscription-management.php:574
-#: shortcodes/24hour.php:270 shortcodes/ongoing.php:299
-msgid "Cancel"
-msgstr "Annuleren"
+#: porches/generic/dt-generic-porch-settings.php:95
+msgid ""
+"Every disciple making movement in history has happened in the context of "
+"extraordinary prayer."
+msgstr ""
+"Elke discipelshapsbeweging in de geschiedenis is ontstaan in de context van "
+"buitengewoon gebed."
 
-#: magic-links/subscription-management/subscription-management.php:306
-#: magic-links/subscription-management/subscription-management.php:495
-#: shortcodes/24hour.php:273 shortcodes/ongoing.php:302
-msgid "Select"
-msgstr "Selecteer"
+#: porches/generic/dt-generic-porch-settings.php:104
+msgid "Movement Focused"
+msgstr "Gericht op bewegingen"
 
-#. Plugin URI of the plugin/theme
-#: 
-msgid "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
-msgstr "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
+#: porches/generic/dt-generic-porch-settings.php:113
+msgid ""
+"Join us in asking, seeking, and knocking for streams of disciples and "
+"churches to be made."
+msgstr ""
+"Vraag, zoek en klop met ons mee om stromen van discipelen en kerken te laten "
+"ontstaan."
 
-#. Description of the plugin/theme
-#: 
-msgid "Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project."
-msgstr "Voeg een gebedsabonnementenmodule toe aan Disciple.Tools waarmee niet-gebruikers zich kunnen abonneren om te bidden voor specifieke locaties op specifieke tijden, waarbij zowel tijd als geografische gebedsverzadiging voor uw project wordt ondersteund."
+#: porches/generic/dt-generic-porch-settings.php:122
+#, fuzzy
+msgid "24/7 Every Day"
+msgstr "24/7 elke dag"
 
-#. Author URI of the plugin/theme
-#: 
-msgid "https://github.com/DiscipleTools"
-msgstr "https://github.com/DiscipleTools"
+#: porches/generic/dt-generic-porch-settings.php:131
+msgid ""
+"Choose a 15-minute (or more!) time slot that you can pray during each day. "
+"Invite someone else to sign up too."
+msgstr ""
+"Kies een tijdvak van 15 minuten (of meer!) waarin je elke dag kunt bidden. "
+"Nodig iemand anders uit om zich ook aan te melden."
 
-#: campaign-functions/cron-schedule.php:152
-#: campaign-functions/send-email-utility.php:127
-msgid "Click here to manage your account and time commitments"
-msgstr "Klik hier om uw account en tijdsverplichtingen te beheren"
+#: porches/generic/dt-generic-porch-settings.php:149
+#: porches/generic/dt-generic-porch-settings.php:158
+msgid "Prayer Fuel"
+msgstr "Gebedsbrandstof"
 
-#: campaign-functions/send-email-utility.php:119
-msgid "Thank you for joining us in strategic prayer for a disciple making movement! You're one click away from finishing your registration."
-msgstr "Bedankt dat je met ons meedoet in strategisch gebed voor een beweging die discipelen maakt! U bent één klik verwijderd van het voltooien van uw registratie."
+#: porches/generic/dt-generic-porch-settings.php:167
+#, fuzzy
+msgid "Use these resources to help pray specifically each day."
+msgstr "Gebruik deze bronnen om elke dag specifiek te bidden."
 
-#: campaign-functions/send-email-utility.php:170
-msgid "Registration Confirmation"
-msgstr "Registratie Bevestiging"
+#: porches/generic/dt-generic-porch-settings.php:176
+msgid "Today's Prayer Fuel"
+msgstr "Gebedsbrandstof van vandaag"
 
-#: campaign-functions/send-email-utility.php:173
-msgid "Thank you for signing up to pray!"
-msgstr "Bedankt voor je aanmelding om te bidden!"
+#: porches/generic/dt-generic-porch-settings.php:185
+msgid "All Days"
+msgstr "Alle dagen"
 
-#: campaign-functions/send-email-utility.php:174
-msgid "We have some time before the campaign starts. We will send you another email a couple months before the first day asking you to choose specific times to pray. Working together we will cover the region in 24/7 prayer."
-msgstr "We hebben nog even voordat de campagne begint. We sturen je een paar maanden voor de eerste dag nog een e-mail waarin we je vragen om specifieke tijden te kiezen om te bidden. Samen dekken we de regio in 24/7 gebed."
+#: porches/generic/site/404-body.php:14
+#, fuzzy
+msgid "Epic 404"
+msgstr "Epische 404"
 
-#: campaign-functions/send-email-utility.php:175
-msgid "If you know your schedule already you can choose your times here:"
-msgstr "Als je je schema al kent, kun je hier je tijden kiezen:"
+#: porches/generic/site/404-body.php:15
+#, fuzzy
+msgid "It looks like you may have strayed from the narrow path."
+msgstr "Het lijkt erop dat je van het smalle pad bent afgedwaald."
 
-#: campaign-functions/send-email-utility.php:262
-msgid "What time(s) will you pray?"
-msgstr "Op welke tijd(en) gaat u bidden?"
+#: porches/generic/site/404-body.php:16
+#, fuzzy
+msgid "Wide is the path that leads to the 404."
+msgstr "Breed is het pad dat naar de 404 leidt."
 
-#: campaign-functions/send-email-utility.php:265
-msgid "Thank you for signing up to help us cover the region in nonstop prayer!!"
-msgstr "Bedankt dat je je hebt aangemeld om ons te helpen de regio te dekken in non-stop gebed!!"
+#: porches/generic/site/404-body.php:17
+#, fuzzy
+msgid "Try using some of the links in the menu to get back on track."
+msgstr ""
+"Probeer enkele van de links in het menu te gebruiken om weer op het goede "
+"spoor te komen."
 
-#: campaign-functions/send-email-utility.php:266
-msgid "It is now time to choose the specific times you will pray. Below is a link to the prayer times tool."
-msgstr "Het is nu tijd om de specifieke tijden te kiezen waarop je gaat bidden. Hieronder vindt u een link naar het hulpmiddel voor gebedstijden."
+#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
+#: porches/generic/site/top-section.php:91
+#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
+#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
+msgid "Sign Up to Pray"
+msgstr "Meld je aan om te bidden"
 
-#: campaign-functions/send-email-utility.php:267
-msgid "To pray at the same time every day (preferred!) click the \"Add a Daily Prayer Time\" button."
-msgstr "Om elke dag op hetzelfde tijdstip te bidden (bij voorkeur!) klikt u op de knop \"Een dagelijkse gebedstijd toevoegen\"."
+#: porches/generic/site/home-body.php:158
+#: porches/ongoing/site/home-body.php:154
+#, fuzzy
+msgctxt "Campaign Name is Finished"
+msgid "%s is Finished"
+msgstr "%s is voltooid"
 
-#: campaign-functions/send-email-utility.php:268
-msgid "If you need to choose different times or can't commit to pray every day click the \"Add individual Prayer Times\" button."
-msgstr "Als je andere tijden moet kiezen of je je niet kunt verplichten om elke dag te bidden, klik dan op de knop \"Individuele gebedstijden toevoegen\"."
+#: porches/generic/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:167
+#, fuzzy
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Ends In"
+msgstr "%s Eindigt over"
 
-#: campaign-functions/send-email-utility.php:269
-msgid "Choose prayer times link:"
-msgstr "Kies gebedstijden link:"
+#: porches/generic/site/home-body.php:172
+#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:203
+#: porches/ongoing/site/home-body.php:168
+#: porches/ongoing/site/home-body.php:175
+#: porches/ramadan/site/home-body.php:162
+#: porches/ramadan/site/home-body.php:169
+msgid "days"
+msgstr "dagen"
+
+#: porches/generic/site/home-body.php:173
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
+#: porches/ongoing/site/home-body.php:169
+#: porches/ongoing/site/home-body.php:176
+#: porches/ramadan/site/home-body.php:163
+#: porches/ramadan/site/home-body.php:170
+msgid "hours"
+msgstr "uren"
+
+#: porches/generic/site/home-body.php:174
+#: porches/generic/site/home-body.php:181
+#: porches/ongoing/site/home-body.php:170
+#: porches/ongoing/site/home-body.php:177
+#: porches/ramadan/site/home-body.php:164
+#: porches/ramadan/site/home-body.php:171
+msgid "minutes"
+msgstr "minuten"
+
+#: porches/generic/site/home-body.php:175
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:178
+#: porches/ramadan/site/home-body.php:165
+#: porches/ramadan/site/home-body.php:172
+msgid "seconds"
+msgstr "seconden"
+
+#: porches/generic/site/home-body.php:178
+#: porches/ongoing/site/home-body.php:174
+#, fuzzy
+msgctxt "Campaign Name End in [4 days]"
+msgid "%s Begins In"
+msgstr "%s begint in"
+
+#: porches/generic/site/home-body.php:223
+#: porches/ramadan/site/home-body.php:222
+msgid "Days"
+msgstr "dagen"
+
+#: porches/generic/site/home-body.php:227
+#: porches/ongoing/site/home-body.php:215
+#: porches/ramadan/site/home-body.php:226
+#, fuzzy
+msgid "Next"
+msgstr "Volgende"
+
+#: porches/generic/site/home-body.php:228
+#: porches/ongoing/site/home-body.php:216
+#: porches/ramadan/site/home-body.php:227
+#, fuzzy
+msgid "Month"
+msgstr "Maand"
+
+#: porches/generic/site/home-body.php:250
+#: porches/ramadan/site/home-body.php:249
+msgid "Hours of Prayer"
+msgstr "User van Gebed"
+
+#: porches/generic/site/home-body.php:255
+#: porches/ongoing/site/home-body.php:233
+#: porches/ramadan/site/home-body.php:254
+#, fuzzy
+msgid "Hours"
+msgstr "Uren"
+
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
+#: porches/ramadan/site/home-body.php:272
+msgid "Prayer Commitments Needed"
+msgstr "Gebedstoezeggingen nodig"
+
+#: porches/generic/site/home-body.php:278
+#: porches/ongoing/site/home-body.php:248
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Resterende uren"
+
+#: porches/generic/site/home-body.php:299
+#: porches/ongoing/site/home-body.php:267
+#: porches/ramadan/site/home-body.php:298
+msgid "View All"
+msgstr "Bekijk alle"
+
+#: porches/generic/site/post-list-body.php:118
+msgid "Read"
+msgstr "Lees"
+
+#: porches/generic/site/stats.php:133
+#, fuzzy
+msgctxt "Thank you for joining us in prayer for the French in France."
+msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+msgstr "Bedankt dat je met ons mee bidt voor de %1$s in %2$s."
+
+#: porches/generic/site/stats.php:157
+#, fuzzy
+msgid "Campaign Stats"
+msgstr "Campagnestatistieken"
+
+#: porches/generic/site/stats.php:184
+#, fuzzy
+msgid "Percentage Covered"
+msgstr "Percentage gedekt"
+
+#: porches/generic/site/stats.php:192
+#, fuzzy
+msgid "Prayer Commitments"
+msgstr "Gebedstoezeggingen"
+
+#: porches/generic/site/stats.php:200
+#, fuzzy
+msgid "Time Committed"
+msgstr "Toegewijde tijd"
+
+#: porches/generic/site/stats.php:209
+#, fuzzy
+msgid "Number of People who Prayed"
+msgstr "Aantal mensen die hebben gebeden"
+
+#: porches/generic/site/stats.php:242
+#, fuzzy
+msgid "Share with us your Prayer Stories"
+msgstr "Deel je gebedsverhalen met ons"
+
+#: porches/generic/site/stats.php:256
+#, fuzzy
+msgid ""
+"Share with us about your prayer time (E.g. testimonies, insights, blessings, "
+"etc)"
+msgstr ""
+"Deel met ons over uw gebedstijd (bijv. getuigenissen, inzichten, zegeningen, "
+"enz.)"
+
+#: porches/generic/site/stats.php:261
+#, fuzzy
+msgid "Submit"
+msgstr "Indienen"
+
+#: porches/generic/site/stats.php:267
+#, fuzzy
+msgid "Thank You"
+msgstr "Bedankt"
+
+#: porches/generic/site/stats.php:302
+#, fuzzy
+msgid "More Prayer Opportunities"
+msgstr "Meer gebedsmogelijkheden"
+
+#: porches/generic/site/stats.php:306
+#, fuzzy
+msgid ""
+"Would you like to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org?"
+msgstr ""
+"Wil je horen over andere gebedsinspanningen en mogelijkheden met "
+"Pray4Movement.org?"
+
+#: porches/generic/site/top-section.php:19
+msgid "Home"
+msgstr "Home"
+
+#: porches/generic/site/top-section.php:22
+msgid "Sign Up"
+msgstr "Aanmelden"
+
+#: porches/ramadan/settings.php:6
+#, fuzzy
+msgid ""
+"Ramadan is one of the five requirements (or pillars) of Islam. During each "
+"of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
+"this time they are supposed to abstain from food, drinking liquids, smoking, "
+"and sexual relations.\n"
+"\n"
+"     Women typically spend the afternoons preparing a big meal. At sunset, "
+"families often gather to break the fast. Traditionally the families break "
+"the fast with a drink of water, then three dried date fruits, and a multi-"
+"course meal. After watching the new Ramadan TV series, men (and some women) "
+"go out to coffee shops where they drink coffee, and smoke with friends until "
+"late into the night.\n"
+"\n"
+"     Though many have stopped fasting in recent years, and are turned off by "
+"the hypocrisy, increased crime rates, and rudeness that is pervasive through "
+"the month, others have become more serious about religion during this time. "
+"Many attend the evening prayer services and do the other ritual prayers. "
+"Some even read the entire Quran (about a tenth the length of the Bible). "
+"This sincere seeking makes it a strategic time for us to pray for them."
+msgstr ""
+"Ramadan is een van de vijf vereisten (of pijlers) van de islam. Tijdens elk "
+"van de 30 dagen zijn moslims verplicht om te vasten van zonsopgang tot "
+"zonsondergang. Gedurende deze tijd moeten ze zich onthouden van eten, "
+"drinken, roken en seksuele relaties.\n"
+"\n"
+"     Vrouwen brengen meestal de middagen door met het bereiden van een grote "
+"maaltijd. Bij zonsondergang komen families vaak samen om het vasten te "
+"verbreken. Traditioneel verbreken de families het vasten met een slok water, "
+"daarna drie gedroogde dadels en een meergangenmaaltijd. Na het bekijken van "
+"de nieuwe Ramadan-tv-serie gaan mannen (en sommige vrouwen) naar coffeeshops "
+"waar ze koffie drinken en roken ze tot laat in de nacht met vrienden.\n"
+"\n"
+"     Hoewel velen de afgelopen jaren zijn gestopt met vasten en zich afkeren "
+"van de hypocrisie, de toegenomen misdaadcijfers en de onbeschoftheid die de "
+"hele maand door alomtegenwoordig is, zijn anderen in deze tijd serieuzer "
+"geworden over religie. Velen wonen de avondgebedsdiensten bij en doen de "
+"andere rituele gebeden. Sommigen lazen zelfs de hele Koran (ongeveer een "
+"tiende van de lengte van de Bijbel). Dit oprechte zoeken maakt het voor ons "
+"een strategisch moment om voor hen te bidden."
+
+#: porches/ramadan/site/home-body.php:148
+#, fuzzy
+msgid "Ramadan is Finished"
+msgstr "%s is voltooid"
+
+#: porches/ramadan/site/home-body.php:161
+#, fuzzy
+msgid "Ramadan Ends ..."
+msgstr "Ramadan eindigt..."
+
+#: porches/ramadan/site/home-body.php:168
+#, fuzzy
+msgid "Ramadan Begins ..."
+msgstr "Ramadan begint..."
+
+#: porches/ramadan/site/home-body.php:193
+#, fuzzy
+msgid "here"
+msgstr "hier"
+
+#: porches/ramadan/site/home-body.php:277
+#, fuzzy
+msgid "More Hours to be covered"
+msgstr "Meer te dekken uren"
+
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+#, fuzzy
+msgid "covered once"
+msgstr "eenmaal gedekt"
+
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+#, fuzzy
+msgid "covered %1$s times"
+msgstr "%1$s keer gedekt"
 
 #: shortcodes/24hour.php:99
 msgid "Percentage covered in prayer"
 msgstr "Percentage bedekt met gebed"
 
-#: shortcodes/24hour.php:120 shortcodes/ongoing.php:148
+#: shortcodes/24hour.php:113 shortcodes/ongoing.php:144
+msgid "Loading prayer campaign data..."
+msgstr "Gegevens gebedscampagne aan het laden..."
+
+#: shortcodes/24hour.php:120 shortcodes/ongoing.php:151
 msgid "Choose Prayer Times"
 msgstr "Kies gebedstijden"
 
-#: magic-links/subscription-management/subscription-management.php:454
-#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
-#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
-#: shortcodes/ongoing.php:158 shortcodes/ongoing.php:181
-#: shortcodes/ongoing.php:208 shortcodes/ongoing.php:253
-msgid "Back"
-msgstr "Terug"
+#: shortcodes/24hour.php:132 shortcodes/ongoing.php:163
+msgid "Select an option"
+msgstr "Kies een optie"
 
-#: magic-links/subscription-management/subscription-management.php:431
-#: shortcodes/24hour.php:210 shortcodes/ongoing.php:239
-msgid "No selected Time"
-msgstr "Geen geselecteerde tijd"
+#: shortcodes/24hour.php:135 shortcodes/ongoing.php:166
+msgid "Pray every day at the same time"
+msgstr "Bid elke dag op hetzelfde tijdstip"
 
-#: parts/components.php:53 shortcodes/24hour.php:291
-msgid "Your email is required."
-msgstr "Uw e-mail is vereist."
+#: shortcodes/24hour.php:137 shortcodes/ongoing.php:168
+msgid "Example: Everyday at 4pm for 15mins"
+msgstr "Voorbeeld: elke dag om 16.00 uur gedurende 15 minuten"
 
-#: shortcodes/24hour.php:280
-msgid "I'm interested in praying! Send me an email when it is time to choose prayer times."
-msgstr "Ik ben geïnteresseerd in bidden! Stuur me een e-mail wanneer het tijd is om gebedstijden te kiezen."
+#: shortcodes/24hour.php:140 shortcodes/ongoing.php:171
+msgid "Select days and times to pray"
+msgstr "Selecteer dagen en tijden om te bidden"
 
-#: shortcodes/24hour.php:318 shortcodes/ongoing.php:308
+#: shortcodes/24hour.php:142 shortcodes/ongoing.php:173
+msgid "Example: Monday 12th at 6pm for 15mins"
+msgstr "Voorbeeld: maandag de 12e om 18:00 uur gedurende 15 minuten"
+
+#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
+#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+msgid "Showing times for:"
+msgstr "Toon tijden voor:"
+
+#: shortcodes/24hour.php:231 shortcodes/ongoing.php:270
+msgid "Sent! Check your email."
+msgstr "Verstuurd! Controleer uw e-mail."
+
+#: shortcodes/24hour.php:233 shortcodes/ongoing.php:272
+msgid ""
+"Click on the link included in the email to verify your commitment and "
+"receive prayer time notifications!"
+msgstr ""
+"Klik op de link in de e-mail om uw toewijding te verifiëren en "
+"gebedsmeldingen te ontvangen!"
+
+#: shortcodes/24hour.php:236 shortcodes/ongoing.php:275
+msgid "In the email is a link to manage your prayer times."
+msgstr "In de e-mail staat een link om uw gebedstijden te beheren."
+
+#: shortcodes/24hour.php:239 shortcodes/ongoing.php:278
+msgid "OK"
+msgstr "Oke"
+
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:311
 msgid "We are not longer looking for sign ups"
 msgstr "We zijn niet meer op zoek naar aanmeldingen"
 
-#: shortcodes/24hour.php:319 shortcodes/ongoing.php:309
+#: shortcodes/24hour.php:280 shortcodes/ongoing.php:312
 msgid "Thanks for praying with us!"
 msgstr "Dank u wel dat u met ons mee bidt!"
 
-#: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:271
-msgid "My Prayer Times"
-msgstr "Mijn gebedstijden"
+#: shortcodes/ongoing.php:70
+#, fuzzy
+msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
+msgid "Everyday at %1$s for %2$s until %3$s"
+msgstr "Elke dag om %1$s voor %2$s tot %3$s"
 
-#: magic-links/subscription-management/subscription-management.php:276
-msgid "Your prayer times have been verified!"
-msgstr "Uw gebedstijden zijn geverifieerd!"
+#: shortcodes/ongoing.php:72
+#, fuzzy
+msgctxt "Jun, Jul, Aug covered"
+msgid "covered"
+msgstr "bedekt"
 
-#: magic-links/subscription-management/subscription-management.php:317
-msgid "Add a Daily Prayer Time"
-msgstr "Voeg een dagelijkse gebedstijd toe"
-
-#: magic-links/subscription-management/subscription-management.php:320
-msgid "Add Individual Prayer Times"
-msgstr "Individuele gebedstijden toevoegen"
-
-#: magic-links/subscription-management/subscription-management.php:322
-msgid "Download Calendar"
-msgstr "Kalender downloaden"
-
-#: magic-links/subscription-management/subscription-management.php:345
-#: magic-links/subscription-management/subscription-management.php:439
-msgid "Your new prayer times have been saved."
-msgstr "Je nieuwe gebedstijden zijn opgeslagen."
-
-#: magic-links/subscription-management/subscription-management.php:365
-#: magic-links/subscription-management/subscription-management.php:462
-msgid "ok"
-msgstr "Oke"
-
-#: magic-links/subscription-management/subscription-management.php:396
-msgid "Close"
-msgstr "Sluiten"
-
-#: magic-links/subscription-management/subscription-management.php:546
-msgid "Profile Settings"
-msgstr "Profielinstellingen"
-
-#: magic-links/subscription-management/subscription-management.php:561
-msgid "Delete this profile and all the scheduled prayer times?"
-msgstr "Dit profiel en alle geplande gebedstijden verwijderen?"
-
-#: magic-links/subscription-management/subscription-management.php:563
-#: magic-links/subscription-management/subscription-management.php:577
-msgid "Delete"
-msgstr "Verwijderen"
-
-#: magic-links/subscription-management/subscription-management.php:566
-msgid "Are you sure you want to delete your profile?"
-msgstr "Weet je zeker dat je je profiel wilt verwijderen?"
-
-#: magic-links/subscription-management/subscription-management.php:568
-msgid "This can not be undone."
-msgstr "Dit kan niet ongedaan gemaakt worden."
-
-#: magic-links/subscription-management/subscription-management.php:593
-msgid "This subscription has ended or is not configured correctly."
-msgstr "Dit abonnement is beëindigd of niet correct geconfigureerd."
-
-#. Plugin Name of the plugin/theme
-#: 
-msgid "Disciple.Tools - Prayer Campaigns"
-msgstr "Disciple.Tools - Gebedscampagnes"
-
-#: campaign-functions/cron-schedule.php:82
-msgid "Prayer Time reminder!"
-msgstr "Gebedstijd herinnering!"
+#: shortcodes/ongoing.php:187
+#, fuzzy
+msgid ""
+"Chose a time to pray everyday for the next 3 months. Near the end you'll "
+"have the option to sign up for more."
+msgstr ""
+"Kies een tijd om de komende 3 maanden elke dag te bidden. Tegen het einde "
+"heb je de mogelijkheid om je aan te melden voor meer."
 
 #: shortcodes/prayer-timer.php:177
 msgid "Start Praying!"
@@ -398,335 +866,101 @@ msgstr "Gebedstijd: %s min"
 msgid "Now praying..."
 msgstr "Nu aan het bidden..."
 
-#: campaign-functions/time-utilities.php:157
-msgid "5 minutes"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:158
-msgid "10 minutes"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:159
-msgid "15 minutes"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:160
-msgid "30 minutes"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:161
-msgid "1 hour"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:301
-msgid "You are 2 weeks out for your last prayer time. Would you like to keep praying?"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:302
-msgid "Sign up for more prayer times or extend your recurring time here:"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:304
-msgid "Thank you"
-msgstr ""
-
-#: campaign-functions/setup-functions.php:11
-msgid "Once every 15 minutes"
-msgstr ""
-
-#: magic-links/campaign-resend-email/magic-link-post-type.php:159
-msgid "Retrieve Prayer Time Management Link"
-msgstr ""
-
-#: magic-links/campaign-resend-email/magic-link-post-type.php:168
-msgid "Enter you email address and receive a link to your prayer times."
-msgstr ""
-
-#: magic-links/campaign-resend-email/magic-link-post-type.php:175
-msgid "Email My Access Link"
-msgstr ""
-
-#: magic-links/campaign-resend-email/magic-link-post-type.php:178
-msgid "Please check you email address now for your access link."
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:112
-msgid "Extend for 3 months"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:113
-msgid "Change daily time"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:286
-#: shortcodes/24hour.php:252 shortcodes/ongoing.php:281
-msgid "Change your timezone:"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:324
-msgid "My commitments"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:487
-msgid "Choose a different time:"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:504
-msgid "Delete all"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:520
-msgid "Extend"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:522
-msgid "Extend my prayer commitments until:"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:547
-msgid "Receive prayer time notifications"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:549
-msgid "Notifications allowed"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:550
-msgid "Notifications not allowed"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:554
-msgid "Advanced Settings"
-msgstr ""
-
-#: parts/components.php:76
-msgid "Receive Pray4Movement Newsletter (email verification needed)."
-msgstr ""
-
-#: porches/generic/dt-generic-porch-settings.php:61
-msgid "Our Vision"
-msgstr ""
-
-#: porches/generic/dt-generic-porch-settings.php:79
-msgid "Extraordinary Prayer"
-msgstr "Buitengewoon gebed"
-
-#: porches/generic/dt-generic-porch-settings.php:88
-msgid "Every disciple making movement in history has happened in the context of extraordinary prayer."
-msgstr "Elke discipelshapsbeweging in de geschiedenis is ontstaan in de context van buitengewoon gebed."
-
-#: porches/generic/dt-generic-porch-settings.php:97
-msgid "Movement Focused"
-msgstr "Gericht op bewegingen"
-
-#: porches/generic/dt-generic-porch-settings.php:106
-msgid "Join us in asking, seeking, and knocking for streams of disciples and churches to be made."
-msgstr "Vraag, zoek en klop met ons mee om stromen van discipelen en kerken te laten ontstaan."
-
-#: porches/generic/dt-generic-porch-settings.php:115
-msgid "24/7 Every Day"
-msgstr ""
-
-#: porches/generic/dt-generic-porch-settings.php:124
-msgid "Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too."
-msgstr "Kies een tijdvak van 15 minuten (of meer!) waarin je elke dag kunt bidden. Nodig iemand anders uit om zich ook aan te melden."
-
-#: porches/generic/dt-generic-porch-settings.php:141
-#: porches/generic/dt-generic-porch-settings.php:150
-msgid "Prayer Fuel"
-msgstr "Gebedsbrandstof"
-
-#: porches/generic/dt-generic-porch-settings.php:168
-msgid "Today's Prayer Fuel"
-msgstr "Gebedsbrandstof van vandaag"
-
-#: porches/generic/dt-generic-porch-settings.php:177
-msgid "All Days"
-msgstr "Alle dagen"
-
-#: porches/generic/site/home-body.php:92
-#: porches/generic/site/home-body.php:196
-#: porches/generic/site/top-section.php:91
-#: porches/ongoing/site/home-body.php:87
-#: porches/ongoing/site/home-body.php:192
-msgid "Sign Up to Pray"
-msgstr "Meld je aan om te bidden"
-
-#: porches/generic/site/home-body.php:158
-#: porches/ongoing/site/home-body.php:154
-msgctxt "Campaign Name is Finished"
-msgid "%s is Finished"
-msgstr ""
-
-#: porches/generic/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:167
-msgctxt "Campaign Name End in [4 days]"
-msgid "%s Ends In"
-msgstr ""
-
-#: porches/generic/site/home-body.php:172
-#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:203
-#: porches/ongoing/site/home-body.php:168
-#: porches/ongoing/site/home-body.php:175
-msgid "days"
-msgstr "dagen"
-
-#: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
-#: porches/ongoing/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:176
-msgid "hours"
-msgstr "uren"
-
-#: porches/generic/site/home-body.php:174
-#: porches/generic/site/home-body.php:181
-#: porches/ongoing/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:177
-msgid "minutes"
-msgstr "minuten"
-
-#: porches/generic/site/home-body.php:175
-#: porches/generic/site/home-body.php:182
-#: porches/ongoing/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:178
-msgid "seconds"
-msgstr "seconden"
-
-#: porches/generic/site/home-body.php:178
-#: porches/ongoing/site/home-body.php:174
-msgctxt "Campaign Name End in [4 days]"
-msgid "%s Begins In"
-msgstr ""
-
-#: porches/generic/site/home-body.php:223
-msgid "Days"
-msgstr "dagen"
-
-#: porches/generic/site/home-body.php:227
-#: porches/ongoing/site/home-body.php:215
-msgid "Next"
-msgstr ""
-
-#: porches/generic/site/home-body.php:228
-#: porches/ongoing/site/home-body.php:216
-msgid "Month"
-msgstr ""
-
-#: porches/generic/site/home-body.php:250
-msgid "Hours of Prayer"
-msgstr "User van Gebed"
-
-#: porches/generic/site/home-body.php:255
-#: porches/ongoing/site/home-body.php:233
-msgid "Hours"
-msgstr ""
-
-#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
-msgid "Prayer Commitments Needed"
-msgstr "Gebedstoezeggingen nodig"
-
-#: porches/generic/site/home-body.php:299
-#: porches/ongoing/site/home-body.php:267
-msgid "View All"
-msgstr "Bekijk alle"
-
-#: porches/generic/site/post-list-body.php:118
-msgid "Read"
-msgstr "Lees"
-
-#: porches/generic/site/stats.php:133
-msgctxt "Thank you for joining us in prayer for the French in France."
-msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr ""
-
-#: porches/generic/site/stats.php:157
-msgid "Campaign Stats"
-msgstr ""
-
-#: porches/generic/site/stats.php:184
-msgid "Percentage Covered"
-msgstr ""
-
-#: porches/generic/site/stats.php:192
-msgid "Prayer Commitments"
-msgstr ""
-
-#: porches/generic/site/stats.php:200
-msgid "Time Committed"
-msgstr ""
-
-#: porches/generic/site/stats.php:209
-msgid "Number of People who Prayed"
-msgstr ""
-
-#: porches/generic/site/stats.php:242
-msgid "Share with us your Prayer Stories"
-msgstr ""
-
-#: porches/generic/site/stats.php:256
-msgid "Share with us about your prayer time (E.g. testimonies, insights, blessings, etc)"
-msgstr ""
-
-#: porches/generic/site/stats.php:261
-msgid "Submit"
-msgstr ""
-
-#: porches/generic/site/stats.php:267
-msgid "Thank You"
-msgstr ""
-
-#: porches/generic/site/stats.php:302
-msgid "More Prayer Opportunities"
-msgstr ""
-
-#: porches/generic/site/stats.php:306
-msgid "Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?"
-msgstr ""
-
-#: porches/generic/site/top-section.php:19
-msgid "Home"
-msgstr "Home"
-
-#: porches/generic/site/top-section.php:22
-msgid "Sign Up"
-msgstr "Aanmelden"
-
-#: shortcodes/ongoing.php:70
-msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
-msgid "Everyday at %1$s for %2$s until %3$s"
-msgstr ""
-
-#: shortcodes/ongoing.php:184
-msgid "Chose a time to pray everyday for the next 3 months. Near the end you'll have the option to sign up for more."
-msgstr ""
-
-#: porches/generic/site/home-body.php:278
-#: porches/ongoing/site/home-body.php:248
-msgid "Hours Remaining"
-msgstr ""
-
-#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
-msgid "covered once"
-msgstr ""
-
-#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
-msgid "covered %1$s times"
-msgstr ""
-
-#: shortcodes/ongoing.php:72
-msgctxt "Jun, Jul, Aug covered"
-msgid "covered"
-msgstr ""
-
-#: porches/generic/dt-generic-porch-settings.php:53
-msgid "Strategic prayer for a Disciple Making Movement"
-msgstr ""
-
-#: porches/generic/dt-generic-porch-settings.php:70
-msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr ""
-
-#: porches/generic/dt-generic-porch-settings.php:159
-msgid "Use these resources to help pray specifically each day."
-msgstr ""
-
+#, fuzzy
+#~ msgid "Content to be added to the signup email"
+#~ msgstr "Inhoud die moet worden toegevoegd aan de aanmeldingsmail"
+
+#, fuzzy
+#~ msgid "Content to be added to the reminder email"
+#~ msgstr "Inhoud die aan de herinneringsmail moet worden toegevoegd"
+
+#, fuzzy
+#~ msgid "Update"
+#~ msgstr "update"
+
+#, fuzzy
+#~ msgid "Yes"
+#~ msgstr "ja"
+
+#, fuzzy
+#~ msgid "No"
+#~ msgstr "nee"
+
+#~ msgid "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
+#~ msgstr "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns"
+
+#~ msgid ""
+#~ "Add a prayer subscriptions module to Disciple.Tools that allows for non-"
+#~ "users to subscribe to pray for specific locations at specific times, "
+#~ "supporting both time and geographic prayer saturation for your project."
+#~ msgstr ""
+#~ "Voeg een gebedsabonnementenmodule toe aan Disciple.Tools waarmee niet-"
+#~ "gebruikers zich kunnen abonneren om te bidden voor specifieke locaties op "
+#~ "specifieke tijden, waarbij zowel tijd als geografische gebedsverzadiging "
+#~ "voor uw project wordt ondersteund."
+
+#~ msgid "https://github.com/DiscipleTools"
+#~ msgstr "https://github.com/DiscipleTools"
+
+#~ msgid "What time(s) will you pray?"
+#~ msgstr "Op welke tijd(en) gaat u bidden?"
+
+#~ msgid ""
+#~ "Thank you for signing up to help us cover the region in nonstop prayer!!"
+#~ msgstr ""
+#~ "Bedankt dat je je hebt aangemeld om ons te helpen de regio te dekken in "
+#~ "non-stop gebed!!"
+
+#~ msgid ""
+#~ "It is now time to choose the specific times you will pray. Below is a "
+#~ "link to the prayer times tool."
+#~ msgstr ""
+#~ "Het is nu tijd om de specifieke tijden te kiezen waarop je gaat bidden. "
+#~ "Hieronder vindt u een link naar het hulpmiddel voor gebedstijden."
+
+#~ msgid ""
+#~ "To pray at the same time every day (preferred!) click the \"Add a Daily "
+#~ "Prayer Time\" button."
+#~ msgstr ""
+#~ "Om elke dag op hetzelfde tijdstip te bidden (bij voorkeur!) klikt u op de "
+#~ "knop \"Een dagelijkse gebedstijd toevoegen\"."
+
+#~ msgid ""
+#~ "If you need to choose different times or can't commit to pray every day "
+#~ "click the \"Add individual Prayer Times\" button."
+#~ msgstr ""
+#~ "Als je andere tijden moet kiezen of je je niet kunt verplichten om elke "
+#~ "dag te bidden, klik dan op de knop \"Individuele gebedstijden toevoegen\"."
+
+#~ msgid "Choose prayer times link:"
+#~ msgstr "Kies gebedstijden link:"
+
+#~ msgid ""
+#~ "I'm interested in praying! Send me an email when it is time to choose "
+#~ "prayer times."
+#~ msgstr ""
+#~ "Ik ben geïnteresseerd in bidden! Stuur me een e-mail wanneer het tijd is "
+#~ "om gebedstijden te kiezen."
+
+#~ msgid "Disciple.Tools - Prayer Campaigns"
+#~ msgstr "Disciple.Tools - Gebedscampagnes"
+
+#, fuzzy
+#~ msgid "Once every 15 minutes"
+#~ msgstr "Eens per 15 minuten"
+
+#, fuzzy
+#~ msgid "Retrieve Prayer Time Management Link"
+#~ msgstr "Link voor gebedstijdbeheer ophalen"
+
+#, fuzzy
+#~ msgid "Enter you email address and receive a link to your prayer times."
+#~ msgstr "Voer je e-mailadres in en ontvang een link naar je gebedstijden."
+
+#, fuzzy
+#~ msgid "Email My Access Link"
+#~ msgstr "E-mail mijn toegangslink"
+
+#, fuzzy
+#~ msgid "Please check you email address now for your access link."
+#~ msgstr "Controleer nu uw e-mailadres voor uw toegangslink."
