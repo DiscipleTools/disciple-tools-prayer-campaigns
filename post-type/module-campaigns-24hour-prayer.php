@@ -38,19 +38,19 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 'visibility' => __( 'Collaborators', 'disciple-tools-prayer-campaigns' ),
                 'color' => '#4CAF50',
             ];
+            $key_name = 'public_key';
+            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $this->magic_link_type );
+            }
+            $fields[$key_name] = [
+                'name'   => 'Private Key',
+                'description' => 'Private key for subscriber access',
+                'type'   => 'hash',
+                'default' => dt_create_unique_key(),
+                'hidden' => true,
+                'customizable' => false,
+            ];
         }
-        $key_name = 'public_key';
-        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $this->magic_link_type );
-        }
-        $fields[$key_name] = [
-            'name'   => 'Private Key',
-            'description' => 'Private key for subscriber access',
-            'type'   => 'hash',
-            'default' => dt_create_unique_key(),
-            'hidden' => true,
-            'customizable' => false,
-        ];
         return $fields;
     }
 
