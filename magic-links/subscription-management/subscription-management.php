@@ -26,7 +26,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( is_wp_error( $post ) || empty( $post['campaigns'] ) ){
             return;
         }
-        if ( $post['lang'] && $post['lang'] !== 'en_US' ){
+        if ( isset( $post['lang'] ) && $post['lang'] !== 'en_US' ){
             $lang_code = $post['lang'];
             add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
                 if ( !empty( $lang_code ) ){
@@ -118,7 +118,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
                 'slot_length' => 15,
-                'timezone' => $post['timezone'],
+                'timezone' => $post['timezone'] ?? 'America/Chicago',
                 'duration_options' => $field_settings['duration_options']['default']
             ]
         );
