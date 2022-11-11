@@ -9,23 +9,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-10T12:11:16+00:00\n"
+"POT-Creation-Date: 2022-11-07T11:33:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
-
-#: admin/dt-porch-admin-tab-email-settings.php:138
-msgid "Content to be added to the signup email"
-msgstr ""
-
-#: admin/dt-porch-admin-tab-email-settings.php:143
-msgid "Content to be added to the reminder email"
-msgstr ""
-
-#: admin/dt-prayer-campaigns.php:247
-#: admin/dt-prayer-campaigns.php:359
-msgid "Update"
-msgstr ""
 
 #: campaign-functions/cron-schedule.php:83
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
@@ -135,16 +122,6 @@ msgstr ""
 
 #: campaign-functions/time-utilities.php:161
 msgid "1 hour"
-msgstr ""
-
-#: classes/dt-porch-admin-tab-base.php:170
-#: classes/dt-porch-admin-tab-base.php:173
-msgid "Yes"
-msgstr ""
-
-#: classes/dt-porch-admin-tab-base.php:171
-#: classes/dt-porch-admin-tab-base.php:174
-msgid "No"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:38
@@ -416,61 +393,61 @@ msgstr ""
 msgid "Submit Your Prayer Commitment"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:53
+#: porches/generic/dt-generic-porch-settings.php:59
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:62
+#: porches/generic/dt-generic-porch-settings.php:68
 msgid "Our Vision"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:71
+#: porches/generic/dt-generic-porch-settings.php:77
 msgid "We want to cover this region with continuous 24/7 prayer."
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:80
+#: porches/generic/dt-generic-porch-settings.php:86
 msgid "Extraordinary Prayer"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:89
+#: porches/generic/dt-generic-porch-settings.php:95
 msgid "Every disciple making movement in history has happened in the context of extraordinary prayer."
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:98
+#: porches/generic/dt-generic-porch-settings.php:104
 msgid "Movement Focused"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:107
+#: porches/generic/dt-generic-porch-settings.php:113
 msgid "Join us in asking, seeking, and knocking for streams of disciples and churches to be made."
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:116
+#: porches/generic/dt-generic-porch-settings.php:122
 msgid "24/7 Every Day"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:125
+#: porches/generic/dt-generic-porch-settings.php:131
 msgid "Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too."
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:143
-#: porches/generic/dt-generic-porch-settings.php:152
+#: porches/generic/dt-generic-porch-settings.php:149
+#: porches/generic/dt-generic-porch-settings.php:158
 msgid "Prayer Fuel"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:161
+#: porches/generic/dt-generic-porch-settings.php:167
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:170
+#: porches/generic/dt-generic-porch-settings.php:176
 msgid "Today's Prayer Fuel"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:179
+#: porches/generic/dt-generic-porch-settings.php:185
 msgid "All Days"
 msgstr ""
 
 #: porches/generic/site/404-body.php:14
-msgid "Epic 404"
+msgid "Epic 404 - Not Found"
 msgstr ""
 
 #: porches/generic/site/404-body.php:15

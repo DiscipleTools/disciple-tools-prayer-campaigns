@@ -46,14 +46,6 @@ add_action( 'tgmpa_register', function() {
             'version' => '0.7',
         ]
     ];
-    if ( is_multisite() ){
-        $plugins[] = [
-            'name' => 'Disciple.Tools Multisite Helper',
-            'slug' => 'disciple-tools-multisite',
-            'source' => 'https://github.com/DiscipleTools/disciple-tools-multisite/releases/latest/download/disciple-tools-multisite.zip',
-            'required' => false
-        ];
-    }
 
     /*
      * Array of configuration settings. Amend each line as needed.
