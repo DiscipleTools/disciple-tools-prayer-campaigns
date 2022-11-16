@@ -89,6 +89,7 @@ class DT_Campaign_Porch_Roles
             $allowed_wp_v2_paths[] = '/wp/v2/blocks/(?P<parent>[\d]+)/autosaves/(?P<id>[\d]+)';
             $allowed_wp_v2_paths[] = '/wp/v2/block-directory/search';
 
+            $allowed_wp_v2_paths[] = '/wp/v2/media';
             $allowed_wp_v2_paths[] = '/wp/v2/media/(?P<id>[\d]+)';
             $allowed_wp_v2_paths[] = '/wp/v2/media/(?P<id>[\d]+)/post-process';
             $allowed_wp_v2_paths[] = '/wp/v2/media/(?P<id>[\d]+)/edit';
