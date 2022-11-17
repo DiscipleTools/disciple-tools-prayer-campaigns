@@ -146,6 +146,20 @@ class DT_Prayer_Campaigns_Campaigns {
             }
         }
     }
+
+    public function process_p4m_participation_settings(){
+        if ( isset( $_POST['p4m_participation_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['p4m_participation_nonce'] ) ), 'p4m_participation' ) ){
+
+            if ( isset( $_POST['p4m_participation_submit'] ) ){
+                $participation = isset( $_POST['p4m_participation'] );
+                $this->settings_manager->update( 'p4m_participation', $participation );
+            }
+            if ( isset( $_POST['p4m_participation_send_now'] ) ){
+                DT_Campaigns_Base::send_campaign_info();
+            }
+        }
+    }
+
     public static function sanitized_post_field( $post, $key ) {
         if ( !isset( $post[$key] ) ) {
             return '';
@@ -187,6 +201,8 @@ class DT_Prayer_Campaigns_Campaigns {
                         }
 
                         $this->box_email_settings();
+
+                        $this->box_p4m_participation();
 
                         ?>
                      </div>
@@ -251,6 +267,58 @@ class DT_Prayer_Campaigns_Campaigns {
                             <span style="float:right;">
                                 <button type="submit" class="button float-right"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
                             </span>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <?php
+    }
+
+    public function box_p4m_participation() {
+
+        $participation = $this->settings_manager->get( 'p4m_participation', true )
+
+        ?>
+
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th>P4M Participation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="p4m_participation_nonce" id="p4m_participation_nonce"
+                                    value="<?php echo esc_attr( wp_create_nonce( 'p4m_participation' ) ) ?>"/>
+
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="p4m_participation">
+                                                Join with us in promoting pray for the world.</label>
+                                        </td>
+                                        <td>
+                                            <input name="p4m_participation" id="p4m_participation" type="checkbox"
+                                                   <?php checked( $participation ) ?>/>
+                                            <button type="submit" name="p4m_participation_submit" class="button"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Send Stats Now
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="button" name="p4m_participation_send_now">Send</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </form>
                     </td>
                 </tr>
