@@ -44,7 +44,7 @@ class DT_Campaigns_Base {
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
 
         //list
-        add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 10, 2 );
+        add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
         add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
         add_filter( 'dt_comments_additional_sections', [ $this, 'dt_comments_additional_sections' ], 50, 2 );
 
@@ -1059,22 +1059,19 @@ class DT_Campaigns_Base {
                     dt_increment( $active_counts[$count['status']], $count['count'] );
                 }
             }
-            $filters['tabs'][] = [
-                'key' => 'all',
-                'label' => 'All',
-                'count' => $total_all,
-                'order' => 10
-            ];
-            // add assigned to me filters
-            $filters['filters'][] = [
-                'ID' => 'all',
-                'tab' => 'all',
-                'name' => 'All',
-                'query' => [
-                    'sort' => '-post_date'
-                ],
-                'count' => $total_all
-            ];
+
+            //add count to default all tab
+            foreach ( $filters['tabs'] as &$filter_tab ){
+                if ( $filter_tab['key'] === 'all' ){
+                    $filter_tab['count'] = $total_all;
+                }
+            }
+            //add count to default all filter
+            foreach ( $filters['filters'] as &$filter_item ){
+                if ( $filter_item['ID'] === 'all' ){
+                    $filter_item['count'] = $total_all;
+                }
+            }
 
             foreach ( $fields['status']['default'] as $status_key => $status_value ) {
                 if ( isset( $status_counts[$status_key] ) ){
