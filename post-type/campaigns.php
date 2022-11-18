@@ -1157,7 +1157,8 @@ class DT_Campaigns_Base {
         if ( !$is_reporting_enabled ){
             return false;
         }
-        $current_porch = DT_Campaign_Settings::get_campaign();
+        $current_campaign = DT_Campaign_Settings::get_campaign();
+        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
 
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
@@ -1170,21 +1171,33 @@ class DT_Campaigns_Base {
                 $min_time_duration = $record['min_time_duration']['key'];
             }
             $stats = self::campaign_stats( $campaign['ID'], $min_time_duration );
-            $is_porch = isset( $current_porch['ID'] ) && (int) $campaign['ID'] === (int) $current_porch['ID'];
+            $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
+
+            $focus = [];
+            if ( $is_current_campaign && $current_selected_porch === 'ramadan-porch' ){
+                $focus[] = [ 'value' => 'ramadan' ];
+            }
+
+            $location_grid = [];
+            foreach ( $campaign['location_grid'] ?? [] as $grid ){
+                $location_grid[] = [ 'grid_id' => $grid['id'] ];
+            }
+
             $campaigns_to_send[] = [
                 'name' => $campaign['name'],
-                'status' => $campaign['status']['key'],
+//                'status' => $campaign['status']['key'],
                 'start_date' => $campaign['start_date']['timestamp'],
                 'end_date' => $campaign['end_date']['timestamp'],
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
-                'campaign_link' => $is_porch ? home_url() : '',
+                'campaign_link' => $is_current_campaign ? home_url() : '',
                 'campaign_progress' => $stats['campaign_progress'],
                 'campaign_type' => $campaign['type']['key'],
-                'focus' => [ 'values' => [ [ 'value' => 'ramadan' ] ] ],
+                'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
                 'minutes_committed' => $stats['minutes_committed'],
                 'subscriber_count' => sizeof( $campaign['subscriptions'] ?? [] ),
                 'slot_length' => (int) $min_time_duration,
                 'number_of_time_slots' => $stats['number_of_time_slots'],
+                'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
             ];
         }
 
