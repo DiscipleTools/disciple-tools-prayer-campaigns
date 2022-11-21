@@ -1160,6 +1160,7 @@ class DT_Campaigns_Base {
         $current_campaign = DT_Campaign_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
+        $porch_name = isset( DT_Porch_Settings::settings()['title']['value'] ) ? DT_Porch_Settings::settings()['title']['value'] : '';
 
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
         $campaigns_to_send = [];
@@ -1183,13 +1184,22 @@ class DT_Campaigns_Base {
                 $location_grid[] = [ 'grid_id' => $grid['id'] ];
             }
 
+
+            $name = home_url() . ' - ' . dt_format_date( $campaign['start_date']['timestamp'], 'Y-m' );
+
             $campaigns_to_send[] = [
-                'name' => $campaign['name'],
+                'name' => $is_current_campaign ? $porch_name : $name,
+                'campaign_name' => $campaign['name'],
 //                'status' => $campaign['status']['key'],
                 'start_date' => $campaign['start_date']['timestamp'],
                 'end_date' => $campaign['end_date']['timestamp'],
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
                 'campaign_link' => $is_current_campaign ? home_url() : '',
+                'campaign_links' => [
+                    'values' => [
+                        [ 'value' => home_url(), 'type' => 'default' ],
+                    ]
+                ],
                 'campaign_progress' => $stats['campaign_progress'],
                 'campaign_type' => $campaign['type']['key'],
                 'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
