@@ -1184,6 +1184,7 @@ class DT_Campaigns_Base {
                 $location_grid[] = [ 'grid_id' => $grid['id'] ];
             }
 
+            $linked_crm_contact = get_option( 'p4m_linked_crm_contact' );
 
             $name = home_url() . ' - ' . dt_format_date( $campaign['start_date']['timestamp'], 'Y-m' );
 
@@ -1208,6 +1209,7 @@ class DT_Campaigns_Base {
                 'slot_length' => (int) $min_time_duration,
                 'number_of_time_slots' => $stats['number_of_time_slots'],
                 'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
+                'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
             ];
         }
 
