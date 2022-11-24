@@ -1166,6 +1166,26 @@ class DT_Campaigns_Base {
         $campaigns_to_send = [];
         $site_url = get_site_url( null, '', 'https' );
         $site_hash = hash( 'sha256', $site_url );
+
+        global $wpdb;
+        $language_counts = $wpdb->get_results( "
+            SELECT pm.meta_value, count(pm.meta_value) as count
+            FROM $wpdb->posts p
+            LEFT JOIN $wpdb->postmeta pm ON (pm.post_ID = p.ID and pm.meta_key = 'post_language' )
+            WHERE p.post_type = 'landing'
+            AND ( p.post_status = 'publish' OR p.post_status = 'future' )
+            GROUP BY pm.meta_value
+        ", ARRAY_A );
+        $languages = [];
+        foreach ( $language_counts as $lang ){
+            if ( $lang['meta_value'] === null ){
+                $lang['meta_value'] = 'en_US';
+            }
+            if ( !in_array( $lang['meta_value'], $languages, true ) ){
+                $languages[] = [ 'value' => $lang['meta_value'] ];
+            }
+        }
+
         foreach ( $campaigns['posts'] as $campaign ){
             $min_time_duration = 15;
             if ( isset( $record['min_time_duration']['key'] ) ){
@@ -1210,6 +1230,7 @@ class DT_Campaigns_Base {
                 'number_of_time_slots' => $stats['number_of_time_slots'],
                 'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
                 'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
+                'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $languages ] : [],
             ];
         }
 
