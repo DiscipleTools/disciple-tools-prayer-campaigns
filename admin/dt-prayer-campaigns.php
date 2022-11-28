@@ -279,7 +279,9 @@ class DT_Prayer_Campaigns_Campaigns {
 
     public function box_p4m_participation() {
 
-        $participation = $this->settings_manager->get( 'p4m_participation', true )
+        $participation = $this->settings_manager->get( 'p4m_participation', true );
+        $participation_force = apply_filters( 'p4m_participation', false ) && !is_super_admin();
+
 
         ?>
 
@@ -292,33 +294,37 @@ class DT_Prayer_Campaigns_Campaigns {
             <tbody>
                 <tr>
                     <td>
-                        <form method="POST">
+                        <form method="POST" style='max-width: 1000px'>
                             <input type="hidden" name="p4m_participation_nonce" id="p4m_participation_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'p4m_participation' ) ) ?>"/>
 
-                            <table>
+                            <table class="widefat">
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <label for="p4m_participation">
-                                                Join with us in promoting pray for the world.</label>
-                                        </td>
-                                        <td>
+                                        <td style="width: min-content">
                                             <input name="p4m_participation" id="p4m_participation" type="checkbox"
-                                                   <?php checked( $participation ) ?>/>
-                                            <button type="submit" name="p4m_participation_submit" class="button"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
+                                                   <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
+                                            <label for="p4m_participation">
+                                                List my campaign on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>.
+                                                <br>
+                                                This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
+                                            </label>
+                                        </td>
+                                        <td style="min-width: 100px; vertical-align: middle">
+                                            <button type='submit' name='p4m_participation_submit' class='button'>
+                                                <?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Send Stats Now
+                                            <button type="submit" name="p4m_participation_send_now">Send</button> Stats Now
                                         </td>
-                                        <td>
-                                            <button type="submit" class="button" name="p4m_participation_send_now">Send</button>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
+
                         </form>
                     </td>
                 </tr>
