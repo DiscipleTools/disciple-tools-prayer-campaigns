@@ -50,7 +50,7 @@ class DT_Subscriptions_Base {
         add_action( 'dt_post_created', [ $this, 'dt_post_created' ], 10, 3 );
 
         //list
-        add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 10, 2 );
+        add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
         add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
 
         add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
@@ -683,9 +683,10 @@ class DT_Subscriptions_Base {
 
             $fields = DT_Posts::get_post_field_settings( $post_type );
 
+            $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+
             $counts = self::get_all_status_types();
             $active_counts = [];
-            $update_needed = 0;
             $status_counts = [];
             $total_all = 0;
             foreach ( $counts as $count ){
@@ -695,22 +696,19 @@ class DT_Subscriptions_Base {
                     dt_increment( $active_counts[$count['status']], $count['count'] );
                 }
             }
-            $filters['tabs'][] = [
-                'key' => 'all',
-                'label' => _x( 'All', 'List Filters', 'disciple-tools-prayer-campaigns' ),
-                'count' => $total_all,
-                'order' => 10
-            ];
-            // add assigned to me filters
-            $filters['filters'][] = [
-                'ID' => 'all',
-                'tab' => 'all',
-                'name' => _x( 'All', 'List Filters', 'disciple-tools-prayer-campaigns' ),
-                'query' => [
-                    'sort' => '-post_date'
-                ],
-                'count' => $total_all
-            ];
+
+            //add count to default all tab
+            foreach ( $filters['tabs'] as &$filter_tab ){
+                if ( $filter_tab['key'] === 'all' ){
+                    $filter_tab['count'] = $total_all;
+                }
+            }
+            //add count to default all filter
+            foreach ( $filters['filters'] as &$filter_item ){
+                if ( $filter_item['ID'] === 'all' ){
+                    $filter_item['count'] = $total_all;
+                }
+            }
 
             foreach ( $fields['status']['default'] as $status_key => $status_value ) {
                 if ( isset( $status_counts[$status_key] ) ){
@@ -724,22 +722,30 @@ class DT_Subscriptions_Base {
                         ],
                         'count' => $status_counts[$status_key]
                     ];
-                    if ( $status_key === 'active' ){
-                        if ( $update_needed > 0 ){
-                            $filters['filters'][] = [
-                                'ID' => 'all_update_needed',
-                                'tab' => 'all',
-                                'name' => $fields['requires_update']['name'],
-                                'query' => [
-                                    'status' => [ 'active' ],
-                                    'requires_update' => [ true ],
-                                ],
-                                'count' => $update_needed,
-                                'subfilter' => true
-                            ];
-                        }
-                    }
                 }
+            }
+
+            $filters['filters'][] = [
+                'ID' => 'by_campaign',
+                'tab' => 'all',
+                'name' => __( 'By Campaign', 'disciple_tools' ),
+                'query' => [
+                    'sort' => 'campaigns'
+                ],
+                'count' => $total_all,
+
+            ];
+            foreach ( $campaigns['posts'] as $campaign ){
+                $filters['filters'][] = [
+                    'ID' => 'campaign_' . $campaign['ID'],
+                    'tab' => 'all',
+                    'name' => $campaign['name'],
+                    'query' => [
+                        'campaigns' => [ $campaign['ID'] ],
+                    ],
+                    'count' => '',
+                    'subfilter' => true
+                ];
             }
         }
         return $filters;
