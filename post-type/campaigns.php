@@ -1182,9 +1182,12 @@ class DT_Campaigns_Base {
                 $lang['meta_value'] = 'en_US';
             }
             if ( !in_array( $lang['meta_value'], $languages, true ) ){
-                $languages[] = [ 'value' => $lang['meta_value'] ];
+                $languages[] = $lang['meta_value'];
             }
         }
+        $pray_fuel = array_map( function ( $a ){
+            return [ 'value' => $a ];
+        }, $languages );
 
         foreach ( $campaigns['posts'] as $campaign ){
             $min_time_duration = 15;
@@ -1230,7 +1233,7 @@ class DT_Campaigns_Base {
                 'number_of_time_slots' => $stats['number_of_time_slots'],
                 'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
                 'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
-                'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $languages ] : [],
+                'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
             ];
         }
 
