@@ -50,6 +50,11 @@ class DT_Campaigns_Base {
 
         add_filter( 'dt_nav', [ $this, 'dt_nav' ], 10, 1 );
 
+        if ( !wp_next_scheduled( 'dt_prayer_campaigns_daily_cron' ) ) {
+            wp_schedule_event( time(), 'daily', 'dt_prayer_campaigns_daily_cron' );
+        }
+        add_action( 'dt_prayer_campaigns_daily_cron', [ $this, 'dt_prayer_campaigns_daily_cron' ] );
+
     }
 
     public function after_setup_theme(){
@@ -1117,5 +1122,124 @@ class DT_Campaigns_Base {
             }
         }
         return $permissions;
+    }
+
+
+    public static function campaign_stats( $post_id, $min_time_duration = 15 ){
+        $coverage_levels = self::query_coverage_levels_progress( $post_id );
+        $number_of_time_slots = self::query_coverage_total_time_slots( $post_id );
+
+        $coverage_percentage = $coverage_levels[0]['percent'];
+
+        $minutes_committed = 0;
+        foreach ( $coverage_levels as $level ){
+            $minutes_committed += $level['blocks_covered'] * $min_time_duration;
+        }
+        return [
+            'campaign_progress' => $coverage_percentage,
+            'minutes_committed' => $minutes_committed,
+            'number_of_time_slots' => $number_of_time_slots,
+        ];
+    }
+
+
+    public function dt_prayer_campaigns_daily_cron(){
+        self::send_campaign_info();
+        //@todo close done campaigns
+    }
+
+    /**
+     * Report to P4M the status of the campaigns
+     * @return array|false|WP_Error
+     */
+    public static function send_campaign_info(){
+        $is_reporting_enabled = DT_Campaign_Settings::get( 'p4m_participation', true );
+        if ( !$is_reporting_enabled ){
+            return false;
+        }
+        $current_campaign = DT_Campaign_Settings::get_campaign();
+        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+
+        $porch_name = isset( DT_Porch_Settings::settings()['title']['value'] ) ? DT_Porch_Settings::settings()['title']['value'] : '';
+
+        $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
+        $campaigns_to_send = [];
+        $site_url = get_site_url( null, '', 'https' );
+        $site_hash = hash( 'sha256', $site_url );
+
+        global $wpdb;
+        $language_counts = $wpdb->get_results( "
+            SELECT pm.meta_value, count(pm.meta_value) as count
+            FROM $wpdb->posts p
+            LEFT JOIN $wpdb->postmeta pm ON (pm.post_ID = p.ID and pm.meta_key = 'post_language' )
+            WHERE p.post_type = 'landing'
+            AND ( p.post_status = 'publish' OR p.post_status = 'future' )
+            GROUP BY pm.meta_value
+        ", ARRAY_A );
+        $languages = [];
+        foreach ( $language_counts as $lang ){
+            if ( $lang['meta_value'] === null ){
+                $lang['meta_value'] = 'en_US';
+            }
+            if ( !in_array( $lang['meta_value'], $languages, true ) ){
+                $languages[] = $lang['meta_value'];
+            }
+        }
+        $pray_fuel = array_map( function ( $a ){
+            return [ 'value' => $a ];
+        }, $languages );
+
+        foreach ( $campaigns['posts'] as $campaign ){
+            $min_time_duration = 15;
+            if ( isset( $record['min_time_duration']['key'] ) ){
+                $min_time_duration = $record['min_time_duration']['key'];
+            }
+            $stats = self::campaign_stats( $campaign['ID'], $min_time_duration );
+            $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
+
+            $focus = [];
+            if ( $is_current_campaign && $current_selected_porch === 'ramadan-porch' ){
+                $focus[] = [ 'value' => 'ramadan' ];
+            }
+
+            $location_grid = [];
+            foreach ( $campaign['location_grid'] ?? [] as $grid ){
+                $location_grid[] = [ 'grid_id' => $grid['id'] ];
+            }
+
+            $linked_crm_contact = get_option( 'p4m_linked_crm_contact' );
+
+            $name = home_url() . ' - ' . dt_format_date( $campaign['start_date']['timestamp'], 'Y-m' );
+
+            $campaigns_to_send[] = [
+                'name' => $is_current_campaign ? $porch_name : $name,
+                'campaign_name' => $campaign['name'],
+//                'status' => $campaign['status']['key'],
+                'start_date' => $campaign['start_date']['timestamp'],
+                'end_date' => $campaign['end_date']['timestamp'],
+                'unique_id' => $site_hash . '_' . $campaign['ID'],
+                'campaign_link' => $is_current_campaign ? home_url() : '',
+                'campaign_links' => [
+                    'values' => [
+                        [ 'value' => home_url(), 'type' => 'default' ],
+                    ]
+                ],
+                'campaign_progress' => $stats['campaign_progress'],
+                'campaign_type' => $campaign['type']['key'],
+                'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
+                'minutes_committed' => $stats['minutes_committed'],
+                'subscriber_count' => sizeof( $campaign['subscriptions'] ?? [] ),
+                'slot_length' => (int) $min_time_duration,
+                'number_of_time_slots' => $stats['number_of_time_slots'],
+                'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
+                'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
+                'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
+            ];
+        }
+
+        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
+
+        $send = wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );
+        return $send;
     }
 }

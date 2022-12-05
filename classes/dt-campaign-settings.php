@@ -6,26 +6,28 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  * Encapsulates getting and setting of campaign settings
  */
 class DT_Campaign_Settings {
-    private $settings_key = 'dt_prayer_campaign_settings';
+    private static $settings_key = 'dt_prayer_campaign_settings';
 
-    private function get_all() {
-        return get_option( $this->settings_key, [] );
+    private static function get_all() {
+        return get_option( self::$settings_key, [] );
     }
 
-    public function get( string $name ) {
-        $settings = $this->get_all();
+    public static function get( string $name, $default = null ) {
+        $settings = self::get_all();
 
         if ( isset( $settings[$name] ) ) {
             return $settings[$name];
         }
 
-        return null;
+        return $default;
     }
 
-    public function update( string $name, $value ) {
-        $settings = $this->get_all();
+    public static function update( string $name, $value ) {
+        $settings = self::get_all();
 
-        if ( !$value || empty( $value ) ) {
+        if ( $value === false ){
+            $settings[$name] = false;
+        } elseif ( empty( $value ) ) {
             unset( $settings[$name] );
         } else {
             $new_setting = [];
@@ -35,7 +37,7 @@ class DT_Campaign_Settings {
             $settings = array_merge( $settings, $new_setting );
         }
 
-        update_option( $this->settings_key, $settings );
+        update_option( self::$settings_key, $settings );
     }
 
     public static function get_campaign( $selected_campaign = null ) {
