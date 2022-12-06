@@ -528,19 +528,54 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </td>
                                     </tr>
                                     <?php if ( ! empty( $fields['ID'] ) ) : ?>
-                                        <?php foreach ( $fields as $key => $value ) :
-                                            if ( in_array( $key, [ 'start_date', 'end_date', 'status' ] ) ) :
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo esc_attr( ucwords( str_replace( '_', ' ', $key ) ) ) ?></td>
-                                                    <td><?php echo esc_html( ( is_array( $value ) ) ? $value['formatted'] ?? $value['label'] : $value ); ?></td>
-                                                </tr>
-                                            <?php endif;
-                                        endforeach; ?>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td><?php echo esc_html( isset( $fields['status']['label'] ) ? $fields['status']['label'] : '' ); ?></td>
+                                        </tr>
                                         <tr>
                                             <td>Campaign Type</td>
                                             <td><?php echo esc_html( $fields['type']['label'] ) ?></td>
                                         </tr>
+                                        <tr>
+                                            <td>Start Date</td>
+                                            <td>
+                                                <?php echo esc_html( isset( $fields['start_date']['formatted'] ) ? $fields['start_date']['formatted'] : '' ); ?>
+                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>End Date</td>
+                                            <td>
+                                                <?php echo esc_html( isset( $fields['end_date']['formatted'] ) ? $fields['end_date']['formatted'] : 'No end date' ); ?>
+                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Timezone</td>
+                                            <td>
+                                                <?php if ( isset( $fields['campaign_timezone']['label'] ) ){
+                                                    echo esc_html( $fields['campaign_timezone']['label'] );
+                                                } else {
+                                                    echo esc_html( 'No Campaign Timezone Set' ); ?>
+                                                    <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                                                <?php } ?>
+                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Locations</td>
+                                            <td>
+                                                <?php if ( isset( $fields['location_grid'][0] ) ){
+                                                    echo esc_html( join( ', ', array_map( function ( $a ){
+                                                        return $a['label'];
+                                                    }, $fields['location_grid'] ) ) );
+                                                } else {
+                                                    echo esc_html( 'No Campaign Locations set' );
+                                                }?>
+                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
+                                            </td>
+                                        </tr>
+
                                         <tr>
                                             <td>Edit Campaign Details</td>
                                             <td>
@@ -555,7 +590,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </tr>
                                         <tr>
                                             <td>Export Campaign Subscribers</td>
-                                            <td><button type="submit" name="download_csv">Download CSV</td>
+                                            <td><button type="submit" class="button" name="download_csv">Download CSV</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
