@@ -84,6 +84,7 @@ class DT_Ongoing_Shortcode {
                     ],
                     'root' => get_rest_url(),
                     'remote' => $atts['rest_url'] !== get_rest_url(),
+                    'home' => home_url(),
                 ]
             );
         }

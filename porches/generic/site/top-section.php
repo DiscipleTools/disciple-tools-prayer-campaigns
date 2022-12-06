@@ -8,6 +8,8 @@ dt_campaign_set_translation( $lang );
 $porch_fields = DT_Porch_Settings::settings();
 $campaign_fields = DT_Campaign_Settings::get_campaign();
 $langs = dt_campaign_list_languages();
+
+$sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up';
 ?>
 
 <!-- Nav -->
@@ -19,7 +21,7 @@ $langs = dt_campaign_list_languages();
                     <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#sign-up"><?php esc_html_e( 'Sign Up', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="nav-link" href='<?php echo esc_url( $sign_up_link ) ?>'><?php esc_html_e( 'Sign Up', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
@@ -88,7 +90,7 @@ $langs = dt_campaign_list_languages();
                     if ( !isset( $campaign_fields['end_date']['formatted'] ) || time() <= strtotime( $campaign_fields['end_date']['formatted'] ?? '' ) ) : ?>
 
                         <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <a href="#sign-up" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
+                            <a href="<?php echo esc_url( $sign_up_link ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
                         </p>
 
                     <?php endif; ?>

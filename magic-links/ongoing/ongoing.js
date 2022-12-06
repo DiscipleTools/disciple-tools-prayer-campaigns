@@ -230,11 +230,6 @@ jQuery(document).ready(function($) {
         name: name,
         email: email,
         selected_times: selected_times,
-        daily_selected_time: [{
-          time: 7200, //@todo
-          start: 123,
-          end: 123,
-        }],
         campaign_id: calendar_subscribe_object.campaign_id,
         timezone: current_time_zone,
         receive_prayer_time_notifications,
@@ -272,7 +267,7 @@ jQuery(document).ready(function($) {
       selected_times = [];
       submit_spinner.hide()
       $('.cp-view').hide()
-      $(`.success-confirmation-section`).show()
+      window.location.href = jsObject.home + '/prayer/email-confirmation';
     })
     .fail(function(e) {
       $('#selection-error').empty().html(`<div class="cell center">

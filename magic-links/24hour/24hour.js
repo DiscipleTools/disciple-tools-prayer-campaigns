@@ -484,7 +484,7 @@ jQuery(document).ready(function($) {
       .done(function(){
         selected_times = [];
         submit_spinner.hide()
-        $(`.success-confirmation-section`).show()
+        window.location.href = jsObject.home + '/prayer/email-confirmation';
       })
       .fail(function(e) {
         $('#selection-error').empty().html(`<div class="cell center">

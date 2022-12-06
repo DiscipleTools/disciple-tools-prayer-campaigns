@@ -44,6 +44,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
                 ],
                 'root' => get_rest_url(),
                 'remote' => $atts['rest_url'] !== get_rest_url(),
+                'home' => home_url(),
             ]
         );
     }
@@ -225,21 +226,6 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
             </button>
 
             <?php dt_campaign_sign_up_form() ?>
-
-            <div class="success-confirmation-section">
-                <div class="cell center">
-                    <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <p>
-                        &#9993; <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
-                    </p>
-                    <p>
-                        <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
-                    </p>
-                    <p>
-                        <button class="cp-nav cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
-                    </p>
-                </div>
-            </div>
 
             <div id="confirmation-times" style="margin-top: 40px">
                 <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
