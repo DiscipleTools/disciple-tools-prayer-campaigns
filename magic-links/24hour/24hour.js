@@ -231,7 +231,7 @@ jQuery(document).ready(function($) {
         let time = parseInt( time_date.toFormat('X') );
         let time_label = time_date.toFormat('MMMM dd HH:mm a');
         let already_added = selected_times.find(k=>k.time===time)
-        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
+        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] && time <= calendar_subscribe_object['end_timestamp'] ){
           selected_times.push({time: time, duration: duration, label: time_label})
         }
       }

@@ -400,7 +400,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             'campaign_grid_id' => $grid_id,
             'translations' => [],
             'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id ),
-            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id ) + 86400,
+            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id ),
             'current_commitments' => $current_commitments,
             'slot_length' => (int) $min_time_duration,
             'second_level' => $second_level,
