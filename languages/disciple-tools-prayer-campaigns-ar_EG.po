@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-11-07T11:12:44+00:00\n"
-"PO-Revision-Date: 2022-11-07 10:55+0000\n"
+"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
+"PO-Revision-Date: 2022-11-07 14:15+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic (Egypt) <https://translate.disciple.tools/projects/"
 "disciple-tools/disciple-tools-prayer-campaigns/ar_EG/>\n"
@@ -39,8 +39,8 @@ msgstr "ل %s"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:147
-#: campaign-functions/send-email-utility.php:244
+#: campaign-functions/send-email-utility.php:152
+#: campaign-functions/send-email-utility.php:249
 msgid "Hello %s,"
 msgstr "مرحبا %s,"
 
@@ -53,12 +53,12 @@ msgid "Here are your upcoming prayer times:"
 msgstr "ها هي أوقات الصلاة القادمة:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:107
+#: campaign-functions/send-email-utility.php:112
 msgid "Times are shown according to: %s time"
 msgstr "يتم عرض الأوقات وفقًا ل: ـ%s مرة"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 msgid "Click here to manage your account and time commitments"
 msgstr "انقر هنا لإدارة حسابك و وقت الالتزامات"
 
@@ -75,22 +75,29 @@ msgstr ""
 "على بعد نقرة واحدة من إنهاء التسجيل."
 
 #: campaign-functions/send-email-utility.php:104
-msgid "Click here to verify your email address and confirm your prayer times."
+#, fuzzy
+#| msgid ""
+#| "Click here to verify your email address and confirm your prayer times."
+msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr "انقر هنا للتحقق من عنوان بريدك الإلكتروني وتأكيد موعيد صلاتك."
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:107
+msgid "Verify your account"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:110
 msgid "Here are the times you have committed to pray:"
 msgstr "إليك مواعيدك للصلاة:"
 
-#: campaign-functions/send-email-utility.php:154
+#: campaign-functions/send-email-utility.php:159
 msgid "Registration Confirmation"
 msgstr "تأكيد التسجيل"
 
-#: campaign-functions/send-email-utility.php:157
+#: campaign-functions/send-email-utility.php:162
 msgid "Thank you for signing up to pray!"
 msgstr "شكرا لك على التسجيل للصلاة!"
 
-#: campaign-functions/send-email-utility.php:158
+#: campaign-functions/send-email-utility.php:163
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
 "a couple months before the first day asking you to choose specific times to "
@@ -100,11 +107,11 @@ msgstr ""
 "من اليوم الأول نطلب منك اختيار أوقات محددة للصلاة. بالعمل معًا سنغطي المنطقة "
 "في صلاة 24/7."
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:164
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "إذا كنت تعرف جدولك الزمني بالفعل، يمكنك اختيار أوقاتك هنا:"
 
-#: campaign-functions/send-email-utility.php:245
+#: campaign-functions/send-email-utility.php:250
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
@@ -112,12 +119,12 @@ msgid ""
 msgstr ""
 "لقد أخرجت أسبوعين من موعد الصلاة الأخير. هل ترغب في الاستمرار في الصلاة؟"
 
-#: campaign-functions/send-email-utility.php:246
+#: campaign-functions/send-email-utility.php:251
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "اشترك للحصول على مزيد من أوقات الصلاة أو قم بتمديد وقتك المتكرر هنا:"
 
-#: campaign-functions/send-email-utility.php:248
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Thank you"
 msgstr "شكرًا لك"
@@ -188,7 +195,7 @@ msgid "Your prayer times have been verified!"
 msgstr "تم التحقق من أوقات صلاتك!"
 
 #: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:252 shortcodes/ongoing.php:284
+#: shortcodes/24hour.php:241 shortcodes/ongoing.php:285
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "تغيير المنطقة الزمنية الخاصة بك:"
@@ -200,13 +207,13 @@ msgstr "تغيير المنطقة الزمنية الخاصة بك:"
 #: magic-links/subscription-management/subscription-management.php:503
 #: magic-links/subscription-management/subscription-management.php:519
 #: magic-links/subscription-management/subscription-management.php:569
-#: shortcodes/24hour.php:270 shortcodes/ongoing.php:302
+#: shortcodes/24hour.php:259 shortcodes/ongoing.php:303
 msgid "Cancel"
 msgstr "الغاء"
 
 #: magic-links/subscription-management/subscription-management.php:301
 #: magic-links/subscription-management/subscription-management.php:490
-#: shortcodes/24hour.php:273 shortcodes/ongoing.php:305
+#: shortcodes/24hour.php:262 shortcodes/ongoing.php:306
 msgid "Select"
 msgstr "اختيار"
 
@@ -228,21 +235,21 @@ msgid "My commitments"
 msgstr "التزاماتي"
 
 #: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:157 shortcodes/ongoing.php:189
+#: shortcodes/24hour.php:161 shortcodes/ongoing.php:190
 msgid "Prayer Time"
 msgstr "وقت الصلاة"
 
 #: magic-links/subscription-management/subscription-management.php:326
 #: magic-links/subscription-management/subscription-management.php:408
-#: shortcodes/24hour.php:159 shortcodes/24hour.php:192
-#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 msgid "Daily Time"
 msgstr "الوقت اليومي"
 
 #: magic-links/subscription-management/subscription-management.php:330
 #: magic-links/subscription-management/subscription-management.php:412
-#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
-#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#: shortcodes/24hour.php:167 shortcodes/24hour.php:200
+#: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 msgid "For how long"
 msgstr "كم من الوقت"
 
@@ -253,8 +260,8 @@ msgstr "تم حفظ أوقات صلاتك الجديدة."
 
 #: magic-links/subscription-management/subscription-management.php:351
 #: magic-links/subscription-management/subscription-management.php:445
-#: shortcodes/24hour.php:170 shortcodes/24hour.php:214
-#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#: shortcodes/24hour.php:174 shortcodes/24hour.php:218
+#: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 msgid "Confirm Times"
 msgstr "تأكيد عدد المرات"
 
@@ -268,41 +275,41 @@ msgid "Close"
 msgstr "غلق"
 
 #: magic-links/subscription-management/subscription-management.php:399
-#: shortcodes/24hour.php:182 shortcodes/ongoing.php:214
+#: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
 msgid "Select a day and choose a time"
 msgstr "حدد يومًا واختر وقتًا"
 
 #: magic-links/subscription-management/subscription-management.php:406
-#: shortcodes/24hour.php:190 shortcodes/ongoing.php:222
+#: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
 msgid "Select a prayer time"
 msgstr "حدد وقت الصلاة"
 
 #: magic-links/subscription-management/subscription-management.php:416
-#: shortcodes/24hour.php:200 shortcodes/ongoing.php:232
+#: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
 msgid "Add prayer time"
 msgstr "أضف وقت الصلاة"
 
 #: magic-links/subscription-management/subscription-management.php:417
-#: shortcodes/24hour.php:201 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
 msgid "Time added"
 msgstr "اضافة وقت"
 
 #: magic-links/subscription-management/subscription-management.php:424
-#: shortcodes/24hour.php:208 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#: shortcodes/24hour.php:212 shortcodes/24hour.php:234
+#: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 msgid "Selected Times"
 msgstr "الأوقات المحددة"
 
 #: magic-links/subscription-management/subscription-management.php:426
-#: shortcodes/24hour.php:210 shortcodes/ongoing.php:242
+#: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
 msgid "No selected Time"
 msgstr "لم يتم تحديد الوقت"
 
 #: magic-links/subscription-management/subscription-management.php:449
-#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
-#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
-#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
-#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#: shortcodes/24hour.php:131 shortcodes/24hour.php:154
+#: shortcodes/24hour.php:183 shortcodes/24hour.php:228
+#: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
+#: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
 msgid "Back"
 msgstr "الرجوع"
 
@@ -474,8 +481,8 @@ msgstr "كل الأيام"
 
 #: porches/generic/site/404-body.php:14
 #, fuzzy
-msgid "Epic 404"
-msgstr "ملحمة 404"
+msgid "Epic 404 - Not Found"
+msgstr "ملحمة 404 - غير موجود"
 
 #: porches/generic/site/404-body.php:15
 #, fuzzy
@@ -493,7 +500,7 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "حاول استخدام بعض الروابط في القائمة للعودة إلى المسار الصحيح."
 
 #: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
-#: porches/generic/site/top-section.php:91
+#: porches/generic/site/top-section.php:93
 #: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
 #: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
 msgid "Sign Up to Pray"
@@ -608,6 +615,32 @@ msgstr "رؤية الكل"
 msgid "Read"
 msgstr "اقرأ"
 
+#: porches/generic/site/sign-up-confirmation.php:105
+#, fuzzy
+#| msgid "Sent! Check your email."
+msgid "Check your email"
+msgstr "أرسلت! تحقق من بريدك الالكتروني."
+
+#: porches/generic/site/sign-up-confirmation.php:106
+msgid "Your registration was successful."
+msgstr ""
+
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
+msgid ""
+"Click on the link included in the email to verify your commitment and "
+"receive prayer time notifications!"
+msgstr ""
+"انقر فوق الرابط الموجود في البريد الإلكتروني للتحقق من التزامك وتلقي إشعارات "
+"مواعيد الصلاة!"
+
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/ongoing.php:276
+msgid "In the email is a link to manage your prayer times."
+msgstr "يوجد في البريد الإلكتروني رابط لإدارة مواعيد الصلاة."
+
+#: porches/generic/site/sign-up-confirmation.php:114
+msgid "Return"
+msgstr ""
+
 #: porches/generic/site/stats.php:133
 #, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
@@ -674,11 +707,11 @@ msgid ""
 msgstr ""
 "هل تود أن تسمع عن جهود الصلاة الأخرى والفرص المتاحة مع Pray4Movement.org؟"
 
-#: porches/generic/site/top-section.php:19
+#: porches/generic/site/top-section.php:21
 msgid "Home"
 msgstr "الصفحة الرئيسية"
 
-#: porches/generic/site/top-section.php:22
+#: porches/generic/site/top-section.php:24
 msgid "Sign Up"
 msgstr "الاشتراك"
 
@@ -690,19 +723,19 @@ msgid ""
 "this time they are supposed to abstain from food, drinking liquids, smoking, "
 "and sexual relations.\n"
 "\n"
-"     Women typically spend the afternoons preparing a big meal. At sunset, "
+"Women typically spend the afternoons preparing a big meal. At sunset, "
 "families often gather to break the fast. Traditionally the families break "
 "the fast with a drink of water, then three dried date fruits, and a multi-"
 "course meal. After watching the new Ramadan TV series, men (and some women) "
 "go out to coffee shops where they drink coffee, and smoke with friends until "
 "late into the night.\n"
 "\n"
-"     Though many have stopped fasting in recent years, and are turned off by "
-"the hypocrisy, increased crime rates, and rudeness that is pervasive through "
-"the month, others have become more serious about religion during this time. "
-"Many attend the evening prayer services and do the other ritual prayers. "
-"Some even read the entire Quran (about a tenth the length of the Bible). "
-"This sincere seeking makes it a strategic time for us to pray for them."
+"Though many have stopped fasting in recent years, and are turned off by the "
+"hypocrisy, increased crime rates, and rudeness that is pervasive through the "
+"month, others have become more serious about religion during this time. Many "
+"attend the evening prayer services and do the other ritual prayers. Some "
+"even read the entire Quran (about a tenth the length of the Bible). This "
+"sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
 "رمضان هو أحد متطلبات الإسلام الخمسة (أو أركانه). خلال كل يوم من أيامه "
 "الثلاثين ، يلتزم المسلمون بالصيام من الفجر حتى غروب الشمس. خلال هذا الوقت من "
@@ -756,68 +789,54 @@ msgstr "مغطاة مرة واحدة"
 msgid "covered %1$s times"
 msgstr "تمت تغطيتها٪ 1 $ s مرة"
 
-#: shortcodes/24hour.php:99
+#: shortcodes/24hour.php:100
 msgid "Percentage covered in prayer"
 msgstr "النسبة المغطاة بالصلاة"
 
-#: shortcodes/24hour.php:113 shortcodes/ongoing.php:144
+#: shortcodes/24hour.php:114 shortcodes/ongoing.php:145
 msgid "Loading prayer campaign data..."
 msgstr "تحميل بيانات حملة الصلاة ..."
 
-#: shortcodes/24hour.php:120 shortcodes/ongoing.php:151
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:152
 msgid "Choose Prayer Times"
 msgstr "اختر مواعيد الصلاة"
 
-#: shortcodes/24hour.php:132 shortcodes/ongoing.php:163
+#: shortcodes/24hour.php:133 shortcodes/ongoing.php:164
 msgid "Select an option"
 msgstr "حدد اختيارا"
 
-#: shortcodes/24hour.php:135 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:136 shortcodes/ongoing.php:167
 msgid "Pray every day at the same time"
 msgstr "صلِّ كل يوم في نفس الوقت"
 
-#: shortcodes/24hour.php:137 shortcodes/ongoing.php:168
+#: shortcodes/24hour.php:138 shortcodes/ongoing.php:169
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "مثال: كل يوم في الساعة 4 مساءً لمدة 15 دقيقة"
 
-#: shortcodes/24hour.php:140 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:141 shortcodes/ongoing.php:172
 msgid "Select days and times to pray"
 msgstr "حدد الأيام والأوقات للصلاة"
 
-#: shortcodes/24hour.php:142 shortcodes/ongoing.php:173
+#: shortcodes/24hour.php:143 shortcodes/ongoing.php:174
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "مثال: الاثنين الموافق 12 الساعة 6 مساءً لمدة 15 دقيقة"
 
-#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#: shortcodes/24hour.php:158
+#, fuzzy
+#| msgid "In the email is a link to manage your prayer times."
+msgid "Please note that daylight savings time may affect your prayer times."
+msgstr "يوجد في البريد الإلكتروني رابط لإدارة مواعيد الصلاة."
+
+#: shortcodes/24hour.php:171 shortcodes/24hour.php:208
+#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:237
 msgid "Showing times for:"
 msgstr "عرض الأوقات لـ:"
 
-#: shortcodes/24hour.php:231 shortcodes/ongoing.php:270
-msgid "Sent! Check your email."
-msgstr "أرسلت! تحقق من بريدك الالكتروني."
-
-#: shortcodes/24hour.php:233 shortcodes/ongoing.php:272
-msgid ""
-"Click on the link included in the email to verify your commitment and "
-"receive prayer time notifications!"
-msgstr ""
-"انقر فوق الرابط الموجود في البريد الإلكتروني للتحقق من التزامك وتلقي إشعارات "
-"مواعيد الصلاة!"
-
-#: shortcodes/24hour.php:236 shortcodes/ongoing.php:275
-msgid "In the email is a link to manage your prayer times."
-msgstr "يوجد في البريد الإلكتروني رابط لإدارة مواعيد الصلاة."
-
-#: shortcodes/24hour.php:239 shortcodes/ongoing.php:278
-msgid "OK"
-msgstr "موافق"
-
-#: shortcodes/24hour.php:279 shortcodes/ongoing.php:311
+#: shortcodes/24hour.php:268 shortcodes/ongoing.php:312
 msgid "We are not longer looking for sign ups"
 msgstr "لم نعد نبحث عن الاشتراكات"
 
-#: shortcodes/24hour.php:280 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:313
 msgid "Thanks for praying with us!"
 msgstr "شكرا للصلاة معنا!"
 
@@ -833,7 +852,7 @@ msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "مغطى"
 
-#: shortcodes/ongoing.php:187
+#: shortcodes/ongoing.php:188
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -841,6 +860,14 @@ msgid ""
 msgstr ""
 "اختر وقتًا للصلاة كل يوم للأشهر الثلاثة القادمة. بالقرب من النهاية سيكون لديك "
 "خيار التسجيل للحصول على المزيد."
+
+#: shortcodes/ongoing.php:271
+msgid "Sent! Check your email."
+msgstr "أرسلت! تحقق من بريدك الالكتروني."
+
+#: shortcodes/ongoing.php:279
+msgid "OK"
+msgstr "موافق"
 
 #: shortcodes/prayer-timer.php:177
 msgid "Start Praying!"
@@ -854,6 +881,10 @@ msgstr "أوقات الصلاة:%s دقيقة\n"
 #: shortcodes/prayer-timer.php:189
 msgid "Now praying..."
 msgstr "صلي الآن ..."
+
+#, fuzzy
+#~ msgid "Epic 404"
+#~ msgstr "ملحمة 404"
 
 #, fuzzy
 #~ msgid "Content to be added to the signup email"

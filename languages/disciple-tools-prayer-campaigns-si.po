@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-11-07T11:12:44+00:00\n"
-"PO-Revision-Date: 2022-11-05 13:32+0000\n"
+"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
+"PO-Revision-Date: 2022-11-07 14:15+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Sinhala <https://translate.disciple.tools/projects/disciple-"
 "tools/disciple-tools-prayer-campaigns/si/>\n"
@@ -44,8 +44,8 @@ msgstr "%s සඳහා"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:147
-#: campaign-functions/send-email-utility.php:244
+#: campaign-functions/send-email-utility.php:152
+#: campaign-functions/send-email-utility.php:249
 #, fuzzy
 msgid "Hello %s,"
 msgstr "ආයුබෝවන් %s,"
@@ -61,13 +61,13 @@ msgid "Here are your upcoming prayer times:"
 msgstr "ඔබගේ ඉදිරි යාඥා වේලාවන් මෙන්න:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:107
+#: campaign-functions/send-email-utility.php:112
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "%s වේලාවට අනුව වේලාවන් පෙන්වයි"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "ඔබගේ ගිණුම සහ කාල කැපවීම් කළමනාකරණය කිරීමට මෙතන ක්ලික් කරන්න"
@@ -88,27 +88,31 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:104
 #, fuzzy
-msgid "Click here to verify your email address and confirm your prayer times."
+msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "ඔබගේ විද්‍යුත් තැපැල් ලිපිනය සත්‍යාපනය කිරීමට සහ ඔබගේ යාච්ඤාවේ වේලාවන් තහවුරු කිරීමට මෙතන ක්ලික් "
 "කරන්න."
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:107
+msgid "Verify your account"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:110
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "මෙන්න ඔබ යාච්ඤා කිරීමට කැප වූ වේලාවන්:"
 
-#: campaign-functions/send-email-utility.php:154
+#: campaign-functions/send-email-utility.php:159
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "ලියාපදිංචිය තහවුරු කිරීම"
 
-#: campaign-functions/send-email-utility.php:157
+#: campaign-functions/send-email-utility.php:162
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "යාච්ඤා කිරීමට ලියාපදිංචි වීම ගැන ඔබට ස්තුතියි!"
 
-#: campaign-functions/send-email-utility.php:158
+#: campaign-functions/send-email-utility.php:163
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -119,25 +123,25 @@ msgstr ""
 "ඉල්ලා පළමු දිනට මාස කිහිපයකට පෙර අපි ඔබට තවත් විද්‍යුත් තැපෑලක් එවන්නෙමු. එකට වැඩ කරමින් අපි "
 "24/7 යාච්ඤාවෙන් කලාපය ආවරණය කරන්නෙමු."
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:164
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "ඔබ දැනටමත් ඔබගේ කාලසටහන දන්නේ නම් ඔබට ඔබගේ වේලාවන් මෙතැනින් තෝරා ගත හැක:"
 
-#: campaign-functions/send-email-utility.php:245
+#: campaign-functions/send-email-utility.php:250
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
 "praying?"
 msgstr "ඔබගේ අවසන් යාඥා කාලය සඳහා ඔබ සති 2ක් ඇත. ඔබ දිගටම යාච්ඤා කිරීමට කැමතිද?"
 
-#: campaign-functions/send-email-utility.php:246
+#: campaign-functions/send-email-utility.php:251
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "තවත් යාඥා වේලාවන් සඳහා ලියාපදිංචි වන්න නැතහොත් ඔබේ පුනරාවර්තන කාලය මෙතැනින් දීර්ඝ කරන්න:"
 
-#: campaign-functions/send-email-utility.php:248
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Thank you"
 msgstr "ඔබට ස්තුතියි"
@@ -214,7 +218,7 @@ msgid "Your prayer times have been verified!"
 msgstr "ඔබගේ යාඥා වේලාවන් සත්‍යාපනය කර ඇත!"
 
 #: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:252 shortcodes/ongoing.php:284
+#: shortcodes/24hour.php:241 shortcodes/ongoing.php:285
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "ඔබගේ වේලා කලාපය වෙනස් කරන්න:"
@@ -226,14 +230,14 @@ msgstr "ඔබගේ වේලා කලාපය වෙනස් කරන්�
 #: magic-links/subscription-management/subscription-management.php:503
 #: magic-links/subscription-management/subscription-management.php:519
 #: magic-links/subscription-management/subscription-management.php:569
-#: shortcodes/24hour.php:270 shortcodes/ongoing.php:302
+#: shortcodes/24hour.php:259 shortcodes/ongoing.php:303
 #, fuzzy
 msgid "Cancel"
 msgstr "අවලංගු කරන්න"
 
 #: magic-links/subscription-management/subscription-management.php:301
 #: magic-links/subscription-management/subscription-management.php:490
-#: shortcodes/24hour.php:273 shortcodes/ongoing.php:305
+#: shortcodes/24hour.php:262 shortcodes/ongoing.php:306
 #, fuzzy
 msgid "Select"
 msgstr "තෝරන්න"
@@ -259,23 +263,23 @@ msgid "My commitments"
 msgstr "මගේ කැපවීම්"
 
 #: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:157 shortcodes/ongoing.php:189
+#: shortcodes/24hour.php:161 shortcodes/ongoing.php:190
 #, fuzzy
 msgid "Prayer Time"
 msgstr "යාඥා කාලය"
 
 #: magic-links/subscription-management/subscription-management.php:326
 #: magic-links/subscription-management/subscription-management.php:408
-#: shortcodes/24hour.php:159 shortcodes/24hour.php:192
-#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 #, fuzzy
 msgid "Daily Time"
 msgstr "දෛනික වේලාව"
 
 #: magic-links/subscription-management/subscription-management.php:330
 #: magic-links/subscription-management/subscription-management.php:412
-#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
-#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#: shortcodes/24hour.php:167 shortcodes/24hour.php:200
+#: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 #, fuzzy
 msgid "For how long"
 msgstr "කොපමණ කාලයකට ද"
@@ -288,8 +292,8 @@ msgstr "ඔබගේ නව යාච්ඤා වේලාවන් සුර�
 
 #: magic-links/subscription-management/subscription-management.php:351
 #: magic-links/subscription-management/subscription-management.php:445
-#: shortcodes/24hour.php:170 shortcodes/24hour.php:214
-#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#: shortcodes/24hour.php:174 shortcodes/24hour.php:218
+#: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 #, fuzzy
 msgid "Confirm Times"
 msgstr "ටයිම්ස් තහවුරු කරන්න"
@@ -306,47 +310,47 @@ msgid "Close"
 msgstr "වසන්න"
 
 #: magic-links/subscription-management/subscription-management.php:399
-#: shortcodes/24hour.php:182 shortcodes/ongoing.php:214
+#: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "දිනයක් තෝරන්න සහ වේලාවක් තෝරන්න"
 
 #: magic-links/subscription-management/subscription-management.php:406
-#: shortcodes/24hour.php:190 shortcodes/ongoing.php:222
+#: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "යාච්ඤා වේලාවක් තෝරන්න"
 
 #: magic-links/subscription-management/subscription-management.php:416
-#: shortcodes/24hour.php:200 shortcodes/ongoing.php:232
+#: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Add prayer time"
 msgstr "යාච්ඤා කාලය එකතු කරන්න"
 
 #: magic-links/subscription-management/subscription-management.php:417
-#: shortcodes/24hour.php:201 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Time added"
 msgstr "කාලය එකතු කරන ලදී"
 
 #: magic-links/subscription-management/subscription-management.php:424
-#: shortcodes/24hour.php:208 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#: shortcodes/24hour.php:212 shortcodes/24hour.php:234
+#: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 #, fuzzy
 msgid "Selected Times"
 msgstr "තෝරාගත් වේලාවන්"
 
 #: magic-links/subscription-management/subscription-management.php:426
-#: shortcodes/24hour.php:210 shortcodes/ongoing.php:242
+#: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
 #, fuzzy
 msgid "No selected Time"
 msgstr "තෝරාගත් වේලාවක් නැත"
 
 #: magic-links/subscription-management/subscription-management.php:449
-#: shortcodes/24hour.php:130 shortcodes/24hour.php:153
-#: shortcodes/24hour.php:179 shortcodes/24hour.php:224
-#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
-#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#: shortcodes/24hour.php:131 shortcodes/24hour.php:154
+#: shortcodes/24hour.php:183 shortcodes/24hour.php:228
+#: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
+#: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
 #, fuzzy
 msgid "Back"
 msgstr "ආපසු"
@@ -537,8 +541,8 @@ msgstr "සියලුම දින"
 
 #: porches/generic/site/404-body.php:14
 #, fuzzy
-msgid "Epic 404"
-msgstr "එපික් 404"
+msgid "Epic 404 - Not Found"
+msgstr "එපික් 404 - හමු නොවීය"
 
 #: porches/generic/site/404-body.php:15
 #, fuzzy
@@ -556,7 +560,7 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "නැවත මාර්ගයට යාමට මෙනුවේ ඇති සබැඳි කිහිපයක් භාවිතා කිරීමට උත්සාහ කරන්න."
 
 #: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
-#: porches/generic/site/top-section.php:91
+#: porches/generic/site/top-section.php:93
 #: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
 #: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
 #, fuzzy
@@ -681,6 +685,33 @@ msgstr "සියල්ල බලන්න"
 msgid "Read"
 msgstr "කියවන්න"
 
+#: porches/generic/site/sign-up-confirmation.php:105
+#, fuzzy
+msgid "Check your email"
+msgstr "යැව්වා! ඔබගේ විද්යුත් තැපෑල පරීක්ෂා කරන්න."
+
+#: porches/generic/site/sign-up-confirmation.php:106
+msgid "Your registration was successful."
+msgstr ""
+
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
+#, fuzzy
+msgid ""
+"Click on the link included in the email to verify your commitment and "
+"receive prayer time notifications!"
+msgstr ""
+"ඔබගේ කැපවීම සත්‍යාපනය කිරීමට සහ යාච්ඤාවේ වේලාවේ දැනුම්දීම් ලබා ගැනීමට විද්‍යුත් තැපෑලෙහි ඇතුළත් "
+"සබැඳිය ක්ලික් කරන්න!"
+
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/ongoing.php:276
+#, fuzzy
+msgid "In the email is a link to manage your prayer times."
+msgstr "විද්‍යුත් තැපෑලෙහි ඔබගේ යාඥා වේලාවන් කළමනාකරණය කිරීමට සබැඳියක් ඇත."
+
+#: porches/generic/site/sign-up-confirmation.php:114
+msgid "Return"
+msgstr ""
+
 #: porches/generic/site/stats.php:133
 #, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
@@ -747,12 +778,12 @@ msgid ""
 "Pray4Movement.org?"
 msgstr "Pray4Movement.org සමඟින් වෙනත් යාච්ඤා ප්‍රයත්නයන් සහ අවස්ථා ගැන ඇසීමට ඔබ කැමතිද?"
 
-#: porches/generic/site/top-section.php:19
+#: porches/generic/site/top-section.php:21
 #, fuzzy
 msgid "Home"
 msgstr "නිවස"
 
-#: porches/generic/site/top-section.php:22
+#: porches/generic/site/top-section.php:24
 #, fuzzy
 msgid "Sign Up"
 msgstr "ලියාපදිංචි වන්න"
@@ -765,19 +796,19 @@ msgid ""
 "this time they are supposed to abstain from food, drinking liquids, smoking, "
 "and sexual relations.\n"
 "\n"
-"     Women typically spend the afternoons preparing a big meal. At sunset, "
+"Women typically spend the afternoons preparing a big meal. At sunset, "
 "families often gather to break the fast. Traditionally the families break "
 "the fast with a drink of water, then three dried date fruits, and a multi-"
 "course meal. After watching the new Ramadan TV series, men (and some women) "
 "go out to coffee shops where they drink coffee, and smoke with friends until "
 "late into the night.\n"
 "\n"
-"     Though many have stopped fasting in recent years, and are turned off by "
-"the hypocrisy, increased crime rates, and rudeness that is pervasive through "
-"the month, others have become more serious about religion during this time. "
-"Many attend the evening prayer services and do the other ritual prayers. "
-"Some even read the entire Quran (about a tenth the length of the Bible). "
-"This sincere seeking makes it a strategic time for us to pray for them."
+"Though many have stopped fasting in recent years, and are turned off by the "
+"hypocrisy, increased crime rates, and rudeness that is pervasive through the "
+"month, others have become more serious about religion during this time. Many "
+"attend the evening prayer services and do the other ritual prayers. Some "
+"even read the entire Quran (about a tenth the length of the Bible). This "
+"sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
 "රාමසාන් යනු ඉස්ලාමයේ අවශ්‍යතා පහෙන් එකකි (හෝ කුළුණු). එහි එක් එක් දින 30 තුළදී, මුස්ලිම්වරු අලුයම "
 "සිට හිරු බැස යන තෙක් නිරාහාරව සිටීමට බැඳී සිටිති. මෙම කාලය තුළ ඔවුන් ආහාර, බීම දියර, දුම්පානය "
@@ -830,82 +861,63 @@ msgstr "වරක් ආවරණය කර ඇත"
 msgid "covered %1$s times"
 msgstr "%1$s වාරයක් ආවරණය කරන ලදී"
 
-#: shortcodes/24hour.php:99
+#: shortcodes/24hour.php:100
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "යාච්ඤාවෙන් ආවරණය වන ප්රතිශතය"
 
-#: shortcodes/24hour.php:113 shortcodes/ongoing.php:144
+#: shortcodes/24hour.php:114 shortcodes/ongoing.php:145
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "යාඥා ප්‍රචාරක දත්ත පූරණය කරමින්..."
 
-#: shortcodes/24hour.php:120 shortcodes/ongoing.php:151
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:152
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "යාච්ඤාවේ වේලාවන් තෝරන්න"
 
-#: shortcodes/24hour.php:132 shortcodes/ongoing.php:163
+#: shortcodes/24hour.php:133 shortcodes/ongoing.php:164
 #, fuzzy
 msgid "Select an option"
 msgstr "විකල්පයක් තෝරන්න"
 
-#: shortcodes/24hour.php:135 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:136 shortcodes/ongoing.php:167
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "සෑම දිනකම එකම වේලාවක යාච්ඤා කරන්න"
 
-#: shortcodes/24hour.php:137 shortcodes/ongoing.php:168
+#: shortcodes/24hour.php:138 shortcodes/ongoing.php:169
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "උදාහරණය: සෑම දිනකම සවස 4ට විනාඩි 15ක්"
 
-#: shortcodes/24hour.php:140 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:141 shortcodes/ongoing.php:172
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "යාච්ඤා කිරීමට දින සහ වේලාවන් තෝරන්න"
 
-#: shortcodes/24hour.php:142 shortcodes/ongoing.php:173
+#: shortcodes/24hour.php:143 shortcodes/ongoing.php:174
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "උදාහරණය: 12 වැනි සඳුදා සවස 6ට විනාඩි 15ක්"
 
-#: shortcodes/24hour.php:167 shortcodes/24hour.php:204
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#: shortcodes/24hour.php:158
+#, fuzzy
+msgid "Please note that daylight savings time may affect your prayer times."
+msgstr "විද්‍යුත් තැපෑලෙහි ඔබගේ යාඥා වේලාවන් කළමනාකරණය කිරීමට සබැඳියක් ඇත."
+
+#: shortcodes/24hour.php:171 shortcodes/24hour.php:208
+#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:237
 #, fuzzy
 msgid "Showing times for:"
 msgstr "මේ සඳහා වේලාවන් පෙන්වයි:"
 
-#: shortcodes/24hour.php:231 shortcodes/ongoing.php:270
-#, fuzzy
-msgid "Sent! Check your email."
-msgstr "යැව්වා! ඔබගේ විද්යුත් තැපෑල පරීක්ෂා කරන්න."
-
-#: shortcodes/24hour.php:233 shortcodes/ongoing.php:272
-#, fuzzy
-msgid ""
-"Click on the link included in the email to verify your commitment and "
-"receive prayer time notifications!"
-msgstr ""
-"ඔබගේ කැපවීම සත්‍යාපනය කිරීමට සහ යාච්ඤාවේ වේලාවේ දැනුම්දීම් ලබා ගැනීමට විද්‍යුත් තැපෑලෙහි ඇතුළත් "
-"සබැඳිය ක්ලික් කරන්න!"
-
-#: shortcodes/24hour.php:236 shortcodes/ongoing.php:275
-#, fuzzy
-msgid "In the email is a link to manage your prayer times."
-msgstr "විද්‍යුත් තැපෑලෙහි ඔබගේ යාඥා වේලාවන් කළමනාකරණය කිරීමට සබැඳියක් ඇත."
-
-#: shortcodes/24hour.php:239 shortcodes/ongoing.php:278
-#, fuzzy
-msgid "OK"
-msgstr "හරි"
-
-#: shortcodes/24hour.php:279 shortcodes/ongoing.php:311
+#: shortcodes/24hour.php:268 shortcodes/ongoing.php:312
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "අපි තවදුරටත් ලියාපදිංචි කිරීම් සොයන්නේ නැත"
 
-#: shortcodes/24hour.php:280 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "අප සමඟ යාච්ඤා කිරීම ගැන ස්තුතියි!"
@@ -922,7 +934,7 @@ msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "ආවරණය"
 
-#: shortcodes/ongoing.php:187
+#: shortcodes/ongoing.php:188
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -930,6 +942,16 @@ msgid ""
 msgstr ""
 "ඉදිරි මාස 3 සඳහා දිනපතා යාච්ඤා කිරීමට වේලාවක් තෝරා ගන්න. අවසානයට ආසන්නව ඔබට තවත් සඳහා "
 "ලියාපදිංචි වීමට විකල්පය ඇත."
+
+#: shortcodes/ongoing.php:271
+#, fuzzy
+msgid "Sent! Check your email."
+msgstr "යැව්වා! ඔබගේ විද්යුත් තැපෑල පරීක්ෂා කරන්න."
+
+#: shortcodes/ongoing.php:279
+#, fuzzy
+msgid "OK"
+msgstr "හරි"
 
 #: shortcodes/prayer-timer.php:177
 #, fuzzy
@@ -946,6 +968,10 @@ msgstr "යාඥා කාලය: විනාඩි %s"
 #, fuzzy
 msgid "Now praying..."
 msgstr "දැන් යාඥා කරනවා..."
+
+#, fuzzy
+#~ msgid "Epic 404"
+#~ msgstr "එපික් 404"
 
 #, fuzzy
 #~ msgid "Content to be added to the signup email"
