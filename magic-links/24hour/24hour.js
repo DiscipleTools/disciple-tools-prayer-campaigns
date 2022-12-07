@@ -345,7 +345,8 @@ jQuery(document).ready(function($) {
     })
 
     //submit form
-    $('#cp-submit-form').on('click', async function () {
+    $('#cp-submit-form').on('click', async function (e) {
+      e.preventDefault()
       if ( document.querySelector('#receive_pray4movement_news').checked ) {
         const form = document.getElementById('mc-embedded-subscribe-form')
         submitMailChimpSubscribe(form)

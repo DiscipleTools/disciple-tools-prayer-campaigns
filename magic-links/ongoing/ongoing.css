@@ -148,7 +148,9 @@
     margin: auto;
     padding:0.5em;
     min-height: 40px;
-}.cp-wrapper.loading-content h2, .cp-wrapper.loading-content p {
+    display: block;
+}
+.cp-wrapper.loading-content h2, .cp-wrapper.loading-content p {
     background-color: #ededed;
     border-radius: 100px;
     min-width: 100px;
