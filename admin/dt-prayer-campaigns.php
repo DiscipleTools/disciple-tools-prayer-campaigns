@@ -570,8 +570,9 @@ class DT_Prayer_Campaigns_Campaigns {
                                                         return $a['label'];
                                                     }, $fields['location_grid'] ) ) );
                                                 } else {
-                                                    echo esc_html( 'No Campaign Locations set' );
-                                                }?>
+                                                    echo esc_html( 'No Campaign Locations set' ); ?>
+                                                    <img class='dt-icon' src = "<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>" />
+                                                <?php } ?>
                                                 <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
                                             </td>
                                         </tr>

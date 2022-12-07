@@ -154,6 +154,9 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
                 <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
             </button>
             <div class="cp-center" style="display: flex; flex-direction: column;">
+                <p style="display: none" class="cp-daylight-savings-notice">
+                    <?php esc_html_e( 'Please note that daylight savings time may affect your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
+                </p>
                 <label >
                     <strong><?php esc_html_e( 'Prayer Time', 'disciple-tools-prayer-campaigns' ); ?></strong>
                     <select id="cp-daily-time-select">

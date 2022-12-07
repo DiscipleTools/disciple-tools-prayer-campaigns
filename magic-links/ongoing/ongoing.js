@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
     $('.cp-wrapper').removeClass("loading-content")
     $('.cp-loading-page').hide()
     calendar_subscribe_object = { ...calendar_subscribe_object, ...data }
-    days = window.campaign_scripts.calculate_day_times()
+    days = window.campaign_scripts.calculate_day_times( current_time_zone )
     draw_calendar()
     setup_signup();
   })

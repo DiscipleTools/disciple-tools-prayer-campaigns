@@ -29,14 +29,15 @@ window.campaign_scripts = {
           "covered_slots": 0,
         })
       }
-      let mod_time = time_iterator % day_in_seconds
-      let time_formatted = '';
-      if ( window.campaign_scripts.processing_save[mod_time] ){
-        time_formatted = window.campaign_scripts.processing_save[mod_time]
-      } else {
-        time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
-        window.campaign_scripts.processing_save[mod_time] = time_formatted
-      }
+      //this breaks with daylight saving changes
+      // let mod_time = time_iterator % day_in_seconds
+      //let time_formatted = '';
+      // if ( window.campaign_scripts.processing_save[mod_time] ){
+      //   time_formatted = window.campaign_scripts.processing_save[mod_time]
+      // } else {
+      //   window.campaign_scripts.processing_save[mod_time] = time_formatted
+      // }
+      let time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
       days[days.length-1]["slots"].push({
         "key": time_iterator,
         "formatted": time_formatted,
@@ -47,9 +48,9 @@ window.campaign_scripts = {
         days[days.length-1].covered_slots += 1;
 
         if ( !window.campaign_scripts.time_slot_coverage[time_formatted]){
-          window.campaign_scripts.time_slot_coverage[time_formatted] = 0;
+          window.campaign_scripts.time_slot_coverage[time_formatted] = [];
         }
-        window.campaign_scripts.time_slot_coverage[time_formatted]++;
+        window.campaign_scripts.time_slot_coverage[time_formatted].push(calendar_subscribe_object.current_commitments[time_iterator]);
       }
       time_iterator += calendar_subscribe_object.slot_length * 60;
     }
@@ -162,6 +163,18 @@ window.campaign_scripts = {
     return [...Array(7).keys()]
     .map((day) => format(new Date().getTime() - ( now.getDay() - day  ) * day_in_milliseconds  ));
   },
+  will_have_daylight_savings( timezone, start, end ){
+    let ref = null
+    while ( start < end ) {
+      let tzDate = this.timestamp_to_time( start, timezone )
+      if ( ref !== null && tzDate !== ref ){
+        return true
+      }
+      ref = tzDate
+      start += day_in_seconds
+    }
+    return false
+  }
 }
 
 //based off of:
