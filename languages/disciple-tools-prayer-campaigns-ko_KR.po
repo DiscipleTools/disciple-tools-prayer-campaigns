@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
-"PO-Revision-Date: 2022-11-07 14:15+0000\n"
+"POT-Creation-Date: 2022-12-12T15:29:49+00:00\n"
+"PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.disciple.tools/projects/disciple-"
 "tools/disciple-tools-prayer-campaigns/ko_KR/>\n"
@@ -92,8 +92,9 @@ msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr "이메일 주소를 확인하고 기도 시간을 확인하려면 여기를 클릭하십시오."
 
 #: campaign-functions/send-email-utility.php:107
+#, fuzzy
 msgid "Verify your account"
-msgstr ""
+msgstr "계정 확인"
 
 #: campaign-functions/send-email-utility.php:110
 #, fuzzy
@@ -430,21 +431,21 @@ msgstr "이 취소 할 수 없습니다."
 msgid "This subscription has ended or is not configured correctly."
 msgstr "이 구독이 종료되었거나 올바르게 구성되지 않았습니다."
 
-#: parts/components.php:47 parts/components.php:48
+#: parts/components.php:44 parts/components.php:48
 #, fuzzy
 msgid "Name"
 msgstr "이름"
 
-#: parts/components.php:53
-#, fuzzy
-msgid "Your email is required."
-msgstr "이메일이 필요합니다."
-
-#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: parts/components.php:52 parts/components.php:56 parts/components.php:57
 #: porches/generic/site/stats.php:248
 #, fuzzy
 msgid "Email"
 msgstr "이메일"
+
+#: parts/components.php:54
+#, fuzzy
+msgid "Your email is required."
+msgstr "이메일이 필요합니다."
 
 #: parts/components.php:70
 #, fuzzy
@@ -688,8 +689,9 @@ msgid "Check your email"
 msgstr "전송된! 이메일을 확인."
 
 #: porches/generic/site/sign-up-confirmation.php:106
+#, fuzzy
 msgid "Your registration was successful."
-msgstr ""
+msgstr "등록이 완료되었습니다."
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
 #, fuzzy
@@ -705,8 +707,9 @@ msgid "In the email is a link to manage your prayer times."
 msgstr "이메일에는 기도 시간을 관리할 수 있는 링크가 있습니다."
 
 #: porches/generic/site/sign-up-confirmation.php:114
+#, fuzzy
 msgid "Return"
-msgstr ""
+msgstr "반품"
 
 #: porches/generic/site/stats.php:133
 #, fuzzy
