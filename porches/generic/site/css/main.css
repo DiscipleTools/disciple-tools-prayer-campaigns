@@ -1044,6 +1044,16 @@ a:not([href]):not([tabindex]):hover {
 .fuel-block img {
     max-width: 100%;
 }
+.fuel-block h3 {
+    margin-top: 40px;
+}
+.fuel-block .p4m_prayer_image {
+    text-align: center;
+}
+.fuel-block .p4m_prayer_image img{
+    max-height: 700px;
+    margin-bottom: 20px;
+}
 /* ==========================================================================
     Subscribe Style
     ========================================================================== */
