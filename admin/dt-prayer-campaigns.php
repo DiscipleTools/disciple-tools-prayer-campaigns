@@ -565,8 +565,13 @@ class DT_Prayer_Campaigns_Campaigns {
                                         <tr>
                                             <td>Locations</td>
                                             <td>
-                                                <?php if ( isset( $fields['location_grid'][0] ) ){
-                                                    echo esc_html( join( ', ', array_map( function ( $a ){
+                                                <?php
+                                                if ( isset( $fields['location_grid_meta'] ) ){
+                                                    echo esc_html( join( ' | ', array_map( function ( $a ){
+                                                        return $a['label'];
+                                                    }, $fields['location_grid_meta'] ) ) );
+                                                } elseif ( isset( $fields['location_grid'][0] ) ){
+                                                    echo esc_html( join( ' | ', array_map( function ( $a ){
                                                         return $a['label'];
                                                     }, $fields['location_grid'] ) ) );
                                                 } else {
