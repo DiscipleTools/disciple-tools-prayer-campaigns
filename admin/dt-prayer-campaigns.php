@@ -236,6 +236,13 @@ class DT_Prayer_Campaigns_Campaigns {
                                     value="<?php echo esc_attr( wp_create_nonce( 'email_subject' ) ) ?>"/>
 
                             <table class="widefat">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Current</th>
+                                    <th>Custom Value</th>
+                                </tr>
+                                </thead>
                                 <tbody>
                                 <tr>
                                     <td>
@@ -243,8 +250,11 @@ class DT_Prayer_Campaigns_Campaigns {
                                             The email address campaign emails will be sent from</label>
                                     </td>
                                     <td>
+                                        <?php echo esc_html( $this->settings_manager->get( 'email_address' ) ?: self::default_email_address() ) ?>
+                                    </td>
+                                    <td>
                                         <input name="email_address" id="email_address" type="email"
-                                               placeholder="<?php echo esc_html( self::default_email_address() ); ?>"
+                                               placeholder=""
                                                value="<?php echo esc_html( $this->settings_manager->get( 'email_address' ) ) ?>"/>
                                     </td>
                                 </tr>
@@ -254,8 +264,11 @@ class DT_Prayer_Campaigns_Campaigns {
                                             The name campaign emails will be sent from</label>
                                     </td>
                                     <td>
+                                        <?php echo esc_html( $this->settings_manager->get( 'email_name' ) ?: self::default_email_name() ) ?>
+                                    </td>
+                                    <td>
                                         <input name="email_name" id="email_name" type="text"
-                                               placeholder="<?php echo esc_html( self::default_email_name() ); ?>"
+                                               placeholder=""
                                                value="<?php echo esc_html( $this->settings_manager->get( 'email_name' ) ) ?>"/>
                                     </td>
                                 </tr>
