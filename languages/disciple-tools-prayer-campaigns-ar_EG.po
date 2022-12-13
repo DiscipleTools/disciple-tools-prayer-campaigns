@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
-"PO-Revision-Date: 2022-11-07 14:15+0000\n"
+"POT-Creation-Date: 2022-12-12T15:29:49+00:00\n"
+"PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic (Egypt) <https://translate.disciple.tools/projects/"
 "disciple-tools/disciple-tools-prayer-campaigns/ar_EG/>\n"
@@ -82,8 +82,9 @@ msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr "انقر هنا للتحقق من عنوان بريدك الإلكتروني وتأكيد موعيد صلاتك."
 
 #: campaign-functions/send-email-utility.php:107
+#, fuzzy
 msgid "Verify your account"
-msgstr ""
+msgstr "تحقق من حسابك"
 
 #: campaign-functions/send-email-utility.php:110
 msgid "Here are the times you have committed to pray:"
@@ -384,18 +385,18 @@ msgstr "هذا لا يمكن التراجع عنه."
 msgid "This subscription has ended or is not configured correctly."
 msgstr "انتهى هذا الاشتراك أو لم يتم تكوينه بشكل صحيح."
 
-#: parts/components.php:47 parts/components.php:48
+#: parts/components.php:44 parts/components.php:48
 msgid "Name"
 msgstr "الاسم"
 
-#: parts/components.php:53
-msgid "Your email is required."
-msgstr "البريد الإلكتروني الخاص بك مطلوب."
-
-#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: parts/components.php:52 parts/components.php:56 parts/components.php:57
 #: porches/generic/site/stats.php:248
 msgid "Email"
 msgstr "البريد الالكتروني"
+
+#: parts/components.php:54
+msgid "Your email is required."
+msgstr "البريد الإلكتروني الخاص بك مطلوب."
 
 #: parts/components.php:70
 msgid "Receive Prayer Time Notifications (email verification needed)."
@@ -622,8 +623,9 @@ msgid "Check your email"
 msgstr "أرسلت! تحقق من بريدك الالكتروني."
 
 #: porches/generic/site/sign-up-confirmation.php:106
+#, fuzzy
 msgid "Your registration was successful."
-msgstr ""
+msgstr "تم تسجيلكم بنجاح."
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
 msgid ""
@@ -638,8 +640,9 @@ msgid "In the email is a link to manage your prayer times."
 msgstr "يوجد في البريد الإلكتروني رابط لإدارة مواعيد الصلاة."
 
 #: porches/generic/site/sign-up-confirmation.php:114
+#, fuzzy
 msgid "Return"
-msgstr ""
+msgstr "يعود"
 
 #: porches/generic/site/stats.php:133
 #, fuzzy

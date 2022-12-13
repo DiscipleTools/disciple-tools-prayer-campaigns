@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
-"PO-Revision-Date: 2022-11-07 14:15+0000\n"
+"POT-Creation-Date: 2022-12-12T15:29:49+00:00\n"
+"PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hindi <https://translate.disciple.tools/projects/disciple-"
 "tools/disciple-tools-prayer-campaigns/hi_IN/>\n"
@@ -93,8 +93,9 @@ msgstr ""
 "अपना ईमेल पता सत्यापित करने और अपने प्रार्थना समय की पुष्टि करने के लिए यहां क्लिक करें।"
 
 #: campaign-functions/send-email-utility.php:107
+#, fuzzy
 msgid "Verify your account"
-msgstr ""
+msgstr "अपने खाते को सत्यापित करें"
 
 #: campaign-functions/send-email-utility.php:110
 #, fuzzy
@@ -432,21 +433,21 @@ msgstr "इसे असंपादित नहीं किया जा स�
 msgid "This subscription has ended or is not configured correctly."
 msgstr "यह सदस्यता समाप्त हो गई है या ठीक से कॉन्फ़िगर नहीं की गई है।"
 
-#: parts/components.php:47 parts/components.php:48
+#: parts/components.php:44 parts/components.php:48
 #, fuzzy
 msgid "Name"
 msgstr "नाम"
 
-#: parts/components.php:53
-#, fuzzy
-msgid "Your email is required."
-msgstr "आपका ईमेल आवश्यक है।"
-
-#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: parts/components.php:52 parts/components.php:56 parts/components.php:57
 #: porches/generic/site/stats.php:248
 #, fuzzy
 msgid "Email"
 msgstr "ईमेल"
+
+#: parts/components.php:54
+#, fuzzy
+msgid "Your email is required."
+msgstr "आपका ईमेल आवश्यक है।"
 
 #: parts/components.php:70
 #, fuzzy
@@ -690,8 +691,9 @@ msgid "Check your email"
 msgstr "भेज दिया! अपने ईमेल की जाँच करें।"
 
 #: porches/generic/site/sign-up-confirmation.php:106
+#, fuzzy
 msgid "Your registration was successful."
-msgstr ""
+msgstr "आपका पंजीकरण सफल रहा।"
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
 #, fuzzy
@@ -708,8 +710,9 @@ msgid "In the email is a link to manage your prayer times."
 msgstr "ईमेल में आपकी प्रार्थना के समय को प्रबंधित करने के लिए एक लिंक है।"
 
 #: porches/generic/site/sign-up-confirmation.php:114
+#, fuzzy
 msgid "Return"
-msgstr ""
+msgstr "वापस करना"
 
 #: porches/generic/site/stats.php:133
 #, fuzzy

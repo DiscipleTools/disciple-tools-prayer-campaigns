@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
-"PO-Revision-Date: 2022-11-07 14:15+0000\n"
+"POT-Creation-Date: 2022-12-12T15:29:49+00:00\n"
+"PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Amharic <https://translate.disciple.tools/projects/disciple-"
 "tools/disciple-tools-prayer-campaigns/am_ET/>\n"
@@ -91,8 +91,9 @@ msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr "የኢሜል አድራሻዎን ለማረጋገጥ እና የጸሎት ጊዜዎን ለማረጋገጥ እዚህ ጠቅ ያድርጉ።"
 
 #: campaign-functions/send-email-utility.php:107
+#, fuzzy
 msgid "Verify your account"
-msgstr ""
+msgstr "የእርስዎን መለያ ያረጋግጡ"
 
 #: campaign-functions/send-email-utility.php:110
 #, fuzzy
@@ -428,21 +429,21 @@ msgstr "ይህ ሊቀለበስ አይችልም።"
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ይህ የደንበኝነት ምዝገባ አብቅቷል ወይም በትክክል አልተዋቀረም።"
 
-#: parts/components.php:47 parts/components.php:48
+#: parts/components.php:44 parts/components.php:48
 #, fuzzy
 msgid "Name"
 msgstr "ስም"
 
-#: parts/components.php:53
-#, fuzzy
-msgid "Your email is required."
-msgstr "ኢሜልዎ ያስፈልጋል።"
-
-#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: parts/components.php:52 parts/components.php:56 parts/components.php:57
 #: porches/generic/site/stats.php:248
 #, fuzzy
 msgid "Email"
 msgstr "ኢሜል"
+
+#: parts/components.php:54
+#, fuzzy
+msgid "Your email is required."
+msgstr "ኢሜልዎ ያስፈልጋል።"
 
 #: parts/components.php:70
 #, fuzzy
@@ -684,8 +685,9 @@ msgid "Check your email"
 msgstr "ተልኳል! ኢሜልዎን ያረጋግጡ።"
 
 #: porches/generic/site/sign-up-confirmation.php:106
+#, fuzzy
 msgid "Your registration was successful."
-msgstr ""
+msgstr "ምዝገባዎ የተሳካ ነበር።"
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
 #, fuzzy
@@ -701,8 +703,9 @@ msgid "In the email is a link to manage your prayer times."
 msgstr "በኢሜል ውስጥ የጸሎት ጊዜዎን ለማስተዳደር አገናኝ አለ።"
 
 #: porches/generic/site/sign-up-confirmation.php:114
+#, fuzzy
 msgid "Return"
-msgstr ""
+msgstr "ተመለስ"
 
 #: porches/generic/site/stats.php:133
 #, fuzzy

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-07T11:28:10+00:00\n"
-"PO-Revision-Date: 2022-11-07 14:15+0000\n"
+"POT-Creation-Date: 2022-12-12T15:29:49+00:00\n"
+"PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
 "tools/disciple-tools-prayer-campaigns/ru_RU/>\n"
@@ -86,8 +86,9 @@ msgstr ""
 "молитвы."
 
 #: campaign-functions/send-email-utility.php:107
+#, fuzzy
 msgid "Verify your account"
-msgstr ""
+msgstr "подтвердите ваш аккаунт"
 
 #: campaign-functions/send-email-utility.php:110
 msgid "Here are the times you have committed to pray:"
@@ -386,18 +387,18 @@ msgstr "Это не может быть отменено."
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Эта подписка закончилась или настроена неправильно."
 
-#: parts/components.php:47 parts/components.php:48
+#: parts/components.php:44 parts/components.php:48
 msgid "Name"
 msgstr "Имя"
 
-#: parts/components.php:53
-msgid "Your email is required."
-msgstr "Требуется ваша электронная почта."
-
-#: parts/components.php:55 parts/components.php:56 parts/components.php:57
+#: parts/components.php:52 parts/components.php:56 parts/components.php:57
 #: porches/generic/site/stats.php:248
 msgid "Email"
 msgstr "Электронная почта"
+
+#: parts/components.php:54
+msgid "Your email is required."
+msgstr "Требуется ваша электронная почта."
 
 #: parts/components.php:70
 msgid "Receive Prayer Time Notifications (email verification needed)."
@@ -631,8 +632,9 @@ msgid "Check your email"
 msgstr "Отправлено! Проверьте свою электронную почту."
 
 #: porches/generic/site/sign-up-confirmation.php:106
+#, fuzzy
 msgid "Your registration was successful."
-msgstr ""
+msgstr "Ваша регистрация прошла успешно."
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
 msgid ""
@@ -647,8 +649,9 @@ msgid "In the email is a link to manage your prayer times."
 msgstr "В электронном письме есть ссылка для управления временем молитвы."
 
 #: porches/generic/site/sign-up-confirmation.php:114
+#, fuzzy
 msgid "Return"
-msgstr ""
+msgstr "Возвращаться"
 
 #: porches/generic/site/stats.php:133
 #, fuzzy
