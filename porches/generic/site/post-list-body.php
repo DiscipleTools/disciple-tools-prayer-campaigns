@@ -83,8 +83,9 @@ if ( empty( $list->posts ) ){
             <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_description' ) )  ?></p>
         </div>
         <div class="row">
-            <?php $days_displayed = [] ?>
-            <?php foreach ( $list->posts as $item ) :
+            <?php
+            $days_displayed = [];
+            foreach ( $list->posts as $item ) :
 
                 $campaign_day = get_post_meta( $item->ID, 'day', true );
                 $date = DT_Campaign_Settings::date_of_campaign_day( $campaign_day );
@@ -97,30 +98,42 @@ if ( empty( $list->posts ) ){
                 $url = site_url( "/prayer/fuel/$campaign_day" );
                 ?>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                <!-- Blog Item Starts -->
-                <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="blog-item-img">
-                        <a href="<?php echo esc_url( $url ) ?>">
-                            <img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __DIR__ ) ) ) ?>landing-pages/img/300x1.png" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-item-text">
-                        <h3>
-                            <a href="<?php echo esc_url( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
-                        </h3>
-                        <div class="meta-tags">
-                            <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
+                    <!-- Blog Item Starts -->
+                    <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="blog-item-img">
+                            <a href="<?php echo esc_url( $url ) ?>">
+                                <img src="<?php echo esc_url( trailingslashit( plugin_dir_url( __DIR__ ) ) ) ?>landing-pages/img/300x1.png" alt="">
+                            </a>
                         </div>
-                        <p>
-                            <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
-                        </p>
-                        <a href="<?php echo esc_url( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        <div class="blog-item-text">
+                            <h3>
+                                <a href="<?php echo esc_url( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
+                            </h3>
+                            <div class="meta-tags">
+                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
+                            </div>
+                            <p>
+                                <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
+                            </p>
+                            <a href="<?php echo esc_url( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        </div>
+                    </div>
+                    <!-- Blog Item Wrapper Ends-->
+                </div>
+            <?php endforeach;
+            if ( empty( $list->posts ) && is_numeric( $todays_day_in_campaign ) ) : ?>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+                    <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="blog-item-text">
+                            <p>
+                                <?php echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), -$todays_day_in_campaign ) ); ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <!-- Blog Item Wrapper Ends-->
-            </div>
-            <?php endforeach; ?>
+            <?php endif; ?>
+
         </div>
     </div>
 </section>
