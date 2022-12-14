@@ -444,7 +444,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             //get earliest unpublished post
             $today = new WP_Query( [
                 'post_type' => PORCH_LANDING_POST_TYPE,
-                'post_status' => 'future',
+                'post_status' => [ 'future', 'publish' ],
                 'posts_per_page' => 1,
                 'orderby' => 'post_date',
                 'order' => 'ASC',
