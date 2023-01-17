@@ -3,11 +3,11 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"POT-Creation-Date: 2023-01-17T15:05:06+00:00\n"
 "PO-Revision-Date: 2023-01-12 10:13+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
-"Language-Team: Russian <https://translate.disciple.tools/projects/"
-"disciple-tools/disciple-tools-prayer-campaigns/ru_RU/>\n"
+"Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
+"tools/disciple-tools-prayer-campaigns/ru_RU/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -615,9 +615,13 @@ msgstr "Осталось часов"
 msgid "View All"
 msgstr "Посмотреть все"
 
-#: porches/generic/site/post-list-body.php:118
+#: porches/generic/site/post-list-body.php:119
 msgid "Read"
 msgstr "Прочитать"
+
+#: porches/generic/site/post-list-body.php:130
+msgid "Content will start in %s days"
+msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:105
 #, fuzzy
