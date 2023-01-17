@@ -3,11 +3,11 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-12T15:29:49+00:00\n"
-"PO-Revision-Date: 2022-12-08 12:12+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/ru_RU/>\n"
+"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"PO-Revision-Date: 2023-01-12 10:13+0000\n"
+"Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
+"Language-Team: Russian <https://translate.disciple.tools/projects/"
+"disciple-tools/disciple-tools-prayer-campaigns/ru_RU/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,10 +17,9 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #: campaign-functions/cron-schedule.php:83
-#, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
-msgstr "Нажмите здесь, чтобы увидеть молитвенные подсказки на сегодня: %s"
+msgstr "Нажмите здесь, чтобы увидеть сегодняшнее молитвенное напоминание: %s"
 
 #: campaign-functions/cron-schedule.php:89
 msgid "Prayer Time reminder!"
@@ -77,18 +76,14 @@ msgstr ""
 "умножения учеников! Вы в одном клике от завершения регистрации."
 
 #: campaign-functions/send-email-utility.php:104
-#, fuzzy
-#| msgid ""
-#| "Click here to verify your email address and confirm your prayer times."
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Нажмите здесь, чтобы подтвердить свой адрес электронной почты и время "
-"молитвы."
+"молитвы:"
 
 #: campaign-functions/send-email-utility.php:107
-#, fuzzy
 msgid "Verify your account"
-msgstr "подтвердите ваш аккаунт"
+msgstr "Подтвердите ваш аккаунт"
 
 #: campaign-functions/send-email-utility.php:110
 msgid "Here are the times you have committed to pray:"
@@ -117,13 +112,12 @@ msgid "If you know your schedule already you can choose your times here:"
 msgstr "Если вы уже знаете свое расписание, вы можете выбрать время здесь:"
 
 #: campaign-functions/send-email-utility.php:250
-#, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
-"У вас осталось 2 недели до последней молитвы. Хотели бы вы продолжать "
-"молиться?"
+"У вас осталось 2 недели до завершения вашего молитвенного времени. Хотели бы "
+"вы продолжать молиться?"
 
 #: campaign-functions/send-email-utility.php:251
 #, fuzzy
