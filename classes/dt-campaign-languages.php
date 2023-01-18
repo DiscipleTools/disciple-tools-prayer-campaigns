@@ -64,8 +64,8 @@ class DT_Campaign_Languages {
     /**
      * Get the available languages
     */
-    public function get() {
-        $languages = $this->get_from_cache();
+    public function get( $reset_cache = false ) {
+        $languages = $reset_cache ? [] : $this->get_from_cache();
 
         if ( empty( $languages ) ) {
             $languages = $this->get_from_options_or_defaults();
@@ -159,12 +159,15 @@ class DT_Campaign_Languages {
         if ( isset( $languages[$code]['default'] ) ) {
             return;
         }
-        /* remove the element relating to $code from the array */
-        unset( $languages[$code] );
+        $custom_options = get_option( $this->option_name, [] );
+        if ( !isset( $custom_options[$code] ) ) {
+            return;
+        }
+        unset( $custom_options[$code] );
+        update_option( $this->option_name, $custom_options );
 
-        $this->cache( $languages );
 
-        return $languages;
+        return $this->get( true );
     }
 
     /**
@@ -173,18 +176,38 @@ class DT_Campaign_Languages {
      * @return array
      */
     private function get_from_options_or_defaults() {
-        $languages = get_option( $this->option_name, [] );
+        $custom_languages = get_option( $this->option_name, [] );
 
         $available_languages = $this->get_from_defaults();
 
-        return array_merge( $available_languages, $languages );
+        return dt_array_merge_recursive_distinct( $available_languages, $custom_languages );
     }
 
     /**
      * Get the languages from the already translated languages
      */
     private function get_from_defaults() {
-        $available_language_codes = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
+        $installed_languages = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
+
+        $available_language_codes = [ 'en_US' ];
+        foreach ( $installed_languages as $code ) {
+            unload_textdomain( 'disciple-tools-prayer-campaigns' );
+            $lang = str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
+            add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
+                if ( !empty( $lang ) ){
+                    return $lang;
+                }
+                return $locale;
+            }, 1000, 1 );
+            switch_to_locale( $lang );
+            dt_campaign_reload_text_domain();
+            $translated = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
+            if ( $translated !== 'Strategic prayer for a Disciple Making Movement' ){
+                $available_language_codes[] = $lang;
+            }
+        }
+        switch_to_locale( 'en_US' );
+
         array_unshift( $available_language_codes, $this->default_language );
 
         $remove_plugin_name = function ( $code ) {
@@ -228,8 +251,6 @@ class DT_Campaign_Languages {
      * @param array $languages
      */
     private function cache( array $languages ) {
-        update_option( $this->option_name, $languages );
-
         wp_cache_set( $this->option_name, $languages, '', self::CACHE_EXPIRY );
     }
 
@@ -245,11 +266,15 @@ class DT_Campaign_Languages {
             return;
         }
 
-        $languages = $this->merge_updates( $languages, $code, $updates );
 
-        $this->cache( $languages );
+        $custom_options = get_option( $this->option_name, [] );
+        if ( !isset( $custom_options[$code] ) ) {
+            $custom_options[$code] = [];
+        }
+        $custom_options[$code] = array_merge( $custom_options[$code], $updates );
+        update_option( $this->option_name, $custom_options );
 
-        return $languages;
+        return $this->get( true );
     }
 
 
