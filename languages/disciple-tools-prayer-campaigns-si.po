@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Sinhala <https://translate.disciple.tools/projects/disciple-"
@@ -44,8 +44,8 @@ msgstr "%s සඳහා"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:152
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:156
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Hello %s,"
 msgstr "ආයුබෝවන් %s,"
@@ -61,13 +61,13 @@ msgid "Here are your upcoming prayer times:"
 msgstr "ඔබගේ ඉදිරි යාඥා වේලාවන් මෙන්න:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:112
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "%s වේලාවට අනුව වේලාවන් පෙන්වයි"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/send-email-utility.php:120
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "ඔබගේ ගිණුම සහ කාල කැපවීම් කළමනාකරණය කිරීමට මෙතන ක්ලික් කරන්න"
@@ -98,22 +98,26 @@ msgstr ""
 msgid "Verify your account"
 msgstr "ඔබගේ ගිණුම තහවුරු කරන්න"
 
-#: campaign-functions/send-email-utility.php:110
+#: campaign-functions/send-email-utility.php:111
+msgid "Or open this link:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:114
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "මෙන්න ඔබ යාච්ඤා කිරීමට කැප වූ වේලාවන්:"
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:163
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "ලියාපදිංචිය තහවුරු කිරීම"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:166
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "යාච්ඤා කිරීමට ලියාපදිංචි වීම ගැන ඔබට ස්තුතියි!"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:167
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -124,25 +128,25 @@ msgstr ""
 "ඉල්ලා පළමු දිනට මාස කිහිපයකට පෙර අපි ඔබට තවත් විද්‍යුත් තැපෑලක් එවන්නෙමු. එකට වැඩ කරමින් අපි "
 "24/7 යාච්ඤාවෙන් කලාපය ආවරණය කරන්නෙමු."
 
-#: campaign-functions/send-email-utility.php:164
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "ඔබ දැනටමත් ඔබගේ කාලසටහන දන්නේ නම් ඔබට ඔබගේ වේලාවන් මෙතැනින් තෝරා ගත හැක:"
 
-#: campaign-functions/send-email-utility.php:250
+#: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
 "praying?"
 msgstr "ඔබගේ අවසන් යාඥා කාලය සඳහා ඔබ සති 2ක් ඇත. ඔබ දිගටම යාච්ඤා කිරීමට කැමතිද?"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:255
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "තවත් යාඥා වේලාවන් සඳහා ලියාපදිංචි වන්න නැතහොත් ඔබේ පුනරාවර්තන කාලය මෙතැනින් දීර්ඝ කරන්න:"
 
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:257
 #, fuzzy
 msgid "Thank you"
 msgstr "ඔබට ස්තුතියි"
@@ -681,10 +685,14 @@ msgstr "ඉතිරි පැය"
 msgid "View All"
 msgstr "සියල්ල බලන්න"
 
-#: porches/generic/site/post-list-body.php:118
+#: porches/generic/site/post-list-body.php:119
 #, fuzzy
 msgid "Read"
 msgstr "කියවන්න"
+
+#: porches/generic/site/post-list-body.php:130
+msgid "Content will start in %s days"
+msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:105
 #, fuzzy

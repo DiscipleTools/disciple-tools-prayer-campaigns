@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bengali (Bangladesh) <https://translate.disciple.tools/"
@@ -44,8 +44,8 @@ msgstr "%s এর জন্য"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:152
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:156
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Hello %s,"
 msgstr "হ্যালো %s,"
@@ -61,13 +61,13 @@ msgid "Here are your upcoming prayer times:"
 msgstr "এখানে আপনার আসন্ন নামাজের সময় আছে:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:112
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "সময়গুলি দেখানো হয়েছে: %s সময় অনুসারে"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/send-email-utility.php:120
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "আপনার অ্যাকাউন্ট এবং সময় প্রতিশ্রুতি পরিচালনা করতে এখানে ক্লিক করুন"
@@ -98,22 +98,26 @@ msgstr ""
 msgid "Verify your account"
 msgstr "আপনার অ্যাকাউন্ট যাচাই করুন"
 
-#: campaign-functions/send-email-utility.php:110
+#: campaign-functions/send-email-utility.php:111
+msgid "Or open this link:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:114
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "এখানে আপনি প্রার্থনা করার প্রতিশ্রুতিবদ্ধ সময়গুলি রয়েছে:"
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:163
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "নিবন্ধন নিশ্চিতকরণ"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:166
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "প্রার্থনা সাইন আপ করার জন্য আপনাকে ধন্যবাদ!"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:167
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -124,13 +128,13 @@ msgstr ""
 "আরেকটি ইমেল পাঠাব যাতে আপনি প্রার্থনা করার জন্য নির্দিষ্ট সময় বেছে নিতে বলেন। "
 "একসাথে কাজ করে আমরা 24/7 প্রার্থনায় অঞ্চলটি কভার করব।"
 
-#: campaign-functions/send-email-utility.php:164
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr ""
 "আপনি যদি ইতিমধ্যে আপনার সময়সূচী জানেন তবে আপনি এখানে আপনার সময় বেছে নিতে পারেন:"
 
-#: campaign-functions/send-email-utility.php:250
+#: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
@@ -139,13 +143,13 @@ msgstr ""
 "আপনি আপনার শেষ প্রার্থনার জন্য 2 সপ্তাহের বাইরে আছেন। আপনি কি প্রার্থনা চালিয়ে "
 "যেতে চান?"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:255
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "আরও প্রার্থনার সময়গুলির জন্য সাইন আপ করুন বা আপনার পুনরাবৃত্ত সময় এখানে প্রসারিত করুন:"
 
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:257
 #, fuzzy
 msgid "Thank you"
 msgstr "ধন্যবাদ"
@@ -685,10 +689,14 @@ msgstr "ঘন্টা অবশিষ্ট"
 msgid "View All"
 msgstr "সব দেখ"
 
-#: porches/generic/site/post-list-body.php:118
+#: porches/generic/site/post-list-body.php:119
 #, fuzzy
 msgid "Read"
 msgstr "পড়ুন"
+
+#: porches/generic/site/post-list-body.php:130
+msgid "Content will start in %s days"
+msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:105
 #, fuzzy
