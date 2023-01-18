@@ -103,10 +103,14 @@ class DT_Prayer_Campaigns_Send_Email {
             <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement! You\'re one click away from finishing your registration.', 'disciple-tools-prayer-campaigns' ) . '</h4>
             <p>' . __( 'Click here to verify your email address and confirm your prayer times:', 'disciple-tools-prayer-campaigns' ) .  '</p>
             <p>
-                <button style="background-color: #4CAF50; /* Green */ border: none; color: white; padding: 15px 32px; font-size: 16px; margin: 20px 2px; cursor: pointer; border-radius: 2px;">
-                    <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '?verify=true" style="color: white;">' . __( 'Verify your account', 'disciple-tools-prayer-campaigns' ) .  '</a>
+                <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; font-size: 16px; margin: 20px 2px; cursor: pointer; border-radius: 2px;">
+                    <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '" style="color: white;">' . __( 'Verify your account', 'disciple-tools-prayer-campaigns' ) .  '</a>
                 </button>
             </p>
+            <p>
+            ' . __( 'Or open this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '?verify=true">' . trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '</a>
+            </p>
+
             <p>' . __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>' . $commitment_list . '</p>
             <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
