@@ -248,17 +248,17 @@ class DT_Prayer_Campaigns_Send_Email {
         $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
         $porch_fields = DT_Porch_Settings::settings();
 
-        $subject = 'Continue Praying';
-        $message = '
+        $subject = __( 'Continue Praying?', 'disciple-tools-prayer-campaigns' );
+        $message_body = '
             <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) . '</h3>
-            <p> ' . __( 'You are 2 weeks out for your last prayer time. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) . '</p>
+            <p> ' . __( 'You are 2 weeks out from your last prayer time. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>' . __( 'Sign up for more prayer times or extend your recurring time here:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p><a href="'. $manage_link.'">' . $manage_link .  '</a></p>
             <p>' . __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',</p>
-            <p>' .  isset( $porch_fields['title']['value'] ) ? $porch_fields['title']['value'] : site_url() . '</p>
+            <p>' .  ( isset( $porch_fields['title']['value'] ) ? $porch_fields['title']['value'] : site_url() ) . '</p>
 
         ';
-        return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $message );
+        return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $message_body );
     }
 
 }

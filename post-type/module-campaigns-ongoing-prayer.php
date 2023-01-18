@@ -283,7 +283,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
 
         $active_ongoing_campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active' ], 'type' => [ 'ongoing' ] ] );
 
-        if ( is_wp_error( $active_ongoing_campaigns ) || is_protected_ajax_action() ){
+        if ( is_wp_error( $active_ongoing_campaigns ) ){
             return;
         }
 
@@ -307,7 +307,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
             AND r.time_begin = ( SELECT MAX( time_begin ) as time FROM $wpdb->dt_reports r2 WHERE r2.post_id = r.post_id )
             AND r.time_begin < %d
             AND r.timestamp < %d
-            AND subtype = 'ongoing'
+            AND r.subtype = 'ongoing'
             AND r.post_id NOT IN ( SELECT post_id from $wpdb->dt_reports r3 WHERE r3.post_id = r.post_id AND r3.type = '2_week_tickler' AND r3.timestamp > %d )
             GROUP BY r.post_id
         ", $two_weeks_from_now, $two_weeks_ago, $one_week_ago ), ARRAY_A );
