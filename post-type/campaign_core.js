@@ -17,7 +17,7 @@ window.campaign_scripts = {
 
       if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
 
-        let timezone_date = this.timestamp_to_time( time_iterator, custom_timezone )
+        let timezone_date = this.timestamp_to_time( time_iterator + day_in_seconds, custom_timezone )
         if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
           // Timezone change detected. Recalculating time slots.
           window.campaign_scripts.processing_save = {}
@@ -67,6 +67,7 @@ window.campaign_scripts = {
     days.forEach(d=>{
       d.percent = d.covered_slots / d.slots.length * 100
     })
+    window.campaign_scripts.processing_save = {}
 
     return days;
   },

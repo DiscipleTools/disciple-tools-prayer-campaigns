@@ -409,14 +409,15 @@ jQuery(document).ready(function($){
           continue;
         }
         if ( key >= day && key < day + day_in_seconds ){
-          let mod_time = key % day_in_seconds
-          let time_formatted = '';
-          if ( window.campaign_scripts.processing_save[mod_time] ){
-            time_formatted = window.campaign_scripts.processing_save[mod_time]
-          } else {
-            time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
-            window.campaign_scripts.processing_save[mod_time] = time_formatted
-          }
+          //breaks on timezone change
+          // let mod_time = key % day_in_seconds
+          // let time_formatted = '';
+          // if ( window.campaign_scripts.processing_save[mod_time] ){
+          //   time_formatted = window.campaign_scripts.processing_save[mod_time]
+          // } else {
+          //   window.campaign_scripts.processing_save[mod_time] = time_formatted
+          // }
+          let  time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
           if ( !coverage[time_formatted]){
             coverage[time_formatted] = [];
           }
