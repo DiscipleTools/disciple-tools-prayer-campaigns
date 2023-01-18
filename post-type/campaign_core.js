@@ -11,33 +11,43 @@ window.campaign_scripts = {
     let start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, current_time_zone )
     let time_iterator = parseInt( start_of_day );
 
+    let timezone_change_ref = this.timestamp_to_time( time_iterator, custom_timezone )
+
     while ( time_iterator < calendar_subscribe_object.end_timestamp ){
 
       if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
+
+        let timezone_date = this.timestamp_to_time( time_iterator, custom_timezone )
+        if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
+          // Timezone change detected. Recalculating time slots.
+          window.campaign_scripts.processing_save = {}
+        }
+        timezone_change_ref = timezone_date
+
         start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
         let day = window.campaign_scripts.timestamp_to_month_day( time_iterator, custom_timezone )
-        let weekday = new Date(start_of_day * 1000).getDay()
 
         days.push({
           "key": start_of_day,
           "formatted": day,
           "month": window.campaign_scripts.timestamp_to_format( time_iterator, { month:"long" }, custom_timezone),
           "day": window.campaign_scripts.timestamp_to_format( time_iterator, { day:"numeric" }, custom_timezone),
-          "weekday": weekday,
           "percent": 0,
           "slots": [],
           "covered_slots": 0,
         })
       }
-      //this breaks with daylight saving changes
-      // let mod_time = time_iterator % day_in_seconds
-      //let time_formatted = '';
-      // if ( window.campaign_scripts.processing_save[mod_time] ){
-      //   time_formatted = window.campaign_scripts.processing_save[mod_time]
-      // } else {
-      //   window.campaign_scripts.processing_save[mod_time] = time_formatted
-      // }
-      let time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
+
+      //calculate time slot
+      let mod_time = time_iterator % day_in_seconds
+      let time_formatted = '';
+      if ( window.campaign_scripts.processing_save[mod_time] ){
+        time_formatted = window.campaign_scripts.processing_save[mod_time]
+      } else {
+        time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
+        window.campaign_scripts.processing_save[mod_time] = time_formatted
+      }
+
       days[days.length-1]["slots"].push({
         "key": time_iterator,
         "formatted": time_formatted,
