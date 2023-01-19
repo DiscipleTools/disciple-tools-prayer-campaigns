@@ -89,7 +89,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
         $campaign_subject_line = __( 'Prayer Time reminder!', 'disciple-tools-prayer-campaigns' );
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        foreach ( $subscriber_values as $key => $reports ) {
+        foreach ( $subscriber_values as $subscriber_id => $reports ) {
             $e = [
                 'to' => '',
                 'subject' => $campaign_subject_line,
@@ -102,7 +102,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
 
             $commitment_list = '';
             $to = [];
-            $record = DT_Posts::get_post( 'subscriptions', $key, true, false );
+            $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
             if ( is_wp_error( $record ) ){
                 continue;
             }
@@ -165,7 +165,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
             $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( $e['to'], $e['subject'], $e['message'], $e['headers'] );
 
             if ( ! $sent ){
-                dt_write_log( __METHOD__ . ': Unable to send email. ' . $e['to'] );
+                dt_write_log( __METHOD__ . ': Unable to send email to ' . $e['to'] . '. Subscriber: ' . $subscriber_id );
             } else {
                 // note in report that email was sent
                 foreach ( $reports as $row ){
