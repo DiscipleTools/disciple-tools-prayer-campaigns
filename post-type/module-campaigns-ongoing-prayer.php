@@ -281,7 +281,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
 
     public function dt_prayer_ongoing_resubscription(){
 
-        $active_ongoing_campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active' ], 'type' => [ 'ongoing' ] ] );
+        $active_ongoing_campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active' ], 'type' => [ 'ongoing' ] ], false );
 
         if ( is_wp_error( $active_ongoing_campaigns ) ){
             return;
