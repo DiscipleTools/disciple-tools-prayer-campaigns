@@ -712,6 +712,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     private function delete_subscription( $post_id, $report_id ){
         $sub = Disciple_Tools_Reports::get( $report_id, 'id' );
+        if ( empty( $sub ) ){
+            return false;
+        }
         $time_in_mins = ( $sub['time_end'] - $sub['time_begin'] ) / 60;
         $label = 'Commitment deleted: ' . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
         Disciple_Tools_Reports::delete( $report_id );
@@ -741,7 +744,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time['time'], $time['duration'], $time['grid_id'], true );
+            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, true );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }

@@ -10,7 +10,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $sent = wp_mail( $to, $subject, $message, $headers );
         if ( ! $sent ){
-            dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
+            dt_write_log( __METHOD__ . ': Unable to send email to: ' . $to );
         }
         return $sent;
     }
