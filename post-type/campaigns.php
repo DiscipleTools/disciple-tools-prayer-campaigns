@@ -1213,7 +1213,7 @@ class DT_Campaigns_Base {
                 'campaign_name' => $campaign['name'],
 //                'status' => $campaign['status']['key'],
                 'start_date' => $campaign['start_date']['timestamp'],
-                'end_date' => $campaign['end_date']['timestamp'],
+                'end_date' => isset( $campaign['end_date']['timestamp'] ) ? $campaign['end_date']['timestamp'] : null,
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
                 'campaign_link' => $is_current_campaign ? home_url() : '',
                 'campaign_links' => [
