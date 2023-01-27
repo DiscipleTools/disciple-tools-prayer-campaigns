@@ -653,6 +653,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
         DT_Posts::update_post( 'subscriptions', $post_id, [ 'status' => 'inactive' ], true, false );
 
+        $base_user = dt_get_base_user();
+        DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) A user has deleted their profile and prayer times.", 'comment', [], false, false );
+
         return true;
     }
 
@@ -720,11 +723,21 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         Disciple_Tools_Reports::delete( $report_id );
         dt_activity_insert([
             'action' => 'delete_subscription',
-            'object_type' => $this->post_type, // If this could be contacts/groups, that would be best
+            'object_type' => $this->post_type,
             'object_subtype' => 'report',
             'object_note' => $label,
             'object_id' => $post_id
         ] );
+        $subscription = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        $campaign_id = $subscription['campaigns'][0]['ID'] ?? null;
+        if ( $campaign_id ){
+            $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+            $start_date = $campaign['start_date']['timestamp'] ?? null;
+            if ( $sub['time_begin'] < $start_date + 2 * DAY_IN_SECONDS ){
+                $base_user = dt_get_base_user();
+                DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) A prayer time close to the campaign start has been deleted", 'comment', [], false, false );
+            }
+        }
         return true;
     }
 
@@ -776,6 +789,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
     private function delete_times( $post_id, $params ){
         $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        $campaign_id = $post['campaigns'][0]['ID'] ?? null;
+        if ( $campaign_id ){
+            $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+            $start_date = $campaign['start_date']['timestamp'] ?? null;
+            if ( time() > $start_date - 3 * DAY_IN_SECONDS && time() < $start_date + 3 * DAY_IN_SECONDS ){
+                $base_user = dt_get_base_user();
+                DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) Reoccurring prayer time deleted", 'comment', [], false, false );
+            }
+        }
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
