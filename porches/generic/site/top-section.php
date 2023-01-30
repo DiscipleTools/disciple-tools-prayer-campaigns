@@ -66,7 +66,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
     </div>
     <div class="overlay"></div>
     <div class="container">
-        <div class="row justify-content-md-center">
+        <div class="row">
             <div class="col-md-12">
                 <div class="contents content-height text-center">
 

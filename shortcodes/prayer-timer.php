@@ -162,7 +162,45 @@ function show_prayer_timer( $atts ) {
                 color: gray;
                 font-style: italic;
             }
+
+            #clock-sticky {
+                position: fixed;
+                top: 66px;
+                right:0;
+                padding: 5px 10px;
+                border-radius: 2px;
+                z-index: 100;
+
+                color: #fefefe;
+                background-color: <?php echo esc_html( $color_hex ); ?>;
+            }
+            #clock-sticky-button {
+                border: none;
+                background: none;
+                cursor: pointer;
+                padding: 0;
+                margin: 0;
+            }
+            #clock-sticky-button img {
+                height: 20px;
+            }
+            #clock-sticky-clock img {
+                height: 20px;
+            }
         </style>
+
+        <span id="clock-sticky" class="clock-sticky">
+            <span id="clock-sticky-remaining-time">
+                <?php echo esc_html( $prayer_duration_min ); ?>:00
+            </span>
+            <button id="clock-sticky-button" onclick="start_timer()">
+                <img src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/play-white.svg' ) ?>"/>
+            </button>
+            <span style="display: none"; id="clock-sticky-clock">
+                <img src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/clock-white.svg' ) ?>"/>
+            </span>
+        </span>
+
         <div class="prayer-timer-container">
             <div class="prayer-timer-clock">
                 <div class="prayer-timer-needle" id="needle" data-degrees="0"></div>
@@ -183,7 +221,18 @@ function show_prayer_timer( $atts ) {
         </div>
         <script>
             function start_timer() {
-                var start_praying_button = jQuery( '#start-praying' )
+
+                let end_of_time = new Date().getTime() + <?php echo esc_html( $prayer_duration_min ) * 60 * 1000; ?>;
+                setInterval( function() {
+                    let time = new Date().getTime() - 1000;
+                    if ( time < end_of_time ) {
+                        $('#clock-sticky-remaining-time').text( Math.floor( (( end_of_time - time ) / 1000 /60) % 60 ) + ':' + Math.floor( (( end_of_time - time ) / 1000) % 60 )   )
+                    }
+                }, 5000)
+                jQuery('#clock-sticky-button').hide();
+                jQuery('#clock-sticky-clock').show();
+
+                let start_praying_button = jQuery( '#start-praying' )
 
                 start_praying_button.attr( 'onclick', 'javascript:void();' );
                 start_praying_button.text( '<?php esc_html_e( 'Now praying...', 'disciple-tools-prayer-campaigns' ); ?>');

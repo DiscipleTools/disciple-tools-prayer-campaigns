@@ -11,9 +11,9 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
 <!-- TODAYS POST Section -->
 <section id="contact" class="section">
     <div class="container">
-        <div class="row justify-content-md-center">
+        <div class="row">
 
-            <div class="section-header">
+            <div class="section-header col">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'todays_fuel_title' ) ) ?></h2>
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             </div>
@@ -27,7 +27,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
             <?php
             if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
                 if ( function_exists( 'show_prayer_timer' ) ) : ?>
-                    <div class="mt-5">
+                    <div class="col">
                         <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
                     </div>
                 <?php endif;
