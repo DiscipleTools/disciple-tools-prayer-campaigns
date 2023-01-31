@@ -868,7 +868,7 @@ class DT_Campaigns_Base {
     public static function total_days_in_campaign(): int {
         $campaign = DT_Campaign_Settings::get_campaign();
         $start_date = $campaign['start_date']['timestamp'];
-        $end_date = $campaign['end_date']['timestamp'];
+        $end_date = $campaign['end_date']['timestamp'] + DAY_IN_SECONDS; //end of day.
 
         if ( !$start_date || !$end_date ) {
             return -1;
