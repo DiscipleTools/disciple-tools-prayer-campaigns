@@ -99,16 +99,16 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
+        $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
+
         $message .= '
             <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement! You\'re one click away from finishing your registration.', 'disciple-tools-prayer-campaigns' ) . '</h4>
             <p>' . __( 'Click here to verify your email address and confirm your prayer times:', 'disciple-tools-prayer-campaigns' ) .  '</p>
             <p>
-                <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; font-size: 16px; margin: 20px 2px; cursor: pointer; border-radius: 2px;">
-                    <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '" style="color: white;">' . __( 'Verify your account', 'disciple-tools-prayer-campaigns' ) .  '</a>
-                </button>
+                <a href="'. $link . '" style="display:inline-block; background-color: #4CAF50; border: none; color: white; padding: 15px 32px; font-size: 16px; cursor: pointer; border-radius: 2px;">' . __( 'Verify your account', 'disciple-tools-prayer-campaigns' ) .  '</a>
             </p>
             <p>
-            ' . __( 'Or open this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '?verify=true">' . trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '</a>
+                ' . __( 'Or open this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. $link .'">' . trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '</a>
             </p>
 
             <p>' . __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) . '</p>
@@ -117,7 +117,7 @@ class DT_Prayer_Campaigns_Send_Email {
             ' . nl2br( $sign_up_email_extra_message ) . '
             <br>
             <hr>
-            <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
+            <p><a href="'. $link .'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
         ';
 
         $sent = self::send_prayer_campaign_email( $to, $subject, $message, $headers );
