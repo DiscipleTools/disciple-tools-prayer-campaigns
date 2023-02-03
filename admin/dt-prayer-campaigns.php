@@ -670,6 +670,19 @@ class DT_Prayer_Campaigns_Campaigns {
                     </ul>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <br>
+                    Landing Page QR code:
+                    <br>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=323a68&data=<?php echo esc_url( home_url() ) ?>"
+                        title="<?php echo esc_url( home_url() ) ?>" alt="<?php echo esc_url( home_url() ) ?>"
+                        style='width:100%;'/>
+                        <br>
+                        <a target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=323a68&data=<?php echo esc_url( home_url() ) ?>">direct link</a>
+                    <br>
+                </td>
+            </tr>
             </tbody>
         </table>
         <br>
