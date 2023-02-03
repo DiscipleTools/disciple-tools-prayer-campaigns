@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lao <https://translate.disciple.tools/projects/disciple-tools/"
@@ -44,8 +44,8 @@ msgstr "ສໍາລັບ %s"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:152
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:156
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Hello %s,"
 msgstr "ສະບາຍດີ %s,"
@@ -61,13 +61,13 @@ msgid "Here are your upcoming prayer times:"
 msgstr "ນີ້ແມ່ນເວລາອະທິຖານທີ່ຈະມາເຖິງຂອງເຈົ້າ:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:112
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "ເວລາແມ່ນສະແດງຕາມ: ເວລາ %s"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/send-email-utility.php:120
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "ຄລິກທີ່ນີ້ເພື່ອຈັດການບັນຊີ ແລະຄໍາໝັ້ນສັນຍາເວລາຂອງທ່ານ"
@@ -96,22 +96,26 @@ msgstr "ຄລິກທີ່ນີ້ເພື່ອຢືນຢັນທີ່
 msgid "Verify your account"
 msgstr "ຢືນຢັນບັນຊີຂອງທ່ານ"
 
-#: campaign-functions/send-email-utility.php:110
+#: campaign-functions/send-email-utility.php:111
+msgid "Or open this link:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:114
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "ນີ້ແມ່ນເວລາທີ່ທ່ານຕັ້ງໃຈທີ່ຈະອະທິຖານ:"
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:163
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "ການຢືນຢັນການລົງທະບຽນ"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:166
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການລົງທະບຽນເພື່ອອະທິຖານ!"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:167
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -122,24 +126,24 @@ msgstr ""
 "ພວກເຮົາຈະສົ່ງອີເມວອື່ນໃຫ້ທ່ານສອງສາມເດືອນກ່ອນມື້ທໍາອິດທີ່ຂໍໃຫ້ເຈົ້າເລືອກເວລາສະເພາະເພື່ອອະທິຖານ. "
 "ການເຮັດວຽກຮ່ວມກັນພວກເຮົາຈະກວມເອົາພາກພື້ນໃນການອະທິຖານ 24/7."
 
-#: campaign-functions/send-email-utility.php:164
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "ຖ້າເຈົ້າຮູ້ຕາຕະລາງເວລາຂອງເຈົ້າແລ້ວ ເຈົ້າສາມາດເລືອກເວລາຂອງເຈົ້າໄດ້ທີ່ນີ້:"
 
-#: campaign-functions/send-email-utility.php:250
+#: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
 "praying?"
 msgstr "ເຈົ້າຢູ່ 2 ອາທິດສຳລັບເວລາອະທິຖານຄັ້ງສຸດທ້າຍຂອງເຈົ້າ. ເຈົ້າຢາກອະທິຖານຕໍ່ໄປບໍ?"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:255
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "ລົງທະບຽນສຳລັບເວລາອະທິຖານເພີ່ມເຕີມ ຫຼືຂະຫຍາຍເວລາປະຈຳຕົວຂອງທ່ານຢູ່ທີ່ນີ້:"
 
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:257
 #, fuzzy
 msgid "Thank you"
 msgstr "ຂອບໃຈ"
@@ -677,10 +681,14 @@ msgstr "ຊົ່ວໂມງທີ່ຍັງເຫຼືອ"
 msgid "View All"
 msgstr "ເບິ່ງທັງຫມົດ"
 
-#: porches/generic/site/post-list-body.php:118
+#: porches/generic/site/post-list-body.php:119
 #, fuzzy
 msgid "Read"
 msgstr "ອ່ານ"
+
+#: porches/generic/site/post-list-body.php:130
+msgid "Content will start in %s days"
+msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:105
 #, fuzzy

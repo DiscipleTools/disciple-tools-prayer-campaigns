@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swahili <https://translate.disciple.tools/projects/disciple-"
@@ -44,8 +44,8 @@ msgstr "kwa %s"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:152
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:156
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Hello %s,"
 msgstr "Habari %s,"
@@ -61,13 +61,13 @@ msgid "Here are your upcoming prayer times:"
 msgstr "Hizi ndizo nyakati zako zijazo za maombi:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:112
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "Nyakati zinaonyeshwa kulingana na: saa %s"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/send-email-utility.php:120
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "Bofya hapa ili kudhibiti akaunti yako na ahadi za wakati"
@@ -98,22 +98,26 @@ msgstr ""
 msgid "Verify your account"
 msgstr "Hakikisha akaunti yako"
 
-#: campaign-functions/send-email-utility.php:110
+#: campaign-functions/send-email-utility.php:111
+msgid "Or open this link:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:114
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "Hizi ndizo nyakati ambazo umejitolea kuomba:"
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:163
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "Uthibitisho wa Usajili"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:166
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "Asante kwa kujiandikisha kuomba!"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:167
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -124,12 +128,12 @@ msgstr ""
 "michache kabla ya siku ya kwanza kukuuliza uchague saa mahususi za kuomba. "
 "Tukifanya kazi pamoja tutafunika eneo hilo kwa maombi 24/7."
 
-#: campaign-functions/send-email-utility.php:164
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "Ikiwa unajua ratiba yako tayari unaweza kuchagua saa zako hapa:"
 
-#: campaign-functions/send-email-utility.php:250
+#: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
@@ -138,13 +142,13 @@ msgstr ""
 "Umetoka kwa wiki 2 kwa wakati wako wa mwisho wa maombi. Je, ungependa "
 "kuendelea kuomba?"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:255
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Jisajili kwa nyakati zaidi za maombi au uongeze muda wako unaojirudia hapa:"
 
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:257
 #, fuzzy
 msgid "Thank you"
 msgstr "Asante"
@@ -688,10 +692,14 @@ msgstr "Saa Zilizobaki"
 msgid "View All"
 msgstr "Tazama zote"
 
-#: porches/generic/site/post-list-body.php:118
+#: porches/generic/site/post-list-body.php:119
 #, fuzzy
 msgid "Read"
 msgstr "Soma"
+
+#: porches/generic/site/post-list-body.php:130
+msgid "Content will start in %s days"
+msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:105
 #, fuzzy

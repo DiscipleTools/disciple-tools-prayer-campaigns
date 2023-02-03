@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2022-12-13T15:23:06+00:00\n"
+"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Gujarati <https://translate.disciple.tools/projects/disciple-"
@@ -44,8 +44,8 @@ msgstr "%s માટે"
 
 #: campaign-functions/cron-schedule.php:153
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:152
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:156
+#: campaign-functions/send-email-utility.php:253
 #, fuzzy
 msgid "Hello %s,"
 msgstr "હેલો %s,"
@@ -61,13 +61,13 @@ msgid "Here are your upcoming prayer times:"
 msgstr "અહીં તમારા આગામી પ્રાર્થના સમય છે:"
 
 #: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:112
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "સમય આ પ્રમાણે બતાવવામાં આવે છે: %s સમય"
 
 #: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/send-email-utility.php:120
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "તમારા એકાઉન્ટ અને સમયની પ્રતિબદ્ધતાઓનું સંચાલન કરવા માટે અહીં ક્લિક કરો"
@@ -97,22 +97,26 @@ msgstr ""
 msgid "Verify your account"
 msgstr "તમારું એકાઉન્ટ ચકાસો"
 
-#: campaign-functions/send-email-utility.php:110
+#: campaign-functions/send-email-utility.php:111
+msgid "Or open this link:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:114
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "તમે પ્રાર્થના કરવા માટે પ્રતિબદ્ધ કરેલ સમય અહીં છે:"
 
-#: campaign-functions/send-email-utility.php:159
+#: campaign-functions/send-email-utility.php:163
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "નોંધણી પુષ્ટિ"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:166
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "પ્રાર્થના કરવા માટે સાઇન અપ કરવા બદલ આભાર!"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:167
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -123,12 +127,12 @@ msgstr ""
 "બીજો ઈમેલ મોકલીશું જેમાં તમને પ્રાર્થના કરવા માટે ચોક્કસ સમય પસંદ કરવાનું કહેવામાં આવશે. સાથે "
 "મળીને કામ કરીને અમે 24/7 પ્રાર્થનામાં પ્રદેશને આવરી લઈશું."
 
-#: campaign-functions/send-email-utility.php:164
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "જો તમે તમારું શેડ્યૂલ પહેલેથી જ જાણો છો, તો તમે અહીં તમારો સમય પસંદ કરી શકો છો:"
 
-#: campaign-functions/send-email-utility.php:250
+#: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
 "You are 2 weeks out for your last prayer time. Would you like to keep "
@@ -137,12 +141,12 @@ msgstr ""
 "તમે તમારા છેલ્લા પ્રાર્થના સમય માટે 2 અઠવાડિયા બહાર છો. શું તમે પ્રાર્થના કરતા રહેવા "
 "માંગો છો?"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:255
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "પ્રાર્થનાના વધુ સમય માટે સાઇન અપ કરો અથવા તમારો પુનરાવર્તિત સમય અહીં લંબાવો:"
 
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:257
 #, fuzzy
 msgid "Thank you"
 msgstr "આભાર"
@@ -681,10 +685,14 @@ msgstr "કલાકો બાકી"
 msgid "View All"
 msgstr "બધુજ જુઓ"
 
-#: porches/generic/site/post-list-body.php:118
+#: porches/generic/site/post-list-body.php:119
 #, fuzzy
 msgid "Read"
 msgstr "વાંચવું"
+
+#: porches/generic/site/post-list-body.php:130
+msgid "Content will start in %s days"
+msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:105
 #, fuzzy
