@@ -36,12 +36,11 @@ class DT_Campaign_Languages {
             'rtl' => $language['rtl'],
             'enabled' => true,
         ];
+        $custom_options = get_option( $this->option_name, [] );
+        $custom_options[$code] = $new_language;
+        update_option( $this->option_name, $custom_options );
 
-        $languages[$code] = $new_language;
-
-        $this->cache( $languages );
-
-        return $languages;
+        return $this->get( true );
     }
 
     /**
