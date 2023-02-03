@@ -1047,11 +1047,11 @@ a:not([href]):not([tabindex]):hover {
 .fuel-block h3 {
     margin-top: 40px;
 }
-.fuel-block .p4m_prayer_image {
+.fuel-block figure.p4m_prayer_image {
     text-align: center;
 }
 .fuel-block .p4m_prayer_image img{
-    max-height: 700px;
+    max-height: 800px;
     margin-bottom: 20px;
 }
 /* ==========================================================================
