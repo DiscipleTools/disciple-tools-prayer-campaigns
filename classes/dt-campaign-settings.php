@@ -89,28 +89,22 @@ class DT_Campaign_Settings {
     }
 
     /**
-     * How long is the campaign. -1 if is ongoing
+     * Return the total number of days in the campaign.  If no start/end date, return -1.
      *
      * @return int
      */
-    public static function campaign_length() {
+    public static function total_days_in_campaign(): int {
         $campaign = self::get_campaign();
 
         if ( !isset( $campaign['end_date'] ) ) {
             return -1;
         }
 
-        $campaign_start_date = $campaign['start_date']['formatted'];
-        $campaign_end_date = $campaign['end_date']['formatted'];
+        $campaign_start_date = $campaign['start_date']['timestamp'];
+        $campaign_end_date = $campaign['end_date']['timestamp'] + DAY_IN_SECONDS; //end of day.
 
-        $campaign_start = new DateTime( $campaign_start_date );
-        $campaign_end = new DateTime( $campaign_end_date );
+        return round( ( $campaign_end_date - $campaign_start_date ) / DAY_IN_SECONDS );
 
-        $diff = intval( $campaign_start->diff( $campaign_end )->format( '%r%a' ) );
-
-        /* If the date given is the same as the start, then this is day 1 not day 0 */
-        /* If the date given is before the start, then this is a negative day */
-        return $diff;
     }
 
     /**

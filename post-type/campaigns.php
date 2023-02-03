@@ -860,25 +860,6 @@ class DT_Campaigns_Base {
         return intval( gmdate( 'd', strtotime( 'last day of +1 month' ) ) );
     }
 
-    /**
-     * Return the total number of days in the campaign.  If no start/end date, return -1.
-     *
-     * @return int
-     */
-    public static function total_days_in_campaign(): int {
-        $campaign = DT_Campaign_Settings::get_campaign();
-        $start_date = $campaign['start_date']['timestamp'];
-        $end_date = $campaign['end_date']['timestamp'] + DAY_IN_SECONDS; //end of day.
-
-        if ( !$start_date || !$end_date ) {
-            return -1;
-        }
-
-        $diff = $end_date - $start_date;
-        $days = round( $diff / DAY_IN_SECONDS );
-        return $days;
-    }
-
     public static function query_scheduled_minutes_next_month( $campaign_post_id ) {
         $time_format = '%H:%i';
         $time_begin = strtotime( gmdate( 'M d', strtotime( 'first day of +1 month' ) ) . ' 00:00' );

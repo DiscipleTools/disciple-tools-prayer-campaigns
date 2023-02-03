@@ -208,7 +208,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <?php $days_in_campaign = DT_Campaigns_Base::total_days_in_campaign() ?>
+            <?php $days_in_campaign = DT_Campaign_Settings::total_days_in_campaign();?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">

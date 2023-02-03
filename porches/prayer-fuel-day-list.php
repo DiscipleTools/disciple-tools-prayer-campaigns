@@ -24,7 +24,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
         $days = [];
-        $campaign_length = DT_Campaign_Settings::campaign_length();
+        $campaign_length = DT_Campaign_Settings::total_days_in_campaign();
         for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
             if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
                 continue;
