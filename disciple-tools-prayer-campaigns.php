@@ -155,22 +155,6 @@ class DT_Prayer_Campaigns {
 
         $this->i18n();
 
-        /**
-         * Plugin Releases and updates
-         */
-        if ( is_admin() ){
-            if ( ! class_exists( 'Puc_v4_Factory' ) ) {
-                require( get_template_directory() . '/dt-core/libraries/plugin-update-checker/plugin-update-checker.php' );
-            }
-
-            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
-
-            Puc_v4_Factory::buildUpdateChecker(
-                $hosted_json,
-                __FILE__,
-                'disciple-tools-prayer-campaigns' // change this token
-            );
-        }
 
         if ( is_admin() ) { // adds links to the plugin description area in the plugin admin list.
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 );
@@ -357,6 +341,27 @@ if ( ! function_exists( 'dt_prayer_campaigns_hook_admin_notice' ) ) {
         <?php }
     }
 }
+
+add_action( 'plugins_loaded', function (){
+    /**
+     * Plugin Releases and updates
+     */
+    if ( is_admin() ){
+        if ( !class_exists( 'Puc_v4_Factory' ) && file_exists( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' ) ) {
+            require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
+        }
+
+        if ( class_exists( 'Puc_v4_Factory' ) ) {
+            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
+
+            Puc_v4_Factory::buildUpdateChecker(
+                $hosted_json,
+                __FILE__,
+                'disciple-tools-prayer-campaigns' // change this token
+            );
+        }
+    }
+});
 
 /**
  * AJAX handler to store the state of dismissible notices.
