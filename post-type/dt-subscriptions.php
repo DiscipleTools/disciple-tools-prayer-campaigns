@@ -121,8 +121,20 @@ class DT_Subscriptions {
             return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
         }
 
+        $location_label = '';
         if ( empty( $location_id ) && isset( $campaign['location_grid'][0]['id'] ) ){
             $location_id = $campaign['location_grid'][0]['id'];
+        }
+        foreach ( $campaign['location_grid_meta'] ?? [] as $location ){
+            if ( is_array( $location['label'] ) ){
+                $location['label'] = $location['label'][0];
+            }
+            $location_label .= ( !empty( $location_label ) ? ' | ' : '' ) . $location['label'];
+        }
+        if ( empty( $location_label ) ){
+            foreach ( $campaign['location_grid'] ?? [] as $location ){
+                $location_label .= ( !empty( $location_label ) ? ' | ' : '' ) . $location['label'];
+            }
         }
 
         $duration_mins = 15;
@@ -149,11 +161,10 @@ class DT_Subscriptions {
         if ( !empty( $location_id ) ){
             $grid_row = Disciple_Tools_Mapping_Queries::get_by_grid_id( $location_id );
             if ( ! empty( $grid_row ) ){
-                $full_name = Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
                 $args['lng'] = $grid_row['longitude'];
                 $args['lat'] = $grid_row['latitude'];
                 $args['level'] = $grid_row['level_name'];
-                $args['label'] = $full_name;
+                $args['label'] = $location_label ?: Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
             }
         }
         $new_report = Disciple_Tools_Reports::insert( $args );
