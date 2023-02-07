@@ -65,14 +65,32 @@ jQuery(document).ready(function($){
   /**
    * Remove a prayer time
    */
+  let time_to_delete = null
+  let id_to_delete = null
   $(document).on("click", '.remove-my-prayer-time', function (){
     let x = $(this)
-    let id = x.data("report")
-    let time = x.data('time')
-    x.removeClass("fi-x").addClass("loading-spinner active");
+    id_to_delete = x.data("report")
+    time_to_delete = x.data('time')
+
+    $('#delete-time-modal').foundation('open');
+
+    let label = window.campaign_scripts.timestamp_to_format( time_to_delete, { year: "numeric", month: "long", day: "numeric", hour:"numeric", minute: "numeric" })
+    console.log(label);
+    $('#delete-time-modal-text').html(`${label}?`)
+
+    if ( time_to_delete < now + day_in_seconds *2 ){
+      $('#delete-time-extra-warning').show()
+    }
+
+  })
+
+
+  $('#confirm-delete-my-time-modal').on('click', function (){
+
+    $(this).addClass("loading");
     jQuery.ajax({
       type: "POST",
-      data: JSON.stringify({ action: 'delete', parts: calendar_subscribe_object.parts, report_id: id }),
+      data: JSON.stringify({ action: 'delete', parts: calendar_subscribe_object.parts, report_id: id_to_delete }),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type,
@@ -81,11 +99,11 @@ jQuery(document).ready(function($){
       }
     })
     .done(function(data){
-      $($(`*[data-report=${id}]`)[0].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
-      $($(`*[data-report=${id}]`)[1].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
-      x.removeClass("loading-spinner");
-      console.log("adding deleted time" + time);
-      $(`#selected-${time}`).addClass('deleted-time')
+      $($(`*[data-report=${id_to_delete}]`)[0].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
+      $($(`*[data-report=${id_to_delete}]`)[1].parentElement.parentElement).css({'background-color':'lightgray','text-decoration':'line-through'});
+      $('#confirm-delete-my-time-modal').removeClass("loading");
+      $(`#selected-${time_to_delete}`).addClass('deleted-time')
+      $('#delete-time-modal').foundation('close');
     })
     .fail(function(e) {
       console.log(e)

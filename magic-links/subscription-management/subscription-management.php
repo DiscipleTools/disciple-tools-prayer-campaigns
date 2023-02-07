@@ -393,6 +393,33 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </div>
             </div>
 
+
+            <div class="reveal" id="delete-time-modal" data-reveal data-close-on-click="true">
+                <h3 id="delete-time-modal-title"><?php esc_html_e( 'Delete Time', 'disciple-tools-prayer-campaigns' ); ?></h3>
+
+                <p id="delete-time-modal-text"></p>
+                <p id="delete-time-extra-warning">
+                    <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                    <?php esc_html_e( 'Need to cancel? We get it! But wait!
+If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
+That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
+                </p>
+
+                <button class='button button-cancel clear' data-close aria-label='Close reveal' type='button'>
+                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' ) ?>
+                </button>
+                <button class="button loader alert" type="button" id="confirm-delete-my-time-modal">
+                    <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' ) ?>
+                </button>
+
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+
+
             <div class="reveal cp-wrapper" id="select-times-modal" data-reveal data-close-on-click="false" data-multiple-opened="true">
 
                 <h2 id="individual-day-title" class="cp-center">
@@ -499,11 +526,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <h2><?php esc_html_e( 'Delete all', 'disciple-tools-prayer-campaigns' ); ?></h2>
 
                 <p id="delete-time-slot-text"></p>
+
+                <p id='delete-time-extra-warning'>
+                    <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                    <?php esc_html_e( 'Need to cancel? We get it! But wait!
+If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
+That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
+                </p>
+
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
                     <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
-                <button class="button loader" type="button" id="confirm-delete-daily-time">
-                    <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' )?>
+                <button class="button loader alert" type="button" id="confirm-delete-daily-time">
+                    <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -561,6 +596,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <p>
                             <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
+                        </p>
+                        <p id='delete-time-extra-warning'>
+                            <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                            <?php esc_html_e( 'Need to cancel? We get it! But wait!
+If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
+That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
                         </p>
                         <p id="delete-account-errors"></p>
 
