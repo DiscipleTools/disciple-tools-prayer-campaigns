@@ -408,8 +408,8 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 <button class='button button-cancel clear' data-close aria-label='Close reveal' type='button'>
                     <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' ) ?>
                 </button>
-                <button class="button loader" type="button" id="confirm-delete-my-time-modal">
-                    <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' ) ?>
+                <button class="button loader alert" type="button" id="confirm-delete-my-time-modal">
+                    <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' ) ?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -537,8 +537,8 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
                     <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
                 </button>
-                <button class="button loader" type="button" id="confirm-delete-daily-time">
-                    <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' )?>
+                <button class="button loader alert" type="button" id="confirm-delete-daily-time">
+                    <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' )?>
                 </button>
 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -596,6 +596,12 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                         <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <p>
                             <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
+                        </p>
+                        <p id='delete-time-extra-warning'>
+                            <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                            <?php esc_html_e( 'Need to cancel? We get it! But wait!
+If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
+That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
                         </p>
                         <p id="delete-account-errors"></p>
 
