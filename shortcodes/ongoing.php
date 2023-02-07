@@ -266,17 +266,18 @@ function dt_ongoing_campaign_signup( $atts ){
                 </div>
             </div>
 
-            <div id="cp-success-confirmation-section" class="cp-view cp-center success-confirmation-section">
-                <div class="cell center">
-                    <h2><?php esc_html_e( 'Sent! Check your email.', 'disciple-tools-prayer-campaigns' ); ?></h2>
+            <div id='cp-success-confirmation-section' class='cp-view cp-center success-confirmation-section'>
+                <div class='cell center'>
+                    <h2><?php esc_html_e( 'Check your email', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
+                    <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
                     <p>
-                        &#9993; <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
                     </p>
                     <p>
                         <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
                     </p>
                     <p>
-                        <button class="cp-nav cp-ok-done-button"><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
+                        <button class='cp-nav cp-ok-done-button'><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
                     </p>
                 </div>
             </div>

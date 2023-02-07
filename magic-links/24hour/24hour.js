@@ -468,7 +468,12 @@ jQuery(document).ready(function($) {
       .done(function(){
         selected_times = [];
         submit_spinner.hide()
-        window.location.href = jsObject.home + '/prayer/email-confirmation';
+        if ( jsObject.remote === "1" ){
+          $('.cp-view').hide()
+          $(`#cp-success-confirmation-section`).show()
+        } else {
+          window.location.href = jsObject.home + '/prayer/email-confirmation';
+        }
       })
       .fail(function(e) {
         $('#selection-error').empty().html(`<div class="cell center">
