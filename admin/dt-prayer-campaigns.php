@@ -449,6 +449,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             <a style="margin-inline-start: 10px" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=translations' ) ); ?>">change</a>
                                         </td>
                                     </tr>
+                                    <?php do_action( 'dt_campaigns_landing_page_selection' ) ?>
                                 </tbody>
                             </table>
 
