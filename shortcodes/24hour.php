@@ -323,7 +323,7 @@ function dt_campaign_router_endpoint( WP_REST_Request $request ){
     $params = dt_recursive_sanitize_array( $params );
     if ( isset( $params['parts']['post_id'] ) ){
         $remote = get_transient( 'dt_magic_link_remote_' . $params['parts']['post_id'] );
-        $url = $remote . $params['root'] .  $params['parts']['root'] . '/v1/' .  $params['parts']['type'] . '/' . $params['url'];
+        $url = $remote . $params['parts']['root'] . '/v1/' .  $params['parts']['type'] . '/' . $params['url'];
         if ( !empty( $remote ) ){
             if ( $request->get_method() === 'GET' ){
                 $fetch = wp_remote_get( $url, [ 'body' => $params ] );
