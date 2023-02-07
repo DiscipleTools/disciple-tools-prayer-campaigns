@@ -683,13 +683,13 @@ That will keep the prayer chain from being broken AND will give someone the joy 
         $a = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts p SET post_title = 'Deleted Subscription', post_name = 'Deleted Subscription' WHERE p.ID = %s", $post_id ) );
         $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_activity_log WHERE object_id = %s and action != 'add_subscription' and action !='delete_subscription'", $post_id ) );
         //create activity for connection removed on the campaign
-        DT_Posts::update_post( 'subscriptions', $post_id, [ 'campaigns' => [ 'values' => [], 'force_values' => true ] ], true, false );
+//        DT_Posts::update_post( 'subscriptions', $post_id, [ 'campaigns' => [ 'values' => [], 'force_values' => true ] ], true, false );
         $a = $wpdb->query( $wpdb->prepare( "DELETE pm FROM $wpdb->postmeta pm WHERE pm.post_id = %s", $post_id ) );
-        $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s", $post_id ) );
+        $a = $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->dt_reports WHERE post_id = %s AND time_begin > %d", $post_id, time() ) );
         DT_Posts::update_post( 'subscriptions', $post_id, [ 'status' => 'inactive' ], true, false );
 
         $base_user = dt_get_base_user();
-        DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) A user has deleted their profile and prayer times.", 'comment', [], false, false );
+        DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) A user has deleted their profile and future prayer times.", 'comment', [], false, false );
 
         return true;
     }
@@ -751,7 +751,11 @@ That will keep the prayer chain from being broken AND will give someone the joy 
     private function delete_subscription( $post_id, $report_id ){
         $sub = Disciple_Tools_Reports::get( $report_id, 'id' );
         if ( empty( $sub ) ){
-            return false;
+            return new WP_Error( __METHOD__, 'Missing subscription record', [ 'status' => 400 ] );
+        }
+
+        if ( $sub['time_begin'] < time() ){
+            return new WP_Error( __METHOD__, 'Cannot delete a commitment that is the past', [ 'status' => 400 ] );
         }
         $time_in_mins = ( $sub['time_end'] - $sub['time_begin'] ) / 60;
         $label = 'Commitment deleted: ' . gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' UTC for ' . $time_in_mins . ' minutes';
