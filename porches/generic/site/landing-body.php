@@ -20,11 +20,21 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             </div>
 
-            <?php foreach ( $today->posts as $item ) : ?>
+            <?php foreach ( $today->posts as $item ) :
 
-                <?php dt_campaign_post( $item ) ?>
+                dt_campaign_post( $item );
 
-            <?php endforeach; ?>
+            endforeach; ?>
+
+        </div>
+        <div class="row">
+            <?php if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
+                if ( function_exists( 'show_prayer_timer' ) ) : ?>
+                    <div class="col">
+                        <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
+                    </div>
+                <?php endif;
+            endif; ?>
 
        </div>
     </div>
