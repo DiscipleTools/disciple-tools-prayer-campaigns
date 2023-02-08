@@ -36,7 +36,13 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
                 <?php endif;
             endif; ?>
 
-       </div>
+        </div>
+
+        <div class="row" style="margin-top: 20px">
+            <p>
+                Are you multiple people praying together? How many? <input type="number" name="group_size" value="1" id="prayer_group_size" style="width: 50px; margin: 0 10px"><button>Submit</button>
+            </p>
+        </div>
     </div>
 </section>
 <!-- Contact Section End -->
