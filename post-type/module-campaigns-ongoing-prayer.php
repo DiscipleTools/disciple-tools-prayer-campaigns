@@ -312,7 +312,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
                 SELECT post_id from $wpdb->dt_reports r3
                 WHERE r3.post_id = r.post_id
                 AND r3.type = '2_week_tickler'
-                AND ( r3.timestamp > %d OR r3.timestamp < r.timestamp )
+                AND ( r3.timestamp > %d OR r3.timestamp > r.timestamp )
             )
             GROUP BY r.post_id
         ", $two_weeks_from_now, $two_weeks_ago, $one_week_ago ), ARRAY_A );
