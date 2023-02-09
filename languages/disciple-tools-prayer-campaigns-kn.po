@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
+"POT-Creation-Date: 2023-02-07T16:05:17+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/disciple-"
@@ -77,7 +77,7 @@ msgstr "ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ಸಮಯ ಬದ್ಧತ�
 msgid "Registered to pray with us!"
 msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಲು ನೋಂದಾಯಿಸಲಾಗಿದೆ!"
 
-#: campaign-functions/send-email-utility.php:103
+#: campaign-functions/send-email-utility.php:105
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
@@ -86,14 +86,14 @@ msgstr ""
 "ಶಿಷ್ಯರನ್ನಾಗಿ ಮಾಡುವ ಆಂದೋಲನಕ್ಕಾಗಿ ಕಾರ್ಯತಂತ್ರದ ಪ್ರಾರ್ಥನೆಯಲ್ಲಿ ನಮ್ಮೊಂದಿಗೆ ಸೇರಿದ್ದಕ್ಕಾಗಿ "
 "ಧನ್ಯವಾದಗಳು! ನಿಮ್ಮ ನೋಂದಣಿಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ನೀವು ಒಂದು ಕ್ಲಿಕ್ ದೂರದಲ್ಲಿರುವಿರಿ."
 
-#: campaign-functions/send-email-utility.php:104
+#: campaign-functions/send-email-utility.php:106
 #, fuzzy
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ಪರಿಶೀಲಿಸಲು ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಖಚಿತಪಡಿಸಲು ಇಲ್ಲಿ "
 "ಕ್ಲಿಕ್ ಮಾಡಿ."
 
-#: campaign-functions/send-email-utility.php:107
+#: campaign-functions/send-email-utility.php:108
 #, fuzzy
 msgid "Verify your account"
 msgstr "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ"
@@ -135,10 +135,14 @@ msgid "If you know your schedule already you can choose your times here:"
 msgstr ""
 "ನಿಮ್ಮ ವೇಳಾಪಟ್ಟಿಯನ್ನು ನೀವು ಈಗಾಗಲೇ ತಿಳಿದಿದ್ದರೆ ನಿಮ್ಮ ಸಮಯವನ್ನು ಇಲ್ಲಿ ಆಯ್ಕೆ ಮಾಡಬಹುದು:"
 
+#: campaign-functions/send-email-utility.php:251
+msgid "Continue Praying?"
+msgstr ""
+
 #: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
-"You are 2 weeks out for your last prayer time. Would you like to keep "
+"You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
 "ನಿಮ್ಮ ಕೊನೆಯ ಪ್ರಾರ್ಥನೆಯ ಸಮಯಕ್ಕೆ ನೀವು 2 ವಾರಗಳು ಹೊರಗಿದ್ದೀರಿ. ನೀವು ಪ್ರಾರ್ಥಿಸುವುದನ್ನು "
@@ -228,26 +232,27 @@ msgid "Your prayer times have been verified!"
 msgstr "ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ!"
 
 #: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:241 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:258 shortcodes/ongoing.php:286
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "ನಿಮ್ಮ ಸಮಯವಲಯವನ್ನು ಬದಲಾಯಿಸಿ:"
 
 #: magic-links/subscription-management/subscription-management.php:298
 #: magic-links/subscription-management/subscription-management.php:347
-#: magic-links/subscription-management/subscription-management.php:441
-#: magic-links/subscription-management/subscription-management.php:487
-#: magic-links/subscription-management/subscription-management.php:503
-#: magic-links/subscription-management/subscription-management.php:519
-#: magic-links/subscription-management/subscription-management.php:569
-#: shortcodes/24hour.php:259 shortcodes/ongoing.php:303
+#: magic-links/subscription-management/subscription-management.php:409
+#: magic-links/subscription-management/subscription-management.php:468
+#: magic-links/subscription-management/subscription-management.php:514
+#: magic-links/subscription-management/subscription-management.php:538
+#: magic-links/subscription-management/subscription-management.php:554
+#: magic-links/subscription-management/subscription-management.php:610
+#: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Cancel"
 msgstr "ರದ್ದುಮಾಡಿ"
 
 #: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:490
-#: shortcodes/24hour.php:262 shortcodes/ongoing.php:306
+#: magic-links/subscription-management/subscription-management.php:517
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:307
 #, fuzzy
 msgid "Select"
 msgstr "ಆಯ್ಕೆ ಮಾಡಿ"
@@ -279,7 +284,7 @@ msgid "Prayer Time"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯ"
 
 #: magic-links/subscription-management/subscription-management.php:326
-#: magic-links/subscription-management/subscription-management.php:408
+#: magic-links/subscription-management/subscription-management.php:435
 #: shortcodes/24hour.php:163 shortcodes/24hour.php:196
 #: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 #, fuzzy
@@ -287,7 +292,7 @@ msgid "Daily Time"
 msgstr "ದೈನಂದಿನ ಸಮಯ"
 
 #: magic-links/subscription-management/subscription-management.php:330
-#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:439
 #: shortcodes/24hour.php:167 shortcodes/24hour.php:200
 #: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 #, fuzzy
@@ -295,13 +300,13 @@ msgid "For how long"
 msgstr "ಎಷ್ಟು ಹೊತ್ತು"
 
 #: magic-links/subscription-management/subscription-management.php:340
-#: magic-links/subscription-management/subscription-management.php:434
+#: magic-links/subscription-management/subscription-management.php:461
 #, fuzzy
 msgid "Your new prayer times have been saved."
 msgstr "ನಿಮ್ಮ ಹೊಸ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಉಳಿಸಲಾಗಿದೆ."
 
 #: magic-links/subscription-management/subscription-management.php:351
-#: magic-links/subscription-management/subscription-management.php:445
+#: magic-links/subscription-management/subscription-management.php:472
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:218
 #: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 #, fuzzy
@@ -309,7 +314,7 @@ msgid "Confirm Times"
 msgstr "ಟೈಮ್ಸ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ"
 
 #: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:457
+#: magic-links/subscription-management/subscription-management.php:484
 #, fuzzy
 msgid "ok"
 msgstr "ಸರಿ"
@@ -319,44 +324,68 @@ msgstr "ಸರಿ"
 msgid "Close"
 msgstr "ಮುಚ್ಚಿ"
 
-#: magic-links/subscription-management/subscription-management.php:399
+#: magic-links/subscription-management/subscription-management.php:398
+#, fuzzy
+msgid "Delete Time"
+msgstr "ಆಯ್ದ ಸಮಯಗಳು"
+
+#: magic-links/subscription-management/subscription-management.php:403
+#: magic-links/subscription-management/subscription-management.php:532
+#: magic-links/subscription-management/subscription-management.php:602
+msgid ""
+"Need to cancel? We get it! But wait!\n"
+"If your prayer commitment is scheduled to start in less than 48-hours, "
+"please ask a friend to cover it for you.\n"
+"That will keep the prayer chain from being broken AND will give someone the "
+"joy of fighting for the lost! Thanks!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:593
+#: magic-links/subscription-management/subscription-management.php:613
+#, fuzzy
+msgid "Delete"
+msgstr "ಅಳಿಸಿ"
+
+#: magic-links/subscription-management/subscription-management.php:426
 #: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "ಒಂದು ದಿನವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ಸಮಯವನ್ನು ಆರಿಸಿ"
 
-#: magic-links/subscription-management/subscription-management.php:406
+#: magic-links/subscription-management/subscription-management.php:433
 #: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: magic-links/subscription-management/subscription-management.php:416
+#: magic-links/subscription-management/subscription-management.php:443
 #: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Add prayer time"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಸೇರಿಸಿ"
 
-#: magic-links/subscription-management/subscription-management.php:417
+#: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Time added"
 msgstr "ಸಮಯವನ್ನು ಸೇರಿಸಲಾಗಿದೆ"
 
-#: magic-links/subscription-management/subscription-management.php:424
+#: magic-links/subscription-management/subscription-management.php:451
 #: shortcodes/24hour.php:212 shortcodes/24hour.php:234
 #: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 #, fuzzy
 msgid "Selected Times"
 msgstr "ಆಯ್ದ ಸಮಯಗಳು"
 
-#: magic-links/subscription-management/subscription-management.php:426
+#: magic-links/subscription-management/subscription-management.php:453
 #: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
 #, fuzzy
 msgid "No selected Time"
 msgstr "ಆಯ್ಕೆಮಾಡಿದ ಸಮಯವಿಲ್ಲ"
 
-#: magic-links/subscription-management/subscription-management.php:449
+#: magic-links/subscription-management/subscription-management.php:476
 #: shortcodes/24hour.php:131 shortcodes/24hour.php:154
 #: shortcodes/24hour.php:183 shortcodes/24hour.php:228
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
@@ -365,111 +394,104 @@ msgstr "ಆಯ್ಕೆಮಾಡಿದ ಸಮಯವಿಲ್ಲ"
 msgid "Back"
 msgstr "ಹಿಂದೆ"
 
-#: magic-links/subscription-management/subscription-management.php:482
+#: magic-links/subscription-management/subscription-management.php:509
 #, fuzzy
 msgid "Choose a different time:"
 msgstr "ಬೇರೆ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ:"
 
-#: magic-links/subscription-management/subscription-management.php:499
+#: magic-links/subscription-management/subscription-management.php:526
 #, fuzzy
 msgid "Delete all"
 msgstr "ಎಲ್ಲಾ ಅಳಿಸಿ"
 
-#: magic-links/subscription-management/subscription-management.php:506
-#: magic-links/subscription-management/subscription-management.php:522
-#: parts/components.php:25
-#, fuzzy
-msgid "Confirm"
-msgstr "ದೃ irm ೀಕರಿಸಿ"
-
-#: magic-links/subscription-management/subscription-management.php:515
+#: magic-links/subscription-management/subscription-management.php:550
 #, fuzzy
 msgid "Extend"
 msgstr "ವಿಸ್ತರಿಸಿ"
 
-#: magic-links/subscription-management/subscription-management.php:517
+#: magic-links/subscription-management/subscription-management.php:552
 #, fuzzy
 msgid "Extend my prayer commitments until:"
 msgstr "ನನ್ನ ಪ್ರಾರ್ಥನಾ ಬದ್ಧತೆಗಳನ್ನು ಇಲ್ಲಿಯವರೆಗೆ ವಿಸ್ತರಿಸಿ:"
 
-#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:557
+#: parts/components.php:45
+#, fuzzy
+msgid "Confirm"
+msgstr "ದೃ irm ೀಕರಿಸಿ"
+
+#: magic-links/subscription-management/subscription-management.php:576
 #, fuzzy
 msgid "Profile Settings"
 msgstr "ಪ್ರೊಫೈಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
 
-#: magic-links/subscription-management/subscription-management.php:542
+#: magic-links/subscription-management/subscription-management.php:577
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯದ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ"
 
-#: magic-links/subscription-management/subscription-management.php:544
+#: magic-links/subscription-management/subscription-management.php:579
 #, fuzzy
 msgid "Notifications allowed"
 msgstr "ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಲಾಗಿದೆ"
 
-#: magic-links/subscription-management/subscription-management.php:545
+#: magic-links/subscription-management/subscription-management.php:580
 #, fuzzy
 msgid "Notifications not allowed"
 msgstr "ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಲಾಗುವುದಿಲ್ಲ"
 
-#: magic-links/subscription-management/subscription-management.php:549
+#: magic-links/subscription-management/subscription-management.php:584
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
 
-#: magic-links/subscription-management/subscription-management.php:556
+#: magic-links/subscription-management/subscription-management.php:591
 #, fuzzy
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "ಈ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಎಲ್ಲಾ ನಿಗದಿತ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಅಳಿಸುವುದೇ?"
 
-#: magic-links/subscription-management/subscription-management.php:558
-#: magic-links/subscription-management/subscription-management.php:572
-#, fuzzy
-msgid "Delete"
-msgstr "ಅಳಿಸಿ"
-
-#: magic-links/subscription-management/subscription-management.php:561
+#: magic-links/subscription-management/subscription-management.php:596
 #, fuzzy
 msgid "Are you sure you want to delete your profile?"
 msgstr "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
 
-#: magic-links/subscription-management/subscription-management.php:563
+#: magic-links/subscription-management/subscription-management.php:598
 #, fuzzy
 msgid "This can not be undone."
 msgstr "ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."
 
-#: magic-links/subscription-management/subscription-management.php:588
+#: magic-links/subscription-management/subscription-management.php:629
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ಈ ಚಂದಾದಾರಿಕೆ ಕೊನೆಗೊಂಡಿದೆ ಅಥವಾ ಸರಿಯಾಗಿ ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿಲ್ಲ."
 
-#: parts/components.php:44 parts/components.php:48
+#: parts/components.php:64 parts/components.php:68
 #, fuzzy
 msgid "Name"
 msgstr "ಹೆಸರು"
 
-#: parts/components.php:52 parts/components.php:56 parts/components.php:57
+#: parts/components.php:72 parts/components.php:76 parts/components.php:77
 #: porches/generic/site/stats.php:248
 #, fuzzy
 msgid "Email"
 msgstr "ಇಮೇಲ್"
 
-#: parts/components.php:54
+#: parts/components.php:74
 #, fuzzy
 msgid "Your email is required."
 msgstr "ನಿಮ್ಮ ಇಮೇಲ್ ಅಗತ್ಯವಿದೆ."
 
-#: parts/components.php:70
+#: parts/components.php:91
 #, fuzzy
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "ಪ್ರಾರ್ಥನಾ ಸಮಯದ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ (ಇಮೇಲ್ ಪರಿಶೀಲನೆ ಅಗತ್ಯವಿದೆ)."
 
-#: parts/components.php:76
+#: parts/components.php:97
 #, fuzzy
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr "Pray4Movement ಸುದ್ದಿಪತ್ರವನ್ನು ಸ್ವೀಕರಿಸಿ (ಇಮೇಲ್ ಪರಿಶೀಲನೆ ಅಗತ್ಯವಿದೆ)."
 
-#: parts/components.php:81
+#: parts/components.php:102
 #, fuzzy
 msgid "Submit Your Prayer Commitment"
 msgstr "ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆಯ ಬದ್ಧತೆಯನ್ನು ಸಲ್ಲಿಸಿ"
@@ -701,17 +723,20 @@ msgstr "ಓದು"
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/sign-up-confirmation.php:105
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid "Check your email"
 msgstr "ಕಳುಹಿಸಲಾಗಿದೆ! ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
 
-#: porches/generic/site/sign-up-confirmation.php:106
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
+#: shortcodes/ongoing.php:272
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "ನಿಮ್ಮ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ."
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:246
+#: shortcodes/ongoing.php:274
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -720,7 +745,8 @@ msgstr ""
 "ನಿಮ್ಮ ಬದ್ಧತೆಯನ್ನು ಪರಿಶೀಲಿಸಲು ಮತ್ತು ಪ್ರಾರ್ಥನೆ ಸಮಯದ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಇಮೇಲ್‌ನಲ್ಲಿ "
 "ಸೇರಿಸಲಾದ ಲಿಂಕ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/ongoing.php:276
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:249
+#: shortcodes/ongoing.php:277
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr "ಇಮೇಲ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ನಿರ್ವಹಿಸಲು ಲಿಂಕ್ ಇದೆ."
@@ -935,12 +961,17 @@ msgstr "ಇಮೇಲ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಪ್ರಾರ್ಥ�
 msgid "Showing times for:"
 msgstr "ಇದಕ್ಕಾಗಿ ಸಮಯವನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ:"
 
-#: shortcodes/24hour.php:268 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:280
+#, fuzzy
+msgid "OK"
+msgstr "ಸರಿ"
+
+#: shortcodes/24hour.php:285 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "ನಾವು ಇನ್ನು ಮುಂದೆ ಸೈನ್ ಅಪ್‌ಗಳನ್ನು ಹುಡುಕುತ್ತಿಲ್ಲ"
 
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:286 shortcodes/ongoing.php:314
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು!"
@@ -966,31 +997,25 @@ msgstr ""
 "ಮುಂದಿನ 3 ತಿಂಗಳವರೆಗೆ ಪ್ರತಿದಿನ ಪ್ರಾರ್ಥನೆ ಮಾಡಲು ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಕೊನೆಯಲ್ಲಿ ನೀವು "
 "ಹೆಚ್ಚಿನದಕ್ಕಾಗಿ ಸೈನ್ ಅಪ್ ಮಾಡುವ ಆಯ್ಕೆಯನ್ನು ಹೊಂದಿರುತ್ತೀರಿ."
 
-#: shortcodes/ongoing.php:271
-#, fuzzy
-msgid "Sent! Check your email."
-msgstr "ಕಳುಹಿಸಲಾಗಿದೆ! ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
-
-#: shortcodes/ongoing.php:279
-#, fuzzy
-msgid "OK"
-msgstr "ಸರಿ"
-
-#: shortcodes/prayer-timer.php:177
+#: shortcodes/prayer-timer.php:215
 #, fuzzy
 msgid "Start Praying!"
 msgstr "ಪ್ರಾರ್ಥನೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ!"
 
-#: shortcodes/prayer-timer.php:180
+#: shortcodes/prayer-timer.php:218
 #, fuzzy
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯ: %s ನಿಮಿಷ"
 
-#: shortcodes/prayer-timer.php:189
+#: shortcodes/prayer-timer.php:238
 #, fuzzy
 msgid "Now praying..."
 msgstr "ಈಗ ಪ್ರಾರ್ಥನೆ..."
+
+#, fuzzy
+#~ msgid "Sent! Check your email."
+#~ msgstr "ಕಳುಹಿಸಲಾಗಿದೆ! ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
 
 #, fuzzy
 #~ msgid "Epic 404"

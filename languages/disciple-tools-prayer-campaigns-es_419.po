@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
-"PO-Revision-Date: 2022-12-08 12:12+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2023-02-07T16:05:17+00:00\n"
+"PO-Revision-Date: 2023-02-09 10:10+0000\n"
+"Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
 "Language-Team: Spanish (Latin America) <https://translate.disciple.tools/"
 "projects/disciple-tools/disciple-tools-prayer-campaigns/es_419/>\n"
 "Language: es_419\n"
@@ -19,25 +19,21 @@ msgstr ""
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/cron-schedule.php:83
-#, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
-msgstr "Haga clic aquí para ver las indicaciones de oración para hoy: %s"
+msgstr "Haz clic aquí para ver los temas de oración de hoy: %s"
 
 #: campaign-functions/cron-schedule.php:89
-#, fuzzy
 msgid "Prayer Time reminder!"
-msgstr "¡Recordatorio del tiempo de oración!"
+msgstr "¡Recordatorio de Tiempo de Oración!"
 
 #: campaign-functions/cron-schedule.php:130
 #: campaign-functions/send-email-utility.php:67
-#, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s de %2$s a %3$s"
 
 #: campaign-functions/cron-schedule.php:136
-#, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "para %s"
@@ -46,79 +42,66 @@ msgstr "para %s"
 #: campaign-functions/send-email-utility.php:85
 #: campaign-functions/send-email-utility.php:156
 #: campaign-functions/send-email-utility.php:253
-#, fuzzy
 msgid "Hello %s,"
 msgstr "Hola %s,"
 
 #: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:131
-#, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "¡Gracias por orar con nosotros!"
 
 #: campaign-functions/cron-schedule.php:155
-#, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "Aquí están sus próximos tiempos de oración:"
 
 #: campaign-functions/cron-schedule.php:157
 #: campaign-functions/send-email-utility.php:116
-#, fuzzy
 msgid "Times are shown according to: %s time"
-msgstr "Los tiempos se muestran según: %s tiempo"
+msgstr "Los tiempos se muestran según: el tiempo de %s"
 
 #: campaign-functions/cron-schedule.php:162
 #: campaign-functions/send-email-utility.php:120
-#, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "Haga clic aquí para administrar su cuenta y compromisos de tiempo"
 
 #: campaign-functions/send-email-utility.php:82
-#, fuzzy
 msgid "Registered to pray with us!"
 msgstr "Registrado para orar con nosotros!"
 
-#: campaign-functions/send-email-utility.php:103
-#, fuzzy
+#: campaign-functions/send-email-utility.php:105
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
 "You're one click away from finishing your registration."
 msgstr ""
 "¡Gracias por unirse a nosotros en oración estratégica por un movimiento de "
-"hacer discípulos! Estás a un clic de finalizar tu registro."
+"formación de discípulos! Está a un clic de completar tu registro."
 
-#: campaign-functions/send-email-utility.php:104
-#, fuzzy
+#: campaign-functions/send-email-utility.php:106
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Haga clic aquí para verificar su dirección de correo electrónico y confirmar "
 "sus tiempos de oración."
 
-#: campaign-functions/send-email-utility.php:107
-#, fuzzy
+#: campaign-functions/send-email-utility.php:108
 msgid "Verify your account"
 msgstr "Verifica tu cuenta"
 
 #: campaign-functions/send-email-utility.php:111
 msgid "Or open this link:"
-msgstr ""
+msgstr "O abra este enlace:"
 
 #: campaign-functions/send-email-utility.php:114
-#, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "Estos son los tiempos en los que te has comprometido a orar:"
 
 #: campaign-functions/send-email-utility.php:163
-#, fuzzy
 msgid "Registration Confirmation"
-msgstr "confirmación de registro"
+msgstr "Confirmación de Registro"
 
 #: campaign-functions/send-email-utility.php:166
-#, fuzzy
 msgid "Thank you for signing up to pray!"
-msgstr "¡Gracias por apuntarte a orar!"
+msgstr "¡Gracias por registrarte para orar!"
 
 #: campaign-functions/send-email-utility.php:167
-#, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
 "a couple months before the first day asking you to choose specific times to "
@@ -126,188 +109,164 @@ msgid ""
 msgstr ""
 "Tenemos algo de tiempo antes de que comience la campaña. Le enviaremos otro "
 "correo electrónico un par de meses antes del primer día para pedirle que "
-"elija momentos específicos para orar. Trabajando juntos cubriremos la región "
-"en oración 24/7."
+"elija momentos específicos para orar. Trabajando juntos, cubriremos la "
+"región en oración ininterrumpida 24/7."
 
 #: campaign-functions/send-email-utility.php:168
-#, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
-msgstr "Si ya conoce su horario, puede elegir sus horarios aquí:"
+msgstr "Si ya conoces tus tiempos, puedes elegirlos aquí:"
+
+#: campaign-functions/send-email-utility.php:251
+msgid "Continue Praying?"
+msgstr "¿Seguir Orando?"
 
 #: campaign-functions/send-email-utility.php:254
-#, fuzzy
 msgid ""
-"You are 2 weeks out for your last prayer time. Would you like to keep "
+"You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
-"Faltan 2 semanas para su último tiempo de oración. ¿Te gustaría seguir "
+"Faltan 2 semanas para tu último tiempo de oración. ¿Te gustaría seguir "
 "orando?"
 
 #: campaign-functions/send-email-utility.php:255
-#, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
-"Regístrese para más tiempos de oración o extienda su tiempo recurrente aquí:"
+"Regístrate para más tiempos de oración o extiende tu tiempo recurrente aquí:"
 
 #: campaign-functions/send-email-utility.php:257
-#, fuzzy
 msgid "Thank you"
 msgstr "Gracias"
 
 #: campaign-functions/time-utilities.php:157
-#, fuzzy
 msgid "5 minutes"
 msgstr "5 minutos"
 
 #: campaign-functions/time-utilities.php:158
-#, fuzzy
 msgid "10 minutes"
 msgstr "10 minutos"
 
 #: campaign-functions/time-utilities.php:159
-#, fuzzy
 msgid "15 minutes"
 msgstr "15 minutos"
 
 #: campaign-functions/time-utilities.php:160
-#, fuzzy
 msgid "30 minutes"
 msgstr "30 minutos"
 
 #: campaign-functions/time-utilities.php:161
-#, fuzzy
 msgid "1 hour"
 msgstr "1 hora"
 
 #: magic-links/subscription-management/subscription-management.php:38
 #: magic-links/subscription-management/subscription-management.php:266
-#, fuzzy
 msgid "My Prayer Times"
-msgstr "Mis tiempos de oración"
+msgstr "Mis Tiempos de Oración"
 
 #: magic-links/subscription-management/subscription-management.php:108
 #: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
-#, fuzzy
 msgid "Select a time"
-msgstr "Selecciona una hora"
+msgstr "Selecciona un tiempo"
 
 #: magic-links/subscription-management/subscription-management.php:109
 #: shortcodes/24hour.php:31
-#, fuzzy
 msgid "fully covered once"
-msgstr "completamente cubierto una vez"
+msgstr "ya cubierto una vez"
 
 #: magic-links/subscription-management/subscription-management.php:110
 #: shortcodes/24hour.php:32
-#, fuzzy
 msgid "fully covered %1$s times"
-msgstr "totalmente cubierto %1$s veces"
+msgstr "cubierto %1$s veces"
 
 #: magic-links/subscription-management/subscription-management.php:111
 #: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
-#, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s por %2$s minutos."
 
 #: magic-links/subscription-management/subscription-management.php:112
-#, fuzzy
 msgid "Extend for 3 months"
 msgstr "Extender por 3 meses"
 
 #: magic-links/subscription-management/subscription-management.php:113
-#, fuzzy
 msgid "Change daily time"
 msgstr "Cambiar la hora diaria"
 
 #: magic-links/subscription-management/subscription-management.php:271
-#, fuzzy
 msgid "Your prayer times have been verified!"
 msgstr "¡Tus tiempos de oración han sido verificados!"
 
 #: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:241 shortcodes/ongoing.php:285
-#, fuzzy
+#: shortcodes/24hour.php:258 shortcodes/ongoing.php:286
 msgid "Change your timezone:"
 msgstr "Cambia tu zona horaria:"
 
 #: magic-links/subscription-management/subscription-management.php:298
 #: magic-links/subscription-management/subscription-management.php:347
-#: magic-links/subscription-management/subscription-management.php:441
-#: magic-links/subscription-management/subscription-management.php:487
-#: magic-links/subscription-management/subscription-management.php:503
-#: magic-links/subscription-management/subscription-management.php:519
-#: magic-links/subscription-management/subscription-management.php:569
-#: shortcodes/24hour.php:259 shortcodes/ongoing.php:303
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:409
+#: magic-links/subscription-management/subscription-management.php:468
+#: magic-links/subscription-management/subscription-management.php:514
+#: magic-links/subscription-management/subscription-management.php:538
+#: magic-links/subscription-management/subscription-management.php:554
+#: magic-links/subscription-management/subscription-management.php:610
+#: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:490
-#: shortcodes/24hour.php:262 shortcodes/ongoing.php:306
+#: magic-links/subscription-management/subscription-management.php:517
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:307
 msgid "Select"
 msgstr "Seleccionar"
 
 #: magic-links/subscription-management/subscription-management.php:312
-#, fuzzy
 msgid "Add a Daily Prayer Time"
 msgstr "Agregar un tiempo de oración diario"
 
 #: magic-links/subscription-management/subscription-management.php:315
-#, fuzzy
 msgid "Add Individual Prayer Times"
 msgstr "Agregar tiempos de oración individuales"
 
 #: magic-links/subscription-management/subscription-management.php:317
-#, fuzzy
 msgid "Download Calendar"
 msgstr "Descargar Calendario"
 
 #: magic-links/subscription-management/subscription-management.php:319
-#, fuzzy
 msgid "My commitments"
-msgstr "mis compromisos"
+msgstr "Mis Compromisos"
 
 #: magic-links/subscription-management/subscription-management.php:324
 #: shortcodes/24hour.php:161 shortcodes/ongoing.php:190
-#, fuzzy
 msgid "Prayer Time"
-msgstr "Hora de rezar"
+msgstr "Tiempo de Oración"
 
 #: magic-links/subscription-management/subscription-management.php:326
-#: magic-links/subscription-management/subscription-management.php:408
+#: magic-links/subscription-management/subscription-management.php:435
 #: shortcodes/24hour.php:163 shortcodes/24hour.php:196
 #: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
-#, fuzzy
 msgid "Daily Time"
-msgstr "Hora diaria"
+msgstr "Tiempo diario"
 
 #: magic-links/subscription-management/subscription-management.php:330
-#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:439
 #: shortcodes/24hour.php:167 shortcodes/24hour.php:200
 #: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
-#, fuzzy
 msgid "For how long"
 msgstr "Por cuánto tiempo"
 
 #: magic-links/subscription-management/subscription-management.php:340
-#: magic-links/subscription-management/subscription-management.php:434
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:461
 msgid "Your new prayer times have been saved."
 msgstr "Tus nuevos tiempos de oración han sido guardados."
 
 #: magic-links/subscription-management/subscription-management.php:351
-#: magic-links/subscription-management/subscription-management.php:445
+#: magic-links/subscription-management/subscription-management.php:472
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:218
 #: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
-#, fuzzy
 msgid "Confirm Times"
-msgstr "Confirmar tiempos"
+msgstr "Confirmar Tiempos"
 
 #: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:457
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:484
 msgid "ok"
 msgstr "OK"
 
@@ -315,281 +274,258 @@ msgstr "OK"
 msgid "Close"
 msgstr "Cerrar"
 
-#: magic-links/subscription-management/subscription-management.php:399
-#: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
+#: magic-links/subscription-management/subscription-management.php:398
 #, fuzzy
-msgid "Select a day and choose a time"
-msgstr "Seleccione un día y elija una hora"
+#| msgid "Selected Times"
+msgid "Delete Time"
+msgstr "Eliminar tiempo"
 
-#: magic-links/subscription-management/subscription-management.php:406
-#: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
+#: magic-links/subscription-management/subscription-management.php:403
+#: magic-links/subscription-management/subscription-management.php:532
+#: magic-links/subscription-management/subscription-management.php:602
 #, fuzzy
+msgid ""
+"Need to cancel? We get it! But wait!\n"
+"If your prayer commitment is scheduled to start in less than 48-hours, "
+"please ask a friend to cover it for you.\n"
+"That will keep the prayer chain from being broken AND will give someone the "
+"joy of fighting for the lost! Thanks!"
+msgstr ""
+"¿Necesitas cancelar? ¡Lo entendemos! ¡Pero espera!\n"
+"Si su compromiso de oración está programado para comenzar en menos de 48 "
+"horas, pídale a un amigo que lo cubra por usted.\n"
+"¡Eso evitará que la cadena de oración se rompa Y le dará a alguien la "
+"alegría de luchar por los perdidos! ¡Gracias!"
+
+#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:593
+#: magic-links/subscription-management/subscription-management.php:613
+msgid "Delete"
+msgstr "Eliminar"
+
+#: magic-links/subscription-management/subscription-management.php:426
+#: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
+msgid "Select a day and choose a time"
+msgstr "Seleccione un día y elija un tiempo"
+
+#: magic-links/subscription-management/subscription-management.php:433
+#: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
 msgid "Select a prayer time"
 msgstr "Seleccione un tiempo de oración"
 
-#: magic-links/subscription-management/subscription-management.php:416
+#: magic-links/subscription-management/subscription-management.php:443
 #: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
-#, fuzzy
 msgid "Add prayer time"
 msgstr "Agregar tiempo de oración"
 
-#: magic-links/subscription-management/subscription-management.php:417
+#: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
-#, fuzzy
 msgid "Time added"
 msgstr "Hora añadida"
 
-#: magic-links/subscription-management/subscription-management.php:424
+#: magic-links/subscription-management/subscription-management.php:451
 #: shortcodes/24hour.php:212 shortcodes/24hour.php:234
 #: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
-#, fuzzy
 msgid "Selected Times"
 msgstr "Horarios seleccionados"
 
-#: magic-links/subscription-management/subscription-management.php:426
+#: magic-links/subscription-management/subscription-management.php:453
 #: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
-#, fuzzy
 msgid "No selected Time"
-msgstr "Sin hora seleccionada"
+msgstr "Sin tiempo seleccionado"
 
-#: magic-links/subscription-management/subscription-management.php:449
+#: magic-links/subscription-management/subscription-management.php:476
 #: shortcodes/24hour.php:131 shortcodes/24hour.php:154
 #: shortcodes/24hour.php:183 shortcodes/24hour.php:228
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
 #: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
-#, fuzzy
 msgid "Back"
 msgstr "Volver"
 
-#: magic-links/subscription-management/subscription-management.php:482
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:509
 msgid "Choose a different time:"
 msgstr "Elige otro horario:"
 
-#: magic-links/subscription-management/subscription-management.php:499
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:526
 msgid "Delete all"
 msgstr "Eliminar todos"
 
-#: magic-links/subscription-management/subscription-management.php:506
-#: magic-links/subscription-management/subscription-management.php:522
-#: parts/components.php:25
-msgid "Confirm"
-msgstr "Confirmar"
-
-#: magic-links/subscription-management/subscription-management.php:515
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:550
 msgid "Extend"
 msgstr "Extender"
 
-#: magic-links/subscription-management/subscription-management.php:517
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:552
 msgid "Extend my prayer commitments until:"
-msgstr "Extender mis compromisos de oración hasta que:"
+msgstr "Extender mis compromisos de oración hasta:"
 
-#: magic-links/subscription-management/subscription-management.php:541
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:557
+#: parts/components.php:45
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: magic-links/subscription-management/subscription-management.php:576
 msgid "Profile Settings"
-msgstr "Configuración de perfil"
+msgstr "Configuración de Perfil"
 
-#: magic-links/subscription-management/subscription-management.php:542
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:577
 msgid "Receive prayer time notifications"
 msgstr "Recibir notificaciones de tiempo de oración"
 
-#: magic-links/subscription-management/subscription-management.php:544
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:579
 msgid "Notifications allowed"
 msgstr "Notificaciones permitidas"
 
-#: magic-links/subscription-management/subscription-management.php:545
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:580
 msgid "Notifications not allowed"
 msgstr "Notificaciones no permitidas"
 
-#: magic-links/subscription-management/subscription-management.php:549
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:584
 msgid "Advanced Settings"
-msgstr "Ajustes avanzados"
+msgstr "Configuración avanzada"
 
-#: magic-links/subscription-management/subscription-management.php:556
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:591
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "¿Eliminar este perfil y todos los tiempos de oración programados?"
 
-#: magic-links/subscription-management/subscription-management.php:558
-#: magic-links/subscription-management/subscription-management.php:572
-#, fuzzy
-msgid "Delete"
-msgstr "Eliminar"
-
-#: magic-links/subscription-management/subscription-management.php:561
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:596
 msgid "Are you sure you want to delete your profile?"
-msgstr "¿Está seguro de que desea eliminar su perfil?"
+msgstr "¿Estás seguro de que deseas eliminar tu perfil?"
 
-#: magic-links/subscription-management/subscription-management.php:563
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:598
 msgid "This can not be undone."
 msgstr "Esto no se puede deshacer."
 
-#: magic-links/subscription-management/subscription-management.php:588
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:629
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Esta suscripción ha finalizado o no está configurada correctamente."
 
-#: parts/components.php:44 parts/components.php:48
-#, fuzzy
+#: parts/components.php:64 parts/components.php:68
 msgid "Name"
 msgstr "Nombre"
 
-#: parts/components.php:52 parts/components.php:56 parts/components.php:57
+#: parts/components.php:72 parts/components.php:76 parts/components.php:77
 #: porches/generic/site/stats.php:248
-#, fuzzy
 msgid "Email"
-msgstr "Email"
+msgstr "Correo Electrónico"
 
-#: parts/components.php:54
-#, fuzzy
+#: parts/components.php:74
 msgid "Your email is required."
 msgstr "Su correo electrónico es requerido."
 
-#: parts/components.php:70
-#, fuzzy
+#: parts/components.php:91
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr ""
 "Reciba notificaciones de tiempo de oración (se necesita verificación de "
 "correo electrónico)."
 
-#: parts/components.php:76
-#, fuzzy
+#: parts/components.php:97
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr ""
-"Reciba el boletín informativo de Pray4Movement (se necesita verificación de "
+"Recibir noticias de Pray4Movement por correo (se necesita verificación de "
 "correo electrónico)."
 
-#: parts/components.php:81
-#, fuzzy
+#: parts/components.php:102
 msgid "Submit Your Prayer Commitment"
-msgstr "Envíe su compromiso de oración"
+msgstr "Envíe su Compromiso de Oración"
 
 #: porches/generic/dt-generic-porch-settings.php:59
-#, fuzzy
 msgid "Strategic prayer for a Disciple Making Movement"
-msgstr "Oración estratégica por un movimiento de hacer discípulos"
+msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
 
 #: porches/generic/dt-generic-porch-settings.php:68
-#, fuzzy
 msgid "Our Vision"
-msgstr "Nuestra visión"
+msgstr "Nuestra Visión"
 
 #: porches/generic/dt-generic-porch-settings.php:77
-#, fuzzy
 msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr "Queremos cubrir esta región con oración continua 24/7."
+msgstr "Queremos cubrir esta región con oración ininterrumpida 24/7."
 
 #: porches/generic/dt-generic-porch-settings.php:86
-#, fuzzy
 msgid "Extraordinary Prayer"
 msgstr "Oración Extraordinaria"
 
 #: porches/generic/dt-generic-porch-settings.php:95
-#, fuzzy
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
 msgstr ""
-"Cada movimiento de hacer discípulos en la historia ha ocurrido en el "
-"contexto de una oración extraordinaria."
+"Cada movimiento de formación de discípulos en la historia ha ocurrido en el "
+"contexto de oración extraordinaria."
 
 #: porches/generic/dt-generic-porch-settings.php:104
-#, fuzzy
 msgid "Movement Focused"
-msgstr "Movimiento enfocado"
+msgstr "Enfocado en Movimientos"
 
 #: porches/generic/dt-generic-porch-settings.php:113
-#, fuzzy
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
 msgstr ""
-"Únase a nosotros para pedir, buscar y tocar para que se formen corrientes de "
+"Únete a nosotros para pedir, buscar y rogar para que se formen corrientes de "
 "discípulos e iglesias."
 
 #: porches/generic/dt-generic-porch-settings.php:122
-#, fuzzy
 msgid "24/7 Every Day"
 msgstr "24/7 todos los días"
 
 #: porches/generic/dt-generic-porch-settings.php:131
-#, fuzzy
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
 msgstr ""
-"Elija un intervalo de tiempo de 15 minutos (¡o más!) en el que pueda orar "
-"durante cada día. Invita a alguien más a registrarse también."
+"Elija un intervalo de tiempo de 15 minutos (¡o más!) durante el cual pueda "
+"orar cada día. Invita a alguien más a registrarse también."
 
 #: porches/generic/dt-generic-porch-settings.php:149
 #: porches/generic/dt-generic-porch-settings.php:158
-#, fuzzy
 msgid "Prayer Fuel"
-msgstr "Combustible de oración"
+msgstr "Combustible de Oración"
 
 #: porches/generic/dt-generic-porch-settings.php:167
-#, fuzzy
 msgid "Use these resources to help pray specifically each day."
-msgstr "Use estos recursos para ayudar a orar específicamente cada día."
+msgstr "Usa estos recursos para ayudarte a orar específicamente cada día."
 
 #: porches/generic/dt-generic-porch-settings.php:176
-#, fuzzy
 msgid "Today's Prayer Fuel"
-msgstr "Combustible de oración de hoy"
+msgstr "Combustible de Oración de Hoy"
 
 #: porches/generic/dt-generic-porch-settings.php:185
-#, fuzzy
 msgid "All Days"
 msgstr "Todos los días"
 
 #: porches/generic/site/404-body.php:14
-#, fuzzy
 msgid "Epic 404 - Not Found"
 msgstr "404 - Página no encontrada"
 
 #: porches/generic/site/404-body.php:15
-#, fuzzy
 msgid "It looks like you may have strayed from the narrow path."
 msgstr "Parece que te has desviado del camino angosto."
 
 #: porches/generic/site/404-body.php:16
-#, fuzzy
 msgid "Wide is the path that leads to the 404."
-msgstr "Ancho es el camino que conduce a la 404."
+msgstr "Ancho es el camino que conduce al error 404."
 
 #: porches/generic/site/404-body.php:17
-#, fuzzy
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Intente usar algunos de los enlaces en el menú para volver al buen camino."
+"Intenta usar algunos de los enlaces en el menú para volver al buen camino."
 
 #: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
 #: porches/generic/site/top-section.php:93
 #: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
 #: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
-#, fuzzy
 msgid "Sign Up to Pray"
-msgstr "Regístrese para orar"
+msgstr "Regístrate para orar"
 
 #: porches/generic/site/home-body.php:158
 #: porches/ongoing/site/home-body.php:154
-#, fuzzy
 msgctxt "Campaign Name is Finished"
 msgid "%s is Finished"
-msgstr "%s está terminado"
+msgstr "%s completo"
 
 #: porches/generic/site/home-body.php:171
 #: porches/ongoing/site/home-body.php:167
-#, fuzzy
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
 msgstr "%s termina en"
@@ -600,7 +536,6 @@ msgstr "%s termina en"
 #: porches/ongoing/site/home-body.php:175
 #: porches/ramadan/site/home-body.php:162
 #: porches/ramadan/site/home-body.php:169
-#, fuzzy
 msgid "days"
 msgstr "días"
 
@@ -610,7 +545,6 @@ msgstr "días"
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
 #: porches/ramadan/site/home-body.php:170
-#, fuzzy
 msgid "hours"
 msgstr "horas"
 
@@ -620,7 +554,6 @@ msgstr "horas"
 #: porches/ongoing/site/home-body.php:177
 #: porches/ramadan/site/home-body.php:164
 #: porches/ramadan/site/home-body.php:171
-#, fuzzy
 msgid "minutes"
 msgstr "minutos"
 
@@ -630,190 +563,163 @@ msgstr "minutos"
 #: porches/ongoing/site/home-body.php:178
 #: porches/ramadan/site/home-body.php:165
 #: porches/ramadan/site/home-body.php:172
-#, fuzzy
 msgid "seconds"
 msgstr "segundos"
 
 #: porches/generic/site/home-body.php:178
 #: porches/ongoing/site/home-body.php:174
-#, fuzzy
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Begins In"
 msgstr "%s comienza en"
 
 #: porches/generic/site/home-body.php:223
 #: porches/ramadan/site/home-body.php:222
-#, fuzzy
 msgid "Days"
 msgstr "Días"
 
 #: porches/generic/site/home-body.php:227
 #: porches/ongoing/site/home-body.php:215
 #: porches/ramadan/site/home-body.php:226
-#, fuzzy
 msgid "Next"
-msgstr "próximo"
+msgstr "Próximo"
 
 #: porches/generic/site/home-body.php:228
 #: porches/ongoing/site/home-body.php:216
 #: porches/ramadan/site/home-body.php:227
-#, fuzzy
 msgid "Month"
 msgstr "Mes"
 
 #: porches/generic/site/home-body.php:250
 #: porches/ramadan/site/home-body.php:249
-#, fuzzy
 msgid "Hours of Prayer"
 msgstr "Horas de oración"
 
 #: porches/generic/site/home-body.php:255
 #: porches/ongoing/site/home-body.php:233
 #: porches/ramadan/site/home-body.php:254
-#, fuzzy
 msgid "Hours"
 msgstr "Horas"
 
 #: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
 #: porches/ramadan/site/home-body.php:272
-#, fuzzy
 msgid "Prayer Commitments Needed"
-msgstr "Se necesitan compromisos de oración"
+msgstr "Compromisos de Oración Requeridos"
 
 #: porches/generic/site/home-body.php:278
 #: porches/ongoing/site/home-body.php:248
-#, fuzzy
 msgid "Hours Remaining"
 msgstr "Horas faltantes"
 
 #: porches/generic/site/home-body.php:299
 #: porches/ongoing/site/home-body.php:267
 #: porches/ramadan/site/home-body.php:298
-#, fuzzy
 msgid "View All"
 msgstr "Ver todo"
 
 #: porches/generic/site/post-list-body.php:119
-#, fuzzy
 msgid "Read"
 msgstr "Leer"
 
 #: porches/generic/site/post-list-body.php:130
 msgid "Content will start in %s days"
-msgstr ""
+msgstr "El contenido comenzará en %s días"
 
-#: porches/generic/site/sign-up-confirmation.php:105
-#, fuzzy
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
+#: shortcodes/ongoing.php:271
 msgid "Check your email"
-msgstr "¡Enviado! Consultar su correo electrónico."
+msgstr "Consulte su correo electrónico."
 
-#: porches/generic/site/sign-up-confirmation.php:106
-#, fuzzy
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
+#: shortcodes/ongoing.php:272
 msgid "Your registration was successful."
 msgstr "Su registro fue exitoso."
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
-#, fuzzy
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:246
+#: shortcodes/ongoing.php:274
 msgid ""
 "Click on the link included in the email to verify your commitment and "
 "receive prayer time notifications!"
 msgstr ""
 "¡Haga clic en el enlace incluido en el correo electrónico para verificar su "
-"compromiso y recibir notificaciones de tiempo de oración!"
+"compromiso y recibir notificaciones de sus tiempos de oración!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/ongoing.php:276
-#, fuzzy
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:249
+#: shortcodes/ongoing.php:277
 msgid "In the email is a link to manage your prayer times."
 msgstr ""
 "En el correo electrónico hay un enlace para administrar sus tiempos de "
 "oración."
 
 #: porches/generic/site/sign-up-confirmation.php:114
-#, fuzzy
 msgid "Return"
-msgstr "Devolver"
+msgstr "Volver"
 
 #: porches/generic/site/stats.php:133
-#, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgstr "Gracias por unirse a nosotros en oración por los %1$s en %2$s."
 
 #: porches/generic/site/stats.php:157
-#, fuzzy
 msgid "Campaign Stats"
-msgstr "Estadísticas de campaña"
+msgstr "Estadísticas de la campaña"
 
 #: porches/generic/site/stats.php:184
-#, fuzzy
 msgid "Percentage Covered"
 msgstr "Porcentaje Cubierto"
 
 #: porches/generic/site/stats.php:192
-#, fuzzy
 msgid "Prayer Commitments"
 msgstr "Compromisos de Oración"
 
 #: porches/generic/site/stats.php:200
-#, fuzzy
 msgid "Time Committed"
-msgstr "Tiempo comprometido"
+msgstr "Tiempo Comprometido"
 
 #: porches/generic/site/stats.php:209
-#, fuzzy
 msgid "Number of People who Prayed"
 msgstr "Número de personas que oraron"
 
 #: porches/generic/site/stats.php:242
-#, fuzzy
 msgid "Share with us your Prayer Stories"
-msgstr "Comparte con nosotros tus Historias de Oración"
+msgstr "Comparte tus Historias de Oración con nosotros"
 
 #: porches/generic/site/stats.php:256
-#, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc)"
 msgstr ""
-"Comparta con nosotros acerca de su tiempo de oración (por ejemplo, "
+"Comparte con nosotros acerca de tu tiempo de oración (por ejemplo, "
 "testimonios, ideas, bendiciones, etc.)"
 
 #: porches/generic/site/stats.php:261
-#, fuzzy
 msgid "Submit"
 msgstr "Enviar"
 
 #: porches/generic/site/stats.php:267
-#, fuzzy
 msgid "Thank You"
 msgstr "Gracias"
 
 #: porches/generic/site/stats.php:302
-#, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "Más oportunidades de oración"
 
 #: porches/generic/site/stats.php:306
-#, fuzzy
 msgid ""
 "Would you like to hear about other prayer efforts and opportunities with "
 "Pray4Movement.org?"
 msgstr ""
-"¿Le gustaría saber acerca de otros esfuerzos y oportunidades de oración con "
-"Pray4Movement.org?"
+"¿Le gustaría saber más acerca de otros esfuerzos y oportunidades de oración "
+"con Pray4Movement.org?"
 
 #: porches/generic/site/top-section.php:21
-#, fuzzy
 msgid "Home"
-msgstr "Casa"
+msgstr "Inicio"
 
 #: porches/generic/site/top-section.php:24
-#, fuzzy
 msgid "Sign Up"
-msgstr "Inscribirse"
+msgstr "Registrarse"
 
 #: porches/ramadan/settings.php:6
-#, fuzzy
 msgid ""
 "Ramadan is one of the five requirements (or pillars) of Islam. During each "
 "of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
@@ -839,7 +745,7 @@ msgstr ""
 "amanecer hasta la puesta del sol. Durante este tiempo se supone que deben "
 "abstenerse de comer, beber líquidos, fumar y tener relaciones sexuales.\n"
 "\n"
-"     Las mujeres suelen pasar las tardes preparando una gran comida. Al "
+"Las mujeres suelen pasar las tardes preparando una gran comida. Al "
 "atardecer, las familias suelen reunirse para romper el ayuno. "
 "Tradicionalmente, las familias rompen el ayuno con un trago de agua, luego "
 "tres dátiles secos y una comida de varios platos. Después de ver la nueva "
@@ -847,159 +753,131 @@ msgstr ""
 "cafeterías donde toman café y fuman con amigos hasta altas horas de la "
 "noche.\n"
 "\n"
-"     Aunque muchos han dejado de ayunar en los últimos años y están "
-"desanimados por la hipocresía, el aumento de los índices de criminalidad y "
-"la mala educación que prevalece durante el mes, otros se han vuelto más "
-"serios acerca de la religión durante este tiempo. Muchos asisten a los "
-"servicios de oración vespertinos y hacen otras oraciones rituales. Algunos "
-"incluso leen el Corán completo (alrededor de una décima parte de la longitud "
-"de la Biblia). Esta búsqueda sincera hace que sea un momento estratégico "
-"para que oremos por ellos."
+"Aunque muchos han dejado de ayunar en los últimos años y están desanimados "
+"por la hipocresía, el aumento de los índices de criminalidad y la mala "
+"educación que prevalece durante el mes, otros se han vuelto más serios "
+"acerca de la religión durante este tiempo. Muchos asisten a los servicios de "
+"oración vespertinos y hacen otras oraciones rituales. Algunos incluso leen "
+"el Corán completo (alrededor de una décima parte de la longitud de la "
+"Biblia). Esta búsqueda sincera hace que sea un momento estratégico para que "
+"oremos por ellos."
 
 #: porches/ramadan/site/home-body.php:148
-#, fuzzy
 msgid "Ramadan is Finished"
 msgstr "Ramadán ha terminado"
 
 #: porches/ramadan/site/home-body.php:161
-#, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramadán termina..."
 
 #: porches/ramadan/site/home-body.php:168
-#, fuzzy
 msgid "Ramadan Begins ..."
-msgstr "Comienza Ramadán..."
+msgstr "Ramadán Comienza..."
 
 #: porches/ramadan/site/home-body.php:193
-#, fuzzy
 msgid "here"
 msgstr "aquí"
 
 #: porches/ramadan/site/home-body.php:277
-#, fuzzy
 msgid "More Hours to be covered"
 msgstr "Más horas a cubrir"
 
 #: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
-#, fuzzy
 msgid "covered once"
 msgstr "cubierto una vez"
 
 #: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
-#, fuzzy
 msgid "covered %1$s times"
 msgstr "cubierto %1$s veces"
 
 #: shortcodes/24hour.php:100
-#, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "Porcentaje cubierto en oración"
 
 #: shortcodes/24hour.php:114 shortcodes/ongoing.php:145
-#, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "Cargando datos de la campaña de oración..."
 
 #: shortcodes/24hour.php:121 shortcodes/ongoing.php:152
-#, fuzzy
 msgid "Choose Prayer Times"
 msgstr "Elija tiempos de oración"
 
 #: shortcodes/24hour.php:133 shortcodes/ongoing.php:164
-#, fuzzy
 msgid "Select an option"
-msgstr "Seleccione una opción"
+msgstr "Selecciona una opción"
 
 #: shortcodes/24hour.php:136 shortcodes/ongoing.php:167
-#, fuzzy
 msgid "Pray every day at the same time"
-msgstr "Orar todos los días a la misma hora."
+msgstr "Orar todos los días a la misma hora"
 
 #: shortcodes/24hour.php:138 shortcodes/ongoing.php:169
-#, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
-msgstr "Ejemplo: todos los días a las 4 p. m. durante 15 minutos"
+msgstr "Ejemplo: todos los días a las 4 pm. durante 15 minutos"
 
 #: shortcodes/24hour.php:141 shortcodes/ongoing.php:172
-#, fuzzy
 msgid "Select days and times to pray"
 msgstr "Seleccione días y horas para orar"
 
 #: shortcodes/24hour.php:143 shortcodes/ongoing.php:174
-#, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
-msgstr "Ejemplo: Lunes 12 a las 6pm por 15mins"
+msgstr "Ejemplo: El Lunes 12 a las 6 pm por 15 mins"
 
 #: shortcodes/24hour.php:158
-#, fuzzy
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr ""
-"En el correo electrónico hay un enlace para administrar sus tiempos de "
+"Ten en cuenta de que el horario de verano puede afectar a tus tiempos de "
 "oración."
 
 #: shortcodes/24hour.php:171 shortcodes/24hour.php:208
 #: shortcodes/ongoing.php:200 shortcodes/ongoing.php:237
-#, fuzzy
 msgid "Showing times for:"
 msgstr "Mostrando tiempos para:"
 
-#: shortcodes/24hour.php:268 shortcodes/ongoing.php:312
-#, fuzzy
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:280
+msgid "OK"
+msgstr "OK"
+
+#: shortcodes/24hour.php:285 shortcodes/ongoing.php:313
 msgid "We are not longer looking for sign ups"
 msgstr "Ya no estamos buscando inscripciones"
 
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:313
-#, fuzzy
+#: shortcodes/24hour.php:286 shortcodes/ongoing.php:314
 msgid "Thanks for praying with us!"
 msgstr "¡Gracias por orar con nosotros!"
 
 #: shortcodes/ongoing.php:70
-#, fuzzy
 msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
 msgid "Everyday at %1$s for %2$s until %3$s"
 msgstr "Todos los días a las %1$s durante %2$s hasta %3$s"
 
 #: shortcodes/ongoing.php:72
-#, fuzzy
 msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "cubierto"
 
 #: shortcodes/ongoing.php:188
-#, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
 "have the option to sign up for more."
 msgstr ""
-"Elija un momento para orar todos los días durante los próximos 3 meses. "
-"Cerca del final, tendrá la opción de registrarse para obtener más."
+"Elige un momento para orar todos los días durante los próximos 3 meses. "
+"Cerca del final, tendrás la opción de registrarte a más."
 
-#: shortcodes/ongoing.php:271
-#, fuzzy
-msgid "Sent! Check your email."
-msgstr "¡Enviado! Consultar su correo electrónico."
-
-#: shortcodes/ongoing.php:279
-#, fuzzy
-msgid "OK"
-msgstr "OK"
-
-#: shortcodes/prayer-timer.php:177
-#, fuzzy
+#: shortcodes/prayer-timer.php:215
 msgid "Start Praying!"
 msgstr "¡Empieza a orar!"
 
-#: shortcodes/prayer-timer.php:180
-#, fuzzy
+#: shortcodes/prayer-timer.php:218
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "Tiempo de oración: %s min"
 
-#: shortcodes/prayer-timer.php:189
-#, fuzzy
+#: shortcodes/prayer-timer.php:238
 msgid "Now praying..."
-msgstr "Ahora orando..."
+msgstr "Orando..."
+
+#~ msgid "Sent! Check your email."
+#~ msgstr "¡Enviado! Revisa tu correo electrónico."
 
 #, fuzzy
 #~ msgid "Epic 404"

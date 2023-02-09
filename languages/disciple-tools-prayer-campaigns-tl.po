@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
+"POT-Creation-Date: 2023-02-07T16:05:17+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Tagalog <https://translate.disciple.tools/projects/disciple-"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Registered to pray with us!"
 msgstr "Nakarehistro upang manalangin kasama namin!"
 
-#: campaign-functions/send-email-utility.php:103
+#: campaign-functions/send-email-utility.php:105
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
@@ -89,14 +89,14 @@ msgstr ""
 "kilusang gumagawa ng alagad! Isang click mo na lang para matapos na ang "
 "iyong pagpaparehistro."
 
-#: campaign-functions/send-email-utility.php:104
+#: campaign-functions/send-email-utility.php:106
 #, fuzzy
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Mag-click dito upang i-verify ang iyong email address at kumpirmahin ang "
 "iyong mga oras ng panalangin."
 
-#: campaign-functions/send-email-utility.php:107
+#: campaign-functions/send-email-utility.php:108
 #, fuzzy
 msgid "Verify your account"
 msgstr "beripikahin ang iyong account"
@@ -139,10 +139,14 @@ msgstr ""
 "Kung alam mo na ang iyong iskedyul maaari mong piliin ang iyong mga oras "
 "dito:"
 
+#: campaign-functions/send-email-utility.php:251
+msgid "Continue Praying?"
+msgstr ""
+
 #: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
-"You are 2 weeks out for your last prayer time. Would you like to keep "
+"You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
 "2 linggo kang wala para sa iyong huling oras ng pagdarasal. Gusto mo bang "
@@ -232,26 +236,27 @@ msgid "Your prayer times have been verified!"
 msgstr "Na-verify na ang iyong mga oras ng pagdarasal!"
 
 #: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:241 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:258 shortcodes/ongoing.php:286
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "Baguhin ang iyong timezone:"
 
 #: magic-links/subscription-management/subscription-management.php:298
 #: magic-links/subscription-management/subscription-management.php:347
-#: magic-links/subscription-management/subscription-management.php:441
-#: magic-links/subscription-management/subscription-management.php:487
-#: magic-links/subscription-management/subscription-management.php:503
-#: magic-links/subscription-management/subscription-management.php:519
-#: magic-links/subscription-management/subscription-management.php:569
-#: shortcodes/24hour.php:259 shortcodes/ongoing.php:303
+#: magic-links/subscription-management/subscription-management.php:409
+#: magic-links/subscription-management/subscription-management.php:468
+#: magic-links/subscription-management/subscription-management.php:514
+#: magic-links/subscription-management/subscription-management.php:538
+#: magic-links/subscription-management/subscription-management.php:554
+#: magic-links/subscription-management/subscription-management.php:610
+#: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Cancel"
 msgstr "Kanselahin"
 
 #: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:490
-#: shortcodes/24hour.php:262 shortcodes/ongoing.php:306
+#: magic-links/subscription-management/subscription-management.php:517
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:307
 #, fuzzy
 msgid "Select"
 msgstr "Pumili"
@@ -283,7 +288,7 @@ msgid "Prayer Time"
 msgstr "Oras ng pagdadasal"
 
 #: magic-links/subscription-management/subscription-management.php:326
-#: magic-links/subscription-management/subscription-management.php:408
+#: magic-links/subscription-management/subscription-management.php:435
 #: shortcodes/24hour.php:163 shortcodes/24hour.php:196
 #: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 #, fuzzy
@@ -291,7 +296,7 @@ msgid "Daily Time"
 msgstr "Araw-araw na Oras"
 
 #: magic-links/subscription-management/subscription-management.php:330
-#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:439
 #: shortcodes/24hour.php:167 shortcodes/24hour.php:200
 #: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 #, fuzzy
@@ -299,13 +304,13 @@ msgid "For how long"
 msgstr "Gaano katagal"
 
 #: magic-links/subscription-management/subscription-management.php:340
-#: magic-links/subscription-management/subscription-management.php:434
+#: magic-links/subscription-management/subscription-management.php:461
 #, fuzzy
 msgid "Your new prayer times have been saved."
 msgstr "Ang iyong mga bagong oras ng panalangin ay na-save na."
 
 #: magic-links/subscription-management/subscription-management.php:351
-#: magic-links/subscription-management/subscription-management.php:445
+#: magic-links/subscription-management/subscription-management.php:472
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:218
 #: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 #, fuzzy
@@ -313,7 +318,7 @@ msgid "Confirm Times"
 msgstr "Kumpirmahin ang Mga Oras"
 
 #: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:457
+#: magic-links/subscription-management/subscription-management.php:484
 #, fuzzy
 msgid "ok"
 msgstr "ok"
@@ -323,44 +328,68 @@ msgstr "ok"
 msgid "Close"
 msgstr "Isara"
 
-#: magic-links/subscription-management/subscription-management.php:399
+#: magic-links/subscription-management/subscription-management.php:398
+#, fuzzy
+msgid "Delete Time"
+msgstr "Mga Piling Oras"
+
+#: magic-links/subscription-management/subscription-management.php:403
+#: magic-links/subscription-management/subscription-management.php:532
+#: magic-links/subscription-management/subscription-management.php:602
+msgid ""
+"Need to cancel? We get it! But wait!\n"
+"If your prayer commitment is scheduled to start in less than 48-hours, "
+"please ask a friend to cover it for you.\n"
+"That will keep the prayer chain from being broken AND will give someone the "
+"joy of fighting for the lost! Thanks!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:593
+#: magic-links/subscription-management/subscription-management.php:613
+#, fuzzy
+msgid "Delete"
+msgstr "Tanggalin"
+
+#: magic-links/subscription-management/subscription-management.php:426
 #: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "Pumili ng araw at pumili ng oras"
 
-#: magic-links/subscription-management/subscription-management.php:406
+#: magic-links/subscription-management/subscription-management.php:433
 #: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "Pumili ng oras ng panalangin"
 
-#: magic-links/subscription-management/subscription-management.php:416
+#: magic-links/subscription-management/subscription-management.php:443
 #: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Add prayer time"
 msgstr "Magdagdag ng oras ng pagdarasal"
 
-#: magic-links/subscription-management/subscription-management.php:417
+#: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Time added"
 msgstr "Nagdagdag ng oras"
 
-#: magic-links/subscription-management/subscription-management.php:424
+#: magic-links/subscription-management/subscription-management.php:451
 #: shortcodes/24hour.php:212 shortcodes/24hour.php:234
 #: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 #, fuzzy
 msgid "Selected Times"
 msgstr "Mga Piling Oras"
 
-#: magic-links/subscription-management/subscription-management.php:426
+#: magic-links/subscription-management/subscription-management.php:453
 #: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
 #, fuzzy
 msgid "No selected Time"
 msgstr "Walang napiling Oras"
 
-#: magic-links/subscription-management/subscription-management.php:449
+#: magic-links/subscription-management/subscription-management.php:476
 #: shortcodes/24hour.php:131 shortcodes/24hour.php:154
 #: shortcodes/24hour.php:183 shortcodes/24hour.php:228
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
@@ -369,115 +398,108 @@ msgstr "Walang napiling Oras"
 msgid "Back"
 msgstr "Bumalik"
 
-#: magic-links/subscription-management/subscription-management.php:482
+#: magic-links/subscription-management/subscription-management.php:509
 #, fuzzy
 msgid "Choose a different time:"
 msgstr "Pumili ng ibang oras:"
 
-#: magic-links/subscription-management/subscription-management.php:499
+#: magic-links/subscription-management/subscription-management.php:526
 #, fuzzy
 msgid "Delete all"
 msgstr "Tanggalin ang lahat"
 
-#: magic-links/subscription-management/subscription-management.php:506
-#: magic-links/subscription-management/subscription-management.php:522
-#: parts/components.php:25
-#, fuzzy
-msgid "Confirm"
-msgstr "Kompirmahin"
-
-#: magic-links/subscription-management/subscription-management.php:515
+#: magic-links/subscription-management/subscription-management.php:550
 #, fuzzy
 msgid "Extend"
 msgstr "Palawigin"
 
-#: magic-links/subscription-management/subscription-management.php:517
+#: magic-links/subscription-management/subscription-management.php:552
 #, fuzzy
 msgid "Extend my prayer commitments until:"
 msgstr "Palawigin ang aking mga pangako sa panalangin hanggang sa:"
 
-#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:557
+#: parts/components.php:45
+#, fuzzy
+msgid "Confirm"
+msgstr "Kompirmahin"
+
+#: magic-links/subscription-management/subscription-management.php:576
 #, fuzzy
 msgid "Profile Settings"
 msgstr "Mga Setting ng Profile"
 
-#: magic-links/subscription-management/subscription-management.php:542
+#: magic-links/subscription-management/subscription-management.php:577
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "Tumanggap ng mga abiso sa oras ng panalangin"
 
-#: magic-links/subscription-management/subscription-management.php:544
+#: magic-links/subscription-management/subscription-management.php:579
 #, fuzzy
 msgid "Notifications allowed"
 msgstr "Pinapayagan ang mga notification"
 
-#: magic-links/subscription-management/subscription-management.php:545
+#: magic-links/subscription-management/subscription-management.php:580
 #, fuzzy
 msgid "Notifications not allowed"
 msgstr "Hindi pinapayagan ang mga notification"
 
-#: magic-links/subscription-management/subscription-management.php:549
+#: magic-links/subscription-management/subscription-management.php:584
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "Mga Advanced na Setting"
 
-#: magic-links/subscription-management/subscription-management.php:556
+#: magic-links/subscription-management/subscription-management.php:591
 #, fuzzy
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr ""
 "Tanggalin ang profile na ito at lahat ng naka-iskedyul na oras ng panalangin?"
 
-#: magic-links/subscription-management/subscription-management.php:558
-#: magic-links/subscription-management/subscription-management.php:572
-#, fuzzy
-msgid "Delete"
-msgstr "Tanggalin"
-
-#: magic-links/subscription-management/subscription-management.php:561
+#: magic-links/subscription-management/subscription-management.php:596
 #, fuzzy
 msgid "Are you sure you want to delete your profile?"
 msgstr "Sigurado ka bang gusto mong tanggalin ang iyong profile?"
 
-#: magic-links/subscription-management/subscription-management.php:563
+#: magic-links/subscription-management/subscription-management.php:598
 #, fuzzy
 msgid "This can not be undone."
 msgstr "Hindi na ito maaaring bawiin."
 
-#: magic-links/subscription-management/subscription-management.php:588
+#: magic-links/subscription-management/subscription-management.php:629
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Ang subscription na ito ay natapos na o hindi na-configure nang tama."
 
-#: parts/components.php:44 parts/components.php:48
+#: parts/components.php:64 parts/components.php:68
 #, fuzzy
 msgid "Name"
 msgstr "Pangalan"
 
-#: parts/components.php:52 parts/components.php:56 parts/components.php:57
+#: parts/components.php:72 parts/components.php:76 parts/components.php:77
 #: porches/generic/site/stats.php:248
 #, fuzzy
 msgid "Email"
 msgstr "Email"
 
-#: parts/components.php:54
+#: parts/components.php:74
 #, fuzzy
 msgid "Your email is required."
 msgstr "Kinakailangan ang iyong email."
 
-#: parts/components.php:70
+#: parts/components.php:91
 #, fuzzy
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr ""
 "Tumanggap ng Mga Abiso sa Oras ng Panalangin (kailangan ang pag-verify sa "
 "email)."
 
-#: parts/components.php:76
+#: parts/components.php:97
 #, fuzzy
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr ""
 "Tumanggap ng Pray4Movement Newsletter (kailangan ng pag-verify sa email)."
 
-#: parts/components.php:81
+#: parts/components.php:102
 #, fuzzy
 msgid "Submit Your Prayer Commitment"
 msgstr "Isumite ang Iyong Pangako sa Panalangin"
@@ -713,17 +735,20 @@ msgstr "Basahin"
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/sign-up-confirmation.php:105
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid "Check your email"
 msgstr "Ipinadala! Suriin ang iyong email."
 
-#: porches/generic/site/sign-up-confirmation.php:106
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
+#: shortcodes/ongoing.php:272
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "Ang iyong pagpaparehistro ay matagumpay."
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:246
+#: shortcodes/ongoing.php:274
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -732,7 +757,8 @@ msgstr ""
 "Mag-click sa link na kasama sa email upang i-verify ang iyong pangako at "
 "makatanggap ng mga abiso sa oras ng panalangin!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/ongoing.php:276
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:249
+#: shortcodes/ongoing.php:277
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr ""
@@ -953,12 +979,17 @@ msgstr ""
 msgid "Showing times for:"
 msgstr "Mga oras ng pagpapakita para sa:"
 
-#: shortcodes/24hour.php:268 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:280
+#, fuzzy
+msgid "OK"
+msgstr "OK"
+
+#: shortcodes/24hour.php:285 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "Hindi na kami naghahanap ng mga sign up"
 
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:286 shortcodes/ongoing.php:314
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "Salamat sa pagdarasal kasama namin!"
@@ -984,31 +1015,25 @@ msgstr ""
 "Pumili ng oras para manalangin araw-araw para sa susunod na 3 buwan. Malapit "
 "sa dulo magkakaroon ka ng opsyong mag-sign up para sa higit pa."
 
-#: shortcodes/ongoing.php:271
-#, fuzzy
-msgid "Sent! Check your email."
-msgstr "Ipinadala! Suriin ang iyong email."
-
-#: shortcodes/ongoing.php:279
-#, fuzzy
-msgid "OK"
-msgstr "OK"
-
-#: shortcodes/prayer-timer.php:177
+#: shortcodes/prayer-timer.php:215
 #, fuzzy
 msgid "Start Praying!"
 msgstr "Simulan ang Pagdarasal!"
 
-#: shortcodes/prayer-timer.php:180
+#: shortcodes/prayer-timer.php:218
 #, fuzzy
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "Oras ng panalangin: %s min"
 
-#: shortcodes/prayer-timer.php:189
+#: shortcodes/prayer-timer.php:238
 #, fuzzy
 msgid "Now praying..."
 msgstr "Ngayon nagdadasal..."
+
+#, fuzzy
+#~ msgid "Sent! Check your email."
+#~ msgstr "Ipinadala! Suriin ang iyong email."
 
 #, fuzzy
 #~ msgid "Epic 404"
