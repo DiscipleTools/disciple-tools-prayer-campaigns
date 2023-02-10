@@ -33,11 +33,11 @@ function dt_campaign_sign_up_form() {
         $campaign_name = get_the_title();
     }
 
-    $tags = '7315913';
+    $tags = '7315913,11236541'; // mailchimp campaign_subscription tag, news tag
     if ( class_exists( 'DT_Porch_Selector' ) ){
         $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
         if ( $selected_porch === 'ramadan-porch' ){
-            $tags .= ',11236361';
+            $tags .= ',11236361'; // ramadan_campaign tag
         }
     }
 
