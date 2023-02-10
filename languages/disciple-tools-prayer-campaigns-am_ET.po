@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-01-18T14:27:41+00:00\n"
+"POT-Creation-Date: 2023-02-07T16:05:17+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Amharic <https://translate.disciple.tools/projects/disciple-"
@@ -77,7 +77,7 @@ msgstr "የእርስዎን መለያ እና የጊዜ ቁርጠኝነት ለማ�
 msgid "Registered to pray with us!"
 msgstr "ከእኛ ጋር ለመጸለይ ተመዝግበዋል!"
 
-#: campaign-functions/send-email-utility.php:103
+#: campaign-functions/send-email-utility.php:105
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
@@ -85,12 +85,12 @@ msgid ""
 msgstr ""
 "ለደቀመዝሙር እንቅስቃሴ ስልታዊ ጸሎት ስለተቀላቀሉን እናመሰግናለን! ምዝገባዎን ለመጨረስ አንድ ጠቅታ ብቻ ይቀርዎታል።"
 
-#: campaign-functions/send-email-utility.php:104
+#: campaign-functions/send-email-utility.php:106
 #, fuzzy
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr "የኢሜል አድራሻዎን ለማረጋገጥ እና የጸሎት ጊዜዎን ለማረጋገጥ እዚህ ጠቅ ያድርጉ።"
 
-#: campaign-functions/send-email-utility.php:107
+#: campaign-functions/send-email-utility.php:108
 #, fuzzy
 msgid "Verify your account"
 msgstr "የእርስዎን መለያ ያረጋግጡ"
@@ -129,10 +129,14 @@ msgstr ""
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "መርሐግብርዎን አስቀድመው ካወቁ ጊዜዎን እዚህ መምረጥ ይችላሉ፡"
 
+#: campaign-functions/send-email-utility.php:251
+msgid "Continue Praying?"
+msgstr ""
+
 #: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid ""
-"You are 2 weeks out for your last prayer time. Would you like to keep "
+"You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr "ለመጨረሻ ጊዜ የጸሎት ጊዜህ 2 ሳምንታት ቆይተሃል። መጸለይን መቀጠል ትፈልጋለህ?"
 
@@ -218,26 +222,27 @@ msgid "Your prayer times have been verified!"
 msgstr "የጸሎት ጊዜህ ተረጋግጧል!"
 
 #: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:241 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:258 shortcodes/ongoing.php:286
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "የሰዓት ሰቅዎን ይቀይሩ፡"
 
 #: magic-links/subscription-management/subscription-management.php:298
 #: magic-links/subscription-management/subscription-management.php:347
-#: magic-links/subscription-management/subscription-management.php:441
-#: magic-links/subscription-management/subscription-management.php:487
-#: magic-links/subscription-management/subscription-management.php:503
-#: magic-links/subscription-management/subscription-management.php:519
-#: magic-links/subscription-management/subscription-management.php:569
-#: shortcodes/24hour.php:259 shortcodes/ongoing.php:303
+#: magic-links/subscription-management/subscription-management.php:409
+#: magic-links/subscription-management/subscription-management.php:468
+#: magic-links/subscription-management/subscription-management.php:514
+#: magic-links/subscription-management/subscription-management.php:538
+#: magic-links/subscription-management/subscription-management.php:554
+#: magic-links/subscription-management/subscription-management.php:610
+#: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Cancel"
 msgstr "ሰርዝ"
 
 #: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:490
-#: shortcodes/24hour.php:262 shortcodes/ongoing.php:306
+#: magic-links/subscription-management/subscription-management.php:517
+#: shortcodes/24hour.php:279 shortcodes/ongoing.php:307
 #, fuzzy
 msgid "Select"
 msgstr "ይምረጡ"
@@ -269,7 +274,7 @@ msgid "Prayer Time"
 msgstr "የጸሎት ጊዜ"
 
 #: magic-links/subscription-management/subscription-management.php:326
-#: magic-links/subscription-management/subscription-management.php:408
+#: magic-links/subscription-management/subscription-management.php:435
 #: shortcodes/24hour.php:163 shortcodes/24hour.php:196
 #: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 #, fuzzy
@@ -277,7 +282,7 @@ msgid "Daily Time"
 msgstr "ዕለታዊ ሰዓት"
 
 #: magic-links/subscription-management/subscription-management.php:330
-#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:439
 #: shortcodes/24hour.php:167 shortcodes/24hour.php:200
 #: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 #, fuzzy
@@ -285,13 +290,13 @@ msgid "For how long"
 msgstr "ለምን ያህል ጊዜ"
 
 #: magic-links/subscription-management/subscription-management.php:340
-#: magic-links/subscription-management/subscription-management.php:434
+#: magic-links/subscription-management/subscription-management.php:461
 #, fuzzy
 msgid "Your new prayer times have been saved."
 msgstr "አዲሱ የጸሎት ጊዜዎ ድኗል።"
 
 #: magic-links/subscription-management/subscription-management.php:351
-#: magic-links/subscription-management/subscription-management.php:445
+#: magic-links/subscription-management/subscription-management.php:472
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:218
 #: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 #, fuzzy
@@ -299,7 +304,7 @@ msgid "Confirm Times"
 msgstr "ጊዜያትን ያረጋግጡ"
 
 #: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:457
+#: magic-links/subscription-management/subscription-management.php:484
 #, fuzzy
 msgid "ok"
 msgstr "እሺ"
@@ -309,44 +314,68 @@ msgstr "እሺ"
 msgid "Close"
 msgstr "ገጠመ"
 
-#: magic-links/subscription-management/subscription-management.php:399
+#: magic-links/subscription-management/subscription-management.php:398
+#, fuzzy
+msgid "Delete Time"
+msgstr "የተመረጡ ጊዜያት"
+
+#: magic-links/subscription-management/subscription-management.php:403
+#: magic-links/subscription-management/subscription-management.php:532
+#: magic-links/subscription-management/subscription-management.php:602
+msgid ""
+"Need to cancel? We get it! But wait!\n"
+"If your prayer commitment is scheduled to start in less than 48-hours, "
+"please ask a friend to cover it for you.\n"
+"That will keep the prayer chain from being broken AND will give someone the "
+"joy of fighting for the lost! Thanks!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:593
+#: magic-links/subscription-management/subscription-management.php:613
+#, fuzzy
+msgid "Delete"
+msgstr "ሰርዝ"
+
+#: magic-links/subscription-management/subscription-management.php:426
 #: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "ቀን ይምረጡ እና ጊዜ ይምረጡ"
 
-#: magic-links/subscription-management/subscription-management.php:406
+#: magic-links/subscription-management/subscription-management.php:433
 #: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "የጸሎት ጊዜ ይምረጡ"
 
-#: magic-links/subscription-management/subscription-management.php:416
+#: magic-links/subscription-management/subscription-management.php:443
 #: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Add prayer time"
 msgstr "የጸሎት ጊዜ ጨምር"
 
-#: magic-links/subscription-management/subscription-management.php:417
+#: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Time added"
 msgstr "ጊዜ ተጨምሯል።"
 
-#: magic-links/subscription-management/subscription-management.php:424
+#: magic-links/subscription-management/subscription-management.php:451
 #: shortcodes/24hour.php:212 shortcodes/24hour.php:234
 #: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 #, fuzzy
 msgid "Selected Times"
 msgstr "የተመረጡ ጊዜያት"
 
-#: magic-links/subscription-management/subscription-management.php:426
+#: magic-links/subscription-management/subscription-management.php:453
 #: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
 #, fuzzy
 msgid "No selected Time"
 msgstr "የተመረጠ ጊዜ የለም።"
 
-#: magic-links/subscription-management/subscription-management.php:449
+#: magic-links/subscription-management/subscription-management.php:476
 #: shortcodes/24hour.php:131 shortcodes/24hour.php:154
 #: shortcodes/24hour.php:183 shortcodes/24hour.php:228
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
@@ -355,111 +384,104 @@ msgstr "የተመረጠ ጊዜ የለም።"
 msgid "Back"
 msgstr "ተመለስ"
 
-#: magic-links/subscription-management/subscription-management.php:482
+#: magic-links/subscription-management/subscription-management.php:509
 #, fuzzy
 msgid "Choose a different time:"
 msgstr "የተለየ ጊዜ ይምረጡ፡-"
 
-#: magic-links/subscription-management/subscription-management.php:499
+#: magic-links/subscription-management/subscription-management.php:526
 #, fuzzy
 msgid "Delete all"
 msgstr "ሁሉንም ሰርዝ"
 
-#: magic-links/subscription-management/subscription-management.php:506
-#: magic-links/subscription-management/subscription-management.php:522
-#: parts/components.php:25
-#, fuzzy
-msgid "Confirm"
-msgstr "አረጋግጥ"
-
-#: magic-links/subscription-management/subscription-management.php:515
+#: magic-links/subscription-management/subscription-management.php:550
 #, fuzzy
 msgid "Extend"
 msgstr "ያራዝሙ"
 
-#: magic-links/subscription-management/subscription-management.php:517
+#: magic-links/subscription-management/subscription-management.php:552
 #, fuzzy
 msgid "Extend my prayer commitments until:"
 msgstr "የጸሎት ቃሎቼን እስከ፡-"
 
-#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:557
+#: parts/components.php:45
+#, fuzzy
+msgid "Confirm"
+msgstr "አረጋግጥ"
+
+#: magic-links/subscription-management/subscription-management.php:576
 #, fuzzy
 msgid "Profile Settings"
 msgstr "የመገለጫ ቅንብሮች"
 
-#: magic-links/subscription-management/subscription-management.php:542
+#: magic-links/subscription-management/subscription-management.php:577
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "የጸሎት ጊዜ ማሳወቂያዎችን ይቀበሉ"
 
-#: magic-links/subscription-management/subscription-management.php:544
+#: magic-links/subscription-management/subscription-management.php:579
 #, fuzzy
 msgid "Notifications allowed"
 msgstr "ማሳወቂያዎች ተፈቅደዋል"
 
-#: magic-links/subscription-management/subscription-management.php:545
+#: magic-links/subscription-management/subscription-management.php:580
 #, fuzzy
 msgid "Notifications not allowed"
 msgstr "ማሳወቂያዎች አይፈቀዱም።"
 
-#: magic-links/subscription-management/subscription-management.php:549
+#: magic-links/subscription-management/subscription-management.php:584
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "የላቁ ቅንብሮች"
 
-#: magic-links/subscription-management/subscription-management.php:556
+#: magic-links/subscription-management/subscription-management.php:591
 #, fuzzy
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "ይህ መገለጫ እና ሁሉም የታቀዱ የጸሎት ጊዜያት ይሰረዙ?"
 
-#: magic-links/subscription-management/subscription-management.php:558
-#: magic-links/subscription-management/subscription-management.php:572
-#, fuzzy
-msgid "Delete"
-msgstr "ሰርዝ"
-
-#: magic-links/subscription-management/subscription-management.php:561
+#: magic-links/subscription-management/subscription-management.php:596
 #, fuzzy
 msgid "Are you sure you want to delete your profile?"
 msgstr "እርግጠኛ ነህ መገለጫህን መሰረዝ ትፈልጋለህ?"
 
-#: magic-links/subscription-management/subscription-management.php:563
+#: magic-links/subscription-management/subscription-management.php:598
 #, fuzzy
 msgid "This can not be undone."
 msgstr "ይህ ሊቀለበስ አይችልም።"
 
-#: magic-links/subscription-management/subscription-management.php:588
+#: magic-links/subscription-management/subscription-management.php:629
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ይህ የደንበኝነት ምዝገባ አብቅቷል ወይም በትክክል አልተዋቀረም።"
 
-#: parts/components.php:44 parts/components.php:48
+#: parts/components.php:64 parts/components.php:68
 #, fuzzy
 msgid "Name"
 msgstr "ስም"
 
-#: parts/components.php:52 parts/components.php:56 parts/components.php:57
+#: parts/components.php:72 parts/components.php:76 parts/components.php:77
 #: porches/generic/site/stats.php:248
 #, fuzzy
 msgid "Email"
 msgstr "ኢሜል"
 
-#: parts/components.php:54
+#: parts/components.php:74
 #, fuzzy
 msgid "Your email is required."
 msgstr "ኢሜልዎ ያስፈልጋል።"
 
-#: parts/components.php:70
+#: parts/components.php:91
 #, fuzzy
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "የጸሎት ጊዜ ማሳወቂያዎችን ተቀበል (የኢሜል ማረጋገጫ ያስፈልጋል)።"
 
-#: parts/components.php:76
+#: parts/components.php:97
 #, fuzzy
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr "Pray4Movement Newsletter ተቀበል (የኢሜይል ማረጋገጫ ያስፈልጋል)።"
 
-#: parts/components.php:81
+#: parts/components.php:102
 #, fuzzy
 msgid "Submit Your Prayer Commitment"
 msgstr "የጸሎት ቃል ኪዳንህን አስገባ"
@@ -687,17 +709,20 @@ msgstr "አንብብ"
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/sign-up-confirmation.php:105
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid "Check your email"
 msgstr "ተልኳል! ኢሜልዎን ያረጋግጡ።"
 
-#: porches/generic/site/sign-up-confirmation.php:106
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
+#: shortcodes/ongoing.php:272
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "ምዝገባዎ የተሳካ ነበር።"
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/ongoing.php:273
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:246
+#: shortcodes/ongoing.php:274
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -705,7 +730,8 @@ msgid ""
 msgstr ""
 "ቁርጠኝነትዎን ለማረጋገጥ እና የጸሎት ጊዜ ማሳወቂያዎችን ለመቀበል በኢሜል ውስጥ የተካተተውን አገናኝ ጠቅ ያድርጉ!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/ongoing.php:276
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:249
+#: shortcodes/ongoing.php:277
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr "በኢሜል ውስጥ የጸሎት ጊዜዎን ለማስተዳደር አገናኝ አለ።"
@@ -912,12 +938,17 @@ msgstr "በኢሜል ውስጥ የጸሎት ጊዜዎን ለማስተዳደር �
 msgid "Showing times for:"
 msgstr "ጊዜን በማሳየት ላይ ለ፡-"
 
-#: shortcodes/24hour.php:268 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:252 shortcodes/ongoing.php:280
+#, fuzzy
+msgid "OK"
+msgstr "እሺ"
+
+#: shortcodes/24hour.php:285 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "ከአሁን በኋላ ምዝገባዎችን እየፈለግን አይደለም።"
 
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:286 shortcodes/ongoing.php:314
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "ከእኛ ጋር ስለጸለዩ እናመሰግናለን!"
@@ -941,31 +972,25 @@ msgid ""
 "have the option to sign up for more."
 msgstr "ለሚቀጥሉት 3 ወራት በየቀኑ ለመጸለይ ጊዜ ምረጥ። መጨረሻ አካባቢ ለተጨማሪ የመመዝገብ አማራጭ ይኖርሃል።"
 
-#: shortcodes/ongoing.php:271
-#, fuzzy
-msgid "Sent! Check your email."
-msgstr "ተልኳል! ኢሜልዎን ያረጋግጡ።"
-
-#: shortcodes/ongoing.php:279
-#, fuzzy
-msgid "OK"
-msgstr "እሺ"
-
-#: shortcodes/prayer-timer.php:177
+#: shortcodes/prayer-timer.php:215
 #, fuzzy
 msgid "Start Praying!"
 msgstr "መጸለይ ጀምር!"
 
-#: shortcodes/prayer-timer.php:180
+#: shortcodes/prayer-timer.php:218
 #, fuzzy
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "የጸሎት ጊዜ፡ %s ደቂቃ"
 
-#: shortcodes/prayer-timer.php:189
+#: shortcodes/prayer-timer.php:238
 #, fuzzy
 msgid "Now praying..."
 msgstr "አሁን መጸለይ..."
+
+#, fuzzy
+#~ msgid "Sent! Check your email."
+#~ msgstr "ተልኳል! ኢሜልዎን ያረጋግጡ።"
 
 #, fuzzy
 #~ msgid "Epic 404"
