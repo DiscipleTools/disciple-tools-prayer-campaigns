@@ -1189,6 +1189,15 @@ class DT_Campaigns_Base {
 
             $name = home_url() . ' - ' . dt_format_date( $campaign['start_date']['timestamp'], 'Y-m' );
 
+            $creator_email = '';
+            $post = get_post( $campaign['ID'] );
+            if ( isset( $post->post_author ) ){
+                $creator = get_user_by( 'id', $post->post_author );
+                if ( $creator && isset( $creator->user_email ) ){
+                    $creator_email = $creator->user_email;
+                }
+            }
+
             $campaigns_to_send[] = [
                 'name' => $is_current_campaign ? $porch_name : $name,
                 'campaign_name' => $campaign['name'],
@@ -1196,6 +1205,7 @@ class DT_Campaigns_Base {
                 'start_date' => $campaign['start_date']['timestamp'],
                 'end_date' => isset( $campaign['end_date']['timestamp'] ) ? $campaign['end_date']['timestamp'] : null,
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
+                'creator_email' => $creator_email,
                 'campaign_link' => $is_current_campaign ? home_url() : '',
                 'campaign_links' => [
                     'values' => [
