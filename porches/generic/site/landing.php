@@ -94,7 +94,7 @@ class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
     public function record_group_count( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        if ( !isset( $params['number']  ) ){
+        if ( !isset( $params['number'] ) ){
             return false;
         }
         $campaign = DT_Campaign_Settings::get_campaign();
