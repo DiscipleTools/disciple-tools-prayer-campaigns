@@ -20,6 +20,7 @@ class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
 
     public function __construct() {
         parent::__construct();
+        add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
         /**
          * tests if other URL
@@ -52,7 +53,7 @@ class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
-        return DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts();
+        return array_merge( $allowed_js, DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
     }
 
     public function dt_magic_url_base_allowed_css( $allowed_css ) {
@@ -75,6 +76,44 @@ class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
 
     public function header_javascript(){
         require_once( 'header.php' );
+    }
+
+    public function add_endpoints() {
+        $namespace = $this->root . '/v1/'. $this->type;
+        register_rest_route(
+            $namespace, 'group-count', [
+                [
+                    'methods'  => 'POST',
+                    'callback' => [ $this, 'record_group_count' ],
+                    'permission_callback' => '__return_true',
+                ],
+            ]
+        );
+    }
+
+    public function record_group_count( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        if ( !isset( $params['number']  ) ){
+            return false;
+        }
+        $campaign = DT_Campaign_Settings::get_campaign();
+        if ( empty( $campaign ) ){
+            return false;
+        }
+        $campaign_id = $campaign['ID'];
+        $args = [
+            'parent_id' => $campaign_id,
+            'post_id' => 0,
+            'post_type' => 'campaigns',
+            'type' => 'fuel',
+            'subtype' => $campaign['type']['key'],
+            'payload' => null,
+            'value' => $params['number'],
+        ];
+        Disciple_Tools_Reports::insert( $args );
+
+        return $params['number'];
     }
 }
 DT_Generic_Porch_Landing::instance();
