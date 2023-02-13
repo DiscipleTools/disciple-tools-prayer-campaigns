@@ -7,6 +7,9 @@ $content = 'No post found';
 $day = isset( $this->parts['public_key'] ) && ! empty( $this->parts['public_key'] ) ? $this->parts['public_key'] : 0;
 
 $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
+$campaign = DT_Campaign_Settings::get_campaign();
+$minutes_scheduled = isset( $campaign['ID'] ) ? DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign['ID'] ) : 0;
+$days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 24 / 60 ) : 0, 1 );
 ?>
 
 
@@ -35,8 +38,52 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
                     </div>
                 <?php endif;
             endif; ?>
+        </div>
 
-       </div>
+        <div class="row" style="margin-top: 20px">
+            <form onsubmit="submit_group_count();return false;" id='form-content'>
+                <p style="text-align: center">
+                    <?php echo esc_html( sprintf( __( "Praying as a group? How many were you today? Each person's time will be counted towards the %s days of prayer scheduled so far.", 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
+                </p>
+                <div style="text-align: center">
+                    <input type='number' name='group_size' value='1' id='prayer_group_size'
+                           style='width: 50px; margin-left: 10px; padding: 5px'>
+                    <input type='email' id='email' style='display: none'>
+                    <button id="prayer-group-size-button" class="btn btn-common btn-rm" >
+                        <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
+                        <img id='prayer_group_size-spinner' style='display: none; margin-left: 10px'
+                             src='<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg'
+                             width='22px;' alt='spinner '/>
+                    </button>
+                    <span id="group-size-thank-you" style="display: none">
+                        <?php esc_html_e( 'Thank You', 'disciple-tools-prayer-campaigns' ); ?>
+                    </span>
+                </div>
+            </form>
+            <script>
+
+                let submit_group_count = function () {
+                    $('#prayer_group_size-spinner').show()
+                    let honey = $('#email').val();
+                    if (honey) {
+                        return false;
+                    }
+                    let number = $('#prayer_group_size').val() || 1
+                    return window.makeRequest('POST', '/group-count', {
+                        parts: jsObject.parts,
+                        number,
+                    }, jsObject.parts.root + /v1/ + 'fuel').done(function (data) {
+                        $('#prayer_group_size-spinner').hide()
+                        $('#group-size-thank-you').show()
+                        $('#prayer-group-size-button').attr('disabled', true)
+                    })
+                    .fail(function (e) {
+                        // jQuery('#error').html(e)
+                        console.log(e)
+                    })
+                }
+            </script>
+        </div>
     </div>
 </section>
 <!-- Contact Section End -->

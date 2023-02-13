@@ -842,13 +842,36 @@ class DT_Campaigns_Base {
         $time_format = '%H:%i';
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-        SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
-        FROM (SELECT p2p_to as post_id
-        FROM $wpdb->p2p
-        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
-        LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
-        WHERE r.post_id IS NOT NULL;", $time_format, $time_format, $campaign_post_id
+            SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+            FROM (
+                SELECT p2p_to as post_id
+                FROM $wpdb->p2p
+                WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s
+            ) as t1
+            INNER JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+            WHERE r.parent_id = %s AND r.post_type = 'subscriptions' AND r.type = 'campaign_app'
+        ", $time_format, $time_format, $campaign_post_id, $campaign_post_id
         ) );
+    }
+
+    public static function query_extra_minutes( $campaign_post_id ){
+        $prayer_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
+
+        global $wpdb;
+        $extra_people = $wpdb->get_var( $wpdb->prepare( "SELECT
+            SUM( r.value - 1 ) AS extra_people
+            FROM $wpdb->dt_reports r
+            WHERE r.parent_id = %s AND r.post_type = 'campaigns' AND r.type = 'fuel'
+            ;", $campaign_post_id
+        ) );
+        return $extra_people * $prayer_time_duration;
+    }
+
+    public static function get_minutes_prayed_and_scheduled( $campaign_id ){
+        $scheduled = self::query_scheduled_minutes( $campaign_id );
+        $extra = self::query_extra_minutes( $campaign_id );
+        $total = $scheduled + $extra;
+        return empty( $total ) ? 0 : $total;
     }
 
     public static function number_of_hours_next_month() {
@@ -1106,13 +1129,9 @@ class DT_Campaigns_Base {
     public static function campaign_stats( $post_id, $min_time_duration = 15 ){
         $coverage_levels = self::query_coverage_levels_progress( $post_id );
         $number_of_time_slots = self::query_coverage_total_time_slots( $post_id );
-
         $coverage_percentage = $coverage_levels[0]['percent'];
+        $minutes_committed = self::get_minutes_prayed_and_scheduled( $post_id );
 
-        $minutes_committed = 0;
-        foreach ( $coverage_levels as $level ){
-            $minutes_committed += $level['blocks_covered'] * $min_time_duration;
-        }
         return [
             'campaign_progress' => $coverage_percentage,
             'minutes_committed' => $minutes_committed,

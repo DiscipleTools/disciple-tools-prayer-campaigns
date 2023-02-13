@@ -88,21 +88,17 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         $subscribers_count = DT_Subscriptions::get_subscribers_count( $post_id );
         $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
 
-        $coverage_levels = DT_Campaigns_Base::query_coverage_levels_progress( $post_id );
         $total_number_of_time_slots = DT_Campaigns_Base::query_coverage_total_time_slots( $post_id );
         $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id );
 
         arsort( $current_commitments );
-        $total_mins_prayed = 0;
         $committed_time_slots = 0;
         if ( method_exists( 'DT_Campaigns_Base', 'query_total_events_count' ) ){
             $committed_time_slots = DT_Campaigns_Base::query_total_events_count( $post_id );
         }
-        foreach ( $coverage_levels as $level ){
-            $total_mins_prayed += $level['blocks_covered'] * $min_time_duration;
-        }
         $lang = dt_campaign_get_current_lang();
 
+        $total_mins_prayed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $post_id );
         $campaign_root = 'campaign_app';
         $campaign_type = $campaign_fields['type']['key'];
         $key_name = 'public_key';
