@@ -1159,6 +1159,7 @@ class DT_Campaigns_Base {
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
         $campaigns_to_send = [];
         $site_url = get_site_url( null, '', 'https' );
+        $site_url = str_replace( 'http://', 'https://', $site_url );
         $site_hash = hash( 'sha256', $site_url );
 
         global $wpdb;
@@ -1222,10 +1223,10 @@ class DT_Campaigns_Base {
                 'end_date' => isset( $campaign['end_date']['timestamp'] ) ? $campaign['end_date']['timestamp'] : null,
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
                 'creator_email' => $creator_email,
-                'campaign_link' => $is_current_campaign ? home_url() : '',
+                'campaign_link' => $is_current_campaign ? $site_url : '',
                 'campaign_links' => [
                     'values' => [
-                        [ 'value' => home_url(), 'type' => 'default' ],
+                        [ 'value' => $site_url, 'type' => 'default' ],
                     ]
                 ],
                 'campaign_progress' => $stats['campaign_progress'],
