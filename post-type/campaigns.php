@@ -791,7 +791,7 @@ class DT_Campaigns_Base {
             r.post_id,
             DATE_FORMAT( CONVERT_TZ( FROM_UNIXTIME( r.time_begin ), 'SYSTEM', %s ), %s ) AS time_slot_begin,
             DATE_FORMAT( CONVERT_TZ( FROM_UNIXTIME( r.time_end ), 'SYSTEM', %s ), %s ) AS time_slot_end,
-            FLOOR( TIME_TO_SEC(TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) AS minutes,
+            SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
             SUM( r.value ) AS verified_subscriptions,
             COUNT( r.value ) AS all_subscriptions
         FROM $wpdb->dt_reports r
@@ -799,7 +799,7 @@ class DT_Campaigns_Base {
         WHERE r.post_type = 'subscriptions'
         AND r.parent_id = %s
         GROUP BY time_slot_begin, time_slot_end;
-        ", $tz_offset, $time_format, $tz_offset, $time_format, $time_format, $time_format, $campaign_post_id ), ARRAY_A);
+        ", $tz_offset, $time_format, $tz_offset, $time_format, $campaign_post_id ), ARRAY_A);
         return $timeline_slots;
     }
 
@@ -839,10 +839,9 @@ class DT_Campaigns_Base {
     }
 
     public static function query_scheduled_minutes( $campaign_post_id ){
-        $time_format = '%H:%i';
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-            SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+            SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
             FROM (
                 SELECT p2p_to as post_id
                 FROM $wpdb->p2p
@@ -850,7 +849,7 @@ class DT_Campaigns_Base {
             ) as t1
             INNER JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
             WHERE r.parent_id = %s AND r.post_type = 'subscriptions' AND r.type = 'campaign_app'
-        ", $time_format, $time_format, $campaign_post_id, $campaign_post_id
+        ", $campaign_post_id, $campaign_post_id
         ) );
     }
 
@@ -884,7 +883,6 @@ class DT_Campaigns_Base {
     }
 
     public static function query_scheduled_minutes_next_month( $campaign_post_id ) {
-        $time_format = '%H:%i';
         $time_begin = strtotime( gmdate( 'M d', strtotime( 'first day of +1 month' ) ) . ' 00:00' );
         $time_end = strtotime( gmdate( 'M d', strtotime( 'first day of +2 month' ) ) . ' 00:00' );
         global $wpdb;
@@ -892,7 +890,7 @@ class DT_Campaigns_Base {
         return $wpdb->get_var(
             $wpdb->prepare(
                 "SELECT
-                    SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+                SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
                 FROM (
                         SELECT p2p_to as post_id
                         FROM $wpdb->p2p
@@ -902,22 +900,21 @@ class DT_Campaigns_Base {
                 WHERE r.post_id IS NOT NULL
                 AND r.time_begin > %d
                 AND r.time_end < %d;",
-                $time_format, $time_format, $campaign_post_id, $time_begin, $time_end
+                $campaign_post_id, $time_begin, $time_end
             )
         );
     }
 
     public static function query_minutes_prayed( $campaign_post_id ){
-        $time_format = '%H:%i';
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-        SUM( FLOOR( TIME_TO_SEC( TIMEDIFF( FROM_UNIXTIME( r.time_end, %s ), FROM_UNIXTIME( r.time_begin, %s ) ) ) / 60 ) ) AS minutes
+        SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
         FROM (SELECT p2p_to as post_id
         FROM $wpdb->p2p
         WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
         LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
         WHERE r.post_id IS NOT NULL
-        AND r.time_end <= UNIX_TIMESTAMP();", $time_format, $time_format, $campaign_post_id
+        AND r.time_end <= UNIX_TIMESTAMP();", $campaign_post_id
         ) );
     }
 
