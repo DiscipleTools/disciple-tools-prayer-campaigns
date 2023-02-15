@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-02-10T09:03:18+00:00\n"
-"PO-Revision-Date: 2023-02-09 10:10+0000\n"
+"PO-Revision-Date: 2023-02-15 00:22+0000\n"
 "Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
 "Language-Team: Spanish (Latin America) <https://translate.disciple.tools/"
 "projects/disciple-tools/disciple-tools-prayer-campaigns/es_419/>\n"
@@ -25,7 +25,7 @@ msgstr "Haz clic aquí para ver los temas de oración de hoy: %s"
 
 #: campaign-functions/cron-schedule.php:89
 msgid "Prayer Time reminder!"
-msgstr "¡Recordatorio de Tiempo de Oración!"
+msgstr "¡Recordatorio del tiempo de oración!"
 
 #: campaign-functions/cron-schedule.php:130
 #: campaign-functions/send-email-utility.php:67
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Haga clic aquí para verificar su dirección de correo electrónico y confirmar "
-"sus tiempos de oración."
+"sus tiempos de oración:"
 
 #: campaign-functions/send-email-utility.php:108
 msgid "Verify your account"
@@ -99,7 +99,7 @@ msgstr "Confirmación de Registro"
 
 #: campaign-functions/send-email-utility.php:166
 msgid "Thank you for signing up to pray!"
-msgstr "¡Gracias por registrarte para orar!"
+msgstr "¡Gracias por apuntarte a orar!"
 
 #: campaign-functions/send-email-utility.php:167
 msgid ""
@@ -125,7 +125,7 @@ msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
-"Faltan 2 semanas para tu último tiempo de oración. ¿Te gustaría seguir "
+"Han pasado 2 semanas desde tu último tiempo de oración. ¿Te gustaría seguir "
 "orando?"
 
 #: campaign-functions/send-email-utility.php:255
@@ -160,17 +160,17 @@ msgstr "1 hora"
 #: magic-links/subscription-management/subscription-management.php:38
 #: magic-links/subscription-management/subscription-management.php:266
 msgid "My Prayer Times"
-msgstr "Mis Tiempos de Oración"
+msgstr "Mis tiempos de oración"
 
 #: magic-links/subscription-management/subscription-management.php:108
 #: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
 msgid "Select a time"
-msgstr "Selecciona un tiempo"
+msgstr "Selecciona una hora"
 
 #: magic-links/subscription-management/subscription-management.php:109
 #: shortcodes/24hour.php:31
 msgid "fully covered once"
-msgstr "ya cubierto una vez"
+msgstr "completamente cubierto una vez"
 
 #: magic-links/subscription-management/subscription-management.php:110
 #: shortcodes/24hour.php:32
@@ -232,7 +232,7 @@ msgstr "Descargar Calendario"
 
 #: magic-links/subscription-management/subscription-management.php:319
 msgid "My commitments"
-msgstr "Mis Compromisos"
+msgstr "Mis compromisos"
 
 #: magic-links/subscription-management/subscription-management.php:324
 #: shortcodes/24hour.php:161 shortcodes/ongoing.php:190
@@ -275,15 +275,12 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: magic-links/subscription-management/subscription-management.php:398
-#, fuzzy
-#| msgid "Selected Times"
 msgid "Delete Time"
 msgstr "Eliminar tiempo"
 
 #: magic-links/subscription-management/subscription-management.php:403
 #: magic-links/subscription-management/subscription-management.php:532
 #: magic-links/subscription-management/subscription-management.php:602
-#, fuzzy
 msgid ""
 "Need to cancel? We get it! But wait!\n"
 "If your prayer commitment is scheduled to start in less than 48-hours, "
@@ -291,9 +288,9 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
-"¿Necesitas cancelar? ¡Lo entendemos! ¡Pero espera!\n"
+"¿Necesitas cancelar? ¡Lo entendemos! ¡Pero espera! \n"
 "Si su compromiso de oración está programado para comenzar en menos de 48 "
-"horas, pídale a un amigo que lo cubra por usted.\n"
+"horas, pídale a un amigo que lo cubra por usted. \n"
 "¡Eso evitará que la cadena de oración se rompa Y le dará a alguien la "
 "alegría de luchar por los perdidos! ¡Gracias!"
 
@@ -307,7 +304,7 @@ msgstr "Eliminar"
 #: magic-links/subscription-management/subscription-management.php:426
 #: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
 msgid "Select a day and choose a time"
-msgstr "Seleccione un día y elija un tiempo"
+msgstr "Seleccione un día y elija una hora"
 
 #: magic-links/subscription-management/subscription-management.php:433
 #: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
@@ -333,7 +330,7 @@ msgstr "Horarios seleccionados"
 #: magic-links/subscription-management/subscription-management.php:453
 #: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
 msgid "No selected Time"
-msgstr "Sin tiempo seleccionado"
+msgstr "Sin hora seleccionada"
 
 #: magic-links/subscription-management/subscription-management.php:476
 #: shortcodes/24hour.php:131 shortcodes/24hour.php:154
@@ -382,7 +379,7 @@ msgstr "Notificaciones no permitidas"
 
 #: magic-links/subscription-management/subscription-management.php:584
 msgid "Advanced Settings"
-msgstr "Configuración avanzada"
+msgstr "Ajustes avanzados"
 
 #: magic-links/subscription-management/subscription-management.php:591
 msgid "Delete this profile and all the scheduled prayer times?"
@@ -422,7 +419,7 @@ msgstr ""
 #: parts/components.php:97
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr ""
-"Recibir noticias de Pray4Movement por correo (se necesita verificación de "
+"Reciba el boletín informativo de Pray4Movement (se necesita verificación de "
 "correo electrónico)."
 
 #: parts/components.php:102
@@ -522,7 +519,7 @@ msgstr "Regístrate para orar"
 #: porches/ongoing/site/home-body.php:154
 msgctxt "Campaign Name is Finished"
 msgid "%s is Finished"
-msgstr "%s completo"
+msgstr "%s ha terminado"
 
 #: porches/generic/site/home-body.php:171
 #: porches/ongoing/site/home-body.php:167
@@ -627,7 +624,7 @@ msgstr "El contenido comenzará en %s días"
 #: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
 #: shortcodes/ongoing.php:271
 msgid "Check your email"
-msgstr "Consulte su correo electrónico."
+msgstr "Consulte su correo electrónico"
 
 #: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
 #: shortcodes/ongoing.php:272
@@ -652,7 +649,7 @@ msgstr ""
 
 #: porches/generic/site/sign-up-confirmation.php:114
 msgid "Return"
-msgstr "Volver"
+msgstr "Regresar"
 
 #: porches/generic/site/stats.php:133
 msgctxt "Thank you for joining us in prayer for the French in France."
@@ -681,7 +678,7 @@ msgstr "Número de personas que oraron"
 
 #: porches/generic/site/stats.php:242
 msgid "Share with us your Prayer Stories"
-msgstr "Comparte tus Historias de Oración con nosotros"
+msgstr "Comparte con nosotros tus Historias de Oración"
 
 #: porches/generic/site/stats.php:256
 msgid ""
@@ -772,7 +769,7 @@ msgstr "Ramadán termina..."
 
 #: porches/ramadan/site/home-body.php:168
 msgid "Ramadan Begins ..."
-msgstr "Ramadán Comienza..."
+msgstr "Ramadán comienza ..."
 
 #: porches/ramadan/site/home-body.php:193
 msgid "here"
@@ -780,7 +777,7 @@ msgstr "aquí"
 
 #: porches/ramadan/site/home-body.php:277
 msgid "More Hours to be covered"
-msgstr "Más horas a cubrir"
+msgstr "Más horas para cubrir"
 
 #: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
 msgid "covered once"
@@ -812,7 +809,7 @@ msgstr "Orar todos los días a la misma hora"
 
 #: shortcodes/24hour.php:138 shortcodes/ongoing.php:169
 msgid "Example: Everyday at 4pm for 15mins"
-msgstr "Ejemplo: todos los días a las 4 pm. durante 15 minutos"
+msgstr "Ejemplo: todos los días a las 4pm durante 15 minutos"
 
 #: shortcodes/24hour.php:141 shortcodes/ongoing.php:172
 msgid "Select days and times to pray"
@@ -820,12 +817,12 @@ msgstr "Seleccione días y horas para orar"
 
 #: shortcodes/24hour.php:143 shortcodes/ongoing.php:174
 msgid "Example: Monday 12th at 6pm for 15mins"
-msgstr "Ejemplo: El Lunes 12 a las 6 pm por 15 mins"
+msgstr "Ejemplo: El Lunes 12 a las 6pm por 15 mins"
 
 #: shortcodes/24hour.php:158
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr ""
-"Ten en cuenta de que el horario de verano puede afectar a tus tiempos de "
+"Tenga en cuenta que el horario de verano puede afectar sus tiempos de "
 "oración."
 
 #: shortcodes/24hour.php:171 shortcodes/24hour.php:208
