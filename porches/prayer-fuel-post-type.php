@@ -210,7 +210,6 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             if ( isset( $campaign['ID'] ) ){
                 update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
             }
-
         }
     }
 
