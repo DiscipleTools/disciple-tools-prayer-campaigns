@@ -21,6 +21,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $offset = ( $current_page - 1 ) * $per_page;
         $max_days = 1000;
 
+        $campaign = DT_Campaign_Settings::get_campaign();
+
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
         $days = [];
@@ -35,15 +37,14 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         global $wpdb;
         $query = "
-            SELECT ID, post_title, CAST( meta_value as unsigned ) as day FROM $wpdb->posts p
-            JOIN $wpdb->postmeta pm
-            ON p.ID = pm.post_id
+            SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day FROM $wpdb->posts p
+            JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'day' )
+            JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
             WHERE p.post_type = %s
             AND p.post_status IN ( 'draft', 'publish', 'future' )
-            AND pm.meta_key = 'day'
             AND pm.meta_value IN ( %1s )
         ";
-        $args = [ PORCH_LANDING_POST_TYPE, $days_string ];
+        $args = [ $campaign['ID'], PORCH_LANDING_POST_TYPE, $days_string ];
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
             $query .= '

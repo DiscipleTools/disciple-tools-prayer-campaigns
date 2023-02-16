@@ -205,6 +205,12 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             if ( !empty( $day ) ) {
                 update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
             }
+
+            $campaign = DT_Campaign_Settings::get_campaign();
+            if ( isset( $campaign['ID'] ) ){
+                update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
+            }
+
         }
     }
 
@@ -403,6 +409,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
      */
     public function get_days_posts( int $day ) {
 
+        $campaign = DT_Campaign_Settings::get_campaign();
+
         $lang = dt_campaign_get_current_lang();
 
         // query for getting posts in the selected language.
@@ -411,7 +419,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 'key'     => 'post_language',
                 'value'   => $lang,
                 'compare' => '=',
-            ]
+            ],
         ];
         if ( $lang === 'en_US' ){
             $lang_query[] = [
@@ -426,6 +434,11 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             [
                 'key' => 'day',
                 'value' => $day,
+                'compare' => '=',
+            ],
+            [
+                'key' => 'linked_campaign',
+                'value' => $campaign['ID'],
                 'compare' => '=',
             ],
             $lang_query,
@@ -448,7 +461,15 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 'posts_per_page' => 1,
                 'orderby' => 'post_date',
                 'order' => 'ASC',
-                'meta_query' => $lang_query,
+                'meta_query' => [
+                    'relation' => 'AND',
+                    [
+                        'key' => 'linked_campaign',
+                        'value' => $campaign['ID'],
+                        'compare' => '=',
+                    ],
+                    $lang_query,
+                ]
             ] );
         }
         if ( empty( $today->posts ) ){
@@ -460,19 +481,28 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 'orderby' => 'post_date',
                 'order' => 'DESC',
                 'meta_query' => [
-                    'relation' => 'OR',
+                    'relation' => 'AND',
                     [
-                        'key'     => 'post_language',
-                        'value'   => 'en_US',
+                        'key' => 'linked_campaign',
+                        'value' => $campaign['ID'],
                         'compare' => '=',
+                        'type' => 'numeric',
                     ],
                     [
-                        'key'     => 'post_language',
-                        'compare' => 'NOT EXISTS',
-                    ],
-                    [
-                        'key' => 'day',
-                        'value' => $day,
+                        'relation' => 'OR',
+                        [
+                            'key'     => 'post_language',
+                            'value'   => 'en_US',
+                            'compare' => '=',
+                        ],
+                        [
+                            'key'     => 'post_language',
+                            'compare' => 'NOT EXISTS',
+                        ],
+                        [
+                            'key' => 'day',
+                            'value' => $day,
+                        ]
                     ]
                 ]
             );
