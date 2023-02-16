@@ -514,6 +514,8 @@ msgid ""
 "Praying as a group? How many were you today? Each person's time will be "
 "counted towards the %s days of prayer scheduled so far."
 msgstr ""
+"¿Orando en grupo? ¿Cuántos eran hoy? El tiempo de cada persona se contará "
+"para los %s días de oración programados hasta el momento."
 
 #: porches/generic/site/archive-body.php:53
 #: porches/generic/site/landing-body.php:53 porches/generic/site/stats.php:257

@@ -88,7 +88,7 @@ msgstr "Verifica il tuo account"
 
 #: campaign-functions/send-email-utility.php:111
 msgid "Or open this link:"
-msgstr ""
+msgstr "Oppure apri questo link:"
 
 #: campaign-functions/send-email-utility.php:114
 msgid "Here are the times you have committed to pray:"
@@ -119,19 +119,15 @@ msgstr "Se conosci già i tuoi impegni puoi scegliere i tuoi intervalli qui:"
 
 #: campaign-functions/send-email-utility.php:251
 msgid "Continue Praying?"
-msgstr ""
+msgstr "Continua a pregare?"
 
 #: campaign-functions/send-email-utility.php:254
-#, fuzzy
-#| msgid ""
-#| "You are 2 weeks out for your last prayer time. Would you like to keep "
-#| "praying?"
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
-"Sono passate 2 settimane dal tuo ultimo intervallo di preghiera. Ti "
-"piacerebbe continuare a pregare?"
+"Sono passate due settimane dal tuo ultimo intervallo di preghiera. Vuoi "
+"continuare a pregare?"
 
 #: campaign-functions/send-email-utility.php:255
 msgid "Sign up for more prayer times or extend your recurring time here:"
@@ -281,10 +277,8 @@ msgid "Close"
 msgstr "Chiudi"
 
 #: magic-links/subscription-management/subscription-management.php:398
-#, fuzzy
-#| msgid "Selected Times"
 msgid "Delete Time"
-msgstr "Intervalli selezionati"
+msgstr "Cancella Intervallo"
 
 #: magic-links/subscription-management/subscription-management.php:403
 #: magic-links/subscription-management/subscription-management.php:532
@@ -296,6 +290,12 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
+"Devi cancellare il tuo intervallo? Capiamo. Ma aspetta!\n"
+"Se l'intervallo che hai selezionato inizia fra meno di 48 ore, per favore, "
+"chiedi a un amico di coprire quel intervallo per te.\n"
+"In questo modo la preghiera per un movimento continuerà senza interruzione e "
+"darai a qualcuno la gioia di combattere in preghiera per quelli che sono "
+"ancora lontani da Gesù. Grazie!"
 
 #: magic-links/subscription-management/subscription-management.php:412
 #: magic-links/subscription-management/subscription-management.php:541
@@ -521,6 +521,8 @@ msgid ""
 "Praying as a group? How many were you today? Each person's time will be "
 "counted towards the %s days of prayer scheduled so far."
 msgstr ""
+"Avete pregato in gruppo? In quanti eravate oggi? Il tempo di ogni persona "
+"nel gruppo sarà conteggiato per i %s giorni di preghiera programmati finora."
 
 #: porches/generic/site/archive-body.php:53
 #: porches/generic/site/landing-body.php:53 porches/generic/site/stats.php:257
@@ -643,7 +645,7 @@ msgstr "Leggi"
 
 #: porches/generic/site/post-list-body.php:130
 msgid "Content will start in %s days"
-msgstr ""
+msgstr "Il contenuto per la preghiera inizierà tra %s giorni"
 
 #: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
 #: shortcodes/ongoing.php:271
