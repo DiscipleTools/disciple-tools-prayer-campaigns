@@ -19,6 +19,7 @@ if ( $lang === 'en_US' ){
 }
 
 $todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ) );
+$campaign = DT_Campaign_Settings::get_campaign();
 
 $meta_query = [
    'relation' => 'AND',
@@ -26,6 +27,12 @@ $meta_query = [
         'key' => 'day',
         'value' => $todays_day_in_campaign,
         'compare' => '<=',
+        'type' => 'numeric',
+    ],
+    [
+        'key' => 'linked_campaign',
+        'value' => $campaign['ID'],
+        'compare' => '=',
         'type' => 'numeric',
     ],
     $lang_query,
@@ -53,6 +60,12 @@ if ( empty( $list->posts ) ){
                 'key' => 'day',
                 'value' => $todays_day_in_campaign,
                 'compare' => '<=',
+                'type' => 'numeric',
+            ],
+            [
+                'key' => 'linked_campaign',
+                'value' => $campaign['ID'],
+                'compare' => '=',
                 'type' => 'numeric',
             ],
             [

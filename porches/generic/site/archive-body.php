@@ -29,6 +29,8 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
             <?php endforeach; ?>
         </div>
 
+        <?php if ( $today->found_posts ) : ?>
+
         <div class="row">
             <?php
             if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
@@ -84,6 +86,8 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                 }
             </script>
         </div>
+
+        <?php endif; ?>
     </div>
 </section>
 <!-- Contact Section End -->
