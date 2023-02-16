@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-02-10T09:03:18+00:00\n"
+"POT-Creation-Date: 2023-02-15T09:17:57+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -43,7 +43,7 @@ msgstr "untuk %s"
 msgid "Hello %s,"
 msgstr "Halo %s,"
 
-#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:131
+#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:127
 msgid "Thank you for praying with us!"
 msgstr "Terima kasih telah berdoa bersama kami!"
 
@@ -426,7 +426,7 @@ msgid "Name"
 msgstr "Nama"
 
 #: parts/components.php:72 parts/components.php:76 parts/components.php:77
-#: porches/generic/site/stats.php:248
+#: porches/generic/site/stats.php:244
 msgid "Email"
 msgstr "email"
 
@@ -538,6 +538,25 @@ msgstr "Lebar adalah jalan yang menuju ke 404."
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "Coba gunakan beberapa tautan di menu untuk kembali ke jalur semula."
 
+#: porches/generic/site/archive-body.php:46
+#: porches/generic/site/landing-body.php:46
+msgid ""
+"Praying as a group? How many were you today? Each person's time will be "
+"counted towards the %s days of prayer scheduled so far."
+msgstr ""
+
+#: porches/generic/site/archive-body.php:53
+#: porches/generic/site/landing-body.php:53 porches/generic/site/stats.php:257
+#, fuzzy
+msgid "Submit"
+msgstr "Kirim"
+
+#: porches/generic/site/archive-body.php:59
+#: porches/generic/site/landing-body.php:59 porches/generic/site/stats.php:263
+#, fuzzy
+msgid "Thank You"
+msgstr "Terima kasih"
+
 #: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
 #: porches/generic/site/top-section.php:93
 #: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
@@ -560,7 +579,7 @@ msgid "%s Ends In"
 msgstr "%s Berakhir Dalam"
 
 #: porches/generic/site/home-body.php:172
-#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:203
+#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:199
 #: porches/ongoing/site/home-body.php:168
 #: porches/ongoing/site/home-body.php:175
 #: porches/ramadan/site/home-body.php:162
@@ -569,7 +588,7 @@ msgid "days"
 msgstr "hari-hari"
 
 #: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:198
 #: porches/ongoing/site/home-body.php:169
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
@@ -633,7 +652,7 @@ msgstr "Jam-jam Doa"
 msgid "Hours"
 msgstr "Jam"
 
-#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:176
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:172
 #: porches/ramadan/site/home-body.php:272
 msgid "Prayer Commitments Needed"
 msgstr "Komitmen Doa Diperlukan"
@@ -690,43 +709,43 @@ msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
 msgid "Return"
 msgstr "Kembali"
 
-#: porches/generic/site/stats.php:133
+#: porches/generic/site/stats.php:129
 #, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgstr "Terima kasih telah bergabung dengan kami dalam doa untuk %1$s di %2$s."
 
-#: porches/generic/site/stats.php:157
+#: porches/generic/site/stats.php:153
 #, fuzzy
 msgid "Campaign Stats"
 msgstr "Statistik Kampanye"
 
-#: porches/generic/site/stats.php:184
+#: porches/generic/site/stats.php:180
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Persentase Tercakup"
 
-#: porches/generic/site/stats.php:192
+#: porches/generic/site/stats.php:188
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "Komitmen Doa"
 
-#: porches/generic/site/stats.php:200
+#: porches/generic/site/stats.php:196
 #, fuzzy
 msgid "Time Committed"
 msgstr "Waktu Berkomitmen"
 
-#: porches/generic/site/stats.php:209
+#: porches/generic/site/stats.php:205
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "Jumlah Orang yang Sholat"
 
-#: porches/generic/site/stats.php:242
+#: porches/generic/site/stats.php:238
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "Bagikan dengan kami Kisah Doa Anda"
 
-#: porches/generic/site/stats.php:256
+#: porches/generic/site/stats.php:252
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
@@ -735,22 +754,12 @@ msgstr ""
 "Bagikan dengan kami tentang waktu sholat Anda (Misalnya kesaksian, wawasan, "
 "berkah, dll)"
 
-#: porches/generic/site/stats.php:261
-#, fuzzy
-msgid "Submit"
-msgstr "Kirim"
-
-#: porches/generic/site/stats.php:267
-#, fuzzy
-msgid "Thank You"
-msgstr "Terima kasih"
-
-#: porches/generic/site/stats.php:302
+#: porches/generic/site/stats.php:298
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "Lebih Banyak Kesempatan Sholat"
 
-#: porches/generic/site/stats.php:306
+#: porches/generic/site/stats.php:302
 #, fuzzy
 msgid ""
 "Would you like to hear about other prayer efforts and opportunities with "
