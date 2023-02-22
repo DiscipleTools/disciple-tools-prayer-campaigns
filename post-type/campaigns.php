@@ -1163,14 +1163,16 @@ class DT_Campaigns_Base {
         $site_hash = hash( 'sha256', $site_url );
 
         global $wpdb;
-        $language_counts = $wpdb->get_results( "
+        $language_counts = $wpdb->get_results( $wpdb->prepare( "
             SELECT pm.meta_value, count(pm.meta_value) as count
             FROM $wpdb->posts p
-            LEFT JOIN $wpdb->postmeta pm ON (pm.post_ID = p.ID and pm.meta_key = 'post_language' )
+            LEFT JOIN $wpdb->postmeta pm ON ( pm.post_ID = p.ID and pm.meta_key = 'post_language' )
+            INNER JOIN $wpdb->postmeta pm2 ON ( pm2.post_ID = p.ID and pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %s )
             WHERE p.post_type = 'landing'
             AND ( p.post_status = 'publish' OR p.post_status = 'future' )
+            AND
             GROUP BY pm.meta_value
-        ", ARRAY_A );
+        ", $current_campaign['ID'] ?? '0' ), ARRAY_A );
         $languages = [];
         foreach ( $language_counts as $lang ){
             if ( $lang['meta_value'] === null ){
