@@ -1170,7 +1170,6 @@ class DT_Campaigns_Base {
             INNER JOIN $wpdb->postmeta pm2 ON ( pm2.post_ID = p.ID and pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %s )
             WHERE p.post_type = 'landing'
             AND ( p.post_status = 'publish' OR p.post_status = 'future' )
-            AND
             GROUP BY pm.meta_value
         ", $current_campaign['ID'] ?? '0' ), ARRAY_A );
         $languages = [];
