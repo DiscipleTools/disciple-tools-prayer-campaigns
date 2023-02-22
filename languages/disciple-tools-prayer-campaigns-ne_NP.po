@@ -6,10 +6,10 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-02-15T09:17:57+00:00\n"
-"PO-Revision-Date: 2022-12-08 12:13+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Nepali <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/ne_NP/>\n"
+"PO-Revision-Date: 2023-02-21 03:22+0000\n"
+"Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
+"Language-Team: Nepali <https://translate.disciple.tools/projects/"
+"disciple-tools/disciple-tools-prayer-campaigns/ne_NP/>\n"
 "Language: ne_NP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,9 +244,8 @@ msgstr "आफ्नो समय क्षेत्र परिवर्तन
 #: magic-links/subscription-management/subscription-management.php:554
 #: magic-links/subscription-management/subscription-management.php:610
 #: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
-#, fuzzy
 msgid "Cancel"
-msgstr "रद्द गर्नुहोस्"
+msgstr "रद्ध"
 
 #: magic-links/subscription-management/subscription-management.php:301
 #: magic-links/subscription-management/subscription-management.php:517
@@ -388,7 +387,6 @@ msgstr "कुनै चयन गरिएको समय छैन"
 #: shortcodes/24hour.php:183 shortcodes/24hour.php:228
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
 #: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
-#, fuzzy
 msgid "Back"
 msgstr "पछाडी हेर्नुहोस"
 
@@ -464,13 +462,11 @@ msgid "This subscription has ended or is not configured correctly."
 msgstr "यो सदस्यता समाप्त भएको छ वा सही रूपमा कन्फिगर गरिएको छैन।"
 
 #: parts/components.php:64 parts/components.php:68
-#, fuzzy
 msgid "Name"
 msgstr "नाम"
 
 #: parts/components.php:72 parts/components.php:76 parts/components.php:77
 #: porches/generic/site/stats.php:244
-#, fuzzy
 msgid "Email"
 msgstr "इमेल"
 
@@ -569,7 +565,6 @@ msgid "All Days"
 msgstr "सबै दिन"
 
 #: porches/generic/site/404-body.php:14
-#, fuzzy
 msgid "Epic 404 - Not Found"
 msgstr "इपिक ४०४- भेटियन"
 
