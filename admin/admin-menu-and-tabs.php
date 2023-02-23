@@ -159,6 +159,9 @@ class DT_Prayer_Campaigns_Menu {
                     </a>
                 <?php endif; ?>
 
+                <?php do_action( 'dt_prayer_campaigns_tab_headers', $this->has_selected_porch(), $link, $tab ); ?>
+
+
                 <?php $this->has_selected_porch() && $porch_admin->tab_headers( $link ); ?>
 
             </h2>
@@ -192,6 +195,8 @@ class DT_Prayer_Campaigns_Menu {
                     default:
                         break;
                 }
+
+                do_action( 'dt_prayer_campaigns_tab_content', $tab );
 
                 $porch_admin->tab_content();
             }

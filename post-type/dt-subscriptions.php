@@ -109,8 +109,8 @@ class DT_Subscriptions {
     /**
      * @param $campaign_id
      * @param $subscription_id
-     * @param $time
-     * @param $duration
+     * @param $time int the start time of the prayer time
+     * @param $duration int prayer time in minutes
      * @param null $location_id
      * @return false|int|WP_Error
      */
