@@ -42,12 +42,18 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
             endif; ?>
 
         </div>
-        <div class='row' style='margin-top: 20px'>
+        <div class='row' style='margin-top: 30px'>
             <form onsubmit='submit_group_count();return false;' id='form-content'>
-                <p style='text-align: center'>
-                    <?php echo esc_html( sprintf( __( "Praying as a group? How many were you today? Each person's time will be counted towards the %s days of prayer scheduled so far.", 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
+                <div class='section-header col'>
+                    <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
+                        data-wow-delay='0.3s'><?php echo esc_html( __( 'Praying as a group?', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
+                    <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                </div>
+                <p style='text-align: start'>
+                    <?php echo esc_html( sprintf( __( 'Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far.', 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
                 </p>
-                <div style="text-align: center">
+                <div style="text-align: start">
+                    <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple_tools' ); ?></span>
                     <input type='number' name='group_size' value='1' id='prayer_group_size'
                            style='width: 50px; margin-left: 10px; padding: 5px'>
                     <input type='email' id='email' style='display: none'>
