@@ -1043,6 +1043,7 @@ a:not([href]):not([tabindex]):hover {
 }
 .fuel-block img {
     max-width: 100%;
+    height: auto;
 }
 .fuel-block h3 {
     margin-top: 40px;
