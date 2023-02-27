@@ -167,6 +167,9 @@ class DT_Campaign_Prayer_Post_Importer {
      */
     public function find_latest_prayer_fuel_date( $lang = null ) {
         $latest_prayer_fuel_day = $this->find_latest_prayer_fuel_data( $lang );
+        if ( $latest_prayer_fuel_day === null ) {
+            return null;
+        }
         $latest_prayer_fuel_date = DT_Campaign_Settings::date_of_campaign_day( $latest_prayer_fuel_day );
 
         return $latest_prayer_fuel_date;
@@ -175,7 +178,7 @@ class DT_Campaign_Prayer_Post_Importer {
     public function start_posting_from_date( $lang = null ) {
         $latest_prayer_fuel_date = $this->find_latest_prayer_fuel_date( $lang );
 
-        $today_timestamp = date_timestamp_get( new DateTime() );
+        $today_timestamp = time();
         $campaign = DT_Campaign_Settings::get_campaign();
         $campaign_start = $campaign['start_date']['timestamp'];
 
@@ -210,6 +213,8 @@ class DT_Campaign_Prayer_Post_Importer {
      */
     private function find_latest_prayer_fuel_data( $lang = null ) {
         global $wpdb;
+        $campaign = DT_Campaign_Settings::get_campaign();
+        $args = [];
 
         $query = "
             SELECT
@@ -230,6 +235,12 @@ class DT_Campaign_Prayer_Post_Importer {
                 ";
         }
 
+        if ( isset( $campaign['ID'] ) ) {
+            $query .= "JOIN $wpdb->postmeta AS pm3
+                ON ( pm3.post_id = p.ID AND pm3.meta_key = 'linked_campaign' AND pm3.meta_value = %d )
+            ";
+            $args[] = $campaign['ID'];
+        }
         $query .= "WHERE
                pm.meta_key = 'day'
             AND
@@ -242,7 +253,7 @@ class DT_Campaign_Prayer_Post_Importer {
                     p.post_status = 'future'
                 )
             ";
-        $args = [ PORCH_LANDING_POST_TYPE ];
+        $args[] = PORCH_LANDING_POST_TYPE;
 
         if ( $lang ) {
             $query .= "
@@ -264,7 +275,7 @@ class DT_Campaign_Prayer_Post_Importer {
         $latest_prayer_fuel = $wpdb->get_row( $wpdb->prepare( $query, $args ), ARRAY_A );
 
         if ( $latest_prayer_fuel === null || $latest_prayer_fuel['day'] === null ) {
-            return 1;
+            return null;
         }
 
         return intval( $latest_prayer_fuel['day'] );
