@@ -73,7 +73,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
         if ( isset( $_POST['install_from_file_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_from_file_nonce'] ) ), 'install_from_file' ) ) {
 
-            $max_file_size = 1024 * 1024 * 5;
+            $max_file_size = 1024 * 1024 * 5; // 5MB
 
             if ( isset( $_POST['append_date'] ) ) {
                 $prayer_post_importer->set_append_date( sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) );
