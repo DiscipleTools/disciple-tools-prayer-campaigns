@@ -807,6 +807,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
+        do_action( 'subscriptions_added', $campaign_id, $post_id );
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
 

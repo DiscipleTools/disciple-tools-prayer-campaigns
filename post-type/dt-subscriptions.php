@@ -102,6 +102,7 @@ class DT_Subscriptions {
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
+        do_action( 'subscriptions_added', $campaign_id, $subscription_id );
         return true;
     }
 
