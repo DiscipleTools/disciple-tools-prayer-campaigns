@@ -1248,4 +1248,22 @@ class DT_Campaigns_Base {
         $send = wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );
         return $send;
     }
+
+    public static function schedule_campaign_sync_job(){
+        wp_queue()->push( new P4M_Sync_Campaigns() );
+    }
+}
+use WP_Queue\Job;
+class P4M_Sync_Campaigns extends Job{
+    public function __construct(){
+    }
+
+    /**
+     * Handle job logic.
+     */
+    public function handle(){
+        if ( class_exists( 'DT_Campaigns_Base' ) ){
+            DT_Campaigns_Base::send_campaign_info();
+        }
+    }
 }
