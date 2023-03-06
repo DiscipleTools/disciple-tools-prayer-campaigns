@@ -38,8 +38,8 @@ class DT_Porch_Admin_Tab_Starter_Content {
         $fields = DT_Campaign_Settings::get_campaign();
 
         if ( !empty( $fields ) ) {
-            $this->upload_prayer_content_box();
             do_action( 'dt_prayer_campaigns_admin_install_fuel' );
+            $this->upload_prayer_content_box();
             $this->export_prayer_content_box();
         } else {
             DT_Porch_Admin_Tab_Base::message_box( 'Upload Prayer Fuel', 'You need to select a campaign to start importing prayer fuel' );
@@ -141,13 +141,18 @@ class DT_Porch_Admin_Tab_Starter_Content {
         ?>
 
 
+        <div class='wrap'>
+            <div id='poststuff'>
+                <div id='post-body' class='metabox-holder columns-2'>
+                    <div id='post-body-content'>
+
         <form method="post" enctype="multipart/form-data">
             <?php wp_nonce_field( 'install_from_file', 'install_from_file_nonce' ) ?>
             <!-- Box -->
             <table class="widefat striped">
                 <thead>
                 <tr>
-                    <th>Install Prayer Fuel Posts</th>
+                    <th>Import Prayer Fuel Posts</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -233,10 +238,11 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
                         <?php endif; ?>
 
-                    <tr>
+                        <tr>
                             <td>
                                 <button class="button">Upload</button>
                             </td>
+                            <td></td>
                         </tr>
 
                     <?php endif; ?>
@@ -245,6 +251,10 @@ class DT_Porch_Admin_Tab_Starter_Content {
             </table>
         </form>
 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <?php
     }
@@ -294,6 +304,11 @@ class DT_Porch_Admin_Tab_Starter_Content {
         }
 
         ?>
+        <div class='wrap'>
+            <div id='poststuff'>
+                <div id='post-body' class='metabox-holder columns-2'>
+                    <div id='post-body-content'>
+
         <form method = 'post' action="<?php echo esc_html( plugin_dir_url( __FILE__ ) . 'export.php' ); ?>">
             <?php wp_nonce_field( 'export_from_file', 'export_from_file_nonce' ) ?>
             <input type="hidden" name="linked_campaign" value="<?php echo esc_html( $campaign['ID'] ); ?>">
@@ -304,7 +319,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
             <table class="widefat striped">
                 <thead>
                 <tr>
-                    <th>Export Prayer Fuel</th>
+                    <th>Export Prayer Fuel Posts</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -344,6 +359,11 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 </tbody>
             </table>
         </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <br>
         <!-- End Box -->
