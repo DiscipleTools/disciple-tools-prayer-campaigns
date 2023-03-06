@@ -90,7 +90,9 @@ function export_fuel( $language = null, $linked_campaign = null ){
      * @return bool
      */
     function wxr_filter_postmeta( $return_me, $meta_key ) {
-        if ( '_edit_lock' === $meta_key ) {
+        $meta_keys_to_filter = ['_edit_lock', 'linked_campaign' ];
+
+        if ( in_array( $meta_key, $meta_keys_to_filter, true ) ) {
             $return_me = true;
         }
         return $return_me;
