@@ -5,8 +5,12 @@ $lang = dt_campaign_get_current_lang();
 $porch_fields = DT_Porch_Settings::settings();
 $content = 'No post found';
 $day = isset( $this->parts['public_key'] ) && ! empty( $this->parts['public_key'] ) ? $this->parts['public_key'] : 0;
+if ( !is_numeric( $day ) ){
+    $today = [];
+} else {
+    $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
+}
 
-$today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
 $campaign = DT_Campaign_Settings::get_campaign();
 $minutes_scheduled = isset( $campaign['ID'] ) ? DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign['ID'] ) : 0;
 $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 24 / 60 ) : 0, 1 );
@@ -23,7 +27,7 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             </div>
 
-            <?php foreach ( $today->posts as $item ) :
+            <?php foreach ( $today->posts ?? [] as $item ) :
 
                 dt_campaign_post( $item );
 
