@@ -10,7 +10,7 @@ if ( !defined( 'WXR_VERSION' ) ){
     define( 'WXR_VERSION', '1.2' );
 }
 
-function export_fuel( $language = null, $linked_campaign = null ){
+function export_fuel( $language = null, $linked_campaign = null, $campaign_name = null ){
     //phpcs:disable
 
     global $wpdb, $post;
@@ -143,7 +143,7 @@ function export_fuel( $language = null, $linked_campaign = null ){
         $sitename .= '.';
     }
     $date        = gmdate( 'Y-m-d' );
-    $wp_filename = $sitename . 'WordPress.' . $date . '.xml';
+    $wp_filename = $sitename . ( $campaign_name ?: 'WordPress' )  . '.' . ( $language ? $language . '.' : '' ) . $date . '.xml';
     /**
      * Filters the export filename.
      *
@@ -328,7 +328,12 @@ if ( isset( $_POST['export_from_file_nonce'] ) && wp_verify_nonce( sanitize_text
     if ( isset( $_POST['linked_campaign'])){
         $linked_campaign = sanitize_text_field( wp_unslash( $_POST['linked_campaign'] ) );
     }
+    $campaign_name = null;
+    if ( isset( $_POST['campaign_name'])){
+        $campaign_name = sanitize_text_field( wp_unslash( $_POST['campaign_name'] ) );
+    }
 
-    export_fuel( $lang, $linked_campaign );
+
+    export_fuel( $lang, $linked_campaign, $campaign_name );
     die();
 }

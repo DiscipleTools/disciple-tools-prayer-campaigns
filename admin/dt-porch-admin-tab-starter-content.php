@@ -297,6 +297,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
         <form method = 'post' action="<?php echo esc_html( plugin_dir_url( __FILE__ ) . 'export.php' ); ?>">
             <?php wp_nonce_field( 'export_from_file', 'export_from_file_nonce' ) ?>
             <input type="hidden" name="linked_campaign" value="<?php echo esc_html( $campaign['ID'] ); ?>">
+            <input type="hidden" name="campaign_name" value="<?php echo esc_html( $campaign['title'] ); ?>">
 
 
 
