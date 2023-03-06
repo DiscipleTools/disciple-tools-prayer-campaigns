@@ -202,7 +202,7 @@ function export_fuel( $language = null, $linked_campaign = null, $campaign_name 
             <wp:base_site_url><?php echo wxr_site_url(); ?></wp:base_site_url>
             <wp:base_blog_url><?php bloginfo_rss( 'url' ); ?></wp:base_blog_url>
 
-<!--            --><?php //wxr_authors_list( $post_ids ); ?>
+            <?php wxr_authors_list( $post_ids ); ?>
 
 
             <?php
