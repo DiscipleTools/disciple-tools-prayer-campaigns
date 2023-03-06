@@ -1,6 +1,8 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
+define( 'WXR_VERSION', '1.2' );
+
 /**
  * Class DT_Generic_Porch_Landing_Tab_Starter_Content
  */
@@ -36,8 +38,9 @@ class DT_Porch_Admin_Tab_Starter_Content {
         $fields = DT_Campaign_Settings::get_campaign();
 
         if ( !empty( $fields ) ) {
-//            $this->upload_prayer_content_box();
             do_action( 'dt_prayer_campaigns_admin_install_fuel' );
+            $this->upload_prayer_content_box();
+            $this->export_prayer_content_box();
         } else {
             DT_Porch_Admin_Tab_Base::message_box( 'Upload Prayer Fuel', 'You need to select a campaign to start importing prayer fuel' );
         }
@@ -70,7 +73,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
         if ( isset( $_POST['install_from_file_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_from_file_nonce'] ) ), 'install_from_file' ) ) {
 
-            $max_file_size = 1024 * 1024 * 5;
+            $max_file_size = 1024 * 1024 * 5; // 5MB
 
             if ( isset( $_POST['append_date'] ) ) {
                 $prayer_post_importer->set_append_date( sanitize_text_field( wp_unslash( $_POST['append_date'] ) ) );
@@ -138,13 +141,18 @@ class DT_Porch_Admin_Tab_Starter_Content {
         ?>
 
 
+        <div class='wrap'>
+            <div id='poststuff'>
+                <div id='post-body' class='metabox-holder columns-2'>
+                    <div id='post-body-content'>
+
         <form method="post" enctype="multipart/form-data">
             <?php wp_nonce_field( 'install_from_file', 'install_from_file_nonce' ) ?>
-        <!-- Box -->
+            <!-- Box -->
             <table class="widefat striped">
                 <thead>
                 <tr>
-                    <th>Install Prayer Fuel Posts</th>
+                    <th>Import Prayer Fuel Posts</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -165,10 +173,10 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
                         <tr>
                             <td>
-                                <input id="install_from_file_append_date" name="append_date" type="date" />
+                                <input id="install_from_file_append_date" name="append_date" type="date" value="<?php echo esc_html( gmdate( 'Y-m-d', strtotime( $post_start_date ) ) ) ?>" />
                                 <p id="install_from_file_append_date_text">
                                     Posts will automatically be scheduled to start from the date
-                                    <?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?>
+                                    <strong><?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?></strong>
                                 </p>
                             </td>
                             <td>
@@ -180,29 +188,29 @@ class DT_Porch_Admin_Tab_Starter_Content {
                                 </p>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <input id="rss-feed-url" name="rss-feed-url" type="text" placeholder="RSS Feed URL">
-                                <?php if ( $invalidurl ): ?>
-
-                                    <p>
-                                        The url is invalid
-                                    </p>
-
-                                <?php endif; ?>
-
-                                <?php if ( $feeds && empty( $feeds ) ): ?>
-
-                                    <p>
-                                        The feed is empty
-                                    </p>
-
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <label for="rss-reed-url">RSS Feed URL</label>
-                            </td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td>-->
+<!--                                <input id="rss-feed-url" name="rss-feed-url" type="text" placeholder="RSS Feed URL">-->
+<!--                                --><?php //if ( $invalidurl ): ?>
+<!---->
+<!--                                    <p>-->
+<!--                                        The url is invalid-->
+<!--                                    </p>-->
+<!---->
+<!--                                --><?php //endif; ?>
+<!---->
+<!--                                --><?php //if ( $feeds && empty( $feeds ) ): ?>
+<!---->
+<!--                                    <p>-->
+<!--                                        The feed is empty-->
+<!--                                    </p>-->
+<!---->
+<!--                                --><?php //endif; ?>
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <label for="rss-reed-url">RSS Feed URL</label>-->
+<!--                            </td>-->
+<!--                        </tr>-->
                         <tr>
                             <td>
                                 <input name="file" type="file" accept="application/xml text/xml">
@@ -230,10 +238,11 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
                         <?php endif; ?>
 
-                    <tr>
+                        <tr>
                             <td>
                                 <button class="button">Upload</button>
                             </td>
+                            <td></td>
                         </tr>
 
                     <?php endif; ?>
@@ -242,7 +251,124 @@ class DT_Porch_Admin_Tab_Starter_Content {
             </table>
         </form>
 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <?php
     }
+
+
+    public function export_prayer_content_box(){
+
+
+        ?>
+
+
+
+        <?php
+
+
+        $languages_manager = new DT_Campaign_Languages();
+        $languages = $languages_manager->get_enabled_languages();
+        $campaign = DT_Campaign_Settings::get_campaign();
+
+        $translations = [];
+        $installed_languages = get_available_languages( Ramadan_2023::$plugin_dir .'languages/' );
+        foreach ( $installed_languages as $language ) {
+            $mo = new MO();
+            if ( $mo->import_from_file( Ramadan_2023::$plugin_dir . 'languages/' . $language . '.mo' ) ){
+                $translations[$language] = $mo->entries;
+            }
+        }
+
+        global $wpdb;
+        $installed_langs_query = $wpdb->get_results( $wpdb->prepare("
+            SELECT pm.meta_value, count(*) as count
+            FROM $wpdb->posts p
+            LEFT JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND meta_key = 'post_language' )
+            INNER JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d )
+            WHERE post_type = 'landing' and ( post_status = 'publish' or post_status = 'future')
+            GROUP BY pm.meta_value
+        ", $campaign['ID'] ), ARRAY_A );
+        $installed_langs = [];
+        foreach ( $installed_langs_query as $result ){
+            if ( $result['meta_value'] === null ){
+                $result['meta_value'] = 'en_US';
+            }
+            if ( !isset( $installed_langs[$result['meta_value']] ) ){
+                $installed_langs[$result['meta_value']] = 0;
+            }
+            $installed_langs[$result['meta_value']] += $result['count'];
+        }
+
+        ?>
+        <div class='wrap'>
+            <div id='poststuff'>
+                <div id='post-body' class='metabox-holder columns-2'>
+                    <div id='post-body-content'>
+
+        <form method = 'post' action="<?php echo esc_html( plugin_dir_url( __FILE__ ) . 'export.php' ); ?>">
+            <?php wp_nonce_field( 'export_from_file', 'export_from_file_nonce' ) ?>
+            <input type="hidden" name="linked_campaign" value="<?php echo esc_html( $campaign['ID'] ); ?>">
+            <input type="hidden" name="campaign_name" value="<?php echo esc_html( $campaign['title'] ); ?>">
+
+
+
+            <table class="widefat striped">
+                <thead>
+                <tr>
+                    <th>Export Prayer Fuel Posts</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <table class="">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Installed Posts</th>
+                                <th>Export</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php foreach ( $languages as $code => $language ):
+                                ?>
+
+                                <tr class="<?php echo $language['enabled'] === false ? 'disabled-language' : '' ?>">
+                                    <td><?php echo esc_html( $language['flag'] ) ?> <?php echo esc_html( $language['english_name'] ) ?></td>
+
+                                    <td><?php echo esc_html( $installed_langs[$code] ?? 0 ); ?></td>
+                                    <td>
+                                        <button class="button export-prayer-fuel" name="language" value="<?php echo esc_html( $code ) ?>" <?php disabled( ( $installed_langs[$code] ?? 0 ) === 0 ) ?>>
+                                            Export prayer fuel in <?php echo esc_html( $language['flag'] ) ?>
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <!-- End Box -->
+        <?php
+    }
+
+
 }
