@@ -11,7 +11,7 @@ if ( !defined( 'WXR_VERSION' ) ){
 }
 
 function export_fuel( $language = null, $linked_campaign = null ){
-
+    //phpcs:disable
 
     global $wpdb, $post;
     $join = '';
