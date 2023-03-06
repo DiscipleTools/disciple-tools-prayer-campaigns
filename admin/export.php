@@ -11,7 +11,7 @@ if ( !defined( 'WXR_VERSION' ) ){
 }
 
 function export_fuel( $language = null, $linked_campaign = null ){
-    //phpcs:disable
+
 
     global $wpdb, $post;
     $join = '';
@@ -200,7 +200,7 @@ function export_fuel( $language = null, $linked_campaign = null ){
             <wp:base_site_url><?php echo wxr_site_url(); ?></wp:base_site_url>
             <wp:base_blog_url><?php bloginfo_rss( 'url' ); ?></wp:base_blog_url>
 
-            <?php wxr_authors_list( $post_ids ); ?>
+<!--            --><?php //wxr_authors_list( $post_ids ); ?>
 
 
             <?php
@@ -260,7 +260,6 @@ function export_fuel( $language = null, $linked_campaign = null ){
                             <title><?php echo $title; ?></title>
                             <link><?php the_permalink_rss(); ?></link>
                             <pubDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ); ?></pubDate>
-                            <dc:creator><?php echo wxr_cdata( get_the_author_meta( 'login' ) ); ?></dc:creator>
                             <guid isPermaLink="false"><?php the_guid(); ?></guid>
                             <description></description>
                             <content:encoded><?php echo $content; ?></content:encoded>
