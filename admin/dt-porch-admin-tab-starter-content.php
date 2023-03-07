@@ -157,6 +157,15 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>
+                            Documentation
+                        </td>
+                        <td>
+                            <a href='https://pray4movement.org/docs/exporting-and-importing/' target='_blank'>Click here to
+                                view documentation</a>
+                        </td>
+                    </tr>
 
                     <?php if ( !$has_installed_importer_plugin ): ?>
                         <tr>
@@ -323,6 +332,12 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td>
+                        Documentation: <a href='https://pray4movement.org/docs/exporting-and-importing/' target='_blank'>Click
+                            here to view documentation</a>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <table class="">
