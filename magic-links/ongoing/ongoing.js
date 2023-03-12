@@ -287,7 +287,7 @@ jQuery(document).ready(function($) {
 
     let months = coverage_by_month(true)
     let key = 0;
-    let start_of_today = new Date()
+    let start_of_today = new Date('2023-01-01')
     start_of_today.setHours(0,0,0,0)
     let start_time_stamp = start_of_today.getTime()/1000
     while ( key < day_in_seconds ){
