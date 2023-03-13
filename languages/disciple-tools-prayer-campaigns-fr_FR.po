@@ -3,11 +3,11 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-02-15T09:17:57+00:00\n"
-"PO-Revision-Date: 2023-02-15 09:15+0000\n"
+"POT-Creation-Date: 2023-03-12T19:57:17+00:00\n"
+"PO-Revision-Date: 2023-03-13 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
-"Language-Team: French <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/fr_FR/>\n"
+"Language-Team: French <https://translate.disciple.tools/projects/"
+"disciple-tools/disciple-tools-prayer-campaigns/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -509,20 +509,30 @@ msgstr ""
 "Essayez d'utiliser certains des liens du menu pour vous remettre sur la "
 "bonne voie."
 
-#: porches/generic/site/archive-body.php:46
-#: porches/generic/site/landing-body.php:46
-msgid ""
-"Praying as a group? How many were you today? Each person's time will be "
-"counted towards the %s days of prayer scheduled so far."
-msgstr ""
+#: porches/generic/site/archive-body.php:49
+#: porches/generic/site/landing-body.php:47
+msgid "Praying as a group?"
+msgstr "Priez-vous en groupe ?"
 
 #: porches/generic/site/archive-body.php:53
-#: porches/generic/site/landing-body.php:53 porches/generic/site/stats.php:257
+#: porches/generic/site/landing-body.php:51
+msgid ""
+"Leading others in prayer is a great step in making disciples. We want to "
+"celebrate your and their faithfulness.  For each person that prays with you, "
+"we will add 15 minutes to the %s days of prayer committed so far."
+msgstr ""
+"Diriger d'autres personnes dans la prière est une étape importante pour "
+"faire des disciples. Nous voulons célébrer votre fidélité et la leur.  Pour "
+"chaque personne qui prie avec vous, nous ajouterons 15 minutes aux %s jours "
+"de prière engagés jusqu'à présent."
+
+#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/landing-body.php:60 porches/generic/site/stats.php:257
 msgid "Submit"
 msgstr "Soumettre"
 
-#: porches/generic/site/archive-body.php:59
-#: porches/generic/site/landing-body.php:59 porches/generic/site/stats.php:263
+#: porches/generic/site/archive-body.php:67
+#: porches/generic/site/landing-body.php:66 porches/generic/site/stats.php:263
 msgid "Thank You"
 msgstr "Merci"
 
@@ -631,11 +641,11 @@ msgstr "Heures Restantes"
 msgid "View All"
 msgstr "Tout voir"
 
-#: porches/generic/site/post-list-body.php:119
+#: porches/generic/site/post-list-body.php:132
 msgid "Read"
 msgstr "Lire"
 
-#: porches/generic/site/post-list-body.php:130
+#: porches/generic/site/post-list-body.php:143
 msgid "Content will start in %s days"
 msgstr "Le contenu commencera dans %s jours"
 
@@ -789,7 +799,7 @@ msgstr "Plus d'heures à couvrir"
 
 #: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
 msgid "covered once"
-msgstr "courert une fois"
+msgstr "couvert une fois"
 
 #: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
 msgid "covered %1$s times"
