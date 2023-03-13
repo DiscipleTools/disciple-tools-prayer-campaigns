@@ -245,6 +245,10 @@ jQuery(document).ready(function($) {
     $(document).on( 'click', '.remove-prayer-time-button', function (){
       let time = parseInt($(this).data('time'))
       selected_times = selected_times.filter(t=>parseInt(t.time) !== time)
+      if ( selected_times.length === 0 ){
+         $('#cp-confirm-individual-times').attr('disabled', true)
+         // $('#cp-submit-form').attr('disabled', true)
+      }
       display_selected_times()
     })
 
@@ -347,9 +351,10 @@ jQuery(document).ready(function($) {
     //submit form
     $('#cp-submit-form').on('click', async function (e) {
       e.preventDefault()
-      if ( document.querySelector('#receive_pray4movement_news').checked ) {
-        const form = document.getElementById('mc-embedded-subscribe-form')
-        submitMailChimpSubscribe(form)
+
+      if ( selected_times.length === 0 ) {
+        $('#cp-no-selected-times').show().fadeOut(5000)
+        return;
       }
 
       let submit_spinner = $('#cp-submit-form-spinner-later');
@@ -388,6 +393,11 @@ jQuery(document).ready(function($) {
       }
 
       let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
+
+      if ( document.querySelector('#receive_pray4movement_news').checked ) {
+        const form = document.getElementById('mc-embedded-subscribe-form')
+        submitMailChimpSubscribe(form)
+      }
 
       let data = {
         name: name,

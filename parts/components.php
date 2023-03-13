@@ -97,6 +97,9 @@ function dt_campaign_sign_up_form() {
                             <?php esc_html_e( 'Receive Pray4Movement Newsletter (email verification needed).', 'disciple-tools-prayer-campaigns' ); ?>
                         </label>
                     </p>
+                    <div id='cp-no-selected-times' style='display: none'class="form-error" >
+                        <?php esc_html_e( 'No prayer times selected', 'disciple-tools-prayer-campaigns' ); ?>
+                    </div>
                     <div>
                         <button type="submit" class="button loader" id="cp-submit-form" name="subscribe" value="Subscribe">
                             <?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple-tools-prayer-campaigns' ); ?> <img id="cp-submit-form-spinner" style="display: none" src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></button>
