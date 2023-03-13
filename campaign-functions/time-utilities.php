@@ -162,4 +162,16 @@ class DT_Time_Utilities {
         ];
     }
 
+    public static function display_minutes_in_time( $time_committed ){
+        $days_committed = round( fmod( $time_committed / 60 / 24, 365 ), 2 );
+        $years_committed = floor( $time_committed / 60 / 24 / 365 );
+        $string = '';
+        if ( !empty( $years_committed ) ){
+            $string .= $years_committed . ' ' .( $years_committed > 1 ? __( 'years', 'disciple-tools-prayer-campaigns' ) : __( 'year', 'disciple-tools-prayer-campaigns' ) );
+            $string  .= ' ';
+        }
+        $string .= $days_committed . ' ' .( $days_committed > 1 ? __( 'days', 'disciple-tools-prayer-campaigns' ) : __( 'day', 'disciple-tools-prayer-campaigns' ) );
+        return $string;
+    }
+
 }

@@ -83,6 +83,9 @@ jQuery(document).ready(function($) {
       }
     })
 
+    let time_committed_display = $('#cp-time-committed-display')
+    time_committed_display.html(time_committed_display.text().replace( '%', calendar_subscribe_object.time_committed ));
+
     // let set_campaign_date_range_title = function (){
     //   let start_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.start_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)
     //   let end_time = window.campaign_scripts.timestamp_to_format( calendar_subscribe_object.end_timestamp, { month: "long", day: "numeric", hour:"numeric", minute:"numeric" }, current_time_zone)

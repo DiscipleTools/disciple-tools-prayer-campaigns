@@ -98,6 +98,7 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
             <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center"><?php esc_html_e( 'Percentage covered in prayer', 'disciple-tools-prayer-campaigns' ); ?></div>
+        <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display"><?php echo esc_html( esc_html_x( '% committed', '12.3 years committed', 'disciple-tools-prayer-campaigns' ) ); ?></div>
     </div>
     <?php endif; ?>
     <?php if ( $section === 'calendar' || $section === '' ) : ?>

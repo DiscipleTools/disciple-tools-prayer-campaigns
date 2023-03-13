@@ -236,14 +236,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
         $coverage_percentage = $coverage_levels[0]['percent'];
         $second_level = isset( $coverage_levels[1]['percent'] ) ? $coverage_levels[1]['percent'] : '';
 
-        $min_time_duration = 15;
-        if ( isset( $record['min_time_duration']['key'] ) ){
-            $min_time_duration = $record['min_time_duration']['key'];
-        }
-        $minutes_committed = 0;
-        foreach ( $coverage_levels as $level ){
-            $minutes_committed += $level['blocks_covered'] * $min_time_duration;
-        }
+        $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $post_id );
 
         $locale = $params['parts']['lang'] ?: 'en_US';
         $grid_id = 1;

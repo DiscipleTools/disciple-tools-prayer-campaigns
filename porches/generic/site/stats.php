@@ -195,8 +195,9 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
                                         <h4><?php esc_html_e( 'Time Committed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
-                                            <?php echo esc_html( $total_mins_prayed / 60 ); ?> <?php esc_html_e( 'hours', 'disciple-tools-prayer-campaigns' ); ?><br>
-                                            (<?php echo esc_html( round( $total_mins_prayed / 60 / 24, 2 ) ); ?> <?php esc_html_e( 'days', 'disciple-tools-prayer-campaigns' ); ?>)
+                                            <?php echo esc_html( DT_Time_Utilities::display_minutes_in_time( $total_mins_prayed ) ) ?>
+                                            <br>
+                                            (<?php echo esc_html( $total_mins_prayed / 60 ); ?> <?php esc_html_e( 'hours', 'disciple-tools-prayer-campaigns' ); ?>)
                                         </p>
                                     </div>
                                 </div>
