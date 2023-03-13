@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-02-15T09:17:57+00:00\n"
+"POT-Creation-Date: 2023-03-12T19:57:17+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/disciple-"
@@ -593,21 +593,27 @@ msgstr "404 ಗೆ ಹೋಗುವ ಮಾರ್ಗವು ವಿಶಾಲವಾ�
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "ಟ್ರ್ಯಾಕ್‌ಗೆ ಹಿಂತಿರುಗಲು ಮೆನುವಿನಲ್ಲಿರುವ ಕೆಲವು ಲಿಂಕ್‌ಗಳನ್ನು ಬಳಸಲು ಪ್ರಯತ್ನಿಸಿ."
 
-#: porches/generic/site/archive-body.php:46
-#: porches/generic/site/landing-body.php:46
-msgid ""
-"Praying as a group? How many were you today? Each person's time will be "
-"counted towards the %s days of prayer scheduled so far."
+#: porches/generic/site/archive-body.php:49
+#: porches/generic/site/landing-body.php:47
+msgid "Praying as a group?"
 msgstr ""
 
 #: porches/generic/site/archive-body.php:53
-#: porches/generic/site/landing-body.php:53 porches/generic/site/stats.php:257
+#: porches/generic/site/landing-body.php:51
+msgid ""
+"Leading others in prayer is a great step in making disciples. We want to "
+"celebrate your and their faithfulness.  For each person that prays with you, "
+"we will add 15 minutes to the %s days of prayer committed so far."
+msgstr ""
+
+#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/landing-body.php:60 porches/generic/site/stats.php:257
 #, fuzzy
 msgid "Submit"
 msgstr "ಸಲ್ಲಿಸು"
 
-#: porches/generic/site/archive-body.php:59
-#: porches/generic/site/landing-body.php:59 porches/generic/site/stats.php:263
+#: porches/generic/site/archive-body.php:67
+#: porches/generic/site/landing-body.php:66 porches/generic/site/stats.php:263
 #, fuzzy
 msgid "Thank You"
 msgstr "ಧನ್ಯವಾದಗಳು"
@@ -733,12 +739,12 @@ msgstr "ಉಳಿದಿರುವ ಗಂಟೆಗಳು"
 msgid "View All"
 msgstr "ಎಲ್ಲಾ ವೀಕ್ಷಿಸಿ"
 
-#: porches/generic/site/post-list-body.php:119
+#: porches/generic/site/post-list-body.php:132
 #, fuzzy
 msgid "Read"
 msgstr "ಓದು"
 
-#: porches/generic/site/post-list-body.php:130
+#: porches/generic/site/post-list-body.php:143
 msgid "Content will start in %s days"
 msgstr ""
 
