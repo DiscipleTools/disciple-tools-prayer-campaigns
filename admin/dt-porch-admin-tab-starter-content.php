@@ -272,25 +272,10 @@ class DT_Porch_Admin_Tab_Starter_Content {
     public function export_prayer_content_box(){
 
 
-        ?>
-
-
-
-        <?php
-
-
         $languages_manager = new DT_Campaign_Languages();
         $languages = $languages_manager->get_enabled_languages();
         $campaign = DT_Campaign_Settings::get_campaign();
 
-        $translations = [];
-        $installed_languages = get_available_languages( Ramadan_2023::$plugin_dir .'languages/' );
-        foreach ( $installed_languages as $language ) {
-            $mo = new MO();
-            if ( $mo->import_from_file( Ramadan_2023::$plugin_dir . 'languages/' . $language . '.mo' ) ){
-                $translations[$language] = $mo->entries;
-            }
-        }
 
         global $wpdb;
         $installed_langs_query = $wpdb->get_results( $wpdb->prepare("
