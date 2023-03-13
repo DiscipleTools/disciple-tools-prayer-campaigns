@@ -452,27 +452,10 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             'order' => 'DESC',
             'meta_query' => $meta_query,
         ] );
+
+        // if no post in the selected language, get post in english.
         if ( empty( $today->posts ) ){
-            //get earliest unpublished post
-            $today = new WP_Query( [
-                'post_type' => PORCH_LANDING_POST_TYPE,
-                'post_status' => [ 'future', 'publish' ],
-                'posts_per_page' => 1,
-                'orderby' => 'post_date',
-                'order' => 'ASC',
-                'meta_query' => [
-                    'relation' => 'AND',
-                    [
-                        'key' => 'linked_campaign',
-                        'value' => $campaign['ID'],
-                        'compare' => '=',
-                    ],
-                    $lang_query,
-                ]
-            ] );
-        }
-        if ( empty( $today->posts ) ){
-            //post in english
+
             $args = array(
                 'post_type' => PORCH_LANDING_POST_TYPE,
                 'post_status' => [ 'publish', 'future' ],
@@ -488,6 +471,10 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                         'type' => 'numeric',
                     ],
                     [
+                        'key' => 'day',
+                        'value' => $day,
+                    ],
+                    [
                         'relation' => 'OR',
                         [
                             'key'     => 'post_language',
@@ -498,10 +485,6 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                             'key'     => 'post_language',
                             'compare' => 'NOT EXISTS',
                         ],
-                        [
-                            'key' => 'day',
-                            'value' => $day,
-                        ]
                     ]
                 ]
             );
