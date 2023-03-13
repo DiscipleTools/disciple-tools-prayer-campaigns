@@ -175,7 +175,9 @@ jQuery(document).ready(function($) {
         if ( slot.subscribers > 1 ) {
           text = `(${calendar_subscribe_object.translations.covered_x_times.replace( '%1$s', slot.subscribers)})`
         }
-        select_html += `<option value="${window.lodash.escape(slot.key)}" ${ (slot.key % day_in_seconds) === (current_time_selected % day_in_seconds) ? "selected" : '' }>
+        let disabled = slot.key < calendar_subscribe_object.start_timestamp ? 'disabled' : '';
+        let selected = ( slot.key % day_in_seconds) === ( current_time_selected % day_in_seconds ) ? "selected" : '';
+        select_html += `<option value="${window.lodash.escape(slot.key)}" ${selected} ${disabled}>
             ${window.lodash.escape(slot.formatted)} ${window.lodash.escape(text)}
         </option>`
       })
