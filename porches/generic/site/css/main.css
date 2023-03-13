@@ -1317,3 +1317,15 @@ footer {
 .dt-magic-link-language-selector option {
     color: black;
 }
+.what-content-text {
+    color: white;
+}
+@media (max-width: 640px) {
+    .what-content-text {
+        margin-bottom: 30px;
+    }
+}
+.leading-others {
+    text-align: start;
+    padding: 30px;
+}

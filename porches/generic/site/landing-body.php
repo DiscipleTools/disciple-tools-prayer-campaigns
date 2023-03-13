@@ -47,24 +47,26 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                         data-wow-delay='0.3s'><?php echo esc_html( __( 'Praying as a group?', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
                     <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 </div>
-                <p style='text-align: start'>
-                    <?php echo esc_html( sprintf( __( 'Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far.', 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
-                </p>
+                <div class='leading-others'>
+                    <p>
+                        <?php echo esc_html( sprintf( __( 'Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far.', 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
+                    </p>
 
-                <div style="text-align: start">
-                    <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple_tools' ); ?></span>
-                    <input type='number' name='group_size' value='1' id='prayer_group_size'
-                           style='width: 70px; margin-left: 10px; padding: 5px'>
-                    <input type='email' id='email' style='display: none'>
-                    <button id="prayer-group-size-button" class="btn btn-common btn-rm" >
-                        <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
-                        <img id='prayer_group_size-spinner' style='display: none; margin-left: 10px'
-                             src='<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg'
-                             width='22px;' alt='spinner '/>
-                    </button>
-                    <span id="group-size-thank-you" style="display: none">
-                        <?php esc_html_e( 'Thank You', 'disciple-tools-prayer-campaigns' ); ?>
-                    </span>
+                    <div style="text-align: start">
+                        <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple_tools' ); ?></span>
+                        <input type='number' name='group_size' value='1' id='prayer_group_size'
+                               style='width: 70px; margin-left: 10px; padding: 5px'>
+                        <input type='email' id='email' style='display: none'>
+                        <button id="prayer-group-size-button" class="btn btn-common btn-rm" >
+                            <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
+                            <img id='prayer_group_size-spinner' style='display: none; margin-left: 10px'
+                                 src='<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg'
+                                 width='22px;' alt='spinner '/>
+                        </button>
+                        <span id="group-size-thank-you" style="display: none">
+                            <?php esc_html_e( 'Thank You', 'disciple-tools-prayer-campaigns' ); ?>
+                        </span>
+                    </div>
                 </div>
             </form>
             <script>
