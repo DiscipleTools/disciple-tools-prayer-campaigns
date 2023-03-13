@@ -917,7 +917,7 @@ a:not([href]):not([tabindex]):hover {
 /* ==========================================================================
    Blog
    ========================================================================== */
-#blog .blog-item-wrapper {
+.blog-item-wrapper {
   background: #fff;
   border-radius: 0px;
   margin-bottom: 30px;
@@ -926,21 +926,21 @@ a:not([href]):not([tabindex]):hover {
   -moz-transition: transform 0.2s linear, -moz-box-shadow 0.2s linear;
   transition: transform 0.2s linear, box-shadow 0.2s linear;
 }
-#blog .blog-item-wrapper:hover {
+.blog-item-wrapper:hover {
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
 }
-#blog .blog-item-wrapper:hover .blog-item-img:before {
+.blog-item-wrapper:hover .blog-item-img:before {
   opacity: 1;
   height: 100%;
   width: 100%;
 }
-#blog .blog-item-img {
+.blog-item-img {
   position: relative;
 }
-#blog .blog-item-img img {
+.blog-item-img img {
   width: 100%;
 }
-#blog .blog-item-img:before {
+.blog-item-img:before {
   width: 50%;
   height: 50%;
   content: '';
@@ -955,41 +955,47 @@ a:not([href]):not([tabindex]):hover {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
-#blog .blog-item-text {
+.blog-item-text {
   border: 1px solid #f1f1f1;
   padding: 20px;
 }
-#blog .blog-item-text .meta-tags {
+.blog-item-text .meta-tags {
   margin-bottom: 10px;
 }
-#blog .blog-item-text .meta-tags span {
+.blog-item-text .meta-tags span {
   color: #999;
   margin-right: 10px;
 }
-#blog .blog-item-text .meta-tags span i {
+.blog-item-text .meta-tags span i {
   margin-right: 5px;
 }
-#blog .blog-item-text .meta-tags span a {
+.blog-item-text .meta-tags span a {
   color: #999;
 }
-#blog .blog-item-text .meta-tags span a:hover {
+.blog-item-text .meta-tags span a:hover {
   color: #4676fa;
 }
-#blog .blog-item-text h3 {
+.blog-item-text h3 {
   line-height: 26px;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
 }
-#blog .blog-item-text h3 a {
+.blog-item-text h3 a {
   color: #333;
 }
-#blog .blog-item-text h3 a:hover {
+.blog-item-text h3 a:hover {
   color: #4676fa;
 }
-#blog .blog-item-text p {
+.blog-item-text p {
   line-height: 25px;
   margin-bottom: 20px;
+    height: 125px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 /* ==========================================================================
     Contact Us

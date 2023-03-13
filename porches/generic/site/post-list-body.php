@@ -23,13 +23,13 @@ $campaign = DT_Campaign_Settings::get_campaign();
 
 $meta_query = [
    'relation' => 'AND',
-    [
+    'day_clause' => [
         'key' => 'day',
-        'value' => $todays_day_in_campaign,
-        'compare' => '<=',
+        'value' => $todays_day_in_campaign > 0 ? $todays_day_in_campaign : 0,
+        'compare' => $todays_day_in_campaign > 0 ? '<=' : '>',
         'type' => 'numeric',
     ],
-    [
+    'campaign_clause' =>[
         'key' => 'linked_campaign',
         'value' => $campaign['ID'],
         'compare' => '=',
@@ -42,24 +42,25 @@ $list = new WP_Query( [
     'post_status' => [ 'publish' ],
     'posts_per_page' => -1,
     'meta_key' => 'day',
-    'orderby' => 'meta_value_num',
-    'order' => 'DESC',
+    'orderby' => 'day_clause',
+    'order' => $todays_day_in_campaign > 0 ? 'DESC' : 'ASC',
     'meta_query' => $meta_query
 ] );
 
+// if no posts in the selected language, get posts in english.
 if ( empty( $list->posts ) ){
     $args = array(
         'post_type' => PORCH_LANDING_POST_TYPE,
         'post_status' => [ 'publish' ],
         'posts_per_page' => -1,
-        'orderby' => 'post_date',
-        'order' => 'DESC',
+        'orderby' => 'day_clause',
+        'order' => $todays_day_in_campaign > 0 ? 'DESC' : 'ASC',
         'meta_query' => [
             'relation' => 'AND',
-            [
+            'day_clause' => [
                 'key' => 'day',
-                'value' => $todays_day_in_campaign,
-                'compare' => '<=',
+                'value' => $todays_day_in_campaign > 0 ? $todays_day_in_campaign : 0,
+                'compare' => $todays_day_in_campaign > 0 ? '<=' : '>',
                 'type' => 'numeric',
             ],
             [

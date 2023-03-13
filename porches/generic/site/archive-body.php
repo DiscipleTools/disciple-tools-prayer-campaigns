@@ -24,9 +24,27 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
         </div>
 
         <div class="row">
-            <?php foreach ( $today->posts as $item ) : ?>
-                <?php dt_campaign_post( $item ) ?>
-            <?php endforeach; ?>
+            <?php foreach ( $today->posts as $item ) :
+                dt_campaign_post( $item );
+            endforeach;
+            if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) && (int) $todays_campaign_day <= 0 ) : ?>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+                    <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="blog-item-text">
+                            <?php echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), -$todays_campaign_day ) ); ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif;
+            if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) && (int) $todays_campaign_day > 0 ) : ?>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+                    <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="blog-item-text">
+                            <?php echo esc_html( __( 'This campaign is finished. See Fuel below', 'disciple-tools-prayer-campaigns' ) ); ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
 
         <?php if ( $today->found_posts ) : ?>
