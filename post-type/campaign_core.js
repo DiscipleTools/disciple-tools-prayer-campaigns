@@ -22,7 +22,7 @@ window.campaign_scripts = {
           // Timezone change detected. Recalculating time slots.
           window.campaign_scripts.processing_save = {}
         }
-        timezone_change_ref = timezone_date
+        timezone_change_ref = this.timestamp_to_time( time_iterator, custom_timezone )
 
         start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
         let day = window.campaign_scripts.timestamp_to_month_day( time_iterator, custom_timezone )
