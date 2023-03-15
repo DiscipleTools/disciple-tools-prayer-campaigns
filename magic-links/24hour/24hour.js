@@ -245,7 +245,7 @@ jQuery(document).ready(function($) {
         }
         content += `</div>`
       })
-      if( ordered_missing.length > 5 ){
+      if( ordered_missing.length >= 5 ){
         content += `<div class="missing-time-slot"><strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong></div>`
       }
 
