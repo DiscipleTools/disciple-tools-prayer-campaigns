@@ -231,7 +231,7 @@ jQuery(document).ready(function($) {
       })
 
       ordered_missing.sort((a,b)=>a.slots.length-b.slots.length)
-      if ( ordered_missing.length > 5 ){
+      if ( ordered_missing.length > 0 ){
         $('#cp-missing-times-container').show()
       }
 
