@@ -277,13 +277,13 @@ jQuery(document).ready(function($){
       days.filter(k=>k.month===key && k.key < months[key].key+35*day_in_seconds ).forEach(day=>{
         this_month_content +=`
           <div class="new_day_cell">
-            <div class="new-day-number" data-time="${window.lodash.escape(day.key)}" data-day="${window.lodash.escape(day.key)}">${window.lodash.escape(day.day)}
+            <div class="new-day-number" data-time="${window.lodash.escape(day.day_start_zoned)}" data-day="${window.lodash.escape(day.day_start_zoned)}">${window.lodash.escape(day.day)}
               <div><small>${window.lodash.escape(parseInt(day.percent))}%</small></div>
               <div class="progress-bar-container">
                   <div class="progress-bar" data-percent="${window.lodash.escape(day.percent)}" style="width:${window.lodash.escape(parseInt(day.percent))}%"></div>
               </div>
             </div>
-            <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.key)}></div>
+            <div class="day-extra" id=calendar-extra-${window.lodash.escape(day.day_start_zoned)}></div>
         </div>
         `
       })
@@ -337,8 +337,8 @@ jQuery(document).ready(function($){
       if ( time >= now ){
         let day_timestamp = 0
         days.forEach(d=>{
-          if ( d.key < c.time_begin ){
-            day_timestamp = d.key
+          if ( d.day_start_zoned < c.time_begin ){
+            day_timestamp = d.day_start_zoned
           }
         })
 
@@ -478,7 +478,7 @@ jQuery(document).ready(function($){
         let time = parseInt( time_date.toFormat('X') );
         let time_label = time_date.toFormat('MMMM dd HH:mm a');
         let already_added = selected_times.find(k=>k.time===time)
-        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
+        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] && time < calendar_subscribe_object['end_timestamp'] ) {
           selected_times.push({time: time, duration: duration, label: time_label})
         }
       }

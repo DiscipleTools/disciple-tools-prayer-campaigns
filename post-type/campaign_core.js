@@ -9,7 +9,7 @@ window.campaign_scripts = {
     window.campaign_scripts.time_label_counts = {}
     let days = [];
 
-    let start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, current_time_zone )
+    let start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, custom_timezone )
     let time_iterator = parseInt( start_of_day );
 
     let timezone_change_ref = this.timestamp_to_time( time_iterator, custom_timezone )
@@ -30,6 +30,7 @@ window.campaign_scripts = {
 
         days.push({
           "key": start_of_day,
+          'day_start_zoned': window.campaign_scripts.day_start( time_iterator, custom_timezone ),
           "formatted": day,
           "month": window.campaign_scripts.timestamp_to_format( time_iterator, { month:"long" }, custom_timezone),
           "day": window.campaign_scripts.timestamp_to_format( time_iterator, { day:"numeric" }, custom_timezone),
