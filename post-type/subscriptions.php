@@ -728,7 +728,7 @@ class DT_Subscriptions_Base {
             $filters['filters'][] = [
                 'ID' => 'by_campaign',
                 'tab' => 'all',
-                'name' => __( 'By Campaign', 'disciple_tools' ),
+                'name' => 'By Campaign',
                 'query' => [
                     'sort' => 'campaigns'
                 ],

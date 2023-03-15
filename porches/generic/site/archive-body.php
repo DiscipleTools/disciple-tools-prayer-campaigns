@@ -72,7 +72,7 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                         <?php echo esc_html( sprintf( __( 'Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far.', 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
                     </p>
                     <div style="text-align: start">
-                        <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple_tools' ); ?></span>
+                        <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple-tools-prayer-campaigns' ); ?></span>
                         <input type='number' name='group_size' value='1' id='prayer_group_size'
                                style='width: 50px; margin-left: 10px; padding: 5px'>
                         <input type='email' id='email' style='display: none'>

@@ -53,7 +53,7 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                     </p>
 
                     <div style="text-align: start">
-                        <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple_tools' ); ?></span>
+                        <span><?php esc_html_e( 'How many prayed today (including yourself)?', 'disciple-tools-prayer-campaigns' ); ?></span>
                         <input type='number' name='group_size' value='1' id='prayer_group_size'
                                style='width: 70px; margin-left: 10px; padding: 5px'>
                         <input type='email' id='email' style='display: none'>
