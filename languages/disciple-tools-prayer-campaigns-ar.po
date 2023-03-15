@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-12T19:57:17+00:00\n"
+"POT-Creation-Date: 2023-03-15T08:35:28+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/disciple-"
@@ -179,8 +179,32 @@ msgstr "30 دقيقة"
 msgid "1 hour"
 msgstr "1 ساعة"
 
+#: campaign-functions/time-utilities.php:170
+msgid "years"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:170
+msgid "year"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:173
+#: porches/generic/site/home-body.php:172
+#: porches/generic/site/home-body.php:179
+#: porches/ongoing/site/home-body.php:168
+#: porches/ongoing/site/home-body.php:175
+#: porches/ramadan/site/home-body.php:162
+#: porches/ramadan/site/home-body.php:169
+#, fuzzy
+msgid "days"
+msgstr "أيام"
+
+#: campaign-functions/time-utilities.php:173
+#, fuzzy
+msgid "day"
+msgstr "أيام"
+
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:266
+#: magic-links/subscription-management/subscription-management.php:267
 #, fuzzy
 msgid "My Prayer Times"
 msgstr "أوقات صلاتي"
@@ -220,112 +244,119 @@ msgstr "يمتد لمدة 3 أشهر"
 msgid "Change daily time"
 msgstr "تغيير الوقت اليومي"
 
-#: magic-links/subscription-management/subscription-management.php:271
+#: magic-links/subscription-management/subscription-management.php:114
+#: shortcodes/24hour.php:36
+#, fuzzy
+msgctxt "80% covered"
+msgid "%s covered"
+msgstr "مغطى"
+
+#: magic-links/subscription-management/subscription-management.php:272
 #, fuzzy
 msgid "Your prayer times have been verified!"
 msgstr "تم التحقق من أوقات صلاتك!"
 
-#: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:258 shortcodes/ongoing.php:286
+#: magic-links/subscription-management/subscription-management.php:282
+#: shortcodes/24hour.php:260 shortcodes/ongoing.php:286
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "تغيير المنطقة الزمنية الخاصة بك:"
 
-#: magic-links/subscription-management/subscription-management.php:298
-#: magic-links/subscription-management/subscription-management.php:347
-#: magic-links/subscription-management/subscription-management.php:409
-#: magic-links/subscription-management/subscription-management.php:468
-#: magic-links/subscription-management/subscription-management.php:514
-#: magic-links/subscription-management/subscription-management.php:538
-#: magic-links/subscription-management/subscription-management.php:554
-#: magic-links/subscription-management/subscription-management.php:610
-#: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
+#: magic-links/subscription-management/subscription-management.php:299
+#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:410
+#: magic-links/subscription-management/subscription-management.php:469
+#: magic-links/subscription-management/subscription-management.php:515
+#: magic-links/subscription-management/subscription-management.php:539
+#: magic-links/subscription-management/subscription-management.php:555
+#: magic-links/subscription-management/subscription-management.php:611
+#: shortcodes/24hour.php:278 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:517
-#: shortcodes/24hour.php:279 shortcodes/ongoing.php:307
+#: magic-links/subscription-management/subscription-management.php:302
+#: magic-links/subscription-management/subscription-management.php:518
+#: shortcodes/24hour.php:281 shortcodes/ongoing.php:307
 #, fuzzy
 msgid "Select"
 msgstr "اختيار"
 
-#: magic-links/subscription-management/subscription-management.php:312
+#: magic-links/subscription-management/subscription-management.php:313
 #, fuzzy
 msgid "Add a Daily Prayer Time"
 msgstr "أضف مواقيت الصلاة اليومية"
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:316
 #, fuzzy
 msgid "Add Individual Prayer Times"
 msgstr "أضف أوقات الصلاة الفردية"
 
-#: magic-links/subscription-management/subscription-management.php:317
+#: magic-links/subscription-management/subscription-management.php:318
 #, fuzzy
 msgid "Download Calendar"
 msgstr "قم بتنزيل التقويم"
 
-#: magic-links/subscription-management/subscription-management.php:319
+#: magic-links/subscription-management/subscription-management.php:320
 #, fuzzy
 msgid "My commitments"
 msgstr "التزاماتي"
 
-#: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:161 shortcodes/ongoing.php:190
+#: magic-links/subscription-management/subscription-management.php:325
+#: shortcodes/24hour.php:163 shortcodes/ongoing.php:190
 #, fuzzy
 msgid "Prayer Time"
 msgstr "وقت الصلاة"
 
-#: magic-links/subscription-management/subscription-management.php:326
-#: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: magic-links/subscription-management/subscription-management.php:327
+#: magic-links/subscription-management/subscription-management.php:436
+#: shortcodes/24hour.php:165 shortcodes/24hour.php:198
 #: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 #, fuzzy
 msgid "Daily Time"
 msgstr "الوقت اليومي"
 
-#: magic-links/subscription-management/subscription-management.php:330
-#: magic-links/subscription-management/subscription-management.php:439
-#: shortcodes/24hour.php:167 shortcodes/24hour.php:200
+#: magic-links/subscription-management/subscription-management.php:331
+#: magic-links/subscription-management/subscription-management.php:440
+#: shortcodes/24hour.php:169 shortcodes/24hour.php:202
 #: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 #, fuzzy
 msgid "For how long"
 msgstr "إلى متى"
 
-#: magic-links/subscription-management/subscription-management.php:340
-#: magic-links/subscription-management/subscription-management.php:461
+#: magic-links/subscription-management/subscription-management.php:341
+#: magic-links/subscription-management/subscription-management.php:462
 #, fuzzy
 msgid "Your new prayer times have been saved."
 msgstr "تم حفظ أوقات صلاتك الجديدة."
 
-#: magic-links/subscription-management/subscription-management.php:351
-#: magic-links/subscription-management/subscription-management.php:472
-#: shortcodes/24hour.php:174 shortcodes/24hour.php:218
+#: magic-links/subscription-management/subscription-management.php:352
+#: magic-links/subscription-management/subscription-management.php:473
+#: shortcodes/24hour.php:176 shortcodes/24hour.php:220
 #: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 #, fuzzy
 msgid "Confirm Times"
 msgstr "أكد مرات"
 
-#: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:484
+#: magic-links/subscription-management/subscription-management.php:361
+#: magic-links/subscription-management/subscription-management.php:485
 #, fuzzy
 msgid "ok"
 msgstr "موافق"
 
-#: magic-links/subscription-management/subscription-management.php:391
+#: magic-links/subscription-management/subscription-management.php:392
 #, fuzzy
 msgid "Close"
 msgstr "غلق"
 
-#: magic-links/subscription-management/subscription-management.php:398
+#: magic-links/subscription-management/subscription-management.php:399
 #, fuzzy
 msgid "Delete Time"
 msgstr "الأوقات المحددة"
 
-#: magic-links/subscription-management/subscription-management.php:403
-#: magic-links/subscription-management/subscription-management.php:532
-#: magic-links/subscription-management/subscription-management.php:602
+#: magic-links/subscription-management/subscription-management.php:404
+#: magic-links/subscription-management/subscription-management.php:533
+#: magic-links/subscription-management/subscription-management.php:603
 msgid ""
 "Need to cancel? We get it! But wait!\n"
 "If your prayer commitment is scheduled to start in less than 48-hours, "
@@ -334,127 +365,127 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:412
-#: magic-links/subscription-management/subscription-management.php:541
-#: magic-links/subscription-management/subscription-management.php:593
-#: magic-links/subscription-management/subscription-management.php:613
+#: magic-links/subscription-management/subscription-management.php:413
+#: magic-links/subscription-management/subscription-management.php:542
+#: magic-links/subscription-management/subscription-management.php:594
+#: magic-links/subscription-management/subscription-management.php:614
 #, fuzzy
 msgid "Delete"
 msgstr "إزالة"
 
-#: magic-links/subscription-management/subscription-management.php:426
-#: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
+#: magic-links/subscription-management/subscription-management.php:427
+#: shortcodes/24hour.php:188 shortcodes/ongoing.php:215
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "حدد يومًا واختر وقتًا"
 
-#: magic-links/subscription-management/subscription-management.php:433
-#: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
+#: magic-links/subscription-management/subscription-management.php:434
+#: shortcodes/24hour.php:196 shortcodes/ongoing.php:223
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "حدد وقت الصلاة"
 
-#: magic-links/subscription-management/subscription-management.php:443
-#: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
+#: magic-links/subscription-management/subscription-management.php:444
+#: shortcodes/24hour.php:206 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Add prayer time"
 msgstr "أضف مواقيت الصلاة"
 
-#: magic-links/subscription-management/subscription-management.php:444
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
+#: magic-links/subscription-management/subscription-management.php:445
+#: shortcodes/24hour.php:207 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Time added"
 msgstr "الوقت المضاف"
 
-#: magic-links/subscription-management/subscription-management.php:451
-#: shortcodes/24hour.php:212 shortcodes/24hour.php:234
+#: magic-links/subscription-management/subscription-management.php:452
+#: shortcodes/24hour.php:214 shortcodes/24hour.php:236
 #: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 #, fuzzy
 msgid "Selected Times"
 msgstr "الأوقات المحددة"
 
-#: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
+#: magic-links/subscription-management/subscription-management.php:454
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:243
 #, fuzzy
 msgid "No selected Time"
 msgstr "لم يتم تحديد الوقت"
 
-#: magic-links/subscription-management/subscription-management.php:476
-#: shortcodes/24hour.php:131 shortcodes/24hour.php:154
-#: shortcodes/24hour.php:183 shortcodes/24hour.php:228
+#: magic-links/subscription-management/subscription-management.php:477
+#: shortcodes/24hour.php:133 shortcodes/24hour.php:156
+#: shortcodes/24hour.php:185 shortcodes/24hour.php:230
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
 #: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
 #, fuzzy
 msgid "Back"
 msgstr "الرجوع"
 
-#: magic-links/subscription-management/subscription-management.php:509
+#: magic-links/subscription-management/subscription-management.php:510
 #, fuzzy
 msgid "Choose a different time:"
 msgstr "اختر وقتًا مختلفًا:"
 
-#: magic-links/subscription-management/subscription-management.php:526
+#: magic-links/subscription-management/subscription-management.php:527
 #, fuzzy
 msgid "Delete all"
 msgstr "حذف الكل"
 
-#: magic-links/subscription-management/subscription-management.php:550
+#: magic-links/subscription-management/subscription-management.php:551
 #, fuzzy
 msgid "Extend"
 msgstr "تمديد"
 
-#: magic-links/subscription-management/subscription-management.php:552
+#: magic-links/subscription-management/subscription-management.php:553
 #, fuzzy
 msgid "Extend my prayer commitments until:"
 msgstr "تمديد التزامات صلاتي حتى:"
 
-#: magic-links/subscription-management/subscription-management.php:557
+#: magic-links/subscription-management/subscription-management.php:558
 #: parts/components.php:45
 #, fuzzy
 msgid "Confirm"
 msgstr "غير مؤكد"
 
-#: magic-links/subscription-management/subscription-management.php:576
+#: magic-links/subscription-management/subscription-management.php:577
 #, fuzzy
 msgid "Profile Settings"
 msgstr "إعدادات الملف الشخصي"
 
-#: magic-links/subscription-management/subscription-management.php:577
+#: magic-links/subscription-management/subscription-management.php:578
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "تلقي إشعارات مواقيت الصلاة"
 
-#: magic-links/subscription-management/subscription-management.php:579
+#: magic-links/subscription-management/subscription-management.php:580
 #, fuzzy
 msgid "Notifications allowed"
 msgstr "الإخطارات مسموح بها"
 
-#: magic-links/subscription-management/subscription-management.php:580
+#: magic-links/subscription-management/subscription-management.php:581
 #, fuzzy
 msgid "Notifications not allowed"
 msgstr "الإخطارات غير مسموح بها"
 
-#: magic-links/subscription-management/subscription-management.php:584
+#: magic-links/subscription-management/subscription-management.php:585
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "إعدادات متقدمة"
 
-#: magic-links/subscription-management/subscription-management.php:591
+#: magic-links/subscription-management/subscription-management.php:592
 #, fuzzy
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "حذف هذا الملف الشخصي وجميع أوقات الصلاة المجدولة؟"
 
-#: magic-links/subscription-management/subscription-management.php:596
+#: magic-links/subscription-management/subscription-management.php:597
 #, fuzzy
 msgid "Are you sure you want to delete your profile?"
 msgstr "هل أنت متأكد أنك تريد حذف ملف التعريف الخاص بك؟"
 
-#: magic-links/subscription-management/subscription-management.php:598
+#: magic-links/subscription-management/subscription-management.php:599
 #, fuzzy
 msgid "This can not be undone."
 msgstr "هذا لا يمكن التراجع عنها."
 
-#: magic-links/subscription-management/subscription-management.php:629
+#: magic-links/subscription-management/subscription-management.php:630
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "انتهى هذا الاشتراك أو لم يتم تكوينه بشكل صحيح."
@@ -465,7 +496,7 @@ msgid "Name"
 msgstr "الاسم"
 
 #: parts/components.php:72 parts/components.php:76 parts/components.php:77
-#: porches/generic/site/stats.php:244
+#: porches/generic/site/stats.php:245
 #, fuzzy
 msgid "Email"
 msgstr "البريد الالكتروني"
@@ -486,7 +517,12 @@ msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr ""
 "تلقي النشرة الإخبارية Pray4Movement (مطلوب التحقق من البريد الإلكتروني)."
 
-#: parts/components.php:102
+#: parts/components.php:101
+#, fuzzy
+msgid "No prayer times selected"
+msgstr "تم التحقق من أوقات صلاتك!"
+
+#: parts/components.php:105
 #, fuzzy
 msgid "Submit Your Prayer Commitment"
 msgstr "أرسل إلتزامك بالصلاة"
@@ -587,27 +623,41 @@ msgstr "واسع هو الطريق الذي يؤدي إلى 404."
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "حاول استخدام بعض الروابط في القائمة للعودة إلى المسار الصحيح."
 
-#: porches/generic/site/archive-body.php:49
+#: porches/generic/site/archive-body.php:34
+#: porches/generic/site/post-list-body.php:144
+msgid "Content will start in %s days"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:43
+msgid "This campaign is finished. See Fuel below"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:67
 #: porches/generic/site/landing-body.php:47
 msgid "Praying as a group?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:53
-#: porches/generic/site/landing-body.php:51
+#: porches/generic/site/archive-body.php:72
+#: porches/generic/site/landing-body.php:52
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:61
-#: porches/generic/site/landing-body.php:60 porches/generic/site/stats.php:257
+#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/landing-body.php:56
+msgid "How many prayed today (including yourself)?"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:80
+#: porches/generic/site/landing-body.php:61 porches/generic/site/stats.php:258
 #, fuzzy
 msgid "Submit"
 msgstr "يُقدِّم"
 
-#: porches/generic/site/archive-body.php:67
-#: porches/generic/site/landing-body.php:66 porches/generic/site/stats.php:263
+#: porches/generic/site/archive-body.php:86
+#: porches/generic/site/landing-body.php:67 porches/generic/site/stats.php:264
 #, fuzzy
 msgid "Thank You"
 msgstr "شكرا لك"
@@ -634,18 +684,8 @@ msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
 msgstr "٪ s ينتهي بـ"
 
-#: porches/generic/site/home-body.php:172
-#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:199
-#: porches/ongoing/site/home-body.php:168
-#: porches/ongoing/site/home-body.php:175
-#: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169
-#, fuzzy
-msgid "days"
-msgstr "أيام"
-
 #: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:198
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:200
 #: porches/ongoing/site/home-body.php:169
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
@@ -733,28 +773,24 @@ msgstr "الساعات المتبقية"
 msgid "View All"
 msgstr "مشاهدة الكل"
 
-#: porches/generic/site/post-list-body.php:132
+#: porches/generic/site/post-list-body.php:133
 #, fuzzy
 msgid "Read"
 msgstr "اقرأ"
 
-#: porches/generic/site/post-list-body.php:143
-msgid "Content will start in %s days"
-msgstr ""
-
-#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:245
 #: shortcodes/ongoing.php:271
 #, fuzzy
 msgid "Check your email"
 msgstr "أرسلت! تحقق من بريدك الالكتروني."
 
-#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:246
 #: shortcodes/ongoing.php:272
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "تم تسجيلكم بنجاح."
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:246
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:248
 #: shortcodes/ongoing.php:274
 #, fuzzy
 msgid ""
@@ -764,7 +800,7 @@ msgstr ""
 "انقر فوق الارتباط الموجود في البريد الإلكتروني للتحقق من التزامك وتلقي "
 "إشعارات مواقيت الصلاة!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:249
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:251
 #: shortcodes/ongoing.php:277
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
@@ -801,29 +837,29 @@ msgstr "التزامات الصلاة"
 msgid "Time Committed"
 msgstr "الوقت الملتزم به"
 
-#: porches/generic/site/stats.php:205
+#: porches/generic/site/stats.php:206
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "عدد المصلين"
 
-#: porches/generic/site/stats.php:238
+#: porches/generic/site/stats.php:239
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "شارك معنا قصص الصلاة الخاصة بك"
 
-#: porches/generic/site/stats.php:252
+#: porches/generic/site/stats.php:253
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc)"
 msgstr "شارك معنا في مواقيت صلاتك (على سبيل المثال شهادات ، رؤى ، بركات ، إلخ)"
 
-#: porches/generic/site/stats.php:298
+#: porches/generic/site/stats.php:299
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "المزيد من فرص الصلاة"
 
-#: porches/generic/site/stats.php:302
+#: porches/generic/site/stats.php:303
 #, fuzzy
 msgid ""
 "Would you like to hear about other prayer efforts and opportunities with "
@@ -915,68 +951,74 @@ msgstr "مغطاة مرة واحدة"
 msgid "covered %1$s times"
 msgstr "تمت تغطيتها٪ 1 $ s مرة"
 
-#: shortcodes/24hour.php:100
+#: shortcodes/24hour.php:101
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "نسبة المغطاة بالصلاة"
 
-#: shortcodes/24hour.php:114 shortcodes/ongoing.php:145
+#: shortcodes/24hour.php:102
+#, fuzzy
+msgctxt "12.3 years committed"
+msgid "% committed"
+msgstr "الوقت الملتزم به"
+
+#: shortcodes/24hour.php:116 shortcodes/ongoing.php:145
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "تحميل بيانات حملة الصلاة ..."
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:152
+#: shortcodes/24hour.php:123 shortcodes/ongoing.php:152
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "اختر مواقيت الصلاة"
 
-#: shortcodes/24hour.php:133 shortcodes/ongoing.php:164
+#: shortcodes/24hour.php:135 shortcodes/ongoing.php:164
 #, fuzzy
 msgid "Select an option"
 msgstr "حدد اختيارا"
 
-#: shortcodes/24hour.php:136 shortcodes/ongoing.php:167
+#: shortcodes/24hour.php:138 shortcodes/ongoing.php:167
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "صلِّ كل يوم في نفس الوقت"
 
-#: shortcodes/24hour.php:138 shortcodes/ongoing.php:169
+#: shortcodes/24hour.php:140 shortcodes/ongoing.php:169
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "مثال: كل يوم في الساعة 4 مساءً لمدة 15 دقيقة"
 
-#: shortcodes/24hour.php:141 shortcodes/ongoing.php:172
+#: shortcodes/24hour.php:143 shortcodes/ongoing.php:172
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "حدد الأيام والأوقات للصلاة"
 
-#: shortcodes/24hour.php:143 shortcodes/ongoing.php:174
+#: shortcodes/24hour.php:145 shortcodes/ongoing.php:174
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "مثال: الاثنين 12 الساعة 6 مساءً لمدة 15 دقيقة"
 
-#: shortcodes/24hour.php:158
+#: shortcodes/24hour.php:160
 #, fuzzy
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr "يوجد في البريد الإلكتروني رابط لإدارة أوقات الصلاة الخاصة بك."
 
-#: shortcodes/24hour.php:171 shortcodes/24hour.php:208
+#: shortcodes/24hour.php:173 shortcodes/24hour.php:210
 #: shortcodes/ongoing.php:200 shortcodes/ongoing.php:237
 #, fuzzy
 msgid "Showing times for:"
 msgstr "عرض الأوقات لـ:"
 
-#: shortcodes/24hour.php:252 shortcodes/ongoing.php:280
+#: shortcodes/24hour.php:254 shortcodes/ongoing.php:280
 #, fuzzy
 msgid "OK"
 msgstr "نعم"
 
-#: shortcodes/24hour.php:285 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "لم نعد نبحث عن الاشتراكات"
 
-#: shortcodes/24hour.php:286 shortcodes/ongoing.php:314
+#: shortcodes/24hour.php:288 shortcodes/ongoing.php:314
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "شكرا للصلاة معنا!"
