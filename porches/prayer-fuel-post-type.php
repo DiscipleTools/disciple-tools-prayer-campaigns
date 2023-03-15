@@ -252,7 +252,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             // let's now add all the options for this post type
             array(
                 'labels' => array(
-                    'name' => $this->plural, /* This is the Title of the Group */
+                    'name' => 'Landing Posts', /* This is the Title of the Group */
                     'singular_name' => $this->singular, /* This is the individual type */
                     'all_items' => 'All '.$this->plural, /* the all items menu item */
                     'add_new' => 'Add New', /* The add new menu item */
