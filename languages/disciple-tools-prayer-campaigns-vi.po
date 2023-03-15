@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-12T19:57:17+00:00\n"
+"POT-Creation-Date: 2023-03-15T08:35:28+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
@@ -187,8 +187,32 @@ msgstr "30 phút"
 msgid "1 hour"
 msgstr "1 giờ"
 
+#: campaign-functions/time-utilities.php:170
+msgid "years"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:170
+msgid "year"
+msgstr ""
+
+#: campaign-functions/time-utilities.php:173
+#: porches/generic/site/home-body.php:172
+#: porches/generic/site/home-body.php:179
+#: porches/ongoing/site/home-body.php:168
+#: porches/ongoing/site/home-body.php:175
+#: porches/ramadan/site/home-body.php:162
+#: porches/ramadan/site/home-body.php:169
+#, fuzzy
+msgid "days"
+msgstr "ngày"
+
+#: campaign-functions/time-utilities.php:173
+#, fuzzy
+msgid "day"
+msgstr "ngày"
+
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:266
+#: magic-links/subscription-management/subscription-management.php:267
 #, fuzzy
 msgid "My Prayer Times"
 msgstr "Thời gian cầu nguyện của tôi"
@@ -228,112 +252,119 @@ msgstr "Gia hạn thêm 3 tháng"
 msgid "Change daily time"
 msgstr "Thay đổi thời gian hàng ngày"
 
-#: magic-links/subscription-management/subscription-management.php:271
+#: magic-links/subscription-management/subscription-management.php:114
+#: shortcodes/24hour.php:36
+#, fuzzy
+msgctxt "80% covered"
+msgid "%s covered"
+msgstr "đề cập"
+
+#: magic-links/subscription-management/subscription-management.php:272
 #, fuzzy
 msgid "Your prayer times have been verified!"
 msgstr "Thời gian cầu nguyện của bạn đã được xác minh!"
 
-#: magic-links/subscription-management/subscription-management.php:281
-#: shortcodes/24hour.php:258 shortcodes/ongoing.php:286
+#: magic-links/subscription-management/subscription-management.php:282
+#: shortcodes/24hour.php:260 shortcodes/ongoing.php:286
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "Thay đổi múi giờ của bạn:"
 
-#: magic-links/subscription-management/subscription-management.php:298
-#: magic-links/subscription-management/subscription-management.php:347
-#: magic-links/subscription-management/subscription-management.php:409
-#: magic-links/subscription-management/subscription-management.php:468
-#: magic-links/subscription-management/subscription-management.php:514
-#: magic-links/subscription-management/subscription-management.php:538
-#: magic-links/subscription-management/subscription-management.php:554
-#: magic-links/subscription-management/subscription-management.php:610
-#: shortcodes/24hour.php:276 shortcodes/ongoing.php:304
+#: magic-links/subscription-management/subscription-management.php:299
+#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:410
+#: magic-links/subscription-management/subscription-management.php:469
+#: magic-links/subscription-management/subscription-management.php:515
+#: magic-links/subscription-management/subscription-management.php:539
+#: magic-links/subscription-management/subscription-management.php:555
+#: magic-links/subscription-management/subscription-management.php:611
+#: shortcodes/24hour.php:278 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Cancel"
 msgstr "Huỷ bỏ"
 
-#: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:517
-#: shortcodes/24hour.php:279 shortcodes/ongoing.php:307
+#: magic-links/subscription-management/subscription-management.php:302
+#: magic-links/subscription-management/subscription-management.php:518
+#: shortcodes/24hour.php:281 shortcodes/ongoing.php:307
 #, fuzzy
 msgid "Select"
 msgstr "Lựa chọn"
 
-#: magic-links/subscription-management/subscription-management.php:312
+#: magic-links/subscription-management/subscription-management.php:313
 #, fuzzy
 msgid "Add a Daily Prayer Time"
 msgstr "Thêm thời gian cầu nguyện hàng ngày"
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:316
 #, fuzzy
 msgid "Add Individual Prayer Times"
 msgstr "Thêm thời gian cầu nguyện cá nhân"
 
-#: magic-links/subscription-management/subscription-management.php:317
+#: magic-links/subscription-management/subscription-management.php:318
 #, fuzzy
 msgid "Download Calendar"
 msgstr "Tải xuống lịch"
 
-#: magic-links/subscription-management/subscription-management.php:319
+#: magic-links/subscription-management/subscription-management.php:320
 #, fuzzy
 msgid "My commitments"
 msgstr "Cam kết của tôi"
 
-#: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:161 shortcodes/ongoing.php:190
+#: magic-links/subscription-management/subscription-management.php:325
+#: shortcodes/24hour.php:163 shortcodes/ongoing.php:190
 #, fuzzy
 msgid "Prayer Time"
 msgstr "Thời điểm cầu nguyện"
 
-#: magic-links/subscription-management/subscription-management.php:326
-#: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:163 shortcodes/24hour.php:196
+#: magic-links/subscription-management/subscription-management.php:327
+#: magic-links/subscription-management/subscription-management.php:436
+#: shortcodes/24hour.php:165 shortcodes/24hour.php:198
 #: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
 #, fuzzy
 msgid "Daily Time"
 msgstr "Giờ hàng ngày"
 
-#: magic-links/subscription-management/subscription-management.php:330
-#: magic-links/subscription-management/subscription-management.php:439
-#: shortcodes/24hour.php:167 shortcodes/24hour.php:200
+#: magic-links/subscription-management/subscription-management.php:331
+#: magic-links/subscription-management/subscription-management.php:440
+#: shortcodes/24hour.php:169 shortcodes/24hour.php:202
 #: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
 #, fuzzy
 msgid "For how long"
 msgstr "Trong bao lâu"
 
-#: magic-links/subscription-management/subscription-management.php:340
-#: magic-links/subscription-management/subscription-management.php:461
+#: magic-links/subscription-management/subscription-management.php:341
+#: magic-links/subscription-management/subscription-management.php:462
 #, fuzzy
 msgid "Your new prayer times have been saved."
 msgstr "Thời gian cầu nguyện mới của bạn đã được lưu."
 
-#: magic-links/subscription-management/subscription-management.php:351
-#: magic-links/subscription-management/subscription-management.php:472
-#: shortcodes/24hour.php:174 shortcodes/24hour.php:218
+#: magic-links/subscription-management/subscription-management.php:352
+#: magic-links/subscription-management/subscription-management.php:473
+#: shortcodes/24hour.php:176 shortcodes/24hour.php:220
 #: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
 #, fuzzy
 msgid "Confirm Times"
 msgstr "Xác nhận thời gian"
 
-#: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:484
+#: magic-links/subscription-management/subscription-management.php:361
+#: magic-links/subscription-management/subscription-management.php:485
 #, fuzzy
 msgid "ok"
 msgstr "Vâng"
 
-#: magic-links/subscription-management/subscription-management.php:391
+#: magic-links/subscription-management/subscription-management.php:392
 #, fuzzy
 msgid "Close"
 msgstr "Đóng"
 
-#: magic-links/subscription-management/subscription-management.php:398
+#: magic-links/subscription-management/subscription-management.php:399
 #, fuzzy
 msgid "Delete Time"
 msgstr "Thời gian đã chọn"
 
-#: magic-links/subscription-management/subscription-management.php:403
-#: magic-links/subscription-management/subscription-management.php:532
-#: magic-links/subscription-management/subscription-management.php:602
+#: magic-links/subscription-management/subscription-management.php:404
+#: magic-links/subscription-management/subscription-management.php:533
+#: magic-links/subscription-management/subscription-management.php:603
 msgid ""
 "Need to cancel? We get it! But wait!\n"
 "If your prayer commitment is scheduled to start in less than 48-hours, "
@@ -342,127 +373,127 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:412
-#: magic-links/subscription-management/subscription-management.php:541
-#: magic-links/subscription-management/subscription-management.php:593
-#: magic-links/subscription-management/subscription-management.php:613
+#: magic-links/subscription-management/subscription-management.php:413
+#: magic-links/subscription-management/subscription-management.php:542
+#: magic-links/subscription-management/subscription-management.php:594
+#: magic-links/subscription-management/subscription-management.php:614
 #, fuzzy
 msgid "Delete"
 msgstr "Xóa"
 
-#: magic-links/subscription-management/subscription-management.php:426
-#: shortcodes/24hour.php:186 shortcodes/ongoing.php:215
+#: magic-links/subscription-management/subscription-management.php:427
+#: shortcodes/24hour.php:188 shortcodes/ongoing.php:215
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "Chọn một ngày và chọn một thời gian"
 
-#: magic-links/subscription-management/subscription-management.php:433
-#: shortcodes/24hour.php:194 shortcodes/ongoing.php:223
+#: magic-links/subscription-management/subscription-management.php:434
+#: shortcodes/24hour.php:196 shortcodes/ongoing.php:223
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "Chọn thời gian cầu nguyện"
 
-#: magic-links/subscription-management/subscription-management.php:443
-#: shortcodes/24hour.php:204 shortcodes/ongoing.php:233
+#: magic-links/subscription-management/subscription-management.php:444
+#: shortcodes/24hour.php:206 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Add prayer time"
 msgstr "Thêm thời gian cầu nguyện"
 
-#: magic-links/subscription-management/subscription-management.php:444
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:234
+#: magic-links/subscription-management/subscription-management.php:445
+#: shortcodes/24hour.php:207 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Time added"
 msgstr "Đã thêm thời gian"
 
-#: magic-links/subscription-management/subscription-management.php:451
-#: shortcodes/24hour.php:212 shortcodes/24hour.php:234
+#: magic-links/subscription-management/subscription-management.php:452
+#: shortcodes/24hour.php:214 shortcodes/24hour.php:236
 #: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
 #, fuzzy
 msgid "Selected Times"
 msgstr "Thời gian đã chọn"
 
-#: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:214 shortcodes/ongoing.php:243
+#: magic-links/subscription-management/subscription-management.php:454
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:243
 #, fuzzy
 msgid "No selected Time"
 msgstr "Không có thời gian được chọn"
 
-#: magic-links/subscription-management/subscription-management.php:476
-#: shortcodes/24hour.php:131 shortcodes/24hour.php:154
-#: shortcodes/24hour.php:183 shortcodes/24hour.php:228
+#: magic-links/subscription-management/subscription-management.php:477
+#: shortcodes/24hour.php:133 shortcodes/24hour.php:156
+#: shortcodes/24hour.php:185 shortcodes/24hour.php:230
 #: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
 #: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
 #, fuzzy
 msgid "Back"
 msgstr "Quay lại"
 
-#: magic-links/subscription-management/subscription-management.php:509
+#: magic-links/subscription-management/subscription-management.php:510
 #, fuzzy
 msgid "Choose a different time:"
 msgstr "Chọn một thời điểm khác:"
 
-#: magic-links/subscription-management/subscription-management.php:526
+#: magic-links/subscription-management/subscription-management.php:527
 #, fuzzy
 msgid "Delete all"
 msgstr "Xóa hết"
 
-#: magic-links/subscription-management/subscription-management.php:550
+#: magic-links/subscription-management/subscription-management.php:551
 #, fuzzy
 msgid "Extend"
 msgstr "Gia hạn"
 
-#: magic-links/subscription-management/subscription-management.php:552
+#: magic-links/subscription-management/subscription-management.php:553
 #, fuzzy
 msgid "Extend my prayer commitments until:"
 msgstr "Mở rộng cam kết cầu nguyện của tôi cho đến khi:"
 
-#: magic-links/subscription-management/subscription-management.php:557
+#: magic-links/subscription-management/subscription-management.php:558
 #: parts/components.php:45
 #, fuzzy
 msgid "Confirm"
 msgstr "Xác nhận"
 
-#: magic-links/subscription-management/subscription-management.php:576
+#: magic-links/subscription-management/subscription-management.php:577
 #, fuzzy
 msgid "Profile Settings"
 msgstr "Cài đặt cấu hình"
 
-#: magic-links/subscription-management/subscription-management.php:577
+#: magic-links/subscription-management/subscription-management.php:578
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "Nhận thông báo về thời gian cầu nguyện"
 
-#: magic-links/subscription-management/subscription-management.php:579
+#: magic-links/subscription-management/subscription-management.php:580
 #, fuzzy
 msgid "Notifications allowed"
 msgstr "Thông báo được phép"
 
-#: magic-links/subscription-management/subscription-management.php:580
+#: magic-links/subscription-management/subscription-management.php:581
 #, fuzzy
 msgid "Notifications not allowed"
 msgstr "Thông báo không được phép"
 
-#: magic-links/subscription-management/subscription-management.php:584
+#: magic-links/subscription-management/subscription-management.php:585
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "Cài đặt nâng cao"
 
-#: magic-links/subscription-management/subscription-management.php:591
+#: magic-links/subscription-management/subscription-management.php:592
 #, fuzzy
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "Xóa hồ sơ này và tất cả thời gian cầu nguyện đã lên lịch?"
 
-#: magic-links/subscription-management/subscription-management.php:596
+#: magic-links/subscription-management/subscription-management.php:597
 #, fuzzy
 msgid "Are you sure you want to delete your profile?"
 msgstr "Bạn có chắc chắn muốn xóa hồ sơ của mình không?"
 
-#: magic-links/subscription-management/subscription-management.php:598
+#: magic-links/subscription-management/subscription-management.php:599
 #, fuzzy
 msgid "This can not be undone."
 msgstr "Điều này không thể được hoàn tác."
 
-#: magic-links/subscription-management/subscription-management.php:629
+#: magic-links/subscription-management/subscription-management.php:630
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Đăng ký này đã kết thúc hoặc không được định cấu hình chính xác."
@@ -473,7 +504,7 @@ msgid "Name"
 msgstr "Tên"
 
 #: parts/components.php:72 parts/components.php:76 parts/components.php:77
-#: porches/generic/site/stats.php:244
+#: porches/generic/site/stats.php:245
 #, fuzzy
 msgid "Email"
 msgstr "Email"
@@ -493,7 +524,12 @@ msgstr "Nhận Thông báo Thời gian Cầu nguyện (cần xác minh email)."
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr "Nhận Bản tin Pray4Movement (cần xác minh email)."
 
-#: parts/components.php:102
+#: parts/components.php:101
+#, fuzzy
+msgid "No prayer times selected"
+msgstr "Thời gian cầu nguyện của bạn đã được xác minh!"
+
+#: parts/components.php:105
 #, fuzzy
 msgid "Submit Your Prayer Commitment"
 msgstr "Gửi cam kết cầu nguyện của bạn"
@@ -596,27 +632,41 @@ msgstr "Rộng là con đường dẫn đến 404."
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "Hãy thử sử dụng một số liên kết trong menu để trở lại đúng hướng."
 
-#: porches/generic/site/archive-body.php:49
+#: porches/generic/site/archive-body.php:34
+#: porches/generic/site/post-list-body.php:144
+msgid "Content will start in %s days"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:43
+msgid "This campaign is finished. See Fuel below"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:67
 #: porches/generic/site/landing-body.php:47
 msgid "Praying as a group?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:53
-#: porches/generic/site/landing-body.php:51
+#: porches/generic/site/archive-body.php:72
+#: porches/generic/site/landing-body.php:52
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:61
-#: porches/generic/site/landing-body.php:60 porches/generic/site/stats.php:257
+#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/landing-body.php:56
+msgid "How many prayed today (including yourself)?"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:80
+#: porches/generic/site/landing-body.php:61 porches/generic/site/stats.php:258
 #, fuzzy
 msgid "Submit"
 msgstr "Nộp"
 
-#: porches/generic/site/archive-body.php:67
-#: porches/generic/site/landing-body.php:66 porches/generic/site/stats.php:263
+#: porches/generic/site/archive-body.php:86
+#: porches/generic/site/landing-body.php:67 porches/generic/site/stats.php:264
 #, fuzzy
 msgid "Thank You"
 msgstr "Cảm ơn"
@@ -643,18 +693,8 @@ msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
 msgstr "% s Kết thúc sau"
 
-#: porches/generic/site/home-body.php:172
-#: porches/generic/site/home-body.php:179 porches/generic/site/stats.php:199
-#: porches/ongoing/site/home-body.php:168
-#: porches/ongoing/site/home-body.php:175
-#: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169
-#, fuzzy
-msgid "days"
-msgstr "ngày"
-
 #: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:198
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:200
 #: porches/ongoing/site/home-body.php:169
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
@@ -742,28 +782,24 @@ msgstr "Số giờ còn lại"
 msgid "View All"
 msgstr "Xem tất cả"
 
-#: porches/generic/site/post-list-body.php:132
+#: porches/generic/site/post-list-body.php:133
 #, fuzzy
 msgid "Read"
 msgstr "Đọc"
 
-#: porches/generic/site/post-list-body.php:143
-msgid "Content will start in %s days"
-msgstr ""
-
-#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:243
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:245
 #: shortcodes/ongoing.php:271
 #, fuzzy
 msgid "Check your email"
 msgstr "Gởi! Kiểm tra hộp thư điện tử của bạn."
 
-#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:244
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:246
 #: shortcodes/ongoing.php:272
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "Đăng ký của bạn đã thành công."
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:246
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:248
 #: shortcodes/ongoing.php:274
 #, fuzzy
 msgid ""
@@ -773,7 +809,7 @@ msgstr ""
 "Nhấp vào liên kết có trong email để xác minh cam kết của bạn và nhận thông "
 "báo về thời gian cầu nguyện!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:249
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:251
 #: shortcodes/ongoing.php:277
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
@@ -810,17 +846,17 @@ msgstr "Cam kết cầu nguyện"
 msgid "Time Committed"
 msgstr "Thời gian cam kết"
 
-#: porches/generic/site/stats.php:205
+#: porches/generic/site/stats.php:206
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "Số người đã cầu nguyện"
 
-#: porches/generic/site/stats.php:238
+#: porches/generic/site/stats.php:239
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "Chia sẻ với chúng tôi những câu chuyện cầu nguyện của bạn"
 
-#: porches/generic/site/stats.php:252
+#: porches/generic/site/stats.php:253
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
@@ -829,12 +865,12 @@ msgstr ""
 "Chia sẻ với chúng tôi về thời gian cầu nguyện của bạn (ví dụ: lời chứng, "
 "hiểu biết sâu sắc, phước lành, v.v.)"
 
-#: porches/generic/site/stats.php:298
+#: porches/generic/site/stats.php:299
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "Nhiều cơ hội cầu nguyện hơn"
 
-#: porches/generic/site/stats.php:302
+#: porches/generic/site/stats.php:303
 #, fuzzy
 msgid ""
 "Would you like to hear about other prayer efforts and opportunities with "
@@ -930,68 +966,74 @@ msgstr "được bảo hiểm một lần"
 msgid "covered %1$s times"
 msgstr "bao phủ% 1 $ s lần"
 
-#: shortcodes/24hour.php:100
+#: shortcodes/24hour.php:101
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "Phần trăm được cầu nguyện"
 
-#: shortcodes/24hour.php:114 shortcodes/ongoing.php:145
+#: shortcodes/24hour.php:102
+#, fuzzy
+msgctxt "12.3 years committed"
+msgid "% committed"
+msgstr "Thời gian cam kết"
+
+#: shortcodes/24hour.php:116 shortcodes/ongoing.php:145
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "Đang tải dữ liệu chiến dịch cầu nguyện ..."
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:152
+#: shortcodes/24hour.php:123 shortcodes/ongoing.php:152
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "Chọn thời gian cầu nguyện"
 
-#: shortcodes/24hour.php:133 shortcodes/ongoing.php:164
+#: shortcodes/24hour.php:135 shortcodes/ongoing.php:164
 #, fuzzy
 msgid "Select an option"
 msgstr "Chọn một tùy chọn"
 
-#: shortcodes/24hour.php:136 shortcodes/ongoing.php:167
+#: shortcodes/24hour.php:138 shortcodes/ongoing.php:167
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "Cầu nguyện mỗi ngày vào cùng một thời điểm"
 
-#: shortcodes/24hour.php:138 shortcodes/ongoing.php:169
+#: shortcodes/24hour.php:140 shortcodes/ongoing.php:169
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Ví dụ: Hàng ngày lúc 4 giờ chiều trong 15 phút"
 
-#: shortcodes/24hour.php:141 shortcodes/ongoing.php:172
+#: shortcodes/24hour.php:143 shortcodes/ongoing.php:172
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "Chọn ngày và giờ để cầu nguyện"
 
-#: shortcodes/24hour.php:143 shortcodes/ongoing.php:174
+#: shortcodes/24hour.php:145 shortcodes/ongoing.php:174
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Ví dụ: Thứ Hai ngày 12 lúc 6 giờ chiều trong 15 phút"
 
-#: shortcodes/24hour.php:158
+#: shortcodes/24hour.php:160
 #, fuzzy
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr "Trong email là một liên kết để quản lý thời gian cầu nguyện của bạn."
 
-#: shortcodes/24hour.php:171 shortcodes/24hour.php:208
+#: shortcodes/24hour.php:173 shortcodes/24hour.php:210
 #: shortcodes/ongoing.php:200 shortcodes/ongoing.php:237
 #, fuzzy
 msgid "Showing times for:"
 msgstr "Thời gian hiển thị cho:"
 
-#: shortcodes/24hour.php:252 shortcodes/ongoing.php:280
+#: shortcodes/24hour.php:254 shortcodes/ongoing.php:280
 #, fuzzy
 msgid "OK"
 msgstr "ĐƯỢC RỒI"
 
-#: shortcodes/24hour.php:285 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "Chúng tôi không còn tìm kiếm các đăng ký nữa"
 
-#: shortcodes/24hour.php:286 shortcodes/ongoing.php:314
+#: shortcodes/24hour.php:288 shortcodes/ongoing.php:314
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "Cảm ơn vì đã cầu nguyện với chúng tôi!"
