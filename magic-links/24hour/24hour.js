@@ -224,6 +224,35 @@ jQuery(document).ready(function($) {
       display_selected_times();
     })
 
+    let display_missing_time_slots = function (){
+      let ordered_missing = [];
+      Object.keys(window.campaign_scripts.missing_slots).forEach(k=>{
+        ordered_missing.push({'label':k, slots:window.campaign_scripts.missing_slots[k]})
+      })
+
+      ordered_missing.sort((a,b)=>a.slots.length-b.slots.length)
+      if ( ordered_missing.length > 5 ){
+        $('#cp-missing-times-container').show()
+      }
+
+      let content = ``;
+      ordered_missing.slice(0, 5).forEach(m=>{
+        content += `<div class="missing-time-slot"><strong>${m.label}:</strong>&nbsp;`
+        if ( m.slots.length < 5 ){
+          content += m.slots.slice(0, 5).map(a=>{return window.campaign_scripts.timestamp_to_month_day(a)}).join(', ')
+        } else {
+          content += calendar_subscribe_object.translations.on_x_days.replace('%s', m.slots.length)
+        }
+        content += `</div>`
+      })
+      if( ordered_missing.length > 5 ){
+        content += `<div class="missing-time-slot"><strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong></div>`
+      }
+
+      $('#cp-missing-time-slots').html(content)
+    }
+    display_missing_time_slots()
+
 
 
     /**

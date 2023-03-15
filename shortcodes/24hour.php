@@ -34,6 +34,8 @@ function dt_24hour_campaign_register_scripts( $atts ){
                     'covered_x_times' => __( 'covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                     'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
                     'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
+                    'on_x_days' => _x( 'On %s days', 'on 5 days', 'disciple-tools-prayer-campaigns' ),
+                    'and_x_more' => _x( 'and %s more', 'and 5 more', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'parts' => [
                     'root' => $atts['root'],
@@ -122,6 +124,10 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
                 <button class="button cp-nav" id="open-select-times-button" data-open="cp-times-choose">
                     <?php esc_html_e( 'Choose Prayer Times', 'disciple-tools-prayer-campaigns' ); ?>
                 </button>
+            </div>
+            <div style='padding: 40px; display: none' class="cp-center" id="cp-missing-times-container">
+                <h3><?php esc_html_e( 'Help us cover these prayer times', 'disciple-tools-prayer-campaigns' ); ?></h3>
+                <div id='cp-missing-time-slots'></div>
             </div>
 
         </div>

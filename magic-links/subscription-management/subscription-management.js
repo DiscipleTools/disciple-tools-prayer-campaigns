@@ -3,6 +3,7 @@ let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Ame
 if ( calendar_subscribe_object.timezone ){
   current_time_zone = calendar_subscribe_object.timezone
 }
+let escaped_translations = window.SHAREDFUNCTIONS.escapeObject(calendar_subscribe_object.translations)
 const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / day_in_seconds
 
 let verified = false
@@ -44,6 +45,7 @@ jQuery(document).ready(function($){
 
   update_timezone()
   draw_calendar()
+  display_missing_time_slots()
 
   calculate_my_time_slot_coverage()
 
@@ -130,9 +132,9 @@ jQuery(document).ready(function($){
         html += `<tr>
           <td>${time}</td>
           <td>${calendar_subscribe_object.my_recurring[time].count}</td>
-          <td><button class="button change-time-bulk" data-key="${time}">${calendar_subscribe_object.translations.change_daily_time}</button></td>
+          <td><button class="button change-time-bulk" data-key="${time}">${escaped_translations.change_daily_time}</button></td>
           <td><button class="button outline delete-time-bulk" data-key="${time}">x</button></td>
-          <td><button class="button outline extend-time-bulk" data-key="${time}" ${last_report_time >= (now+21*day_in_seconds) ? "disabled":""}>${calendar_subscribe_object.translations.extend_3_months}</button></td>
+          <td><button class="button outline extend-time-bulk" data-key="${time}" ${last_report_time >= (now+21*day_in_seconds) ? "disabled":""}>${escaped_translations.extend_3_months}</button></td>
           </tr>
         `
       }
@@ -325,6 +327,33 @@ jQuery(document).ready(function($){
     $(`#calendar-content .calendar-month[data-month-index='${target}']`).show()
   })
 
+  function display_missing_time_slots(){
+    let ordered_missing = [];
+    Object.keys(window.campaign_scripts.missing_slots).forEach(k=>{
+      ordered_missing.push({'label':k, slots:window.campaign_scripts.missing_slots[k]})
+    })
+
+
+    ordered_missing.sort((a,b)=>a.slots.length-b.slots.length)
+    console.log(ordered_missing);
+
+    let content = ``;
+    ordered_missing.slice(0, 5).forEach(m=>{
+      content += `<div class="missing-time-slot"><strong>${m.label}:</strong>&nbsp;`
+      if ( m.slots.length < 5 ){
+        content += m.slots.slice(0, 5).map(a=>{return window.campaign_scripts.timestamp_to_month_day(a)}).join(', ')
+      } else {
+        content += escaped_translations.on_x_days.replace('%s', m.slots.length)
+      }
+      content += `</div>`
+    })
+    if( ordered_missing.length > 5 ){
+      content += `<div class="missing-time-slot"><strong>${escaped_translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong></div>`
+    }
+
+    $('#cp-missing-time-slots').html(content)
+  }
+
   /**
    * Show my commitment under each day
    */
@@ -392,8 +421,12 @@ jQuery(document).ready(function($){
     let day_times_content = $('#day-times-table-body')
     let times_html = ``
     let row_index = 0
+    console.log(day);
     day.slots.forEach(slot=>{
       let background_color = 'white'
+      if ( slot.key < calendar_subscribe_object.start_timestamp ){
+        background_color = 'rgba(0,0,0,0.44)'
+      }
       if ( slot.subscribers > 0) {
         background_color = '#1e90ff75'
       }
@@ -418,7 +451,7 @@ jQuery(document).ready(function($){
   function setup_daily_select(){
     let daily_time_select = $('#cp-daily-time-select')
 
-    let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
+    let select_html = `<option value="false">${escaped_translations.select_a_time}</option>`
 
     let time_index = 0;
     let start_of_today = new Date('2023-01-01')
@@ -430,11 +463,11 @@ jQuery(document).ready(function($){
       let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted].length === window.campaign_scripts.time_label_counts[time_formatted] : false;
       let level_covered =  window.campaign_scripts.time_slot_coverage[time_formatted] ? Math.min(...window.campaign_scripts.time_slot_coverage[time_formatted]) : 0
       if ( fully_covered && level_covered > 1  ){
-        text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
+        text = `(${escaped_translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
       } else if ( fully_covered ) {
-        text = `(${calendar_subscribe_object.translations.fully_covered_once})`
+        text = `(${escaped_translations.fully_covered_once})`
       } else if ( window.campaign_scripts.time_slot_coverage[time_formatted] ){
-        text = `${calendar_subscribe_object.translations.percent_covered.replace('%s', (window.campaign_scripts.time_slot_coverage[time_formatted].length / number_of_days * 100).toFixed(1) + '%')}`
+        text = `${escaped_translations.percent_covered.replace('%s', (window.campaign_scripts.time_slot_coverage[time_formatted].length / number_of_days * 100).toFixed(1) + '%')}`
       }
       select_html += `<option value="${window.lodash.escape(time_index)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
@@ -565,7 +598,7 @@ jQuery(document).ready(function($){
     });
     selected_times.forEach(time=>{
       html += `<li>
-          ${calendar_subscribe_object.translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )}
+          ${escaped_translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )}
           <button class="remove-prayer-time-button" data-time="${time.time}">x</button>
       </li>`
 
