@@ -170,7 +170,7 @@ class DT_Time_Utilities {
             $string .= $years_committed . ' ' .( $years_committed > 1 ? __( 'years', 'disciple-tools-prayer-campaigns' ) : __( 'year', 'disciple-tools-prayer-campaigns' ) );
             $string  .= ' ';
         }
-        $string .= $days_committed . ' ' .( $days_committed > 1 ? __( 'days', 'disciple-tools-prayer-campaigns' ) : __( 'day', 'disciple-tools-prayer-campaigns' ) );
+        $string .= $days_committed . ' ' . ( (int) $days_committed === 1 ? __( 'day', 'disciple-tools-prayer-campaigns' ) : __( 'days', 'disciple-tools-prayer-campaigns' ) );
         return $string;
     }
 

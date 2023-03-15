@@ -385,6 +385,9 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );
         $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
+        $lang = dt_campaign_get_current_lang();
+        dt_campaign_set_translation( $lang );
+
         $return = [
             'coverage_levels' => $coverage_levels,
             'number_of_time_slots' => $number_of_time_slots,
