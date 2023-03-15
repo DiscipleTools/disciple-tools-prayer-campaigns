@@ -33,6 +33,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
                     'covered_once' => __( 'covered once', 'disciple-tools-prayer-campaigns' ),
                     'covered_x_times' => __( 'covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                     'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
+                    'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'parts' => [
                     'root' => $atts['root'],

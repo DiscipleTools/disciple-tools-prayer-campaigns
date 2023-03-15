@@ -416,54 +416,33 @@ jQuery(document).ready(function($){
    * daily prayer time screen
    */
   function setup_daily_select(){
+    let daily_time_select = $('#cp-daily-time-select')
 
     let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
 
-    let coverage = {}
-    days.forEach(val=> {
-      let day = val.key
-      for ( const key in calendar_subscribe_object.current_commitments ){
-        if (!calendar_subscribe_object.current_commitments.hasOwnProperty(key)) {
-          continue;
-        }
-        if ( key >= day && key < day + day_in_seconds ){
-          //breaks on timezone change
-          // let mod_time = key % day_in_seconds
-          // let time_formatted = '';
-          // if ( window.campaign_scripts.processing_save[mod_time] ){
-          //   time_formatted = window.campaign_scripts.processing_save[mod_time]
-          // } else {
-          //   window.campaign_scripts.processing_save[mod_time] = time_formatted
-          // }
-          let  time_formatted = window.campaign_scripts.timestamp_to_time( parseInt(key), current_time_zone )
-          if ( !coverage[time_formatted]){
-            coverage[time_formatted] = [];
-          }
-          coverage[time_formatted].push(calendar_subscribe_object.current_commitments[key]);
-        }
-      }
-    })
-    let key = 0;
+    let time_index = 0;
     let start_of_today = new Date('2023-01-01')
     start_of_today.setHours(0,0,0,0)
     let start_time_stamp = start_of_today.getTime()/1000
-    while ( key < day_in_seconds ){
-      let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+key)
+    while ( time_index < day_in_seconds ){
+      let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+time_index)
       let text = ''
-      let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted] === number_of_days : false;
-      let level_covered = coverage[time_formatted] ? Math.min(...coverage[time_formatted]) : 0
+      let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted].length === window.campaign_scripts.time_label_counts[time_formatted] : false;
+      let level_covered =  window.campaign_scripts.time_slot_coverage[time_formatted] ? Math.min(...window.campaign_scripts.time_slot_coverage[time_formatted]) : 0
       if ( fully_covered && level_covered > 1  ){
         text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
       } else if ( fully_covered ) {
         text = `(${calendar_subscribe_object.translations.fully_covered_once})`
+      } else if ( window.campaign_scripts.time_slot_coverage[time_formatted] ){
+        text = `${calendar_subscribe_object.translations.percent_covered.replace('%s', (window.campaign_scripts.time_slot_coverage[time_formatted].length / number_of_days * 100).toFixed(1) + '%')}`
       }
-      select_html += `<option value="${window.lodash.escape(key)}">
+      select_html += `<option value="${window.lodash.escape(time_index)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }
-      </option>`
-      key += calendar_subscribe_object.slot_length * 60
+        </option>`
+      time_index += calendar_subscribe_object.slot_length * 60
     }
     daily_time_select.empty();
-    $('.cp-daily-time-select').html(select_html)
+    daily_time_select.html(select_html)
 
   }
 

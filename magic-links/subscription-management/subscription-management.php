@@ -111,6 +111,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
                     'extend_3_months' => __( 'Extend for 3 months', 'disciple-tools-prayer-campaigns' ),
                     'change_daily_time' => __( 'Change daily time', 'disciple-tools-prayer-campaigns' ),
+                    'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,

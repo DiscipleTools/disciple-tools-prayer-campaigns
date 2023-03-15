@@ -174,14 +174,14 @@ jQuery(document).ready(function($) {
       while ( time_index < day_in_seconds ){
         let time_formatted = window.campaign_scripts.timestamp_to_time(start_time_stamp+time_index)
         let text = ''
-        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted].length === number_of_days : false;
+        let fully_covered = window.campaign_scripts.time_slot_coverage[time_formatted] ? window.campaign_scripts.time_slot_coverage[time_formatted].length === window.campaign_scripts.time_label_counts[time_formatted] : false;
         let level_covered =  window.campaign_scripts.time_slot_coverage[time_formatted] ? Math.min(...window.campaign_scripts.time_slot_coverage[time_formatted]) : 0
         if ( fully_covered && level_covered > 1  ){
           text = `(${calendar_subscribe_object.translations.fully_covered_x_times.replace( '%1$s', level_covered)})`
         } else if ( fully_covered ) {
           text = `(${calendar_subscribe_object.translations.fully_covered_once})`
         } else if ( window.campaign_scripts.time_slot_coverage[time_formatted] ){
-          text = `(${ (window.campaign_scripts.time_slot_coverage[time_formatted].length / number_of_days * 100).toFixed(1) }% covered)`
+          text = `${calendar_subscribe_object.translations.percent_covered.replace('%s', (window.campaign_scripts.time_slot_coverage[time_formatted].length / number_of_days * 100).toFixed(1) + '%')}`
         }
         select_html += `<option value="${window.lodash.escape(time_index)}">
           ${window.lodash.escape(time_formatted)} ${ window.lodash.escape(text) }

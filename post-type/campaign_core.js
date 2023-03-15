@@ -6,6 +6,7 @@ window.campaign_scripts = {
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
+    window.campaign_scripts.time_label_counts = {}
     let days = [];
 
     let start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, current_time_zone )
@@ -53,6 +54,11 @@ window.campaign_scripts = {
         "formatted": time_formatted,
         "subscribers": parseInt(calendar_subscribe_object.current_commitments[time_iterator] || 0)
       })
+
+      if ( !window.campaign_scripts.time_label_counts[time_formatted] ){
+        window.campaign_scripts.time_label_counts[time_formatted] = 0
+      }
+      window.campaign_scripts.time_label_counts[time_formatted] += 1
 
       if ( calendar_subscribe_object.current_commitments[time_iterator] ){
         days[days.length-1].covered_slots += 1;
