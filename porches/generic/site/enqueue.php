@@ -3,14 +3,14 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 // Add Open Graph Protocol meta tags in header
 
 add_action( 'wp_head', function() {
-    $og_title = PORCH_TITLE;
-    $og_description = DT_Porch_Settings::get_field_translation( 'goal', PORCH_DEFAULT_LANGUAGE );
+    $og_title = DT_Porch_Settings::get_field_translation( 'title' );
+    $og_description = DT_Porch_Settings::get_field_translation( 'goal' );
     $og_url = get_site_url();
     ?>
 
 
     <!-- Open Graph Protocol -->
-    <meta property="og:title" content="<?php echo esc_attr( $og_title ); ?> - Pray4Movement"/>
+    <meta property="og:title" content="<?php echo esc_attr( $og_title ); ?>"/>
     <meta property="og:description" content="<?php echo esc_attr( $og_description ); ?>"/>
     <meta property="og:type" content="article"/>
     <meta property="og:url" content="<?php echo esc_attr( $og_url ); ?>"/>
