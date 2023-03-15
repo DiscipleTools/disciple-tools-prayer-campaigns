@@ -36,6 +36,7 @@ function dt_24hour_campaign_register_scripts( $atts ){
                     'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
                     'on_x_days' => _x( 'On %s days', 'on 5 days', 'disciple-tools-prayer-campaigns' ),
                     'and_x_more' => _x( 'and %s more', 'and 5 more', 'disciple-tools-prayer-campaigns' ),
+                    'pray_this_time' => __( 'Pray this time', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'parts' => [
                     'root' => $atts['root'],
@@ -83,6 +84,9 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
         .cp-wrapper button:hover {
             background-color: transparent;
             border-color: <?php echo esc_html( $color ) ?>;
+            color: <?php echo esc_html( $color ) ?>;
+        }
+        .cp-wrapper button.clear-button {
             color: <?php echo esc_html( $color ) ?>;
         }
         <?php if ( $backdrop ) : ?>

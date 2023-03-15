@@ -236,23 +236,54 @@ jQuery(document).ready(function($) {
       }
 
       let content = ``;
-      ordered_missing.slice(0, 5).forEach(m=>{
-        content += `<div class="missing-time-slot"><strong>${m.label}:</strong>&nbsp;`
+      let index = 0;
+      ordered_missing.forEach(m=>{
+        index++;
+        content += `<div class="missing-time-slot" style="${index>5?'display:none':''}"><strong>${m.label}:</strong>&nbsp;`
         if ( m.slots.length < 5 ){
           content += m.slots.slice(0, 5).map(a=>{return window.campaign_scripts.timestamp_to_month_day(a)}).join(', ')
         } else {
           content += calendar_subscribe_object.translations.on_x_days.replace('%s', m.slots.length)
         }
+        content += `.<button class="cp-select-missing-time clear-button" value="${m.label}" style="padding:5px">${calendar_subscribe_object.translations.pray_this_time}</button>`
         content += `</div>`
       })
       if( ordered_missing.length >= 5 ){
-        content += `<div class="missing-time-slot"><strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong></div>`
+        content += `<div class="missing-time-slot">
+          <button class="clear-button" style="border: none; padding: 2px; background-color: transparent; color: black;" id="cp-show-more-missing">
+            <strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong>
+          </button>
+        </div>`
       }
 
       $('#cp-missing-time-slots').html(content)
     }
     display_missing_time_slots()
 
+    $('#cp-show-more-missing').on('click', function (){
+      $('.missing-time-slot').show();
+      $('#cp-show-more-missing').hide();
+    })
+
+    $('.cp-select-missing-time').on('click', function (){
+      let label = $(this).val();
+      let times = window.campaign_scripts.missing_slots[label];
+      times.forEach(time=>{
+
+        let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+        let already_added = selected_times.find(k=>k.time===time)
+        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] && time < calendar_subscribe_object['end_timestamp'] ){
+          selected_times.push({time: time, duration: calendar_subscribe_object.slot_length, label: time_label})
+        }
+      })
+      display_selected_times();
+
+      $('.cp-view').hide()
+      let view_to_open = 'cp-view-confirm'
+      $(`#${view_to_open}`).show()
+      let elmnt = document.getElementById("cp-wrapper");
+      elmnt.scrollIntoView();
+    })
 
 
     /**

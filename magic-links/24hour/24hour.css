@@ -159,6 +159,11 @@
     opacity: .25;
     cursor: not-allowed;
 }
+.cp-wrapper button.clear-button {
+    background-color: transparent;
+    /*color: black;*/
+    padding:5px;
+}
 
 .cp-wrapper .form-error {
     display: none;

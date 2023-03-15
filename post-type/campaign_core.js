@@ -70,10 +70,12 @@ window.campaign_scripts = {
         }
         window.campaign_scripts.time_slot_coverage[time_formatted].push(calendar_subscribe_object.current_commitments[time_iterator]);
       } else {
-        if ( !window.campaign_scripts.missing_slots[time_formatted] ){
-          window.campaign_scripts.missing_slots[time_formatted] = []
+        if ( time_iterator >= calendar_subscribe_object.start_timestamp && time_iterator < calendar_subscribe_object.end_timestamp){
+          if ( !window.campaign_scripts.missing_slots[time_formatted] ){
+            window.campaign_scripts.missing_slots[time_formatted] = []
+          }
+          window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
         }
-        window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
       }
       time_iterator += calendar_subscribe_object.slot_length * 60;
     }
