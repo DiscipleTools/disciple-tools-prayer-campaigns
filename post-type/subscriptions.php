@@ -404,7 +404,7 @@ class DT_Subscriptions_Base {
                         <a class="button expanded hollow" onclick="copyToClipboard('<?php echo esc_url( $link ) ?>')">Copy Link</a>
                     </div>
                     <div class="cell small-6" style="padding:2px;">
-                        <a class="button expanded hollow" target="_blank" href="<?php echo esc_url( $link ) ?>')">Open</a>
+                        <a class="button expanded hollow" target="_blank" href="<?php echo esc_url( $link ) ?>">Open</a>
                     </div>
                 </div>
             </div>
