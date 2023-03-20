@@ -269,7 +269,6 @@ jQuery(document).ready(function($) {
       let label = $(this).val();
       let times = window.campaign_scripts.missing_slots[label];
       times.forEach(time=>{
-
         let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
         let already_added = selected_times.find(k=>k.time===time)
         if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] && time < calendar_subscribe_object['end_timestamp'] ){
@@ -447,7 +446,7 @@ jQuery(document).ready(function($) {
 
       let email_input = jQuery('#e2')
       let email = email_input.val()
-      if ( ! email ) {
+      if ( !email || !String(email).match(/^\S+@\S+\.\S+$/) ) {
         jQuery('#email-error').show()
         submit_spinner.hide()
         email_input.focus(function(){

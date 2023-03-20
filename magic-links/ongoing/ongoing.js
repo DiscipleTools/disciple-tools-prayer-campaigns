@@ -187,10 +187,13 @@ jQuery(document).ready(function($) {
 
     //submit form
     $('#cp-submit-form').on('click', function (){
-      if ( document.querySelector('#receive_pray4movement_news').checked ) {
-        const form = document.getElementById('mc-embedded-subscribe-form')
-        submitMailChimpSubscribe(form)
+      e.preventDefault()
+
+      if ( selected_times.length === 0 ) {
+        $('#cp-no-selected-times').show().fadeOut(5000)
+        return;
       }
+
       let submit_spinner = $('#cp-submit-form-spinner');
       let submit_button = jQuery('#cp-submit-form')
       submit_button.prop('disabled', true)
@@ -216,7 +219,7 @@ jQuery(document).ready(function($) {
 
       let email_input = jQuery('#e2')
       let email = email_input.val()
-      if ( ! email ) {
+      if ( !email || !String(email).match(/^\S+@\S+\.\S+$/) ) {
         jQuery('#email-error').show()
         submit_spinner.hide()
         email_input.focus(function(){
@@ -227,6 +230,11 @@ jQuery(document).ready(function($) {
       }
 
       let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
+
+      if ( document.querySelector('#receive_pray4movement_news').checked ) {
+        const form = document.getElementById('mc-embedded-subscribe-form')
+        submitMailChimpSubscribe(form)
+      }
 
       let data = {
         name: name,
