@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.5.5\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.5.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-20T10:10:05+00:00\n"
+"POT-Creation-Date: 2023-03-20T12:10:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -159,7 +159,7 @@ msgid "days"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:269
+#: magic-links/subscription-management/subscription-management.php:270
 msgid "My Prayer Times"
 msgstr ""
 
@@ -212,65 +212,70 @@ msgctxt "and 5 more"
 msgid "and %s more"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:274
+#: magic-links/subscription-management/subscription-management.php:117
+#: shortcodes/24hour.php:39
+msgid "Pray this time"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:275
 msgid "Your prayer times have been verified!"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:284
+#: magic-links/subscription-management/subscription-management.php:285
 #: shortcodes/24hour.php:270
 #: shortcodes/ongoing.php:286
 msgid "Change your timezone:"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:301
-#: magic-links/subscription-management/subscription-management.php:355
-#: magic-links/subscription-management/subscription-management.php:417
-#: magic-links/subscription-management/subscription-management.php:476
-#: magic-links/subscription-management/subscription-management.php:522
-#: magic-links/subscription-management/subscription-management.php:546
-#: magic-links/subscription-management/subscription-management.php:562
-#: magic-links/subscription-management/subscription-management.php:618
+#: magic-links/subscription-management/subscription-management.php:302
+#: magic-links/subscription-management/subscription-management.php:356
+#: magic-links/subscription-management/subscription-management.php:418
+#: magic-links/subscription-management/subscription-management.php:477
+#: magic-links/subscription-management/subscription-management.php:523
+#: magic-links/subscription-management/subscription-management.php:547
+#: magic-links/subscription-management/subscription-management.php:563
+#: magic-links/subscription-management/subscription-management.php:619
 #: shortcodes/24hour.php:288
 #: shortcodes/ongoing.php:304
 msgid "Cancel"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:304
-#: magic-links/subscription-management/subscription-management.php:525
+#: magic-links/subscription-management/subscription-management.php:305
+#: magic-links/subscription-management/subscription-management.php:526
 #: shortcodes/24hour.php:291
 #: shortcodes/ongoing.php:307
 msgid "Select"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:316
 msgid "Add a Daily Prayer Time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:318
+#: magic-links/subscription-management/subscription-management.php:319
 msgid "Add Individual Prayer Times"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:320
+#: magic-links/subscription-management/subscription-management.php:321
 msgid "Download Calendar"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:323
+#: magic-links/subscription-management/subscription-management.php:324
 #: shortcodes/24hour.php:133
 msgid "Help us cover these prayer times"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:327
+#: magic-links/subscription-management/subscription-management.php:328
 msgid "My commitments"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:332
+#: magic-links/subscription-management/subscription-management.php:333
 #: shortcodes/24hour.php:173
 #: shortcodes/ongoing.php:190
 msgid "Prayer Time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:334
-#: magic-links/subscription-management/subscription-management.php:443
+#: magic-links/subscription-management/subscription-management.php:335
+#: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:175
 #: shortcodes/24hour.php:208
 #: shortcodes/ongoing.php:192
@@ -278,8 +283,8 @@ msgstr ""
 msgid "Daily Time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:338
-#: magic-links/subscription-management/subscription-management.php:447
+#: magic-links/subscription-management/subscription-management.php:339
+#: magic-links/subscription-management/subscription-management.php:448
 #: shortcodes/24hour.php:179
 #: shortcodes/24hour.php:212
 #: shortcodes/ongoing.php:196
@@ -287,13 +292,13 @@ msgstr ""
 msgid "For how long"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:348
-#: magic-links/subscription-management/subscription-management.php:469
+#: magic-links/subscription-management/subscription-management.php:349
+#: magic-links/subscription-management/subscription-management.php:470
 msgid "Your new prayer times have been saved."
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:359
-#: magic-links/subscription-management/subscription-management.php:480
+#: magic-links/subscription-management/subscription-management.php:360
+#: magic-links/subscription-management/subscription-management.php:481
 #: shortcodes/24hour.php:186
 #: shortcodes/24hour.php:230
 #: shortcodes/ongoing.php:203
@@ -301,60 +306,60 @@ msgstr ""
 msgid "Confirm Times"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:368
-#: magic-links/subscription-management/subscription-management.php:492
+#: magic-links/subscription-management/subscription-management.php:369
+#: magic-links/subscription-management/subscription-management.php:493
 msgid "ok"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:399
+#: magic-links/subscription-management/subscription-management.php:400
 msgid "Close"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:406
+#: magic-links/subscription-management/subscription-management.php:407
 msgid "Delete Time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:411
-#: magic-links/subscription-management/subscription-management.php:540
-#: magic-links/subscription-management/subscription-management.php:610
+#: magic-links/subscription-management/subscription-management.php:412
+#: magic-links/subscription-management/subscription-management.php:541
+#: magic-links/subscription-management/subscription-management.php:611
 msgid ""
 "Need to cancel? We get it! But wait!\n"
 "If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.\n"
 "That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:420
-#: magic-links/subscription-management/subscription-management.php:549
-#: magic-links/subscription-management/subscription-management.php:601
-#: magic-links/subscription-management/subscription-management.php:621
+#: magic-links/subscription-management/subscription-management.php:421
+#: magic-links/subscription-management/subscription-management.php:550
+#: magic-links/subscription-management/subscription-management.php:602
+#: magic-links/subscription-management/subscription-management.php:622
 msgid "Delete"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:434
+#: magic-links/subscription-management/subscription-management.php:435
 #: shortcodes/24hour.php:198
 #: shortcodes/ongoing.php:215
 msgid "Select a day and choose a time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:441
+#: magic-links/subscription-management/subscription-management.php:442
 #: shortcodes/24hour.php:206
 #: shortcodes/ongoing.php:223
 msgid "Select a prayer time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:451
+#: magic-links/subscription-management/subscription-management.php:452
 #: shortcodes/24hour.php:216
 #: shortcodes/ongoing.php:233
 msgid "Add prayer time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:452
+#: magic-links/subscription-management/subscription-management.php:453
 #: shortcodes/24hour.php:217
 #: shortcodes/ongoing.php:234
 msgid "Time added"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:459
+#: magic-links/subscription-management/subscription-management.php:460
 #: shortcodes/24hour.php:224
 #: shortcodes/24hour.php:246
 #: shortcodes/ongoing.php:241
@@ -362,13 +367,13 @@ msgstr ""
 msgid "Selected Times"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:461
+#: magic-links/subscription-management/subscription-management.php:462
 #: shortcodes/24hour.php:226
 #: shortcodes/ongoing.php:243
 msgid "No selected Time"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:484
+#: magic-links/subscription-management/subscription-management.php:485
 #: shortcodes/24hour.php:143
 #: shortcodes/24hour.php:166
 #: shortcodes/24hour.php:195
@@ -380,60 +385,60 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:517
+#: magic-links/subscription-management/subscription-management.php:518
 msgid "Choose a different time:"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:534
+#: magic-links/subscription-management/subscription-management.php:535
 msgid "Delete all"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:558
+#: magic-links/subscription-management/subscription-management.php:559
 msgid "Extend"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:560
+#: magic-links/subscription-management/subscription-management.php:561
 msgid "Extend my prayer commitments until:"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:565
+#: magic-links/subscription-management/subscription-management.php:566
 #: parts/components.php:45
 msgid "Confirm"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:584
+#: magic-links/subscription-management/subscription-management.php:585
 msgid "Profile Settings"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:585
+#: magic-links/subscription-management/subscription-management.php:586
 msgid "Receive prayer time notifications"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:587
+#: magic-links/subscription-management/subscription-management.php:588
 msgid "Notifications allowed"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:588
+#: magic-links/subscription-management/subscription-management.php:589
 msgid "Notifications not allowed"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:592
+#: magic-links/subscription-management/subscription-management.php:593
 msgid "Advanced Settings"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:599
+#: magic-links/subscription-management/subscription-management.php:600
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:604
+#: magic-links/subscription-management/subscription-management.php:605
 msgid "Are you sure you want to delete your profile?"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:606
+#: magic-links/subscription-management/subscription-management.php:607
 msgid "This can not be undone."
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:637
+#: magic-links/subscription-management/subscription-management.php:638
 msgid "This subscription has ended or is not configured correctly."
 msgstr ""
 
@@ -793,10 +798,6 @@ msgstr ""
 #: shortcodes/24hour.php:34
 #: shortcodes/ongoing.php:74
 msgid "covered %1$s times"
-msgstr ""
-
-#: shortcodes/24hour.php:39
-msgid "Pray this time"
 msgstr ""
 
 #: shortcodes/24hour.php:107
