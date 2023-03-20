@@ -250,7 +250,7 @@ jQuery(document).ready(function($) {
       })
       if( ordered_missing.length >= 5 ){
         content += `<div class="missing-time-slot">
-          <button class="clear-button" style="border: none; padding: 2px; background-color: transparent; color: black;" id="cp-show-more-missing">
+          <button class="clear-button" style="border: none; padding: 2px; background-color: transparent;" id="cp-show-more-missing">
             <strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong>
           </button>
         </div>`
@@ -260,12 +260,12 @@ jQuery(document).ready(function($) {
     }
     display_missing_time_slots()
 
-    $('#cp-show-more-missing').on('click', function (){
+    $(document).on('click', '#cp-show-more-missing', function (){
       $('.missing-time-slot').show();
       $('#cp-show-more-missing').hide();
     })
 
-    $('.cp-select-missing-time').on('click', function (){
+    $(document).on('click', '.cp-select-missing-time', function (){
       let label = $(this).val();
       let times = window.campaign_scripts.missing_slots[label];
       times.forEach(time=>{
@@ -410,6 +410,7 @@ jQuery(document).ready(function($) {
       populate_daily_select()
       draw_calendar()
       draw_modal_calendar()
+      display_missing_time_slots()
     })
 
     //submit form

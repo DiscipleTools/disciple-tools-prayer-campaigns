@@ -63,6 +63,7 @@ jQuery(document).ready(function($){
     draw_calendar()
     display_my_commitments()
     draw_modal_calendar()
+    display_missing_time_slots()
   })
   /**
    * Remove a prayer time
@@ -361,12 +362,12 @@ jQuery(document).ready(function($){
 
     $('#cp-missing-time-slots').html(content)
   }
-  $('#cp-show-more-missing').on('click', function (){
+  $(document).on('click', '#cp-show-more-missing', function (){
     $('.missing-time-slot').show();
     $('#cp-show-more-missing').hide();
   })
 
-  $('.cp-select-missing-time').on('click', function (){
+  $(document).on('click', '.cp-select-missing-time', function (){
     let label = $(this).val();
     let times = window.campaign_scripts.missing_slots[label];
     times.forEach(time=>{
@@ -480,7 +481,7 @@ jQuery(document).ready(function($){
    * daily prayer time screen
    */
   function setup_daily_select(){
-    let daily_time_select = $('#cp-daily-time-select')
+    let daily_time_select = $('.cp-daily-time-select')
 
     let select_html = `<option value="false">${escaped_translations.select_a_time}</option>`
 
