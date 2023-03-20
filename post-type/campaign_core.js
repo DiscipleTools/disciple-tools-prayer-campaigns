@@ -50,12 +50,13 @@ window.campaign_scripts = {
         time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
         window.campaign_scripts.processing_save[mod_time] = time_formatted
       }
-
-      days[days.length-1]["slots"].push({
-        "key": time_iterator,
-        "formatted": time_formatted,
-        "subscribers": parseInt(calendar_subscribe_object.current_commitments[time_iterator] || 0)
-      })
+      if ( time_iterator >= calendar_subscribe_object.start_timestamp && time_iterator < calendar_subscribe_object.end_timestamp) {
+        days[days.length - 1]["slots"].push({
+          "key": time_iterator,
+          "formatted": time_formatted,
+          "subscribers": parseInt(calendar_subscribe_object.current_commitments[time_iterator] || 0)
+        })
+      }
 
       if ( !window.campaign_scripts.time_label_counts[time_formatted] ){
         window.campaign_scripts.time_label_counts[time_formatted] = 0
