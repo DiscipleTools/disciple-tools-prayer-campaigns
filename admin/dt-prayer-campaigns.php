@@ -70,7 +70,7 @@ class DT_Prayer_Campaigns_Campaigns {
         $fields = [
             'name' => 'Campaign',
             'type' => $campaign_type,
-            'start_date' => time(),
+            'start_date' => dt_format_date( time(), 'Y-m-d' ),
             'status' => 'active',
         ];
 
@@ -80,7 +80,7 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
             $fields['name'] = 'Ramadan Campaign';
         } else if ( $campaign_type === '24hour' ) {
-            $fields['end_date'] = time() + 30 * DAY_IN_SECONDS;
+            $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
             $fields['name'] = 'Fixed Dates Campaign';
         } elseif ( $campaign_type === 'ongoing' ){
             $fields['name'] = 'Ongoing Campaign';

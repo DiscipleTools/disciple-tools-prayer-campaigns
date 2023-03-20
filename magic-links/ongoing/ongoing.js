@@ -186,7 +186,7 @@ jQuery(document).ready(function($) {
 
 
     //submit form
-    $('#cp-submit-form').on('click', function (){
+    $('#cp-submit-form').on('click', function (e){
       e.preventDefault()
 
       if ( selected_times.length === 0 ) {

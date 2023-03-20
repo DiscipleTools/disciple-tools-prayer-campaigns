@@ -19,7 +19,7 @@ class DT_Time_Utilities {
         while ( $start <= $end ) {
 
             $time_begin = $start;
-            $end_of_day = $start + 86400;
+            $end_of_day = $start + DAY_IN_SECONDS;
 
             while ( $time_begin < $end_of_day ) {
                 if ( !isset( $data[$start] ) ) {
@@ -41,7 +41,7 @@ class DT_Time_Utilities {
                 $time_begin = $time_begin + $min_time_duration * 60; // add x minutes
             } // end while
 
-            $start = $start + 86400; // add a day
+            $start = $start + DAY_IN_SECONDS; // add a day
         } // end while
 
         foreach ( $data as $index => $value ) {
@@ -77,7 +77,7 @@ class DT_Time_Utilities {
                 AND time_begin >= %d
                 AND time_begin <= %d
                 GROUP BY time_begin, time_end
-            ", $campaign_post_id, $start - 86400, $end
+            ", $campaign_post_id, $start - DAY_IN_SECONDS, $end
         ), ARRAY_A );
 
         $times_list = [];
@@ -116,12 +116,12 @@ class DT_Time_Utilities {
                 $dt_now = new DateTime();
                 // Set a non-default timezone if needed
                 $dt_now->setTimezone( new DateTimeZone( $post['campaign_timezone']['key'] ) );
-                $dt_now->setTimestamp( $post['start_date']['timestamp'] );
+                $dt_now->setTimestamp( strtotime( $post['start_date']['formatted'] ) );
                 $off = $dt_now->getOffset();
                 return $dt_now->getTimestamp() - $off;
             }
         }
-        return isset( $post['start_date']['timestamp'] ) ? $post['start_date']['timestamp'] : time();
+        return isset( $post['start_date']['formatted'] ) ? strtotime( $post['start_date']['formatted'] ) : time();
     }
 
     public static function end_of_campaign_with_timezone( $post_id, $month_limit = null, $start = null ){

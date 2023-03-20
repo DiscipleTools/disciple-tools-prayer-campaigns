@@ -918,9 +918,9 @@ class DT_Campaigns_Base {
         ) );
     }
 
-    public static function query_coverage_percentage( $campaign_post_id ) {
+    public static function query_coverage_percentage( $campaign_post_id, $month_limit = 2 ) {
         $percent = 0;
-        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id );
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
         $record = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $min_time_duration = 15;
         if ( isset( $record['min_time_duration']['key'] ) ){
@@ -938,7 +938,7 @@ class DT_Campaigns_Base {
             $blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
             $percent = $blocks_covered / $blocks * 100;
         }
-        return round( $percent, 1 );
+        return round( $percent, 2 );
     }
 
     public static function query_coverage_levels_progress( $campaign_post_id, $month_limit = 2 ) {
@@ -1002,7 +1002,7 @@ class DT_Campaigns_Base {
         }
         if ( isset( $campaign['start_date']['timestamp'], $campaign['end_date']['timestamp'] ) ){
             $duration_in_seconds = (int) $campaign['end_date']['timestamp'] - (int) $campaign['start_date']['timestamp'];
-            $duration_in_seconds += 86400; // end of last day.
+            $duration_in_seconds += DAY_IN_SECONDS; // end of last day.
             $number_of_time_slots = $duration_in_seconds / ( $min_time_duration * 60 );
             return $number_of_time_slots;
         }
