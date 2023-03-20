@@ -114,6 +114,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
                     'on_x_days' => _x( 'On %s days', 'on 5 days', 'disciple-tools-prayer-campaigns' ),
                     'and_x_more' => _x( 'and %s more', 'and 5 more', 'disciple-tools-prayer-campaigns' ),
+                    'pray_this_time' => __( 'Pray this time', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,
@@ -319,7 +320,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 </button>
                 <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
-            <div style="padding: 20px">
+            <div style='padding: 40px; display: none' class='center' id='cp-missing-times-container'>
                 <h3><?php esc_html_e( 'Help us cover these prayer times', 'disciple-tools-prayer-campaigns' ); ?></h3>
                 <div id='cp-missing-time-slots'></div>
             </div>

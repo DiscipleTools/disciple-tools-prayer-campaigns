@@ -333,26 +333,57 @@ jQuery(document).ready(function($){
       ordered_missing.push({'label':k, slots:window.campaign_scripts.missing_slots[k]})
     })
 
-
     ordered_missing.sort((a,b)=>a.slots.length-b.slots.length)
-    console.log(ordered_missing);
+    if ( ordered_missing.length > 0 ){
+      $('#cp-missing-times-container').show()
+    }
 
     let content = ``;
-    ordered_missing.slice(0, 5).forEach(m=>{
-      content += `<div class="missing-time-slot"><strong>${m.label}:</strong>&nbsp;`
+    let index = 0;
+    ordered_missing.forEach(m=>{
+      index++;
+      content += `<div class="missing-time-slot" style="${index>5?'display:none':''}"><strong>${m.label}:</strong>&nbsp;`
       if ( m.slots.length < 5 ){
         content += m.slots.slice(0, 5).map(a=>{return window.campaign_scripts.timestamp_to_month_day(a)}).join(', ')
       } else {
-        content += escaped_translations.on_x_days.replace('%s', m.slots.length)
+        content += calendar_subscribe_object.translations.on_x_days.replace('%s', m.slots.length)
       }
+      // content += `.<button class="cp-select-missing-time clear-button" value="${m.label}" style="padding:5px">${calendar_subscribe_object.translations.pray_this_time}</button>`
       content += `</div>`
     })
-    if( ordered_missing.length > 5 ){
-      content += `<div class="missing-time-slot"><strong>${escaped_translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong></div>`
+    if( ordered_missing.length >= 5 ){
+      content += `<div class="missing-time-slot">
+          <button class="button" id="cp-show-more-missing">
+            <strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong>
+          </button>
+        </div>`
     }
 
     $('#cp-missing-time-slots').html(content)
   }
+  $('#cp-show-more-missing').on('click', function (){
+    $('.missing-time-slot').show();
+    $('#cp-show-more-missing').hide();
+  })
+
+  $('.cp-select-missing-time').on('click', function (){
+    let label = $(this).val();
+    let times = window.campaign_scripts.missing_slots[label];
+    times.forEach(time=>{
+      let time_label = window.campaign_scripts.timestamp_to_format( time, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
+      let already_added = selected_times.find(k=>k.time===time)
+      if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] && time < calendar_subscribe_object['end_timestamp'] ){
+        selected_times.push({time: time, duration: calendar_subscribe_object.slot_length, label: time_label})
+      }
+    })
+    display_selected_times();
+
+    $('.cp-view').hide()
+    let view_to_open = 'cp-view-confirm'
+    $(`#${view_to_open}`).show()
+    let elmnt = document.getElementById("cp-wrapper");
+    elmnt.scrollIntoView();
+  })
 
   /**
    * Show my commitment under each day
@@ -416,7 +447,7 @@ jQuery(document).ready(function($){
   function draw_day_coverage_content_modal( day_timestamp ){
     $('#view-times-modal').foundation('open')
     let list_title = jQuery('#list-modal-title')
-    let day=days.find(k=>k.key===day_timestamp)
+    let day=days.find(k=>k.day_start_zoned===day_timestamp)
     list_title.empty().html(`<h2 class="section_title">${window.lodash.escape(day.formatted)}</h2>`)
     let day_times_content = $('#day-times-table-body')
     let times_html = ``
