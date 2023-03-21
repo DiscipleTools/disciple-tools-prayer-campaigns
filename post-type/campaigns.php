@@ -599,21 +599,20 @@ class DT_Campaigns_Base {
                 .done(function(data){
                     let content = `<style>#cover-table td:hover {border: 1px solid darkslateblue;}</style><div class="table-scroll"><table id="cover-table" class="center">`
                     /* top row */
-                    jQuery.each(data, function(i,v){
-                        content += `<tr><th></th>`
-                        let c = 0
-                        jQuery.each(v.hours, function(ii,vv){
-                            if ( c >= 20 ){
-                                 content += `<th></th>`
-                                c = 0
-                            } else {
-                                c++
-                            }
-                            content += `<th>${window.lodash.escape(vv.formatted)}</th>`
-                        })
-                        content += `</tr>`
-                        return false // looping only once for the column titles
+                    content += `<tr><th></th>`
+                    let column_count = 0
+                    console.log(Object.keys(data));
+                    jQuery.each(data[Object.keys(data)[1]].hours, function(i,time_slot){
+                        if ( column_count >= 20 ){
+                             content += `<th></th>`
+                            column_count = 0
+                        } else {
+                            column_count++
+                        }
+                        content += `<th>${window.lodash.escape(time_slot.formatted)}</th>`
                     })
+                    content += `</tr>`
+
                     /* table body */
                     jQuery.each(data, function(i,day){
                         content += `<tr><th style="white-space:nowrap">${window.lodash.escape(day.formatted)}</th>`
@@ -926,21 +925,16 @@ class DT_Campaigns_Base {
     public static function query_coverage_percentage( $campaign_post_id, $month_limit = 2 ) {
         $percent = 0;
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
-        $record = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
-        $min_time_duration = 15;
-        if ( isset( $record['min_time_duration']['key'] ) ){
-            $min_time_duration = $record['min_time_duration']['key'];
-        }
+        //or time commitments / campaign length / prayer time duration * 100
 
-        $day_count = 0;
         $blocks_covered = 0;
+        $blocks = 0;
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
-                $day_count++;
                 $blocks_covered += $day['blocks_covered'];
+                $blocks += $day['time_slot_count'];
             }
 
-            $blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
             $percent = $blocks_covered / $blocks * 100;
         }
         return round( $percent, 2 );
@@ -948,19 +942,14 @@ class DT_Campaigns_Base {
 
     public static function query_coverage_levels_progress( $campaign_post_id, $month_limit = 2 ) {
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
-        $record = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
-        $min_time_duration = 15;
-        if ( isset( $record['min_time_duration']['key'] ) ){
-            $min_time_duration = $record['min_time_duration']['key'];
-        }
 
-        $day_count = 0;
+        $blocks = 0;
         $blocks_covered = [];
         $res = [];
         $highest_number = 1;
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
-                $day_count++;
+                $blocks += $day['time_slot_count'];
                 foreach ( $day['hours'] as $hour ){
                     if ( $hour['subscribers'] > 0 ){
                         $highest_number = max( $hour['subscribers'], $highest_number );
@@ -986,9 +975,8 @@ class DT_Campaigns_Base {
                     }
                 }
             }
-            $total_blocks = $day_count * ( 24 * 60 ) / $min_time_duration; // number of blocks of x minutes for a 24 hour period
             foreach ( $res as &$r ){
-                $r['percent'] = round( $r['blocks_covered'] / $total_blocks * 100, 2 );
+                $r['percent'] = round( $r['blocks_covered'] / $blocks * 100, 2 );
             }
         }
         return $res;

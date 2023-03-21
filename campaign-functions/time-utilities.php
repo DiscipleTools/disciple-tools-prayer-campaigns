@@ -30,10 +30,17 @@ class DT_Time_Utilities {
                         'formatted' => gmdate( 'F d', $start ),
                         'percent' => 0,
                         'blocks_covered' => 0,
-                        'hours' => []
+                        'hours' => [],
+                        'time_slot_count' => 0,
                     ];
                 }
 
+                $outside_of_campaign = $time_begin < $start_with_tz || $time_begin > $end;
+
+
+                if ( !$outside_of_campaign ){
+                    $data[$start]['time_slot_count']++;
+                }
                 $data[$start]['hours'][] = [
                     'key' => $time_begin,
                     'formatted' => gmdate( 'H:i', $time_begin - $start ),
@@ -41,22 +48,23 @@ class DT_Time_Utilities {
                     'outside_of_campaign' => $time_begin < $start_with_tz || $time_begin > $end
                 ];
 
+
                 $time_begin = $time_begin + $min_time_duration * 60; // add x minutes
             } // end while
 
             $start = $start + DAY_IN_SECONDS; // add a day
         } // end while
 
-        foreach ( $data as $index => $value ) {
+        foreach ( $data as $index => $day ) {
             $covered = 0;
-            foreach ( $value['hours'] as $time ) {
+            foreach ( $day['hours'] as $time ) {
                 if ( $time['subscribers'] > 0 ){
                     $covered++;
                 }
             }
 
             if ( $covered > 0 ){
-                $percent = $covered / ( ( 24 * 60 ) / $min_time_duration ) * 100; // number of x minute blocks for 24 hours. different block size will require different math
+                $percent = $covered / $day['time_slot_count'] * 100; // number of x minute blocks for 24 hours. different block size will require different math
                 $data[$index]['percent'] = $percent;
                 $data[$index]['blocks_covered'] = $covered;
             }
