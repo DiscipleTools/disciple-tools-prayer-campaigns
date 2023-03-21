@@ -584,7 +584,11 @@ class DT_Campaigns_Base {
 
             /* campaign coverage */
             $('#campaign_coverage_chart').on('click', function(e){
-                $('#modal-full-title').empty().html(`<h2>Coverage Chart</h2><span style="font-size:.7em;">Cells contain subscriber count per block of time.</span><hr>`)
+                $('#modal-full-title').empty().html(`
+                    <h2>Coverage Chart</h2>
+                    <span style="font-size:.7em;">Cells contain subscriber count per block of time. Times shown in UTC (GMT+0) time.</span>
+
+                <hr>`)
 
                 let container = $('#modal-full-content')
                 container.empty().html(`
@@ -593,7 +597,6 @@ class DT_Campaigns_Base {
 
                 makeRequest( 'GET', 'coverage', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
                 .done(function(data){
-                    //console.log(data)
                     let content = `<style>#cover-table td:hover {border: 1px solid darkslateblue;}</style><div class="table-scroll"><table id="cover-table" class="center">`
                     /* top row */
                     jQuery.each(data, function(i,v){
@@ -612,21 +615,23 @@ class DT_Campaigns_Base {
                         return false // looping only once for the column titles
                     })
                     /* table body */
-                    jQuery.each(data, function(i,v){
-                        content += `<tr><th style="white-space:nowrap">${window.lodash.escape(v.formatted)}</th>`
-                        let c = 0
-                        jQuery.each(v.hours, function(ii,vv){
-                            if ( c >= 20 ){
-                                 content += `<th style="white-space:nowrap">${window.lodash.escape(v.formatted)}</th>`
-                                c = 0
+                    jQuery.each(data, function(i,day){
+                        content += `<tr><th style="white-space:nowrap">${window.lodash.escape(day.formatted)}</th>`
+                        let column_count = 0
+                        jQuery.each(day.hours, function(ii,time_slot){
+                            if ( column_count >= 20 ){
+                                 content += `<th style="white-space:nowrap">${window.lodash.escape(day.formatted)}</th>`
+                                column_count = 0
                             } else {
-                                c++
+                                column_count++
                             }
-                            if ( vv.subscribers > 0 ){
-                                    content += `<td style="background-color:lightblue;">${window.lodash.escape(vv.subscribers)}</td>`
-                                } else {
-                                    content += `<td>${window.lodash.escape(vv.subscribers)}</td>`
-                                }
+                            if ( time_slot.outside_of_campaign ){
+                                content += `<td style="background-color:grey;">-</td>`
+                            } else if ( time_slot.subscribers > 0 ){
+                                content += `<td style="background-color:lightblue;">${window.lodash.escape(time_slot.subscribers)}</td>`
+                            } else {
+                                content += `<td>${window.lodash.escape(time_slot.subscribers)}</td>`
+                            }
                         })
 
                         content += `</tr>`

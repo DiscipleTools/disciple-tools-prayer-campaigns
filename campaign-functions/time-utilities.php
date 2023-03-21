@@ -10,8 +10,10 @@ class DT_Time_Utilities {
         $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
 
         $min_time_duration = self::campaign_min_prayer_duration( $post_id );
-        $start = self::start_of_campaign_with_timezone( $post_id );
-        $end = self::end_of_campaign_with_timezone( $post_id, $month_limit, $start );
+        $start_with_tz = self::start_of_campaign_with_timezone( $post_id );
+        $end = self::end_of_campaign_with_timezone( $post_id, $month_limit, $start_with_tz );
+
+        $start = strtotime( gmdate( 'Y-m-d', $start_with_tz ) );
 
         $current_times_list = self::get_current_commitments( $record['ID'], $month_limit );
 
@@ -22,7 +24,7 @@ class DT_Time_Utilities {
             $end_of_day = $start + DAY_IN_SECONDS;
 
             while ( $time_begin < $end_of_day ) {
-                if ( !isset( $data[$start] ) ) {
+                if ( !isset( $data[$start] ) ){
                     $data[$start] = [
                         'key' => $start,
                         'formatted' => gmdate( 'F d', $start ),
@@ -36,6 +38,7 @@ class DT_Time_Utilities {
                     'key' => $time_begin,
                     'formatted' => gmdate( 'H:i', $time_begin - $start ),
                     'subscribers' => $current_times_list[$time_begin] ?? 0,
+                    'outside_of_campaign' => $time_begin < $start_with_tz || $time_begin > $end
                 ];
 
                 $time_begin = $time_begin + $min_time_duration * 60; // add x minutes
