@@ -86,6 +86,17 @@ function dt_campaign_get_current_lang(): string {
     return $lang;
 }
 
+function dt_campaign_set_translation( $lang ){
+    if ( $lang !== 'en_US' ){
+        add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
+            if ( !empty( $lang ) ){
+                return $lang;
+            }
+            return $locale;
+        }, 1000, 1 );
+        dt_campaign_reload_text_domain();
+    }
+}
 function dt_campaign_reload_text_domain(){
     load_plugin_textdomain( 'disciple-tools-prayer-campaigns', false, trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) ). 'languages' );
 }

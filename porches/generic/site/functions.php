@@ -24,17 +24,7 @@ function dt_campaign_language_direction( string $lang ) {
     return ( new DT_Campaign_Languages() )->get_language_direction( $lang );
 }
 
-function dt_campaign_set_translation( $lang ){
-    if ( $lang !== 'en_US' ){
-        add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
-            if ( !empty( $lang ) ){
-                return $lang;
-            }
-            return $locale;
-        }, 1000, 1 );
-        dt_campaign_reload_text_domain();
-    }
-}
+
 
 function dt_campaign_custom_dir_attr( $lang ){
     if ( is_admin() ) {
