@@ -792,6 +792,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) A prayer time close to the campaign start has been deleted", 'comment', [], false, false );
             }
         }
+        do_action( 'subscriptions_removed', $campaign_id, $post_id );
         return true;
     }
 
@@ -859,6 +860,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
         foreach ( $params['report_ids'] as $id ){
             $this->delete_subscription( $post['ID'], $id );
         }
+        do_action( 'subscriptions_removed', $campaign_id, $post_id );
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
 
