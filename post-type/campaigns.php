@@ -951,7 +951,7 @@ class DT_Campaigns_Base {
             foreach ( $times_list as $day ){
                 $blocks += $day['time_slot_count'];
                 foreach ( $day['hours'] as $hour ){
-                    if ( $hour['subscribers'] > 0 && !$hour['outside_of_campaign']){
+                    if ( $hour['subscribers'] > 0 && !$hour['outside_of_campaign'] ){
                         $highest_number = max( $hour['subscribers'], $highest_number );
                         if ( !isset( $blocks_covered[$hour['subscribers']] ) ){
                             $blocks_covered[$hour['subscribers']] = 0;
