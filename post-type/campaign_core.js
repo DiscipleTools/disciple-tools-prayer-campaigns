@@ -14,6 +14,7 @@ window.campaign_scripts = {
     let time_iterator = parseInt( start_of_day );
 
     let timezone_change_ref = this.timestamp_to_time( time_iterator, custom_timezone )
+    let now = new Date().getTime() / 1000;
 
     while ( time_iterator < calendar_subscribe_object.end_timestamp ){
 
@@ -56,26 +57,27 @@ window.campaign_scripts = {
           "formatted": time_formatted,
           "subscribers": parseInt(calendar_subscribe_object.current_commitments[time_iterator] || 0)
         })
-      }
 
-      if ( !window.campaign_scripts.time_label_counts[time_formatted] ){
-        window.campaign_scripts.time_label_counts[time_formatted] = 0
-      }
-      window.campaign_scripts.time_label_counts[time_formatted] += 1
 
-      if ( calendar_subscribe_object.current_commitments[time_iterator] ){
-        days[days.length-1].covered_slots += 1;
-
-        if ( !window.campaign_scripts.time_slot_coverage[time_formatted]){
-          window.campaign_scripts.time_slot_coverage[time_formatted] = [];
+        if (!window.campaign_scripts.time_label_counts[time_formatted]) {
+          window.campaign_scripts.time_label_counts[time_formatted] = 0
         }
-        window.campaign_scripts.time_slot_coverage[time_formatted].push(calendar_subscribe_object.current_commitments[time_iterator]);
-      } else {
-        if ( time_iterator >= calendar_subscribe_object.start_timestamp && time_iterator < calendar_subscribe_object.end_timestamp){
-          if ( !window.campaign_scripts.missing_slots[time_formatted] ){
-            window.campaign_scripts.missing_slots[time_formatted] = []
+        window.campaign_scripts.time_label_counts[time_formatted] += 1
+
+        if (calendar_subscribe_object.current_commitments[time_iterator]) {
+          days[days.length - 1].covered_slots += 1;
+
+          if (!window.campaign_scripts.time_slot_coverage[time_formatted]) {
+            window.campaign_scripts.time_slot_coverage[time_formatted] = [];
           }
-          window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
+          window.campaign_scripts.time_slot_coverage[time_formatted].push(calendar_subscribe_object.current_commitments[time_iterator]);
+        } else {
+          if (time_iterator >= now) {
+            if (!window.campaign_scripts.missing_slots[time_formatted]) {
+              window.campaign_scripts.missing_slots[time_formatted] = []
+            }
+            window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
+          }
         }
       }
       time_iterator += calendar_subscribe_object.slot_length * 60;
