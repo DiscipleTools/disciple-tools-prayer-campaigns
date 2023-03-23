@@ -35,7 +35,7 @@ class DT_Time_Utilities {
                     ];
                 }
 
-                $outside_of_campaign = $time_begin < $start_with_tz || $time_begin > $end;
+                $outside_of_campaign = $time_begin < $start_with_tz || $time_begin >= $end;
 
 
                 if ( !$outside_of_campaign ){
@@ -58,7 +58,7 @@ class DT_Time_Utilities {
         foreach ( $data as $index => $day ) {
             $covered = 0;
             foreach ( $day['hours'] as $time ) {
-                if ( $time['subscribers'] > 0 ){
+                if ( $time['subscribers'] > 0 && !$time['outside_of_campaign'] ){
                     $covered++;
                 }
             }
