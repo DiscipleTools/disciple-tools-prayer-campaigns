@@ -97,6 +97,11 @@ class DT_Prayer_Campaigns_Send_Email {
             $sign_up_email_extra_message = '<p>' .  $campaign['campaign_strings']['default']['signup_content'] . '</p>';
         }
 
+        if ( strpos( $sign_up_email_extra_message, '<a' ) === false ){
+            $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
+            $sign_up_email_extra_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $sign_up_email_extra_message );
+        }
+
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
         $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
