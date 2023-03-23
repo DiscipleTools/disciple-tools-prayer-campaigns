@@ -237,6 +237,12 @@ class DT_Porch_Settings {
                 'type' => 'prayer_timer_toggle',
                 'tab' => 'settings',
             ],
+            'reminder_content_disable_fuel' => [
+                'label' => __( 'Disable default prayer fuel link', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'tab' => 'email-settings',
+                'value' => false,
+            ],
             'facebook' => [
                 'label' => 'Footer Facebook Link',
                 'value' => '',

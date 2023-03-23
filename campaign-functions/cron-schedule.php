@@ -77,7 +77,8 @@ function dt_prayer_campaign_prayer_time_reminder(){
 
     $porch_selected = DT_Porch_Selector::instance()->get_selected_porch_id();
     $prayer_fuel_link = '';
-    if ( !empty( $porch_selected ) ){
+    $porch_email_settings = DT_Porch_Settings::settings( 'email-settings' );
+    if ( !empty( $porch_selected ) && empty( $porch_email_settings['reminder_content_disable_fuel']['value'] ) ){
         $url = site_url() . '/prayer/list';
         $link = '<a href="' . $url . '">' . $url . '</a>';
         $prayer_fuel_link = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), $link ) . '</p>';
@@ -146,6 +147,10 @@ function dt_prayer_campaign_prayer_time_reminder(){
                 $prayer_content_message = $campaign['campaign_strings']['default']['reminder_content'];
             }
 
+            if ( strpos( $prayer_content_message, '<a' ) === false ){
+                $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
+                $prayer_content_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $prayer_content_message );
+            }
             $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
             $e['message'] =

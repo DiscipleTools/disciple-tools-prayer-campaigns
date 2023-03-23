@@ -22,7 +22,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
         ?>
         <style>
             .metabox-table input {
-                width: 100%;
+                /*width: 100%;*/
             }
             .metabox-table select {
                 width: 100%;
@@ -98,6 +98,10 @@ class DT_Porch_Admin_Tab_Email_Settings {
             }
 
             DT_Posts::update_post( 'campaigns', $this->selected_campaign, $updates );
+
+            $disable_fuel = isset( $_POST['reminder_content_disable_fuel'] );
+            DT_Porch_Settings::update_values( [ 'reminder_content_disable_fuel' => $disable_fuel ] );
+
         }
     }
 
@@ -165,7 +169,9 @@ class DT_Porch_Admin_Tab_Email_Settings {
         }
 
         $form_name = 'email_settings';
-        ?>
+        $porch_settings = DT_Porch_Settings::settings( 'email-settings' );
+        $reminder_content_disable_fuel_checked = !empty( $porch_settings['reminder_content_disable_fuel']['value'] ); ?>
+
         <form method="post" enctype="multipart/form-data" name="<?php echo esc_attr( $form_name ) ?>">
             <?php wp_nonce_field( 'email_settings', 'email_settings_nonce' ) ?>
         <!-- Box -->
@@ -182,10 +188,21 @@ class DT_Porch_Admin_Tab_Email_Settings {
                     <?php
 
                     foreach ( $email_fields as $key => $field ) {
-                        DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name, 'post' );
+                        if ( $field['type'] === 'textarea' ) {
+                            DT_Porch_Admin_Tab_Base::textarea( $langs, $key, $field, $form_name, 'post' );
+                        }
                     }
 
                     ?>
+                    <tr>
+                        <td>
+                            <?php echo esc_html( $porch_settings['reminder_content_disable_fuel']['label'] ); ?>
+                        </td>
+                        <td>
+                            <input type='checkbox' name="reminder_content_disable_fuel" <?php checked( $reminder_content_disable_fuel_checked ) ?>>
+                        </td>
+                        <td></td>
+                    </tr>
                     <input type="hidden" name="default_language" value="<?php echo esc_attr( $default_language ) ?>">
                     <tr>
                         <td colspan="2">
