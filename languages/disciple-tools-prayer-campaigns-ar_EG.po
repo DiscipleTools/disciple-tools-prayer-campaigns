@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-22T08:17:41+00:00\n"
+"POT-Creation-Date: 2023-03-23T14:12:58+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic (Egypt) <https://translate.disciple.tools/projects/"
@@ -16,49 +16,49 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:83
+#: campaign-functions/cron-schedule.php:84
 #, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "انقر هنا لمشاهدة مطالبات الصلاة لهذا اليوم:٪ s"
 
-#: campaign-functions/cron-schedule.php:89
+#: campaign-functions/cron-schedule.php:90
 msgid "Prayer Time reminder!"
 msgstr "تذكير بمواعيد الصلاة!"
 
-#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/cron-schedule.php:131
 #: campaign-functions/send-email-utility.php:67
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "٪ 1 $ s من٪ 2 $ s إلى٪ 3 $ s"
 
-#: campaign-functions/cron-schedule.php:136
+#: campaign-functions/cron-schedule.php:137
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "ل %s"
 
-#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/cron-schedule.php:158
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:156
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:161
+#: campaign-functions/send-email-utility.php:258
 msgid "Hello %s,"
 msgstr "مرحبا %s,"
 
-#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:127
+#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:127
 msgid "Thank you for praying with us!"
 msgstr "شكرا لك لانك تصلي معنا!"
 
-#: campaign-functions/cron-schedule.php:155
+#: campaign-functions/cron-schedule.php:160
 msgid "Here are your upcoming prayer times:"
 msgstr "ها هي أوقات الصلاة القادمة:"
 
-#: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:121
 msgid "Times are shown according to: %s time"
 msgstr "يتم عرض الأوقات وفقًا ل: ـ%s مرة"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:120
+#: campaign-functions/cron-schedule.php:167
+#: campaign-functions/send-email-utility.php:125
 msgid "Click here to manage your account and time commitments"
 msgstr "انقر هنا لإدارة حسابك و وقت الالتزامات"
 
@@ -66,7 +66,7 @@ msgstr "انقر هنا لإدارة حسابك و وقت الالتزامات"
 msgid "Registered to pray with us!"
 msgstr "التسجيل لتصلي معنا!"
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:110
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
 "You're one click away from finishing your registration."
@@ -74,37 +74,37 @@ msgstr ""
 "شكراً لانضمامك إلينا في الصلاة الإستراتيجية من أجل حركة صناعة التلاميذ! أنت "
 "على بعد نقرة واحدة من إنهاء التسجيل."
 
-#: campaign-functions/send-email-utility.php:106
+#: campaign-functions/send-email-utility.php:111
 #, fuzzy
 #| msgid ""
 #| "Click here to verify your email address and confirm your prayer times."
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr "انقر هنا للتحقق من عنوان بريدك الإلكتروني وتأكيد موعيد صلاتك."
 
-#: campaign-functions/send-email-utility.php:108
+#: campaign-functions/send-email-utility.php:113
 #, fuzzy
 msgid "Verify your account"
 msgstr "تحقق من حسابك"
 
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 #| msgid "Choose prayer times link:"
 msgid "Or open this link:"
 msgstr "اختر رابط مواعيد الصلاة:"
 
-#: campaign-functions/send-email-utility.php:114
+#: campaign-functions/send-email-utility.php:119
 msgid "Here are the times you have committed to pray:"
 msgstr "إليك مواعيدك للصلاة:"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:168
 msgid "Registration Confirmation"
 msgstr "تأكيد التسجيل"
 
-#: campaign-functions/send-email-utility.php:166
+#: campaign-functions/send-email-utility.php:171
 msgid "Thank you for signing up to pray!"
 msgstr "شكرا لك على التسجيل للصلاة!"
 
-#: campaign-functions/send-email-utility.php:167
+#: campaign-functions/send-email-utility.php:172
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
 "a couple months before the first day asking you to choose specific times to "
@@ -114,15 +114,15 @@ msgstr ""
 "من اليوم الأول نطلب منك اختيار أوقات محددة للصلاة. بالعمل معًا سنغطي المنطقة "
 "في صلاة 24/7."
 
-#: campaign-functions/send-email-utility.php:168
+#: campaign-functions/send-email-utility.php:173
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "إذا كنت تعرف جدولك الزمني بالفعل، يمكنك اختيار أوقاتك هنا:"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:256
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:254
+#: campaign-functions/send-email-utility.php:259
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -130,12 +130,12 @@ msgid ""
 msgstr ""
 "لقد أخرجت أسبوعين من موعد الصلاة الأخير. هل ترغب في الاستمرار في الصلاة؟"
 
-#: campaign-functions/send-email-utility.php:255
+#: campaign-functions/send-email-utility.php:260
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "اشترك للحصول على مزيد من أوقات الصلاة أو قم بتمديد وقتك المتكرر هنا:"
 
-#: campaign-functions/send-email-utility.php:257
+#: campaign-functions/send-email-utility.php:262
 #, fuzzy
 msgid "Thank you"
 msgstr "شكرًا لك"

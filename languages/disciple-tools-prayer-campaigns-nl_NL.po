@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-22T08:17:41+00:00\n"
+"POT-Creation-Date: 2023-03-23T14:12:58+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/disciple-"
@@ -15,49 +15,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:83
+#: campaign-functions/cron-schedule.php:84
 #, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Klik hier om de gebedsprompts voor vandaag te zien: %s"
 
-#: campaign-functions/cron-schedule.php:89
+#: campaign-functions/cron-schedule.php:90
 msgid "Prayer Time reminder!"
 msgstr "Gebedstijd herinnering!"
 
-#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/cron-schedule.php:131
 #: campaign-functions/send-email-utility.php:67
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s van %2$s tot %3$s"
 
-#: campaign-functions/cron-schedule.php:136
+#: campaign-functions/cron-schedule.php:137
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "voor %s"
 
-#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/cron-schedule.php:158
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:156
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:161
+#: campaign-functions/send-email-utility.php:258
 msgid "Hello %s,"
 msgstr "Hallo %s,"
 
-#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:127
+#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:127
 msgid "Thank you for praying with us!"
 msgstr "Bedankt dat je met ons mee bidt!"
 
-#: campaign-functions/cron-schedule.php:155
+#: campaign-functions/cron-schedule.php:160
 msgid "Here are your upcoming prayer times:"
 msgstr "Dit zijn uw aanstaande gebedstijden:"
 
-#: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:121
 msgid "Times are shown according to: %s time"
 msgstr "Tijden worden weergegeven volgens: %s tijd"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:120
+#: campaign-functions/cron-schedule.php:167
+#: campaign-functions/send-email-utility.php:125
 msgid "Click here to manage your account and time commitments"
 msgstr "Klik hier om uw account en tijdsverplichtingen te beheren"
 
@@ -65,7 +65,7 @@ msgstr "Klik hier om uw account en tijdsverplichtingen te beheren"
 msgid "Registered to pray with us!"
 msgstr "Geregistreerd om met ons te bidden!"
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:110
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
 "You're one click away from finishing your registration."
@@ -74,7 +74,7 @@ msgstr ""
 "discipelen maakt! U bent één klik verwijderd van het voltooien van uw "
 "registratie."
 
-#: campaign-functions/send-email-utility.php:106
+#: campaign-functions/send-email-utility.php:111
 #, fuzzy
 #| msgid ""
 #| "Click here to verify your email address and confirm your prayer times."
@@ -82,30 +82,30 @@ msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Klik hier om uw e-mailadres te verifiëren en uw gebedstijden te bevestigen."
 
-#: campaign-functions/send-email-utility.php:108
+#: campaign-functions/send-email-utility.php:113
 #, fuzzy
 msgid "Verify your account"
 msgstr "Verifieer uw account"
 
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 #, fuzzy
 #| msgid "Choose prayer times link:"
 msgid "Or open this link:"
 msgstr "Kies gebedstijden link:"
 
-#: campaign-functions/send-email-utility.php:114
+#: campaign-functions/send-email-utility.php:119
 msgid "Here are the times you have committed to pray:"
 msgstr "Dit zijn de tijden die je hebt toegezegd om te bidden:"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:168
 msgid "Registration Confirmation"
 msgstr "Registratie Bevestiging"
 
-#: campaign-functions/send-email-utility.php:166
+#: campaign-functions/send-email-utility.php:171
 msgid "Thank you for signing up to pray!"
 msgstr "Bedankt voor je aanmelding om te bidden!"
 
-#: campaign-functions/send-email-utility.php:167
+#: campaign-functions/send-email-utility.php:172
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
 "a couple months before the first day asking you to choose specific times to "
@@ -115,15 +115,15 @@ msgstr ""
 "voor de eerste dag nog een e-mail waarin we je vragen om specifieke tijden "
 "te kiezen om te bidden. Samen dekken we de regio in 24/7 gebed."
 
-#: campaign-functions/send-email-utility.php:168
+#: campaign-functions/send-email-utility.php:173
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "Als je je schema al kent, kun je hier je tijden kiezen:"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:256
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:254
+#: campaign-functions/send-email-utility.php:259
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -131,13 +131,13 @@ msgid ""
 msgstr ""
 "Je bent 2 weken onderweg voor je laatste gebedstijd. Wil je blijven bidden?"
 
-#: campaign-functions/send-email-utility.php:255
+#: campaign-functions/send-email-utility.php:260
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Meld u hier aan voor meer gebedstijden of verleng uw terugkerende tijd:"
 
-#: campaign-functions/send-email-utility.php:257
+#: campaign-functions/send-email-utility.php:262
 #, fuzzy
 msgid "Thank you"
 msgstr "Dank je"

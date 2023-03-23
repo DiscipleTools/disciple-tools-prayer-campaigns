@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-22T08:17:41+00:00\n"
+"POT-Creation-Date: 2023-03-23T14:12:58+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -16,48 +16,48 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:83
+#: campaign-functions/cron-schedule.php:84
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Нажмите здесь, чтобы увидеть молитву на сегодня: %s"
 
-#: campaign-functions/cron-schedule.php:89
+#: campaign-functions/cron-schedule.php:90
 msgid "Prayer Time reminder!"
 msgstr "Напоминание о молитве!"
 
-#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/cron-schedule.php:131
 #: campaign-functions/send-email-utility.php:67
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s с %2$s до %3$s"
 
-#: campaign-functions/cron-schedule.php:136
+#: campaign-functions/cron-schedule.php:137
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "для %s"
 
-#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/cron-schedule.php:158
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:156
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:161
+#: campaign-functions/send-email-utility.php:258
 msgid "Hello %s,"
 msgstr "Привет %s,"
 
-#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:127
+#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:127
 msgid "Thank you for praying with us!"
 msgstr "Спасибо, что молитесь вместе с нами!"
 
-#: campaign-functions/cron-schedule.php:155
+#: campaign-functions/cron-schedule.php:160
 msgid "Here are your upcoming prayer times:"
 msgstr "Ваше предстоящее время молитвы:"
 
-#: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:121
 msgid "Times are shown according to: %s time"
 msgstr "Время указано в соответствии с: %s временем"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:120
+#: campaign-functions/cron-schedule.php:167
+#: campaign-functions/send-email-utility.php:125
 msgid "Click here to manage your account and time commitments"
 msgstr ""
 "Нажать здесь, чтобы управлять своей учетной записью и посвященным временем"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Registered to pray with us!"
 msgstr "Зарегистрировались, чтобы молиться с нами!"
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:110
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
 "You're one click away from finishing your registration."
@@ -74,33 +74,33 @@ msgstr ""
 "Спасибо, что присоединились к нам в стратегической молитве за движение "
 "умножения учеников! Вы в одном клике от завершения регистрации."
 
-#: campaign-functions/send-email-utility.php:106
+#: campaign-functions/send-email-utility.php:111
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Нажмите здесь, чтобы подтвердить свой адрес электронной почты и время "
 "молитвы:"
 
-#: campaign-functions/send-email-utility.php:108
+#: campaign-functions/send-email-utility.php:113
 msgid "Verify your account"
 msgstr "Подтвердите ваш аккаунт"
 
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 msgid "Or open this link:"
 msgstr "Или нажмите на ссылку:"
 
-#: campaign-functions/send-email-utility.php:114
+#: campaign-functions/send-email-utility.php:119
 msgid "Here are the times you have committed to pray:"
 msgstr "Время, которое вы посвящаете молитве:"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:168
 msgid "Registration Confirmation"
 msgstr "Подтвердить регистрацю"
 
-#: campaign-functions/send-email-utility.php:166
+#: campaign-functions/send-email-utility.php:171
 msgid "Thank you for signing up to pray!"
 msgstr "Спасибо, что подписались на молитву!"
 
-#: campaign-functions/send-email-utility.php:167
+#: campaign-functions/send-email-utility.php:172
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
 "a couple months before the first day asking you to choose specific times to "
@@ -111,15 +111,15 @@ msgstr ""
 "конкретное время для молитвы. Трудясь вместе, мы покроем регион "
 "круглосуточной молитвой."
 
-#: campaign-functions/send-email-utility.php:168
+#: campaign-functions/send-email-utility.php:173
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "Если вы уже знаете свое расписание, вы можете выбрать время здесь:"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:256
 msgid "Continue Praying?"
 msgstr "Хотите продолжать молиться?"
 
-#: campaign-functions/send-email-utility.php:254
+#: campaign-functions/send-email-utility.php:259
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
@@ -127,13 +127,13 @@ msgstr ""
 "У вас осталось 2 недели до завершения вашего молитвенного времени. Хотели бы "
 "вы продолжить молиться?"
 
-#: campaign-functions/send-email-utility.php:255
+#: campaign-functions/send-email-utility.php:260
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Подпишитесь, чтобы продолжать молиться или продлите свое повторяющееся время "
 "здесь:"
 
-#: campaign-functions/send-email-utility.php:257
+#: campaign-functions/send-email-utility.php:262
 msgid "Thank you"
 msgstr "Спасибо"
 

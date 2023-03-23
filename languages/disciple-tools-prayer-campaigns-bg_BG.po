@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-22T08:17:41+00:00\n"
+"POT-Creation-Date: 2023-03-23T14:12:58+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.disciple.tools/projects/disciple-"
@@ -18,56 +18,56 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:83
+#: campaign-functions/cron-schedule.php:84
 #, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Щракнете тук, за да видите молитвените подкани за днес: %s"
 
-#: campaign-functions/cron-schedule.php:89
+#: campaign-functions/cron-schedule.php:90
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "Напомняне за времето за молитва!"
 
-#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/cron-schedule.php:131
 #: campaign-functions/send-email-utility.php:67
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s от %2$s до %3$s"
 
-#: campaign-functions/cron-schedule.php:136
+#: campaign-functions/cron-schedule.php:137
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "за %s"
 
-#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/cron-schedule.php:158
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:156
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:161
+#: campaign-functions/send-email-utility.php:258
 #, fuzzy
 msgid "Hello %s,"
 msgstr "Здравейте %s,"
 
-#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:127
+#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:127
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "Благодарим ви, че се молите с нас!"
 
-#: campaign-functions/cron-schedule.php:155
+#: campaign-functions/cron-schedule.php:160
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "Ето вашите предстоящи часове за молитва:"
 
-#: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:121
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "Часовете се показват според: %s време"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:120
+#: campaign-functions/cron-schedule.php:167
+#: campaign-functions/send-email-utility.php:125
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "Щракнете тук, за да управлявате своя акаунт и времеви ангажименти"
@@ -77,7 +77,7 @@ msgstr "Щракнете тук, за да управлявате своя ак�
 msgid "Registered to pray with us!"
 msgstr "Регистрирани да се молите с нас!"
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:110
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
@@ -87,37 +87,37 @@ msgstr ""
 "движение за правене на ученици! На едно кликване ви дели от завършване на "
 "регистрацията ви."
 
-#: campaign-functions/send-email-utility.php:106
+#: campaign-functions/send-email-utility.php:111
 #, fuzzy
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "Щракнете тук, за да потвърдите своя имейл адрес и времената си за молитва."
 
-#: campaign-functions/send-email-utility.php:108
+#: campaign-functions/send-email-utility.php:113
 #, fuzzy
 msgid "Verify your account"
 msgstr "Потвърдете акаунта си"
 
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 msgid "Or open this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:114
+#: campaign-functions/send-email-utility.php:119
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "Ето моментите, в които сте се ангажирали да се молите:"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "Потвърждение за регистрация"
 
-#: campaign-functions/send-email-utility.php:166
+#: campaign-functions/send-email-utility.php:171
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "Благодаря ви, че се записахте за молитва!"
 
-#: campaign-functions/send-email-utility.php:167
+#: campaign-functions/send-email-utility.php:172
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -128,16 +128,16 @@ msgstr ""
 "няколко месеца преди първия ден с молба да изберете конкретни часове за "
 "молитва. Работейки заедно, ние ще покрием региона в 24/7 молитва."
 
-#: campaign-functions/send-email-utility.php:168
+#: campaign-functions/send-email-utility.php:173
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "Ако вече знаете графика си, можете да изберете часове тук:"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:256
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:254
+#: campaign-functions/send-email-utility.php:259
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -146,14 +146,14 @@ msgstr ""
 "Остават ви 2 седмици за последната ви молитва. Искате ли да продължите да се "
 "молите?"
 
-#: campaign-functions/send-email-utility.php:255
+#: campaign-functions/send-email-utility.php:260
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Регистрирайте се за още часове за молитва или удължете времето си за "
 "повтаряне тук:"
 
-#: campaign-functions/send-email-utility.php:257
+#: campaign-functions/send-email-utility.php:262
 #, fuzzy
 msgid "Thank you"
 msgstr "Благодаря ти"
