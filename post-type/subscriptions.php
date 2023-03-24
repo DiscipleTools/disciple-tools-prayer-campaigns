@@ -489,7 +489,7 @@ class DT_Subscriptions_Base {
             <p>
                 Email address verified:
                 <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
-                <a class="button hollow tiny" target="_blank" href="<?php echo esc_url( $link ) ?>')">manually verify</a>
+                <a class="button hollow tiny" target="_blank" href="<?php echo esc_url( $link ) ?>">manually verify</a>
             </p>
             <p>Notifications allowed:
                 <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
