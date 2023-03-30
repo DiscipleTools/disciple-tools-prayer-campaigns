@@ -3,7 +3,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Generic_Porch_Landing_Archive extends DT_Magic_Url_Base
 {
-    public $page_title = 'Ramadan Posts';
+    public $page_title = 'Set me in the construct()';
     public $root = PORCH_LANDING_ROOT;
     public $type = 'list';
     public $post_type = PORCH_LANDING_POST_TYPE;
@@ -19,6 +19,7 @@ class DT_Generic_Porch_Landing_Archive extends DT_Magic_Url_Base
 
     public function __construct() {
         parent::__construct();
+        $this->page_title = __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ). ' - ' . DT_Porch_Settings::get_field_translation( 'title' );
 
         /**
          * tests if other URL
