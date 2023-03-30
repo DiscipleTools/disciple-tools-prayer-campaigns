@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-22T08:17:41+00:00\n"
+"POT-Creation-Date: 2023-03-23T14:12:58+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/disciple-"
@@ -18,56 +18,56 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:83
+#: campaign-functions/cron-schedule.php:84
 #, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "இன்றைக்கான பிரார்த்தனைக் கட்டளைகளைப் பார்க்க இங்கே கிளிக் செய்யவும்: %s"
 
-#: campaign-functions/cron-schedule.php:89
+#: campaign-functions/cron-schedule.php:90
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "பிரார்த்தனை நேரம் நினைவூட்டல்!"
 
-#: campaign-functions/cron-schedule.php:130
+#: campaign-functions/cron-schedule.php:131
 #: campaign-functions/send-email-utility.php:67
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s %2$s முதல் %3$s வரை"
 
-#: campaign-functions/cron-schedule.php:136
+#: campaign-functions/cron-schedule.php:137
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "%sக்கு"
 
-#: campaign-functions/cron-schedule.php:153
+#: campaign-functions/cron-schedule.php:158
 #: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:156
-#: campaign-functions/send-email-utility.php:253
+#: campaign-functions/send-email-utility.php:161
+#: campaign-functions/send-email-utility.php:258
 #, fuzzy
 msgid "Hello %s,"
 msgstr "வணக்கம் %s,"
 
-#: campaign-functions/cron-schedule.php:154 porches/generic/site/stats.php:127
+#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:127
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "எங்களுடன் பிரார்த்தனை செய்ததற்கு நன்றி!"
 
-#: campaign-functions/cron-schedule.php:155
+#: campaign-functions/cron-schedule.php:160
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "உங்கள் வரவிருக்கும் பிரார்த்தனை நேரங்கள் இதோ:"
 
-#: campaign-functions/cron-schedule.php:157
-#: campaign-functions/send-email-utility.php:116
+#: campaign-functions/cron-schedule.php:162
+#: campaign-functions/send-email-utility.php:121
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "%s நேரத்தின்படி நேரங்கள் காட்டப்படுகின்றன"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:120
+#: campaign-functions/cron-schedule.php:167
+#: campaign-functions/send-email-utility.php:125
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "உங்கள் கணக்கு மற்றும் நேரக் கடமைகளை நிர்வகிக்க இங்கே கிளிக் செய்யவும்"
@@ -77,7 +77,7 @@ msgstr "உங்கள் கணக்கு மற்றும் நேரக
 msgid "Registered to pray with us!"
 msgstr "எங்களுடன் பிரார்த்தனை செய்ய பதிவு!"
 
-#: campaign-functions/send-email-utility.php:105
+#: campaign-functions/send-email-utility.php:110
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement! "
@@ -86,38 +86,38 @@ msgstr ""
 "சீடர்களை உருவாக்கும் இயக்கத்திற்கான மூலோபாய பிரார்த்தனையில் எங்களுடன் இணைந்ததற்கு நன்றி! "
 "உங்கள் பதிவை முடிக்க ஒரு கிளிக்கில் உள்ளீர்கள்."
 
-#: campaign-functions/send-email-utility.php:106
+#: campaign-functions/send-email-utility.php:111
 #, fuzzy
 msgid "Click here to verify your email address and confirm your prayer times:"
 msgstr ""
 "உங்கள் மின்னஞ்சல் முகவரியைச் சரிபார்க்கவும், உங்கள் பிரார்த்தனை நேரத்தை உறுதிப்படுத்தவும் "
 "இங்கே கிளிக் செய்யவும்."
 
-#: campaign-functions/send-email-utility.php:108
+#: campaign-functions/send-email-utility.php:113
 #, fuzzy
 msgid "Verify your account"
 msgstr "உங்கள் கணக்கை சரிபார்க்கவும்"
 
-#: campaign-functions/send-email-utility.php:111
+#: campaign-functions/send-email-utility.php:116
 msgid "Or open this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:114
+#: campaign-functions/send-email-utility.php:119
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "ஜெபிக்க நீங்கள் ஒப்புக்கொண்ட நேரங்கள் இங்கே:"
 
-#: campaign-functions/send-email-utility.php:163
+#: campaign-functions/send-email-utility.php:168
 #, fuzzy
 msgid "Registration Confirmation"
 msgstr "பதிவு உறுதிப்படுத்தல்"
 
-#: campaign-functions/send-email-utility.php:166
+#: campaign-functions/send-email-utility.php:171
 #, fuzzy
 msgid "Thank you for signing up to pray!"
 msgstr "பிரார்த்தனை செய்ய பதிவு செய்ததற்கு நன்றி!"
 
-#: campaign-functions/send-email-utility.php:167
+#: campaign-functions/send-email-utility.php:172
 #, fuzzy
 msgid ""
 "We have some time before the campaign starts. We will send you another email "
@@ -129,16 +129,16 @@ msgstr ""
 "மின்னஞ்சலை அனுப்புவோம். ஒன்றாக வேலை செய்வதன் மூலம் 24/7 பிரார்த்தனையில் பிராந்தியத்தை "
 "மூடுவோம்."
 
-#: campaign-functions/send-email-utility.php:168
+#: campaign-functions/send-email-utility.php:173
 #, fuzzy
 msgid "If you know your schedule already you can choose your times here:"
 msgstr "உங்கள் அட்டவணையை ஏற்கனவே அறிந்திருந்தால், உங்கள் நேரத்தை இங்கே தேர்வு செய்யலாம்:"
 
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:256
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:254
+#: campaign-functions/send-email-utility.php:259
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -147,14 +147,14 @@ msgstr ""
 "உங்கள் கடைசி பிரார்த்தனை நேரத்திற்கு 2 வாரங்கள் உள்ளன. நீங்கள் தொடர்ந்து ஜெபிக்க "
 "விரும்புகிறீர்களா?"
 
-#: campaign-functions/send-email-utility.php:255
+#: campaign-functions/send-email-utility.php:260
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "அதிக பிரார்த்தனை நேரங்களுக்கு பதிவு செய்யவும் அல்லது உங்கள் தொடர்ச்சியான நேரத்தை இங்கே "
 "நீட்டிக்கவும்:"
 
-#: campaign-functions/send-email-utility.php:257
+#: campaign-functions/send-email-utility.php:262
 #, fuzzy
 msgid "Thank you"
 msgstr "நன்றி"
