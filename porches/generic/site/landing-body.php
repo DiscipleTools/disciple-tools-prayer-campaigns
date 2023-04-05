@@ -30,15 +30,6 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
             endforeach; ?>
 
         </div>
-        <div class="row">
-            <?php if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
-                if ( function_exists( 'show_prayer_timer' ) ) : ?>
-                    <div class="col">
-                        <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
-                    </div>
-                <?php endif;
-            endif; ?>
-        </div>
 
         <div class="row" style="margin-top: 30px">
             <form onsubmit="submit_group_count();return false;" id='form-content'>
@@ -81,7 +72,7 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                     return window.makeRequest('POST', '/group-count', {
                         parts: jsObject.parts,
                         number,
-                    }, jsObject.parts.root + /v1/ + 'fuel').done(function (data) {
+                    }, jsObject.parts.root + '/v1/fuel').done(function (data) {
                         $('#prayer_group_size-spinner').hide()
                         $('#group-size-thank-you').show()
                         $('#prayer-group-size-button').attr('disabled', true)
@@ -92,6 +83,16 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                     })
                 }
             </script>
+        </div>
+
+        <div class='row'>
+            <?php if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
+                if ( function_exists( 'show_prayer_timer' ) ) : ?>
+                    <div class="col">
+                        <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
+                    </div>
+                <?php endif;
+            endif; ?>
         </div>
     </div>
 </section>
