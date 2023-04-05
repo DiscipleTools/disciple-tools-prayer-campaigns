@@ -112,7 +112,7 @@ class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
             'payload' => null,
             'value' => $params['number'],
         ];
-        Disciple_Tools_Reports::insert( $args );
+        Disciple_Tools_Reports::insert( $args, true, false );
 
         return $params['number'];
     }

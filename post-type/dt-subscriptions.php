@@ -168,7 +168,7 @@ class DT_Subscriptions {
                 $args['label'] = $location_label ?: Disciple_Tools_Mapping_Queries::get_full_name_by_grid_id( $location_id );
             }
         }
-        $new_report = Disciple_Tools_Reports::insert( $args );
+        $new_report = Disciple_Tools_Reports::insert( $args, true, false );
 
         $label = 'Commitment added: ' . gmdate( 'F d, Y @ H:i a', $args['time_begin'] ) . ' UTC for ' . $duration_mins . ' minutes';
         dt_activity_insert([

@@ -321,7 +321,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
                     'post_id' => $row['post_id'],
                     'parent_id' => $row['parent_id']
                 ];
-                Disciple_Tools_Reports::insert( $report );
+                Disciple_Tools_Reports::insert( $report, true, false );
             }
         }
 
