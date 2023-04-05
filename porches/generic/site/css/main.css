@@ -1311,6 +1311,8 @@ footer {
     border-radius: 5px;
     padding: 5px;
     margin-inline-start: 1em;
+    max-width: 150px;
+    font-size: 14px;
 }
 .menu-bg .dt-magic-link-language-selector {
     border: 1px solid black;
@@ -1329,6 +1331,9 @@ footer {
 @media (max-width: 640px) {
     .what-content-text {
         margin-bottom: 30px;
+    }
+    .hide-on-mobile {
+        display: none;
     }
 }
 .leading-others {

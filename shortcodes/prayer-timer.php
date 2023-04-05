@@ -165,7 +165,7 @@ function show_prayer_timer( $atts ) {
 
             #clock-sticky {
                 position: fixed;
-                top: 66px;
+                top: 75px;
                 right:0;
                 padding: 5px 10px;
                 border-radius: 2px;
@@ -187,18 +187,22 @@ function show_prayer_timer( $atts ) {
             #clock-sticky-clock img {
                 height: 20px;
             }
+            #clock-sticky-remaining-time{
+                color:white
+            }
         </style>
 
         <span id="clock-sticky" class="clock-sticky">
-            <span id="clock-sticky-remaining-time">
-                <?php echo esc_html( $prayer_duration_min ); ?>:00
-            </span>
             <button id="clock-sticky-button" onclick="start_timer()">
-                <img src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/play-white.svg' ) ?>"/>
+                <span id="clock-sticky-remaining-time">
+                    <?php echo esc_html( $prayer_duration_min ); ?>:00
+                </span>
+
+                <img class="clock-sticky-play-icon" src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/play-white.svg' ) ?>"/>
+                <span style="display: none"; id="clock-sticky-clock">
+                    <img src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/clock-white.svg' ) ?>"/>
+                </span>
             </button>
-            <span style="display: none"; id="clock-sticky-clock">
-                <img src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/clock-white.svg' ) ?>"/>
-            </span>
         </span>
 
         <div class="prayer-timer-container">
@@ -220,16 +224,21 @@ function show_prayer_timer( $atts ) {
             </div>
         </div>
         <script>
+            let end_of_time = null;
             function start_timer() {
+                if ( end_of_time ) {
+                    return;
+                }
 
-                let end_of_time = new Date().getTime() + <?php echo esc_html( $prayer_duration_min ) * 60 * 1000; ?>;
+                end_of_time = new Date().getTime() + <?php echo esc_html( $prayer_duration_min ) * 60 * 1000; ?>;
                 setInterval( function() {
                     let time = new Date().getTime() - 1000;
                     if ( time < end_of_time ) {
-                        $('#clock-sticky-remaining-time').text( Math.floor( (( end_of_time - time ) / 1000 /60) % 60 ) + ':' + Math.floor( (( end_of_time - time ) / 1000) % 60 )   )
+                        $seconds = Math.floor( (( end_of_time - time ) / 1000) % 60 )
+                        $('#clock-sticky-remaining-time').text( Math.floor( (( end_of_time - time ) / 1000 /60) % 60 ) + ':' +  ( $seconds < 10 ? '0' + $seconds : $seconds ) )
                     }
                 }, 5000)
-                jQuery('#clock-sticky-button').hide();
+                jQuery('.clock-sticky-play-icon').hide();
                 jQuery('#clock-sticky-clock').show();
 
                 let start_praying_button = jQuery( '#start-praying' )
