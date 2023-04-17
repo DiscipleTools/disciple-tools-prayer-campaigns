@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.6.2\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.6.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-30T15:05:57+00:00\n"
+"POT-Creation-Date: 2023-04-05T08:28:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -554,29 +554,29 @@ msgstr ""
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:67
-#: porches/generic/site/landing-body.php:47
+#: porches/generic/site/archive-body.php:56
+#: porches/generic/site/landing-body.php:38
 msgid "Praying as a group?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:72
-#: porches/generic/site/landing-body.php:52
+#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/landing-body.php:43
 msgid "Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:75
-#: porches/generic/site/landing-body.php:56
+#: porches/generic/site/archive-body.php:64
+#: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:80
-#: porches/generic/site/landing-body.php:61
+#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:52
 #: porches/generic/site/stats.php:258
 msgid "Submit"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:86
-#: porches/generic/site/landing-body.php:67
+#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/landing-body.php:58
 #: porches/generic/site/stats.php:264
 msgid "Thank You"
 msgstr ""
@@ -886,15 +886,15 @@ msgstr ""
 msgid "Chose a time to pray everyday for the next 3 months. Near the end you'll have the option to sign up for more."
 msgstr ""
 
-#: shortcodes/prayer-timer.php:215
+#: shortcodes/prayer-timer.php:219
 msgid "Start Praying!"
 msgstr ""
 
-#: shortcodes/prayer-timer.php:218
+#: shortcodes/prayer-timer.php:222
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr ""
 
-#: shortcodes/prayer-timer.php:238
+#: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr ""
