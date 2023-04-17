@@ -870,6 +870,20 @@ class DT_Campaigns_Base {
         return $extra_people * $prayer_time_duration;
     }
 
+    public static function time_prayed_as_a_group( $campaign_post_id ){
+        $prayer_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
+
+        global $wpdb;
+        $extra_people = $wpdb->get_var( $wpdb->prepare( "SELECT
+            SUM( r.value ) AS extra_people
+            FROM $wpdb->dt_reports r
+            WHERE r.parent_id = %s AND r.post_type = 'campaigns' AND r.type = 'fuel'
+            AND r.value > 1
+            ;", $campaign_post_id
+        ) );
+        return $extra_people * $prayer_time_duration;
+    }
+
     public static function get_minutes_prayed_and_scheduled( $campaign_id ){
         $scheduled = self::query_scheduled_minutes( $campaign_id );
         $extra = self::query_extra_minutes( $campaign_id );

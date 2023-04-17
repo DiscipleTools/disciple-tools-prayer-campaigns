@@ -99,6 +99,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         $lang = dt_campaign_get_current_lang();
 
         $total_mins_prayed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $post_id );
+        $mins_as_a_group = DT_Campaigns_Base::time_prayed_as_a_group( $post_id );
         $campaign_root = 'campaign_app';
         $campaign_type = $campaign_fields['type']['key'];
         $key_name = 'public_key';
@@ -198,6 +199,16 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                             <?php echo esc_html( DT_Time_Utilities::display_minutes_in_time( $total_mins_prayed ) ) ?>
                                             <br>
                                             (<?php echo esc_html( $total_mins_prayed / 60 ); ?> <?php esc_html_e( 'hours', 'disciple-tools-prayer-campaigns' ); ?>)
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
+                                        <h4><?php esc_html_e( 'Prayed as a group', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                        <p>
+                                            <?php echo esc_html( DT_Time_Utilities::display_minutes_in_time( $mins_as_a_group ) ) ?>
+                                            <br>
+                                            (<?php echo esc_html( $mins_as_a_group / 60 ); ?> <?php esc_html_e( 'hours', 'disciple-tools-prayer-campaigns' ); ?>)
                                         </p>
                                     </div>
                                 </div>
