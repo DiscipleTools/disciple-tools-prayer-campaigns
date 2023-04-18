@@ -266,4 +266,222 @@ class DT_Prayer_Campaigns_Send_Email {
         return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $message_body );
     }
 
+
+    public static function end_of_campaign_email( $subscriber_id, $campaign_id ){
+        $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( is_wp_error( $record ) ){
+            dt_write_log( 'failed to record' );
+            return;
+        }
+        //check if email already sent
+        if ( in_array( 'end_of_campaign_email_' . $campaign_id, $record['tags'] ?? [], true ) ){
+            return;
+        }
+
+        $porch_fields = DT_Porch_Settings::settings();
+        if ( !isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
+            return;
+        }
+        if ( !isset( $porch_fields['title']['value'] ) ){
+            return;
+        }
+
+        self::switch_email_locale( $record['lang'] ?? null );
+
+        $to = [];
+        foreach ( $record['contact_email'] as $value ){
+            $to[] = $value['value'];
+        }
+        $to = implode( ',', $to );
+
+        $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
+
+        if ( !empty( $porch_fields['country_name']['value'] ) ){
+            $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), DT_Porch_Settings::get_field_translation( 'country_name', $record['lang'] ?? 'en_US' ) );
+        } else {
+            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+        }
+
+        $url = trailingslashit( site_url() ) . 'prayer/stats';
+        $title = DT_Porch_Settings::get_field_translation( 'title' );
+
+        $message = Campaigns_Email_Template::email_content_part( '<h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) . '</h3>' );
+
+        $message .= Campaigns_Email_Template::email_content_part(
+            sprintf( __( 'Thank you for joining %1$s in %2$s. You are a part of something extraordinary!', 'disciple-tools-prayer-campaigns' ), esc_html( $title ), lcfirst( $tag ) )
+        );
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'It is time to review the campaign and we\'re excited to share the campaign stats with you, invite you to share with your campaign coordinator about your prayer time and invite you to sign-up to receive notifications of future prayer opportunities.', 'disciple-tools-prayer-campaigns' )
+        );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'See end of Campaign Review', 'disciple-tools-prayer-campaigns' ), $url );
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'Blessings,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $title
+        );
+
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+
+        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email );
+        if ( !$sent ){
+            dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
+        } else {
+            DT_Posts::update_post( 'subscriptions', $subscriber_id, [ 'tags' => [ 'values' => [ [ 'value' => 'end_of_campaign_email_' . $campaign_id ] ] ] ], true, false );
+            DT_Posts::add_post_comment( 'subscribers', $subscriber_id, 'Sent end of campaign email', 'comment', [], false );
+        }
+    }
+}
+
+use WP_Queue\Job;
+class End_Of_Campaign_Email_Job extends Job {
+    public $subscriber_id;
+    public $campaign_id;
+    public function __construct( $subscriber_id, $campaign_id ){
+        $this->subscriber_id = $subscriber_id;
+        $this->campaign_id = $campaign_id;
+    }
+
+    /**
+     * Handle job logic.
+     */
+    public function handle(){
+        DT_Prayer_Campaigns_Send_Email::end_of_campaign_email( $this->subscriber_id, $this->campaign_id );
+    }
+}
+
+class Campaigns_Email_Template {
+
+
+    public static function build_campaign_email( $content ){
+
+        $email = self::email_head_part();
+        $email .= self::email_logo_part();
+        $email .= $content;
+        $email .= self::email_footer_part();
+        return $email;
+
+    }
+
+
+    public static function email_head_part(){
+        ob_start();
+        ?>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+        <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Pray4movement</title><style type="text/css" emogrify="no">#outlook a { padding:0; } .ExternalClass { width:100%; } .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; } table td { border-collapse: collapse; mso-line-height-rule: exactly; } .editable.image { font-size: 0 !important; line-height: 0 !important; } .nl2go_preheader { display: none !important; mso-hide:all !important; mso-line-height-rule: exactly; visibility: hidden !important; line-height: 0px !important; font-size: 0px !important; } body { width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; } img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; } a img { border:none; } table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; } th { font-weight: normal; text-align: left; } *[class="gmail-fix"] { display: none !important; } </style>
+            <style type="text/css" emogrify="no"> @media (max-width: 600px) { .gmx-killpill { content: ' \03D1';} } </style>
+            <style type="text/css" emogrify="no">@media (max-width: 600px) { .gmx-killpill { content: ' \03D1';} .r0-c { box-sizing: border-box !important; text-align: center !important; valign: top !important; width: 320px !important } .r1-o { border-style: solid !important; margin: 0 auto 0 auto !important; width: 320px !important } .r2-c { box-sizing: border-box !important; text-align: center !important; valign: top !important; width: 100% !important } .r3-o { border-style: solid !important; margin: 0 auto 0 auto !important; width: 100% !important } .r4-i { background-color: #ffffff !important; padding-bottom: 20px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 20px !important } .r5-c { box-sizing: border-box !important; display: block !important; valign: top !important; width: 100% !important } .r6-o { border-style: solid !important; width: 100% !important } .r7-i { padding-left: 0px !important; padding-right: 0px !important } .r8-o { background-size: auto !important; border-style: solid !important; margin: 0 auto 0 auto !important; width: 100% !important } .r9-i { padding-bottom: 15px !important; padding-top: 15px !important } .r10-c { box-sizing: border-box !important; text-align: left !important; valign: top !important; width: 100% !important } .r11-o { border-style: solid !important; margin: 0 auto 0 0 !important; width: 100% !important } .r12-i { padding-bottom: 15px !important; padding-top: 15px !important; text-align: left !important } .r13-o { border-style: solid !important; margin: 0 auto 0 auto !important; margin-bottom: 15px !important; margin-top: 15px !important; width: 100% !important } .r14-i { text-align: center !important } .r15-r { background-color: #8bc34a !important; border-radius: 4px !important; border-width: 0px !important; box-sizing: border-box; height: initial !important; padding-bottom: 12px !important; padding-left: 5px !important; padding-right: 5px !important; padding-top: 12px !important; text-align: center !important; width: 100% !important } body { -webkit-text-size-adjust: none } .nl2go-responsive-hide { display: none } .nl2go-body-table { min-width: unset !important } .mobshow { height: auto !important; overflow: visible !important; max-height: unset !important; visibility: visible !important; border: none !important } .resp-table { display: inline-table !important } .magic-resp { display: table-cell !important } } </style><!--[if !mso]><!-->
+            <style type="text/css" emogrify="no"> </style><!--<![endif]--><style type="text/css">p, h1, h2, h3, h4, ol, ul { margin: 0; } a, a:link { color: #2e2d2c; text-decoration: underline } .nl2go-default-textstyle { color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px; line-height: 1.5; word-break: break-word } .default-button { color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 16px; font-style: normal; font-weight: bold; line-height: 1.15; text-decoration: none; word-break: break-word } .default-heading1 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 36px; word-break: break-word } .default-heading2 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 32px; word-break: break-word } .default-heading3 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 24px; word-break: break-word } .default-heading4 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 18px; word-break: break-word } a[x-apple-data-detectors] { color: inherit !important; text-decoration: inherit !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; } .no-show-for-you { border: none; display: none; float: none; font-size: 0; height: 0; line-height: 0; max-height: 0; mso-hide: all; overflow: hidden; table-layout: fixed; visibility: hidden; width: 0; } </style><!--[if mso]><xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml><![endif]--><style type="text/css">a:link{color: #2e2d2c; text-decoration: underline;}</style>
+        </head>
+        <body text="#3b3f44" link="#2e2d2c" yahoo="fix" style="">
+
+
+        <table cellspacing="0" cellpadding="0" border="0" role="presentation" class="nl2go-body-table" width="100%" style="width: 100%;">
+        <tr><td align="center" class="r0-c">
+        <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="600" class="r1-o" style="table-layout: fixed; width: 600px;">
+        <tr><td valign="top" class="">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+        <?php
+        $part = ob_get_clean();
+        return $part;
+    }
+
+    public static function email_logo_part( $logo_url = null ){
+        if ( empty( $logo_url ) ){
+            $logo_url = 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png';
+        }
+        ob_start();
+        ?>
+        <tr><td class="r2-c" align="center">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;"><!-- -->
+            <tr><td class="r4-i" style="background-color: #ffffff; padding-bottom: 20px; padding-top: 20px;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+            <tr><th width="100%" valign="top" class="r5-c" style="font-weight: normal;">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r6-o" style="table-layout: fixed; width: 100%;"><!-- -->
+            <tr><td valign="top" class="r7-i" style="padding-left: 15px; padding-right: 15px;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+            <tr><td class="r2-c" align="center">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="228" class="r8-o" style="table-layout: fixed; width: 228px;">
+            <tr><td class="r9-i" style="font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px;">
+                <img src="<?php echo esc_html( $logo_url ); ?>" width="228" border="0" class="" style="display: block; width: 100%;"></td>
+            </tr></table></td> </tr></table></td> </tr></table></th> </tr></table></td> </tr></table></td>
+        </tr>
+        <?php
+        $part = ob_get_clean();
+        return $part;
+    }
+
+    public static function email_content_part( $content ){
+        ob_start();
+        ?>
+
+        <tr><td class="r2-c" align="center">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;"><!-- -->
+            <tr><td class="r4-i" style="background-color: #ffffff; padding-top: 20px;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+            <tr><th width="100%" valign="top" class="r5-c" style="font-weight: normal;">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r6-o" style="table-layout: fixed; width: 100%;"><!-- -->
+            <tr><td valign="top" class="r7-i" style="padding-left: 15px; padding-right: 15px;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+            <tr><td class="r10-c" align="left">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r11-o" style="table-layout: fixed; width: 100%;">
+            <tr><td align="left" valign="top" class="r12-i nl2go-default-textstyle" style="color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px; line-height: 1.5; word-break: break-word; padding-bottom: 15px; padding-top: 15px; text-align: left;">
+            <div>
+                <p style="margin: 0;"><?php echo nl2br( $content ) //phpcs:ignore ?></p>
+            </div></td>
+            </tr>
+            </table></td> </tr></table></td> </tr></table></th> </tr></table></td> </tr>
+            </table>
+        </td></tr>
+        <?php
+        $part = ob_get_clean();
+        return $part;
+    }
+
+    public static function email_button_part( $button_text, $button_url ){
+        $button_color = '#dc3822';
+
+        ob_start();
+        ?>
+        <tr><td class="r2-c" align="center">
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;"><!-- -->
+                <tr><td class="r4-i" style="background-color: #ffffff; padding-bottom: 20px; padding-top: 20px;">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+                <tr><th width="100%" valign="top" class="r5-c" style="font-weight: normal;">
+                <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r6-o" style="table-layout: fixed; width: 100%;"><!-- -->
+                <tr><td valign="top" class="r7-i" style="padding-left: 15px; padding-right: 15px;">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+                <tr><td class="r2-c" align="center">
+                <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="285" class="r13-o" style="table-layout: fixed; width: 285px;">
+                <tr class="nl2go-responsive-hide"><td height="15" style="font-size: 15px; line-height: 15px;">­</td> </tr>
+                <tr><td height="18" align="center" valign="top" class="r14-i nl2go-default-textstyle" style="color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px; line-height: 1.5; word-break: break-word;">
+                    <!--[if mso]>
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="<?php echo $button_url; //phpcs:ignore ?>" style="v-text-anchor:middle; height: 41px; width: 284px;" arcsize="10%" fillcolor="<?php echo esc_html( $button_color ); ?>" strokecolor="<?php echo esc_html( $button_color ); ?>" strokeweight="1px" data-btn="1">
+                    <w:anchorlock> </w:anchorlock>
+                    <v:textbox inset="0,0,0,0"> <div style="display:none;"> <center class="default-button">
+                    <p><?php echo $button_text; //phpcs:ignore ?></p>
+                    </center> </div> </v:textbox>
+                    </v:roundrect> <![endif]-->
+                    <!--[if !mso]><!-- -->
+                    <a href="<?php echo $button_url; //phpcs:ignore ?>" class="r15-r default-button" target="_blank" title="<?php echo $button_text; //phpcs:ignore ?>" data-btn="1" style="font-style: normal; font-weight: bold; line-height: 1.15; text-decoration: none; word-break: break-word; border-style: solid; word-wrap: break-word; display: inline-block; -webkit-text-size-adjust: none; mso-hide: all; background-color: <?php echo esc_html( $button_color ); ?>; border-color: <?php echo esc_html( $button_color ); ?>; border-radius: 4px; border-width: 0px; color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 16px; height: 18px; padding-bottom: 12px; padding-left: 5px; padding-right: 5px; padding-top: 12px; width: 275px;">
+                        <p style="margin: 0;"><?php echo $button_text; //phpcs:ignore ?></p>
+                    </a> <!--<![endif]--> </td>
+                </tr>
+                <tr class="nl2go-responsive-hide"><td height="15" style="font-size: 15px; line-height: 15px;">­</td> </tr>
+            </table></td> </tr></table></td> </tr></table></th> </tr></table></td> </tr></table></td> </tr>
+        <?php
+        $part = ob_get_clean();
+        return $part;
+    }
+
+    public static function email_footer_part(){
+        ob_start();
+        ?>
+        </table></td></tr></table></td></tr></table></body></html>
+        <?php
+        $part = ob_get_clean();
+        return $part;
+
+    }
+
 }
