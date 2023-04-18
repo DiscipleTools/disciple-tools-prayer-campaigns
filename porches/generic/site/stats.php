@@ -204,7 +204,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-                                        <h4><?php esc_html_e( 'Prayed as a group', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                        <h4><?php esc_html_e( 'Time Prayed in Groups', 'disciple-tools-prayer-campaigns' ); ?></h4>
                                         <p>
                                             <?php echo esc_html( DT_Time_Utilities::display_minutes_in_time( $mins_as_a_group ) ) ?>
                                             <br>
