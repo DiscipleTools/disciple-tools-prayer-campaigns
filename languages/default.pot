@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.6.3\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-05T08:28:33+00:00\n"
+"POT-Creation-Date: 2023-04-18T16:04:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -42,7 +42,7 @@ msgid "Hello %s,"
 msgstr ""
 
 #: campaign-functions/cron-schedule.php:159
-#: porches/generic/site/stats.php:127
+#: porches/generic/site/stats.php:129
 msgid "Thank you for praying with us!"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 #: parts/components.php:72
 #: parts/components.php:76
 #: parts/components.php:77
-#: porches/generic/site/stats.php:245
+#: porches/generic/site/stats.php:257
 msgid "Email"
 msgstr ""
 
@@ -571,13 +571,13 @@ msgstr ""
 
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:52
-#: porches/generic/site/stats.php:258
+#: porches/generic/site/stats.php:270
 msgid "Submit"
 msgstr ""
 
 #: porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:58
-#: porches/generic/site/stats.php:264
+#: porches/generic/site/stats.php:276
 msgid "Thank You"
 msgstr ""
 
@@ -605,7 +605,8 @@ msgstr ""
 
 #: porches/generic/site/home-body.php:173
 #: porches/generic/site/home-body.php:180
-#: porches/generic/site/stats.php:200
+#: porches/generic/site/stats.php:202
+#: porches/generic/site/stats.php:212
 #: porches/ongoing/site/home-body.php:169
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
@@ -666,7 +667,7 @@ msgid "Hours"
 msgstr ""
 
 #: porches/generic/site/home-body.php:273
-#: porches/generic/site/stats.php:172
+#: porches/generic/site/stats.php:174
 #: porches/ramadan/site/home-body.php:272
 msgid "Prayer Commitments Needed"
 msgstr ""
@@ -714,44 +715,72 @@ msgstr ""
 msgid "Return"
 msgstr ""
 
-#: porches/generic/site/stats.php:129
+#: porches/generic/site/stats.php:131
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgstr ""
 
-#: porches/generic/site/stats.php:153
+#: porches/generic/site/stats.php:155
 msgid "Campaign Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:180
+#: porches/generic/site/stats.php:182
 msgid "Percentage Covered"
 msgstr ""
 
-#: porches/generic/site/stats.php:188
+#: porches/generic/site/stats.php:190
 msgid "Prayer Commitments"
 msgstr ""
 
-#: porches/generic/site/stats.php:196
+#: porches/generic/site/stats.php:198
 msgid "Time Committed"
 msgstr ""
 
-#: porches/generic/site/stats.php:206
+#: porches/generic/site/stats.php:208
+msgid "Time Prayed in Groups"
+msgstr ""
+
+#: porches/generic/site/stats.php:218
 msgid "Number of People who Prayed"
 msgstr ""
 
-#: porches/generic/site/stats.php:239
+#: porches/generic/site/stats.php:251
 msgid "Share with us your Prayer Stories"
 msgstr ""
 
-#: porches/generic/site/stats.php:253
+#: porches/generic/site/stats.php:265
 msgid "Share with us about your prayer time (E.g. testimonies, insights, blessings, etc)"
 msgstr ""
 
-#: porches/generic/site/stats.php:299
+#: porches/generic/site/stats.php:312
+msgid "Global Ramadan Stats"
+msgstr ""
+
+#: porches/generic/site/stats.php:319
+msgid "Total Prayer Campaigns"
+msgstr ""
+
+#: porches/generic/site/stats.php:327
+msgid "Countries Prayed For"
+msgstr ""
+
+#: porches/generic/site/stats.php:335
+msgid "Intercessors"
+msgstr ""
+
+#: porches/generic/site/stats.php:343
+msgid "Time Prayed"
+msgstr ""
+
+#: porches/generic/site/stats.php:351
+msgid "15 Minute Time Slots Filled"
+msgstr ""
+
+#: porches/generic/site/stats.php:373
 msgid "More Prayer Opportunities"
 msgstr ""
 
-#: porches/generic/site/stats.php:303
+#: porches/generic/site/stats.php:377
 msgid "Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?"
 msgstr ""
 
