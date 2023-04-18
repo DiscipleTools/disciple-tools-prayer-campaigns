@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-03-23T14:12:58+00:00\n"
+"POT-Creation-Date: 2023-04-18T16:04:57+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://translate.disciple.tools/"
@@ -50,7 +50,7 @@ msgstr "為 %s"
 msgid "Hello %s,"
 msgstr "你好 %s，"
 
-#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:127
+#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:129
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "感謝您與我們一起祈禱！"
@@ -516,7 +516,7 @@ msgid "Name"
 msgstr "名稱"
 
 #: parts/components.php:72 parts/components.php:76 parts/components.php:77
-#: porches/generic/site/stats.php:245
+#: porches/generic/site/stats.php:257
 #, fuzzy
 msgid "Email"
 msgstr "電子郵件"
@@ -600,6 +600,7 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-settings.php:149
 #: porches/generic/dt-generic-porch-settings.php:158
+#: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
 #, fuzzy
 msgid "Prayer Fuel"
 msgstr "禱告燃料"
@@ -648,32 +649,32 @@ msgstr ""
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:67
-#: porches/generic/site/landing-body.php:47
+#: porches/generic/site/archive-body.php:56
+#: porches/generic/site/landing-body.php:38
 msgid "Praying as a group?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:72
-#: porches/generic/site/landing-body.php:52
+#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/landing-body.php:43
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:75
-#: porches/generic/site/landing-body.php:56
+#: porches/generic/site/archive-body.php:64
+#: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:80
-#: porches/generic/site/landing-body.php:61 porches/generic/site/stats.php:258
+#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:270
 #, fuzzy
 msgid "Submit"
 msgstr "提交"
 
-#: porches/generic/site/archive-body.php:86
-#: porches/generic/site/landing-body.php:67 porches/generic/site/stats.php:264
+#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:276
 #, fuzzy
 msgid "Thank You"
 msgstr "謝謝你"
@@ -701,8 +702,8 @@ msgid "%s Ends In"
 msgstr "%s 結束於"
 
 #: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:200
-#: porches/ongoing/site/home-body.php:169
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
+#: porches/generic/site/stats.php:212 porches/ongoing/site/home-body.php:169
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
 #: porches/ramadan/site/home-body.php:170
@@ -770,7 +771,7 @@ msgstr "禱告時間"
 msgid "Hours"
 msgstr "小時"
 
-#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:172
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:174
 #: porches/ramadan/site/home-body.php:272
 #, fuzzy
 msgid "Prayer Commitments Needed"
@@ -825,55 +826,86 @@ msgstr "電子郵件中有一個鏈接來管理您的祈禱時間。"
 msgid "Return"
 msgstr "返回"
 
-#: porches/generic/site/stats.php:129
+#: porches/generic/site/stats.php:131
 #, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgstr "感謝您加入我們為 %2$s 中的 %1$s 祈禱。"
 
-#: porches/generic/site/stats.php:153
+#: porches/generic/site/stats.php:155
 #, fuzzy
 msgid "Campaign Stats"
 msgstr "活動統計"
 
-#: porches/generic/site/stats.php:180
+#: porches/generic/site/stats.php:182
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "覆蓋百分比"
 
-#: porches/generic/site/stats.php:188
+#: porches/generic/site/stats.php:190
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "禱告承諾"
 
-#: porches/generic/site/stats.php:196
+#: porches/generic/site/stats.php:198
 #, fuzzy
 msgid "Time Committed"
 msgstr "承諾時間"
 
-#: porches/generic/site/stats.php:206
+#: porches/generic/site/stats.php:208
+msgid "Time Prayed in Groups"
+msgstr ""
+
+#: porches/generic/site/stats.php:218
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "禱告的人數"
 
-#: porches/generic/site/stats.php:239
+#: porches/generic/site/stats.php:251
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "與我們分享你的禱告故事"
 
-#: porches/generic/site/stats.php:253
+#: porches/generic/site/stats.php:265
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc)"
 msgstr "與我們分享您的禱告時間（例如見證、見解、祝福等）"
 
-#: porches/generic/site/stats.php:299
+#: porches/generic/site/stats.php:312
+msgid "Global Ramadan Stats"
+msgstr ""
+
+#: porches/generic/site/stats.php:319
+#, fuzzy
+msgid "Total Prayer Campaigns"
+msgstr "正在加載禱告活動數據..."
+
+#: porches/generic/site/stats.php:327
+#, fuzzy
+msgid "Countries Prayed For"
+msgstr "禱告時間"
+
+#: porches/generic/site/stats.php:335
+msgid "Intercessors"
+msgstr ""
+
+#: porches/generic/site/stats.php:343
+#, fuzzy
+msgid "Time Prayed"
+msgstr "添加時間"
+
+#: porches/generic/site/stats.php:351
+msgid "15 Minute Time Slots Filled"
+msgstr ""
+
+#: porches/generic/site/stats.php:373
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "更多禱告機會"
 
-#: porches/generic/site/stats.php:303
+#: porches/generic/site/stats.php:377
 #, fuzzy
 msgid ""
 "Would you like to hear about other prayer efforts and opportunities with "
@@ -1051,18 +1083,18 @@ msgid ""
 msgstr ""
 "選擇一個時間在接下來的 3 個月裡每天祈禱。接近尾聲時，您可以選擇註冊更多。"
 
-#: shortcodes/prayer-timer.php:215
+#: shortcodes/prayer-timer.php:219
 #, fuzzy
 msgid "Start Praying!"
 msgstr "開始祈禱！"
 
-#: shortcodes/prayer-timer.php:218
+#: shortcodes/prayer-timer.php:222
 #, fuzzy
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "祈禱時間：%s 分鐘"
 
-#: shortcodes/prayer-timer.php:238
+#: shortcodes/prayer-timer.php:247
 #, fuzzy
 msgid "Now praying..."
 msgstr "現在祈禱..."
