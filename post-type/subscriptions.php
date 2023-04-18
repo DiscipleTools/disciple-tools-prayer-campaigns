@@ -128,52 +128,6 @@ class DT_Subscriptions_Base {
              * Basic framework fields used by post-type base
              * recommended to leave these alone
              */
-            $fields['tags'] = [
-                'name'        => __( 'Tags', 'disciple-tools-prayer-campaigns' ),
-                'description' => _x( 'A useful way to group related items.', 'Optional Documentation', 'disciple-tools-prayer-campaigns' ),
-                'type'        => 'tags',
-                'default'     => [],
-                'tile'        => 'other',
-                'customizable' => false,
-                'icon' => get_template_directory_uri() . '/dt-assets/images/nametag.svg',
-            ];
-            $fields['follow'] = [
-                'name'        => __( 'Follow', 'disciple-tools-prayer-campaigns' ),
-                'type'        => 'multi_select',
-                'default'     => [],
-                'section'     => 'misc',
-                'hidden'      => true,
-                'customizable' => false,
-            ];
-            $fields['unfollow'] = [
-                'name'        => __( 'Un-Follow', 'disciple-tools-prayer-campaigns' ),
-                'type'        => 'multi_select',
-                'default'     => [],
-                'hidden'      => true,
-                'customizable' => false,
-            ];
-            $fields['tasks'] = [
-                'name' => __( 'Tasks', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'post_user_meta',
-                'customizable' => false,
-            ];
-//            $fields['assigned_to'] = [
-//                'name'        => __( 'Assigned To', 'disciple-tools-prayer-campaigns' ),
-//                'description' => __( "Select the main person who is responsible for reporting on this record.", 'disciple-tools-prayer-campaigns' ),
-//                'type'        => 'user_select',
-//                'default'     => '',
-//                'tile' => 'status',
-//                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
-//                "show_in_table" => 16,
-//                'custom_display' => true,
-//            ];
-//            $fields["requires_update"] = [
-//                'name'        => __( 'Requires Update', 'disciple-tools-prayer-campaigns' ),
-//                'description' => '',
-//                'type'        => 'boolean',
-//                'default'     => false,
-//            ];
-            // end basic framework fields
 
 
             $fields['status'] = [
@@ -432,34 +386,6 @@ class DT_Subscriptions_Base {
                 };
             </script>
         <?php }
-
-        if ( $post_type === $this->post_type && $section === 'other' ) :
-            $fields = DT_Posts::get_post_field_settings( $post_type );
-            ?>
-            <div class="section-subheader">
-                <?php echo esc_html( $fields['tags']['name'] ) ?>
-            </div>
-            <div class="tags">
-                <var id="tags-result-container" class="result-container"></var>
-                <div id="tags_t" name="form-tags" class="scrollable-typeahead typeahead-margin-when-active">
-                    <div class="typeahead__container">
-                        <div class="typeahead__field">
-                            <span class="typeahead__query">
-                                <input class="js-typeahead-tags input-height"
-                                       name="tags[query]"
-                                       placeholder="<?php echo esc_html( sprintf( _x( 'Search %s', "Search 'something'", 'disciple-tools-prayer-campaigns' ), $fields['tags']['name'] ) )?>"
-                                       autocomplete="off">
-                            </span>
-                            <span class="typeahead__button">
-                                <button type="button" data-open="create-tag-modal" class="create-new-tag typeahead__image_button input-height">
-                                    <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/tag-add.svg' ) ?>"/>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endif;
 
         /* SUBSCRIPTIONS */
 
