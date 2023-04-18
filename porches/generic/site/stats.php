@@ -74,6 +74,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         $post_id = $campaign_fields['ID'];
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
+        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
 
         $timezone = 'America/Chicago';
@@ -299,6 +300,68 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                 }
 
             </script>
+
+
+            <?php if ( $current_selected_porch === 'ramadan-porch' ) {
+                $ramadan_stats = p4m_cached_api_call( 'https://pray4movement.org/wp-json/dt-public/campaigns/campaigns-stats?start_date=2023-03-01&end_date=2023-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
+                ?>
+            <section class='section' data-stellar-background-ratio='0.2' style='padding-bottom: 0; min-height: 800px'>
+                <div class='container'>
+                    <div class='section-header' style='margin-bottom: 20px'>
+                        <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
+                            data-wow-delay='0.3s'><?php esc_html_e( 'Global Ramadan Stats', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                        <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                    </div>
+
+                    <div class='row' style='padding-top:40px'>
+                        <div class='col-md-4 col-sm-6'>
+                            <div class='item-boxes wow fadeInDown' data-wow-delay='0.2s'>
+                                <h4><?php esc_html_e( 'Total Prayer Campaigns', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                <p>
+                                    <?php echo esc_html( number_format( $ramadan_stats['campaigns_count'] ) ); ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-6'>
+                            <div class='item-boxes wow fadeInDown' data-wow-delay='0.2s'>
+                                <h4><?php esc_html_e( 'Countries Prayed For', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                <p>
+                                    <?php echo esc_html( $ramadan_stats['countries_prayed_for_count'] ); ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-6'>
+                            <div class='item-boxes wow fadeInDown' data-wow-delay='0.2s'>
+                                <h4><?php esc_html_e( 'Intercessors', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                <p>
+                                    <?php echo esc_html( number_format( $ramadan_stats['intercessors_count'] ) ); ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-6'>
+                            <div class='item-boxes wow fadeInDown' data-wow-delay='0.2s'>
+                                <h4><?php esc_html_e( 'Time Prayed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                <p>
+                                    <?php echo esc_html( DT_Time_Utilities::display_minutes_in_time( $ramadan_stats['time_committed'] ) ); ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-6'>
+                            <div class='item-boxes wow fadeInDown' data-wow-delay='0.2s'>
+                                <h4><?php esc_html_e( '15 Minute Time Slots Filled', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                                <p>
+                                    <?php echo esc_html( number_format( $ramadan_stats['time_slots_count'] ) ); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        See <a href="https://pray4movement.org/ramadan"> https://pray4movement.org/ramadan</a> for more details.
+                    </div>
+                </div>
+            </section>
+
+            <?php } ?>
 
 
             <!--

@@ -185,3 +185,23 @@ https://www.qppstudio.net/global-holidays-observances/start-of-ramadan.htm
 2031 Start of Ramadan (Umm al-Qura) Monday Dec 15
 2032 Start of Ramadan (Umm al-Qura) Saturday Dec 4
 */
+
+if ( !function_exists( 'dt_cached_api_call' ) ){
+    function p4m_cached_api_call( $url, $type = 'GET', $args = [], $duration = HOUR_IN_SECONDS, $use_cache = true ){
+        $data = get_site_transient( 'dt_cached_' . esc_url( $url ) );
+        if ( !$use_cache || empty( $data ) ){
+            if ( $type === 'GET' ){
+                $response = wp_remote_get( $url, $args );
+            } else {
+                $response = wp_remote_post( $url, $args );
+            }
+            if ( is_wp_error( $response ) || isset( $response['response']['code'] ) && $response['response']['code'] !== 200 ){
+                return false;
+            }
+            $data = wp_remote_retrieve_body( $response );
+
+            set_site_transient( 'dt_cached_' . esc_url( $url ), $data, $duration );
+        }
+        return json_decode( $data, true );
+    }
+}
