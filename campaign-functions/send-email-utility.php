@@ -347,6 +347,8 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
         );
+        $message .= Campaigns_Email_Template::email_content_part( 'Finally, the folks at Pray4Movement built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page.' );
+
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'In Christ with you,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $campaign_title
@@ -369,21 +371,19 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             sprintf( __( 'Thank you for joining %1$s in %2$s.', 'disciple-tools-prayer-campaigns' ), esc_html( $campaign_title ), lcfirst( $tag ) )
         );
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16).", 'disciple-tools-prayer-campaigns' )
+        );
         if ( empty( $location ) || $lang !== 'en_US' ){
-            $message .= Campaigns_Email_Template::email_content_part(
-                __( "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16). God is answering our prayers for the Kingdom to come on earth as it is in heaven.", 'disciple-tools-prayer-campaigns' )
-            );
             $message .= Campaigns_Email_Template::email_content_part(
                 __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
             );
         } else {
             $message .= Campaigns_Email_Template::email_content_part(
-                sprintf( "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16). God is answering our prayers for the Kingdom to come in %s as it is in heaven.", $location )
-            );
-            $message .= Campaigns_Email_Template::email_content_part(
                 sprintf( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as for %s you prayed.', $location )
             );
         }
+        $message .= Campaigns_Email_Template::email_content_part( 'Finally, the folks at Pray4Movement built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Ramadan 24/7 Prayer Stats page.' );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Ramadan 24/7 Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
         $message .= Campaigns_Email_Template::email_content_part(
@@ -483,7 +483,7 @@ class Campaigns_Email_Template {
 
         <tr><td class="r2-c" align="center">
             <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;"><!-- -->
-            <tr><td class="r4-i" style="background-color: #ffffff; padding-top: 20px;">
+            <tr><td class="r4-i" style="background-color: #ffffff;">
             <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
             <tr><th width="100%" valign="top" class="r5-c" style="font-weight: normal;">
             <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r6-o" style="table-layout: fixed; width: 100%;"><!-- -->
