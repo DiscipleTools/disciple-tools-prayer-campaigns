@@ -1252,8 +1252,10 @@ class DT_Campaigns_Base {
 
         $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
 
-        $send = wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );
-        return $send;
+        if ( !empty( $campaigns_to_send ) ){
+            return wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );
+        }
+        return true;
     }
 
     public static function close_campaigns(){
