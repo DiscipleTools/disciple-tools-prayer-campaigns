@@ -342,7 +342,7 @@ class DT_Prayer_Campaigns_Send_Email {
             sprintf( __( 'Thank you for joining %1$s in %2$s.', 'disciple-tools-prayer-campaigns' ), esc_html( $campaign_title ), lcfirst( $tag ) )
         );
         $message .= Campaigns_Email_Template::email_content_part(
-            __( "We will only know in eternity the full impact of our prayer. However, we know from God's Word that prayer is powerful and effective (James 5:16). God is answering our prayers for the Kingdom to come on earth as it is in heaven.", 'disciple-tools-prayer-campaigns' )
+            __( "We will only know in eternity the full impact of our prayer. However, we know from God's Word that prayer is powerful and effective (James 5:16).", 'disciple-tools-prayer-campaigns' )
         );
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
@@ -412,6 +412,11 @@ class End_Of_Campaign_Email_Job extends Job {
         DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $this->subscriber_id, $this->campaign_id );
     }
 }
+
+add_action( 'init', function(){
+    DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( 1166, 1152 );
+} );
+
 
 class Campaigns_Email_Template {
 
