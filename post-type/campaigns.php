@@ -1146,7 +1146,7 @@ class DT_Campaigns_Base {
 
     public function dt_prayer_campaigns_daily_cron(){
         self::send_campaign_info();
-        //@todo close done campaigns
+        self::close_campaigns();
     }
 
     /**
@@ -1256,12 +1256,37 @@ class DT_Campaigns_Base {
         return $send;
     }
 
+    public static function close_campaigns(){
+        $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
+        foreach ( $campaigns['posts'] as $campaign ){
+            if ( isset( $campaign['end_date']['timestamp'] ) && $campaign['end_date']['timestamp'] < time() ){
+                $close = [
+                    'tags' => [ 'values' => [ [ 'value' => 'campaign-ended' ] ] ],
+                    'status' => 'inactive'
+                ];
+                DT_Posts::update_post( 'campaigns', $campaign['ID'], $close, true, false );
+
+                $current_campaign = DT_Campaign_Settings::get_campaign();
+                $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
+
+                //if the campaign is linked to the current porch and if it ended recently, send an email to all subscribers
+                if ( $is_current_campaign && $campaign['end_date']['timestamp'] > time() - MONTH_IN_SECONDS ){
+                    foreach ( $campaign['subscriptions'] as $subscription ){
+                        wp_queue()->push( new End_Of_Campaign_Email_Job( $subscription['ID'], $campaign['ID'] ) );
+
+                    }
+                }
+            }
+        }
+    }
+
+
     public static function schedule_campaign_sync_job(){
         wp_queue()->push( new P4M_Sync_Campaigns() );
     }
 }
 use WP_Queue\Job;
-class P4M_Sync_Campaigns extends Job{
+class P4M_Sync_Campaigns extends Job {
     public function __construct(){
     }
 
