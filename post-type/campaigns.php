@@ -1197,7 +1197,14 @@ class DT_Campaigns_Base {
             if ( isset( $record['min_time_duration']['key'] ) ){
                 $min_time_duration = $record['min_time_duration']['key'];
             }
-            $stats = self::campaign_stats( $campaign['ID'], $min_time_duration );
+            $coverage_levels = self::query_coverage_levels_progress( $campaign['ID'] );
+            $mins_scheduled = self::query_scheduled_minutes( $campaign['ID'] );
+            $mins_extra = self::query_extra_minutes( $campaign['ID'] );
+
+
+            $time_lots_covered = $mins_scheduled / $min_time_duration;
+
+
             $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
 
             $focus = [];
@@ -1237,13 +1244,14 @@ class DT_Campaigns_Base {
                         [ 'value' => $site_url, 'type' => 'default' ],
                     ]
                 ],
-                'campaign_progress' => $stats['campaign_progress'],
+                'campaign_progress' => $coverage_levels[0]['percent'],
                 'campaign_type' => $campaign['type']['key'],
                 'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
-                'minutes_committed' => $stats['minutes_committed'],
+                'minutes_committed' => $mins_scheduled + $mins_extra,
                 'subscriber_count' => sizeof( $campaign['subscriptions'] ?? [] ),
                 'slot_length' => (int) $min_time_duration,
-                'number_of_time_slots' => $stats['number_of_time_slots'],
+                'number_of_time_slots' => self::query_coverage_total_time_slots( $campaign['ID'] ),
+                'time_slots_covered' => $time_lots_covered,
                 'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
                 'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
                 'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
