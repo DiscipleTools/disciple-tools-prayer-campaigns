@@ -322,7 +322,7 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         } else {
             DT_Posts::update_post( 'subscriptions', $subscriber_id, [ 'tags' => [ 'values' => [ [ 'value' => 'end_of_campaign_email_' . $campaign_id ] ] ] ], true, false );
-            DT_Posts::add_post_comment( 'subscribers', $subscriber_id, 'Sent end of campaign email', 'comment', [], false );
+            DT_Posts::add_post_comment( 'subscribers', $subscriber_id, 'Sent end of campaign email', 'comment', [], false, true );
         }
     }
 
