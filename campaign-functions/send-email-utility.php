@@ -413,10 +413,6 @@ class End_Of_Campaign_Email_Job extends Job {
     }
 }
 
-add_action( 'init', function(){
-    DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( 1166, 1152 );
-} );
-
 
 class Campaigns_Email_Template {
 
