@@ -1261,7 +1261,7 @@ class DT_Campaigns_Base {
     public static function close_campaigns(){
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
         foreach ( $campaigns['posts'] as $campaign ){
-            if ( isset( $campaign['end_date']['timestamp'] ) && $campaign['end_date']['timestamp'] < time() ){
+            if ( isset( $campaign['end_date']['timestamp'] ) && ( $campaign['end_date']['timestamp'] + DAY_IN_SECONDS ) < time() ){
                 $close = [
                     'tags' => [ 'values' => [ [ 'value' => 'campaign-ended' ] ] ],
                     'status' => 'inactive'
