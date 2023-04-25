@@ -288,6 +288,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
         $two_weeks_from_now = time() + 14 * DAY_IN_SECONDS;
         $two_weeks_ago = time() - 14 * DAY_IN_SECONDS;
         $one_week_ago = time() - 7 * DAY_IN_SECONDS;
+        $now = time();
 
         //select all the subscribers whose prayer time is less than 2 weeks away and who signed up more than 2 weeks ago.
         //and we didn't send a tickler email to in the last week and they have signed up to something since the last tickler.
@@ -299,6 +300,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
             WHERE parent_id IN ( $campaign_ids_sql )
             AND r.time_begin = ( SELECT MAX( time_begin ) as time FROM $wpdb->dt_reports r2 WHERE r2.post_id = r.post_id )
             AND r.time_begin < %d
+            AND r.time_begin > %d
             AND r.timestamp < %d
             AND r.subtype = 'ongoing'
             AND r.post_id NOT IN (
@@ -308,7 +310,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
                 AND ( r3.timestamp > %d OR r3.timestamp > r.timestamp )
             )
             GROUP BY r.post_id
-        ", $two_weeks_from_now, $two_weeks_ago, $one_week_ago ), ARRAY_A );
+        ", $two_weeks_from_now, $now, $two_weeks_ago, $one_week_ago ), ARRAY_A );
         //phpcs:enable
 
         foreach ( $subscribers_ids as $row ){
