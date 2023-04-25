@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-04-18T16:04:57+00:00\n"
+"POT-Creation-Date: 2023-04-25T08:18:30+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/disciple-"
@@ -43,7 +43,9 @@ msgstr "voor %s"
 msgid "Hello %s,"
 msgstr "Hallo %s,"
 
-#: campaign-functions/cron-schedule.php:159 porches/generic/site/stats.php:129
+#: campaign-functions/cron-schedule.php:159
+#: campaign-functions/send-email-utility.php:309
+#: porches/generic/site/stats.php:129
 msgid "Thank you for praying with us!"
 msgstr "Bedankt dat je met ons mee bidt!"
 
@@ -141,6 +143,77 @@ msgstr ""
 #, fuzzy
 msgid "Thank you"
 msgstr "Dank je"
+
+#: campaign-functions/send-email-utility.php:332
+#: campaign-functions/send-email-utility.php:362
+#, fuzzy
+msgid "Strategic prayer for a disciple making movement in %s"
+msgstr "Strategisch gebed voor een beweging voor het maken van discipelen"
+
+#: campaign-functions/send-email-utility.php:334
+#: campaign-functions/send-email-utility.php:364
+#, fuzzy
+msgid "Strategic prayer for a disciple making movement"
+msgstr "Strategisch gebed voor een beweging voor het maken van discipelen"
+
+#: campaign-functions/send-email-utility.php:339
+#: campaign-functions/send-email-utility.php:369
+msgid "Dear %s,"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:342
+#: campaign-functions/send-email-utility.php:372
+#, fuzzy
+msgid "Thank you for joining %1$s in %2$s."
+msgstr "Bedankt dat je met ons mee bidt voor de %1$s in %2$s."
+
+#: campaign-functions/send-email-utility.php:345
+msgid ""
+"We will only know in eternity the full impact of our prayer. However, we "
+"know from God's Word that prayer is powerful and effective (James 5:16)."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:348
+msgid ""
+"Click the button below for a glimpse at what you contributed to. We would "
+"also love to hear impressions or words you received from God as you prayed."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:352
+#, fuzzy
+#| msgid "Select a prayer time"
+msgid "See Prayer Stats"
+msgstr "Selecteer een gebedstijd"
+
+#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:390
+msgid "In Christ with you,"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:375
+msgid ""
+"We will only know in eternity the full impact of the thousands of hours of "
+"prayer for the Muslim world during Ramadan. However, we know from God's Word "
+"that prayer is powerful and effective (James 5:16)."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:379
+msgid ""
+"Click the button below for a glimpse at what you contributed to this "
+"Ramadan. We would also love to hear impressions or words you received from "
+"God as you prayed."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:386
+msgid ""
+"Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
+"bottom. Make sure you are signed up to receive news about future prayer "
+"opportunities by Pray4Movement, the makers of this prayer tool."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:388
+msgid "See Ramadan 24/7 Prayer Stats"
+msgstr ""
 
 #: campaign-functions/time-utilities.php:168
 #, fuzzy
