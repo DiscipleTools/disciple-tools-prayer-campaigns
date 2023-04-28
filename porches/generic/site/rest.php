@@ -61,6 +61,7 @@ if ( ! class_exists( 'DT_Generic_Porch_Lead_Form' ) ) {
         }
 
         public function save_newsletter( $data ) {
+            //@todo remove cuz not used
             $content = get_option( 'landing_content' );
 
             $data = dt_recursive_sanitize_array( $data );

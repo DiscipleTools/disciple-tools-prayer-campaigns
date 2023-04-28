@@ -61,7 +61,6 @@ class DT_Ongoing_Shortcode {
 
         //24 hour campaign js
         if ( !wp_script_is( 'dt_campaign' ) ){
-            wp_enqueue_script( 'dt_mailchimp', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'assets/js/mailchimp.js', [], filemtime( plugin_dir_path( __DIR__ ) . 'assets/js/mailchimp.js' ), true );
             wp_enqueue_script( 'dt_campaign', trailingslashit( plugin_dir_url( __DIR__ ) ) . $this->js_file, [ 'luxon', 'jquery', 'dt_campaign_core' ], filemtime( plugin_dir_path( __DIR__ ) . $this->js_file ), true );
             wp_localize_script(
                 'dt_campaign', 'campaign_objects', [

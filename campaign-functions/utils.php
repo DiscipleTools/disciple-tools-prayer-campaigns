@@ -205,3 +205,39 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
         return json_decode( $data, true );
     }
 }
+
+
+function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_signup' ){
+
+    $lists = [ 'list_23', 'list_29' ]; //P4M News, P4M Campaign subscriber
+    $tags = [];
+
+    if ( class_exists( 'DT_Porch_Selector' ) ){
+        $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
+        if ( $selected_porch === 'ramadan-porch' ){
+            //$lists[] = 'list_'; //Ramadan Campaign subscriber
+            $tags[] = [ 'value' => 'p4m_ramadan_campaign' ];
+        }
+    }
+    $campaign_name = '';
+    if ( class_exists( 'DT_Porch_Settings' ) ){
+        $porch_fields = DT_Porch_Settings::settings();
+        if ( isset( $porch_fields['title']['value'] ) ){
+            $campaign_name = $porch_fields['title']['value'];
+        }
+    }
+    if ( empty( $campaign_name ) ){
+        $campaign_name = get_the_title();
+    }
+
+    wp_remote_post( 'https://pray4movement.org/wp-json/go-webform/optin', [
+        'body' => [
+            'email' => $email,
+            'name' => $name,
+            'source' => $source,
+            'lists' => $lists,
+            'tags' => [ 'values' => $tags ],
+            'named_tags' => [ 'values' => [ [ 'value' => $campaign_name, 'type' => 'p4m_campaign_name' ] ] ],
+        ]
+    ] );
+}

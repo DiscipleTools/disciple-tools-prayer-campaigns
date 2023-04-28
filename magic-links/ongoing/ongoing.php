@@ -133,6 +133,9 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( empty( $title ) ) {
             $title = $email;
         }
+        if ( isset( $params['p4m_news'] ) && !empty( $params['p4m_news'] ) ){
+            p4m_subscribe_to_news( $params['email'], $title );
+        }
 
         $receive_prayer_time_notifications = isset( $params['receive_prayer_time_notifications'] ) && !empty( $params['receive_prayer_time_notifications'] );
 

@@ -17,10 +17,6 @@ let escapeObject = (obj) => {
   }))
 }
 
-var displayMailChimpStatus = function (data) {
-  console.log(data)
-}
-
 jQuery(document).ready(function($) {
   let jsObject = window.campaign_objects
 
@@ -459,11 +455,6 @@ jQuery(document).ready(function($) {
 
       let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
 
-      if ( document.querySelector('#receive_pray4movement_news').checked ) {
-        const form = document.getElementById('mc-embedded-subscribe-form')
-        submitMailChimpSubscribe(form)
-      }
-
       let data = {
         name: name,
         email: email,
@@ -471,6 +462,7 @@ jQuery(document).ready(function($) {
         campaign_id: calendar_subscribe_object.campaign_id,
         timezone: current_time_zone,
         receive_prayer_time_notifications,
+        p4m_news: document.querySelector('#receive_pray4movement_news').checked,
         parts: jsObject.parts
       }
       send_submission(data, submit_spinner)
@@ -547,7 +539,7 @@ jQuery(document).ready(function($) {
           $('.cp-view').hide()
           $(`#cp-success-confirmation-section`).show()
         } else {
-          window.location.href = jsObject.home + '/prayer/email-confirmation';
+          // window.location.href = jsObject.home + '/prayer/email-confirmation';
         }
       })
       .fail(function(e) {

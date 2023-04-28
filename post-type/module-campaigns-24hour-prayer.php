@@ -297,6 +297,10 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             $title = $email;
         }
 
+        if ( isset( $params['p4m_news'] ) && !empty( $params['p4m_news'] ) ){
+            p4m_subscribe_to_news( $params['email'], $title );
+        }
+
         $receive_prayer_time_notifications = isset( $params['receive_prayer_time_notifications'] ) && !empty( $params['receive_prayer_time_notifications'] );
 
         $existing_posts = DT_Posts::list_posts( 'subscriptions', [
