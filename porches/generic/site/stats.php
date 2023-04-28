@@ -51,9 +51,14 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
+        $allowed_js = [];
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'dt_campaign';
         $allowed_js[] = 'luxon';
+        $allowed_js[] = 'jquery';
+        $allowed_js[] = 'lodash';
+        $allowed_js[] = 'lodash-core';
+
         return array_merge( $allowed_js, DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
     }
 
@@ -76,6 +81,8 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         dt_campaign_set_translation( $lang );
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
+        $campaign_name = $porch_fields['title']['value'];
+        $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'title' );
 
         $timezone = 'America/Chicago';
         if ( isset( $campaign_fields['campaign_timezone']['key'] ) ){
@@ -152,7 +159,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
             <section class="section" data-stellar-background-ratio="0.2" style="padding-bottom: 0; min-height: 800px">
                 <div class="container">
                     <div class="section-header" style="margin-bottom: 20px">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Campaign Stats', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( $campaign_name_translated ); ?> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <div class="center" style="margin: 30px">
@@ -251,7 +258,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                         <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
-                    <form onSubmit="submit_feedback_form();return false;" id="form-content">
+                    <form onSubmit="submit_feedback_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
                         <p>
                             <label style="width: 100%">
                                 <?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>
@@ -266,7 +273,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                 <br>
                                 <textarea id="campaign-stories" required rows="4" type="text" style="width: 100%"></textarea>
                             </label>
-                            <button id="stories-submit-button" class="btn btn-common" style="font-weight: bold">
+                            <button id="stories-submit-button" class="btn btn-common" style="font-weight: bold; margin-left: 0">
                                 <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
                                 <img id="stories-submit-spinner" style="display: none; margin-left: 10px" src="<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg" width="22px;" alt="spinner "/>
                             </button>
@@ -375,68 +382,127 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                     </div>
 
                     <p class="center"><?php esc_html_e( 'Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?', 'disciple-tools-prayer-campaigns' ); ?></p>
-                    <!-- Begin Mailchimp Signup Form -->
-                    <?php // phpcs:ignore ?>
-                    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
-                    <style type="text/css">
-                        #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:600px;}
-                        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-                           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-                    </style>
-                    <style type="text/css">
-                        #mc-embedded-subscribe-form input[type=checkbox]{display: inline; width: auto;margin-right: 10px;}
-                        #mergeRow-gdpr {margin-top: 20px;}
-                        #mergeRow-gdpr fieldset label {font-weight: normal;}
-                        #mc-embedded-subscribe-form .mc_fieldset{border:none;min-height: 0px;padding-bottom:0px;}
-                    </style>
 
-                    <div id="mc_embed_signup" class="center" style="margin: auto">
-                        <form action="https://training.us14.list-manage.com/subscribe/post?u=d9ad41b66865008d664ac28bf&amp;id=4df6e5ea4e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                            <div id="mc_embed_signup_scroll">
+                    <style>
+                        #go-optin-form .dt-form-error {
+                            color: #cc4b37;
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                        }
 
-                                <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-                                <div class="mc-field-group">
-                                    <label for="mce-FNAME">First Name </label>
-                                    <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
-                                </div>
-                                <div class="mc-field-group">
-                                    <label for="mce-LNAME">Last Name </label>
-                                    <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
-                                </div>
-                                <div class="mc-field-group">
-                                    <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
-                                    </label>
-                                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-                                </div>
-                                <div id="mergeRow-gdpr" class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group" >
-                                    <div class="content__gdpr" style="display: none">
-                                        <label>Marketing Permissions</label>
-                                        <p>Please select all the ways you would like to hear from :</p>
-                                        <fieldset class="mc_fieldset gdprRequired mc-field-group" name="interestgroup_field">
-                                            <label class="checkbox subfield" for="gdpr_142225">
-                                                <input type="checkbox" id="gdpr_142225" name="gdpr[142225]" value="Y" class="av-checkbox gdpr" checked>
-                                                <span>Email</span>
-                                            </label>
-                                        </fieldset>
-                                        <p>You can unsubscribe at any time by clicking the link in the footer of our emails.</p>
-                                    </div>
-                                    <div class="content__gdprLegal">
-                                        <p>We use Mailchimp as our marketing platform. By clicking below to subscribe, you acknowledge that your information will be transferred to Mailchimp for processing. <a href="https://mailchimp.com/legal/terms" target="_blank">Learn more about Mailchimp's privacy practices here.</a></p>
-                                    </div>
-                                </div>
-                                <div hidden="true"><input type="hidden" name="tags" value="7237301,7236505"></div>
-                                <div id="mce-responses" class="clear">
-                                    <div class="response" id="mce-error-response" style="display:none"></div>
-                                    <div class="response" id="mce-success-response" style="display:none"></div>
-                                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d9ad41b66865008d664ac28bf_4df6e5ea4e" tabindex="-1" value=""></div>
-                                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                        #go-optin-form .dt-form-success {
+                            color: #4CAF50;
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                        }
+                        #go-optin-form input {
+                            display: block;
+                            width: 100%;
+                            color: black;
+                            font-size: 16px;
+                        }
+                        #go-optin-form label {
+                            display: block;
+                            width: 100%;
+                        }
+                        #go-optin-form {
+                            max-width: 600px;
+                            margin: auto;
+                        }
+                        #go-optin-form .asterisk {
+                            color: red;
+                            font-weight: normal;
+                            position: relative;
+                            top: 5px;
+                        }
+
+                    </style>
+                    <div class='go-opt-in__form'>
+                        <form id='go-optin-form' action='https://pray4movement.org/wp-json/go-webform/optin' method='post'>
+                            <div class='form-group'>
+                                <label>
+                                    Email Address <span class='asterisk'>*</span>
+                                    <input type='email' name='email2' class='form-control' required>
+                                    <input type='email' name='email' placeholder='Email Address' style='display: none'>
+                                </label>
                             </div>
+                            <div class="form-group">
+                                <label>
+                                    First Name
+                                    <input type='text' name='first_name' class='form-control'>
+                                </label>
+                            </div>
+                            <div class='form-group'>
+                                <label>
+                                    Last Name
+                                    <input type='text' name='last_name' class='form-control'>
+                                </label>
+                            </div>
+
+                            <div>
+                                <div class='input-group'>
+                                    <div class='input-group-button'>
+                                        <button id='go-submit-form-button' type='submit' class='btn btn-common' style="font-weight: bold; margin-left: 0">
+                                            Subscribe
+                                            <img id='go-submit-spinner' style='display: none; height: 25px'
+                                                 src="<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='dt-form-success'></div>
+                            <span class='dt-form-error'></span>
                         </form>
                     </div>
-                    <?php // phpcs:ignore ?>
-                    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-                    <!--End mc_embed_signup-->
+                    <script>
+                      let go_form = document.getElementById('go-optin-form');
+                      let error_span = go_form.querySelector('.dt-form-error');
+                      go_form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        go_form.querySelector('#go-submit-spinner').style.display = 'inline-block';
+                        go_form.querySelector('#go-submit-form-button').disabled = true;
+                        let email = go_form.querySelector('input[name="email"]').value;
+                        let email2 = go_form.querySelector('input[name="email2"]').value;
+                        if (email) {
+                          return
+                        }
+                        let first_name = go_form.querySelector('input[name="first_name"]').value;
+                        let last_name = go_form.querySelector('input[name="last_name"]').value;
+
+                        let data = {
+                            email: email2,
+                            first_name: first_name,
+                            last_name: last_name,
+                            lists: ['list_23'],
+                            source: 'p4m_campaign_signup',
+                            named_tags: {'p4m_campaign_name': '<?php echo esc_html( $campaign_name ); ?>'}
+                        }
+
+                        fetch('https://pray4movement.org/wp-json/go-webform/optin', {
+                          method: 'POST',
+                          body: JSON.stringify(data),
+                          headers: {
+                            'Content-Type': 'application/json'
+                          }
+                        }).then(function (response) {
+                          go_form.querySelector('#go-submit-spinner').style.display = 'none';
+                          go_form.querySelector('#go-submit-form-button').disabled = false;
+                          if (response.status!==200) {
+                            error_span.innerHTML = 'There was an error subscribing you. Please try again.';
+                            error_span.style.display = 'block';
+                          } else {
+                            error_span.style.display = 'none';
+                            go_form.querySelector('.dt-form-success').innerHTML = 'You have been subscribed!';
+                            go_form.querySelector('input[name="email2"]').value = '';
+                            go_form.reset()
+                          }
+                        }).catch(function (error) {
+                          go_form.querySelector('#go-submit-spinner').style.display = 'none';
+                          error_span.innerHTML = 'There was an error subscribing you. Please try again.';
+                          error_span.style.display = 'block';
+                        })
+                      });
+                    </script>
 
                 </div>
             </section>
