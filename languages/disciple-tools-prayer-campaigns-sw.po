@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-04-25T08:18:30+00:00\n"
+"POT-Creation-Date: 2023-04-28T14:12:53+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swahili <https://translate.disciple.tools/projects/disciple-"
@@ -52,7 +52,7 @@ msgstr "Habari %s,"
 
 #: campaign-functions/cron-schedule.php:159
 #: campaign-functions/send-email-utility.php:309
-#: porches/generic/site/stats.php:129
+#: porches/generic/site/stats.php:136
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "Asante kwa kuomba pamoja nasi!"
@@ -285,25 +285,25 @@ msgid "My Prayer Times"
 msgstr "Nyakati Zangu za Maombi"
 
 #: magic-links/subscription-management/subscription-management.php:108
-#: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
+#: shortcodes/24hour.php:29 shortcodes/ongoing.php:70
 #, fuzzy
 msgid "Select a time"
 msgstr "Chagua wakati"
 
 #: magic-links/subscription-management/subscription-management.php:109
-#: shortcodes/24hour.php:31
+#: shortcodes/24hour.php:30
 #, fuzzy
 msgid "fully covered once"
 msgstr "kufunikwa kikamilifu mara moja"
 
 #: magic-links/subscription-management/subscription-management.php:110
-#: shortcodes/24hour.php:32
+#: shortcodes/24hour.php:31
 #, fuzzy
 msgid "fully covered %1$s times"
 msgstr "inashughulikia kikamilifu mara %1$s"
 
 #: magic-links/subscription-management/subscription-management.php:111
-#: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
 #, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
@@ -320,26 +320,26 @@ msgid "Change daily time"
 msgstr "Badilisha wakati wa kila siku"
 
 #: magic-links/subscription-management/subscription-management.php:114
-#: shortcodes/24hour.php:36
+#: shortcodes/24hour.php:35
 #, fuzzy
 msgctxt "80% covered"
 msgid "%s covered"
 msgstr "kufunikwa"
 
 #: magic-links/subscription-management/subscription-management.php:115
-#: shortcodes/24hour.php:37
+#: shortcodes/24hour.php:36
 msgctxt "on 5 days"
 msgid "On %s days"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:116
-#: shortcodes/24hour.php:38
+#: shortcodes/24hour.php:37
 msgctxt "and 5 more"
 msgid "and %s more"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:117
-#: shortcodes/24hour.php:39
+#: shortcodes/24hour.php:38
 #, fuzzy
 msgid "Pray this time"
 msgstr "Muda wa Maombi"
@@ -350,7 +350,7 @@ msgid "Your prayer times have been verified!"
 msgstr "Nyakati zako za maombi zimethibitishwa!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:270 shortcodes/ongoing.php:286
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:285
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "Badilisha saa za eneo lako:"
@@ -363,14 +363,14 @@ msgstr "Badilisha saa za eneo lako:"
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:288 shortcodes/ongoing.php:304
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:303
 #, fuzzy
 msgid "Cancel"
 msgstr "Ghairi"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:291 shortcodes/ongoing.php:307
+#: shortcodes/24hour.php:290 shortcodes/ongoing.php:306
 #, fuzzy
 msgid "Select"
 msgstr "Chagua"
@@ -391,7 +391,7 @@ msgid "Download Calendar"
 msgstr "Pakua Kalenda"
 
 #: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:133
+#: shortcodes/24hour.php:132
 #, fuzzy
 msgid "Help us cover these prayer times"
 msgstr "Chagua wakati wa maombi"
@@ -402,23 +402,23 @@ msgid "My commitments"
 msgstr "Ahadi zangu"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:173 shortcodes/ongoing.php:190
+#: shortcodes/24hour.php:172 shortcodes/ongoing.php:189
 #, fuzzy
 msgid "Prayer Time"
 msgstr "Muda wa Maombi"
 
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
-#: shortcodes/24hour.php:175 shortcodes/24hour.php:208
-#: shortcodes/ongoing.php:192 shortcodes/ongoing.php:225
+#: shortcodes/24hour.php:174 shortcodes/24hour.php:207
+#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
 #, fuzzy
 msgid "Daily Time"
 msgstr "Muda wa Kila Siku"
 
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
-#: shortcodes/24hour.php:179 shortcodes/24hour.php:212
-#: shortcodes/ongoing.php:196 shortcodes/ongoing.php:229
+#: shortcodes/24hour.php:178 shortcodes/24hour.php:211
+#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
 #, fuzzy
 msgid "For how long"
 msgstr "Kwa muda gani"
@@ -431,8 +431,8 @@ msgstr "Nyakati zako mpya za maombi zimehifadhiwa."
 
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
-#: shortcodes/24hour.php:186 shortcodes/24hour.php:230
-#: shortcodes/ongoing.php:203 shortcodes/ongoing.php:247
+#: shortcodes/24hour.php:185 shortcodes/24hour.php:229
+#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
 #, fuzzy
 msgid "Confirm Times"
 msgstr "Thibitisha Nyakati"
@@ -473,47 +473,47 @@ msgid "Delete"
 msgstr "Futa"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:198 shortcodes/ongoing.php:215
+#: shortcodes/24hour.php:197 shortcodes/ongoing.php:214
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "Chagua siku na uchague wakati"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:206 shortcodes/ongoing.php:223
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:222
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "Chagua wakati wa maombi"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:215 shortcodes/ongoing.php:232
 #, fuzzy
 msgid "Add prayer time"
 msgstr "Ongeza muda wa maombi"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:217 shortcodes/ongoing.php:234
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:233
 #, fuzzy
 msgid "Time added"
 msgstr "Muda umeongezwa"
 
 #: magic-links/subscription-management/subscription-management.php:460
-#: shortcodes/24hour.php:224 shortcodes/24hour.php:246
-#: shortcodes/ongoing.php:241 shortcodes/ongoing.php:263
+#: shortcodes/24hour.php:223 shortcodes/24hour.php:245
+#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
 #, fuzzy
 msgid "Selected Times"
 msgstr "Nyakati Zilizochaguliwa"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:226 shortcodes/ongoing.php:243
+#: shortcodes/24hour.php:225 shortcodes/ongoing.php:242
 #, fuzzy
 msgid "No selected Time"
 msgstr "Hakuna Wakati uliochaguliwa"
 
 #: magic-links/subscription-management/subscription-management.php:485
-#: shortcodes/24hour.php:143 shortcodes/24hour.php:166
-#: shortcodes/24hour.php:195 shortcodes/24hour.php:240
-#: shortcodes/ongoing.php:162 shortcodes/ongoing.php:185
-#: shortcodes/ongoing.php:212 shortcodes/ongoing.php:257
+#: shortcodes/24hour.php:142 shortcodes/24hour.php:165
+#: shortcodes/24hour.php:194 shortcodes/24hour.php:239
+#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
+#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
 #, fuzzy
 msgid "Back"
 msgstr "Rudi nyuma"
@@ -539,7 +539,7 @@ msgid "Extend my prayer commitments until:"
 msgstr "Ongeza ahadi zangu za maombi hadi:"
 
 #: magic-links/subscription-management/subscription-management.php:566
-#: parts/components.php:45
+#: parts/components.php:25
 #, fuzzy
 msgid "Confirm"
 msgstr "Thibitisha"
@@ -590,39 +590,39 @@ msgstr "Hili haliwezi kutenduliwa."
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Usajili huu umeisha au haujasanidiwa ipasavyo."
 
-#: parts/components.php:64 parts/components.php:68
+#: parts/components.php:29 parts/components.php:33
 #, fuzzy
 msgid "Name"
 msgstr "Jina"
 
-#: parts/components.php:72 parts/components.php:76 parts/components.php:77
-#: porches/generic/site/stats.php:257
+#: parts/components.php:37 parts/components.php:41 parts/components.php:42
+#: porches/generic/site/stats.php:264
 #, fuzzy
 msgid "Email"
 msgstr "Barua pepe"
 
-#: parts/components.php:74
+#: parts/components.php:39
 #, fuzzy
 msgid "Your email is required."
 msgstr "Barua pepe yako inahitajika."
 
-#: parts/components.php:91
+#: parts/components.php:49
 #, fuzzy
 msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr ""
 "Pokea Arifa za Wakati wa Maombi (uthibitishaji wa barua pepe unahitajika)."
 
-#: parts/components.php:97
+#: parts/components.php:55
 #, fuzzy
 msgid "Receive Pray4Movement Newsletter (email verification needed)."
 msgstr "Pokea Jarida la Pray4Movement (uthibitisho wa barua pepe unahitajika)."
 
-#: parts/components.php:101
+#: parts/components.php:59
 #, fuzzy
 msgid "No prayer times selected"
 msgstr "Nyakati zako za maombi zimethibitishwa!"
 
-#: parts/components.php:105
+#: parts/components.php:63
 #, fuzzy
 msgid "Submit Your Prayer Commitment"
 msgstr "Toa Ahadi Yako ya Maombi"
@@ -754,13 +754,13 @@ msgid "How many prayed today (including yourself)?"
 msgstr ""
 
 #: porches/generic/site/archive-body.php:69
-#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:270
+#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
 #, fuzzy
 msgid "Submit"
 msgstr "Wasilisha"
 
 #: porches/generic/site/archive-body.php:75
-#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:276
+#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:283
 #, fuzzy
 msgid "Thank You"
 msgstr "Asante"
@@ -788,8 +788,8 @@ msgid "%s Ends In"
 msgstr "%s Inaisha Ndani"
 
 #: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:202
-#: porches/generic/site/stats.php:212 porches/ongoing/site/home-body.php:169
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:209
+#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:169
 #: porches/ongoing/site/home-body.php:176
 #: porches/ramadan/site/home-body.php:163
 #: porches/ramadan/site/home-body.php:170
@@ -857,7 +857,7 @@ msgstr "Saa za Maombi"
 msgid "Hours"
 msgstr "Saa"
 
-#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:174
+#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:181
 #: porches/ramadan/site/home-body.php:272
 #, fuzzy
 msgid "Prayer Commitments Needed"
@@ -881,20 +881,20 @@ msgstr "Tazama zote"
 msgid "Read"
 msgstr "Soma"
 
-#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:271
+#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
+#: shortcodes/ongoing.php:270
 #, fuzzy
 msgid "Check your email"
 msgstr "Imetumwa! Angalia barua pepe yako."
 
-#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:256
-#: shortcodes/ongoing.php:272
+#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "Usajili wako umefaulu."
 
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:258
-#: shortcodes/ongoing.php:274
+#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
+#: shortcodes/ongoing.php:273
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -903,8 +903,8 @@ msgstr ""
 "Bofya kwenye kiungo kilichojumuishwa katika barua pepe ili kuthibitisha "
 "ahadi yako na kupokea arifa za wakati wa maombi!"
 
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:261
-#: shortcodes/ongoing.php:277
+#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
+#: shortcodes/ongoing.php:276
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr "Katika barua pepe kuna kiungo cha kudhibiti nyakati zako za maombi."
@@ -914,47 +914,46 @@ msgstr "Katika barua pepe kuna kiungo cha kudhibiti nyakati zako za maombi."
 msgid "Return"
 msgstr "Rudi"
 
-#: porches/generic/site/stats.php:131
+#: porches/generic/site/stats.php:138
 #, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgstr "Asante kwa kuungana nasi katika maombi kwa ajili ya %1$s katika %2$s."
 
-#: porches/generic/site/stats.php:155
-#, fuzzy
-msgid "Campaign Stats"
-msgstr "Takwimu za Kampeni"
+#: porches/generic/site/stats.php:162
+msgid "Stats"
+msgstr ""
 
-#: porches/generic/site/stats.php:182
+#: porches/generic/site/stats.php:189
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Asilimia Imefunikwa"
 
-#: porches/generic/site/stats.php:190
+#: porches/generic/site/stats.php:197
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "Ahadi za Maombi"
 
-#: porches/generic/site/stats.php:198
+#: porches/generic/site/stats.php:205
 #, fuzzy
 msgid "Time Committed"
 msgstr "Wakati Umejitolea"
 
-#: porches/generic/site/stats.php:208
+#: porches/generic/site/stats.php:215
 msgid "Time Prayed in Groups"
 msgstr ""
 
-#: porches/generic/site/stats.php:218
+#: porches/generic/site/stats.php:225
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "Idadi ya Watu Walioomba"
 
-#: porches/generic/site/stats.php:251
+#: porches/generic/site/stats.php:258
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "Shiriki nasi Hadithi zako za Maombi"
 
-#: porches/generic/site/stats.php:265
+#: porches/generic/site/stats.php:272
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
@@ -962,39 +961,39 @@ msgid ""
 msgstr ""
 "Shiriki nasi kuhusu muda wako wa maombi (k.m. shuhuda, maarifa, baraka, n.k.)"
 
-#: porches/generic/site/stats.php:312
+#: porches/generic/site/stats.php:319
 msgid "Global Ramadan Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:319
+#: porches/generic/site/stats.php:326
 #, fuzzy
 msgid "Total Prayer Campaigns"
 msgstr "Inapakia data ya kampeni ya maombi..."
 
-#: porches/generic/site/stats.php:327
+#: porches/generic/site/stats.php:334
 #, fuzzy
 msgid "Countries Prayed For"
 msgstr "Saa za Maombi"
 
-#: porches/generic/site/stats.php:335
+#: porches/generic/site/stats.php:342
 msgid "Intercessors"
 msgstr ""
 
-#: porches/generic/site/stats.php:343
+#: porches/generic/site/stats.php:350
 #, fuzzy
 msgid "Time Prayed"
 msgstr "Muda umeongezwa"
 
-#: porches/generic/site/stats.php:351
+#: porches/generic/site/stats.php:358
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:373
+#: porches/generic/site/stats.php:380
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "Fursa Zaidi za Maombi"
 
-#: porches/generic/site/stats.php:377
+#: porches/generic/site/stats.php:384
 #, fuzzy
 msgid ""
 "Would you like to hear about other prayer efforts and opportunities with "
@@ -1080,101 +1079,101 @@ msgstr "hapa"
 msgid "More Hours to be covered"
 msgstr "Saa Zaidi zitashughulikiwa"
 
-#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+#: shortcodes/24hour.php:32 shortcodes/ongoing.php:72
 #, fuzzy
 msgid "covered once"
 msgstr "kufunikwa mara moja"
 
-#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
 #, fuzzy
 msgid "covered %1$s times"
 msgstr "ilifunikwa mara %1$s"
 
-#: shortcodes/24hour.php:107
+#: shortcodes/24hour.php:106
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "Asilimia iliyofunikwa katika maombi"
 
-#: shortcodes/24hour.php:108
+#: shortcodes/24hour.php:107
 #, fuzzy
 msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "Wakati Umejitolea"
 
-#: shortcodes/24hour.php:122 shortcodes/ongoing.php:145
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:144
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "Inapakia data ya kampeni ya maombi..."
 
-#: shortcodes/24hour.php:129 shortcodes/ongoing.php:152
+#: shortcodes/24hour.php:128 shortcodes/ongoing.php:151
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "Chagua Nyakati za Maombi"
 
-#: shortcodes/24hour.php:145 shortcodes/ongoing.php:164
+#: shortcodes/24hour.php:144 shortcodes/ongoing.php:163
 #, fuzzy
 msgid "Select an option"
 msgstr "Chagua chaguo"
 
-#: shortcodes/24hour.php:148 shortcodes/ongoing.php:167
+#: shortcodes/24hour.php:147 shortcodes/ongoing.php:166
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "Omba kila siku kwa wakati mmoja"
 
-#: shortcodes/24hour.php:150 shortcodes/ongoing.php:169
+#: shortcodes/24hour.php:149 shortcodes/ongoing.php:168
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Mfano: Kila siku saa 4 jioni kwa dakika 15"
 
-#: shortcodes/24hour.php:153 shortcodes/ongoing.php:172
+#: shortcodes/24hour.php:152 shortcodes/ongoing.php:171
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "Chagua siku na nyakati za kuomba"
 
-#: shortcodes/24hour.php:155 shortcodes/ongoing.php:174
+#: shortcodes/24hour.php:154 shortcodes/ongoing.php:173
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Mfano: Jumatatu 12 saa 6 jioni kwa 15mins"
 
-#: shortcodes/24hour.php:170
+#: shortcodes/24hour.php:169
 #, fuzzy
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr "Katika barua pepe kuna kiungo cha kudhibiti nyakati zako za maombi."
 
-#: shortcodes/24hour.php:183 shortcodes/24hour.php:220
-#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:237
+#: shortcodes/24hour.php:182 shortcodes/24hour.php:219
+#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
 #, fuzzy
 msgid "Showing times for:"
 msgstr "Inaonyesha nyakati za:"
 
-#: shortcodes/24hour.php:264 shortcodes/ongoing.php:280
+#: shortcodes/24hour.php:263 shortcodes/ongoing.php:279
 #, fuzzy
 msgid "OK"
 msgstr "sawa"
 
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:296 shortcodes/ongoing.php:312
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "Hatutafuti tena usajili"
 
-#: shortcodes/24hour.php:298 shortcodes/ongoing.php:314
+#: shortcodes/24hour.php:297 shortcodes/ongoing.php:313
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "Asante kwa kuomba pamoja nasi!"
 
-#: shortcodes/ongoing.php:70
+#: shortcodes/ongoing.php:69
 #, fuzzy
 msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
 msgid "Everyday at %1$s for %2$s until %3$s"
 msgstr "Kila siku kwa %1$s kwa %2$s hadi %3$s"
 
-#: shortcodes/ongoing.php:72
+#: shortcodes/ongoing.php:71
 #, fuzzy
 msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "kufunikwa"
 
-#: shortcodes/ongoing.php:188
+#: shortcodes/ongoing.php:187
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -1198,6 +1197,10 @@ msgstr "Muda wa maombi: dakika %s"
 #, fuzzy
 msgid "Now praying..."
 msgstr "Sasa kuomba..."
+
+#, fuzzy
+#~ msgid "Campaign Stats"
+#~ msgstr "Takwimu za Kampeni"
 
 #, fuzzy
 #~ msgid "Sent! Check your email."
