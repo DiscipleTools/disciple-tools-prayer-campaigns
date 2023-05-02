@@ -474,7 +474,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                             first_name: first_name,
                             last_name: last_name,
                             lists: ['list_23'],
-                            source: 'p4m_campaign_signup',
+                            source: 'p4m_campaign_stats',
                             named_tags: {'p4m_campaign_name': '<?php echo esc_html( $campaign_name ); ?>'}
                         }
 

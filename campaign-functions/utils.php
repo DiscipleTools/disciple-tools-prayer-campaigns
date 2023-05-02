@@ -216,7 +216,7 @@ function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_sign
         $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
         if ( $selected_porch === 'ramadan-porch' ){
             //$lists[] = 'list_'; //Ramadan Campaign subscriber
-            $tags[] = [ 'value' => 'p4m_ramadan_campaign' ];
+            $tags[] = [ 'value' => 'p4m_ramadan_subscriber' ];
         }
     }
     $campaign_name = '';
