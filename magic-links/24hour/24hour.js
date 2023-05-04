@@ -539,7 +539,7 @@ jQuery(document).ready(function($) {
           $('.cp-view').hide()
           $(`#cp-success-confirmation-section`).show()
         } else {
-          // window.location.href = jsObject.home + '/prayer/email-confirmation';
+          window.location.href = jsObject.home + '/prayer/email-confirmation';
         }
       })
       .fail(function(e) {
