@@ -59,7 +59,10 @@
 }
 .cp-calendar-wrapper .month-title {
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+.cp-wrapper .month-title .month-percentage {
+    color: black; font-size:1.2rem;
 }
 .cp-calendar-wrapper .calendar-month {
     display: inline-block;

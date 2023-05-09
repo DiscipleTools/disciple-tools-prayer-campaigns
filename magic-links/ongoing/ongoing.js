@@ -445,17 +445,17 @@ jQuery(document).ready(function($) {
     content.empty()
     let list = ``
     let months = {};
-    let now = new Date().getTime()/1000;
     let current_month = window.campaign_scripts.timestamp_to_format( now, { month:"long" }, current_time_zone);
 
     days.forEach(day=> {
       if ( day.month === current_month || day.key > now ){
         if (!months[day.month]) {
-          months[day.month] = {with: 0, without: 0, key:day.key}
+          months[day.month] = {with: 0, without: 0, key:day.key, minutes_covered:0 }
         }
 
         months[day.month].with += day.covered_slots
         months[day.month].without += day.slots.length - day.covered_slots
+        months[day.month].minutes_covered += day.covered_slots * calendar_subscribe_object.slot_length
       }
     })
 
@@ -492,7 +492,7 @@ jQuery(document).ready(function($) {
         }
         list += `<div class="calendar-month">
           <h3 class="month-title"><strong>${window.lodash.escape(key).substring(0,3)}</strong> ${new Date(months[key].key * 1000).getFullYear()}
-            <span class="month-percentage">${ (months[key].with / ( months[key].without + months[key].with )* 100).toFixed( 2 ) }%</span>
+            <span class="month-percentage">${ (months[key].with / ( months[key].without + months[key].with )* 100).toFixed( 2 ) }% | ${(months[key].minutes_covered / 60/24).toFixed( 1 )} ${calendar_subscribe_object.translations.days}</span>
           </h3>
           <div class="calendar">
             ${headers}

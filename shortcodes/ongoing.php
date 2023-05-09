@@ -72,6 +72,7 @@ class DT_Ongoing_Shortcode {
                         'covered_once' => __( 'covered once', 'disciple-tools-prayer-campaigns' ),
                         'covered_x_times' => __( 'covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                         'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
+                        'days' => __( 'days', 'disciple-tools-prayer-campaigns' ),
                     ],
                     'parts' => [
                         'root' => $atts['root'],
@@ -102,9 +103,6 @@ function dt_ongoing_campaign_calendar( $atts ){
             }
             .cp-wrapper .month-title, .cp-calendar-wrapper .month-title {
                 color: <?php echo esc_html( $shortcode_instance->atts['color'] ) ?>;
-            }
-            .cp-wrapper .month-title .month-percentage {
-                color: black; font-size:1.3rem;
             }
         </style>
         <div class="cp-calendar-wrapper cp-wrapper">
