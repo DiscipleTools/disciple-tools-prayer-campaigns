@@ -341,8 +341,9 @@ jQuery(document).ready(function($) {
           if ( date.getMonth() === new Date().getMonth() ){
             days_in_month = days_in_month - new Date().getDate()
           }
-          months[day.month] = {key: day.key, coverage:{}, days_in_month}
+          months[day.month] = {key: day.key, coverage:{}, days_in_month, covered_slots:0}
         }
+        months[day.month].covered_slots += day.covered_slots
         day.slots.filter(s => s.subscribers > 0).forEach(slot=>{
           if ( !months[day.month].coverage[slot.formatted] ){
             months[day.month].coverage[slot.formatted] = []
