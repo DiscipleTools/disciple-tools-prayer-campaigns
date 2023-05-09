@@ -2,7 +2,7 @@ const day_in_seconds = 86400
 window.campaign_scripts = {
   time_slot_coverage: {},
   processing_save: {},
-  calculate_day_times: function (custom_timezone=null){
+  calculate_day_times: function (custom_timezone=null, start = null){
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
@@ -10,7 +10,7 @@ window.campaign_scripts = {
     window.campaign_scripts.missing_slots = {}
     let days = [];
 
-    let start_of_day = window.campaign_scripts.day_start( calendar_subscribe_object.start_timestamp, custom_timezone )
+    let start_of_day = window.campaign_scripts.day_start( start || calendar_subscribe_object.start_timestamp, custom_timezone )
     let time_iterator = parseInt( start_of_day );
 
     let timezone_change_ref = this.timestamp_to_time( time_iterator, custom_timezone )

@@ -1,7 +1,7 @@
 "use strict";
 
 let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
-const now = new Date().getTime()/1000;
+const now = parseInt(new Date().getTime()/1000);
 let calendar_subscribe_object = {
   start_timestamp: 0,
   end_timestamp: 0,
@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
     $('.cp-wrapper').removeClass("loading-content")
     $('.cp-loading-page').hide()
     calendar_subscribe_object = { ...calendar_subscribe_object, ...data }
-    days = window.campaign_scripts.calculate_day_times( current_time_zone )
+    days = window.campaign_scripts.calculate_day_times( current_time_zone, now - 30 * day_in_seconds )
     draw_calendar()
     setup_signup();
   })
