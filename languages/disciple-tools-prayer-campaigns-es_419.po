@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-04-28T14:12:53+00:00\n"
+"POT-Creation-Date: 2023-05-09T16:44:52+00:00\n"
 "PO-Revision-Date: 2023-03-22 08:11+0000\n"
 "Last-Translator: Prykon <dario@gospelambition.org>\n"
 "Language-Team: Spanish (Latin America) <https://translate.disciple.tools/"
@@ -252,7 +252,7 @@ msgstr "día"
 #: porches/ongoing/site/home-body.php:168
 #: porches/ongoing/site/home-body.php:175
 #: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169
+#: porches/ramadan/site/home-body.php:169 shortcodes/ongoing.php:75
 msgid "days"
 msgstr "días"
 
@@ -318,7 +318,7 @@ msgid "Your prayer times have been verified!"
 msgstr "¡Tus tiempos de oración han sido verificados!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:283
 msgid "Change your timezone:"
 msgstr "Cambia tu zona horaria:"
 
@@ -330,13 +330,13 @@ msgstr "Cambia tu zona horaria:"
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:287 shortcodes/ongoing.php:303
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:301
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:290 shortcodes/ongoing.php:306
+#: shortcodes/24hour.php:290 shortcodes/ongoing.php:304
 msgid "Select"
 msgstr "Seleccionar"
 
@@ -362,21 +362,21 @@ msgid "My commitments"
 msgstr "Mis compromisos"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:172 shortcodes/ongoing.php:189
+#: shortcodes/24hour.php:172 shortcodes/ongoing.php:187
 msgid "Prayer Time"
 msgstr "Tiempo de Oración"
 
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:207
-#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#: shortcodes/ongoing.php:189 shortcodes/ongoing.php:222
 msgid "Daily Time"
 msgstr "Tiempo diario"
 
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
 #: shortcodes/24hour.php:178 shortcodes/24hour.php:211
-#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#: shortcodes/ongoing.php:193 shortcodes/ongoing.php:226
 msgid "For how long"
 msgstr "Por cuánto tiempo"
 
@@ -388,7 +388,7 @@ msgstr "Tus nuevos tiempos de oración han sido guardados."
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
 #: shortcodes/24hour.php:185 shortcodes/24hour.php:229
-#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:244
 msgid "Confirm Times"
 msgstr "Confirmar Tiempos"
 
@@ -429,41 +429,41 @@ msgid "Delete"
 msgstr "Eliminar"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:197 shortcodes/ongoing.php:214
+#: shortcodes/24hour.php:197 shortcodes/ongoing.php:212
 msgid "Select a day and choose a time"
 msgstr "Seleccione un día y elija una hora"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:222
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:220
 msgid "Select a prayer time"
 msgstr "Seleccione un tiempo de oración"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:215 shortcodes/ongoing.php:232
+#: shortcodes/24hour.php:215 shortcodes/ongoing.php:230
 msgid "Add prayer time"
 msgstr "Agregar tiempo de oración"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:231
 msgid "Time added"
 msgstr "Hora añadida"
 
 #: magic-links/subscription-management/subscription-management.php:460
 #: shortcodes/24hour.php:223 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#: shortcodes/ongoing.php:238 shortcodes/ongoing.php:260
 msgid "Selected Times"
 msgstr "Horarios seleccionados"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:225 shortcodes/ongoing.php:242
+#: shortcodes/24hour.php:225 shortcodes/ongoing.php:240
 msgid "No selected Time"
 msgstr "Sin hora seleccionada"
 
 #: magic-links/subscription-management/subscription-management.php:485
 #: shortcodes/24hour.php:142 shortcodes/24hour.php:165
 #: shortcodes/24hour.php:194 shortcodes/24hour.php:239
-#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
-#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#: shortcodes/ongoing.php:159 shortcodes/ongoing.php:182
+#: shortcodes/ongoing.php:209 shortcodes/ongoing.php:254
 msgid "Back"
 msgstr "Volver"
 
@@ -544,10 +544,10 @@ msgstr ""
 "correo electrónico)."
 
 #: parts/components.php:55
-msgid "Receive Pray4Movement Newsletter (email verification needed)."
+msgid ""
+"Receive Pray4Movement news and opportunities, and occasional communication "
+"from GospelAmbition.org."
 msgstr ""
-"Reciba el boletín informativo de Pray4Movement (se necesita verificación de "
-"correo electrónico)."
 
 #: parts/components.php:59
 msgid "No prayer times selected"
@@ -781,17 +781,17 @@ msgid "Read"
 msgstr "Leer"
 
 #: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
-#: shortcodes/ongoing.php:270
+#: shortcodes/ongoing.php:268
 msgid "Check your email"
 msgstr "Consulte su correo electrónico"
 
 #: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:271
+#: shortcodes/ongoing.php:269
 msgid "Your registration was successful."
 msgstr "Su registro fue exitoso."
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
-#: shortcodes/ongoing.php:273
+#: shortcodes/ongoing.php:271
 msgid ""
 "Click on the link included in the email to verify your commitment and "
 "receive prayer time notifications!"
@@ -800,7 +800,7 @@ msgstr ""
 "compromiso y recibir notificaciones de sus tiempos de oración!"
 
 #: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
-#: shortcodes/ongoing.php:276
+#: shortcodes/ongoing.php:274
 msgid "In the email is a link to manage your prayer times."
 msgstr ""
 "En el correo electrónico hay un enlace para administrar sus tiempos de "
@@ -886,9 +886,14 @@ msgid "More Prayer Opportunities"
 msgstr "Más oportunidades de oración"
 
 #: porches/generic/site/stats.php:384
+#, fuzzy
+#| msgid ""
+#| "Would you like to hear about other prayer efforts and opportunities with "
+#| "Pray4Movement.org?"
 msgid ""
-"Would you like to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org?"
+"Sign up to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org and receive occasional communication from GospelAmbition."
+"org."
 msgstr ""
 "¿Le gustaría saber más acerca de otros esfuerzos y oportunidades de oración "
 "con Pray4Movement.org?"
@@ -981,31 +986,31 @@ msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "%s comprometido"
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:144
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
 msgid "Loading prayer campaign data..."
 msgstr "Cargando datos de la campaña de oración..."
 
-#: shortcodes/24hour.php:128 shortcodes/ongoing.php:151
+#: shortcodes/24hour.php:128 shortcodes/ongoing.php:149
 msgid "Choose Prayer Times"
 msgstr "Elija tiempos de oración"
 
-#: shortcodes/24hour.php:144 shortcodes/ongoing.php:163
+#: shortcodes/24hour.php:144 shortcodes/ongoing.php:161
 msgid "Select an option"
 msgstr "Selecciona una opción"
 
-#: shortcodes/24hour.php:147 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:147 shortcodes/ongoing.php:164
 msgid "Pray every day at the same time"
 msgstr "Orar todos los días a la misma hora"
 
-#: shortcodes/24hour.php:149 shortcodes/ongoing.php:168
+#: shortcodes/24hour.php:149 shortcodes/ongoing.php:166
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Ejemplo: todos los días a las 4pm durante 15 minutos"
 
-#: shortcodes/24hour.php:152 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:152 shortcodes/ongoing.php:169
 msgid "Select days and times to pray"
 msgstr "Seleccione días y horas para orar"
 
-#: shortcodes/24hour.php:154 shortcodes/ongoing.php:173
+#: shortcodes/24hour.php:154 shortcodes/ongoing.php:171
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Ejemplo: El Lunes 12 a las 6pm por 15 mins"
 
@@ -1016,19 +1021,19 @@ msgstr ""
 "oración."
 
 #: shortcodes/24hour.php:182 shortcodes/24hour.php:219
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#: shortcodes/ongoing.php:197 shortcodes/ongoing.php:234
 msgid "Showing times for:"
 msgstr "Mostrando tiempos para:"
 
-#: shortcodes/24hour.php:263 shortcodes/ongoing.php:279
+#: shortcodes/24hour.php:263 shortcodes/ongoing.php:277
 msgid "OK"
 msgstr "OK"
 
-#: shortcodes/24hour.php:296 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:296 shortcodes/ongoing.php:310
 msgid "We are not longer looking for sign ups"
 msgstr "Ya no estamos buscando inscripciones"
 
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:297 shortcodes/ongoing.php:311
 msgid "Thanks for praying with us!"
 msgstr "¡Gracias por orar con nosotros!"
 
@@ -1042,7 +1047,7 @@ msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "cubierto"
 
-#: shortcodes/ongoing.php:187
+#: shortcodes/ongoing.php:185
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
 "have the option to sign up for more."
@@ -1062,6 +1067,11 @@ msgstr "Tiempo de oración: %s min"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Orando..."
+
+#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
+#~ msgstr ""
+#~ "Reciba el boletín informativo de Pray4Movement (se necesita verificación "
+#~ "de correo electrónico)."
 
 #~ msgid "Campaign Stats"
 #~ msgstr "Estadísticas de la campaña"

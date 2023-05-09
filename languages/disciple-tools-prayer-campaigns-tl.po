@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-04-28T14:12:53+00:00\n"
+"POT-Creation-Date: 2023-05-09T16:44:52+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Tagalog <https://translate.disciple.tools/projects/disciple-"
@@ -280,7 +280,7 @@ msgstr "araw"
 #: porches/ongoing/site/home-body.php:168
 #: porches/ongoing/site/home-body.php:175
 #: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169
+#: porches/ramadan/site/home-body.php:169 shortcodes/ongoing.php:75
 #, fuzzy
 msgid "days"
 msgstr "araw"
@@ -357,7 +357,7 @@ msgid "Your prayer times have been verified!"
 msgstr "Na-verify na ang iyong mga oras ng pagdarasal!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:283
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "Baguhin ang iyong timezone:"
@@ -370,14 +370,14 @@ msgstr "Baguhin ang iyong timezone:"
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:287 shortcodes/ongoing.php:303
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:301
 #, fuzzy
 msgid "Cancel"
 msgstr "Kanselahin"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:290 shortcodes/ongoing.php:306
+#: shortcodes/24hour.php:290 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Select"
 msgstr "Pumili"
@@ -409,7 +409,7 @@ msgid "My commitments"
 msgstr "Aking mga pangako"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:172 shortcodes/ongoing.php:189
+#: shortcodes/24hour.php:172 shortcodes/ongoing.php:187
 #, fuzzy
 msgid "Prayer Time"
 msgstr "Oras ng pagdadasal"
@@ -417,7 +417,7 @@ msgstr "Oras ng pagdadasal"
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:207
-#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#: shortcodes/ongoing.php:189 shortcodes/ongoing.php:222
 #, fuzzy
 msgid "Daily Time"
 msgstr "Araw-araw na Oras"
@@ -425,7 +425,7 @@ msgstr "Araw-araw na Oras"
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
 #: shortcodes/24hour.php:178 shortcodes/24hour.php:211
-#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#: shortcodes/ongoing.php:193 shortcodes/ongoing.php:226
 #, fuzzy
 msgid "For how long"
 msgstr "Gaano katagal"
@@ -439,7 +439,7 @@ msgstr "Ang iyong mga bagong oras ng panalangin ay na-save na."
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
 #: shortcodes/24hour.php:185 shortcodes/24hour.php:229
-#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:244
 #, fuzzy
 msgid "Confirm Times"
 msgstr "Kumpirmahin ang Mga Oras"
@@ -480,38 +480,38 @@ msgid "Delete"
 msgstr "Tanggalin"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:197 shortcodes/ongoing.php:214
+#: shortcodes/24hour.php:197 shortcodes/ongoing.php:212
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "Pumili ng araw at pumili ng oras"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:222
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:220
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "Pumili ng oras ng panalangin"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:215 shortcodes/ongoing.php:232
+#: shortcodes/24hour.php:215 shortcodes/ongoing.php:230
 #, fuzzy
 msgid "Add prayer time"
 msgstr "Magdagdag ng oras ng pagdarasal"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:231
 #, fuzzy
 msgid "Time added"
 msgstr "Nagdagdag ng oras"
 
 #: magic-links/subscription-management/subscription-management.php:460
 #: shortcodes/24hour.php:223 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#: shortcodes/ongoing.php:238 shortcodes/ongoing.php:260
 #, fuzzy
 msgid "Selected Times"
 msgstr "Mga Piling Oras"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:225 shortcodes/ongoing.php:242
+#: shortcodes/24hour.php:225 shortcodes/ongoing.php:240
 #, fuzzy
 msgid "No selected Time"
 msgstr "Walang napiling Oras"
@@ -519,8 +519,8 @@ msgstr "Walang napiling Oras"
 #: magic-links/subscription-management/subscription-management.php:485
 #: shortcodes/24hour.php:142 shortcodes/24hour.php:165
 #: shortcodes/24hour.php:194 shortcodes/24hour.php:239
-#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
-#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#: shortcodes/ongoing.php:159 shortcodes/ongoing.php:182
+#: shortcodes/ongoing.php:209 shortcodes/ongoing.php:254
 #, fuzzy
 msgid "Back"
 msgstr "Bumalik"
@@ -621,10 +621,10 @@ msgstr ""
 "email)."
 
 #: parts/components.php:55
-#, fuzzy
-msgid "Receive Pray4Movement Newsletter (email verification needed)."
+msgid ""
+"Receive Pray4Movement news and opportunities, and occasional communication "
+"from GospelAmbition.org."
 msgstr ""
-"Tumanggap ng Pray4Movement Newsletter (kailangan ng pag-verify sa email)."
 
 #: parts/components.php:59
 #, fuzzy
@@ -894,19 +894,19 @@ msgid "Read"
 msgstr "Basahin"
 
 #: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
-#: shortcodes/ongoing.php:270
+#: shortcodes/ongoing.php:268
 #, fuzzy
 msgid "Check your email"
 msgstr "Ipinadala! Suriin ang iyong email."
 
 #: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:271
+#: shortcodes/ongoing.php:269
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "Ang iyong pagpaparehistro ay matagumpay."
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
-#: shortcodes/ongoing.php:273
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -916,7 +916,7 @@ msgstr ""
 "makatanggap ng mga abiso sa oras ng panalangin!"
 
 #: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
-#: shortcodes/ongoing.php:276
+#: shortcodes/ongoing.php:274
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr ""
@@ -1010,8 +1010,9 @@ msgstr "Higit pang mga Pagkakataon sa Panalangin"
 #: porches/generic/site/stats.php:384
 #, fuzzy
 msgid ""
-"Would you like to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org?"
+"Sign up to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org and receive occasional communication from GospelAmbition."
+"org."
 msgstr ""
 "Gusto mo bang marinig ang tungkol sa iba pang mga pagsisikap at pagkakataon "
 "sa panalangin sa Pray4Movement.org?"
@@ -1116,37 +1117,37 @@ msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "Oras na nakatuon"
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:144
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "Nilo-load ang data ng prayer campaign..."
 
-#: shortcodes/24hour.php:128 shortcodes/ongoing.php:151
+#: shortcodes/24hour.php:128 shortcodes/ongoing.php:149
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "Piliin ang Oras ng Panalangin"
 
-#: shortcodes/24hour.php:144 shortcodes/ongoing.php:163
+#: shortcodes/24hour.php:144 shortcodes/ongoing.php:161
 #, fuzzy
 msgid "Select an option"
 msgstr "Pumili ng opsyon"
 
-#: shortcodes/24hour.php:147 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:147 shortcodes/ongoing.php:164
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "Magdasal araw-araw sa parehong oras"
 
-#: shortcodes/24hour.php:149 shortcodes/ongoing.php:168
+#: shortcodes/24hour.php:149 shortcodes/ongoing.php:166
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Halimbawa: Araw-araw sa 4pm para sa 15mins"
 
-#: shortcodes/24hour.php:152 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:152 shortcodes/ongoing.php:169
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "Pumili ng mga araw at oras upang manalangin"
 
-#: shortcodes/24hour.php:154 shortcodes/ongoing.php:173
+#: shortcodes/24hour.php:154 shortcodes/ongoing.php:171
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Halimbawa: Lunes ika-12 ng 6pm para sa 15mins"
@@ -1158,22 +1159,22 @@ msgstr ""
 "Sa email ay isang link upang pamahalaan ang iyong mga oras ng pagdarasal."
 
 #: shortcodes/24hour.php:182 shortcodes/24hour.php:219
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#: shortcodes/ongoing.php:197 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Showing times for:"
 msgstr "Mga oras ng pagpapakita para sa:"
 
-#: shortcodes/24hour.php:263 shortcodes/ongoing.php:279
+#: shortcodes/24hour.php:263 shortcodes/ongoing.php:277
 #, fuzzy
 msgid "OK"
 msgstr "OK"
 
-#: shortcodes/24hour.php:296 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:296 shortcodes/ongoing.php:310
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "Hindi na kami naghahanap ng mga sign up"
 
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:297 shortcodes/ongoing.php:311
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "Salamat sa pagdarasal kasama namin!"
@@ -1190,7 +1191,7 @@ msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "sakop"
 
-#: shortcodes/ongoing.php:187
+#: shortcodes/ongoing.php:185
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -1214,6 +1215,11 @@ msgstr "Oras ng panalangin: %s min"
 #, fuzzy
 msgid "Now praying..."
 msgstr "Ngayon nagdadasal..."
+
+#, fuzzy
+#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
+#~ msgstr ""
+#~ "Tumanggap ng Pray4Movement Newsletter (kailangan ng pag-verify sa email)."
 
 #, fuzzy
 #~ msgid "Campaign Stats"
