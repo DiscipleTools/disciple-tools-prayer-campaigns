@@ -52,7 +52,7 @@ function dt_campaign_sign_up_form() {
             <p>
                 <label for="receive_pray4movement_news">
                     <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" <?php checked( !WP_DEBUG ) ?>/>
-                    <?php esc_html_e( 'Receive Pray4Movement Newsletter (email verification needed).', 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ); ?>
                 </label>
             </p>
             <div id='cp-no-selected-times' style='display: none'class="form-error" >

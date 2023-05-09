@@ -381,7 +381,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
 
-                    <p class="center"><?php esc_html_e( 'Would you like to hear about other prayer efforts and opportunities with Pray4Movement.org?', 'disciple-tools-prayer-campaigns' ); ?></p>
+                    <p class="center"><?php esc_html_e( 'Sign up to hear about other prayer efforts and opportunities with Pray4Movement.org and receive occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ); ?></p>
 
                     <style>
                         #go-optin-form .dt-form-error {
