@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-04-28T14:12:53+00:00\n"
+"POT-Creation-Date: 2023-05-09T16:44:52+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.disciple.tools/projects/disciple-"
@@ -268,7 +268,7 @@ msgstr "날"
 #: porches/ongoing/site/home-body.php:168
 #: porches/ongoing/site/home-body.php:175
 #: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169
+#: porches/ramadan/site/home-body.php:169 shortcodes/ongoing.php:75
 #, fuzzy
 msgid "days"
 msgstr "날"
@@ -345,7 +345,7 @@ msgid "Your prayer times have been verified!"
 msgstr "기도 시간이 확인되었습니다!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:283
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "시간대 변경:"
@@ -358,14 +358,14 @@ msgstr "시간대 변경:"
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:287 shortcodes/ongoing.php:303
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:301
 #, fuzzy
 msgid "Cancel"
 msgstr "취소"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:290 shortcodes/ongoing.php:306
+#: shortcodes/24hour.php:290 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Select"
 msgstr "고르다"
@@ -397,7 +397,7 @@ msgid "My commitments"
 msgstr "나의 약속"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:172 shortcodes/ongoing.php:189
+#: shortcodes/24hour.php:172 shortcodes/ongoing.php:187
 #, fuzzy
 msgid "Prayer Time"
 msgstr "기도 시간"
@@ -405,7 +405,7 @@ msgstr "기도 시간"
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:207
-#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#: shortcodes/ongoing.php:189 shortcodes/ongoing.php:222
 #, fuzzy
 msgid "Daily Time"
 msgstr "일일 시간"
@@ -413,7 +413,7 @@ msgstr "일일 시간"
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
 #: shortcodes/24hour.php:178 shortcodes/24hour.php:211
-#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#: shortcodes/ongoing.php:193 shortcodes/ongoing.php:226
 #, fuzzy
 msgid "For how long"
 msgstr "얼마나 오랫동안"
@@ -427,7 +427,7 @@ msgstr "새로운 기도 시간이 저장되었습니다."
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
 #: shortcodes/24hour.php:185 shortcodes/24hour.php:229
-#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:244
 #, fuzzy
 msgid "Confirm Times"
 msgstr "시간 확인"
@@ -468,38 +468,38 @@ msgid "Delete"
 msgstr "삭제"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:197 shortcodes/ongoing.php:214
+#: shortcodes/24hour.php:197 shortcodes/ongoing.php:212
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "요일을 선택하고 시간을 선택하십시오"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:222
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:220
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "기도 시간 선택"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:215 shortcodes/ongoing.php:232
+#: shortcodes/24hour.php:215 shortcodes/ongoing.php:230
 #, fuzzy
 msgid "Add prayer time"
 msgstr "기도 시간 추가"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:231
 #, fuzzy
 msgid "Time added"
 msgstr "추가된 시간"
 
 #: magic-links/subscription-management/subscription-management.php:460
 #: shortcodes/24hour.php:223 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#: shortcodes/ongoing.php:238 shortcodes/ongoing.php:260
 #, fuzzy
 msgid "Selected Times"
 msgstr "선택한 시간"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:225 shortcodes/ongoing.php:242
+#: shortcodes/24hour.php:225 shortcodes/ongoing.php:240
 #, fuzzy
 msgid "No selected Time"
 msgstr "선택한 시간 없음"
@@ -507,8 +507,8 @@ msgstr "선택한 시간 없음"
 #: magic-links/subscription-management/subscription-management.php:485
 #: shortcodes/24hour.php:142 shortcodes/24hour.php:165
 #: shortcodes/24hour.php:194 shortcodes/24hour.php:239
-#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
-#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#: shortcodes/ongoing.php:159 shortcodes/ongoing.php:182
+#: shortcodes/ongoing.php:209 shortcodes/ongoing.php:254
 #, fuzzy
 msgid "Back"
 msgstr "뒤로"
@@ -606,9 +606,10 @@ msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "기도시간 알림을 받습니다(이메일 확인 필요)."
 
 #: parts/components.php:55
-#, fuzzy
-msgid "Receive Pray4Movement Newsletter (email verification needed)."
-msgstr "Pray4Movement 뉴스레터 수신(이메일 인증 필요)."
+msgid ""
+"Receive Pray4Movement news and opportunities, and occasional communication "
+"from GospelAmbition.org."
+msgstr ""
 
 #: parts/components.php:59
 #, fuzzy
@@ -872,19 +873,19 @@ msgid "Read"
 msgstr "읽다"
 
 #: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
-#: shortcodes/ongoing.php:270
+#: shortcodes/ongoing.php:268
 #, fuzzy
 msgid "Check your email"
 msgstr "전송된! 이메일을 확인."
 
 #: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:271
+#: shortcodes/ongoing.php:269
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "등록이 완료되었습니다."
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
-#: shortcodes/ongoing.php:273
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -893,7 +894,7 @@ msgstr ""
 "이메일에 포함된 링크를 클릭하여 헌신을 확인하고 기도 시간 알림을 받으십시오!"
 
 #: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
-#: shortcodes/ongoing.php:276
+#: shortcodes/ongoing.php:274
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr "이메일에는 기도 시간을 관리할 수 있는 링크가 있습니다."
@@ -984,8 +985,9 @@ msgstr "더 많은 기도 기회"
 #: porches/generic/site/stats.php:384
 #, fuzzy
 msgid ""
-"Would you like to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org?"
+"Sign up to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org and receive occasional communication from GospelAmbition."
+"org."
 msgstr "Pray4Movement.org의 다른 기도 노력과 기회에 대해 듣고 싶습니까?"
 
 #: porches/generic/site/top-section.php:21
@@ -1083,37 +1085,37 @@ msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "투입된 시간"
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:144
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "기도 캠페인 데이터 로드 중..."
 
-#: shortcodes/24hour.php:128 shortcodes/ongoing.php:151
+#: shortcodes/24hour.php:128 shortcodes/ongoing.php:149
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "기도 시간을 선택하십시오"
 
-#: shortcodes/24hour.php:144 shortcodes/ongoing.php:163
+#: shortcodes/24hour.php:144 shortcodes/ongoing.php:161
 #, fuzzy
 msgid "Select an option"
 msgstr "옵션을 선택하세요"
 
-#: shortcodes/24hour.php:147 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:147 shortcodes/ongoing.php:164
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "매일 같은 시간에 기도하라"
 
-#: shortcodes/24hour.php:149 shortcodes/ongoing.php:168
+#: shortcodes/24hour.php:149 shortcodes/ongoing.php:166
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "예: 매일 오후 4시 15분"
 
-#: shortcodes/24hour.php:152 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:152 shortcodes/ongoing.php:169
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "기도할 요일과 시간 선택"
 
-#: shortcodes/24hour.php:154 shortcodes/ongoing.php:173
+#: shortcodes/24hour.php:154 shortcodes/ongoing.php:171
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "예: 12일 월요일 오후 6시 15분"
@@ -1124,22 +1126,22 @@ msgid "Please note that daylight savings time may affect your prayer times."
 msgstr "이메일에는 기도 시간을 관리할 수 있는 링크가 있습니다."
 
 #: shortcodes/24hour.php:182 shortcodes/24hour.php:219
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#: shortcodes/ongoing.php:197 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Showing times for:"
 msgstr "표시 시간:"
 
-#: shortcodes/24hour.php:263 shortcodes/ongoing.php:279
+#: shortcodes/24hour.php:263 shortcodes/ongoing.php:277
 #, fuzzy
 msgid "OK"
 msgstr "확인"
 
-#: shortcodes/24hour.php:296 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:296 shortcodes/ongoing.php:310
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "우리는 더 이상 가입을 찾고 있지 않습니다"
 
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:297 shortcodes/ongoing.php:311
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "함께 기도해주셔서 감사합니다!"
@@ -1156,7 +1158,7 @@ msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "덮인"
 
-#: shortcodes/ongoing.php:187
+#: shortcodes/ongoing.php:185
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -1180,6 +1182,10 @@ msgstr "기도 시간: %s분"
 #, fuzzy
 msgid "Now praying..."
 msgstr "지금 기도중..."
+
+#, fuzzy
+#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
+#~ msgstr "Pray4Movement 뉴스레터 수신(이메일 인증 필요)."
 
 #, fuzzy
 #~ msgid "Campaign Stats"

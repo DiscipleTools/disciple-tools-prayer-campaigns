@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-04-28T14:12:53+00:00\n"
+"POT-Creation-Date: 2023-05-09T16:44:52+00:00\n"
 "PO-Revision-Date: 2023-02-21 03:22+0000\n"
 "Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
 "Language-Team: Nepali <https://translate.disciple.tools/projects/disciple-"
@@ -274,7 +274,7 @@ msgstr "दिनहरू"
 #: porches/ongoing/site/home-body.php:168
 #: porches/ongoing/site/home-body.php:175
 #: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169
+#: porches/ramadan/site/home-body.php:169 shortcodes/ongoing.php:75
 #, fuzzy
 msgid "days"
 msgstr "दिनहरू"
@@ -351,7 +351,7 @@ msgid "Your prayer times have been verified!"
 msgstr "तपाईंको प्रार्थना समय प्रमाणित गरिएको छ!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:285
+#: shortcodes/24hour.php:269 shortcodes/ongoing.php:283
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "आफ्नो समय क्षेत्र परिवर्तन गर्नुहोस्:"
@@ -364,13 +364,13 @@ msgstr "आफ्नो समय क्षेत्र परिवर्तन
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:287 shortcodes/ongoing.php:303
+#: shortcodes/24hour.php:287 shortcodes/ongoing.php:301
 msgid "Cancel"
 msgstr "रद्ध"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:290 shortcodes/ongoing.php:306
+#: shortcodes/24hour.php:290 shortcodes/ongoing.php:304
 #, fuzzy
 msgid "Select"
 msgstr "चयन गर्नुहोस्"
@@ -402,7 +402,7 @@ msgid "My commitments"
 msgstr "मेरो प्रतिबद्धताहरू"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:172 shortcodes/ongoing.php:189
+#: shortcodes/24hour.php:172 shortcodes/ongoing.php:187
 #, fuzzy
 msgid "Prayer Time"
 msgstr "प्रार्थना समय"
@@ -410,7 +410,7 @@ msgstr "प्रार्थना समय"
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
 #: shortcodes/24hour.php:174 shortcodes/24hour.php:207
-#: shortcodes/ongoing.php:191 shortcodes/ongoing.php:224
+#: shortcodes/ongoing.php:189 shortcodes/ongoing.php:222
 #, fuzzy
 msgid "Daily Time"
 msgstr "दैनिक समय"
@@ -418,7 +418,7 @@ msgstr "दैनिक समय"
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
 #: shortcodes/24hour.php:178 shortcodes/24hour.php:211
-#: shortcodes/ongoing.php:195 shortcodes/ongoing.php:228
+#: shortcodes/ongoing.php:193 shortcodes/ongoing.php:226
 #, fuzzy
 msgid "For how long"
 msgstr "कति समयको लागि हो"
@@ -432,7 +432,7 @@ msgstr "तपाईंको नयाँ प्रार्थना समय
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
 #: shortcodes/24hour.php:185 shortcodes/24hour.php:229
-#: shortcodes/ongoing.php:202 shortcodes/ongoing.php:246
+#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:244
 #, fuzzy
 msgid "Confirm Times"
 msgstr "टाइम्स पुष्टि गर्नुहोस्"
@@ -473,38 +473,38 @@ msgid "Delete"
 msgstr "मेटाउनुहोस"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:197 shortcodes/ongoing.php:214
+#: shortcodes/24hour.php:197 shortcodes/ongoing.php:212
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "एक दिन छान्नुहोस् र समय छान्नुहोस्"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:222
+#: shortcodes/24hour.php:205 shortcodes/ongoing.php:220
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "प्रार्थना समय छान्नुहोस्"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:215 shortcodes/ongoing.php:232
+#: shortcodes/24hour.php:215 shortcodes/ongoing.php:230
 #, fuzzy
 msgid "Add prayer time"
 msgstr "प्रार्थना समय थप्नुहोस्"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:233
+#: shortcodes/24hour.php:216 shortcodes/ongoing.php:231
 #, fuzzy
 msgid "Time added"
 msgstr "समय थपियो"
 
 #: magic-links/subscription-management/subscription-management.php:460
 #: shortcodes/24hour.php:223 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:240 shortcodes/ongoing.php:262
+#: shortcodes/ongoing.php:238 shortcodes/ongoing.php:260
 #, fuzzy
 msgid "Selected Times"
 msgstr "चयन गरिएको समय"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:225 shortcodes/ongoing.php:242
+#: shortcodes/24hour.php:225 shortcodes/ongoing.php:240
 #, fuzzy
 msgid "No selected Time"
 msgstr "कुनै चयन गरिएको समय छैन"
@@ -512,8 +512,8 @@ msgstr "कुनै चयन गरिएको समय छैन"
 #: magic-links/subscription-management/subscription-management.php:485
 #: shortcodes/24hour.php:142 shortcodes/24hour.php:165
 #: shortcodes/24hour.php:194 shortcodes/24hour.php:239
-#: shortcodes/ongoing.php:161 shortcodes/ongoing.php:184
-#: shortcodes/ongoing.php:211 shortcodes/ongoing.php:256
+#: shortcodes/ongoing.php:159 shortcodes/ongoing.php:182
+#: shortcodes/ongoing.php:209 shortcodes/ongoing.php:254
 msgid "Back"
 msgstr "पछाडी हेर्नुहोस"
 
@@ -608,9 +608,10 @@ msgid "Receive Prayer Time Notifications (email verification needed)."
 msgstr "प्रार्थना समय सूचनाहरू प्राप्त गर्नुहोस् (इमेल प्रमाणिकरण आवश्यक)।"
 
 #: parts/components.php:55
-#, fuzzy
-msgid "Receive Pray4Movement Newsletter (email verification needed)."
-msgstr "Pray4Movement न्यूजलेटर प्राप्त गर्नुहोस् (इमेल प्रमाणिकरण आवश्यक)।"
+msgid ""
+"Receive Pray4Movement news and opportunities, and occasional communication "
+"from GospelAmbition.org."
+msgstr ""
 
 #: parts/components.php:59
 #, fuzzy
@@ -872,19 +873,19 @@ msgid "Read"
 msgstr "पढ्नुहोस्"
 
 #: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
-#: shortcodes/ongoing.php:270
+#: shortcodes/ongoing.php:268
 #, fuzzy
 msgid "Check your email"
 msgstr "पठाइयो! आफ्नो इमेल जाँच गर्नुहोस्।"
 
 #: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:271
+#: shortcodes/ongoing.php:269
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "तपाईंको दर्ता सफल भयो।"
 
 #: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
-#: shortcodes/ongoing.php:273
+#: shortcodes/ongoing.php:271
 #, fuzzy
 msgid ""
 "Click on the link included in the email to verify your commitment and "
@@ -894,7 +895,7 @@ msgstr ""
 "क्लिक गर्नुहोस्!"
 
 #: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
-#: shortcodes/ongoing.php:276
+#: shortcodes/ongoing.php:274
 #, fuzzy
 msgid "In the email is a link to manage your prayer times."
 msgstr "इमेलमा तपाइँको प्रार्थना समय व्यवस्थापन गर्न लिङ्क छ।"
@@ -987,8 +988,9 @@ msgstr "थप प्रार्थना अवसरहरू"
 #: porches/generic/site/stats.php:384
 #, fuzzy
 msgid ""
-"Would you like to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org?"
+"Sign up to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org and receive occasional communication from GospelAmbition."
+"org."
 msgstr ""
 "के तपाईं Pray4Movement.org सँग अन्य प्रार्थना प्रयासहरू र अवसरहरूको बारेमा सुन्न चाहनुहुन्छ?"
 
@@ -1086,37 +1088,37 @@ msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "समय प्रतिबद्ध"
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:144
+#: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
 #, fuzzy
 msgid "Loading prayer campaign data..."
 msgstr "प्रार्थना अभियान डेटा लोड गर्दै..."
 
-#: shortcodes/24hour.php:128 shortcodes/ongoing.php:151
+#: shortcodes/24hour.php:128 shortcodes/ongoing.php:149
 #, fuzzy
 msgid "Choose Prayer Times"
 msgstr "प्रार्थना समय छान्नुहोस्"
 
-#: shortcodes/24hour.php:144 shortcodes/ongoing.php:163
+#: shortcodes/24hour.php:144 shortcodes/ongoing.php:161
 #, fuzzy
 msgid "Select an option"
 msgstr "एक विकल्प चयन गर्नुहोस्"
 
-#: shortcodes/24hour.php:147 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:147 shortcodes/ongoing.php:164
 #, fuzzy
 msgid "Pray every day at the same time"
 msgstr "हरेक दिन एकै समयमा प्रार्थना गर्नुहोस्"
 
-#: shortcodes/24hour.php:149 shortcodes/ongoing.php:168
+#: shortcodes/24hour.php:149 shortcodes/ongoing.php:166
 #, fuzzy
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "उदाहरण: हरेक दिन 4 बजे 15 मिनेटको लागि"
 
-#: shortcodes/24hour.php:152 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:152 shortcodes/ongoing.php:169
 #, fuzzy
 msgid "Select days and times to pray"
 msgstr "प्रार्थना गर्न दिन र समय छान्नुहोस्"
 
-#: shortcodes/24hour.php:154 shortcodes/ongoing.php:173
+#: shortcodes/24hour.php:154 shortcodes/ongoing.php:171
 #, fuzzy
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "उदाहरण: सोमबार १२ गते बेलुका ६ बजे १५ मिनेटको लागि"
@@ -1127,22 +1129,22 @@ msgid "Please note that daylight savings time may affect your prayer times."
 msgstr "इमेलमा तपाइँको प्रार्थना समय व्यवस्थापन गर्न लिङ्क छ।"
 
 #: shortcodes/24hour.php:182 shortcodes/24hour.php:219
-#: shortcodes/ongoing.php:199 shortcodes/ongoing.php:236
+#: shortcodes/ongoing.php:197 shortcodes/ongoing.php:234
 #, fuzzy
 msgid "Showing times for:"
 msgstr "समय देखाउँदै:"
 
-#: shortcodes/24hour.php:263 shortcodes/ongoing.php:279
+#: shortcodes/24hour.php:263 shortcodes/ongoing.php:277
 #, fuzzy
 msgid "OK"
 msgstr "ठिक छ"
 
-#: shortcodes/24hour.php:296 shortcodes/ongoing.php:312
+#: shortcodes/24hour.php:296 shortcodes/ongoing.php:310
 #, fuzzy
 msgid "We are not longer looking for sign ups"
 msgstr "हामी अब साइन अपहरू खोजिरहेका छैनौं"
 
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:313
+#: shortcodes/24hour.php:297 shortcodes/ongoing.php:311
 #, fuzzy
 msgid "Thanks for praying with us!"
 msgstr "हामीसँग प्रार्थना गर्नुभएकोमा धन्यवाद!"
@@ -1159,7 +1161,7 @@ msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "ढाकिएको"
 
-#: shortcodes/ongoing.php:187
+#: shortcodes/ongoing.php:185
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -1183,6 +1185,10 @@ msgstr "प्रार्थना समय: %s मिनेट"
 #, fuzzy
 msgid "Now praying..."
 msgstr "अब प्रार्थना..."
+
+#, fuzzy
+#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
+#~ msgstr "Pray4Movement न्यूजलेटर प्राप्त गर्नुहोस् (इमेल प्रमाणिकरण आवश्यक)।"
 
 #, fuzzy
 #~ msgid "Campaign Stats"
