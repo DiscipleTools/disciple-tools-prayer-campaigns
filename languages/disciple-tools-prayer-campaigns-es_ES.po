@@ -4,10 +4,10 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-05-09T16:44:52+00:00\n"
-"PO-Revision-Date: 2023-03-13 08:30+0000\n"
-"Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
-"Language-Team: Spanish <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/es_ES/>\n"
+"PO-Revision-Date: 2023-05-31 16:20+0000\n"
+"Last-Translator: Gabo Ayala <ayala.gabo@gmail.com>\n"
+"Language-Team: Spanish <https://translate.disciple.tools/projects/"
+"disciple-tools/disciple-tools-prayer-campaigns/es_ES/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,53 +138,50 @@ msgstr "Gracias"
 
 #: campaign-functions/send-email-utility.php:332
 #: campaign-functions/send-email-utility.php:362
-#, fuzzy
-#| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
+msgstr "Oración Estratégica por un Movimiento de Multiplicación de Discípulos"
 
 #: campaign-functions/send-email-utility.php:334
 #: campaign-functions/send-email-utility.php:364
-#, fuzzy
-#| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement"
-msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
+msgstr "Oración Estratégica por un Movimiento de Multiplicación de Discípulos"
 
 #: campaign-functions/send-email-utility.php:339
 #: campaign-functions/send-email-utility.php:369
 msgid "Dear %s,"
-msgstr ""
+msgstr "Apreciad@ %s,"
 
 #: campaign-functions/send-email-utility.php:342
 #: campaign-functions/send-email-utility.php:372
-#, fuzzy
-#| msgctxt "Thank you for joining us in prayer for the French in France."
-#| msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Gracias por unírtenos en oración por los %1$s en %2$s."
+msgstr "Gracias por unírten en oración por los %1$s en %2$s."
 
 #: campaign-functions/send-email-utility.php:345
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Solo en la eternidad podremos saber el impacto de nuestras oraciones. Sin "
+"embargo, sabemos por la Palabra de Dios que la oración es poderosa y "
+"efectiva (Santiago 5:16)."
 
 #: campaign-functions/send-email-utility.php:348
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"Clica en el botón para tener un destello de tu contribución el día de hoy. "
+"También nos encantaría escuchar alguna impresión o palabras que recibiste de "
+"Dios mientras orabas."
 
 #: campaign-functions/send-email-utility.php:352
-#, fuzzy
-#| msgid "Select a prayer time"
 msgid "See Prayer Stats"
-msgstr "Seleccione un tiempo de oración"
+msgstr "Mira estadísticas sobre la oración"
 
 #: campaign-functions/send-email-utility.php:354
 #: campaign-functions/send-email-utility.php:390
 msgid "In Christ with you,"
-msgstr ""
+msgstr "En Cristo contigo,"
 
 #: campaign-functions/send-email-utility.php:375
 msgid ""
@@ -192,6 +189,9 @@ msgid ""
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Solo en la eternidad podremos saber el impacto de las miles de horas oradas "
+"por el mundo Musulmán durante Ramadan. Sin embargo, sabemos por medio de la "
+"Palabra de Dios que las oraciones son poderosas y efectivas (Santiago 5:16)."
 
 #: campaign-functions/send-email-utility.php:379
 msgid ""
@@ -199,6 +199,9 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
+"Clica en el botón para tener un destello de tu contribución durante este "
+"Ramadan. También, nos gustaría escuchar de ti cualquier impresión o palabra "
+"que recibiste de Dios mientras oraba."
 
 #: campaign-functions/send-email-utility.php:386
 msgid ""
@@ -206,10 +209,14 @@ msgid ""
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
+"Por último, la página de estadísticas sobre la Oración 24/7 por Ramadan "
+"ahora cuenta con una sección para registrase al final. Asegúrate de que te "
+"has registrado para recibir información sobre futuras oportunidades a traves "
+"de Pray4Movement, los hacedores de esta herramienta de oración."
 
 #: campaign-functions/send-email-utility.php:388
 msgid "See Ramadan 24/7 Prayer Stats"
-msgstr ""
+msgstr "Ver estadísticas sobre las Oraciones 24/7 en Ramadan"
 
 #: campaign-functions/time-utilities.php:168
 msgid "5 minutes"
@@ -233,17 +240,15 @@ msgstr "1 hora"
 
 #: campaign-functions/time-utilities.php:181
 msgid "years"
-msgstr ""
+msgstr "años"
 
 #: campaign-functions/time-utilities.php:181
 msgid "year"
-msgstr ""
+msgstr "año"
 
 #: campaign-functions/time-utilities.php:184
-#, fuzzy
-#| msgid "days"
 msgid "day"
-msgstr "días"
+msgstr "día"
 
 #: campaign-functions/time-utilities.php:184
 #: porches/generic/site/home-body.php:172
@@ -291,31 +296,26 @@ msgstr "Cambiar tiempo diario"
 
 #: magic-links/subscription-management/subscription-management.php:114
 #: shortcodes/24hour.php:35
-#, fuzzy
-#| msgctxt "Jun, Jul, Aug covered"
-#| msgid "covered"
 msgctxt "80% covered"
 msgid "%s covered"
-msgstr "cubierto"
+msgstr "%s cubierto"
 
 #: magic-links/subscription-management/subscription-management.php:115
 #: shortcodes/24hour.php:36
 msgctxt "on 5 days"
 msgid "On %s days"
-msgstr ""
+msgstr "En %s días"
 
 #: magic-links/subscription-management/subscription-management.php:116
 #: shortcodes/24hour.php:37
 msgctxt "and 5 more"
 msgid "and %s more"
-msgstr ""
+msgstr "y %s más"
 
 #: magic-links/subscription-management/subscription-management.php:117
 #: shortcodes/24hour.php:38
-#, fuzzy
-#| msgid "Prayer Time"
 msgid "Pray this time"
-msgstr "Franja Horaria de Oración"
+msgstr "Hora en la que orarás"
 
 #: magic-links/subscription-management/subscription-management.php:275
 msgid "Your prayer times have been verified!"
@@ -358,10 +358,8 @@ msgstr "Descargar Calendario"
 
 #: magic-links/subscription-management/subscription-management.php:324
 #: shortcodes/24hour.php:132
-#, fuzzy
-#| msgid "Select a prayer time"
 msgid "Help us cover these prayer times"
-msgstr "Seleccione un tiempo de oración"
+msgstr "Ayúdanos a cubrir estos tiempos de oración"
 
 #: magic-links/subscription-management/subscription-management.php:328
 msgid "My commitments"
@@ -554,12 +552,12 @@ msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
 msgstr ""
+"Recibe noticias y nuevas oportunidades de Pray4Movement, y en algunos casos "
+"comunicaciones de GospelAmbition.org."
 
 #: parts/components.php:59
-#, fuzzy
-#| msgid "Your prayer times have been verified!"
 msgid "No prayer times selected"
-msgstr "¡Tus tiempos de oración ha sido verificado!"
+msgstr "No has seleccionado ningún bloque de oración"
 
 #: parts/components.php:63
 msgid "Submit Your Prayer Commitment"
@@ -656,7 +654,7 @@ msgstr "El contenido comenzará en %s días"
 
 #: porches/generic/site/archive-body.php:43
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
+msgstr "Esta campaña ha terminado. Ver combustible para la oración abajo"
 
 #: porches/generic/site/archive-body.php:56
 #: porches/generic/site/landing-body.php:38
@@ -678,7 +676,7 @@ msgstr ""
 #: porches/generic/site/archive-body.php:64
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
-msgstr ""
+msgstr "¿Cuántos han orado hoy (incluyéndote)?"
 
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
@@ -825,7 +823,7 @@ msgstr "Gracias por unírtenos en oración por los %1$s en %2$s."
 
 #: porches/generic/site/stats.php:162
 msgid "Stats"
-msgstr ""
+msgstr "Estadisticas"
 
 #: porches/generic/site/stats.php:189
 msgid "Percentage Covered"
@@ -841,7 +839,7 @@ msgstr "Compromisos de Tiempo"
 
 #: porches/generic/site/stats.php:215
 msgid "Time Prayed in Groups"
-msgstr ""
+msgstr "Tiempo orado en grupos"
 
 #: porches/generic/site/stats.php:225
 msgid "Number of People who Prayed"
@@ -861,50 +859,40 @@ msgstr ""
 
 #: porches/generic/site/stats.php:319
 msgid "Global Ramadan Stats"
-msgstr ""
+msgstr "Estadísticas globales de Ramadan"
 
 #: porches/generic/site/stats.php:326
-#, fuzzy
-#| msgid "Disciple.Tools - Prayer Campaigns"
 msgid "Total Prayer Campaigns"
-msgstr "Disciple.Tools - Campañas de Oración"
+msgstr "Campañas de Oración Totales"
 
 #: porches/generic/site/stats.php:334
-#, fuzzy
-#| msgid "Hours of Prayer"
 msgid "Countries Prayed For"
-msgstr "Horas de Oración"
+msgstr "Países por los que has orado"
 
 #: porches/generic/site/stats.php:342
 msgid "Intercessors"
-msgstr ""
+msgstr "Intercesores"
 
 #: porches/generic/site/stats.php:350
-#, fuzzy
-#| msgid "Time added"
 msgid "Time Prayed"
-msgstr "Tiempo agregado"
+msgstr "Tiempo orado"
 
 #: porches/generic/site/stats.php:358
 msgid "15 Minute Time Slots Filled"
-msgstr ""
+msgstr "Bloques de 15 minutos seleccionados"
 
 #: porches/generic/site/stats.php:380
 msgid "More Prayer Opportunities"
 msgstr "Más Oportunidades de Oración"
 
 #: porches/generic/site/stats.php:384
-#, fuzzy
-#| msgid ""
-#| "Would you like to hear about other prayer efforts and opportunities with "
-#| "Pray4Movement.org?"
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
 "Pray4Movement.org and receive occasional communication from GospelAmbition."
 "org."
 msgstr ""
-"¿Te gustaría conocer acerca de otros esfuerzos de oración y oportunidades "
-"con Pray4Movement.org?"
+"Regístrate para escuchar sobre otras iniciativas y oportunidades de oración "
+"con Pray4Movement.org y recibir algunas comunicaciones de GospelAmbition.org."
 
 #: porches/generic/site/top-section.php:21
 msgid "Home"
@@ -990,11 +978,9 @@ msgid "Percentage covered in prayer"
 msgstr "Porcentaje de cobertura en oración"
 
 #: shortcodes/24hour.php:107
-#, fuzzy
-#| msgid "Time Committed"
 msgctxt "12.3 years committed"
 msgid "% committed"
-msgstr "Compromisos de Tiempo"
+msgstr "% comprometido"
 
 #: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
 msgid "Loading prayer campaign data..."

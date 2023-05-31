@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-05-09T16:44:52+00:00\n"
-"PO-Revision-Date: 2023-03-22 08:11+0000\n"
+"PO-Revision-Date: 2023-05-19 19:20+0000\n"
 "Last-Translator: Prykon <dario@gospelambition.org>\n"
 "Language-Team: Spanish (Latin America) <https://translate.disciple.tools/"
 "projects/disciple-tools/disciple-tools-prayer-campaigns/es_419/>\n"
@@ -141,53 +141,50 @@ msgstr "Gracias"
 
 #: campaign-functions/send-email-utility.php:332
 #: campaign-functions/send-email-utility.php:362
-#, fuzzy
-#| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
+msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos en %s"
 
 #: campaign-functions/send-email-utility.php:334
 #: campaign-functions/send-email-utility.php:364
-#, fuzzy
-#| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement"
-msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
+msgstr "Oración estratégica por un movimiento de formación de discípulos"
 
 #: campaign-functions/send-email-utility.php:339
 #: campaign-functions/send-email-utility.php:369
 msgid "Dear %s,"
-msgstr ""
+msgstr "Querido/a %s,"
 
 #: campaign-functions/send-email-utility.php:342
 #: campaign-functions/send-email-utility.php:372
-#, fuzzy
-#| msgctxt "Thank you for joining us in prayer for the French in France."
-#| msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Gracias por unirse a nosotros en oración por los %1$s en %2$s."
+msgstr "Gracias por unirse a %1$s en %2$s."
 
 #: campaign-functions/send-email-utility.php:345
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Sólo conoceremos en la eternidad el impacto que tuvo nuestra oración. Sin "
+"embargo, sabemos por medio de la Palabra de Dios que la oración es poderosa "
+"y eficaz. (Santiago 5:16)."
 
 #: campaign-functions/send-email-utility.php:348
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"Haga click en el botón de abajo para ver una parte de los frutos de su "
+"participación. También nos encantaría escuchar lo que sintió o las palabras "
+"que recibió de Dios al orar."
 
 #: campaign-functions/send-email-utility.php:352
-#, fuzzy
-#| msgid "Select a prayer time"
 msgid "See Prayer Stats"
-msgstr "Seleccione un tiempo de oración"
+msgstr "Ver Estadísticas de Oración"
 
 #: campaign-functions/send-email-utility.php:354
 #: campaign-functions/send-email-utility.php:390
 msgid "In Christ with you,"
-msgstr ""
+msgstr "En Cristo con ustedes,"
 
 #: campaign-functions/send-email-utility.php:375
 msgid ""
@@ -212,7 +209,7 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:388
 msgid "See Ramadan 24/7 Prayer Stats"
-msgstr ""
+msgstr "Ver Estadísticas de Oración 24/7 por Ramadán"
 
 #: campaign-functions/time-utilities.php:168
 msgid "5 minutes"
