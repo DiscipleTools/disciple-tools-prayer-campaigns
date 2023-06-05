@@ -31,6 +31,30 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
+    public static function send_verification( $email, $code ){
+
+        $subject = __( 'Verify your email address', 'disciple-tools-prayer-campaigns' );
+
+        $message = Campaigns_Email_Template::email_content_part( 'Please verify your email address by using the code below.' );
+
+        $message .= Campaigns_Email_Template::email_content_part(
+            '<span style="font-size:30px">' . $code . '</span>'
+        );
+
+        $message .= Campaigns_Email_Template::email_content_part( 'This code will expire after 10 minutes.' );
+
+        $message .= Campaigns_Email_Template::email_content_part( 'If you did not request this email, please ignore it.' );
+
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+
+        $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
+        if ( !$sent ){
+            dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
+        }
+        return $sent;
+
+    }
+
     public static function send_registration( $post_id, $campaign_id ) {
 
         $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );

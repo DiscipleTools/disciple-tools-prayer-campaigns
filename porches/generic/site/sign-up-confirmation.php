@@ -77,10 +77,9 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
     }
 
     public function body() {
-//        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
         ?>
         <style>
-            .button {
+            .success-confirmation-section .button {
                 border: 1px solid transparent;
                 border-radius: 5px;
                 cursor: pointer;
@@ -94,29 +93,16 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
                 color: white;
                 background-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
             }
-            .button:hover {
+            .success-confirmation-section .button:hover {
                 background-color: transparent;
                 border-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
                 color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
             }
         </style>
-        <div class='success-confirmation-section' style="margin-top: 140px; padding:20px; font-size: 1rem; text-align: center">
-            <div class='cell center'>
-                <h2><?php esc_html_e( 'Check your email', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
-                <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
-                <p>
-                    <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
-                </p>
-                <p>
-                    <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
-                </p>
-                <p>
-                    <a href="<?php echo esc_html( home_url() ); ?>" class="button"><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></a>
-                </p>
-            </div>
+        <div style='margin-top: 140px; padding:20px; font-size: 1rem; text-align: center' >
+            <?php success_confirmation_section( home_url() ); ?>
         </div>
         <?php
-
     }
 
 
