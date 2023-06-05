@@ -96,22 +96,20 @@ function dt_campaign_sign_up_form() {
         </div>
         <div style="display: none" id="cp-submit-step-2">
             <p>
-                A confirmation code hase been sent to <span id="cp-sent-email"></span>. Please enter the code below in the next 10 minutes to confirm your email address.
+                A confirmation code hase been sent to <span id="cp-sent-email"></span>. <br> Please enter the code below in the next 10 minutes to confirm your email address.
             </p>
-            <div>
-                <label for='cp-confirmation-code'><?php esc_html_e( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ); ?><br>
-                    <span id="confirmation-error" class="form-error">
-                        <?php echo esc_html( 'The code is required' ); ?>
-                    </span>
-<!--                    <input class="cp-confirmation-code" type="text" name="code" id="cp-confirmation-code" required/>-->
-                    <div class='otp-input-wrapper'>
-                        <input class="cp-confirmation-code" id="cp-confirmation-code" type='number' maxlength='6' pattern='[0-9]*' autocomplete='off' required>
-                        <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
-                            <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
-                                  stroke-dasharray='20,22'/>
-                        </svg>
-                    </div>
-                </label>
+            <label for='cp-confirmation-code' style="display: block">
+                <strong><?php esc_html_e( 'Confirmation Code:', 'disciple-tools-prayer-campaigns' ); ?></strong><br>
+                <span id="confirmation-error" class="form-error">
+                    <?php echo esc_html( 'The code is required' ); ?>
+                </span>
+            </label>
+            <div class='otp-input-wrapper' style="padding: 20px 0">
+                <input class="cp-confirmation-code" id="cp-confirmation-code" type='text' maxlength='6' pattern='[0-9]*' autocomplete='off' required>
+                <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
+                    <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
+                          stroke-dasharray='20,22'/>
+                </svg>
             </div>
             <div>
                 <button type='submit' class='button loader' id='cp-submit-form' name='subscribe' value='Subscribe'>
