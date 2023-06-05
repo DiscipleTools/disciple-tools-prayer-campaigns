@@ -396,16 +396,18 @@ jQuery(document).ready(function($) {
     })
     .done(function () {
       submit_spinner.hide()
-      $('#cp-submit-step-1').hide()
-      $('#cp-submit-step-2').show()
+      $('.cp-view').hide()
+      let view_to_open = 'cp-view-validate'
+      $(`#${view_to_open}`).show()
       $('#cp-sent-email').html(email);
+      submit_button.prop('disabled', false)
     })
     .fail(function (e) {
       console.log(e);
       submit_button.prop('disabled', false)
       let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
         <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
-      $('#cp-form-error').empty().html(`<div class="cell center">
+      $('#cp-validate-error').empty().html(`<div class="cell center">
         ${message}
     </div>`).show()
       submit_spinner.hide()

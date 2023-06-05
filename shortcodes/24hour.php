@@ -232,23 +232,14 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
             </div>
         </div>
 
-        <!-- confirm email -->
-        <div id="cp-view-confirm" class="cp-view cp-center" style="display: none">
-            <button class="cp-close-button cp-nav" data-open="cp-times-choose">
-                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
-                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
-            </button>
 
-            <?php dt_campaign_sign_up_form() ?>
+        <!-- name and email -->
+        <?php dt_campaign_sign_up_form() ?>
 
-            <div id="confirmation-times" style="margin-top: 40px">
-                <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
-                <ul class="cp-display-selected-times">
+        <!-- validate email -->
+        <?php dt_email_validate_form() ?>
 
-                </ul>
-            </div>
-        </div>
-
+        <!-- success confirmation -->
         <?php success_confirmation_section() ?>
 
         <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
