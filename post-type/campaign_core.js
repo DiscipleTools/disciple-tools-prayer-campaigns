@@ -380,10 +380,10 @@ jQuery(document).ready(function($) {
       email: email,
       parts: jsObject.parts,
       campaign_id: calendar_subscribe_object.campaign_id,
+      url: 'verify',
     }
 
     let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type + '/verify';
-    //@todo router
     if (window.campaign_objects.remote) {
       link = jsObject.root + jsObject.parts.root + '/v1/24hour-router';
     }
