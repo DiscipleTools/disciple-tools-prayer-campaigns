@@ -280,7 +280,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                     },
                 ]
             ]
-
         );
     }
 

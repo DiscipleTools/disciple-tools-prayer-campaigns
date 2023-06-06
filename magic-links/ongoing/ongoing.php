@@ -90,7 +90,6 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                     },
                 ]
             ]
-
         );
     }
 

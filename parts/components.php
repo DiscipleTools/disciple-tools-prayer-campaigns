@@ -139,7 +139,7 @@ function dt_email_validate_form(){
         </div>
         <div>
             <button type="submit" class="button loader" id="cp-submit-form" name="subscribe" value="Subscribe">
-                <?php esc_html_e( "Submit", 'disciple-tools-prayer-campaigns' ); ?> <img
+                <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?> <img
                     class="cp-submit-form-spinner" style="display: none"
                     src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg"
                     width="22px" alt="spinner "/></button>
