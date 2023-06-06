@@ -141,21 +141,29 @@ class DT_Porch_Admin_Tab_Email_Settings {
     public function process_email_settings() {
         if ( isset( $_POST['email_base_subject_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['email_base_subject_nonce'] ) ), 'email_subject' ) ) {
 
-            if ( isset( $_POST['email_address'] ) ) {
-                $email_address = sanitize_text_field( wp_unslash( $_POST['email_address'] ) );
+            if ( isset( $_POST['submit'] ) ){
+                if ( isset( $_POST['email_address'] ) ){
+                    $email_address = sanitize_text_field( wp_unslash( $_POST['email_address'] ) );
 
-                $this->settings_manager->update( 'email_address', $email_address );
+                    $this->settings_manager->update( 'email_address', $email_address );
+                }
+
+                if ( isset( $_POST['email_name'] ) ){
+                    $email_name = sanitize_text_field( wp_unslash( $_POST['email_name'] ) );
+
+                    $this->settings_manager->update( 'email_name', $email_name );
+                }
+                if ( isset( $_POST['email_logo'] ) ){
+                    $email_logo = sanitize_text_field( wp_unslash( $_POST['email_logo'] ) );
+
+                    $this->settings_manager->update( 'email_logo', $email_logo );
+                }
             }
 
-            if ( isset( $_POST['email_name'] ) ) {
-                $email_name = sanitize_text_field( wp_unslash( $_POST['email_name'] ) );
-
-                $this->settings_manager->update( 'email_name', $email_name );
-            }
-            if ( isset( $_POST['email_logo'] ) ) {
-                $email_logo = sanitize_text_field( wp_unslash( $_POST['email_logo'] ) );
-
-                $this->settings_manager->update( 'email_logo', $email_logo );
+            if ( isset( $_POST['tickler_email'] ) ){
+                //subscriber_id @todo
+                $subscriber_id = 16;
+                DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $subscriber_id );
             }
         }
     }
@@ -232,9 +240,12 @@ class DT_Porch_Admin_Tab_Email_Settings {
                         </table>
 
                         <br>
+<!--                        <span style="float:left">-->
+<!--                            <button type="submit" name="tickler_email" class="button">Test 2 week notice email</button>-->
+<!--                        </span>-->
                         <span style="float:right;">
-                                <button type="submit" class="button float-right"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
-                            </span>
+                            <button type="submit" name="submit" class="button"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
+                        </span>
                     </form>
                 </td>
             </tr>
