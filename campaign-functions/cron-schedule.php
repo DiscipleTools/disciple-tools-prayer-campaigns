@@ -63,11 +63,9 @@ function dt_prayer_campaign_prayer_time_reminder(){
 
     // build nested array to separate campaigns and combine user reminders
     $grouped_reminders = [];
-    $campaign_ids = [];
     foreach ( $reminders as $reminder ) {
         if ( ! isset( $grouped_reminders[$reminder['parent_id']] ) ) {
             $grouped_reminders[$reminder['parent_id']] = [];
-            $campaign_ids[] = $reminder['parent_id'];
         }
         if ( ! isset( $grouped_reminders[$reminder['parent_id']][$reminder['post_id']] ) ) {
             $grouped_reminders[$reminder['parent_id']][$reminder['post_id']] = [];
@@ -87,90 +85,17 @@ function dt_prayer_campaign_prayer_time_reminder(){
     // build message by campaign, and then by user, and grouping times per user message
     foreach ( $grouped_reminders as $campaign_id => $subscriber_values ) {
         // get campaign messages and links for the day
-        $campaign_subject_line = __( 'Prayer Time reminder!', 'disciple-tools-prayer-campaigns' );
 
-        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         foreach ( $subscriber_values as $subscriber_id => $reports ) {
-            $e = [
-                'to' => '',
-                'subject' => $campaign_subject_line,
-                'message' => '',
-                'headers' => [
-                    'Content-Type: text/html',
-                    'charset=UTF-8'
-                ]
-            ];
 
-            $commitment_list = '';
-            $to = [];
             $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
             if ( is_wp_error( $record ) ){
                 continue;
             }
-            $lang_code = 'en_US';
-            if ( isset( $record['lang'] ) && !empty( $lang_code ) ){
-                $lang_code = sanitize_text_field( wp_unslash( $record['lang'] ) );
-            }
-            add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
-                if ( !empty( $lang_code ) ){
-                    return $lang_code;
-                }
-                return $locale;
-            } );
-            dt_campaign_reload_text_domain();
-            $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
-            $tz = new DateTimeZone( $timezone );
-            foreach ( $reports as $row ){
-
-                $to[$row['email']] = $row['email'];
-                $begin_date = new DateTime( '@'.$row['time_begin'] );
-                $end_date = new DateTime( '@'.$row['time_end'] );
-                $begin_date->setTimezone( $tz );
-                $end_date->setTimezone( $tz );
-                $commitment_list .= sprintf(
-                    _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                    $begin_date->format( 'F d, Y' ),
-                    '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
-                    '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
-                );
-                if ( !empty( $row['label'] ) ){
-                    $commitment_list .= ' ' . sprintf( _x( 'for %s', 'for Paris, France', 'disciple-tools-prayer-campaigns' ), $row['label'] );
-                }
-                $commitment_list .= '<br>';
-            }
-            $e['to'] = implode( ',', $to );
-
-            $prayer_content_message = '';
-            if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) && $campaign['campaign_strings'][$record['lang']]['reminder_content'] !== '' ){
-                $prayer_content_message = $campaign['campaign_strings'][$record['lang']]['reminder_content'];
-            } else if ( isset( $campaign['campaign_strings']['default']['reminder_content'] ) && $campaign['campaign_strings']['default']['reminder_content'] !== '' ) {
-                $prayer_content_message = $campaign['campaign_strings']['default']['reminder_content'];
-            }
-
-            if ( strpos( $prayer_content_message, '<a' ) === false ){
-                $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
-                $prayer_content_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $prayer_content_message );
-            }
-            $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
-
-            $e['message'] =
-                '
-                <h3>' . sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) . '</h3>
-                <h4>' . __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) . '</h4>
-                <p>' . __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) . '</p>
-                <p>'.$commitment_list.'</p>
-                <p>' . sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) . '</p>
-                ' . $prayer_fuel_link . '
-                <p>' . nl2br( $prayer_content_message ) . '</p>
-                <br>
-                <hr>
-                <p><a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name].'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a></p>
-            ';
-
-            $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( $e['to'], $e['subject'], $e['message'], $e['headers'] );
+            $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_time_reminder( $subscriber_id, $reports, $campaign_id, $prayer_fuel_link );
 
             if ( ! $sent ){
-                dt_write_log( __METHOD__ . ': Unable to send email to ' . $e['to'] . '. Subscriber: ' . $subscriber_id );
+                dt_write_log( __METHOD__ . ': Unable to send email to ' . $subscriber_id . '. Subscriber: ' . $subscriber_id );
             } else {
                 // note in report that email was sent
                 foreach ( $reports as $row ){

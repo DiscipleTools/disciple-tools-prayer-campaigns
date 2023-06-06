@@ -363,11 +363,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             }
         }
 
-        if ( !empty( $params['selected_times'] ) ){
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params['campaign_id'] );
-        } else {
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_pre_registration( $subscriber_id, $params['campaign_id'] );
-        }
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params['campaign_id'] );
 
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );
