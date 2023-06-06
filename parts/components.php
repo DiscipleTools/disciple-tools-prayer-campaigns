@@ -172,3 +172,45 @@ function success_confirmation_section( $target = null ){
     </div>
     <?php
 }
+
+function part_campaign_timezone_changer(){
+    ?>
+    <div id='cp-timezone-changer' style='display: none' class='cp-center cp-view'>
+        <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
+        <select id="timezone-select" style="margin: 20px auto">
+            <?php
+            $selected_tz = 'America/Denver';
+            if ( !empty( $selected_tz ) ){
+                ?>
+                <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>"
+                        selected><?php echo esc_html( $selected_tz ) ?></option>
+                <option disabled>----</option>
+                <?php
+            }
+            $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+            foreach ( $tzlist as $tz ){
+                ?>
+                <option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
+            }
+            ?>
+        </select>
+
+        <button class="button button-cancel clear cp-nav" data-open="cp-main-page" aria-label="Close reveal"
+                type="button">
+            <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' ) ?>
+        </button>
+        <button class="button cp-nav" type="button" id="confirm-timezone" data-open="cp-times-choose">
+            <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' ) ?>
+        </button>
+    </div>
+    <?php
+}
+
+function part_campaign_is_closed(){
+    ?>
+    <div id='cp-view-closed' class='cp-view cp-center' style='display: none'>
+        <p><?php esc_html_e( 'We are not longer looking for sign ups', 'disciple-tools-prayer-campaigns' ); ?></p>
+        <p><?php esc_html_e( 'Thanks for praying with us!', 'disciple-tools-prayer-campaigns' ); ?></p>
+    </div>
+    <?php
+}

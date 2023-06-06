@@ -242,37 +242,11 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
         <!-- success confirmation -->
         <?php success_confirmation_section() ?>
 
-        <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
-            <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
-            <select id="timezone-select" style="margin: 20px auto">
-                <?php
-                $selected_tz = 'America/Denver';
-                if ( !empty( $selected_tz ) ){
-                    ?>
-                    <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
-                    <option disabled>----</option>
-                    <?php
-                }
-                $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
-                foreach ( $tzlist as $tz ){
-                    ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
-                }
-                ?>
-            </select>
+        <!-- timezone changer -->
+        <?php part_campaign_timezone_changer() ?>
 
-            <button class="button button-cancel clear cp-nav" data-open="cp-main-page" aria-label="Close reveal" type="button">
-                <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-            </button>
-            <button class="button cp-nav" type="button" id="confirm-timezone" data-open="cp-times-choose">
-                <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
-            </button>
-        </div>
-
-        <!-- confirm email later-->
-        <div id="cp-view-closed" class="cp-view cp-center" style="display: none">
-            <p><?php esc_html_e( 'We are not longer looking for sign ups', 'disciple-tools-prayer-campaigns' ); ?></p>
-            <p><?php esc_html_e( 'Thanks for praying with us!', 'disciple-tools-prayer-campaigns' ); ?></p>
-        </div>
+        <!-- campaign closed -->
+        <?php part_campaign_is_closed() ?>
 
 
     </div> <!-- form wrapper -->
@@ -308,20 +282,6 @@ function dt_24hour_campaign_shortcode( $atts ){
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
 
-/* TODO: could we move this to a more generic functions.php area, as this could be used anywhere around the plugin? */
-if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
-    function dt_recursive_sanitize_array( array $array ) : array {
-        foreach ( $array as $key => &$value ) {
-            if ( is_array( $value ) ) {
-                $value = dt_recursive_sanitize_array( $value );
-            }
-            else {
-                $value = sanitize_text_field( wp_unslash( $value ) );
-            }
-        }
-        return $array;
-    }
-}
 
 function dt_campaign_router_endpoint( WP_REST_Request $request ){
     $params = $request->get_params();
