@@ -57,7 +57,8 @@ class DT_Ongoing_Shortcode {
             wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts['color'] ?? '' ] );
         }
 
-        wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . $this->css_file, [], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.css' ) );
+        wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'assets/campaigns.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'assets/campaigns.css' ) );
+        wp_enqueue_style( 'dt_ongoing_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . $this->css_file, [], filemtime( plugin_dir_path( __DIR__ ) . $this->css_file ) );
 
         //24 hour campaign js
         if ( !wp_script_is( 'dt_campaign' ) ){

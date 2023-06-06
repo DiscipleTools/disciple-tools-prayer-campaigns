@@ -18,7 +18,8 @@ function dt_24hour_campaign_register_scripts( $atts ){
         wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts['color'] ?? '' ] );
     }
 
-    wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'magic-links/24hour/24hour.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.css' ) );
+    wp_enqueue_style( 'dt_24hour_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'magic-links/24hour/24hour.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.css' ) );
+    wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'assets/campaigns.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'assets/campaigns.css' ) );
 
     //24 hour campaign js
     if ( !wp_script_is( 'dt_campaign' ) ){
