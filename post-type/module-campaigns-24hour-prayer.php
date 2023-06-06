@@ -214,18 +214,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             <?php
         } // end if campaigns and enabled
     }
-    private function default_email_address(): string {
-        $default_addr = apply_filters( 'wp_mail_from', '' );
-        if ( empty( $default_addr ) ) {
-            // Get the site domain and get rid of www.
-            $sitename = wp_parse_url( network_home_url(), PHP_URL_HOST );
-            if ( 'www.' === substr( $sitename, 0, 4 ) ) {
-                $sitename = substr( $sitename, 4 );
-            }
-            $default_addr = 'wordpress@' . $sitename;
-        }
-        return $default_addr;
-    }
 
     /**
      * Register REST Endpoints
@@ -375,11 +363,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             }
         }
 
-        if ( !empty( $params['selected_times'] ) ){
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params['campaign_id'] );
-        } else {
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_pre_registration( $subscriber_id, $params['campaign_id'] );
-        }
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $params['campaign_id'] );
 
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );
