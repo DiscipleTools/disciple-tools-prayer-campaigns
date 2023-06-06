@@ -14,7 +14,22 @@ function dt_prayer_campaign_cron_schedules( $schedules ){
     return $schedules;
 }
 
+if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
+    function dt_recursive_sanitize_array( array $array ) : array {
+        foreach ( $array as $key => &$value ) {
+            if ( is_array( $value ) ) {
+                $value = dt_recursive_sanitize_array( $value );
+            }
+            else {
+                $value = sanitize_text_field( wp_unslash( $value ) );
+            }
+        }
+        return $array;
+    }
+}
+
 //need to be accessible outside of D.T
+require_once( plugin_dir_path( __DIR__ ) . 'campaign-functions/porch-api.php' );
 require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/24hour.php' );
 require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/ongoing.php' );
 require_once( plugin_dir_path( __DIR__ ) . 'shortcodes/generic.php' );
