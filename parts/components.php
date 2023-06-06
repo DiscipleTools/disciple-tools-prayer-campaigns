@@ -162,7 +162,7 @@ function success_confirmation_section( $target = null ){
                 <?php esc_html_e( 'Check you email for details and access to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
             </p>
             <p>
-                <? if ( !empty( $target ) ) : ?>
+                <?php if ( !empty( $target ) ) : ?>
                     <a href="<?php echo esc_url( $target ) ?>" class='button'><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></a>
                 <?php else : ?>
                     <button class='button cp-nav cp-ok-done-button'><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></button>
