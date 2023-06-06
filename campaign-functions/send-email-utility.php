@@ -110,11 +110,6 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $subject = __( 'Registered to pray with us!', 'disciple-tools-prayer-campaigns' );
 
-        $key_name = 'public_key';
-        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
-        }
-
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
         if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['signup_content'] ) && $campaign['campaign_strings'][$record['lang']]['signup_content'] !== '' ){
@@ -130,7 +125,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
-        $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
+        $link = self::management_link( $record );
 
 
         $message = '';
@@ -282,11 +277,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
-        $key_name = 'public_key';
-        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-            $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
-        }
-        $manage_link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $subscriber[$key_name];
+        $manage_link = self::management_link( $subscriber );
         $porch_fields = DT_Porch_Settings::settings();
 
         $title = isset( $porch_fields['title']['value'] ) ? $porch_fields['title']['value'] : site_url();
