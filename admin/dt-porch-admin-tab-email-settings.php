@@ -6,11 +6,13 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Admin_Tab_Email_Settings {
     public $key = 'email-settings';
-    public $title = 'Email Extra Content';
+    public $title = 'Email Settings';
     private $selected_campaign;
+    private $settings_manager;
 
     public function __construct() {
         $campaign = DT_Campaign_Settings::get_campaign();
+        $this->settings_manager = new DT_Campaign_Settings();
 
         if ( !empty( $campaign ) ) {
             $this->selected_campaign = $campaign['ID'];
@@ -53,14 +55,17 @@ class DT_Porch_Admin_Tab_Email_Settings {
         /* If a campaign is selected */
 
         $this->process_select_campaign();
-        $this->process_campaign_email_settings();
+        $this->process_email_settings();
+        $this->process_campaign_email_content_settings();
 
         $this->campaign_selector();
+
+        $this->box_email_settings();
 
         if ( !$this->selected_campaign || $this->selected_campaign === DT_Prayer_Campaigns_Campaigns::$no_campaign_key ) {
             DT_Porch_Admin_Tab_Base::message_box( 'Email Settings', 'You need to select a campaign above to start editing email settings' );
         } else {
-            $this->email_settings_box();
+            $this->email_content_settings_box();
         }
     }
 
@@ -72,7 +77,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
         }
     }
 
-    private function process_campaign_email_settings() {
+    private function process_campaign_email_content_settings() {
         $make_campaign_strings_key = function( $key, $lang ) {
             return "hack-campaign_strings-$key--$lang";
         };
@@ -130,9 +135,121 @@ class DT_Porch_Admin_Tab_Email_Settings {
         <?php
     }
 
-    public function email_settings_box() {
+    /**
+     * Process changes to the email settings
+     */
+    public function process_email_settings() {
+        if ( isset( $_POST['email_base_subject_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['email_base_subject_nonce'] ) ), 'email_subject' ) ) {
 
-        $langs = dt_campaign_list_languages();
+            if ( isset( $_POST['email_address'] ) ) {
+                $email_address = sanitize_text_field( wp_unslash( $_POST['email_address'] ) );
+
+                $this->settings_manager->update( 'email_address', $email_address );
+            }
+
+            if ( isset( $_POST['email_name'] ) ) {
+                $email_name = sanitize_text_field( wp_unslash( $_POST['email_name'] ) );
+
+                $this->settings_manager->update( 'email_name', $email_name );
+            }
+            if ( isset( $_POST['email_logo'] ) ) {
+                $email_logo = sanitize_text_field( wp_unslash( $_POST['email_logo'] ) );
+
+                $this->settings_manager->update( 'email_logo', $email_logo );
+            }
+        }
+    }
+
+    public function box_email_settings() {
+        ?>
+
+        <table class="widefat striped">
+            <thead>
+            <tr>
+                <th>Sign Up and Notification Email Settings</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="email_base_subject_nonce" id="email_base_subject_nonce"
+                               value="<?php echo esc_attr( wp_create_nonce( 'email_subject' ) ) ?>"/>
+
+                        <table class="widefat">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Current</th>
+                                <th>Custom Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label for="email_address">
+                                        The email address campaign emails will be sent from</label>
+                                </td>
+                                <td>
+                                    <?php echo esc_html( $this->settings_manager->get( 'email_address' ) ?: DT_Prayer_Campaigns_Send_Email::default_email_address() ) ?>
+                                </td>
+                                <td>
+                                    <input name="email_address" id="email_address" type="email"
+                                           placeholder=""
+                                           value="<?php echo esc_html( $this->settings_manager->get( 'email_address' ) ) ?>"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="email_name">
+                                        The name campaign emails will be sent from</label>
+                                </td>
+                                <td>
+                                    <?php echo esc_html( $this->settings_manager->get( 'email_name' ) ?: DT_Prayer_Campaigns_Send_Email::default_email_name() ) ?>
+                                </td>
+                                <td>
+                                    <input name="email_name" id="email_name" type="text"
+                                           placeholder=""
+                                           value="<?php echo esc_html( $this->settings_manager->get( 'email_name' ) ) ?>"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="email_logo">
+                                        Email Header Logo</label>
+                                </td>
+                                <td>
+                                    <img src="<?php echo esc_html( Campaigns_Email_Template::get_email_logo_url() ) ?>" style="max-width: 100px;"/>
+                                </td>
+                                <td>
+                                    <input name="email_logo" id="email_logo" type="text"
+                                           placeholder=""
+                                           value="<?php echo esc_html( $this->settings_manager->get( 'email_logo' ) ) ?>"/>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <br>
+                        <span style="float:right;">
+                                <button type="submit" class="button float-right"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
+                            </span>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <?php
+    }
+
+    public function email_content_settings_box() {
+
+        $languages_manager = new DT_Campaign_Languages();
+        $langs = $languages_manager->get_enabled_languages();
+
         $campaign = DT_Campaign_Settings::get_campaign( $this->selected_campaign );
         $settings = DT_Porch_Settings::settings( 'settings' );
         $default_language = isset( $settings['default_language'] ) ? $settings['default_language']['value'] : PORCH_DEFAULT_LANGUAGE;
@@ -178,7 +295,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
             <table class="widefat striped metabox-table">
                 <thead>
                 <tr>
-                    <th>Email Settings</th>
+                    <th>Email Content</th>
                     <th></th> <!-- extends the header bottom border across the right hand column -->
                     <th></th>
                 </tr>

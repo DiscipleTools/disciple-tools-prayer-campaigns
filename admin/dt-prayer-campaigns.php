@@ -15,32 +15,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
     }
 
-    private function default_email_address(): string {
-        $default_addr = apply_filters( 'wp_mail_from', '' );
 
-        if ( empty( $default_addr ) ) {
-
-            // Get the site domain and get rid of www.
-            $sitename = wp_parse_url( network_home_url(), PHP_URL_HOST );
-            if ( 'www.' === substr( $sitename, 0, 4 ) ) {
-                $sitename = substr( $sitename, 4 );
-            }
-
-            $default_addr = 'wordpress@' . $sitename;
-        }
-
-        return $default_addr;
-    }
-
-    private function default_email_name(): string {
-        $default_name = apply_filters( 'wp_mail_from_name', '' );
-
-        if ( empty( $default_name ) ) {
-            $default_name = 'WordPress';
-        }
-
-        return $default_name;
-    }
 
     public static function setup_wizard_for_type( $wizard_type, $new_campaign_name = null ){
         /**
@@ -101,25 +76,6 @@ class DT_Prayer_Campaigns_Campaigns {
 
     }
 
-    /**
-     * Process changes to the email settings
-     */
-    public function process_email_settings() {
-        if ( isset( $_POST['email_base_subject_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['email_base_subject_nonce'] ) ), 'email_subject' ) ) {
-
-            if ( isset( $_POST['email_address'] ) ) {
-                $email_address = sanitize_text_field( wp_unslash( $_POST['email_address'] ) );
-
-                $this->settings_manager->update( 'email_address', $email_address );
-            }
-
-            if ( isset( $_POST['email_name'] ) ) {
-                $email_name = sanitize_text_field( wp_unslash( $_POST['email_name'] ) );
-
-                $this->settings_manager->update( 'email_name', $email_name );
-            }
-        }
-    }
 
     /**
      * Process changes to the porch settings
@@ -200,7 +156,7 @@ class DT_Prayer_Campaigns_Campaigns {
                             $this->box_campaign();
                         }
 
-                        $this->box_email_settings();
+
 
                         $this->box_p4m_participation();
 
@@ -216,77 +172,6 @@ class DT_Prayer_Campaigns_Campaigns {
                 </div>
             </div>
         </div>
-        <?php
-    }
-
-    public function box_email_settings() {
-        ?>
-
-        <table class="widefat striped">
-            <thead>
-                <tr>
-                    <th>Sign Up and Notification Email Settings</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <form method="POST">
-                            <input type="hidden" name="email_base_subject_nonce" id="email_base_subject_nonce"
-                                    value="<?php echo esc_attr( wp_create_nonce( 'email_subject' ) ) ?>"/>
-
-                            <table class="widefat">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Current</th>
-                                    <th>Custom Value</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <label for="email_address">
-                                            The email address campaign emails will be sent from</label>
-                                    </td>
-                                    <td>
-                                        <?php echo esc_html( $this->settings_manager->get( 'email_address' ) ?: self::default_email_address() ) ?>
-                                    </td>
-                                    <td>
-                                        <input name="email_address" id="email_address" type="email"
-                                               placeholder=""
-                                               value="<?php echo esc_html( $this->settings_manager->get( 'email_address' ) ) ?>"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="email_name">
-                                            The name campaign emails will be sent from</label>
-                                    </td>
-                                    <td>
-                                        <?php echo esc_html( $this->settings_manager->get( 'email_name' ) ?: self::default_email_name() ) ?>
-                                    </td>
-                                    <td>
-                                        <input name="email_name" id="email_name" type="text"
-                                               placeholder=""
-                                               value="<?php echo esc_html( $this->settings_manager->get( 'email_name' ) ) ?>"/>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-
-                            <br>
-                            <span style="float:right;">
-                                <button type="submit" class="button float-right"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
-                            </span>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-
         <?php
     }
 

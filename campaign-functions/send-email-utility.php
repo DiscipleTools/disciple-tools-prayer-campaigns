@@ -410,6 +410,32 @@ class DT_Prayer_Campaigns_Send_Email {
         return $message;
     }
 
+    public static function default_email_address(): string {
+        $default_addr = apply_filters( 'wp_mail_from', '' );
+
+        if ( empty( $default_addr ) ) {
+
+            // Get the site domain and get rid of www.
+            $sitename = wp_parse_url( network_home_url(), PHP_URL_HOST );
+            if ( 'www.' === substr( $sitename, 0, 4 ) ) {
+                $sitename = substr( $sitename, 4 );
+            }
+
+            $default_addr = 'wordpress@' . $sitename;
+        }
+
+        return $default_addr;
+    }
+
+    public static function default_email_name(): string {
+        $default_name = apply_filters( 'wp_mail_from_name', '' );
+
+        if ( empty( $default_name ) ) {
+            $default_name = 'WordPress';
+        }
+
+        return $default_name;
+    }
 
 }
 
@@ -470,10 +496,25 @@ class Campaigns_Email_Template {
         return $part;
     }
 
-    public static function email_logo_part( $logo_url = null ){
+    public static function get_email_logo_url( $logo_url = null ){
+        if ( empty( $logo_url ) ){
+            $settings_manager = new DT_Campaign_Settings();
+            $logo_url = $settings_manager->get( 'email_logo' );
+        }
+        if ( empty( $logo_url ) ){
+            $settings = DT_Porch_Settings::settings();
+            if ( !empty( $settings['logo_url']['value'] ) ){
+                $logo_url = $settings['logo_url']['value'];
+            }
+        }
         if ( empty( $logo_url ) ){
             $logo_url = 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png';
         }
+        return $logo_url;
+    }
+
+    public static function email_logo_part( $logo_url = null ){
+        $logo_url = self::get_email_logo_url( $logo_url );
         ob_start();
         ?>
         <tr><td class="r2-c" align="center">
