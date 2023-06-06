@@ -22,9 +22,14 @@ function dt_campaign_post( $post ) {
 
 function dt_campaign_sign_up_form() {
     ?>
-    <h2><?php esc_html_e( 'Confirm', 'disciple-tools-prayer-campaigns' ); ?></h2>
-    <br>
-    <form method="post" class="validate" target="_blank" novalidate >
+    <div id='cp-view-confirm' class='cp-view cp-center' style='display: none'>
+        <button class='cp-close-button cp-nav' data-open='cp-times-choose'>
+            <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
+            <span aria-hidden='true'> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
+        </button>
+
+        <h2><?php esc_html_e( 'Confirm', 'disciple-tools-prayer-campaigns' ); ?></h2>
+        <br>
         <div>
             <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?><br>
                 <span id="name-error" class="form-error">
@@ -46,7 +51,7 @@ function dt_campaign_sign_up_form() {
             <p>
                 <label for="receive_prayer_time_notifications">
                     <input type="checkbox" id="receive_prayer_time_notifications" name="receive_prayer_time_notifications" checked />
-                    <?php esc_html_e( 'Receive Prayer Time Notifications (email verification needed).', 'disciple-tools-prayer-campaigns' ); ?>
+                    <?php esc_html_e( 'Receive Prayer Time Notifications.', 'disciple-tools-prayer-campaigns' ); ?>
                 </label>
             </p>
             <p>
@@ -59,10 +64,111 @@ function dt_campaign_sign_up_form() {
                 <?php esc_html_e( 'No prayer times selected', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
             <div>
-                <button type="submit" class="button loader" id="cp-submit-form" name="subscribe" value="Subscribe">
-                    <?php esc_html_e( 'Submit Your Prayer Commitment', 'disciple-tools-prayer-campaigns' ); ?> <img id="cp-submit-form-spinner" style="display: none" src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></button>
+                <button type="button" class="button loader" id="cp-confirm-email" name="subscribe" value="Subscribe">
+                    <?php esc_html_e( 'Verify and submit', 'disciple-tools-prayer-campaigns' ); ?> <img class="cp-submit-form-spinner" style="display: none" src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg" width="22px" alt="spinner "/></button>
             </div>
         </div>
-    </form>
+
+        <div id="cp-form-error" class="form-error" style="display: none"></div>
+
+        <div id='confirmation-times' style='margin-top: 40px'>
+            <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
+            <ul class="cp-display-selected-times">
+
+            </ul>
+        </div>
+    </div>
+    <?php
+}
+
+function dt_email_validate_form(){
+    ?>
+    <style>
+        .cp-wrapper .otp-input-wrapper {
+            width: 240px;
+            text-align: left;
+            display: inline-block;
+        }
+        .cp-wrapper .otp-input-wrapper input {
+            padding: 0;
+            width: 264px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #3e3e3e;
+            background-color: transparent;
+            border: 0;
+            margin-left: 2px;
+            letter-spacing: 30px;
+            font-family: sans-serif !important;
+        }
+        .cp-wrapper .otp-input-wrapper input:focus {
+            box-shadow: none;
+            outline: none;
+        }
+        .cp-wrapper .otp-input-wrapper svg {
+            position: relative;
+            display: block;
+            width: 240px;
+            height: 2px;
+        }
+    </style>
+
+    <div id="cp-view-validate" class="cp-view cp-center" style="display: none">
+        <button class="cp-close-button cp-nav" data-open="cp-view-confirm">
+            <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
+            <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
+        </button>
+
+        <p>
+            A confirmation code hase been sent to <span id="cp-sent-email"></span>. <br> Please enter the code below in
+            the next 10 minutes to confirm your email address.
+        </p>
+        <label for="cp-confirmation-code" style="display: block">
+            <strong><?php esc_html_e( 'Confirmation Code:', 'disciple-tools-prayer-campaigns' ); ?></strong><br>
+            <span id="confirmation-error" class="form-error">
+                    <?php echo esc_html( 'The code is required' ); ?>
+                </span>
+        </label>
+        <div class="otp-input-wrapper" style="padding: 20px 0">
+            <input class="cp-confirmation-code" id="cp-confirmation-code" type='text' maxlength='6' pattern='[0-9]*'
+                   autocomplete='off' required>
+            <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
+                <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
+                      stroke-dasharray='20,22'/>
+            </svg>
+        </div>
+        <div>
+            <button type="submit" class="button loader" id="cp-submit-form" name="subscribe" value="Subscribe">
+                <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?> <img
+                    class="cp-submit-form-spinner" style="display: none"
+                    src="<?php echo esc_url( trailingslashit( plugin_dir_url( __FILE__ ) ) ) ?>../spinner.svg"
+                    width="22px" alt="spinner "/></button>
+        </div>
+
+        <div id='cp-validate-error' class='form-error' style='display: none'></div>
+
+    </div>
+    <?php
+}
+
+
+function success_confirmation_section( $target = null ){
+    ?>
+    <div id='cp-success-confirmation-section' class='cp-view success-confirmation-section'>
+        <div class='cell center'>
+            <h2><?php esc_html_e( 'Success!', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
+            <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
+            <p>
+                <?php esc_html_e( 'Check you email for details and access to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
+            </p>
+            <p>
+                <?php if ( !empty( $target ) ) : ?>
+                    <a href="<?php echo esc_url( $target ) ?>" class='button'><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <?php else : ?>
+                    <button class='button cp-nav cp-ok-done-button'><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></button>
+                <?php endif; ?>
+            </p>
+        </div>
+    </div>
     <?php
 }

@@ -1,6 +1,8 @@
 "use strict";
 
 let current_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+let selected_times = [];
+
 const now = parseInt(new Date().getTime()/1000);
 let calendar_subscribe_object = {
   start_timestamp: 0,
@@ -33,7 +35,6 @@ jQuery(document).ready(function($) {
     <div class="day-cell week-day">${week_day_names[6]}</div>
   `;
   let daily_time_select = $('#cp-daily-time-select')
-  let selected_times = [];
   let current_time_selected = $("#cp-individual-time-select").val();
   let modal_calendar = $('#day-select-calendar')
 
@@ -185,109 +186,13 @@ jQuery(document).ready(function($) {
     })
 
 
-    //submit form
-    $('#cp-submit-form').on('click', function (e){
-      e.preventDefault()
-
-      if ( selected_times.length === 0 ) {
-        $('#cp-no-selected-times').show().fadeOut(5000)
-        return;
-      }
-
-      let submit_spinner = $('#cp-submit-form-spinner');
-      let submit_button = jQuery('#cp-submit-form')
-      submit_button.prop('disabled', true)
-      submit_spinner.show()
-
-      let honey = jQuery('#email').val()
-      if ( honey ) {
-        window.spinner.hide()
-        return;
-      }
-
-      let name_input = jQuery('#name')
-      let name = name_input.val()
-      if ( ! name ) {
-        jQuery('#name-error').show()
-        submit_spinner.hide()
-        name_input.focus(function(){
-          jQuery('#name-error').hide()
-        })
-        submit_button.prop('disabled', false)
-        return;
-      }
-
-      let email_input = jQuery('#e2')
-      let email = email_input.val()
-      if ( !email || !String(email).match(/^\S+@\S+\.\S+$/) ) {
-        jQuery('#email-error').show()
-        submit_spinner.hide()
-        email_input.focus(function(){
-          jQuery('#email-error').hide()
-        })
-        submit_button.prop('disabled', false)
-        return;
-      }
-
-      let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
-
-      let data = {
-        name: name,
-        email: email,
-        selected_times: selected_times,
-        campaign_id: calendar_subscribe_object.campaign_id,
-        timezone: current_time_zone,
-        receive_prayer_time_notifications,
-        p4m_news: document.querySelector('#receive_pray4movement_news').checked,
-        parts: jsObject.parts
-      }
-      send_submission(data, submit_spinner)
-    })
-
-    //when click ok after submit
-    $('.cp-ok-done-button').on( 'click', function (){
-      window.location.reload()
-    })
-
     $(document).on('click', '.cp-goto-month', function (){
       let target = $(this).data('month-target');
       $('#day-select-calendar .calendar-month').hide()
       $(`#day-select-calendar .calendar-month[data-month-index='${target}']`).show()
     })
   }
-  //Sign up functions
-  function send_submission(data, submit_spinner){
-    let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type;
-    if ( window.campaign_objects.remote ){
-      link =  jsObject.root + jsObject.parts.root + '/v1/24hour-router';
-    }
-    data.url = '';
-    jQuery.ajax({
-      type: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      url: link
-    })
-    .done(function(){
-      selected_times = [];
-      submit_spinner.hide()
-      if ( jsObject.remote === "1" ){
-        $('.cp-view').hide()
-        $(`#cp-success-confirmation-section`).show()
-      } else {
-        window.location.href = jsObject.home + '/prayer/email-confirmation';
-      }
-    })
-    .fail(function(e) {
-      $('#selection-error').empty().html(`<div class="cell center">
-        So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
-        <a href="${window.lodash.escape(window.location.href)}">Try Again</a>
-        </div>`).show()
-      $('#error').html(e)
-      submit_spinner.hide()
-    })
-  }
+
   function populate_daily_select(){
     let select_html = `<option value="false">${calendar_subscribe_object.translations.select_a_time}</option>`
 

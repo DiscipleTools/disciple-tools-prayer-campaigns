@@ -79,8 +79,43 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             ]
         );
 
-
+        register_rest_route(
+            $namespace, '/'. $this->type . '/verify', [
+                [
+                    'methods' => 'POST',
+                    'callback' => [ $this, 'verify_email_with_code' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ]
+            ]
+        );
     }
+
+    public function verify_email_with_code( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
+
+        if ( !$post_id || !isset( $params['campaign_id'] ) || (int) $post_id !== (int) $params['campaign_id'] ){
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
+        }
+        // create
+        if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
+            return new WP_Error( __METHOD__, 'Missing email', [ 'status' => 400 ] );
+        }
+        $email = sanitize_email( $params['email'] );
+
+        //generate_verify_code
+        $six_digit_code = random_int( 100000, 999999 );
+
+        set_transient( 'campaign_verify_' . $email, $six_digit_code, 10 * MINUTE_IN_SECONDS );
+
+        $sent = DT_Prayer_Campaigns_Send_Email::send_verification( $email, $six_digit_code );
+        return $sent; // true on success
+    }
+
     public function campaign_info( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
@@ -105,6 +140,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'slot_length' => (int) $min_time_duration,
             'duration_options' => $field_settings['duration_options']['default'],
             'status' => $record['status']['key'],
+            'campaign_id' => $post_id,
         ];
     }
 
@@ -126,6 +162,15 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         }
         if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
             return new WP_Error( __METHOD__, 'Missing timezone', [ 'status' => 400 ] );
+        }
+        if ( ! isset( $params['code'] ) || empty( $params['code'] ) ) {
+            return new WP_Error( __METHOD__, 'Missing code', [ 'status' => 400 ] );
+        }
+        $code = $params['code'];
+        $email = sanitize_email( $params['email'] );
+        $code_to_match = get_transient( 'campaign_verify_' . $email );
+        if ( $code !== $code_to_match ) {
+            return new WP_Error( __METHOD__, 'Invalid code', [ 'status' => 401 ] );
         }
 
         $email = $params['email'];

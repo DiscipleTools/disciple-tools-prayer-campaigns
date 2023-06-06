@@ -31,6 +31,30 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
+    public static function send_verification( $email, $code ){
+
+        $subject = __( 'Verify your email address', 'disciple-tools-prayer-campaigns' );
+
+        $message = Campaigns_Email_Template::email_content_part( 'Please verify your email address by using the code below.' );
+
+        $message .= Campaigns_Email_Template::email_content_part(
+            '<span style="font-size:30px">' . $code . '</span>'
+        );
+
+        $message .= Campaigns_Email_Template::email_content_part( 'This code will expire after 10 minutes.' );
+
+        $message .= Campaigns_Email_Template::email_content_part( 'If you did not request this email, please ignore it.' );
+
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+
+        $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
+        if ( !$sent ){
+            dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
+        }
+        return $sent;
+
+    }
+
     public static function send_registration( $post_id, $campaign_id ) {
 
         $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
@@ -107,14 +131,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
 
         $message .= '
-            <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement! You\'re one click away from finishing your registration.', 'disciple-tools-prayer-campaigns' ) . '</h4>
-            <p>' . __( 'Click here to verify your email address and confirm your prayer times:', 'disciple-tools-prayer-campaigns' ) .  '</p>
-            <p>
-                <a href="'. $link . '" style="display:inline-block; background-color: #4CAF50; border: none; color: white; padding: 15px 32px; font-size: 16px; cursor: pointer; border-radius: 2px;">' . __( 'Verify your account', 'disciple-tools-prayer-campaigns' ) .  '</a>
-            </p>
-            <p>
-                ' . __( 'Or open this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. $link .'">' . trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name]. '</a>
-            </p>
+            <h4>' . __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ) . '</h4>
 
             <p>' . __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) . '</p>
             <p>' . $commitment_list . '</p>
