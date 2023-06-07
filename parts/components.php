@@ -54,12 +54,14 @@ function dt_campaign_sign_up_form() {
                     <?php esc_html_e( 'Receive Prayer Time Notifications.', 'disciple-tools-prayer-campaigns' ); ?>
                 </label>
             </p>
+            <?php if ( dt_campaigns_is_p4m_news_enabled() ) : ?>
             <p>
                 <label for="receive_pray4movement_news">
                     <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" <?php checked( !WP_DEBUG ) ?>/>
                     <?php esc_html_e( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ); ?>
                 </label>
             </p>
+            <?php endif; ?>
             <div id='cp-no-selected-times' style='display: none'class="form-error" >
                 <?php esc_html_e( 'No prayer times selected', 'disciple-tools-prayer-campaigns' ); ?>
             </div>
