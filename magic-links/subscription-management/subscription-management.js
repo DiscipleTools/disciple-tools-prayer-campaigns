@@ -774,7 +774,7 @@ jQuery(document).ready(function($){
    */
   $('#confirm-delete-profile').on('click', function (){
     let spinner = $(this)
-    let wrapper = jQuery('#wrapper')
+
     jQuery.ajax({
       type: "DELETE",
       data: JSON.stringify({parts: calendar_subscribe_object.parts}),
@@ -785,17 +785,14 @@ jQuery(document).ready(function($){
         xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
       }
     }).done(function(){
-      wrapper.empty().html(`
-          <div class="center">
-          <h1>Your profile has been deleted!</h1>
-          <p>Thank you for praying with us.<p>
-          </div>
-      `)
-      spinner.removeClass('active')
-      $(`#delete-profile-modal`).foundation('close')
+      show_delete_profile_success(spinner)
     })
     .fail(function(e) {
       console.log(e)
+      if ( e.status === 200 ){
+        show_delete_profile_success(spinner)
+        return
+      }
       $('#confirm-delete-profile').toggleClass('loading')
       $('#delete-account-errors').empty().html(`<div class="grid-x"><div class="cell center">
         So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
@@ -805,6 +802,18 @@ jQuery(document).ready(function($){
       spinner.removeClass('active')
     })
   })
+
+  function show_delete_profile_success(spinner){
+    let wrapper = jQuery('#wrapper')
+    wrapper.empty().html(`
+          <div class="center">
+          <h1>Your profile has been deleted!</h1>
+          <p>Thank you for praying with us.<p>
+          </div>
+      `)
+    spinner.removeClass('active')
+    $(`#delete-profile-modal`).foundation('close')
+  }
 
   /**
    * Display mobile commitments if screen dimension is narrow
