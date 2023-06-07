@@ -446,15 +446,12 @@ jQuery(document).ready(function($) {
       submit_button.prop('disabled', false)
     }
 
-    let receive_prayer_time_notifications = $('#receive_prayer_time_notifications').is(':checked')
-
     let data = {
       name: name,
       email: email,
       selected_times: selected_times,
       campaign_id: calendar_subscribe_object.campaign_id,
       timezone: current_time_zone,
-      receive_prayer_time_notifications,
       p4m_news: document.querySelector('#receive_pray4movement_news').checked,
       parts: jsObject.parts,
       code: confirmation_code

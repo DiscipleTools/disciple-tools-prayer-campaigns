@@ -48,12 +48,6 @@ function dt_campaign_sign_up_form() {
             </label>
         </div>
         <div>
-            <p>
-                <label for="receive_prayer_time_notifications">
-                    <input type="checkbox" id="receive_prayer_time_notifications" name="receive_prayer_time_notifications" checked />
-                    <?php esc_html_e( 'Receive Prayer Time Notifications.', 'disciple-tools-prayer-campaigns' ); ?>
-                </label>
-            </p>
             <?php if ( dt_campaigns_is_p4m_news_enabled() ) : ?>
             <p>
                 <label for="receive_pray4movement_news">
