@@ -44,15 +44,16 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $subject = __( 'Verify your email address', 'disciple-tools-prayer-campaigns' );
 
-        $message = Campaigns_Email_Template::email_content_part( __( 'Please verify your email address by using the code below.', 'disciple_tools' ) );
+        $message = Campaigns_Email_Template::email_content_part( __( 'Please copy and paste the following code into the Confirmation Code field.', 'disciple_tools' ) );
 
         $message .= Campaigns_Email_Template::email_content_part(
             '<span style="font-size:30px">' . $code . '</span>'
         );
 
-        $message .= Campaigns_Email_Template::email_content_part( __( 'This code will expire after 10 minutes.', 'disciple_tools' ) );
-
-        $message .= Campaigns_Email_Template::email_content_part( __( 'If you did not request this email, please ignore it.', 'disciple_tools' ) );
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'This code will expire after 10 minutes.', 'disciple_tools' ) . '<br>' .
+            __( 'If you did not request this email, please ignore it.', 'disciple_tools' )
+        );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
