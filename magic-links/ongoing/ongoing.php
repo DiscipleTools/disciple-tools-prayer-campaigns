@@ -182,8 +182,6 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             p4m_subscribe_to_news( $params['email'], $title );
         }
 
-        $receive_prayer_time_notifications = isset( $params['receive_prayer_time_notifications'] ) && !empty( $params['receive_prayer_time_notifications'] );
-
         $existing_posts = DT_Posts::list_posts( 'subscriptions', [
             'campaigns' => [ $post_id ],
             'contact_email' => [ $email ]
@@ -201,7 +199,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 $lang = $params['parts']['lang'];
             }
             $subscriber_id = DT_Subscriptions::create_subscriber( $post_id, $email, $title, $params['selected_times'], [
-                'receive_prayer_time_notifications' => $receive_prayer_time_notifications,
+                'receive_prayer_time_notifications' => true,
                 'timezone' => $params['timezone'],
                 'lang' => $lang,
             ]);

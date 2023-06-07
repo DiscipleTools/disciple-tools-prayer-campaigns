@@ -335,8 +335,6 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
             p4m_subscribe_to_news( $params['email'], $title );
         }
 
-        $receive_prayer_time_notifications = isset( $params['receive_prayer_time_notifications'] ) && !empty( $params['receive_prayer_time_notifications'] );
-
         $existing_posts = DT_Posts::list_posts( 'subscriptions', [
             'campaigns' => [ $params['campaign_id'] ],
             'contact_email' => [ $email ]
@@ -354,7 +352,7 @@ class DT_Campaign_24Hour_Prayer extends DT_Module_Base {
                 $lang = $params['parts']['lang'];
             }
             $subscriber_id = DT_Subscriptions::create_subscriber( $params['campaign_id'], $email, $title, $params['selected_times'], [
-                'receive_prayer_time_notifications' => $receive_prayer_time_notifications,
+                'receive_prayer_time_notifications' => true,
                 'timezone' => $params['timezone'],
                 'lang' => $lang,
             ]);
