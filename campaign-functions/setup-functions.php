@@ -84,3 +84,8 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
     }
     return $name;
 }, 200 );
+
+function dt_campaigns_is_p4m_news_enabled(){
+    //maybe make this a setting too.
+    return apply_filters( 'dt_campaigns_is_p4m_news_enabled', true );
+}
