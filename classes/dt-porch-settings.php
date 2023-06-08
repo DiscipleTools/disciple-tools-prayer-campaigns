@@ -237,6 +237,13 @@ class DT_Porch_Settings {
                 'type' => 'prayer_timer_toggle',
                 'tab' => 'settings',
             ],
+            'prayer_fuel_frequency' => [
+                'label' => 'Prayer Fuel Frequency',
+                'default' => 'Daily',
+                'value' => 'daily',
+                'type' => 'prayer_fuel_frequency',
+                'tab' => 'settings',
+            ],
             'reminder_content_disable_fuel' => [
                 'label' => __( 'Disable default prayer fuel link', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'boolean',

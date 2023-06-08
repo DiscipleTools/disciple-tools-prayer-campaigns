@@ -111,9 +111,17 @@ class DT_Campaign_Settings {
      * Get the mysql date string for the day of the campaign
      */
     public static function date_of_campaign_day( int $day ) {
+        $porch_fields = DT_Porch_Settings::settings();
         $campaign = self::get_campaign();
         $campaign_start_time = $campaign['start_date']['timestamp'];
 
-        return gmdate( 'Y-m-d H:i:s', $campaign_start_time + ( $day - 1 ) * DAY_IN_SECONDS );
+        $internal = DAY_IN_SECONDS;
+        if ( $porch_fields['prayer_fuel_frequency']['value'] === 'weekly' ) {
+            $internal = DAY_IN_SECONDS * 7;
+        } elseif ( $porch_fields['prayer_fuel_frequency']['value'] === 'monthly' ) {
+            return gmdate( 'Y-m-d', strtotime( "first day of +{$day} month", $campaign_start_time + ( $day - 1 ) ) );
+        }
+
+        return gmdate( 'Y-m-d H:i:s', $campaign_start_time + ( $day - 1 ) * $internal );
     }
 }

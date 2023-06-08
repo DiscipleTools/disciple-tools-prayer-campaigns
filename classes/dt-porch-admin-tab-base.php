@@ -166,13 +166,21 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                         <select name="list[<?php echo esc_html( $key ); ?>]">
-                                        <?php if ( $field['value'] === 'yes' || ! isset( $field['value'] ) || empty( $field['value'] ) ) : ?>
-                                            <option value="yes" selected="selected"><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                            <option value="no"><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                        <?php else : ?>
-                                            <option value="yes"><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                            <option value="no" selected="selected"><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                        <?php endif; ?>
+                                            <option value='daily' <?php selected( empty( $field['value'] ) || $field['value'] !== 'no' ); ?>><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
+                                            <option value='daily' <?php selected( $field['value'] === 'no' ); ?>><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php elseif ( 'prayer_fuel_frequency' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['label'] ); ?>
+                                    </td>
+                                    <td>
+                                        <select name="list[<?php echo esc_html( $key ); ?>]">
+                                            <option value="daily" <?php selected( empty( $field['value'] ) || $field['value'] === 'daily' ); ?>>Daily</option>
+                                            <option value="weekly" <?php selected( $field['value'] === 'weekly' ); ?>>Weekly</option>
+                                            <option value="monthly" <?php selected( $field['value'] === 'monthly' ); ?>>Monthly</option>
                                         </select>
                                     </td>
                                 </tr>

@@ -137,15 +137,22 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             unset( $items[0] );
         }
 
-        $todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
 
         switch ( $column_name ) {
             case 'day':
+                //$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
+                $porch_fields = DT_Porch_Settings::settings();
+                $frequency = $porch_fields['prayer_fuel_frequency']['value'];
+                $frequency_options = [
+                    'daily' => 'Day',
+                    'weekly' => 'Week',
+                    'monthly' => 'Month',
+                ]
                 ?>
 
                 <span class="row-title">
 
-                    Day <?php echo esc_html( $day ) ?>
+                    <?php echo esc_html( $frequency_options[$frequency] ) ?> <?php echo esc_html( $day ) ?>
 
 <!--                    --><?php //if ( $day > $todays_campaign_day ): ?>
 <!---->
