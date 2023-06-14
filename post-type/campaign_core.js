@@ -281,7 +281,7 @@ class ProgressRing extends HTMLElement {
              cx="${radius}"
              cy="${radius}"
           />
-          ${text_html}
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">${text_html}</text>
       </svg>
 
       <style>
@@ -306,18 +306,24 @@ class ProgressRing extends HTMLElement {
       circle3.style.strokeDashoffset = offset3
     }
   }
+  setText(text) {
+    const textElement = this._root.querySelector('.inner-text');
+    textElement.innerHTML = text;
+  }
 
   static get observedAttributes() {
-    return ['progress'];
+    return ['progress', 'text'];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'progress') {
       this.setProgress(newValue);
     }
+    if (name === 'text') {
+      this.setText(newValue);
+    }
   }
 }
-
 
 
 
