@@ -281,7 +281,7 @@ class ProgressRing extends HTMLElement {
              cx="${radius}"
              cy="${radius}"
           />
-          ${text_html}
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">${text_html}</text>
       </svg>
 
       <style>
@@ -306,14 +306,204 @@ class ProgressRing extends HTMLElement {
       circle3.style.strokeDashoffset = offset3
     }
   }
+  setText(text) {
+    const textElement = this._root.querySelector('.inner-text');
+    textElement.innerHTML = text;
+  }
 
   static get observedAttributes() {
-    return ['progress'];
+    return ['progress', 'text'];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'progress') {
       this.setProgress(newValue);
     }
+    if (name === 'text') {
+      this.setText(newValue);
+    }
   }
 }
+
+
+
+
+
+
+
+
+
+jQuery(document).ready(function($) {
+  let jsObject = window.campaign_objects
+
+
+
+  $('#cp-confirm-email').on('click', function (e) {
+    e.preventDefault()
+
+    if (selected_times.length===0) {
+      $('#cp-no-selected-times').show().fadeOut(5000)
+      return;
+    }
+
+    let submit_spinner = $('.cp-submit-form-spinner');
+    let submit_button = jQuery('#cp-confirm-email')
+    submit_button.prop('disabled', true)
+    submit_spinner.show()
+
+
+    let honey = jQuery('#email').val()
+    if (honey) {
+      window.spinner.hide()
+      return;
+    }
+
+    let name_input = jQuery('#name')
+    let name = name_input.val()
+    if (!name) {
+      jQuery('#name-error').show()
+      submit_spinner.hide()
+      name_input.focus(function () {
+        jQuery('#name-error').hide()
+      })
+      submit_button.prop('disabled', false)
+      return;
+    }
+
+    let email_input = jQuery('#e2')
+    let email = email_input.val()
+    if (!email || !String(email).match(/^\S+@\S+\.\S+$/)) {
+      jQuery('#email-error').show()
+      submit_spinner.hide()
+      email_input.focus(function () {
+        jQuery('#email-error').hide()
+      })
+      submit_button.prop('disabled', false)
+      return;
+    }
+
+    let data = {
+      email: email,
+      parts: jsObject.parts,
+      campaign_id: calendar_subscribe_object.campaign_id,
+      url: 'verify',
+    }
+
+    let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type + '/verify';
+    if (window.campaign_objects.remote) {
+      link = jsObject.root + jsObject.parts.root + '/v1/24hour-router';
+    }
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: link
+    })
+    .done(function () {
+      submit_spinner.hide()
+      $('.cp-view').hide()
+      let view_to_open = 'cp-view-validate'
+      $(`#${view_to_open}`).show()
+      $('#cp-sent-email').html(email);
+      submit_button.prop('disabled', false)
+    })
+    .fail(function (e) {
+      console.log(e);
+      submit_button.prop('disabled', false)
+      let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+        <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
+      $('#cp-validate-error').empty().html(`<div class="cell center">
+        ${message}
+    </div>`).show()
+      submit_spinner.hide()
+    })
+
+  })
+
+  //submit form
+  $('#cp-submit-form').on('click', async function (e) {
+    e.preventDefault()
+
+    if ( selected_times.length === 0 ) {
+      $('#cp-no-selected-times').show().fadeOut(5000)
+      return;
+    }
+
+    let submit_spinner = $('.cp-submit-form-spinner');
+    let submit_button = jQuery('#cp-submit-form')
+    submit_button.prop('disabled', true)
+    submit_spinner.show()
+
+
+    let name_input = jQuery('#name')
+    let name = name_input.val()
+    let email_input = jQuery('#e2')
+    let email = email_input.val()
+
+    let confirmation_input = jQuery('#cp-confirmation-code')
+    let confirmation_code = confirmation_input.val()
+    if ( !confirmation_code ) {
+      jQuery('#confirmation-error').show()
+      submit_spinner.hide()
+      confirmation_input.focus(function(){
+        jQuery('#confirmation-error').hide()
+      })
+      submit_button.prop('disabled', false)
+    }
+
+    let data = {
+      name: name,
+      email: email,
+      selected_times: selected_times,
+      campaign_id: calendar_subscribe_object.campaign_id,
+      timezone: current_time_zone,
+      p4m_news: document.querySelector('#receive_pray4movement_news').checked,
+      parts: jsObject.parts,
+      code: confirmation_code
+    }
+    send_submission(data, submit_spinner)
+  })
+
+  let send_submission = (data, submit_spinner)=>{
+    let link = jsObject.root + jsObject.parts.root + '/v1/' + jsObject.parts.type;
+    if ( window.campaign_objects.remote ){
+      link =  jsObject.root + jsObject.parts.root + '/v1/24hour-router';
+    }
+    data.url = '';
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: link
+    })
+    .done(function(){
+      selected_times = [];
+      submit_spinner.hide()
+      if ( jsObject.remote === "1" ){
+        $('.cp-view').hide()
+        $(`#cp-success-confirmation-section`).show()
+      } else {
+        window.location.href = jsObject.home + '/prayer/email-confirmation';
+      }
+    })
+    .fail(function(e) {
+      $('#cp-submit-form').prop('disabled', false)
+      let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+          <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
+      if ( e.status === 401 ) {
+        message = 'Confirmation code does not match or is expired. Please, try again.'
+      }
+      $('#cp-form-error').empty().html(`<div class="cell center">
+          ${message}
+        </div>`).show()
+      submit_spinner.hide()
+    })
+  }
+
+  //when click ok after submit
+  $('.cp-ok-done-button').on('click', function () {
+    window.location.reload()
+  })
+})

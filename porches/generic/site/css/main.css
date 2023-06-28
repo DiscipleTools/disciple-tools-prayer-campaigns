@@ -163,7 +163,7 @@ a:not([href]):not([tabindex]):hover {
   color: #fff;
 }
 .logo-image {
-  max-width: -webkit-fill-available;
+  max-width: 300px;
   margin-bottom:15px;
 }
 .menu-bg {

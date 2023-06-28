@@ -18,7 +18,8 @@ function dt_24hour_campaign_register_scripts( $atts ){
         wp_localize_script( 'dt_campaign_core', 'dt_campaign_core', [ 'color' => $atts['color'] ?? '' ] );
     }
 
-    wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'magic-links/24hour/24hour.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.css' ) );
+    wp_enqueue_style( 'dt_24hour_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'magic-links/24hour/24hour.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'magic-links/24hour/24hour.css' ) );
+    wp_enqueue_style( 'dt_campaign_style', trailingslashit( plugin_dir_url( __DIR__ ) ) . 'assets/campaigns.css', [], filemtime( plugin_dir_path( __DIR__ ) . 'assets/campaigns.css' ) );
 
     //24 hour campaign js
     if ( !wp_script_is( 'dt_campaign' ) ){
@@ -188,114 +189,22 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
         </div>
 
         <!-- individual prayer times -->
-        <div id="cp-choose-individual-times" class="cp-view" style="display: none">
-            <button class="cp-close-button cp-nav" data-open="cp-times-choose">
-                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
-                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
-            </button>
-            <h2 id="individual-day-title" class="cp-center">
-                <?php esc_html_e( 'Select a day and choose a time', 'disciple-tools-prayer-campaigns' ); ?>
-            </h2>
-            <div id="cp-day-content" class="cp-center" >
-                <div style="margin-bottom: 20px;display: flex;flex-flow: wrap;justify-content: space-evenly;">
-                    <div id="day-select-calendar" class=""></div>
-                </div>
-                <div class="cp-center" style="display: flex; flex-direction: column">
-                    <label>
-                        <strong><?php esc_html_e( 'Select a prayer time', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                        <select id="cp-individual-time-select" disabled style="margin: auto">
-                            <option><?php esc_html_e( 'Daily Time', 'disciple-tools-prayer-campaigns' ); ?></option>
-                        </select>
-                    </label>
-                    <label>
-                        <strong><?php esc_html_e( 'For how long', 'disciple-tools-prayer-campaigns' ); ?></strong>
-                        <select id="cp-individual-prayer-time-duration-select" class="cp-time-duration-select" style="margin: auto"></select>
-                    </label>
-                    <div>
-                        <button id="cp-add-prayer-time" data-day="" disabled style="margin: 10px 0; display: inline-block"><?php esc_html_e( 'Add prayer time', 'disciple-tools-prayer-campaigns' ); ?></button>
-                        <span style="display: none" id="cp-time-added"><?php esc_html_e( 'Time added', 'disciple-tools-prayer-campaigns' ); ?></span>
-                    </div>
-                    <p>
-                        <?php esc_html_e( 'Showing times for:', 'disciple-tools-prayer-campaigns' ); ?> <a href="javascript:void(0)" data-open="cp-timezone-changer" data-force-scroll="true" class="timezone-current cp-nav"></a>
-                    </p>
+        <?php part_campaign_calendar_times_picker() ?>
 
-                    <div style="margin: 30px 0">
-                        <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
-                        <ul class="cp-display-selected-times">
-                            <li><?php esc_html_e( 'No selected Time', 'disciple-tools-prayer-campaigns' ); ?></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <button style="margin-top:10px" disabled id="cp-confirm-individual-times" class="cp-nav" data-open="cp-view-confirm" data-force-scroll="true" data-back-to="cp-choose-individual-times"><?php esc_html_e( 'Confirm Times', 'disciple-tools-prayer-campaigns' ); ?></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- name and email -->
+        <?php dt_campaign_sign_up_form() ?>
 
-        <!-- confirm email -->
-        <div id="cp-view-confirm" class="cp-view cp-center" style="display: none">
-            <button class="cp-close-button cp-nav" data-open="cp-times-choose">
-                <img src="<?php echo esc_html( plugin_dir_url( __DIR__ ) . 'assets/back_icon.svg' ) ?>"/>
-                <span aria-hidden="true"> <?php esc_html_e( 'Back', 'disciple-tools-prayer-campaigns' ); ?> </span>
-            </button>
+        <!-- validate email -->
+        <?php dt_email_validate_form() ?>
 
-            <?php dt_campaign_sign_up_form() ?>
+        <!-- success confirmation -->
+        <?php success_confirmation_section() ?>
 
-            <div id="confirmation-times" style="margin-top: 40px">
-                <h3><?php esc_html_e( 'Selected Times', 'disciple-tools-prayer-campaigns' ); ?></h3>
-                <ul class="cp-display-selected-times">
+        <!-- timezone changer -->
+        <?php part_campaign_timezone_changer() ?>
 
-                </ul>
-            </div>
-        </div>
-
-        <div id='cp-success-confirmation-section' class='cp-view cp-center success-confirmation-section'>
-            <div class='cell center'>
-                <h2><?php esc_html_e( 'Check your email', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
-                <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
-                <p>
-                    <?php esc_html_e( 'Click on the link included in the email to verify your commitment and receive prayer time notifications!', 'disciple-tools-prayer-campaigns' ); ?>
-                </p>
-                <p>
-                    <?php esc_html_e( 'In the email is a link to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
-                </p>
-                <p>
-                    <button class='cp-nav cp-ok-done-button'><?php esc_html_e( 'OK', 'disciple-tools-prayer-campaigns' ); ?></button>
-                </p>
-            </div>
-        </div>
-
-        <div id="cp-timezone-changer" style="display: none" class="cp-center cp-view">
-            <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
-            <select id="timezone-select" style="margin: 20px auto">
-                <?php
-                $selected_tz = 'America/Denver';
-                if ( !empty( $selected_tz ) ){
-                    ?>
-                    <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
-                    <option disabled>----</option>
-                    <?php
-                }
-                $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
-                foreach ( $tzlist as $tz ){
-                    ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
-                }
-                ?>
-            </select>
-
-            <button class="button button-cancel clear cp-nav" data-open="cp-main-page" aria-label="Close reveal" type="button">
-                <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-            </button>
-            <button class="button cp-nav" type="button" id="confirm-timezone" data-open="cp-times-choose">
-                <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
-            </button>
-        </div>
-
-        <!-- confirm email later-->
-        <div id="cp-view-closed" class="cp-view cp-center" style="display: none">
-            <p><?php esc_html_e( 'We are not longer looking for sign ups', 'disciple-tools-prayer-campaigns' ); ?></p>
-            <p><?php esc_html_e( 'Thanks for praying with us!', 'disciple-tools-prayer-campaigns' ); ?></p>
-        </div>
+        <!-- campaign closed -->
+        <?php part_campaign_is_closed() ?>
 
 
     </div> <!-- form wrapper -->
@@ -331,58 +240,8 @@ function dt_24hour_campaign_shortcode( $atts ){
 }
 add_shortcode( 'dt_campaign', 'dt_24hour_campaign_shortcode' );
 
-/* TODO: could we move this to a more generic functions.php area, as this could be used anywhere around the plugin? */
-if ( !function_exists( 'dt_recursive_sanitize_array' ) ){
-    function dt_recursive_sanitize_array( array $array ) : array {
-        foreach ( $array as $key => &$value ) {
-            if ( is_array( $value ) ) {
-                $value = dt_recursive_sanitize_array( $value );
-            }
-            else {
-                $value = sanitize_text_field( wp_unslash( $value ) );
-            }
-        }
-        return $array;
-    }
-}
 
-function dt_campaign_router_endpoint( WP_REST_Request $request ){
-    $params = $request->get_params();
-    $params = dt_recursive_sanitize_array( $params );
-    if ( isset( $params['parts']['post_id'] ) ){
-        $remote = get_transient( 'dt_magic_link_remote_' . $params['parts']['post_id'] );
-        $url = $remote . $params['parts']['root'] . '/v1/' .  $params['parts']['type'] . '/' . $params['url'];
-        if ( !empty( $remote ) ){
-            if ( $request->get_method() === 'GET' ){
-                $fetch = wp_remote_get( $url, [ 'body' => $params ] );
-                if ( !is_wp_error( $fetch ) ){
-                    return json_decode( wp_remote_retrieve_body( $fetch ) );
-                }
-            }
-            if ( $request->get_method() === 'POST' ){
-                $fetch = wp_remote_post( $url, [ 'body' => $params ] );
-                if ( !is_wp_error( $fetch ) ){
-                    return json_decode( wp_remote_retrieve_body( $fetch ) );
-                }
-            }
-        }
-    }
 
-    return false;
-}
-
-add_action( 'rest_api_init', function (){
-    $namespace = 'campaign_app/v1';
-    register_rest_route(
-        $namespace, '/24hour-router', [
-            [
-                'methods'  => [ 'POST', 'GET' ],
-                'callback' => 'dt_campaign_router_endpoint',
-                'permission_callback' => '__return_true',
-            ],
-        ]
-    );
-} );
 
 function dt_fixed_campaign_percentage( $atts ){
     ob_start();
