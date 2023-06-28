@@ -27,7 +27,7 @@
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
                     <p>
                         <?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'footer_content' ), array(
-                            'a' => array('href'),
+                            'a' => array( 'href' ),
                             'br' => array(),
                         ) ) ?><br>
                         Powered by <a href="https://disciple.tools">Disciple.Tools</a><br>
