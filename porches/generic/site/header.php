@@ -24,9 +24,7 @@ $porch_fields = DT_Porch_Settings::settings();
             'root' => $this->root,
             'type' => $this->type,
         ],
-        'trans' => [
-            'add' => 'Add Magic'
-        ],
+        'trans' => [],
     ]) ?>][0]
 </script>
 

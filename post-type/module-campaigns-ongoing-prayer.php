@@ -132,7 +132,7 @@ class DT_Campaign_Ongoing_Prayer extends DT_Module_Base {
 
         foreach ( $subscribers_ids as $row ){
 
-            $sent = DT_Prayer_Campaigns_Send_Email::sent_resubscribe_tickler( $row['post_id'] );
+            $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'] );
             if ( $sent ){
                 $report = [
                     'post_type' => 'subscriptions',

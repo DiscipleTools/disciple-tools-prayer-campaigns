@@ -372,8 +372,9 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
 
 
             <!--
-                p4m mailchimp signup section
+                p4m news signup section
             -->
+            <?php if ( dt_campaigns_is_p4m_news_enabled() ) : ?>
             <section class="section" data-stellar-background-ratio="0.2" style="padding-top: 0;">
                 <div class="container">
                     <div class="section-header" style="padding-bottom: 40px;">
@@ -506,6 +507,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
 
                 </div>
             </section>
+            <?php endif; ?>
         </div>
 
         <?php
