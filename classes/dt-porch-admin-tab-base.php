@@ -176,7 +176,27 @@ class DT_Porch_Admin_Tab_Base {
                                         </select>
                                     </td>
                                 </tr>
-                            <?php elseif ( 'default_language_select' === $field['type'] ) : ?>
+                                <?php elseif ( 'icon' === $field['type'] ) : ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo esc_html( $field['label'] ); ?>
+                                        </td>
+                                        <td>
+                                        <?php if ( !empty( $field['default'] ) ) : ?>
+                                            <h3>Default icon:</h3>
+                                            <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
+                                            <br><br>
+                                        <?php endif; ?>
+                                        <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"/>
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        <?php if ( isset( $field['translations'] ) ){
+                                            self::translation_cell( $langs, $key, $field, $section_name );
+                                        } ?>
+                                    </td>
+                                    </tr>
+
+                                <?php elseif ( 'default_language_select' === $field['type'] ) : ?>
                                 <tr>
                                     <td>
                                         <?php echo esc_html( $field['label'] ); ?>
