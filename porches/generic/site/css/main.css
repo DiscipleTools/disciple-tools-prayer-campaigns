@@ -860,6 +860,14 @@ a:not([href]):not([tabindex]):hover {
   font-size: 20px;
   color: #fff;
 }
+.counters a {
+    color: #fff;
+    text-decoration: underline;
+}
+.counters a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
 /* ==========================================================================
    Testimonial Section Style
    ========================================================================== */
