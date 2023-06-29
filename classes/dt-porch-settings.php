@@ -183,9 +183,7 @@ class DT_Porch_Settings {
         }
 
         $field = $fields[$field_name];
-        dt_write_log($field);
         $field['value'] ? $output = true : $output = false;
-        dt_write_log($output);
         return $output;
     }
     public static function has_user_translations() {
