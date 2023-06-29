@@ -108,7 +108,7 @@ class DT_Generic_Porch_Settings {
                 'section' => DT_Generic_Porch_Translation_Sections::THREE,
             ],
             'movement_section_icon' => [
-                'label' => 'Prayer section Icon URL',
+                'label' => 'Movement section Icon URL',
                 'default' => DT_Generic_Porch::assets_dir() . 'img/movement.svg',
                 'value' => '',
                 'type' => 'icon',
@@ -134,7 +134,7 @@ class DT_Generic_Porch_Settings {
                 'section' => DT_Generic_Porch_Translation_Sections::THREE,
             ],
             'time_section_icon' => [
-                'label' => 'Prayer section Icon',
+                'label' => 'Time section Icon',
                 'default' => DT_Generic_Porch::assets_dir() . 'img/24_7.svg',
                 'value' => '',
                 'type' => 'icon',

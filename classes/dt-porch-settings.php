@@ -171,6 +171,23 @@ class DT_Porch_Settings {
         return $field['value'] ?: ( $field['default'] ?? '' );
     }
 
+    public static function has_field_translation( string $field_name, string $code = '' ) {
+        if ( empty( $code ) ) {
+            $code = dt_campaign_get_current_lang();
+        }
+
+        $fields = self::settings();
+
+        if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
+            return '';
+        }
+
+        $field = $fields[$field_name];
+        dt_write_log($field);
+        $field['value'] ? $output = true : $output = false;
+        dt_write_log($output);
+        return $output;
+    }
     public static function has_user_translations() {
         $defaults = apply_filters( 'dt_campaign_porch_default_settings', self::get_defaults() );
         $settings = self::settings();
