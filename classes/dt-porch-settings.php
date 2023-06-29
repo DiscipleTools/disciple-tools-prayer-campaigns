@@ -186,22 +186,6 @@ class DT_Porch_Settings {
         $field['value'] ? $output = true : $output = false;
         return $output;
     }
-    public static function has_user_translations() {
-        $defaults = apply_filters( 'dt_campaign_porch_default_settings', self::get_defaults() );
-        $settings = self::settings();
-
-        foreach ( $defaults as $key => $values ) {
-            if ( !isset( $settings[$key] ) ) {
-                continue;
-            }
-
-            if ( $values['value'] !== $settings[$key]['value'] ) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     private static function get_defaults() {
         $defaults = [
