@@ -366,8 +366,10 @@ class DT_Porch_Admin_Tab_Base {
         global $allowed_tags;
         $allowed_tags['script'] = array(
             'async' => array(),
-            'src' => array()
+            'src' => array(),
         );
+        $allowed_tags['a'] = [ 'href' => [], 'title' => [], 'target' => [], 'rel' => [] ];
+        $allowed_tags['br'] = [];
 
         return $allowed_tags;
     }

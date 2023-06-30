@@ -227,6 +227,14 @@ class DT_Generic_Porch_Settings {
                 'translations' => [],
                 'tab' => 'translations',
             ],
+            'footer_content' => [
+                'label' => 'Extra Footer Content',
+                'default' => '',
+                'value' => '',
+                'type' => 'textarea',
+                'translations' => [],
+                'tab' => 'translations',
+            ]
         ];
     }
 }

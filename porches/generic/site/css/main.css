@@ -860,6 +860,14 @@ a:not([href]):not([tabindex]):hover {
   font-size: 20px;
   color: #fff;
 }
+.counters a {
+    color: #fff;
+    text-decoration: underline;
+}
+.counters a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
 /* ==========================================================================
    Testimonial Section Style
    ========================================================================== */
@@ -1105,6 +1113,9 @@ footer {
   background: #333;
   padding: 60px 0px 30px;
   text-align: center;
+}
+footer a {
+    text-decoration: underline;
 }
 .site-info p {
   line-height: 34px;
