@@ -204,8 +204,8 @@ class DT_Generic_Porch_Settings {
                 'tab' => 'translations',
             ],
             'footer_content' => [
-                'label' => 'Footer Content',
-                'default' => __( 'Made with &#10084;&#65039; by <a href="https://pray4movement.org">Pray4Movement.org</a>', 'disciple-tools-prayer-campaigns' ),
+                'label' => 'Extra Footer Content',
+                'default' => '',
                 'value' => '',
                 'type' => 'textarea',
                 'translations' => [],
