@@ -72,7 +72,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             <div class="col-md-4 col-sm-6">
                 <div class="item-boxes wow fadeInDown" data-wow-delay="0.4s">
                     <div class="icon">
-                        <img class="<?php echo !empty( $porch_fields['movement_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_icon' ) ) ?>" alt="Praying hands icon"/>
+                        <img class="<?php echo !empty( $porch_fields['movement_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_icon' ) ) ?>" alt="Movement icon"/>
                     </div>
                     <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_title' ) ) ?></h4>
                     <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_text' ) ) ?></p>
