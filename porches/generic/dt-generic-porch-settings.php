@@ -76,7 +76,7 @@ class DT_Generic_Porch_Settings {
                 'label' => 'Vision',
                 'default' => __( 'We want to cover this region with continuous 24/7 prayer.', 'disciple-tools-prayer-campaigns' ),
                 'value' => '',
-                'type' => 'text',
+                'type' => 'textarea',
                 'translations' => [],
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::VISION,
