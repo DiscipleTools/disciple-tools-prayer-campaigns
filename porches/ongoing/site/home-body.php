@@ -51,7 +51,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
                 <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo wp_kses( esc_html( DT_Porch_Settings::get_field_translation( 'vision' ) ) , $allowedtags ); ?>
+                    <?php echo wp_kses( esc_html( DT_Porch_Settings::get_field_translation( 'vision' ) ), $allowedtags ); ?>
                 </p>
                 </div>
             </div>
@@ -63,7 +63,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         <img class="<?php echo !empty( $porch_fields['pray_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_icon' ) ) ?>" alt="Praying hands icon"/>
                     </div>
                     <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_title' ) ) ?></h4>
-                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'pray_section_text' ) , $allowedtags ) ?></p>
+                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'pray_section_text' ), $allowedtags ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -72,7 +72,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         <img class="<?php echo !empty( $porch_fields['movement_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_icon' ) ) ?>" alt="Movement  icon"/>
                     </div>
                     <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_title' ) ) ?></h4>
-                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'movement_section_text' ) , $allowedtags ) ?></p>
+                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'movement_section_text' ), $allowedtags ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
