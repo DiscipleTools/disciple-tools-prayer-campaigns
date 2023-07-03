@@ -171,20 +171,22 @@ class DT_Porch_Settings {
         return $field['value'] ?: ( $field['default'] ?? '' );
     }
 
-    public static function has_field_translation( string $field_name, string $code = '' ) {
-        if ( empty( $code ) ) {
-            $code = dt_campaign_get_current_lang();
+
+    public static function has_user_translations() {
+        $defaults = apply_filters( 'dt_campaign_porch_default_settings', self::get_defaults() );
+        $settings = self::settings();
+
+        foreach ( $defaults as $key => $values ) {
+            if ( !isset( $settings[$key] ) ) {
+                continue;
+            }
+
+            if ( $values['value'] !== $settings[$key]['value'] ) {
+                return true;
+            }
         }
 
-        $fields = self::settings();
-
-        if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
-            return '';
-        }
-
-        $field = $fields[$field_name];
-        $field['value'] ? $output = true : $output = false;
-        return $output;
+        return false;
     }
 
     private static function get_defaults() {
