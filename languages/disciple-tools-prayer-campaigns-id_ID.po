@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-06-02T11:13:37+00:00\n"
+"POT-Creation-Date: 2023-07-03T07:36:54+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -15,120 +15,76 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:84
+#: campaign-functions/cron-schedule.php:82
 #, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Klik di sini untuk melihat petunjuk doa hari ini: %s"
 
-#: campaign-functions/cron-schedule.php:90
-msgid "Prayer Time reminder!"
-msgstr "Pengingat waktu berdoa!"
+#: campaign-functions/send-email-utility.php:45
+msgid "Verify your email address"
+msgstr ""
 
-#: campaign-functions/cron-schedule.php:131
-#: campaign-functions/send-email-utility.php:67
+#: campaign-functions/send-email-utility.php:101
+#: campaign-functions/send-email-utility.php:168
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s dari %2$s hingga %3$s"
 
-#: campaign-functions/cron-schedule.php:137
+#: campaign-functions/send-email-utility.php:112
+msgid "Registered to pray with us!"
+msgstr "Terdaftar untuk berdoa bersama kami!"
+
+#: campaign-functions/send-email-utility.php:134
+#: campaign-functions/send-email-utility.php:201
+#: campaign-functions/send-email-utility.php:288
+msgid "Hello %s,"
+msgstr "Halo %s,"
+
+#: campaign-functions/send-email-utility.php:136
+#, fuzzy
+msgid ""
+"Thank you for joining us in strategic prayer for a disciple making movement!"
+msgstr "Doa Strategis untuk Gerakan Pemuridan"
+
+#: campaign-functions/send-email-utility.php:137
+msgid "Here are the times you have committed to pray:"
+msgstr "Inilah waktu-waktu yang Anda telah berkomitmen untuk berdoa:"
+
+#: campaign-functions/send-email-utility.php:139
+#: campaign-functions/send-email-utility.php:205
+msgid "Times are shown according to: %s time"
+msgstr "Waktu ditampilkan menurut: %s waktu"
+
+#: campaign-functions/send-email-utility.php:141
+#: campaign-functions/send-email-utility.php:212
+msgid "Click here to manage your account and time commitments"
+msgstr "Klik di sini untuk mengelola akun dan komitmen waktu Anda"
+
+#: campaign-functions/send-email-utility.php:174
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "untuk %s"
 
-#: campaign-functions/cron-schedule.php:158
-#: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:161
-#: campaign-functions/send-email-utility.php:258
-msgid "Hello %s,"
-msgstr "Halo %s,"
+#: campaign-functions/send-email-utility.php:184
+msgid "Prayer Time reminder!"
+msgstr "Pengingat waktu berdoa!"
 
-#: campaign-functions/cron-schedule.php:159
-#: campaign-functions/send-email-utility.php:309
+#: campaign-functions/send-email-utility.php:202
+#: campaign-functions/send-email-utility.php:339
 #: porches/generic/site/stats.php:136
 msgid "Thank you for praying with us!"
 msgstr "Terima kasih telah berdoa bersama kami!"
 
-#: campaign-functions/cron-schedule.php:160
+#: campaign-functions/send-email-utility.php:203
 msgid "Here are your upcoming prayer times:"
 msgstr "Berikut adalah waktu doa Anda yang akan datang:"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:121
-msgid "Times are shown according to: %s time"
-msgstr "Waktu ditampilkan menurut: %s waktu"
-
-#: campaign-functions/cron-schedule.php:167
-#: campaign-functions/send-email-utility.php:125
-msgid "Click here to manage your account and time commitments"
-msgstr "Klik di sini untuk mengelola akun dan komitmen waktu Anda"
-
-#: campaign-functions/send-email-utility.php:82
-msgid "Registered to pray with us!"
-msgstr "Terdaftar untuk berdoa bersama kami!"
-
-#: campaign-functions/send-email-utility.php:110
-msgid ""
-"Thank you for joining us in strategic prayer for a disciple making movement! "
-"You're one click away from finishing your registration."
-msgstr ""
-"Terima kasih telah bergabung dengan kami dalam doa strategis untuk gerakan "
-"pemuridan! Tinggal satu klik lagi untuk menyelesaikan pendaftaran Anda."
-
-#: campaign-functions/send-email-utility.php:111
-#, fuzzy
-#| msgid ""
-#| "Click here to verify your email address and confirm your prayer times."
-msgid "Click here to verify your email address and confirm your prayer times:"
-msgstr ""
-"Klik di sini untuk memverifikasi alamat email Anda dan mengkonfirmasi waktu "
-"doa Anda."
-
-#: campaign-functions/send-email-utility.php:113
-#, fuzzy
-msgid "Verify your account"
-msgstr "verifikasi akun anda"
-
-#: campaign-functions/send-email-utility.php:116
-#, fuzzy
-#| msgid "Choose prayer times link:"
-msgid "Or open this link:"
-msgstr "Pilih tautan waktu doa:"
-
-#: campaign-functions/send-email-utility.php:119
-msgid "Here are the times you have committed to pray:"
-msgstr "Inilah waktu-waktu yang Anda telah berkomitmen untuk berdoa:"
-
-#: campaign-functions/send-email-utility.php:168
-msgid "Registration Confirmation"
-msgstr "konfirmasi registrasi"
-
-#: campaign-functions/send-email-utility.php:171
-msgid "Thank you for signing up to pray!"
-msgstr "Terima kasih telah mendaftar untuk berdoa!"
-
-#: campaign-functions/send-email-utility.php:172
-msgid ""
-"We have some time before the campaign starts. We will send you another email "
-"a couple months before the first day asking you to choose specific times to "
-"pray. Working together we will cover the region in 24/7 prayer."
-msgstr ""
-"Kami punya waktu sebelum kampanye dimulai. Kami akan mengirimkan email lagi "
-"beberapa bulan sebelum hari pertama meminta Anda untuk memilih waktu "
-"tertentu untuk berdoa. Bekerja sama kami akan mencakup wilayah dalam doa "
-"24/7."
-
-#: campaign-functions/send-email-utility.php:173
-msgid "If you know your schedule already you can choose your times here:"
-msgstr ""
-"Jika Anda sudah mengetahui jadwal Anda, Anda dapat memilih waktu Anda di "
-"sini:"
-
-#: campaign-functions/send-email-utility.php:256
+#: campaign-functions/send-email-utility.php:286
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:259
+#: campaign-functions/send-email-utility.php:289
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -137,86 +93,86 @@ msgstr ""
 "Anda memiliki waktu 2 minggu untuk waktu salat terakhir Anda. Apakah Anda "
 "ingin terus berdoa?"
 
-#: campaign-functions/send-email-utility.php:260
+#: campaign-functions/send-email-utility.php:290
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Daftar untuk lebih banyak waktu sholat atau perpanjang waktu rutin Anda di "
 "sini:"
 
-#: campaign-functions/send-email-utility.php:262
+#: campaign-functions/send-email-utility.php:293
 #, fuzzy
 msgid "Thank you"
 msgstr "Terima kasih"
 
-#: campaign-functions/send-email-utility.php:332
 #: campaign-functions/send-email-utility.php:362
+#: campaign-functions/send-email-utility.php:392
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Doa Strategis untuk Gerakan Pemuridan"
 
-#: campaign-functions/send-email-utility.php:334
 #: campaign-functions/send-email-utility.php:364
+#: campaign-functions/send-email-utility.php:394
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement"
 msgstr "Doa Strategis untuk Gerakan Pemuridan"
 
-#: campaign-functions/send-email-utility.php:339
 #: campaign-functions/send-email-utility.php:369
+#: campaign-functions/send-email-utility.php:399
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:342
 #: campaign-functions/send-email-utility.php:372
+#: campaign-functions/send-email-utility.php:402
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Terima kasih telah bergabung dengan kami dalam doa untuk %1$s di %2$s."
 
-#: campaign-functions/send-email-utility.php:345
+#: campaign-functions/send-email-utility.php:375
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:348
+#: campaign-functions/send-email-utility.php:378
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:382
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "See Prayer Stats"
 msgstr "Pilih waktu doa"
 
-#: campaign-functions/send-email-utility.php:354
-#: campaign-functions/send-email-utility.php:390
+#: campaign-functions/send-email-utility.php:384
+#: campaign-functions/send-email-utility.php:420
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:375
+#: campaign-functions/send-email-utility.php:405
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:379
+#: campaign-functions/send-email-utility.php:409
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:386
+#: campaign-functions/send-email-utility.php:416
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:388
+#: campaign-functions/send-email-utility.php:418
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -260,12 +216,12 @@ msgid "day"
 msgstr "hari-hari"
 
 #: campaign-functions/time-utilities.php:184
-#: porches/generic/site/home-body.php:172
-#: porches/generic/site/home-body.php:179
-#: porches/ongoing/site/home-body.php:168
-#: porches/ongoing/site/home-body.php:175
-#: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169 shortcodes/ongoing.php:75
+#: porches/generic/site/home-body.php:175
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:178
+#: porches/ramadan/site/home-body.php:165
+#: porches/ramadan/site/home-body.php:172 shortcodes/ongoing.php:76
 msgid "days"
 msgstr "hari-hari"
 
@@ -275,22 +231,22 @@ msgid "My Prayer Times"
 msgstr "Waktu Doaku"
 
 #: magic-links/subscription-management/subscription-management.php:108
-#: shortcodes/24hour.php:29 shortcodes/ongoing.php:70
+#: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
 msgid "Select a time"
 msgstr "Pilih waktu"
 
 #: magic-links/subscription-management/subscription-management.php:109
-#: shortcodes/24hour.php:30
+#: shortcodes/24hour.php:31
 msgid "fully covered once"
 msgstr "terpenuhi sekaligus"
 
 #: magic-links/subscription-management/subscription-management.php:110
-#: shortcodes/24hour.php:31
+#: shortcodes/24hour.php:32
 msgid "fully covered %1$s times"
 msgstr "terpenuhi sepenuhnya %1$s kali"
 
 #: magic-links/subscription-management/subscription-management.php:111
-#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+#: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s selama %2$s menit."
@@ -306,26 +262,26 @@ msgid "Change daily time"
 msgstr "Ubah waktu harian"
 
 #: magic-links/subscription-management/subscription-management.php:114
-#: shortcodes/24hour.php:35
+#: shortcodes/24hour.php:36
 #, fuzzy
 msgctxt "80% covered"
 msgid "%s covered"
 msgstr "tertutupi"
 
 #: magic-links/subscription-management/subscription-management.php:115
-#: shortcodes/24hour.php:36
+#: shortcodes/24hour.php:37
 msgctxt "on 5 days"
 msgid "On %s days"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:116
-#: shortcodes/24hour.php:37
+#: shortcodes/24hour.php:38
 msgctxt "and 5 more"
 msgid "and %s more"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:117
-#: shortcodes/24hour.php:38
+#: shortcodes/24hour.php:39
 #, fuzzy
 #| msgid "Prayer Time"
 msgid "Pray this time"
@@ -336,7 +292,7 @@ msgid "Your prayer times have been verified!"
 msgstr "Waktu doa Anda telah diverifikasi!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:283
+#: parts/components.php:175
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "Ubah zona waktu Anda:"
@@ -349,13 +305,13 @@ msgstr "Ubah zona waktu Anda:"
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:287 shortcodes/ongoing.php:301
+#: parts/components.php:196
 msgid "Cancel"
 msgstr "Membatalkan"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:290 shortcodes/ongoing.php:304
+#: parts/components.php:199
 msgid "Select"
 msgstr "Pilih"
 
@@ -372,7 +328,7 @@ msgid "Download Calendar"
 msgstr "Unduh Kalender"
 
 #: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:132
+#: shortcodes/24hour.php:133
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "Help us cover these prayer times"
@@ -384,21 +340,21 @@ msgid "My commitments"
 msgstr "Komitmen saya"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:172 shortcodes/ongoing.php:187
+#: shortcodes/24hour.php:173 shortcodes/ongoing.php:188
 msgid "Prayer Time"
 msgstr "Waktu doa"
 
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
-#: shortcodes/24hour.php:174 shortcodes/24hour.php:207
-#: shortcodes/ongoing.php:189 shortcodes/ongoing.php:222
+#: parts/components.php:233 shortcodes/24hour.php:175
+#: shortcodes/ongoing.php:190
 msgid "Daily Time"
 msgstr "Waktu Harian"
 
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
-#: shortcodes/24hour.php:178 shortcodes/24hour.php:211
-#: shortcodes/ongoing.php:193 shortcodes/ongoing.php:226
+#: parts/components.php:237 shortcodes/24hour.php:179
+#: shortcodes/ongoing.php:194
 msgid "For how long"
 msgstr "Untuk berapa lama"
 
@@ -409,8 +365,8 @@ msgstr "Waktu doa  Anda yang baru telah disimpan."
 
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
-#: shortcodes/24hour.php:185 shortcodes/24hour.php:229
-#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:244
+#: parts/components.php:255 shortcodes/24hour.php:186
+#: shortcodes/ongoing.php:201
 msgid "Confirm Times"
 msgstr "Konfirmasi Waktu"
 
@@ -448,41 +404,39 @@ msgid "Delete"
 msgstr "Menghapus"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:197 shortcodes/ongoing.php:212
+#: parts/components.php:223
 msgid "Select a day and choose a time"
 msgstr "Pilih hari dan pilih waktu"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:220
+#: parts/components.php:231
 msgid "Select a prayer time"
 msgstr "Pilih waktu doa"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:215 shortcodes/ongoing.php:230
+#: parts/components.php:241
 msgid "Add prayer time"
 msgstr "Tambahkan waktu doa"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:231
+#: parts/components.php:242
 msgid "Time added"
 msgstr "Waktu ditambahkan"
 
 #: magic-links/subscription-management/subscription-management.php:460
-#: shortcodes/24hour.php:223 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:238 shortcodes/ongoing.php:260
+#: parts/components.php:71 parts/components.php:249
 msgid "Selected Times"
 msgstr "Waktu yang Dipilih"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:225 shortcodes/ongoing.php:240
+#: parts/components.php:251
 msgid "No selected Time"
 msgstr "Tidak ada Waktu yang dipilih"
 
 #: magic-links/subscription-management/subscription-management.php:485
-#: shortcodes/24hour.php:142 shortcodes/24hour.php:165
-#: shortcodes/24hour.php:194 shortcodes/24hour.php:239
-#: shortcodes/ongoing.php:159 shortcodes/ongoing.php:182
-#: shortcodes/ongoing.php:209 shortcodes/ongoing.php:254
+#: parts/components.php:28 parts/components.php:115 parts/components.php:220
+#: shortcodes/24hour.php:143 shortcodes/24hour.php:166
+#: shortcodes/ongoing.php:160 shortcodes/ongoing.php:183
 msgid "Back"
 msgstr "Kembali"
 
@@ -507,7 +461,7 @@ msgid "Extend my prayer commitments until:"
 msgstr "Perpanjang komitmen doa saya sampai:"
 
 #: magic-links/subscription-management/subscription-management.php:566
-#: parts/components.php:25
+#: parts/components.php:31
 msgid "Confirm"
 msgstr "Konfirmasi"
 
@@ -551,22 +505,18 @@ msgstr "Ini tidak dapat dibatalkan."
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Langganan ini telah berakhir atau tidak dikonfigurasi dengan benar."
 
-#: parts/components.php:29 parts/components.php:33
+#: parts/components.php:34 parts/components.php:38
 msgid "Name"
 msgstr "Nama"
 
-#: parts/components.php:37 parts/components.php:41 parts/components.php:42
+#: parts/components.php:42 parts/components.php:46 parts/components.php:47
 #: porches/generic/site/stats.php:264
 msgid "Email"
 msgstr "email"
 
-#: parts/components.php:39
+#: parts/components.php:44
 msgid "Your email is required."
 msgstr "Email Anda diperlukan."
-
-#: parts/components.php:49
-msgid "Receive Prayer Time Notifications (email verification needed)."
-msgstr "Menerima Pemberitahuan Waktu Doa (diperlukan verifikasi email)."
 
 #: parts/components.php:55
 msgid ""
@@ -574,15 +524,58 @@ msgid ""
 "from GospelAmbition.org."
 msgstr ""
 
-#: parts/components.php:59
+#: parts/components.php:60
 #, fuzzy
 #| msgid "Your prayer times have been verified!"
 msgid "No prayer times selected"
 msgstr "Waktu doa Anda telah diverifikasi!"
 
-#: parts/components.php:63
-msgid "Submit Your Prayer Commitment"
-msgstr "Serahkan Komitmen Doa Anda"
+#: parts/components.php:64
+msgid "Verify and submit"
+msgstr ""
+
+#: parts/components.php:123
+msgid "Confirmation Code:"
+msgstr ""
+
+#: parts/components.php:138 porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
+#, fuzzy
+msgid "Submit"
+msgstr "Kirim"
+
+#: parts/components.php:155
+msgid "Success!"
+msgstr ""
+
+#: parts/components.php:156
+#, fuzzy
+msgid "Your registration was successful."
+msgstr "Pendaftaran Anda berhasil."
+
+#: parts/components.php:158
+#, fuzzy
+#| msgid "In the email is a link to manage your prayer times."
+msgid "Check you email for details and access to manage your prayer times."
+msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
+
+#: parts/components.php:162 parts/components.php:164
+#, fuzzy
+msgid "Return"
+msgstr "Kembali"
+
+#: parts/components.php:208
+msgid "We are not longer looking for sign ups"
+msgstr "Kami tidak lagi mencari pendaftar"
+
+#: parts/components.php:209
+msgid "Thanks for praying with us!"
+msgstr "Terima kasih telah berdoa bersama kami!"
+
+#: parts/components.php:245 shortcodes/24hour.php:183
+#: shortcodes/ongoing.php:198
+msgid "Showing times for:"
+msgstr "Waktu tayang untuk:"
 
 #: porches/generic/dt-generic-porch-settings.php:59
 #, fuzzy
@@ -599,11 +592,11 @@ msgstr "Visi kami"
 msgid "We want to cover this region with continuous 24/7 prayer."
 msgstr "Kami ingin menutupi wilayah ini dengan doa 24/7 terus menerus."
 
-#: porches/generic/dt-generic-porch-settings.php:86
+#: porches/generic/dt-generic-porch-settings.php:94
 msgid "Extraordinary Prayer"
 msgstr "Doa yang luar biasa"
 
-#: porches/generic/dt-generic-porch-settings.php:95
+#: porches/generic/dt-generic-porch-settings.php:103
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
@@ -611,11 +604,11 @@ msgstr ""
 "Setiap gerakan pemuridan di dalam sejarah telah terjadi dalam konteks doa "
 "yang luar biasa"
 
-#: porches/generic/dt-generic-porch-settings.php:104
+#: porches/generic/dt-generic-porch-settings.php:120
 msgid "Movement Focused"
 msgstr "Fokus pada Kegerakan"
 
-#: porches/generic/dt-generic-porch-settings.php:113
+#: porches/generic/dt-generic-porch-settings.php:129
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
@@ -623,12 +616,12 @@ msgstr ""
 "Bergabunglah dengan kami dalam meminta, mencari, dan mengetuk bagi aliran-"
 "aliran pemuridan dan gereja-gereja dibentuk"
 
-#: porches/generic/dt-generic-porch-settings.php:122
+#: porches/generic/dt-generic-porch-settings.php:146
 #, fuzzy
 msgid "24/7 Every Day"
 msgstr "24/7 Setiap Hari"
 
-#: porches/generic/dt-generic-porch-settings.php:131
+#: porches/generic/dt-generic-porch-settings.php:155
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
@@ -636,23 +629,23 @@ msgstr ""
 "Pilih 15 menit (atau lebih) slot waktu dimana Anda dapat berdoa tiap hari. "
 "Undang seseorang untuk mendaftar juga"
 
-#: porches/generic/dt-generic-porch-settings.php:149
-#: porches/generic/dt-generic-porch-settings.php:158
+#: porches/generic/dt-generic-porch-settings.php:173
+#: porches/generic/dt-generic-porch-settings.php:182
 #: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
 msgid "Prayer Fuel"
 msgstr "Bahan Bakar Doa"
 
-#: porches/generic/dt-generic-porch-settings.php:167
+#: porches/generic/dt-generic-porch-settings.php:191
 #, fuzzy
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
 "Gunakan sumber-sumber ini untuk membantu berdoa secara khusus setiap hari."
 
-#: porches/generic/dt-generic-porch-settings.php:176
+#: porches/generic/dt-generic-porch-settings.php:200
 msgid "Today's Prayer Fuel"
 msgstr "Bahan Bakar Doa Hari Ini"
 
-#: porches/generic/dt-generic-porch-settings.php:185
+#: porches/generic/dt-generic-porch-settings.php:209
 msgid "All Days"
 msgstr "Sepanjang Hari"
 
@@ -703,156 +696,118 @@ msgstr ""
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:69
-#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
-#, fuzzy
-msgid "Submit"
-msgstr "Kirim"
-
 #: porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:283
 #, fuzzy
 msgid "Thank You"
 msgstr "Terima kasih"
 
-#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
+#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:199
 #: porches/generic/site/top-section.php:93
-#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
-#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
+#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:195
+#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:189
 msgid "Sign Up to Pray"
 msgstr "Mendaftar untuk berdoa"
 
-#: porches/generic/site/home-body.php:158
-#: porches/ongoing/site/home-body.php:154
+#: porches/generic/site/home-body.php:161
+#: porches/ongoing/site/home-body.php:157
 #, fuzzy
 msgctxt "Campaign Name is Finished"
 msgid "%s is Finished"
 msgstr "%s Selesai"
 
-#: porches/generic/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:167
+#: porches/generic/site/home-body.php:174
+#: porches/ongoing/site/home-body.php:170
 #, fuzzy
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
 msgstr "%s Berakhir Dalam"
 
-#: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:209
-#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:163
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:176
+#: porches/generic/site/home-body.php:183 porches/generic/site/stats.php:209
+#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:172
+#: porches/ongoing/site/home-body.php:179
+#: porches/ramadan/site/home-body.php:166
+#: porches/ramadan/site/home-body.php:173
 msgid "hours"
 msgstr "jam-jam"
 
-#: porches/generic/site/home-body.php:174
-#: porches/generic/site/home-body.php:181
-#: porches/ongoing/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:177
-#: porches/ramadan/site/home-body.php:164
-#: porches/ramadan/site/home-body.php:171
+#: porches/generic/site/home-body.php:177
+#: porches/generic/site/home-body.php:184
+#: porches/ongoing/site/home-body.php:173
+#: porches/ongoing/site/home-body.php:180
+#: porches/ramadan/site/home-body.php:167
+#: porches/ramadan/site/home-body.php:174
 msgid "minutes"
 msgstr "menit-menit"
 
-#: porches/generic/site/home-body.php:175
-#: porches/generic/site/home-body.php:182
-#: porches/ongoing/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:178
-#: porches/ramadan/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:172
+#: porches/generic/site/home-body.php:178
+#: porches/generic/site/home-body.php:185
+#: porches/ongoing/site/home-body.php:174
+#: porches/ongoing/site/home-body.php:181
+#: porches/ramadan/site/home-body.php:168
+#: porches/ramadan/site/home-body.php:175
 msgid "seconds"
 msgstr "detik-detik"
 
-#: porches/generic/site/home-body.php:178
-#: porches/ongoing/site/home-body.php:174
+#: porches/generic/site/home-body.php:181
+#: porches/ongoing/site/home-body.php:177
 #, fuzzy
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Begins In"
 msgstr "%s Dimulai Dalam"
 
-#: porches/generic/site/home-body.php:223
-#: porches/ramadan/site/home-body.php:222
+#: porches/generic/site/home-body.php:226
+#: porches/ramadan/site/home-body.php:225
 msgid "Days"
 msgstr "Hari-hari"
 
-#: porches/generic/site/home-body.php:227
-#: porches/ongoing/site/home-body.php:215
-#: porches/ramadan/site/home-body.php:226
+#: porches/generic/site/home-body.php:230
+#: porches/ongoing/site/home-body.php:218
+#: porches/ramadan/site/home-body.php:229
 #, fuzzy
 msgid "Next"
 msgstr "Lanjut"
 
-#: porches/generic/site/home-body.php:228
-#: porches/ongoing/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:227
+#: porches/generic/site/home-body.php:231
+#: porches/ongoing/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
 #, fuzzy
 msgid "Month"
 msgstr "Bulan"
 
-#: porches/generic/site/home-body.php:250
-#: porches/ramadan/site/home-body.php:249
+#: porches/generic/site/home-body.php:253
+#: porches/ramadan/site/home-body.php:252
 msgid "Hours of Prayer"
 msgstr "Jam-jam Doa"
 
-#: porches/generic/site/home-body.php:255
-#: porches/ongoing/site/home-body.php:233
-#: porches/ramadan/site/home-body.php:254
+#: porches/generic/site/home-body.php:258
+#: porches/ongoing/site/home-body.php:236
+#: porches/ramadan/site/home-body.php:257
 #, fuzzy
 msgid "Hours"
 msgstr "Jam"
 
-#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:181
-#: porches/ramadan/site/home-body.php:272
+#: porches/generic/site/home-body.php:276 porches/generic/site/stats.php:181
+#: porches/ramadan/site/home-body.php:275
 msgid "Prayer Commitments Needed"
 msgstr "Komitmen Doa Diperlukan"
 
-#: porches/generic/site/home-body.php:278
-#: porches/ongoing/site/home-body.php:248
+#: porches/generic/site/home-body.php:281
+#: porches/ongoing/site/home-body.php:251
 #, fuzzy
 msgid "Hours Remaining"
 msgstr "Jam Tersisa"
 
-#: porches/generic/site/home-body.php:299
-#: porches/ongoing/site/home-body.php:267
-#: porches/ramadan/site/home-body.php:298
+#: porches/generic/site/home-body.php:302
+#: porches/ongoing/site/home-body.php:270
+#: porches/ramadan/site/home-body.php:301
 msgid "View All"
 msgstr "Tampilkan Keseluruhan"
 
 #: porches/generic/site/post-list-body.php:133
 msgid "Read"
 msgstr "Baca"
-
-#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
-#: shortcodes/ongoing.php:268
-#, fuzzy
-#| msgid "Sent! Check your email."
-msgid "Check your email"
-msgstr "Terkirim! Periksa email Anda."
-
-#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:269
-#, fuzzy
-msgid "Your registration was successful."
-msgstr "Pendaftaran Anda berhasil."
-
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
-#: shortcodes/ongoing.php:271
-msgid ""
-"Click on the link included in the email to verify your commitment and "
-"receive prayer time notifications!"
-msgstr ""
-"Klik tautan yang disertakan dalam email untuk memverifikasi komitmen Anda "
-"dan menerima pemberitahuan waktu doa!"
-
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
-#: shortcodes/ongoing.php:274
-msgid "In the email is a link to manage your prayer times."
-msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
-
-#: porches/generic/site/sign-up-confirmation.php:114
-#, fuzzy
-msgid "Return"
-msgstr "Kembali"
 
 #: porches/generic/site/stats.php:138
 #, fuzzy
@@ -932,12 +887,12 @@ msgstr "Waktu ditambahkan"
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:380
+#: porches/generic/site/stats.php:381
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "Lebih Banyak Kesempatan Sholat"
 
-#: porches/generic/site/stats.php:384
+#: porches/generic/site/stats.php:385
 #, fuzzy
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
@@ -997,115 +952,98 @@ msgstr ""
 "(sekitar sepersepuluh panjang Alkitab). Pencarian yang tulus ini "
 "menjadikannya waktu yang strategis bagi kita untuk berdoa bagi mereka."
 
-#: porches/ramadan/site/home-body.php:148
+#: porches/ramadan/site/home-body.php:151
 #, fuzzy
 msgid "Ramadan is Finished"
 msgstr "%s Selesai"
 
-#: porches/ramadan/site/home-body.php:161
+#: porches/ramadan/site/home-body.php:164
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramadhan Berakhir..."
 
-#: porches/ramadan/site/home-body.php:168
+#: porches/ramadan/site/home-body.php:171
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramadhan Dimulai..."
 
-#: porches/ramadan/site/home-body.php:193
+#: porches/ramadan/site/home-body.php:196
 #, fuzzy
 msgid "here"
 msgstr "di sini"
 
-#: porches/ramadan/site/home-body.php:277
+#: porches/ramadan/site/home-body.php:280
 #, fuzzy
 msgid "More Hours to be covered"
 msgstr "Lebih banyak Jam untuk dibahas"
 
-#: shortcodes/24hour.php:32 shortcodes/ongoing.php:72
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
 #, fuzzy
 msgid "covered once"
 msgstr "tertutup sekali"
 
-#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
 #, fuzzy
 msgid "covered %1$s times"
 msgstr "tertutup %1$s kali"
 
-#: shortcodes/24hour.php:106
+#: shortcodes/24hour.php:107
 msgid "Percentage covered in prayer"
 msgstr "Persentase yang tercakup dalam doa"
 
-#: shortcodes/24hour.php:107
+#: shortcodes/24hour.php:108
 #, fuzzy
 msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "Waktu Berkomitmen"
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
+#: shortcodes/24hour.php:122 shortcodes/ongoing.php:143
 msgid "Loading prayer campaign data..."
 msgstr "Memuat data kampanye doa..."
 
-#: shortcodes/24hour.php:128 shortcodes/ongoing.php:149
+#: shortcodes/24hour.php:129 shortcodes/ongoing.php:150
 msgid "Choose Prayer Times"
 msgstr "Pilih Waktu Doa"
 
-#: shortcodes/24hour.php:144 shortcodes/ongoing.php:161
+#: shortcodes/24hour.php:145 shortcodes/ongoing.php:162
 msgid "Select an option"
 msgstr "Pilih satu opsi"
 
-#: shortcodes/24hour.php:147 shortcodes/ongoing.php:164
+#: shortcodes/24hour.php:148 shortcodes/ongoing.php:165
 msgid "Pray every day at the same time"
 msgstr "Berdoa setiap hari pada waktu yang sama"
 
-#: shortcodes/24hour.php:149 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:150 shortcodes/ongoing.php:167
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Contoh: Setiap hari jam 4 sore selama 15 menit"
 
-#: shortcodes/24hour.php:152 shortcodes/ongoing.php:169
+#: shortcodes/24hour.php:153 shortcodes/ongoing.php:170
 msgid "Select days and times to pray"
 msgstr "Pilih hari dan waktu untuk berdoa"
 
-#: shortcodes/24hour.php:154 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:155 shortcodes/ongoing.php:172
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Contoh: Senin 12 jam 6 sore selama 15 menit"
 
-#: shortcodes/24hour.php:169
+#: shortcodes/24hour.php:170
 #, fuzzy
 #| msgid "In the email is a link to manage your prayer times."
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
 
-#: shortcodes/24hour.php:182 shortcodes/24hour.php:219
-#: shortcodes/ongoing.php:197 shortcodes/ongoing.php:234
-msgid "Showing times for:"
-msgstr "Waktu tayang untuk:"
-
-#: shortcodes/24hour.php:263 shortcodes/ongoing.php:277
-msgid "OK"
-msgstr "oke"
-
-#: shortcodes/24hour.php:296 shortcodes/ongoing.php:310
-msgid "We are not longer looking for sign ups"
-msgstr "Kami tidak lagi mencari pendaftar"
-
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:311
-msgid "Thanks for praying with us!"
-msgstr "Terima kasih telah berdoa bersama kami!"
-
-#: shortcodes/ongoing.php:69
+#: shortcodes/ongoing.php:70
 #, fuzzy
 msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
 msgid "Everyday at %1$s for %2$s until %3$s"
 msgstr "Setiap hari di %1$s selama %2$s sampai %3$s"
 
-#: shortcodes/ongoing.php:71
+#: shortcodes/ongoing.php:72
 #, fuzzy
 msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "tertutupi"
 
-#: shortcodes/ongoing.php:185
+#: shortcodes/ongoing.php:186
 #, fuzzy
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
@@ -1126,6 +1064,74 @@ msgstr "Waktu berdoa: %s mnt"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Berdoa sekarang..."
+
+#~ msgid ""
+#~ "Thank you for joining us in strategic prayer for a disciple making "
+#~ "movement! You're one click away from finishing your registration."
+#~ msgstr ""
+#~ "Terima kasih telah bergabung dengan kami dalam doa strategis untuk "
+#~ "gerakan pemuridan! Tinggal satu klik lagi untuk menyelesaikan pendaftaran "
+#~ "Anda."
+
+#, fuzzy
+#~| msgid ""
+#~| "Click here to verify your email address and confirm your prayer times."
+#~ msgid ""
+#~ "Click here to verify your email address and confirm your prayer times:"
+#~ msgstr ""
+#~ "Klik di sini untuk memverifikasi alamat email Anda dan mengkonfirmasi "
+#~ "waktu doa Anda."
+
+#, fuzzy
+#~ msgid "Verify your account"
+#~ msgstr "verifikasi akun anda"
+
+#, fuzzy
+#~| msgid "Choose prayer times link:"
+#~ msgid "Or open this link:"
+#~ msgstr "Pilih tautan waktu doa:"
+
+#~ msgid "Registration Confirmation"
+#~ msgstr "konfirmasi registrasi"
+
+#~ msgid "Thank you for signing up to pray!"
+#~ msgstr "Terima kasih telah mendaftar untuk berdoa!"
+
+#~ msgid ""
+#~ "We have some time before the campaign starts. We will send you another "
+#~ "email a couple months before the first day asking you to choose specific "
+#~ "times to pray. Working together we will cover the region in 24/7 prayer."
+#~ msgstr ""
+#~ "Kami punya waktu sebelum kampanye dimulai. Kami akan mengirimkan email "
+#~ "lagi beberapa bulan sebelum hari pertama meminta Anda untuk memilih waktu "
+#~ "tertentu untuk berdoa. Bekerja sama kami akan mencakup wilayah dalam doa "
+#~ "24/7."
+
+#~ msgid "If you know your schedule already you can choose your times here:"
+#~ msgstr ""
+#~ "Jika Anda sudah mengetahui jadwal Anda, Anda dapat memilih waktu Anda di "
+#~ "sini:"
+
+#~ msgid "Receive Prayer Time Notifications (email verification needed)."
+#~ msgstr "Menerima Pemberitahuan Waktu Doa (diperlukan verifikasi email)."
+
+#~ msgid "Submit Your Prayer Commitment"
+#~ msgstr "Serahkan Komitmen Doa Anda"
+
+#, fuzzy
+#~| msgid "Sent! Check your email."
+#~ msgid "Check your email"
+#~ msgstr "Terkirim! Periksa email Anda."
+
+#~ msgid ""
+#~ "Click on the link included in the email to verify your commitment and "
+#~ "receive prayer time notifications!"
+#~ msgstr ""
+#~ "Klik tautan yang disertakan dalam email untuk memverifikasi komitmen Anda "
+#~ "dan menerima pemberitahuan waktu doa!"
+
+#~ msgid "OK"
+#~ msgstr "oke"
 
 #, fuzzy
 #~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
