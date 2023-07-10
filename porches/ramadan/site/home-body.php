@@ -3,6 +3,7 @@ $lang = dt_campaign_get_current_lang();
 
 $porch_fields = DT_Porch_Settings::settings();
 $campaign_fields = DT_Campaign_Settings::get_campaign();
+global $allowedtags;
 
 $campaign_root = 'campaign_app';
 $campaign_type = $campaign_fields['type']['key'];
@@ -41,7 +42,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
                 <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo nl2br( esc_html( DT_Porch_Settings::get_field_translation( 'vision' ) ) ); ?>
+                    <?php echo nl2br( wp_kses( DT_Porch_Settings::get_field_translation( 'vision' ), $allowedtags ) ); ?>
                 </p>
                 </div>
             </div>
@@ -56,7 +57,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         <img class="<?php echo !empty( $porch_fields['pray_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_icon' ) ) ?>" alt="Praying hands icon"/>
                     </div>
                     <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_title' ) ) ?></h4>
-                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'pray_section_text' ) ) ?></p>
+                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'pray_section_text' ), $allowedtags ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -65,7 +66,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         <img class="<?php echo !empty( $porch_fields['movement_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_icon' ) ) ?>" alt="Movement  icon"/>
                     </div>
                     <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_title' ) ) ?></h4>
-                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'movement_section_text' ) ) ?></p>
+                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'movement_section_text' ), $allowedtags ) ?></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -74,7 +75,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         <img class="<?php echo !empty( $porch_fields['time_section_icon']['value'] ) ? '' : 'color-img'?>" style="height: 40px; margin-top:10px" src="<?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_icon' ) ) ?>" alt="Clock icon"/>
                     </div>
                     <h4><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_title' ) ) ?></h4>
-                    <p><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'time_section_text' ) ) ?></p>
+                    <p><?php echo wp_kses( DT_Porch_Settings::get_field_translation( 'time_section_text' ), $allowedtags ) ?></p>
                 </div>
             </div>
         </div>
