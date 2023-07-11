@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-06-02T11:13:37+00:00\n"
+"POT-Creation-Date: 2023-07-03T07:36:54+00:00\n"
 "PO-Revision-Date: 2023-01-05 16:13+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/disciple-"
@@ -18,112 +18,76 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:84
+#: campaign-functions/cron-schedule.php:82
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Clicca qui per vedere le richieste di preghiera per oggi: %s"
 
-#: campaign-functions/cron-schedule.php:90
-msgid "Prayer Time reminder!"
-msgstr "Avviso: È ora di pregare!"
+#: campaign-functions/send-email-utility.php:45
+msgid "Verify your email address"
+msgstr ""
 
-#: campaign-functions/cron-schedule.php:131
-#: campaign-functions/send-email-utility.php:67
+#: campaign-functions/send-email-utility.php:101
+#: campaign-functions/send-email-utility.php:168
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s da %2$s a %3$s"
 
-#: campaign-functions/cron-schedule.php:137
+#: campaign-functions/send-email-utility.php:112
+msgid "Registered to pray with us!"
+msgstr "Registrato per pregare con noi!"
+
+#: campaign-functions/send-email-utility.php:134
+#: campaign-functions/send-email-utility.php:201
+#: campaign-functions/send-email-utility.php:288
+msgid "Hello %s,"
+msgstr "Ciao %s,"
+
+#: campaign-functions/send-email-utility.php:136
+#, fuzzy
+#| msgid "Strategic prayer for a Disciple Making Movement"
+msgid ""
+"Thank you for joining us in strategic prayer for a disciple making movement!"
+msgstr "Preghiera strategica per un movimento di discepoli che fanno discepoli"
+
+#: campaign-functions/send-email-utility.php:137
+msgid "Here are the times you have committed to pray:"
+msgstr "Ecco gli intervalli in cui ti sei impegnato a pregare:"
+
+#: campaign-functions/send-email-utility.php:139
+#: campaign-functions/send-email-utility.php:205
+msgid "Times are shown according to: %s time"
+msgstr "Gli intervalli sono mostrati in base all'ora di %s"
+
+#: campaign-functions/send-email-utility.php:141
+#: campaign-functions/send-email-utility.php:212
+msgid "Click here to manage your account and time commitments"
+msgstr "Clicca qui per gestire il tuo account e i tuoi intervalli"
+
+#: campaign-functions/send-email-utility.php:174
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "per %s"
 
-#: campaign-functions/cron-schedule.php:158
-#: campaign-functions/send-email-utility.php:85
-#: campaign-functions/send-email-utility.php:161
-#: campaign-functions/send-email-utility.php:258
-msgid "Hello %s,"
-msgstr "Ciao %s,"
+#: campaign-functions/send-email-utility.php:184
+msgid "Prayer Time reminder!"
+msgstr "Avviso: È ora di pregare!"
 
-#: campaign-functions/cron-schedule.php:159
-#: campaign-functions/send-email-utility.php:309
+#: campaign-functions/send-email-utility.php:202
+#: campaign-functions/send-email-utility.php:339
 #: porches/generic/site/stats.php:136
 msgid "Thank you for praying with us!"
 msgstr "Grazie per aver pregato con noi!"
 
-#: campaign-functions/cron-schedule.php:160
+#: campaign-functions/send-email-utility.php:203
 msgid "Here are your upcoming prayer times:"
 msgstr "Ecco i tuoi prossimi intervalli di preghiera:"
 
-#: campaign-functions/cron-schedule.php:162
-#: campaign-functions/send-email-utility.php:121
-msgid "Times are shown according to: %s time"
-msgstr "Gli intervalli sono mostrati in base all'ora di %s"
-
-#: campaign-functions/cron-schedule.php:167
-#: campaign-functions/send-email-utility.php:125
-msgid "Click here to manage your account and time commitments"
-msgstr "Clicca qui per gestire il tuo account e i tuoi intervalli"
-
-#: campaign-functions/send-email-utility.php:82
-msgid "Registered to pray with us!"
-msgstr "Registrato per pregare con noi!"
-
-#: campaign-functions/send-email-utility.php:110
-msgid ""
-"Thank you for joining us in strategic prayer for a disciple making movement! "
-"You're one click away from finishing your registration."
-msgstr ""
-"Grazie per esserti unito a noi nella preghiera strategica per un movimento "
-"di discepoli che fanno discepoli! Sei a un clic dal completamento della "
-"registrazione."
-
-#: campaign-functions/send-email-utility.php:111
-msgid "Click here to verify your email address and confirm your prayer times:"
-msgstr ""
-"Clicca qui per verificare il tuo indirizzo email e confermare i tuoi "
-"intervalli di preghiera:"
-
-#: campaign-functions/send-email-utility.php:113
-msgid "Verify your account"
-msgstr "Verifica il tuo account"
-
-#: campaign-functions/send-email-utility.php:116
-msgid "Or open this link:"
-msgstr "Oppure apri questo link:"
-
-#: campaign-functions/send-email-utility.php:119
-msgid "Here are the times you have committed to pray:"
-msgstr "Ecco gli intervalli in cui ti sei impegnato a pregare:"
-
-#: campaign-functions/send-email-utility.php:168
-msgid "Registration Confirmation"
-msgstr "Conferma di registrazione"
-
-#: campaign-functions/send-email-utility.php:171
-msgid "Thank you for signing up to pray!"
-msgstr "Grazie per esserti iscritto per pregare!"
-
-#: campaign-functions/send-email-utility.php:172
-msgid ""
-"We have some time before the campaign starts. We will send you another email "
-"a couple months before the first day asking you to choose specific times to "
-"pray. Working together we will cover the region in 24/7 prayer."
-msgstr ""
-"Abbiamo un po' di tempo prima dell'inizio della campagna. Ti invieremo "
-"un'altra email un paio di mesi prima del primo giorno chiedendoti di "
-"scegliere intervalli specifici per pregare. Lavorando insieme copriremo la "
-"nazione con preghiera 24 ore su 24, 7 giorni su 7."
-
-#: campaign-functions/send-email-utility.php:173
-msgid "If you know your schedule already you can choose your times here:"
-msgstr "Se conosci già i tuoi impegni puoi scegliere i tuoi intervalli qui:"
-
-#: campaign-functions/send-email-utility.php:256
+#: campaign-functions/send-email-utility.php:286
 msgid "Continue Praying?"
 msgstr "Continua a pregare?"
 
-#: campaign-functions/send-email-utility.php:259
+#: campaign-functions/send-email-utility.php:289
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
@@ -131,88 +95,88 @@ msgstr ""
 "Sono passate due settimane dal tuo ultimo intervallo di preghiera. Vuoi "
 "continuare a pregare?"
 
-#: campaign-functions/send-email-utility.php:260
+#: campaign-functions/send-email-utility.php:290
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Iscriviti per altri intervalli di preghiera o prolunga il tuo intervallo "
 "ricorrente qui:"
 
-#: campaign-functions/send-email-utility.php:262
+#: campaign-functions/send-email-utility.php:293
 msgid "Thank you"
 msgstr "Grazie"
 
-#: campaign-functions/send-email-utility.php:332
 #: campaign-functions/send-email-utility.php:362
+#: campaign-functions/send-email-utility.php:392
 #, fuzzy
 #| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Preghiera strategica per un movimento di discepoli che fanno discepoli"
 
-#: campaign-functions/send-email-utility.php:334
 #: campaign-functions/send-email-utility.php:364
+#: campaign-functions/send-email-utility.php:394
 #, fuzzy
 #| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement"
 msgstr "Preghiera strategica per un movimento di discepoli che fanno discepoli"
 
-#: campaign-functions/send-email-utility.php:339
 #: campaign-functions/send-email-utility.php:369
+#: campaign-functions/send-email-utility.php:399
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:342
 #: campaign-functions/send-email-utility.php:372
+#: campaign-functions/send-email-utility.php:402
 #, fuzzy
 #| msgctxt "Thank you for joining us in prayer for the French in France."
 #| msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Grazie per esserti unito a noi in preghiera per i %1$s in %2$s."
 
-#: campaign-functions/send-email-utility.php:345
+#: campaign-functions/send-email-utility.php:375
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:348
+#: campaign-functions/send-email-utility.php:378
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:382
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "See Prayer Stats"
 msgstr "Seleziona un intervallo di preghiera"
 
-#: campaign-functions/send-email-utility.php:354
-#: campaign-functions/send-email-utility.php:390
+#: campaign-functions/send-email-utility.php:384
+#: campaign-functions/send-email-utility.php:420
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:375
+#: campaign-functions/send-email-utility.php:405
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:379
+#: campaign-functions/send-email-utility.php:409
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:386
+#: campaign-functions/send-email-utility.php:416
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:388
+#: campaign-functions/send-email-utility.php:418
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -251,12 +215,12 @@ msgid "day"
 msgstr "giorni"
 
 #: campaign-functions/time-utilities.php:184
-#: porches/generic/site/home-body.php:172
-#: porches/generic/site/home-body.php:179
-#: porches/ongoing/site/home-body.php:168
-#: porches/ongoing/site/home-body.php:175
-#: porches/ramadan/site/home-body.php:162
-#: porches/ramadan/site/home-body.php:169 shortcodes/ongoing.php:75
+#: porches/generic/site/home-body.php:175
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:171
+#: porches/ongoing/site/home-body.php:178
+#: porches/ramadan/site/home-body.php:165
+#: porches/ramadan/site/home-body.php:172 shortcodes/ongoing.php:76
 msgid "days"
 msgstr "giorni"
 
@@ -266,22 +230,22 @@ msgid "My Prayer Times"
 msgstr "I miei intervalli di preghiera"
 
 #: magic-links/subscription-management/subscription-management.php:108
-#: shortcodes/24hour.php:29 shortcodes/ongoing.php:70
+#: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
 msgid "Select a time"
 msgstr "Seleziona un intervallo"
 
 #: magic-links/subscription-management/subscription-management.php:109
-#: shortcodes/24hour.php:30
+#: shortcodes/24hour.php:31
 msgid "fully covered once"
 msgstr "completamente coperto una volta"
 
 #: magic-links/subscription-management/subscription-management.php:110
-#: shortcodes/24hour.php:31
+#: shortcodes/24hour.php:32
 msgid "fully covered %1$s times"
 msgstr "completamente coperto %1$s volte"
 
 #: magic-links/subscription-management/subscription-management.php:111
-#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
+#: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s per %2$s minuti."
@@ -295,7 +259,7 @@ msgid "Change daily time"
 msgstr "Cambia intervallo quotidiano"
 
 #: magic-links/subscription-management/subscription-management.php:114
-#: shortcodes/24hour.php:35
+#: shortcodes/24hour.php:36
 #, fuzzy
 #| msgctxt "Jun, Jul, Aug covered"
 #| msgid "covered"
@@ -304,19 +268,19 @@ msgid "%s covered"
 msgstr "coperto"
 
 #: magic-links/subscription-management/subscription-management.php:115
-#: shortcodes/24hour.php:36
+#: shortcodes/24hour.php:37
 msgctxt "on 5 days"
 msgid "On %s days"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:116
-#: shortcodes/24hour.php:37
+#: shortcodes/24hour.php:38
 msgctxt "and 5 more"
 msgid "and %s more"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:117
-#: shortcodes/24hour.php:38
+#: shortcodes/24hour.php:39
 #, fuzzy
 #| msgid "Prayer Time"
 msgid "Pray this time"
@@ -327,7 +291,7 @@ msgid "Your prayer times have been verified!"
 msgstr "I tuoi intervalli di preghiera sono stati verificati!"
 
 #: magic-links/subscription-management/subscription-management.php:285
-#: shortcodes/24hour.php:269 shortcodes/ongoing.php:283
+#: parts/components.php:175
 msgid "Change your timezone:"
 msgstr "Cambia il tuo fuso orario:"
 
@@ -339,13 +303,13 @@ msgstr "Cambia il tuo fuso orario:"
 #: magic-links/subscription-management/subscription-management.php:547
 #: magic-links/subscription-management/subscription-management.php:563
 #: magic-links/subscription-management/subscription-management.php:619
-#: shortcodes/24hour.php:287 shortcodes/ongoing.php:301
+#: parts/components.php:196
 msgid "Cancel"
 msgstr "Annulla"
 
 #: magic-links/subscription-management/subscription-management.php:305
 #: magic-links/subscription-management/subscription-management.php:526
-#: shortcodes/24hour.php:290 shortcodes/ongoing.php:304
+#: parts/components.php:199
 msgid "Select"
 msgstr "Seleziona"
 
@@ -362,7 +326,7 @@ msgid "Download Calendar"
 msgstr "Scarica il Calendario"
 
 #: magic-links/subscription-management/subscription-management.php:324
-#: shortcodes/24hour.php:132
+#: shortcodes/24hour.php:133
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "Help us cover these prayer times"
@@ -373,21 +337,21 @@ msgid "My commitments"
 msgstr "I miei intervalli"
 
 #: magic-links/subscription-management/subscription-management.php:333
-#: shortcodes/24hour.php:172 shortcodes/ongoing.php:187
+#: shortcodes/24hour.php:173 shortcodes/ongoing.php:188
 msgid "Prayer Time"
 msgstr "Tempo di preghiera"
 
 #: magic-links/subscription-management/subscription-management.php:335
 #: magic-links/subscription-management/subscription-management.php:444
-#: shortcodes/24hour.php:174 shortcodes/24hour.php:207
-#: shortcodes/ongoing.php:189 shortcodes/ongoing.php:222
+#: parts/components.php:233 shortcodes/24hour.php:175
+#: shortcodes/ongoing.php:190
 msgid "Daily Time"
 msgstr "Intervallo giornaliero"
 
 #: magic-links/subscription-management/subscription-management.php:339
 #: magic-links/subscription-management/subscription-management.php:448
-#: shortcodes/24hour.php:178 shortcodes/24hour.php:211
-#: shortcodes/ongoing.php:193 shortcodes/ongoing.php:226
+#: parts/components.php:237 shortcodes/24hour.php:179
+#: shortcodes/ongoing.php:194
 msgid "For how long"
 msgstr "Per quanto tempo"
 
@@ -398,8 +362,8 @@ msgstr "I tuoi nuovi intervalli di preghiera sono stati salvati."
 
 #: magic-links/subscription-management/subscription-management.php:360
 #: magic-links/subscription-management/subscription-management.php:481
-#: shortcodes/24hour.php:185 shortcodes/24hour.php:229
-#: shortcodes/ongoing.php:200 shortcodes/ongoing.php:244
+#: parts/components.php:255 shortcodes/24hour.php:186
+#: shortcodes/ongoing.php:201
 msgid "Confirm Times"
 msgstr "Conferma Intervalli"
 
@@ -441,41 +405,39 @@ msgid "Delete"
 msgstr "Elimina"
 
 #: magic-links/subscription-management/subscription-management.php:435
-#: shortcodes/24hour.php:197 shortcodes/ongoing.php:212
+#: parts/components.php:223
 msgid "Select a day and choose a time"
 msgstr "Seleziona un giorno e scegli un intervallo"
 
 #: magic-links/subscription-management/subscription-management.php:442
-#: shortcodes/24hour.php:205 shortcodes/ongoing.php:220
+#: parts/components.php:231
 msgid "Select a prayer time"
 msgstr "Seleziona un intervallo di preghiera"
 
 #: magic-links/subscription-management/subscription-management.php:452
-#: shortcodes/24hour.php:215 shortcodes/ongoing.php:230
+#: parts/components.php:241
 msgid "Add prayer time"
 msgstr "Aggiungi un intervallo di preghiera"
 
 #: magic-links/subscription-management/subscription-management.php:453
-#: shortcodes/24hour.php:216 shortcodes/ongoing.php:231
+#: parts/components.php:242
 msgid "Time added"
 msgstr "Intervallo aggiunto"
 
 #: magic-links/subscription-management/subscription-management.php:460
-#: shortcodes/24hour.php:223 shortcodes/24hour.php:245
-#: shortcodes/ongoing.php:238 shortcodes/ongoing.php:260
+#: parts/components.php:71 parts/components.php:249
 msgid "Selected Times"
 msgstr "Intervalli selezionati"
 
 #: magic-links/subscription-management/subscription-management.php:462
-#: shortcodes/24hour.php:225 shortcodes/ongoing.php:240
+#: parts/components.php:251
 msgid "No selected Time"
 msgstr "Nessun intervallo selezionato"
 
 #: magic-links/subscription-management/subscription-management.php:485
-#: shortcodes/24hour.php:142 shortcodes/24hour.php:165
-#: shortcodes/24hour.php:194 shortcodes/24hour.php:239
-#: shortcodes/ongoing.php:159 shortcodes/ongoing.php:182
-#: shortcodes/ongoing.php:209 shortcodes/ongoing.php:254
+#: parts/components.php:28 parts/components.php:115 parts/components.php:220
+#: shortcodes/24hour.php:143 shortcodes/24hour.php:166
+#: shortcodes/ongoing.php:160 shortcodes/ongoing.php:183
 msgid "Back"
 msgstr "Indietro"
 
@@ -496,7 +458,7 @@ msgid "Extend my prayer commitments until:"
 msgstr "Estendi i miei intervalli di preghiera fino a:"
 
 #: magic-links/subscription-management/subscription-management.php:566
-#: parts/components.php:25
+#: parts/components.php:31
 msgid "Confirm"
 msgstr "Conferma"
 
@@ -537,24 +499,18 @@ msgstr "Questo non può essere annullato."
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Questa iscrizione è terminata o non è configurata correttamente."
 
-#: parts/components.php:29 parts/components.php:33
+#: parts/components.php:34 parts/components.php:38
 msgid "Name"
 msgstr "Nome"
 
-#: parts/components.php:37 parts/components.php:41 parts/components.php:42
+#: parts/components.php:42 parts/components.php:46 parts/components.php:47
 #: porches/generic/site/stats.php:264
 msgid "Email"
 msgstr "Email"
 
-#: parts/components.php:39
+#: parts/components.php:44
 msgid "Your email is required."
 msgstr "È necessario inserire il tuo indirizzo email."
-
-#: parts/components.php:49
-msgid "Receive Prayer Time Notifications (email verification needed)."
-msgstr ""
-"Ricevi notifiche per i tuoi intervalli di preghiera (è necessario verificare "
-"il tuo indirizzo e-mail)."
 
 #: parts/components.php:55
 msgid ""
@@ -562,15 +518,55 @@ msgid ""
 "from GospelAmbition.org."
 msgstr ""
 
-#: parts/components.php:59
+#: parts/components.php:60
 #, fuzzy
 #| msgid "Your prayer times have been verified!"
 msgid "No prayer times selected"
 msgstr "I tuoi intervalli di preghiera sono stati verificati!"
 
-#: parts/components.php:63
-msgid "Submit Your Prayer Commitment"
-msgstr "Invia i tuoi intervalli di preghiera"
+#: parts/components.php:64
+msgid "Verify and submit"
+msgstr ""
+
+#: parts/components.php:123
+msgid "Confirmation Code:"
+msgstr ""
+
+#: parts/components.php:138 porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
+msgid "Submit"
+msgstr "Invia"
+
+#: parts/components.php:155
+msgid "Success!"
+msgstr ""
+
+#: parts/components.php:156
+msgid "Your registration was successful."
+msgstr "La tua registrazione è andata a buon fine."
+
+#: parts/components.php:158
+#, fuzzy
+#| msgid "In the email is a link to manage your prayer times."
+msgid "Check you email for details and access to manage your prayer times."
+msgstr "Nell'e-mail c'è un link per gestire i tuoi intervalli di preghiera."
+
+#: parts/components.php:162 parts/components.php:164
+msgid "Return"
+msgstr "Ritorna"
+
+#: parts/components.php:208
+msgid "We are not longer looking for sign ups"
+msgstr "Non stiamo accettando altre iscrizioni"
+
+#: parts/components.php:209
+msgid "Thanks for praying with us!"
+msgstr "Grazie per aver pregato con noi!"
+
+#: parts/components.php:245 shortcodes/24hour.php:183
+#: shortcodes/ongoing.php:198
+msgid "Showing times for:"
+msgstr "Visualizzazione degli intervalli per:"
 
 #: porches/generic/dt-generic-porch-settings.php:59
 msgid "Strategic prayer for a Disciple Making Movement"
@@ -586,11 +582,11 @@ msgstr ""
 "Vogliamo coprire questa nazione con preghiera continua 24 ore su 24, 7 "
 "giorni su 7."
 
-#: porches/generic/dt-generic-porch-settings.php:86
+#: porches/generic/dt-generic-porch-settings.php:94
 msgid "Extraordinary Prayer"
 msgstr "Preghiera Straordinaria"
 
-#: porches/generic/dt-generic-porch-settings.php:95
+#: porches/generic/dt-generic-porch-settings.php:103
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
@@ -598,11 +594,11 @@ msgstr ""
 "Ogni movimento nella storia di discepoli che fanno discepoli è avvenuto nel "
 "contesto della preghiera straordinaria."
 
-#: porches/generic/dt-generic-porch-settings.php:104
+#: porches/generic/dt-generic-porch-settings.php:120
 msgid "Movement Focused"
 msgstr "Incentrato su un movimento"
 
-#: porches/generic/dt-generic-porch-settings.php:113
+#: porches/generic/dt-generic-porch-settings.php:129
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
@@ -610,11 +606,11 @@ msgstr ""
 "Unisciti a noi nel chiedere, cercare e bussare affinché si formino fiumi di "
 "discepoli e chiese."
 
-#: porches/generic/dt-generic-porch-settings.php:122
+#: porches/generic/dt-generic-porch-settings.php:146
 msgid "24/7 Every Day"
 msgstr "24 su 24, 7 giorni su 7"
 
-#: porches/generic/dt-generic-porch-settings.php:131
+#: porches/generic/dt-generic-porch-settings.php:155
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
@@ -622,22 +618,22 @@ msgstr ""
 "Scegli un intervallo di 15 minuti (o anche più intervalli) in cui puoi "
 "pregare ogni giorno. Invita anche qualcun altro a registrarsi."
 
-#: porches/generic/dt-generic-porch-settings.php:149
-#: porches/generic/dt-generic-porch-settings.php:158
+#: porches/generic/dt-generic-porch-settings.php:173
+#: porches/generic/dt-generic-porch-settings.php:182
 #: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
 msgid "Prayer Fuel"
 msgstr "Propellente per la preghiera"
 
-#: porches/generic/dt-generic-porch-settings.php:167
+#: porches/generic/dt-generic-porch-settings.php:191
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
 "Usa queste risorse per aiutarti a pregare in modo specifico ogni giorno."
 
-#: porches/generic/dt-generic-porch-settings.php:176
+#: porches/generic/dt-generic-porch-settings.php:200
 msgid "Today's Prayer Fuel"
 msgstr "Propellente di oggi per la preghiera"
 
-#: porches/generic/dt-generic-porch-settings.php:185
+#: porches/generic/dt-generic-porch-settings.php:209
 msgid "All Days"
 msgstr "Tutti i giorni"
 
@@ -685,143 +681,110 @@ msgstr ""
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:69
-#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
-msgid "Submit"
-msgstr "Invia"
-
 #: porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:283
 msgid "Thank You"
 msgstr "Grazie"
 
-#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:196
+#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:199
 #: porches/generic/site/top-section.php:93
-#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:192
-#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:186
+#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:195
+#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:189
 msgid "Sign Up to Pray"
 msgstr "Registrati per pregare"
 
-#: porches/generic/site/home-body.php:158
-#: porches/ongoing/site/home-body.php:154
+#: porches/generic/site/home-body.php:161
+#: porches/ongoing/site/home-body.php:157
 msgctxt "Campaign Name is Finished"
 msgid "%s is Finished"
 msgstr "%s è finito"
 
-#: porches/generic/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:167
+#: porches/generic/site/home-body.php:174
+#: porches/ongoing/site/home-body.php:170
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
 msgstr "%s finisce tra"
 
-#: porches/generic/site/home-body.php:173
-#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:209
-#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:163
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:176
+#: porches/generic/site/home-body.php:183 porches/generic/site/stats.php:209
+#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:172
+#: porches/ongoing/site/home-body.php:179
+#: porches/ramadan/site/home-body.php:166
+#: porches/ramadan/site/home-body.php:173
 msgid "hours"
 msgstr "ore"
 
-#: porches/generic/site/home-body.php:174
-#: porches/generic/site/home-body.php:181
-#: porches/ongoing/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:177
-#: porches/ramadan/site/home-body.php:164
-#: porches/ramadan/site/home-body.php:171
+#: porches/generic/site/home-body.php:177
+#: porches/generic/site/home-body.php:184
+#: porches/ongoing/site/home-body.php:173
+#: porches/ongoing/site/home-body.php:180
+#: porches/ramadan/site/home-body.php:167
+#: porches/ramadan/site/home-body.php:174
 msgid "minutes"
 msgstr "minuti"
 
-#: porches/generic/site/home-body.php:175
-#: porches/generic/site/home-body.php:182
-#: porches/ongoing/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:178
-#: porches/ramadan/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:172
+#: porches/generic/site/home-body.php:178
+#: porches/generic/site/home-body.php:185
+#: porches/ongoing/site/home-body.php:174
+#: porches/ongoing/site/home-body.php:181
+#: porches/ramadan/site/home-body.php:168
+#: porches/ramadan/site/home-body.php:175
 msgid "seconds"
 msgstr "secondi"
 
-#: porches/generic/site/home-body.php:178
-#: porches/ongoing/site/home-body.php:174
+#: porches/generic/site/home-body.php:181
+#: porches/ongoing/site/home-body.php:177
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Begins In"
 msgstr "%s Inizia tra"
 
-#: porches/generic/site/home-body.php:223
-#: porches/ramadan/site/home-body.php:222
+#: porches/generic/site/home-body.php:226
+#: porches/ramadan/site/home-body.php:225
 msgid "Days"
 msgstr "Giorni"
 
-#: porches/generic/site/home-body.php:227
-#: porches/ongoing/site/home-body.php:215
-#: porches/ramadan/site/home-body.php:226
+#: porches/generic/site/home-body.php:230
+#: porches/ongoing/site/home-body.php:218
+#: porches/ramadan/site/home-body.php:229
 msgid "Next"
 msgstr "Prossimo"
 
-#: porches/generic/site/home-body.php:228
-#: porches/ongoing/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:227
+#: porches/generic/site/home-body.php:231
+#: porches/ongoing/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
 msgid "Month"
 msgstr "Mese"
 
-#: porches/generic/site/home-body.php:250
-#: porches/ramadan/site/home-body.php:249
+#: porches/generic/site/home-body.php:253
+#: porches/ramadan/site/home-body.php:252
 msgid "Hours of Prayer"
 msgstr "Ore di preghiera"
 
-#: porches/generic/site/home-body.php:255
-#: porches/ongoing/site/home-body.php:233
-#: porches/ramadan/site/home-body.php:254
+#: porches/generic/site/home-body.php:258
+#: porches/ongoing/site/home-body.php:236
+#: porches/ramadan/site/home-body.php:257
 msgid "Hours"
 msgstr "Ore"
 
-#: porches/generic/site/home-body.php:273 porches/generic/site/stats.php:181
-#: porches/ramadan/site/home-body.php:272
+#: porches/generic/site/home-body.php:276 porches/generic/site/stats.php:181
+#: porches/ramadan/site/home-body.php:275
 msgid "Prayer Commitments Needed"
 msgstr "Intervalli di preghiera ancora necessari"
 
-#: porches/generic/site/home-body.php:278
-#: porches/ongoing/site/home-body.php:248
+#: porches/generic/site/home-body.php:281
+#: porches/ongoing/site/home-body.php:251
 msgid "Hours Remaining"
 msgstr "Ore rimanenti"
 
-#: porches/generic/site/home-body.php:299
-#: porches/ongoing/site/home-body.php:267
-#: porches/ramadan/site/home-body.php:298
+#: porches/generic/site/home-body.php:302
+#: porches/ongoing/site/home-body.php:270
+#: porches/ramadan/site/home-body.php:301
 msgid "View All"
 msgstr "Mostra tutto"
 
 #: porches/generic/site/post-list-body.php:133
 msgid "Read"
 msgstr "Leggi"
-
-#: porches/generic/site/sign-up-confirmation.php:105 shortcodes/24hour.php:254
-#: shortcodes/ongoing.php:268
-msgid "Check your email"
-msgstr "Controlla la tua e-mail"
-
-#: porches/generic/site/sign-up-confirmation.php:106 shortcodes/24hour.php:255
-#: shortcodes/ongoing.php:269
-msgid "Your registration was successful."
-msgstr "La tua registrazione è andata a buon fine."
-
-#: porches/generic/site/sign-up-confirmation.php:108 shortcodes/24hour.php:257
-#: shortcodes/ongoing.php:271
-msgid ""
-"Click on the link included in the email to verify your commitment and "
-"receive prayer time notifications!"
-msgstr ""
-"Clicca sul link incluso nell'e-mail per verificare i tuoi intervalli e per "
-"ricevere notifiche per i tuoi intervalli di preghiera!"
-
-#: porches/generic/site/sign-up-confirmation.php:111 shortcodes/24hour.php:260
-#: shortcodes/ongoing.php:274
-msgid "In the email is a link to manage your prayer times."
-msgstr "Nell'e-mail c'è un link per gestire i tuoi intervalli di preghiera."
-
-#: porches/generic/site/sign-up-confirmation.php:114
-msgid "Return"
-msgstr "Ritorna"
 
 #: porches/generic/site/stats.php:138
 msgctxt "Thank you for joining us in prayer for the French in France."
@@ -894,11 +857,11 @@ msgstr "Intervallo aggiunto"
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:380
+#: porches/generic/site/stats.php:381
 msgid "More Prayer Opportunities"
 msgstr "Altre opportunità di preghiera"
 
-#: porches/generic/site/stats.php:384
+#: porches/generic/site/stats.php:385
 #, fuzzy
 #| msgid ""
 #| "Would you like to hear about other prayer efforts and opportunities with "
@@ -960,107 +923,90 @@ msgstr ""
 "l'intero Corano (circa un decimo della lunghezza della Bibbia). Questa "
 "ricerca sincera lo rende un momento strategico per noi di pregare per loro."
 
-#: porches/ramadan/site/home-body.php:148
+#: porches/ramadan/site/home-body.php:151
 msgid "Ramadan is Finished"
 msgstr "Il Ramadan è finito"
 
-#: porches/ramadan/site/home-body.php:161
+#: porches/ramadan/site/home-body.php:164
 msgid "Ramadan Ends ..."
 msgstr "Il Ramadan finisce..."
 
-#: porches/ramadan/site/home-body.php:168
+#: porches/ramadan/site/home-body.php:171
 msgid "Ramadan Begins ..."
 msgstr "Il Ramadan inizia..."
 
-#: porches/ramadan/site/home-body.php:193
+#: porches/ramadan/site/home-body.php:196
 msgid "here"
 msgstr "qui"
 
-#: porches/ramadan/site/home-body.php:277
+#: porches/ramadan/site/home-body.php:280
 msgid "More Hours to be covered"
 msgstr "Altre ore da coprire"
 
-#: shortcodes/24hour.php:32 shortcodes/ongoing.php:72
+#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
 msgid "covered once"
 msgstr "coperto una volta"
 
-#: shortcodes/24hour.php:33 shortcodes/ongoing.php:73
+#: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
 msgid "covered %1$s times"
 msgstr "coperto %1$s volte"
 
-#: shortcodes/24hour.php:106
+#: shortcodes/24hour.php:107
 msgid "Percentage covered in prayer"
 msgstr "Percentuale coperta dalla preghiera"
 
-#: shortcodes/24hour.php:107
+#: shortcodes/24hour.php:108
 #, fuzzy
 #| msgid "Time Committed"
 msgctxt "12.3 years committed"
 msgid "% committed"
 msgstr "Tempo già riservato"
 
-#: shortcodes/24hour.php:121 shortcodes/ongoing.php:142
+#: shortcodes/24hour.php:122 shortcodes/ongoing.php:143
 msgid "Loading prayer campaign data..."
 msgstr "Caricamento dei dati della campagna di preghiera..."
 
-#: shortcodes/24hour.php:128 shortcodes/ongoing.php:149
+#: shortcodes/24hour.php:129 shortcodes/ongoing.php:150
 msgid "Choose Prayer Times"
 msgstr "Scegli Intervalli di preghiera"
 
-#: shortcodes/24hour.php:144 shortcodes/ongoing.php:161
+#: shortcodes/24hour.php:145 shortcodes/ongoing.php:162
 msgid "Select an option"
 msgstr "Seleziona un'opzione"
 
-#: shortcodes/24hour.php:147 shortcodes/ongoing.php:164
+#: shortcodes/24hour.php:148 shortcodes/ongoing.php:165
 msgid "Pray every day at the same time"
 msgstr "Prega ogni giorno alla stessa ora"
 
-#: shortcodes/24hour.php:149 shortcodes/ongoing.php:166
+#: shortcodes/24hour.php:150 shortcodes/ongoing.php:167
 msgid "Example: Everyday at 4pm for 15mins"
 msgstr "Esempio: tutti i giorni alle 16:00 per 15 minuti"
 
-#: shortcodes/24hour.php:152 shortcodes/ongoing.php:169
+#: shortcodes/24hour.php:153 shortcodes/ongoing.php:170
 msgid "Select days and times to pray"
 msgstr "Scegli giorni e orari per pregare"
 
-#: shortcodes/24hour.php:154 shortcodes/ongoing.php:171
+#: shortcodes/24hour.php:155 shortcodes/ongoing.php:172
 msgid "Example: Monday 12th at 6pm for 15mins"
 msgstr "Esempio: lunedì il 12 alle 18:00 per 15 minuti"
 
-#: shortcodes/24hour.php:169
+#: shortcodes/24hour.php:170
 msgid "Please note that daylight savings time may affect your prayer times."
 msgstr ""
 "Tieni presente che l'ora legale potrebbe scombinare i tuoi intervalli di "
 "preghiera."
 
-#: shortcodes/24hour.php:182 shortcodes/24hour.php:219
-#: shortcodes/ongoing.php:197 shortcodes/ongoing.php:234
-msgid "Showing times for:"
-msgstr "Visualizzazione degli intervalli per:"
-
-#: shortcodes/24hour.php:263 shortcodes/ongoing.php:277
-msgid "OK"
-msgstr "OK"
-
-#: shortcodes/24hour.php:296 shortcodes/ongoing.php:310
-msgid "We are not longer looking for sign ups"
-msgstr "Non stiamo accettando altre iscrizioni"
-
-#: shortcodes/24hour.php:297 shortcodes/ongoing.php:311
-msgid "Thanks for praying with us!"
-msgstr "Grazie per aver pregato con noi!"
-
-#: shortcodes/ongoing.php:69
+#: shortcodes/ongoing.php:70
 msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
 msgid "Everyday at %1$s for %2$s until %3$s"
 msgstr "Tutti i giorni alle %1$s per %2$s fino al %3$s"
 
-#: shortcodes/ongoing.php:71
+#: shortcodes/ongoing.php:72
 msgctxt "Jun, Jul, Aug covered"
 msgid "covered"
 msgstr "coperto"
 
-#: shortcodes/ongoing.php:185
+#: shortcodes/ongoing.php:186
 msgid ""
 "Chose a time to pray everyday for the next 3 months. Near the end you'll "
 "have the option to sign up for more."
@@ -1080,6 +1026,66 @@ msgstr "Tempo di preghiera: %s min"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Sto pregando ora..."
+
+#~ msgid ""
+#~ "Thank you for joining us in strategic prayer for a disciple making "
+#~ "movement! You're one click away from finishing your registration."
+#~ msgstr ""
+#~ "Grazie per esserti unito a noi nella preghiera strategica per un "
+#~ "movimento di discepoli che fanno discepoli! Sei a un clic dal "
+#~ "completamento della registrazione."
+
+#~ msgid ""
+#~ "Click here to verify your email address and confirm your prayer times:"
+#~ msgstr ""
+#~ "Clicca qui per verificare il tuo indirizzo email e confermare i tuoi "
+#~ "intervalli di preghiera:"
+
+#~ msgid "Verify your account"
+#~ msgstr "Verifica il tuo account"
+
+#~ msgid "Or open this link:"
+#~ msgstr "Oppure apri questo link:"
+
+#~ msgid "Registration Confirmation"
+#~ msgstr "Conferma di registrazione"
+
+#~ msgid "Thank you for signing up to pray!"
+#~ msgstr "Grazie per esserti iscritto per pregare!"
+
+#~ msgid ""
+#~ "We have some time before the campaign starts. We will send you another "
+#~ "email a couple months before the first day asking you to choose specific "
+#~ "times to pray. Working together we will cover the region in 24/7 prayer."
+#~ msgstr ""
+#~ "Abbiamo un po' di tempo prima dell'inizio della campagna. Ti invieremo "
+#~ "un'altra email un paio di mesi prima del primo giorno chiedendoti di "
+#~ "scegliere intervalli specifici per pregare. Lavorando insieme copriremo "
+#~ "la nazione con preghiera 24 ore su 24, 7 giorni su 7."
+
+#~ msgid "If you know your schedule already you can choose your times here:"
+#~ msgstr "Se conosci già i tuoi impegni puoi scegliere i tuoi intervalli qui:"
+
+#~ msgid "Receive Prayer Time Notifications (email verification needed)."
+#~ msgstr ""
+#~ "Ricevi notifiche per i tuoi intervalli di preghiera (è necessario "
+#~ "verificare il tuo indirizzo e-mail)."
+
+#~ msgid "Submit Your Prayer Commitment"
+#~ msgstr "Invia i tuoi intervalli di preghiera"
+
+#~ msgid "Check your email"
+#~ msgstr "Controlla la tua e-mail"
+
+#~ msgid ""
+#~ "Click on the link included in the email to verify your commitment and "
+#~ "receive prayer time notifications!"
+#~ msgstr ""
+#~ "Clicca sul link incluso nell'e-mail per verificare i tuoi intervalli e "
+#~ "per ricevere notifiche per i tuoi intervalli di preghiera!"
+
+#~ msgid "OK"
+#~ msgstr "OK"
 
 #~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
 #~ msgstr ""
