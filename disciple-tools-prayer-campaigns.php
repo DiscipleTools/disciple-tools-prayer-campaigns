@@ -23,6 +23,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 add_filter( 'dt_plugins', function ( $plugins ){
     $plugin_data = get_file_data( __FILE__, [ 'Version' => 'Version', 'Plugin Name' => 'Plugin Name' ], false );
@@ -42,7 +43,7 @@ add_filter( 'dt_plugins', function ( $plugins ){
  * @return object|bool
  */
 function dt_prayer_campaigns() {
-    $dt_prayer_campaigns_required_dt_theme_version = '1.8.1';
+    $dt_prayer_campaigns_required_dt_theme_version = '1.43.0';
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
 
@@ -347,14 +348,12 @@ add_action( 'plugins_loaded', function (){
      * Plugin Releases and updates
      */
     if ( is_admin() ){
-        if ( !class_exists( 'Puc_v4_Factory' ) && file_exists( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' ) ) {
-            require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
-        }
+        require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
 
-        if ( class_exists( 'Puc_v4_Factory' ) ) {
+        if ( class_exists( 'PucFactory' ) ) {
             $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
 
-            Puc_v4_Factory::buildUpdateChecker(
+            PucFactory::buildUpdateChecker(
                 $hosted_json,
                 __FILE__,
                 'disciple-tools-prayer-campaigns' // change this token
