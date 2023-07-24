@@ -350,7 +350,7 @@ add_action( 'plugins_loaded', function (){
     if ( is_admin() ){
         require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
 
-        if ( class_exists( 'PucFactory' ) ) {
+        if ( class_exists( '\YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
             $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
 
             PucFactory::buildUpdateChecker(
