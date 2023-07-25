@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 class DT_Porch_Admin_Tab_Base {
 
     private $theme_file_dir;
+    private string $tab;
 
     public function __construct( string $settings_key, string $porch_dir ) {
         $this->tab = $settings_key;
