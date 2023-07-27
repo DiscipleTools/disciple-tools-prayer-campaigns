@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-07-03T07:36:54+00:00\n"
+"POT-Creation-Date: 2023-07-27T09:16:33+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -212,12 +212,12 @@ msgid "day"
 msgstr "день"
 
 #: campaign-functions/time-utilities.php:184
-#: porches/generic/site/home-body.php:175
-#: porches/generic/site/home-body.php:182
-#: porches/ongoing/site/home-body.php:171
-#: porches/ongoing/site/home-body.php:178
-#: porches/ramadan/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:172 shortcodes/ongoing.php:76
+#: porches/generic/site/home-body.php:176
+#: porches/generic/site/home-body.php:183
+#: porches/ongoing/site/home-body.php:173
+#: porches/ongoing/site/home-body.php:180
+#: porches/ramadan/site/home-body.php:166
+#: porches/ramadan/site/home-body.php:173 shortcodes/ongoing.php:76
 msgid "days"
 msgstr "дней"
 
@@ -677,99 +677,99 @@ msgstr "Сколько людей помолилось сегодня (вклю�
 msgid "Thank You"
 msgstr "Спасибо"
 
-#: porches/generic/site/home-body.php:92 porches/generic/site/home-body.php:199
+#: porches/generic/site/home-body.php:94 porches/generic/site/home-body.php:200
 #: porches/generic/site/top-section.php:93
-#: porches/ongoing/site/home-body.php:87 porches/ongoing/site/home-body.php:195
-#: porches/ramadan/site/home-body.php:82 porches/ramadan/site/home-body.php:189
+#: porches/ongoing/site/home-body.php:89 porches/ongoing/site/home-body.php:197
+#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:190
 msgid "Sign Up to Pray"
 msgstr "Зарегистрироваться чтобы молиться"
 
-#: porches/generic/site/home-body.php:161
-#: porches/ongoing/site/home-body.php:157
+#: porches/generic/site/home-body.php:162
+#: porches/ongoing/site/home-body.php:159
 msgctxt "Campaign Name is Finished"
 msgid "%s is Finished"
 msgstr "%s завершено"
 
-#: porches/generic/site/home-body.php:174
-#: porches/ongoing/site/home-body.php:170
+#: porches/generic/site/home-body.php:175
+#: porches/ongoing/site/home-body.php:172
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
 msgstr "%s заканчивается через"
 
-#: porches/generic/site/home-body.php:176
-#: porches/generic/site/home-body.php:183 porches/generic/site/stats.php:209
-#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:172
-#: porches/ongoing/site/home-body.php:179
-#: porches/ramadan/site/home-body.php:166
-#: porches/ramadan/site/home-body.php:173
+#: porches/generic/site/home-body.php:177
+#: porches/generic/site/home-body.php:184 porches/generic/site/stats.php:209
+#: porches/generic/site/stats.php:219 porches/ongoing/site/home-body.php:174
+#: porches/ongoing/site/home-body.php:181
+#: porches/ramadan/site/home-body.php:167
+#: porches/ramadan/site/home-body.php:174
 msgid "hours"
 msgstr "часы"
 
-#: porches/generic/site/home-body.php:177
-#: porches/generic/site/home-body.php:184
-#: porches/ongoing/site/home-body.php:173
-#: porches/ongoing/site/home-body.php:180
-#: porches/ramadan/site/home-body.php:167
-#: porches/ramadan/site/home-body.php:174
+#: porches/generic/site/home-body.php:178
+#: porches/generic/site/home-body.php:185
+#: porches/ongoing/site/home-body.php:175
+#: porches/ongoing/site/home-body.php:182
+#: porches/ramadan/site/home-body.php:168
+#: porches/ramadan/site/home-body.php:175
 msgid "minutes"
 msgstr "минуты"
 
-#: porches/generic/site/home-body.php:178
-#: porches/generic/site/home-body.php:185
-#: porches/ongoing/site/home-body.php:174
-#: porches/ongoing/site/home-body.php:181
-#: porches/ramadan/site/home-body.php:168
-#: porches/ramadan/site/home-body.php:175
+#: porches/generic/site/home-body.php:179
+#: porches/generic/site/home-body.php:186
+#: porches/ongoing/site/home-body.php:176
+#: porches/ongoing/site/home-body.php:183
+#: porches/ramadan/site/home-body.php:169
+#: porches/ramadan/site/home-body.php:176
 msgid "seconds"
 msgstr "секунды"
 
-#: porches/generic/site/home-body.php:181
-#: porches/ongoing/site/home-body.php:177
+#: porches/generic/site/home-body.php:182
+#: porches/ongoing/site/home-body.php:179
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Begins In"
 msgstr "%s начинается через"
 
-#: porches/generic/site/home-body.php:226
-#: porches/ramadan/site/home-body.php:225
+#: porches/generic/site/home-body.php:227
+#: porches/ramadan/site/home-body.php:226
 msgid "Days"
 msgstr "Дни"
 
-#: porches/generic/site/home-body.php:230
-#: porches/ongoing/site/home-body.php:218
-#: porches/ramadan/site/home-body.php:229
+#: porches/generic/site/home-body.php:231
+#: porches/ongoing/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:230
 msgid "Next"
 msgstr "Дальше"
 
-#: porches/generic/site/home-body.php:231
-#: porches/ongoing/site/home-body.php:219
-#: porches/ramadan/site/home-body.php:230
+#: porches/generic/site/home-body.php:232
+#: porches/ongoing/site/home-body.php:221
+#: porches/ramadan/site/home-body.php:231
 msgid "Month"
 msgstr "Месяц"
 
-#: porches/generic/site/home-body.php:253
-#: porches/ramadan/site/home-body.php:252
+#: porches/generic/site/home-body.php:254
+#: porches/ramadan/site/home-body.php:253
 msgid "Hours of Prayer"
 msgstr "Часы молитвы"
 
-#: porches/generic/site/home-body.php:258
-#: porches/ongoing/site/home-body.php:236
-#: porches/ramadan/site/home-body.php:257
+#: porches/generic/site/home-body.php:259
+#: porches/ongoing/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:258
 msgid "Hours"
 msgstr "Часы"
 
-#: porches/generic/site/home-body.php:276 porches/generic/site/stats.php:181
-#: porches/ramadan/site/home-body.php:275
+#: porches/generic/site/home-body.php:277 porches/generic/site/stats.php:181
+#: porches/ramadan/site/home-body.php:276
 msgid "Prayer Commitments Needed"
 msgstr "Нужда в молитвенном посвящении"
 
-#: porches/generic/site/home-body.php:281
-#: porches/ongoing/site/home-body.php:251
+#: porches/generic/site/home-body.php:282
+#: porches/ongoing/site/home-body.php:253
 msgid "Hours Remaining"
 msgstr "Осталось часов"
 
-#: porches/generic/site/home-body.php:302
-#: porches/ongoing/site/home-body.php:270
-#: porches/ramadan/site/home-body.php:301
+#: porches/generic/site/home-body.php:303
+#: porches/ongoing/site/home-body.php:272
+#: porches/ramadan/site/home-body.php:302
 msgid "View All"
 msgstr "Посмотреть все"
 
@@ -913,23 +913,23 @@ msgstr ""
 "даже прочитывают весь Коран (примерно десятая часть длины Библии). Этот "
 "искренний поиск делает для нас стратегически важным моментом молиться за них."
 
-#: porches/ramadan/site/home-body.php:151
+#: porches/ramadan/site/home-body.php:152
 msgid "Ramadan is Finished"
 msgstr "Рамадан завершился"
 
-#: porches/ramadan/site/home-body.php:164
+#: porches/ramadan/site/home-body.php:165
 msgid "Ramadan Ends ..."
 msgstr "Рамадан заканчивается..."
 
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:172
 msgid "Ramadan Begins ..."
 msgstr "Рамадан начнется..."
 
-#: porches/ramadan/site/home-body.php:196
+#: porches/ramadan/site/home-body.php:197
 msgid "here"
 msgstr "здесь"
 
-#: porches/ramadan/site/home-body.php:280
+#: porches/ramadan/site/home-body.php:281
 msgid "More Hours to be covered"
 msgstr "Больше часов, которые нужно охватить"
 
