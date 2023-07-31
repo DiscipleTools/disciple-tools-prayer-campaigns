@@ -12,7 +12,7 @@ $minutes_scheduled = isset( $campaign['ID'] ) ? DT_Campaigns_Base::get_minutes_p
 $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 24 / 60 ) : 0, 1 );
 ?>
 
-<!-- TODAYS POST Section -->
+<!-- TODAY'S (or most recent POST Section) -->
 <section id="contact" class="section">
     <div class="container">
         <div class="row">
@@ -27,23 +27,29 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
             <?php foreach ( $today->posts as $item ) :
                 dt_campaign_post( $item );
             endforeach;
-            if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) && (int) $todays_campaign_day <= 0 ) : ?>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
-                    <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="blog-item-text">
-                            <?php echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), -$todays_campaign_day ) ); ?>
+            if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) ):
+                $most_recent = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_most_recent_post();
+                if ( (int) $todays_campaign_day <= 0 ) : ?>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+                        <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="blog-item-text">
+                                <?php echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), -$todays_campaign_day ) ); ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endif;
-            if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) && (int) $todays_campaign_day > 0 ) : ?>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
-                    <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="blog-item-text">
-                            <?php echo esc_html( __( 'This campaign is finished. See Fuel below', 'disciple-tools-prayer-campaigns' ) ); ?>
+                <?php elseif ( !empty( $most_recent ) ) :
+                    foreach ( $most_recent->posts as $item ) :
+                        dt_campaign_post( $item );
+                    endforeach;
+                else : ?>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+                        <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="blog-item-text">
+                                <?php echo esc_html( __( 'This campaign is finished. See Fuel below', 'disciple-tools-prayer-campaigns' ) ); ?>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
 
