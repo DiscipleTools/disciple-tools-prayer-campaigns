@@ -36,7 +36,7 @@ class DT_Campaign_Porch_Roles
             'edit_'.$this->post_type => true,
             'read_'.$this->post_type => true,
             'delete_'.$this->post_type => true,
-            'delete_others_'.$this->post_type.'s',
+            'delete_others_'.$this->post_type.'s' => true,
             'delete_'.$this->post_type.'s' => true,
             'edit'.$this->post_type.'s' => true,
             'edit_others_'.$this->post_type.'s' => true,
