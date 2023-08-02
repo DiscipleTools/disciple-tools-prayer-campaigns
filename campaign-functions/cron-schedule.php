@@ -45,7 +45,6 @@ function dt_prayer_campaign_prayer_time_reminder(){
             WHERE r.post_type = 'subscriptions'
             AND r.time_begin >= %d
             AND r.time_begin <= %d
-            AND r.value = '1'
             AND pn.meta_value = '1'
             AND rm.meta_id IS NULL
             ORDER BY r.time_begin;

@@ -115,7 +115,7 @@ class DT_Subscriptions {
      * @param null $location_id
      * @return false|int|WP_Error
      */
-    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $verified = false ){
+    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $verified = true ){
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
