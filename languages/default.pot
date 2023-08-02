@@ -2,19 +2,19 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.0\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-07-27T09:16:33+00:00\n"
+"POT-Creation-Date: 2023-08-02T11:51:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:82
+#: campaign-functions/cron-schedule.php:81
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr ""
@@ -491,7 +491,7 @@ msgid "Confirmation Code:"
 msgstr ""
 
 #: parts/components.php:138
-#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:52
 #: porches/generic/site/stats.php:277
 msgid "Submit"
@@ -599,31 +599,31 @@ msgstr ""
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/archive-body.php:36
+#: porches/generic/site/post-list-body.php:146
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:43
+#: porches/generic/site/archive-body.php:48
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:56
+#: porches/generic/site/archive-body.php:62
 #: porches/generic/site/landing-body.php:38
 msgid "Praying as a group?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/archive-body.php:67
 #: porches/generic/site/landing-body.php:43
 msgid "Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:64
+#: porches/generic/site/archive-body.php:70
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/archive-body.php:81
 #: porches/generic/site/landing-body.php:58
 #: porches/generic/site/stats.php:283
 msgid "Thank You"
@@ -733,6 +733,10 @@ msgstr ""
 
 #: porches/generic/site/post-list-body.php:133
 msgid "Read"
+msgstr ""
+
+#: porches/generic/site/post-list-body.php:148
+msgid "No prayer fuel found"
 msgstr ""
 
 #: porches/generic/site/stats.php:138
