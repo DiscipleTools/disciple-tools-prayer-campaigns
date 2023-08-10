@@ -155,7 +155,7 @@ function success_confirmation_section( $target = null ){
             <h2><?php esc_html_e( 'Success!', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
             <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
             <p>
-                <?php esc_html_e( 'Check you email for details and access to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
+                <?php esc_html_e( 'Check your email for details and for access to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
             </p>
             <p>
                 <?php if ( !empty( $target ) ) : ?>
