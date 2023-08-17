@@ -6,8 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-08-17T14:08:41+00:00\n"
-"PO-Revision-Date: 2023-08-17 15:25+0000\n"
-"Last-Translator: nesrine <nesrine0325@gmail.com>\n"
+"PO-Revision-Date: 2023-08-17 16:03+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
 "disciple-tools/disciple-tools-prayer-campaigns/ar/>\n"
 "Language: ar\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: campaign-functions/cron-schedule.php:81
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
-msgstr "إضغط هنا لمشاهدة دعوات الصلاة لهذا اليوم: ٪s"
+msgstr "إضغط هنا لمشاهدة دعوات الصلاة لهذا اليوم: %s"
 
 #: campaign-functions/send-email-utility.php:45
 msgid "Verify your email address"
@@ -32,7 +32,7 @@ msgstr "تحقق من عنوان بريدك الإلكتروني"
 #: campaign-functions/send-email-utility.php:168
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr "s$1% من s$2% إلى s$3%"
+msgstr "‫%1$s من %2$s إلى %3$s"
 
 #: campaign-functions/send-email-utility.php:112
 msgid "Registered to pray with us!"
@@ -42,7 +42,7 @@ msgstr "مسجل للصلاة معنا!"
 #: campaign-functions/send-email-utility.php:201
 #: campaign-functions/send-email-utility.php:288
 msgid "Hello %s,"
-msgstr "مرحبًا ٪s،"
+msgstr "مرحبًا %s،"
 
 #: campaign-functions/send-email-utility.php:136
 msgid ""
@@ -57,7 +57,7 @@ msgstr "فيما يلي أوقات الصلاة:"
 #: campaign-functions/send-email-utility.php:139
 #: campaign-functions/send-email-utility.php:205
 msgid "Times are shown according to: %s time"
-msgstr "يتم عرض الأوقات وفقًا لـ: ٪ s مرة"
+msgstr "يتم عرض الأوقات وفقًا لـ: % s مرة"
 
 #: campaign-functions/send-email-utility.php:141
 #: campaign-functions/send-email-utility.php:212
@@ -67,7 +67,7 @@ msgstr "إضغط هنا لإدارة حسابك والتزامك بالوقت"
 #: campaign-functions/send-email-utility.php:174
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr "لـ ٪s"
+msgstr "لـ %s"
 
 #: campaign-functions/send-email-utility.php:184
 msgid "Prayer Time reminder!"
@@ -104,7 +104,7 @@ msgstr "شكرًا لك"
 #: campaign-functions/send-email-utility.php:362
 #: campaign-functions/send-email-utility.php:392
 msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "صلاة استراتيجية لتلميذ يقوم بالحركة في ٪ s"
+msgstr "صلاة استراتيجية لتلميذ يقوم بالحركة في % s"
 
 #: campaign-functions/send-email-utility.php:364
 #: campaign-functions/send-email-utility.php:394
@@ -119,7 +119,7 @@ msgstr "أعزاء %s,"
 #: campaign-functions/send-email-utility.php:372
 #: campaign-functions/send-email-utility.php:402
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "شكرًا لك على الانضمام إلى ٪ 1$s في ٪2$s."
+msgstr "شكرًا لك على الانضمام إلى % 1$s في %2$s."
 
 #: campaign-functions/send-email-utility.php:375
 msgid ""
@@ -238,13 +238,13 @@ msgstr "مغطاة بالكامل مرة واحدة"
 #: magic-links/subscription-management/subscription-management.php:110
 #: shortcodes/24hour.php:32
 msgid "fully covered %1$s times"
-msgstr "تم تغطيتها بالكامل ٪1$s مرة"
+msgstr "تم تغطيتها بالكامل %1$s مرة"
 
 #: magic-links/subscription-management/subscription-management.php:111
 #: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr "٪1$s لمدة ٪2$s دقيقة."
+msgstr "%1$s لمدة %2$s دقيقة."
 
 #: magic-links/subscription-management/subscription-management.php:112
 msgid "Extend for 3 months"
@@ -258,19 +258,19 @@ msgstr "قم بتغيير الوقت اليومي"
 #: shortcodes/24hour.php:36
 msgctxt "80% covered"
 msgid "%s covered"
-msgstr "تم تغطية ٪s"
+msgstr "تم تغطية %s"
 
 #: magic-links/subscription-management/subscription-management.php:115
 #: shortcodes/24hour.php:37
 msgctxt "on 5 days"
 msgid "On %s days"
-msgstr "في ٪s يوم"
+msgstr "في %s يوم"
 
 #: magic-links/subscription-management/subscription-management.php:116
 #: shortcodes/24hour.php:38
 msgctxt "and 5 more"
 msgid "and %s more"
-msgstr "و ٪s أخرى"
+msgstr "و %s أخرى"
 
 #: magic-links/subscription-management/subscription-management.php:117
 #: shortcodes/24hour.php:39
@@ -522,7 +522,7 @@ msgstr "رمز التأكيد:"
 #: parts/components.php:138 porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
 msgid "Submit"
-msgstr "يُقدِّم"
+msgstr "يُقدِّم"
 
 #: parts/components.php:155
 msgid "Success!"
@@ -640,7 +640,7 @@ msgstr "حاول استخدام بعض الروابط في القائمة للع
 #: porches/generic/site/archive-body.php:36
 #: porches/generic/site/post-list-body.php:146
 msgid "Content will start in %s days"
-msgstr "سيبدأ المحتوى خلال ٪s يوم"
+msgstr "سيبدأ المحتوى خلال %s يوم"
 
 #: porches/generic/site/archive-body.php:48
 msgid "This campaign is finished. See Fuel below"
@@ -659,7 +659,7 @@ msgid ""
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 "إمامة الآخرين في الصلاة هي خطوة رائعة في التلمذة. نريد أن نحتفل بإخلاصك "
-"وإخلاصهم. لكل شخص يصلي معك ، سنضيف 15 دقيقة إلى ٪s أيام الصلاة الملتزمة حتى "
+"وإخلاصهم. لكل شخص يصلي معك ، سنضيف 15 دقيقة إلى %s أيام الصلاة الملتزمة حتى "
 "الآن."
 
 #: porches/generic/site/archive-body.php:70
@@ -683,13 +683,13 @@ msgstr "قم بالتسجيل للصلاة"
 #: porches/ongoing/site/home-body.php:159
 msgctxt "Campaign Name is Finished"
 msgid "%s is Finished"
-msgstr "٪s انتهى"
+msgstr "%s انتهى"
 
 #: porches/generic/site/home-body.php:175
 #: porches/ongoing/site/home-body.php:172
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Ends In"
-msgstr "٪s ينتهي بـ"
+msgstr "%s ينتهي بـ"
 
 #: porches/generic/site/home-body.php:177
 #: porches/generic/site/home-body.php:184 porches/generic/site/stats.php:209
@@ -722,7 +722,7 @@ msgstr "ثواني"
 #: porches/ongoing/site/home-body.php:179
 msgctxt "Campaign Name End in [4 days]"
 msgid "%s Begins In"
-msgstr "٪s يبدأ في"
+msgstr "%s يبدأ في"
 
 #: porches/generic/site/home-body.php:227
 #: porches/ramadan/site/home-body.php:226
@@ -779,7 +779,7 @@ msgstr "لم يتم العثور على وقود للصلاة"
 #: porches/generic/site/stats.php:138
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "شكرا لانضمامك إلينا في الصلاة من أجل ٪1$s في ٪2$s."
+msgstr "شكرا لانضمامك إلينا في الصلاة من أجل %1$s في %2$s."
 
 #: porches/generic/site/stats.php:162
 msgid "Stats"
@@ -923,7 +923,7 @@ msgstr "تغطيتها مرة واحدة"
 
 #: shortcodes/24hour.php:34 shortcodes/ongoing.php:74
 msgid "covered %1$s times"
-msgstr "تمت تغطيتها ٪1$s مرة"
+msgstr "تمت تغطيتها %1$s مرة"
 
 #: shortcodes/24hour.php:107
 msgid "Percentage covered in prayer"
@@ -932,7 +932,7 @@ msgstr "نسبة المشمولين في الصلاة"
 #: shortcodes/24hour.php:108
 msgctxt "12.3 years committed"
 msgid "% committed"
-msgstr "٪ ملتزمون"
+msgstr "% ملتزمون"
 
 #: shortcodes/24hour.php:122 shortcodes/ongoing.php:143
 msgid "Loading prayer campaign data..."
@@ -969,7 +969,7 @@ msgstr "يرجى ملاحظة أن التوقيت الصيفي قد يؤثر ع�
 #: shortcodes/ongoing.php:70
 msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
 msgid "Everyday at %1$s for %2$s until %3$s"
-msgstr "كل يوم في ٪1$s لمدة ٪2$s حتى ٪3$s"
+msgstr "كل يوم في %1$s لمدة %2$s حتى %3$s"
 
 #: shortcodes/ongoing.php:72
 msgctxt "Jun, Jul, Aug covered"
@@ -991,7 +991,7 @@ msgstr "ابدأ بالصلاة!"
 #: shortcodes/prayer-timer.php:222
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr "وقت الصلاة: ٪s دقيقة"
+msgstr "وقت الصلاة: %s دقيقة"
 
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
