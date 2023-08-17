@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-07-27T09:16:33+00:00\n"
+"POT-Creation-Date: 2023-08-10T09:03:26+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -16,7 +16,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:82
+#: campaign-functions/cron-schedule.php:81
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Нажмите здесь, чтобы увидеть молитву на сегодня: %s"
@@ -522,7 +522,7 @@ msgstr ""
 msgid "Confirmation Code:"
 msgstr ""
 
-#: parts/components.php:138 porches/generic/site/archive-body.php:69
+#: parts/components.php:138 porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
 msgid "Submit"
 msgstr "Отправить"
@@ -538,7 +538,8 @@ msgstr "Ваша регистрация успешно завершена."
 #: parts/components.php:158
 #, fuzzy
 #| msgid "In the email is a link to manage your prayer times."
-msgid "Check you email for details and access to manage your prayer times."
+msgid ""
+"Check your email for details and for access to manage your prayer times."
 msgstr "В электронном письме есть ссылка для управления временем молитвы."
 
 #: parts/components.php:162 parts/components.php:164
@@ -642,21 +643,21 @@ msgstr ""
 "Попробуйте использовать некоторые ссылки в меню, чтобы вернуться в нужное "
 "русло."
 
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/archive-body.php:36
+#: porches/generic/site/post-list-body.php:146
 msgid "Content will start in %s days"
 msgstr "Содержание начнется через %s дней"
 
-#: porches/generic/site/archive-body.php:43
+#: porches/generic/site/archive-body.php:48
 msgid "This campaign is finished. See Fuel below"
 msgstr "Эта кампания завершена. Посмотреть ниже"
 
-#: porches/generic/site/archive-body.php:56
+#: porches/generic/site/archive-body.php:62
 #: porches/generic/site/landing-body.php:38
 msgid "Praying as a group?"
 msgstr "Молитесь вместе с группой?"
 
-#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/archive-body.php:67
 #: porches/generic/site/landing-body.php:43
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
@@ -667,12 +668,12 @@ msgstr ""
 "отпраздновать вашу и их верность. За каждого человека, который молится "
 "вместе с вами, мы добавим 15 минут к %s дням молитвы, совершенным до сих пор."
 
-#: porches/generic/site/archive-body.php:64
+#: porches/generic/site/archive-body.php:70
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr "Сколько людей помолилось сегодня (включая вас)?"
 
-#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/archive-body.php:81
 #: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:283
 msgid "Thank You"
 msgstr "Спасибо"
@@ -776,6 +777,10 @@ msgstr "Посмотреть все"
 #: porches/generic/site/post-list-body.php:133
 msgid "Read"
 msgstr "Прочитать"
+
+#: porches/generic/site/post-list-body.php:148
+msgid "No prayer fuel found"
+msgstr ""
 
 #: porches/generic/site/stats.php:138
 msgctxt "Thank you for joining us in prayer for the French in France."
