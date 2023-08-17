@@ -77,6 +77,8 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
     }
 
     public function body() {
+        $lang = dt_campaign_get_current_lang();
+        dt_campaign_set_translation( $lang );
         ?>
         <style>
             .success-confirmation-section .button {
