@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-07-27T09:16:33+00:00\n"
+"POT-Creation-Date: 2023-08-10T09:03:26+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:82
+#: campaign-functions/cron-schedule.php:81
 #, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
@@ -538,7 +538,7 @@ msgstr ""
 msgid "Confirmation Code:"
 msgstr ""
 
-#: parts/components.php:138 porches/generic/site/archive-body.php:69
+#: parts/components.php:138 porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:277
 #, fuzzy
 msgid "Submit"
@@ -556,7 +556,8 @@ msgstr "Pendaftaran Anda berhasil."
 #: parts/components.php:158
 #, fuzzy
 #| msgid "In the email is a link to manage your prayer times."
-msgid "Check you email for details and access to manage your prayer times."
+msgid ""
+"Check your email for details and for access to manage your prayer times."
 msgstr "Dalam email tersebut terdapat link untuk mengatur waktu doa Anda."
 
 #: parts/components.php:162 parts/components.php:164
@@ -669,21 +670,21 @@ msgstr "Lebar adalah jalan yang menuju ke 404."
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "Coba gunakan beberapa tautan di menu untuk kembali ke jalur semula."
 
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/archive-body.php:36
+#: porches/generic/site/post-list-body.php:146
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:43
+#: porches/generic/site/archive-body.php:48
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:56
+#: porches/generic/site/archive-body.php:62
 #: porches/generic/site/landing-body.php:38
 msgid "Praying as a group?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:61
+#: porches/generic/site/archive-body.php:67
 #: porches/generic/site/landing-body.php:43
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
@@ -691,12 +692,12 @@ msgid ""
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 
-#: porches/generic/site/archive-body.php:64
+#: porches/generic/site/archive-body.php:70
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:75
+#: porches/generic/site/archive-body.php:81
 #: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:283
 #, fuzzy
 msgid "Thank You"
@@ -808,6 +809,10 @@ msgstr "Tampilkan Keseluruhan"
 #: porches/generic/site/post-list-body.php:133
 msgid "Read"
 msgstr "Baca"
+
+#: porches/generic/site/post-list-body.php:148
+msgid "No prayer fuel found"
+msgstr ""
 
 #: porches/generic/site/stats.php:138
 #, fuzzy
