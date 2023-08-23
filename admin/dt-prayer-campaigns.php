@@ -552,7 +552,7 @@ class DT_Prayer_Campaigns_Campaigns {
                         <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>" target="_blank">Campaigns</a></li>
                         <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
                         <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
-                        <li><a href="https://poeditor.com/join/project/yik32Z3OEf" target="_blank">Translate Pages and Emails</a></li>
+                        <li><a href="https://pray4movement.org/docs/translation/" target="_blank">Translate Pages and Emails</a></li>
                     </ul>
                 </td>
             </tr>
