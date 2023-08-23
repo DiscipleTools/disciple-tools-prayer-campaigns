@@ -171,6 +171,7 @@ class DT_Porch_Settings {
         return $field['value'] ?: ( $field['default'] ?? '' );
     }
 
+
     public static function has_user_translations() {
         $defaults = apply_filters( 'dt_campaign_porch_default_settings', self::get_defaults() );
         $settings = self::settings();

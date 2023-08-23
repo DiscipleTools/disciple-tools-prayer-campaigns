@@ -1,5 +1,4 @@
 
-
 <!-- Footer Section Start -->
 <footer>
     <div class="container">
@@ -26,8 +25,12 @@
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
                     <p>
-                        Made with &#10084;&#65039; by <a href="https://pray4movement.org">Pray4Movement.org</a><br>
-                        Powered by <a href="https://disciple.tools">Disciple.Tools</a><br>
+                        <?php
+                        if ( !empty( $porch_fields['footer_content']['value'] ) ) :
+                            global $allowedtags;
+                            echo wp_kses( DT_Porch_Settings::get_field_translation( 'footer_content' ), $allowedtags ) ?><br>
+                        <?php endif; ?>
+                        Made by <a href="https://pray4movement.org">Pray4Movement.org</a>. Powered by <a href="https://disciple.tools">Disciple.Tools</a><br>
                         &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
                     </p>
                 </div>

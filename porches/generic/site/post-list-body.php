@@ -141,7 +141,13 @@ if ( empty( $list->posts ) ){
                     <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
                         <div class="blog-item-text">
                             <p>
-                                <?php echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), -$todays_day_in_campaign ) ); ?>
+                                <?php
+                                if ( $todays_day_in_campaign < 0 ) {
+                                    echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), -$todays_day_in_campaign ) );
+                                } else {
+                                    echo esc_html( __( 'No prayer fuel found', 'disciple-tools-prayer-campaigns' ) );
+                                }
+                                ?>
                             </p>
                         </div>
                     </div>

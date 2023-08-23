@@ -175,7 +175,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
                     <button type="submit" class="button loader" id="submit-form"><?php esc_html_e( 'Email My Access Link', 'disciple-tools-prayer-campaign' ); ?></button>
                 </form>
                 <div id="form-confirm" style="display: none">
-                    <?php esc_html_e( 'Please check you email address now for your access link.', 'disciple-tools-prayer-campaign' ); ?>
+                    <?php esc_html_e( 'Please check your email address now for your access link.', 'disciple-tools-prayer-campaign' ); ?>
                 </div>
             </div>
 

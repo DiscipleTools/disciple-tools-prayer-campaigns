@@ -41,18 +41,20 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
     public static function send_verification( $email, $code ){
+        $lang = dt_campaign_get_current_lang();
+        self::switch_email_locale( $lang );
 
         $subject = __( 'Verify your email address', 'disciple-tools-prayer-campaigns' );
 
-        $message = Campaigns_Email_Template::email_content_part( __( 'Please copy and paste the following code into the Confirmation Code field.', 'disciple_tools' ) );
+        $message = Campaigns_Email_Template::email_content_part( __( 'Please copy and paste the following code into the Confirmation Code field.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_content_part(
             '<span style="font-size:30px">' . $code . '</span>'
         );
 
         $message .= Campaigns_Email_Template::email_content_part(
-            __( 'This code will expire after 10 minutes.', 'disciple_tools' ) . '<br>' .
-            __( 'If you did not request this email, please ignore it.', 'disciple_tools' )
+            __( 'This code will expire after 10 minutes.', 'disciple-tools-prayer-campaigns' ) . '<br>' .
+            __( 'If you did not request this email, please ignore it.', 'disciple-tools-prayer-campaigns' )
         );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
@@ -289,7 +291,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'You are 2 weeks out from your last prayer time. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Sign up for more prayer times or extend your recurring time here:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( 'Access Portal', $manage_link );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Or click this link:', 'disciple_tools' ) . ' <a href="'. $manage_link.'">' . $manage_link .  '</a>' );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Or click this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. $manage_link.'">' . $manage_link .  '</a>' );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',<br>' . $title );
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 

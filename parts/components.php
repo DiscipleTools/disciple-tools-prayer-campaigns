@@ -116,13 +116,13 @@ function dt_email_validate_form(){
         </button>
 
         <p>
-            A confirmation code hase been sent to <span id="cp-sent-email"></span>. <br> Please enter the code below in
-            the next 10 minutes to confirm your email address.
+            <?php esc_html_e( 'A confirmation code hase been sent to:', 'disciple-tools-prayer-campaigns' ) ?>&nbsp;<span id="cp-sent-email"></span>.
+            <br> <?php esc_html_e( 'Please enter the code below in the next 10 minutes to confirm your email address.', 'disciple-tools-prayer-campaigns' ); ?>
         </p>
         <label for="cp-confirmation-code" style="display: block">
             <strong><?php esc_html_e( 'Confirmation Code:', 'disciple-tools-prayer-campaigns' ); ?></strong><br>
             <span id="confirmation-error" class="form-error">
-                    <?php echo esc_html( 'The code is required' ); ?>
+                    <?php esc_html_e( 'The code is required', 'disciple-tools-prayer-campaigns' ); ?>
                 </span>
         </label>
         <div class="otp-input-wrapper" style="padding: 20px 0">
@@ -155,7 +155,7 @@ function success_confirmation_section( $target = null ){
             <h2><?php esc_html_e( 'Success!', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
             <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
             <p>
-                <?php esc_html_e( 'Check you email for details and access to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
+                <?php esc_html_e( 'Check your email for details and for access to manage your prayer times.', 'disciple-tools-prayer-campaigns' ); ?>
             </p>
             <p>
                 <?php if ( !empty( $target ) ) : ?>
