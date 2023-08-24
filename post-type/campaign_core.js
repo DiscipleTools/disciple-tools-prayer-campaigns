@@ -10,6 +10,10 @@ window.campaign_scripts = {
     window.campaign_scripts.missing_slots = {}
     let days = [];
 
+    if ( !custom_timezone ){
+      custom_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+    }
+
     let start_of_day = window.campaign_scripts.day_start( start || calendar_subscribe_object.start_timestamp, custom_timezone )
     let time_iterator = parseInt( start_of_day );
 

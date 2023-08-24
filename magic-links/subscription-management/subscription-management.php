@@ -124,7 +124,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     'fully_covered_x_times' => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
                     'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
                     'extend_3_months' => __( 'Extend for 3 months', 'disciple-tools-prayer-campaigns' ),
-                    'change_daily_time' => __( 'Change daily time', 'disciple-tools-prayer-campaigns' ),
+                    'change_daily_time' => __( 'Change time on all', 'disciple-tools-prayer-campaigns' ),
                     'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
                     'on_x_days' => _x( 'On %s days', 'on 5 days', 'disciple-tools-prayer-campaigns' ),
                     'and_x_more' => _x( 'and %s more', 'and 5 more', 'disciple-tools-prayer-campaigns' ),
@@ -281,11 +281,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
         ?>
-        <style>
-            tti-manage {
-                --cp-color: <?php echo esc_html( 'dodgerblue' ) ?>;
-            }
-        </style>
         <div id="wrapper">
             <div class="grid-x">
                 <div class="cell center">
