@@ -207,7 +207,17 @@ window.campaign_scripts = {
       start += day_in_seconds
     }
     return false
-  }
+  },
+  escapeObject(obj) {
+    return Object.fromEntries(Object.entries(obj).map(([key, value]) => {
+      return [ key, window.campaign_scripts.escapeHTML(value)]
+    }))
+  },
+  escapeHTML(str) {
+    if (typeof str === "undefined") return '';
+    if (typeof str !== "string") return str;
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+  },
 }
 
 //based off of:
@@ -328,7 +338,7 @@ class ProgressRing extends HTMLElement {
     }
   }
 }
-
+window.customElements.define('progress-ring', ProgressRing);
 
 
 

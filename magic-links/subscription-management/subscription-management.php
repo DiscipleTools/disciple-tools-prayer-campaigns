@@ -71,6 +71,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'luxon';
         $allowed_js[] = 'dt_subscription_js';
+        $allowed_js[] = 'campaign_css';
+        $allowed_js[] = 'campaign_components';
         return $allowed_js;
     }
     public function dt_magic_url_base_allowed_css( $allowed_js ) {
@@ -707,6 +709,10 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
+
+        //Send an email with new subscriptions
+        DT_Prayer_Campaigns_Send_Email::send_registration( $post_id, $campaign_id );
+
         do_action( 'subscriptions_added', $campaign_id, $post_id );
         return $this->get_subscriptions( $params['parts']['post_id'] );
     }
