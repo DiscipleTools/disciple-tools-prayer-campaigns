@@ -40,6 +40,8 @@ class DT_Ongoing_Shortcode {
             dt_campaign_reload_text_domain();
         }
         $this->dt_24hour_campaign_register_scripts( $atts );
+        dt_campaigns_register_scripts();
+
     }
 
     private function dt_24hour_campaign_register_scripts( $atts ){

@@ -1,0 +1,41 @@
+<?php
+
+add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
+    if ( $handle === 'campaign_components' || $handle === 'campaign_css' ){
+        $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>'; //phpcs:ignore
+    }
+    return $tag;
+}, 10, 3 );
+
+function dt_campaigns_register_scripts(){
+    $plugin_dir_path = DT_Prayer_Campaigns::get_dir_path();
+    $plugin_dir_url = DT_Prayer_Campaigns::get_url_path();
+
+    wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
+    if ( !wp_script_is( 'dt_campaign_core', 'registered' ) ){
+        wp_enqueue_script( 'dt_campaign_core', $plugin_dir_url . 'post-type/campaign_core.js', [
+            'jquery',
+            'lodash',
+            'luxon'
+        ], filemtime( $plugin_dir_path . 'post-type/campaign_core.js' ), true );
+    }
+
+
+    wp_enqueue_script( 'campaign_css', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
+    wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_css' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
+
+    wp_localize_script( 'campaign_components', 'campaign_components', [
+        'plugin_url' => $plugin_dir_url,
+        'translations' => [
+            'Detected Time Zone' => __( 'Detected Time Zone', 'disciple-tools-prayer-campaigns' ),
+            'Choose a timezone' => __( 'Choose a timezone', 'disciple-tools-prayer-campaigns' ),
+            'days' => __( 'days', 'disciple-tools-prayer-campaigns' ),
+            'hours' => __( 'hours', 'disciple-tools-prayer-campaigns' ),
+            'minutes' => __( 'minutes', 'disciple-tools-prayer-campaigns' ),
+            'seconds' => __( 'seconds', 'disciple-tools-prayer-campaigns' ),
+            'Campaign Begins In' => __( 'Campaign Starts In', 'disciple-tools-prayer-campaigns' ),
+            'Campaign Ends In' => __( 'Campaign Ends In', 'disciple-tools-prayer-campaigns' ),
+            'Campaign Ended' => __( 'Campaign Ended', 'disciple-tools-prayer-campaigns' ),
+        ]
+    ] );
+}

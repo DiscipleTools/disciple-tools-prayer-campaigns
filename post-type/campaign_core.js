@@ -338,7 +338,7 @@ class ProgressRing extends HTMLElement {
     }
   }
 }
-window.customElements.define('progress-ring', ProgressRing);
+// window.customElements.define('progress-ring', ProgressRing);
 
 
 

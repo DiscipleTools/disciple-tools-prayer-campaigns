@@ -233,6 +233,7 @@ function dt_24hour_campaign_shortcode( $atts ){
     }
 
     dt_24hour_campaign_register_scripts( $atts );
+    dt_campaigns_register_scripts();
 
     ob_start();
     dt_24hour_campaign_body( $atts['color'] ?? '', $atts['section'] ?? '', $atts['backdrop'] ?? false );

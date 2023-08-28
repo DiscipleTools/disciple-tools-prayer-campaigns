@@ -120,6 +120,12 @@ class DT_Prayer_Campaigns {
         }
         return self::$instance;
     }
+    public static function get_url_path(){
+        return trailingslashit( plugin_dir_url( __FILE__ ) );
+    }
+    public static function get_dir_path(){
+        return trailingslashit( plugin_dir_path( __FILE__ ) );
+    }
 
     private function __construct() {
         $this->plugin_dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
