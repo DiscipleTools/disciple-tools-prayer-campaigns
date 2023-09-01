@@ -1154,10 +1154,7 @@ class DT_Campaigns_Base {
      * @return array|false|WP_Error
      */
     public static function send_campaign_info(){
-        $is_reporting_enabled = DT_Campaign_Settings::get( 'p4m_participation', true );
-        if ( !$is_reporting_enabled ){
-            return false;
-        }
+        $p4m_participation = DT_Campaign_Settings::get( 'p4m_participation', true );
         $current_campaign = DT_Campaign_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
@@ -1231,6 +1228,7 @@ class DT_Campaigns_Base {
             }
 
             $campaigns_to_send[] = [
+                'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
                 'name' => $is_current_campaign ? $porch_name : $name,
                 'campaign_name' => $campaign['name'],
 //                'status' => $campaign['status']['key'],
@@ -1258,7 +1256,8 @@ class DT_Campaigns_Base {
             ];
         }
 
-        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
+//        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
+        $url = 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
 
         if ( !empty( $campaigns_to_send ) ){
             return wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );
