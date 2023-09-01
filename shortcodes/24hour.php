@@ -62,6 +62,9 @@ function dt_24hour_campaign_body( $color = '', $section = '', $backdrop = false 
     ?>
 
     <style>
+        :root {
+            --cp-color: <?php echo esc_html( $color ) ?>;
+        }
         <?php if ( $section === 'percentage' ): ?>
         .cp-wrapper.cp-progress-wrapper {
             width: fit-content;
