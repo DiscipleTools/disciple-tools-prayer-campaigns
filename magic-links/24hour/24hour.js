@@ -57,8 +57,6 @@ jQuery(document).ready(function($) {
                      text2="${calendar_subscribe_object.text2 || ''}">
       </progress-ring>
     `)
-    //draw progress circles
-    window.customElements.define('progress-ring', ProgressRing);
 
     //navigation function
     $('.cp-nav').on( 'click', function (){

@@ -51,8 +51,6 @@ jQuery(document).ready(function($) {
 
   update_timezone(current_time_zone)
 
-  //draw progress circles
-  window.customElements.define('progress-ring', ProgressRing);
 
   $('#confirm-timezone').on('click', function (){
     current_time_zone = $("#timezone-select").val()
