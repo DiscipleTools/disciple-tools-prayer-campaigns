@@ -449,8 +449,11 @@ export class cpCalendar extends LitElement {
         justify-content: space-between;
         max-width: 280px;
       }
+      .month-next {
+        padding: 0.25rem 0.5rem;
+      }
     `,
-    // window.campaignStyles
+    window.campaignStyles
   ]
 
   static properties = {
@@ -521,10 +524,12 @@ export class cpCalendar extends LitElement {
       
       <div class="calendar-wrapper">
         <h3 class="month-title center">
-            <button ?disabled="${previous_month < now}"
-                    @click="${e=>this.next_view(previous_month)}"><</button>
+            <button class="month-next" ?disabled="${previous_month < now}"
+                    @click="${e=>this.next_view(previous_month)}">
+                <
+            </button>
             ${window.campaign_scripts.ts_to_format(current_month, current_time_zone, 'MMMM y')}
-            <button ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
+            <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
         </h3>
@@ -573,7 +578,10 @@ export class cpTimes extends LitElement {
         align-items: center;
         justify-content: center;
       }
-      
+      .time.selected-time {
+        color: white;
+        background-color: var(--cp-color);
+      }
       progress-ring {
         height: 20px;
       }
@@ -624,7 +632,8 @@ export class cpTimes extends LitElement {
     super();
   }
 
-  time_selected(time_key){
+  time_selected(e,time_key){
+    e.currentTarget.classList.add('selected-time');
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
   }
 
@@ -639,7 +648,7 @@ export class cpTimes extends LitElement {
                 ${map(range(time_slots), (i) => {
                     let time = this.times[index*time_slots+i];
                     return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(time.key)}" >
+                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" >
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
                           ${time.progress < 100 ? 

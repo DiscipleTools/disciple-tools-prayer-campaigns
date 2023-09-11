@@ -68,70 +68,6 @@ export const campaignStyles = css`
   }
 
 
-  /**
-   * Calendar section
-   */
-  .cp-calendar-wrapper {
-    background-color: #f8f9fad1;
-    border-radius: 10px;
-    padding: 1em
-  }
-
-  .day-cell, .cp-calendar-wrapper .day-cell {
-    text-align: center;
-    flex-grow: 0;
-  }
-
-  .cp-calendar-wrapper .disabled-calendar-day {
-    width:40px;
-    height:40px;
-    vertical-align: top;
-    padding-top:10px;
-    color: grey;
-  }
-
-  .cp-calendar-wrapper .calendar {
-    display: flex;
-    flex-wrap: wrap;
-    width: 300px;
-    margin: auto
-  }
-  .cp-calendar-wrapper .month-title {
-    text-align: left;
-    margin-bottom: 10px;
-  }
-  .cp-calendar-wrapper .week-day {
-    height: 20px;
-    width:40px;
-    color:black;
-    font-size:12px;
-    font-weight:550;
-    margin-bottom:5px;
-  }
-
-
-  .day-in-select-calendar {
-    color: black;
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    line-height: 0;
-    vertical-align: middle;
-    text-align: center;
-    padding-top: 18px;
-  }
-
-  .selected-day {
-    color: white;
-    border-radius: 50%;
-    border: 2px solid;
-  }
-  
-
-
-
-  
-
   .cp-close-button {
     top: .5rem;
     font-size: 1em;
@@ -176,34 +112,6 @@ export const campaignStyles = css`
     list-style-type: none;
     padding: 0;
   }
-
-  .otp-input-wrapper {
-    width: 240px;
-    text-align: left;
-    display: inline-block;
-  }
-  .otp-input-wrapper input {
-    padding: 0;
-    width: 264px;
-    font-size: 22px;
-    font-weight: 600;
-    color: #3e3e3e;
-    background-color: transparent;
-    border: 0;
-    margin-left: 2px;
-    letter-spacing: 30px;
-    font-family: sans-serif !important;
-  }
-  .otp-input-wrapper input:focus {
-    box-shadow: none;
-    outline: none;
-  }
-  .otp-input-wrapper svg {
-    position: relative;
-    display: block;
-    width: 240px;
-    height: 2px;
-  }
   
   
 
@@ -213,10 +121,6 @@ export const campaignStyles = css`
   .success-confirmation-section {
     display: none;
     margin-top: 20px;
-  }
-
-  .selected-day {
-    background-color: var( --cp-color, 'dodgerblue' );
   }
  
   
