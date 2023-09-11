@@ -321,7 +321,7 @@ export class ContactInfo extends LitElement {
           <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email)}
                   @click=${()=>this.verify_contact_info()}>
 
-              Verify and submit
+              Verify
               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_components.plugin_url}spinner.svg" width="22px" alt="spinner"/>
           </button>
       </div>
@@ -360,6 +360,11 @@ export class select extends LitElement {
         color: #fff;
         opacity: 0.5;
       }
+      .select:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        
+      }
     `
   ]
 
@@ -389,6 +394,7 @@ export class select extends LitElement {
     return html`
       ${this.options.map(o=>html`
           <button class="select ${o.value === this.value ? 'selected' : ''}"
+                  ?disabled="${o.disabled}"
                   @click="${this.handleClick}"
             value="${o.value}">
                 ${o.label}
@@ -648,3 +654,80 @@ export class cpTimes extends LitElement {
   }
 }
 customElements.define('cp-times', cpTimes);
+
+
+export class cpVerify extends LitElement {
+  static styles = [
+    css`
+      .otp-input-wrapper {
+        width: 240px;
+        text-align: left;
+        display: inline-block;
+      }
+      .otp-input-wrapper input {
+        padding: 0;
+        width: 264px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #3e3e3e;
+        background-color: transparent;
+        border: 0;
+        margin-left: 2px;
+        letter-spacing: 30px;
+        font-family: sans-serif !important;
+      }
+      .otp-input-wrapper input:focus {
+        box-shadow: none;
+        outline: none;
+      }
+      .otp-input-wrapper svg {
+        position: relative;
+        display: block;
+        width: 240px;
+        height: 2px;
+      }
+    `
+  ]
+
+  static properties = {
+    email: {type: String},
+  }
+
+  constructor() {
+    super();
+    this.email = '';
+    this.code = '';
+  }
+
+  handleInput(e){
+    let val = e.target.value
+    let name = e.target.name
+    this.code = val
+    console.log(this.code);
+    this.dispatchEvent(new CustomEvent('code-changed', {detail: this.code}));
+    this.requestUpdate()
+  }
+
+  render() {
+    return html`
+      <p>
+          A confirmation code hase been sent to ${this.email}. <br> Please enter the code below in
+          the next 10 minutes to confirm your email address.
+      </p>
+      <label for="cp-confirmation-code" style="display: block">
+          <strong>Confirmation Code:</strong><br>
+      </label>
+      <div class="otp-input-wrapper" style="padding: 20px 0">
+          <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'
+                 autocomplete='off' required @input=${this.handleInput}>
+          <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
+              <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
+                    stroke-dasharray='20,22'/>
+          </svg>
+      </div>
+      
+    `
+
+  }
+}
+customElements.define('cp-verify', cpVerify);

@@ -1,8 +1,6 @@
 import {html, css, LitElement, range, map} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_components.translations)
 
-console.log("test");
-
 /**
  * Timezone Picker Component
  */
@@ -121,7 +119,6 @@ export class CampaignSignUp extends LitElement {
     }
     this.now = new Date().getTime()/1000
     this.slot_length = 15;
-    this.show_below_fold = false
     this.selected_times = [];
     this.selected_times_labels = [];
     this.duration = 15;
@@ -133,8 +130,8 @@ export class CampaignSignUp extends LitElement {
       value: 'daily',
       options: [
         {value: 'daily', label: 'Daily (for 3 months)'},
-        {value: 'weekly', label: 'Weekly (for 6 months)'},
-        {value: 'monthly', label: 'Monthly (for 1 year)'},
+        {value: 'weekly', label: 'Weekly (for 6 months)', disabled: true},
+        {value: 'monthly', label: 'Monthly (for 1 year)', disabled: true},
         {value: 'pick', label: 'Pick Dates and Times'},
       ]
     }
@@ -172,11 +169,10 @@ export class CampaignSignUp extends LitElement {
       this._view = 'main';
       this.campaign_data = {...this.campaign_data, ...data};
       window.calendar_subscribe_object = this.campaign_data
-      console.log(window.calendar_subscribe_object);
-      this.days = window.campaign_scripts.calculate_day_times(
+      this.days = window.campaign_scripts.calculate_day_times_new(
         this.timezone,
-        this.now - 30 * day_in_seconds,
-        this.now + 365 * day_in_seconds,
+        this.now, //@todo this.campaign_data.start_timestamp,
+        this.campaign_data.end_timestamp,
         this.campaign_data.current_commitments,
         this.campaign_data.slot_length,
       )
@@ -184,6 +180,94 @@ export class CampaignSignUp extends LitElement {
       return data
     })
   }
+
+  submit(){
+    this._loading = true;
+    this.requestUpdate()
+
+    let selected_times = this.selected_times;
+    this.selected_times_labels.forEach(v=>{
+      selected_times = [...selected_times, ...v.selected_times]
+    })
+
+    let data = {
+      name: this._form_items.name,
+      email: this._form_items.email,
+      code: this._form_items.code,
+      parts: window.campaign_objects.parts,
+      campaign_id: this.campaign_data.campaign_id,
+      selected_times: selected_times,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago', //@todo
+    }
+
+    let link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/' + window.campaign_objects.parts.type;
+    if (window.campaign_objects.remote) {
+      link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/24hour-router';
+    }
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: link
+    })
+    .done(()=>{
+      this.selected_times = [];
+      this._loading = false;
+      if ( window.campaign_objects.remote === "1" ){
+        this._view = 'confirmation'; //@todo
+      } else {
+        window.location.href = window.campaign_objects.home + '/prayer/email-confirmation';
+      }
+      this.requestUpdate()
+    })
+    .fail((e)=>{
+      this._loading = false
+      let message = html`So sorry. Something went wrong. Please, try again.<br>
+          <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
+      if ( e.status === 401 ) {
+        message = 'Confirmation code does not match or is expired. Please, try again.'
+      }
+      this._form_items.code_error = message
+      this.requestUpdate()
+    })
+  }
+  handle_contact_info(e){
+    this._form_items = e.detail
+    this._loading = true;
+
+    let data = {
+      email: this._form_items.email,
+      parts: window.campaign_objects.parts,
+      campaign_id: this.campaign_data.campaign_id,
+      url: 'verify',
+    }
+    let link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/' + window.campaign_objects.parts.type + '/verify';
+    if (window.campaign_objects.remote) {
+      link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/24hour-router';
+    }
+    jQuery.ajax({
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      url: link
+    })
+    .done(()=>{
+      this._loading = false
+      this._view = 'submit'
+      this.requestUpdate()
+    })
+    .fail((e)=>{
+      console.log(e);
+      let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+        <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
+      this._form_items.form_error = message
+      this._loading = false
+      this.requestUpdate()
+    })
+  }
+
 
   get_times(){
     let day_in_seconds = 86400;
@@ -197,7 +281,10 @@ export class CampaignSignUp extends LitElement {
       while (key < day_in_seconds) {
         let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key)
         let time_formatted = time.toFormat('hh:mm a')
-        let progress = (window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ? window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100 : 0).toFixed(1)
+        let progress = (
+          window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
+            window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100 : 0
+        ).toFixed(1)
         let min = time.toFormat(':mm')
         options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
         key += this.slot_length.value * 60
@@ -282,7 +369,7 @@ export class CampaignSignUp extends LitElement {
     let times = this.get_times();
     return html`
     <div id="campaign">
-        <div class="column" style="max-width: 300px">
+        <div class="column" style="max-width: 300px" ?hidden="${this._view === 'submit'}">
             <div class="section-div">
                 <h2 class="section-title">
                     <span class="step-circle">1</span>
@@ -310,7 +397,7 @@ export class CampaignSignUp extends LitElement {
                 </div>
             </div>
         </div>
-        <div class="column center-col">
+        <div class="column center-col" ?hidden="${this._view === 'submit'}">
             <div class="section-div">
                 ${this.frequency.value === 'weekly' ? html`
                     <h2 class="section-title">
@@ -331,7 +418,7 @@ export class CampaignSignUp extends LitElement {
                 
                   <h2 class="section-title">
                       <span class="step-circle">3</span>
-                      <span>Prayer Time</span>
+                      <span>Select Daily Prayer Time</span>
                   </h2>
                   <cp-times slot_length="${this.slot_length.value}" .times="${times}"
                       @time-selected="${e=>this.time_selected(e.detail)}" >
@@ -407,7 +494,7 @@ export class CampaignSignUp extends LitElement {
             
         </div>
 
-        <div class="column" style="max-width: 300px">
+        <div class="column" style="max-width: 300px" ?hidden="${this._view === 'submit'}">
             <div class="section-div">
                 <h2 class="section-title">
                     <span class="step-circle">4</span>
@@ -420,7 +507,32 @@ export class CampaignSignUp extends LitElement {
                               @back=${()=>this._view = 'main'}
                 ></contact-info>
             </div>
+        </div>
+        <div class="column" style="max-width: 300px" ?hidden="${this._view !== 'submit'}">
+            <div class="section-div">
+                <h2 class="section-title">
+                    <span class="step-circle">5</span>
+                    <span>Verify</span>
+                </h2>
+                <cp-verify
+                    email="${this._form_items.email}"
+                    @code-changed=${e=>{this._form_items.code = e.detail;this.requestUpdate()}}
+                ></cp-verify>
+                <div class='form-error' 
+                     ?hidden=${!this._form_items?.code_error}>
+                    ${this._form_items?.code_error}
+                </div>
 
+                <div class="nav-buttons">
+                    <campaign-back-button @click=${() => this._view = 'contact-info'}></campaign-back-button>
+                    <button ?disabled=${this._form_items?.code?.length !== 6}
+                            @click=${()=>this.submit()}>
+                        Submit
+                            <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_components.plugin_url}spinner.svg" width="22px" alt="spinner"/>
+                    </button>
+                    
+                </div>
+            </div>
         </div>
     </div>
     `

@@ -2,7 +2,8 @@ const day_in_seconds = 86400
 window.campaign_scripts = {
   time_slot_coverage: {},
   processing_save: {},
-  calculate_day_times_old: function (custom_timezone=null, start = null, end){
+  calculate_day_times: function (custom_timezone=null, start = null, end){
+    return [];
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
@@ -93,7 +94,7 @@ window.campaign_scripts = {
 
     return days;
   },
-  calculate_day_times: function (custom_timezone=null, start, end, current_commitments, slot_length){
+  calculate_day_times_new: function (custom_timezone=null, start, end, current_commitments, slot_length){
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
@@ -143,7 +144,7 @@ window.campaign_scripts = {
       if ( window.campaign_scripts.processing_save[mod_time] ){
         time_formatted = window.campaign_scripts.processing_save[mod_time]
       } else {
-        time_formatted = window.luxon.DateTime.fromSeconds(time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+        time_formatted = window.luxon.DateTime.fromSeconds(time_iterator, {zone: custom_timezone}).toFormat('hh:mm a')
         window.campaign_scripts.processing_save[mod_time] = time_formatted
       }
       if ( time_iterator >= start && time_iterator < end ) {
