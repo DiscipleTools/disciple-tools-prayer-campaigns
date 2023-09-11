@@ -73,6 +73,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'dt_subscription_js';
         $allowed_js[] = 'campaign_css';
         $allowed_js[] = 'campaign_components';
+        $allowed_js[] = 'campaign_sign_up_component';
         return $allowed_js;
     }
     public function dt_magic_url_base_allowed_css( $allowed_js ) {

@@ -38,6 +38,23 @@ $dt_campaign_selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME
 if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     $dt_campaign_selected_campaign_magic_link_settings['color'] = '#4676fa';
 }
+dt_campaigns_register_scripts();
+
+wp_localize_script(
+    'dt_campaign_core', 'campaign_objects', [
+        'parts' => [
+            'root' => $atts['root'],
+            'type' => $atts['type'],
+            'public_key' => $atts['public_key'],
+            'meta_key' => $atts['meta_key'],
+            'post_id' => $atts['post_id'],
+            'lang' => $atts['lang'] ?? 'en_US'
+        ],
+        'root' => get_rest_url(),
+        'remote' => $atts['rest_url'] !== get_rest_url(),
+        'home' => home_url(),
+    ]
+);
 ?>
 
 <!-- Vision -->
@@ -50,9 +67,9 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 </h2>
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 2em">
-                <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
-                    <?php echo wp_kses( esc_html( DT_Porch_Settings::get_field_translation( 'vision' ) ), $allowedtags ); ?>
-                </p>
+                    <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="padding:2em">
+                        <?php echo wp_kses( esc_html( DT_Porch_Settings::get_field_translation( 'vision' ) ), $allowedtags ); ?>
+                    </p>
                 </div>
             </div>
         </div>
@@ -134,7 +151,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">
-            <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+            <campaign-sign-up></campaign-sign-up>
         </div>
     </div>
 </section>

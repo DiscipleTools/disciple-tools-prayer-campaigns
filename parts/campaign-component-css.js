@@ -48,19 +48,22 @@ export const campaignStyles = css`
     border-radius: 5px;
     border: 1px solid transparent;
     font-weight: normal;
-    padding: .85em 1em;
+    padding: .85rem 1rem;
     cursor:pointer;
+    background-color: var( --cp-color, 'dodgerblue' );
   }
   button:hover {
     background-color: transparent;
+    border-color: var( --cp-color, 'dodgerblue' );
+    color: var( --cp-color, 'dodgerblue' );
   }
   button[disabled] {
     opacity: .25;
     cursor: not-allowed;
   }
   button.clear-button {
+    color: var( --cp-color, 'dodgerblue' );
     background-color: transparent;
-    /*color: black;*/
     padding:5px;
   }
 
@@ -127,41 +130,7 @@ export const campaignStyles = css`
 
 
 
-  /**
-   * Sign up section
-   */
-  #email {
-    display:none;
-  }
-
-  select {
-    font-size: 1rem;
-    line-height: 1rem;
-    color: black;
-    border: 1px solid black ;
-    display: block;
-    min-width: 250px;
-    max-width: 400px;
-    background: white;
-    margin: 10px auto;
-    min-height: 40px;
-    padding:0.5em;
-  }
-
-  input {
-    font-size: 1rem;
-    line-height: 1rem;
-    color: black;
-    border: 1px solid black;
-  }
-  .cp-input {
-    min-width: 250px;
-    max-width: 400px;
-    margin: auto;
-    padding:0.5em;
-    min-height: 40px;
-    display: block;
-  }
+  
 
   .cp-close-button {
     top: .5rem;
@@ -249,14 +218,7 @@ export const campaignStyles = css`
   .selected-day {
     background-color: var( --cp-color, 'dodgerblue' );
   }
-  button {
-    background-color: var( --cp-color, 'dodgerblue' );
-  }
-  button:hover {
-    background-color: transparent;
-    border-color: var( --cp-color, 'dodgerblue' );
-    color: var( --cp-color, 'dodgerblue' );
-  }
+ 
   
  `;
 window.campaignStyles = campaignStyles;

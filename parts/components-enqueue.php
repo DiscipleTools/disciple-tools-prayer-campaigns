@@ -1,7 +1,7 @@
 <?php
 
 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
-    if ( $handle === 'campaign_components' || $handle === 'campaign_css' ){
+    if ( str_contains( $handle, 'component' ) ){
         $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>'; //phpcs:ignore
     }
     return $tag;
@@ -21,8 +21,9 @@ function dt_campaigns_register_scripts(){
     }
 
 
-    wp_enqueue_script( 'campaign_css', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
-    wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_css' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
+    wp_enqueue_script( 'campaign_css_component', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
+    wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
+
 
     wp_localize_script( 'campaign_components', 'campaign_components', [
         'plugin_url' => $plugin_dir_url,
@@ -36,6 +37,15 @@ function dt_campaigns_register_scripts(){
             'Campaign Begins In' => __( 'Campaign Starts In', 'disciple-tools-prayer-campaigns' ),
             'Campaign Ends In' => __( 'Campaign Ends In', 'disciple-tools-prayer-campaigns' ),
             'Campaign Ended' => __( 'Campaign Ended', 'disciple-tools-prayer-campaigns' ),
+            'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
         ]
+    ] );
+
+    $a = $plugin_dir_url . 'parts/campaign-sign-up.js';
+    $b = $plugin_dir_path . 'parts/campaign-sign-up.js';
+    wp_enqueue_script( 'campaign_sign_up_component', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
+    wp_localize_script( 'campaign_sign_up_component', 'campaign_sign_up_component', [
+        'plugin_url' => $plugin_dir_url,
+        'translations' => []
     ] );
 }

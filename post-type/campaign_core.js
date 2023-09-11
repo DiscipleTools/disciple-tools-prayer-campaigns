@@ -2,7 +2,7 @@ const day_in_seconds = 86400
 window.campaign_scripts = {
   time_slot_coverage: {},
   processing_save: {},
-  calculate_day_times: function (custom_timezone=null, start = null){
+  calculate_day_times_old: function (custom_timezone=null, start = null, end){
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
@@ -18,9 +18,9 @@ window.campaign_scripts = {
     let time_iterator = parseInt( start_of_day );
 
     let timezone_change_ref = this.timestamp_to_time( time_iterator, custom_timezone )
-    let now = new Date().getTime() / 1000;
+    let now = parseInt( new Date().getTime() / 1000 );
 
-    while ( time_iterator < calendar_subscribe_object.end_timestamp ){
+    while ( time_iterator < ( end ) ){
 
       if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
 
@@ -55,7 +55,7 @@ window.campaign_scripts = {
         time_formatted = window.campaign_scripts.timestamp_to_time(time_iterator, custom_timezone)
         window.campaign_scripts.processing_save[mod_time] = time_formatted
       }
-      if ( time_iterator >= calendar_subscribe_object.start_timestamp && time_iterator < calendar_subscribe_object.end_timestamp) {
+      if ( time_iterator >= start && time_iterator < end) {
         days[days.length - 1]["slots"].push({
           "key": time_iterator,
           "formatted": time_formatted,
@@ -93,6 +93,97 @@ window.campaign_scripts = {
 
     return days;
   },
+  calculate_day_times: function (custom_timezone=null, start, end, current_commitments, slot_length){
+    //set up array of days and time slots according to timezone
+    window.campaign_scripts.processing_save = {}
+    window.campaign_scripts.time_slot_coverage = {}
+    window.campaign_scripts.time_label_counts = {}
+    window.campaign_scripts.missing_slots = {}
+    let days = [];
+
+    if ( !custom_timezone ){
+      custom_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
+    }
+
+    let start_of_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day').toSeconds()
+    let time_iterator = parseInt( start_of_day );
+    let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+
+    let now = parseInt( new Date().getTime() / 1000 );
+
+    while ( time_iterator < ( end ) ){
+
+      if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
+        let timezone_date = window.luxon.DateTime.fromSeconds( time_iterator + day_in_seconds, {zone: custom_timezone}).toFormat('h:mm a')
+        if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
+          // Timezone change detected. Recalculating time slots.
+          window.campaign_scripts.processing_save = {}
+        }
+        timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+        let date_time = window.luxon.DateTime.fromSeconds(time_iterator, {zone: custom_timezone});
+
+        start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+
+        days.push({
+          date_time: date_time,
+          "key": start_of_day,
+          'day_start_zoned': date_time.startOf('day').toSeconds(),
+          "formatted": date_time.toFormat('MMMM d'),
+          "month": date_time.toFormat('y_MM'),
+          "day": date_time.toFormat('d'),
+          "percent": 0,
+          "slots": [],
+          "covered_slots": 0,
+        })
+      }
+
+      //calculate time slot
+      let mod_time = time_iterator % day_in_seconds
+      let time_formatted = '';
+      if ( window.campaign_scripts.processing_save[mod_time] ){
+        time_formatted = window.campaign_scripts.processing_save[mod_time]
+      } else {
+        time_formatted = window.luxon.DateTime.fromSeconds(time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+        window.campaign_scripts.processing_save[mod_time] = time_formatted
+      }
+      if ( time_iterator >= start && time_iterator < end ) {
+        days[days.length - 1]["slots"].push({
+          "key": time_iterator,
+          "formatted": time_formatted,
+          "subscribers": parseInt(current_commitments?.[time_iterator] || 0)
+        })
+
+
+        if (!window.campaign_scripts.time_label_counts[time_formatted]) {
+          window.campaign_scripts.time_label_counts[time_formatted] = 0
+        }
+        window.campaign_scripts.time_label_counts[time_formatted] += 1
+
+        if (current_commitments[time_iterator]) {
+          days[days.length - 1].covered_slots += 1;
+
+          if (!window.campaign_scripts.time_slot_coverage[time_formatted]) {
+            window.campaign_scripts.time_slot_coverage[time_formatted] = [];
+          }
+          window.campaign_scripts.time_slot_coverage[time_formatted].push(current_commitments[time_iterator]);
+        } else {
+          if (time_iterator >= now) {
+            if (!window.campaign_scripts.missing_slots[time_formatted]) {
+              window.campaign_scripts.missing_slots[time_formatted] = []
+            }
+            window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
+          }
+        }
+      }
+      time_iterator += slot_length * 60;
+    }
+    days.forEach(d=>{
+      d.percent = d.covered_slots / d.slots.length * 100
+    })
+    window.campaign_scripts.processing_save = {}
+
+    return days;
+  },
   //format date to month and day
   timestamp_to_month_day: function(timestamp, timezone = null){
     const options = { month: "long", day: "numeric" };
@@ -120,6 +211,10 @@ window.campaign_scripts = {
     return new Intl.DateTimeFormat("en-US", options).format(
       timestamp * 1000
     );
+  },
+
+  ts_to_format: ( timestamp, timezone, format = 'y' )=>{
+    return window.luxon.DateTime.fromSeconds( timestamp, {zone:timezone} ).toFormat( format )
   },
 
   //clean formatted summary for prayer commitment display
@@ -286,7 +381,8 @@ class ProgressRing extends HTMLElement {
           />
           <circle
              class="second-circle"
-             stroke="#e2e2e2"
+             stroke="${color}"
+             stroke-opacity="0.1"
              stroke-dasharray="${this._circumference} ${this._circumference}"
              style="stroke-dashoffset:${-this._circumference}"
              stroke-width="${stroke}"
