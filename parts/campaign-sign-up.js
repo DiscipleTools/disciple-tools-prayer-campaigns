@@ -1,5 +1,5 @@
 import {html, css, LitElement, range, map} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
-const strings = window.campaign_scripts.escapeObject(window.campaign_components.translations)
+const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
 
 /**
  * Timezone Picker Component
@@ -102,6 +102,9 @@ export class CampaignSignUp extends LitElement {
     timezone: {type: String},
     slot_length: {type: Number},
     small: {type: Boolean},
+    rest_root: {type: String},
+    magic_link_parts: {type: Object},
+
   }
 
   constructor() {
@@ -118,10 +121,8 @@ export class CampaignSignUp extends LitElement {
       name: '',
     }
     this.now = new Date().getTime()/1000
-    this.slot_length = 15;
     this.selected_times = [];
     this.selected_times_labels = [];
-    this.duration = 15;
     this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.days = [];
     this.get_campaign_data()
@@ -129,13 +130,13 @@ export class CampaignSignUp extends LitElement {
     this.frequency = {
       value: 'daily',
       options: [
-        {value: 'daily', label: 'Daily (for 3 months)'},
-        {value: 'weekly', label: 'Weekly (for 6 months)', disabled: true},
-        {value: 'monthly', label: 'Monthly (for 1 year)', disabled: true},
+        {value: 'daily', label: 'Daily (up to 3 months)'},
+        {value: 'weekly', label: 'Weekly (up to 6 months)', disabled: true},
+        {value: 'monthly', label: 'Monthly (up to 1 year)', disabled: true},
         {value: 'pick', label: 'Pick Dates and Times'},
       ]
     }
-    this.slot_length = {
+    this.duration = {
       value: 15,
       options: [
         {value: 15, label: '15 Minutes'},
@@ -157,25 +158,19 @@ export class CampaignSignUp extends LitElement {
     }
   }
   get_campaign_data() {
-    let link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/' + window.campaign_objects.parts.type + '/campaign_info';
-    return jQuery.ajax({
-      type: 'GET',
-      data: {action: 'get', parts: window.campaign_objects.parts, 'url': 'campaign_info', time: new Date().getTime()},
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      url: link
-    })
-    .done((data) => {
+    window.campaign_scripts.get_campaign_data().then((data) => {
+      console.log(data);
       this._view = 'main';
       this.campaign_data = {...this.campaign_data, ...data};
-      window.calendar_subscribe_object = this.campaign_data
-      this.days = window.campaign_scripts.calculate_day_times_new(
-        this.timezone,
-        this.now, //@todo this.campaign_data.start_timestamp,
-        this.campaign_data.end_timestamp,
-        this.campaign_data.current_commitments,
-        this.campaign_data.slot_length,
-      )
+      this.days = window.campaign_scripts.days
+      console.log(this.days);
+      // this.days = window.campaign_scripts.calculate_day_times_new(
+      //   this.timezone,
+      //   this.now, //@todo this.campaign_data.start_timestamp,
+      //   this.campaign_data.end_timestamp,
+      //   this.campaign_data.current_commitments,
+      //   this.campaign_data.slot_length,
+      // )
       this.requestUpdate()
       return data
     })
@@ -277,38 +272,34 @@ export class CampaignSignUp extends LitElement {
     let start_time_stamp = start_of_today.getTime() / 1000
 
     let options = [];
-    // if ( this.selected_day !== 0 ){
-      while (key < day_in_seconds) {
-        let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key)
-        let time_formatted = time.toFormat('hh:mm a')
-        let progress = (
-          window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
-            window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100 : 0
-        ).toFixed(1)
-        let min = time.toFormat(':mm')
-        options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
-        key += this.slot_length.value * 60
-      }
-    // }
+    while (key < day_in_seconds) {
+      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key)
+      let time_formatted = time.toFormat('hh:mm a')
+      let progress = (
+        window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
+        window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
+        : 0
+      ).toFixed(1)
+      let min = time.toFormat(':mm')
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      key += this.campaign_data.slot_length * 60
+    }
     return options;
   }
 
   build_list(selected_time){
 
-    this.days.length;
-    let duration = 15;
     let selected_times = []
-    let days = this.days;
-    let start_time = days[0].key + selected_time;
+    let start_time = this.days[0].key + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:this.timezone})
     let now = new Date().getTime()/1000
-    for ( let i = 0; i < days.length; i++){
+    for ( let i = 0; i < this.days.length; i++){
       let time_date = start_date.plus({day:i})
       let time = parseInt( time_date.toFormat('X') );
       let time_label = time_date.toFormat('hh:mm a');
       let already_added = selected_times.find(k=>k.time===time)
       if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
-        selected_times.push({time: time, duration: duration, label: time_label, day_key:time_date.startOf('day'), date_time:time_date})
+        selected_times.push({time: time, duration:  this.duration.value, label: time_label, day_key:time_date.startOf('day'), date_time:time_date})
       }
     }
     let label = "Every Day at " + selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
@@ -342,7 +333,7 @@ export class CampaignSignUp extends LitElement {
     let label = date_time.toFormat('hh:mm a');
     let already_added = this.selected_times.find(k=>k.time===time)
     if ( !already_added && time > this.now && time >= this.campaign_data.start_timestamp ) {
-      const selected_time = {time: time, duration: this.duration, label, day_key:date_time.startOf('day').toSeconds(), date_time:date_time}
+      const selected_time = {time: time, duration: this.duration.value, label, day_key:date_time.startOf('day').toSeconds(), date_time:date_time}
       this.selected_times = [...this.selected_times, selected_time]
     }
     this.selected_times.sort((a,b)=>a.time-b.time)
@@ -352,7 +343,6 @@ export class CampaignSignUp extends LitElement {
 
 
   handle_frequency(e){
-
     this.frequency.value = e.detail;
     this.requestUpdate()
   }
@@ -390,9 +380,9 @@ export class CampaignSignUp extends LitElement {
                 <h2 class="section-title"><span class="step-circle">2</span><span>Prayer Duration</span></h2>
                 <div>
                     <cp-select 
-                        .value="${this.slot_length.value}"
-                        .options="${this.slot_length.options}"
-                        @change="${e=>this.handle_click('slot_length', e.detail)}">
+                        .value="${this.duration.value}"
+                        .options="${this.duration.options}"
+                        @change="${e=>this.handle_click('duration', e.detail)}">
                     </cp-select>
                 </div>
             </div>
@@ -420,7 +410,7 @@ export class CampaignSignUp extends LitElement {
                       <span class="step-circle">3</span>
                       <span>Select Daily Prayer Time</span>
                   </h2>
-                  <cp-times slot_length="${this.slot_length.value}" .times="${times}"
+                  <cp-times slot_length="${this.campaign_data.slot_length}" .times="${times}"
                       @time-selected="${e=>this.time_selected(e.detail)}" >
                   </cp-times>
                   
@@ -435,7 +425,7 @@ export class CampaignSignUp extends LitElement {
                                 <span class="step-circle">3</span>
                                 <span>Select a Date </span>
                             </h2>
-                            <cp-calendar style="display: flex;justify-content: center" 
+                            <cp-calendar-day-select style="display: flex;justify-content: center" 
                                 class="size-item top-left ${this.calendar_small ? 'small' : ''}" @click="${()=>{this.calendar_small = false;this.requestUpdate();}}"
                                 @day-selected="${e=>this.day_selected(e.detail)}"
                                 .selected_times="${this.selected_times}"
@@ -443,15 +433,15 @@ export class CampaignSignUp extends LitElement {
                                 end_timestamp="${this.campaign_data.end_timestamp}"
                                 .days="${this.days}"
                                 .calendar_disabled="${this.calendar_small}"
-                            ></cp-calendar>
+                            ></cp-calendar-day-select>
                         </div>
                         <div>
                             <h2 class="section-title">
                                 <span class="step-circle">4</span>
-                                <span>Select a Time ${this.selected_day ? html`for ${window.campaign_scripts.ts_to_format(this.selected_day, this.timezone, 'DD')}` : ''}</span>
+                                <span>Select a Time ${this.selected_day ? html`for ${window.campaign_scripts.ts_to_format(this.selected_day, 'DD', this.timezone)}` : ''}</span>
                             </h2>
                             <cp-times class="${!this.calendar_small ? 'small' : ''} size-item top-right"
-                                slot_length="${this.slot_length.value}"
+                                slot_length="${this.campaign_data.slot_length}"
                                 .times="${times}"
                                 @time-selected="${e=>this.time_and_day_selected(e.detail)}" >
                         </div>
@@ -528,7 +518,7 @@ export class CampaignSignUp extends LitElement {
                     <button ?disabled=${this._form_items?.code?.length !== 6}
                             @click=${()=>this.submit()}>
                         Submit
-                            <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_components.plugin_url}spinner.svg" width="22px" alt="spinner"/>
+                            <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
                     </button>
                     
                 </div>
@@ -540,3 +530,133 @@ export class CampaignSignUp extends LitElement {
 }
 customElements.define('campaign-sign-up', CampaignSignUp);
 
+
+
+export class cpCalendar extends LitElement {
+  static styles = [
+    css`
+      .calendar-wrapper {
+        background-color: #f8f9fad1;
+        border-radius: 10px;
+        padding: 1em
+      }
+      .calendar-month {
+        display: inline-block;
+        vertical-align: top;
+      }
+      .month-title {
+        display: flex;
+        justify-content: space-between;
+        max-width: 280px;
+        color: var(--cp-color);
+        margin:0;
+      }
+      .month-title .month-percentage {
+        color: black; font-size:1.2rem;
+      }
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 40px);
+        margin-bottom: 1rem;
+      }
+      .day-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+      }
+      .week-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        color:black;
+        font-size:12px;
+        font-weight:550;
+      }
+      
+    `
+  ]
+
+  static properties = {
+    prop: {type: String},
+  }
+
+  constructor() {
+    super();
+    this.campaign_data = {}
+    this.days = [];
+  }
+
+
+  async connectedCallback() {
+    super.connectedCallback();
+    this.campaign_data = await window.campaign_scripts.get_campaign_data()
+    this.days = window.campaign_scripts.days
+    this.timezone = window.campaign_scripts.timezone
+    this.requestUpdate()
+  }
+
+
+
+  render() {
+    let now_date = window.luxon.DateTime.now()
+    let current_year_month = now_date.toFormat('y_MM')
+    let now = now_date.toSeconds();
+    let months = {};
+    this.days.forEach(day=> {
+      if ( day.month === current_year_month || day.key > now ){
+        if (!months[day.month]) {
+          let day_number = window.campaign_scripts.get_day_number(day.key, this.timezone);
+          months[day.month] = {with: 0, without: 0, key:day.key, minutes_covered:0, days:0, month_starts_on_day:day_number}
+        }
+        months[day.month].with += day.covered_slots
+        months[day.month].without += day.slots.length - day.covered_slots
+        months[day.month].minutes_covered += day.covered_slots * this.campaign_data.slot_length
+        months[day.month].days += 1
+      }
+    })
+
+    //first 2 months
+    let months_to_show = Object.keys(months).slice(0,2)
+    let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
+
+    months_to_show.forEach(m=>{
+      months[m].percentage = (months[m].with / ( months[m].without + months[m].with )* 100).toFixed( 2 )
+      months[m].days_covered = ( months[m].minutes_covered / 60/24 ).toFixed( 1 )
+
+    })
+
+    return html`
+        <div class="calendar-wrapper">
+            ${months_to_show.map(month=>html`
+                <div class="calendar-month">
+                    <h3 class="month-title center">
+                        ${window.campaign_scripts.ts_to_format(months[month].key, 'MMM y')}
+                        <span class="month-percentage">${ months[month].percentage}% | ${months[month].days_covered} ${window.campaign_objects.translations.days}</span>
+
+                    </h3>
+                    <div class="calendar">
+                        ${week_day_names.map(name=>html`<div class="week-day">${name}</div>`)}
+                        ${map(range(months[month].month_starts_on_day), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
+                        ${this.days.filter(d=>d.month===month).map(day=>{
+                            let disabled = (day.key + day_in_seconds) < now;
+                            return html`
+                                <div class="day-cell"
+                                     ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
+                                data-day="${window.lodash.escape(day.key)}"
+                                @click="${e=>this.day_selected(e, day.key)}"
+                                >
+                                <progress-ring stroke="3" radius="20" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
+                                </div>`
+                        })}
+                    </div>
+                </div>
+            </div>
+        `)}
+    `
+  }
+}
+customElements.define('cp-calendar', cpCalendar);

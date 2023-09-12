@@ -1,5 +1,5 @@
 import {html, css, LitElement, range, map} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
-const strings = window.campaign_scripts.escapeObject(window.campaign_components.translations)
+const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
 
 export class cpTemplate extends LitElement {
   static styles = [
@@ -322,7 +322,7 @@ export class ContactInfo extends LitElement {
                   @click=${()=>this.verify_contact_info()}>
 
               Verify
-              <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_components.plugin_url}spinner.svg" width="22px" alt="spinner"/>
+              <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
           </button>
       </div>
     `
@@ -330,6 +330,9 @@ export class ContactInfo extends LitElement {
 }
 customElements.define('contact-info', ContactInfo);
 
+/**
+ * Group Select and Option Component
+ */
 export class select extends LitElement {
   static styles = [
     css`
@@ -369,8 +372,6 @@ export class select extends LitElement {
   ]
 
   static properties = {
-    label: {type: String},
-    field: {type: Boolean},
     value: {type: String},
     options: {type: Array},
   }
@@ -387,13 +388,9 @@ export class select extends LitElement {
   }
 
   render() {
-    if ( typeof this.field === 'number' && !isNaN( this.field ) ){
-      this.field = this.field.toString();
-    }
-
     return html`
       ${this.options.map(o=>html`
-          <button class="select ${o.value === this.value ? 'selected' : ''}"
+          <button class="select ${o.value.toString() === this.value.toString() ? 'selected' : ''}"
                   ?disabled="${o.disabled}"
                   @click="${this.handleClick}"
             value="${o.value}">
@@ -406,7 +403,18 @@ export class select extends LitElement {
 }
 customElements.define('cp-select', select);
 
-export class cpCalendar extends LitElement {
+/**
+ * Select Dates Calendar Component
+ *
+ * @property {String} start_timestamp - Start timestamp
+ * @property {String} end_timestamp - End timestamp
+ * @property {Array} days - Array of days to display
+ * @property {Array} selected_times - Array of selected times
+ * @property {Boolean} calendar_disabled - Disable calendar
+ * @fires day-selected, timestamp of selected day
+ *
+ */
+export class cpCalendarDaySelect extends LitElement {
   static styles = [
     css`
       :host {
@@ -429,8 +437,11 @@ export class cpCalendar extends LitElement {
         border-radius: 50%;
       }
       .week-day {
-        height: 20px;
-        width:40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
       }
       .selected-time {
         color: black;
@@ -528,7 +539,7 @@ export class cpCalendar extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${window.campaign_scripts.ts_to_format(current_month, current_time_zone, 'MMMM y')}
+            ${window.campaign_scripts.ts_to_format(current_month, 'MMMM y', current_time_zone)}
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -555,9 +566,16 @@ export class cpCalendar extends LitElement {
 
   }
 }
-customElements.define('cp-calendar', cpCalendar);
+customElements.define('cp-calendar-day-select', cpCalendarDaySelect);
 
-
+/**
+ * Select Time of day Component
+ *
+ * @property {String} slot_length - Length of time slots
+ * @property {Array} times - Array of times to display
+ * @fires time-selected, key of selected time
+ *
+ */
 export class cpTimes extends LitElement {
   static styles = [
     css`
@@ -710,9 +728,7 @@ export class cpVerify extends LitElement {
 
   handleInput(e){
     let val = e.target.value
-    let name = e.target.name
     this.code = val
-    console.log(this.code);
     this.dispatchEvent(new CustomEvent('code-changed', {detail: this.code}));
     this.requestUpdate()
   }
@@ -740,3 +756,125 @@ export class cpVerify extends LitElement {
   }
 }
 customElements.define('cp-verify', cpVerify);
+
+
+//based off of:
+//https://css-tricks.com/building-progress-ring-quickly/
+class ProgressRing extends HTMLElement {
+  constructor() {
+    super();
+    const stroke = this.getAttribute('stroke');
+    this._stroke = stroke;
+    const radius = this.getAttribute('radius');
+    const text = this.getAttribute('text');
+    const text2 = this.getAttribute('text2');
+    const progress = this.getAttribute('progress');
+    this._progress2 = this.getAttribute('progress2');
+    const font_size = this.getAttribute('font') || 15;
+    const normalizedRadius = radius - stroke;
+    this._circumference = normalizedRadius * 2 * Math.PI;
+
+    let normalizedRadius2 = parseInt(radius) - stroke/2 + 1
+    this._circumference2 = normalizedRadius2 * 2 * Math.PI;
+
+    let text_html = ``;
+    if ( text2 ){
+      text_html = `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px">
+          <tspan x="50%" dy="0">${window.lodash.escape(text || progress + '%')}</tspan>
+          <tspan x="50%" dy="0.5cm">${window.lodash.escape(text2)}</tspan>
+      </text>`
+    } else {
+      text_html =  `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
+        ${window.lodash.escape(text || progress + '%')}
+      </text>
+      `
+    }
+    this._root = this.attachShadow({mode: 'open'});
+
+    let base_color = 'dodgerblue'
+    if ( window.dt_campaign_core && window.dt_campaign_core.color ){
+      base_color = window.dt_campaign_core.color
+    }
+
+    let color = parseInt( progress ) >= 100 ? 'mediumseagreen' : base_color
+    this._root.innerHTML = `
+      <svg height="${radius * 2}"
+           width="${radius * 2}" >
+           <circle
+             class="first-circle"
+             stroke="${color}"
+             stroke-dasharray="${this._circumference} ${this._circumference}"
+             style="stroke-dashoffset:${this._circumference}"
+             stroke-width="${stroke}"
+             fill="transparent"
+             r="${normalizedRadius}"
+             cx="${radius}"
+             cy="${radius}"
+          />
+          <circle
+             class="third-circle"
+             stroke="red"
+             stroke-dasharray="${this._circumference2} ${this._circumference2}"
+             style="stroke-dashoffset:${this._circumference2}"
+             stroke-width="4px"
+             fill="transparent"
+             r="${normalizedRadius2}"
+             cx="${radius}"
+             cy="${radius}"
+          />
+          <circle
+             class="second-circle"
+             stroke="${color}"
+             stroke-opacity="0.1"
+             stroke-dasharray="${this._circumference} ${this._circumference}"
+             style="stroke-dashoffset:${-this._circumference}"
+             stroke-width="${stroke}"
+             fill="transparent"
+             r="${normalizedRadius}"
+             cx="${radius}"
+             cy="${radius}"
+          />
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">${text_html}</text>
+      </svg>
+
+      <style>
+          circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+          }
+      </style>
+    `;
+  }
+
+  setProgress(percent) {
+    const offset = this._circumference - (percent / 100 * this._circumference);
+    const circle = this._root.querySelector('circle.first-circle');
+    circle.style.strokeDashoffset = offset;
+    const circle2 = this._root.querySelector('circle.second-circle');
+    circle2.style.strokeDashoffset = -(percent / 100 * this._circumference);
+    if ( this._progress2 ){
+      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
+      const circle3 = this._root.querySelector('circle.third-circle');
+      circle3.style.strokeDashoffset = offset3
+    }
+  }
+  setText(text) {
+    const textElement = this._root.querySelector('.inner-text');
+    textElement.innerHTML = text;
+  }
+
+  static get observedAttributes() {
+    return ['progress', 'text'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'progress') {
+      this.setProgress(newValue);
+    }
+    if (name === 'text') {
+      this.setText(newValue);
+    }
+  }
+}
+window.customElements.define('progress-ring', ProgressRing);

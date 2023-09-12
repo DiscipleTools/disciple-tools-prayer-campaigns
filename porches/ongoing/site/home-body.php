@@ -38,23 +38,9 @@ $dt_campaign_selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME
 if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     $dt_campaign_selected_campaign_magic_link_settings['color'] = '#4676fa';
 }
-dt_campaigns_register_scripts();
+dt_campaigns_register_scripts( $atts );
 
-wp_localize_script(
-    'dt_campaign_core', 'campaign_objects', [
-        'parts' => [
-            'root' => $atts['root'],
-            'type' => $atts['type'],
-            'public_key' => $atts['public_key'],
-            'meta_key' => $atts['meta_key'],
-            'post_id' => $atts['post_id'],
-            'lang' => $atts['lang'] ?? 'en_US'
-        ],
-        'root' => get_rest_url(),
-        'remote' => $atts['rest_url'] !== get_rest_url(),
-        'home' => home_url(),
-    ]
-);
+
 ?>
 
 <!-- Vision -->
@@ -137,7 +123,8 @@ wp_localize_script(
             </div>
             <div class="col-sm-12 col-md-4">
                 <?php //phpcs:ignore ?>
-                <?php echo dt_ongoing_campaign_calendar( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+<!--                --><?php //echo dt_ongoing_campaign_calendar( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                <cp-calendar></cp-calendar>
             </div>
         </div>
     </div>

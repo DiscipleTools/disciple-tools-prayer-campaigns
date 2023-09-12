@@ -79,6 +79,10 @@ class DT_Time_Utilities {
         $start = self::start_of_campaign_with_timezone( $campaign_post_id );
         $end = self::end_of_campaign_with_timezone( $campaign_post_id, $month_limit, $start );
 
+        if ( $start < time() - 31 * DAY_IN_SECONDS ){
+            $start = time() - 31 * DAY_IN_SECONDS;
+        }
+
         global $wpdb;
         $commitments = $wpdb->get_results($wpdb->prepare( "
             SELECT time_begin, time_end, COUNT(id) as count
