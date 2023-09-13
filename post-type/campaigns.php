@@ -39,6 +39,7 @@ class DT_Campaigns_Base {
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_action( 'dt_details_additional_section', [ $this, 'dt_details_additional_section' ], 20, 2 );
+        add_filter( 'dt_post_update_fields', [ $this, 'dt_post_update_fields' ], 20, 3 );
 
         // hooks
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
@@ -160,7 +161,20 @@ class DT_Campaigns_Base {
                 'name'        => 'Campaign Type',
                 'description' => 'Set the current type.',
                 'type'        => 'key_select',
-                'default'     => apply_filters( 'dt_campaign_types', [] ),
+                'default'     => [
+                    '24hour' => [
+                        'label' => __( '24/7 Fixed Dates Campaign', 'disciple-tools-prayer-campaigns' ),
+                        'description' => __( 'Cover a region with 24h prayer.', 'disciple-tools-prayer-campaigns' ),
+                        'visibility' => __( 'Collaborators', 'disciple-tools-prayer-campaigns' ),
+                        'color' => '#4CAF50',
+                    ],
+                    'ongoing' => [
+                        'label' => '24/7 Ongoing Campaign',
+                        'description' => __( '247 Prayer for months', 'disciple-tools-prayer-campaigns' ),
+                        'visibility' => __( 'Collaborators', 'disciple-tools-prayer-campaigns' ),
+                        'color' => '#4CAF50',
+                    ]
+                ],
                 'tile'     => 'status',
 //                'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 'default_color' => '#F43636',
@@ -333,6 +347,26 @@ class DT_Campaigns_Base {
         return $fields;
     }
 
+    public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        if ( $post_type === 'campaigns' ){
+            foreach ( $fields as $field_key => $field_value ){
+                if ( strpos( $field_key, 'hack-campaign_strings' ) === 0 ){
+                    $temp = explode( '--', str_replace( 'hack-campaign_strings-', '', $field_key ) );
+                    $string_key = $temp[0];
+                    $lang_code = $temp[1];
+                    $campaign_strings = get_post_meta( $post_id, 'campaign_strings', true ) ?? [];
+                    if ( empty( $campaign_strings ) ){
+                        $campaign_strings = [];
+                    }
+                    $campaign_strings[$lang_code]["$string_key"] = $field_value;
+                    update_post_meta( $post_id, 'campaign_strings', $campaign_strings );
+                    unset( $fields[$field_key] );
+                }
+            }
+        }
+        return $fields;
+    }
+
     public function dt_comments_additional_sections( $sections, $post_type ){
         if ( $post_type === 'campaigns' || $post_type === 'subscriptions' ){
             $sections[] = [
@@ -355,6 +389,12 @@ class DT_Campaigns_Base {
                 $tiles['campaign_magic_links'] = [
                     'label' => 'Magic Urls',
                     'description' => 'The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates.'
+                ];
+            }
+            if ( !isset( $tiles['campaign_communication'] ) ){
+                $tiles['campaign_communication'] = [
+                    'label' => __( 'Campaign Communication', 'disciple-tools-prayer-campaigns' ),
+                    'description' => '',
                 ];
             }
         }
@@ -649,6 +689,33 @@ class DT_Campaigns_Base {
         </script>
 
         <?php }
+        if ( 'campaign_communication' === $section ){
+            $campaign_id = get_the_ID();
+            $prayer_time_reminder_emails_sent = DT_Subscriptions::get_number_of_notification_emails_sent( $campaign_id );
+            ?>
+            <div class="cell small-12 medium-4">
+                <div class="section-subheader">
+                    <?php esc_html_e( 'Magic Link', 'disciple-tools-prayer-campaigns' ); ?>
+                </div>
+                <p>Prayer Time Reminder Emails sent: <?php echo esc_html( $prayer_time_reminder_emails_sent ); ?></p>
+            </div>
+            <?php
+        }
+
+        if ( $post_type === $this->post_type ) {
+            $record = DT_Posts::get_post( $post_type, get_the_ID() );
+            if ( $section === 'status' ){
+                $link = DT_Magic_URL::get_link_url_for_post( $post_type, $record['ID'], 'campaign_app', 'ongoing' );
+                ?>
+                <div class="cell small-12 medium-4">
+                    <div class="section-subheader">
+                        <?php esc_html_e( 'Shortcodes', 'disciple-tools-prayer-campaigns' ); ?>
+                    </div>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
+                </div>
+                <?php
+            }
+        }
     }
 
     public function add_api_routes() {
@@ -699,6 +766,8 @@ class DT_Campaigns_Base {
             ]
         );
     }
+
+
 
     public function subscribers_endpoint( WP_REST_Request $request ) {
         $params = $request->get_params();

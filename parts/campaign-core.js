@@ -7,7 +7,7 @@ window.campaign_scripts = {
   time_slot_coverage: {},
   processing_save: {},
   days: {},
-  calculate_day_times_new: function (custom_timezone=null, start, end, current_commitments, slot_length){
+  calculate_day_times: function (custom_timezone=null, start, end, current_commitments, slot_length){
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
     window.campaign_scripts.time_slot_coverage = {}
@@ -114,7 +114,7 @@ window.campaign_scripts = {
         url: link
       })
       campaign_data_promise.then((data)=>{
-        this.days = window.campaign_scripts.calculate_day_times_new( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
+        this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
       })
     }
     return campaign_data_promise

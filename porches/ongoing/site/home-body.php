@@ -38,8 +38,6 @@ $dt_campaign_selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME
 if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     $dt_campaign_selected_campaign_magic_link_settings['color'] = '#4676fa';
 }
-dt_campaigns_register_scripts( $atts );
-
 
 ?>
 
@@ -123,8 +121,8 @@ dt_campaigns_register_scripts( $atts );
             </div>
             <div class="col-sm-12 col-md-4">
                 <?php //phpcs:ignore ?>
-<!--                --><?php //echo dt_ongoing_campaign_calendar( $dt_campaign_selected_campaign_magic_link_settings ); ?>
-                <cp-calendar></cp-calendar>
+                <?php echo dt_ongoing_campaign_calendar( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+
             </div>
         </div>
     </div>
@@ -138,7 +136,7 @@ dt_campaigns_register_scripts( $atts );
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">
-            <campaign-sign-up></campaign-sign-up>
+            <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
         </div>
     </div>
 </section>

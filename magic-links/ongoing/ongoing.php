@@ -129,21 +129,27 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( is_wp_error( $record ) ){
             return;
         }
-
-
+        $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $post_id );
         $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id, 13 );
         $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id );
+        $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 3, time() );
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );
         $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
+        $lang = dt_campaign_get_current_lang(); //todo remove?
+        dt_campaign_set_translation( $lang );
+
         return [
-            'current_commitments' => $current_commitments,
+            'campaign_id' => $post_id,
             'start_timestamp' => $start,
-            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 3, time() ),
+            'end_timestamp' => $end,
             'slot_length' => (int) $min_time_duration,
             'duration_options' => $field_settings['duration_options']['default'],
             'status' => $record['status']['key'],
-            'campaign_id' => $post_id,
+            'current_commitments' => $current_commitments,
+            'minutes_committed' => $minutes_committed,
+            'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
+
         ];
     }
 
@@ -160,7 +166,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
             return new WP_Error( __METHOD__, 'Missing email', [ 'status' => 400 ] );
         }
-        if ( ! isset( $params['selected_times'] ) ) {
+        if ( ! isset( $params['selected_times'] ) || empty( $params['selected_times'] ) ) {
             return new WP_Error( __METHOD__, 'Missing times and locations', [ 'status' => 400 ] );
         }
         if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
@@ -211,10 +217,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             }
         }
 
-        $email_sent = null;
-        if ( !empty( $params['selected_times'] ) ){
-            $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $post_id );
-        }
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $post_id );
 
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );

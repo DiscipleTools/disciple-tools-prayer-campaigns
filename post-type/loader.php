@@ -23,15 +23,6 @@ add_filter( 'dt_post_type_modules', function( $modules ){
         'description' => 'Subscriptions Management'
     ];
 
-    $modules['campaigns_24hour_prayer'] = [
-        'name' => 'Campaigns - 24Hour Prayer',
-        'enabled' => true,
-        'locked' => false,
-        'prerequisites' => [],
-        'post_type' => 'campaigns',
-        'description' => 'Campaigns - 24Hour Prayer'
-    ];
-
     if ( isset( $modules['contacts_base'] ) ){
         $modules['contacts_base']['locked'] = false;
     }
@@ -54,13 +45,6 @@ DT_Subscriptions_Base::instance();
  */
 require_once 'campaigns.php';
 DT_Campaigns_Base::instance();
-
-/**
- * 247 Prayer Campaign type module
- */
-require_once 'module-campaigns-24hour-prayer.php';
-DT_Campaign_24Hour_Prayer::instance();
-
 
 /*
  * 247 Ongoing campaign type module

@@ -164,7 +164,7 @@ export class CampaignSignUp extends LitElement {
       this.campaign_data = {...this.campaign_data, ...data};
       this.days = window.campaign_scripts.days
       console.log(this.days);
-      // this.days = window.campaign_scripts.calculate_day_times_new(
+      // this.days = window.campaign_scripts.calculate_day_times(
       //   this.timezone,
       //   this.now, //@todo this.campaign_data.start_timestamp,
       //   this.campaign_data.end_timestamp,
@@ -541,7 +541,7 @@ export class cpCalendar extends LitElement {
         padding: 1em
       }
       .calendar-month {
-        display: inline-block;
+        display: block;
         vertical-align: top;
       }
       .month-title {
@@ -605,9 +605,10 @@ export class cpCalendar extends LitElement {
     let now_date = window.luxon.DateTime.now()
     let current_year_month = now_date.toFormat('y_MM')
     let now = now_date.toSeconds();
+    let start_of_today = now_date.startOf('day').toSeconds()
     let months = {};
     this.days.forEach(day=> {
-      if ( day.month === current_year_month || day.key > now ){
+      if ( day.month === current_year_month || day.key >= start_of_today ){
         if (!months[day.month]) {
           let day_number = window.campaign_scripts.get_day_number(day.key, this.timezone);
           months[day.month] = {with: 0, without: 0, key:day.key, minutes_covered:0, days:0, month_starts_on_day:day_number}
@@ -660,3 +661,39 @@ export class cpCalendar extends LitElement {
   }
 }
 customElements.define('cp-calendar', cpCalendar);
+
+
+export class cpPercentage extends LitElement {
+  static styles = [
+    css`
+      
+    `
+  ]
+
+  static properties = {
+    prop: {type: String},
+  }
+
+  constructor() {
+    super();
+  }
+  
+  render() {
+    return html`
+    <div class="cp-progress-wrapper cp-wrapper">
+        <div id="main-progress" class="cp-center">
+<!--            <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>-->
+            <progress-ring stroke="10" radius="80" font="18"
+                           progress="50"
+                           progress2="85"
+                           text="50%"
+                           text2="Bob">
+            </progress-ring>
+        </div>
+        <div style="color: rgba(0,0,0,0.57); text-align: center">Percentage covered in prayer</div>
+        <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display">'% committed</div>
+    </div>
+    `
+  }
+}
+customElements.define('cp-percentage', cpPercentage);

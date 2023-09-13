@@ -83,11 +83,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public function wp_enqueue_scripts(){
         wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
-        wp_enqueue_script( 'dt_campaign_core', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'post-type/campaign_core.js', [
+        wp_enqueue_script( 'dt_campaign_core', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'parts/campaign-core.js', [
             'jquery',
             'lodash',
             'luxon'
-        ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'post-type/campaign_core.js' ), true );
+        ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'parts/campaign-core.js' ), true );
 
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
