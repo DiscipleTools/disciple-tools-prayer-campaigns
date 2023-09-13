@@ -639,16 +639,25 @@ export class cpTimes extends LitElement {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
       }
+      .times-container {
+        overflow-y: scroll;
+        max-height: 500px;
+        padding-inline-end: 10px;
+      }
     `
   ]
 
   static properties = {
     slot_length: {type: String},
     times: {type: Array},
+    selected_day: {type: String},
+    type: {type: String},
   }
 
   constructor() {
     super();
+    this.days = window.campaign_scripts.days
+    this.type = 'all_days'
   }
 
   time_selected(e,time_key){
@@ -656,10 +665,39 @@ export class cpTimes extends LitElement {
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
   }
 
+  get_times(){
+      let day = this.days.find(d=>d.key === this.selected_day);
+      let now = parseInt(new Date().getTime() / 1000);
+      let times = []
+      day.slots.forEach(s=>{
+        let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_scripts.timezone} )
+
+        let progress = s.subscribers ? 100 : 0;
+        times.push({
+            key: s.key,
+            hour: time.toFormat('hh a'),
+            minute: time.toFormat('mm'),
+            progress: progress,
+        })
+      })
+    return times;
+  }
+
+  connectedCallback(){
+    super.connectedCallback();
+    //set scroll position
+    setTimeout(()=>{
+      this.shadowRoot.querySelector('.times-container').scrollTop = 250;
+    })
+  }
+
   render() {
-    //@todo only display times that are during campaign.
+    if ( this.type === 'once_day' && this.selected_day ){
+      this.times = this.get_times()
+    }
     let time_slots = 60 / this.slot_length;
     return html`
+      <div class="times-container">
         ${map(range(24),index => html`
             <div class="prayer-hour prayer-times">
                 <div class="hour-cell">
@@ -679,6 +717,7 @@ export class cpTimes extends LitElement {
                 `})}
             </div>
         `)}
+      </div>
     `
   }
 }

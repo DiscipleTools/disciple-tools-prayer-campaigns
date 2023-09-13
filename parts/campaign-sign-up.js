@@ -34,7 +34,7 @@ export class CampaignSignUp extends LitElement {
         font-size: 1.2rem;
       }
       .section-div {
-        padding-bottom: 3rem;
+        padding-bottom: 2rem;
       }
       label {
         display: block;
@@ -76,6 +76,12 @@ export class CampaignSignUp extends LitElement {
       .selected-time-labels ul{
         margin:0;
       }
+      .mobile {
+        display:none;
+      }
+      .desktop {
+        display:block;
+      }
       
       @media screen and (max-width: 600px) {
         .time {
@@ -91,7 +97,14 @@ export class CampaignSignUp extends LitElement {
           padding-inline-start: 0.3rem;
         }
         .column {
+          width: 100% !important;
           max-width: 100% !important;
+        }
+        .mobile {
+          display:block;
+        }
+        .desktop {
+          display:none;
         }
       }
       
@@ -121,8 +134,10 @@ export class CampaignSignUp extends LitElement {
       name: '',
     }
     this.now = new Date().getTime()/1000
+    this.selected_day = null;
     this.selected_times = [];
     this.selected_times_labels = [];
+    this.show_selected_times = false;
     this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.days = [];
     this.get_campaign_data()
@@ -157,6 +172,15 @@ export class CampaignSignUp extends LitElement {
       ]
     }
   }
+  selected_times_count(){
+    let count = 0;
+    this.selected_times_labels.forEach(v=>{
+      count += v.selected_times.length
+    })
+    count += this.selected_times.length
+    return count;
+  }
+
   get_campaign_data() {
     window.campaign_scripts.get_campaign_data().then((data) => {
       console.log(data);
@@ -189,15 +213,15 @@ export class CampaignSignUp extends LitElement {
       name: this._form_items.name,
       email: this._form_items.email,
       code: this._form_items.code,
-      parts: window.campaign_objects.parts,
+      parts: window.campaign_objects.magic_link_parts,
       campaign_id: this.campaign_data.campaign_id,
       selected_times: selected_times,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago', //@todo
     }
 
-    let link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/' + window.campaign_objects.parts.type;
+    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type;
     if (window.campaign_objects.remote) {
-      link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/24hour-router';
+      link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
     }
     jQuery.ajax({
       type: "POST",
@@ -233,13 +257,13 @@ export class CampaignSignUp extends LitElement {
 
     let data = {
       email: this._form_items.email,
-      parts: window.campaign_objects.parts,
+      parts: window.campaign_objects.magic_link_parts,
       campaign_id: this.campaign_data.campaign_id,
       url: 'verify',
     }
-    let link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/' + window.campaign_objects.parts.type + '/verify';
+    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/verify';
     if (window.campaign_objects.remote) {
-      link = window.campaign_objects.root + window.campaign_objects.parts.root + '/v1/24hour-router';
+      link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
     }
     jQuery.ajax({
       type: 'POST',
@@ -252,6 +276,9 @@ export class CampaignSignUp extends LitElement {
       this._loading = false
       this._view = 'submit'
       this.requestUpdate()
+      //scroll to #campaign
+      let element = this.shadowRoot.querySelector('#campaign')
+      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     })
     .fail((e)=>{
       console.log(e);
@@ -298,7 +325,7 @@ export class CampaignSignUp extends LitElement {
       let time = parseInt( time_date.toFormat('X') );
       let time_label = time_date.toFormat('hh:mm a');
       let already_added = selected_times.find(k=>k.time===time)
-      if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] ) {
+      if ( !already_added && time > now && time >= this.campaign_data.start_timestamp ) {
         selected_times.push({time: time, duration:  this.duration.value, label: time_label, day_key:time_date.startOf('day'), date_time:time_date})
       }
     }
@@ -329,6 +356,9 @@ export class CampaignSignUp extends LitElement {
   }
   time_and_day_selected(selected_time){
     let time = this.selected_day + selected_time;
+    if ( selected_time > 86400 ){
+      time = selected_time;
+    }
     let date_time = window.luxon.DateTime.fromSeconds(time, {zone:this.timezone});
     let label = date_time.toFormat('hh:mm a');
     let already_added = this.selected_times.find(k=>k.time===time)
@@ -338,6 +368,7 @@ export class CampaignSignUp extends LitElement {
     }
     this.selected_times.sort((a,b)=>a.time-b.time)
     this.calendar_small = false
+    this.selected_day = null
     this.requestUpdate()
   }
 
@@ -372,9 +403,9 @@ export class CampaignSignUp extends LitElement {
                          @change="${this.handle_frequency}">
                     </cp-select>
                 </div>
-                <p>
-                    Extend for more
-                </p>
+<!--                <p>-->
+<!--                    Extend for more-->
+<!--                </p>-->
             </div>
             <div class="section-div">
                 <h2 class="section-title"><span class="step-circle">2</span><span>Prayer Duration</span></h2>
@@ -435,15 +466,21 @@ export class CampaignSignUp extends LitElement {
                                 .calendar_disabled="${this.calendar_small}"
                             ></cp-calendar-day-select>
                         </div>
+                        
+                       
                         <div>
                             <h2 class="section-title">
                                 <span class="step-circle">4</span>
                                 <span>Select a Time ${this.selected_day ? html`for ${window.campaign_scripts.ts_to_format(this.selected_day, 'DD', this.timezone)}` : ''}</span>
                             </h2>
-                            <cp-times class="${!this.calendar_small ? 'small' : ''} size-item top-right"
-                                slot_length="${this.campaign_data.slot_length}"
-                                .times="${times}"
-                                @time-selected="${e=>this.time_and_day_selected(e.detail)}" >
+                            <div ?hidden="${!this.selected_day}">
+                              <cp-times class="${!this.calendar_small ? 'small' : ''} size-item top-right"
+                                  slot_length="${this.campaign_data.slot_length}"
+                                  .times="${times}"
+                                  type="once_day"
+                                  .selected_day="${this.selected_day}"
+                                  @time-selected="${e=>this.time_and_day_selected(e.detail)}" >
+                            </div>
                         </div>
                         
                     </div>
@@ -455,7 +492,37 @@ export class CampaignSignUp extends LitElement {
         </div>
 
         
-        <div class="column" style="max-width: 300px">
+        <div class="mobile selected-times" style="position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
+            <div style="text-align: end;display: flex;justify-content: space-between" @click="${e=>{this.show_selected_times = !this.show_selected_times;this.requestUpdate()}}">
+                <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">Close</button>
+                <span>
+                  &#128467;
+                    (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">prayer times</span>) 
+                </span>
+            </div>
+            <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
+                ${this.selected_times_labels.map((value, index) => html`
+                    <div class="selected-times selected-time-labels">
+                        <span>${value.label}</span>
+                        <ul>
+                            <li>
+                                Starting on ${value.first.toLocaleString({ month: 'long', day: 'numeric'})}
+                            </li>
+                            <li>
+                                Ending on ${value.last.toLocaleString({ month: 'long', day: 'numeric'})}
+                            </li>
+                        </ul>
+                    </div>
+                `)}
+                ${this.selected_times.map((value, index) => html`
+                    <div class="selected-times">
+                        ${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
+                    </div>
+                `)}
+            </div>
+        </div>
+        
+        <div class="column desktop" style="max-width: 300px;">
             <div class="section-div">
                 <h2 class="section-title">
                     <span class="step-circle">*</span>
@@ -491,7 +558,7 @@ export class CampaignSignUp extends LitElement {
                     <span>Contact Info</span>
                 </h2>
 
-                <contact-info ?disabled="${true}"
+                <contact-info 
                               @form-items=${this.handle_contact_info}
                               .form_error=${this._form_items.form_error}
                               @back=${()=>this._view = 'main'}
