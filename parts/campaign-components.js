@@ -238,10 +238,11 @@ export class ContactInfo extends LitElement {
         color: black;
         border: 1px solid black;
       }
+      label {
+        display: grid;
+      }
       input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
         min-width: 250px;
-        max-width: 400px;
-        //margin: auto;
         padding: 0 0.5rem;
         min-height: 40px;
         display: block;
@@ -321,7 +322,7 @@ export class ContactInfo extends LitElement {
           <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email)}
                   @click=${()=>this.verify_contact_info()}>
 
-              Verify
+              Next
               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
           </button>
       </div>
@@ -754,6 +755,9 @@ export class cpVerify extends LitElement {
         width: 240px;
         height: 2px;
       }
+      .verify-section {
+        text-align: center;
+      }
     `
   ]
 
@@ -776,20 +780,22 @@ export class cpVerify extends LitElement {
 
   render() {
     return html`
-      <p>
-          A confirmation code hase been sent to ${this.email}. <br> Please enter the code below in
-          the next 10 minutes to confirm your email address.
-      </p>
-      <label for="cp-confirmation-code" style="display: block">
-          <strong>Confirmation Code:</strong><br>
-      </label>
-      <div class="otp-input-wrapper" style="padding: 20px 0">
-          <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'
-                 autocomplete='off' required @input=${this.handleInput}>
-          <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
-              <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
-                    stroke-dasharray='20,22'/>
-          </svg>
+      <div class="verify-section">
+        <p style="text-align: start">
+            A confirmation code hase been sent to ${this.email}. <br> Please enter the code below in
+            the next 10 minutes to confirm your email address.
+        </p>
+        <label for="cp-confirmation-code" style="display: block">
+            <strong>Confirmation Code:</strong><br>
+        </label>
+        <div class="otp-input-wrapper" style="padding: 20px 0">
+            <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'
+                   autocomplete='off' required @input=${this.handleInput}>
+            <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
+                <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
+                      stroke-dasharray='20,22'/>
+            </svg>
+        </div>
       </div>
       
     `

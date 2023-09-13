@@ -183,18 +183,9 @@ export class CampaignSignUp extends LitElement {
 
   get_campaign_data() {
     window.campaign_scripts.get_campaign_data().then((data) => {
-      console.log(data);
       this._view = 'main';
       this.campaign_data = {...this.campaign_data, ...data};
       this.days = window.campaign_scripts.days
-      console.log(this.days);
-      // this.days = window.campaign_scripts.calculate_day_times(
-      //   this.timezone,
-      //   this.now, //@todo this.campaign_data.start_timestamp,
-      //   this.campaign_data.end_timestamp,
-      //   this.campaign_data.current_commitments,
-      //   this.campaign_data.slot_length,
-      // )
       this.requestUpdate()
       return data
     })
@@ -277,7 +268,10 @@ export class CampaignSignUp extends LitElement {
       this._view = 'submit'
       this.requestUpdate()
       //scroll to #campaign
-      let element = this.shadowRoot.querySelector('#campaign')
+      let element = document.querySelector('#features')
+      if ( !element ){
+        element = this.shadowRoot.querySelector('#campaign')
+      }
       element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     })
     .fail((e)=>{
@@ -315,7 +309,6 @@ export class CampaignSignUp extends LitElement {
   }
 
   build_list(selected_time){
-
     let selected_times = []
     let start_time = this.days[0].key + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:this.timezone})
@@ -580,7 +573,7 @@ export class CampaignSignUp extends LitElement {
                     ${this._form_items?.code_error}
                 </div>
 
-                <div class="nav-buttons">
+                <div style="text-align: center;margin-top:20px">
                     <campaign-back-button @click=${() => this._view = 'contact-info'}></campaign-back-button>
                     <button ?disabled=${this._form_items?.code?.length !== 6}
                             @click=${()=>this.submit()}>
