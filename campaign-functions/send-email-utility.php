@@ -2,13 +2,13 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Prayer_Campaigns_Send_Email {
-    public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [] ){
+    public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [], $attachments = [] ){
 
         if ( empty( $headers ) ){
             $headers[] = 'Content-Type: text/html';
             $headers[] = 'charset=UTF-8';
         }
-        $sent = wp_mail( $to, $subject, $message, $headers );
+        $sent = wp_mail( $to, $subject, $message, $headers, $attachments );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email to: ' . $to );
         }
@@ -65,6 +65,39 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         return $sent;
 
+    }
+
+    public static function generate_registration_attachments( $post_id ): array {
+        $attachments = [];
+
+        // Generate calendar ics contents.
+        ob_start();
+        DT_Prayer_Subscription_Management_Magic_Link::echo_calendar_download( $post_id, true );
+        $ics_calendar = ob_get_clean();
+
+        // Store content within a temp file.
+        if ( !empty( $ics_calendar ) ) {
+            $filename = 'calendar';
+            $temp_file = wp_tempnam( $filename );
+            if ( $temp_file ) {
+
+                // Swap out default .tmp file extension with .ics.
+                if ( rename( $temp_file, $filename . '.ics' ) ) {
+                    $temp_file = $filename . '.ics';
+
+                    // Save calendar content into temp file.
+                    if ( WP_Filesystem( request_filesystem_credentials( '' ) ) ) {
+
+                        global $wp_filesystem;
+                        if ( $wp_filesystem->put_contents( $temp_file, $ics_calendar ) ) {
+                            $attachments[] = $temp_file;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $attachments;
     }
 
     public static function send_registration( $post_id, $campaign_id ) {
@@ -130,7 +163,6 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $link = self::management_link( $record );
 
-
         $message = '';
         if ( !empty( $record['name'] ) ){
             $message .= Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
@@ -144,7 +176,9 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
-        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email );
+        $attachments = self::generate_registration_attachments( $post_id );
+
+        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email, [], $attachments );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         }

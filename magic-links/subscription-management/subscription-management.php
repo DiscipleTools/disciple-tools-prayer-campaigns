@@ -43,7 +43,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         // load if valid url
         if ( 'download_calendar' === $this->parts['action'] ) {
-            $this->echo_calendar_download();
+            $this->echo_calendar_download( $this->parts['post_id'] );
             return;
         } else if ( '' === $this->parts['action'] ) {
             add_action( 'dt_blank_body', [ $this, 'manage_body' ] );
@@ -82,7 +82,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         $campaign_id = $post['campaigns'][0]['ID'];
         $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id, 12 );
-        $my_commitments_reports = $this->get_subscriptions( $this->parts['post_id'] );
+        $my_commitments_reports = self::get_subscriptions( $this->parts['post_id'] );
         $my_commitments = [];
         foreach ( $my_commitments_reports as $commitments_report ){
             $my_commitments[] = [
@@ -138,7 +138,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
 
-    public function get_clean_duration( $start_time, $end_time ) {
+    public static function get_clean_duration( $start_time, $end_time ) {
         $time_duration = ( $start_time - $end_time ) / 60;
 
         switch ( true ) {
@@ -157,7 +157,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         return $time_duration;
     }
 
-    public function get_timezone_offset( $timezone ) {
+    public static function get_timezone_offset( $timezone ) {
         $dt_now = new DateTime();
         $dt_now->setTimezone( new DateTimeZone( esc_html( $timezone ) ) );
         $timezone_offset = sprintf( '%+03d', $dt_now->getOffset() / 3600 );
@@ -169,9 +169,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         return $download_url;
     }
 
-    public function echo_calendar_download() {
+    public static function echo_calendar_download( $post_id, $capture_output = false ) {
         // Get post data
-        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
         }
@@ -191,7 +191,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
-        $my_commitments_reports = $this->get_subscriptions( $this->parts['post_id'] );
+        $my_commitments_reports = self::get_subscriptions( $post_id );
         $my_commitments = [];
 
         foreach ( $my_commitments_reports as $commitments_report ){
@@ -206,8 +206,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             ];
         }
 
-        header( 'Content-type: text/calendar; charset=utf-8' );
-        header( 'Content-Disposition: inline; filename=calendar.ics' );
+        if ( !$capture_output ){
+            header( 'Content-type: text/calendar; charset=utf-8' );
+            header( 'Content-Disposition: inline; filename=calendar.ics' );
+        }
 
         echo "BEGIN:VCALENDAR\r\n";
         echo "VERSION:2.0\r\n";
@@ -243,7 +245,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         echo "END:VCALENDAR\r\n";
-        die();
+
+        if ( !$capture_output ){
+            die();
+        }
     }
 
     public function manage_body(){
@@ -727,7 +732,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
 
         switch ( $action ) {
             case 'get':
-                return $this->get_subscriptions( $post_id );
+                return self::get_subscriptions( $post_id );
             case 'delete':
                 return $this->delete_subscription_endpoint( $post_id, $params );
             case 'add':
@@ -741,7 +746,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
         }
     }
 
-    public function get_subscriptions( $post_id ) {
+    public static function get_subscriptions( $post_id ) {
         $subs = Disciple_Tools_Reports::get( $post_id, 'post_id' );
 
         if ( ! empty( $subs ) ){
@@ -798,7 +803,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
 
     private function delete_subscription_endpoint( $post_id, $params ) {
         $this->delete_subscription( $post_id, $params['report_id'] );
-        return $this->get_subscriptions( $post_id );
+        return self::get_subscriptions( $post_id );
     }
 
     private function add_subscriptions( $post_id, $params ){
@@ -818,7 +823,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             }
         }
         do_action( 'subscriptions_added', $campaign_id, $post_id );
-        return $this->get_subscriptions( $params['parts']['post_id'] );
+        return self::get_subscriptions( $params['parts']['post_id'] );
     }
 
     private function change_times( $post_id, $params ){
@@ -841,7 +846,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
         ", (int) $params["offset"], (int) $params["offset"] ) );
         //phpcs:enable
 
-        return $this->get_subscriptions( $params['parts']['post_id'] );
+        return self::get_subscriptions( $params['parts']['post_id'] );
     }
     private function delete_times( $post_id, $params ){
         $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
@@ -861,7 +866,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             $this->delete_subscription( $post['ID'], $id );
         }
         do_action( 'subscriptions_removed', $campaign_id, $post_id );
-        return $this->get_subscriptions( $params['parts']['post_id'] );
+        return self::get_subscriptions( $params['parts']['post_id'] );
     }
 
 
