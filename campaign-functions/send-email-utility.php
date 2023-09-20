@@ -78,6 +78,11 @@ class DT_Prayer_Campaigns_Send_Email {
         // Store content within a temp file.
         if ( !empty( $ics_calendar ) ) {
             $filename = 'calendar';
+
+            if ( !function_exists( 'wp_tempnam' ) ) {
+                require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            }
+
             $temp_file = wp_tempnam( $filename );
             if ( $temp_file ) {
 
