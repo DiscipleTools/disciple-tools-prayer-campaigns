@@ -235,7 +235,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             echo 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
             echo 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
             echo 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
-            echo 'LOCATION:' . get_site_url( null, '/prayer/list' ) . "\r\n";
+            echo 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
             echo "STATUS:CONFIRMED\r\n";
             echo "SEQUENCE:3\r\n";
             echo "BEGIN:VALARM\r\n";
