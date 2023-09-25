@@ -71,9 +71,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $attachments = [];
 
         // Generate calendar ics contents.
-        ob_start();
-        DT_Prayer_Subscription_Management_Magic_Link::echo_calendar_download( $post_id, true );
-        $ics_calendar = ob_get_clean();
+        $ics_calendar = DT_Prayer_Subscription_Management_Magic_Link::generate_calendar_download_content( $post_id );
 
         // Store content within a temp file.
         if ( !empty( $ics_calendar ) ) {

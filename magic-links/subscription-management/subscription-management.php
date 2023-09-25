@@ -43,7 +43,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         // load if valid url
         if ( 'download_calendar' === $this->parts['action'] ) {
-            $this->echo_calendar_download( $this->parts['post_id'] );
+            $download_content = $this->generate_calendar_download_content( $this->parts['post_id'] );
+            if ( !empty( $download_content ) ) {
+                header( 'Content-type: text/calendar; charset=utf-8' );
+                header( 'Content-Disposition: inline; filename=calendar.ics' );
+                echo $download_content;
+                die();
+            }
             return;
         } else if ( '' === $this->parts['action'] ) {
             add_action( 'dt_blank_body', [ $this, 'manage_body' ] );
@@ -169,7 +175,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         return $download_url;
     }
 
-    public static function echo_calendar_download( $post_id, $capture_output = false ) {
+    public static function generate_calendar_download_content( $post_id ) {
         // Get post data
         $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
         if ( is_wp_error( $post ) ) {
@@ -206,50 +212,43 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             ];
         }
 
-        if ( !$capture_output ){
-            header( 'Content-type: text/calendar; charset=utf-8' );
-            header( 'Content-Disposition: inline; filename=calendar.ics' );
-        }
-
-        echo "BEGIN:VCALENDAR\r\n";
-        echo "VERSION:2.0\r\n";
-        echo "PRODID:-//disciple.tools\r\n";
-        echo "CALSCALE:GREGORIAN\r\n";
-        echo "BEGIN:VTIMEZONE\r\n";
-        echo 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
-        echo "BEGIN:STANDARD\r\n";
-        echo 'TZNAME:' . esc_html( $calendar_timezone_offset ) . "\r\n";
-        echo 'TZOFFSETFROM:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        echo 'TZOFFSETTO:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        echo "DTSTART:19700101T000000\r\n";
-        echo "END:STANDARD\r\n";
-        echo "END:VTIMEZONE\r\n";
+        $content = "BEGIN:VCALENDAR\r\n";
+        $content .= "VERSION:2.0\r\n";
+        $content .= "PRODID:-//disciple.tools\r\n";
+        $content .= "CALSCALE:GREGORIAN\r\n";
+        $content .= "BEGIN:VTIMEZONE\r\n";
+        $content .= 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
+        $content .= "BEGIN:STANDARD\r\n";
+        $content .= 'TZNAME:' . esc_html( $calendar_timezone_offset ) . "\r\n";
+        $content .= 'TZOFFSETFROM:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
+        $content .= 'TZOFFSETTO:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
+        $content .= "DTSTART:19700101T000000\r\n";
+        $content .= "END:STANDARD\r\n";
+        $content .= "END:VTIMEZONE\r\n";
 
         foreach ( $my_commitments as $mc ) {
             $calendar_uid = md5( uniqid( mt_rand(), true ) ) . '@disciple.tools';
 
-            echo "BEGIN:VEVENT\r\n";
-            echo 'UID:' . esc_html( $calendar_uid ) . "\r\n";
-            echo 'DTSTAMP:' . esc_html( $calendar_dtstamp ) . "\r\n";
-            echo 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
-            echo 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
-            echo 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
-            echo 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
-            echo 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
-            echo "STATUS:CONFIRMED\r\n";
-            echo "SEQUENCE:3\r\n";
-            echo "BEGIN:VALARM\r\n";
-            echo "TRIGGER:-PT10M\r\n";
-            echo "ACTION:DISPLAY\r\n";
-            echo "END:VALARM\r\n";
-            echo "END:VEVENT\r\n";
+            $content .= "BEGIN:VEVENT\r\n";
+            $content .= 'UID:' . esc_html( $calendar_uid ) . "\r\n";
+            $content .= 'DTSTAMP:' . esc_html( $calendar_dtstamp ) . "\r\n";
+            $content .= 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
+            $content .= 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
+            $content .= 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
+            $content .= 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
+            $content .= 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
+            $content .= "STATUS:CONFIRMED\r\n";
+            $content .= "SEQUENCE:3\r\n";
+            $content .= "BEGIN:VALARM\r\n";
+            $content .= "TRIGGER:-PT10M\r\n";
+            $content .= "ACTION:DISPLAY\r\n";
+            $content .= "END:VALARM\r\n";
+            $content .= "END:VEVENT\r\n";
         }
 
-        echo "END:VCALENDAR\r\n";
+        $content .= "END:VCALENDAR\r\n";
 
-        if ( !$capture_output ){
-            die();
-        }
+        return $content;
     }
 
     public function manage_body(){
