@@ -47,7 +47,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             if ( !empty( $download_content ) ) {
                 header( 'Content-type: text/calendar; charset=utf-8' );
                 header( 'Content-Disposition: inline; filename=calendar.ics' );
-                echo $download_content;
+                echo esc_html( $download_content );
                 die();
             }
             return;
