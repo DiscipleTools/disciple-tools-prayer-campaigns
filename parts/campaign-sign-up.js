@@ -15,7 +15,7 @@ export class CampaignSignUp extends LitElement {
         right: 50%;
         width: 100vw;
         margin: 0 -50vw;
-        padding: 0 2rem;
+        padding: 0 1rem;
       }
     `,
     css`
@@ -451,26 +451,26 @@ export class CampaignSignUp extends LitElement {
     return html`
     <div id="campaign">
         <div class="column" style="max-width: 300px" ?hidden="${this._view === 'submit'}">
+            
+            <!--
+                FREQUENCY
+            -->
             <div class="section-div">
                 <h2 class="section-title">
                     <span class="step-circle">1</span>
                     <span>Frequency</span> <span ?hidden="${this.frequency.value}" class="place-indicator">Start Here</span>
                 </h2>
-                <div>
-                    <cp-select 
-                        .options="${this.frequency.options}"
-                        .value="${this.frequency.value}"
-                         @change="${this.handle_frequency}">
-                    </cp-select>
-                </div>
-<!--                <p>-->
-<!--                    Extend for more-->
-<!--                </p>-->
-            </div>
-            <div class="section-div">
+                <cp-select 
+                    .options="${this.frequency.options}"
+                    .value="${this.frequency.value}"
+                     @change="${this.handle_frequency}">
+                </cp-select>
                 <time-zone-picker timezone="${this.timezone}" @change="${this.timezone_change}">
-                
             </div>
+
+            <!--
+                Duration
+            -->
             <div class="section-div" ?disabled="${!this.frequency.value}">
                 <h2 class="section-title"><span class="step-circle">2</span><span>Prayer Duration</span></h2>
                 <div>
@@ -481,26 +481,31 @@ export class CampaignSignUp extends LitElement {
                     </cp-select>
                 </div>
             </div>
+
+            <!--
+                Week Day
+            -->
             ${this.frequency.value === 'weekly' ? html`
+                <h2 class="section-title">
+                    <span class="step-circle">3</span>
+                    <span>Week Day</span> <span ?hidden="${this.week_day.value}" class="place-indicator">Now Here</span>
+                </h2>
+                <div>
+                    <cp-select 
+                        .value="${this.week_day.value}"
+                        .options="${this.week_day.options}"
+                        @change="${e=>this.handle_click('week_day', e.detail)}">
+                    </cp-select>
+                </div>
 
-                    <h2 class="section-title">
-                        <span class="step-circle">3</span>
-                        <span>Week Day</span> <span ?hidden="${this.week_day.value}" class="place-indicator">Now Here</span>
-                    </h2>
-                    <div>
-                        <cp-select 
-                            .value="${this.week_day.value}"
-                            .options="${this.week_day.options}"
-                            @change="${e=>this.handle_click('week_day', e.detail)}">
-                        </cp-select>
-                    </div>
-
-                ` : '' }
+            ` : '' }
         </div>
         <div class="column center-col" ?hidden="${this._view === 'submit'}">
+
+            <!--
+                Time Picker
+            -->
             <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly'&&!this.week_day.value}">
-                
-                
                 ${['daily', 'weekly'].includes(this.frequency.value) ? html`
                 
                   <h2 class="section-title">
@@ -513,9 +518,10 @@ export class CampaignSignUp extends LitElement {
                   
                 ` : ''}
                 
-                
+                <!--
+                    Calendar Picker
+                -->
                 ${this.frequency.value === 'pick' ? html`
-                    
                     <div style="display: flex;flex-wrap: wrap">
                         <div style="flex-grow: 1">
                             <h2 class="section-title">
@@ -532,8 +538,10 @@ export class CampaignSignUp extends LitElement {
                                 .calendar_disabled="${this.calendar_small}"
                             ></cp-calendar-day-select>
                         </div>
-                        
-                       
+
+                        <!--
+                            Time Picker
+                        -->
                         <div>
                             <h2 class="section-title">
                                 <span class="step-circle">4</span>
@@ -548,21 +556,20 @@ export class CampaignSignUp extends LitElement {
                                   @time-selected="${e=>this.time_and_day_selected(e.detail)}" >
                             </div>
                         </div>
-                        
                     </div>
-                        
-                    
                 ` : ''}
                 
             </div>
         </div>
-
         
+        <!--
+            Mobile Times Floater
+        -->
         <div class="mobile selected-times" style="position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
             <div style="text-align: end;display: flex;justify-content: space-between" @click="${e=>{this.show_selected_times = !this.show_selected_times;this.requestUpdate()}}">
                 <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">Close</button>
                 <span>
-                  &#128467;
+                    <img src="${window.campaign_objects.plugin_url}assets/calendar.svg" style="width: 1.5rem;vertical-align: middle">
                     (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">prayer times</span>) 
                 </span>
             </div>
@@ -596,6 +603,9 @@ export class CampaignSignUp extends LitElement {
             </div>
         </div>
         
+        <!--
+            Desketp Selected Times Section
+        -->
         <div class="column desktop" style="max-width: 300px;">
             <div class="section-div">
                 <h2 class="section-title">
@@ -633,6 +643,9 @@ export class CampaignSignUp extends LitElement {
             
         </div>
 
+        <!--
+            Contact Info
+        -->
         <div class="column" style="max-width: 300px" ?hidden="${this._view === 'submit'}">
             <div class="section-div">
                 <h2 class="section-title">
@@ -647,6 +660,9 @@ export class CampaignSignUp extends LitElement {
                 ></contact-info>
             </div>
         </div>
+        <!--
+            Verify
+        -->
         <div class="column" style="max-width: 300px" ?hidden="${this._view !== 'submit'}">
             <div class="section-div">
                 <h2 class="section-title">

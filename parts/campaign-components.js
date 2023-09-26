@@ -600,6 +600,7 @@ export class cpTimes extends LitElement {
         align-content: center;
         align-items: center;
         justify-content: center;
+        white-space: nowrap;
       }
       .time.selected-time {
         color: white;
