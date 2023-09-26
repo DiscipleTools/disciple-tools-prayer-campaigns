@@ -462,6 +462,7 @@ export class cpCalendarDaySelect extends LitElement {
         display: flex;
         justify-content: space-between;
         max-width: 280px;
+        font-size: 1.2rem;
       }
       .month-next {
         padding: 0.25rem 0.5rem;

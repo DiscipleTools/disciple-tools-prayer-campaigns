@@ -69,12 +69,19 @@ export class CampaignSignUp extends LitElement {
         border-radius: 5px;
         margin-bottom: 1rem;
         padding: 1rem;
+        display: flex;
+        justify-content: space-between;
       }
       .selected-time-labels {
         display: flex;
       }
       .selected-time-labels ul{
         margin:0;
+      }
+      .selected-time-frequency {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
       .mobile {
         display:none;
@@ -115,6 +122,22 @@ export class CampaignSignUp extends LitElement {
         color: orange;
         font-size: 1rem;
       }
+      .remove-prayer-time-button {
+        background: none;
+        border: none;
+        padding: .2rem;
+        margin: 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+      }
+      .remove-prayer-time-button:hover {
+        border: 1px solid red;    
+      }
+      .remove-prayer-time-button img {
+        width: 1rem;
+      }
+      
       
     `
   ];
@@ -410,6 +433,16 @@ export class CampaignSignUp extends LitElement {
     this.requestUpdate()
   }
 
+  remove_recurring_prayer_time(index){
+    this.selected_times_labels.splice(index,1)
+    this.requestUpdate()
+  }
+
+  remove_prayer_time(time){
+    this.selected_times = this.selected_times.filter(k=>k.time!==time)
+    this.requestUpdate()
+  }
+
   render(){
     if ( this.days.length === 0 ){
       return html`<div class="loading"></div>`
@@ -536,7 +569,12 @@ export class CampaignSignUp extends LitElement {
             <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
                 ${this.selected_times_labels.map((value, index) => html`
                     <div class="selected-times selected-time-labels">
-                        <span>${value.label}</span>
+                        <div class="selected-time-frequency">
+                            <div>${value.label}</div>
+                            <div>
+                                <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
+                            </div>
+                        </div>
                         <ul>
                             <li>
                                 Starting on ${value.first.toLocaleString({ month: 'long', day: 'numeric'})}
@@ -549,7 +587,10 @@ export class CampaignSignUp extends LitElement {
                 `)}
                 ${this.selected_times.map((value, index) => html`
                     <div class="selected-times">
-                        ${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
+                        <span>${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                        <button @click="${e=>this.remove_prayer_time(value.time)}" class="remove-prayer-time-button">
+                            <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                        </button>
                     </div>
                 `)}
             </div>
@@ -563,7 +604,12 @@ export class CampaignSignUp extends LitElement {
                 </h2>
                 ${this.selected_times_labels.map((value, index) => html`
                     <div class="selected-times selected-time-labels">
-                        <span>${value.label}</span>
+                        <div class="selected-time-frequency">
+                          <div>${value.label}</div>
+                          <div>
+                              <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
+                          </div>        
+                        </div>
                         <ul>
                             <li>${value.count} prayer times</li>
                             <li>
@@ -577,7 +623,10 @@ export class CampaignSignUp extends LitElement {
                 `)}
                 ${this.selected_times.map((value, index) => html`
                     <div class="selected-times">
-                        ${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
+                        <span>${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                        <button @click="${e=>this.remove_prayer_time(value.time)}" class="remove-prayer-time-button">
+                            <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                        </button>
                     </div>
                 `)}
             </div>
