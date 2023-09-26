@@ -676,7 +676,9 @@ export class cpCalendar extends LitElement {
         font-size:12px;
         font-weight:550;
       }
-      
+      .loading {
+        min-height: 600px;
+      }
     `
   ]
 
@@ -688,12 +690,14 @@ export class cpCalendar extends LitElement {
     super();
     this.campaign_data = {}
     this.days = [];
+    this.loading = true
   }
 
 
   async connectedCallback() {
     super.connectedCallback();
     this.campaign_data = await window.campaign_scripts.get_campaign_data()
+    this.loading = false
     this.days = window.campaign_scripts.days
     this.timezone = window.campaign_scripts.timezone
     this.requestUpdate()
@@ -731,7 +735,7 @@ export class cpCalendar extends LitElement {
     })
 
     return html`
-        <div class="calendar-wrapper">
+        <div class="calendar-wrapper ${this.loading ? 'loading' : ''}">
             ${months_to_show.map(month=>html`
                 <div class="calendar-month">
                     <h3 class="month-title center">
