@@ -14,6 +14,10 @@ window.campaign_scripts = {
     window.campaign_scripts.time_label_counts = {}
     window.campaign_scripts.missing_slots = {}
     let days = [];
+    let now = parseInt( new Date().getTime() / 1000 );
+    if (!end){
+      end = Math.max(now, start) + 365 * day_in_seconds;
+    }
 
     if ( !custom_timezone ){
       custom_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
@@ -23,9 +27,7 @@ window.campaign_scripts = {
     let time_iterator = parseInt( start_of_day );
     let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
 
-    let now = parseInt( new Date().getTime() / 1000 );
-
-    while ( time_iterator < ( end ) ){
+    while ( time_iterator < end ){
 
       if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
         let timezone_date = window.luxon.DateTime.fromSeconds( time_iterator + day_in_seconds, {zone: custom_timezone}).toFormat('h:mm a')

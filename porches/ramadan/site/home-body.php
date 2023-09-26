@@ -6,7 +6,7 @@ $campaign_fields = DT_Campaign_Settings::get_campaign();
 global $allowedtags;
 
 $campaign_root = 'campaign_app';
-$campaign_type = $campaign_fields['type']['key'];
+$campaign_type = 'ongoing';
 $key_name = 'public_key';
 $key = '';
 if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){

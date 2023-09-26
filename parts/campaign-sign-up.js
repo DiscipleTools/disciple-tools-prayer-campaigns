@@ -108,7 +108,15 @@ export class CampaignSignUp extends LitElement {
         }
       }
       
-    `,
+      .section-div[disabled] {
+        opacity: 0.5;
+      }
+      .place-indicator {
+        color: orange;
+        font-size: 1rem;
+      }
+      
+    `
   ];
 
   static properties = {
@@ -140,37 +148,38 @@ export class CampaignSignUp extends LitElement {
     this.show_selected_times = false;
     this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.days = [];
-    this.get_campaign_data()
 
-    this.frequency = {
-      value: 'daily',
-      options: [
-        {value: 'daily', label: 'Daily (up to 3 months)'},
-        {value: 'weekly', label: 'Weekly (up to 6 months)', disabled: true},
-        {value: 'monthly', label: 'Monthly (up to 1 year)', disabled: true},
-        {value: 'pick', label: 'Pick Dates and Times'},
-      ]
-    }
-    this.duration = {
-      value: 15,
-      options: [
-        {value: 15, label: '15 Minutes'},
-        {value: 30, label: '30 Minutes'},
-        {value: 60, label: '1 Hour'},
-      ]
-    }
-    this.week_day = {
-      value: 'monday',
-      options: [
-        {value: 'monday', label: 'Mondays'},
-        {value: 'tuesday', label: 'Tuesdays'},
-        {value: 'wednesday', label: 'Wednesdays'},
-        {value: 'thursday', label: 'Thursdays'},
-        {value: 'friday', label: 'Fridays'},
-        {value: 'saturday', label: 'Saturdays'},
-        {value: 'sunday', label: 'Sundays'},
-      ]
-    }
+    this.get_campaign_data().then(()=>{
+      this.frequency = {
+        value: '',
+        options: [
+          {value: 'daily', label: 'Daily' + ( this.campaign_data.end_timestamp ? '' : ' (up to 3 months) '), days_limit:90, step:'day'},
+          {value: 'weekly', label: 'Weekly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 6 months) '), disabled: false, days_limit: 180, step:'week'},
+          {value: 'monthly', label: 'Monthly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 12 months) '), disabled: true, days_limit: 365, step:'month'},
+          {value: 'pick', label: 'Pick Dates and Times'},
+        ]
+      }
+      this.duration = {
+        value: 15,
+        options: [
+          {value: 15, label: '15 Minutes'},
+          {value: 30, label: '30 Minutes'},
+          {value: 60, label: '1 Hour'},
+        ]
+      }
+      this.week_day = {
+        value: '',
+        options: [
+          {value: '1', label: 'Mondays'},
+          {value: '2', label: 'Tuesdays'},
+          {value: '3', label: 'Wednesdays'},
+          {value: '4', label: 'Thursdays'},
+          {value: '5', label: 'Fridays'},
+          {value: '6', label: 'Saturdays'},
+          {value: '7', label: 'Sundays'},
+        ]
+      }
+    })
   }
   selected_times_count(){
     let count = 0;
@@ -182,7 +191,7 @@ export class CampaignSignUp extends LitElement {
   }
 
   get_campaign_data() {
-    window.campaign_scripts.get_campaign_data().then((data) => {
+    return window.campaign_scripts.get_campaign_data().then((data) => {
       this._view = 'main';
       this.campaign_data = {...this.campaign_data, ...data};
       this.days = window.campaign_scripts.days
@@ -310,22 +319,40 @@ export class CampaignSignUp extends LitElement {
 
   build_list(selected_time){
     let selected_times = []
-    let start_time = this.days[0].key + selected_time;
-    let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:this.timezone})
     let now = new Date().getTime()/1000
-    for ( let i = 0; i < this.days.length; i++){
-      let time_date = start_date.plus({day:i})
-      let time = parseInt( time_date.toFormat('X') );
-      let time_label = time_date.toFormat('hh:mm a');
+    let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, this.days[0].key),{zone:this.timezone})
+    let frequency_option = this.frequency.options.find(k=>k.value===this.frequency.value)
+    if ( frequency_option.value === 'weekly' ){
+      now_date = now_date.set({weekday: parseInt(this.week_day.value)})
+    }
+    let start_of_day = now_date.startOf('day').toSeconds()
+    let start_time = start_of_day + selected_time;
+    let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:this.timezone})
+
+    let limit = this.campaign_data.end_timestamp
+    if ( !this.campaign_data.end_timestamp ){
+      limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
+    }
+
+    let date_ref = start_date
+    while ( date_ref.toSeconds() <= limit ){
+      let time = date_ref.toSeconds();
+      let time_label = date_ref.toFormat('hh:mm a');
       let already_added = selected_times.find(k=>k.time===time)
       if ( !already_added && time > now && time >= this.campaign_data.start_timestamp ) {
-        selected_times.push({time: time, duration:  this.duration.value, label: time_label, day_key:time_date.startOf('day'), date_time:time_date})
+        selected_times.push({time: time, duration:  this.duration.value, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
       }
+      date_ref = date_ref.plus({[frequency_option.step]:1})
     }
-    let label = "Every Day at " + selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let label = '';
+    if ( frequency_option.value === 'daily' ){
+      label = "Every Day at " + selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    } else if ( frequency_option.value === 'weekly' ){
+      label = "Every " + selected_times[0].date_time.toFormat('cccc') + " at " + selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    }
     this.selected_times_labels.push( {
       label: label,
-      type: 'daily',
+      type: frequency_option.value,
       first: selected_times[0].date_time,
       last: selected_times[selected_times.length-1].date_time,
       time: selected_time,
@@ -376,6 +403,13 @@ export class CampaignSignUp extends LitElement {
     this.requestUpdate()
   }
 
+  timezone_change(e){
+    this.timezone = e.detail
+    window.campaign_scripts.timezone = e.detail
+    this.days = window.campaign_scripts.calculate_day_times( this.timezone, this.campaign_data.start_timestamp, this.campaign_data.end_timestamp, this.campaign_data.current_commitments, this.campaign_data.slot_length )
+    this.requestUpdate()
+  }
+
   render(){
     if ( this.days.length === 0 ){
       return html`<div class="loading"></div>`
@@ -387,7 +421,7 @@ export class CampaignSignUp extends LitElement {
             <div class="section-div">
                 <h2 class="section-title">
                     <span class="step-circle">1</span>
-                    <span>Frequency</span>
+                    <span>Frequency</span> <span ?hidden="${this.frequency.value}" class="place-indicator">Start Here</span>
                 </h2>
                 <div>
                     <cp-select 
@@ -401,6 +435,10 @@ export class CampaignSignUp extends LitElement {
 <!--                </p>-->
             </div>
             <div class="section-div">
+                <time-zone-picker timezone="${this.timezone}" @change="${this.timezone_change}">
+                
+            </div>
+            <div class="section-div" ?disabled="${!this.frequency.value}">
                 <h2 class="section-title"><span class="step-circle">2</span><span>Prayer Duration</span></h2>
                 <div>
                     <cp-select 
@@ -410,13 +448,11 @@ export class CampaignSignUp extends LitElement {
                     </cp-select>
                 </div>
             </div>
-        </div>
-        <div class="column center-col" ?hidden="${this._view === 'submit'}">
-            <div class="section-div">
-                ${this.frequency.value === 'weekly' ? html`
+            ${this.frequency.value === 'weekly' ? html`
+
                     <h2 class="section-title">
                         <span class="step-circle">3</span>
-                        <span>Week Day</span>
+                        <span>Week Day</span> <span ?hidden="${this.week_day.value}" class="place-indicator">Now Here</span>
                     </h2>
                     <div>
                         <cp-select 
@@ -427,6 +463,10 @@ export class CampaignSignUp extends LitElement {
                     </div>
 
                 ` : '' }
+        </div>
+        <div class="column center-col" ?hidden="${this._view === 'submit'}">
+            <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly'&&!this.week_day.value}">
+                
                 
                 ${['daily', 'weekly'].includes(this.frequency.value) ? html`
                 

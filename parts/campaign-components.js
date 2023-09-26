@@ -70,6 +70,8 @@ customElements.define('cp-button', campaignButton);
 
 /**
  * Timezone Picker Component
+ * param timezone
+ * @fires change, timezone
  */
 export class TimeZonePicker extends LitElement {
   static styles = [
@@ -111,7 +113,7 @@ export class TimeZonePicker extends LitElement {
   }
   render(){
     return html`
-        <p>${strings['Detected Time Zone']}:
+        <p>${strings['Detected time zone']}:
             <button id="change-timezone-button" ?hidden=${!this.timezone} @click=${this.show_picker}>${this.timezone}</button>
             <div ?hidden=${this.timezone.length} >
                 <select @change=${this.timezone_changed}>
