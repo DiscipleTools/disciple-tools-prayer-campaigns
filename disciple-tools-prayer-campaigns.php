@@ -147,6 +147,7 @@ class DT_Prayer_Campaigns {
 
         require_once( 'porches/loader.php' );
 
+        require_once( 'magic-links/campaign-magic-link.php' );
         require_once( 'magic-links/ongoing/ongoing.php' );
         require_once( 'magic-links/subscription-management/subscription-management.php' );
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );

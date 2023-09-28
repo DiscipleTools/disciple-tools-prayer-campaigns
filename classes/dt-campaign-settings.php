@@ -49,6 +49,9 @@ class DT_Campaign_Settings {
         if ( empty( $selected_campaign ) ) {
             return [];
         }
+        if ( defined( 'CAMPAIGN_ID' ) ) {
+            $selected_campaign = CAMPAIGN_ID;
+        }
 
         $campaign = DT_Posts::get_post( 'campaigns', (int) $selected_campaign, true, false );
         if ( is_wp_error( $campaign ) ) {

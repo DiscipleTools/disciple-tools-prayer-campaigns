@@ -43,7 +43,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( $porch_fields['logo_link_url']['value'] ?: site_url() ) ?>" class="logo"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'title', $lang ) ) ?></a>
+                <a href="<?php echo esc_url( $porch_fields['logo_link_url']['value'] ?: site_url() ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ) ?></a>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>
@@ -82,7 +82,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
                     <?php else : ?>
 
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'title', $lang ) ) ?>
+                            <?php echo esc_html( $campaign_fields['name'] ) ?>
                         </h1>
 
                     <?php endif; ?>

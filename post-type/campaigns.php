@@ -712,6 +712,7 @@ class DT_Campaigns_Base {
                         <?php esc_html_e( 'Shortcodes', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
                     <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( home_url( $record['name'] ) ); ?>"><?php esc_html_e( 'View Landing Page', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </div>
                 <?php
             }
