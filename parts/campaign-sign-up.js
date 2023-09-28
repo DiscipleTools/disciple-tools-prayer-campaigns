@@ -44,7 +44,7 @@ export class CampaignSignUp extends LitElement {
         flex-wrap: wrap;
         justify-content: center;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        grid-gap: 3rem;
+        column-gap: 3rem;
         font-size: 1rem;
       }
 
