@@ -29,7 +29,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'lang' => $atts['lang'] ?? 'en_US'
                 ],
                 'rest_url' => get_rest_url(),
-                'remote' => $atts['rest_url'] !== get_rest_url(),
+                'remote' => $atts['rest_url'] ?? get_rest_url() !== get_rest_url(),
                 'home' => home_url(),
                 'plugin_url' => $plugin_dir_url,
                 'translations' => [
@@ -49,7 +49,6 @@ function dt_campaigns_register_scripts( $atts = [] ){
 
         wp_enqueue_script( 'campaign_css_component', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
         wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
-
         wp_enqueue_script( 'campaign_sign_up_component', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
     }
 }

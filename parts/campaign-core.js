@@ -106,6 +106,14 @@ window.campaign_scripts = {
     if ( !timezone ){
       timezone = this.timezone
     }
+    if ( window.jsObject?.campaign_data ){
+      return new Promise((resolve, reject)=>{
+        let data = window.jsObject.campaign_data
+        this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
+        resolve(window.jsObject.campaign_data)
+      })
+    }
+
     if ( campaign_data_promise === null ){
       let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_info';
       campaign_data_promise = jQuery.ajax({

@@ -673,7 +673,7 @@ export class cpTimes extends LitElement {
   }
 
   time_selected(e,time_key){
-    if ( time_key < parseInt(new Date().getTime() / 1000) ){
+    if ( time_key < parseInt(new Date().getTime() / 1000) && this.type === 'once_day'){
       return;
     }
     e.currentTarget.classList.add('selected-time');
@@ -722,7 +722,7 @@ export class cpTimes extends LitElement {
                 ${map(range(time_slots), (i) => {
                     let time = this.times[index*time_slots+i];
                     return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" ?disabled="${time.key < now}">
+                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" ?disabled="${this.type === 'once_day' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
                           ${time.progress < 100 ? 

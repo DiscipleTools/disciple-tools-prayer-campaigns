@@ -74,6 +74,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'campaign_css';
         $allowed_js[] = 'campaign_components';
         $allowed_js[] = 'campaign_sign_up_component';
+        $allowed_js[] = 'campaign_components';
+        $allowed_js[] = 'campaign_css_component';
         return $allowed_js;
     }
     public function dt_magic_url_base_allowed_css( $allowed_js ) {
@@ -82,12 +84,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
-        wp_enqueue_script( 'dt_campaign_core', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'parts/campaign-core.js', [
-            'jquery',
-            'lodash',
-            'luxon'
-        ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'parts/campaign-core.js' ), true );
+        dt_campaigns_register_scripts( $this->parts );
 
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
@@ -115,6 +112,18 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
+
+        $campaign_data = [
+            'campaign_id' => $campaign_id,
+            'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
+            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
+            'slot_length' => $campaign['min_time_duration']['key'] ?? 15,
+            'timezone' => $post['timezone'] ?? 'America/Chicago',
+            'enabled_frequencies' => $campaign['enabled_frequencies'],
+            'current_commitments' => $current_commitments,
+
+        ];
+
         wp_localize_script(
             'dt_subscription_js', 'jsObject', [
                 'root' => esc_url_raw( rest_url() ),
@@ -140,10 +149,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
                 'slot_length' => $min_time_duration,
                 'timezone' => $post['timezone'] ?? 'America/Chicago',
-                'duration_options' => $field_settings['duration_options']['default']
+                'duration_options' => $field_settings['duration_options']['default'],
+                'campaign_data' => $campaign_data,
             ]
         );
-
     }
 
     public function form_head(){
@@ -282,6 +291,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        $color = PORCH_COLOR_SCHEME_HEX;
+        if ( $color === 'preset' ){
+            $color = '#4676fa';
+        }
 
         ?>
         <div id="wrapper">
@@ -298,7 +311,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
                 <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
             </div>
-            <div id="calendar-content" class="cp-wrapper"></div>
+            <div id="calendar-content" class="cp-wrapper" style="min-height: 750px"></div>
 
             <!-- Reveal Modal Timezone Changer-->
             <div id="timezone-changer" class="reveal tiny" data-reveal>
@@ -387,6 +400,17 @@ That will keep the prayer chain from being broken AND will give someone the joy 
 
 
             <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
+
+            <style>
+                :root {
+                    --cp-color: <?php echo esc_html( $color ) ?>;
+                }
+            </style>
+            <div style="background-color: white; margin: 50px">
+            <campaign-sign-up style="padding:30px 0"
+                already_signed_up="true"
+            ></campaign-sign-up>
+            </div>
 
             <hr>
 
