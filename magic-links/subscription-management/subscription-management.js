@@ -15,8 +15,10 @@ function toggle_danger() {
 
 jQuery(document).ready(function($){
 
+  calendar_subscribe_object.start_timestamp = parseInt(calendar_subscribe_object.start_timestamp)
+  calendar_subscribe_object.end_timestamp = parseInt(calendar_subscribe_object.end_timestamp)
   //set up array of days and time slots according to timezone
-  let days = window.campaign_scripts.calculate_day_times(current_time_zone);
+  let days = window.campaign_scripts.calculate_day_times(current_time_zone, calendar_subscribe_object.start_timestamp, calendar_subscribe_object.end_timestamp, calendar_subscribe_object.current_commitments, calendar_subscribe_object.slot_length)
 
 
   let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
@@ -305,7 +307,7 @@ jQuery(document).ready(function($){
             <div class="goto-month-container"><button class="cp-goto-month" data-month-target="${index-1}" style="${prev_month_button}"><</button></div>
             <div style="flex-grow:1;">
               <div class="calendar-title">
-                <h2>${window.lodash.escape(key)} ${new Date(months[key].key * 1000).getFullYear()}</h2>
+                <h2>${window.campaign_scripts.ts_to_format(months[key].key, 'MMMM y', current_time_zone)}</h2>
               </div>
               <div class="new_calendar">
                 ${headers}
