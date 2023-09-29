@@ -526,7 +526,7 @@ export class CampaignSignUp extends LitElement {
                         <div style="flex-grow: 1">
                             <h2 class="section-title">
                                 <span class="step-circle">3</span>
-                                <span>Select a Date </span>
+                                <span>Select a Date</span>
                             </h2>
                             <cp-calendar-day-select style="display: flex;justify-content: center" 
                                 class="size-item top-left ${this.calendar_small ? 'small' : ''}" @click="${()=>{this.calendar_small = false;this.requestUpdate();}}"

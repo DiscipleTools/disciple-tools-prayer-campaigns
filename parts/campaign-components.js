@@ -535,6 +535,9 @@ export class cpCalendarDaySelect extends LitElement {
 
     let day_number = window.campaign_scripts.get_day_number(current_month, current_time_zone);
 
+    if ( !this.end_timestamp ){
+      this.end_timestamp = this.days[this.days.length - 1].key
+    }
 
     return html`
       
