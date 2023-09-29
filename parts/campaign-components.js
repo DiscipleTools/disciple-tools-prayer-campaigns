@@ -392,7 +392,7 @@ export class select extends LitElement {
 
   render() {
     return html`
-      ${this.options.map(o=>html`
+      ${this.options.filter(o=>!o.disabled).map(o=>html`
           <button class="select ${o.value.toString() === this.value.toString() ? 'selected' : ''}"
                   ?disabled="${o.disabled}"
                   @click="${this.handleClick}"
@@ -521,14 +521,14 @@ export class cpCalendarDaySelect extends LitElement {
 
     let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
 
-    let now = parseInt(new Date().getTime() / 1000);
+    let now_date = window.luxon.DateTime.now()
+    let now = now_date.toSeconds();
     let start_of_day = window.campaign_scripts.day_start_timestamp_utc(now)
     let days = this.days.filter(d=>d.key >= start_of_day) || [];
     let current_time_zone = this.current_time_zone
     let current_month = this.month_to_show || days[0].key
     let current_month_date = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone})
     let this_month_days = days.filter(k=>k.month===current_month_date.toFormat('y_MM'));
-
 
     let previous_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).minus({months:1}).toSeconds()
     let next_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).plus({months:1}).toSeconds()
@@ -543,7 +543,7 @@ export class cpCalendarDaySelect extends LitElement {
       
       <div class="calendar-wrapper">
         <h3 class="month-title center">
-            <button class="month-next" ?disabled="${previous_month < now}"
+            <button class="month-next" ?disabled="${previous_month < now_date.minus({months:1}).toSeconds() }"
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
@@ -634,6 +634,10 @@ export class cpTimes extends LitElement {
         opacity: 0.8;
         color: #fff;
       }
+      .time[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
       .time-label {
         padding: 0.3rem;
         padding-inline-start: 1rem;
@@ -669,6 +673,9 @@ export class cpTimes extends LitElement {
   }
 
   time_selected(e,time_key){
+    if ( time_key < parseInt(new Date().getTime() / 1000) ){
+      return;
+    }
     e.currentTarget.classList.add('selected-time');
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
   }
@@ -703,6 +710,7 @@ export class cpTimes extends LitElement {
     if ( this.type === 'once_day' && this.selected_day ){
       this.times = this.get_times()
     }
+    let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
     return html`
       <div class="times-container">
@@ -714,7 +722,7 @@ export class cpTimes extends LitElement {
                 ${map(range(time_slots), (i) => {
                     let time = this.times[index*time_slots+i];
                     return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" >
+                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" ?disabled="${time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
                           ${time.progress < 100 ? 

@@ -174,12 +174,12 @@ export class CampaignSignUp extends LitElement {
 
     this.get_campaign_data().then(()=>{
       this.frequency = {
-        value: '',
+        value: this.campaign_data.enabled_frequencies.length === 1 ? this.campaign_data.enabled_frequencies[0] : '',
         options: [
-          {value: 'daily', label: 'Daily' + ( this.campaign_data.end_timestamp ? '' : ' (up to 3 months) '), days_limit:90, step:'day'},
-          {value: 'weekly', label: 'Weekly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 6 months) '), disabled: false, days_limit: 180, step:'week'},
-          {value: 'monthly', label: 'Monthly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 12 months) '), disabled: true, days_limit: 365, step:'month'},
-          {value: 'pick', label: 'Pick Dates and Times'},
+          {value: 'daily', label: 'Daily' + ( this.campaign_data.end_timestamp ? '' : ' (up to 3 months) '), days_limit:90, step:'day', disabled: !this.campaign_data.enabled_frequencies.includes('daily')},
+          {value: 'weekly', label: 'Weekly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 6 months) '), disabled: !this.campaign_data.enabled_frequencies.includes('weekly'), days_limit: 180, step:'week'},
+          {value: 'monthly', label: 'Monthly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 12 months) '), disabled: !this.campaign_data.enabled_frequencies.includes('monthly'), days_limit: 365, step:'month'},
+          {value: 'pick', label: 'Pick Dates and Times', disabled: !this.campaign_data.enabled_frequencies.includes('pick')},
         ]
       }
       this.duration = {
@@ -458,7 +458,7 @@ export class CampaignSignUp extends LitElement {
             <div class="section-div">
                 <h2 class="section-title">
                     <span class="step-circle">1</span>
-                    <span>Frequency</span> <span ?hidden="${this.frequency.value}" class="place-indicator">Start Here</span>
+                    <span>I will pray</span> <span ?hidden="${this.frequency.value}" class="place-indicator">Start Here</span>
                 </h2>
                 <cp-select 
                     .options="${this.frequency.options}"
@@ -472,7 +472,9 @@ export class CampaignSignUp extends LitElement {
                 Duration
             -->
             <div class="section-div" ?disabled="${!this.frequency.value}">
-                <h2 class="section-title"><span class="step-circle">2</span><span>Prayer Duration</span></h2>
+                <h2 class="section-title">
+                    <span class="step-circle">2</span>
+                    <span>For how long?</span></h2>
                 <div>
                     <cp-select 
                         .value="${this.duration.value}"
@@ -488,7 +490,7 @@ export class CampaignSignUp extends LitElement {
             ${this.frequency.value === 'weekly' ? html`
                 <h2 class="section-title">
                     <span class="step-circle">3</span>
-                    <span>Week Day</span> <span ?hidden="${this.week_day.value}" class="place-indicator">Now Here</span>
+                    <span>On which week day?</span> <span ?hidden="${this.week_day.value}" class="place-indicator">Now Here</span>
                 </h2>
                 <div>
                     <cp-select 
@@ -505,19 +507,20 @@ export class CampaignSignUp extends LitElement {
             <!--
                 Time Picker
             -->
-            <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly'&&!this.week_day.value}">
-                ${['daily', 'weekly'].includes(this.frequency.value) ? html`
+            <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly'&&!this.week_day.value}" ?hidden="${this.frequency.value === 'pick'}">
                 
                   <h2 class="section-title">
                       <span class="step-circle">3</span>
-                      <span>Select Daily Prayer Time</span>
+                      <span>At what time?</span>
                   </h2>
                   <cp-times slot_length="${this.campaign_data.slot_length}" .times="${times}"
                       @time-selected="${e=>this.time_selected(e.detail)}" >
                   </cp-times>
-                  
-                ` : ''}
-                
+            </div>
+
+            <div class="section-div" ?disabled="${!this.frequency.value}" ?hidden="${this.frequency.value !== 'pick'}">
+
+
                 <!--
                     Calendar Picker
                 -->

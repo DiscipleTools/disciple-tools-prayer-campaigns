@@ -244,12 +244,24 @@ class DT_Campaigns_Base {
             ];
 
             $fields['min_time_duration'] = [
-                'name' => 'Prayer Time Duration',
+                'name' => 'Minimum Prayer Time Duration',
                 'type' => 'key_select',
                 'default' => [
                     '15' => [ 'label' => '15 Minutes', 'default' => true ], //keep as first item
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
+                ],
+                'tile' => 'campaign_setup'
+            ];
+
+            $fields['enabled_frequencies'] = [
+                'name' => 'Enabled Frequencies',
+                'type' => 'multi_select',
+                'default' => [
+                    'daily' => [ 'label' => 'Daily' ],
+                    'weekly' => [ 'label' => 'Weekly' ],
+                    'monthly' => [ 'label' => 'Monthly' ],
+                    'pick' => [ 'label' => 'Pick Days' ],
                 ],
                 'tile' => 'campaign_setup'
             ];
