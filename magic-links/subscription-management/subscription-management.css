@@ -69,7 +69,7 @@ select::-ms-expand {
 
 .progress-bar {
     height:10px;
-    background: dodgerblue;
+    background: var(--cp-color);
     width:0;
 }
 .progress-bar-container {
@@ -136,7 +136,7 @@ select::-ms-expand {
     padding-top: 18px;
 }
 .selected-day {
-    background-color: dodgerblue;
+    background-color: var(--cp-color);
     color: white;
     border-radius: 50%;
     border: 2px solid;
@@ -214,7 +214,7 @@ select::-ms-expand {
     width: 84%;
 }
 .calendar-title h2{
-    color: dodgerblue;
+    color: var(--cp-color);
     font-weight: bold;
 }
 
@@ -381,12 +381,12 @@ Danger zone
     -webkit-transform: scale(-1, -1);
     transform: scale(-1, -1);
 }
-.cp-wrapper button {
+#wrapper button, #wrapper .button {
     color: #fefefe;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid transparent;
     font-weight: normal;
     padding: .85em 1em;
-    background-color: dodgerblue;
+    background-color: var(--cp-color);
 }

@@ -113,10 +113,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
 
+
+        $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id );
+        $end = $campaign['end_date']['timestamp'] ?? null;
+        if ( $end ){
+            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, $start );
+        }
         $campaign_data = [
             'campaign_id' => $campaign_id,
-            'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
-            'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
+            'start_timestamp' => $start,
+            'end_timestamp' => $end,
             'slot_length' => $campaign['min_time_duration']['key'] ?? 15,
             'timezone' => $post['timezone'] ?? 'America/Chicago',
             'enabled_frequencies' => $campaign['enabled_frequencies'],
@@ -145,8 +151,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'my_commitments' => $my_commitments,
                 'campaign_id' => $campaign_id,
                 'current_commitments' => $current_commitments,
-                'start_timestamp' => (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id ),
-                'end_timestamp' => (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, time() ) ,
+                'start_timestamp' => $start,
+                'end_timestamp' => $end,
                 'slot_length' => $min_time_duration,
                 'timezone' => $post['timezone'] ?? 'America/Chicago',
                 'duration_options' => $field_settings['duration_options']['default'],
@@ -297,6 +303,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         ?>
+        <style>
+            :root {
+                --cp-color: <?php echo esc_html( $color ) ?>;
+            }
+        </style>
         <div id="wrapper">
             <div class="grid-x">
                 <div class="cell center">
@@ -398,14 +409,15 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 </button>
             </div>
 
+            <a class="button" style="margin-top: 10px" target="_blank"
+               href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
+            <h3 class="mc-title"><?php esc_html_e( 'My commitments', 'disciple-tools-prayer-campaigns' ); ?></h3>
+            <div id="mobile-commitments-container">
+            </div>
 
             <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
 
-            <style>
-                :root {
-                    --cp-color: <?php echo esc_html( $color ) ?>;
-                }
-            </style>
+
             <div style="background-color: white; margin: 50px">
             <campaign-sign-up style="padding:30px 0"
                 already_signed_up="true"
