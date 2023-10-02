@@ -125,7 +125,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             'end_timestamp' => $end,
             'slot_length' => $campaign['min_time_duration']['key'] ?? 15,
             'timezone' => $post['timezone'] ?? 'America/Chicago',
-            'enabled_frequencies' => $campaign['enabled_frequencies'],
+            'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'current_commitments' => $current_commitments,
 
         ];

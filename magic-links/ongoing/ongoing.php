@@ -152,7 +152,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'current_commitments' => $current_commitments,
             'minutes_committed' => $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
-            'enabled_frequencies' => $record['enabled_frequencies'],
+            'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
         ];
     }
 

@@ -31,8 +31,6 @@ jQuery(document).ready(function($){
     <div class="new_weekday">${week_day_names[5]}</div>
     <div class="new_weekday">${week_day_names[6]}</div>
   `
-  let daily_time_select = $('#cp-daily-time-select')
-  let modal_calendar = $('#day-select-calendar')
   let now = new Date().getTime()/1000
   let selected_times = [];
   calendar_subscribe_object.my_recurring = {}
@@ -47,14 +45,9 @@ jQuery(document).ready(function($){
 
   update_timezone()
   draw_calendar()
-  display_missing_time_slots()
+  setup_daily_select()
 
   calculate_my_time_slot_coverage()
-
-  setup_duration_options()
-
-  setup_daily_prayer_times()
-  setup_individual_prayer_times()
 
 
   //change timezone
@@ -64,8 +57,6 @@ jQuery(document).ready(function($){
     days = window.campaign_scripts.calculate_day_times(current_time_zone)
     draw_calendar()
     display_my_commitments()
-    draw_modal_calendar()
-    display_missing_time_slots()
   })
   /**
    * Remove a prayer time
@@ -330,40 +321,7 @@ jQuery(document).ready(function($){
     $(`#calendar-content .calendar-month[data-month-index='${target}']`).show()
   })
 
-  function display_missing_time_slots(){
-    let ordered_missing = [];
-    Object.keys(window.campaign_scripts.missing_slots).forEach(k=>{
-      ordered_missing.push({'label':k, slots:window.campaign_scripts.missing_slots[k]})
-    })
 
-    ordered_missing.sort((a,b)=>a.slots.length-b.slots.length)
-    if ( ordered_missing.length > 0 ){
-      $('#cp-missing-times-container').show()
-    }
-
-    let content = ``;
-    let index = 0;
-    ordered_missing.forEach(m=>{
-      index++;
-      content += `<div class="missing-time-slot" style="${index>5?'display:none':''}"><strong>${m.label}:</strong>&nbsp;`
-      if ( m.slots.length < 5 ){
-        content += m.slots.slice(0, 5).map(a=>{return window.campaign_scripts.timestamp_to_month_day(a)}).join(', ')
-      } else {
-        content += calendar_subscribe_object.translations.on_x_days.replace('%s', m.slots.length)
-      }
-      // content += `.<button class="cp-select-missing-time clear-button" value="${m.label}" style="padding:5px">${calendar_subscribe_object.translations.pray_this_time}</button>`
-      content += `</div>`
-    })
-    if( ordered_missing.length >= 5 ){
-      content += `<div class="missing-time-slot">
-          <button class="button" id="cp-show-more-missing">
-            <strong>${calendar_subscribe_object.translations.and_x_more.replace('%s', ordered_missing.length - 5)}</strong>
-          </button>
-        </div>`
-    }
-
-    $('#cp-missing-time-slots').html(content)
-  }
   $(document).on('click', '#cp-show-more-missing', function (){
     $('.missing-time-slot').show();
     $('#cp-show-more-missing').hide();
@@ -478,7 +436,6 @@ jQuery(document).ready(function($){
     day_times_content.empty().html(`<div class="grid-x"> ${times_html} </div>`)
   }
 
-
   /**
    * daily prayer time screen
    */
@@ -512,200 +469,6 @@ jQuery(document).ready(function($){
     daily_time_select.html(select_html)
 
   }
-
-  function setup_duration_options(){
-    let duration_options_html = ``
-    for (const prop in calendar_subscribe_object.duration_options) {
-      if (calendar_subscribe_object.duration_options.hasOwnProperty(prop) && parseInt(prop) >= parseInt(calendar_subscribe_object.slot_length) ) {
-        duration_options_html += `<option value="${window.lodash.escape(prop)}">${window.lodash.escape(calendar_subscribe_object.duration_options[prop].label)}</option>`
-      }
-    }
-    $(".cp-time-duration-select").html(duration_options_html)
-
-  }
-
-
-  function setup_daily_prayer_times(){
-    setup_daily_select()
-
-    daily_time_select.on("change", function (){
-      $('#cp-confirm-daily-times').attr('disabled', false)
-    })
-
-
-    $('#cp-confirm-daily-times').on("click", function (){
-      let daily_time_selected = parseInt($("#cp-daily-time-select").val());
-      let duration = parseInt($("#cp-prayer-time-duration-select").val())
-
-      let start_time = days[0].key + daily_time_selected;
-      let start_date = window.luxon.DateTime.fromSeconds(start_time).setZone(current_time_zone)
-      let now = new Date().getTime()/1000
-      for ( let i = 0; i < days.length; i++){
-        let time_date = start_date.plus({day:i})
-        let time = parseInt( time_date.toFormat('X') );
-        let time_label = time_date.toFormat('MMMM dd HH:mm a');
-        let already_added = selected_times.find(k=>k.time===time)
-        if ( !already_added && time > now && time >= calendar_subscribe_object['start_timestamp'] && time < calendar_subscribe_object['end_timestamp'] ) {
-          selected_times.push({time: time, duration: duration, label: time_label})
-        }
-      }
-      submit_times();
-    })
-  }
-
-  /**
-   * Individual prayer times screen
-   */
-  function setup_individual_prayer_times(){
-    draw_modal_calendar()
-
-    let current_time_selected = $("cp-individual-time-select").val();
-    $(document).on( 'click', '.remove-prayer-time-button', function (){
-      let time = parseInt($(this).data('time'))
-      selected_times = selected_times.filter(t=>parseInt(t.time) !== time)
-      display_selected_times()
-    })
-    //add a selected time to the array
-    $('#cp-add-prayer-time').on("click", function(){
-      current_time_selected = $("#cp-individual-time-select").val();
-      let duration = parseInt($("#cp-individual-prayer-time-duration-select").val())
-      let time_label = window.campaign_scripts.timestamp_to_format( current_time_selected, { month: "long", day: "numeric", hour:"numeric", minute: "numeric" }, current_time_zone)
-      let now = new Date().getTime()/1000
-      let already_added = selected_times.find(k=>k.time===current_time_selected)
-      if ( !already_added && current_time_selected > now && current_time_selected >= calendar_subscribe_object['start_timestamp'] ){
-        $('#cp-time-added').show().fadeOut(1000)
-        selected_times.push({time: current_time_selected, duration: duration, label: time_label })
-      }
-      display_selected_times()
-      $('#cp-confirm-individual-times').attr('disabled', false)
-    })
-
-    $(document).on('click', '#day-select-calendar .cp-goto-month', function (){
-      let target = $(this).data('month-target');
-      $('#day-select-calendar .calendar-month').hide()
-      $(`#day-select-calendar .calendar-month[data-month-index='${target}']`).show()
-    })
-
-    //when a day is clicked on from the calendar
-    $(document).on('click', '.day-in-select-calendar', function (){
-      $('#day-select-calendar div').removeClass('selected-day')
-      $(this).toggleClass('selected-day')
-      //get day and build content
-      let day_key = parseInt($(this).data("day"))
-      let day=days.find(k=>k.key===day_key);
-      //set time key on add button
-      $('#cp-add-prayer-time').data("day", day_key).attr('disabled', false)
-
-      //build time select
-      let select_html = ``;
-      day.slots.forEach(slot=> {
-        let text = ``
-        if ( slot.subscribers===1 ) {
-          text = "(covered once)";
-        }
-        if ( slot.subscribers > 1 ) {
-          text = `(covered ${slot.subscribers} times)`;
-        }
-        let disabled = slot.key < calendar_subscribe_object.start_timestamp ? 'disabled' : '';
-        let selected = ( slot.key % day_in_seconds) === ( current_time_selected % day_in_seconds ) ? "selected" : '';
-        select_html += `<option value="${window.lodash.escape(slot.key)}" ${selected} ${disabled}>
-          ${window.lodash.escape(slot.formatted)} ${window.lodash.escape(text)}
-      </option>`
-      })
-      $('#cp-individual-time-select').html(select_html).attr('disabled', false)
-    })
-
-
-    $('#cp-confirm-individual-times').on( 'click', function (){
-      submit_times();
-    })
-  }
-
-
-
-
-  //build the list of individually selected times
-  function display_selected_times(){
-    let html = ""
-    selected_times.sort((a,b)=>{
-      return a.time - b.time
-    });
-    selected_times.forEach(time=>{
-      html += `<li>
-          ${escaped_translations.time_slot_label.replace( '%1$s', time.label).replace( '%2$s', time.duration )}
-          <button class="remove-prayer-time-button" data-time="${time.time}">x</button>
-      </li>`
-
-    })
-    $('.cp-display-selected-times').html(html)
-  }
-
-  //dawn calendar in date select view
-
-  function draw_modal_calendar() {
-    let current_month = window.campaign_scripts.timestamp_to_format( now, { month:"long" }, current_time_zone);
-    modal_calendar.empty()
-    let list = ''
-    let months = {};
-    days.forEach(day=> {
-      if (day.month === current_month || day.key > now) {
-        if (!months[day.month]) {
-          months[day.month] = {key: day.key}
-        }
-      }
-    })
-    Object.keys(months).forEach( (key, index) =>{
-
-      let this_month_content = ``
-      let day_number = window.campaign_scripts.get_day_number(months[key].key, current_time_zone);
-
-      //add extra days at the month start
-      for (let i = 0; i < day_number; i++) {
-        this_month_content += `<div class="day-cell disabled-calendar-day"></div>`
-      }
-      // fill in calendar
-      days.filter(k=>{ return k.month === key && k.key < months[key].key + 35*day_in_seconds }).forEach(day=>{
-        let disabled = (day.key + day_in_seconds) < now;
-        this_month_content += `
-          <div class="day-cell ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" data-day="${window.lodash.escape(day.key)}">
-              ${window.lodash.escape(day.day)}
-          </div>
-        `
-      })
-      //add extra days at the month end
-      if (day_number!==0) {
-        for (let i = 1; i <= 7 - day_number; i++) {
-          this_month_content += `<div class="day-cell disabled-calendar-day"></div>`
-        }
-      }
-
-      let display_calendar = index === 0 ? 'display:block' : 'display:none';
-      let next_month_button = index < Object.keys(months).length -1 ? '' : 'display:none'
-      let prev_month_button = index > 0 ? '' : 'display:none'
-
-      list += `<div class="calendar-month" data-month-index="${index}" style="${display_calendar}">
-        <div style="display: flex; justify-content: center">
-          <div class="goto-month-container"><button class="cp-goto-month" data-month-target="${index-1}" style="${prev_month_button}"><</button></div>
-          <div>
-            <h3 class="month-title center">
-                <strong>${window.lodash.escape(key).substring(0,3)}</strong>
-                ${new Date(months[key].key * 1000).getFullYear()}
-            </h3>
-            <div class="calendar">
-              ${headers}
-              ${this_month_content}
-            </div>
-          </div>
-          <div class="goto-month-container"><button class="cp-goto-month" data-month-target="${index+1}" style="${next_month_button}">></button></div>
-        </div>
-        </div></div>
-      `
-    })
-    modal_calendar.html(list)
-  }
-
-
-
 
   let submit_times = function(){
     let submit_button = $('.submit-form-button')
@@ -745,10 +508,6 @@ jQuery(document).ready(function($){
       submit_button.removeClass('loading')
     })
   }
-
-  $('.close-ok-success').on("click", function (){
-    window.location.reload()
-  })
 
 
   $('#allow_notifications').on('change', function (){
