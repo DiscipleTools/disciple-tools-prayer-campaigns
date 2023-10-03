@@ -59,6 +59,8 @@ class DT_Generic_Porch_Landing_Enqueue
             'menu_sideslide',
             'responsive',
             'p4m-colors',
+            'wp-block-library',
+            'global-styles',
         ];
     }
 }
