@@ -287,7 +287,7 @@ export class ContactInfo extends LitElement {
     }
 
     if ( !this._form_items.name || !this._is_email(this._form_items.email) ){
-      this.form_error = 'Please enter a valid name or email address'
+      this.form_error = strings['Please enter a valid name or email address']
       this.requestUpdate()
       return;
     }
@@ -299,19 +299,19 @@ export class ContactInfo extends LitElement {
   render(){
     return html`
       <div>
-          <label for="name">Name<br>
-              <input class="cp-input" type="text" name="name" id="name" placeholder="Name" required @input=${this.handleInput} />
+          <label for="name">${strings['Name']}<br>
+              <input class="cp-input" type="text" name="name" id="name" placeholder="${strings['Name']}" required @input=${this.handleInput} />
           </label>
       </div>
       <div>
-          <label for="email">Email<br>
-              <input class="cp-input" type="email" name="EMAIL" id="email" placeholder="Email" @input=${this.handleInput}/>
-              <input class="cp-input" type="email" name="email" id="e2" placeholder="Email" @input=${this.handleInput} />
+          <label for="email">${strings['Email']}<br>
+              <input class="cp-input" type="email" name="EMAIL" id="email" placeholder="${strings['Email']}" @input=${this.handleInput}/>
+              <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
       </div>
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
-              No prayer times selected
+              ${strings['No prayer times selected']}
           </div>
       </div>
 
@@ -324,7 +324,7 @@ export class ContactInfo extends LitElement {
           <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email)}
                   @click=${()=>this.verify_contact_info()}>
 
-              Next
+              ${strings['Next']}
               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
           </button>
       </div>
@@ -797,11 +797,12 @@ export class cpVerify extends LitElement {
     return html`
       <div class="verify-section">
         <p style="text-align: start">
-            A confirmation code hase been sent to ${this.email}. <br> Please enter the code below in
-            the next 10 minutes to confirm your email address.
+            ${strings['A confirmation code hase been sent to %s.'].replace('%s', this.email)}
+            <br>
+            ${strings['Please enter the code below in the next 10 minutes to confirm your email address.']}
         </p>
         <label for="cp-confirmation-code" style="display: block">
-            <strong>Confirmation Code:</strong><br>
+            <strong>${strings['Confirmation Code']}:</strong><br>
         </label>
         <div class="otp-input-wrapper" style="padding: 20px 0">
             <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'

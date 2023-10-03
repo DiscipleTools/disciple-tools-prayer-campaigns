@@ -175,18 +175,18 @@ export class CampaignSignUp extends LitElement {
       this.frequency = {
         value: this.campaign_data.enabled_frequencies.length === 1 ? this.campaign_data.enabled_frequencies[0] : '',
         options: [
-          {value: 'daily', label: 'Daily' + ( this.campaign_data.end_timestamp ? '' : ' (up to 3 months) '), days_limit:90, step:'day', disabled: !this.campaign_data.enabled_frequencies.includes('daily')},
-          {value: 'weekly', label: 'Weekly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 6 months) '), disabled: !this.campaign_data.enabled_frequencies.includes('weekly'), days_limit: 180, step:'week'},
-          {value: 'monthly', label: 'Monthly' + ( this.campaign_data.end_timestamp ? '' : ' (up to 12 months) '), disabled: !this.campaign_data.enabled_frequencies.includes('monthly'), days_limit: 365, step:'month'},
-          {value: 'pick', label: 'Pick Dates and Times', disabled: !this.campaign_data.enabled_frequencies.includes('pick')},
+          {value: 'daily', label: strings['Daily'] + ( this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '3')}) `), days_limit:90, step:'day', disabled: !this.campaign_data.enabled_frequencies.includes('daily')},
+          {value: 'weekly', label: strings['Weekly'] + ( this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '6')}) `), disabled: !this.campaign_data.enabled_frequencies.includes('weekly'), days_limit: 180, step:'week'},
+          {value: 'monthly', label: strings['Monthly'] + ( this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '12')}) `), disabled: !this.campaign_data.enabled_frequencies.includes('monthly'), days_limit: 365, step:'month'},
+          {value: 'pick', label: strings['Pick Dates and Times'], disabled: !this.campaign_data.enabled_frequencies.includes('pick')},
         ]
       }
       this.duration = {
         value: 15,
         options: [
-          {value: 15, label: '15 Minutes'},
-          {value: 30, label: '30 Minutes'},
-          {value: 60, label: '1 Hour'},
+          {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
+          {value: 30, label: `${strings['%s Minutes'].replace('%s', 60)}`},
+          {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
         ]
       }
       this.week_day = {
@@ -368,12 +368,13 @@ export class CampaignSignUp extends LitElement {
       }
       date_ref = date_ref.plus({[frequency_option.step]:1})
     }
-    let label = '';
-    if ( frequency_option.value === 'daily' ){
-      label = "Every Day at " + selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
-    } else if ( frequency_option.value === 'weekly' ){
-      label = "Every " + selected_times[0].date_time.toFormat('cccc') + " at " + selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let time_label = selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let freq_label = frequency_option.label;
+    if ( frequency_option.value === 'weekly' ){
+      freq_label = selected_times[0].date_time.toFormat('cccc');
     }
+    let label = strings['Every %1$s at %2$s'].replace('%1$s', freq_label).replace('%2$s', time_label)
+
     this.selected_times_labels.push( {
       label: label,
       type: frequency_option.value,
@@ -474,7 +475,7 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">1</span>
-                      <span>I will pray</span> <span ?hidden="${this.frequency?.value}" class="place-indicator">Start Here</span>
+                      <span>${strings['I will pray']}</span> <span ?hidden="${this.frequency?.value}" class="place-indicator">${strings['Start Here']}</span>
                   </h2>
                   <cp-select 
                       .options="${this.frequency.options}"
@@ -490,7 +491,7 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div" ?disabled="${!this.frequency.value}">
                   <h2 class="section-title">
                       <span class="step-circle">2</span>
-                      <span>For how long?</span></h2>
+                      <span>${strings['For how long?']}</span></h2>
                   <div>
                       <cp-select 
                           .value="${this.duration.value}"
@@ -506,7 +507,7 @@ export class CampaignSignUp extends LitElement {
               ${this.frequency.value === 'weekly' ? html`
                   <h2 class="section-title">
                       <span class="step-circle">3</span>
-                      <span>On which week day?</span> <span ?hidden="${this.week_day.value}" class="place-indicator">Now Here</span>
+                      <span>${strings['On which week day?']}</span> <span ?hidden="${this.week_day.value}" class="place-indicator">${strings['Continue Here']}</span>
                   </h2>
                   <div>
                       <cp-select 
@@ -527,7 +528,7 @@ export class CampaignSignUp extends LitElement {
                   
                     <h2 class="section-title">
                         <span class="step-circle">3</span>
-                        <span>At what time?</span>
+                        <span>${strings['At what time?']}</span>
                     </h2>
                     <cp-times slot_length="${this.campaign_data.slot_length}" .times="${times}"
                         @time-selected="${e=>this.time_selected(e.detail)}" >
@@ -545,7 +546,7 @@ export class CampaignSignUp extends LitElement {
                           <div style="flex-grow: 1">
                               <h2 class="section-title">
                                   <span class="step-circle">3</span>
-                                  <span>Select a Date</span>
+                                  <span>${strings['Select a Date']}</span>
                               </h2>
                               <cp-calendar-day-select style="display: flex;justify-content: center" 
                                   class="size-item top-left ${this.calendar_small ? 'small' : ''}" @click="${()=>{this.calendar_small = false;this.requestUpdate();}}"
@@ -564,7 +565,10 @@ export class CampaignSignUp extends LitElement {
                           <div>
                               <h2 class="section-title">
                                   <span class="step-circle">4</span>
-                                  <span>Select a Time ${this.selected_day ? html`for ${window.campaign_scripts.ts_to_format(this.selected_day, 'DD', this.timezone)}` : ''}</span>
+                                  <span>
+                                      ${this.selected_day ? 
+                                          html`${strings['Select a Time for %s'].replace('%s', window.campaign_scripts.ts_to_format(this.selected_day, 'DD', this.timezone))}`
+                                          : html`${strings['Select a Time']}`}</span>
                               </h2>
                               <div ?hidden="${!this.selected_day}">
                                 <cp-times class="${!this.calendar_small ? 'small' : ''} size-item top-right"
@@ -586,10 +590,10 @@ export class CampaignSignUp extends LitElement {
           -->
           <div class="mobile selected-times" style="position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
               <div style="text-align: end;display: flex;justify-content: space-between" @click="${e=>{this.show_selected_times = !this.show_selected_times;this.requestUpdate()}}">
-                  <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">Close</button>
+                  <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">${strings['Close']}</button>
                   <span>
                       <img src="${window.campaign_objects.plugin_url}assets/calendar.svg" style="width: 1.5rem;vertical-align: middle">
-                      (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">prayer times</span>) 
+                      (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer times']}</span>) 
                   </span>
               </div>
               <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
@@ -603,10 +607,10 @@ export class CampaignSignUp extends LitElement {
                           </div>
                           <ul>
                               <li>
-                                  Starting on ${value.first.toLocaleString({ month: 'long', day: 'numeric'})}
+                                  ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                               <li>
-                                  Ending on ${value.last.toLocaleString({ month: 'long', day: 'numeric'})}
+                                  ${strings['Ending on %s'].replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                           </ul>
                       </div>
@@ -629,7 +633,7 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">*</span>
-                      <span>Selected Times (${this.selected_times.length})</span>
+                      <span>${strings['Selected Times']} (${this.selected_times.length})</span>
                   </h2>
                   ${this.selected_times_labels.map((value, index) => html`
                       <div class="selected-times selected-time-labels">
@@ -640,12 +644,12 @@ export class CampaignSignUp extends LitElement {
                             </div>        
                           </div>
                           <ul>
-                              <li>${value.count} prayer times</li>
+                              <li>${value.count} ${strings['prayer times']}</li>
                               <li>
-                                  Starting on ${value.first.toLocaleString({ month: 'long', day: 'numeric'})}
+                                  ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                               <li>
-                                  Ending on ${value.last.toLocaleString({ month: 'long', day: 'numeric'})}
+                                  ${strings['Ending on %s'].replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                           </ul>
                       </div>
@@ -668,13 +672,13 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">4</span>
-                      <span>Review</span>
+                      <span>${strings['Review']}</span>
                   </h2>
   
                   <div style="text-align: center;margin-top:20px">
                       <button ?disabled=${!this.selected_times_count()}
                               @click=${()=>this.submit()}>
-                          Submit
+                          ${strings['Submit']}
                           <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
                       </button>
   
@@ -689,7 +693,7 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">4</span>
-                      <span>Contact Info</span>
+                      <span>${strings['Contact Info']}</span>
                   </h2>
   
                   <contact-info 
@@ -706,7 +710,7 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">5</span>
-                      <span>Verify</span>
+                      <span>${strings['Verify']}</span>
                   </h2>
                   <cp-verify
                       email="${this._form_items.email}"
@@ -721,7 +725,7 @@ export class CampaignSignUp extends LitElement {
                       <campaign-back-button @click=${() => this._view = 'contact-info'}></campaign-back-button>
                       <button ?disabled=${this._form_items?.code?.length !== 6}
                               @click=${()=>this.submit()}>
-                          Submit
+                          ${strings['Submit']}
                               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
                       </button>
                       
@@ -886,8 +890,21 @@ export class cpPercentage extends LitElement {
   constructor() {
     super();
   }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    this.campaign_data = await window.campaign_scripts.get_campaign_data()
+    this.loading = false
+    this.days = window.campaign_scripts.days
+    this.timezone = window.campaign_scripts.timezone
+    this.requestUpdate()
+  }
   
   render() {
+    if ( !this.campaign_data ){
+      return html`<div class="loading"></div>`
+    }
+
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
         <div id="main-progress" class="cp-center">
@@ -899,8 +916,8 @@ export class cpPercentage extends LitElement {
                            text2="Bob">
             </progress-ring>
         </div>
-        <div style="color: rgba(0,0,0,0.57); text-align: center">Percentage covered in prayer</div>
-        <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display">'% committed</div>
+        <div style="color: rgba(0,0,0,0.57); text-align: center">${strings['Percentage covered in prayer']}</div>
+        <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display">${strings['%s committed'].replace('%s', this.campaign_data.time_committed)}</div>
     </div>
     `
   }
