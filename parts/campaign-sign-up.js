@@ -588,12 +588,14 @@ export class CampaignSignUp extends LitElement {
           <!--
               Mobile Times Floater
           -->
-          <div class="mobile selected-times" style="position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
+          <div class="mobile selected-times" style="padding: 0.5rem; position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
               <div style="text-align: end;display: flex;justify-content: space-between" @click="${e=>{this.show_selected_times = !this.show_selected_times;this.requestUpdate()}}">
                   <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">${strings['Close']}</button>
-                  <span>
-                      <img src="${window.campaign_objects.plugin_url}assets/calendar.svg" style="width: 1.5rem;vertical-align: middle">
-                      (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer times']}</span>) 
+                  <span style="display: flex; align-items: center">
+                      <img src="${window.campaign_objects.plugin_url}assets/calendar.png" style="width: 2rem;">
+                      <span>
+                        (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer times']}</span>)
+                      </span>
                   </span>
               </div>
               <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
