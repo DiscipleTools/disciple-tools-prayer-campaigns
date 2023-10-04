@@ -166,7 +166,7 @@ export class CampaignSignUp extends LitElement {
     this.now = new Date().getTime()/1000
     this.selected_day = null;
     this.selected_times = [];
-    this.selected_times_labels = [];
+    this.recurring_signups = [];
     this.show_selected_times = false;
     this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.days = [];
@@ -206,7 +206,7 @@ export class CampaignSignUp extends LitElement {
   }
   selected_times_count(){
     let count = 0;
-    this.selected_times_labels.forEach(v=>{
+    this.recurring_signups.forEach(v=>{
       count += v.selected_times.length
     })
     count += this.selected_times.length
@@ -228,7 +228,7 @@ export class CampaignSignUp extends LitElement {
     this.requestUpdate()
 
     let selected_times = this.selected_times;
-    this.selected_times_labels.forEach(v=>{
+    this.recurring_signups.forEach(v=>{
       selected_times = [...selected_times, ...v.selected_times]
     })
 
@@ -240,6 +240,7 @@ export class CampaignSignUp extends LitElement {
       parts: window.campaign_objects.magic_link_parts,
       campaign_id: this.campaign_data.campaign_id,
       selected_times: selected_times,
+      recurring_signups: this.recurring_signups,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago', //@todo
     }
 
@@ -341,7 +342,7 @@ export class CampaignSignUp extends LitElement {
     return options;
   }
 
-  build_list(selected_time){
+  build_selected_time_for_recurring(selected_time){
     let selected_times = []
     let now = new Date().getTime()/1000
     let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, this.days[0].key),{zone:this.timezone})
@@ -371,11 +372,11 @@ export class CampaignSignUp extends LitElement {
     let time_label = selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
     let freq_label = frequency_option.label;
     if ( frequency_option.value === 'weekly' ){
-      freq_label = selected_times[0].date_time.toFormat('cccc');
+      freq_label = strings['Every %s'].replace('%s', selected_times[0].date_time.toFormat('cccc') );
     }
-    let label = strings['Every %1$s at %2$s'].replace('%1$s', freq_label).replace('%2$s', time_label)
+    let label = strings['%1$s at %2$s'].replace('%1$s', freq_label).replace('%2$s', time_label)
 
-    this.selected_times_labels.push( {
+    this.recurring_signups.push( {
       label: label,
       type: frequency_option.value,
       first: selected_times[0].date_time,
@@ -388,7 +389,7 @@ export class CampaignSignUp extends LitElement {
     return selected_times;
   }
   time_selected(selected_time){
-    this.build_list(selected_time)
+    this.build_selected_time_for_recurring(selected_time)
     this.requestUpdate()
   }
   day_selected(selected_day){
@@ -436,7 +437,7 @@ export class CampaignSignUp extends LitElement {
   }
 
   remove_recurring_prayer_time(index){
-    this.selected_times_labels.splice(index,1)
+    this.recurring_signups.splice(index,1)
     this.requestUpdate()
   }
 
@@ -599,7 +600,7 @@ export class CampaignSignUp extends LitElement {
                   </span>
               </div>
               <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
-                  ${this.selected_times_labels.map((value, index) => html`
+                  ${this.recurring_signups.map((value, index) => html`
                       <div class="selected-times selected-time-labels">
                           <div class="selected-time-frequency">
                               <div>${value.label}</div>
@@ -635,9 +636,9 @@ export class CampaignSignUp extends LitElement {
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">*</span>
-                      <span>${strings['Selected Times']} (${this.selected_times.length})</span>
+                      <span>${strings['Selected Times']} (${this.selected_times_count()})</span>
                   </h2>
-                  ${this.selected_times_labels.map((value, index) => html`
+                  ${this.recurring_signups.map((value, index) => html`
                       <div class="selected-times selected-time-labels">
                           <div class="selected-time-frequency">
                             <div>${value.label}</div>

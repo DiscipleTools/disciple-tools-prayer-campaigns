@@ -110,6 +110,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             ];
         }
+        $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $this->parts['post_id'], $campaign_id );
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
         $min_time_duration = 15;
@@ -133,7 +134,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             'timezone' => $post['timezone'] ?? 'America/Chicago',
             'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'current_commitments' => $current_commitments,
-
         ];
 
         wp_localize_script(
@@ -155,6 +155,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     'pray_this_time' => __( 'Pray this time', 'disciple-tools-prayer-campaigns' ),
                 ],
                 'my_commitments' => $my_commitments,
+                'my_recurring_signups' => $my_recurring_signups,
                 'campaign_id' => $campaign_id,
                 'current_commitments' => $current_commitments,
                 'start_timestamp' => $start,
@@ -414,8 +415,9 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 </button>
             </div>
 
-            <a class="button" style="margin-top: 10px" target="_blank"
-               href="<?php echo esc_attr( self::get_download_url() ); ?>"><?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?></a>
+            <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
+                <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
+            </a>
             <h3 class="mc-title"><?php esc_html_e( 'My commitments', 'disciple-tools-prayer-campaigns' ); ?></h3>
             <div id="mobile-commitments-container">
             </div>

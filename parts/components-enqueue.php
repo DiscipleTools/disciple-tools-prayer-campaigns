@@ -29,7 +29,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'lang' => $atts['lang'] ?? 'en_US'
                 ],
                 'rest_url' => get_rest_url(),
-                'remote' => $atts['rest_url'] ?? get_rest_url() !== get_rest_url(),
+                'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
                 'home' => home_url(),
                 'plugin_url' => $plugin_dir_url,
                 'translations' => [
@@ -46,7 +46,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'I will pray' => __( 'I will pray', 'disciple-tools-prayer-campaigns' ),
                     'For how long?' => __( 'For how long?', 'disciple-tools-prayer-campaigns' ),
                     'At what time?' => __( 'At what time?', 'disciple-tools-prayer-campaigns' ),
-                    'Selected times' => __( 'Selected times', 'disciple-tools-prayer-campaigns' ),
+                    'Selected Times' => __( 'Selected Times', 'disciple-tools-prayer-campaigns' ),
                     'Contact Info' => __( 'Contact Info', 'disciple-tools-prayer-campaigns' ),
                     'Name' => __( 'Name', 'disciple-tools-prayer-campaigns' ),
                     'Email' => __( 'Email', 'disciple-tools-prayer-campaigns' ),
@@ -77,7 +77,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Please enter the code below in the next 10 minutes to confirm your email address.' => __( 'Please enter the code below in the next 10 minutes to confirm your email address.', 'disciple-tools-prayer-campaigns' ),
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
-                    'Every %1$s at %2$s' => __( 'Every %1$s at %2$s', 'disciple-tools-prayer-campaigns' ),
+                    '%1$s at %2$s' => __( '%1$s at %2$s', 'disciple-tools-prayer-campaigns' ),
+                    'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]

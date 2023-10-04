@@ -184,6 +184,29 @@ class DT_Subscriptions {
     }
 
 
+    public static function save_recurring_signups( $subscriber_id, $campaign_id, $recurring_signups ){
+        $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
+        foreach ( $recurring_signups as $recurring_signup_info ){
+            $first = $recurring_signup_info['selected_times'][0]['time'];
+            $last = end( $recurring_signup_info['selected_times'] )['time'];
+
+            $recurring_signups_class->create_recurring_signup(
+                $recurring_signup_info['type'],
+                $recurring_signup_info['label'],
+                $recurring_signup_info['selected_times'],
+                $first,
+                $last
+            );
+        }
+        return true;
+    }
+
+    public static function get_recurring_signups( $subscriber_id, $campaign_id ){
+        $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
+        return $recurring_signups_class->get_recurring_signups();
+    }
+
+
     public static function get_number_of_notification_emails_sent( $campaign_id ){
         global $wpdb;
         $a = $wpdb->get_var( $wpdb->prepare(
@@ -196,4 +219,67 @@ class DT_Subscriptions {
         return (int) $a;
     }
 
+}
+
+
+class Recurring_Signups {
+    public $campaign_id;
+    public $subscriber_id;
+
+    public function __construct( $subscriber_id, $campaign_id ) {
+        $this->campaign_id = $campaign_id;
+        $this->subscriber_id = $subscriber_id;
+    }
+
+    public function create_recurring_signup( $type, $label, $selected_times, $first_time, $last_time ){
+        $args = [
+            'parent_id' => $this->campaign_id,
+            'post_id' => $this->subscriber_id,
+            'post_type' => 'subscriptions',
+            'type' => 'recurring_signup',
+            'subtype' => $type,
+            'payload' => [
+                'selected_times' => $selected_times,
+                'type' => $type,
+                'label' => $label,
+            ],
+            'value' => 0,
+            'label' => $label,
+            'time_begin' => $first_time,
+            'time_end' => $last_time,
+            'lng' => null,
+            'level' => null,
+            'lat' => null,
+            'grid_id' => null,
+        ];
+        return Disciple_Tools_Reports::insert( $args, true, false );
+    }
+
+    public function get_recurring_signups(){
+        global $wpdb;
+        $reports = $wpdb->get_results( $wpdb->prepare(
+            "SELECT *
+            FROM $wpdb->dt_reports r
+            WHERE r.parent_id = %s
+            AND r.post_id = %s
+            AND r.type = 'recurring_signup'
+            ", $this->campaign_id, $this->subscriber_id
+        ), ARRAY_A );
+        $recurring_signups = [];
+        foreach ( $reports as $report ){
+            $recurring_signups[] = $this->format_from_report( $report );
+        }
+        return $recurring_signups;
+    }
+
+    private function format_from_report( $report ){
+        $report['payload'] = maybe_unserialize( $report['payload'] );
+        return [
+            'type' => $report['subtype'],
+            'label' => $report['payload']['label'] ?? $report['label'],
+            'selected_times' => $report['payload']['selected_times'],
+            'first_time' => $report['time_begin'],
+            'last_time' => $report['time_end'],
+        ];
+    }
 }
