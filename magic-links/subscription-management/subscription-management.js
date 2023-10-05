@@ -160,36 +160,6 @@ jQuery(document).ready(function($){
     })
   })
 
-  let opened_delete_time_modal = null
-  $(document).on('click', '.delete-time-bulk', function (){
-    opened_delete_time_modal = $(this).data('key');
-    $('#delete-time-slot-text').text(opened_delete_time_modal)
-    $('#delete-times-modal').foundation('open')
-  })
-  $('#confirm-delete-daily-time').on('click', function (){
-    $(this).addClass('loading')
-    let data = {
-      action: 'delete_times',
-      report_ids: calendar_subscribe_object.my_recurring[opened_delete_time_modal].report_ids,
-      parts: calendar_subscribe_object.parts
-    }
-    jQuery.ajax({
-      type: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type,
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
-      }
-    }).then(data=>{
-      calendar_subscribe_object.my_commitments = data;
-      draw_calendar();
-      calculate_my_time_slot_coverage()
-      $(this).removeClass('loading')
-      $('#delete-times-modal').foundation('close')
-    })
-  })
 
   let opened_extend_time_modal = null;
   $(document).on('click', '.extend-time-bulk', function (){

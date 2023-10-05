@@ -61,13 +61,17 @@ export const campaignStyles = css`
     opacity: .25;
     cursor: not-allowed;
   }
+  button.danger {
+    background-color: red;
+  }
   button.clear-button {
     color: var( --cp-color, 'dodgerblue' );
     background-color: transparent;
     padding:5px;
   }
-  button.danger {
-    background-color: red;
+  button.clear-button.danger {
+    color: red;
+    background-color: transparent;
   }
   button.hollow-button {
     background-color: transparent;

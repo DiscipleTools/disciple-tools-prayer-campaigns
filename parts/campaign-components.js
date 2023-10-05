@@ -398,6 +398,7 @@ export class select extends LitElement {
                   @click="${this.handleClick}"
             value="${o.value}">
                 ${o.label}
+              <span>${o.desc}</span>
           </button>`
       )}  
       

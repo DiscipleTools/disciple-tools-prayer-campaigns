@@ -169,7 +169,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $params['email'] ) || empty( $params['email'] ) ) {
             return new WP_Error( __METHOD__, 'Missing email', [ 'status' => 400 ] );
         }
-        if ( !isset( $params['selected_times'] ) || empty( $params['selected_times'] ) ) {
+        if ( empty( $params['selected_times'] ) && empty( $params['recurring_signups'] ) ) {
             return new WP_Error( __METHOD__, 'Missing times and locations', [ 'status' => 400 ] );
         }
         if ( !isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {

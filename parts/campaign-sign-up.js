@@ -175,9 +175,9 @@ export class CampaignSignUp extends LitElement {
       this.frequency = {
         value: this.campaign_data.enabled_frequencies.length === 1 ? this.campaign_data.enabled_frequencies[0] : '',
         options: [
-          {value: 'daily', label: strings['Daily'] + ( this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '3')}) `), days_limit:90, step:'day', disabled: !this.campaign_data.enabled_frequencies.includes('daily')},
-          {value: 'weekly', label: strings['Weekly'] + ( this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '6')}) `), disabled: !this.campaign_data.enabled_frequencies.includes('weekly'), days_limit: 180, step:'week'},
-          {value: 'monthly', label: strings['Monthly'] + ( this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '12')}) `), disabled: !this.campaign_data.enabled_frequencies.includes('monthly'), days_limit: 365, step:'month'},
+          {value: 'daily', label: strings['Daily'], desc: this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '3')})`, days_limit:90, step:'day', disabled: !this.campaign_data.enabled_frequencies.includes('daily')},
+          {value: 'weekly', label: strings['Weekly'], desc: this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '6')})`, disabled: !this.campaign_data.enabled_frequencies.includes('weekly'), days_limit: 180, step:'week'},
+          {value: 'monthly', label: strings['Monthly'], desc: this.campaign_data.end_timestamp ? '' : ` (${strings['up to %s months'].replace('%s', '12')})`, disabled: !this.campaign_data.enabled_frequencies.includes('monthly'), days_limit: 365, step:'month'},
           {value: 'pick', label: strings['Pick Dates and Times'], disabled: !this.campaign_data.enabled_frequencies.includes('pick')},
         ]
       }
@@ -228,9 +228,6 @@ export class CampaignSignUp extends LitElement {
     this.requestUpdate()
 
     let selected_times = this.selected_times;
-    this.recurring_signups.forEach(v=>{
-      selected_times = [...selected_times, ...v.selected_times]
-    })
 
     let data = {
       name: this._form_items.name,
@@ -245,7 +242,7 @@ export class CampaignSignUp extends LitElement {
     }
 
     let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type;
-    if (window.campaign_objects.remote) {
+    if ( window.campaign_objects.remote ) {
       link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
     }
     jQuery.ajax({
@@ -371,10 +368,11 @@ export class CampaignSignUp extends LitElement {
     }
     let time_label = selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
     let freq_label = frequency_option.label;
+    let duration_label = this.duration.options.find(k=>k.value===this.duration.value).label;
     if ( frequency_option.value === 'weekly' ){
       freq_label = strings['Every %s'].replace('%s', selected_times[0].date_time.toFormat('cccc') );
     }
-    let label = strings['%1$s at %2$s'].replace('%1$s', freq_label).replace('%2$s', time_label)
+    let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
 
     this.recurring_signups.push( {
       label: label,
@@ -942,7 +940,6 @@ export class campaignSubscriptions extends LitElement {
       }
       .remove-prayer-times-button img {
         width: 1rem;
-        margin-right: 0.5rem;
       }
       .selected-times {
         //background-color: rgba(70, 118, 250, 0.1);
@@ -950,11 +947,7 @@ export class campaignSubscriptions extends LitElement {
         border: 1px solid var(--cp-color);
         margin-bottom: 1rem;
         padding: 1rem;
-        display: flex;
         justify-content: space-between;
-      }
-      .selected-time-labels {
-        display: flex;
       }
       .selected-time-labels ul{
         margin:0;
@@ -972,6 +965,10 @@ export class campaignSubscriptions extends LitElement {
       button.hollow-button {
         padding: 0.5rem;
       }
+      .remove-row {
+        display: flex;
+        align-items: center;
+      }
     `,
 
   ]
@@ -982,20 +979,62 @@ export class campaignSubscriptions extends LitElement {
 
   constructor() {
     super();
+    this.selected_reccuring_signup = null;
     this.selected_times = window.jsObject.my_commitments;
     this.my_recurring = window.jsObject.my_recurring;
     this.recurring_signups = window.jsObject.my_recurring_signups;
 
+
+  }
+
+  delete_recurring_time(){
+    let data = {
+      action: 'delete_recurring_signup',
+      report_id: this.selected_reccuring_signup,
+      parts: calendar_subscribe_object.parts
+    }
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
+      }
+    }).then(data=>{
+      window.location.reload()
+      // calendar_subscribe_object.my_commitments = data;
+      // draw_calendar();
+      // calculate_my_time_slot_coverage()
+      // $(this).removeClass('loading')
+      // $('#delete-times-modal').foundation('close')
+    })
   }
 
   async connectedCallback() {
     super.connectedCallback();
+    $('#confirm-delete-daily-time').on('click',  (e)=>{
+      $(e.target).addClass('loading')
+      this.delete_recurring_time()
+    })
+  }
+
+  delete_prayer_times(e,report_id){
+    const recurring_sign = this.recurring_signups.find(k=>k.report_id===report_id)
+    if ( !recurring_sign ){
+      return;
+    }
+    this.selected_reccuring_signup = report_id
+    $('#delete-times-modal').foundation('open')
+
   }
 
   render() {
     return html`
         <h2>${strings['My Prayer Times']}</h2>
-        ${this.recurring_signups.map((value, index) => html`
+        ${this.recurring_signups.map((value, index) => {
+            return html`
             <div class="selected-times selected-time-labels">
                 <div class="selected-time-frequency">
                   <div>
@@ -1007,13 +1046,28 @@ export class campaignSubscriptions extends LitElement {
                       <button class="clear-button">change time</button>
                   </div>
                   <div>
-                      <button class="hollow-button">See all ${value.selected_times.length} prayer times</button>
-                      <button class="hollow-button danger">Remove all</button>
+                      <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
+                          See prayer times (${value.selected_times.length})
+                      </button>
+                      <button class="clear-button danger loader" @click="${e=>this.delete_prayer_times(e,value.report_id)}">
+                          Remove all
+                      </button>
                   </div>
+                </div>
+                <div style="margin-top:20px" ?hidden="${!value.display_times}">
+                    ${window.jsObject.my_commitments.filter(c=>value.commitments_report_ids.includes(c.report_id)).map(c=>html`
+                        <div class="remove-row">
+                            <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin)).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                            <button @click="${e=>this.remove_prayer_time(c.report_id)}" 
+                                    class="remove-prayer-times-button clear-button">
+                                <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                            </button>
+                        </div>
+                    `)}
                 </div>
                 
             </div>
-        `)}
+        `})}
     `
   }
 }

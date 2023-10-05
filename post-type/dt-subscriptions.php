@@ -115,7 +115,7 @@ class DT_Subscriptions {
      * @param null $location_id
      * @return false|int|WP_Error
      */
-    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $verified = true ){
+    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $verified = true, $meta = [] ){
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
@@ -157,6 +157,7 @@ class DT_Subscriptions {
             'grid_id' => $location_id,
             'time_begin' => $time,
             'time_end' => $time + $duration_mins * 60,
+            'meta_input' => $meta,
         ];
 
         if ( !empty( $location_id ) ){
@@ -190,13 +191,31 @@ class DT_Subscriptions {
             $first = $recurring_signup_info['selected_times'][0]['time'];
             $last = end( $recurring_signup_info['selected_times'] )['time'];
 
-            $recurring_signups_class->create_recurring_signup(
+            $report_id = $recurring_signups_class->create_recurring_signup(
                 $recurring_signup_info['type'],
                 $recurring_signup_info['label'],
                 $recurring_signup_info['selected_times'],
                 $first,
                 $last
             );
+
+            foreach ( $recurring_signup_info['selected_times'] as $time ){
+                if ( !isset( $time['time'] ) ){
+                    continue;
+                }
+                $new_report = self::add_subscriber_time(
+                    $campaign_id,
+                    $subscriber_id,
+                    $time['time'],
+                    $time['duration'],
+                    $time['grid_id'] ?? null,
+                    true,
+                    [ 'recurring_signup' => $report_id ]
+                );
+                if ( !$new_report ){
+                    return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
+                }
+            }
         }
         return true;
     }
@@ -217,6 +236,28 @@ class DT_Subscriptions {
             ", $campaign_id
         ));
         return (int) $a;
+    }
+
+    public static function delete_recurring_signup( $subscriber_id, $recurring_signup_report_id ){
+        global $wpdb;
+        $recurring_signup = Disciple_Tools_Reports::get( $recurring_signup_report_id, 'id' );
+        $campaign_id = $recurring_signup['parent_id'];
+        //delete the report
+        $wpdb->delete( $wpdb->dt_reports, [ 'id' => $recurring_signup_report_id ] );
+
+        //delete the reports with the recurring_signup meta
+        $wpdb->query( $wpdb->prepare(
+            "DELETE r, rm
+            FROM $wpdb->dt_reports r
+            INNER JOIN $wpdb->dt_reportmeta as rm on ( id = rm.report_id AND rm.meta_key = 'recurring_signup' AND rm.meta_value = %s )
+            WHERE parent_id = %s
+            AND post_id = %s
+            AND type = 'campaign_app'
+            ",
+            $recurring_signup_report_id, $campaign_id, $subscriber_id
+        ) );
+
+        return true;
     }
 
 }
@@ -258,11 +299,13 @@ class Recurring_Signups {
     public function get_recurring_signups(){
         global $wpdb;
         $reports = $wpdb->get_results( $wpdb->prepare(
-            "SELECT *
+            "SELECT *, GROUP_CONCAT(rm.report_id) as signups
             FROM $wpdb->dt_reports r
+            LEFT JOIN $wpdb->dt_reportmeta rm ON ( r.id = rm.meta_value AND rm.meta_key = 'recurring_signup' )
             WHERE r.parent_id = %s
             AND r.post_id = %s
             AND r.type = 'recurring_signup'
+            GROUP BY r.id
             ", $this->campaign_id, $this->subscriber_id
         ), ARRAY_A );
         $recurring_signups = [];
@@ -274,12 +317,14 @@ class Recurring_Signups {
 
     private function format_from_report( $report ){
         $report['payload'] = maybe_unserialize( $report['payload'] );
+        $commitments = $report['signups'] ? explode( ',', $report['signups'] ) : [];
         return [
+            'report_id' => $report['id'],
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
-            'selected_times' => $report['payload']['selected_times'],
             'first' => (int) $report['time_begin'],
             'last' => (int) $report['time_end'],
+            'commitments_report_ids' => $commitments,
         ];
     }
 }

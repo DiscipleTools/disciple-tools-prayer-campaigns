@@ -37,10 +37,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         $this->page_title = __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' );
 
-        // add dt_campaign_core to allowed scripts
-        add_action( 'dt_blank_head', [ $this, 'form_head' ] );
-        add_action( 'dt_blank_footer', [ $this, 'form_footer' ] );
-
         // load if valid url
         if ( 'download_calendar' === $this->parts['action'] ) {
             $download_content = $this->generate_calendar_download_content( $this->parts['post_id'] );
@@ -167,14 +163,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             ]
         );
     }
-
-    public function form_head(){
-        wp_head(); // styles controlled by wp_print_styles and wp_print_scripts actions
-    }
-    public function form_footer(){
-        wp_footer(); // styles controlled by wp_print_styles and wp_print_scripts actions
-    }
-
 
 
     public static function get_clean_duration( $start_time, $end_time ) {
@@ -680,6 +668,8 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 return $this->change_times( $post_id, $params );
             case 'delete_times':
                 return $this->delete_times( $post_id, $params );
+            case 'delete_recurring_signup':
+                return DT_Subscriptions::delete_recurring_signup( $post_id, $params['report_id'] ?? null );
             default:
                 return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
         }
