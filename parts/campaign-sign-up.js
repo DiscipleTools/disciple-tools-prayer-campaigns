@@ -926,3 +926,97 @@ export class cpPercentage extends LitElement {
   }
 }
 customElements.define('cp-percentage', cpPercentage);
+
+
+export class campaignSubscriptions extends LitElement {
+  static styles = [
+    window.campaignStyles,
+    css`
+      .remove-prayer-times-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .remove-prayer-times-button:hover {
+        border: 1px solid red;
+      }
+      .remove-prayer-times-button img {
+        width: 1rem;
+        margin-right: 0.5rem;
+      }
+      .selected-times {
+        //background-color: rgba(70, 118, 250, 0.1);
+        border-radius: 5px;
+        border: 1px solid var(--cp-color);
+        margin-bottom: 1rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      .selected-time-labels {
+        display: flex;
+      }
+      .selected-time-labels ul{
+        margin:0;
+      }
+      .selected-time-frequency {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:5px;
+      }
+      h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.2rem;
+      }
+      button.hollow-button {
+        padding: 0.5rem;
+      }
+    `,
+
+  ]
+
+  static properties = {
+    prop: {type: String},
+  }
+
+  constructor() {
+    super();
+    this.selected_times = window.jsObject.my_commitments;
+    this.my_recurring = window.jsObject.my_recurring;
+    this.recurring_signups = window.jsObject.my_recurring_signups;
+
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+  }
+
+  render() {
+    return html`
+        <h2>${strings['My Prayer Times']}</h2>
+        ${this.recurring_signups.map((value, index) => html`
+            <div class="selected-times selected-time-labels">
+                <div class="selected-time-frequency">
+                  <div>
+                    <h3 style="display: inline">${window.luxon.DateTime.fromSeconds(value.first).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last).toFormat('DD')}</h3>  
+                    <button class="clear-button">extend</button>  
+                  </div>
+                  <div>
+                      <strong>${value.label}</strong>
+                      <button class="clear-button">change time</button>
+                  </div>
+                  <div>
+                      <button class="hollow-button">See all ${value.selected_times.length} prayer times</button>
+                      <button class="hollow-button danger">Remove all</button>
+                  </div>
+                </div>
+                
+            </div>
+        `)}
+    `
+  }
+}
+customElements.define('campaign-subscriptions', campaignSubscriptions);
+
+

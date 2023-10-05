@@ -321,14 +321,29 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <i><?php echo esc_html( $post['name'] ); ?></i>
                 </div>
             </div>
-            <div id="times-verified-notice" style="display:none; padding: 20px; background-color: lightgreen; border-radius: 5px; border: 1px green solid; margin-bottom: 20px;">
-                <?php esc_html_e( 'Your prayer times have been verified!', 'disciple-tools-prayer-campaigns' ); ?>
-            </div>
+
             <div class="timezone-label">
                 <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
                 <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
             </div>
-            <div id="calendar-content" class="cp-wrapper" style="min-height: 750px"></div>
+
+            <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
+                <!-- my times -->
+                <div style="">
+                    <campaign-subscriptions></campaign-subscriptions>
+                </div>
+
+                <!-- calendar -->
+                <div style="flex-basis: 1000px">
+                    <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
+                        <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
+                    </a>
+                    <div id="calendar-content" class="cp-wrapper" style="min-height: 750px"></div>
+                </div>
+
+            </div>
+
+
 
             <!-- Reveal Modal Timezone Changer-->
             <div id="timezone-changer" class="reveal tiny" data-reveal>
@@ -413,13 +428,6 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 <button class="close-button" data-close aria-label="Close modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-
-            <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
-                <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
-            </a>
-            <h3 class="mc-title"><?php esc_html_e( 'My commitments', 'disciple-tools-prayer-campaigns' ); ?></h3>
-            <div id="mobile-commitments-container">
             </div>
 
             <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
@@ -678,23 +686,13 @@ That will keep the prayer chain from being broken AND will give someone the joy 
     }
 
     public static function get_subscriptions( $post_id ) {
-        $subs = Disciple_Tools_Reports::get( $post_id, 'post_id' );
-
-        if ( ! empty( $subs ) ){
-            foreach ( $subs as $index => $sub ) {
-                // verification step
-                if ( $sub['value'] < 1 ) {
-                    Disciple_Tools_Reports::update( [
-                        'id' => $sub['id'],
-                        'value' => 1
-                    ] );
-                    $subs[$index]['value'] = 1;
-                    $subs[$index]['verified'] = true;
-                }
-
-                $subs[$index]['formatted_time'] = gmdate( 'F d, Y @ H:i a', $sub['time_begin'] ) . ' for ' . $sub['label'];
-            }
-        }
+        global $wpdb;
+        $subs  = $wpdb->get_results( $wpdb->prepare( "
+            SELECT * FROM $wpdb->dt_reports
+            WHERE post_id = %s
+            AND post_type = 'subscriptions'
+            AND type = 'campaign_app'
+        ", $post_id ), ARRAY_A );
 
         return $subs;
     }
@@ -753,6 +751,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
+        DT_Subscriptions::save_recurring_signups( $post_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
         //Send an email with new subscriptions
         DT_Prayer_Campaigns_Send_Email::send_registration( $post_id, $campaign_id );

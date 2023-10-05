@@ -11,7 +11,7 @@ body {
     font-weight: 100;
 }
 #wrapper {
-    max-width:1000px;
+    /*max-width:1000px;*/
     margin:0 auto 300px auto;
     padding: .5em;
     background-color: white;
@@ -284,70 +284,6 @@ select::-ms-expand {
     height: 12px;
     vertical-align: top;
     margin: -10px auto 0 auto;
-}
-
-#mobile-commitments-container {
-    display: none;
-}
-
-.mobile-commitments {
-    display: flex;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    vertical-align: middle;
-}
-
-.mobile-commitments-date {
-    color: #0a0a0a;
-    border-right: 2px solid darkgray;
-    text-align: center;
-    width: 25%;
-}
-
-.mc-day {
-    color: darkgray;
-}
-
-.mc-prayer-commitment-description {
-    color: white;
-    font-size: 12px;
-    margin: 0px auto 0px auto;
-    text-align: right;
-    width: 75%;
-    max-height: 100%;
-    padding: 6px;
-    vertical-align: middle;
-}
-
-.mc-prayer-commitment-text {
-    width: 100%;
-    background-color: #57d449;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-    margin: 0 0 5px 0;
-}
-
-.mc-title {
-    display: none;
-    margin: 50px 0 15px 10px;
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.mc-description-duration {
-    font-size: 125%;
-    font-weight: 400;
-    margin-left: 15px;
-}
-
-.mc-description-time {
-    font-size: 180%;
-    margin-right: 10px;
 }
 
 

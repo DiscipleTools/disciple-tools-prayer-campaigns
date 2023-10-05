@@ -66,6 +66,18 @@ export const campaignStyles = css`
     background-color: transparent;
     padding:5px;
   }
+  button.danger {
+    background-color: red;
+  }
+  button.hollow-button {
+    background-color: transparent;
+    border-color: var( --cp-color, 'dodgerblue' );
+    color: var( --cp-color, 'dodgerblue' );
+  }
+  button.hollow-button.danger {
+    border-color: red;
+    color: red;
+  }
 
 
   .cp-close-button {

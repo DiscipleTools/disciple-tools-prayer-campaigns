@@ -278,8 +278,8 @@ class Recurring_Signups {
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
             'selected_times' => $report['payload']['selected_times'],
-            'first_time' => $report['time_begin'],
-            'last_time' => $report['time_end'],
+            'first' => (int) $report['time_begin'],
+            'last' => (int) $report['time_end'],
         ];
     }
 }

@@ -6,8 +6,6 @@ if ( calendar_subscribe_object.timezone ){
 let escaped_translations = window.SHAREDFUNCTIONS.escapeObject(calendar_subscribe_object.translations)
 const number_of_days = ( calendar_subscribe_object.end_timestamp - calendar_subscribe_object.start_timestamp ) / day_in_seconds
 
-let verified = false
-
 function toggle_danger() {
   $('.danger-zone-content').toggleClass('collapsed');
   $('.chevron').toggleClass('toggle_up');
@@ -34,13 +32,6 @@ jQuery(document).ready(function($){
   let now = new Date().getTime()/1000
   let selected_times = [];
   calendar_subscribe_object.my_recurring = {}
-
-  /**
-   * Add notice showing that my times have been verified
-   */
-  if ( verified ){
-    $("#times-verified-notice").show()
-  }
 
 
   update_timezone()
@@ -384,19 +375,6 @@ jQuery(document).ready(function($){
                 </div>
             </div>
         `)
-        $('#mobile-commitments-container').append(`
-          <div class="mobile-commitments" id="mobile-commitment-${window.lodash.escape(time)}">
-              <div class="mobile-commitments-date">
-                  <div class="mc-day"><b>${window.lodash.escape(day_weekday)}</b></div>
-                  <div class="mc-day">${window.lodash.escape(day_number)}</div>
-              </div>
-              <div class="mc-prayer-commitment-description">
-                  <div class="mc-prayer-commitment-text">
-                      <div class="mc-description-duration">${window.lodash.escape(summary_text)}</div>
-                      <div class="mc-description-time"> <i class="fi-x remove-selection remove-my-prayer-time" style="margin-left:6px;" data-report="${window.lodash.escape(c.report_id)}" data-time="${window.lodash.escape(time)}" data-day="${window.lodash.escape(day_timestamp)}"></i></div>
-                  </div>
-              </div>
-          </div>`)
       }
     })
   }
@@ -581,7 +559,5 @@ jQuery(document).ready(function($){
    */
   if ( innerWidth < 475 ) {
     $( '.prayer-commitment' ).attr( 'class', 'prayer-commitment-tiny' );
-    $( '.mc-title' ).show();
-    $( '#mobile-commitments-container' ).show();
   }
 })

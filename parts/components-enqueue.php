@@ -80,6 +80,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     '%1$s at %2$s' => __( '%1$s at %2$s', 'disciple-tools-prayer-campaigns' ),
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
+                    'My Prayer Times' => __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
