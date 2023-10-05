@@ -62,15 +62,19 @@ export const campaignStyles = css`
     cursor: not-allowed;
   }
   button.danger {
-    background-color: red;
+    background-color: #cc4b37;
+  }
+  button.danger:hover {
+    color: #cc4b37;
+    background-color: transparent;
+    border-color: #cc4b37;
   }
   button.clear-button {
     color: var( --cp-color, 'dodgerblue' );
     background-color: transparent;
-    padding:5px;
   }
   button.clear-button.danger {
-    color: red;
+    color: #cc4b37;
     background-color: transparent;
   }
   button.hollow-button {
@@ -79,8 +83,8 @@ export const campaignStyles = css`
     color: var( --cp-color, 'dodgerblue' );
   }
   button.hollow-button.danger {
-    border-color: red;
-    color: red;
+    border-color: #cc4b37;
+    color: #cc4b37;
   }
 
 

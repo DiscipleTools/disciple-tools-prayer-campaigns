@@ -934,12 +934,14 @@ export class campaignSubscriptions extends LitElement {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 5px;
       }
       .remove-prayer-times-button:hover {
         border: 1px solid red;
       }
       .remove-prayer-times-button img {
         width: 1rem;
+        
       }
       .selected-times {
         //background-color: rgba(70, 118, 250, 0.1);
@@ -948,6 +950,7 @@ export class campaignSubscriptions extends LitElement {
         margin-bottom: 1rem;
         padding: 1rem;
         justify-content: space-between;
+        box-shadow: 10px 10px 5px color-mix(in srgb, var(--cp-color), #fff 70%);
       }
       .selected-time-labels ul{
         margin:0;
@@ -975,22 +978,22 @@ export class campaignSubscriptions extends LitElement {
 
   static properties = {
     prop: {type: String},
+    _delete_modal_open: {type: Boolean, state: true},
   }
 
   constructor() {
     super();
-    this.selected_reccuring_signup = null;
+    this.selected_reccuring_signup_to_delete = null;
     this.selected_times = window.jsObject.my_commitments;
     this.my_recurring = window.jsObject.my_recurring;
     this.recurring_signups = window.jsObject.my_recurring_signups;
-
-
+    this._delete_modal_open = false;
   }
 
   delete_recurring_time(){
     let data = {
       action: 'delete_recurring_signup',
-      report_id: this.selected_reccuring_signup,
+      report_id: this.selected_reccuring_signup_to_delete,
       parts: calendar_subscribe_object.parts
     }
     jQuery.ajax({
@@ -1014,10 +1017,6 @@ export class campaignSubscriptions extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback();
-    $('#confirm-delete-daily-time').on('click',  (e)=>{
-      $(e.target).addClass('loading')
-      this.delete_recurring_time()
-    })
   }
 
   delete_prayer_times(e,report_id){
@@ -1025,15 +1024,32 @@ export class campaignSubscriptions extends LitElement {
     if ( !recurring_sign ){
       return;
     }
-    this.selected_reccuring_signup = report_id
-    $('#delete-times-modal').foundation('open')
+    this.selected_reccuring_signup_to_delete = report_id
+    this._delete_modal_open = true;
+    this.requestUpdate()
+  }
 
+  modal_closed(e){
+    this._delete_modal_open = false;
+    if ( e.detail?.action === 'confirm' ){
+      this.delete_recurring_time()
+    }
   }
 
   render() {
     return html`
+        <dt-modal
+            .isOpen="${this._delete_modal_open}"
+            title="Delete Prayer Times"
+            hideButton="true"
+            confirmButtonClass="danger"
+            @close="${e=>this.modal_closed(e)}"
+        />
+        <p slot="content">Really delete these prayer times?</p>
+        </dt-modal>
+        
         <h2>${strings['My Prayer Times']}</h2>
-        ${this.recurring_signups.map((value, index) => {
+        ${(this.recurring_signups||[]).map((value, index) => {
             return html`
             <div class="selected-times selected-time-labels">
                 <div class="selected-time-frequency">
@@ -1047,7 +1063,7 @@ export class campaignSubscriptions extends LitElement {
                   </div>
                   <div>
                       <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
-                          See prayer times (${value.selected_times.length})
+                          See prayer times (${(value.commitments_report_ids||[]).length})
                       </button>
                       <button class="clear-button danger loader" @click="${e=>this.delete_prayer_times(e,value.report_id)}">
                           Remove all
