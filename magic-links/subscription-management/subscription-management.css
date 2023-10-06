@@ -48,21 +48,19 @@ body {
 Danger zone
  */
 .danger-zone{
-    margin: 0 8px 0 8px;
     display: flex;
-    justify-content: space-between;
 }
 
 .chevron img{
     vertical-align: middle;
     width: 20px;
     cursor: pointer;
+    color:white;
 }
 
 .danger-zone-content {
     display: flex;
-    justify-content: space-between;
-    margin: 24px 10% 0 5%;
+    align-items: center;
 }
 .collapsed {
     display: none;
@@ -82,4 +80,5 @@ Danger zone
     font-weight: normal;
     padding: .85em 1em;
     background-color: var(--cp-color);
+    margin: 0;
 }

@@ -12,6 +12,13 @@ function toggle_danger() {
 }
 
 jQuery(document).ready(function($){
+  $('.nav-bar button').on('click', function (){
+    $('.nav-bar button').removeClass('active')
+    $(this).addClass('active')
+    $('.display-panel').hide()
+    $(`#${$(this).data('show')}`).show()
+  })
+
 
   calendar_subscribe_object.start_timestamp = parseInt(calendar_subscribe_object.start_timestamp)
   calendar_subscribe_object.end_timestamp = parseInt(calendar_subscribe_object.end_timestamp)

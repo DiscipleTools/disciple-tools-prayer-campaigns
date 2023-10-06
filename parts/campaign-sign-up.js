@@ -883,7 +883,7 @@ export class campaignSubscriptions extends LitElement {
         //background-color: rgba(70, 118, 250, 0.1);
         border-radius: 5px;
         border: 1px solid var(--cp-color);
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         padding: 1rem;
         justify-content: space-between;
         box-shadow: 10px 10px 5px color-mix(in srgb, var(--cp-color), #fff 70%);

@@ -294,161 +294,195 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( $color === 'preset' ){
             $color = '#4676fa';
         }
+        $notifications = isset( $post['receive_prayer_time_notifications'] ) && !empty( $post['receive_prayer_time_notifications'] );
 
         ?>
         <style>
             :root {
                 --cp-color: <?php echo esc_html( $color ) ?>;
             }
+            .nav-bar {
+                display: flex;
+                justify-content: center;
+                background-color: var(--cp-color);
+                color: white;
+            }
+            .nav-bar h1 {
+                margin: 0;
+            }
+            .nav-bar button {
+                background-color: transparent;
+                /*border: 1px solid white;*/
+                border-radius: 0px;
+                color: white;
+                padding: 10px;
+            }
+            .nav-bar button:hover {
+                background-color: color-mix(in srgb, var(--cp-color), #000 10%);;
+                color: white;
+            }
+            .nav-bar button.active {
+                background-color: color-mix(in srgb, var(--cp-color), #000 10%);;
+                color: white
+            }
         </style>
+        <!-- header -->
+        <div class="nav-bar" style="">
+            <div style="padding:10px">
+                <h1><?php echo esc_html( $post['name'] ); ?></h1>
+            </div>
+            <div style="display: flex;">
+                <button class="active" data-show="prayer-times">Prayer Times</button>
+                <button data-show="profile">Profile</button>
+            </div>
+        </div>
         <div id="wrapper">
-            <div class="grid-x">
-                <div class="cell center">
-                    <h2 id="title"><?php esc_html_e( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <i><?php echo esc_html( $post['name'] ); ?></i>
-                </div>
-            </div>
+            <div id="prayer-times" class="display-panel">
 
-            <div class="timezone-label">
-                <svg height='16px' width='16px' fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50,13c20.4,0,37,16.6,37,37S70.4,87,50,87c-20.4,0-37-16.6-37-37S29.6,13,50,13 M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45  c24.9,0,45-20.1,45-45S74.9,5,50,5L50,5z"></path><path d="M77.9,47.8l-23.4-2.1L52.8,22c-0.1-1.5-1.3-2.6-2.8-2.6h-0.8c-1.5,0-2.8,1.2-2.8,2.7l-1.6,28.9c-0.1,1.3,0.4,2.5,1.2,3.4  c0.9,0.9,2,1.4,3.3,1.4h0.1l28.5-2.2c1.5-0.1,2.6-1.3,2.6-2.9C80.5,49.2,79.3,48,77.9,47.8z"></path></svg>
-                <a href="javascript:void(0)" data-open="timezone-changer" class="timezone-current"></a>
-            </div>
+                <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
+                    <!-- my times -->
+                    <div>
+                        <h2>My Prayer Times</h2>
+                        <campaign-subscriptions></campaign-subscriptions>
+                    </div>
 
-            <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
-                <!-- my times -->
-                <div>
-                    <h2>My Prayer Times</h2>
-                    <campaign-subscriptions></campaign-subscriptions>
-                </div>
+                    <!-- calendar -->
+                    <div>
+                        <h2 style="display: inline">
+                            My Calendar
+                        </h2>
+                        <a class="clear-button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
+                            <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
+                        </a>
+                        <my-calendar>
 
-                <!-- calendar -->
-                <div>
-                    <h2 style="display: inline">
-                        My Calendar
-                    </h2>
-                    <a class="clear-button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
-                        <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
-                    </a>
-                    <my-calendar>
+                        </my-calendar>
 
-                    </my-calendar>
-
-
+                    </div>
                 </div>
 
-            </div>
-
-
-
-            <!-- Reveal Modal Timezone Changer-->
-            <div id="timezone-changer" class="reveal tiny" data-reveal>
-                <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                <select id="timezone-select">
-                    <?php
-                    $selected_tz = 'America/Denver';
-                    if ( !empty( $selected_tz ) ){
-                        ?>
-                        <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
-                        <option disabled>----</option>
+                <!-- Reveal Modal Timezone Changer-->
+                <div id="timezone-changer" class="reveal tiny" data-reveal>
+                    <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <select id="timezone-select">
                         <?php
-                    }
-                    $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
-                    foreach ( $tzlist as $tz ){
-                        ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
-                    }
-                    ?>
-                </select>
-                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-                <button class="button" type="button" id="confirm-timezone" data-close>
-                    <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
-                </button>
+                        $selected_tz = 'America/Denver';
+                        if ( !empty( $selected_tz ) ){
+                            ?>
+                            <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
+                            <option disabled>----</option>
+                            <?php
+                        }
+                        $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
+                        foreach ( $tzlist as $tz ){
+                            ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
+                        }
+                        ?>
+                    </select>
+                    <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
+                    <button class="button" type="button" id="confirm-timezone" data-close>
+                        <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
+                    </button>
 
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <!-- Reveal Modal View Times-->
-            <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
-                <h3 id="list-modal-title"></h3>
-
-                <div id="list-day-times">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>:00</th>
-                            <th>:15</th>
-                            <th>:30</th>
-                            <th>:45</th>
-                        </tr>
-                        </thead>
-                        <tbody id="day-times-table-body">
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="center">
-                    <button class="button" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Close', 'disciple-tools-prayer-campaigns' )?>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                <!-- Reveal Modal View Times-->
+                <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
+                    <h3 id="list-modal-title"></h3>
+
+                    <div id="list-day-times">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>:00</th>
+                                <th>:15</th>
+                                <th>:30</th>
+                                <th>:45</th>
+                            </tr>
+                            </thead>
+                            <tbody id="day-times-table-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="center">
+                        <button class="button" data-close aria-label="Close reveal" type="button">
+                            <?php echo esc_html__( 'Close', 'disciple-tools-prayer-campaigns' )?>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reveal Modal Delete Time-->
+                <div class="reveal" id="delete-time-modal" data-reveal data-close-on-click="true">
+                    <h3 id="delete-time-modal-title"><?php esc_html_e( 'Delete Time', 'disciple-tools-prayer-campaigns' ); ?></h3>
+
+                    <p id="delete-time-modal-text"></p>
+                    <p id="delete-time-extra-warning">
+                        <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                        <?php esc_html_e( 'Need to cancel? We get it! But wait!
+    If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
+    That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
+                    </p>
+
+                    <button class='button button-cancel clear' data-close aria-label='Close reveal' type='button'>
+                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' ) ?>
+                    </button>
+                    <button class="button loader alert" type="button" id="confirm-delete-my-time-modal">
+                        <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' ) ?>
+                    </button>
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
+
+
+                <div style="background-color: white; margin: 150px 50px 50px 50px">
+                    <h2 style="text-align: center">Sign up for more prayer</h2>
+                    <campaign-sign-up style="padding:30px 0"
+                        already_signed_up="true"
+                    ></campaign-sign-up>
+                </div>
+
+                <hr>
+
+                <!-- Extra setting depending on the campaign type -->
+                <div>
+                    <?php do_action( 'dt_subscription_management_extra' ) ?>
+                </div>
             </div>
-
-            <!-- Reveal Modal Delete Time-->
-            <div class="reveal" id="delete-time-modal" data-reveal data-close-on-click="true">
-                <h3 id="delete-time-modal-title"><?php esc_html_e( 'Delete Time', 'disciple-tools-prayer-campaigns' ); ?></h3>
-
-                <p id="delete-time-modal-text"></p>
-                <p id="delete-time-extra-warning">
-                    <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                    <?php esc_html_e( 'Need to cancel? We get it! But wait!
-If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
-That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
-                </p>
-
-                <button class='button button-cancel clear' data-close aria-label='Close reveal' type='button'>
-                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' ) ?>
-                </button>
-                <button class="button loader alert" type="button" id="confirm-delete-my-time-modal">
-                    <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' ) ?>
-                </button>
-
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
+            <div id="profile" class="display-panel" style="display: none">
 
 
-            <div style="background-color: white; margin: 150px 50px 50px 50px">
-                <h2 style="text-align: center">Sign up for more prayer</h2>
-                <campaign-sign-up style="padding:30px 0"
-                    already_signed_up="true"
-                ></campaign-sign-up>
-            </div>
-
-            <hr>
-
-            <!-- Extra setting depending on the campaign type -->
-            <div>
-                <?php do_action( 'dt_subscription_management_extra' ) ?>
-            </div>
-
-            <?php
-                $notifications = isset( $post['receive_prayer_time_notifications'] ) && !empty( $post['receive_prayer_time_notifications'] );
-            ?>
-
-            <div style="margin-top: 50px">
+              <div style="margin-top: 50px">
                 <hr>
                 <h2><?php esc_html_e( 'Profile Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
+
+                <!-- Name -->
+                <div>
+                    <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?></label>
+                    <input type="text" id="name" name="name" value="<?php echo esc_html( $post['name'] ); ?>">
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?></label>
+                    <input type="email" id="email" name="email" value="<?php echo esc_html( $post['contact_email'][0]['value'] ); ?>">
+                </div>
+
+                <!-- Notifications -->
                 <div><?php esc_html_e( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ); ?> <span class="notifications_allowed_spinner loading-spinner"></span>
                     <select name="allow_notifications" id="allow_notifications">
                         <option <?php selected( $notifications ) ?> value="allowed"><?php esc_html_e( 'Notifications allowed', 'disciple-tools-prayer-campaigns' ); ?> ✅</option>
@@ -456,13 +490,13 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                     </select>
                 </div>
                 <div class="danger-zone">
-                    <h2><?php esc_html_e( 'Advanced Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <h2 style="margin: 0 10px 0 0"><?php esc_html_e( 'Advanced Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
                     <button class="chevron" onclick="toggle_danger();">
-                        <img src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
+                        <img class="dt-white-icon" src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
                     </button>
                 </div>
                 <div class="danger-zone-content collapsed">
-                    <label>
+                    <label style="margin-right: 10px">
                         <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
                     </label>
                     <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
@@ -493,6 +527,7 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                         </button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
         <?php

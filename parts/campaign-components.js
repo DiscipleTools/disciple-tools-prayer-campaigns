@@ -592,8 +592,7 @@ export class cpMyCalendar extends LitElement {
     css`
       :host {
         display: block;
-        --s: 60;
-        --size: 60px;
+        --size: min(60px, calc((100vw - 2rem) / 7))
       }
       .calendar {
         display: grid;
@@ -644,7 +643,7 @@ export class cpMyCalendar extends LitElement {
       }
       .indicator-section {
         position: absolute;
-        bottom: 10px;
+        bottom: 17%;
         display: flex;
         gap:1px;
       }
@@ -738,9 +737,6 @@ export class cpMyCalendar extends LitElement {
       this.end_timestamp = this.days[this.days.length - 1].key
     }
 
-    console.log(this_month_days);
-    console.log(window.jsObject.my_commitments);
-
     let my_commitments = {}
     window.jsObject.my_commitments.filter(c=>c.time_begin >= start_of_day && c.time_begin <= next_month).forEach(c=>{
       let formatted = window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone:current_time_zone}).toFormat('MMMM d');
@@ -749,7 +745,10 @@ export class cpMyCalendar extends LitElement {
       }
       my_commitments[formatted]++
     })
-    console.log(my_commitments);
+
+    //get width of #prayer-times
+    let max_cell_size = document.querySelector('#prayer-times').offsetWidth / 7;
+    let size = Math.min(max_cell_size, 60)
 
 
     return html`
@@ -770,13 +769,13 @@ export class cpMyCalendar extends LitElement {
             ${map(range(day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
             ${this_month_days.map(day=>{
               let disabled = (day.key + day_in_seconds) < now;
-              return html`
+                return html`
                   <div class="day-cell enabled-day ${selected_times.includes(day.day_start_zoned) ? 'selected-day':''}
                         ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" 
                        data-day="${window.lodash.escape(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                    <progress-ring stroke="3" radius="30" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
+                    <progress-ring stroke="3" radius="${(size/2).toFixed()}" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
                     <div class="indicator-section">
                       ${range(my_commitments[day.formatted]||0).map(i=> {
                         return html`<span class="prayer-time-indicator"></span>`
@@ -1038,73 +1037,92 @@ export class cpVerify extends LitElement {
 }
 customElements.define('cp-verify', cpVerify);
 
+export class cpProgressRing extends LitElement {
+  static styles = [
+    css``
+  ]
 
-//based off of:
-//https://css-tricks.com/building-progress-ring-quickly/
-class ProgressRing extends HTMLElement {
+  static properties = {
+    radius: {type: Number},
+    text: {type: String},
+    progress: {type: Number},
+    progress2: {type: Number},
+    font_size: {type: Number},
+    stroke: {type: Number},
+    color: {type: String},
+  }
+
   constructor() {
     super();
-    const stroke = this.getAttribute('stroke');
-    this._stroke = stroke;
-    const radius = this.getAttribute('radius');
-    const text = this.getAttribute('text');
-    const text2 = this.getAttribute('text2');
-    const progress = this.getAttribute('progress');
-    this._progress2 = this.getAttribute('progress2');
-    const font_size = this.getAttribute('font') || 15;
-    const normalizedRadius = radius - stroke;
+    this.radius = 30
+    this.stroke = 3
+    this.font_size = 15
+    this.color = 'dodgerblue'
+    this.progress = 4;
+    this.text = '4'
+  }
+
+  render() {
+    this.progress = parseInt(this.progress).toFixed()
+    this.radius = parseInt(this.radius).toFixed()
+    this.stroke = parseInt(this.stroke).toFixed()
+    const normalizedRadius = this.radius - this.stroke;
     this._circumference = normalizedRadius * 2 * Math.PI;
 
-    let normalizedRadius2 = parseInt(radius) - stroke/2 + 1
+    let normalizedRadius2 = parseInt(this.radius) - this.stroke/2 + 1
     this._circumference2 = normalizedRadius2 * 2 * Math.PI;
 
-    let text_html = ``;
-    if ( text2 ){
-      text_html = `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px">
-          <tspan x="50%" dy="0">${window.lodash.escape(text || progress + '%')}</tspan>
-          <tspan x="50%" dy="0.5cm">${window.lodash.escape(text2)}</tspan>
-      </text>`
-    } else {
-      text_html =  `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
-        ${window.lodash.escape(text || progress + '%')}
-      </text>
-      `
-    }
-    this._root = this.attachShadow({mode: 'open'});
-
-    let base_color = 'dodgerblue'
-    if ( window.dt_campaign_core && window.dt_campaign_core.color ){
-      base_color = window.dt_campaign_core.color
+    let offset = this._circumference - (this.progress / 100 * this._circumference);
+    const offset2 = -(this.progress / 100 * this._circumference);
+    if ( this._progress2 ){
+      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
     }
 
-    let color = parseInt( progress ) >= 100 ? 'mediumseagreen' : base_color
-    this._root.innerHTML = `
-      <svg height="${radius * 2}"
-           width="${radius * 2}" >
+    this.color = parseInt( this.progress ) >= 100 ? 'mediumseagreen' : this.color
+
+    // if ( text2 ){
+    //   text_html = `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px">
+    //       <tspan x="50%" dy="0">${window.lodash.escape(text || progress + '%')}</tspan>
+    //       <tspan x="50%" dy="0.5cm">${window.lodash.escape(text2)}</tspan>
+    //   </text>`
+    // } else {
+    //   text_html =  `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
+    //     ${window.lodash.escape(text || progress + '%')}
+    //   </text>
+    //   `
+    // }
+    // circrle3 @todo
+
+
+    return html`
+      <svg height="${this.radius * 2}"
+           width="${this.radius * 2}" >
            <circle
              class="first-circle"
-             stroke="${color}"
+             stroke="${this.color}"
              stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${this._circumference}"
-             stroke-width="${stroke}"
+             style="stroke-dashoffset:${offset}"
+             stroke-width="${this.stroke}"
              fill="transparent"
              r="${normalizedRadius}"
-             cx="${radius}"
-             cy="${radius}"
+             cx="${this.radius}"
+             cy="${this.radius}"
           />
           <circle
              class="second-circle"
-             stroke="${color}"
+             stroke="${this.color}"
              stroke-opacity="0.1"
              stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${-this._circumference}"
-             stroke-width="${stroke}"
+             style="stroke-dashoffset:${offset2}"
+             stroke-width="${this.stroke}"
              fill="transparent"
              r="${normalizedRadius}"
-             cx="${radius}"
-             cy="${radius}"
+             cx="${this.radius}"
+             cy="${this.radius}"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">${text_html}</text>
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
+              ${window.lodash.escape(this.text || this.progress + '%')}
+          </text>
       </svg>
 
       <style>
@@ -1114,40 +1132,11 @@ class ProgressRing extends HTMLElement {
             transform-origin: 50% 50%;
           }
       </style>
-    `;
-  }
+    `
 
-  setProgress(percent) {
-    const offset = this._circumference - (percent / 100 * this._circumference);
-    const circle = this._root.querySelector('circle.first-circle');
-    circle.style.strokeDashoffset = offset;
-    const circle2 = this._root.querySelector('circle.second-circle');
-    circle2.style.strokeDashoffset = -(percent / 100 * this._circumference);
-    if ( this._progress2 ){
-      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
-      const circle3 = this._root.querySelector('circle.third-circle');
-      circle3.style.strokeDashoffset = offset3
-    }
-  }
-  setText(text) {
-    const textElement = this._root.querySelector('.inner-text');
-    textElement.innerHTML = text;
-  }
-
-  static get observedAttributes() {
-    return ['progress', 'text'];
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'progress') {
-      this.setProgress(newValue);
-    }
-    if (name === 'text') {
-      this.setText(newValue);
-    }
   }
 }
-window.customElements.define('progress-ring', ProgressRing);
+customElements.define('progress-ring', cpProgressRing);
 
 class DtModal extends LitElement {
   static styles = [
