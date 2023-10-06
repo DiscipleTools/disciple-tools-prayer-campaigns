@@ -196,7 +196,9 @@ class DT_Subscriptions {
                 $recurring_signup_info['label'],
                 $recurring_signup_info['selected_times'],
                 $first,
-                $last
+                $last,
+                $recurring_signup_info['time'],
+                $recurring_signup_info['week_day'] ?? null,
             );
 
             foreach ( $recurring_signup_info['selected_times'] as $time ){
@@ -225,6 +227,23 @@ class DT_Subscriptions {
         return $recurring_signups_class->get_recurring_signups();
     }
 
+    public static function get_recurring_signup( $report_id ){
+        global $wpdb;
+        $report = $wpdb->get_row( $wpdb->prepare(
+            "SELECT r.*
+            FROM $wpdb->dt_reports r
+            WHERE r.id = %s
+            ", $report_id
+        ), ARRAY_A );
+        $times_report_ids = $wpdb->get_results( $wpdb->prepare( "
+            SELECT report_id
+            FROM $wpdb->dt_reportmeta
+            WHERE meta_key = 'recurring_signup'
+            AND meta_value = %s
+        ", $report_id ), ARRAY_A );
+        $report['signups'] = $times_report_ids;
+        return Recurring_Signups::format_from_report( $report );
+    }
 
     public static function get_number_of_notification_emails_sent( $campaign_id ){
         global $wpdb;
@@ -260,6 +279,44 @@ class DT_Subscriptions {
         return true;
     }
 
+    public static function update_recurring_signup( $subscriber_id, $recurring_signup_report_id, $recurring_signup_info ){
+        if ( empty( $subscriber_id ) || empty( $recurring_signup_report_id ) || empty( $recurring_signup_info ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
+        }
+        $recurring_signup = Disciple_Tools_Reports::get( $recurring_signup_report_id, 'id' );
+        if ( empty( $recurring_signup ) ){
+            return new WP_Error( __METHOD__, 'Missing recurring signup', [ 'status' => 400 ] );
+        }
+
+        if ( empty( $recurring_signup_info['selected_times'] ) ){
+            return new WP_Error( __METHOD__, 'Missing times', [ 'status' => 400 ] );
+        }
+        $campaign_id = $recurring_signup['parent_id'];
+
+        foreach ( $recurring_signup_info['selected_times'] as $time ){
+            if ( !isset( $time['time'] ) ){
+                continue;
+            }
+            $new_report = self::add_subscriber_time(
+                $campaign_id,
+                $subscriber_id,
+                $time['time'],
+                $time['duration'],
+                $time['grid_id'] ?? null,
+                true,
+                [ 'recurring_signup' => $recurring_signup_report_id ]
+            );
+            if ( !$new_report ){
+                return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
+            }
+        }
+
+        $recurring_signup['time_end'] = end( $recurring_signup_info['selected_times'] )['time'];
+        Disciple_Tools_Reports::update( $recurring_signup );
+
+        return self::get_recurring_signup( $recurring_signup_report_id );
+    }
+
 }
 
 
@@ -272,7 +329,7 @@ class Recurring_Signups {
         $this->subscriber_id = $subscriber_id;
     }
 
-    public function create_recurring_signup( $type, $label, $selected_times, $first_time, $last_time ){
+    public function create_recurring_signup( $type, $label, $selected_times, $first_time, $last_time, $time, $week_day ){
         $args = [
             'parent_id' => $this->campaign_id,
             'post_id' => $this->subscriber_id,
@@ -283,9 +340,12 @@ class Recurring_Signups {
                 'selected_times' => $selected_times,
                 'type' => $type,
                 'label' => $label,
+                'duration' => $selected_times[0]['duration'],
+                'time' => $time ?? null,
+                'week_day' => $week_day,
             ],
             'value' => 0,
-            'label' => $label,
+            'label' => '',
             'time_begin' => $first_time,
             'time_end' => $last_time,
             'lng' => null,
@@ -299,9 +359,8 @@ class Recurring_Signups {
     public function get_recurring_signups(){
         global $wpdb;
         $reports = $wpdb->get_results( $wpdb->prepare(
-            "SELECT *, GROUP_CONCAT(rm.report_id) as signups
+            "SELECT *
             FROM $wpdb->dt_reports r
-            LEFT JOIN $wpdb->dt_reportmeta rm ON ( r.id = rm.meta_value AND rm.meta_key = 'recurring_signup' )
             WHERE r.parent_id = %s
             AND r.post_id = %s
             AND r.type = 'recurring_signup'
@@ -309,22 +368,32 @@ class Recurring_Signups {
             ", $this->campaign_id, $this->subscriber_id
         ), ARRAY_A );
         $recurring_signups = [];
-        foreach ( $reports as $report ){
-            $recurring_signups[] = $this->format_from_report( $report );
+        foreach ( $reports as $index => $report ){
+            $times_report_ids = $wpdb->get_col( $wpdb->prepare( "
+                SELECT report_id
+                FROM $wpdb->dt_reportmeta
+                WHERE meta_key = 'recurring_signup'
+                AND meta_value = %s
+            ", $report['id'] ) );
+            $report['signups'] = $times_report_ids;
+            $recurring_signups[] = self::format_from_report( $report );
         }
         return $recurring_signups;
     }
 
-    private function format_from_report( $report ){
+    public static function format_from_report( $report ){
         $report['payload'] = maybe_unserialize( $report['payload'] );
-        $commitments = $report['signups'] ? explode( ',', $report['signups'] ) : [];
         return [
             'report_id' => $report['id'],
+            'campaign_id' => $report['parent_id'],
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
             'first' => (int) $report['time_begin'],
             'last' => (int) $report['time_end'],
-            'commitments_report_ids' => $commitments,
+            'commitments_report_ids' => $report['signups'],
+            'duration' => (int) ( $report['payload']['duration'] ?? 15 ),
+            'time' => (int) $report['payload']['time'] ?? 0,
+            'week_day' => isset( $report['payload']['week_day'] ) ? ( (int) $report['payload']['week_day'] ) : null,
         ];
     }
 }

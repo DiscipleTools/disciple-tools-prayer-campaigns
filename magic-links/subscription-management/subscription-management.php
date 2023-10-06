@@ -100,10 +100,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $my_commitments[] = [
                 'time_begin' => $commitments_report['time_begin'],
                 'time_end' => $commitments_report['time_end'],
-                'value' => $commitments_report['value'],
+//                'value' => $commitments_report['value'],
                 'report_id' => $commitments_report['id'],
-                'verified' => $commitments_report['verified'] ?? false,
-
+//                'verified' => $commitments_report['verified'] ?? false,
             ];
         }
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $this->parts['post_id'], $campaign_id );
@@ -158,7 +157,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'end_timestamp' => $end,
                 'slot_length' => $min_time_duration,
                 'timezone' => $post['timezone'] ?? 'America/Chicago',
-                'duration_options' => $field_settings['duration_options']['default'],
+//                'duration_options' => $field_settings['duration_options']['default'],
                 'campaign_data' => $campaign_data,
             ]
         );
@@ -670,6 +669,8 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 return $this->delete_times( $post_id, $params );
             case 'delete_recurring_signup':
                 return DT_Subscriptions::delete_recurring_signup( $post_id, $params['report_id'] ?? null );
+            case 'update_recurring_signup':
+                return DT_Subscriptions::update_recurring_signup( $post_id, $params['report_id'] ?? null, $params );
             default:
                 return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
         }

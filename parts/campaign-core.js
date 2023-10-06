@@ -2,6 +2,11 @@ const day_in_seconds = 86400
 let campaign_data_promise = null;
 let default_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
 
+
+window.campaign_user_data = {
+  timezone: default_timezone, //@todo make default
+}
+
 window.campaign_scripts = {
   timezone: default_timezone,
   time_slot_coverage: {},
@@ -124,6 +129,7 @@ window.campaign_scripts = {
         url: link
       })
       campaign_data_promise.then((data)=>{
+        window.campaign_data = { ...window.campaign_data, ...data }
         this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
       })
     }
@@ -262,4 +268,110 @@ window.campaign_scripts = {
     if (typeof str !== "string") return str;
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
   },
+
+  build_selected_times_for_recurring(selected_time, frequency, duration, weekday=null, from_date_ts=null){
+    let selected_times = []
+    let now = new Date().getTime()/1000
+    let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, window.campaign_scripts.days[0].key),{zone:window.campaign_user_data.timezone})
+    let frequency_option = window.campaign_data.frequency_options.find(k=>k.value===frequency)
+    if ( frequency_option.value === 'weekly' ){
+      now_date = now_date.set({weekday: parseInt(weekday)})
+    }
+    let start_of_day = now_date.startOf('day').toSeconds()
+    if ( from_date_ts ){
+      start_of_day = window.luxon.DateTime.fromSeconds(from_date_ts,{zone:window.campaign_user_data.timezone}).startOf('day').toSeconds()
+    }
+    let start_time = start_of_day + selected_time;
+    let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
+
+    let limit = window.campaign_data.end_timestamp
+    if ( !limit ){
+      limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
+    }
+
+    let date_ref = start_date
+    while ( date_ref.toSeconds() <= limit ){
+      let time = date_ref.toSeconds();
+      let time_label = date_ref.toFormat('hh:mm a');
+      let already_added = selected_times.find(k=>k.time===time)
+      if ( !already_added && time > now && time >= window.campaign_data.start_timestamp ) {
+        selected_times.push({time: time, duration: duration, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
+      }
+      date_ref = date_ref.plus({[frequency_option.step]:1})
+    }
+    let time_label = selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let freq_label = frequency_option.label;
+    let duration_label = window.campaign_data.duration_options.find(k=>k.value===duration).label;
+    if ( frequency_option.value === 'weekly' ){
+      freq_label = strings['Every %s'].replace('%s', selected_times[0].date_time.toFormat('cccc') );
+    }
+    let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
+
+    return {
+      label: label,
+      type: frequency_option.value,
+      first: selected_times[0].date_time,
+      last: selected_times[selected_times.length-1].date_time,
+      time: selected_time,
+      time_label: selected_times[0].label,
+      count: selected_times.length,
+      duration: duration,
+      week_day: weekday,
+      selected_times,
+    }
+  },
+
+  submit_prayer_times: function (campaign_id, data, action = 'add' ){
+    data.action = action
+    data.parts = window.campaign_objects.magic_link_parts
+    data.campaign_id = campaign_id
+    data.timezone = window.campaign_user_data.timezone
+
+    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type;
+    if ( window.campaign_objects.remote ) {
+      link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
+    }
+    return jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: link
+    })
+  }
+}
+
+const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+
+window.campaign_data = {
+  campaign_id: null,
+  start_timestamp: 0,
+  end_timestamp: null,
+  slot_length: 15,
+  duration_options: [
+    {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
+    {value: 30, label: `${strings['%s Minutes'].replace('%s', 60)}`},
+    {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
+  ],
+  coverage: {},
+  enabled_frequencies: [],
+  frequency_options: [
+    {
+      value: 'daily',
+      label: strings['Daily'],
+      desc: `(${strings['up to %s months'].replace('%s', '3')})`,
+      days_limit: 90,
+      month_limit: 3,
+      step: 'day',
+    },
+    {value: 'weekly', label: strings['Weekly'], desc:`(${strings['up to %s months'].replace('%s', '6')})`, days_limit: 180, step:'week', month_limit: 6},
+    {value: 'monthly', label: strings['Monthly'], desc: `(${strings['up to %s months'].replace('%s', '12')})`, days_limit: 365, step:'month', month_limit: 12},
+    {value: 'pick', label: strings['Pick Dates and Times']},
+  ],
+
+  current_commitments: {},
+  minutes_committed: 0,
+  time_committed: ''
+
+
 }

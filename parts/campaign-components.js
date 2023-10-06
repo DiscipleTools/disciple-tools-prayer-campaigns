@@ -1011,7 +1011,7 @@ class DtModal extends LitElement {
         display: grid;
         height: fit-content;
         grid-template-columns: 1fr;
-        grid-template-rows: 100px auto 100px;
+        grid-template-rows: 50px auto 100px;
         grid-template-areas:
           'header'
           'main'
@@ -1067,6 +1067,7 @@ class DtModal extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      content: { type: String, state: true },
       context: { type: String },
       isHelp: { type: Boolean },
       isOpen: { type: Boolean, state: true },
@@ -1075,6 +1076,7 @@ class DtModal extends LitElement {
       buttonClass: { type: Object },
       buttonStyle: { type: Object },
       confirmButtonClass: { type: String },
+
     };
   }
 
@@ -1086,7 +1088,6 @@ class DtModal extends LitElement {
   }
 
   _openModal() {
-    console.log("open mod");
     this.isOpen = true;
     this.shadowRoot.querySelector('dialog').showModal();
 
@@ -1190,7 +1191,10 @@ class DtModal extends LitElement {
         @keypress=${this._dialogKeypress}
       >
         <form method="dialog" class=${this.hideHeader ? "no-header" : ""}>
-      ${this._dialogHeader(svg)}
+          ${this._dialogHeader(svg)}
+          ${this.content ? html`
+            <article><p>${this.content}</p></article>
+          ` : ''}
           <article>
             <slot name="content"></slot>
           </article>
