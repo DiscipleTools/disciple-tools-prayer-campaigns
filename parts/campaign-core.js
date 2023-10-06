@@ -11,7 +11,7 @@ window.campaign_scripts = {
   timezone: default_timezone,
   time_slot_coverage: {},
   processing_save: {},
-  days: {},
+  days: [],
   calculate_day_times: function (custom_timezone=null, start, end, current_commitments, slot_length){
     //set up array of days and time slots according to timezone
     window.campaign_scripts.processing_save = {}
@@ -105,6 +105,10 @@ window.campaign_scripts = {
     })
     window.campaign_scripts.processing_save = {}
 
+
+    //days ready event
+    let event = new CustomEvent('campaign_days_ready', {detail: days});
+    window.dispatchEvent(event);
     return days;
   },
   get_campaign_data: function( timezone ){

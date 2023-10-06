@@ -484,10 +484,19 @@ export class cpCalendarDaySelect extends LitElement {
     super();
     this.month_to_show = null;
     this.calendar_disabled = false;
+    this.start_timestamp = window.campaign_data.start_timestamp
+    this.end_timestamp = window.campaign_data.end_timestamp
+    this.days = window.campaign_scripts.days
+    this.selected_times = []
   }
 
   connectedCallback(){
     super.connectedCallback();
+    //get days from days ready event
+    window.addEventListener('campaign_days_ready', e=>{
+      this.days = e.detail
+      this.requestUpdate()
+    })
   }
 
   next_view(e){
@@ -540,6 +549,7 @@ export class cpCalendarDaySelect extends LitElement {
       this.end_timestamp = this.days[this.days.length - 1].key
     }
 
+
     return html`
       
       <div class="calendar-wrapper">
@@ -576,6 +586,213 @@ export class cpCalendarDaySelect extends LitElement {
   }
 }
 customElements.define('cp-calendar-day-select', cpCalendarDaySelect);
+
+export class cpMyCalendar extends LitElement {
+  static styles = [
+    css`
+      :host {
+        display: block;
+        --s: 60;
+        --size: 60px;
+      }
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, var(--size));
+      }
+      .day-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--size);
+        width: var(--size);
+        position: relative;
+      }
+      .day-cell.enabled-day:hover {
+        background-color: #4676fa1a;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+      .week-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--size);
+        width: var(--size);
+        font-weight: bold;
+      }
+      .selected-time {
+        //color: black;
+        //border-radius: 50%;
+        //border: 2px solid;
+        //background-color: #4676fa1a;
+      }
+      .selected-day {
+        color: white;
+        border-radius: 50%;
+        border: 2px solid;
+        background-color: var(--cp-color);
+      }
+      .month-title {
+        display: flex;
+        justify-content: space-between;
+        max-width: calc(var(--size) * 7);
+        font-size: 1.2rem;
+        align-items: center;
+      }
+      .month-next {
+        //padding: 0.25rem 0.5rem;
+      }
+      .indicator-section {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        gap:1px;
+      }
+      .prayer-time-indicator {
+        width: 5px;
+        height: 5px;
+        background-color: #57d449;
+        border-radius: 100px;
+      }
+      progress-ring {
+        height: var(--size);
+      }
+    `,
+    window.campaignStyles
+  ]
+
+  static properties = {
+    start_timestamp: {type: String},
+    end_timestamp: {type: String},
+    days: {type: Array},
+    selected_times: {type: Array},
+    calendar_disabled: {type: Boolean},
+  }
+
+  constructor() {
+    super();
+    this.month_to_show = null;
+    this.calendar_disabled = false;
+    this.start_timestamp = window.campaign_data.start_timestamp
+    this.end_timestamp = window.campaign_data.end_timestamp
+    this.days = window.campaign_scripts.days
+    this.selected_times = []
+  }
+
+  connectedCallback(){
+    super.connectedCallback();
+    //get days from days ready event
+    window.addEventListener('campaign_days_ready', e=>{
+      this.days = e.detail
+      this.requestUpdate()
+    })
+  }
+
+  next_view(e){
+    if ( this.calendar_disabled ){
+      return;
+    }
+    this.month_to_show = e
+    this.requestUpdate()
+    //remove all selected-time css
+    this.shadowRoot.querySelectorAll('.selected-time').forEach(e=>e.classList.remove('selected-time'))
+  }
+
+  day_selected(e, day){
+    if ( this.calendar_disabled ){
+      return;
+    }
+    //dispatch event
+    this.dispatchEvent(new CustomEvent('day-selected', {detail: day}));
+    //highlight selected day
+    this.shadowRoot.querySelectorAll('.selected-time').forEach(e=>e.classList.remove('selected-time'))
+
+    e.target.classList.add('selected-time');
+  }
+
+
+  render() {
+    if ( this.days.length === 0 ){
+      return html`<div></div>`
+    }
+
+    let selected_times = this.selected_times.map(t=>t.day_key);
+
+    let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
+
+    let now_date = window.luxon.DateTime.now()
+    let now = now_date.toSeconds();
+    let start_of_day = window.campaign_scripts.day_start_timestamp_utc(now)
+    let days = this.days.filter(d=>d.key >= start_of_day) || [];
+    let current_time_zone = this.current_time_zone
+    let current_month = this.month_to_show || days[0].key
+    let current_month_date = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone})
+    let this_month_days = days.filter(k=>k.month===current_month_date.toFormat('y_MM'));
+
+    let previous_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).minus({months:1}).toSeconds()
+    let next_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).plus({months:1}).toSeconds()
+
+    let day_number = window.campaign_scripts.get_day_number(current_month, current_time_zone);
+
+    if ( !this.end_timestamp ){
+      this.end_timestamp = this.days[this.days.length - 1].key
+    }
+
+    console.log(this_month_days);
+    console.log(window.jsObject.my_commitments);
+
+    let my_commitments = {}
+    window.jsObject.my_commitments.filter(c=>c.time_begin >= start_of_day && c.time_begin <= next_month).forEach(c=>{
+      let formatted = window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone:current_time_zone}).toFormat('MMMM d');
+      if ( !my_commitments[formatted]){
+        my_commitments[formatted] = 0;
+      }
+      my_commitments[formatted]++
+    })
+    console.log(my_commitments);
+
+
+    return html`
+      
+      <div class="calendar-wrapper">
+        <h3 class="month-title center">
+            <button class="month-next" ?disabled="${previous_month < now_date.minus({months:1}).toSeconds() }"
+                    @click="${e=>this.next_view(previous_month)}">
+                <
+            </button>
+            ${window.campaign_scripts.ts_to_format(current_month, 'MMMM y', current_time_zone)}
+            <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
+                >
+            </button>
+        </h3>
+        <div class="calendar">
+            ${week_day_names.map(name=>html`<div class="day-cell week-day">${name}</div>`)}
+            ${map(range(day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
+            ${this_month_days.map(day=>{
+              let disabled = (day.key + day_in_seconds) < now;
+              return html`
+                  <div class="day-cell enabled-day ${selected_times.includes(day.day_start_zoned) ? 'selected-day':''}
+                        ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" 
+                       data-day="${window.lodash.escape(day.key)}"
+                       @click="${e=>this.day_selected(e, day.key)}"
+                  >
+                    <progress-ring stroke="3" radius="30" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
+                    <div class="indicator-section">
+                      ${range(my_commitments[day.formatted]||0).map(i=> {
+                        return html`<span class="prayer-time-indicator"></span>`
+                      })}
+                    </div>
+                  </div>`
+              })}
+            ${day_number ? map(range(7 - day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>` ) : ''}
+        </div>
+      </div>
+            
+      `
+
+  }
+}
+customElements.define('my-calendar', cpMyCalendar);
 
 /**
  * Select Time of day Component
@@ -872,17 +1089,6 @@ class ProgressRing extends HTMLElement {
              stroke-width="${stroke}"
              fill="transparent"
              r="${normalizedRadius}"
-             cx="${radius}"
-             cy="${radius}"
-          />
-          <circle
-             class="third-circle"
-             stroke="red"
-             stroke-dasharray="${this._circumference2} ${this._circumference2}"
-             style="stroke-dashoffset:${this._circumference2}"
-             stroke-width="4px"
-             fill="transparent"
-             r="${normalizedRadius2}"
              cx="${radius}"
              cy="${radius}"
           />

@@ -795,7 +795,7 @@ export class cpCalendar extends LitElement {
                         ${this.days.filter(d=>d.month===month).map(day=>{
                             let disabled = (day.key + day_in_seconds) < now;
                             return html`
-                                <div class="day-cell"
+                                <div class="day-cell
                                      ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.lodash.escape(day.key)}"
                                 @click="${e=>this.day_selected(e, day.key)}"
@@ -888,14 +888,15 @@ export class campaignSubscriptions extends LitElement {
         justify-content: space-between;
         box-shadow: 10px 10px 5px color-mix(in srgb, var(--cp-color), #fff 70%);
       }
-      .selected-time-labels ul{
-        margin:0;
-      }
-      .selected-time-frequency {
+      .selected-time-content {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap:5px;
+      }
+      .selected-time-actions {
+        display: flex;
+        justify-content: space-between;
       }
       h3 {
         margin: 0 0 10px 0;
@@ -982,10 +983,7 @@ export class campaignSubscriptions extends LitElement {
       return;
     }
     this.selected_reccuring_signup_to_extend = report_id
-
     let frequency_option = window.campaign_data.frequency_options.find(k=>k.value===recurring_sign.type)
-
-
 
     this._extend_modal_message = ("Extend for %s months?").replace('%s', frequency_option.month_limit );
     this._extend_modal_open = true;
@@ -1035,11 +1033,11 @@ export class campaignSubscriptions extends LitElement {
             @close="${e=>this.extend_times_modal_closed(e)}" >
         </dt-modal>
         
-        <h2>${strings['My Prayer Times']}</h2>
+        
         ${(this.recurring_signups||[]).map((value, index) => {
             return html`
-            <div class="selected-times selected-time-labels">
-                <div class="selected-time-frequency">
+            <div class="selected-times">
+                <div class="selected-time-content">
                   <div>
                     <h3 style="display: inline">${window.luxon.DateTime.fromSeconds(value.first).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last).toFormat('DD')}</h3>  
                     <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">extend</button>  
@@ -1048,7 +1046,7 @@ export class campaignSubscriptions extends LitElement {
                       <strong>${value.label}</strong>
                       <button disabled class="clear-button">change time</button>
                   </div>
-                  <div>
+                  <div class="selected-time-actions">
                       <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
                           See prayer times (${(value.commitments_report_ids||[]).length})
                       </button>

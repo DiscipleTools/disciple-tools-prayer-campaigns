@@ -316,16 +316,24 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
             <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
                 <!-- my times -->
-                <div style="">
+                <div>
+                    <h2>My Prayer Times</h2>
                     <campaign-subscriptions></campaign-subscriptions>
                 </div>
 
                 <!-- calendar -->
-                <div style="flex-basis: 1000px">
-                    <a class="button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
+                <div>
+                    <h2 style="display: inline">
+                        My Calendar
+                    </h2>
+                    <a class="clear-button" style="margin-top: 10px" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
                         <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
                     </a>
-                    <div id="calendar-content" class="cp-wrapper" style="min-height: 750px"></div>
+                    <my-calendar>
+
+                    </my-calendar>
+
+
                 </div>
 
             </div>
@@ -420,87 +428,14 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
 
 
-            <div style="background-color: white; margin: 50px">
-            <campaign-sign-up style="padding:30px 0"
-                already_signed_up="true"
-            ></campaign-sign-up>
+            <div style="background-color: white; margin: 150px 50px 50px 50px">
+                <h2 style="text-align: center">Sign up for more prayer</h2>
+                <campaign-sign-up style="padding:30px 0"
+                    already_signed_up="true"
+                ></campaign-sign-up>
             </div>
 
             <hr>
-
-            <table >
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Count</th>
-                        <th>Change start on all prayer times</th>
-                        <th>Delete prayer times</th>
-                        <th>Extend Time</th>
-                    </tr>
-                </thead>
-                <tbody id="recurring_time_slots">
-
-                </tbody>
-
-            </table>
-
-            <!-- bulk time change modal -->
-            <div id="change-times-modal" class="reveal tiny" data-reveal>
-                <h2><?php esc_html_e( 'Choose a different time:', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                <select id="change-time-select" class="cp-daily-time-select">
-
-                </select>
-                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-                <button class="button loader" type="button" id="update-daily-time">
-                    <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- bulk time delete modal -->
-            <div id="delete-times-modal" class="reveal tiny" data-reveal>
-                <h2><?php esc_html_e( 'Delete all', 'disciple-tools-prayer-campaigns' ); ?></h2>
-
-                <p id="delete-time-slot-text"></p>
-
-                <p id='delete-time-extra-warning'>
-                    <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                    <?php esc_html_e( 'Need to cancel? We get it! But wait!
-If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
-That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
-                </p>
-
-                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-                <button class="button loader alert" type="button" id="confirm-delete-daily-time">
-                    <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- bulk time extend modal -->
-            <div id="extend-times-modal" class="reveal tiny" data-reveal>
-                <h2><?php esc_html_e( 'Extend', 'disciple-tools-prayer-campaigns' ); ?></h2>
-
-                <p><?php esc_html_e( 'Extend my prayer commitments until:', 'disciple-tools-prayer-campaigns' ); ?> <span id="extend-time-slot-text"></span></p>
-                <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                    <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-                <button class="button loader submit-form-button" type="button" id="confirm-extend-daily-time">
-                    <?php echo esc_html__( 'Confirm', 'disciple-tools-prayer-campaigns' )?>
-                </button>
-
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
 
             <!-- Extra setting depending on the campaign type -->
             <div>
