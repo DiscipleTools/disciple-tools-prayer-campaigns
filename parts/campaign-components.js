@@ -1058,8 +1058,8 @@ export class cpProgressRing extends LitElement {
     this.stroke = 3
     this.font_size = 15
     this.color = 'dodgerblue'
-    this.progress = 4;
-    this.text = '4'
+    this.progress = 0;
+    this.text = ''
   }
 
   render() {
@@ -1121,7 +1121,7 @@ export class cpProgressRing extends LitElement {
              cy="${this.radius}"
           />
           <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
-              ${window.lodash.escape(this.text || this.progress + '%')}
+              ${window.lodash.escape(this.text)}
           </text>
       </svg>
 
