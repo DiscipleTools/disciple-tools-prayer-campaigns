@@ -179,7 +179,7 @@ export class CampaignSignUp extends LitElement {
         value: 15,
         options: [
           {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
-          {value: 30, label: `${strings['%s Minutes'].replace('%s', 60)}`},
+          {value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},
           {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
         ]
       }

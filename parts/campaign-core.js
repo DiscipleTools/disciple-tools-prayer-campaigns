@@ -305,7 +305,7 @@ window.campaign_scripts = {
     }
     let time_label = selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
     let freq_label = frequency_option.label;
-    let duration_label = window.campaign_data.duration_options.find(k=>k.value===duration).label;
+    let duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(duration)).label;
     if ( frequency_option.value === 'weekly' ){
       freq_label = strings['Every %s'].replace('%s', selected_times[0].date_time.toFormat('cccc') );
     }
@@ -354,7 +354,7 @@ window.campaign_data = {
   slot_length: 15,
   duration_options: [
     {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
-    {value: 30, label: `${strings['%s Minutes'].replace('%s', 60)}`},
+    {value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},
     {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
   ],
   coverage: {},
