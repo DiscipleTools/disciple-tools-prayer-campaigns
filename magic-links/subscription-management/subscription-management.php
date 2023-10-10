@@ -78,10 +78,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'campaign_sign_up_component';
         $allowed_js[] = 'campaign_components';
         $allowed_js[] = 'campaign_css_component';
+        $allowed_js[] = 'toastify-js';
         return $allowed_js;
     }
     public function dt_magic_url_base_allowed_css( $allowed_js ) {
         $allowed_js[] = 'dt_subscription_css';
+        $allowed_js[] = 'toastify-js-css';
         return $allowed_js;
     }
 
@@ -157,7 +159,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'end_timestamp' => $end,
                 'slot_length' => $min_time_duration,
                 'timezone' => $post['timezone'] ?? 'America/Chicago',
-//                'duration_options' => $field_settings['duration_options']['default'],
                 'campaign_data' => $campaign_data,
             ]
         );
@@ -300,6 +301,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <style>
             :root {
                 --cp-color: <?php echo esc_html( $color ) ?>;
+                --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
+                --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
             .nav-bar {
                 display: flex;
@@ -318,11 +321,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 padding: 10px;
             }
             .nav-bar button:hover {
-                background-color: color-mix(in srgb, var(--cp-color), #000 10%);;
+                background-color: var(--cp-color-dark);
                 color: white;
             }
             .nav-bar button.active {
-                background-color: color-mix(in srgb, var(--cp-color), #000 10%);;
+                background-color: var(--cp-color-dark);
                 color: white
             }
         </style>

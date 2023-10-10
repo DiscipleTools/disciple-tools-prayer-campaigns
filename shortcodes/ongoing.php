@@ -53,6 +53,8 @@ function dt_campaign_percentage( $atts ){
         <style>
             :root {
                 --cp-color: <?php echo esc_html( $atts['color'] ) ?>;
+                --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
+                --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
         </style>
         <cp-percentage></cp-percentage>
@@ -69,6 +71,8 @@ function dt_ongoing_campaign_calendar( $atts ){
         <style>
             :root {
                 --cp-color: <?php echo esc_html( $atts['color'] ) ?>;
+                --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
+                --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
         </style>
         <cp-calendar></cp-calendar>
@@ -87,6 +91,8 @@ function dt_ongoing_campaign_signup( $atts ){
         <style>
             :root {
                 --cp-color: <?php echo esc_html( $atts['color'] ) ?>;
+                --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
+                --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
         </style>
         <campaign-sign-up></campaign-sign-up>

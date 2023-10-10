@@ -81,6 +81,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'My Prayer Times' => __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ),
+                    'Prayer Time Added' => __( 'Prayer Time Added', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
@@ -88,5 +89,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
         wp_enqueue_script( 'campaign_css_component', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
         wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
         wp_enqueue_script( 'campaign_sign_up_component', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
+        wp_enqueue_style( 'toastify-js-css', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css', [], '1.12.0' );
+        wp_enqueue_script( 'toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js', [ 'jquery' ], '1.12.0' );
     }
 }

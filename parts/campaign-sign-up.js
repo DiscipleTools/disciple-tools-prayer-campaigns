@@ -296,6 +296,24 @@ export class CampaignSignUp extends LitElement {
   }
 
 
+  show_toast(message='', type='success'){
+    if ( !message ){
+      message = strings["Prayer Time Added"];
+    }
+    let background = 'linear-gradient(to right, var(--cp-color-dark), var(--cp-color-light))';
+    if ( type === 'warn' ){
+      background = 'linear-gradient(to right, #f8b500, #f8b500)';
+    }
+    Toastify({
+      text: message,
+      duration: 3000,
+      close: true,
+      gravity: "bottom",
+      style: {
+        background: background
+      },
+    }).showToast();
+  }
   get_times(){
     let day_in_seconds = 86400;
     let key = 0;
@@ -321,9 +339,13 @@ export class CampaignSignUp extends LitElement {
 
 
   time_selected(selected_time){
+    if (!this.frequency.value){
+      this.show_toast( 'Please check step 1', 'warn')
+    }
     let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
     this.recurring_signups.push(recurring_signup)
     this.requestUpdate()
+    this.show_toast()
   }
   day_selected(selected_day){
     this.selected_day = selected_day
@@ -349,6 +371,7 @@ export class CampaignSignUp extends LitElement {
     this.calendar_small = false
     this.selected_day = null
     this.requestUpdate()
+    this.show_toast()
   }
 
 
@@ -886,7 +909,7 @@ export class campaignSubscriptions extends LitElement {
         margin-bottom: 2rem;
         padding: 1rem;
         justify-content: space-between;
-        box-shadow: 10px 10px 5px color-mix(in srgb, var(--cp-color), #fff 70%);
+        box-shadow: 10px 10px 5px var(--cp-color-light);
       }
       .selected-time-content {
         display: flex;
