@@ -383,9 +383,9 @@ export class select extends LitElement {
     this.options = [];
   }
 
-  handleClick(e){
-    if ( this.value != e.target.value ){
-      this.value = e.target.value
+  handleClick(value){
+    if ( this.value != value ){
+      this.value = value
       this.dispatchEvent(new CustomEvent('change', {detail: this.value}));
     }
   }
@@ -395,7 +395,7 @@ export class select extends LitElement {
       ${this.options.filter(o=>!o.disabled).map(o=>html`
           <button class="select ${o.value.toString() === this.value?.toString() ? 'selected' : ''}"
                   ?disabled="${o.disabled}"
-                  @click="${this.handleClick}"
+                  @click="${()=>this.handleClick(o.value)}"
             value="${o.value}">
                 ${o.label}
               <span>${o.desc}</span>
