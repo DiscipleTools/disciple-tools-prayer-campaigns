@@ -115,19 +115,13 @@ window.campaign_scripts = {
     if ( !timezone ){
       timezone = this.timezone
     }
-    if ( window.jsObject?.campaign_data ){
-      return new Promise((resolve, reject)=>{
-        let data = window.jsObject.campaign_data
-        this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
-        resolve(window.jsObject.campaign_data)
-      })
-    }
+    let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
 
     if ( campaign_data_promise === null ){
       let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_info';
       campaign_data_promise = jQuery.ajax({
         type: 'GET',
-        data: {action: 'get', parts: window.campaign_objects.magic_link_parts, 'url': 'campaign_info', time: new Date().getTime()},
+        data: {action: 'get', parts: window.campaign_objects.magic_link_parts, 'url': 'campaign_info', time: new Date().getTime(), campaign_id},
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         url: link

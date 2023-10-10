@@ -946,9 +946,6 @@ export class campaignSubscriptions extends LitElement {
   constructor() {
     super();
     this.selected_reccuring_signup_to_delete = null;
-    this.selected_times = window.jsObject.my_commitments;
-    this.my_recurring = window.jsObject.my_recurring;
-    this.recurring_signups = window.jsObject.my_recurring_signups;
     this._delete_modal_open = false;
     this._extend_modal_open = false;
     this._extend_modal_message = 'Def';
@@ -956,22 +953,24 @@ export class campaignSubscriptions extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback();
+    this.campaign_data = await window.campaign_scripts.get_campaign_data()
+    this.requestUpdate()
   }
 
   delete_recurring_time(){
     let data = {
       action: 'delete_recurring_signup',
       report_id: this.selected_reccuring_signup_to_delete,
-      parts: calendar_subscribe_object.parts
+      parts: window.subscription_page_data.parts
     }
     jQuery.ajax({
       type: "POST",
       data: JSON.stringify(data),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      url: calendar_subscribe_object.root + calendar_subscribe_object.parts.root + '/v1/' + calendar_subscribe_object.parts.type,
+      url: window.subscription_page_data.root + window.subscription_page_data.parts.root + '/v1/' + window.subscription_page_data.parts.type,
       beforeSend: function (xhr) {
-        xhr.setRequestHeader('X-WP-Nonce', calendar_subscribe_object.nonce )
+        xhr.setRequestHeader('X-WP-Nonce', window.subscription_page_data.nonce )
       }
     }).then(data=>{
       window.location.reload()
@@ -1024,7 +1023,7 @@ export class campaignSubscriptions extends LitElement {
       recurring_extend.report_id = recurring_sign.report_id
 
       //filter out existing times
-      let existing_times = window.jsObject.my_commitments.filter(c=>recurring_sign.commitments_report_ids.includes(c.report_id)).map(c=>parseInt(c.time_begin))
+      let existing_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>recurring_sign.commitments_report_ids.includes(c.report_id)).map(c=>parseInt(c.time_begin))
       recurring_extend.selected_times = recurring_extend.selected_times.filter(c=>!existing_times.includes(c.time))
 
       window.campaign_scripts.submit_prayer_times( recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(data=>{
@@ -1034,6 +1033,12 @@ export class campaignSubscriptions extends LitElement {
   }
 
   render() {
+    if ( !window.campaign_data.subscriber_info ){
+      return;
+    }
+    this.selected_times = window.campaign_data.subscriber_info.my_commitments;
+    this.my_recurring = window.campaign_data.subscriber_info.my_recurring;
+    this.recurring_signups = window.campaign_data.subscriber_info.my_recurring_signups;
     return html`
         <!--delete modal-->
         <dt-modal
@@ -1079,7 +1084,7 @@ export class campaignSubscriptions extends LitElement {
                   </div>
                 </div>
                 <div style="margin-top:20px" ?hidden="${!value.display_times}">
-                    ${window.jsObject.my_commitments.filter(c=>value.commitments_report_ids.includes(c.report_id)).map(c=>html`
+                    ${window.campaign_data.subscriber_info.my_commitments.filter(c=>value.commitments_report_ids.includes(c.report_id)).map(c=>html`
                         <div class="remove-row">
                             <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin)).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
                             <button @click="${e=>this.remove_prayer_time(c.report_id)}" 

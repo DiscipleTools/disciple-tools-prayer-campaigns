@@ -95,71 +95,18 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $post;
         }
         $campaign_id = $post['campaigns'][0]['ID'];
-        $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id, 12 );
-        $my_commitments_reports = self::get_subscriptions( $this->parts['post_id'] );
-        $my_commitments = [];
-        foreach ( $my_commitments_reports as $commitments_report ){
-            $my_commitments[] = [
-                'time_begin' => $commitments_report['time_begin'],
-                'time_end' => $commitments_report['time_end'],
-//                'value' => $commitments_report['value'],
-                'report_id' => $commitments_report['id'],
-//                'verified' => $commitments_report['verified'] ?? false,
-            ];
-        }
-        $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $this->parts['post_id'], $campaign_id );
-        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
-        $min_time_duration = 15;
-        if ( isset( $campaign['min_time_duration']['key'] ) ){
-            $min_time_duration = $campaign['min_time_duration']['key'];
-        }
+
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
 
 
-        $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id );
-        $end = $campaign['end_date']['timestamp'] ?? null;
-        if ( $end ){
-            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, $start );
-        }
-        $campaign_data = [
-            'campaign_id' => $campaign_id,
-            'start_timestamp' => $start,
-            'end_timestamp' => $end,
-            'slot_length' => $campaign['min_time_duration']['key'] ?? 15,
-            'timezone' => $post['timezone'] ?? 'America/Chicago',
-            'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
-            'current_commitments' => $current_commitments,
-        ];
-
         wp_localize_script(
-            'dt_subscription_js', 'jsObject', [
+            'dt_subscription_js', 'subscription_page_data', [
                 'root' => esc_url_raw( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
-                'translations' => [
-                    'select_a_time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
-                    'fully_covered_once' => __( 'fully covered once', 'disciple-tools-prayer-campaigns' ),
-                    'fully_covered_x_times' => __( 'fully covered %1$s times', 'disciple-tools-prayer-campaigns' ),
-                    'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
-                    'extend_3_months' => __( 'Extend for 3 months', 'disciple-tools-prayer-campaigns' ),
-                    'change_daily_time' => __( 'Change time on all', 'disciple-tools-prayer-campaigns' ),
-                    'percent_covered' => _x( '%s covered', '80% covered', 'disciple-tools-prayer-campaigns' ),
-                    'on_x_days' => _x( 'On %s days', 'on 5 days', 'disciple-tools-prayer-campaigns' ),
-                    'and_x_more' => _x( 'and %s more', 'and 5 more', 'disciple-tools-prayer-campaigns' ),
-                    'pray_this_time' => __( 'Pray this time', 'disciple-tools-prayer-campaigns' ),
-                ],
-                'my_commitments' => $my_commitments,
-                'my_recurring_signups' => $my_recurring_signups,
                 'campaign_id' => $campaign_id,
-                'current_commitments' => $current_commitments,
-                'start_timestamp' => $start,
-                'end_timestamp' => $end,
-                'slot_length' => $min_time_duration,
-                'timezone' => $post['timezone'] ?? 'America/Chicago',
-                'campaign_data' => $campaign_data,
             ]
         );
     }
@@ -559,6 +506,18 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             ]
         );
         register_rest_route(
+            $namespace, '/'.$this->type . '/campaign_info', [
+                [
+                    'methods'  => 'GET',
+                    'callback' => [ $this, 'campaign_info' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+        register_rest_route(
             $namespace, '/'.$this->type . '/delete_profile', [
                 [
                     'methods'  => 'DELETE',
@@ -783,6 +742,66 @@ That will keep the prayer chain from being broken AND will give someone the joy 
 
         return update_post_meta( $post_id, 'receive_prayer_time_notifications', !empty( $params['allowed'] ) );
 
+    }
+
+    public function campaign_info( WP_REST_Request $request ){
+        //@todo this is a duplicate
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $subscriber_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
+
+        $campaign_id = $params['campaign_id'] ?? null;
+        if ( empty( $campaign_id ) ){
+            return new WP_Error( __METHOD__, 'Missing campaign id', [ 'status' => 400 ] );
+        }
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( is_wp_error( $subscriber ) ){
+            return;
+        }
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+
+        $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign_id );
+        $current_commitments = DT_Time_Utilities::get_current_commitments( $campaign_id, 13 );
+        $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id );
+        $end = $campaign['end_date']['timestamp'] ?? null;
+        if ( $end ){
+            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 3, $start );
+        }
+        $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_id );
+
+        $lang = dt_campaign_get_current_lang(); //todo remove?
+        dt_campaign_set_translation( $lang );
+
+
+        //subscriber info
+        $my_commitments_reports = self::get_subscriptions( $subscriber_id );
+        $my_commitments = [];
+        foreach ( $my_commitments_reports as $commitments_report ){
+            $my_commitments[] = [
+                'time_begin' => $commitments_report['time_begin'],
+                'time_end' => $commitments_report['time_end'],
+                'report_id' => $commitments_report['id'],
+            ];
+        }
+        $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
+
+
+        return [
+            'campaign_id' => $campaign_id,
+            'start_timestamp' => $start,
+            'end_timestamp' => $end,
+            'slot_length' => (int) $min_time_duration,
+//            'status' => $record['status']['key'],
+            'current_commitments' => $current_commitments,
+            'minutes_committed' => $minutes_committed,
+            'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
+            'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
+            'subscriber_info' => [
+                'my_commitments' => $my_commitments,
+                'my_recurring_signups' => $my_recurring_signups,
+                'timezone' => $post['timezone'] ?? 'America/Chicago',
+            ]
+        ];
     }
 }
 new DT_Prayer_Subscription_Management_Magic_Link();

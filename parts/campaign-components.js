@@ -737,8 +737,9 @@ export class cpMyCalendar extends LitElement {
       this.end_timestamp = this.days[this.days.length - 1].key
     }
 
-    let my_commitments = {}
-    window.jsObject.my_commitments.filter(c=>c.time_begin >= start_of_day && c.time_begin <= next_month).forEach(c=>{
+    let my_commitments = {};
+
+    (window.campaign_data.subscriber_info?.my_commitments || []).filter(c=>c.time_begin >= start_of_day && c.time_begin <= next_month).forEach(c=>{
       let formatted = window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone:current_time_zone}).toFormat('MMMM d');
       if ( !my_commitments[formatted]){
         my_commitments[formatted] = 0;
