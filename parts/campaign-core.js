@@ -184,6 +184,11 @@ window.campaign_scripts = {
       })
       campaign_data_promise.then((data)=>{
         window.campaign_data = { ...window.campaign_data, ...data }
+        window.campaign_data.frequency_options.forEach(k=>{
+          if ( !window.campaign_data.enabled_frequencies.includes(k.value) ){
+            k.disabled = true
+          }
+        })
         timezone = timezone || data.subscriber_info?.timezone || window.campaign_user_data.timezone
         this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
         if ( data.subscriber_info ){

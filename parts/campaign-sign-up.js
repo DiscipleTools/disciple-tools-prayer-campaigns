@@ -173,7 +173,7 @@ export class CampaignSignUp extends LitElement {
 
     this.get_campaign_data().then(()=>{
       this.frequency = {
-        value: this.campaign_data.enabled_frequencies.length === 1 ? this.campaign_data.enabled_frequencies[0] : '',
+        value: this.campaign_data.enabled_frequencies.length > 0 ? this.campaign_data.enabled_frequencies[0] : '',
       }
       this.duration = {
         value: 15,
