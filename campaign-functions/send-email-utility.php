@@ -197,8 +197,6 @@ class DT_Prayer_Campaigns_Send_Email {
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
         foreach ( $reports as $row ){
-
-            $to[$row['email']] = $row['email'];
             $begin_date = new DateTime( '@'.$row['time_begin'] );
             $end_date = new DateTime( '@'.$row['time_end'] );
             $begin_date->setTimezone( $tz );

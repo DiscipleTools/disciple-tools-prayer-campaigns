@@ -154,6 +154,9 @@ export class cpProfile extends LitElement {
       this.show_spinner = false;
       this.updates = {}
     })
+    if ( this.updates.timezone ){
+      window.set_user_data({timezone: this.updates.timezone})
+    }
   }
 
   delete_profile_modal_closed(e){

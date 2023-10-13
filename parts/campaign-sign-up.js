@@ -168,7 +168,7 @@ export class CampaignSignUp extends LitElement {
     this.selected_times = [];
     this.recurring_signups = [];
     this.show_selected_times = false;
-    this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    this.timezone = window.campaign_user_data.timezone;
     this.days = [];
 
     this.get_campaign_data().then(()=>{
@@ -197,6 +197,16 @@ export class CampaignSignUp extends LitElement {
       }
       this.requestUpdate()
     })
+  }
+
+  connectedCallback() {
+    super.connectedCallback()
+
+    window.addEventListener('campaign_timezone_change', (e)=>{
+      this.timezone = e.detail.timezone
+      this.days = window.campaign_scripts.days
+      this.requestUpdate()
+    });
   }
   selected_times_count(){
     let count = 0;
@@ -387,9 +397,7 @@ export class CampaignSignUp extends LitElement {
 
   timezone_change(e){
     this.timezone = e.detail
-    window.campaign_scripts.timezone = e.detail
-    this.days = window.campaign_scripts.calculate_day_times( this.timezone, this.campaign_data.start_timestamp, this.campaign_data.end_timestamp, this.campaign_data.current_commitments, this.campaign_data.slot_length )
-    this.requestUpdate()
+    window.set_user_data({timezone: this.timezone})
   }
 
   remove_recurring_prayer_time(index){
@@ -954,7 +962,81 @@ export class campaignSubscriptions extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     this.campaign_data = await window.campaign_scripts.get_campaign_data()
+    this.timezone = window.campaign_user_data.timezone
     this.requestUpdate()
+    window.addEventListener('campaign_timezone_change', (e)=>{
+      this.timezone = e.detail.timezone
+      this.days = window.campaign_scripts.days
+      this.requestUpdate()
+    });
+  }
+
+  render() {
+    if ( !window.campaign_data.subscriber_info ){
+      return;
+    }
+    this.selected_times = window.campaign_data.subscriber_info.my_commitments;
+    this.my_recurring = window.campaign_data.subscriber_info.my_recurring;
+    this.recurring_signups = window.campaign_data.subscriber_info.my_recurring_signups;
+    return html`
+        <!--delete modal-->
+        <dt-modal
+            .isOpen="${this._delete_modal_open}"
+            title="Delete Prayer Times"
+            hideButton="true"
+            confirmButtonClass="danger"
+            @close="${e=>this.delete_times_modal_closed(e)}"
+        >
+        <p slot="content">Really delete these prayer times?</p>
+        </dt-modal>
+
+        <!--extend modal-->
+        <dt-modal
+            .isOpen="${this._extend_modal_open}"
+            .content="${this._extend_modal_message}"
+            title="Extend Prayer Times"
+            hideButton="true"
+            confirmButtonClass="danger"
+            @close="${e=>this.extend_times_modal_closed(e)}" >
+        </dt-modal>
+        
+        
+        ${(this.recurring_signups||[]).map((value, index) => {
+            return html`
+            <div class="selected-times">
+                <div class="selected-time-content">
+                  <div>
+                    <h3 style="display: inline">${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
+                    <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">extend</button>  
+                  </div>
+                  <div>
+                      <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
+                      <button disabled class="clear-button">change time</button>
+                  </div>
+                  <div class="selected-time-actions">
+                      <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
+                          See prayer times (${(value.commitments_report_ids||[]).length})
+                      </button>
+                      <button class="clear-button danger loader" @click="${e=>this.open_delete_times_modal(e,value.report_id)}">
+                          Remove all
+                      </button>
+                  </div>
+                </div>
+                <div style="margin-top:20px" ?hidden="${!value.display_times}">
+                    ${window.campaign_data.subscriber_info.my_commitments.filter(c=>value.commitments_report_ids.includes(c.report_id)).map(c=>html`
+                        <div class="remove-row">
+                            <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone: this.timezone}).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                            <button ?disabled="${true}" 
+                                    class="remove-prayer-times-button clear-button">
+                                <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                            </button>
+                        </div>
+                    `)}
+                </div>
+                
+            </div>
+        `})}
+    `
   }
 
   delete_recurring_time(){
@@ -982,8 +1064,6 @@ export class campaignSubscriptions extends LitElement {
     })
   }
 
-
-
   open_delete_times_modal(e,report_id){
     const recurring_sign = this.recurring_signups.find(k=>k.report_id===report_id)
     if ( !recurring_sign ){
@@ -992,6 +1072,7 @@ export class campaignSubscriptions extends LitElement {
     this.selected_reccuring_signup_to_delete = report_id
     this._delete_modal_open = true;
   }
+
   delete_times_modal_closed(e){
     this._delete_modal_open = false;
     if ( e.detail?.action === 'confirm' ){
@@ -1030,74 +1111,6 @@ export class campaignSubscriptions extends LitElement {
         window.location.reload() //@todo replace with event
       })
     }
-  }
-
-  render() {
-    if ( !window.campaign_data.subscriber_info ){
-      return;
-    }
-    this.selected_times = window.campaign_data.subscriber_info.my_commitments;
-    this.my_recurring = window.campaign_data.subscriber_info.my_recurring;
-    this.recurring_signups = window.campaign_data.subscriber_info.my_recurring_signups;
-    return html`
-        <!--delete modal-->
-        <dt-modal
-            .isOpen="${this._delete_modal_open}"
-            title="Delete Prayer Times"
-            hideButton="true"
-            confirmButtonClass="danger"
-            @close="${e=>this.delete_times_modal_closed(e)}"
-        >
-        <p slot="content">Really delete these prayer times?</p>
-        </dt-modal>
-
-        <!--extend modal-->
-        <dt-modal
-            .isOpen="${this._extend_modal_open}"
-            .content="${this._extend_modal_message}"
-            title="Extend Prayer Times"
-            hideButton="true"
-            confirmButtonClass="danger"
-            @close="${e=>this.extend_times_modal_closed(e)}" >
-        </dt-modal>
-        
-        
-        ${(this.recurring_signups||[]).map((value, index) => {
-            return html`
-            <div class="selected-times">
-                <div class="selected-time-content">
-                  <div>
-                    <h3 style="display: inline">${window.luxon.DateTime.fromSeconds(value.first).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last).toFormat('DD')}</h3>  
-                    <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">extend</button>  
-                  </div>
-                  <div>
-                      <strong>${value.label}</strong>
-                      <button disabled class="clear-button">change time</button>
-                  </div>
-                  <div class="selected-time-actions">
-                      <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
-                          See prayer times (${(value.commitments_report_ids||[]).length})
-                      </button>
-                      <button class="clear-button danger loader" @click="${e=>this.open_delete_times_modal(e,value.report_id)}">
-                          Remove all
-                      </button>
-                  </div>
-                </div>
-                <div style="margin-top:20px" ?hidden="${!value.display_times}">
-                    ${window.campaign_data.subscriber_info.my_commitments.filter(c=>value.commitments_report_ids.includes(c.report_id)).map(c=>html`
-                        <div class="remove-row">
-                            <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin)).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-                            <button @click="${e=>this.remove_prayer_time(c.report_id)}" 
-                                    class="remove-prayer-times-button clear-button">
-                                <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
-                            </button>
-                        </div>
-                    `)}
-                </div>
-                
-            </div>
-        `})}
-    `
   }
 }
 customElements.define('campaign-subscriptions', campaignSubscriptions);

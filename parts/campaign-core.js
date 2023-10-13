@@ -2,6 +2,18 @@ const day_in_seconds = 86400
 let campaign_data_promise = null;
 let default_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Chicago'
 
+const escapeHTML = function (str) {
+  if (typeof str === "undefined") return '';
+  if (typeof str !== "string") return str;
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+const escapeObject = function (obj) {
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => {
+    return [ key, escapeHTML(value)]
+  }))
+}
+const strings = escapeObject(window.campaign_objects.translations)
+
 
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
@@ -13,14 +25,48 @@ window.set_user_data = function (data, campaign = false){
   }
   window.campaign_user_data = {...window.campaign_user_data, ...data}
   if ( timezone_changes ){
+    if ( !campaign ){
+      window.campaign_scripts.days = window.campaign_scripts.calculate_day_times( window.campaign_user_data.timezone, window.campaign_data.start_timestamp, window.campaign_data.end_timestamp, window.campaign_data.current_commitments, window.campaign_data.slot_length )
+    }
     //event
-    let event = new CustomEvent('campaign_timezone_change', {detail: window.campaign_user_data.timezone});
+    let event = new CustomEvent('campaign_timezone_change', {detail: {timezone:window.campaign_user_data.timezone, days_already_calculated: campaign}});
     window.dispatchEvent(event);
   }
 }
 
+
+window.campaign_data = {
+  campaign_id: null,
+  start_timestamp: 0,
+  end_timestamp: null,
+  slot_length: 15,
+  duration_options: [
+    {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
+    {value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},
+    {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
+  ],
+  coverage: {},
+  enabled_frequencies: [],
+  frequency_options: [
+    {
+      value: 'daily',
+      label: strings['Daily'],
+      desc: `(${strings['up to %s months'].replace('%s', '3')})`,
+      days_limit: 90,
+      month_limit: 3,
+      step: 'day',
+    },
+    {value: 'weekly', label: strings['Weekly'], desc:`(${strings['up to %s months'].replace('%s', '6')})`, days_limit: 180, step:'week', month_limit: 6},
+    {value: 'monthly', label: strings['Monthly'], desc: `(${strings['up to %s months'].replace('%s', '12')})`, days_limit: 365, step:'month', month_limit: 12},
+    {value: 'pick', label: strings['Pick Dates and Times']},
+  ],
+
+  current_commitments: {},
+  minutes_committed: 0,
+  time_committed: ''
+}
+
 window.campaign_scripts = {
-  timezone: default_timezone,
   time_slot_coverage: {},
   processing_save: {},
   days: [],
@@ -138,13 +184,11 @@ window.campaign_scripts = {
       })
       campaign_data_promise.then((data)=>{
         window.campaign_data = { ...window.campaign_data, ...data }
+        timezone = timezone || data.subscriber_info?.timezone || window.campaign_user_data.timezone
+        this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
         if ( data.subscriber_info ){
           window.set_user_data(data.subscriber_info, true)
         }
-        if ( !timezone ){
-          timezone = window.campaign_user_data.timezone
-        }
-        this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
       })
     }
     return campaign_data_promise
@@ -282,6 +326,18 @@ window.campaign_scripts = {
     if (typeof str !== "string") return str;
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
   },
+  recurring_time_slot_label(value){
+    let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})
+    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
+    let freq_label = frequency_option.label
+    const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
+    if ( frequency_option.value === 'weekly' ){
+      freq_label = strings['Every %s'].replace('%s', first.toFormat('cccc') );
+    }
+    let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
+    return label;
+  },
 
   build_selected_times_for_recurring(selected_time, frequency, duration, weekday=null, from_date_ts=null){
     let selected_times = []
@@ -313,14 +369,7 @@ window.campaign_scripts = {
       }
       date_ref = date_ref.plus({[frequency_option.step]:1})
     }
-    let time_label = selected_times[0].date_time.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
-    let freq_label = frequency_option.label;
-    let duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(duration)).label;
-    if ( frequency_option.value === 'weekly' ){
-      freq_label = strings['Every %s'].replace('%s', selected_times[0].date_time.toFormat('cccc') );
-    }
-    let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
-
+    let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
     return {
       label: label,
       type: frequency_option.value,
@@ -355,37 +404,3 @@ window.campaign_scripts = {
   }
 }
 
-const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
-
-window.campaign_data = {
-  campaign_id: null,
-  start_timestamp: 0,
-  end_timestamp: null,
-  slot_length: 15,
-  duration_options: [
-    {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
-    {value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},
-    {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
-  ],
-  coverage: {},
-  enabled_frequencies: [],
-  frequency_options: [
-    {
-      value: 'daily',
-      label: strings['Daily'],
-      desc: `(${strings['up to %s months'].replace('%s', '3')})`,
-      days_limit: 90,
-      month_limit: 3,
-      step: 'day',
-    },
-    {value: 'weekly', label: strings['Weekly'], desc:`(${strings['up to %s months'].replace('%s', '6')})`, days_limit: 180, step:'week', month_limit: 6},
-    {value: 'monthly', label: strings['Monthly'], desc: `(${strings['up to %s months'].replace('%s', '12')})`, days_limit: 365, step:'month', month_limit: 12},
-    {value: 'pick', label: strings['Pick Dates and Times']},
-  ],
-
-  current_commitments: {},
-  minutes_committed: 0,
-  time_committed: ''
-
-
-}
