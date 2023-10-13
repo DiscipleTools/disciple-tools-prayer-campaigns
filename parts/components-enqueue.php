@@ -1,7 +1,7 @@
 <?php
 
 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
-    if ( str_contains( $handle, 'component' ) ){
+    if ( str_contains( $handle, 'component' ) || str_contains( $handle, 'dt_subscription_js' ) ){
         $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>'; //phpcs:ignore
     }
     return $tag;
@@ -15,7 +15,6 @@ function dt_campaigns_register_scripts( $atts = [] ){
     if ( !wp_script_is( 'dt_campaign_core', 'registered' ) ){
         wp_enqueue_script( 'dt_campaign_core', $plugin_dir_url . 'parts/campaign-core.js', [
             'jquery',
-            'lodash',
             'luxon'
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
         wp_localize_script(

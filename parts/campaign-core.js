@@ -6,6 +6,18 @@ let default_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Amer
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
 }
+window.set_user_data = function (data, campaign = false){
+  let timezone_changes = false
+  if ( data.timezone !== window.campaign_user_data.timezone ){
+    timezone_changes = true
+  }
+  window.campaign_user_data = {...window.campaign_user_data, ...data}
+  if ( timezone_changes ){
+    //event
+    let event = new CustomEvent('campaign_timezone_change', {detail: window.campaign_user_data.timezone});
+    window.dispatchEvent(event);
+  }
+}
 
 window.campaign_scripts = {
   timezone: default_timezone,
@@ -112,9 +124,7 @@ window.campaign_scripts = {
     return days;
   },
   get_campaign_data: function( timezone ){
-    if ( !timezone ){
-      timezone = this.timezone
-    }
+
     let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
 
     if ( campaign_data_promise === null ){
@@ -128,6 +138,12 @@ window.campaign_scripts = {
       })
       campaign_data_promise.then((data)=>{
         window.campaign_data = { ...window.campaign_data, ...data }
+        if ( data.subscriber_info ){
+          window.set_user_data(data.subscriber_info, true)
+        }
+        if ( !timezone ){
+          timezone = window.campaign_user_data.timezone
+        }
         this.days = window.campaign_scripts.calculate_day_times( timezone, data.start_timestamp, data.end_timestamp, data.current_commitments, data.slot_length )
       })
     }

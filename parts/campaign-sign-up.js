@@ -245,7 +245,7 @@ export class CampaignSignUp extends LitElement {
     .fail((e)=>{
       this._loading = false
       let message = html`So sorry. Something went wrong. Please, try again.<br>
-          <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
+          <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
       if ( e.status === 401 ) {
         message = 'Confirmation code does not match or is expired. Please, try again.'
       }
@@ -288,7 +288,7 @@ export class CampaignSignUp extends LitElement {
     .fail((e)=>{
       console.log(e);
       let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
-        <a href="${window.lodash.escape(window.location.href)}">Try Again</a>`
+        <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
       this._form_items.form_error = message
       this._loading = false
       this.requestUpdate()
@@ -820,10 +820,10 @@ export class cpCalendar extends LitElement {
                             return html`
                                 <div class="day-cell
                                      ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
-                                data-day="${window.lodash.escape(day.key)}"
+                                data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 @click="${e=>this.day_selected(e, day.key)}"
                                 >
-                                <progress-ring stroke="3" radius="20" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
+                                <progress-ring stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 </div>`
                         })}
                     </div>

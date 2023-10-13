@@ -62,13 +62,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
         $allowed_js = [
             'jquery',
-            'jquery-ui',
-            'lodash',
-            'lodash-core',
-            'shared-functions',
-            'moment',
-            'datepicker',
-            'site-js',
         ];
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'luxon';
@@ -82,8 +75,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         return $allowed_js;
     }
     public function dt_magic_url_base_allowed_css( $allowed_js ) {
+        $allowed_js = [];
         $allowed_js[] = 'dt_subscription_css';
         $allowed_js[] = 'toastify-js-css';
+        $allowed_js[] = 'foundation-css'; //@chore remove
+        $allowed_js[] = 'site-css'; //@chore remove
         return $allowed_js;
     }
 
@@ -242,7 +238,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( $color === 'preset' ){
             $color = '#4676fa';
         }
-        $notifications = isset( $post['receive_prayer_time_notifications'] ) && !empty( $post['receive_prayer_time_notifications'] );
 
         ?>
         <style>
@@ -287,7 +282,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             </div>
         </div>
         <div id="wrapper">
-            <div id="prayer-times" class="display-panel">
+            <div id="prayer-times" class="display-panel" style="display: block">
 
                 <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
                     <!-- my times -->
@@ -406,78 +401,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     ></campaign-sign-up>
                 </div>
 
-                <hr>
-
                 <!-- Extra setting depending on the campaign type -->
                 <div>
                     <?php do_action( 'dt_subscription_management_extra' ) ?>
                 </div>
             </div>
-            <div id="profile" class="display-panel" style="display: none">
+                <div id="profile" class="display-panel" style="display: none">
 
-
-              <div style="margin-top: 50px">
-                <hr>
-                <h2><?php esc_html_e( 'Profile Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
-
-                <!-- Name -->
-                <div>
-                    <label for="name"><?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?></label>
-                    <input type="text" id="name" name="name" value="<?php echo esc_html( $post['name'] ); ?>">
+                  <cp-profile></cp-profile>
                 </div>
-
-                <!-- Email -->
-                <div>
-                    <label for="email"><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?></label>
-                    <input type="email" id="email" name="email" value="<?php echo esc_html( $post['contact_email'][0]['value'] ); ?>">
-                </div>
-
-                <!-- Notifications -->
-                <div><?php esc_html_e( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ); ?> <span class="notifications_allowed_spinner loading-spinner"></span>
-                    <select name="allow_notifications" id="allow_notifications">
-                        <option <?php selected( $notifications ) ?> value="allowed"><?php esc_html_e( 'Notifications allowed', 'disciple-tools-prayer-campaigns' ); ?> ✅</option>
-                        <option <?php selected( !$notifications ) ?> value="disallowed"><?php esc_html_e( 'Notifications not allowed', 'disciple-tools-prayer-campaigns' ); ?> ❌</option>
-                    </select>
-                </div>
-                <div class="danger-zone">
-                    <h2 style="margin: 0 10px 0 0"><?php esc_html_e( 'Advanced Settings', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <button class="chevron" onclick="toggle_danger();">
-                        <img class="dt-white-icon" src="<?php echo esc_html( get_template_directory_uri() ); ?>/dt-assets/images/chevron_down.svg">
-                    </button>
-                </div>
-                <div class="danger-zone-content collapsed">
-                    <label style="margin-right: 10px">
-                        <?php esc_html_e( 'Delete this profile and all the scheduled prayer times?', 'disciple-tools-prayer-campaigns' ); ?>
-                    </label>
-                    <button class="button alert" data-open="delete-profile-modal"><?php esc_html_e( 'Delete', 'disciple-tools-prayer-campaigns' ); ?></button>
-                    <!-- Reveal Modal Daily time slot-->
-                    <div id="delete-profile-modal" class="reveal tiny" data-reveal>
-                        <h2><?php esc_html_e( 'Are you sure you want to delete your profile?', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                        <p>
-                            <?php esc_html_e( 'This can not be undone.', 'disciple-tools-prayer-campaigns' ); ?>
-                        </p>
-                        <p id='delete-time-extra-warning'>
-                            <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                            <?php esc_html_e( 'Need to cancel? We get it! But wait!
-If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
-That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
-                        </p>
-                        <p id="delete-account-errors"></p>
-
-
-                        <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                            <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                        </button>
-                        <button class="button loader alert" type="button" id="confirm-delete-profile">
-                            <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' )?>
-                        </button>
-
-                        <button class="close-button" data-close aria-label="Close modal" type="button">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
             </div>
         </div>
         <?php
@@ -530,10 +462,10 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             ]
         );
         register_rest_route(
-            $namespace, '/'.$this->type . '/allow-notifications', [
+            $namespace, '/'. $this->type . '/update-profile', [
                 [
                     'methods'  => 'POST',
-                    'callback' => [ $this, 'allow_notifications' ],
+                    'callback' => [ $this, 'update_profile' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
                         return $magic->verify_rest_endpoint_permissions_on_post( $request );
@@ -541,6 +473,29 @@ That will keep the prayer chain from being broken AND will give someone the joy 
                 ],
             ]
         );
+    }
+
+    public function update_profile( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $new_values = $params['updates'];
+        $updates = [];
+        $subscriber_id = $params['parts']['post_id'];
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( isset( $new_values['name'] ) ){
+            $updates['name'] = $new_values['name'];
+        }
+        if ( isset( $new_values['email'] ) ){
+            $existing_email = $subscriber['contact_email'][0];
+            $updates['contact_email'] = [ [ 'key' => $existing_email['key'], 'value' => $new_values['email'] ] ];
+        }
+        if ( isset( $new_values['timezone'] ) ){
+            $updates['timezone'] = $new_values['timezone'];
+        }
+        $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
+
+        $updated = DT_Posts::update_post( 'subscriptions', $subscriber_id, $updates, true, false );
+        return true;
     }
 
     public function delete_profile( WP_REST_Request $request ){
@@ -791,7 +746,6 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             'start_timestamp' => $start,
             'end_timestamp' => $end,
             'slot_length' => (int) $min_time_duration,
-//            'status' => $record['status']['key'],
             'current_commitments' => $current_commitments,
             'minutes_committed' => $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
@@ -799,7 +753,10 @@ That will keep the prayer chain from being broken AND will give someone the joy 
             'subscriber_info' => [
                 'my_commitments' => $my_commitments,
                 'my_recurring_signups' => $my_recurring_signups,
-                'timezone' => $post['timezone'] ?? 'America/Chicago',
+                'timezone' => $subscriber['timezone'] ?? 'America/Chicago',
+                'receive_prayer_time_notifications' => $subscriber['receive_prayer_time_notifications'] ?? false,
+                'email' => $subscriber['contact_email'][0]['value'] ?? '',
+                'name' => $subscriber['name'] ?? '',
             ]
         ];
     }

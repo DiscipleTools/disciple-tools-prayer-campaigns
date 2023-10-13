@@ -234,21 +234,7 @@ export class ContactInfo extends LitElement {
         display:none;
       }
     
-      input {
-        font-size: 1rem;
-        line-height: 1rem;
-        color: black;
-        border: 1px solid black;
-      }
-      label {
-        display: grid;
-      }
-      input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
-        min-width: 250px;
-        padding: 0 0.5rem;
-        min-height: 40px;
-        display: block;
-      }`,
+    `,
     campaignStyles, ];
 
   static properties = {
@@ -571,10 +557,10 @@ export class cpCalendarDaySelect extends LitElement {
                 return html`
                   <div class="day-cell ${selected_times.includes(day.day_start_zoned) ? 'selected-day':''}
                         ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" 
-                       data-day="${window.lodash.escape(day.key)}"
+                       data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                      ${window.lodash.escape(day.day)}
+                      ${window.campaign_scripts.escapeHTML(day.day)}
                   </div>`
             })}
             ${day_number ? map(range(7 - day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>` ) : ''}
@@ -773,10 +759,10 @@ export class cpMyCalendar extends LitElement {
                 return html`
                   <div class="day-cell enabled-day ${selected_times.includes(day.day_start_zoned) ? 'selected-day':''}
                         ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" 
-                       data-day="${window.lodash.escape(day.key)}"
+                       data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                    <progress-ring stroke="3" radius="${(size/2).toFixed()}" progress="${window.lodash.escape(day.percent)}" text="${window.lodash.escape(day.day)}"></progress-ring>
+                    <progress-ring stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                     <div class="indicator-section">
                       ${range(my_commitments[day.formatted]||0).map(i=> {
                         return html`<span class="prayer-time-indicator"></span>`
@@ -1083,12 +1069,12 @@ export class cpProgressRing extends LitElement {
 
     // if ( text2 ){
     //   text_html = `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px">
-    //       <tspan x="50%" dy="0">${window.lodash.escape(text || progress + '%')}</tspan>
-    //       <tspan x="50%" dy="0.5cm">${window.lodash.escape(text2)}</tspan>
+    //       <tspan x="50%" dy="0">${window.campaign_scripts.escapeHTML(text || progress + '%')}</tspan>
+    //       <tspan x="50%" dy="0.5cm">${window.campaign_scripts.escapeHTML(text2)}</tspan>
     //   </text>`
     // } else {
     //   text_html =  `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
-    //     ${window.lodash.escape(text || progress + '%')}
+    //     ${window.campaign_scripts.escapeHTML(text || progress + '%')}
     //   </text>
     //   `
     // }
@@ -1122,7 +1108,7 @@ export class cpProgressRing extends LitElement {
              cy="${this.radius}"
           />
           <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
-              ${window.lodash.escape(this.text)}
+              ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
 

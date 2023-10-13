@@ -33,6 +33,22 @@ export const campaignStyles = css`
     margin: 10px 0;
   }
 
+  input {
+    font-size: 1rem;
+    line-height: 1rem;
+    color: black;
+    border: 1px solid black;
+  }
+  label {
+    display: grid;
+  }
+  select, input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+    min-width: 250px;
+    padding: 0 0.5rem;
+    min-height: 40px;
+    display: block;
+  }
+
 
   .cp-wrapper.loading-content h2, .cp-wrapper.loading-content p {
     background-color: #ededed;
@@ -142,7 +158,122 @@ export const campaignStyles = css`
     display: none;
     margin-top: 20px;
   }
- 
-  
- `;
+
+  /**
+Loader
+ */
+
+  button.loader:not(.disabled):before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -14px;
+    width: 20px;
+    height: 20px;
+    border: 4px solid;
+    border-left-color: transparent;
+    border-radius: 50%;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -moz-animation-name: rotate;
+    -webkit-animation-name: rotate;
+    animation-name: rotate;
+    -moz-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    display: none;
+  }
+
+  button.loader:not(.disabled):after {
+    content: '';
+    height: 100%;
+    width: 0;
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+    -moz-transition-duration: 0.75s;
+    -o-transition-duration: 0.75s;
+    -webkit-transition-duration: 0.75s;
+    transition-duration: 0.75s;
+    -moz-transition-property: width;
+    -o-transition-property: width;
+    -webkit-transition-property: width;
+    transition-property: width;
+  }
+
+  button.loader:not(.disabled).loading {
+    position: relative;
+    pointer-events: none;
+    cursor: not-allowed;
+    padding-right: 46px;
+  }
+
+  button.loader:not(.disabled).loading:not(.expand) {
+    text-align: left;
+  }
+
+  button.loader:not(.disabled).loading:before {
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    display: block;
+  }
+
+  button.loader:not(.disabled).loading:after {
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+    width: 20px;
+  }
+
+  @keyframes rotate {
+    0% {
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+
+`;
 window.campaignStyles = campaignStyles;
