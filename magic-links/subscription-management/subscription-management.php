@@ -306,36 +306,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     </div>
                 </div>
 
-                <!-- Reveal Modal Timezone Changer-->
-                <div id="timezone-changer" class="reveal tiny" data-reveal>
-                    <h2><?php esc_html_e( 'Change your timezone:', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <select id="timezone-select">
-                        <?php
-                        $selected_tz = 'America/Denver';
-                        if ( !empty( $selected_tz ) ){
-                            ?>
-                            <option id="selected-time-zone" value="<?php echo esc_html( $selected_tz ) ?>" selected><?php echo esc_html( $selected_tz ) ?></option>
-                            <option disabled>----</option>
-                            <?php
-                        }
-                        $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
-                        foreach ( $tzlist as $tz ){
-                            ?><option value="<?php echo esc_html( $tz ) ?>"><?php echo esc_html( $tz ) ?></option><?php
-                        }
-                        ?>
-                    </select>
-                    <button class="button button-cancel clear" data-close aria-label="Close reveal" type="button">
-                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' )?>
-                    </button>
-                    <button class="button" type="button" id="confirm-timezone" data-close>
-                        <?php echo esc_html__( 'Select', 'disciple-tools-prayer-campaigns' )?>
-                    </button>
-
-                    <button class="close-button" data-close aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
                 <!-- Reveal Modal View Times-->
                 <div class="reveal" id="view-times-modal" data-reveal data-close-on-click="true">
                     <h3 id="list-modal-title"></h3>
@@ -365,30 +335,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                             <?php echo esc_html__( 'Close', 'disciple-tools-prayer-campaigns' )?>
                         </button>
                     </div>
-                </div>
-
-                <!-- Reveal Modal Delete Time-->
-                <div class="reveal" id="delete-time-modal" data-reveal data-close-on-click="true">
-                    <h3 id="delete-time-modal-title"><?php esc_html_e( 'Delete Time', 'disciple-tools-prayer-campaigns' ); ?></h3>
-
-                    <p id="delete-time-modal-text"></p>
-                    <p id="delete-time-extra-warning">
-                        <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                        <?php esc_html_e( 'Need to cancel? We get it! But wait!
-    If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
-    That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ); ?>
-                    </p>
-
-                    <button class='button button-cancel clear' data-close aria-label='Close reveal' type='button'>
-                        <?php echo esc_html__( 'Cancel', 'disciple-tools-prayer-campaigns' ) ?>
-                    </button>
-                    <button class="button loader alert" type="button" id="confirm-delete-my-time-modal">
-                        <?php echo esc_html__( 'Delete', 'disciple-tools-prayer-campaigns' ) ?>
-                    </button>
-
-                    <button class="close-button" data-close aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
 
                 <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
@@ -632,7 +578,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         DT_Subscriptions::save_recurring_signups( $post_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
         //Send an email with new subscriptions
-        DT_Prayer_Campaigns_Send_Email::send_registration( $post_id, $campaign_id );
+        DT_Prayer_Campaigns_Send_Email::send_registration( $post_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
         do_action( 'subscriptions_added', $campaign_id, $post_id );
         return self::get_subscriptions( $params['parts']['post_id'] );
@@ -679,24 +625,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         do_action( 'subscriptions_removed', $campaign_id, $post_id );
         return self::get_subscriptions( $params['parts']['post_id'] );
-    }
-
-
-    public function allow_notifications( WP_REST_Request $request ){
-        $params = $request->get_params();
-
-        if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'] ) ) {
-            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
-        }
-        $params = dt_recursive_sanitize_array( $params );
-
-        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
-        if ( ! $post_id ){
-            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
-        }
-
-        return update_post_meta( $post_id, 'receive_prayer_time_notifications', !empty( $params['allowed'] ) );
-
     }
 
     public function campaign_info( WP_REST_Request $request ){
