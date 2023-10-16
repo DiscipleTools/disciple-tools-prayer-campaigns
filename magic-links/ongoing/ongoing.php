@@ -221,7 +221,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         }
         DT_Subscriptions::save_recurring_signups( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
-        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id );
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );

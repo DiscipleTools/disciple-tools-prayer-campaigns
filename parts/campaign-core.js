@@ -87,21 +87,23 @@ window.campaign_scripts = {
     }
 
     let start_of_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day').toSeconds()
+    let next_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day').plus({days:1})
     let time_iterator = parseInt( start_of_day );
     let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
 
     while ( time_iterator < end ){
 
-      if ( !days.length || time_iterator >= ( start_of_day + day_in_seconds ) ){
+      if ( !days.length || time_iterator >= next_day.toSeconds() ){
+        next_day = next_day.plus({days:1})
         let timezone_date = window.luxon.DateTime.fromSeconds( time_iterator + day_in_seconds, {zone: custom_timezone}).toFormat('h:mm a')
         if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
           // Timezone change detected. Recalculating time slots.
           window.campaign_scripts.processing_save = {}
         }
         timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
-        let date_time = window.luxon.DateTime.fromSeconds(time_iterator, {zone: custom_timezone});
 
         start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+        let date_time = window.luxon.DateTime.fromSeconds(start_of_day, {zone: custom_timezone});
 
         days.push({
           date_time: date_time,
@@ -113,6 +115,7 @@ window.campaign_scripts = {
           "percent": 0,
           "slots": [],
           "covered_slots": 0,
+          "weekday_number": date_time.toFormat('c'),
         })
       }
 

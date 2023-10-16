@@ -1,5 +1,6 @@
 import {html, css, LitElement, range, map, classMap, styleMap} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+const day_in_seconds = 86400
 
 export class cpTemplate extends LitElement {
   static styles = [
@@ -868,6 +869,8 @@ export class cpTimes extends LitElement {
     times: {type: Array},
     selected_day: {type: String},
     type: {type: String},
+    frequency: {type: String},
+    weekday: {type: String},
   }
 
   constructor() {
@@ -889,7 +892,7 @@ export class cpTimes extends LitElement {
       let now = parseInt(new Date().getTime() / 1000);
       let times = []
       day.slots.forEach(s=>{
-        let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_scripts.timezone} )
+        let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_user_data.timezone} )
 
         let progress = s.subscribers ? 100 : 0;
         times.push({
@@ -901,18 +904,84 @@ export class cpTimes extends LitElement {
       })
     return times;
   }
+  get_daily_times(){
+    let day_in_seconds = 86400;
+    let key = 0;
+    let start_of_today = new Date('2023-01-01')
+    start_of_today.setHours(0, 0, 0, 0)
+    let start_time_stamp = start_of_today.getTime() / 1000
+
+    let options = [];
+    while (key < day_in_seconds) {
+      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key)
+      let time_formatted = time.toFormat('hh:mm a')
+      let progress = (
+        window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
+          window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
+          : 0
+      ).toFixed(1)
+      let min = time.toFormat(':mm')
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      key += window.campaign_data.slot_length * 60
+    }
+    return options;
+  }
+  get_weekly_times(){
+    let now_date = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
+    const now = now_date.toSeconds()
+    let start_of_today = now_date.startOf('day').toSeconds()
+    let next_month = this.days.filter(d=>{
+      return d.key > start_of_today &&
+        d.key <= now_date.plus({months:1}).toSeconds() &&
+        d.weekday_number === this.weekday
+    })
+    let coverage = {}
+    next_month.forEach(d=>{
+      d.slots.forEach(s=>{
+        if ( s.key >= now && s.subscribers ){
+          if ( !coverage[s.formatted] ){
+            coverage[s.formatted] = []
+          }
+          coverage[s.formatted].push(s.subscribers)
+        }
+      })
+    })
+
+    let options = [];
+    let key = 0;
+    while (key < day_in_seconds) {
+      let time = window.luxon.DateTime.fromSeconds(start_of_today + key)
+      let time_formatted = time.toFormat('hh:mm a')
+      let progress = (
+          coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
+      ).toFixed(1)
+      let min = time.toFormat(':mm')
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      key += this.slot_length * 60
+    }
+    return options;
+  }
 
   connectedCallback(){
     super.connectedCallback();
     //set scroll position
     setTimeout(()=>{
-      this.shadowRoot.querySelector('.times-container').scrollTop = 250;
+      // this.shadowRoot.querySelector('.times-container').scrollTop = 250;
     })
   }
 
   render() {
     if ( this.type === 'once_day' && this.selected_day ){
       this.times = this.get_times()
+    }
+    if ( this.frequency === 'daily' ){
+      this.times = this.get_daily_times()
+    }
+    if ( this.frequency === 'weekly' && this.weekday ){
+      this.times = this.get_weekly_times()
+    }
+    if ( !this.times ){
+      return html`<div></div>`
     }
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;

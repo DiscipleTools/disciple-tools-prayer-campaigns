@@ -324,28 +324,6 @@ export class CampaignSignUp extends LitElement {
       },
     }).showToast();
   }
-  get_times(){
-    let day_in_seconds = 86400;
-    let key = 0;
-    let start_of_today = new Date('2023-01-01')
-    start_of_today.setHours(0, 0, 0, 0)
-    let start_time_stamp = start_of_today.getTime() / 1000
-
-    let options = [];
-    while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key)
-      let time_formatted = time.toFormat('hh:mm a')
-      let progress = (
-        window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
-        window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
-        : 0
-      ).toFixed(1)
-      let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
-      key += this.campaign_data.slot_length * 60
-    }
-    return options;
-  }
 
 
   time_selected(selected_time){
@@ -417,7 +395,6 @@ export class CampaignSignUp extends LitElement {
     if ( !this.frequency ){
       return;
     }
-    let times = this.get_times();
     if ( this._view === 'confirmation' ){
       return html`
         <div id="campaign">
@@ -496,7 +473,10 @@ export class CampaignSignUp extends LitElement {
                         <span class="step-circle">3</span>
                         <span>${strings['At what time?']}</span>
                     </h2>
-                    <cp-times slot_length="${this.campaign_data.slot_length}" .times="${times}"
+                    <cp-times 
+                        slot_length="${this.campaign_data.slot_length}"
+                        .frequency="${this.frequency.value}"
+                        .weekday="${this.week_day.value}"
                         @time-selected="${e=>this.time_selected(e.detail)}" >
                     </cp-times>
               </div>
@@ -539,7 +519,6 @@ export class CampaignSignUp extends LitElement {
                               <div ?hidden="${!this.selected_day}">
                                 <cp-times class="${!this.calendar_small ? 'small' : ''} size-item top-right"
                                     slot_length="${this.campaign_data.slot_length}"
-                                    .times="${times}"
                                     type="once_day"
                                     .selected_day="${this.selected_day}"
                                     @time-selected="${e=>this.time_and_day_selected(e.detail)}" >
@@ -776,7 +755,7 @@ export class cpCalendar extends LitElement {
     this.campaign_data = await window.campaign_scripts.get_campaign_data()
     this.loading = false
     this.days = window.campaign_scripts.days
-    this.timezone = window.campaign_scripts.timezone
+    this.timezone = window.campaign_user_data.timezone
     this.requestUpdate()
   }
 
@@ -864,7 +843,7 @@ export class cpPercentage extends LitElement {
     this.campaign_data = await window.campaign_scripts.get_campaign_data()
     this.loading = false
     this.days = window.campaign_scripts.days
-    this.timezone = window.campaign_scripts.timezone
+    this.timezone = window.campaign_user_data.timezone
     this.requestUpdate()
   }
   
