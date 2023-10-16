@@ -427,12 +427,18 @@ export class cpCalendarDaySelect extends LitElement {
         cursor: pointer;
         border-radius: 50%;
       }
+      .day-cell.disabled-calendar-day {
+        color:lightgrey;
+        cursor: not-allowed;
+        
+      }
       .week-day {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 40px;
         width: 40px;
+        font-weight: bold;
       }
       .selected-time {
         color: black;
@@ -520,8 +526,8 @@ export class cpCalendarDaySelect extends LitElement {
 
     let now_date = window.luxon.DateTime.now()
     let now = now_date.toSeconds();
-    let start_of_day = window.campaign_scripts.day_start_timestamp_utc(now)
-    let days = this.days.filter(d=>d.key >= start_of_day) || [];
+    let start_of_month = now_date.startOf('month').toSeconds()
+    let days = this.days.filter(d=>d.key >= start_of_month) || [];
     let current_time_zone = this.current_time_zone
     let current_month = this.month_to_show || days[0].key
     let current_month_date = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone})
@@ -530,7 +536,7 @@ export class cpCalendarDaySelect extends LitElement {
     let previous_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).minus({months:1}).toSeconds()
     let next_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).plus({months:1}).toSeconds()
 
-    let day_number = window.campaign_scripts.get_day_number(current_month, current_time_zone);
+    let day_number = current_month_date.startOf('month').weekday;
 
     if ( !this.end_timestamp ){
       this.end_timestamp = this.days[this.days.length - 1].key
@@ -552,24 +558,22 @@ export class cpCalendarDaySelect extends LitElement {
         </h3>
         <div class="calendar">
             ${week_day_names.map(name=>html`<div class="day-cell week-day">${name}</div>`)}
-            ${map(range(day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
+            ${map(range(day_number%7), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
             ${this_month_days.map(day=>{
                 let disabled = (day.key + day_in_seconds) < now;
                 return html`
                   <div class="day-cell ${selected_times.includes(day.day_start_zoned) ? 'selected-day':''}
                         ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}" 
                        data-day="${window.campaign_scripts.escapeHTML(day.key)}"
-                       @click="${e=>this.day_selected(e, day.key)}"
+                       ?disabled="${disabled}"
+                       @click="${e=>!disabled&&this.day_selected(e, day.key)}"
                   >
                       ${window.campaign_scripts.escapeHTML(day.day)}
                   </div>`
             })}
-            ${day_number ? map(range(7 - day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>` ) : ''}
         </div>
       </div>
-            
       `
-
   }
 }
 customElements.define('cp-calendar-day-select', cpCalendarDaySelect);
@@ -706,11 +710,12 @@ export class cpMyCalendar extends LitElement {
 
     let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
 
-    let now_date = window.luxon.DateTime.now()
+    let now_date = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
     let now = now_date.toSeconds();
     let start_of_day = window.campaign_scripts.day_start_timestamp_utc(now)
-    let days = this.days.filter(d=>d.key >= start_of_day) || [];
-    let current_time_zone = this.current_time_zone
+    let start_of_month = now_date.startOf('month').toSeconds()
+    let days = this.days.filter(d=>d.key >= start_of_month) || [];
+    let current_time_zone = window.campaign_user_data.timezone
     let current_month = this.month_to_show || days[0].key
     let current_month_date = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone})
     let this_month_days = days.filter(k=>k.month===current_month_date.toFormat('y_MM'));
@@ -718,7 +723,7 @@ export class cpMyCalendar extends LitElement {
     let previous_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).minus({months:1}).toSeconds()
     let next_month = window.luxon.DateTime.fromSeconds(current_month, {zone:current_time_zone}).plus({months:1}).toSeconds()
 
-    let day_number = window.campaign_scripts.get_day_number(current_month, current_time_zone);
+    let day_number = current_month_date.startOf('month').weekday;
 
     if ( !this.end_timestamp ){
       this.end_timestamp = this.days[this.days.length - 1].key
@@ -754,7 +759,7 @@ export class cpMyCalendar extends LitElement {
         </h3>
         <div class="calendar">
             ${week_day_names.map(name=>html`<div class="day-cell week-day">${name}</div>`)}
-            ${map(range(day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
+            ${map(range(day_number%7), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
             ${this_month_days.map(day=>{
               let disabled = (day.key + day_in_seconds) < now;
                 return html`
@@ -771,7 +776,6 @@ export class cpMyCalendar extends LitElement {
                     </div>
                   </div>`
               })}
-            ${day_number ? map(range(7 - day_number), i=>html`<div class="day-cell disabled-calendar-day"></div>` ) : ''}
         </div>
       </div>
             
@@ -965,7 +969,7 @@ export class cpTimes extends LitElement {
 
     let options = [];
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key)
+      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
         window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
