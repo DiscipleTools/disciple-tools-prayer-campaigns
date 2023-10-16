@@ -879,6 +879,58 @@ export class cpTimes extends LitElement {
     this.type = 'all_days'
   }
 
+  connectedCallback(){
+    super.connectedCallback();
+    //set scroll position
+    setTimeout(()=>{
+      // this.shadowRoot.querySelector('.times-container').scrollTop = 250;
+    })
+    window.addEventListener('campaign_timezone_change', (e)=>{
+      this.requestUpdate()
+    });
+  }
+
+
+  render() {
+    if ( this.type === 'once_day' && this.selected_day ){
+      this.times = this.get_times()
+    }
+    if ( this.frequency === 'daily' ){
+      this.times = this.get_daily_times()
+    }
+    if ( this.frequency === 'weekly' && this.weekday ){
+      this.times = this.get_weekly_times()
+    }
+    if ( !this.times ){
+      return html`<div></div>`
+    }
+    let now = window.luxon.DateTime.now().toSeconds();
+    let time_slots = 60 / this.slot_length;
+    return html`
+      <div class="times-container">
+        ${map(range(24),index => html`
+            <div class="prayer-hour prayer-times">
+                <div class="hour-cell">
+                    ${this.times[index*time_slots].hour}
+                </div>
+                ${map(range(time_slots), (i) => {
+                    let time = this.times[index*time_slots+i];
+                    return html`
+                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" ?disabled="${this.type === 'once_day' && time.key < now}">
+                        <span class="time-label">${time.minute}</span>
+                        <span class="control">
+                          ${time.progress < 100 ? 
+                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
+                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
+                        </span>
+                    </div>
+                `})}
+            </div>
+        `)}
+      </div>
+    `
+  }
+
   time_selected(e,time_key){
     if ( time_key < parseInt(new Date().getTime() / 1000) && this.type === 'once_day'){
       return;
@@ -888,20 +940,20 @@ export class cpTimes extends LitElement {
   }
 
   get_times(){
-      let day = this.days.find(d=>d.key === this.selected_day);
-      let now = parseInt(new Date().getTime() / 1000);
-      let times = []
-      day.slots.forEach(s=>{
-        let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_user_data.timezone} )
+    let day = this.days.find(d=>d.key === this.selected_day);
+    let now = parseInt(new Date().getTime() / 1000);
+    let times = []
+    day.slots.forEach(s=>{
+      let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_user_data.timezone} )
 
-        let progress = s.subscribers ? 100 : 0;
-        times.push({
-            key: s.key,
-            hour: time.toFormat('hh a'),
-            minute: time.toFormat('mm'),
-            progress: progress,
-        })
+      let progress = s.subscribers ? 100 : 0;
+      times.push({
+        key: s.key,
+        hour: time.toFormat('hh a'),
+        minute: time.toFormat('mm'),
+        progress: progress,
       })
+    })
     return times;
   }
   get_daily_times(){
@@ -950,64 +1002,16 @@ export class cpTimes extends LitElement {
     let options = [];
     let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_of_today + key)
+      let time = window.luxon.DateTime.fromSeconds(start_of_today + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
-          coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
+        coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
       options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
       key += this.slot_length * 60
     }
     return options;
-  }
-
-  connectedCallback(){
-    super.connectedCallback();
-    //set scroll position
-    setTimeout(()=>{
-      // this.shadowRoot.querySelector('.times-container').scrollTop = 250;
-    })
-  }
-
-  render() {
-    if ( this.type === 'once_day' && this.selected_day ){
-      this.times = this.get_times()
-    }
-    if ( this.frequency === 'daily' ){
-      this.times = this.get_daily_times()
-    }
-    if ( this.frequency === 'weekly' && this.weekday ){
-      this.times = this.get_weekly_times()
-    }
-    if ( !this.times ){
-      return html`<div></div>`
-    }
-    let now = window.luxon.DateTime.now().toSeconds();
-    let time_slots = 60 / this.slot_length;
-    return html`
-      <div class="times-container">
-        ${map(range(24),index => html`
-            <div class="prayer-hour prayer-times">
-                <div class="hour-cell">
-                    ${this.times[index*time_slots].hour}
-                </div>
-                ${map(range(time_slots), (i) => {
-                    let time = this.times[index*time_slots+i];
-                    return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" ?disabled="${this.type === 'once_day' && time.key < now}">
-                        <span class="time-label">${time.minute}</span>
-                        <span class="control">
-                          ${time.progress < 100 ? 
-                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
-                        </span>
-                    </div>
-                `})}
-            </div>
-        `)}
-      </div>
-    `
   }
 }
 customElements.define('cp-times', cpTimes);
