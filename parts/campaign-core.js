@@ -375,7 +375,6 @@ window.campaign_scripts = {
       if ( !already_added && time > now && time >= window.campaign_data.start_timestamp ) {
         selected_times.push({time: time, duration: duration, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
       }
-      console.log(date_ref.toFormat('MMMM d'));
       date_ref = date_ref.plus({[frequency_option.step]:1})
     }
     let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})

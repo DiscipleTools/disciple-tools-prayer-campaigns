@@ -243,6 +243,7 @@ export class ContactInfo extends LitElement {
     _loading: {state:true},
     form_error: {state:true},
     last_date_label: {state:true},
+    selected_times_count: {state:true},
   }
 
   constructor() {
@@ -251,6 +252,7 @@ export class ContactInfo extends LitElement {
       email: '',
       name: '',
     }
+    this.selected_times_count = 0;
   }
 
   _is_email(val){
@@ -308,7 +310,7 @@ export class ContactInfo extends LitElement {
 
       <div class="nav-buttons">
           <campaign-back-button @click=${this.back}></campaign-back-button>
-          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email)}
+          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0}
                   @click=${()=>this.verify_contact_info()}>
 
               ${strings['Next']}

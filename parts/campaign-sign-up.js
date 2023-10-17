@@ -643,7 +643,7 @@ export class CampaignSignUp extends LitElement {
                       <span>${strings['Contact Info']}</span>
                   </h2>
   
-                  <contact-info 
+                  <contact-info .selected_times_count="${this.selected_times_count()}"
                                 @form-items=${this.handle_contact_info}
                                 .form_error=${this._form_items.form_error}
                                 @back=${()=>this._view = 'main'}
