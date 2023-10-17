@@ -512,13 +512,25 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public static function get_subscriptions( $post_id ) {
         global $wpdb;
         $subs  = $wpdb->get_results( $wpdb->prepare( "
-            SELECT * FROM $wpdb->dt_reports
+            SELECT time_begin, time_end, subtype, id, value
+            FROM $wpdb->dt_reports
             WHERE post_id = %s
             AND post_type = 'subscriptions'
             AND type = 'campaign_app'
         ", $post_id ), ARRAY_A );
 
-        return $subs;
+        $my_commitments = [];
+        foreach ( $subs as $commitments_report ){
+            $my_commitments[] = [
+                'time_begin' => (int) $commitments_report['time_begin'],
+                'time_end' => (int) $commitments_report['time_end'],
+                'report_id' => (int) $commitments_report['id'],
+                'type' => $commitments_report['subtype'],
+                'recurring_id' => (int) $commitments_report['value'] ?? null,
+            ];
+        }
+
+        return $my_commitments;
     }
 
     private function delete_subscription( $post_id, $report_id ){
@@ -570,7 +582,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, true );
+            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
@@ -657,25 +669,18 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
         //subscriber info
-        $my_commitments_reports = self::get_subscriptions( $subscriber_id );
-        $my_commitments = [];
-        foreach ( $my_commitments_reports as $commitments_report ){
-            $my_commitments[] = [
-                'time_begin' => $commitments_report['time_begin'],
-                'time_end' => $commitments_report['time_end'],
-                'report_id' => $commitments_report['id'],
-            ];
-        }
+        $my_commitments = self::get_subscriptions( $subscriber_id );
+
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
 
 
         return [
-            'campaign_id' => $campaign_id,
-            'start_timestamp' => $start,
-            'end_timestamp' => $end,
+            'campaign_id' => (int) $campaign_id,
+            'start_timestamp' => (int) $start,
+            'end_timestamp' => (int) $end,
             'slot_length' => (int) $min_time_duration,
             'current_commitments' => $current_commitments,
-            'minutes_committed' => $minutes_committed,
+            'minutes_committed' => (int) $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'subscriber_info' => [

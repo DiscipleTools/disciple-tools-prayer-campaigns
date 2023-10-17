@@ -908,9 +908,18 @@ export class campaignSubscriptions extends LitElement {
         display: flex;
         justify-content: space-between;
       }
-      h3 {
-        margin: 0 0 10px 0;
+      .selected-time-content h3 {
+        margin: 0;
         font-size: 1.2rem;
+      }
+      .selected-time-content .title-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .selected-time-content .title-row .dt-tag{
+        
+        margin-inline-start: 10px;
       }
       button.hollow-button {
         padding: 0.5rem;
@@ -926,6 +935,7 @@ export class campaignSubscriptions extends LitElement {
   static properties = {
     prop: {type: String},
     _delete_modal_open: {type: Boolean, state: true},
+    _delete_time_modal_open: {type: Boolean, state: true},
     _extend_modal_open: {type: Boolean, state: true},
     _extend_modal_message: {type: String, state: true},
   }
@@ -933,6 +943,7 @@ export class campaignSubscriptions extends LitElement {
   constructor() {
     super();
     this.selected_reccuring_signup_to_delete = null;
+    this._selected_time_to_delete = null;
     this._delete_modal_open = false;
     this._extend_modal_open = false;
     this._extend_modal_message = 'Def';
@@ -968,6 +979,15 @@ export class campaignSubscriptions extends LitElement {
         >
         <p slot="content">Really delete these prayer times?</p>
         </dt-modal>
+        <dt-modal
+            .isOpen="${this._delete_time_modal_open}"
+            title="Delete Prayer Time"
+            hideButton="true"
+            confirmButtonClass="danger"
+            @close="${e=>this.delete_time_modal_closed(e)}"
+        >
+        <p slot="content">Really delete this prayer time?</p>
+        </dt-modal>
 
         <!--extend modal-->
         <dt-modal
@@ -981,11 +1001,12 @@ export class campaignSubscriptions extends LitElement {
         
         
         ${(this.recurring_signups||[]).map((value, index) => {
+            const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">
                 <div class="selected-time-content">
-                  <div>
-                    <h3 style="display: inline">${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
+                  <div class="title-row">
+                    <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
                     <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">extend</button>  
                   </div>
                   <div>
@@ -994,7 +1015,7 @@ export class campaignSubscriptions extends LitElement {
                   </div>
                   <div class="selected-time-actions">
                       <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
-                          See prayer times (${(value.commitments_report_ids||[]).length})
+                          See prayer times (${prayer_times.length})
                       </button>
                       <button class="clear-button danger loader" @click="${e=>this.open_delete_times_modal(e,value.report_id)}">
                           Remove all
@@ -1002,7 +1023,7 @@ export class campaignSubscriptions extends LitElement {
                   </div>
                 </div>
                 <div style="margin-top:20px" ?hidden="${!value.display_times}">
-                    ${window.campaign_data.subscriber_info.my_commitments.filter(c=>value.commitments_report_ids.includes(c.report_id)).map(c=>html`
+                    ${prayer_times.map(c=>html`
                         <div class="remove-row">
                             <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone: this.timezone}).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
                             <button ?disabled="${true}" 
@@ -1015,6 +1036,29 @@ export class campaignSubscriptions extends LitElement {
                 
             </div>
         `})}
+        ${(window.campaign_data.subscriber_info.my_commitments).filter(c=>c.type==='selected_time').map((value, index) => {
+          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})  
+          return html`
+            <div class="selected-times">
+                <div class="selected-time-content">
+                  <div class="title-row">
+                    <h3>${date.toFormat('DD')} -
+                      ${date.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true })}
+                    </h3>
+                    <span class="dt-tag">${15} Minutes</span>
+                    <button disabled class="clear-button">change time</button>
+                  </div>
+                  <div>
+                  </div>
+                  <div class="selected-time-actions">
+                      <button class="clear-button danger loader" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
+                          Remove
+                      </button>
+                  </div>
+                </div>
+            </div>
+        `})}
+        
     `
   }
 
@@ -1022,6 +1066,30 @@ export class campaignSubscriptions extends LitElement {
     let data = {
       action: 'delete_recurring_signup',
       report_id: this.selected_reccuring_signup_to_delete,
+      parts: window.subscription_page_data.parts
+    }
+    jQuery.ajax({
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      url: window.subscription_page_data.root + window.subscription_page_data.parts.root + '/v1/' + window.subscription_page_data.parts.type,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-WP-Nonce', window.subscription_page_data.nonce )
+      }
+    }).then(data=>{
+      window.location.reload()
+      // calendar_subscribe_object.my_commitments = data;
+      // draw_calendar();
+      // calculate_my_time_slot_coverage()
+      // $(this).removeClass('loading')
+      // $('#delete-times-modal').foundation('close')
+    })
+  }
+  delete_time(){
+    let data = {
+      action: 'delete',
+      report_id: this._selected_time_to_delete,
       parts: window.subscription_page_data.parts
     }
     jQuery.ajax({
@@ -1052,10 +1120,25 @@ export class campaignSubscriptions extends LitElement {
     this._delete_modal_open = true;
   }
 
+  open_delete_time_modal(e,report_id){
+    const time = this.selected_times.find(k=>k.report_id===report_id)
+    if ( !time ){
+      return;
+    }
+    this._selected_time_to_delete = report_id
+    this._delete_time_modal_open = true;
+  }
+
   delete_times_modal_closed(e){
     this._delete_modal_open = false;
     if ( e.detail?.action === 'confirm' ){
       this.delete_recurring_time()
+    }
+  }
+  delete_time_modal_closed(e){
+    this._delete_modal_open = false;
+    if ( e.detail?.action === 'confirm' ){
+      this.delete_time()
     }
   }
 

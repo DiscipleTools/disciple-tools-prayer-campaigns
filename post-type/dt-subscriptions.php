@@ -97,7 +97,7 @@ class DT_Subscriptions {
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null );
+            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
@@ -115,7 +115,7 @@ class DT_Subscriptions {
      * @param null $location_id
      * @return false|int|WP_Error
      */
-    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $verified = true, $meta = [] ){
+    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, $meta = [] ){
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
@@ -147,9 +147,9 @@ class DT_Subscriptions {
             'post_id' => $subscription_id,
             'post_type' => 'subscriptions',
             'type' => 'campaign_app',
-            'subtype' => $campaign['type']['key'],
+            'subtype' => $recurring_sign_up_id > 0 ? 'recurring_signup' : 'selected_time',
             'payload' => null,
-            'value' => $verified ? 1 : 0,
+            'value' => $recurring_sign_up_id,
             'lng' => null,
             'lat' => null,
             'level' => null,
@@ -211,8 +211,7 @@ class DT_Subscriptions {
                     $time['time'],
                     $time['duration'],
                     $time['grid_id'] ?? null,
-                    true,
-                    [ 'recurring_signup' => $report_id ]
+                    $report_id
                 );
                 if ( !$new_report ){
                     return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
@@ -303,8 +302,7 @@ class DT_Subscriptions {
                 $time['time'],
                 $time['duration'],
                 $time['grid_id'] ?? null,
-                true,
-                [ 'recurring_signup' => $recurring_signup_report_id ]
+                $recurring_signup_report_id
             );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
@@ -369,13 +367,6 @@ class Recurring_Signups {
         ), ARRAY_A );
         $recurring_signups = [];
         foreach ( $reports as $index => $report ){
-            $times_report_ids = $wpdb->get_col( $wpdb->prepare( "
-                SELECT report_id
-                FROM $wpdb->dt_reportmeta
-                WHERE meta_key = 'recurring_signup'
-                AND meta_value = %s
-            ", $report['id'] ) );
-            $report['signups'] = $times_report_ids;
             $recurring_signups[] = self::format_from_report( $report );
         }
         return $recurring_signups;
@@ -390,7 +381,6 @@ class Recurring_Signups {
             'label' => $report['payload']['label'] ?? $report['label'],
             'first' => (int) $report['time_begin'],
             'last' => (int) $report['time_end'],
-            'commitments_report_ids' => $report['signups'],
             'duration' => (int) ( $report['payload']['duration'] ?? 15 ),
             'time' => (int) $report['payload']['time'] ?? 0,
             'week_day' => isset( $report['payload']['week_day'] ) ? ( (int) $report['payload']['week_day'] ) : null,

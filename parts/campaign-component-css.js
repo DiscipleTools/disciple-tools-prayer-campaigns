@@ -273,6 +273,20 @@ Loader
     }
   }
 
+  .dt-tag {
+    display: inline-block;
+    padding: 0.5em 0.8em;
+    font-size: 50%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: var(--cp-color, 'dodgerblue');
+  }
+
 
 
 `;
