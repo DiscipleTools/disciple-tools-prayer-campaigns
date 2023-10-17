@@ -10,7 +10,18 @@ $porch_fields = DT_Porch_Settings::settings();
 ?>
 
 <!-- Required meta tags -->
-<?php echo wp_kses( $porch_fields['google_analytics']['value'] ?: $porch_fields['google_analytics']['default'], $allowed_tags ) ?>
+<?php 
+if ( ! empty( $porch_fields['google_analytics']['value'] ) ) { ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php esc_attr_e( $porch_fields['google_analytics']['value'] ); ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?php esc_attr_e( $porch_fields['google_analytics']['value'] );?>');
+</script>
+<?php } ?>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
