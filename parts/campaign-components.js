@@ -772,7 +772,7 @@ export class cpMyCalendar extends LitElement {
                   >
                     <progress-ring stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                     <div class="indicator-section">
-                      ${range(my_commitments[day.formatted]||0).map(i=> {
+                      ${map(range(my_commitments[day.formatted]||0),i=> {
                         return html`<span class="prayer-time-indicator"></span>`
                       })}
                     </div>
