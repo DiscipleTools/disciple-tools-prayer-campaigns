@@ -843,7 +843,7 @@ export class cpTimes extends LitElement {
         color: #fff;
       }
       .time[disabled] {
-        opacity: 0.5;
+        opacity: 0.3;
         cursor: not-allowed;
       }
       .time-label {
@@ -873,7 +873,8 @@ export class cpTimes extends LitElement {
     selected_day: {type: String},
     frequency: {type: String},
     weekday: {type: String},
-    selected_times: {type: Array, state:true},
+    selected_times: {type: Array},
+    recurring_signups: {type: Array},
   }
 
   constructor() {
@@ -937,11 +938,8 @@ export class cpTimes extends LitElement {
   }
 
   time_selected(e,time_key){
-    if ( time_key < parseInt(new Date().getTime() / 1000) && this.type === 'once_day'){
+    if ( time_key < parseInt(new Date().getTime() / 1000) && this.frequency === 'pick'){
       return;
-    }
-    if ( this.frequency !== 'pick' ){
-      e.currentTarget.classList.add('selected-time');
     }
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
     this.times = this.get_empty_times()
@@ -1016,7 +1014,14 @@ export class cpTimes extends LitElement {
         coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      options.push({
+        key: key,
+        time_formatted: time_formatted,
+        minute: min,
+        hour: time.toFormat('hh a'),
+        progress,
+        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && r.time === key)
+      })
       key += this.slot_length * 60
     }
     return options;

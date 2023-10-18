@@ -57,7 +57,7 @@ export class CampaignSignUp extends LitElement {
       }
       
       .selected-times {
-        background-color: rgba(70, 118, 250, 0.1);
+        border: 1px solid var(--cp-color);
         border-radius: 5px;
         margin-bottom: 1rem;
         padding: 1rem;
@@ -323,13 +323,14 @@ export class CampaignSignUp extends LitElement {
 
   time_selected(selected_time){
     if (!this.frequency.value){
-      this.show_toast( 'Please check step 1', 'warn')
+      return this.show_toast( 'Please check step 1', 'warn')
     }
     if ( this.frequency.value === 'pick' ){
       return this.time_and_day_selected(selected_time)
     }
     let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
-    this.recurring_signups.push(recurring_signup)
+    this.recurring_signups = [...this.recurring_signups, recurring_signup]
+    window.campaign_user_data.recurring_signups = this.recurring_signups;
     this.requestUpdate()
     this.show_toast()
   }
@@ -502,6 +503,7 @@ export class CampaignSignUp extends LitElement {
                         .weekday="${this.week_day.value}"
                         .selected_day="${this.selected_day}"
                         .selected_times="${this.selected_times}"
+                        .recurring_signups="${['bob']}"
                         @time-selected="${e=>this.time_selected(e.detail)}" >
                     </cp-times>
               </div>
@@ -564,7 +566,9 @@ export class CampaignSignUp extends LitElement {
                               <div class="selected-time-frequency">
                                   <div>${value.label}</div>
                                   <div>
-                                      <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
+                                      <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button">
+                                          <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                                      </button>
                                   </div>
                               </div>
                               <ul>
@@ -572,7 +576,7 @@ export class CampaignSignUp extends LitElement {
                                       ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
                                   </li>
                                   <li>
-                                      ${translate('Renew on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                      ${translate('Renews on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
                                   </li>
                               </ul>
                           </div>
@@ -609,14 +613,18 @@ export class CampaignSignUp extends LitElement {
                                   ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                               <li>
-                                  ${translate('Renew on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                  ${translate('Renews on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                           </ul>
                       </div>
                   `)}
                   ${this.selected_times.map((value, index) => html`
                       <div class="selected-times">
-                          <span>${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                          <span class="aligned-row">
+                              ${value.date_time.toLocaleString({ month: 'short', day: '2-digit' })},
+                              <span class="dt-tag">${ value.date_time.toLocaleString({hour: '2-digit', minute: '2-digit'})}</span>
+                              ${translate('for %s minutes').replace('%s', value.duration)}
+                          </span>
                           <button @click="${e=>this.remove_prayer_time(value.time)}" class="remove-prayer-time-button">
                               <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                           </button>
@@ -1016,19 +1024,15 @@ export class campaignSubscriptions extends LitElement {
           return html`
             <div class="selected-times">
                 <div class="selected-time-content">
-                  <div class="title-row">
-                    <h3>${date.toFormat('DD')} -
-                      ${date.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true })}
-                    </h3>
-                    <span class="dt-tag">${15} Minutes</span>
-                    <button disabled class="clear-button">change time</button>
-                  </div>
-                  <div>
-                  </div>
-                  <div class="selected-time-actions">
-                      <button class="clear-button danger loader" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
-                          Remove
-                      </button>
+                  <div style="display: flex; justify-content: space-between">
+                    <div class="aligned-row">
+                      <h3>${date.toFormat('DD')}</h3>
+                      <span class="dt-tag">${date.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true })}</span>
+                      ${translate('for %s minutes').replace('%s', (value.time_end - value.time_begin)/60)}
+                    </div>
+                    <button class="clear-button danger loader remove-prayer-times-button" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
+                        <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                    </button>
                   </div>
                 </div>
             </div>

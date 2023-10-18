@@ -77,11 +77,13 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
                     '%1$s at %2$s for %3$s' => __( '%1$s at %2$s for %3$s', 'disciple-tools-prayer-campaigns' ),
+                    'for %s minutes' => __( 'for %s minutes', 'disciple-tools-prayer-campaigns' ),
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'My Prayer Times' => __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'Prayer Time Added' => __( 'Prayer Time Added', 'disciple-tools-prayer-campaigns' ),
                     'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
+                    'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
