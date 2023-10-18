@@ -3,6 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Prayer_Campaigns_Send_Email {
     public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [], $attachments = [] ){
+        if ( empty( $to ) ){
+            return new WP_Error( 'send_prayer_campaign_email', 'No email address provided.' );
+        }
 
         if ( empty( $headers ) ){
             $headers[] = 'Content-Type: text/html';

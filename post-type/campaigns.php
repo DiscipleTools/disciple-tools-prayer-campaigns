@@ -1190,6 +1190,10 @@ class DT_Campaigns_Base {
         }, $languages );
 
         foreach ( $campaigns['posts'] as $campaign ){
+            if ( !isset( $campaign['start_date']['timestamp'] ) ){
+                continue;
+            }
+
             $min_time_duration = 15;
             if ( isset( $record['min_time_duration']['key'] ) ){
                 $min_time_duration = $record['min_time_duration']['key'];
