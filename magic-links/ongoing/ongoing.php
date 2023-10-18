@@ -44,9 +44,9 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'dt_campaign';
         $allowed_js[] = 'luxon';
-        $allowed_js[] = 'campaign_sign_up_component';
+        $allowed_js[] = 'campaign_component_sign_up';
         $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_css_component';
+        $allowed_js[] = 'campaign_component_css';
         return $allowed_js;
     }
     // add dt_campaign_core to allowed scripts

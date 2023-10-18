@@ -68,9 +68,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'dt_subscription_js';
         $allowed_js[] = 'campaign_css';
         $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_sign_up_component';
+        $allowed_js[] = 'campaign_component_sign_up';
         $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_css_component';
+        $allowed_js[] = 'campaign_component_css';
         $allowed_js[] = 'toastify-js';
         return $allowed_js;
     }
