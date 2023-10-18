@@ -10,16 +10,16 @@ $porch_fields = DT_Porch_Settings::settings();
 ?>
 
 <!-- Required meta tags -->
-<?php 
+<?php
 if ( ! empty( $porch_fields['google_analytics']['value'] ) ) { ?>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?php esc_attr_e( $porch_fields['google_analytics']['value'] ); ?>"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $porch_fields['google_analytics']['value'] ); //phpcs:ignore?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '<?php esc_attr_e( $porch_fields['google_analytics']['value'] );?>');
+  gtag('config', '<?php echo esc_attr( $porch_fields['google_analytics']['value'] );?>');
 </script>
 <?php } ?>
 <meta charset="utf-8">

@@ -18,9 +18,9 @@ class DT_Prayer_Campaign_Migration_0006 extends DT_Prayer_Campaign_Migration {
 
         // If the site was previously using a google analytics script, grab the id and replace the script with the id
         if ( ! empty( $ga_option ) ) {
-            $pattern = '/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=([^"]+)">/';
+            $pattern = '/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=([^"]+)">/'; //phpcs:ignore
 
-            if (preg_match($pattern, $ga_option, $matches)) {
+            if ( preg_match( $pattern, $ga_option, $matches ) ){
                 // The value of 'id' will be captured in $matches[1]
                 $dt_settings['google_analytics'] = $matches[1];
                 update_site_option( 'dt_campaign_porch_settings', $dt_settings );
