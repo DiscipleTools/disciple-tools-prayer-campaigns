@@ -303,7 +303,7 @@ export class CampaignSignUp extends LitElement {
 
   show_toast(message='', type='success'){
     if ( !message ){
-      message = strings["Prayer Time Added"];
+      message = strings["Prayer Time Selected"];
     }
     let background = 'linear-gradient(to right, var(--cp-color-dark), var(--cp-color-light))';
     if ( type === 'warn' ){
@@ -314,6 +314,7 @@ export class CampaignSignUp extends LitElement {
       duration: 3000,
       close: true,
       gravity: "bottom",
+      position: "center",
       style: {
         background: background
       },

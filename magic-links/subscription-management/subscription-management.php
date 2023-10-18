@@ -161,7 +161,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
-        $my_commitments_reports = self::get_subscriptions( $post_id );
+        $my_commitments_reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
         $my_commitments = [];
 
         foreach ( $my_commitments_reports as $commitments_report ){
@@ -481,7 +481,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         $params = dt_recursive_sanitize_array( $params );
-        $action = sanitize_text_field( wp_unslash( $params['action'] ) );
+        $action = $params['action'];
+        $campaign_id = $params['campaign_id'];
 
         // manage
         $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
@@ -491,7 +492,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         switch ( $action ) {
             case 'get':
-                return self::get_subscriptions( $post_id );
+                return DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
             case 'delete':
                 return $this->delete_subscription_endpoint( $post_id, $params );
             case 'add':
@@ -507,30 +508,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             default:
                 return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
         }
-    }
-
-    public static function get_subscriptions( $post_id ) {
-        global $wpdb;
-        $subs  = $wpdb->get_results( $wpdb->prepare( "
-            SELECT time_begin, time_end, subtype, id, value
-            FROM $wpdb->dt_reports
-            WHERE post_id = %s
-            AND post_type = 'subscriptions'
-            AND type = 'campaign_app'
-        ", $post_id ), ARRAY_A );
-
-        $my_commitments = [];
-        foreach ( $subs as $commitments_report ){
-            $my_commitments[] = [
-                'time_begin' => (int) $commitments_report['time_begin'],
-                'time_end' => (int) $commitments_report['time_end'],
-                'report_id' => (int) $commitments_report['id'],
-                'type' => $commitments_report['subtype'],
-                'recurring_id' => (int) $commitments_report['value'] ?? null,
-            ];
-        }
-
-        return $my_commitments;
     }
 
     private function delete_subscription( $post_id, $report_id ){
@@ -568,11 +545,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     private function delete_subscription_endpoint( $post_id, $params ) {
         $this->delete_subscription( $post_id, $params['report_id'] );
-        return self::get_subscriptions( $post_id );
+        return true;
     }
 
-    private function add_subscriptions( $post_id, $params ){
-        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+    private function add_subscriptions( $subscriber_id, $params ){
+        $post = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
@@ -582,18 +559,18 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $post_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
+            $new_report = DT_Subscriptions::add_subscriber_time( $campaign_id, $subscriber_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
         }
-        DT_Subscriptions::save_recurring_signups( $post_id, $campaign_id, $params['recurring_signups'] ?? [] );
+        DT_Subscriptions::save_recurring_signups( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
         //Send an email with new subscriptions
-        DT_Prayer_Campaigns_Send_Email::send_registration( $post_id, $campaign_id, $params['recurring_signups'] ?? [] );
+        DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
-        do_action( 'subscriptions_added', $campaign_id, $post_id );
-        return self::get_subscriptions( $params['parts']['post_id'] );
+        do_action( 'subscriptions_added', $campaign_id, $subscriber_id );
+        return DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
     }
 
     private function change_times( $post_id, $params ){
@@ -616,17 +593,17 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         ", (int) $params["offset"], (int) $params["offset"] ) );
         //phpcs:enable
 
-        return self::get_subscriptions( $params['parts']['post_id'] );
+        return true;
     }
-    private function delete_times( $post_id, $params ){
-        $post = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+    private function delete_times( $subscriber_id, $params ){
+        $post = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         $campaign_id = $post['campaigns'][0]['ID'] ?? null;
         if ( $campaign_id ){
             $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
             $start_date = $campaign['start_date']['timestamp'] ?? null;
             if ( time() > $start_date - 3 * DAY_IN_SECONDS && time() < $start_date + 3 * DAY_IN_SECONDS ){
                 $base_user = dt_get_base_user();
-                DT_Posts::add_post_comment( 'subscriptions', $post_id, "@[$base_user->display_name]($base_user->ID) Reoccurring prayer time deleted", 'comment', [], false, false );
+                DT_Posts::add_post_comment( 'subscriptions', $subscriber_id, "@[$base_user->display_name]($base_user->ID) Reoccurring prayer time deleted", 'comment', [], false, false );
             }
         }
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
@@ -635,8 +612,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         foreach ( $params['report_ids'] as $id ){
             $this->delete_subscription( $post['ID'], $id );
         }
-        do_action( 'subscriptions_removed', $campaign_id, $post_id );
-        return self::get_subscriptions( $params['parts']['post_id'] );
+        do_action( 'subscriptions_removed', $campaign_id, $subscriber_id );
+        return DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
     }
 
     public function campaign_info( WP_REST_Request $request ){
@@ -669,7 +646,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
         //subscriber info
-        $my_commitments = self::get_subscriptions( $subscriber_id );
+        $my_commitments = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
 
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
 

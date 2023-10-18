@@ -81,7 +81,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'My Prayer Times' => __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ),
-                    'Prayer Time Added' => __( 'Prayer Time Added', 'disciple-tools-prayer-campaigns' ),
+                    'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),
                     'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
                     'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
                 ]

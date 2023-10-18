@@ -106,9 +106,9 @@ class DT_Prayer_Campaigns_Send_Email {
         return $attachments;
     }
 
-    public static function send_registration( $post_id, $campaign_id, $recurring_signups ) {
+    public static function send_registration( $subscriber_id, $campaign_id, $recurring_signups ) {
 
-        $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $record ) ){
             dt_write_log( 'failed to record' );
             return;
@@ -116,7 +116,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( ! isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
             return;
         }
-        $commitments = Disciple_Tools_Reports::get( $post_id, 'post_id' );
+        $commitments = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
         if ( empty( $commitments ) ) {
             dt_write_log( 'failed to commitments' );
             return;
@@ -195,7 +195,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
-        $attachments = self::generate_registration_attachments( $post_id );
+        $attachments = self::generate_registration_attachments( $subscriber_id );
 
         $sent = self::send_prayer_campaign_email( $to, $subject, $full_email, [], $attachments );
         if ( ! $sent ){
