@@ -1079,7 +1079,6 @@ export class campaignSubscriptions extends LitElement {
       }
     }).then(data=>{
       window.location.reload()
-      // calendar_subscribe_object.my_commitments = data;
       // draw_calendar();
       // calculate_my_time_slot_coverage()
       // $(this).removeClass('loading')
@@ -1103,7 +1102,6 @@ export class campaignSubscriptions extends LitElement {
       }
     }).then(data=>{
       window.location.reload()
-      // calendar_subscribe_object.my_commitments = data;
       // draw_calendar();
       // calculate_my_time_slot_coverage()
       // $(this).removeClass('loading')
