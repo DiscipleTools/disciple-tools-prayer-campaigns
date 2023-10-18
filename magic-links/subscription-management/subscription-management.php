@@ -159,21 +159,29 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         } elseif ( isset( $campaign['campaign_strings']['en_US']['reminder_content'] ) ){
             $calendar_description = $campaign['campaign_strings']['en_US']['reminder_content'];
         }
+
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
-
         $my_commitments_reports = self::get_subscriptions( $post_id );
+
         $my_commitments = [];
+        $is_recurring_commitments = false;
 
-        foreach ( $my_commitments_reports as $commitments_report ){
-            $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
-            $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
+        // Package $my_commitments accordingly, based on overall commitment type.
+        if ( isset( $my_commitments_reports[0]['type'] ) && ( $my_commitments_reports[0]['type'] === 'recurring_signup' ) ) {
+            $is_recurring_commitments = true;
+            $my_commitments = self::package_recurring_commitments( $my_commitments_reports );
+        } else {
+            foreach ( $my_commitments_reports as $commitments_report ){
+                $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
+                $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
 
-            $my_commitments[] = [
-                'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T'. gmdate( 'His', $commitments_report['time_begin'] ),
-                'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T'. gmdate( 'His', $commitments_report['time_end'] ),
-                'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
-                'location' => $commitments_report['label'],
-            ];
+                $my_commitments[] = [
+                    'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T'. gmdate( 'His', $commitments_report['time_begin'] ),
+                    'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T'. gmdate( 'His', $commitments_report['time_end'] ),
+                    'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
+                    'location' => $commitments_report['label'],
+                ];
+            }
         }
 
         $content = "BEGIN:VCALENDAR\r\n";
@@ -199,6 +207,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $content .= 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
             $content .= 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
             $content .= 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
+
+            if ( $is_recurring_commitments ) {
+                $content .= 'RRULE:' . esc_html( $mc['rrule'] ) . "\r\n";
+            }
+
             $content .= 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
             $content .= 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
             $content .= "STATUS:CONFIRMED\r\n";
@@ -213,6 +226,36 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $content .= "END:VCALENDAR\r\n";
 
         return $content;
+    }
+
+    public static function package_recurring_commitments( $commitments_reports ) {
+        $commitments = [];
+
+        // Reshape commitments into recurring id groupings.
+        $recurring_id_groups = [];
+        foreach ( $commitments_reports ?? [] as $commitments_report ) {
+            if ( isset( $commitments_report['type'], $commitments_report['recurring_id'] ) && ( $commitments_report['type'] === 'recurring_signup' ) ) {
+                $recurring_id = $commitments_report['recurring_id'];
+                if ( !isset( $recurring_id_groups[ $recurring_id ] ) ) {
+                    $recurring_id_groups[ $recurring_id ] = [];
+                }
+
+                $recurring_id_groups[ $recurring_id ][] = $commitments_report;
+            }
+        }
+
+        // Next, reshape recurring id groupings into respective event ranges.
+        foreach ( $recurring_id_groups as $range_id => $range ) {
+            $first = $range[0];
+            $last = end( $range );
+            $commitments[] = [
+                'time_begin' => gmdate( 'Ymd', $first['time_begin'] ) . 'T'. gmdate( 'His', $first['time_begin'] ),
+                'time_end' => gmdate( 'Ymd', $first['time_end'] ) . 'T'. gmdate( 'His', $first['time_end'] ),
+                'rrule' => 'FREQ=DAILY;UNTIL=' . gmdate( 'Ymd', $last['time_end'] ) . 'T'. gmdate( 'His', $last['time_end'] )
+            ];
+        }
+
+        return $commitments;
     }
 
     public function manage_body(){
