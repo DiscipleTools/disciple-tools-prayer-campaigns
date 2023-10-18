@@ -1,5 +1,11 @@
 import {html, css, LitElement, range, map} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+function translate(str){
+  if ( !strings[str] ){
+    console.error("'" + str + "' => __( '" + str + "', 'disciple-tools-prayer-campaigns' ),");
+  }
+  return strings[str] || str
+}
 
 /**
  * Timezone Picker Component
@@ -35,7 +41,7 @@ export class CampaignSignUp extends LitElement {
         font-size: 1.2rem;
       }
       .section-div {
-        padding-bottom: 2rem;
+        padding-bottom: 1.5rem;
       }
       label {
         display: block;
@@ -48,22 +54,6 @@ export class CampaignSignUp extends LitElement {
         column-gap: 3rem;
         font-size: 1rem;
         min-height: 500px;
-      }
-
-
-      .small {
-        transform: scale(0.6);
-      }
-      .size-item {
-        transition: transform .5s linear 0s;
-        transform-style: preserve-3d;
-        display:block;
-      }
-      .size-item.top-left {
-        transform-origin: left top;
-      }
-      .size-item.top-right {
-        transform-origin: right top;
       }
       
       .selected-times {
@@ -92,6 +82,10 @@ export class CampaignSignUp extends LitElement {
         display:block;
       }
       
+      .column {
+        max-width: 400px;
+        flex-basis: 30%;
+      }
       @media screen and (max-width: 600px) {
         .time {
           padding-inline-start: 0.3rem;
@@ -108,6 +102,7 @@ export class CampaignSignUp extends LitElement {
         .column {
           width: 100% !important;
           max-width: 100% !important;
+          flex-basis: 100%;
         }
         .mobile {
           display:block;
@@ -330,6 +325,9 @@ export class CampaignSignUp extends LitElement {
     if (!this.frequency.value){
       this.show_toast( 'Please check step 1', 'warn')
     }
+    if ( this.frequency.value === 'pick' ){
+      return this.time_and_day_selected(selected_time)
+    }
     let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
     this.recurring_signups.push(recurring_signup)
     this.requestUpdate()
@@ -356,8 +354,7 @@ export class CampaignSignUp extends LitElement {
       this.selected_times = [...this.selected_times, selected_time]
     }
     this.selected_times.sort((a,b)=>a.time-b.time)
-    this.calendar_small = false
-    this.selected_day = null
+    // this.selected_day = null
     this.requestUpdate()
     this.show_toast()
   }
@@ -409,15 +406,31 @@ export class CampaignSignUp extends LitElement {
     return html`
       <div id="campaign">
           
-          <div class="column" style="max-width: 300px" ?hidden="${this._view === 'submit'}">
+          <div class="column" ?hidden="${this._view === 'submit'}">
+              
+              <!--
+                  Duration
+              -->
+              <div class="section-div" ?disabled="${!this.frequency.value}">
+                  <h2 class="section-title">
+                      <span class="step-circle">1</span>
+                      <span>${translate('I will pray for')}</span></h2>
+                  <div>
+                      <cp-select 
+                          .value="${this.duration.value}"
+                          .options="${this.duration.options}"
+                          @change="${e=>this.handle_click('duration', e.detail)}">
+                      </cp-select>
+                  </div>
+              </div>
               
               <!--
                   FREQUENCY
               -->
               <div class="section-div">
                   <h2 class="section-title">
-                      <span class="step-circle">1</span>
-                      <span>${strings['I will pray']}</span> <span ?hidden="${this.frequency?.value}" class="place-indicator">${strings['Start Here']}</span>
+                      <span class="step-circle">2</span>
+                      <span>${strings['How often?']}</span> <span ?hidden="${this.frequency?.value}" class="place-indicator">${strings['Start Here']}</span>
                   </h2>
                   <cp-select 
                       show_desc="${!!this.campaign_data.end_timestamp}"
@@ -426,22 +439,6 @@ export class CampaignSignUp extends LitElement {
                        @change="${this.handle_frequency}">
                   </cp-select>
                   <time-zone-picker timezone="${this.timezone}" @change="${this.timezone_change}">
-              </div>
-  
-              <!--
-                  Duration
-              -->
-              <div class="section-div" ?disabled="${!this.frequency.value}">
-                  <h2 class="section-title">
-                      <span class="step-circle">2</span>
-                      <span>${strings['For how long?']}</span></h2>
-                  <div>
-                      <cp-select 
-                          .value="${this.duration.value}"
-                          .options="${this.duration.options}"
-                          @change="${e=>this.handle_click('duration', e.detail)}">
-                      </cp-select>
-                  </div>
               </div>
   
               <!--
@@ -461,123 +458,140 @@ export class CampaignSignUp extends LitElement {
                   </div>
   
               ` : '' }
+
+              <!--
+                  Calendar Picker
+              -->
+              ${this.frequency.value === 'pick' ? html`
+                
+                  <h2 class="section-title">
+                      <span class="step-circle">3</span>
+                      <span>${strings['Select a Date']}</span>
+                  </h2>
+                  <cp-calendar-day-select
+                      @day-selected="${e=>this.day_selected(e.detail)}"
+                      start_timestamp="${this.campaign_data.start_timestamp}"
+                      end_timestamp="${this.campaign_data.end_timestamp}"
+                      .selected_times="${this.selected_times}"
+                      .days="${this.days}"
+                      .calendar_disabled="${this.calendar_small}"
+                  ></cp-calendar-day-select>
+                    
+              `: ''}
           </div>
-          <div class="column center-col" ?hidden="${this._view === 'submit'}">
+          <div class="column" ?hidden="${this._view === 'submit'}">
   
               <!--
                   Time Picker
               -->
-              <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly'&&!this.week_day.value}" ?hidden="${this.frequency.value === 'pick'}">
+              <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly'&&!this.week_day.value}">
                   
                     <h2 class="section-title">
-                        <span class="step-circle">3</span>
-                        <span>${strings['At what time?']}</span>
+                        <span class="step-circle">4</span>
+                        <span>
+                            ${this.frequency.value === 'pick' ? ( 
+                              this.selected_day ?
+                                html`${translate('Select a Time for %s').replace('%s', window.campaign_scripts.ts_to_format(this.selected_day, 'DD', this.timezone))}`
+                                : html`${translate('Select a Day')}`
+                              ) :  html`${translate('At what time?')}`}
+                        </span>
                     </h2>
                     <cp-times 
                         slot_length="${this.campaign_data.slot_length}"
                         .frequency="${this.frequency.value}"
                         .weekday="${this.week_day.value}"
+                        .selected_day="${this.selected_day}"
+                        .selected_times="${this.selected_times}"
                         @time-selected="${e=>this.time_selected(e.detail)}" >
                     </cp-times>
               </div>
-  
-              <div class="section-div" ?disabled="${!this.frequency.value}" ?hidden="${this.frequency.value !== 'pick'}">
-  
-  
-                  <!--
-                      Calendar Picker
-                  -->
-                  ${this.frequency.value === 'pick' ? html`
-                      <div style="display: flex;flex-wrap: wrap">
-                          <div style="flex-grow: 1">
-                              <h2 class="section-title">
-                                  <span class="step-circle">3</span>
-                                  <span>${strings['Select a Date']}</span>
-                              </h2>
-                              <cp-calendar-day-select style="display: flex;justify-content: center" 
-                                  class="size-item top-left ${this.calendar_small ? 'small' : ''}" @click="${()=>{this.calendar_small = false;this.requestUpdate();}}"
-                                  @day-selected="${e=>this.day_selected(e.detail)}"
-                                  .selected_times="${this.selected_times}"
-                                  start_timestamp="${this.campaign_data.start_timestamp}"
-                                  end_timestamp="${this.campaign_data.end_timestamp}"
-                                  .days="${this.days}"
-                                  .calendar_disabled="${this.calendar_small}"
-                              ></cp-calendar-day-select>
-                          </div>
-  
-                          <!--
-                              Time Picker
-                          -->
-                          <div>
-                              <h2 class="section-title">
-                                  <span class="step-circle">4</span>
-                                  <span>
-                                      ${this.selected_day ? 
-                                          html`${strings['Select a Time for %s'].replace('%s', window.campaign_scripts.ts_to_format(this.selected_day, 'DD', this.timezone))}`
-                                          : html`${strings['Select a Time']}`}</span>
-                              </h2>
-                              <div ?hidden="${!this.selected_day}">
-                                <cp-times class="${!this.calendar_small ? 'small' : ''} size-item top-right"
-                                    slot_length="${this.campaign_data.slot_length}"
-                                    type="once_day"
-                                    .selected_day="${this.selected_day}"
-                                    @time-selected="${e=>this.time_and_day_selected(e.detail)}" >
-                              </div>
-                          </div>
-                      </div>
-                  ` : ''}
-                  
-              </div>
           </div>
           
+          
+          
+  
           <!--
-              Mobile Times Floater
+              Contact Info
           -->
-          <div class="mobile selected-times" style="padding: 0.5rem; position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
-              <div style="text-align: end;display: flex;justify-content: space-between" @click="${e=>{this.show_selected_times = !this.show_selected_times;this.requestUpdate()}}">
-                  <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">${strings['Close']}</button>
-                  <span style="display: flex; align-items: center">
-                      <img src="${window.campaign_objects.plugin_url}assets/calendar.png" style="width: 2rem;">
-                      <span>
-                        (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer times']}</span>)
+          <div class="column" ?hidden="${this._view === 'submit'}">
+              <div class="section-div" ?hidden="${this.already_signed_up}">
+                  <h2 class="section-title">
+                      <span class="step-circle">5</span>
+                      <span>${strings['Contact Info']}</span>
+                  </h2>
+  
+                  <contact-info .selected_times_count="${this.selected_times_count()}"
+                                @form-items=${this.handle_contact_info}
+                                .form_error=${this._form_items.form_error}
+                                @back=${()=>this._view = 'main'}
+                  ></contact-info>
+              </div>
+              <!--
+                already signed in
+              -->
+              <div class="section-div" ?hidden="${!this.already_signed_up}">
+                  <h2 class="section-title">
+                      <span class="step-circle">5</span>
+                      <span>${strings['Review']}</span>
+                  </h2>
+  
+                  <div style="text-align: center;margin-top:20px">
+                      <button ?disabled=${!this.selected_times_count()}
+                              @click=${()=>this.submit()}>
+                          ${strings['Submit']}
+                          <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
+                      </button>
+  
+                  </div>
+              </div>
+              
+              <!--
+                  Mobile Times Floater
+              -->
+              <div class="mobile selected-times" style="padding: 0.5rem; position: fixed; top:60px; right: 0; z-index: 10000;background-color: white; border:1px solid var(--cp-color); ${this.selected_times_count()?'': 'display:none'}">
+                  <div style="text-align: end;display: flex;justify-content: space-between" @click="${e=>{this.show_selected_times = !this.show_selected_times;this.requestUpdate()}}">
+                      <button ?hidden="${!this.show_selected_times}" class="button" style="padding:0.25rem 0.85rem">${strings['Close']}</button>
+                      <span style="display: flex; align-items: center">
+                          <img src="${window.campaign_objects.plugin_url}assets/calendar.png" style="width: 2rem;">
+                          <span>
+                            (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer times']}</span>)
+                          </span>
                       </span>
-                  </span>
-              </div>
-              <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
-                  ${this.recurring_signups.map((value, index) => html`
-                      <div class="selected-times selected-time-labels">
-                          <div class="selected-time-frequency">
-                              <div>${value.label}</div>
-                              <div>
-                                  <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
+                  </div>
+                  <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
+                      ${this.recurring_signups.map((value, index) => html`
+                          <div class="selected-times selected-time-labels">
+                              <div class="selected-time-frequency">
+                                  <div>${value.label}</div>
+                                  <div>
+                                      <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
+                                  </div>
                               </div>
+                              <ul>
+                                  <li>
+                                      ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                  </li>
+                                  <li>
+                                      ${translate('Renew on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                  </li>
+                              </ul>
                           </div>
-                          <ul>
-                              <li>
-                                  ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
-                              </li>
-                              <li>
-                                  ${strings['Ending on %s'].replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
-                              </li>
-                          </ul>
-                      </div>
-                  `)}
-                  ${this.selected_times.map((value, index) => html`
-                      <div class="selected-times">
-                          <span>${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-                          <button @click="${e=>this.remove_prayer_time(value.time)}" class="remove-prayer-time-button">
-                              <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
-                          </button>
-                      </div>
-                  `)}
+                      `)}
+                      ${this.selected_times.map((value, index) => html`
+                          <div class="selected-times">
+                              <span>${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                              <button @click="${e=>this.remove_prayer_time(value.time)}" class="remove-prayer-time-button">
+                                  <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                              </button>
+                          </div>
+                      `)}
+                  </div>
               </div>
-          </div>
-          
-          <!--
-              Desktop Selected Times Section
-          -->
-          <div class="column desktop" style="max-width: 300px;">
-              <div class="section-div">
+              
+              <!--
+                  Desktop Selected Times Section
+              -->
+              <div class="desktop section-div">
                   <h2 class="section-title">
                       <span class="step-circle">*</span>
                       <span>${strings['Selected Times']} (${this.selected_times_count()})</span>
@@ -591,12 +605,11 @@ export class CampaignSignUp extends LitElement {
                             </div>        
                           </div>
                           <ul>
-                              <li>${value.count} ${strings['prayer times']}</li>
                               <li>
                                   ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                               <li>
-                                  ${strings['Ending on %s'].replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                  ${translate('Renew on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
                               </li>
                           </ul>
                       </div>
@@ -612,48 +625,10 @@ export class CampaignSignUp extends LitElement {
               </div>
               
           </div>
-          
-          
-          
-          <div class="column" ?hidden="${!this.already_signed_up}">
-              <div class="section-div">
-                  <h2 class="section-title">
-                      <span class="step-circle">4</span>
-                      <span>${strings['Review']}</span>
-                  </h2>
-  
-                  <div style="text-align: center;margin-top:20px">
-                      <button ?disabled=${!this.selected_times_count()}
-                              @click=${()=>this.submit()}>
-                          ${strings['Submit']}
-                          <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
-                      </button>
-  
-                  </div>
-              </div>
-          </div>
-  
-          <!--
-              Contact Info
-          -->
-          <div class="column" style="max-width: 300px" ?hidden="${this._view === 'submit' || this.already_signed_up}">
-              <div class="section-div">
-                  <h2 class="section-title">
-                      <span class="step-circle">4</span>
-                      <span>${strings['Contact Info']}</span>
-                  </h2>
-  
-                  <contact-info .selected_times_count="${this.selected_times_count()}"
-                                @form-items=${this.handle_contact_info}
-                                .form_error=${this._form_items.form_error}
-                                @back=${()=>this._view = 'main'}
-                  ></contact-info>
-              </div>
-          </div>
           <!--
               Verify
           -->
-          <div class="column" style="max-width: 300px" ?hidden="${this._view !== 'submit'}">
+          <div class="column" ?hidden="${this._view !== 'submit'}">
               <div class="section-div">
                   <h2 class="section-title">
                       <span class="step-circle">5</span>

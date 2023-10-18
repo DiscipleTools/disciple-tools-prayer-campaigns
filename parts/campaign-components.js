@@ -505,9 +505,6 @@ export class cpCalendarDaySelect extends LitElement {
   }
 
   day_selected(e, day){
-    if ( this.calendar_disabled ){
-      return;
-    }
     //dispatch event
     this.dispatchEvent(new CustomEvent('day-selected', {detail: day}));
     //highlight selected day
@@ -874,22 +871,22 @@ export class cpTimes extends LitElement {
     slot_length: {type: String},
     times: {type: Array},
     selected_day: {type: String},
-    type: {type: String},
     frequency: {type: String},
     weekday: {type: String},
+    selected_times: {type: Array, state:true},
   }
 
   constructor() {
     super();
     this.days = window.campaign_scripts.days
-    this.type = 'all_days'
+    this.selected_times = []
   }
 
   connectedCallback(){
     super.connectedCallback();
     //set scroll position
     setTimeout(()=>{
-      // this.shadowRoot.querySelector('.times-container').scrollTop = 250;
+      this.shadowRoot.querySelector('.times-container').scrollTop = 250;
     })
     window.addEventListener('campaign_timezone_change', (e)=>{
       this.requestUpdate()
@@ -898,7 +895,7 @@ export class cpTimes extends LitElement {
 
 
   render() {
-    if ( this.type === 'once_day' && this.selected_day ){
+    if ( this.frequency === 'pick' && this.selected_day ){
       this.times = this.get_times()
     }
     if ( this.frequency === 'daily' ){
@@ -908,7 +905,7 @@ export class cpTimes extends LitElement {
       this.times = this.get_weekly_times()
     }
     if ( !this.times ){
-      return html`<div></div>`
+      this.times = this.get_empty_times()
     }
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
@@ -922,7 +919,9 @@ export class cpTimes extends LitElement {
                 ${map(range(time_slots), (i) => {
                     let time = this.times[index*time_slots+i];
                     return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''}" @click="${(e)=>this.time_selected(e,time.key)}" ?disabled="${this.type === 'once_day' && time.key < now}">
+                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}"
+                         @click="${(e)=>this.time_selected(e,time.key)}"
+                         ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
                           ${time.progress < 100 ? 
@@ -941,13 +940,15 @@ export class cpTimes extends LitElement {
     if ( time_key < parseInt(new Date().getTime() / 1000) && this.type === 'once_day'){
       return;
     }
-    e.currentTarget.classList.add('selected-time');
+    if ( this.frequency !== 'pick' ){
+      e.currentTarget.classList.add('selected-time');
+    }
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
+    this.times = this.get_empty_times()
   }
 
   get_times(){
     let day = this.days.find(d=>d.key === this.selected_day);
-    let now = parseInt(new Date().getTime() / 1000);
     let times = []
     day.slots.forEach(s=>{
       let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_user_data.timezone} )
@@ -958,6 +959,7 @@ export class cpTimes extends LitElement {
         hour: time.toFormat('hh a'),
         minute: time.toFormat('mm'),
         progress: progress,
+        selected: this.selected_times.find(t=>t.time===s.key),
       })
     })
     return times;
@@ -1016,6 +1018,25 @@ export class cpTimes extends LitElement {
       let min = time.toFormat(':mm')
       options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
       key += this.slot_length * 60
+    }
+    return options;
+  }
+
+  get_empty_times(){
+    let day_in_seconds = 86400;
+    let key = 0;
+    let start_of_today = new Date('2023-01-01')
+    start_of_today.setHours(0, 0, 0, 0)
+    let start_time_stamp = start_of_today.getTime() / 1000
+
+    let options = [];
+    while (key < day_in_seconds) {
+      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key, {zone:window.campaign_user_data.timezone})
+      let time_formatted = time.toFormat('hh:mm a')
+      let progress = 0
+      let min = time.toFormat(':mm')
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      key += window.campaign_data.slot_length * 60
     }
     return options;
   }

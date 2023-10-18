@@ -42,8 +42,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Campaign Ends In' => __( 'Campaign Ends In', 'disciple-tools-prayer-campaigns' ),
                     'Campaign Ended' => __( 'Campaign Ended', 'disciple-tools-prayer-campaigns' ),
                     'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
-                    'I will pray' => __( 'I will pray', 'disciple-tools-prayer-campaigns' ),
-                    'For how long?' => __( 'For how long?', 'disciple-tools-prayer-campaigns' ),
+                    'How often?' => __( 'How often?', 'disciple-tools-prayer-campaigns' ),
+                    'I will pray for' => __( 'I will pray for', 'disciple-tools-prayer-campaigns' ),
                     'At what time?' => __( 'At what time?', 'disciple-tools-prayer-campaigns' ),
                     'Selected Times' => __( 'Selected Times', 'disciple-tools-prayer-campaigns' ),
                     'Contact Info' => __( 'Contact Info', 'disciple-tools-prayer-campaigns' ),
@@ -81,6 +81,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'My Prayer Times' => __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'Prayer Time Added' => __( 'Prayer Time Added', 'disciple-tools-prayer-campaigns' ),
+                    'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );

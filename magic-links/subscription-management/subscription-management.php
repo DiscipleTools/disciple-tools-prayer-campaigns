@@ -342,7 +342,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
                 <div style="background-color: white; margin: 150px 50px 50px 50px">
                     <h2 style="text-align: center">Sign up for more prayer</h2>
-                    <campaign-sign-up style="padding:30px 0"
+                    <campaign-sign-up
                         already_signed_up="true"
                     ></campaign-sign-up>
                 </div>
