@@ -270,10 +270,10 @@ class DT_Porch_Settings {
                 'tab' => 'settings',
             ],
             'google_analytics' => [
-                'label' => 'Google Analytics (optional)',
+                'label' => 'Google Analytics ID (optional)',
                 'default' => get_site_option( 'p4r_porch_google_analytics' ),
                 'value' => '',
-                'type' => 'textarea',
+                'type' => 'text',
                 'tab' => 'settings',
             ],
             'default_language' => [
