@@ -163,7 +163,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
         $my_commitments_reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $post_id, $campaign_id );
-
+dt_write_log($calendar_timezone_offset);
+dt_write_log($my_recurring_signups);
         $my_commitments = [];
 
         // Package $my_commitments accordingly, based on overall commitment type.
@@ -183,8 +184,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         foreach ( $my_recurring_signups as $recurring_signup ) {
             $type = ( $recurring_signup['type'] === 'daily' ) ? 'DAILY' : 'WEEKLY';
-            $time_begin = $recurring_signup['first'];
-            $time_end = $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 );
+            $time_begin = $recurring_signup['first'] + ( $calendar_timezone_offset * 3600 );
+            $time_end = ( $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 ) ) + ( $calendar_timezone_offset * 3600 );
 
             $my_commitments[] = [
                 'time_begin' => gmdate( 'Ymd', $time_begin ) . 'T'. gmdate( 'His', $time_begin ),
