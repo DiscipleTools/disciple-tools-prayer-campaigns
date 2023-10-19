@@ -315,7 +315,7 @@ class DT_Subscriptions {
         return self::get_recurring_signup( $recurring_signup_report_id );
     }
 
-    public static function get_subscriber_prayer_times( $campaign_id, $subscriber_id ){
+    public static function get_subscriber_prayer_times( $campaign_id, $subscriber_id, $only_future = false ){
         global $wpdb;
         $subs  = $wpdb->get_results( $wpdb->prepare( "
             SELECT time_begin, time_end, subtype, id, value
@@ -324,8 +324,9 @@ class DT_Subscriptions {
             AND post_id = %s
             AND post_type = 'subscriptions'
             AND type = 'campaign_app'
+            AND time_begin >= %s
             ORDER BY time_begin ASC
-        ", $campaign_id, $subscriber_id ), ARRAY_A );
+        ", $campaign_id, $subscriber_id, ( $only_future ? time() : 0 ) ), ARRAY_A );
 
         $my_commitments = [];
         foreach ( $subs as $commitments_report ){
