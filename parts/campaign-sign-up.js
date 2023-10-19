@@ -338,9 +338,7 @@ export class CampaignSignUp extends LitElement {
   day_selected(selected_day){
     this.selected_day = selected_day
     setTimeout(()=>{
-      this.calendar_small = true
       this.requestUpdate()
-
     })
   }
   time_and_day_selected(selected_time){
@@ -476,7 +474,6 @@ export class CampaignSignUp extends LitElement {
                       end_timestamp="${this.campaign_data.end_timestamp}"
                       .selected_times="${this.selected_times}"
                       .days="${this.days}"
-                      .calendar_disabled="${this.calendar_small}"
                   ></cp-calendar-day-select>
                     
               `: ''}
@@ -747,46 +744,40 @@ export class cpCalendar extends LitElement {
 
   render() {
     let now_date = window.luxon.DateTime.now()
-    let current_year_month = now_date.toFormat('y_MM')
     let now = now_date.toSeconds();
-    let start_of_today = now_date.startOf('day').toSeconds()
-    let months = {};
-    this.days.forEach(day=> {
-      if ( day.month === current_year_month || day.key >= start_of_today ){
-        if (!months[day.month]) {
-          let day_number = window.campaign_scripts.get_day_number(day.key, this.timezone);
-          months[day.month] = {with: 0, without: 0, key:day.key, minutes_covered:0, days:0, month_starts_on_day:day_number}
-        }
-        months[day.month].with += day.covered_slots
-        months[day.month].without += day.slots.length - day.covered_slots
-        months[day.month].minutes_covered += day.covered_slots * this.campaign_data.slot_length
-        months[day.month].days += 1
-      }
-    })
+    let months_to_show = [];
+    for( let i = 0; i < 2; i++ ){
+      let month_days = window.campaign_scripts.build_calendar_days(now_date.plus({month:i}))
+      let covered_slots = 0
+      let total_slots = 0
 
-    //first 2 months
-    let months_to_show = Object.keys(months).slice(0,2)
+      month_days.forEach(day=>{
+        covered_slots += day.covered_slots || 0
+        total_slots += day.slots.length || 0
+      })
+      months_to_show.push({
+        date: now_date.plus({month:i}),
+        days: month_days,
+        percentage: (covered_slots / total_slots * 100).toFixed( 2 ),
+        days_covered: ( this.campaign_data.slot_length * covered_slots / 60 / 24 ).toFixed( 1 )
+      })
+    }
+
     let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
-
-    months_to_show.forEach(m=>{
-      months[m].percentage = (months[m].with / ( months[m].without + months[m].with )* 100).toFixed( 2 )
-      months[m].days_covered = ( months[m].minutes_covered / 60/24 ).toFixed( 1 )
-
-    })
 
     return html`
         <div class="calendar-wrapper ${this.loading ? 'loading' : ''}">
             ${months_to_show.map(month=>html`
                 <div class="calendar-month">
                     <h3 class="month-title center">
-                        ${window.campaign_scripts.ts_to_format(months[month].key, 'MMM y')}
-                        <span class="month-percentage">${ months[month].percentage}% | ${months[month].days_covered} ${window.campaign_objects.translations.days}</span>
+                        ${month.date.toFormat( 'MMM y')}
+                        <span class="month-percentage">${ month.percentage}% | ${month.days_covered} ${translate('days')}</span>
 
                     </h3>
                     <div class="calendar">
                         ${week_day_names.map(name=>html`<div class="week-day">${name}</div>`)}
-                        ${map(range(months[month].month_starts_on_day), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
-                        ${this.days.filter(d=>d.month===month).map(day=>{
+                        ${map(range(month.date.startOf('month').weekday), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
+                        ${month.days.map(day=>{
                             let disabled = (day.key + day_in_seconds) < now;
                             return html`
                                 <div class="day-cell

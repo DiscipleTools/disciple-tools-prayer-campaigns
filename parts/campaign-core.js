@@ -346,7 +346,26 @@ window.campaign_scripts = {
     let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
     return label;
   },
-
+  build_calendar_days(month_date){
+    const month_start = month_date.startOf('month');
+    let month_days = []
+    let this_month_days = window.campaign_scripts.days.filter(k=>k.month===month_date.toFormat('y_MM'));
+    for ( let i = 0; i < month_date.daysInMonth; i++ ){
+      let day_date = month_start.plus({days:i})
+      let day = this_month_days.find(d=>d.key === day_date.toSeconds())
+      if ( !day ){
+        day = {
+          key:day_date.toSeconds(),
+          percent: 0,
+          day:i+1,
+          formatted: day_date.toFormat('MMMM d'),
+          slots: [],
+        }
+      }
+      month_days.push(day)
+    }
+    return month_days
+  },
   build_selected_times_for_recurring(selected_time, frequency, duration, weekday=null, from_date_ts=null){
     let selected_times = []
     let now = new Date().getTime()/1000

@@ -298,7 +298,11 @@ Loader
     display: flex;
     align-items: center;
   }
-
+  
+  .disabled {
+    opacity: .3;
+    cursor: not-allowed;
+  }
 
 
 `;
