@@ -51,14 +51,31 @@ window.campaign_data = {
     {
       value: 'daily',
       label: strings['Daily'],
-      desc: `(${strings['up to %s months'].replace('%s', '3')})`,
+      // desc: `(${strings['up to %s months'].replace('%s', '3')})`,
       days_limit: 90,
       month_limit: 3,
       step: 'day',
     },
-    {value: 'weekly', label: strings['Weekly'], desc:`(${strings['up to %s months'].replace('%s', '6')})`, days_limit: 180, step:'week', month_limit: 6},
-    {value: 'monthly', label: strings['Monthly'], desc: `(${strings['up to %s months'].replace('%s', '12')})`, days_limit: 365, step:'month', month_limit: 12},
-    {value: 'pick', label: strings['Pick Dates and Times']},
+    {
+      value: 'weekly',
+      label: strings['Weekly'],
+      // desc: `(${strings['up to %s months'].replace('%s', '6')})`,
+      days_limit: 180,
+      step: 'week',
+      month_limit: 6
+    },
+    {
+      value: 'monthly',
+      label: strings['Monthly'],
+      // desc: `(${strings['up to %s months'].replace('%s', '12')})`,
+      days_limit: 365,
+      step: 'month',
+      month_limit: 12
+    },
+    {
+      value: 'pick',
+      label: strings['Pick Dates and Times']
+    },
   ],
 
   current_commitments: {},
