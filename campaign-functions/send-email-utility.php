@@ -272,7 +272,8 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $prayer_content_message ) ){
             $message .= Campaigns_Email_Template::email_content_part( $prayer_content_message );
         }
-        $message .= Campaigns_Email_Template::email_content_part( '<hr><a href="'. $management_link .'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a>' );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Access you account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $management_link );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 

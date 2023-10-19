@@ -43,6 +43,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
             LEFT JOIN $wpdb->posts p ON p.ID=r.post_id
             LEFT JOIN $wpdb->dt_reportmeta rm  ON ( rm.report_id = r.id AND rm.meta_key = 'prayer_time_reminder_sent' )
             WHERE r.post_type = 'subscriptions'
+            AND r.type = 'campaign_app'
             AND r.time_begin >= %d
             AND r.time_begin <= %d
             AND pn.meta_value = '1'
