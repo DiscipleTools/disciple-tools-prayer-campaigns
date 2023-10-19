@@ -1,7 +1,7 @@
 <?php
 
 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
-    if ( str_contains( $handle, 'component' ) || str_contains( $handle, 'dt_subscription_js' ) ){
+    if ( str_contains( $handle, 'campaign_component' ) || str_contains( $handle, 'dt_subscription_js' ) ){
         $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>'; //phpcs:ignore
     }
     return $tag;
@@ -42,8 +42,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Campaign Ends In' => __( 'Campaign Ends In', 'disciple-tools-prayer-campaigns' ),
                     'Campaign Ended' => __( 'Campaign Ended', 'disciple-tools-prayer-campaigns' ),
                     'time_slot_label' => _x( '%1$s for %2$s minutes.', 'Monday 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ),
-                    'I will pray' => __( 'I will pray', 'disciple-tools-prayer-campaigns' ),
-                    'For how long?' => __( 'For how long?', 'disciple-tools-prayer-campaigns' ),
+                    'How often?' => __( 'How often?', 'disciple-tools-prayer-campaigns' ),
+                    'I will pray for' => __( 'I will pray for', 'disciple-tools-prayer-campaigns' ),
                     'At what time?' => __( 'At what time?', 'disciple-tools-prayer-campaigns' ),
                     'Selected Times' => __( 'Selected Times', 'disciple-tools-prayer-campaigns' ),
                     'Contact Info' => __( 'Contact Info', 'disciple-tools-prayer-campaigns' ),
@@ -77,17 +77,20 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
                     '%1$s at %2$s for %3$s' => __( '%1$s at %2$s for %3$s', 'disciple-tools-prayer-campaigns' ),
+                    'for %s minutes' => __( 'for %s minutes', 'disciple-tools-prayer-campaigns' ),
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'My Prayer Times' => __( 'My Prayer Times', 'disciple-tools-prayer-campaigns' ),
-                    'Prayer Time Added' => __( 'Prayer Time Added', 'disciple-tools-prayer-campaigns' ),
+                    'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),
+                    'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
+                    'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
 
-        wp_enqueue_script( 'campaign_css_component', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
-        wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
-        wp_enqueue_script( 'campaign_sign_up_component', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_css_component' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
+        wp_enqueue_script( 'campaign_component_css', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
+        wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
+        wp_enqueue_script( 'campaign_component_sign_up', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
         wp_enqueue_style( 'toastify-js-css', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css', [], '1.12.0' );
         wp_enqueue_script( 'toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js', [ 'jquery' ], '1.12.0' );
     }

@@ -32,15 +32,22 @@ export const campaignStyles = css`
   p {
     margin: 10px 0;
   }
+  
+  p, button, label {
+    font-size: 1rem;
+  }
 
   input {
     font-size: 1rem;
     line-height: 1rem;
     color: black;
-    border: 1px solid black;
+    border: 1px solid var(--cp-color, 'dodgerblue');
+    border-radius: 5px;
   }
   label {
     display: grid;
+    color: var(--cp-color, 'dodgerblue');
+    font-weight: bold;
   }
   select, input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
     min-width: 250px;
@@ -275,9 +282,10 @@ Loader
 
   .dt-tag {
     display: inline-block;
+    margin: 0 .5rem;
     padding: 0.5em 0.8em;
-    font-size: 50%;
-    font-weight: 700;
+    font-size: .8rem;
+    font-weight: 500;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
@@ -285,6 +293,10 @@ Loader
     border-radius: 0.25rem;
     color: #fff;
     background-color: var(--cp-color, 'dodgerblue');
+  }
+  .aligned-row {
+    display: flex;
+    align-items: center;
   }
 
 
