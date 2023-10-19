@@ -482,7 +482,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         $params = dt_recursive_sanitize_array( $params );
         $action = $params['action'];
-        $campaign_id = $params['campaign_id'] ?? null;
+        $campaign_id = $params['campaign_id'];
 
         // manage
         $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
