@@ -176,7 +176,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T' . gmdate( 'His', $commitments_report['time_begin'] ),
                     'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T' . gmdate( 'His', $commitments_report['time_end'] ),
                     'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
-                    'location' => $commitments_report['label'],
+                    'location' => $commitments_report['label'] ?? '',
                 ];
             }
         }
