@@ -163,8 +163,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
         $my_commitments_reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $post_id, $campaign_id );
-dt_write_log($calendar_timezone_offset);
-dt_write_log($my_recurring_signups);
+
         $my_commitments = [];
 
         // Package $my_commitments accordingly, based on overall commitment type.
