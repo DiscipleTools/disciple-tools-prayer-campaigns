@@ -265,14 +265,16 @@ class DT_Subscriptions {
 
         //delete the reports with the recurring_signup meta
         $wpdb->query( $wpdb->prepare(
-            "DELETE r, rm
+            "DELETE r
             FROM $wpdb->dt_reports r
-            INNER JOIN $wpdb->dt_reportmeta as rm on ( id = rm.report_id AND rm.meta_key = 'recurring_signup' AND rm.meta_value = %s )
             WHERE parent_id = %s
             AND post_id = %s
             AND type = 'campaign_app'
+            AND subtype = 'recurring_signup'
+            AND time_begin >= %s
+            AND value = %s
             ",
-            $recurring_signup_report_id, $campaign_id, $subscriber_id
+            $campaign_id, $subscriber_id, time(), $recurring_signup_report_id
         ) );
 
         return true;
