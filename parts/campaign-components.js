@@ -521,7 +521,7 @@ export class cpCalendarDaySelect extends LitElement {
 
     let now_date = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
     let now = now_date.toSeconds();
-    let month_date = window.luxon.DateTime.fromSeconds(this.month_to_show || this.days[0].key, {zone:window.campaign_user_data.timezone})
+    let month_date = window.luxon.DateTime.fromSeconds(this.month_to_show || Math.max(this.days[0].key, now, window.campaign_data.start_timestamp), {zone:window.campaign_user_data.timezone})
     let month_start = month_date.startOf('month')
 
     let month_days =  window.campaign_scripts.build_calendar_days(month_date)
@@ -534,7 +534,7 @@ export class cpCalendarDaySelect extends LitElement {
       
       <div class="calendar-wrapper">
         <h3 class="month-title center">
-            <button class="month-next" ?disabled="${previous_month < now_date.minus({months:1}).toSeconds() }"
+            <button class="month-next" ?disabled="${month_start.toSeconds() < now}"
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
@@ -690,7 +690,7 @@ export class cpMyCalendar extends LitElement {
 
     let now_date = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
     let now = now_date.toSeconds();
-    let month_date = window.luxon.DateTime.fromSeconds(this.month_to_show || this.days[0].key, {zone:window.campaign_user_data.timezone})
+    let month_date = window.luxon.DateTime.fromSeconds(this.month_to_show || Math.max(this.days[0].key, now, window.campaign_data.start_timestamp), {zone:window.campaign_user_data.timezone})
     let month_start = month_date.startOf('month')
     let month_end = month_date.endOf('month')
 
@@ -718,7 +718,7 @@ export class cpMyCalendar extends LitElement {
       
       <div class="calendar-wrapper">
         <h3 class="month-title center">
-            <button class="month-next" ?disabled="${previous_month < now_date.minus({months:1}).toSeconds() }"
+            <button class="month-next" ?disabled="${ month_start.toSeconds() < now }"
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
