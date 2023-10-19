@@ -182,7 +182,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         foreach ( $my_recurring_signups as $recurring_signup ) {
-            $type = ( $recurring_signup['type'] === 'daily' ) ? 'DAILY' : 'WEEKLY' ;
+            $type = ( $recurring_signup['type'] === 'daily' ) ? 'DAILY' : 'WEEKLY';
 
             $my_commitments[] = [
                 'time_begin' => gmdate( 'Ymd', $recurring_signup['first'] ) . 'T'. gmdate( 'His', $recurring_signup['first'] ),
