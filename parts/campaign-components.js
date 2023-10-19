@@ -985,18 +985,21 @@ export class cpTimes extends LitElement {
     return options;
   }
   get_weekly_times(){
-    let now_date = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
-    const now = now_date.toSeconds()
-    let start_of_today = now_date.startOf('day').toSeconds()
+    let start_of_time_frame = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
+    if ( start_of_time_frame.toSeconds() < window.campaign_data.start_timestamp ){
+      start_of_time_frame = window.luxon.DateTime.fromSeconds(window.campaign_data.start_timestamp, {zone:window.campaign_user_data.timezone})
+    }
+
+    let time_frame_day_start = start_of_time_frame.startOf('day').toSeconds()
     let next_month = this.days.filter(d=>{
-      return d.key > start_of_today &&
-        d.key <= now_date.plus({months:1}).toSeconds() &&
+      return d.key > time_frame_day_start &&
+        d.key <= start_of_time_frame.plus({months:1}).toSeconds() &&
         d.weekday_number === this.weekday
     })
     let coverage = {}
     next_month.forEach(d=>{
       d.slots.forEach(s=>{
-        if ( s.key >= now && s.subscribers ){
+        if ( s.key >= start_of_time_frame.toSeconds() && s.subscribers ){
           if ( !coverage[s.formatted] ){
             coverage[s.formatted] = []
           }
@@ -1008,7 +1011,7 @@ export class cpTimes extends LitElement {
     let options = [];
     let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_of_today + key, {zone:window.campaign_user_data.timezone})
+      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
         coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0

@@ -653,8 +653,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         return [
             'campaign_id' => (int) $campaign_id,
-            'start_timestamp' => (int) $start,
-            'end_timestamp' => (int) $end,
+            'start_timestamp' => $start,
+            'end_timestamp' => $end,
             'slot_length' => (int) $min_time_duration,
             'current_commitments' => $current_commitments,
             'minutes_committed' => (int) $minutes_committed,
