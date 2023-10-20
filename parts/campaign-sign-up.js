@@ -776,14 +776,12 @@ export class cpCalendar extends LitElement {
                     </h3>
                     <div class="calendar">
                         ${week_day_names.map(name=>html`<div class="week-day">${name}</div>`)}
-                        ${map(range(month.date.startOf('month').weekday), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
+                        ${map(range(month.date.startOf('month').weekday%7), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
                         ${month.days.map(day=>{
-                            let disabled = (day.key + day_in_seconds) < now;
                             return html`
                                 <div class="day-cell
-                                     ${disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
+                                     ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
-                                @click="${e=>this.day_selected(e, day.key)}"
                                 >
                                 <progress-ring stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 </div>`

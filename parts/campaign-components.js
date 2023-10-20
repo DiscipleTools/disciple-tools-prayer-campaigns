@@ -547,11 +547,10 @@ export class cpCalendarDaySelect extends LitElement {
             ${week_day_names.map(name=>html`<div class="day-cell week-day">${name}</div>`)}
             ${map(range(first_day_is_weekday%7), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
             ${month_days.map(day=>{
-                let disabled = (day.key + day_in_seconds) < now;
                 return html`
-                  <div class="day-cell ${disabled ? 'disabled':''} ${selected_times.includes(day.key) ? 'selected-day':''}"
+                  <div class="day-cell ${day.disabled ? 'disabled':''} ${selected_times.includes(day.key) ? 'selected-day':''}"
                        data-day="${window.campaign_scripts.escapeHTML(day.key)}"
-                       @click="${e=>!disabled&&this.day_selected(e, day.key)}"
+                       @click="${e=>!day.disabled&&this.day_selected(e, day.key)}"
                   >
                       ${window.campaign_scripts.escapeHTML(day.day)}
                   </div>`
@@ -731,13 +730,12 @@ export class cpMyCalendar extends LitElement {
             ${week_day_names.map(name=>html`<div class="day-cell week-day">${name}</div>`)}
             ${map(range(first_day_is_weekday%7), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
             ${month_days.map(day=>{
-              let disabled = (day.key + day_in_seconds) < now;
                 return html`
-                  <div class="day-cell ${disabled ? 'disabled':''}"
+                  <div class="day-cell ${day.disabled ? 'disabled':''}"
                        data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                    <progress-ring class="${disabled?'disabled':0}" stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                    <progress-ring class="${day.disabled?'disabled':0}" stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                     <div class="indicator-section">
                       ${map(range(my_commitments[day.formatted]||0),i=> {
                         return html`<span class="prayer-time-indicator"></span>`
@@ -881,8 +879,9 @@ export class cpTimes extends LitElement {
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
     return html`
-      <div class="times-container">
+        <div class="times-container">
         ${map(range(24),index => html`
+            ${ this.times[index*time_slots] ? html`
             <div class="prayer-hour prayer-times">
                 <div class="hour-cell">
                     ${this.times[index*time_slots].hour}
@@ -901,7 +900,7 @@ export class cpTimes extends LitElement {
                         </span>
                     </div>
                 `})}
-            </div>
+            </div>` : html``}
         `)}
       </div>
     `

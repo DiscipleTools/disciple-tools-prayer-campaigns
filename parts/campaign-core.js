@@ -104,7 +104,7 @@ window.campaign_scripts = {
     }
 
     let start_of_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day').toSeconds()
-    let next_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day').plus({days:1})
+    let next_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day')
     let time_iterator = parseInt( start_of_day );
     let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
 
@@ -364,12 +364,14 @@ window.campaign_scripts = {
     return label;
   },
   build_calendar_days(month_date){
-    const month_start = month_date.startOf('month');
+    const now = new Date().getTime()/1000
+    const month_start = month_date.startOf('month').startOf('day');
     let month_days = []
     let this_month_days = window.campaign_scripts.days.filter(k=>k.month===month_date.toFormat('y_MM'));
     for ( let i = 0; i < month_date.daysInMonth; i++ ){
       let day_date = month_start.plus({days:i})
       let day = this_month_days.find(d=>d.key === day_date.toSeconds())
+      let next_day = day_date.plus({days:1}).toSeconds()
       if ( !day ){
         day = {
           key:day_date.toSeconds(),
@@ -379,6 +381,7 @@ window.campaign_scripts = {
           slots: [],
         }
       }
+      day.disabled = next_day < now || (window.campaign_data.end_timestamp && next_day > window.campaign_data.end_timestamp ) || next_day < window.campaign_data.start_timestamp;
       month_days.push(day)
     }
     return month_days
