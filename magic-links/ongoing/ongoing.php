@@ -44,9 +44,9 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js[] = 'dt_campaign_core';
         $allowed_js[] = 'dt_campaign';
         $allowed_js[] = 'luxon';
-        $allowed_js[] = 'campaign_sign_up_component';
+        $allowed_js[] = 'campaign_component_sign_up';
         $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_css_component';
+        $allowed_js[] = 'campaign_component_css';
         return $allowed_js;
     }
     // add dt_campaign_core to allowed scripts
@@ -147,35 +147,35 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'start_timestamp' => $start,
             'end_timestamp' => $end,
             'slot_length' => (int) $min_time_duration,
-            'duration_options' => $field_settings['duration_options']['default'],
+//            'duration_options' => $field_settings['duration_options']['default'],
             'status' => $record['status']['key'],
             'current_commitments' => $current_commitments,
             'minutes_committed' => $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
-
+            'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
         ];
     }
 
     public function create_subscription( WP_REST_Request $request ) {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
+        $campaign_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
-        if ( empty( $post_id ) ){
+        if ( empty( $campaign_id ) ){
             return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
         }
 
         // create
-        if ( ! isset( $params['email'] ) || empty( $params['email'] ) ) {
+        if ( !isset( $params['email'] ) || empty( $params['email'] ) ) {
             return new WP_Error( __METHOD__, 'Missing email', [ 'status' => 400 ] );
         }
-        if ( ! isset( $params['selected_times'] ) || empty( $params['selected_times'] ) ) {
+        if ( empty( $params['selected_times'] ) && empty( $params['recurring_signups'] ) ) {
             return new WP_Error( __METHOD__, 'Missing times and locations', [ 'status' => 400 ] );
         }
-        if ( ! isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
+        if ( !isset( $params['timezone'] ) || empty( $params['timezone'] ) ) {
             return new WP_Error( __METHOD__, 'Missing timezone', [ 'status' => 400 ] );
         }
-        if ( ! isset( $params['code'] ) || empty( $params['code'] ) ) {
+        if ( !isset( $params['code'] ) || empty( $params['code'] ) ) {
             return new WP_Error( __METHOD__, 'Missing code', [ 'status' => 400 ] );
         }
         $code = $params['code'];
@@ -195,13 +195,13 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         }
 
         $existing_posts = DT_Posts::list_posts( 'subscriptions', [
-            'campaigns' => [ $post_id ],
+            'campaigns' => [ $campaign_id ],
             'contact_email' => [ $email ]
         ], false );
 
         if ( (int) $existing_posts['total'] === 1 ){
             $subscriber_id = $existing_posts['posts'][0]['ID'];
-            $added_times = DT_Subscriptions::add_subscriber_times( $post_id, $subscriber_id, $params['selected_times'] );
+            $added_times = DT_Subscriptions::add_subscriber_times( $campaign_id, $subscriber_id, $params['selected_times'] );
             if ( is_wp_error( $added_times ) ){
                 return $added_times;
             }
@@ -210,7 +210,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             if ( isset( $params['parts']['lang'] ) ){
                 $lang = $params['parts']['lang'];
             }
-            $subscriber_id = DT_Subscriptions::create_subscriber( $post_id, $email, $title, $params['selected_times'], [
+            $subscriber_id = DT_Subscriptions::create_subscriber( $campaign_id, $email, $title, $params['selected_times'], [
                 'receive_prayer_time_notifications' => true,
                 'timezone' => $params['timezone'],
                 'lang' => $lang,
@@ -219,8 +219,9 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 return new WP_Error( __METHOD__, 'Could not create record', [ 'status' => 400 ] );
             }
         }
+        DT_Subscriptions::save_recurring_signups( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
-        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $post_id );
+        $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 
         if ( !$email_sent ){
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );

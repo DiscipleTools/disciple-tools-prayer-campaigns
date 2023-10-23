@@ -1,13 +1,13 @@
 {
 
   "name": "Disciple.Tools - Prayer Campaigns",
-  "version": "2.11.6",
-  "last_updated": "2023-08",
+  "version": "3.0.0",
+  "last_updated": "2023-10-18",
   "author": "Disciple.Tools",
   "author_homepage": "https://disciple.tools",
   "git_owner": "DiscipleTools",
   "git_repo": "disciple-tools-prayer-campaigns",
-  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/releases/latest/download/disciple-tools-prayer-campaigns.zip",
+  "download_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/archive/refs/heads/components.zip",
   "homepage": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns",
   "issues_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/issues",
   "projects_url": "https://github.com/DiscipleTools/disciple-tools-prayer-campaigns/projects/1",

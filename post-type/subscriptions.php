@@ -427,6 +427,9 @@ class DT_Subscriptions_Base {
             <?php
             if ( ! empty( $subs ) ){
                 foreach ( $subs as $sub ){
+                    if ( $sub['type'] !== 'campaign_app' ){
+                        continue;
+                    }
                     if ( !isset( $sub['time_begin'] ) ){
                         continue;
                     }

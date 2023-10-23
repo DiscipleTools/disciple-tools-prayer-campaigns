@@ -244,12 +244,24 @@ class DT_Campaigns_Base {
             ];
 
             $fields['min_time_duration'] = [
-                'name' => 'Prayer Time Duration',
+                'name' => 'Minimum Prayer Time Duration',
                 'type' => 'key_select',
                 'default' => [
                     '15' => [ 'label' => '15 Minutes', 'default' => true ], //keep as first item
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
+                ],
+                'tile' => 'campaign_setup'
+            ];
+
+            $fields['enabled_frequencies'] = [
+                'name' => 'Enabled Frequencies',
+                'type' => 'multi_select',
+                'default' => [
+                    'daily' => [ 'label' => 'Daily' ],
+                    'weekly' => [ 'label' => 'Weekly' ],
+                    'monthly' => [ 'label' => 'Monthly' ],
+                    'pick' => [ 'label' => 'Pick Days' ],
                 ],
                 'tile' => 'campaign_setup'
             ];
@@ -1224,10 +1236,7 @@ class DT_Campaigns_Base {
      * @return array|false|WP_Error
      */
     public static function send_campaign_info(){
-        $is_reporting_enabled = DT_Campaign_Settings::get( 'p4m_participation', true );
-        if ( !$is_reporting_enabled ){
-            return false;
-        }
+        $p4m_participation = DT_Campaign_Settings::get( 'p4m_participation', true );
         $current_campaign = DT_Campaign_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 
@@ -1263,6 +1272,10 @@ class DT_Campaigns_Base {
         }, $languages );
 
         foreach ( $campaigns['posts'] as $campaign ){
+            if ( !isset( $campaign['start_date']['timestamp'] ) ){
+                continue;
+            }
+
             $min_time_duration = 15;
             if ( isset( $record['min_time_duration']['key'] ) ){
                 $min_time_duration = $record['min_time_duration']['key'];
@@ -1301,6 +1314,7 @@ class DT_Campaigns_Base {
             }
 
             $campaigns_to_send[] = [
+                'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
                 'name' => $is_current_campaign ? $porch_name : $name,
                 'campaign_name' => $campaign['name'],
 //                'status' => $campaign['status']['key'],
@@ -1328,7 +1342,8 @@ class DT_Campaigns_Base {
             ];
         }
 
-        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
+//        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
+        $url = 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
 
         if ( !empty( $campaigns_to_send ) ){
             return wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );

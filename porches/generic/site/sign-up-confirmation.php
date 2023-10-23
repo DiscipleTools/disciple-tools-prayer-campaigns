@@ -101,7 +101,7 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
                 color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
             }
         </style>
-        <div style='margin-top: 140px; padding:20px; font-size: 1rem; text-align: center' >
+        <div style='margin-top: 140px; padding:20px; font-size: 1.5rem; text-align: center' >
             <?php success_confirmation_section( home_url() ); ?>
         </div>
         <?php
