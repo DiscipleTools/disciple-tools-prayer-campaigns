@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-09-01T16:01:49+00:00\n"
+"POT-Creation-Date: 2023-10-18T10:15:10+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bengali (Bangladesh) <https://translate.disciple.tools/"
@@ -41,76 +41,76 @@ msgstr ""
 msgid "If you did not request this email, please ignore it."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:103
-#: campaign-functions/send-email-utility.php:170
+#: campaign-functions/send-email-utility.php:139
+#: campaign-functions/send-email-utility.php:207
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s %2$s থেকে %3$s"
 
-#: campaign-functions/send-email-utility.php:114
+#: campaign-functions/send-email-utility.php:150
 #, fuzzy
 msgid "Registered to pray with us!"
 msgstr "আমাদের সাথে প্রার্থনা করার জন্য নিবন্ধিত!"
 
-#: campaign-functions/send-email-utility.php:136
-#: campaign-functions/send-email-utility.php:203
-#: campaign-functions/send-email-utility.php:290
+#: campaign-functions/send-email-utility.php:171
+#: campaign-functions/send-email-utility.php:240
+#: campaign-functions/send-email-utility.php:327
 #, fuzzy
 msgid "Hello %s,"
 msgstr "হ্যালো %s,"
 
-#: campaign-functions/send-email-utility.php:138
+#: campaign-functions/send-email-utility.php:173
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr "শিষ্য তৈরির আন্দোলনের জন্য কৌশলগত প্রার্থনা"
 
-#: campaign-functions/send-email-utility.php:139
+#: campaign-functions/send-email-utility.php:174
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "এখানে আপনি প্রার্থনা করার প্রতিশ্রুতিবদ্ধ সময়গুলি রয়েছে:"
 
-#: campaign-functions/send-email-utility.php:141
-#: campaign-functions/send-email-utility.php:207
+#: campaign-functions/send-email-utility.php:176
+#: campaign-functions/send-email-utility.php:244
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "সময়গুলি দেখানো হয়েছে: %s সময় অনুসারে"
 
-#: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:214
+#: campaign-functions/send-email-utility.php:178
+#: campaign-functions/send-email-utility.php:251
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr "আপনার অ্যাকাউন্ট এবং সময় প্রতিশ্রুতি পরিচালনা করতে এখানে ক্লিক করুন"
 
-#: campaign-functions/send-email-utility.php:176
+#: campaign-functions/send-email-utility.php:213
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "%s এর জন্য"
 
-#: campaign-functions/send-email-utility.php:186
+#: campaign-functions/send-email-utility.php:223
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "নামাজের সময় অনুস্মারক!"
 
-#: campaign-functions/send-email-utility.php:204
-#: campaign-functions/send-email-utility.php:341
+#: campaign-functions/send-email-utility.php:241
+#: campaign-functions/send-email-utility.php:378
 #: porches/generic/site/stats.php:136
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "আমাদের সাথে প্রার্থনা করার জন্য আপনাকে ধন্যবাদ!"
 
-#: campaign-functions/send-email-utility.php:205
+#: campaign-functions/send-email-utility.php:242
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "এখানে আপনার আসন্ন নামাজের সময় আছে:"
 
-#: campaign-functions/send-email-utility.php:288
+#: campaign-functions/send-email-utility.php:325
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:291
+#: campaign-functions/send-email-utility.php:328
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -119,88 +119,88 @@ msgstr ""
 "আপনি আপনার শেষ প্রার্থনার জন্য 2 সপ্তাহের বাইরে আছেন। আপনি কি প্রার্থনা চালিয়ে "
 "যেতে চান?"
 
-#: campaign-functions/send-email-utility.php:292
+#: campaign-functions/send-email-utility.php:329
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "আরও প্রার্থনার সময়গুলির জন্য সাইন আপ করুন বা আপনার পুনরাবৃত্ত সময় এখানে প্রসারিত করুন:"
 
-#: campaign-functions/send-email-utility.php:294
+#: campaign-functions/send-email-utility.php:331
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:295
+#: campaign-functions/send-email-utility.php:332
 #, fuzzy
 msgid "Thank you"
 msgstr "ধন্যবাদ"
 
-#: campaign-functions/send-email-utility.php:364
-#: campaign-functions/send-email-utility.php:394
+#: campaign-functions/send-email-utility.php:401
+#: campaign-functions/send-email-utility.php:431
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "শিষ্য তৈরির আন্দোলনের জন্য কৌশলগত প্রার্থনা"
 
-#: campaign-functions/send-email-utility.php:366
-#: campaign-functions/send-email-utility.php:396
+#: campaign-functions/send-email-utility.php:403
+#: campaign-functions/send-email-utility.php:433
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement"
 msgstr "শিষ্য তৈরির আন্দোলনের জন্য কৌশলগত প্রার্থনা"
 
-#: campaign-functions/send-email-utility.php:371
-#: campaign-functions/send-email-utility.php:401
+#: campaign-functions/send-email-utility.php:408
+#: campaign-functions/send-email-utility.php:438
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:374
-#: campaign-functions/send-email-utility.php:404
+#: campaign-functions/send-email-utility.php:411
+#: campaign-functions/send-email-utility.php:441
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "%2$s-এ %1$s-এর জন্য প্রার্থনায় আমাদের সাথে যোগ দেওয়ার জন্য আপনাকে ধন্যবাদ৷"
 
-#: campaign-functions/send-email-utility.php:377
+#: campaign-functions/send-email-utility.php:414
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:380
+#: campaign-functions/send-email-utility.php:417
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:384
+#: campaign-functions/send-email-utility.php:421
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "একটি প্রার্থনার সময় নির্বাচন করুন"
 
-#: campaign-functions/send-email-utility.php:386
-#: campaign-functions/send-email-utility.php:422
+#: campaign-functions/send-email-utility.php:423
+#: campaign-functions/send-email-utility.php:459
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:407
+#: campaign-functions/send-email-utility.php:444
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:411
+#: campaign-functions/send-email-utility.php:448
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:418
+#: campaign-functions/send-email-utility.php:455
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:420
+#: campaign-functions/send-email-utility.php:457
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -254,183 +254,183 @@ msgid "days"
 msgstr "দিন"
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:270
+#: magic-links/subscription-management/subscription-management.php:275
 #, fuzzy
 msgid "My Prayer Times"
 msgstr "আমার নামাজের সময়"
 
-#: magic-links/subscription-management/subscription-management.php:108
+#: magic-links/subscription-management/subscription-management.php:114
 #: shortcodes/24hour.php:30 shortcodes/ongoing.php:71
 #, fuzzy
 msgid "Select a time"
 msgstr "একটি সময় নির্বাচন করুন"
 
-#: magic-links/subscription-management/subscription-management.php:109
+#: magic-links/subscription-management/subscription-management.php:115
 #: shortcodes/24hour.php:31
 #, fuzzy
 msgid "fully covered once"
 msgstr "সম্পূর্ণরূপে একবার আচ্ছাদিত"
 
-#: magic-links/subscription-management/subscription-management.php:110
+#: magic-links/subscription-management/subscription-management.php:116
 #: shortcodes/24hour.php:32
 #, fuzzy
 msgid "fully covered %1$s times"
 msgstr "সম্পূর্ণভাবে %1$s বার কভার করা হয়েছে"
 
-#: magic-links/subscription-management/subscription-management.php:111
+#: magic-links/subscription-management/subscription-management.php:117
 #: shortcodes/24hour.php:35 shortcodes/ongoing.php:75
 #, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%2$s মিনিটের জন্য %1$s।"
 
-#: magic-links/subscription-management/subscription-management.php:112
+#: magic-links/subscription-management/subscription-management.php:118
 #, fuzzy
 msgid "Extend for 3 months"
 msgstr "3 মাসের জন্য প্রসারিত করুন"
 
-#: magic-links/subscription-management/subscription-management.php:113
+#: magic-links/subscription-management/subscription-management.php:119
 #, fuzzy
 msgid "Change daily time"
 msgstr "প্রতিদিনের সময় পরিবর্তন করুন"
 
-#: magic-links/subscription-management/subscription-management.php:114
+#: magic-links/subscription-management/subscription-management.php:120
 #: shortcodes/24hour.php:36
 #, fuzzy
 msgctxt "80% covered"
 msgid "%s covered"
 msgstr "আচ্ছাদিত"
 
-#: magic-links/subscription-management/subscription-management.php:115
+#: magic-links/subscription-management/subscription-management.php:121
 #: shortcodes/24hour.php:37
 msgctxt "on 5 days"
 msgid "On %s days"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:116
+#: magic-links/subscription-management/subscription-management.php:122
 #: shortcodes/24hour.php:38
 msgctxt "and 5 more"
 msgid "and %s more"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:117
+#: magic-links/subscription-management/subscription-management.php:123
 #: shortcodes/24hour.php:39
 #, fuzzy
 msgid "Pray this time"
 msgstr "নামাজের সময়"
 
-#: magic-links/subscription-management/subscription-management.php:275
+#: magic-links/subscription-management/subscription-management.php:280
 #, fuzzy
 msgid "Your prayer times have been verified!"
 msgstr "আপনার নামাজের সময় যাচাই করা হয়েছে!"
 
-#: magic-links/subscription-management/subscription-management.php:285
+#: magic-links/subscription-management/subscription-management.php:290
 #: parts/components.php:175
 #, fuzzy
 msgid "Change your timezone:"
 msgstr "আপনার টাইমজোন পরিবর্তন করুন:"
 
-#: magic-links/subscription-management/subscription-management.php:302
-#: magic-links/subscription-management/subscription-management.php:356
-#: magic-links/subscription-management/subscription-management.php:418
-#: magic-links/subscription-management/subscription-management.php:477
-#: magic-links/subscription-management/subscription-management.php:523
-#: magic-links/subscription-management/subscription-management.php:547
-#: magic-links/subscription-management/subscription-management.php:563
-#: magic-links/subscription-management/subscription-management.php:619
+#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:361
+#: magic-links/subscription-management/subscription-management.php:423
+#: magic-links/subscription-management/subscription-management.php:482
+#: magic-links/subscription-management/subscription-management.php:528
+#: magic-links/subscription-management/subscription-management.php:552
+#: magic-links/subscription-management/subscription-management.php:568
+#: magic-links/subscription-management/subscription-management.php:624
 #: parts/components.php:196
 #, fuzzy
 msgid "Cancel"
 msgstr "বাতিল"
 
-#: magic-links/subscription-management/subscription-management.php:305
-#: magic-links/subscription-management/subscription-management.php:526
+#: magic-links/subscription-management/subscription-management.php:310
+#: magic-links/subscription-management/subscription-management.php:531
 #: parts/components.php:199
 #, fuzzy
 msgid "Select"
 msgstr "নির্বাচন করুন"
 
-#: magic-links/subscription-management/subscription-management.php:316
+#: magic-links/subscription-management/subscription-management.php:321
 #, fuzzy
 msgid "Add a Daily Prayer Time"
 msgstr "একটি দৈনিক প্রার্থনা সময় যোগ করুন"
 
-#: magic-links/subscription-management/subscription-management.php:319
+#: magic-links/subscription-management/subscription-management.php:324
 #, fuzzy
 msgid "Add Individual Prayer Times"
 msgstr "পৃথক প্রার্থনার সময় যোগ করুন"
 
-#: magic-links/subscription-management/subscription-management.php:321
+#: magic-links/subscription-management/subscription-management.php:326
 #, fuzzy
 msgid "Download Calendar"
 msgstr "ক্যালেন্ডার ডাউনলোড করুন"
 
-#: magic-links/subscription-management/subscription-management.php:324
+#: magic-links/subscription-management/subscription-management.php:329
 #: shortcodes/24hour.php:133
 #, fuzzy
 msgid "Help us cover these prayer times"
 msgstr "একটি প্রার্থনার সময় নির্বাচন করুন"
 
-#: magic-links/subscription-management/subscription-management.php:328
+#: magic-links/subscription-management/subscription-management.php:333
 #, fuzzy
 msgid "My commitments"
 msgstr "আমার অঙ্গীকার"
 
-#: magic-links/subscription-management/subscription-management.php:333
+#: magic-links/subscription-management/subscription-management.php:338
 #: shortcodes/24hour.php:173 shortcodes/ongoing.php:188
 #, fuzzy
 msgid "Prayer Time"
 msgstr "নামাজের সময়"
 
-#: magic-links/subscription-management/subscription-management.php:335
-#: magic-links/subscription-management/subscription-management.php:444
+#: magic-links/subscription-management/subscription-management.php:340
+#: magic-links/subscription-management/subscription-management.php:449
 #: parts/components.php:233 shortcodes/24hour.php:175
 #: shortcodes/ongoing.php:190
 #, fuzzy
 msgid "Daily Time"
 msgstr "দৈনিক সময়"
 
-#: magic-links/subscription-management/subscription-management.php:339
-#: magic-links/subscription-management/subscription-management.php:448
+#: magic-links/subscription-management/subscription-management.php:344
+#: magic-links/subscription-management/subscription-management.php:453
 #: parts/components.php:237 shortcodes/24hour.php:179
 #: shortcodes/ongoing.php:194
 #, fuzzy
 msgid "For how long"
 msgstr "কতদিনের জন্য"
 
-#: magic-links/subscription-management/subscription-management.php:349
-#: magic-links/subscription-management/subscription-management.php:470
+#: magic-links/subscription-management/subscription-management.php:354
+#: magic-links/subscription-management/subscription-management.php:475
 #, fuzzy
 msgid "Your new prayer times have been saved."
 msgstr "আপনার নতুন প্রার্থনা সময় সংরক্ষিত হয়েছে."
 
-#: magic-links/subscription-management/subscription-management.php:360
-#: magic-links/subscription-management/subscription-management.php:481
+#: magic-links/subscription-management/subscription-management.php:365
+#: magic-links/subscription-management/subscription-management.php:486
 #: parts/components.php:255 shortcodes/24hour.php:186
 #: shortcodes/ongoing.php:201
 #, fuzzy
 msgid "Confirm Times"
 msgstr "টাইমস নিশ্চিত করুন"
 
-#: magic-links/subscription-management/subscription-management.php:369
-#: magic-links/subscription-management/subscription-management.php:493
+#: magic-links/subscription-management/subscription-management.php:374
+#: magic-links/subscription-management/subscription-management.php:498
 #, fuzzy
 msgid "ok"
 msgstr "ঠিক আছে"
 
-#: magic-links/subscription-management/subscription-management.php:400
+#: magic-links/subscription-management/subscription-management.php:405
 #, fuzzy
 msgid "Close"
 msgstr "বন্ধ"
 
-#: magic-links/subscription-management/subscription-management.php:407
+#: magic-links/subscription-management/subscription-management.php:412
 #, fuzzy
 msgid "Delete Time"
 msgstr "নির্বাচিত সময়"
 
-#: magic-links/subscription-management/subscription-management.php:412
-#: magic-links/subscription-management/subscription-management.php:541
-#: magic-links/subscription-management/subscription-management.php:611
+#: magic-links/subscription-management/subscription-management.php:417
+#: magic-links/subscription-management/subscription-management.php:546
+#: magic-links/subscription-management/subscription-management.php:616
 msgid ""
 "Need to cancel? We get it! But wait!\n"
 "If your prayer commitment is scheduled to start in less than 48-hours, "
@@ -439,51 +439,51 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:421
-#: magic-links/subscription-management/subscription-management.php:550
-#: magic-links/subscription-management/subscription-management.php:602
-#: magic-links/subscription-management/subscription-management.php:622
+#: magic-links/subscription-management/subscription-management.php:426
+#: magic-links/subscription-management/subscription-management.php:555
+#: magic-links/subscription-management/subscription-management.php:607
+#: magic-links/subscription-management/subscription-management.php:627
 #, fuzzy
 msgid "Delete"
 msgstr "মুছে ফেলুন"
 
-#: magic-links/subscription-management/subscription-management.php:435
+#: magic-links/subscription-management/subscription-management.php:440
 #: parts/components.php:223
 #, fuzzy
 msgid "Select a day and choose a time"
 msgstr "একটি দিন নির্বাচন করুন এবং একটি সময় চয়ন করুন"
 
-#: magic-links/subscription-management/subscription-management.php:442
+#: magic-links/subscription-management/subscription-management.php:447
 #: parts/components.php:231
 #, fuzzy
 msgid "Select a prayer time"
 msgstr "একটি প্রার্থনার সময় নির্বাচন করুন"
 
-#: magic-links/subscription-management/subscription-management.php:452
+#: magic-links/subscription-management/subscription-management.php:457
 #: parts/components.php:241
 #, fuzzy
 msgid "Add prayer time"
 msgstr "নামাজের সময় যোগ করুন"
 
-#: magic-links/subscription-management/subscription-management.php:453
+#: magic-links/subscription-management/subscription-management.php:458
 #: parts/components.php:242
 #, fuzzy
 msgid "Time added"
 msgstr "সময় যোগ করা হয়েছে"
 
-#: magic-links/subscription-management/subscription-management.php:460
+#: magic-links/subscription-management/subscription-management.php:465
 #: parts/components.php:71 parts/components.php:249
 #, fuzzy
 msgid "Selected Times"
 msgstr "নির্বাচিত সময়"
 
-#: magic-links/subscription-management/subscription-management.php:462
+#: magic-links/subscription-management/subscription-management.php:467
 #: parts/components.php:251
 #, fuzzy
 msgid "No selected Time"
 msgstr "কোনো নির্বাচিত সময় নেই"
 
-#: magic-links/subscription-management/subscription-management.php:485
+#: magic-links/subscription-management/subscription-management.php:490
 #: parts/components.php:28 parts/components.php:115 parts/components.php:220
 #: shortcodes/24hour.php:143 shortcodes/24hour.php:166
 #: shortcodes/ongoing.php:160 shortcodes/ongoing.php:183
@@ -491,73 +491,73 @@ msgstr "কোনো নির্বাচিত সময় নেই"
 msgid "Back"
 msgstr "পিছনে"
 
-#: magic-links/subscription-management/subscription-management.php:518
+#: magic-links/subscription-management/subscription-management.php:523
 #, fuzzy
 msgid "Choose a different time:"
 msgstr "একটি ভিন্ন সময় চয়ন করুন:"
 
-#: magic-links/subscription-management/subscription-management.php:535
+#: magic-links/subscription-management/subscription-management.php:540
 #, fuzzy
 msgid "Delete all"
 msgstr "সব মুছে ফেলুন"
 
-#: magic-links/subscription-management/subscription-management.php:559
+#: magic-links/subscription-management/subscription-management.php:564
 #, fuzzy
 msgid "Extend"
 msgstr "প্রসারিত করা"
 
-#: magic-links/subscription-management/subscription-management.php:561
+#: magic-links/subscription-management/subscription-management.php:566
 #, fuzzy
 msgid "Extend my prayer commitments until:"
 msgstr "আমার প্রার্থনা প্রতিশ্রুতি প্রসারিত করুন যতক্ষণ না:"
 
-#: magic-links/subscription-management/subscription-management.php:566
+#: magic-links/subscription-management/subscription-management.php:571
 #: parts/components.php:31
 #, fuzzy
 msgid "Confirm"
 msgstr "নিশ্চিত করুন"
 
-#: magic-links/subscription-management/subscription-management.php:585
+#: magic-links/subscription-management/subscription-management.php:590
 #, fuzzy
 msgid "Profile Settings"
 msgstr "প্রোফাইল সেটিংস"
 
-#: magic-links/subscription-management/subscription-management.php:586
+#: magic-links/subscription-management/subscription-management.php:591
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "প্রার্থনা সময় বিজ্ঞপ্তি পান"
 
-#: magic-links/subscription-management/subscription-management.php:588
+#: magic-links/subscription-management/subscription-management.php:593
 #, fuzzy
 msgid "Notifications allowed"
 msgstr "বিজ্ঞপ্তি অনুমোদিত"
 
-#: magic-links/subscription-management/subscription-management.php:589
+#: magic-links/subscription-management/subscription-management.php:594
 #, fuzzy
 msgid "Notifications not allowed"
 msgstr "বিজ্ঞপ্তি অনুমোদিত নয়"
 
-#: magic-links/subscription-management/subscription-management.php:593
+#: magic-links/subscription-management/subscription-management.php:598
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "উন্নত সেটিংস"
 
-#: magic-links/subscription-management/subscription-management.php:600
+#: magic-links/subscription-management/subscription-management.php:605
 #, fuzzy
 msgid "Delete this profile and all the scheduled prayer times?"
 msgstr "এই প্রোফাইল এবং সমস্ত নির্ধারিত নামাজের সময় মুছে ফেলবেন?"
 
-#: magic-links/subscription-management/subscription-management.php:605
+#: magic-links/subscription-management/subscription-management.php:610
 #, fuzzy
 msgid "Are you sure you want to delete your profile?"
 msgstr "আপনি কি আপনার প্রোফাইল মুছে ফেলার বিষয়ে নিশ্চিত?"
 
-#: magic-links/subscription-management/subscription-management.php:607
+#: magic-links/subscription-management/subscription-management.php:612
 #, fuzzy
 msgid "This can not be undone."
 msgstr "এটা অসম্পূর্ণ থাকতে পারে না."
 
-#: magic-links/subscription-management/subscription-management.php:638
+#: magic-links/subscription-management/subscription-management.php:643
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "এই সদস্যতা শেষ হয়েছে বা সঠিকভাবে কনফিগার করা হয়নি।"
