@@ -159,20 +159,37 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         } elseif ( isset( $campaign['campaign_strings']['en_US']['reminder_content'] ) ){
             $calendar_description = $campaign['campaign_strings']['en_US']['reminder_content'];
         }
-        $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
 
+        $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
         $my_commitments_reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
+        $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $post_id, $campaign_id );
+
         $my_commitments = [];
 
-        foreach ( $my_commitments_reports as $commitments_report ){
-            $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
-            $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
+        // Package $my_commitments accordingly, based on overall commitment type.
+        foreach ( $my_commitments_reports as $commitments_report ) {
+            if ( $commitments_report['type'] === 'selected_time' ) {
+                $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
+                $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
+
+                $my_commitments[] = [
+                    'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T' . gmdate( 'His', $commitments_report['time_begin'] ),
+                    'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T' . gmdate( 'His', $commitments_report['time_end'] ),
+                    'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
+                    'location' => $commitments_report['label'] ?? '',
+                ];
+            }
+        }
+
+        foreach ( $my_recurring_signups as $recurring_signup ) {
+            $type = ( $recurring_signup['type'] === 'daily' ) ? 'DAILY' : 'WEEKLY';
+            $time_begin = $recurring_signup['first'] + ( $calendar_timezone_offset * 3600 );
+            $time_end = ( $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 ) ) + ( $calendar_timezone_offset * 3600 );
 
             $my_commitments[] = [
-                'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T'. gmdate( 'His', $commitments_report['time_begin'] ),
-                'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T'. gmdate( 'His', $commitments_report['time_end'] ),
-                'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
-                'location' => $commitments_report['label'],
+                'time_begin' => gmdate( 'Ymd', $time_begin ) . 'T'. gmdate( 'His', $time_begin ),
+                'time_end' => gmdate( 'Ymd', $time_end ) . 'T'. gmdate( 'His', $time_end ),
+                'rrule' => 'FREQ='. $type .';UNTIL=' . gmdate( 'Ymd', $recurring_signup['last'] ) . 'T'. gmdate( 'His', $recurring_signup['last'] )
             ];
         }
 
@@ -199,6 +216,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $content .= 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
             $content .= 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
             $content .= 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
+
+            if ( isset( $mc['rrule'] ) ) {
+                $content .= 'RRULE:' . esc_html( $mc['rrule'] ) . "\r\n";
+            }
+
             $content .= 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
             $content .= 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
             $content .= "STATUS:CONFIRMED\r\n";
