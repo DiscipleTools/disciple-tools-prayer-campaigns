@@ -1137,7 +1137,7 @@ export class campaignSubscriptions extends LitElement {
       recurring_extend.selected_times = recurring_extend.selected_times.filter(c=>!existing_times.includes(c.time))
 
       window.campaign_scripts.submit_prayer_times( recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(data=>{
-        window.location.reload() //@todo replace with event
+        // window.location.reload() //@todo replace with event
       })
     }
   }

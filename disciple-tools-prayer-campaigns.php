@@ -89,6 +89,7 @@ add_action( 'after_setup_theme', function() : void {
  * We can safely run functions regarding registered porches at 60
  */
 function dt_after_all_porches_have_loaded() {
+    //@todo only if loading front page
     if ( class_exists( 'DT_Porch_Selector' ) ){
         $porch_selector = DT_Porch_Selector::instance();
 
@@ -146,6 +147,7 @@ class DT_Prayer_Campaigns {
         require_once( 'classes/dt-porch-selector.php' );
 
         require_once( 'porches/loader.php' );
+        require_once( 'classes/dt-campaign-landing-settings.php' );
 
         require_once( 'magic-links/campaign-magic-link.php' );
         require_once( 'magic-links/ongoing/ongoing.php' );

@@ -1,8 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
-{
+class DT_Generic_Porch_Stats {
     public $page_title = 'Campaign Stats';
     public $root = PORCH_LANDING_ROOT;
     public $type = 'stats';
@@ -18,33 +17,14 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
     } // End instance()
 
     public function __construct() {
-        parent::__construct();
         add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
-
-        /**
-         * tests if other URL
-         */
-        $url = dt_get_url_path();
-        $length = strlen( $this->root . '/' . $this->type );
-        if ( substr( $url, 0, $length ) !== $this->root . '/' . $this->type ) {
-            return;
-        }
-        /**
-         * tests magic link parts are registered and have valid elements
-         */
-        if ( !$this->check_parts_match( false ) ){
-            return;
-        }
 
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
 
-        require_once( 'landing-enqueue.php' );
-        require_once( 'enqueue.php' );
-        add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
-        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
+        add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 100, 1 );
+        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 100, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 99 );
-        add_filter( 'language_attributes', [ $this, 'dt_custom_dir_attr' ] );
     }
     public function dt_custom_dir_attr( $lang ){
         return dt_campaign_custom_dir_attr( $lang );
@@ -238,7 +218,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                             <?php else :
                                 $selected_campaign_magic_link_settings['section'] = 'calendar';
-                                echo dt_24hour_campaign_shortcode( //phpcs:ignore
+                                echo dt_ongoing_campaign_calendar( //phpcs:ignore
                                     $selected_campaign_magic_link_settings
                                 );
                             endif;

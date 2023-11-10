@@ -184,6 +184,16 @@ class DT_Campaigns_Base {
             ];
             // end basic framework fields
 
+            $fields['campaign_url'] = [
+                'name' => 'Campaign URL',
+                'description' => 'The URL that will be used as the link for the logo on the campaign landing page.',
+                'type' => 'text',
+                'tile' => 'details',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
+                'in_create_form' => true,
+                'show_in_table' => 20,
+            ];
+
 
             $fields['languages'] = [
                 'name' => 'Subscriber Preferred Language',
@@ -337,6 +347,18 @@ class DT_Campaigns_Base {
 
             if ( isset( $fields['tags'] ) ){
                 $fields['tags']['tile'] = 'details';
+            }
+
+            //porch fields @todo migrate
+            $porches = DT_Porch_Selector::instance()->get_porch_loaders();
+            $fields['porch_type'] = [
+                'name' => 'Porch Type',
+                'type' => 'key_select',
+                'default' => [],
+                'tile' => 'status'
+            ];
+            foreach ( $porches as $porch ){
+                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'] ];
             }
         }
 
@@ -724,7 +746,7 @@ class DT_Campaigns_Base {
                         <?php esc_html_e( 'Shortcodes', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
                     <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
-                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( home_url( $record['name'] ) ); ?>"><?php esc_html_e( 'View Landing Page', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( DT_Campaign_Landing_Settings::get_landing_page_url( $record['ID'] ) ); ?>"><?php esc_html_e( 'View Landing Page', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </div>
                 <?php
             }
@@ -1031,7 +1053,7 @@ class DT_Campaigns_Base {
                 $blocks += $day['time_slot_count'];
             }
 
-            $percent = $blocks_covered / $blocks * 100;
+            $percent = $blocks ? ( $blocks_covered / $blocks * 100 ) : 0;
         }
         return round( $percent, 2 );
     }

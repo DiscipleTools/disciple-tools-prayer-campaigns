@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Settings {
 
-    private static $values_option = 'dt_campaign_porch_settings';
-    private static $translations_option = 'dt_campaign_porch_translations';
+    private static $values_option = 'dt_campaign_porch_settings_';
+    private static $translations_option = 'dt_campaign_porch_translations_';
 
     /**
      * Get all of the settings for the porch
@@ -74,8 +74,17 @@ class DT_Porch_Settings {
         return array_filter( $settings, $match_settings_with_tab );
     }
 
+    private function current_campaign_id(){
+
+    }
+
     private static function get_values() {
-        return get_option( self::$values_option, [] );
+//        @todo change to get and save
+        $selected_campaign = sanitize_key( wp_unslash( !empty( $_GET['campaign'] ) ? $_GET['campaign'] : null ) );
+        if ( empty( $selected_campaign ) ){
+            return [];
+        }
+        return get_option( self::$values_option . $selected_campaign, [] );
     }
 
     private static function get_translations() {
@@ -276,6 +285,7 @@ class DT_Porch_Settings {
                 'type' => 'text',
                 'tab' => 'settings',
             ],
+
             'default_language' => [
                 'label' => 'Default Language',
                 'default' => 'en_US',
@@ -283,6 +293,7 @@ class DT_Porch_Settings {
                 'type' => 'default_language_select',
                 'tab' => 'settings',
             ],
+
         ];
 
         $keep_enabled_settings = function ( $setting ) {

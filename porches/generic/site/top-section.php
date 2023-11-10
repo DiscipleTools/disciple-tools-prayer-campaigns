@@ -5,7 +5,6 @@ $lang = dt_campaign_get_current_lang();
 dt_campaign_add_lang_to_cookie( $lang );
 dt_campaign_set_translation( $lang );
 
-$porch_fields = DT_Porch_Settings::settings();
 $campaign_fields = DT_Campaign_Settings::get_campaign();
 $langs = dt_campaign_list_languages();
 
@@ -45,7 +44,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( $porch_fields['logo_link_url']['value'] ?: site_url() ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ) ?></a>
+                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?? site_url() ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ) ?></a>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>
@@ -77,9 +76,9 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
             <div class="col-md-12">
                 <div class="contents content-height text-center">
 
-                    <?php if ( isset( $porch_fields['logo_url']['value'] ) && ! empty( $porch_fields['logo_url']['value'] ) ) : ?>
+                    <?php if ( !empty( $campaign_fields['logo_url'] ) ) : ?>
 
-                        <img class="logo-image" src="<?php echo esc_url( $porch_fields['logo_url']['value'] ) ?>" alt=""  />
+                        <img class="logo-image" src="<?php echo esc_url( $campaign_fields['logo_url'] ) ?>" alt=""  />
 
                     <?php else : ?>
 

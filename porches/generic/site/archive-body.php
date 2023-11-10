@@ -56,7 +56,7 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
         <?php if ( $today->found_posts ) : ?>
 
         <div class='row' style='margin-top: 30px'>
-            <form onsubmit='submit_group_count();return false;' id='form-content'>
+            <form onsubmit='event.preventDefault(); submit_group_count();return false;' id='form-content'>
                 <div class='section-header col'>
                     <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
                         data-wow-delay='0.3s'><?php echo esc_html( __( 'Praying as a group?', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
@@ -92,10 +92,18 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                         return false;
                     }
                     let number = $('#prayer_group_size').val() || 1
-                    return window.makeRequest('POST', '/group-count', {
-                        parts: jsObject.parts,
-                        number,
-                    }, jsObject.parts.root + '/v1/fuel').done(function (data) {
+                    let options = {
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: JSON.stringify({
+                          parts: jsObject.parts,
+                          number,
+                          campaign_id: <?php echo esc_html( $campaign['ID'] ) ?>,
+                        }),
+                        url: '<?php echo esc_html( rest_url() ) ?>campaign_app/v1/group-count',
+                    }
+                    jQuery.ajax(options).done(function (data) {
                         $('#prayer_group_size-spinner').hide()
                         $('#group-size-thank-you').show()
                         $('#prayer-group-size-button').attr('disabled', true)

@@ -150,7 +150,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
                         <?php
 
-                        $this->box_select_porch();
+//                        $this->box_select_porch();
 
                         if ( DT_Porch_Selector::instance()->has_selected_porch() ) {
                             $this->box_campaign();
@@ -274,6 +274,15 @@ class DT_Prayer_Campaigns_Campaigns {
 
     private function box_select_porch() {
         $porches = DT_Porch_Selector::instance()->get_porch_loaders();
+        $editing_campaign = isset( $_GET['campaign'] ) ? sanitize_text_field( wp_unslash( $_GET['campaign'] ) ) : null;
+
+        $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
+        if ( empty( $editing_campaign ) ){
+//            return;
+        }
+        $campaign = DT_Campaign_Settings::get_campaign();
+//        $campaign = DT_Posts::get_post( 'campaigns', $editing_campaign );
+        $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' )
         ?>
 
         <table class="widefat striped">
@@ -299,33 +308,33 @@ class DT_Prayer_Campaigns_Campaigns {
 
                             <table class="widefat">
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <label for="select_porch"><?php echo esc_html( 'Select Landing Page Type' ) ?></label>
-                                        </td>
-                                        <td>
-                                            <select name="select_porch" id="select_porch" <?php selected( DT_Porch_Selector::instance()->get_selected_porch_id() ) ?>>
-                                                    <option
-                                                        <?php echo !isset( $settings['selected_porch'] ) ? 'selected' : '' ?>
-                                                        value=""
-                                                    >
-                                                        <?php esc_html_e( 'None', 'disciple-tools-prayer-campaign' ) ?>
-                                                    </option>
-
-                                                <?php foreach ( $porches as $id => $porch ): ?>
-
-                                                    <option
-                                                        value="<?php echo esc_html( $id ) ?>"
-                                                        <?php echo DT_Porch_Selector::instance()->get_selected_porch_id() && DT_Porch_Selector::instance()->get_selected_porch_id() === $id ? 'selected' : '' ?>
-                                                    >
-                                                        <?php echo esc_html( $porch['label'] ) ?>
-                                                    </option>
-
-                                                <?php endforeach; ?>
-
-                                            </select>
-                                        </td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            <label for="select_porch">--><?php //echo esc_html( 'Select Landing Page Type' ) ?><!--</label>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <select name="select_porch" id="select_porch" --><?php //selected( DT_Porch_Selector::instance()->get_selected_porch_id() ) ?><!-->-->
+<!--                                                    <option-->
+<!--                                                        --><?php //echo !isset( $settings['selected_porch'] ) ? 'selected' : '' ?>
+<!--                                                        value=""-->
+<!--                                                    >-->
+<!--                                                        --><?php //esc_html_e( 'None', 'disciple-tools-prayer-campaign' ) ?>
+<!--                                                    </option>-->
+<!---->
+<!--                                                --><?php //foreach ( $porches as $id => $porch ): ?>
+<!---->
+<!--                                                    <option-->
+<!--                                                        value="--><?php //echo esc_html( $id ) ?><!--"-->
+<!--                                                        --><?php //echo DT_Porch_Selector::instance()->get_selected_porch_id() && DT_Porch_Selector::instance()->get_selected_porch_id() === $id ? 'selected' : '' ?>
+<!--                                                    >-->
+<!--                                                        --><?php //echo esc_html( $porch['label'] ) ?>
+<!--                                                    </option>-->
+<!---->
+<!--                                                --><?php //endforeach; ?>
+<!---->
+<!--                                            </select>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     <tr>
 
                                         <td>Landing Page Title</td>
@@ -410,26 +419,30 @@ class DT_Prayer_Campaigns_Campaigns {
                             <!-- Box -->
                             <table class="widefat striped">
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            Select Campaign
-                                        </td>
-                                        <td>
-                                            <select name="selected_campaign">
-                                                <?php $this->campaign_options( $fields['ID'] ) ?>
-                                            </select>
-                                            <button class="button float-right" type="submit">Update</button>
-                                            <br>
-                                            <br>
-                                            <a href="<?php echo esc_html( site_url( '/campaigns' ) ); ?>" target="_blank" style="margin: 10px">See campaigns list</a>
-                                            <a href="<?php echo esc_html( site_url( '/campaigns/new' ) ); ?>"  target="_blank" >Create a campaign</a>
-                                            <br>
-                                        </td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            Select Campaign (@todo remove)-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <select name="selected_campaign">-->
+<!--                                                --><?php //$this->echo_my_campaigns_select_options( $fields['ID'] ) ?>
+<!--                                            </select>-->
+<!--                                            <button class="button float-right" type="submit">Update</button>-->
+<!--                                            <br>-->
+<!--                                            <br>-->
+<!--                                            <a href="--><?php //echo esc_html( site_url( '/campaigns' ) ); ?><!--" target="_blank" style="margin: 10px">See campaigns list</a>-->
+<!--                                            <a href="--><?php //echo esc_html( site_url( '/campaigns/new' ) ); ?><!--"  target="_blank" >Create a campaign</a>-->
+<!--                                            <br>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     <?php if ( ! empty( $fields['ID'] ) ) : ?>
                                         <tr>
                                             <td>Status</td>
                                             <td><?php echo esc_html( isset( $fields['status']['label'] ) ? $fields['status']['label'] : '' ); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Porch Type</td>
+                                            <td><?php echo esc_html( isset( $fields['porch_type']['label'] ) ? $fields['porch_type']['label'] : '' ); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Campaign Type</td>
@@ -511,7 +524,7 @@ class DT_Prayer_Campaigns_Campaigns {
         <?php
     }
 
-    public static function campaign_options( $selected_id ) {
+    public static function echo_my_campaigns_select_options( $selected_id ) {
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active', 'pre_signup', 'inactive' ] ] );
         if ( is_wp_error( $campaigns ) ){
             $campaigns = [ 'posts' => [] ];

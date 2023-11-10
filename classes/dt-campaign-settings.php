@@ -9,6 +9,7 @@ class DT_Campaign_Settings {
     private static $settings_key = 'dt_prayer_campaign_settings';
 
     private static function get_all() {
+//        $campaigns = self::get_campaign();
         return get_option( self::$settings_key, [] );
     }
 
@@ -41,9 +42,13 @@ class DT_Campaign_Settings {
     }
 
     public static function get_campaign( $selected_campaign = null ) {
-
         if ( $selected_campaign === null ) {
-            $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
+            if ( isset( $_GET['campaign'] ) ){
+                $selected_campaign = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+            }
+            if ( empty( $selected_campaign ) ){
+                $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
+            }
         }
 
         if ( empty( $selected_campaign ) ) {

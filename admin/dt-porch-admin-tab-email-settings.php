@@ -54,11 +54,8 @@ class DT_Porch_Admin_Tab_Email_Settings {
         /* If no campaign is selected then show the message */
         /* If a campaign is selected */
 
-        $this->process_select_campaign();
         $this->process_email_settings();
         $this->process_campaign_email_content_settings();
-
-        $this->campaign_selector();
 
         $this->box_email_settings();
 
@@ -66,14 +63,6 @@ class DT_Porch_Admin_Tab_Email_Settings {
             DT_Porch_Admin_Tab_Base::message_box( 'Email Settings', 'You need to select a campaign above to start editing email settings' );
         } else {
             $this->email_content_settings_box();
-        }
-    }
-
-    private function process_select_campaign() {
-        if ( isset( $_POST['campaign_selection_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['campaign_selection_nonce'] ) ), 'campaign_selection' ) ) {
-            if ( isset( $_POST['campaign-selection'] ) ) {
-                $this->selected_campaign = sanitize_text_field( wp_unslash( $_POST['campaign-selection'] ) );
-            }
         }
     }
 
@@ -108,31 +97,6 @@ class DT_Porch_Admin_Tab_Email_Settings {
             DT_Porch_Settings::update_values( [ 'reminder_content_disable_fuel' => $disable_fuel ] );
 
         }
-    }
-
-    private function campaign_selector() {
-        ?>
-        <form method="post" id="campaign-selection-form">
-            <?php wp_nonce_field( 'campaign_selection', 'campaign_selection_nonce' ) ?>
-            <table class="widefat striped metabox-table">
-                <thead>
-                    <tr>
-                        <th>Select Campaign to edit the email settings</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <select name="campaign-selection" id="campaign-selection" onchange="this.form.submit()">
-                                <?php DT_Prayer_Campaigns_Campaigns::campaign_options( $this->selected_campaign ) ?>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        <br>
-        <?php
     }
 
     /**

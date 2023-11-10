@@ -77,8 +77,10 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     public static function get_prayer_fuel_permalink( $post ){
         $public_key = get_post_meta( $post->ID, PORCH_LANDING_META_KEY, true );
+        $linked_campaign = get_post_meta( $post->ID, 'linked_campaign', true );
+        $campaign_url = get_post_meta( $linked_campaign, 'campaign_url', true );
         $lang = get_post_meta( $post->ID, 'post_language', true );
-        return trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key . '?lang=' . $lang;
+        return trailingslashit( site_url() ) . ( $campaign_url ?? PORCH_LANDING_ROOT ) . '/' . PORCH_LANDING_TYPE . '/' . $public_key . '?lang=' . $lang;
     }
 
     public function meta_box_custom_permalink( $post ) {

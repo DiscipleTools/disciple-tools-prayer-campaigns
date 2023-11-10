@@ -91,8 +91,13 @@ class DT_Prayer_Campaigns_Menu {
                 $tab = 'dt_prayer_fuel';
             }
         }
+        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign_url_part = '';
+        if ( !empty( $campaign['ID'] ) ){
+            $campaign_url_part .= '&campaign=' . $campaign['ID'];
+        }
 
-        $link = 'admin.php?page='.$this->token.'&tab=';
+        $link = 'admin.php?page='. $this->token . $campaign_url_part . '&tab=';
 
 
         switch ( $tab ) {
@@ -164,6 +169,8 @@ class DT_Prayer_Campaigns_Menu {
                 <?php $this->has_selected_porch() && $porch_admin->tab_headers( $link ); ?>
 
             </h2>
+            <?php $this->campaign_selector(); ?>
+
 
             <?php
             switch ( $tab ) {
@@ -199,10 +206,48 @@ class DT_Prayer_Campaigns_Menu {
 
                 $porch_admin->tab_content();
             }
+
             ?>
 
         </div>
 
+
+
+        <?php
+    }
+
+    public function campaign_selector(){
+        $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+        //todo set default campaign
+        $campaign = DT_Campaign_Settings::get_campaign();
+        $tab = sanitize_key( wp_unslash( !empty( $_GET['tab'] ) ? $_GET['tab'] : 'campaigns' ) );
+        $landing_page_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
+        ?>
+
+        <br>
+        <form method="GET" >
+            <input type="hidden" name="page" value="dt_prayer_campaigns"/>
+            <input type="hidden" name="tab" value="<?php echo esc_html( $tab ); ?>"/>
+
+            <table class="widefat striped metabox-table">
+                <thead>
+                <tr>
+                    <th>Select Campaign to edit settings</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <select name="campaign" id="campaign-selection" onchange="this.form.submit()">
+                            <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign['ID'] ) ?>
+                        </select>
+                        <a href="<?php echo esc_html( $landing_page_url ); ?>">Show Landing Page</a> |
+                        <a href="<?php echo esc_html( site_url() . '/campaigns/' . $campaign['ID'] ); ?>">Edit Campaign</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
         <?php
     }
 

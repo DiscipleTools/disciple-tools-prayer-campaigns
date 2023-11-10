@@ -16,17 +16,17 @@ class DT_Generic_Porch {
         $this->child_porch_dir = $child_porch_dir;
 
         require_once __DIR__ . '/site/functions.php';
-        $fields = DT_Porch_Settings::settings();
+        $fields = DT_Campaign_Settings::get_campaign();
         if ( ! defined( 'PORCH_TITLE' ) ) {
-            $title = $fields['title']['value'] ?? '24/7 Prayer';
+            $title = $fields['title'] ?? '24/7 Prayer';
             define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
         }
 
         // Set Default Language
         $default_language = 'en_US';
 
-        if ( isset( $fields['default_language'] ) && ! empty( $fields['default_language']['value'] ) ) {
-            $default_language = $fields['default_language']['value'];
+        if ( !empty( $fields['default_language']['key'] ) ) {
+            $default_language = $fields['default_language']['key'];
         }
 
         if ( ! defined( 'PORCH_DEFAULT_LANGUAGE' ) ) {
@@ -35,15 +35,15 @@ class DT_Generic_Porch {
 
         $theme_manager = new DT_Porch_Theme();
         $theme = $theme_manager->get_default_theme();
-        if ( isset( $fields['theme_color']['value'] ) && ! empty( $fields['theme_color']['value'] ) && ! defined( 'PORCH_COLOR_SCHEME' ) ) {
-            $theme_name = $fields['theme_color']['value'];
+        if ( !empty( $fields['theme_color']['key'] ) && !defined( 'PORCH_COLOR_SCHEME' ) ) {
+            $theme_name = $fields['theme_color']['key'];
             $theme = $theme_manager->get_theme( $theme_name );
         }
 
-        if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ) {
+        if ( !empty( $fields['custom_theme_color'] ) ) {
             $theme = [];
             $theme['name'] = 'custom';
-            $theme['color'] = $fields['custom_theme_color']['value'];
+            $theme['color'] = $fields['custom_theme_color'];
         }
         if ( !defined( 'PORCH_COLOR_SCHEME' ) ) {
             define( 'PORCH_COLOR_SCHEME', $theme['name'] );
@@ -53,11 +53,11 @@ class DT_Generic_Porch {
         }
 
         // MICROSITE Magic Links
-        require_once( 'site/home.php' );
-        require_once( 'site/archive.php' );
+//        require_once( 'site/home.php' );
+//        require_once( 'site/archive.php' );
         require_once( 'site/stats.php' );
-        require_once( 'site/landing.php' );
-        require_once( 'site/rest.php' );
+//        require_once( 'site/landing.php' );
+//        require_once( 'site/rest.php' );
         require_once( 'site/sign-up-confirmation.php' );
         require_once( 'site/404.php' );
 

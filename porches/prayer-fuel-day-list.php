@@ -74,7 +74,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         foreach ( $days as $day ) {
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [
-                    [ 'ID' => null, 'day' => $day ],
+                    [ 'ID' => null, 'day' => $day, 'campaign' => $campaign['ID'] ],
                 ];
             }
         }
@@ -193,6 +193,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     $translated_languages[$lang][] = $post;
                 }
 
+                $campaign = DT_Campaign_Settings::get_campaign();
+
                 foreach ( $languages as $code => $language ) {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );
                     $posts_in_language = $translated_languages[$code] ?? [];
@@ -206,6 +208,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                         $id = $posts_in_language[0]['ID'];
                         $link = "post.php?post=$id&action=edit";
                     }
+                    $link .= '&campaign=' . $campaign['ID']
                     ?>
 
                     <?php if ( count( $posts_in_language ) < 2 ): ?>
