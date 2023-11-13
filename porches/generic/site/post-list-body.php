@@ -18,8 +18,8 @@ if ( $lang === 'en_US' ){
     $lang_query['relation'] = 'OR';
 }
 
-$todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ) );
-$campaign = DT_Campaign_Settings::get_campaign();
+$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ) );
+$campaign = DT_Campaign_Landing_Settings::get_campaign();
 
 $meta_query = [
    'relation' => 'AND',
@@ -102,7 +102,7 @@ if ( empty( $list->posts ) ){
             foreach ( $list->posts as $item ) :
 
                 $campaign_day = get_post_meta( $item->ID, 'day', true );
-                $date = DT_Campaign_Settings::date_of_campaign_day( $campaign_day );
+                $date = DT_Campaign_Fuel::date_of_campaign_day( $campaign_day );
 
                 if ( in_array( $campaign_day, $days_displayed ) || ( isset( $todays_campaign_day ) && $campaign_day === $todays_campaign_day ) ) {
                     continue;

@@ -16,7 +16,7 @@ class DT_Generic_Porch {
         $this->child_porch_dir = $child_porch_dir;
 
         require_once __DIR__ . '/site/functions.php';
-        $fields = DT_Campaign_Settings::get_campaign();
+        $fields = DT_Campaign_Landing_Settings::get_campaign();
         if ( ! defined( 'PORCH_TITLE' ) ) {
             $title = $fields['title'] ?? '24/7 Prayer';
             define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
@@ -55,7 +55,7 @@ class DT_Generic_Porch {
         // MICROSITE Magic Links
 //        require_once( 'site/home.php' );
 //        require_once( 'site/archive.php' );
-        require_once( 'site/stats.php' );
+//        require_once( 'site/stats.php' );
 //        require_once( 'site/landing.php' );
 //        require_once( 'site/rest.php' );
         require_once( 'site/sign-up-confirmation.php' );

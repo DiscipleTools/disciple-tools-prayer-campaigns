@@ -84,9 +84,9 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
      * extend or overload this function.
      */
     public function load_porch_settings() {
-        require_once __DIR__ . '/dt-generic-porch-settings.php';
+        require_once __DIR__ . '/dt-generic-porch-strings.php';
 
-        new DT_Generic_Porch_Settings();
+        new DT_Generic_Porch_Strings();
     }
 
     public function register_porch() {

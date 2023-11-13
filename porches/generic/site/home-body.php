@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 $lang = dt_campaign_get_current_lang();
 
 $porch_fields = DT_Porch_Settings::settings();
-$campaign_fields = DT_Campaign_Settings::get_campaign();
+$campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
 global $allowedtags;
 
 if ( empty( $campaign_fields ) ): ?>
@@ -148,7 +148,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <?php $days_in_campaign = DT_Campaign_Settings::total_days_in_campaign();?>
+            <?php $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign();?>
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">

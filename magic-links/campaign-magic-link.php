@@ -61,6 +61,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         add_action( 'wp_print_styles', [ $this, 'print_styles' ], 1500 ); // authorizes styles
 
         add_action( 'dt_blank_body', [ $this, 'dt_blank_body' ], 10 );
+        add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
         add_action( 'dt_blank_head', [ $this, '_header' ] );
         add_action( 'dt_blank_footer', [ $this, '_footer' ] );
 
@@ -82,6 +83,18 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         $url_parts = explode( '/', $url );
         $template_for_url[join( '/', $url_parts )] = 'template-blank.php';
         return $template_for_url;
+    }
+
+    public function dt_blank_title( $title ) {
+        if ( $this->current_page === '' ){
+            $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
+            return $current_campaign['name'];
+        } elseif ( $this->current_page === 'list' ){
+            return __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' );
+        } elseif ( $this->current_page === 'fuel' ){
+            return __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' );
+        }
+        return $title;
     }
 
 
@@ -150,7 +163,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $params['number'] ) ){
             return false;
         }
-        $campaign = DT_Campaign_Settings::get_campaign( $params['campaign_id'] );
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $params['campaign_id'] );
         if ( empty( $campaign ) ){
             return false;
         }

@@ -52,8 +52,8 @@ add_filter( 'wp_mail_from', function ( $email ) {
     if ( !empty( $prayer_campaign_email ) ){
         return $prayer_campaign_email;
     }
-    if ( class_exists( 'DT_Campaign_Settings' ) ){
-        $email_address = DT_Campaign_Settings::get( 'email_address' );
+    if ( class_exists( 'DT_Campaign_Global_Settings' ) ){
+        $email_address = DT_Campaign_Global_Settings::get( 'email_address' );
         if ( !empty( $email_address ) ){
             return $email_address;
         }
@@ -70,8 +70,8 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
     if ( !empty( $prayer_campaign_email_name ) ){
         return $prayer_campaign_email_name;
     }
-    if ( class_exists( 'DT_Campaign_Settings' ) ){
-        $name = DT_Campaign_Settings::get( 'email_name' );
+    if ( class_exists( 'DT_Campaign_Global_Settings' ) ){
+        $name = DT_Campaign_Global_Settings::get( 'email_name' );
         if ( !empty( $name ) ){
             return $name;
         }

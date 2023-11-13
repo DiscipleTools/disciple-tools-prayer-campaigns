@@ -51,7 +51,7 @@ class DT_Campaign_Prayer_Post_Importer {
         // Copy the post. Recommended
         $new_posts = $posts;
 
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         if ( empty( $campaign ) ) {
             return [];
@@ -83,7 +83,7 @@ class DT_Campaign_Prayer_Post_Importer {
             $post['post_date_gmt'] = $this->mysql_date( time() );
             $post['post_status'] = 'publish';
 
-            $campaign_day = DT_Campaign_Settings::what_day_in_campaign( $post_start_date );
+            $campaign_day = DT_Campaign_Fuel::what_day_in_campaign( $post_start_date );
 
             $post['postmeta'] = [
                 [
@@ -170,7 +170,7 @@ class DT_Campaign_Prayer_Post_Importer {
         if ( $latest_prayer_fuel_day === null ) {
             return null;
         }
-        $latest_prayer_fuel_date = DT_Campaign_Settings::date_of_campaign_day( $latest_prayer_fuel_day );
+        $latest_prayer_fuel_date = DT_Campaign_Fuel::date_of_campaign_day( $latest_prayer_fuel_day );
 
         return $latest_prayer_fuel_date;
     }
@@ -179,7 +179,7 @@ class DT_Campaign_Prayer_Post_Importer {
         $latest_prayer_fuel_date = $this->find_latest_prayer_fuel_date( $lang );
 
         $today_timestamp = time();
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $campaign_start = $campaign['start_date']['timestamp'];
 
         $start_posting_from = max( $campaign_start, $today_timestamp );
@@ -213,7 +213,7 @@ class DT_Campaign_Prayer_Post_Importer {
      */
     private function find_latest_prayer_fuel_data( $lang = null ) {
         global $wpdb;
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $args = [];
 
         $query = "

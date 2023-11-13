@@ -5,11 +5,21 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 /**
  * Encapsulates getting and setting of campaign settings
  */
-class DT_Campaign_Landing_Settings {
+class DT_Campaign_Landing_Settings extends DT_Porch_Admin_Tab_Base {
 
     public function __construct(){
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
+
+        add_filter( 'dt_campaign_porch_theme_options', [ $this, 'dt_generic_porch_themes' ], 10, 1 );
+    }
+
+    public function dt_generic_porch_themes( $theme_options ) {
+        $theme_options['pink'] = [
+            'color' => '#FF55AA',
+        ];
+
+        return $theme_options;
     }
 
     public static function get_landing_root_url(){
@@ -40,6 +50,16 @@ class DT_Campaign_Landing_Settings {
         $tiles['campaign_landing'] = [
             'label' => __( 'Landing Page Settings', 'disciple-tools-prayer-campaigns' ),
         ];
+        $tiles['campaign_email'] = [
+            'label' => __( 'Email Settings', 'disciple-tools-prayer-campaigns' ),
+        ];
+        $tiles['campaign_prayer_fuel'] = [
+            'label' => __( 'Prayer Fuel Settings', 'disciple-tools-prayer-campaigns' ),
+        ];
+        $tiles['campaign_landing_strings'] = [
+            'label' => __( 'Landing Page Strings', 'disciple-tools-prayer-campaigns' ),
+        ];
+
 
         return $tiles;
     }
@@ -50,56 +70,99 @@ class DT_Campaign_Landing_Settings {
         if ( $post_type !== 'campaigns' ){
             return $fields;
         }
+        $sections = [
+            'settings' => 'Sign Up and Notification Email Settings',
+            'email_content' => 'Email Content',
+        ];
+
 
         /**
          * Email settings
          */
         $fields['from_email'] = [
-            'name' => __( 'From Email', 'disciple-tools-prayer-campaigns' ),
+            'name' => __( 'The email address campaign emails will be sent from:', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'description' => __( 'The email address that will be used as the "from" address for emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
-            'tile' => 'campaign_landing',
+            'tile' => 'campaign_email',
+            'campaign_section' => $sections['settings'],
+            'default' => DT_Prayer_Campaigns_Send_Email::default_email_address(),
         ];
         $fields['from_name'] = [
             'name' => __( 'From Name', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'description' => __( 'The name that will be used as the "from" name for emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
-            'tile' => 'campaign_landing',
+            'tile' => 'campaign_email',
+            'campaign_section' => $sections['settings'],
+            'default' => DT_Prayer_Campaigns_Send_Email::default_email_name()
         ];
         $fields['reply_to_email'] = [
             'name' => __( 'Reply To Email', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'description' => __( 'The email address that will be used as the "reply to" address for emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
-            'tile' => 'campaign_landing',
+            'tile' => 'campaign_email',
+            'campaign_section' => $sections['settings'],
         ];
         $fields['email_logo'] = [
             'name' => __( 'Email Logo', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'text',
-            'tile' => 'campaign_landing',
+            'type' => 'icon',
+            'tile' => 'campaign_email',
             'description' => __( 'The logo that will be used in emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
+            'campaign_section' => $sections['settings'],
+            'default' => Campaigns_Email_Template::get_email_logo_url()
         ];
         //reminder_content_disable_fuel
         $fields['reminder_content_disable_fuel'] = [
-            'name' => __( 'Disable Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'boolean',
-            'tile' => 'campaign_landing',
+            'name' => __( 'Disable Prayer Email Fuel Link', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'key_select',
+            'default' => [
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
+                'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+            ],
+            'tile' => 'campaign_email',
             'description' => __( 'Whether or not to disable prayer fuel emails.', 'disciple-tools-prayer-campaigns' ),
+            'campaign_section' => $sections['settings'],
+        ];
+
+        //reminder_content
+        $fields['reminder_content'] = [
+            'name' => __( 'Reminder Email Content', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'textarea',
+            'tile' => 'campaign_email',
+            'description' => __( 'The content that will be used in the reminder email.', 'disciple-tools-prayer-campaigns' ),
+            'default' => '',
+            'translations' => [],
+            'campaign_section' => 'Email Content',
+        ];
+        //signup content
+        $fields['signup_content'] = [
+            'name' => __( 'Signup Email Content', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'textarea',
+            'tile' => 'campaign_email',
+            'description' => __( 'The content that will be used in the signup email.', 'disciple-tools-prayer-campaigns' ),
+            'default' => '',
+            'translations' => [],
+            'campaign_section' => 'Email Content',
         ];
 
 
         /**
          * Landing page settings
          */
+        $theme_manager = new DT_Porch_Theme();
+        $available_themes = $theme_manager->get_available_theme_names( DT_Prayer_Campaigns::get_dir_path() . 'porches/generic/site/css/colors' );
+        $themes = [];
+        foreach ( $available_themes as $theme_key => $theme ){
+            $themes[$theme_key] = [
+                'label' => $theme,
+            ];
+        }
         $fields['theme_color'] = [
             'name' => __( 'Theme Color', 'disciple-tools-prayer-campaigns' ),
             'type' => 'key_select',
             'tile' => 'campaign_landing',
             'description' => __( 'The color that will be used as the theme color for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
-            'default' => [
-                'preset' => [ 'label' => __( 'Preset', 'disciple-tools-prayer-campaigns' ) ],
-                'forestgreen' => [ 'label' => __( 'Forest Green', 'disciple-tools-prayer-campaigns' ) ],
-                'green' => [ 'label' => __( 'Green', 'disciple-tools-prayer-campaigns' ) ],
-            ]
+            'default' => $themes,
+            'campaign_tab' => 'settings'
         ];
         $fields['custom_theme_color'] = [
             'name' => __( 'Custom Theme Color', 'disciple-tools-prayer-campaigns' ),
@@ -108,7 +171,7 @@ class DT_Campaign_Landing_Settings {
             'description' => __( 'The color that will be used as the custom theme color for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
         $fields['logo_url'] = [
-            'name' => __( 'Logo URL', 'disciple-tools-prayer-campaigns' ),
+            'name' => __( 'Custom Logo URL', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'tile' => 'campaign_landing',
             'description' => __( 'The logo that will be used as the logo for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
@@ -117,7 +180,7 @@ class DT_Campaign_Landing_Settings {
             'name' => __( 'Logo Link URL', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'tile' => 'campaign_landing',
-            'description' => __( 'The URL that will be used as the link for the logo on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
+            'description' => __( 'Where the logo will link to', 'disciple-tools-prayer-campaigns' ),
         ];
         //header_background_url
         $fields['header_background_url'] = [
@@ -126,13 +189,7 @@ class DT_Campaign_Landing_Settings {
             'tile' => 'campaign_landing',
             'description' => __( 'The URL that will be used as the background image for the header on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
-        //what_image
-        $fields['what_image'] = [
-            'name' => __( 'What Image', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'text',
-            'tile' => 'campaign_landing',
-            'description' => __( 'The URL that will be used as the image for the "What is a Prayer Campaign?" section on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
-        ];
+
         $languages_manager = new DT_Campaign_Languages();
         $langs = $languages_manager->get_enabled_languages();
         $lang_options = [];
@@ -151,17 +208,25 @@ class DT_Campaign_Landing_Settings {
         ];
         //facebook
         $fields['facebook'] = [
-            'name' => __( 'Facebook', 'disciple-tools-prayer-campaigns' ),
+            'name' => __( 'Footer Facebook Link', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'tile' => 'campaign_landing',
             'description' => __( 'The URL that will be used as the Facebook link on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
+            'campaign_tab' => 'settings'
         ];
         //instagram
         $fields['instagram'] = [
-            'name' => __( 'Instagram', 'disciple-tools-prayer-campaigns' ),
+            'name' => __( 'Footer Instagram Link', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
             'tile' => 'campaign_landing',
             'description' => __( 'The URL that will be used as the Instagram link on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
+        ];
+
+        $fields['google_analytics'] = [
+            'name' => __( 'Google Analytics ID (optional)', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'text',
+            'tile' => 'campaign_landing',
+            'description' => __( 'Google Analytics ID (optional)', 'disciple-tools-prayer-campaigns' ),
         ];
 
         /**
@@ -170,9 +235,13 @@ class DT_Campaign_Landing_Settings {
         //show_prayer_timer
         $fields['show_prayer_timer'] = [
             'name' => __( 'Show Prayer Timer', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'checkbox',
+            'type' => 'key_select',
             'tile' => 'campaign_landing',
             'description' => __( 'Whether or not to show the prayer timer on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
+            'default' => [
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
+                'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+            ]
         ];
         //prayer_fuel_frequency
         $fields['prayer_fuel_frequency'] = [
@@ -190,6 +259,31 @@ class DT_Campaign_Landing_Settings {
 
         return $fields;
 
+    }
+
+    public static function get_campaign( $selected_campaign = null ) {
+        if ( $selected_campaign === null ) {
+            if ( isset( $_GET['campaign'] ) ){
+                $selected_campaign = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+            }
+            if ( empty( $selected_campaign ) ){
+                $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
+            }
+        }
+
+        if ( empty( $selected_campaign ) ) {
+            return [];
+        }
+        if ( defined( 'CAMPAIGN_ID' ) ) {
+            $selected_campaign = CAMPAIGN_ID;
+        }
+
+        $campaign = DT_Posts::get_post( 'campaigns', (int) $selected_campaign, true, false );
+        if ( is_wp_error( $campaign ) ) {
+            return [];
+        }
+
+        return $campaign;
     }
 
 }

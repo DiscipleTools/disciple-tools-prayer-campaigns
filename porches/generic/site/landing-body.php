@@ -12,7 +12,7 @@ if ( !is_numeric( $day ) ){
 }
 
 $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
-$campaign = DT_Campaign_Settings::get_campaign();
+$campaign = DT_Campaign_Landing_Settings::get_campaign();
 $minutes_scheduled = isset( $campaign['ID'] ) ? DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign['ID'] ) : 0;
 $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 24 / 60 ) : 0, 1 );
 ?>

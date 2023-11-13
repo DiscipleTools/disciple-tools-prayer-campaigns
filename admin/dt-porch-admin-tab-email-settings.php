@@ -4,19 +4,25 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 /**
  * Class DT_Generic_Porch_Landing_Tab_Starter_Content
  */
-class DT_Porch_Admin_Tab_Email_Settings {
-    public $key = 'email-settings';
+class DT_Porch_Admin_Tab_Email_Settings extends DT_Porch_Admin_Tab_Base {
+    public $key = 'campaign_email';
     public $title = 'Email Settings';
     private $selected_campaign;
-    private $settings_manager;
 
-    public function __construct() {
-        $campaign = DT_Campaign_Settings::get_campaign();
-        $this->settings_manager = new DT_Campaign_Settings();
+    public function __construct( string $porch_dir ) {
+        parent::__construct( $this->key, $porch_dir );
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $this->selected_campaign = $campaign['ID'];
+    }
 
-        if ( !empty( $campaign ) ) {
-            $this->selected_campaign = $campaign['ID'];
-        }
+    public function body_content() {
+
+//        $this->process_language_settings();
+//        $this->process_new_language();
+
+        $this->main_column();
+//        $this->box_languages();
+
     }
 
     public function content() {
@@ -49,7 +55,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
         <?php
     }
 
-    public function main_column() {
+    public function main_column2() {
 
         /* If no campaign is selected then show the message */
         /* If a campaign is selected */
@@ -225,7 +231,7 @@ class DT_Porch_Admin_Tab_Email_Settings {
         $languages_manager = new DT_Campaign_Languages();
         $langs = $languages_manager->get_enabled_languages();
 
-        $campaign = DT_Campaign_Settings::get_campaign( $this->selected_campaign );
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $this->selected_campaign );
         $settings = DT_Porch_Settings::settings( 'settings' );
         $default_language = isset( $settings['default_language'] ) ? $settings['default_language']['value'] : PORCH_DEFAULT_LANGUAGE;
 

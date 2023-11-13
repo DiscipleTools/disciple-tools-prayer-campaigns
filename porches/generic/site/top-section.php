@@ -5,7 +5,7 @@ $lang = dt_campaign_get_current_lang();
 dt_campaign_add_lang_to_cookie( $lang );
 dt_campaign_set_translation( $lang );
 
-$campaign_fields = DT_Campaign_Settings::get_campaign();
+$campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
 $langs = dt_campaign_list_languages();
 
 $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up';

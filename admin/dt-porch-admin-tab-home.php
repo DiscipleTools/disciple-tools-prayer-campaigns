@@ -5,7 +5,7 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
 
     public $title = 'Landing Page Settings';
 
-    public $key = 'settings';
+    public $key = 'campaign_landing';
     private $languages_manager;
 
     public function __construct( string $porch_dir ) {

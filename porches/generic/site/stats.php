@@ -2,7 +2,7 @@
 if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Generic_Porch_Stats {
-    public $page_title = 'Campaign Stats';
+    public $page_title = '';
     public $root = PORCH_LANDING_ROOT;
     public $type = 'stats';
     public $post_type = PORCH_LANDING_POST_TYPE;
@@ -17,10 +17,13 @@ class DT_Generic_Porch_Stats {
     } // End instance()
 
     public function __construct() {
+        $this->page_title = __( 'Stats', 'disciple-tools-prayer-campaigns' );
+
         add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
+        add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
 
         add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 100, 1 );
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 100, 1 );
@@ -28,6 +31,10 @@ class DT_Generic_Porch_Stats {
     }
     public function dt_custom_dir_attr( $lang ){
         return dt_campaign_custom_dir_attr( $lang );
+    }
+
+    public function dt_blank_title( $title ) {
+        return $this->page_title;
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -54,12 +61,12 @@ class DT_Generic_Porch_Stats {
 //        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
 
         $porch_fields = DT_Porch_Settings::settings();
-        $campaign_fields = DT_Campaign_Settings::get_campaign();
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
         $langs = dt_campaign_list_languages();
         $post_id = $campaign_fields['ID'];
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
         $campaign_name = $porch_fields['title']['value'];
         $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'title' );
@@ -523,7 +530,7 @@ class DT_Generic_Porch_Stats {
         }
         $params['story'] = wp_kses_post( $request->get_params()['story'] );
 
-        $campaign_fields = DT_Campaign_Settings::get_campaign();
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
         $post_id = $campaign_fields['ID'];
 
         $comment = 'Story feedback from ' . site_url( 'prayer/stats' ) . ' by ' . $params['email'] . ": \n" . $params['story'];

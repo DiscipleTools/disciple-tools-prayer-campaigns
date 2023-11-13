@@ -91,7 +91,7 @@ class DT_Prayer_Campaigns_Menu {
                 $tab = 'dt_prayer_fuel';
             }
         }
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $campaign_url_part = '';
         if ( !empty( $campaign['ID'] ) ){
             $campaign_url_part .= '&campaign=' . $campaign['ID'];
@@ -118,9 +118,9 @@ class DT_Prayer_Campaigns_Menu {
             $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
             $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
             $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
+            $email_settings_tab = new DT_Porch_Admin_Tab_Email_Settings( $porch_dir );
         }
 
-        $email_settings_tab = new DT_Porch_Admin_Tab_Email_Settings();
 
         ?>
 
@@ -219,7 +219,7 @@ class DT_Prayer_Campaigns_Menu {
     public function campaign_selector(){
         $campaigns = DT_Posts::list_posts( 'campaigns', [] );
         //todo set default campaign
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $tab = sanitize_key( wp_unslash( !empty( $_GET['tab'] ) ? $_GET['tab'] : 'campaigns' ) );
         $landing_page_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
         ?>

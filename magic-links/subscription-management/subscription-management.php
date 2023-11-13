@@ -255,7 +255,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
 
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
         $color = PORCH_COLOR_SCHEME_HEX;
         if ( $color === 'preset' ){
             $color = '#4676fa';

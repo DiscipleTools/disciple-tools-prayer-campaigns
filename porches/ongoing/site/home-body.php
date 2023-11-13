@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 $lang = dt_campaign_get_current_lang();
 
 $porch_fields = DT_Porch_Settings::settings();
-$campaign_fields = DT_Campaign_Settings::get_campaign();
+$campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
 $root_url = DT_Campaign_Landing_Settings::get_landing_root_url();
 global $allowedtags;
 

@@ -10,7 +10,7 @@ class DT_Prayer_Campaign_Migration_0005 extends DT_Prayer_Campaign_Migration {
      * @throws \Exception  Got error when creating table $name.
      */
     public function up() {
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         if ( !isset( $campaign['start_date']['formatted'] ) ) {
             return;

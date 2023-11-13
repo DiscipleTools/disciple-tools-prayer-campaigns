@@ -388,7 +388,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $to = implode( ',', $to );
 
-        $current_campaign = DT_Campaign_Settings::get_campaign();
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
         $location = DT_Porch_Settings::get_field_translation( 'country_name', $record['lang'] ?? 'en_US' );
         if ( empty( $location ) ){
             $location_grid = [];
@@ -403,7 +403,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
         $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign_id === (int) $current_campaign['ID'];
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
         if ( $is_current_campaign && $current_selected_porch === 'ramadan-porch' ){
             $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $record['lang'] ?? 'en_US', $location );
         } else {
@@ -575,11 +575,11 @@ class Campaigns_Email_Template {
 
     public static function get_email_logo_url( $logo_url = null ){
         if ( empty( $logo_url ) ){
-            $settings_manager = new DT_Campaign_Settings();
+            $settings_manager = new DT_Campaign_Global_Settings();
             $logo_url = $settings_manager->get( 'email_logo' );
         }
         if ( empty( $logo_url ) ){
-            $settings = DT_Porch_Settings::settings();
+//            $settings = DT_Porch_Settings::settings();
             if ( !empty( $settings['logo_url']['value'] ) ){
                 $logo_url = $settings['logo_url']['value'];
             }

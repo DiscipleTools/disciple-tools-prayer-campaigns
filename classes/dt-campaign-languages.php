@@ -15,7 +15,7 @@ class DT_Campaign_Languages {
     private $default_language = 'en_US';
 
     /**
-     * Add new langu/age
+     * Add new language
      *
      * @param string $code
      * @param array $language
@@ -303,5 +303,75 @@ class DT_Campaign_Languages {
      */
     public function language_list() {
         return dt_get_available_languages( false, true );
+    }
+
+
+
+    public static function get_translation( $campaign_id, $key, $language, $default = '' ){
+        global $wpdb;
+        $wpdb->dt_translations = $wpdb->prefix . 'dt_translations';
+        $translation = $wpdb->get_row(
+            $wpdb->prepare( "SELECT * FROM $wpdb->dt_translations WHERE post_id = %d AND `key` = %s AND language = %s", $campaign_id, $key, $language ),
+        ARRAY_A );
+        if ( $translation ){
+            return $translation['value'];
+        }
+        return $default;
+    }
+
+    public static function save_translation( $campaign_id, $key, $language, $value ){
+        global $wpdb;
+        $wpdb->dt_translations = $wpdb->prefix . 'dt_translations';
+
+        $existing_translation = $wpdb->get_row(
+            $wpdb->prepare( "SELECT * FROM $wpdb->dt_translations WHERE post_id = %d AND `key` = %s AND language = %s", $campaign_id, $key, $language ),
+        ARRAY_A );
+
+        if ( $existing_translation ){
+            $wpdb->query( $wpdb->prepare( "
+                UPDATE $wpdb->dt_translations
+                SET value = %s 
+                WHERE post_id = %d AND `key` = %s AND language = %s",
+            $value, $campaign_id, $key, $language ) );
+        } else {
+            $wpdb->query( $wpdb->prepare( "
+                INSERT INTO $wpdb->dt_translations (post_id, `key`, language, value)
+                VALUES (%d, %s, %s, %s)",
+            $campaign_id, $key, $language, $value ) );
+        }
+    }
+
+    public static function get_key_translations( $campaign_id, $key ){
+        global $wpdb;
+        $wpdb->dt_translations = $wpdb->prefix . 'dt_translations';
+        $translations = $wpdb->get_results(
+            $wpdb->prepare( "SELECT * FROM $wpdb->dt_translations WHERE post_id = %d AND `key` = %s", $campaign_id, $key ),
+        ARRAY_A );
+
+        $translations_by_language = [];
+        foreach ( $translations as $translation ){
+            $translations_by_language[$translation['language']] = $translation['value'];
+        }
+        return $translations_by_language;
+    }
+    public static function get_translations( $campaign_id ){
+        global $wpdb;
+        $wpdb->dt_translations = $wpdb->prefix . 'dt_translations';
+        $translation_values = $wpdb->get_results(
+            $wpdb->prepare( "
+                SELECT * FROM $wpdb->dt_translations
+                WHERE post_id = %d
+                ",
+            $campaign_id ),
+        ARRAY_A );
+
+        $translations = [];
+        foreach ( $translation_values as $translation ){
+            if ( !isset( $translations[$translation['key']] ) ){
+                $translations[$translation['key']] = [];
+            }
+            $translations[$translation['key']][$translation['language']] = $translation['value'];
+        }
+        return $translations;
     }
 }

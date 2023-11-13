@@ -5,7 +5,7 @@ class DT_Porch_Admin_Tab_Translations extends DT_Porch_Admin_Tab_Base {
 
     public $title = 'Landing Page Title & Content';
 
-    public $key = 'translations';
+    public $key = 'campaign_landing_strings';
 
     public function __construct( string $porch_dir ) {
         parent::__construct( $this->key, $porch_dir );

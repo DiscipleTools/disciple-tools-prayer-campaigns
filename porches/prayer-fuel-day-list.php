@@ -21,12 +21,12 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $offset = ( $current_page - 1 ) * $per_page;
         $max_days = 1000;
 
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
         $days = [];
-        $campaign_length = DT_Campaign_Settings::total_days_in_campaign();
+        $campaign_length = DT_Campaign_Fuel::total_days_in_campaign();
         for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
             if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
                 continue;
@@ -140,7 +140,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         switch ( $column_name ) {
             case 'day':
-                //$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
+                //$todays_campaign_day = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y-m-d' ) );
                 $porch_fields = DT_Porch_Settings::settings();
                 $frequency = $porch_fields['prayer_fuel_frequency']['value'];
                 $frequency_options = [
@@ -165,7 +165,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 <?php
                 break;
             case 'date':
-                $date = DT_Campaign_Settings::date_of_campaign_day( intval( $day ) );
+                $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
                 $date = gmdate( 'Y/m/d', strtotime( $date ) );
                 echo esc_html( $date );
                 break;
@@ -193,7 +193,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     $translated_languages[$lang][] = $post;
                 }
 
-                $campaign = DT_Campaign_Settings::get_campaign();
+                $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
                 foreach ( $languages as $code => $language ) {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );

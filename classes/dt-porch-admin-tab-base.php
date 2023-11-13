@@ -81,9 +81,8 @@ class DT_Porch_Admin_Tab_Base {
     public function main_column() {
         $langs = dt_campaign_list_languages();
         $allowed_tags = $this->get_allowed_tags();
-        $sections = DT_Porch_Settings::sections( $this->tab );
 
-        $site_colors = $this->get_site_colors();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
@@ -101,16 +100,19 @@ class DT_Porch_Admin_Tab_Base {
                 DT_Porch_Settings::update_values( $post_list );
 
                 $new_translations = $this->get_new_translations( $_POST );
-                DT_Porch_Settings::update_translations( $new_translations );
+                DT_Porch_Settings::update_translations( $campaign['ID'], $new_translations );
+                DT_Posts::get_post( 'campaigns', $campaign['ID'], false );
             }
 
             if ( isset( $_POST['reset_values'] ) ) {
                 DT_Porch_Settings::reset();
             }
+            //refresh the campaign
+            $campaign = DT_Posts::get_post( 'campaigns', $campaign['ID'], false, true );
         }
-        ?>
-        <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
+        $campaign_settings = DT_Porch_Settings::settings( null, null, false );
 
+        foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
             <?php if ( empty( $section ) ) {
                 $section_name = 'Other';
             } else {
@@ -130,27 +132,34 @@ class DT_Porch_Admin_Tab_Base {
                     </thead>
                     <tbody>
 
-                        <?php foreach ( DT_Porch_Settings::settings( $this->tab, $section ) as $key => $field ) :
+                        <?php foreach ( $campaign_settings as $key => $field ) :
+                            if ( ( $field['tile'] ?? '' ) !== $this->tab || ( $field['campaign_section'] ?? '' ) !== $section ){
+                                continue;
+                            }
                             if ( isset( $field['enabled'] ) && $field['enabled'] === false ){
                                 continue;
                             }
                             if ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
                                 <tr>
                                     <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
+                                        <?php echo esc_html( $field['name'] ); ?>
                                     </td>
                                     <td>
                                         <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) : ?>
                                             <h3>Default translated text:</h3>
                                             <?php echo nl2br( esc_html( $field['default'] ) ); ?>
                                             <br><br>
+                                        <?php elseif ( !empty( $field['default'] ) ): ?>
+                                            <strong>Default: </strong>
+                                            <?php echo nl2br( esc_html( $field['default'] ) ); ?>
+                                            <br>
                                         <?php endif;
                                         if ( isset( $field['translations'] ) ) : ?>
                                             <p>Set a custom text for all languages (below) or click the
                                                 <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
                                                 button to set a value for each language:</p>
                                         <?php endif; ?>
-                                        <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"/>
+                                        <input style="width: 100%" type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field['translations'] ) ){
@@ -159,89 +168,47 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                             <?php elseif ( 'textarea' === $field['type'] ) : ?>
-                                <?php self::textarea( $langs, $key, $field, $section_name, $allowed_tags ) ?>
-                            <?php elseif ( 'prayer_timer_toggle' === $field['type'] ) : ?>
-                                <tr>
-                                    <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
-                                    </td>
-                                    <td>
-                                        <select name="list[<?php echo esc_html( $key ); ?>]">
-                                            <option value='daily' <?php selected( empty( $field['value'] ) || $field['value'] !== 'no' ); ?>><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                            <option value='daily' <?php selected( $field['value'] === 'no' ); ?>><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            <?php elseif ( 'prayer_fuel_frequency' === $field['type'] ) : ?>
-                                <tr>
-                                    <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
-                                    </td>
-                                    <td>
-                                        <select name="list[<?php echo esc_html( $key ); ?>]">
-                                            <option value="daily" <?php selected( empty( $field['value'] ) || $field['value'] === 'daily' ); ?>>Daily</option>
-                                            <option value="weekly" <?php selected( $field['value'] === 'weekly' ); ?>>Weekly</option>
-                                            <option value="monthly" <?php selected( $field['value'] === 'monthly' ); ?>>Monthly</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <?php elseif ( 'icon' === $field['type'] ) : ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo esc_html( $field['label'] ); ?>
-                                        </td>
-                                        <td>
-                                        <?php if ( !empty( $field['default'] ) ) : ?>
-                                            <h3>Default icon:</h3>
-                                            <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
-                                            <br><br>
-                                        <?php endif; ?>
-                                        <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"/>
-                                    </td>
-                                    <td style="vertical-align: middle;">
-                                        <?php if ( isset( $field['translations'] ) ){
-                                            self::translation_cell( $langs, $key, $field, $section_name );
-                                        } ?>
-                                    </td>
-                                    </tr>
+                                <?php self::textarea( $langs, $key, $field, $section_name, $allowed_tags, $campaign[$key] ?? '' ) ?>
 
-                                <?php elseif ( 'default_language_select' === $field['type'] ) : ?>
+                            <?php elseif ( 'icon' === $field['type'] ) : ?>
                                 <tr>
                                     <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
+                                        <?php echo esc_html( $field['name'] ); ?>
                                     </td>
                                     <td>
-                                        <select name="list[<?php echo esc_html( $key ); ?>]">
-                                            <?php if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) :
-
-                                                $default_translation_label = isset( $langs[ $field['value'] ] ) ? $langs[ $field['value'] ]['native_name'] : $field['value'];
-                                                ?>
-                                                <option value="<?php echo esc_html( $field['value'] ); ?>" selected="selected"><?php echo esc_html( $default_translation_label ); ?></option>
-                                                <option disabled>-----</option>
-                                            <?php endif; ?>
-                                            <?php foreach ( $langs as $code => $lang ) : ?>
-                                                <option value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $lang['native_name'] ); ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </td>
+                                    <?php if ( !empty( $field['default'] ) ) : ?>
+                                        <h3>Default icon:</h3>
+                                        <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
+                                        <br><br>
+                                    <?php endif; ?>
+                                    <input style="width: 100%" type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <?php if ( isset( $field['translations'] ) ){
+                                        self::translation_cell( $langs, $key, $field, $section_name );
+                                    } ?>
+                                </td>
                                 </tr>
-                            <?php elseif ( 'theme_select' === $field['type'] ) : ?>
+
+
+                            <?php elseif ( 'key_select' === $field['type'] ) : ?>
                                 <tr>
                                     <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
+                                        <?php echo esc_html( $field['name'] ); ?>
                                     </td>
                                     <td>
                                         <select name="list[<?php echo esc_html( $key ); ?>]">
                                             <?php
-                                            if ( isset( $field['value'] ) && ! empty( $field['value'] ) ) {
+                                            $selected_option = isset( $campaign[$key]['key'] ) ? $campaign[$key]['key'] : '';
+                                            if ( !empty( $selected_option ) && isset( $field['default'][$selected_option] ) ) {
                                                 ?>
-                                                <option value="<?php echo esc_attr( $field['value'] ) ?>"><?php echo esc_html( $site_colors[$field['value']] ) ?? ''?></option>
+                                                <option value="<?php echo esc_attr( $selected_option ) ?>"><?php echo esc_html( $field['default'][$selected_option]['label'] ) ?? ''?></option>
                                                 <option disabled>-----</option>
                                                 <?php
                                             }
-                                            foreach ( $site_colors as $list_key => $list_label ) {
+                                            foreach ( $field['default'] as $list_key => $value ) {
                                                 ?>
-                                                <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $list_label ) ?></option>
+                                                <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $value['label'] ) ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -279,12 +246,12 @@ class DT_Porch_Admin_Tab_Base {
      * @param string $form_name Name of the form to update when the translation modal is closed
      * @param array|string $allowed_tags The html tags allowed in the translation strings
      */
-    public static function textarea( $langs, $key, $field, $form_name, $allowed_tags = [] ) {
+    public static function textarea( $langs, $key, $field, $form_name, $allowed_tags = [], $value = '' ) {
         ?>
 
         <tr>
             <td>
-                <?php echo esc_html( $field['label'] ); ?>
+                <?php echo esc_html( $field['name'] ); ?>
             </td>
             <td>
                 <?php if ( !empty( $field['default'] ) && isset( $field['translations'] ) ) : ?>
@@ -301,8 +268,8 @@ class DT_Porch_Admin_Tab_Base {
                 <textarea
                     name="list[<?php echo esc_html( $key ); ?>]"
                     id="<?php echo esc_html( $key ); ?>"
-                    placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"
-                ><?php echo wp_kses( $field['value'] ?? '', $allowed_tags ); ?></textarea>
+                    placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"
+                ><?php echo wp_kses( $value ?? '', $allowed_tags ); ?></textarea>
             </td>
             <td style="vertical-align: middle;">
                 <?php if ( isset( $field['translations'] ) ){
@@ -335,17 +302,8 @@ class DT_Porch_Admin_Tab_Base {
 
         <?php
     }
-
-    private function get_site_colors() {
-        $theme_manager = new DT_Porch_Theme();
-
-        $available_themes = $theme_manager->get_available_theme_names( $this->theme_file_dir );
-
-        return $available_themes;
-    }
-
     private function get_new_translations( $post ) {
-        $fields = DT_Porch_Settings::fields();
+        $fields = DT_Posts::get_post_field_settings( 'campaigns' );
         $allowed_tags = $this->get_allowed_tags();
         $langs = dt_campaign_list_languages();
 

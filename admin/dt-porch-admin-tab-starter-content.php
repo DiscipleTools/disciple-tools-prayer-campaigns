@@ -35,7 +35,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
     public function main_column() {
 
-        $fields = DT_Campaign_Settings::get_campaign();
+        $fields = DT_Campaign_Landing_Settings::get_campaign();
 
         if ( !empty( $fields ) ) {
             do_action( 'dt_prayer_campaigns_admin_install_fuel' );
@@ -274,7 +274,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
         $languages_manager = new DT_Campaign_Languages();
         $languages = $languages_manager->get_enabled_languages();
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
 
         global $wpdb;

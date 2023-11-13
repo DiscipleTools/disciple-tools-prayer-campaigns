@@ -121,7 +121,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         $value = !empty( $campaign_day ) ? $campaign_day : $day;
 
-        $date = DT_Campaign_Settings::date_of_campaign_day( (int) $value );
+        $date = DT_Campaign_Fuel::date_of_campaign_day( (int) $value );
         ?>
 
         <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
@@ -184,7 +184,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             if ( !empty( $_POST['dt-landing-date-selector'] ) ) {
                 update_post_meta( $id, 'fixed', true );
                 $post_date = $post_submission['dt-landing-date-selector'];
-                $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
+                $day = DT_Campaign_Fuel::what_day_in_campaign( $post_date );
             } else if ( isset( $_POST['dt-landing-day-selector'] ) ){
                 $day = $post_submission['dt-landing-day-selector'];
             }
@@ -208,7 +208,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
             }
 
-            $campaign = DT_Campaign_Settings::get_campaign();
+            $campaign = DT_Campaign_Landing_Settings::get_campaign();
             if ( isset( $campaign['ID'] ) && $update === false ){
                 update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
             }
@@ -225,7 +225,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                     $old_start_date = $existing_post['start_date']['formatted'];
                     $new_start_date = $post['start_date']['formatted'];
 
-                    $diff_in_start_days = DT_Campaign_Settings::diff_days_between_dates( $old_start_date, $new_start_date );
+                    $diff_in_start_days = DT_Campaign_Fuel::diff_days_between_dates( $old_start_date, $new_start_date );
 
                     $result = $wpdb->query( $wpdb->prepare( "
                         UPDATE $wpdb->postmeta as pm
@@ -410,7 +410,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
      */
     public function get_days_posts( int $day ) {
 
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $lang = dt_campaign_get_current_lang();
 
@@ -498,7 +498,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     }
 
     public function get_most_recent_post(){
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $lang = dt_campaign_get_current_lang();
 
