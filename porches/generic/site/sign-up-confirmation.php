@@ -18,26 +18,25 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
     } // End instance()
 
     public function __construct() {
+        $page_info = DT_Campaign_Landing_Settings::determine_campaign_via_url( [ 'email-confirmation' ] );
+
+        if ( empty( $page_info ) ) {
+            return;
+        }
+        if ( $page_info['current_page'] !== 'email-confirmation' ){
+            return;
+        }
+        if ( !empty( $page_info['root'] ) ){
+            $this->root = $page_info['root'];
+        }
+        $campaign_id = $page_info['campaign_id'];
+
         parent::__construct();
 
-        $url = dt_get_url_path();
-        $length = strlen( $this->root );
-        if ( substr( $url, 0, $length ) !== $this->root ) {
-            return;
-        }
-
-        /**
-         * tests magic link parts are registered and have valid elements
-         */
-        if ( !$this->check_parts_match( false ) ){
-            return;
-        }
-
-//        /* register this url with the 404 template */
-//        add_filter( 'dt_templates_for_urls', [ $this, 'register_url' ] );
-//        add_filter( 'dt_blank_access', function() {
-//            return true;
-//        });
+        add_filter( 'dt_templates_for_urls', [ $this, 'register_url' ] );
+        add_filter( 'dt_blank_access', function() {
+            return true;
+        });
         add_action( 'dt_blank_head', [ $this, '_header' ] );
         add_action( 'dt_blank_footer', [ $this, '_footer' ] );
         add_action( 'dt_blank_body', [ $this, 'body' ] );

@@ -29,7 +29,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                 ],
                 'rest_url' => get_rest_url(),
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
-                'home' => DT_Campaign_Landing_Settings::get_landing_root_url(),
+                'home' => DT_Campaign_Landing_Settings::get_landing_page_url(),
                 'plugin_url' => $plugin_dir_url,
                 'translations' => [
                     'Detected time zone' => __( 'Detected time zone', 'disciple-tools-prayer-campaigns' ),

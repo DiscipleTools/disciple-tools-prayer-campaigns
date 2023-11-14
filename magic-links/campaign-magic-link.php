@@ -17,35 +17,28 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
     public $show_app_tile = false; // enables addition to "app" tile sharing features
 
-    public $pages = [ 'list', 'fuel', 'stats' ];
+    public $pages = [ '', 'list', 'fuel', 'stats' ];
     public $current_page = '';
 
     public function __construct(){
-        $url = dt_get_url_path( true );
+        $page_info = DT_Campaign_Landing_Settings::determine_campaign_via_url( $this->pages );
+        if ( empty( $page_info ) ) {
+            return;
+        }
+        if ( !empty( $page_info['root'] ) ){
+            $this->root = $page_info['root'];
+        }
+        if ( !in_array( $page_info['current_page'], $this->pages, true ) ){
+            return;
+        }
+        $this->current_page = $page_info['current_page'];
+        $selected_campaign_id = $page_info['campaign_id'];
+
         if ( dt_is_rest() ){
             add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
 //            return;
         }
-        $url_parts = explode( '/', $url );
-        if ( empty( $url_parts[0] ) || in_array( $url_parts[0], $this->pages, true ) ){
-            $selected_campaign_id = get_option( 'dt_campaign_selected_campaign', false );
-            define( 'CAMPAIGN_ID', $selected_campaign_id );
-            define( 'LANDING_URL', '' );
-            $this->current_page = $url_parts[0];
-        } else if ( !isset( $url_parts[1] ) || in_array( $url_parts[1], $this->pages, true ) ){
-            //find post by name
-            global $wpdb;
-            $selected_campaign_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $url_parts[0] ) );
-            if ( empty( $selected_campaign_id ) ) {
-                return;
-            }
-            define( 'CAMPAIGN_ID', $selected_campaign_id );
-            define( 'LANDING_URL', $url_parts[0] );
-            $this->root = $url_parts[0];
-            $this->current_page = isset( $url_parts[1] ) ? $url_parts[1] : '';
-        } else {
-            return;
-        }
+
         parent::__construct();
 
         add_filter( 'dt_allow_non_login_access', function (){ // allows non-logged in visit

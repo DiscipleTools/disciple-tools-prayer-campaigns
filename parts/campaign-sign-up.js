@@ -243,7 +243,7 @@ export class CampaignSignUp extends LitElement {
       if ( window.campaign_objects.remote === "1" || this.already_signed_up ){
         this._view = 'confirmation';
       } else {
-        window.location.href = window.campaign_objects.home + '/prayer/email-confirmation';
+        window.location.href = window.campaign_objects.home + '/email-confirmation';
       }
       this.requestUpdate()
     })

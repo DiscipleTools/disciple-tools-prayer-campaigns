@@ -22,6 +22,44 @@ class DT_Campaign_Landing_Settings {
         return $theme_options;
     }
 
+    public static function determine_campaign_via_url( $expected_pages = [] ){
+        $url = dt_get_url_path( true );
+        $url_parts = explode( '/', $url );
+        $current_page = '';
+        if ( empty( $url_parts[0] ) || in_array( $url_parts[0], $expected_pages, true ) ){
+            $selected_campaign_id = get_option( 'dt_campaign_selected_campaign', false );
+            if ( !defined( 'CAMPAIGN_ID' ) ){
+                define( 'CAMPAIGN_ID', $selected_campaign_id );
+            }
+            if ( !defined( 'LANDING_URL' ) ){
+                define( 'LANDING_URL', '' );
+            }
+            $current_page = $url_parts[0];
+        } else if ( !isset( $url_parts[1] ) || in_array( $url_parts[1], $expected_pages, true ) ){
+            //find post by name
+            global $wpdb;
+            $selected_campaign_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $url_parts[0] ) );
+            if ( empty( $selected_campaign_id ) ) {
+                return;
+            }
+            if ( !defined( 'CAMPAIGN_ID' ) ){
+                define( 'CAMPAIGN_ID', $selected_campaign_id );
+            }
+            if ( !defined( 'LANDING_URL' ) ){
+                define( 'LANDING_URL', $url_parts[0] );
+            }
+            $root = $url_parts[0];
+            $current_page = isset( $url_parts[1] ) ? $url_parts[1] : '';
+        } else {
+            return false;
+        }
+        return [
+            'current_page' => $current_page,
+            'root' => $root ?? '',
+            'campaign_id' => $selected_campaign_id,
+        ];
+    }
+
     public static function get_landing_root_url(){
         if ( defined( 'LANDING_URL' ) ){
             return site_url( LANDING_URL );
@@ -30,7 +68,7 @@ class DT_Campaign_Landing_Settings {
         }
     }
 
-    public static function get_landing_page_url( $campaign_id ){
+    public static function get_landing_page_url( $campaign_id = null ){
         $campaign = self::get_campaign( $campaign_id );
         $url = $campaign['campaign_url'];
         if ( empty( $url ) ){
