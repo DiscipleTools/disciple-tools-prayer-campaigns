@@ -7,19 +7,11 @@ class DT_Generic_Porch_Strings {
 
     private $defaults = [];
 
-    public function __construct() {
-        add_filter( 'dt_campaign_porch_settings', [ $this, 'dt_prayer_campaigns_porch_settings' ], 10, 1 );
-        add_filter( 'dt_campaign_porch_default_settings', [ $this, 'dt_campaign_porch_default_settings' ], 10, 1 );
+    public function __construct(){
+//        add_filter( 'dt_campaign_porch_default_settings', [ $this, 'dt_campaign_porch_default_settings' ], 10, 1 );
 
         add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
-
     }
-
-    public function dt_prayer_campaigns_porch_settings( $settings ) {
-        $defaults = $this->load_defaults(); //load defaults again to get current translations
-        return array_merge( $defaults, $settings );
-    }
-
 
     public function dt_campaign_porch_default_settings( $defaults ) {
         $defaults = $this->load_defaults();

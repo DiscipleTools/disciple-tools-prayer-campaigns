@@ -531,7 +531,6 @@ class DT_Prayer_Campaigns_Campaigns {
         }
         ?>
 
-        <option value=<?php echo esc_html( self::$no_campaign_key ) ?>></option>
         <?php foreach ( $campaigns['posts'] as $campaign ) :?>
             <option value="<?php echo esc_html( $campaign['ID'] ) ?>"
                 <?php selected( (int) $campaign['ID'] === (int) $selected_id ) ?>

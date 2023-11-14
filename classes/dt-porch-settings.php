@@ -136,25 +136,6 @@ class DT_Porch_Settings {
         return true;
     }
 
-    public static function reset() {
-        update_option( 'dt_campaign_porch_settings', [] );
-    }
-
-    public static function fields() {
-        return [];
-        $defaults = self::get_defaults();
-
-        /**
-         * Filter to allow porches to add their own specific settings when they are loaded
-         *
-         * @param array $defaults contains the settings common to all porches
-         */
-        $porch = DT_Porch_Selector::instance()->get_selected_porch_id();
-        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults, $porch );
-
-        return $defaults;
-    }
-
     /**
      * Get the list of sections defined in the fields for a particular tab
      *
@@ -208,125 +189,18 @@ class DT_Porch_Settings {
 
 
     public static function has_user_translations() {
-        $defaults = apply_filters( 'dt_campaign_porch_default_settings', self::get_defaults() );
         $settings = self::settings();
 
-        foreach ( $defaults as $key => $values ) {
-            if ( !isset( $settings[$key] ) ) {
+        foreach ( $settings as $key => $value ) {
+            if ( !in_array($value['type'], [ 'text', 'textarea' ] ) ) {
                 continue;
             }
 
-            if ( $values['value'] !== $settings[$key]['value'] ) {
+            if ( ( $value['default'] ?? '' ) !== $value['value'] ) {
                 return true;
             }
         }
 
         return false;
-    }
-
-    private static function get_defaults() {
-        return [];
-        $defaults = [
-            'theme_color' => [
-                'label' => 'Theme Color',
-                'value' => 'preset',
-                'type' => 'theme_select',
-                'tab' => 'settings',
-            ],
-            'custom_theme_color' => [
-                'label' => 'Custom Theme Color',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-                'placeholder' => 'Hex value'
-            ],
-            'logo_url' => [
-                'label' => 'Custom Logo',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-                'placeholder' => 'Url of image'
-            ],
-            'logo_link_url' => [
-                'label' => 'Logo URL',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-                'placeholder' => 'URL where clicking the logo should bring you to'
-            ],
-            'header_background_url' => [
-                'label' => 'Header Background URL',
-                'value' => DT_Prayer_Campaigns::instance()->plugin_dir_url . 'porches/generic/site/img/stencil-header.png',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'what_image' => [
-                'label' => 'What is 24/7 Image',
-                'value' => '',
-                'type' => 'text',
-                'enabled' => false,
-                'tab' => 'settings',
-            ],
-            'show_prayer_timer' => [
-                'label' => 'Show Timer on Prayer Fuel',
-                'default' => 'Yes',
-                'value' => 'yes',
-                'type' => 'prayer_timer_toggle',
-                'tab' => 'settings',
-            ],
-            'prayer_fuel_frequency' => [
-                'label' => 'Prayer Fuel Frequency',
-                'default' => 'Daily',
-                'value' => 'daily',
-                'type' => 'prayer_fuel_frequency',
-                'tab' => 'settings',
-            ],
-            'reminder_content_disable_fuel' => [
-                'label' => __( 'Disable default prayer fuel link', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'boolean',
-                'tab' => 'email-settings',
-                'value' => false,
-            ],
-            'facebook' => [
-                'label' => 'Footer Facebook Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'instagram' => [
-                'label' => 'Footer Instagram Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'twitter' => [
-                'label' => 'Footer Twitter Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'google_analytics' => [
-                'label' => 'Google Analytics ID (optional)',
-                'default' => get_site_option( 'p4r_porch_google_analytics' ),
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-
-            'default_language' => [
-                'label' => 'Default Language',
-                'default' => 'en_US',
-                'value' => '',
-                'type' => 'default_language_select',
-                'tab' => 'settings',
-            ],
-
-        ];
-
-        $keep_enabled_settings = function ( $setting ) {
-            return !isset( $setting['enabled'] ) || $setting['enabled'] !== false;
-        };
-
-        return array_filter( $defaults, $keep_enabled_settings );
     }
 }

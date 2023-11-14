@@ -83,17 +83,17 @@ class DT_Porch_Admin_Tab_Base {
         $allowed_tags = $this->get_allowed_tags();
 
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $campaign_settings = DT_Porch_Settings::settings();
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
             if ( isset( $_POST['list'] ) ) {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
-                $fields = DT_Porch_Settings::fields();
                 $allowed_tags = $this->get_allowed_tags();
 
                 //Keep line breaks by using wp_kses to sanitize.
                 foreach ( $post_list as $field_key => $value ){
-                    if ( isset( $fields[$field_key]['type'], $_POST['list'][$field_key] ) && $fields[$field_key]['type'] === 'textarea' ){
+                    if ( isset( $campaign_settings[$field_key]['type'], $_POST['list'][$field_key] ) && $campaign_settings[$field_key]['type'] === 'textarea' ){
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
@@ -103,14 +103,10 @@ class DT_Porch_Admin_Tab_Base {
                 DT_Porch_Settings::update_translations( $campaign['ID'], $new_translations );
                 DT_Posts::get_post( 'campaigns', $campaign['ID'], false );
             }
-
-            if ( isset( $_POST['reset_values'] ) ) {
-                DT_Porch_Settings::reset();
-            }
             //refresh the campaign
             $campaign = DT_Posts::get_post( 'campaigns', $campaign['ID'], false, true );
+            $campaign_settings = DT_Porch_Settings::settings( null, null, false );
         }
-        $campaign_settings = DT_Porch_Settings::settings( null, null, false );
 
         foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
             <?php if ( empty( $section ) ) {
