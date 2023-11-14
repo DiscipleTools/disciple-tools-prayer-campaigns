@@ -26,7 +26,7 @@ class DT_Porch_Settings {
         $defaults = [];
         foreach ( $campaign_field_settings as $key => $field ) {
             if ( !str_starts_with( $field['tile'] ?? '', 'campaign_' ) ) {
-                continue;
+//                continue;
             }
 
             $defaults[$key] = $field;
@@ -105,11 +105,11 @@ class DT_Porch_Settings {
         foreach ( $updates as $key => $value ){
             $field_type = $campaign_field_settings[$key]['type'] ?? '';
             if ( $field_type === 'key_select' ){
-                if ( $value !== $current_campaign[$key]['key'] ?? '' ){
+                if ( $value !== ( $current_campaign[$key]['key'] ?? '' ) ){
                     $changes[$key] = $value;
                 }
             } else {
-                if ( $value !== $current_campaign[$key] ?? '' ){
+                if ( $value !== ( $current_campaign[$key] ?? '' ) ){
                     $changes[$key] = $value;
                 }
             }

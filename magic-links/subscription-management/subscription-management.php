@@ -90,7 +90,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( is_wp_error( $post ) ) {
             return $post;
         }
-        $campaign_id = $post['campaigns'][0]['ID'];
+        if ( isset( $_GET['campaign'] ) ){
+            $campaign_id = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+        }
+        if ( empty( $campaign_id ) ){
+            $campaign_id = $post['campaigns'][0]['ID'];
+        }
+
 
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
@@ -102,7 +108,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
-                'campaign_id' => $campaign_id,
+                'campaign_id' => (int) $campaign_id,
             ]
         );
     }
@@ -242,7 +248,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        $campaign_id = $post['campaigns'][0]['ID'];
+        if ( isset( $_GET['campaign'] ) ){
+            $campaign_id = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+        }
+        if ( empty( $campaign_id ) ){
+            $campaign_id = $post['campaigns'][0]['ID'];
+        }
+
         //cannot manage a subscription that has no campaign
         if ( empty( $campaign_id ) ){
             $this->error_body();
@@ -255,7 +267,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
 
-        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
+        $campaign_settings = DT_Porch_Settings::settings( $campaign_id );
+        $current_selected_porch = $campaign_settings['selected_porch'] ?? 'generic-porch';
         $color = PORCH_COLOR_SCHEME_HEX;
         if ( $color === 'preset' ){
             $color = '#4676fa';

@@ -17,7 +17,8 @@ class DT_Porch_Selector {
     }
 
     public function __construct() {
-        $this->selected_porch_id = ( new DT_Campaign_Global_Settings() )->get( 'selected_porch' );
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $this->selected_porch_id = $campaign['porch_type']['key'] ?? 'generic-porch';
     }
 
     public function load_selected_porch() {

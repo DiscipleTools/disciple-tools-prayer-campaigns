@@ -48,7 +48,11 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         }
         parent::__construct();
 
-        $record = DT_Posts::get_post( 'campaigns', $selected_campaign_id );
+        add_filter( 'dt_allow_non_login_access', function (){ // allows non-logged in visit
+            return true;
+        }, 100, 1 );
+
+//        $record = DT_Posts::get_post( 'campaigns', $selected_campaign_id );
 
         add_action( 'template_redirect', [ $this, 'theme_redirect' ] );
         add_filter( 'dt_templates_for_urls', [ $this, 'register_url' ], 199, 1 ); // registers url as valid once tests are passed
@@ -76,6 +80,12 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         if ( $this->current_page === 'stats' ){
             require_once DT_Prayer_Campaigns::get_dir_path() . 'porches/generic/site/stats.php';
         }
+    }
+
+    public function theme_redirect() {
+        $path = get_theme_file_path( 'template-blank.php' );
+        include( $path );
+        die();
     }
 
     public function register_url( $template_for_url ){

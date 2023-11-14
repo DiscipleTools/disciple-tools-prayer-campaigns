@@ -44,6 +44,10 @@ class DT_Prayer_Campaigns_Menu {
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'dt_options_script_pages', array( $this, 'dt_options_script_pages' ) );
 
+        add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 140 );
+    }
+
+    public function after_setup_theme(){
         $this->campaigns = new DT_Prayer_Campaigns_Campaigns();
         $this->porch_selector = DT_Porch_Selector::instance();
     }

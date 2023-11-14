@@ -90,11 +90,19 @@ class DT_Campaigns_Base {
                 ]
             ];
         }
+        if ( !isset( $expected_roles['campaigns_creator'] ) ){
+            $expected_roles['campaigns_creator'] = [
+                'label' => 'Campaign Creator',
+                'description' => 'Create and edit prayer campaigns',
+                'permissions' => [
+                    'access_disciple_tools' => true,
+                ]
+            ];
+        }
         $campaigns_permissions = [
             'access_'.$this->post_type => true,
             'create_'.$this->post_type => true,
-            'update_any_'.$this->post_type => true,
-            'view_any_'.$this->post_type => true,
+
         ];
         $landing_page_permissions = [
             // landing page access
@@ -102,10 +110,8 @@ class DT_Campaigns_Base {
             'edit_' . PORCH_LANDING_POST_TYPE => true,
             'read_' . PORCH_LANDING_POST_TYPE => true,
             'delete_' . PORCH_LANDING_POST_TYPE => true,
-            'delete_others_' . PORCH_LANDING_POST_TYPE . 's',
             'delete_' . PORCH_LANDING_POST_TYPE . 's' => true,
             'edit' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'edit_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
             'publish_' . PORCH_LANDING_POST_TYPE . 's' => true,
             'read_private_' . PORCH_LANDING_POST_TYPE . 's' => true,
 
@@ -116,8 +122,23 @@ class DT_Campaigns_Base {
             // wp-admin dashboard access
             'read' => true,
         ];
+
+        //all campaigns permissions
+        $all_campaigns_admin_permissions = [
+            'update_any_'.$this->post_type => true,
+            'view_any_'.$this->post_type => true,
+            'delete_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'edit_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
+        ];
+
+        //campaign creator permissions
+        $expected_roles['campaigns_creator']['permissions'] = array_merge( $expected_roles['campaigns_creator']['permissions'], $campaigns_permissions );
+        $expected_roles['campaigns_creator']['permissions'] = array_merge( $expected_roles['campaigns_creator']['permissions'], $landing_page_permissions );
+
+        //campaign admin permissions
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $campaigns_permissions );
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $landing_page_permissions );
+        $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $all_campaigns_admin_permissions );
 
         if ( isset( $expected_roles['administrator'] ) ){
             $expected_roles['administrator']['permissions']['access_' . $this->post_type ] = true;
@@ -350,7 +371,7 @@ class DT_Campaigns_Base {
             }
 
             //porch fields @todo migrate
-            $porches = DT_Porch_Selector::instance()->get_porch_loaders();
+            $porches = apply_filters( 'dt_register_prayer_campaign_porch', [] );
             $fields['porch_type'] = [
                 'name' => 'Porch Type',
                 'type' => 'key_select',

@@ -7,8 +7,10 @@ dt_campaign_set_translation( $lang );
 
 $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
 $langs = dt_campaign_list_languages();
+$campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
+$url_path = dt_get_url_path();
 
-$sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up';
+$sign_up_link = $campaign_url . '#sign-up';
 ?>
 <style>
     :root {
@@ -44,7 +46,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?? site_url() ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ) ?></a>
+                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?? $campaign_url ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ) ?></a>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>

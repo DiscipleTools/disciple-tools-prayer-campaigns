@@ -79,6 +79,7 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
     public function body() {
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
+        $campaign_link = DT_Campaign_Landing_Settings::get_landing_root_url();
         ?>
         <style>
             .success-confirmation-section .button {
@@ -102,7 +103,7 @@ class DT_Generic_Email_Confirmation extends DT_Magic_Url_Base {
             }
         </style>
         <div style='margin-top: 140px; padding:20px; font-size: 1.5rem; text-align: center' >
-            <?php success_confirmation_section( home_url() ); ?>
+            <?php success_confirmation_section( $campaign_link ); ?>
         </div>
         <?php
     }

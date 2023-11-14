@@ -34,13 +34,16 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
-    public static function management_link( $record ){
+    public static function management_link( $record, $campaign_id = null ){
         $key_name = 'public_key';
         if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
             $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
-        return trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
-
+        $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
+        if ( !empty( $campaign_id ) ){
+            $link .= '?campaign=' . $campaign_id;
+        }
+        return $link;
     }
 
     public static function send_verification( $email, $code ){
@@ -178,7 +181,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
-        $link = self::management_link( $record );
+        $link = self::management_link( $record, $campaign_id );
 
         $message = '';
         if ( !empty( $record['name'] ) ){
@@ -259,7 +262,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
-        $management_link = self::management_link( $record );
+        $management_link = self::management_link( $record, $campaign_id );
 
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) );

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 /**
  * Encapsulates getting and setting of campaign settings
  */
-class DT_Campaign_Landing_Settings extends DT_Porch_Admin_Tab_Base {
+class DT_Campaign_Landing_Settings {
 
     public function __construct(){
         add_filter( 'dt_details_additional_tiles', [ $this, 'dt_details_additional_tiles' ], 10, 2 );
@@ -31,7 +31,7 @@ class DT_Campaign_Landing_Settings extends DT_Porch_Admin_Tab_Base {
     }
 
     public static function get_landing_page_url( $campaign_id ){
-        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id );
+        $campaign = self::get_campaign( $campaign_id );
         $url = $campaign['campaign_url'];
         if ( empty( $url ) ){
             $url = str_replace( ' ', '-', strtolower( trim( $campaign['name'] ) ) );
@@ -266,6 +266,17 @@ class DT_Campaign_Landing_Settings extends DT_Porch_Admin_Tab_Base {
             if ( isset( $_GET['campaign'] ) ){
                 $selected_campaign = sanitize_key( wp_unslash( $_GET['campaign'] ) );
             }
+            if ( empty( $selected_campaign ) && DT_Posts::can_access( 'campaigns' ) ){
+                $cached = wp_cache_get( 'dt_selected_campaign_' . $selected_campaign );
+                if ( $cached !== false ){
+                    return $cached;
+                }
+                $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+                if ( !empty( $campaigns['posts'] ) ){
+                    $selected_campaign = $campaigns['posts'][0]['ID'];
+                }
+            }
+
             if ( empty( $selected_campaign ) ){
                 $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
             }
@@ -283,6 +294,7 @@ class DT_Campaign_Landing_Settings extends DT_Porch_Admin_Tab_Base {
             return [];
         }
 
+        wp_cache_set( 'dt_selected_campaign_' . $selected_campaign, $campaign );
         return $campaign;
     }
 

@@ -53,6 +53,9 @@ class DT_Subscriptions_Base {
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
         add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
 
+        add_filter( 'dt_can_view_permission', [ $this, 'can_view_and_update_post' ], 10, 3 );
+        add_filter( 'dt_can_update_permission', [ $this, 'can_view_and_update_post' ], 20, 3 );
+
         add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 
     }
@@ -79,13 +82,31 @@ class DT_Subscriptions_Base {
                 ]
             ];
         }
+        if ( !isset( $expected_roles['campaigns_creator'] ) ){
+            $expected_roles['campaigns_creator'] = [
+                'label' => 'Campaign Creator',
+                'description' => 'Create and edit prayer campaigns',
+                'permissions' => [
+                    'access_disciple_tools' => true,
+                ]
+            ];
+        }
         $subscriptions_permissions = [
             'access_'.$this->post_type => true,
             'create_'.$this->post_type => true,
+        ];
+
+        $all_subscribers_admin_permissions = [
             'update_any_'.$this->post_type => true,
             'view_any_'.$this->post_type => true,
         ];
+
+        $expected_roles['campaigns_creator']['permissions'] = array_merge( $expected_roles['campaigns_creator']['permissions'], $subscriptions_permissions );
+
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $subscriptions_permissions );
+        $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $all_subscribers_admin_permissions );
+
+
 
         if ( isset( $expected_roles['administrator'] ) ){
             $expected_roles['administrator']['permissions']['access_' . $this->post_type ] = true;
@@ -680,14 +701,53 @@ class DT_Subscriptions_Base {
         return $filters;
     }
 
-    // access permission
+    private static function get_user_campaigns() {
+        $user_id = get_current_user_id();
+
+        global $wpdb;
+        $campaign_ids = $wpdb->get_col( $wpdb->prepare("
+            SELECT post_id FROM $wpdb->dt_share
+            INNER JOIN $wpdb->posts p ON p.ID = post_id
+            WHERE p.post_type = 'campaigns'
+            AND user_id = %s
+        ", $user_id ) );
+
+        return $campaign_ids;
+    }
+
+    // list access permission
     public static function dt_filter_access_permissions( $permissions, $post_type ){
         if ( $post_type === self::post_type() ){
             if ( DT_Posts::can_view_all( $post_type ) ){
                 $permissions = [];
+            } else {
+                $campaign_ids = self::get_user_campaigns();
+                if ( !empty( $campaign_ids ) ){
+                    $permissions[] = [
+                        'campaigns' => $campaign_ids
+                    ];
+
+                }
             }
         }
         return $permissions;
+    }
+
+    //record access permission
+    public static function can_view_and_update_post( $has_permission, $post_id, $post_type ){
+        if ( $post_type === self::post_type() && !$has_permission ){
+            $campaign_ids = self::get_user_campaigns();
+            $post = DT_Posts::get_post( $post_type, $post_id, true, false );
+            if ( !empty( $post['campaigns'] ) ){
+                foreach ( $post['campaigns'] as $campaign ){
+                    if ( in_array( $campaign['ID'], $campaign_ids ) ){
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return $has_permission;
     }
 }
 
