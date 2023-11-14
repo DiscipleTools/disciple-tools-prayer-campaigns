@@ -65,15 +65,17 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields['name'] = $new_campaign_name;
         }
 
+        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+
         $new_campaign = DT_Posts::create_post( 'campaigns', $fields, true, false );
         if ( is_wp_error( $new_campaign ) ){
             return;
         }
-        update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
-        $settings_manager = new DT_Campaign_Global_Settings();
-        $settings_manager->update( 'selected_porch', $porch_type );
-        DT_Porch_Selector::instance()->set_selected_porch_id( $porch_type );
 
+        if ( empty( $default_campaign ) ){
+            update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
+        }
+        return $new_campaign['ID'];
     }
 
 
@@ -96,9 +98,17 @@ class DT_Prayer_Campaigns_Campaigns {
             if ( isset( $_POST['setup_wizard_submit'], $_POST['setup_wizard_type'], $_POST['new-campaign-name'] ) ){
                 $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_wizard_type'] ) );
                 $new_campaign_name = sanitize_text_field( wp_unslash( $_POST['new-campaign-name'] ) );
-                self::setup_wizard_for_type( $wizard_type, $new_campaign_name );
-                return wp_redirect( home_url() );
+                $new_campaign_id = self::setup_wizard_for_type( $wizard_type, $new_campaign_name );
 
+
+                if ( !empty( $new_campaign_id ) && !is_wp_error( $new_campaign_id ) ){
+                    $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+                    if ( (int) $default_campaign === (int) $new_campaign_id ){
+                        return wp_redirect( home_url() );
+                    } else {
+                        return wp_redirect( DT_Campaign_Landing_Settings::get_landing_page_url( $new_campaign_id ) );
+                    }
+                }
             }
         }
     }

@@ -1141,6 +1141,10 @@ class DT_Campaigns_Base {
         return 0;
     }
 
+    public static function rand_color() {
+        return sprintf( '#%06X', mt_rand( 0, 0xFFFFFF ) );
+    }
+
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
         if ( $post_type === $this->post_type ) {
@@ -1148,14 +1152,20 @@ class DT_Campaigns_Base {
                 $fields['status'] = 'active';
             }
             if ( !isset( $fields['type'] ) ){
-                $fields['type'] = '24hour';
+                $fields['type'] = 'ongoing';
             }
-            $key_name = 'public_key';
-            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $fields['type'] );
+//            $key_name = 'public_key';
+//            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+//                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $fields['type'] );
+//            }
+//            if ( !isset( $fields[$key_name] ) ) {
+//                $fields[$key_name] = dt_create_unique_key();
+//            }
+            if ( !isset( $fields['custom_theme_color'] ) ) {
+                $fields['custom_theme_color'] = self::rand_color();
             }
-            if ( !isset( $fields[$key_name] ) ) {
-                $fields[$key_name] = dt_create_unique_key();
+            if ( !isset( $fields['campaign_url'] ) ) {
+                $fields['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $fields['name'] ) ) );
             }
             if ( !isset( $fields['min_time_duration'] ) ){
                 $fields['min_time_duration'] = '15';

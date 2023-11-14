@@ -221,9 +221,17 @@ class DT_Prayer_Campaigns_Menu {
     }
 
     public function campaign_selector(){
-        $campaigns = DT_Posts::list_posts( 'campaigns', [] );
         //todo set default campaign
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        if ( empty( $campaign ) ){
+            $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+            if ( !empty( $campaigns['posts'] ) ){
+                $campaign = $campaigns['posts'][0];
+            }
+        }
+        if ( empty( $campaign ) ){
+            return;
+        }
         $tab = sanitize_key( wp_unslash( !empty( $_GET['tab'] ) ? $_GET['tab'] : 'campaigns' ) );
         $landing_page_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
         ?>

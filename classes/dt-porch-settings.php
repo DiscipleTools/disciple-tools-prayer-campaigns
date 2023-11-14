@@ -15,6 +15,9 @@ class DT_Porch_Settings {
     public static function settings( string $tab = null, string $section = null, $use_cache = true ): array {
 
         $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
+        if ( empty( $current_campaign ) ) {
+            return [];
+        }
         $cached = wp_cache_get( 'dt_campaign_porch_settings_' . $current_campaign['ID'], 'dt_campaign_porch_settings' );
         if ( $use_cache && $cached && empty( $tab ) && empty( $section ) ) {
             return $cached;

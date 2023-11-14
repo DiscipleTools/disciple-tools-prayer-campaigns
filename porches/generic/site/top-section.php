@@ -46,7 +46,7 @@ $sign_up_link = $campaign_url . '#sign-up';
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?? $campaign_url ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ) ?></a>
+                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?? $campaign_url ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ?? 'Set Up a Campaign' ) ?></a>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>
@@ -85,7 +85,7 @@ $sign_up_link = $campaign_url . '#sign-up';
                     <?php else : ?>
 
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <?php echo esc_html( $campaign_fields['name'] ) ?>
+                            <?php echo esc_html( $campaign_fields['name'] ?? 'Set Up A Campaign' ) ?>
                         </h1>
 
                     <?php endif; ?>

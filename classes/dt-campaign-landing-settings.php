@@ -93,7 +93,7 @@ class DT_Campaign_Landing_Settings {
             'description' => __( 'The name that will be used as the "from" name for emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
             'tile' => 'campaign_email',
             'campaign_section' => $sections['settings'],
-            'default' => DT_Prayer_Campaigns_Send_Email::default_email_name()
+            'default' => ''
         ];
         $fields['reply_to_email'] = [
             'name' => __( 'Reply To Email', 'disciple-tools-prayer-campaigns' ),
@@ -261,32 +261,45 @@ class DT_Campaign_Landing_Settings {
 
     }
 
-    public static function get_campaign( $selected_campaign = null ) {
-        if ( $selected_campaign === null ) {
-            if ( isset( $_GET['campaign'] ) ){
-                $selected_campaign = sanitize_key( wp_unslash( $_GET['campaign'] ) );
-            }
-            if ( empty( $selected_campaign ) && DT_Posts::can_access( 'campaigns' ) ){
-                $cached = wp_cache_get( 'dt_selected_campaign_' . $selected_campaign );
-                if ( $cached !== false ){
-                    return $cached;
-                }
-                $campaigns = DT_Posts::list_posts( 'campaigns', [] );
-                if ( !empty( $campaigns['posts'] ) ){
-                    $selected_campaign = $campaigns['posts'][0]['ID'];
-                }
-            }
-
-            if ( empty( $selected_campaign ) ){
-                $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
-            }
-        }
-
-        if ( empty( $selected_campaign ) ) {
-            return [];
+    public static function get_campaign_id(){
+        if ( isset( $_GET['campaign'] ) ){
+            return sanitize_key( wp_unslash( $_GET['campaign'] ) );
         }
         if ( defined( 'CAMPAIGN_ID' ) ) {
-            $selected_campaign = CAMPAIGN_ID;
+            return CAMPAIGN_ID;
+        }
+        if ( empty( $selected_campaign ) ){
+            return get_option( 'dt_campaign_selected_campaign', false );
+        }
+    }
+
+    public static function get_campaign( $selected_campaign = null ) {
+        if ( $selected_campaign === null ) {
+//            if ( isset( $_GET['campaign'] ) ){
+//                $selected_campaign = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+//            }
+//            if ( empty( $selected_campaign ) && DT_Posts::can_access( 'campaigns' ) ){
+//                $cached = wp_cache_get( 'dt_selected_campaign_' . $selected_campaign );
+//                if ( $cached !== false ){
+//                    return $cached;
+//                }
+//                $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+//                if ( !empty( $campaigns['posts'] ) ){
+//                    $selected_campaign = $campaigns['posts'][0]['ID'];
+//                }
+//            }
+//
+//            if ( empty( $selected_campaign ) ){
+//                $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
+//            }
+            $selected_campaign = self::get_campaign_id();
+        }
+
+//        if ( defined( 'CAMPAIGN_ID' ) ) {
+//            $selected_campaign = CAMPAIGN_ID;
+//        }
+        if ( empty( $selected_campaign ) ) {
+            return [];
         }
 
         $campaign = DT_Posts::get_post( 'campaigns', (int) $selected_campaign, true, false );
