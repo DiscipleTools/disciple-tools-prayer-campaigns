@@ -185,7 +185,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $message .= Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
         }
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Access you account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $link );
         if ( !empty( $recurring_signups ) ){
             $message .= Campaigns_Email_Template::email_content_part(
@@ -262,7 +262,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $management_link = self::management_link( $record );
 
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( $commitment_list );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );
@@ -272,7 +272,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $prayer_content_message ) ){
             $message .= Campaigns_Email_Template::email_content_part( $prayer_content_message );
         }
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Access you account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $management_link );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
@@ -310,7 +310,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         if ( ! empty( $keys ) ) {
             foreach ( $keys as $public_key ) {
-                $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us!' );
+                $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us.' );
                 $message .= Campaigns_Email_Template::email_content_part( 'Here is the link you requested to your prayer commitments:' );
                 $message .= Campaigns_Email_Template::email_content_part( '<a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $public_key.'">Link to your commitments!</a>' );
                 $message .= Campaigns_Email_Template::email_content_part( '<hr>' );
@@ -325,7 +325,7 @@ class DT_Prayer_Campaigns_Send_Email {
                 }
             }
         } else {
-            $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us!' );
+            $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us.' );
             $message .= Campaigns_Email_Template::email_content_part( 'Sorry, we were unable to find a sign up associated with this email address.' );
             $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
