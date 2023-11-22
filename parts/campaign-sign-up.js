@@ -702,6 +702,7 @@ export class cpCalendar extends LitElement {
         justify-content: center;
         height: 40px;
         width: 40px;
+        font-size: 15px;
       }
       .week-day {
         display: flex;
@@ -715,6 +716,14 @@ export class cpCalendar extends LitElement {
       }
       .loading {
         min-height: 600px;
+      }
+      .progress-ring {
+        width: 40px;
+        height: 40px;
+        padding-top: 2px;
+      }
+      .disabled-calendar-day {
+        color: #c4c4c4;
       }
     `
   ]
@@ -771,7 +780,7 @@ export class cpCalendar extends LitElement {
                 <div class="calendar-month">
                     <h3 class="month-title center">
                         ${month.date.toFormat( 'MMM y')}
-                        <span class="month-percentage">${ month.percentage}% | ${month.days_covered} ${translate('days')}</span>
+                        <span class="month-percentage">${ month.percentage || 0 }% | ${month.days_covered} ${translate('days')}</span>
 
                     </h3>
                     <div class="calendar">
@@ -783,7 +792,9 @@ export class cpCalendar extends LitElement {
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
-                                <progress-ring stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                ${day.disabled ? window.campaign_scripts.escapeHTML(day.day) : html`
+                                    <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                ` }
                                 </div>`
                         })}
                     </div>
