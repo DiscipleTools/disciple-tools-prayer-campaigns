@@ -82,7 +82,7 @@ class DT_Porch_Admin_Tab_Base {
         $langs = dt_campaign_list_languages();
         $allowed_tags = $this->get_allowed_tags();
 
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
         $campaign_settings = DT_Porch_Settings::settings();
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {

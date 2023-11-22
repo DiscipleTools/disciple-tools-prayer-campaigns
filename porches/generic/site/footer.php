@@ -35,7 +35,7 @@
                     </p>
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                    <p><a href="<?php echo esc_html( site_url( '/subscriptions' ) ); ?>">Login</a> | <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">Page Settings</a></p>
+                    <p><a href="<?php echo esc_html( site_url( '/subscriptions' ) ); ?>">Login</a> | <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . CAMPAIGN_ID ) ); ?>">Page Settings</a></p>
                 </div>
             </div>
         </div>
