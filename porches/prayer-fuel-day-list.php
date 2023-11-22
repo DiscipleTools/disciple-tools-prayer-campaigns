@@ -143,6 +143,9 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 //$todays_campaign_day = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y-m-d' ) );
                 $porch_fields = DT_Porch_Settings::settings();
                 $frequency = $porch_fields['prayer_fuel_frequency']['value'];
+                if ( empty( $frequency ) ) {
+                    $frequency = 'daily';
+                }
                 $frequency_options = [
                     'daily' => 'Day',
                     'weekly' => 'Week',

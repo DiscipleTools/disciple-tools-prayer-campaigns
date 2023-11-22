@@ -186,7 +186,6 @@ class DT_Campaigns_Base {
                 'type' => 'text',
                 'tile' => 'details',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
-                'in_create_form' => true,
                 'show_in_table' => 20,
             ];
 
@@ -209,6 +208,19 @@ class DT_Campaigns_Base {
                 'p2p_key' => $this->post_type.'_to_peoplegroups'
             ];
 
+            $porches = apply_filters( 'dt_register_prayer_campaign_porch', [] );
+            $fields['porch_type'] = [
+                'name' => 'Landing Page Type',
+                'type' => 'key_select',
+                'default' => [],
+                'tile' => 'status',
+                'in_create_form' => true,
+                'select_cannot_be_empty' => true,
+            ];
+            foreach ( $porches as $porch ){
+                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'] ];
+            }
+
             $fields['start_date'] = [
                 'name'        => 'Start Date',
                 'required' => true,
@@ -221,7 +233,7 @@ class DT_Campaigns_Base {
                 'show_in_table' => 101
             ];
             $fields['end_date'] = [
-                'name'        => 'End Date',
+                'name'        => 'End Date (optional)',
                 'description' => '',
                 'type'        => 'date',
                 'default'     => '',
@@ -242,7 +254,7 @@ class DT_Campaigns_Base {
             }
             $fields['campaign_timezone'] = [
                 'name' => 'Campaign Time Zone',
-                'required' => true,
+                'required' => false,
                 'in_create_form' => true,
                 'default' => $timezones,
                 'type' => 'key_select',
@@ -344,18 +356,6 @@ class DT_Campaigns_Base {
             if ( isset( $fields['tags'] ) ){
                 $fields['tags']['tile'] = 'details';
             }
-
-            //porch fields @todo migrate
-            $porches = apply_filters( 'dt_register_prayer_campaign_porch', [] );
-            $fields['porch_type'] = [
-                'name' => 'Porch Type',
-                'type' => 'key_select',
-                'default' => [],
-                'tile' => 'status'
-            ];
-            foreach ( $porches as $porch ){
-                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'] ];
-            }
         }
 
         if ( $post_type === 'subscriptions' ){
@@ -415,12 +415,6 @@ class DT_Campaigns_Base {
         if ( $post_type === $this->post_type ){
             $tiles['campaign_setup'] = [ 'label' => 'Campaign Setup' ];
             $tiles['commitments'] = [ 'label' => 'Commitments' ];
-            if ( $post_type === 'campaigns' && ! isset( $tiles['campaign_magic_links'] ) ){
-                $tiles['campaign_magic_links'] = [
-                    'label' => 'Magic Urls',
-                    'description' => 'The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates.'
-                ];
-            }
             if ( !isset( $tiles['campaign_communication'] ) ){
                 $tiles['campaign_communication'] = [
                     'label' => __( 'Campaign Communication', 'disciple-tools-prayer-campaigns' ),
@@ -1126,8 +1120,8 @@ class DT_Campaigns_Base {
             if ( !isset( $fields['status'] ) ) {
                 $fields['status'] = 'active';
             }
-            if ( !isset( $fields['type'] ) ){
-                $fields['type'] = 'ongoing';
+            if ( !isset( $fields['porch_type'] ) ){
+                $fields['porch_type'] = 'generic-porch';
             }
 //            $key_name = 'public_key';
 //            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){

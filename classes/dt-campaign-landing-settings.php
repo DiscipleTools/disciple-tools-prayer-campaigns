@@ -90,14 +90,18 @@ class DT_Campaign_Landing_Settings {
 
         $tiles['campaign_landing'] = [
             'label' => __( 'Landing Page Settings', 'disciple-tools-prayer-campaigns' ),
+            'hidden' => true,
         ];
         $tiles['campaign_email'] = [
             'label' => __( 'Email Settings', 'disciple-tools-prayer-campaigns' ),
+            'hidden' => true,
         ];
         $tiles['campaign_prayer_fuel'] = [
+            'hidden' => true,
             'label' => __( 'Prayer Fuel Settings', 'disciple-tools-prayer-campaigns' ),
         ];
         $tiles['campaign_landing_strings'] = [
+            'hidden' => true,
             'label' => __( 'Landing Page Strings', 'disciple-tools-prayer-campaigns' ),
         ];
 

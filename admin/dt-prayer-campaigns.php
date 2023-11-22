@@ -490,10 +490,6 @@ class DT_Prayer_Campaigns_Campaigns {
                                             <td><?php echo esc_html( isset( $fields['porch_type']['label'] ) ? $fields['porch_type']['label'] : '' ); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Campaign Type</td>
-                                            <td><?php echo esc_html( $fields['type']['label'] ) ?></td>
-                                        </tr>
-                                        <tr>
                                             <td>Start Date</td>
                                             <td>
                                                 <?php echo esc_html( isset( $fields['start_date']['formatted'] ) ? $fields['start_date']['formatted'] : '' ); ?>
