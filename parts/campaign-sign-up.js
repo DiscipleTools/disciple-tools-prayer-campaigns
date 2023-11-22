@@ -839,12 +839,11 @@ export class cpPercentage extends LitElement {
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
         <div id="main-progress" class="cp-center">
-<!--            <div class="cp-center" style="margin: 0 auto 10px auto; background-color: #ededed; border-radius: 20px; height: 150px; width: 150px;"></div>-->
             <progress-ring stroke="10" radius="80" font="18"
-                           progress="50"
-                           progress2="85"
-                           text="50%"
-                           text2="Bob">
+                           progress="${this.campaign_data.coverage_percent || 0}"
+                           progress2="0"
+                           text="${this.campaign_data.coverage_percent || 0}%"
+                           text2="">
             </progress-ring>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center">${strings['Percentage covered in prayer']}</div>

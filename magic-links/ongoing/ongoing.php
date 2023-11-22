@@ -135,11 +135,11 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $end = $record['end_date']['timestamp'] ?? null;
         if ( $end ){
             $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 3, $start );
+            $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
         }
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );
-        $field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
-        $lang = dt_campaign_get_current_lang(); //todo remove?
+        $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
 
         return [
@@ -147,12 +147,12 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'start_timestamp' => $start,
             'end_timestamp' => $end,
             'slot_length' => (int) $min_time_duration,
-//            'duration_options' => $field_settings['duration_options']['default'],
             'status' => $record['status']['key'],
             'current_commitments' => $current_commitments,
             'minutes_committed' => $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
+            'coverage_percent' => $coverage_percent ?? null,
         ];
     }
 
