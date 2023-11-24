@@ -70,6 +70,18 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             ]
         );
         register_rest_route(
+            $namespace, '/' . $this->type . '/campaign_edit', [
+                [
+                    'methods' => 'POST',
+                    'callback' => [ $this, 'campaign_edit' ],
+                    'permission_callback' => function ( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+        register_rest_route(
             $namespace, '/'.$this->type, [
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
@@ -154,6 +166,87 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
         ];
+    }
+
+    public function campaign_edit( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+
+        $response = [
+            'updated' => false
+        ];
+        if ( isset( $params['campaign_id'], $params['edit'] ) ) {
+            $all_languages = $params['edit']['translate_type'] === 'all_lang';
+            $campaign_id = $params['campaign_id'];
+            $response['edit_key'] = $params['edit']['key'];
+            $title_key = null;
+            $text_key = null;
+
+            // Determine section keys to be adopted.
+            switch ( $params['edit']['key'] ) {
+                case 'pray_section':
+                case 'movement_section':
+                case 'time_section':
+                    $title_key = $params['edit']['key'] . '_title';
+                    $text_key = $params['edit']['key'] . '_text';
+                    break;
+                case 'vision_section':
+                    $title_key = 'vision_title';
+                    $text_key = 'vision';
+                    break;
+                case 'what_section':
+                    $text_key = 'what_content';
+                    break;
+                case 'prayer_fuel_section':
+                    $title_key = 'prayer_fuel_title';
+                    $text_key = 'prayer_fuel_description';
+                    break;
+                default:
+                    break;
+            }
+
+            // Proceed with translation updates.
+            $title = $params['edit']['title'];
+            $text = $params['edit']['text'];
+
+            if ( $all_languages ) {
+                $updates = [];
+
+                if ( !empty( $title_key ) ) {
+                    $response['title'] = $updates[ $title_key ] = $title;
+                }
+                if ( !empty( $text_key ) ) {
+                    $response['text'] = $updates[ $text_key ] = $text;
+                }
+                if ( !empty( $updates ) ) {
+                    $response['updated'] = DT_Porch_Settings::update_values( $updates );
+                }
+
+            } else {
+                $lang = $params['edit']['translate_lang'];
+                if ( !empty( $lang ) ) {
+                    $translations = [];
+
+                    if ( !empty( $title_key ) ) {
+                        $translations[ $title_key ] = [
+                            $lang => $title
+                        ];
+                        $response['title'] = $title;
+                    }
+                    if ( !empty( $text_key ) ) {
+                        $translations[ $text_key ] = [
+                            $lang => $text
+                        ];
+                        $response['text'] = $text;
+                    }
+                    if ( !empty( $translations ) ) {
+                        $response['updated'] = DT_Porch_Settings::update_translations( $campaign_id, $translations );
+                    }
+                }
+            }
+        }
+
+        return $response;
     }
 
     public function create_subscription( WP_REST_Request $request ) {

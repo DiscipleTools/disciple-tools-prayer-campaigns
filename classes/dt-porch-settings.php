@@ -119,7 +119,7 @@ class DT_Porch_Settings {
         }
 
         if ( !empty( $changes ) ){
-            DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes );
+            DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
         }
         return true;
     }

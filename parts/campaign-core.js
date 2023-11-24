@@ -452,3 +452,198 @@ window.campaign_scripts = {
   }
 }
 
+/**
+ * EDIT FUNCTIONALITY
+ */
+
+jQuery(document).ready(function ($) {
+
+    init_edit_foundation_modal();
+    function init_edit_foundation_modal() {
+
+        // Instantiate edit modal and set content.
+        let edit_modal = $('#modal-large');
+        $(edit_modal).data('v-offset', 200);
+
+        let current_lang = null;
+        let lang_select = $('.dt-magic-link-language-selector');
+        if ($(lang_select).length > 0) {
+            current_lang = $(lang_select).find('option:selected').text().trim();
+        }
+
+        $('#modal-large-title').empty().html(`${escapeHTML(strings['modals']['edit']['modal_title'])}<br><hr>`);
+        let content = `
+        <input id="edit_modal_key" type="hidden"/>
+        <input id="edit_modal_section_title_id" type="hidden"/>
+        <input id="edit_modal_section_text_id" type="hidden"/>
+        <table>
+            <tbody>
+                <tr>
+                    <td>${escapeHTML(strings['modals']['edit']['edit_title'])}</td>
+                    <td><input id="edit_modal_title" style="min-width: 100%;"/></td>
+                </tr>
+                <tr style="background-color: #ffffff;">
+                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_content'])}</td>
+                    <td>
+                        <textarea id="edit_modal_content" cols="100" rows="5"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_translate_type'])}</td>
+                    <td>
+                        <fieldset id="edit_modal_translate_type">
+                            <label>
+                                <input type="radio" value="current_lang" name="edit_modal_translate_type" />
+                                ${escapeHTML(strings['modals']['edit']['edit_translate_type_lang_current'])} ${((current_lang !== null) ? ' - ['+ current_lang +']' : '' )}
+                            </label>
+                            <label>
+                                <input type="radio" value="all_lang" name="edit_modal_translate_type" />
+                                ${escapeHTML(strings['modals']['edit']['edit_translate_type_lang_all'])}
+                            </label>
+                        </fieldset>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span style="float: right;">
+            <button class="btn btn-common edit-close-btn">${escapeHTML(strings['modals']['edit']['edit_btn_close'])}</button>
+            <button class="btn btn-common edit-update-btn">${escapeHTML(strings['modals']['edit']['edit_btn_update'])}</button>
+        </span>`;
+        $('#modal-large-content').empty().html(content);
+
+        new window.Foundation.Reveal(edit_modal);
+    }
+
+    $('.edit-btn').on('click', function (e) {
+
+        // Set translation field values and display modal.
+        let section = $(e.currentTarget).parent();
+        let edit_key = $(e.currentTarget).data('edit_key');
+        let edit_title_id = $(e.currentTarget).data('edit_title_id');
+        let edit_text_id = $(e.currentTarget).data('edit_text_id');
+        let title = $('#' + edit_title_id).text().trim();
+        let content = $('#' + edit_text_id).text().trim();
+
+        $('#edit_modal_key').val(edit_key);
+        $('#edit_modal_section_title_id').val(edit_title_id);
+        $('#edit_modal_section_text_id').val(edit_text_id);
+        $('input:radio[name="edit_modal_translate_type"][value="current_lang"]').prop('checked', true);
+
+        let edit_modal_title = $('#edit_modal_title');
+        let edit_modal_content = $('#edit_modal_content');
+
+        $(edit_modal_title).val(title);
+        $(edit_modal_content).val(content);
+
+        // Disabled accordingly, as not all sections required both title & text updates.
+        $(edit_modal_title).prop('disabled', !edit_title_id);
+        $(edit_modal_content).prop('disabled', !edit_text_id);
+
+        $('#modal-large').foundation('open');
+    });
+
+    $(document).on('click', '.edit-close-btn', function (e) {
+        $('#modal-large').foundation('close');
+    });
+
+    $(document).on('click', '.edit-update-btn', function (e) {
+        let edit_key = $('#edit_modal_key').val();
+        let edit_title_id = $('#edit_modal_section_title_id').val();
+        let edit_text_id = $('#edit_modal_section_text_id').val();
+        let title = $('#edit_modal_title').val();
+        let content = $('#edit_modal_content').val();
+        let type = $('input:radio[name="edit_modal_translate_type"]:checked').val();
+        let lang_select = $('.dt-magic-link-language-selector').val();
+        let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+
+        // Dispatch edit update request.
+        let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_edit';
+        let payload = {
+          'action': 'post',
+          'parts': window.campaign_objects.magic_link_parts,
+          'url': 'campaign_edit',
+          'time': new Date().getTime(),
+          campaign_id,
+          'edit': {
+            'key': edit_key,
+            'title': title,
+            'text': content,
+            'translate_type': type,
+            'translate_lang': lang_select
+          }
+        };
+
+        jQuery.ajax({
+            type: 'POST',
+            data: JSON.stringify(payload),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            url: link
+        })
+        .promise()
+        .then((response) => {
+            console.log(response);
+            if ( response && response['updated'] ) {
+
+              // Refresh titles and content text accordingly, based on returned edit key type.
+              switch ( response['edit_key'] ) {
+                case 'pray_section':
+                case 'movement_section':
+                case 'time_section': {
+                  if ( response['title'] ) {
+                    $('#' + edit_title_id).fadeOut('fast', function () {
+                      $(this).text(response['title']).fadeIn('fast');
+                    });
+                  }
+                  if ( response['text'] ) {
+                    $('#' + edit_text_id).fadeOut('fast', function () {
+                      $(this).text(response['text']).fadeIn('fast');
+                    });
+                  }
+                  break;
+                }
+                case 'vision_section':
+                case 'prayer_fuel_section': {
+                  if ( response['title'] ) {
+
+                    // Ensure styling is maintained.
+                    let parts = response['title'].split(/\s+/);
+                    if ( parts.length > 0 ) {
+                        let arr = [parts.shift(), parts.join(' ')];
+                        $('#' + edit_title_id).fadeOut('fast', function () {
+                            $(this).html(`${arr[0]} <span>${arr[1]}</span>`).fadeIn('fast');
+                        });
+                    } else {
+                        $('#' + edit_title_id).fadeOut('fast', function () {
+                            $(this).text(response['title']).fadeIn('fast');
+                        });
+                    }
+                  }
+                  if ( response['text'] ) {
+                      $('#' + edit_text_id).fadeOut('fast', function () {
+                          $(this).text(response['text']).fadeIn('fast');
+                      });
+                  }
+                  break;
+                }
+                case 'what_section': {
+                    if ( response['text'] ) {
+                        $('#' + edit_text_id).fadeOut('fast', function () {
+                            $(this).text(response['text']).fadeIn('fast');
+                        });
+                    }
+                    break;
+                }
+                default:
+                  break;
+              }
+            }
+            $('#modal-large').foundation('close');
+        });
+    });
+});
+
+/**
+ * EDIT FUNCTIONALITY
+ */
+

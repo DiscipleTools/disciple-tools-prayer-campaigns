@@ -84,6 +84,18 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),
                     'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
                     'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
+                    'modals' => [
+                        'edit' => [
+                            'modal_title' => __( 'Title & Content Translations', 'disciple-tools-prayer-campaigns' ),
+                            'edit_title' => __( 'Title', 'disciple-tools-prayer-campaigns' ),
+                            'edit_content' => __( 'Content', 'disciple-tools-prayer-campaigns' ),
+                            'edit_translate_type' => __( 'Translation Type', 'disciple-tools-prayer-campaigns' ),
+                            'edit_translate_type_lang_current' => __( 'Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
+                            'edit_translate_type_lang_all' => __( 'All Languages', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_close' => __( 'Close', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_update' => __( 'Update', 'disciple-tools-prayer-campaigns' )
+                        ]
+                    ]
                 ]
             ]
         );
@@ -93,5 +105,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
         wp_enqueue_script( 'campaign_component_sign_up', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
         wp_enqueue_style( 'toastify-js-css', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css', [], '1.12.0' );
         wp_enqueue_script( 'toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js', [ 'jquery' ], '1.12.0' );
+
+        wp_enqueue_script( 'foundation-js', 'https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js', [ 'jquery' ], '6.8.1' );
+        wp_enqueue_style( 'foundation-js-css', 'https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css', [], '6.8.1' );
     }
 }
