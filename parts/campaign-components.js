@@ -925,7 +925,7 @@ export class cpTimes extends LitElement {
         hour: time.toFormat('hh a'),
         minute: time.toFormat('mm'),
         progress: progress,
-        selected: this.selected_times.find(t=>t.time===s.key),
+        selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
       })
     })
     return times;
@@ -947,7 +947,7 @@ export class cpTimes extends LitElement {
           : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
-      let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && r.time === key)
+      let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
 
       options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress, selected})
       key += window.campaign_data.slot_length * 60
@@ -993,7 +993,7 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toFormat('hh a'),
         progress,
-        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && r.time === key)
+        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
       })
       key += this.slot_length * 60
     }
