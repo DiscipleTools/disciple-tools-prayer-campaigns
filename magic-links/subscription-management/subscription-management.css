@@ -3,6 +3,7 @@
 body {
     background-color: white;
     margin: 0;
+    overflow-x: hidden;
 }
 #content {
     max-width:100%;

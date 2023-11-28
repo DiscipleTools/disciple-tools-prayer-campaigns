@@ -304,6 +304,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             </div>
         </div>
         <div id="wrapper">
+            <!-- links -->
+            <div style="margin: 10px; text-align: center">
+                Links:
+                <a href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+            </div>
+
             <div id="prayer-times" class="display-panel" style="display: block">
 
                 <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
