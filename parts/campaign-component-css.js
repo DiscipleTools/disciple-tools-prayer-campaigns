@@ -301,7 +301,7 @@ Loader
   }
   
   .disabled {
-    opacity: .3;
+    opacity: .5;
     cursor: not-allowed;
   }
 

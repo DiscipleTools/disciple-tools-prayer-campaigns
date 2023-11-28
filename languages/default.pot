@@ -200,7 +200,7 @@ msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:38
 #: magic-links/subscription-management/subscription-management.php:319
-msgid "My Prayer Times"
+msgid "My Prayer Commitments"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:146
@@ -406,7 +406,7 @@ msgid "At what time?"
 msgstr ""
 
 #: parts/components-enqueue.php:49
-msgid "Selected times"
+msgid "My Prayer Commitments"
 msgstr ""
 
 #: parts/components-enqueue.php:50

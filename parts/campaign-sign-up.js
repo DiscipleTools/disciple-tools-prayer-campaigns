@@ -618,7 +618,7 @@ export class CampaignSignUp extends LitElement {
               <div class="desktop section-div">
                   <h2 class="section-title">
                       <span class="step-circle">*</span>
-                      <span>${strings['Selected Times']} (${this.selected_times_count()})</span>
+                      <span>${translate('My Prayer Commitments')} (${this.selected_times_count()})</span>
                   </h2>
                   ${this.recurring_signups.map((value, index) => html`
                       <div class="selected-times selected-time-labels">
