@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-28T15:00:54+00:00\n"
+"POT-Creation-Date: 2023-11-28T15:31:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -75,7 +75,7 @@ msgid "You signed up to pray:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:197
-msgid "These are your next time commitments:"
+msgid "These are your next prayer commitments:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:200
@@ -127,7 +127,7 @@ msgid "Thank you"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:403
-#: porches/generic/site/stats.php:143
+#: porches/generic/site/stats.php:144
 msgid "Thank you for praying with us!"
 msgstr ""
 
@@ -228,7 +228,8 @@ msgid "My Prayer Commitments"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:305
-msgid "Prayer Times"
+#: porches/generic/site/stats.php:205
+msgid "Prayer Commitments"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:306
@@ -241,7 +242,7 @@ msgid "Home"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:315
-#: porches/generic/site/stats.php:169
+#: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
@@ -266,8 +267,8 @@ msgid "Choose a timezone"
 msgstr ""
 
 #: parts/components-enqueue.php:38
-#: porches/generic/site/stats.php:216
-#: porches/generic/site/stats.php:226
+#: porches/generic/site/stats.php:217
+#: porches/generic/site/stats.php:227
 msgid "hours"
 msgstr ""
 
@@ -317,7 +318,7 @@ msgid "Name"
 msgstr ""
 
 #: parts/components-enqueue.php:51
-#: porches/generic/site/stats.php:271
+#: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr ""
 
@@ -350,7 +351,7 @@ msgid "Close"
 msgstr ""
 
 #: parts/components-enqueue.php:59
-msgid "prayer times"
+msgid "prayer commitments"
 msgstr ""
 
 #: parts/components-enqueue.php:60
@@ -370,7 +371,7 @@ msgstr ""
 #: parts/components-enqueue.php:63
 #: porches/generic/site/archive-body.php:75
 #: porches/generic/site/landing-body.php:52
-#: porches/generic/site/stats.php:284
+#: porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr ""
 
@@ -627,7 +628,7 @@ msgstr ""
 
 #: porches/generic/site/archive-body.php:81
 #: porches/generic/site/landing-body.php:58
-#: porches/generic/site/stats.php:290
+#: porches/generic/site/stats.php:291
 msgid "Thank You"
 msgstr ""
 
@@ -664,7 +665,7 @@ msgid "Hours"
 msgstr ""
 
 #: porches/generic/site/home-body.php:215
-#: porches/generic/site/stats.php:188
+#: porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:215
 msgid "Prayer Commitments Needed"
 msgstr ""
@@ -688,68 +689,68 @@ msgstr ""
 msgid "No prayer fuel found"
 msgstr ""
 
-#: porches/generic/site/stats.php:145
+#: porches/generic/site/stats.php:21
+msgid "Campaign Stats"
+msgstr ""
+
+#: porches/generic/site/stats.php:146
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgstr ""
 
-#: porches/generic/site/stats.php:196
+#: porches/generic/site/stats.php:197
 msgid "Percentage Covered"
 msgstr ""
 
-#: porches/generic/site/stats.php:204
-msgid "Prayer Commitments"
-msgstr ""
-
-#: porches/generic/site/stats.php:212
+#: porches/generic/site/stats.php:213
 msgid "Time Committed"
 msgstr ""
 
-#: porches/generic/site/stats.php:222
+#: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
 msgstr ""
 
-#: porches/generic/site/stats.php:232
+#: porches/generic/site/stats.php:233
 msgid "Number of People who Prayed"
 msgstr ""
 
-#: porches/generic/site/stats.php:265
+#: porches/generic/site/stats.php:266
 msgid "Share with us your Prayer Stories"
 msgstr ""
 
-#: porches/generic/site/stats.php:279
+#: porches/generic/site/stats.php:280
 msgid "Share with us about your prayer time (E.g. testimonies, insights, blessings, etc)"
 msgstr ""
 
-#: porches/generic/site/stats.php:326
+#: porches/generic/site/stats.php:327
 msgid "Global Ramadan Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:333
+#: porches/generic/site/stats.php:334
 msgid "Total Prayer Campaigns"
 msgstr ""
 
-#: porches/generic/site/stats.php:341
+#: porches/generic/site/stats.php:342
 msgid "Countries Prayed For"
 msgstr ""
 
-#: porches/generic/site/stats.php:349
+#: porches/generic/site/stats.php:350
 msgid "Intercessors"
 msgstr ""
 
-#: porches/generic/site/stats.php:357
+#: porches/generic/site/stats.php:358
 msgid "Time Prayed"
 msgstr ""
 
-#: porches/generic/site/stats.php:365
+#: porches/generic/site/stats.php:366
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:388
+#: porches/generic/site/stats.php:389
 msgid "More Prayer Opportunities"
 msgstr ""
 
-#: porches/generic/site/stats.php:392
+#: porches/generic/site/stats.php:393
 msgid "Sign up to hear about other prayer efforts and opportunities with Pray4Movement.org and receive occasional communication from GospelAmbition.org."
 msgstr ""
 

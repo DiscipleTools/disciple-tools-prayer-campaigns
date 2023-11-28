@@ -302,7 +302,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <h1><?php echo esc_html( $post['name'] ); ?></h1>
             </div>
             <div style="display: flex;">
-                <button class="active" data-show="prayer-times"><?php esc_html_e( 'Prayer Times', 'disciple-tools-prayer-campaigns' ); ?></button>
+                <button class="active" data-show="prayer-times"><?php esc_html_e( 'Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></button>
                 <button data-show="profile"><?php esc_html_e( 'Account', 'disciple-tools-prayer-campaigns' ); ?></button>
             </div>
         </div>

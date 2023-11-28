@@ -194,7 +194,7 @@ class DT_Prayer_Campaigns_Send_Email {
             );
         }
         $message .= Campaigns_Email_Template::email_content_part(
-            __( 'These are your next time commitments:', 'disciple-tools-prayer-campaigns' )
+            __( 'These are your next prayer commitments:', 'disciple-tools-prayer-campaigns' )
             . $commitment_list
         );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );

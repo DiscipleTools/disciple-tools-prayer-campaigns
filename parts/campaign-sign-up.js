@@ -578,7 +578,7 @@ export class CampaignSignUp extends LitElement {
                       <span style="display: flex; align-items: center">
                           <img src="${window.campaign_objects.plugin_url}assets/calendar.png" style="width: 2rem;">
                           <span>
-                            (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer times']}</span>)
+                            (${this.selected_times_count()} <span ?hidden="${!this.show_selected_times}">${strings['prayer commitments']}</span>)
                           </span>
                       </span>
                   </div>

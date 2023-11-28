@@ -18,6 +18,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
     } // End instance()
 
     public function __construct() {
+        $this->page_title = __( 'Campaign Stats', 'disciple-tools-prayer-campaigns' );
         parent::__construct();
         add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
