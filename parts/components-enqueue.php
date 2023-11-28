@@ -88,6 +88,19 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Check your email for additional details and to manage your account.' => __( 'Check your email for additional details and to manage your account.', 'disciple-tools-prayer-campaigns' ),
                     'Ok' => __( 'Ok', 'disciple-tools-prayer-campaigns' ),
                     'Access Account' => __( 'Access Account', 'disciple-tools-prayer-campaigns' ),
+                    'cancel_warning_paragraph' => __( 'Need to cancel? We get it! But wait! If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you. That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!', 'disciple-tools-prayer-campaigns' ),
+                    'Account Settings' => __( 'Account Settings', 'disciple-tools-prayer-campaigns' ),
+                    'Timezone' => __( 'Timezone', 'disciple-tools-prayer-campaigns' ),
+                    'Receive Prayer time notifications' => __( 'Receive Prayer time notifications', 'disciple-tools-prayer-campaigns' ),
+                    'Advanced Settings' => __( 'Advanced Settings', 'disciple-tools-prayer-campaigns' ),
+                    'show' => __( 'show', 'disciple-tools-prayer-campaigns' ),
+                    'Delete this account and all the scheduled prayer times' => __( 'Delete this account and all the scheduled prayer times', 'disciple-tools-prayer-campaigns' ),
+                    'So sorry. Something went wrong. Please, contact us to help you through it, or just try again.' => __( 'So sorry. Something went wrong. Please, contact us to help you through it, or just try again.', 'disciple-tools-prayer-campaigns' ),
+                    'Your account has been deleted!' => __( 'Your account has been deleted!', 'disciple-tools-prayer-campaigns' ),
+                    'Thank you for praying with us.' => __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ),
+                    'Language' => __( 'Language', 'disciple-tools-prayer-campaigns' ),
+                    'Delete' => __( 'Delete', 'disciple-tools-prayer-campaigns' ),
+                    'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );

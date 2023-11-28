@@ -95,6 +95,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
 
+        $lang = $post['lang'] ?: 'en_US';
 
         wp_localize_script(
             'dt_subscription_js', 'subscription_page_data', [
@@ -103,6 +104,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
                 'campaign_id' => $campaign_id,
+                'languages' => dt_campaign_list_languages(),
+                'current_language' => $lang
             ]
         );
     }
@@ -437,6 +440,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         if ( isset( $new_values['timezone'] ) ){
             $updates['timezone'] = $new_values['timezone'];
+        }
+        if ( isset( $new_values['language'] ) ){
+            $updates['lang'] = $new_values['language'];
         }
         $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
 

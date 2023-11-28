@@ -10,6 +10,12 @@ jQuery(document).ready(function($){
 
 import {html, css, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+function translate(str){
+  if ( !strings[str] ){
+    console.error("'" + str + "' => __( '" + str + "', 'disciple-tools-prayer-campaigns' ),");
+  }
+  return strings[str] || str
+}
 
 export class cpProfile extends LitElement {
   static styles = [
@@ -22,7 +28,14 @@ export class cpProfile extends LitElement {
         align-items: center;
       }
       .contact-info {
-        max-width: 500px;
+        width: 500px;
+        display: grid;
+        gap: 10px
+      }
+      @media (max-width: 500px) {
+        .contact-info {
+          width: 100%;
+        }
       }
     `,
   ]
@@ -63,53 +76,61 @@ export class cpProfile extends LitElement {
       <div class="profile-container">
       <div class="contact-info">
         <h2>
-            Account Settings
+            ${translate('Account Settings')}
         </h2>
-        <div>
+        <div class="row">
             <label>
-                Name
+                ${translate('Name')}
                 <input type="text"
                        @change="${e=>this.updates.name = e.target.value}"
                        value="${this.subscriber_data.name}">
             </label>
         </div>
-        <div>
+        <div class="row">
             <label>
-                Email
+                ${translate('Email')}
                 <input type="email"
                        @change="${e=>this.updates.email = e.target.value}"
                        value="${this.subscriber_data.email}">
             </label>
         </div>
-        <div>
+        <div class="row">
             <label>
-                Timezone
-                <select
-                    @change="${e=>this.updates.timezone = e.target.value}"
-                    >
-                    <option value="">Select a timezone</option>
+                ${translate('Language')}
+                <select @change="${e=>this.updates.language = e.target.value}" >
+                    ${Object.keys(window.subscription_page_data.languages).map(key=>{
+                        return html`<option value="${key}" ?selected="${key===window.subscription_page_data.current_language}">${window.subscription_page_data.languages[key].flag} ${window.subscription_page_data.languages[key].native_name}</option>`
+                    })}
+                </select>
+            </label>
+        </div>
+          <div class="row">
+            <label>
+                ${translate('Timezone')}
+                <select @change="${e=>this.updates.timezone = e.target.value}" >
+                    <option value="">${translate('Select a timezone')}</option>
                     ${Intl.supportedValuesOf('timeZone').map(o=>{
                         return html`<option value="${o}" ?selected="${o===this.subscriber_data.timezone}">${o}</option>`
                     })}
                 </select>
             </label>
         </div>
-        <div>
+        <div class="row">
             <label style="display: flex">
-                Receive Prayer time notifications
+                ${translate('Receive Prayer time notifications')}
                 <input type="checkbox"
                        @change="${e=>this.updates.receive_prayer_time_notifications = e.target.checked}"
                        ?checked="${this.subscriber_data.receive_prayer_time_notifications}"
                 >
             </label>
         </div>
-        <div>
+        <div class="row">
             <button class="loader ${this.show_spinner ? 'loading' : ''}" @click="${this.save_profile}">Save</button>
         </div>
         <div class="advanced-profile">
             <div style="display: flex">
-              <h3>Advanced Settings</h3>
-              <button class="clear-button" @click="${()=>this.hide_advanced_settings=!this.hide_advanced_settings}">show</button>
+              <h3>${translate('Advanced Settings')}</h3>
+              <button class="clear-button" @click="${()=>this.hide_advanced_settings=!this.hide_advanced_settings}">${translate('show')}</button>
             </div>
             <div ?hidden="${this.hide_advanced_settings}">
                 <dt-modal
@@ -120,17 +141,15 @@ export class cpProfile extends LitElement {
                     @close="${e=>this.delete_profile_modal_closed(e)}"
                 >
                     <p slot="content" style="max-width:500px">
-                        Need to cancel? We get it! But wait!
-                        If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you.
-                        That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!</p>
+                        ${strings['cancel_warning_paragraph']}</p>
                 </dt-modal>
                 
                 <label style="margin-right: 10px">
-                  Delete this account and all the scheduled prayer times
+                  ${translate('Delete this account and all the scheduled prayer times')}
                 </label>
-                <button class="button danger" @click="${()=>this._delete_modal_open=true}" >Delete</button>
+                <button class="button danger" @click="${()=>this._delete_modal_open=true}" >${translate('Delete')}</button>
                 <p class="form-error" ?hidden="${!this._show_error_message}">
-                    So sorry. Something went wrong. Please, contact us to help you through it, or just try again.
+                    ${translate('So sorry. Something went wrong. Please, contact us to help you through it, or just try again.')}
                 </p>
             </div>
         </div>
@@ -152,6 +171,9 @@ export class cpProfile extends LitElement {
       }
     }).then((data)=>{
       this.show_spinner = false;
+      if ( this.updates.language ){
+        window.location.reload()
+      }
       this.updates = {}
     })
     if ( this.updates.timezone ){
@@ -175,8 +197,8 @@ export class cpProfile extends LitElement {
         let wrapper = jQuery('#wrapper')
         wrapper.empty().html(`
           <div class="center">
-          <h1>Your account has been deleted!</h1>
-          <p>Thank you for praying with us.<p>
+          <h1>${translate('Your account has been deleted!')}</h1>
+          <p>${translate('Thank you for praying with us.')}<p>
           </div>
       `)
       })
@@ -186,8 +208,8 @@ export class cpProfile extends LitElement {
           let wrapper = jQuery('#wrapper')
           wrapper.empty().html(`
               <div class="center">
-              <h1>Your account has been deleted!</h1>
-              <p>Thank you for praying with us.<p>
+              <h1>${translate('Your account has been deleted!')}</h1>
+              <p>${translate('Thank you for praying with us.')}<p>
               </div>
           `)
           return
