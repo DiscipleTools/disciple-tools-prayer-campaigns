@@ -427,7 +427,7 @@ msgid "Start Here"
 msgstr ""
 
 #: parts/components-enqueue.php:54
-msgid "Continue Here"
+msgid "Continue here"
 msgstr ""
 
 #: parts/components-enqueue.php:55

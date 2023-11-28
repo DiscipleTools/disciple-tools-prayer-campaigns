@@ -448,7 +448,8 @@ export class CampaignSignUp extends LitElement {
               ${this.frequency.value === 'weekly' ? html`
                   <h2 class="section-title">
                       <span class="step-circle">3</span>
-                      <span>${strings['On which week day?']}</span> <span ?hidden="${this.week_day.value}" class="place-indicator">${strings['Continue Here']}</span>
+                      <span>${strings['On which week day?']}</span>
+                      <span ?hidden="${this.week_day.value}" class="place-indicator">${strings['Continue here']}</span>
                   </h2>
                   <div>
                       <cp-select 
@@ -468,6 +469,7 @@ export class CampaignSignUp extends LitElement {
                   <h2 class="section-title">
                       <span class="step-circle">3</span>
                       <span>${strings['Select a Date']}</span>
+                      <span ?hidden="${!(this.recurring_signups.length === 0  && this.selected_times.length === 0) || this.selected_day }" class="place-indicator">${strings['Continue here']}</span>
                   </h2>
                   <cp-calendar-day-select
                       @day-selected="${e=>this.day_selected(e.detail)}"
@@ -495,6 +497,7 @@ export class CampaignSignUp extends LitElement {
                                 : html`${translate('Select a Day')}`
                               ) :  html`${translate('At what time?')}`}
                         </span>
+                        <span ?hidden="${!(this.recurring_signups.length === 0  && this.selected_times.length === 0) || !(this.frequency.value === 'daily' || this.week_day.value || this.selected_day)  }" class="place-indicator">${strings['Continue here']}</span>
                     </h2>
                     <cp-times 
                         slot_length="${this.campaign_data.slot_length}"
@@ -519,6 +522,7 @@ export class CampaignSignUp extends LitElement {
                   <h2 class="section-title">
                       <span class="step-circle">5</span>
                       <span>${strings['Contact Info']}</span>
+                      <span ?hidden="${this.recurring_signups.length === 0  && this.selected_times.length === 0}" class="place-indicator">${strings['Continue here']}</span>
                   </h2>
   
                   <contact-info .selected_times_count="${this.selected_times_count()}"
