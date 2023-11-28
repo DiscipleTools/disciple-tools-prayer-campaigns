@@ -300,7 +300,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             </div>
             <div style="display: flex;">
                 <button class="active" data-show="prayer-times">Prayer Times</button>
-                <button data-show="profile">Profile</button>
+                <button data-show="profile">Account</button>
             </div>
         </div>
         <div id="wrapper">

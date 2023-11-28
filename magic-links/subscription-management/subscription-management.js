@@ -63,7 +63,7 @@ export class cpProfile extends LitElement {
       <div class="profile-container">
       <div class="contact-info">
         <h2>
-            Profile Settings
+            Account Settings
         </h2>
         <div>
             <label>
@@ -114,7 +114,7 @@ export class cpProfile extends LitElement {
             <div ?hidden="${this.hide_advanced_settings}">
                 <dt-modal
                     .isOpen="${this._delete_modal_open}"
-                    title="Delete Profile"
+                    title="Delete Account"
                     hideButton="true"
                     confirmButtonClass="danger"
                     @close="${e=>this.delete_profile_modal_closed(e)}"
@@ -126,7 +126,7 @@ export class cpProfile extends LitElement {
                 </dt-modal>
                 
                 <label style="margin-right: 10px">
-                  Delete this profile and all the scheduled prayer times
+                  Delete this account and all the scheduled prayer times
                 </label>
                 <button class="button danger" @click="${()=>this._delete_modal_open=true}" >Delete</button>
                 <p class="form-error" ?hidden="${!this._show_error_message}">
@@ -175,7 +175,7 @@ export class cpProfile extends LitElement {
         let wrapper = jQuery('#wrapper')
         wrapper.empty().html(`
           <div class="center">
-          <h1>Your profile has been deleted!</h1>
+          <h1>Your account has been deleted!</h1>
           <p>Thank you for praying with us.<p>
           </div>
       `)
@@ -186,7 +186,7 @@ export class cpProfile extends LitElement {
           let wrapper = jQuery('#wrapper')
           wrapper.empty().html(`
               <div class="center">
-              <h1>Your profile has been deleted!</h1>
+              <h1>Your account has been deleted!</h1>
               <p>Thank you for praying with us.<p>
               </div>
           `)
