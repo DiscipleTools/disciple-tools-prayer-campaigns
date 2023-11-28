@@ -141,6 +141,7 @@ export class CampaignSignUp extends LitElement {
 
   static properties = {
     already_signed_up: {type: Boolean},
+    _view: {type: String, state: true},
   }
 
   constructor() {
@@ -636,9 +637,10 @@ export class CampaignSignUp extends LitElement {
           -->
           <div class="column" ?hidden="${this._view !== 'submit'}">
               <div class="section-div">
-                  <h2 class="section-title">
+                  <h2 class="section-title" style="display: flex">
                       <span class="step-circle">5</span>
-                      <span>${strings['Verify']}</span>
+                      <span style="flex-grow: 1">${strings['Verify']}</span>
+                      <button @click="${()=>this._view = 'main'}">Back</button>
                   </h2>
                   <cp-verify
                       email="${this._form_items.email}"

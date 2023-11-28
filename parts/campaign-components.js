@@ -948,7 +948,9 @@ export class cpTimes extends LitElement {
           : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && r.time === key)
+
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress, selected})
       key += window.campaign_data.slot_length * 60
     }
     return options;
