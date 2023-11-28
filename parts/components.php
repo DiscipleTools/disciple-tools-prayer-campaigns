@@ -19,24 +19,3 @@ function dt_campaign_post( $post ) {
 
     <?php
 }
-
-function success_confirmation_section( $target = null ){
-    ?>
-    <div id='cp-success-confirmation-section' class='cp-view success-confirmation-section'>
-        <div class='cell center'>
-            <h2><?php esc_html_e( 'Success!', 'disciple-tools-prayer-campaigns' ); ?> &#9993;</h2>
-            <p><?php esc_html_e( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ); ?></p>
-            <p>
-                <?php esc_html_e( 'Check your email for additional details and to manage your account', 'disciple-tools-prayer-campaigns' ); ?>
-            </p>
-            <p>
-                <?php if ( !empty( $target ) ) : ?>
-                    <a href="<?php echo esc_url( $target ) ?>" class='button'><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></a>
-                <?php else : ?>
-                    <button class='button cp-nav cp-ok-done-button'><?php esc_html_e( 'Return', 'disciple-tools-prayer-campaigns' ); ?></button>
-                <?php endif; ?>
-            </p>
-        </div>
-    </div>
-    <?php
-}

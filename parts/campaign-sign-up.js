@@ -166,6 +166,7 @@ export class CampaignSignUp extends LitElement {
     this.show_selected_times = false;
     this.timezone = window.campaign_user_data.timezone;
     this.days = [];
+    this.account_link = '';
 
     this.get_campaign_data().then(()=>{
       this.frequency = {
@@ -238,14 +239,13 @@ export class CampaignSignUp extends LitElement {
     }
 
     window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
-    .done(()=>{
+    .done((response)=>{
       this.selected_times = [];
       this._loading = false;
-      if ( window.campaign_objects.remote === "1" || this.already_signed_up ){
-        this._view = 'confirmation';
-      } else {
-        window.location.href = window.campaign_objects.home + '/prayer/email-confirmation';
+      if ( response.account_link ){
+        this.account_link = response.account_link;
       }
+      this._view = 'confirmation';
       this.requestUpdate()
     })
     .fail((e)=>{
@@ -397,8 +397,22 @@ export class CampaignSignUp extends LitElement {
       return html`
         <div id="campaign">
           <div class="column" style="text-align: center">
-            <h2>Your selected prayer times have been added</h2>
-              <button @click="${e=>window.location.reload()}">Ok</button>
+              <div class="section-div">
+                  <h2 class="section-title">
+                      <span class="step-circle">!</span>
+                      <span style="flex-grow: 1">${translate('Success')}</span>
+                  </h2>
+                  <p>
+                      ${translate('Your registration was successful.')}
+                  </p>
+                  <p>
+                      ${translate('Check your email for additional details and to manage your account.')}
+                  </p>
+                  <div class="nav-buttons">
+                      <button @click=${()=>window.location.reload()}>${translate('Ok')}</button>
+                      <a ?hidden="${this.account_link.length===0}" class="button" href="${this.account_link}">${translate('Access Account')}</a>
+                  </div>
+                      
           </div>
         </div>
       `
@@ -656,7 +670,6 @@ export class CampaignSignUp extends LitElement {
                   </div>
   
                   <div style="text-align: center;margin-top:20px">
-                      <campaign-back-button @click=${() => this._view = 'contact-info'}></campaign-back-button>
                       <button ?disabled=${this._form_items?.code?.length !== 6}
                               @click=${()=>this.submit()}>
                           ${strings['Submit']}

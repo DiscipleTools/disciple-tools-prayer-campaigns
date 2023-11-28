@@ -227,7 +227,12 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );
         }
 
-        return true;
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber );
+
+        return [
+            'account_link' => $account_link,
+        ];
     }
 
 }

@@ -309,7 +309,6 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <campaign-back-button @click=${this.back}></campaign-back-button>
           <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0}
                   @click=${()=>this.verify_contact_info()}>
 
