@@ -334,10 +334,12 @@ export class CampaignSignUp extends LitElement {
       return this.time_and_day_selected(selected_time)
     }
     let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
-    this.recurring_signups = [...this.recurring_signups, recurring_signup]
-    window.campaign_user_data.recurring_signups = this.recurring_signups;
-    this.requestUpdate()
-    this.show_toast()
+    if ( recurring_signup ){
+      this.recurring_signups = [...this.recurring_signups, recurring_signup]
+      window.campaign_user_data.recurring_signups = this.recurring_signups;
+      this.requestUpdate()
+      this.show_toast()
+    }
   }
   day_selected(selected_day){
     this.selected_day = selected_day
@@ -947,7 +949,7 @@ export class campaignSubscriptions extends LitElement {
 
   constructor() {
     super();
-    this.selected_reccuring_signup_to_delete = null;
+    this.selected_recurring_signup_to_delete = null;
     this._selected_time_to_delete = null;
     this._delete_modal_open = false;
     this._extend_modal_open = false;
@@ -1066,7 +1068,7 @@ export class campaignSubscriptions extends LitElement {
   delete_recurring_time(){
     let data = {
       action: 'delete_recurring_signup',
-      report_id: this.selected_reccuring_signup_to_delete,
+      report_id: this.selected_recurring_signup_to_delete,
       parts: window.subscription_page_data.parts
     }
     jQuery.ajax({
@@ -1115,7 +1117,7 @@ export class campaignSubscriptions extends LitElement {
     if ( !recurring_sign ){
       return;
     }
-    this.selected_reccuring_signup_to_delete = report_id
+    this.selected_recurring_signup_to_delete = report_id
     this._delete_modal_open = true;
   }
 
@@ -1146,7 +1148,7 @@ export class campaignSubscriptions extends LitElement {
     if ( !recurring_sign ){
       return;
     }
-    this.selected_reccuring_signup_to_extend = report_id
+    this.selected_recurring_signup_to_extend = report_id
     let frequency_option = window.campaign_data.frequency_options.find(k=>k.value===recurring_sign.type)
 
     this._extend_modal_message = ("Extend for %s months?").replace('%s', frequency_option.month_limit );
@@ -1156,7 +1158,7 @@ export class campaignSubscriptions extends LitElement {
   extend_times_modal_closed(e){
     this._extend_modal_open = false;
     if ( e.detail?.action === 'confirm' ){
-      let recurring_sign = this.recurring_signups.find(k=>k.report_id===this.selected_reccuring_signup_to_extend)
+      let recurring_sign = this.recurring_signups.find(k=>k.report_id===this.selected_recurring_signup_to_extend)
       if ( !recurring_sign ){
         return;
       }

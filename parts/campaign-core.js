@@ -17,6 +17,7 @@ const strings = escapeObject(window.campaign_objects.translations)
 
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
+  recurring_signups: [],
 }
 window.set_user_data = function (data, campaign = false){
   let timezone_changes = false
@@ -401,6 +402,10 @@ window.campaign_scripts = {
     let start_time = start_of_day + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
+    if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
+      return null;
+    }
+
     let limit = window.campaign_data.end_timestamp
     if ( !limit ){
       limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
@@ -419,6 +424,7 @@ window.campaign_scripts = {
     let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
 
     return {
+      root: start_time,
       label: label,
       type: frequency_option.value,
       first: selected_times[0].date_time,
