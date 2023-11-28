@@ -324,8 +324,11 @@ export class CampaignSignUp extends LitElement {
 
 
   time_selected(selected_time){
-    if (!this.frequency.value){
+    if (!this.frequency.value ){
       return this.show_toast( 'Please check step 1', 'warn')
+    }
+    if ( this.frequency.value==='weekly' && !this.week_day.value ){
+      return this.show_toast( 'Please check step 3', 'warn')
     }
     if ( this.frequency.value === 'pick' ){
       return this.time_and_day_selected(selected_time)
