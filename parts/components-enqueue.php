@@ -111,6 +111,13 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Extend Prayer Times' => __( 'Extend Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'Really delete this prayer time?' => __( 'Really delete this prayer time?', 'disciple-tools-prayer-campaigns' ),
                     'Delete Prayer Time' => __( 'Delete Prayer Time', 'disciple-tools-prayer-campaigns' ),
+                    'Mondays' => __( 'Mondays', 'disciple-tools-prayer-campaigns' ),
+                    'Tuesdays' => __( 'Tuesdays', 'disciple-tools-prayer-campaigns' ),
+                    'Wednesdays' => __( 'Wednesdays', 'disciple-tools-prayer-campaigns' ),
+                    'Thursdays' => __( 'Thursdays', 'disciple-tools-prayer-campaigns' ),
+                    'Fridays' => __( 'Fridays', 'disciple-tools-prayer-campaigns' ),
+                    'Saturdays' => __( 'Saturdays', 'disciple-tools-prayer-campaigns' ),
+                    'Sundays' => __( 'Sundays', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
