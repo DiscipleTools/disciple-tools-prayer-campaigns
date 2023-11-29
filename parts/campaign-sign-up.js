@@ -973,6 +973,7 @@ export class campaignSubscriptions extends LitElement {
     if ( !window.campaign_data.subscriber_info ){
       return;
     }
+    let now = new Date().getTime() / 1000;
     this.selected_times = window.campaign_data.subscriber_info.my_commitments;
     this.my_recurring = window.campaign_data.subscriber_info.my_recurring;
     this.recurring_signups = window.campaign_data.subscriber_info.my_recurring_signups;
@@ -980,28 +981,28 @@ export class campaignSubscriptions extends LitElement {
         <!--delete modal-->
         <dt-modal
             .isOpen="${this._delete_modal_open}"
-            title="Delete Prayer Times"
+            title="${translate('Delete Prayer Times')}"
             hideButton="true"
             confirmButtonClass="danger"
             @close="${e=>this.delete_times_modal_closed(e)}"
         >
-        <p slot="content">Really delete these prayer times?</p>
+        <p slot="content">${translate('Really delete these prayer times?')}</p>
         </dt-modal>
         <dt-modal
             .isOpen="${this._delete_time_modal_open}"
-            title="Delete Prayer Time"
+            title="${translate('Delete Prayer Time')}"
             hideButton="true"
             confirmButtonClass="danger"
             @close="${e=>this.delete_time_modal_closed(e)}"
         >
-        <p slot="content">Really delete this prayer time?</p>
+        <p slot="content">${translate('Really delete this prayer time?')}</p>
         </dt-modal>
 
         <!--extend modal-->
         <dt-modal
             .isOpen="${this._extend_modal_open}"
             .content="${this._extend_modal_message}"
-            title="Extend Prayer Times"
+            title="${translate('Extend Prayer Times')}"
             hideButton="true"
             confirmButtonClass="danger"
             @close="${e=>this.extend_times_modal_closed(e)}" >
@@ -1009,13 +1010,15 @@ export class campaignSubscriptions extends LitElement {
         
         
         ${(this.recurring_signups||[]).map((value, index) => {
+            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last < this.campaign_data.end_timestamp - 86400 * 30 )
+            let enabled_renew = !last_prayer_time_near_campaign_end && value.last < now + 86400 * 60
             const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">
                 <div class="selected-time-content">
                   <div class="title-row">
                     <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
-                    <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>  
+                    <button ?hidden="${!enabled_renew}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>  
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
@@ -1170,6 +1173,10 @@ export class campaignSubscriptions extends LitElement {
       //filter out existing times
       let existing_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>recurring_sign.report_id === c.recurring_id).map(c=>parseInt(c.time_begin))
       recurring_extend.selected_times = recurring_extend.selected_times.filter(c=>!existing_times.includes(c.time))
+
+      // let data = {
+      //   recurring_signups: [recurring_extend],
+      // }
 
       window.campaign_scripts.submit_prayer_times( recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(data=>{
         window.location.reload() //@todo replace with event
