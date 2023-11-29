@@ -527,7 +527,7 @@ export class cpCalendarDaySelect extends LitElement {
 
     let first_day_is_weekday = month_start.weekday
     let previous_month = month_date.minus({months:1}).toSeconds()
-    let next_month = month_date.plus({months:1}).toSeconds()
+    let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
       
@@ -681,7 +681,7 @@ export class cpMyCalendar extends LitElement {
       return html`<div></div>`
     }
     if ( !this.end_timestamp ){
-      this.end_timestamp = this.days[this.days.length - 1].key
+      this.end_timestamp = 9999999999
     }
 
     let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')

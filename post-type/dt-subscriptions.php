@@ -403,8 +403,8 @@ class Recurring_Signups {
     public static function format_from_report( $report ){
         $report['payload'] = maybe_unserialize( $report['payload'] );
         return [
-            'report_id' => $report['id'],
-            'campaign_id' => $report['parent_id'],
+            'report_id' => (int) $report['id'],
+            'campaign_id' => (int) $report['parent_id'],
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
             'first' => (int) $report['time_begin'],
