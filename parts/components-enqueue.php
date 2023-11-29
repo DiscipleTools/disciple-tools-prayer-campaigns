@@ -102,6 +102,10 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Delete' => __( 'Delete', 'disciple-tools-prayer-campaigns' ),
                     'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
                     'See Prayer Fuel' => __( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                    'extend' => __( 'extend', 'disciple-tools-prayer-campaigns' ),
+                    'change time' => __( 'change time', 'disciple-tools-prayer-campaigns' ),
+                    'Remove all' => __( 'Remove all', 'disciple-tools-prayer-campaigns' ),
+                    'See prayer times' => __( 'See prayer times', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
