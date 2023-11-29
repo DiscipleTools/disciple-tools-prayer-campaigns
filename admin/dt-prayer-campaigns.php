@@ -309,7 +309,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                                         <?php echo !isset( $settings['selected_porch'] ) ? 'selected' : '' ?>
                                                         value=""
                                                     >
-                                                        <?php esc_html_e( 'None', 'disciple-tools-prayer-campaign' ) ?>
+                                                        <?php esc_html_e( 'None', 'disciple-tools-prayer-campaigns' ) ?>
                                                     </option>
 
                                                 <?php foreach ( $porches as $id => $porch ): ?>

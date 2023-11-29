@@ -242,6 +242,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public function manage_body(){
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        dt_campaign_set_translation( $post['lang'] );
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
@@ -309,7 +310,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <div id="wrapper">
             <!-- links -->
             <div style="margin: 10px; text-align: center">
-                Links:
+                <?php esc_html_e( 'Links', 'disciple_tools' ); ?>:
                 <a href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
                 <a href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
                 <a href="<?php echo esc_url( site_url() ) ?>/prayer/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>

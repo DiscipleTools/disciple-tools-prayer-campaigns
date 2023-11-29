@@ -156,7 +156,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
         <div id="magic-link-wrapper">
             <div class="grid-x">
                 <div class="cell center">
-                    <h2 id="title"><?php esc_html_e( 'Retrieve Prayer Time Management Link', 'disciple-tools-prayer-campaign' ); ?></h2>
+                    <h2 id="title"><?php esc_html_e( 'Retrieve Prayer Time Management Link', 'disciple-tools-prayer-campaigns' ); ?></h2>
                 </div>
             </div>
             <hr>
@@ -165,17 +165,17 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
 <!--                <h3>Form</h3>-->
                 <form id="form-content" onSubmit="submit_form();return false;">
 
-                    <p><?php esc_html_e( 'Enter you email address and receive a link to your prayer times.', 'disciple-tools-prayer-campaign' ); ?></p>
+                    <p><?php esc_html_e( 'Enter you email address and receive a link to your prayer times.', 'disciple-tools-prayer-campaigns' ); ?></p>
                     <label>
-                        <strong><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaign' ); ?></strong>
+                        <strong><?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?></strong>
                         <input type="email" id="email" style="display: none">
                         <input type="email" id="email-2" required>
                     </label>
 
-                    <button type="submit" class="button loader" id="submit-form"><?php esc_html_e( 'Email My Access Link', 'disciple-tools-prayer-campaign' ); ?></button>
+                    <button type="submit" class="button loader" id="submit-form"><?php esc_html_e( 'Email My Access Link', 'disciple-tools-prayer-campaigns' ); ?></button>
                 </form>
                 <div id="form-confirm" style="display: none">
-                    <?php esc_html_e( 'Please check your email address now for your access link.', 'disciple-tools-prayer-campaign' ); ?>
+                    <?php esc_html_e( 'Please check your email address now for your access link.', 'disciple-tools-prayer-campaigns' ); ?>
                 </div>
             </div>
 

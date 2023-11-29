@@ -1014,18 +1014,18 @@ export class campaignSubscriptions extends LitElement {
                 <div class="selected-time-content">
                   <div class="title-row">
                     <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
-                    <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">extend</button>  
+                    <button class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>  
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
-                      <button disabled class="clear-button">change time</button>
+                      <button disabled class="clear-button">${translate('change time')}</button>
                   </div>
                   <div class="selected-time-actions">
                       <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
-                          See prayer times (${prayer_times.length})
+                          ${translate('See prayer times')} (${prayer_times.length})
                       </button>
                       <button class="clear-button danger loader" @click="${e=>this.open_delete_times_modal(e,value.report_id)}">
-                          Remove all
+                          ${translate('Remove all')}
                       </button>
                   </div>
                 </div>
