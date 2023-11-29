@@ -350,7 +350,9 @@ window.campaign_scripts = {
   escapeHTML(str) {
     if (typeof str === "undefined") return '';
     if (typeof str !== "string") return str;
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+    let div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
   },
   recurring_time_slot_label(value){
     let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})

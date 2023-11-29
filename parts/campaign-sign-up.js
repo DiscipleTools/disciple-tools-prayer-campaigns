@@ -183,13 +183,13 @@ export class CampaignSignUp extends LitElement {
       this.week_day = {
         value: '',
         options: [
-          {value: '1', label: 'Mondays'},
-          {value: '2', label: 'Tuesdays'},
-          {value: '3', label: 'Wednesdays'},
-          {value: '4', label: 'Thursdays'},
-          {value: '5', label: 'Fridays'},
-          {value: '6', label: 'Saturdays'},
-          {value: '7', label: 'Sundays'},
+          {value: '1', label: translate('Mondays')},
+          {value: '2', label: translate('Tuesdays')},
+          {value: '3', label: translate('Wednesdays')},
+          {value: '4', label: translate('Thursdays')},
+          {value: '5', label: translate('Fridays')},
+          {value: '6', label: translate('Saturdays')},
+          {value: '7', label: translate('Sundays')},
         ]
       }
       this.requestUpdate()
@@ -253,7 +253,7 @@ export class CampaignSignUp extends LitElement {
       let message = html`So sorry. Something went wrong. Please, try again.<br>
           <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
       if ( e.status === 401 ) {
-        message = 'Confirmation code does not match or is expired. Please, try again.'
+        message = translate('Confirmation code does not match or is expired. Please, try again.')
       }
       this._form_items.code_error = message
       this.requestUpdate()
