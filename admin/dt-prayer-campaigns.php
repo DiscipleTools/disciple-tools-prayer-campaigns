@@ -433,7 +433,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </tr>
                                         <tr>
                                             <td>Campaign Type</td>
-                                            <td><?php echo esc_html( $fields['type']['label'] ) ?></td>
+                                            <td><?php echo esc_html( $fields['type']['label'] ?? '' ) ?></td>
                                         </tr>
                                         <tr>
                                             <td>Start Date</td>
