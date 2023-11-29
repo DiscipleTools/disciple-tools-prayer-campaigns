@@ -46,7 +46,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
 <section id="campaign-vision" class="section">
     <div class="container">
         <div class="section-header row">
-            <div class="col-sm-12 col-md-8">
+            <div class="col-sm-12 <?php echo esc_html( $campaign_has_end_date ? 'col-md-8' : 'col-md-12' ); ?>">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">
                     <?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'vision_title' ), 1, 2 ) ) ?> <span><?php echo esc_html( dt_split_sentence( DT_Porch_Settings::get_field_translation( 'vision_title' ), 2, 2 ) ) ?></span>
                 </h2>
@@ -57,11 +57,11 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 </p>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-
-                <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
-
-            </div>
+            <?php if ( $campaign_has_end_date ): ?>
+                <div class="col-sm-12 col-md-4">
+                    <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="row">
             <div class="col-md-4 col-sm-6">
