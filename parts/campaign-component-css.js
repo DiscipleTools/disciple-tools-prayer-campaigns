@@ -74,6 +74,7 @@ export const campaignStyles = css`
     padding: .85rem 1rem;
     cursor:pointer;
     background-color: var( --cp-color, 'dodgerblue' );
+    line-height: 1;
   }
   button:hover {
     background-color: transparent;
@@ -120,6 +121,7 @@ export const campaignStyles = css`
     padding: .85rem 1rem;
     cursor:pointer;
     background-color: var( --cp-color, 'dodgerblue' );
+    line-height: 1;
   }
   a.button:hover {
     background-color: transparent;

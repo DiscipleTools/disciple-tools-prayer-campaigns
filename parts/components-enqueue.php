@@ -101,6 +101,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Language' => __( 'Language', 'disciple-tools-prayer-campaigns' ),
                     'Delete' => __( 'Delete', 'disciple-tools-prayer-campaigns' ),
                     'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
+                    'See Prayer Fuel' => __( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
