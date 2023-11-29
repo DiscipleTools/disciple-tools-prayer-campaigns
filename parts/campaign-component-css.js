@@ -46,7 +46,6 @@ export const campaignStyles = css`
   }
   label {
     display: grid;
-    color: var(--cp-color, 'dodgerblue');
     font-weight: bold;
   }
   select, input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
