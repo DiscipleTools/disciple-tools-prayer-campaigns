@@ -777,8 +777,8 @@ export class cpCalendar extends LitElement {
 
 
   render() {
-    let now_date = window.luxon.DateTime.now()
-    let now = now_date.toSeconds();
+    let now = new Date().getTime()/1000;
+    let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, this.campaign_data.start_timestamp))
     let months_to_show = [];
     for( let i = 0; i < 2; i++ ){
       let month_days = window.campaign_scripts.build_calendar_days(now_date.plus({month:i}))
