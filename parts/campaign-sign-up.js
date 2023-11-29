@@ -306,13 +306,13 @@ export class CampaignSignUp extends LitElement {
     if ( !message ){
       message = strings["Prayer Time Selected"];
     }
-    let background = 'linear-gradient(to right, var(--cp-color-dark), var(--cp-color-light))';
+    let background = '#4caf50';
     if ( type === 'warn' ){
       background = 'linear-gradient(to right, #f8b500, #f8b500)';
     }
     Toastify({
       text: message,
-      duration: 3000,
+      duration: 1500,
       close: true,
       gravity: "bottom",
       position: "center",
