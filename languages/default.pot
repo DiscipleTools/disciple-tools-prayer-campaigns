@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.0.1\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-28T15:31:57+00:00\n"
+"POT-Creation-Date: 2023-11-30T10:41:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -51,7 +51,7 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:185
 #: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:354
 msgid "Hello %s,"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgid "Times are shown according to: %s time"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:334
+#: magic-links/subscription-management/subscription-management.php:335
 msgid "Download Calendar"
 msgstr ""
 
@@ -106,81 +106,81 @@ msgstr ""
 msgid "Here are your upcoming prayer times:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:350
+#: campaign-functions/send-email-utility.php:352
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:353
+#: campaign-functions/send-email-utility.php:355
 msgid "You are 2 weeks out from your last prayer time. Would you like to keep praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:356
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:358
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:357
+#: campaign-functions/send-email-utility.php:359
 msgid "Thank you"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:403
+#: campaign-functions/send-email-utility.php:405
 #: porches/generic/site/stats.php:144
 msgid "Thank you for praying with us!"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:426
-#: campaign-functions/send-email-utility.php:456
+#: campaign-functions/send-email-utility.php:428
+#: campaign-functions/send-email-utility.php:458
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:430
+#: campaign-functions/send-email-utility.php:460
 msgid "Strategic prayer for a disciple making movement"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:433
-#: campaign-functions/send-email-utility.php:463
+#: campaign-functions/send-email-utility.php:435
+#: campaign-functions/send-email-utility.php:465
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:436
-#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:438
+#: campaign-functions/send-email-utility.php:468
 msgid "Thank you for joining %1$s in %2$s."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:439
+#: campaign-functions/send-email-utility.php:441
 msgid "We will only know in eternity the full impact of our prayer. However, we know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:442
+#: campaign-functions/send-email-utility.php:444
 msgid "Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:446
+#: campaign-functions/send-email-utility.php:448
 msgid "See Prayer Stats"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:448
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:450
+#: campaign-functions/send-email-utility.php:486
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:469
+#: campaign-functions/send-email-utility.php:471
 msgid "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:475
 msgid "Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:480
+#: campaign-functions/send-email-utility.php:482
 msgid "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:484
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -221,40 +221,62 @@ msgstr ""
 msgid "days"
 msgstr ""
 
+#: magic-links/campaign-resend-email/magic-link-post-type.php:159
+msgid "Retrieve Prayer Time Management Link"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:168
+msgid "Enter you email address and receive a link to your prayer times."
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:170
+#: parts/components-enqueue.php:51
+#: porches/generic/site/stats.php:272
+msgid "Email"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:175
+msgid "Email My Access Link"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:178
+msgid "Please check your email address now for your access link."
+msgstr ""
+
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:323
+#: magic-links/subscription-management/subscription-management.php:324
 #: parts/components-enqueue.php:48
 msgid "My Prayer Commitments"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:305
+#: magic-links/subscription-management/subscription-management.php:306
 #: porches/generic/site/stats.php:205
 msgid "Prayer Commitments"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:307
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:313
+#: magic-links/subscription-management/subscription-management.php:314
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:316
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:331
+#: magic-links/subscription-management/subscription-management.php:332
 msgid "My Calendar"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:347
+#: magic-links/subscription-management/subscription-management.php:348
 msgid "Sign up for more prayer"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:370
+#: magic-links/subscription-management/subscription-management.php:371
 msgid "This subscription has ended or is not configured correctly."
 msgstr ""
 
@@ -315,11 +337,6 @@ msgstr ""
 
 #: parts/components-enqueue.php:50
 msgid "Name"
-msgstr ""
-
-#: parts/components-enqueue.php:51
-#: porches/generic/site/stats.php:272
-msgid "Email"
 msgstr ""
 
 #: parts/components-enqueue.php:52
@@ -529,6 +546,74 @@ msgstr ""
 
 #: parts/components-enqueue.php:103
 msgid "Select a timezone"
+msgstr ""
+
+#: parts/components-enqueue.php:104
+msgid "See Prayer Fuel"
+msgstr ""
+
+#: parts/components-enqueue.php:105
+msgid "change time"
+msgstr ""
+
+#: parts/components-enqueue.php:106
+msgid "Remove all"
+msgstr ""
+
+#: parts/components-enqueue.php:107
+msgid "See prayer times"
+msgstr ""
+
+#: parts/components-enqueue.php:108
+msgid "Delete Prayer Times"
+msgstr ""
+
+#: parts/components-enqueue.php:109
+msgid "Really delete these prayer times?"
+msgstr ""
+
+#: parts/components-enqueue.php:110
+msgid "extend"
+msgstr ""
+
+#: parts/components-enqueue.php:111
+msgid "Extend Prayer Times"
+msgstr ""
+
+#: parts/components-enqueue.php:112
+msgid "Really delete this prayer time?"
+msgstr ""
+
+#: parts/components-enqueue.php:113
+msgid "Delete Prayer Time"
+msgstr ""
+
+#: parts/components-enqueue.php:114
+msgid "Mondays"
+msgstr ""
+
+#: parts/components-enqueue.php:115
+msgid "Tuesdays"
+msgstr ""
+
+#: parts/components-enqueue.php:116
+msgid "Wednesdays"
+msgstr ""
+
+#: parts/components-enqueue.php:117
+msgid "Thursdays"
+msgstr ""
+
+#: parts/components-enqueue.php:118
+msgid "Fridays"
+msgstr ""
+
+#: parts/components-enqueue.php:119
+msgid "Saturdays"
+msgstr ""
+
+#: parts/components-enqueue.php:120
+msgid "Sundays"
 msgstr ""
 
 #: porches/generic/dt-generic-porch-settings.php:59
@@ -756,6 +841,10 @@ msgstr ""
 
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
+msgstr ""
+
+#: porches/ramadan/dt-ramadan-porch-loader.php:10
+msgid "Ramadan Landing Page"
 msgstr ""
 
 #: porches/ramadan/settings.php:6
