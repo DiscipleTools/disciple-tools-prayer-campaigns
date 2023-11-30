@@ -59,7 +59,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             </div>
             <?php if ( $campaign_has_end_date ): ?>
                 <div class="col-sm-12 col-md-4">
-                    <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                    <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
                 </div>
             <?php endif; ?>
         </div>
