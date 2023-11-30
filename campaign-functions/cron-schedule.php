@@ -152,6 +152,7 @@ function dt_invitation_to_renew_subscription(){
             AND r.post_id NOT IN (
                 SELECT post_id from $wpdb->dt_reports r3
                 WHERE r3.post_id = r.post_id
+                AND r3.parent_id = r.parent_id
                 AND r3.type = '2_week_tickler'
                 AND ( r3.time_end = r.time_end )
             )
@@ -169,6 +170,7 @@ function dt_invitation_to_renew_subscription(){
                 'time_end' => $row['time_end'], //the end time this reminder is for
             ];
             Disciple_Tools_Reports::insert( $report, true, false );
+            DT_Posts::add_post_comment( 'subscriptions', $row['post_id'], 'Sent email invitation to extend prayer times on [campaign](' . site_url( 'campaigns/' . $row['parent_id'] ) . ').', 'comment', [], false, true );
         }
     }
 }
