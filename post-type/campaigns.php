@@ -278,7 +278,7 @@ class DT_Campaigns_Base {
                 'default' => [
                     'daily' => [ 'label' => 'Daily' ],
                     'weekly' => [ 'label' => 'Weekly' ],
-                    'monthly' => [ 'label' => 'Monthly' ],
+//                    'monthly' => [ 'label' => 'Monthly' ],
                     'pick' => [ 'label' => 'Pick Days' ],
                 ],
                 'tile' => 'campaign_setup'

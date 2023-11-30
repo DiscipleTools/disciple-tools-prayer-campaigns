@@ -309,7 +309,6 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <campaign-back-button @click=${this.back}></campaign-back-button>
           <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0}
                   @click=${()=>this.verify_contact_info()}>
 
@@ -528,7 +527,7 @@ export class cpCalendarDaySelect extends LitElement {
 
     let first_day_is_weekday = month_start.weekday
     let previous_month = month_date.minus({months:1}).toSeconds()
-    let next_month = month_date.plus({months:1}).toSeconds()
+    let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
       
@@ -682,7 +681,7 @@ export class cpMyCalendar extends LitElement {
       return html`<div></div>`
     }
     if ( !this.end_timestamp ){
-      this.end_timestamp = this.days[this.days.length - 1].key
+      this.end_timestamp = 9999999999
     }
 
     let week_day_names = window.campaign_scripts.get_days_of_the_week_initials(navigator.language, 'narrow')
@@ -874,7 +873,7 @@ export class cpTimes extends LitElement {
       this.times = this.get_weekly_times()
     }
     if ( !this.times ){
-      this.times = this.get_empty_times()
+      this.times = window.campaign_scripts.get_empty_times()
     }
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
@@ -911,7 +910,7 @@ export class cpTimes extends LitElement {
       return;
     }
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
-    this.times = this.get_empty_times()
+    this.times = window.campaign_scripts.get_empty_times()
   }
 
   get_times(){
@@ -926,7 +925,7 @@ export class cpTimes extends LitElement {
         hour: time.toFormat('hh a'),
         minute: time.toFormat('mm'),
         progress: progress,
-        selected: this.selected_times.find(t=>t.time===s.key),
+        selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
       })
     })
     return times;
@@ -948,7 +947,9 @@ export class cpTimes extends LitElement {
           : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
+
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress, selected})
       key += window.campaign_data.slot_length * 60
     }
     return options;
@@ -992,31 +993,14 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toFormat('hh a'),
         progress,
-        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && r.time === key)
+        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
       })
       key += this.slot_length * 60
     }
     return options;
   }
 
-  get_empty_times(){
-    let day_in_seconds = 86400;
-    let key = 0;
-    let start_of_today = new Date('2023-01-01')
-    start_of_today.setHours(0, 0, 0, 0)
-    let start_time_stamp = start_of_today.getTime() / 1000
 
-    let options = [];
-    while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key, {zone:window.campaign_user_data.timezone})
-      let time_formatted = time.toFormat('hh:mm a')
-      let progress = 0
-      let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
-      key += window.campaign_data.slot_length * 60
-    }
-    return options;
-  }
 }
 customElements.define('cp-times', cpTimes);
 

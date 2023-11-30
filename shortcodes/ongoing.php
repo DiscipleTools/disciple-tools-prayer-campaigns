@@ -6,9 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DT_Ongoing_Shortcode {
     public $atts;
     public $user_lang;
-    private $js_file = 'magic-links/ongoing/ongoing.js';
-    private $css_file = 'magic-links/ongoing/ongoing.css';
-
     private static $_instance = null;
 
     public static function instance( $atts ){
