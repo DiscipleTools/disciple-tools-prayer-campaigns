@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-11-28T15:31:57+00:00\n"
-"PO-Revision-Date: 2023-11-28 15:34+0000\n"
+"PO-Revision-Date: 2023-11-30 10:39+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
 "pray4movement/prayer-campaigns/fr_FR/>\n"
@@ -81,8 +81,6 @@ msgid "You signed up to pray:"
 msgstr "Vous vous êtes inscrit pour prier :"
 
 #: campaign-functions/send-email-utility.php:197
-#, fuzzy
-#| msgid "These are your next time commitments:"
 msgid "These are your next prayer commitments:"
 msgstr "Voici vos prochains engagements de temps :"
 
@@ -323,16 +321,12 @@ msgid "seconds"
 msgstr "secondes"
 
 #: parts/components-enqueue.php:41
-#, fuzzy
-#| msgid "Campaign Stats"
 msgid "Campaign Starts In"
-msgstr "Statistiques de la campagne"
+msgstr "La campagne commence dans"
 
 #: parts/components-enqueue.php:42
-#, fuzzy
-#| msgid "Campaign Stats"
 msgid "Campaign Ends In"
-msgstr "Statistiques de la campagne"
+msgstr "La campagne se termine dans"
 
 #: parts/components-enqueue.php:43
 msgid "Campaign Ended"
@@ -396,10 +390,8 @@ msgid "Close"
 msgstr "Fermer"
 
 #: parts/components-enqueue.php:59
-#, fuzzy
-#| msgid "Prayer Commitments"
 msgid "prayer commitments"
-msgstr "Engagements de prière"
+msgstr "engagements de prière"
 
 #: parts/components-enqueue.php:60
 msgctxt "Starting on October 4"
@@ -493,7 +485,7 @@ msgstr "%1$s à %2$s pour %3$s"
 
 #: parts/components-enqueue.php:80
 msgid "for %s minutes"
-msgstr "pendant %s minutes"
+msgstr "pour %s minutes"
 
 #: parts/components-enqueue.php:81
 msgid "Every %s"
@@ -508,8 +500,6 @@ msgid "Prayer Time Selected"
 msgstr "Heure de prière sélectionnée"
 
 #: parts/components-enqueue.php:84
-#, fuzzy
-#| msgid "Select a Date"
 msgid "Select a Day"
 msgstr "Sélectionnez un jour"
 
@@ -581,7 +571,6 @@ msgstr ""
 "vous aider, ou réessayez encore."
 
 #: parts/components-enqueue.php:99
-#, fuzzy
 msgid "Your account has been deleted!"
 msgstr "Votre compte a été supprimé !"
 
@@ -772,8 +761,6 @@ msgid "No prayer fuel found"
 msgstr "Aucun guide de prière trouvé"
 
 #: porches/generic/site/stats.php:21
-#, fuzzy
-#| msgid "Campaign Stats"
 msgid "Campaign Stats"
 msgstr "Statistiques de la campagne"
 
