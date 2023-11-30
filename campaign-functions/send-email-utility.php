@@ -342,6 +342,8 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
+        self::switch_email_locale( $subscriber['lang'] ?? null );
+
         $manage_link = self::management_link( $subscriber );
         $porch_fields = DT_Porch_Settings::settings();
 

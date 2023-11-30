@@ -47,12 +47,6 @@ require_once 'campaigns.php';
 DT_Campaigns_Base::instance();
 
 /*
- * 247 Ongoing campaign type module
- */
-require_once 'module-campaigns-ongoing-prayer.php';
-DT_Campaign_Ongoing_Prayer::instance();
-
-/*
  * Subscriptions API
  */
 
