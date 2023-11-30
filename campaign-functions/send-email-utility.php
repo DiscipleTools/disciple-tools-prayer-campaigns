@@ -427,7 +427,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
-            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
         $url = trailingslashit( site_url() ) . 'prayer/stats';
@@ -457,7 +457,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( $location ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
-            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
         $url = trailingslashit( site_url() ) . 'prayer/stats';

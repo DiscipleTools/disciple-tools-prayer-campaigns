@@ -288,7 +288,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                         </p>
                     </form>
                     <div id="form-confirm" class="center" style="display: none">
-                        <h3><?php esc_html_e( 'Thank You', 'disciple-tools-prayer-campaigns' ); ?></h3>
+                        <h3><?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?></h3>
                     </div>
                 </div>
             </section>
