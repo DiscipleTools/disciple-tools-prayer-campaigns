@@ -175,75 +175,33 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $response = [
             'updated' => false
         ];
-        if ( isset( $params['campaign_id'], $params['edit'] ) ) {
-            $all_languages = $params['edit']['translate_type'] === 'all_lang';
+        if ( isset( $params['campaign_id'], $params['edit'], $params['edit']['field_key'] ) ) {
             $campaign_id = $params['campaign_id'];
-            $response['edit_key'] = $params['edit']['key'];
-            $title_key = null;
-            $text_key = null;
+            $field_key = $params['edit']['field_key'];
+            $lang_all = $params['edit']['lang_all'] ?? null;
+            $lang_translate = $params['edit']['lang_translate'] ?? null;
+            $lang_code = $params['edit']['lang_code'] ?? null;
 
-            // Determine section keys to be adopted.
-            switch ( $params['edit']['key'] ) {
-                case 'pray_section':
-                case 'movement_section':
-                case 'time_section':
-                    $title_key = $params['edit']['key'] . '_title';
-                    $text_key = $params['edit']['key'] . '_text';
-                    break;
-                case 'vision_section':
-                    $title_key = 'vision_title';
-                    $text_key = 'vision';
-                    break;
-                case 'what_section':
-                    $text_key = 'what_content';
-                    break;
-                case 'prayer_fuel_section':
-                    $title_key = 'prayer_fuel_title';
-                    $text_key = 'prayer_fuel_description';
-                    break;
-                default:
-                    break;
-            }
-
-            // Proceed with translation updates.
-            $title = $params['edit']['title'];
-            $text = $params['edit']['text'];
-
-            if ( $all_languages ) {
+            // Update for all languages.
+            if ( isset( $lang_all ) ) {
                 $updates = [];
-
-                if ( !empty( $title_key ) ) {
-                    $response['title'] = $updates[ $title_key ] = $title;
-                }
-                if ( !empty( $text_key ) ) {
-                    $response['text'] = $updates[ $text_key ] = $text;
-                }
-                if ( !empty( $updates ) ) {
-                    $response['updated'] = DT_Porch_Settings::update_values( $updates );
-                }
-
-            } else {
-                $lang = $params['edit']['translate_lang'];
-                if ( !empty( $lang ) ) {
-                    $translations = [];
-
-                    if ( !empty( $title_key ) ) {
-                        $translations[ $title_key ] = [
-                            $lang => $title
-                        ];
-                        $response['title'] = $title;
-                    }
-                    if ( !empty( $text_key ) ) {
-                        $translations[ $text_key ] = [
-                            $lang => $text
-                        ];
-                        $response['text'] = $text;
-                    }
-                    if ( !empty( $translations ) ) {
-                        $response['updated'] = DT_Porch_Settings::update_translations( $campaign_id, $translations );
-                    }
-                }
+                $response['lang_all'] = $updates[ $field_key ] = $lang_all;
+                $response['updated'] = DT_Porch_Settings::update_values( $updates );
             }
+
+            // Update for a specific language translation.
+            if ( isset( $lang_translate, $lang_code ) ) {
+                $translations = [];
+                $translations[ $field_key ] = [
+                    $lang_code => $lang_translate
+                ];
+                $response['lang_code'] = $lang_code;
+                $response['lang_translate'] = $lang_translate;
+                $response['updated'] = DT_Porch_Settings::update_translations( $campaign_id, $translations );
+            }
+
+            // Capture latest section language.
+            $response['section_lang'] = DT_Porch_Settings::get_field_translation( $field_key );
         }
 
         return $response;

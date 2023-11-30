@@ -473,34 +473,25 @@ jQuery(document).ready(function ($) {
 
         $('#modal-large-title').empty().html(`${escapeHTML(strings['modals']['edit']['modal_title'])}<br><hr>`);
         let content = `
-        <input id="edit_modal_key" type="hidden"/>
-        <input id="edit_modal_section_title_id" type="hidden"/>
-        <input id="edit_modal_section_text_id" type="hidden"/>
+        <input id="edit_modal_field_key" type="hidden"/>
+        <input id="edit_modal_section_id" type="hidden"/>
+        <input id="edit_modal_split_text" type="hidden"/>
         <table>
             <tbody>
-                <tr>
-                    <td>${escapeHTML(strings['modals']['edit']['edit_title'])}</td>
-                    <td><input id="edit_modal_title" style="min-width: 100%;"/></td>
+                <tr style="background-color: #ffffff;">
+                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_original_string'])}</td>
+                    <td id="edit_modal_original_string" style="font-size: 12px; color: #3c3c3c;"></td>
                 </tr>
                 <tr style="background-color: #ffffff;">
-                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_content'])}</td>
+                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_all_languages'])}</td>
                     <td>
-                        <textarea id="edit_modal_content" cols="100" rows="5"></textarea>
+                        <textarea id="edit_modal_all_languages" cols="100" rows="5"></textarea>
                     </td>
                 </tr>
-                <tr>
-                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_translate_type'])}</td>
+                <tr style="background-color: #ffffff;">
+                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${((current_lang !== null) ? ' - ['+ current_lang +']' : '' )}</td>
                     <td>
-                        <fieldset id="edit_modal_translate_type">
-                            <label>
-                                <input type="radio" value="current_lang" name="edit_modal_translate_type" />
-                                ${escapeHTML(strings['modals']['edit']['edit_translate_type_lang_current'])} ${((current_lang !== null) ? ' - ['+ current_lang +']' : '' )}
-                            </label>
-                            <label>
-                                <input type="radio" value="all_lang" name="edit_modal_translate_type" />
-                                ${escapeHTML(strings['modals']['edit']['edit_translate_type_lang_all'])}
-                            </label>
-                        </fieldset>
+                        <textarea id="edit_modal_selected_language" cols="100" rows="5"></textarea>
                     </td>
                 </tr>
             </tbody>
@@ -514,31 +505,32 @@ jQuery(document).ready(function ($) {
         new window.Foundation.Reveal(edit_modal);
     }
 
-    $('.edit-btn').on('click', function (e) {
+    $(document).on('click', '.edit-btn', function (e) {
 
         // Set translation field values and display modal.
-        let section = $(e.currentTarget).parent();
-        let edit_key = $(e.currentTarget).data('edit_key');
-        let edit_title_id = $(e.currentTarget).data('edit_title_id');
-        let edit_text_id = $(e.currentTarget).data('edit_text_id');
-        let title = $('#' + edit_title_id).text().trim();
-        let content = $('#' + edit_text_id).text().trim();
+        let field_key = $(e.currentTarget).data('field_key');
+        let section_id = $(e.currentTarget).data('section_id');
+        let split_text = $(e.currentTarget).data('split_text');
 
-        $('#edit_modal_key').val(edit_key);
-        $('#edit_modal_section_title_id').val(edit_title_id);
-        $('#edit_modal_section_text_id').val(edit_text_id);
-        $('input:radio[name="edit_modal_translate_type"][value="current_lang"]').prop('checked', true);
+        let lang_default = $('#' + section_id + '_lang_default').val().trim();
+        let lang_all = $('#' + section_id + '_lang_all').val().trim();
+        let lang_selected = $('#' + section_id + '_lang_selected').val().trim();
 
-        let edit_modal_title = $('#edit_modal_title');
-        let edit_modal_content = $('#edit_modal_content');
+        // Capture hidden values to be applied further down stream.
+        $('#edit_modal_field_key').val(field_key);
+        $('#edit_modal_section_id').val(section_id);
+        $('#edit_modal_split_text').val(split_text);
 
-        $(edit_modal_title).val(title);
-        $(edit_modal_content).val(content);
+        // Obtain element handles and set modal display values.
+        let edit_modal_original_string = $('#edit_modal_original_string');
+        let edit_modal_all_languages = $('#edit_modal_all_languages');
+        let edit_modal_selected_language = $('#edit_modal_selected_language');
 
-        // Disabled accordingly, as not all sections required both title & text updates.
-        $(edit_modal_title).prop('disabled', !edit_title_id);
-        $(edit_modal_content).prop('disabled', !edit_text_id);
+        $(edit_modal_original_string).text( escapeHTML( lang_default ) );
+        $(edit_modal_all_languages).val( escapeHTML( lang_all ) );
+        $(edit_modal_selected_language).val( escapeHTML( lang_selected ) );
 
+        // Display modal.
         $('#modal-large').foundation('open');
     });
 
@@ -547,14 +539,17 @@ jQuery(document).ready(function ($) {
     });
 
     $(document).on('click', '.edit-update-btn', function (e) {
-        let edit_key = $('#edit_modal_key').val();
-        let edit_title_id = $('#edit_modal_section_title_id').val();
-        let edit_text_id = $('#edit_modal_section_text_id').val();
-        let title = $('#edit_modal_title').val();
-        let content = $('#edit_modal_content').val();
-        let type = $('input:radio[name="edit_modal_translate_type"]:checked').val();
-        let lang_select = $('.dt-magic-link-language-selector').val();
+        let field_key = $('#edit_modal_field_key').val();
+        let section_id = $('#edit_modal_section_id').val();
+        let split_text = $('#edit_modal_split_text').val();
+        let lang_default = $('#edit_modal_original_string').text();
+        let lang_all = $('#edit_modal_all_languages').val();
+        let lang_selected = $('#edit_modal_selected_language').val();
+        let lang_code = $('.dt-magic-link-language-selector').val();
         let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+
+        // Capture nested edit button html, to be re-assigned following update.
+        let edit_btn = $('#' + section_id).find('button.edit-btn');
 
         // Dispatch edit update request.
         let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_edit';
@@ -565,11 +560,10 @@ jQuery(document).ready(function ($) {
           'time': new Date().getTime(),
           campaign_id,
           'edit': {
-            'key': edit_key,
-            'title': title,
-            'text': content,
-            'translate_type': type,
-            'translate_lang': lang_select
+            'field_key': field_key,
+            'lang_all': lang_all,
+            'lang_translate': lang_selected,
+            'lang_code': lang_code
           }
         };
 
@@ -583,61 +577,52 @@ jQuery(document).ready(function ($) {
         .promise()
         .then((response) => {
             console.log(response);
+
             if ( response && response['updated'] ) {
+              if ( response['lang_all'] ) {
+                $('#' + section_id + '_lang_all').val( response['lang_all'] );
+              }
 
-              // Refresh titles and content text accordingly, based on returned edit key type.
-              switch ( response['edit_key'] ) {
-                case 'pray_section':
-                case 'movement_section':
-                case 'time_section': {
-                  if ( response['title'] ) {
-                    $('#' + edit_title_id).fadeOut('fast', function () {
-                      $(this).text(response['title']).fadeIn('fast');
-                    });
-                  }
-                  if ( response['text'] ) {
-                    $('#' + edit_text_id).fadeOut('fast', function () {
-                      $(this).text(response['text']).fadeIn('fast');
-                    });
-                  }
-                  break;
-                }
-                case 'vision_section':
-                case 'prayer_fuel_section': {
-                  if ( response['title'] ) {
+              if ( response['lang_translate'] ) {
+                $('#' + section_id + '_lang_selected').val( response['lang_translate'] );
+              }
 
-                    // Ensure styling is maintained.
-                    let parts = response['title'].split(/\s+/);
-                    if ( parts.length > 0 ) {
-                        let arr = [parts.shift(), parts.join(' ')];
-                        $('#' + edit_title_id).fadeOut('fast', function () {
-                            $(this).html(`${arr[0]} <span>${arr[1]}</span>`).fadeIn('fast');
-                        });
-                    } else {
-                        $('#' + edit_title_id).fadeOut('fast', function () {
-                            $(this).text(response['title']).fadeIn('fast');
-                        });
-                    }
-                  }
-                  if ( response['text'] ) {
-                      $('#' + edit_text_id).fadeOut('fast', function () {
-                          $(this).text(response['text']).fadeIn('fast');
+              if ( response['section_lang'] ) {
+                let section_lang = response['section_lang'];
+
+                // If split text, then ensure styling is maintained.
+                if ( split_text === 'true' ) {
+                  let parts = section_lang.split(/\s+/);
+                  if ( parts.length > 0 ) {
+                    let arr = [parts.shift(), parts.join(' ')];
+                    $('#' + section_id).fadeOut('fast', function () {
+                      $(this).html(`${arr[0]} <span>${arr[1]}</span>`).fadeIn('fast', function () {
+                        if ( edit_btn ) {
+                          $(this).append( edit_btn );
+                        }
                       });
+                    });
+                  } else {
+                    $('#' + section_id).fadeOut('fast', function () {
+                      $(this).text(section_lang).fadeIn('fast', function () {
+                          if ( edit_btn ) {
+                              $(this).append( edit_btn );
+                          }
+                      });
+                    });
                   }
-                  break;
+                } else {
+                  $('#' + section_id).fadeOut('fast', function () {
+                    $(this).text(section_lang).fadeIn('fast', function () {
+                        if ( edit_btn ) {
+                            $(this).append( edit_btn );
+                        }
+                    });
+                  });
                 }
-                case 'what_section': {
-                    if ( response['text'] ) {
-                        $('#' + edit_text_id).fadeOut('fast', function () {
-                            $(this).text(response['text']).fadeIn('fast');
-                        });
-                    }
-                    break;
-                }
-                default:
-                  break;
               }
             }
+
             $('#modal-large').foundation('close');
         });
     });

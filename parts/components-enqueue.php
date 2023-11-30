@@ -87,11 +87,9 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'modals' => [
                         'edit' => [
                             'modal_title' => __( 'Title & Content Translations', 'disciple-tools-prayer-campaigns' ),
-                            'edit_title' => __( 'Title', 'disciple-tools-prayer-campaigns' ),
-                            'edit_content' => __( 'Content', 'disciple-tools-prayer-campaigns' ),
-                            'edit_translate_type' => __( 'Translation Type', 'disciple-tools-prayer-campaigns' ),
-                            'edit_translate_type_lang_current' => __( 'Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
-                            'edit_translate_type_lang_all' => __( 'All Languages', 'disciple-tools-prayer-campaigns' ),
+                            'edit_original_string' => __( 'Original String', 'disciple-tools-prayer-campaigns' ),
+                            'edit_all_languages' => __( 'Custom Value For All Languages', 'disciple-tools-prayer-campaigns' ),
+                            'edit_selected_language' => __( 'Translation For Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
                             'edit_btn_close' => __( 'Close', 'disciple-tools-prayer-campaigns' ),
                             'edit_btn_update' => __( 'Update', 'disciple-tools-prayer-campaigns' )
                         ]
