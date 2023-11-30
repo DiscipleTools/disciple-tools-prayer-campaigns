@@ -946,6 +946,7 @@ export class campaignSubscriptions extends LitElement {
     _delete_time_modal_open: {type: Boolean, state: true},
     _extend_modal_open: {type: Boolean, state: true},
     _extend_modal_message: {type: String, state: true},
+    _change_times_modal_open: {type: String, state: true},
   }
 
   constructor() {
@@ -954,7 +955,9 @@ export class campaignSubscriptions extends LitElement {
     this._selected_time_to_delete = null;
     this._delete_modal_open = false;
     this._extend_modal_open = false;
+    this._change_times_modal_open = false;
     this._extend_modal_message = 'Def';
+    this.change_time_details = null
   }
 
   async connectedCallback() {
@@ -1008,6 +1011,21 @@ export class campaignSubscriptions extends LitElement {
             @close="${e=>this.extend_times_modal_closed(e)}" >
         </dt-modal>
         
+        <!--change times modal-->
+        <dt-modal
+            .isOpen="${this._change_times_modal_open}"
+            title="${translate('Change Prayer Time')}"
+            hideButton="true"
+            confirmButtonClass="danger"
+            @close="${e=>this.change_times_modal_closed(e)}" >
+            <p slot="content">${ this.change_time_details ? html`
+                ${translate('Your current prayer time is %s').replace('%s', window.luxon.DateTime.fromSeconds(this.change_time_details.first, {zone: this.timezone}).toLocaleString({ hour: '2-digit', minute: '2-digit' }))}
+                <br>
+                <br>
+                <strong>${translate('Select a new time:')}</strong>
+                ${this.build_select_for_day_times()}
+            ` : ''}</p>
+        </dt-modal>
         
         ${(this.recurring_signups||[]).map((value, index) => {
             let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last < this.campaign_data.end_timestamp - 86400 * 30 )
@@ -1022,7 +1040,8 @@ export class campaignSubscriptions extends LitElement {
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
-                      <button ?hidden="${true}" disabled class="clear-button">${translate('change time')}</button>
+                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}" 
+                          class="clear-button">${translate('change time')}</button>
                   </div>
                   <div class="selected-time-actions">
                       <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
@@ -1067,6 +1086,15 @@ export class campaignSubscriptions extends LitElement {
         `})}
         
     `
+  }
+
+  build_select_for_day_times(){
+    let times = window.campaign_scripts.get_empty_times()
+    return html`<select @change="${e=>this.change_time_details.new_time = e.target.value}">
+        <option value="">${translate('Select a time')}</option>
+        ${times.map(time=>html`<option value="${time.key}">${time.time_formatted}</option>`)}
+    </select>
+    `;
   }
 
   delete_recurring_time(){
@@ -1183,6 +1211,33 @@ export class campaignSubscriptions extends LitElement {
         window.location.reload() //@todo replace with event
       })
     }
+  }
+
+
+  open_change_time_modal(e,report_id){
+    console.log(report_id);
+    const recurring_sign = this.recurring_signups.find(k=>k.report_id===report_id)
+    console.log(recurring_sign);
+    if ( !recurring_sign ){
+      return;
+    }
+    this.change_time_details = recurring_sign
+    this._change_times_modal_open = true;
+  }
+
+  change_times_modal_closed(e){
+    if ( e.detail?.action === 'confirm' && this.change_time_details?.time ){
+      let data = {
+        report_id: this.change_time_details.report_id,
+        offset: this.change_time_details.new_time - this.change_time_details.time,
+      }
+
+      window.campaign_scripts.submit_prayer_times( this.change_time_details.campaign_id, data, 'change_times').then(response=>{
+        window.location.reload()
+      })
+    }
+    this.change_time_details = null
+    this._change_times_modal_open = false;
   }
 }
 customElements.define('campaign-subscriptions', campaignSubscriptions);

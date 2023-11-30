@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-30T10:41:27+00:00\n"
+"POT-Creation-Date: 2023-11-30T13:56:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -123,6 +123,9 @@ msgid "Or click this link:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:359
+#: porches/generic/site/archive-body.php:81
+#: porches/generic/site/landing-body.php:58
+#: porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr ""
 
@@ -138,7 +141,8 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:430
 #: campaign-functions/send-email-utility.php:460
-msgid "Strategic prayer for a disciple making movement"
+#: porches/generic/dt-generic-porch-settings.php:59
+msgid "Strategic prayer for a Disciple Making Movement"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:435
@@ -256,6 +260,10 @@ msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:307
 msgid "Account"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:313
+msgid "Links"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:314
@@ -616,8 +624,20 @@ msgstr ""
 msgid "Sundays"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:59
-msgid "Strategic prayer for a Disciple Making Movement"
+#: parts/components-enqueue.php:121
+msgid "Change Prayer Time"
+msgstr ""
+
+#: parts/components-enqueue.php:122
+msgid "Your current prayer time is %s"
+msgstr ""
+
+#: parts/components-enqueue.php:123
+msgid "Select a new time:"
+msgstr ""
+
+#: parts/components-enqueue.php:124
+msgid "Select a time"
 msgstr ""
 
 #: porches/generic/dt-generic-porch-settings.php:68
@@ -709,12 +729,6 @@ msgstr ""
 #: porches/generic/site/archive-body.php:70
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
-msgstr ""
-
-#: porches/generic/site/archive-body.php:81
-#: porches/generic/site/landing-body.php:58
-#: porches/generic/site/stats.php:291
-msgid "Thank You"
 msgstr ""
 
 #: porches/generic/site/home-body.php:96

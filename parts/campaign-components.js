@@ -873,7 +873,7 @@ export class cpTimes extends LitElement {
       this.times = this.get_weekly_times()
     }
     if ( !this.times ){
-      this.times = this.get_empty_times()
+      this.times = window.campaign_scripts.get_empty_times()
     }
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
@@ -910,7 +910,7 @@ export class cpTimes extends LitElement {
       return;
     }
     this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
-    this.times = this.get_empty_times()
+    this.times = window.campaign_scripts.get_empty_times()
   }
 
   get_times(){
@@ -1000,24 +1000,7 @@ export class cpTimes extends LitElement {
     return options;
   }
 
-  get_empty_times(){
-    let day_in_seconds = 86400;
-    let key = 0;
-    let start_of_today = new Date('2023-01-01')
-    start_of_today.setHours(0, 0, 0, 0)
-    let start_time_stamp = start_of_today.getTime() / 1000
 
-    let options = [];
-    while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key, {zone:window.campaign_user_data.timezone})
-      let time_formatted = time.toFormat('hh:mm a')
-      let progress = 0
-      let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
-      key += window.campaign_data.slot_length * 60
-    }
-    return options;
-  }
 }
 customElements.define('cp-times', cpTimes);
 

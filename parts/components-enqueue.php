@@ -118,6 +118,10 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Fridays' => __( 'Fridays', 'disciple-tools-prayer-campaigns' ),
                     'Saturdays' => __( 'Saturdays', 'disciple-tools-prayer-campaigns' ),
                     'Sundays' => __( 'Sundays', 'disciple-tools-prayer-campaigns' ),
+                    'Change Prayer Time' => __( 'Change Prayer Time', 'disciple-tools-prayer-campaigns' ),
+                    'Your current prayer time is %s' => __( 'Your current prayer time is %s', 'disciple-tools-prayer-campaigns' ),
+                    'Select a new time:' => __( 'Select a new time:', 'disciple-tools-prayer-campaigns' ),
+                    'Select a time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );

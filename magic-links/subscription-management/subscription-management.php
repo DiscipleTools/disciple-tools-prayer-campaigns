@@ -310,7 +310,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <div id="wrapper">
             <!-- links -->
             <div style="margin: 10px; text-align: center">
-                <?php esc_html_e( 'Links', 'disciple_tools' ); ?>:
+                <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
                 <a href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
                 <a href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
                 <a href="<?php echo esc_url( site_url() ) ?>/prayer/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
@@ -589,16 +589,24 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return false;
         }
 
-        $ids = dt_array_to_sql( $params['report_ids'] );
         global $wpdb;
-        //phpcs:disable.
-        //Cannot pass in array in prepare
         $wpdb->query( $wpdb->prepare( "
             UPDATE $wpdb->dt_reports
             SET time_begin = time_begin + %d, time_end = time_end + %d
-            WHERE id IN ($ids)
-        ", (int) $params["offset"], (int) $params["offset"] ) );
-        //phpcs:enable
+            WHERE post_type = 'subscriptions'
+            AND type = 'campaign_app'
+            AND post_id = %d
+            AND value = %d
+        ", (int) $params['offset'], (int) $params['offset'], (int) $post_id, (int) $params['report_id'] ) );
+
+        $wpdb->query( $wpdb->prepare( "
+            UPDATE $wpdb->dt_reports
+            SET time_begin = time_begin + %d, time_end = time_end + %d
+            WHERE post_type = 'subscriptions'
+            AND type = 'recurring_signup'
+            AND post_id = %d
+            AND id = %d
+        ", (int) $params['offset'], (int) $params['offset'], (int) $post_id, (int) $params['report_id'] ) );
 
         return true;
     }
