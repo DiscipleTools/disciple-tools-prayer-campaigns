@@ -113,6 +113,16 @@ class DT_Prayer_Campaigns_Campaigns {
         }
     }
 
+    public function process_default_campaign_setting(){
+        if ( isset( $_POST['default_campaign_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['default_campaign_nonce'] ) ), 'default_campaign_nonce' ) ) {
+
+            if ( isset( $_POST['default_campaign_submit'], $_POST['default_campaign'] )  ) {
+                $selected_campaign = sanitize_text_field( wp_unslash( $_POST['default_campaign'] ) );
+                update_option( 'dt_campaign_selected_campaign', $selected_campaign === self::$no_campaign_key ? null : $selected_campaign );
+            }
+        }
+    }
+
     public function process_p4m_participation_settings(){
         if ( isset( $_POST['p4m_participation_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['p4m_participation_nonce'] ) ), 'p4m_participation' ) ){
 
@@ -166,7 +176,7 @@ class DT_Prayer_Campaigns_Campaigns {
                             $this->box_campaign();
                         }
 
-
+                        $this->box_default_campaign();
 
                         $this->box_p4m_participation();
 
@@ -183,6 +193,55 @@ class DT_Prayer_Campaigns_Campaigns {
             </div>
         </div>
         <?php
+    }
+
+
+    public function box_default_campaign(){
+        $home_url = home_url();
+        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+
+        ?>
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th>Default Campaign</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form method="POST">
+                            <?php wp_nonce_field( 'default_campaign_nonce', 'default_campaign_nonce' ) ?>
+
+                            <p>Which campaign should be shown on this page: <?php echo esc_html( $home_url ); ?></p>
+
+                            <table class="widefat">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="default_campaign">Select Campaign</label>
+                                        </td>
+                                        <td>
+                                            <select name="default_campaign" id="default_campaign">
+                                                <option value="none">None</option>
+                                                <?php $this->echo_my_campaigns_select_options( $default_campaign ) ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="button float-right" name="default_campaign_submit">Update</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <?php
+
     }
 
     public function box_p4m_participation() {
@@ -388,15 +447,7 @@ class DT_Prayer_Campaigns_Campaigns {
     }
 
     public function box_campaign() {
-
-        if ( isset( $_POST['install_campaign_nonce'] )
-            && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['install_campaign_nonce'] ) ), 'install_campaign_nonce' )
-            && isset( $_POST['selected_campaign'] )
-        ) {
-            $campaign_id = sanitize_text_field( wp_unslash( $_POST['selected_campaign'] ) );
-            update_option( 'dt_campaign_selected_campaign', $campaign_id === self::$no_campaign_key ? null : $campaign_id );
-        }
-        $fields = DT_Campaign_Landing_Settings::get_campaign();
+        $fields = DT_Campaign_Landing_Settings::get_campaign( null, true );
         if ( empty( $fields ) ) {
             $fields = [ 'ID' => 0 ];
         }
@@ -429,22 +480,6 @@ class DT_Prayer_Campaigns_Campaigns {
                             <!-- Box -->
                             <table class="widefat striped">
                                 <tbody>
-<!--                                    <tr>-->
-<!--                                        <td>-->
-<!--                                            Select Campaign (@todo remove)-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <select name="selected_campaign">-->
-<!--                                                --><?php //$this->echo_my_campaigns_select_options( $fields['ID'] ) ?>
-<!--                                            </select>-->
-<!--                                            <button class="button float-right" type="submit">Update</button>-->
-<!--                                            <br>-->
-<!--                                            <br>-->
-<!--                                            <a href="--><?php //echo esc_html( site_url( '/campaigns' ) ); ?><!--" target="_blank" style="margin: 10px">See campaigns list</a>-->
-<!--                                            <a href="--><?php //echo esc_html( site_url( '/campaigns/new' ) ); ?><!--"  target="_blank" >Create a campaign</a>-->
-<!--                                            <br>-->
-<!--                                        </td>-->
-<!--                                    </tr>-->
                                     <?php if ( ! empty( $fields['ID'] ) ) : ?>
                                         <tr>
                                             <td>Status</td>
@@ -453,10 +488,6 @@ class DT_Prayer_Campaigns_Campaigns {
                                         <tr>
                                             <td>Porch Type</td>
                                             <td><?php echo esc_html( isset( $fields['porch_type']['label'] ) ? $fields['porch_type']['label'] : '' ); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Campaign Type</td>
-                                            <td><?php echo esc_html( $fields['type']['label'] ) ?></td>
                                         </tr>
                                         <tr>
                                             <td>Start Date</td>

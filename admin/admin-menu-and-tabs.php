@@ -95,7 +95,7 @@ class DT_Prayer_Campaigns_Menu {
                 $tab = 'dt_prayer_fuel';
             }
         }
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
         $campaign_url_part = '';
         if ( !empty( $campaign['ID'] ) ){
             $campaign_url_part .= '&campaign=' . $campaign['ID'];
@@ -108,12 +108,13 @@ class DT_Prayer_Campaigns_Menu {
             case 'campaigns':
                 $this->campaigns->process_p4m_participation_settings();
                 $this->campaigns->process_porch_settings();
+                $this->campaigns->process_default_campaign_setting();
                 break;
             default:
                 break;
         }
 
-        if ( $this->has_selected_porch() ) {
+        if ( !empty( $campaign['ID'] ) ) {
             $porch = $this->porch_selector->get_selected_porch_loader();
             $porch_admin = $porch->load_admin();
             $porch_dir = $porch_admin->get_porch_dir();

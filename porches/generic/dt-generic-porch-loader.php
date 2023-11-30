@@ -26,7 +26,7 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
      * override it's own.
      */
     public function __construct( $porch_dir = '' ) {
-        $this->label = 'Fixed Dates Landing Page';
+        $this->label = 'Generic Landing Page';
         $this->porch_dir = $porch_dir;
 
         require_once __DIR__ . '/dt-generic-porch.php';
@@ -35,10 +35,9 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
 
     public function dt_campaigns_wizard_types( $wizard_types ) {
         $default_wizards = [
-            '24hour' => [
-                'campaign_type' => '24hour',
+            'generic' => [
                 'porch' => 'generic-porch',
-                'label' => '24/7 Campaign with a start and end date'
+                'label' => '24/7 Campaign with a start and optional end date'
             ],
         ];
         return array_merge( $default_wizards, $wizard_types );

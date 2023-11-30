@@ -14,6 +14,8 @@ if ( empty( $campaign_fields ) ): ?>
     <?php die();
 endif;
 
+
+$campaign_has_end_date = !empty( $campaign_fields['end_date']['timestamp'] );
 $campaign_root = 'campaign_app';
 $campaign_type = 'ongoing';
 $key_name = 'public_key';
@@ -89,16 +91,18 @@ require_once( get_theme_file_path( 'dt-assets/parts/modals/modal-support.php' ) 
 <section id="campaign-vision" class="section">
     <div class="container">
         <div class="section-header row">
-            <div class="col-sm-12 col-md-8">
+            <div class="col-sm-12 <?php echo esc_html( $campaign_has_end_date ? 'col-md-8' : 'col-md-12' ); ?>">
                 <?php display_translated_field( 'vision_title', 'h2', 'vision_section_title', 'section-title', 'btn-common', $allowedtags, true ); ?>
                 <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                 <div style="padding: 1em">
                 <?php display_translated_field( 'vision', 'p', 'vision_section_text', 'section-subtitle', 'btn-common', $allowedtags ); ?>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-                <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
-            </div>
+            <?php if ( $campaign_has_end_date ): ?>
+                <div class="col-sm-12 col-md-4">
+                    <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="row">
             <div class="col-md-4 col-sm-6">
@@ -192,12 +196,12 @@ require_once( get_theme_file_path( 'dt-assets/parts/modals/modal-support.php' ) 
                         </div>
                         <div class="fact-count">
 
-                            <?php if ( $campaign_type === '24hour' ): ?>
+                            <?php if ( $campaign_has_end_date ): ?>
 
                                 <h3><span class="counter"><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign ) : '30' ?></span></h3>
                                 <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
-                            <?php elseif ( $campaign_type === 'ongoing' ): ?>
+                            <?php else : ?>
 
                                 <h3><?php esc_html_e( 'Next', 'disciple-tools-prayer-campaigns' ) ?></h3>
                                 <h4><?php esc_html_e( 'Month', 'disciple-tools-prayer-campaigns' ); ?></h4>
@@ -219,12 +223,12 @@ require_once( get_theme_file_path( 'dt-assets/parts/modals/modal-support.php' ) 
                         </div>
                         <div class="fact-count">
 
-                            <?php if ( $campaign_type === '24hour' ): ?>
+                            <?php if ( $campaign_has_end_date ): ?>
 
                                 <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 ) : '720' ?></h3>
                                 <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
-                            <?php elseif ( $campaign_type === 'ongoing' ): ?>
+                            <?php else : ?>
 
                                 <h3><?php echo esc_html( $hours_next_month ) ?></h3>
                                 <h4><?php esc_html_e( 'Hours', 'disciple-tools-prayer-campaigns' ); ?></h4>
@@ -242,12 +246,12 @@ require_once( get_theme_file_path( 'dt-assets/parts/modals/modal-support.php' ) 
                         </div>
                         <div class="fact-count">
 
-                            <?php if ( $campaign_type === '24hour' ): ?>
+                            <?php if ( $campaign_has_end_date ): ?>
 
                                 <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : '2880' ?></h3>
                                 <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
 
-                            <?php elseif ( $campaign_type === 'ongoing' ): ?>
+                            <?php else : ?>
 
                                 <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
                                 <h4><?php esc_html_e( 'Hours Remaining', 'disciple-tools-prayer-campaigns' ); ?></h4>

@@ -28,6 +28,9 @@ class DT_Campaign_Landing_Settings {
         $current_page = '';
         if ( empty( $url_parts[0] ) || in_array( $url_parts[0], $expected_pages, true ) ){
             $selected_campaign_id = get_option( 'dt_campaign_selected_campaign', false );
+            if ( empty( $selected_campaign_id ) ) {
+                return false;
+            }
             if ( !defined( 'CAMPAIGN_ID' ) ){
                 define( 'CAMPAIGN_ID', $selected_campaign_id );
             }
@@ -87,14 +90,18 @@ class DT_Campaign_Landing_Settings {
 
         $tiles['campaign_landing'] = [
             'label' => __( 'Landing Page Settings', 'disciple-tools-prayer-campaigns' ),
+            'hidden' => true,
         ];
         $tiles['campaign_email'] = [
             'label' => __( 'Email Settings', 'disciple-tools-prayer-campaigns' ),
+            'hidden' => true,
         ];
         $tiles['campaign_prayer_fuel'] = [
+            'hidden' => true,
             'label' => __( 'Prayer Fuel Settings', 'disciple-tools-prayer-campaigns' ),
         ];
         $tiles['campaign_landing_strings'] = [
+            'hidden' => true,
             'label' => __( 'Landing Page Strings', 'disciple-tools-prayer-campaigns' ),
         ];
 
@@ -299,42 +306,35 @@ class DT_Campaign_Landing_Settings {
 
     }
 
-    public static function get_campaign_id(){
+    public static function get_campaign_id( $search_my_campaigns = false ){
         if ( isset( $_GET['campaign'] ) ){
             return sanitize_key( wp_unslash( $_GET['campaign'] ) );
         }
         if ( defined( 'CAMPAIGN_ID' ) ) {
             return CAMPAIGN_ID;
         }
-        if ( empty( $selected_campaign ) ){
-            return get_option( 'dt_campaign_selected_campaign', false );
+
+        if ( $search_my_campaigns || is_admin() ) {
+            $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+            if ( !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
+                return $campaigns['posts'][0]['ID'];
+            }
         }
+
+        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+        if ( !empty( $default_campaign ) ){
+            return $default_campaign;
+        }
+
+        return null;
     }
 
-    public static function get_campaign( $selected_campaign = null ) {
+    public static function get_campaign( $selected_campaign = null, $search_my_campaigns = false ) {
         if ( $selected_campaign === null ) {
-//            if ( isset( $_GET['campaign'] ) ){
-//                $selected_campaign = sanitize_key( wp_unslash( $_GET['campaign'] ) );
-//            }
-//            if ( empty( $selected_campaign ) && DT_Posts::can_access( 'campaigns' ) ){
-//                $cached = wp_cache_get( 'dt_selected_campaign_' . $selected_campaign );
-//                if ( $cached !== false ){
-//                    return $cached;
-//                }
-//                $campaigns = DT_Posts::list_posts( 'campaigns', [] );
-//                if ( !empty( $campaigns['posts'] ) ){
-//                    $selected_campaign = $campaigns['posts'][0]['ID'];
-//                }
-//            }
-//
-//            if ( empty( $selected_campaign ) ){
-//                $selected_campaign = get_option( 'dt_campaign_selected_campaign', false );
-//            }
-            $selected_campaign = self::get_campaign_id();
+            $selected_campaign = self::get_campaign_id( $search_my_campaigns );
         }
-
-//        if ( defined( 'CAMPAIGN_ID' ) ) {
-//            $selected_campaign = CAMPAIGN_ID;
+//        if ( !defined( 'CAMPAIGN_ID' ) && !empty( $selected_campaign ) ) {
+//            define( 'CAMPAIGN_ID', $selected_campaign );
 //        }
         if ( empty( $selected_campaign ) ) {
             return [];
@@ -345,7 +345,7 @@ class DT_Campaign_Landing_Settings {
             return [];
         }
 
-        wp_cache_set( 'dt_selected_campaign_' . $selected_campaign, $campaign );
+//        wp_cache_set( 'dt_selected_campaign_' . $selected_campaign, $campaign );
         return $campaign;
     }
 

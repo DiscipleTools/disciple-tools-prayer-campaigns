@@ -33,7 +33,7 @@ class DT_Porch_Settings {
             }
 
             $defaults[$key] = $field;
-            $defaults[$key]['value'] = $field['default'] ?? '';
+            $defaults[$key]['value'] = $field['type'] === 'key_select' ? '' : ( $field['default'] ?? '' );
             if (  isset( $current_campaign[$key] ) ) {
                 if ( $field['type'] === 'key_select' ){
                     $defaults[$key]['value'] = $current_campaign[$key]['key'];
