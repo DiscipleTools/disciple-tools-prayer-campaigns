@@ -485,51 +485,58 @@ window.campaign_scripts = {
 
 jQuery(document).ready(function ($) {
 
-    init_edit_foundation_modal();
-    function init_edit_foundation_modal() {
-
-        // Instantiate edit modal and set content.
-        let edit_modal = $('#modal-large');
-        $(edit_modal).data('v-offset', 200);
-
+    init_edit_bootstrap_modal();
+    function init_edit_bootstrap_modal() {
         let current_lang = null;
         let lang_select = $('.dt-magic-link-language-selector');
         if ($(lang_select).length > 0) {
             current_lang = $(lang_select).find('option:selected').text().trim();
         }
 
-        $('#modal-large-title').empty().html(`${escapeHTML(strings['modals']['edit']['modal_title'])}<br><hr>`);
         let content = `
         <input id="edit_modal_field_key" type="hidden"/>
         <input id="edit_modal_section_id" type="hidden"/>
         <input id="edit_modal_split_text" type="hidden"/>
-        <table>
-            <tbody>
-                <tr style="background-color: #ffffff;">
-                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_original_string'])}</td>
-                    <td id="edit_modal_original_string" style="font-size: 12px; color: #3c3c3c;"></td>
-                </tr>
-                <tr style="background-color: #ffffff;">
-                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_all_languages'])}</td>
-                    <td>
-                        <textarea id="edit_modal_all_languages" cols="100" rows="5"></textarea>
-                    </td>
-                </tr>
-                <tr style="background-color: #ffffff;">
-                    <td style="vertical-align: top;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${((current_lang !== null) ? ' - ['+ current_lang +']' : '' )}</td>
-                    <td>
-                        <textarea id="edit_modal_selected_language" cols="100" rows="5"></textarea>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <span style="float: right;">
-            <button class="btn btn-common edit-close-btn">${escapeHTML(strings['modals']['edit']['edit_btn_close'])}</button>
-            <button class="btn btn-common edit-update-btn">${escapeHTML(strings['modals']['edit']['edit_btn_update'])}</button>
-        </span>`;
-        $('#modal-large-content').empty().html(content);
 
-        new window.Foundation.Reveal(edit_modal);
+        <div id="edit_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${escapeHTML(strings['modals']['edit']['modal_title'])}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tbody>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_original_string'])}</td>
+                                    <td id="edit_modal_original_string" style="font-size: 12px; color: #3c3c3c;"></td>
+                                </tr>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_all_languages'])}</td>
+                                    <td>
+                                        <textarea id="edit_modal_all_languages" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                </tr>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top; width: 30%;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${((current_lang !== null) ? ' - ['+ current_lang +']' : '' )}</td>
+                                    <td>
+                                        <textarea id="edit_modal_selected_language" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-common edit-close-btn">${escapeHTML(strings['modals']['edit']['edit_btn_close'])}</button>
+                        <button class="btn btn-common edit-update-btn">${escapeHTML(strings['modals']['edit']['edit_btn_update'])}</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        $('#edit_modal_div').empty().html(content);
     }
 
     $(document).on('click', '.edit-btn', function (e) {
@@ -558,11 +565,11 @@ jQuery(document).ready(function ($) {
         $(edit_modal_selected_language).val( escapeHTML( lang_selected ) );
 
         // Display modal.
-        $('#modal-large').foundation('open');
+        $('#edit_modal').modal('show');
     });
 
     $(document).on('click', '.edit-close-btn', function (e) {
-        $('#modal-large').foundation('close');
+        $('#edit_modal').modal('hide');
     });
 
     $(document).on('click', '.edit-update-btn', function (e) {
@@ -607,15 +614,15 @@ jQuery(document).ready(function ($) {
         .promise()
         .then((response) => {
             if ( response && response['updated'] ) {
-              if ( response['lang_all'] ) {
+              if ( response['lang_all'] !== undefined ) {
                 $('#' + section_id + '_lang_all').val( response['lang_all'] );
               }
 
-              if ( response['lang_translate'] ) {
+              if ( response['lang_translate'] !== undefined ) {
                 $('#' + section_id + '_lang_selected').val( response['lang_translate'] );
               }
 
-              if ( response['section_lang'] ) {
+              if ( response['section_lang'] !== undefined ) {
                 let section_lang = response['section_lang'];
 
                 // If split text, then ensure styling is maintained.
@@ -651,7 +658,7 @@ jQuery(document).ready(function ($) {
               }
             }
 
-            $('#modal-large').foundation('close');
+            $('#edit_modal').modal('hide');
         });
     });
 });

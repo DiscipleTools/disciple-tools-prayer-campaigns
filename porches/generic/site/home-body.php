@@ -78,13 +78,10 @@ function display_translated_field( $field_key, $section_tag, $section_id, $secti
         <?php
     }
 }
-
 ?>
 
 <!-- MODALS -->
-<?php
-require_once( get_theme_file_path( 'dt-assets/parts/modals/modal-support.php' ) );
-?>
+<div id="edit_modal_div"></div>
 <!-- MODALS -->
 
 <!-- Vision -->

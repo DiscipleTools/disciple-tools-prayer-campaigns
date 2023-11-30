@@ -125,7 +125,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Select a time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
                     'modals' => [
                         'edit' => [
-                            'modal_title' => __( 'Title & Content Translations', 'disciple-tools-prayer-campaigns' ),
+                            'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
                             'edit_original_string' => __( 'Original String', 'disciple-tools-prayer-campaigns' ),
                             'edit_all_languages' => __( 'Custom Value For All Languages', 'disciple-tools-prayer-campaigns' ),
                             'edit_selected_language' => __( 'Translation For Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
@@ -142,8 +142,5 @@ function dt_campaigns_register_scripts( $atts = [] ){
         wp_enqueue_script( 'campaign_component_sign_up', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
         wp_enqueue_style( 'toastify-js-css', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css', [], '1.12.0' );
         wp_enqueue_script( 'toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js', [ 'jquery' ], '1.12.0' );
-
-        wp_enqueue_script( 'foundation-js', 'https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js', [ 'jquery' ], '6.8.1' );
-        wp_enqueue_style( 'foundation-js-css', 'https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css', [], '6.8.1' );
     }
 }
