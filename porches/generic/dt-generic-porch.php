@@ -58,7 +58,6 @@ class DT_Generic_Porch {
 //        require_once( 'site/stats.php' );
 //        require_once( 'site/landing.php' );
 //        require_once( 'site/rest.php' );
-        require_once( 'site/sign-up-confirmation.php' );
         require_once( 'site/404.php' );
 
         /* TODO: Porch emails need setting up like the ramadan porch in this file... */

@@ -345,6 +345,27 @@ class DT_Subscriptions {
     }
 }
 
+/**
+ * Report structure
+ * id: 1
+ * parent_id: the id of the campaign
+ * post_id: the id of the subscriber
+ * post_type: subscriptions
+ * type: recurring_signup
+ * subtype: 'daily' | 'weekly' | 'monthly'
+ * payload: {
+ *    selected_times: array of individual times
+ *    type: 'daily' | 'weekly' | 'monthly'
+ *    duration: 15 minutes
+ *    label: 'Daily at 8am'
+ * }
+ * value: not used
+ * label: not used, for locations
+ * time_begin: the first time of the recurring signup
+ * time_end: the last time of the recurring signup
+ * timestamp: the time the recurring signup was created
+ *
+ */
 
 class Recurring_Signups {
     public $campaign_id;
@@ -403,8 +424,8 @@ class Recurring_Signups {
     public static function format_from_report( $report ){
         $report['payload'] = maybe_unserialize( $report['payload'] );
         return [
-            'report_id' => $report['id'],
-            'campaign_id' => $report['parent_id'],
+            'report_id' => (int) $report['id'],
+            'campaign_id' => (int) $report['parent_id'],
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
             'first' => (int) $report['time_begin'],

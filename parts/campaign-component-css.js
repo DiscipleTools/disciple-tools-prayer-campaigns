@@ -46,7 +46,6 @@ export const campaignStyles = css`
   }
   label {
     display: grid;
-    color: var(--cp-color, 'dodgerblue');
     font-weight: bold;
   }
   select, input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
@@ -74,6 +73,7 @@ export const campaignStyles = css`
     padding: .85rem 1rem;
     cursor:pointer;
     background-color: var( --cp-color, 'dodgerblue' );
+    line-height: 1;
   }
   button:hover {
     background-color: transparent;
@@ -110,23 +110,25 @@ export const campaignStyles = css`
     color: #cc4b37;
   }
 
-
-  .cp-close-button {
-    top: .5rem;
-    font-size: 1em;
-    line-height: 1;
-    display: block;
+  a.button {
+    text-decoration: none;
+    color: #fefefe;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    font-weight: normal;
+    padding: .85rem 1rem;
     cursor:pointer;
-    padding: 5px;
+    background-color: var( --cp-color, 'dodgerblue' );
+    line-height: 1;
+  }
+  a.button:hover {
+    background-color: transparent;
+    border-color: var( --cp-color, 'dodgerblue' );
+    color: var( --cp-color, 'dodgerblue' );
   }
 
-  .cp-close-button img {
-    filter: invert(100%);
-    height: 15px;
-    width: 15px;
-    vertical-align: bottom;
-  }
-
+  
   .nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -300,7 +302,7 @@ Loader
   }
   
   .disabled {
-    opacity: .3;
+    opacity: .5;
     cursor: not-allowed;
   }
 

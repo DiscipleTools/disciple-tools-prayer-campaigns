@@ -113,7 +113,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         //generate_verify_code
         $six_digit_code = random_int( 100000, 999999 );
 
-        set_transient( 'campaign_verify_' . $email, $six_digit_code, 10 * MINUTE_IN_SECONDS );
+        set_transient( 'campaign_verify_' . $email, $six_digit_code, 20 * MINUTE_IN_SECONDS );
 
         $sent = DT_Prayer_Campaigns_Send_Email::send_verification( $email, $six_digit_code );
         return $sent; // true on success
@@ -227,7 +227,12 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return new WP_Error( __METHOD__, 'Could not send email confirmation', [ 'status' => 400 ] );
         }
 
-        return true;
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber );
+
+        return [
+            'account_link' => $account_link,
+        ];
     }
 
 }

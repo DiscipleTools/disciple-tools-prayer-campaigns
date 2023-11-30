@@ -17,6 +17,7 @@ const strings = escapeObject(window.campaign_objects.translations)
 
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
+  recurring_signups: [],
 }
 window.set_user_data = function (data, campaign = false){
   let timezone_changes = false
@@ -349,7 +350,9 @@ window.campaign_scripts = {
   escapeHTML(str) {
     if (typeof str === "undefined") return '';
     if (typeof str !== "string") return str;
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+    let div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
   },
   recurring_time_slot_label(value){
     let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})
@@ -401,6 +404,10 @@ window.campaign_scripts = {
     let start_time = start_of_day + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
+    if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
+      return null;
+    }
+
     let limit = window.campaign_data.end_timestamp
     if ( !limit ){
       limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
@@ -419,6 +426,7 @@ window.campaign_scripts = {
     let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
 
     return {
+      root: start_time,
       label: label,
       type: frequency_option.value,
       first: selected_times[0].date_time,
@@ -449,6 +457,25 @@ window.campaign_scripts = {
       dataType: "json",
       url: link
     })
+  },
+
+  get_empty_times(){
+    let day_in_seconds = 86400;
+    let key = 0;
+    let start_of_today = new Date('2023-01-01')
+    start_of_today.setHours(0, 0, 0, 0)
+    let start_time_stamp = start_of_today.getTime() / 1000
+
+    let options = [];
+    while (key < day_in_seconds) {
+      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key, {zone:window.campaign_user_data.timezone})
+      let time_formatted = time.toFormat('hh:mm a')
+      let progress = 0
+      let min = time.toFormat(':mm')
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      key += window.campaign_data.slot_length * 60
+    }
+    return options;
   }
 }
 

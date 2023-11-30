@@ -60,7 +60,7 @@ $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 2
                                  width='22px;' alt='spinner '/>
                         </button>
                         <span id="group-size-thank-you" style="display: none">
-                            <?php esc_html_e( 'Thank You', 'disciple-tools-prayer-campaigns' ); ?>
+                            <?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?>
                         </span>
                     </div>
                 </div>
