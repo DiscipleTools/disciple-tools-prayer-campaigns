@@ -171,6 +171,9 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
     public function campaign_edit( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
+        if ( !DT_Posts::can_update( 'campaigns', $params['campaign_id'] ?? '' ) ){
+            return new WP_Error( __METHOD__, 'Unauthorized', [ 'status' => 401 ] );
+        }
 
         $response = [
             'updated' => false

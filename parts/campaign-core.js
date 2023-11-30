@@ -599,12 +599,13 @@ jQuery(document).ready(function ($) {
             data: JSON.stringify(payload),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
-            url: link
+            url: link,
+          beforeSend: (xhr) => {
+            xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
+          },
         })
         .promise()
         .then((response) => {
-            console.log(response);
-
             if ( response && response['updated'] ) {
               if ( response['lang_all'] ) {
                 $('#' + section_id + '_lang_all').val( response['lang_all'] );
