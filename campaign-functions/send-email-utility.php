@@ -197,7 +197,7 @@ class DT_Prayer_Campaigns_Send_Email {
             );
         }
         $message .= Campaigns_Email_Template::email_content_part(
-            __( 'These are your next time commitments:', 'disciple-tools-prayer-campaigns' )
+            __( 'These are your next prayer commitments:', 'disciple-tools-prayer-campaigns' )
             . $commitment_list
         );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );
@@ -345,6 +345,8 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
+        self::switch_email_locale( $subscriber['lang'] ?? null );
+
         $manage_link = self::management_link( $subscriber );
         $porch_fields = DT_Porch_Settings::settings();
 
@@ -428,7 +430,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
-            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
         $url = trailingslashit( site_url() ) . 'prayer/stats';
@@ -458,7 +460,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( $location ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
-            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
         $url = trailingslashit( site_url() ) . 'prayer/stats';
