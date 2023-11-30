@@ -1022,7 +1022,7 @@ export class campaignSubscriptions extends LitElement {
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
-                      <button disabled class="clear-button">${translate('change time')}</button>
+                      <button ?hidden="${true}" disabled class="clear-button">${translate('change time')}</button>
                   </div>
                   <div class="selected-time-actions">
                       <button class="clear-button" @click="${e=>{value.display_times=!value.display_times;this.requestUpdate()}}">
@@ -1037,7 +1037,7 @@ export class campaignSubscriptions extends LitElement {
                     ${prayer_times.map(c=>html`
                         <div class="remove-row">
                             <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone: this.timezone}).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-                            <button ?disabled="${true}" 
+                            <button @click="${e=>this.open_delete_time_modal(e,c.report_id)}"
                                     class="remove-prayer-times-button clear-button">
                                 <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                             </button>
@@ -1093,6 +1093,7 @@ export class campaignSubscriptions extends LitElement {
     })
   }
   delete_time(){
+    let report_to_delete = this._selected_time_to_delete
     let data = {
       action: 'delete',
       report_id: this._selected_time_to_delete,
@@ -1108,11 +1109,10 @@ export class campaignSubscriptions extends LitElement {
         xhr.setRequestHeader('X-WP-Nonce', window.subscription_page_data.nonce )
       }
     }).then(data=>{
-      window.location.reload()
-      // draw_calendar();
-      // calculate_my_time_slot_coverage()
-      // $(this).removeClass('loading')
-      // $('#delete-times-modal').foundation('close')
+      window.campaign_data.subscriber_info.my_commitments = window.campaign_data.subscriber_info.my_commitments.filter(k=>k.report_id!==report_to_delete)
+      this._selected_time_to_delete = null;
+      this._delete_time_modal_open = false;
+      this.requestUpdate()
     })
   }
 
@@ -1141,10 +1141,11 @@ export class campaignSubscriptions extends LitElement {
     }
   }
   delete_time_modal_closed(e){
-    this._delete_modal_open = false;
     if ( e.detail?.action === 'confirm' ){
       this.delete_time()
     }
+    this._selected_time_to_delete = null;
+    this._delete_time_modal_open = false;
   }
 
   open_extend_times_modal(report_id){
