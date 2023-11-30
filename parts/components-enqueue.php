@@ -19,6 +19,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
         wp_localize_script(
             'dt_campaign_core', 'campaign_objects', [
+                'nonce' => wp_create_nonce( 'wp_rest' ),
                 'magic_link_parts' => [
                     'root' => $atts['root'],
                     'type' => $atts['type'],
