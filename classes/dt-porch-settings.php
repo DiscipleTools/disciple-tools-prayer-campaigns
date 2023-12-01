@@ -195,7 +195,7 @@ class DT_Porch_Settings {
         $settings = self::settings();
 
         foreach ( $settings as $key => $value ) {
-            if ( !in_array($value['type'], [ 'text', 'textarea' ] ) ) {
+            if ( !in_array( $value['type'], [ 'text', 'textarea' ] ) ) {
                 continue;
             }
 
