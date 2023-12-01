@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-10-18T10:15:10+00:00\n"
+"POT-Creation-Date: 2023-11-29T09:45:13+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.disciple.tools/projects/disciple-"
@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
@@ -25,94 +25,94 @@ msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Натисніть тут, щоб переглянути підказки до молитви на сьогодні: %s"
 
-#: campaign-functions/send-email-utility.php:47
+#: campaign-functions/send-email-utility.php:50
 msgid "Verify your email address"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:49
+#: campaign-functions/send-email-utility.php:52
 msgid ""
 "Please copy and paste the following code into the Confirmation Code field."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:56
+#: campaign-functions/send-email-utility.php:59
 msgid "This code will expire after 10 minutes."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:57
+#: campaign-functions/send-email-utility.php:60
 msgid "If you did not request this email, please ignore it."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:139
-#: campaign-functions/send-email-utility.php:207
+#: campaign-functions/send-email-utility.php:142
+#: campaign-functions/send-email-utility.php:210
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s від %2$s до %3$s"
 
-#: campaign-functions/send-email-utility.php:150
+#: campaign-functions/send-email-utility.php:153
 #, fuzzy
 msgid "Registered to pray with us!"
 msgstr "Зареєструвалися, щоб молитися з нами!"
 
-#: campaign-functions/send-email-utility.php:171
-#: campaign-functions/send-email-utility.php:240
-#: campaign-functions/send-email-utility.php:327
+#: campaign-functions/send-email-utility.php:174
+#: campaign-functions/send-email-utility.php:243
+#: campaign-functions/send-email-utility.php:330
 #, fuzzy
 msgid "Hello %s,"
 msgstr "Привіт %s,"
 
-#: campaign-functions/send-email-utility.php:173
+#: campaign-functions/send-email-utility.php:176
 #, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr "Стратегічна молитва за рух підготовки учнів"
 
-#: campaign-functions/send-email-utility.php:174
+#: campaign-functions/send-email-utility.php:177
 #, fuzzy
 msgid "Here are the times you have committed to pray:"
 msgstr "Ось час, коли ви зобов’язалися молитися:"
 
-#: campaign-functions/send-email-utility.php:176
-#: campaign-functions/send-email-utility.php:244
+#: campaign-functions/send-email-utility.php:179
+#: campaign-functions/send-email-utility.php:247
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "Час показано відповідно до: %s часу"
 
-#: campaign-functions/send-email-utility.php:178
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:181
+#: campaign-functions/send-email-utility.php:254
 #, fuzzy
 msgid "Click here to manage your account and time commitments"
 msgstr ""
 "Натисніть тут, щоб керувати своїм обліковим записом і часовими зобов’язаннями"
 
-#: campaign-functions/send-email-utility.php:213
+#: campaign-functions/send-email-utility.php:216
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "для %s"
 
-#: campaign-functions/send-email-utility.php:223
+#: campaign-functions/send-email-utility.php:226
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "Нагадування про час молитви!"
 
-#: campaign-functions/send-email-utility.php:241
-#: campaign-functions/send-email-utility.php:378
+#: campaign-functions/send-email-utility.php:244
+#: campaign-functions/send-email-utility.php:381
 #: porches/generic/site/stats.php:136
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "Дякуємо, що молитеся з нами!"
 
-#: campaign-functions/send-email-utility.php:242
+#: campaign-functions/send-email-utility.php:245
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "Ось ваш найближчий час молитов:"
 
-#: campaign-functions/send-email-utility.php:325
+#: campaign-functions/send-email-utility.php:328
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:328
+#: campaign-functions/send-email-utility.php:331
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -121,88 +121,88 @@ msgstr ""
 "У вас залишилося 2 тижні до останньої молитви. Чи хотіли б ви продовжувати "
 "молитися?"
 
-#: campaign-functions/send-email-utility.php:329
+#: campaign-functions/send-email-utility.php:332
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Підпишіться на додаткові часи молитов або подовжте свій повторюваний час тут:"
 
-#: campaign-functions/send-email-utility.php:331
+#: campaign-functions/send-email-utility.php:334
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:332
+#: campaign-functions/send-email-utility.php:335
 #, fuzzy
 msgid "Thank you"
 msgstr "Дякую"
 
-#: campaign-functions/send-email-utility.php:401
-#: campaign-functions/send-email-utility.php:431
+#: campaign-functions/send-email-utility.php:404
+#: campaign-functions/send-email-utility.php:434
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Стратегічна молитва за рух підготовки учнів"
 
-#: campaign-functions/send-email-utility.php:403
-#: campaign-functions/send-email-utility.php:433
+#: campaign-functions/send-email-utility.php:406
+#: campaign-functions/send-email-utility.php:436
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement"
 msgstr "Стратегічна молитва за рух підготовки учнів"
 
-#: campaign-functions/send-email-utility.php:408
-#: campaign-functions/send-email-utility.php:438
+#: campaign-functions/send-email-utility.php:411
+#: campaign-functions/send-email-utility.php:441
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:411
-#: campaign-functions/send-email-utility.php:441
+#: campaign-functions/send-email-utility.php:414
+#: campaign-functions/send-email-utility.php:444
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Дякуємо, що приєдналися до нас у молитві за %1$s у %2$s."
 
-#: campaign-functions/send-email-utility.php:414
+#: campaign-functions/send-email-utility.php:417
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:417
+#: campaign-functions/send-email-utility.php:420
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:421
+#: campaign-functions/send-email-utility.php:424
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "Виберіть час молитви"
 
-#: campaign-functions/send-email-utility.php:423
-#: campaign-functions/send-email-utility.php:459
+#: campaign-functions/send-email-utility.php:426
+#: campaign-functions/send-email-utility.php:462
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:444
+#: campaign-functions/send-email-utility.php:447
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:448
+#: campaign-functions/send-email-utility.php:451
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:455
+#: campaign-functions/send-email-utility.php:458
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:457
+#: campaign-functions/send-email-utility.php:460
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 

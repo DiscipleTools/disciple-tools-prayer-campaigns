@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-10-18T10:15:10+00:00\n"
-"PO-Revision-Date: 2023-11-24 07:42+0000\n"
+"POT-Creation-Date: 2023-11-29T09:45:13+00:00\n"
+"PO-Revision-Date: 2023-12-01 10:28+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -23,84 +23,84 @@ msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Clicca qui per vedere le richieste di preghiera per oggi: %s"
 
-#: campaign-functions/send-email-utility.php:47
+#: campaign-functions/send-email-utility.php:50
 msgid "Verify your email address"
 msgstr "Verifica il tuo indirizzo email"
 
-#: campaign-functions/send-email-utility.php:49
+#: campaign-functions/send-email-utility.php:52
 msgid ""
 "Please copy and paste the following code into the Confirmation Code field."
 msgstr "Copia e incolla il codice di verifica nell'apposito campo."
 
-#: campaign-functions/send-email-utility.php:56
+#: campaign-functions/send-email-utility.php:59
 msgid "This code will expire after 10 minutes."
 msgstr "Questo codice scadrà fra 10 minuti."
 
-#: campaign-functions/send-email-utility.php:57
+#: campaign-functions/send-email-utility.php:60
 msgid "If you did not request this email, please ignore it."
 msgstr "Se non hai chiesto di ricevere questa e-mail, puoi ignorarla."
 
-#: campaign-functions/send-email-utility.php:139
-#: campaign-functions/send-email-utility.php:207
+#: campaign-functions/send-email-utility.php:142
+#: campaign-functions/send-email-utility.php:210
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s da %2$s a %3$s"
 
-#: campaign-functions/send-email-utility.php:150
+#: campaign-functions/send-email-utility.php:153
 msgid "Registered to pray with us!"
 msgstr "Ti sei registrato/a per pregare con noi!"
 
-#: campaign-functions/send-email-utility.php:171
-#: campaign-functions/send-email-utility.php:240
-#: campaign-functions/send-email-utility.php:327
+#: campaign-functions/send-email-utility.php:174
+#: campaign-functions/send-email-utility.php:243
+#: campaign-functions/send-email-utility.php:330
 msgid "Hello %s,"
 msgstr "Ciao %s,"
 
-#: campaign-functions/send-email-utility.php:173
+#: campaign-functions/send-email-utility.php:176
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr ""
 "Grazie per esserti unito a noi nella preghiera strategica per un movimento "
 "di discepoli che fanno discepoli!"
 
-#: campaign-functions/send-email-utility.php:174
+#: campaign-functions/send-email-utility.php:177
 msgid "Here are the times you have committed to pray:"
 msgstr "Ecco gli intervalli in cui ti sei impegnato a pregare:"
 
-#: campaign-functions/send-email-utility.php:176
-#: campaign-functions/send-email-utility.php:244
+#: campaign-functions/send-email-utility.php:179
+#: campaign-functions/send-email-utility.php:247
 msgid "Times are shown according to: %s time"
 msgstr "Gli intervalli sono mostrati in base all'ora di %s"
 
-#: campaign-functions/send-email-utility.php:178
-#: campaign-functions/send-email-utility.php:251
+#: campaign-functions/send-email-utility.php:181
+#: campaign-functions/send-email-utility.php:254
 msgid "Click here to manage your account and time commitments"
 msgstr "Clicca qui per gestire il tuo account e i tuoi intervalli"
 
-#: campaign-functions/send-email-utility.php:213
+#: campaign-functions/send-email-utility.php:216
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "per %s"
 
-#: campaign-functions/send-email-utility.php:223
+#: campaign-functions/send-email-utility.php:226
 msgid "Prayer Time reminder!"
 msgstr "Avviso: È ora di pregare!"
 
-#: campaign-functions/send-email-utility.php:241
-#: campaign-functions/send-email-utility.php:378
+#: campaign-functions/send-email-utility.php:244
+#: campaign-functions/send-email-utility.php:381
 #: porches/generic/site/stats.php:136
 msgid "Thank you for praying with us!"
 msgstr "Grazie per aver pregato con noi!"
 
-#: campaign-functions/send-email-utility.php:242
+#: campaign-functions/send-email-utility.php:245
 msgid "Here are your upcoming prayer times:"
 msgstr "Ecco i tuoi prossimi intervalli di preghiera:"
 
-#: campaign-functions/send-email-utility.php:325
+#: campaign-functions/send-email-utility.php:328
 msgid "Continue Praying?"
 msgstr "Continua a pregare?"
 
-#: campaign-functions/send-email-utility.php:328
+#: campaign-functions/send-email-utility.php:331
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
@@ -108,51 +108,51 @@ msgstr ""
 "Sono passate due settimane dal tuo ultimo intervallo di preghiera. Vuoi "
 "continuare a pregare?"
 
-#: campaign-functions/send-email-utility.php:329
+#: campaign-functions/send-email-utility.php:332
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Iscriviti per altri intervalli di preghiera o prolunga il tuo intervallo "
 "ricorrente qui:"
 
-#: campaign-functions/send-email-utility.php:331
+#: campaign-functions/send-email-utility.php:334
 msgid "Or click this link:"
 msgstr "Oppure clicca questo link:"
 
-#: campaign-functions/send-email-utility.php:332
+#: campaign-functions/send-email-utility.php:335
 msgid "Thank you"
 msgstr "Grazie"
 
-#: campaign-functions/send-email-utility.php:401
-#: campaign-functions/send-email-utility.php:431
+#: campaign-functions/send-email-utility.php:404
+#: campaign-functions/send-email-utility.php:434
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr ""
 "Preghiera strategica per un movimento di discepoli che fanno discepoli in %s"
 
-#: campaign-functions/send-email-utility.php:403
-#: campaign-functions/send-email-utility.php:433
+#: campaign-functions/send-email-utility.php:406
+#: campaign-functions/send-email-utility.php:436
 msgid "Strategic prayer for a disciple making movement"
 msgstr "Preghiera strategica per un movimento di discepoli che fanno discepoli"
 
-#: campaign-functions/send-email-utility.php:408
-#: campaign-functions/send-email-utility.php:438
-msgid "Dear %s,"
-msgstr "Caro/a"
-
 #: campaign-functions/send-email-utility.php:411
 #: campaign-functions/send-email-utility.php:441
-msgid "Thank you for joining %1$s in %2$s."
-msgstr "Grazie per esserti unito a noi %1$s in %2$s."
+msgid "Dear %s,"
+msgstr "Caro/a %s,"
 
 #: campaign-functions/send-email-utility.php:414
+#: campaign-functions/send-email-utility.php:444
+msgid "Thank you for joining %1$s in %2$s."
+msgstr "Grazie per esserti unito a noi per i %1$s in %2$s."
+
+#: campaign-functions/send-email-utility.php:417
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
-"Solo nell'eternità sapremo quale impatto ha avuto la nostra preghiera. Però, "
-"sappiamo che la Parola di Dio dice che la preghiera è potente ed efficace ("
-"Giacomo 5:16)."
+"Capiremo solo nell'eternità qual impatto ha avuto le nostre preghiere. Però, "
+"la Parola di Dio ci dice che la preghiera è potente ed efficace (Giacomo "
+"5:16)."
 
-#: campaign-functions/send-email-utility.php:417
+#: campaign-functions/send-email-utility.php:420
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
@@ -161,16 +161,16 @@ msgstr ""
 "realizzare. In più ci farebbe piacere sentire le tue impressioni o le parole "
 "di conoscenza che hai ricevuto da Dio mentre hai pregato."
 
-#: campaign-functions/send-email-utility.php:421
+#: campaign-functions/send-email-utility.php:424
 msgid "See Prayer Stats"
 msgstr "Guarda i dati sulla preghiera"
 
-#: campaign-functions/send-email-utility.php:423
-#: campaign-functions/send-email-utility.php:459
+#: campaign-functions/send-email-utility.php:426
+#: campaign-functions/send-email-utility.php:462
 msgid "In Christ with you,"
 msgstr "In Cristo con te,"
 
-#: campaign-functions/send-email-utility.php:444
+#: campaign-functions/send-email-utility.php:447
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -180,7 +180,7 @@ msgstr ""
 "preghiera per il mondo musulmano durante Ramadan. Però, sappiamo che la "
 "Parola di Dio dice che la preghiera è potente ed efficace (Giacomo 5:16)."
 
-#: campaign-functions/send-email-utility.php:448
+#: campaign-functions/send-email-utility.php:451
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
@@ -190,7 +190,7 @@ msgstr ""
 "questo Ramadan. In più, ci farebbe piacere sentire le tue impressioni o le "
 "parole di conoscenza che hai ricevuto da Dio mentre hai pregato."
 
-#: campaign-functions/send-email-utility.php:455
+#: campaign-functions/send-email-utility.php:458
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -201,7 +201,7 @@ msgstr ""
 "ricevere notizie su futuri progetti di preghiera da Pray4Movement, i "
 "creatore di questo strumento di preghiera."
 
-#: campaign-functions/send-email-utility.php:457
+#: campaign-functions/send-email-utility.php:460
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr "Guarda i dati sulla preghiera 24/7 per Ramadan"
 
@@ -291,18 +291,18 @@ msgstr "%s coperto"
 #: shortcodes/24hour.php:37
 msgctxt "on 5 days"
 msgid "On %s days"
-msgstr "Su %s giorni"
+msgstr "per %s giorni"
 
 #: magic-links/subscription-management/subscription-management.php:122
 #: shortcodes/24hour.php:38
 msgctxt "and 5 more"
 msgid "and %s more"
-msgstr "e altri %s"
+msgstr "e altri %s intervalli"
 
 #: magic-links/subscription-management/subscription-management.php:123
 #: shortcodes/24hour.php:39
 msgid "Pray this time"
-msgstr "Prega questo tempo"
+msgstr "Prega a quest'ora"
 
 #: magic-links/subscription-management/subscription-management.php:280
 msgid "Your prayer times have been verified!"
