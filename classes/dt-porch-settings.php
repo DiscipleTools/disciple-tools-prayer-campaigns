@@ -28,13 +28,13 @@ class DT_Porch_Settings {
 
         $defaults = [];
         foreach ( $campaign_field_settings as $key => $field ) {
-            if ( !str_starts_with( $field['tile'] ?? '', 'campaign_' ) ) {
-//                continue;
-            }
+//             if ( !str_starts_with( $field['tile'] ?? '', 'campaign_' ) ) {
+// //                continue;
+//             }
 
             $defaults[$key] = $field;
             $defaults[$key]['value'] = $field['type'] === 'key_select' ? '' : ( $field['default'] ?? '' );
-            if (  isset( $current_campaign[$key] ) ) {
+            if ( isset( $current_campaign[$key] ) ) {
                 if ( $field['type'] === 'key_select' ){
                     $defaults[$key]['value'] = $current_campaign[$key]['key'];
                 } else {

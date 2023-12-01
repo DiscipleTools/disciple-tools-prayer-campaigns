@@ -116,7 +116,7 @@ class DT_Prayer_Campaigns_Campaigns {
     public function process_default_campaign_setting(){
         if ( isset( $_POST['default_campaign_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['default_campaign_nonce'] ) ), 'default_campaign_nonce' ) ) {
 
-            if ( isset( $_POST['default_campaign_submit'], $_POST['default_campaign'] )  ) {
+            if ( isset( $_POST['default_campaign_submit'], $_POST['default_campaign'] ) ) {
                 $selected_campaign = sanitize_text_field( wp_unslash( $_POST['default_campaign'] ) );
                 update_option( 'dt_campaign_selected_campaign', $selected_campaign === self::$no_campaign_key ? null : $selected_campaign );
             }
@@ -346,9 +346,9 @@ class DT_Prayer_Campaigns_Campaigns {
         $editing_campaign = isset( $_GET['campaign'] ) ? sanitize_text_field( wp_unslash( $_GET['campaign'] ) ) : null;
 
         $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
-        if ( empty( $editing_campaign ) ){
-//            return;
-        }
+//         if ( empty( $editing_campaign ) ){
+// //            return;
+//         }
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
 //        $campaign = DT_Posts::get_post( 'campaigns', $editing_campaign );
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' )
