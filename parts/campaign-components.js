@@ -234,7 +234,7 @@ export class ContactInfo extends LitElement {
       #email {
         display:none;
       }
-    
+
     `,
     campaignStyles, ];
 
@@ -341,7 +341,7 @@ export class select extends LitElement {
         width: 100%;
         text-align: start;
         //line-height: ;
-        
+
       }
       .select.selected {
         border: 1px solid #ccc;
@@ -357,7 +357,7 @@ export class select extends LitElement {
       .select:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        
+
       }
     `
   ]
@@ -388,8 +388,8 @@ export class select extends LitElement {
                 ${o.label}
               <span>${o.desc}</span>
           </button>`
-      )}  
-      
+      )}
+
     `
   }
 }
@@ -532,7 +532,7 @@ export class cpCalendarDaySelect extends LitElement {
     let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${month_start.toSeconds() < now}"
@@ -715,7 +715,7 @@ export class cpMyCalendar extends LitElement {
 
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${ month_start.toSeconds() < now }"
@@ -746,7 +746,7 @@ export class cpMyCalendar extends LitElement {
               })}
         </div>
       </div>
-            
+
       `
 
   }
@@ -1080,7 +1080,7 @@ export class cpVerify extends LitElement {
             </svg>
         </div>
       </div>
-      
+
     `
 
   }
@@ -1091,7 +1091,7 @@ export class cpProgressRing extends LitElement {
   static styles = [
     css`
     .inner-text {
-      font-size: max(1em, 4cqw);
+      font-size: clamp(1em, 4cqw, 2rem);
     }
     `
   ]
@@ -1281,7 +1281,7 @@ class DtModal extends LitElement {
         justify-content: space-between;
         align-items: flex-start;
       }
-      
+
       .button.opener {
         color: var(--dt-modal-button-opener-color,var(--dt-modal-button-color, #fff) );
         background: var(--dt-modal-button-opener-background, var(--dt-modal-button-background, #000) );
@@ -1457,7 +1457,7 @@ class DtModal extends LitElement {
             >
               <slot name="close-button">Close</slot>
             </button>
-              
+
             <button
               class="button small ${this.confirmButtonClass}"
               data-close=""
