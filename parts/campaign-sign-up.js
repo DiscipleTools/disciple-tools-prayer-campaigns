@@ -697,10 +697,16 @@ customElements.define('campaign-sign-up', CampaignSignUp);
 export class cpCalendar extends LitElement {
   static styles = [
     css`
+    :host {
+    }
       .calendar-wrapper {
+        container-type: inline-size;
+        container-name: cp-calendar;
         background-color: #f8f9fad1;
         border-radius: 10px;
-        padding: 1em
+        padding: 1em;
+        display: block;
+        width: 100%;
       }
       .calendar-month {
         display: block;
@@ -718,34 +724,53 @@ export class cpCalendar extends LitElement {
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 14cqw);
         margin-bottom: 1rem;
       }
       .day-cell {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 12cqw;
+        width: 12cqw;
         font-size: 15px;
+      }
+
+      @container cp-calendar (min-width: 250px) {
+        .day-cell {
+          height: 15cqw;
+          width: 15cqw;
+        }
+        .week-day {
+          height: 12cqw;
+          width: 12cqw;
+        }
       }
       .week-day {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 14cqw;
+        width: 14cqw;
         color:black;
-        font-size:12px;
+        font-size: max(0.75em, 0.5em + 2cqi);
         font-weight:550;
       }
+
+      @container cp-calendar (min-width: 350px) {
+        .week-day {
+          height: 9cqw;
+          width: 9cqw;
+        }
+      }
+
       .loading {
         min-height: 600px;
       }
       .progress-ring {
-        width: 40px;
-        height: 40px;
-        padding-top: 2px;
+        width: 14cqw;
+        height: 14cqw;
+        padding-top: 4.8cqw;
       }
       .disabled-calendar-day {
         color: #c4c4c4;
@@ -1035,12 +1060,12 @@ export class campaignSubscriptions extends LitElement {
             <div class="selected-times">
                 <div class="selected-time-content">
                   <div class="title-row">
-                    <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
-                    <button ?hidden="${!enabled_renew}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>  
+                    <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>
+                    <button ?hidden="${!enabled_renew}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
-                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}" 
+                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}"
                           class="clear-button">${translate('change time')}</button>
                   </div>
                   <div class="selected-time-actions">
@@ -1063,11 +1088,11 @@ export class campaignSubscriptions extends LitElement {
                         </div>
                     `)}
                 </div>
-                
+
             </div>
         `})}
         ${(window.campaign_data.subscriber_info.my_commitments).filter(c=>c.type==='selected_time').map((value, index) => {
-          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})  
+          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})
           return html`
             <div class="selected-times">
                 <div class="selected-time-content">

@@ -157,8 +157,8 @@ function display_translated_field( $field_key, $section_tag, $section_id, $secti
             </div>
         </div>
         <div class="row" style="margin-top: 30px">
-            <?php display_translated_field( 'what_content', 'div', 'what_section_text', 'col-sm-12 col-md-8 what-content-text', 'btn-border', $allowedtags ); ?>
-            <div class="col-sm-12 col-md-4">
+            <?php display_translated_field( 'what_content', 'div', 'what_section_text', 'col-sm-12 col-md-7 col-lg-8 what-content-text', 'btn-border', $allowedtags ); ?>
+            <div class="col-sm-12 col-md-5 col-lg-4">
                 <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
             </div>
         </div>

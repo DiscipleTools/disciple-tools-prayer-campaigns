@@ -410,10 +410,12 @@ export class cpCalendarDaySelect extends LitElement {
     css`
       :host {
         display: block;
+        container-type: inline-size;
+        container-name: calendar;
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 14cqw);
       }
       .day-cell {
         display: flex;
@@ -893,7 +895,7 @@ export class cpTimes extends LitElement {
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ? 
+                          ${time.progress < 100 ?
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
                               html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
                         </span>
@@ -1087,7 +1089,11 @@ customElements.define('cp-verify', cpVerify);
 
 export class cpProgressRing extends LitElement {
   static styles = [
-    css``
+    css`
+    .inner-text {
+      font-size: max(1em, 4cqw);
+    }
+    `
   ]
 
   static properties = {
@@ -1168,7 +1174,7 @@ export class cpProgressRing extends LitElement {
              cx="${this.radius}"
              cy="${this.radius}"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
               ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
