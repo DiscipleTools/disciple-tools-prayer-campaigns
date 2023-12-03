@@ -135,6 +135,64 @@ export class CampaignSignUp extends LitElement {
         width: 1rem;
       }
 
+      #progressbar {
+        overflow: hidden;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        /*CSS counters to number the steps*/
+        counter-reset: step;
+      }
+      #progressbar li {
+        list-style-type: none;
+        color: white;
+        text-transform: uppercase;
+        font-size: 9px;
+        width: 33.33%;
+        float: left;
+        position: relative;
+        z-index: 1;
+      }
+      #progressbar li:before {
+        content: counter(step);
+        counter-increment: step 1;
+        height: 2em;
+        width: 2em;
+        line-height: 2em;
+        display: block;
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(51, 51, 51);
+        background: white;
+        border-radius: 1em;
+        border: 1px solid var(--cp-color);
+        margin: 0px auto;
+        text-align: center;
+      }
+      /*progressbar connectors*/
+      #progressbar li:after {
+        content: "";
+        width: 69.33333%;
+        height: 0.5em;
+        background: white;
+        border-top: 1px solid var(--cp-color);
+        border-bottom: 1px solid var(--cp-color);
+        transform: translate(-50%, -2em);
+        display: block;
+      }
+      #progressbar li:first-child:after {
+        /*connector not needed before the first step*/
+        content: none;
+      }
+      /*marking active/completed steps green*/
+      /*The number of the step and the connector before it = green*/
+      #progressbar li.active:before,  #progressbar li.active:after{
+        background: var(--cp-color);
+        color: white;
+      }
+      #progressbar li.active:before {
+        content: "✓";
+      }
 
     `
   ];
@@ -351,6 +409,7 @@ export class CampaignSignUp extends LitElement {
     if ( recurring_signup ){
       this.recurring_signups = [...this.recurring_signups, recurring_signup]
       window.campaign_user_data.recurring_signups = this.recurring_signups;
+      this.form_progress('timePicked');
       this.requestUpdate()
       this.show_toast()
     }
@@ -403,24 +462,26 @@ export class CampaignSignUp extends LitElement {
   }
 
   form_progress(step){
-    console.log(step);
     if ( step === 'duration' ){
-      this._durationSet = true;
+      this._durationSet = !this._durationSet;
     }
     if ( step === 'frequency' ){
-      this._frequencySet = true;
+      this._frequencySet = !this._frequencySet;
     }
     if ( step === 'week_day' ){
-      this._frequencySecondarySet = true;
+      this._frequencySecondarySet = !this._frequencySecondarySet;
+      if (!this._frequencySecondarySet && ( this.frequency.value !== 'pick' || this.frequency.value !== 'weekly' ) ) {
+        this._frequencySet = !this._frequencySet;
+      }
     }
     if ( step === 'timePicked' ){
-      this._timePickedSet = true;
+      this._timePickedSet = !this._timePickedSet;
     }
     if ( step === 'contactInfo' ){
-      this._contactInfoSet = true;
+      this._contactInfoSet = !this._contactInfoSet;
     }
     if ( step === 'commitmentsReview' ){
-      this._commitmentsReviewSet = true;
+      this._commitmentsReviewSet = !this._commitmentsReviewSet;
     }
   }
 
@@ -437,6 +498,32 @@ export class CampaignSignUp extends LitElement {
   remove_prayer_time(time){
     this.selected_times = this.selected_times.filter(k=>k.time!==time)
     this.requestUpdate()
+  }
+
+  _render_signupBreadcrumb(){
+    const breadCrumbState = {
+      "duration": this._durationSet,
+      "frequency": this._frequencySet,
+      "week_day": this._frequencySecondarySet,
+      "timePicked": this._timePickedSet,
+      "contactInfo": this._contactInfoSet,
+      "commitmentsReview":this._commitmentsReviewSet,
+    };
+
+    const breadCrumbSteps = [];
+    for (const i in breadCrumbState) {
+      breadCrumbSteps.push(breadCrumbState[i] ? html`<li class="active" @click=${() => {this.handle_breadcrumb_click(i)}}></li>` : html`<li></li>`);
+    }
+    return html`
+      <div id="progressbar">
+        ${breadCrumbSteps}
+      </div>
+    `
+  }
+
+  handle_breadcrumb_click(step){
+    this.form_progress(step);
+    console.log(this._durationSet);
   }
 
   _render_duration_picker(){
@@ -734,25 +821,35 @@ export class CampaignSignUp extends LitElement {
         </div>
       `
     } else {
-      console.log(this._durationSet, this._frequencySet, this._frequencySecondarySet, this._timePickedSet, this._contactInfoSet, this._commitmentsReviewSet);
       if (this._durationSet === false) {
-       return html`${this._render_duration_picker()}`;
+       return html`
+        ${this._render_signupBreadcrumb()}
+        ${this._render_duration_picker()}`;
       }
       if (this._durationSet === true && this._frequencySet === false) {
-        return html`${this._render_frequency_picker()}`;
+        return html`
+          ${this._render_signupBreadcrumb()}
+          ${this._render_frequency_picker()}`;
       }
       if (this._durationSet === true && this._frequencySet === true && this._frequencySecondarySet ===false && (this.frequency.value === 'pick' || this.frequency.value === 'weekly') ) {
-        return html`${this._render_week_day_picker()}`;
+        return html`
+          ${this._render_signupBreadcrumb()}
+          ${this._render_week_day_picker()}`;
       }
       if (this._durationSet === true && this._frequencySet === true && this._frequencySecondarySet === true && this._timePickedSet === false) {
-        console.log('rendering time picker')
-        return html`${this._render_time_picker()}`;
+        return html`
+        ${this._render_signupBreadcrumb()}
+        ${this._render_time_picker()}`;
       }
       if (this._durationSet === true && this._frequencySet === true && this._frequencySecondarySet === true && this._timePickedSet === true && this._contactInfoSet === false) {
-        return html`${this._render_contact_info()}`;
+        return html`
+          ${this._render_signupBreadcrumb()}
+          ${this._render_contact_info()}`;
       }
       if (this._durationSet === true && this._frequencySet === true && this._frequencySecondarySet === true && this._timePickedSet === true && this._contactInfoSet === true && this._commitmentsReviewSet === false) {
-        return html`${this._render_verify()}`;
+        return html`
+          ${this._render_signupBreadcrumb()}
+          ${this._render_verify()}`;
       }
     }
   }
