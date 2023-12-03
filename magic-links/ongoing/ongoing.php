@@ -189,7 +189,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             if ( isset( $lang_all ) ) {
                 $updates = [];
                 $response['lang_all'] = $updates[ $field_key ] = $lang_all;
-                $response['updated'] = DT_Porch_Settings::update_values( $updates );
+                $response['updated'] = DT_Porch_Settings::update_values( $updates, $campaign_id );
             }
 
             // Update for a specific language translation.
@@ -204,7 +204,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             }
 
             // Capture latest section language.
-            $response['section_lang'] = DT_Porch_Settings::get_field_translation( $field_key );
+            $response['section_lang'] = DT_Porch_Settings::get_field_translation( $field_key, '', $campaign_id );
         }
 
         return $response;

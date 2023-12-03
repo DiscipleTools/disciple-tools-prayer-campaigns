@@ -90,9 +90,27 @@ $sign_up_link = $campaign_url . '#sign-up';
 
                     <?php endif; ?>
 
-                    <h4>
+                    <h4 id="hero-section-subtitle">
                         <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'subtitle', $lang ) ); ?>
                     </h4>
+                    <?php
+                    if ( is_user_logged_in() ) {
+                        $settings = DT_Porch_Settings::settings();
+                        $field_key = 'subtitle';
+                        $section_id = 'hero-section-subtitle';
+                        $lang_default = $settings[$field_key]['default'] ?? '';
+
+                        $lang_all = $settings[$field_key]['value'] ?? '';
+                        $lang_selected = $settings[$field_key]['translations'][dt_campaign_get_current_lang()] ?? '';
+                        ?>
+                        <input id="<?php echo esc_attr( $section_id ) ?>_lang_default" type="hidden" value="<?php echo esc_attr( $lang_default ) ?>"/>
+                        <input id="<?php echo esc_attr( $section_id ) ?>_lang_all" type="hidden" value="<?php echo esc_attr( $lang_all ) ?>"/>
+                        <input id="<?php echo esc_attr( $section_id ) ?>_lang_selected" type="hidden" value="<?php echo esc_attr( $lang_selected ) ?>"/>
+
+                        <button class="btn edit-btn btn-common" style="font-size: 10px; padding: 5px 15px;" data-field_key="<?php echo esc_attr( $field_key ) ?>" data-section_id="hero-section-subtitle"  data-split_text="<?php echo esc_attr( ( $split_text ? 'true' : 'false' ) ) ?>"><?php esc_html_e( 'Edit', 'disciple-tools-prayer-campaigns' ); ?></button>
+                        <?php
+                    }
+                    ?>
 
                     <?php
                     if ( !isset( $campaign_fields['end_date']['formatted'] ) || time() <= strtotime( $campaign_fields['end_date']['formatted'] ?? '' ) ) : ?>

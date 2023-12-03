@@ -498,7 +498,7 @@ jQuery(document).ready(function ($) {
         <input id="edit_modal_section_id" type="hidden"/>
         <input id="edit_modal_split_text" type="hidden"/>
 
-        <div id="edit_modal" class="modal fade" tabindex="-1" role="dialog">
+        <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
