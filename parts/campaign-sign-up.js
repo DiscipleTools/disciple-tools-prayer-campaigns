@@ -172,7 +172,7 @@ export class CampaignSignUp extends LitElement {
       /*progressbar connectors*/
       #progressbar li:after {
         content: "";
-        width: 69.33333%;
+        width: 48%;
         height: 0.5em;
         background: white;
         border-top: 1px solid var(--cp-color);
@@ -193,7 +193,11 @@ export class CampaignSignUp extends LitElement {
       #progressbar li.active:before {
         content: "✓";
       }
-
+      @media screen and (min-width: 600px) {
+        #progressbar li:after {
+          width: 69.33333%;
+        }
+      }
     `
   ];
 
