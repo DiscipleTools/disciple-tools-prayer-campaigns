@@ -107,7 +107,7 @@ $sign_up_link = $campaign_url . '#sign-up';
                         <input id="<?php echo esc_attr( $section_id ) ?>_lang_all" type="hidden" value="<?php echo esc_attr( $lang_all ) ?>"/>
                         <input id="<?php echo esc_attr( $section_id ) ?>_lang_selected" type="hidden" value="<?php echo esc_attr( $lang_selected ) ?>"/>
 
-                        <button class="btn edit-btn btn-common" style="font-size: 10px; padding: 5px 15px;" data-field_key="<?php echo esc_attr( $field_key ) ?>" data-section_id="hero-section-subtitle"  data-split_text="<?php echo esc_attr( ( $split_text ? 'true' : 'false' ) ) ?>"><?php esc_html_e( 'Edit', 'disciple-tools-prayer-campaigns' ); ?></button>
+                        <button class="btn edit-btn btn-common" style="font-size: 10px; padding: 5px 15px;" data-field_key="<?php echo esc_attr( $field_key ) ?>" data-section_id="hero-section-subtitle"><?php esc_html_e( 'Edit', 'disciple-tools-prayer-campaigns' ); ?></button>
                         <?php
                     }
                     ?>
