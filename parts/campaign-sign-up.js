@@ -726,13 +726,14 @@ export class cpCalendar extends LitElement {
         display: grid;
         grid-template-columns: repeat(7, 14cqw);
         margin-bottom: 1rem;
+        justify-items: center;
       }
       .day-cell {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 12cqw;
-        width: 12cqw;
+        height: 14cqw;
+        width: 14cqw;
         font-size: 15px;
       }
 
@@ -742,8 +743,8 @@ export class cpCalendar extends LitElement {
           width: 15cqw;
         }
         .week-day {
-          height: 12cqw;
-          width: 12cqw;
+          height: 15cqw;
+          width: 15cqw;
         }
       }
       .week-day {
@@ -759,19 +760,19 @@ export class cpCalendar extends LitElement {
 
       @container cp-calendar (min-width: 350px) {
         .week-day {
-          height: 9cqw;
-          width: 9cqw;
+          height: 7.5cqw;
+          width: 15cqw;
         }
       }
 
       .loading {
         min-height: 600px;
       }
-      .progress-ring {
+      /* .progress-ring {
         width: 14cqw;
         height: 14cqw;
         padding-top: 4.8cqw;
-      }
+      } */
       .disabled-calendar-day {
         color: #c4c4c4;
       }
