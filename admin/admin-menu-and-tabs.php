@@ -114,17 +114,15 @@ class DT_Prayer_Campaigns_Menu {
                 break;
         }
 
-        if ( !empty( $campaign['ID'] ) ) {
-            $porch = $this->porch_selector->get_selected_porch_loader();
-            $porch_admin = $porch->load_admin();
-            $porch_dir = $porch_admin->get_porch_dir();
+        $porch = $this->porch_selector->get_selected_porch_loader();
+        $porch_admin = $porch->load_admin();
+        $porch_dir = $porch_admin->get_porch_dir();
 
-            $home_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
-            $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
-            $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
-            $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
-            $email_settings_tab = new DT_Porch_Admin_Tab_Email_Settings( $porch_dir );
-        }
+        $home_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
+        $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
+        $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
+        $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
+        $email_settings_tab = new DT_Porch_Admin_Tab_Email_Settings( $porch_dir );
 
 
         ?>

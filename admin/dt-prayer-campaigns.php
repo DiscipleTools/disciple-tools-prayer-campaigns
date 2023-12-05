@@ -36,7 +36,7 @@ class DT_Prayer_Campaigns_Campaigns {
 
         $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
         $porch_type = isset( $wizard_details['porch'] ) ? $wizard_details['porch'] : 'generic-porch';
-        $campaign_type = isset( $wizard_details['campaign_type'] ) ? $wizard_details['campaign_type'] : 'ongoing';
+        $campaign_type = isset( $wizard_details['campaign_type'] ) ? $wizard_details['campaign_type'] : 'generic';
 
         if ( empty( $wizard_details ) ) {
             return;
@@ -44,9 +44,9 @@ class DT_Prayer_Campaigns_Campaigns {
 
         $fields = [
             'name' => 'Campaign',
-            'type' => $campaign_type,
             'start_date' => dt_format_date( time(), 'Y-m-d' ),
             'status' => 'active',
+            'porch_type' => $porch_type,
         ];
 
         if ( $porch_type === 'ramadan-porch' ) {
@@ -54,11 +54,9 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields['start_date'] = $next_ramadan_start_date;
             $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
             $fields['name'] = 'Ramadan Campaign';
-        } else if ( $campaign_type === '24hour' ) {
-            $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
-            $fields['name'] = 'Fixed Dates Campaign';
-        } elseif ( $campaign_type === 'ongoing' ){
-            $fields['name'] = 'Ongoing Campaign';
+        } else if ( $campaign_type === 'generic' ) {
+//            $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
+            $fields['name'] = 'Generic Campaign';
         }
 
         if ( $new_campaign_name ) {
@@ -346,9 +344,9 @@ class DT_Prayer_Campaigns_Campaigns {
         $editing_campaign = isset( $_GET['campaign'] ) ? sanitize_text_field( wp_unslash( $_GET['campaign'] ) ) : null;
 
         $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
-//         if ( empty( $editing_campaign ) ){
-// //            return;
-//         }
+//        if ( empty( $editing_campaign ) ){
+//            return;
+//        }
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
 //        $campaign = DT_Posts::get_post( 'campaigns', $editing_campaign );
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' )
