@@ -180,11 +180,13 @@ class DT_Campaigns_Base {
             ];
             // end basic framework fields
 
+            $fields['name']['tile'] = 'status';
+
             $fields['campaign_url'] = [
                 'name' => 'Campaign URL',
                 'description' => 'The URL that will be used as the link for the logo on the campaign landing page.',
                 'type' => 'text',
-                'tile' => 'details',
+                'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
                 'show_in_table' => 20,
             ];
@@ -213,7 +215,7 @@ class DT_Campaigns_Base {
                 'name' => 'Landing Page Type',
                 'type' => 'key_select',
                 'default' => [],
-                'tile' => 'status',
+                'tile' => 'campaign_setup',
                 'in_create_form' => true,
                 'select_cannot_be_empty' => true,
             ];
