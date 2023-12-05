@@ -19,6 +19,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
         wp_localize_script(
             'dt_campaign_core', 'campaign_objects', [
+                'nonce' => wp_create_nonce( 'wp_rest' ),
                 'magic_link_parts' => [
                     'root' => $atts['root'],
                     'type' => $atts['type'],
@@ -122,6 +123,16 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Your current prayer time is %s' => __( 'Your current prayer time is %s', 'disciple-tools-prayer-campaigns' ),
                     'Select a new time:' => __( 'Select a new time:', 'disciple-tools-prayer-campaigns' ),
                     'Select a time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                    'modals' => [
+                        'edit' => [
+                            'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
+                            'edit_original_string' => __( 'Original String', 'disciple-tools-prayer-campaigns' ),
+                            'edit_all_languages' => __( 'Custom Value For All Languages', 'disciple-tools-prayer-campaigns' ),
+                            'edit_selected_language' => __( 'Translation For Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_close' => __( 'Close', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_update' => __( 'Update', 'disciple-tools-prayer-campaigns' )
+                        ]
+                    ]
                 ]
             ]
         );

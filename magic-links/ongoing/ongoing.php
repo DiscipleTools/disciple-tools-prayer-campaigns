@@ -70,6 +70,18 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             ]
         );
         register_rest_route(
+            $namespace, '/' . $this->type . '/campaign_edit', [
+                [
+                    'methods' => 'POST',
+                    'callback' => [ $this, 'campaign_edit' ],
+                    'permission_callback' => function ( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+        register_rest_route(
             $namespace, '/'.$this->type, [
                 [
                     'methods'  => WP_REST_Server::CREATABLE,
@@ -154,6 +166,48 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'coverage_percent' => $coverage_percent ?? null,
         ];
+    }
+
+    public function campaign_edit( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        if ( !DT_Posts::can_update( 'campaigns', $params['campaign_id'] ?? '' ) ){
+            return new WP_Error( __METHOD__, 'Unauthorized', [ 'status' => 401 ] );
+        }
+
+        $response = [
+            'updated' => false
+        ];
+        if ( isset( $params['campaign_id'], $params['edit'], $params['edit']['field_key'] ) ) {
+            $campaign_id = $params['campaign_id'];
+            $field_key = $params['edit']['field_key'];
+            $lang_all = $params['edit']['lang_all'] ?? null;
+            $lang_translate = $params['edit']['lang_translate'] ?? null;
+            $lang_code = $params['edit']['lang_code'] ?? null;
+
+            // Update for all languages.
+            if ( isset( $lang_all ) ) {
+                $updates = [];
+                $response['lang_all'] = $updates[ $field_key ] = $lang_all;
+                $response['updated'] = DT_Porch_Settings::update_values( $updates, $campaign_id );
+            }
+
+            // Update for a specific language translation.
+            if ( isset( $lang_translate, $lang_code ) ) {
+                $translations = [];
+                $translations[ $field_key ] = [
+                    $lang_code => $lang_translate
+                ];
+                $response['lang_code'] = $lang_code;
+                $response['lang_translate'] = $lang_translate;
+                $response['updated'] = DT_Porch_Settings::update_translations( $campaign_id, $translations );
+            }
+
+            // Capture latest section language.
+            $response['section_lang'] = DT_Porch_Settings::get_field_translation( $field_key, '', $campaign_id );
+        }
+
+        return $response;
     }
 
     public function create_subscription( WP_REST_Request $request ) {
