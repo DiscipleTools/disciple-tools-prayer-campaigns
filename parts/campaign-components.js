@@ -234,7 +234,7 @@ export class ContactInfo extends LitElement {
       #email {
         display:none;
       }
-    
+
     `,
     campaignStyles, ];
 
@@ -341,7 +341,7 @@ export class select extends LitElement {
         width: 100%;
         text-align: start;
         //line-height: ;
-        
+
       }
       .select.selected {
         border: 1px solid #ccc;
@@ -357,7 +357,7 @@ export class select extends LitElement {
       .select:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        
+
       }
     `
   ]
@@ -388,8 +388,8 @@ export class select extends LitElement {
                 ${o.label}
               <span>${o.desc}</span>
           </button>`
-      )}  
-      
+      )}
+
     `
   }
 }
@@ -530,7 +530,7 @@ export class cpCalendarDaySelect extends LitElement {
     let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${month_start.toSeconds() < now}"
@@ -713,7 +713,7 @@ export class cpMyCalendar extends LitElement {
 
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${ month_start.toSeconds() < now }"
@@ -744,7 +744,7 @@ export class cpMyCalendar extends LitElement {
               })}
         </div>
       </div>
-            
+
       `
 
   }
@@ -763,24 +763,40 @@ export class cpTimes extends LitElement {
   static styles = [
     css`
       .prayer-hour {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.25em;
+      }
+
+      .prayer-hour.open {
         margin-bottom: 1rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-gap: 1rem 0.3rem;
-        max-width: 400px;
+        height: auto;
       }
       .prayer-hour:hover {
         background-color: #4676fa1a;
       }
       .hour-cell {
-        font-size: 0.8rem;
+        font-size: 1rem;
         display: flex;
         align-content: center;
         align-items: center;
         justify-content: center;
         white-space: nowrap;
       }
-      .time.selected-time {
+      .hour-cell::after {
+        content: "▼";
+        display: block;
+        width: 100%;
+        margin-inline-start: 1.5em;
+      }
+      .prayer-hour.open .hour-cell::after {
+        content: "";
+      }
+      .prayer-hour.open .time.selected-time {
         color: white;
         background-color: var(--cp-color);
       }
@@ -788,6 +804,9 @@ export class cpTimes extends LitElement {
         height: 20px;
       }
       .time {
+        display: none;
+      }
+      .prayer-hour.open .time {
         flex-basis: 20%;
         background-color: #4676fa1a;
         font-size: 0.8rem;
@@ -861,6 +880,10 @@ export class cpTimes extends LitElement {
     });
   }
 
+  openHour(e){
+    e.currentTarget.classList.toggle('open');
+  }
+
 
   render() {
     if ( this.frequency === 'pick' && this.selected_day ){
@@ -881,8 +904,8 @@ export class cpTimes extends LitElement {
         <div class="times-container">
         ${map(range(24),index => html`
             ${ this.times[index*time_slots] ? html`
-            <div class="prayer-hour prayer-times">
-                <div class="hour-cell">
+            <div class="prayer-hour prayer-times" @click=${this.openHour}>
+                <div class="hour-cell" @click=${this.openHour}>
                     ${this.times[index*time_slots].hour}
                 </div>
                 ${map(range(time_slots), (i) => {
@@ -893,7 +916,7 @@ export class cpTimes extends LitElement {
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ? 
+                          ${time.progress < 100 ?
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
                               html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
                         </span>
@@ -1078,7 +1101,7 @@ export class cpVerify extends LitElement {
             </svg>
         </div>
       </div>
-      
+
     `
 
   }
@@ -1275,7 +1298,7 @@ class DtModal extends LitElement {
         justify-content: space-between;
         align-items: flex-start;
       }
-      
+
       .button.opener {
         color: var(--dt-modal-button-opener-color,var(--dt-modal-button-color, #fff) );
         background: var(--dt-modal-button-opener-background, var(--dt-modal-button-background, #000) );
@@ -1451,7 +1474,7 @@ class DtModal extends LitElement {
             >
               <slot name="close-button">Close</slot>
             </button>
-              
+
             <button
               class="button small ${this.confirmButtonClass}"
               data-close=""
