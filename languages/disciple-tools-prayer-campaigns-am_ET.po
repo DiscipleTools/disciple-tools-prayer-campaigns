@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-11-28T15:31:57+00:00\n"
+"POT-Creation-Date: 2023-11-30T13:56:02+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Amharic <https://translate.disciple.tools/projects/disciple-"
@@ -60,7 +60,7 @@ msgstr "ከእኛ ጋር ለመጸለይ ተመዝግበዋል!"
 
 #: campaign-functions/send-email-utility.php:185
 #: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:354
 #, fuzzy
 msgid "Hello %s,"
 msgstr "ሰላም %s፣"
@@ -99,7 +99,7 @@ msgid "Times are shown according to: %s time"
 msgstr "ጊዜዎች የሚታዩት በ%s ጊዜ መሰረት ነው።"
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:334
+#: magic-links/subscription-management/subscription-management.php:335
 #, fuzzy
 msgid "Download Calendar"
 msgstr "የቀን መቁጠሪያ አውርድ"
@@ -126,104 +126,107 @@ msgstr "ከእኛ ጋር ስለጸለዩ እናመሰግናለን!"
 msgid "Here are your upcoming prayer times:"
 msgstr "መጪ የጸሎት ጊዜዎችዎ እነሆ፡-"
 
-#: campaign-functions/send-email-utility.php:350
+#: campaign-functions/send-email-utility.php:352
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:353
+#: campaign-functions/send-email-utility.php:355
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr "ለመጨረሻ ጊዜ የጸሎት ጊዜህ 2 ሳምንታት ቆይተሃል። መጸለይን መቀጠል ትፈልጋለህ?"
 
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:356
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "ለተጨማሪ የጸሎት ጊዜያት ይመዝገቡ ወይም ተደጋጋሚ ጊዜዎን እዚህ ያራዝሙ።"
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:358
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:357
+#: campaign-functions/send-email-utility.php:359
+#: porches/generic/site/archive-body.php:81
+#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
 msgstr "አመሰግናለሁ"
 
-#: campaign-functions/send-email-utility.php:403
+#: campaign-functions/send-email-utility.php:405
 #: porches/generic/site/stats.php:144
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "ከእኛ ጋር ስለጸለዩ እናመሰግናለን!"
 
-#: campaign-functions/send-email-utility.php:426
-#: campaign-functions/send-email-utility.php:456
+#: campaign-functions/send-email-utility.php:428
+#: campaign-functions/send-email-utility.php:458
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "ደቀ መዝሙር የማድረጉ እንቅስቃሴ ስትራቴጂያዊ ጸሎት"
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:430
+#: campaign-functions/send-email-utility.php:460
+#: porches/generic/dt-generic-porch-settings.php:59
 #, fuzzy
-msgid "Strategic prayer for a disciple making movement"
+msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "ደቀ መዝሙር የማድረጉ እንቅስቃሴ ስትራቴጂያዊ ጸሎት"
 
-#: campaign-functions/send-email-utility.php:433
-#: campaign-functions/send-email-utility.php:463
+#: campaign-functions/send-email-utility.php:435
+#: campaign-functions/send-email-utility.php:465
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:436
-#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:438
+#: campaign-functions/send-email-utility.php:468
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "በ%2$s ውስጥ ለ%1$s በፀሎት ስለተቀላቀሉን እናመሰግናለን።"
 
-#: campaign-functions/send-email-utility.php:439
+#: campaign-functions/send-email-utility.php:441
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:442
+#: campaign-functions/send-email-utility.php:444
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:446
+#: campaign-functions/send-email-utility.php:448
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "የጸሎት ጊዜ ይምረጡ"
 
-#: campaign-functions/send-email-utility.php:448
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:450
+#: campaign-functions/send-email-utility.php:486
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:469
+#: campaign-functions/send-email-utility.php:471
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:475
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:480
+#: campaign-functions/send-email-utility.php:482
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:484
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -270,45 +273,74 @@ msgstr "ቀናት"
 msgid "days"
 msgstr "ቀናት"
 
+#: magic-links/campaign-resend-email/magic-link-post-type.php:159
+#, fuzzy
+msgid "Retrieve Prayer Time Management Link"
+msgstr "የጸሎት ጊዜ ማሳወቂያዎችን ይቀበሉ"
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:168
+#, fuzzy
+msgid "Enter you email address and receive a link to your prayer times."
+msgstr "የኢሜል አድራሻዎን ለማረጋገጥ እና የጸሎት ጊዜዎን ለማረጋገጥ እዚህ ጠቅ ያድርጉ።"
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:170
+#: parts/components-enqueue.php:51 porches/generic/site/stats.php:272
+#, fuzzy
+msgid "Email"
+msgstr "ኢሜል"
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:175
+msgid "Email My Access Link"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:178
+#, fuzzy
+msgid "Please check your email address now for your access link."
+msgstr "የኢሜል አድራሻዎን ለማረጋገጥ እና የጸሎት ጊዜዎን ለማረጋገጥ እዚህ ጠቅ ያድርጉ።"
+
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:323
+#: magic-links/subscription-management/subscription-management.php:324
 #: parts/components-enqueue.php:48
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "የጸሎት ቁርጠኝነት"
 
-#: magic-links/subscription-management/subscription-management.php:305
+#: magic-links/subscription-management/subscription-management.php:306
 #: porches/generic/site/stats.php:205
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "የጸሎት ቁርጠኝነት"
 
-#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:307
 msgid "Account"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:313
+msgid "Links"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:314
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "ቤት"
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:316
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:331
+#: magic-links/subscription-management/subscription-management.php:332
 #, fuzzy
 msgid "My Calendar"
 msgstr "የቀን መቁጠሪያ አውርድ"
 
-#: magic-links/subscription-management/subscription-management.php:347
+#: magic-links/subscription-management/subscription-management.php:348
 #, fuzzy
 msgid "Sign up for more prayer"
 msgstr "ለመጸለይ ይመዝገቡ"
 
-#: magic-links/subscription-management/subscription-management.php:370
+#: magic-links/subscription-management/subscription-management.php:371
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ይህ የደንበኝነት ምዝገባ አብቅቷል ወይም በትክክል አልተዋቀረም።"
@@ -381,11 +413,6 @@ msgstr ""
 #, fuzzy
 msgid "Name"
 msgstr "ስም"
-
-#: parts/components-enqueue.php:51 porches/generic/site/stats.php:272
-#, fuzzy
-msgid "Email"
-msgstr "ኢሜል"
 
 #: parts/components-enqueue.php:52
 msgid "Start Here"
@@ -628,10 +655,109 @@ msgstr "ሰርዝ"
 msgid "Select a timezone"
 msgstr "ጊዜ ይምረጡ"
 
-#: porches/generic/dt-generic-porch-settings.php:59
+#: parts/components-enqueue.php:104
 #, fuzzy
-msgid "Strategic prayer for a Disciple Making Movement"
-msgstr "ደቀ መዝሙር የማድረጉ እንቅስቃሴ ስትራቴጂያዊ ጸሎት"
+msgid "See Prayer Fuel"
+msgstr "የጸሎት ነዳጅ"
+
+#: parts/components-enqueue.php:105
+#, fuzzy
+msgid "change time"
+msgstr "የዕለት ተዕለት ጊዜን ይቀይሩ"
+
+#: parts/components-enqueue.php:106
+#, fuzzy
+msgid "Remove all"
+msgstr "ሁሉንም ሰርዝ"
+
+#: parts/components-enqueue.php:107
+#, fuzzy
+msgid "See prayer times"
+msgstr "የጸሎት ጊዜ ጨምር"
+
+#: parts/components-enqueue.php:108
+#, fuzzy
+msgid "Delete Prayer Times"
+msgstr "የጸሎት ጊዜ"
+
+#: parts/components-enqueue.php:109
+#, fuzzy
+msgid "Really delete these prayer times?"
+msgstr "የጸሎት ጊዜ ይምረጡ"
+
+#: parts/components-enqueue.php:110
+#, fuzzy
+msgid "extend"
+msgstr "ያራዝሙ"
+
+#: parts/components-enqueue.php:111
+#, fuzzy
+msgid "Extend Prayer Times"
+msgstr "የጸሎት ጊዜ"
+
+#: parts/components-enqueue.php:112
+#, fuzzy
+msgid "Really delete this prayer time?"
+msgstr "የጸሎት ጊዜ ይምረጡ"
+
+#: parts/components-enqueue.php:113
+#, fuzzy
+msgid "Delete Prayer Time"
+msgstr "የተመረጡ ጊዜያት"
+
+#: parts/components-enqueue.php:114
+#, fuzzy
+msgid "Mondays"
+msgstr "ቀናት"
+
+#: parts/components-enqueue.php:115
+#, fuzzy
+msgid "Tuesdays"
+msgstr "ቀናት"
+
+#: parts/components-enqueue.php:116
+msgid "Wednesdays"
+msgstr ""
+
+#: parts/components-enqueue.php:117
+#, fuzzy
+msgid "Thursdays"
+msgstr "ቀናት"
+
+#: parts/components-enqueue.php:118
+#, fuzzy
+msgid "Fridays"
+msgstr "ቀናት"
+
+#: parts/components-enqueue.php:119
+#, fuzzy
+msgid "Saturdays"
+msgstr "ቀናት"
+
+#: parts/components-enqueue.php:120
+#, fuzzy
+msgid "Sundays"
+msgstr "ቀናት"
+
+#: parts/components-enqueue.php:121
+#, fuzzy
+msgid "Change Prayer Time"
+msgstr "የጸሎት ጊዜያትን ይምረጡ"
+
+#: parts/components-enqueue.php:122
+#, fuzzy
+msgid "Your current prayer time is %s"
+msgstr "አዲሱ የጸሎት ጊዜዎ ድኗል።"
+
+#: parts/components-enqueue.php:123
+#, fuzzy
+msgid "Select a new time:"
+msgstr "ጊዜ ይምረጡ"
+
+#: parts/components-enqueue.php:124
+#, fuzzy
+msgid "Select a time"
+msgstr "ጊዜ ይምረጡ"
 
 #: porches/generic/dt-generic-porch-settings.php:68
 #, fuzzy
@@ -748,12 +874,6 @@ msgstr ""
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr ""
-
-#: porches/generic/site/archive-body.php:81
-#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:291
-#, fuzzy
-msgid "Thank You"
-msgstr "አመሰግናለሁ"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
@@ -904,6 +1024,11 @@ msgstr "ስለሌሎች የጸሎት ጥረቶች እና እድሎች በPray4Mo
 msgid "Sign Up"
 msgstr "ክፈት"
 
+#: porches/ramadan/dt-ramadan-porch-loader.php:10
+#, fuzzy
+msgid "Ramadan Landing Page"
+msgstr "ረመዳን ያበቃል..."
+
 #: porches/ramadan/settings.php:6
 #, fuzzy
 msgid ""
@@ -982,12 +1107,12 @@ msgid "Now praying..."
 msgstr "አሁን መጸለይ..."
 
 #, fuzzy
-#~ msgid "Prayer Times"
-#~ msgstr "የጸሎት ጊዜ"
+#~ msgid "Strategic prayer for a disciple making movement"
+#~ msgstr "ደቀ መዝሙር የማድረጉ እንቅስቃሴ ስትራቴጂያዊ ጸሎት"
 
 #, fuzzy
-#~ msgid "prayer times"
-#~ msgstr "የጸሎት ጊዜ ጨምር"
+#~ msgid "Thank You"
+#~ msgstr "አመሰግናለሁ"
 
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
@@ -1008,10 +1133,6 @@ msgstr "አሁን መጸለይ..."
 #, fuzzy
 #~ msgid "Extend for 3 months"
 #~ msgstr "ለ 3 ወራት ያራዝሙ"
-
-#, fuzzy
-#~ msgid "Change daily time"
-#~ msgstr "የዕለት ተዕለት ጊዜን ይቀይሩ"
 
 #, fuzzy
 #~ msgctxt "80% covered"
@@ -1043,10 +1164,6 @@ msgstr "አሁን መጸለይ..."
 #~ msgstr "የግለሰብ የጸሎት ጊዜያትን ይጨምሩ"
 
 #, fuzzy
-#~ msgid "Help us cover these prayer times"
-#~ msgstr "የጸሎት ጊዜ ይምረጡ"
-
-#, fuzzy
 #~ msgid "My commitments"
 #~ msgstr "ቃል ኪዳኖቼ"
 
@@ -1055,24 +1172,12 @@ msgstr "አሁን መጸለይ..."
 #~ msgstr "ለምን ያህል ጊዜ"
 
 #, fuzzy
-#~ msgid "Your new prayer times have been saved."
-#~ msgstr "አዲሱ የጸሎት ጊዜዎ ድኗል።"
-
-#, fuzzy
 #~ msgid "ok"
 #~ msgstr "እሺ"
 
 #, fuzzy
-#~ msgid "Delete Time"
-#~ msgstr "የተመረጡ ጊዜያት"
-
-#, fuzzy
 #~ msgid "Select a day and choose a time"
 #~ msgstr "ቀን ይምረጡ እና ጊዜ ይምረጡ"
-
-#, fuzzy
-#~ msgid "Select a prayer time"
-#~ msgstr "የጸሎት ጊዜ ይምረጡ"
 
 #, fuzzy
 #~ msgid "Time added"
@@ -1089,14 +1194,6 @@ msgstr "አሁን መጸለይ..."
 #, fuzzy
 #~ msgid "Choose a different time:"
 #~ msgstr "የተለየ ጊዜ ይምረጡ፡-"
-
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "ሁሉንም ሰርዝ"
-
-#, fuzzy
-#~ msgid "Extend"
-#~ msgstr "ያራዝሙ"
 
 #, fuzzy
 #~ msgid "Extend my prayer commitments until:"
@@ -1178,10 +1275,6 @@ msgstr "አሁን መጸለይ..."
 #~ msgstr "የጸሎት ዘመቻ ውሂብን በመጫን ላይ..."
 
 #, fuzzy
-#~ msgid "Choose Prayer Times"
-#~ msgstr "የጸሎት ጊዜያትን ይምረጡ"
-
-#, fuzzy
 #~ msgid "Select an option"
 #~ msgstr "አንድ አማራጭ ይምረጡ"
 
@@ -1227,11 +1320,6 @@ msgstr "አሁን መጸለይ..."
 #~ "movement! You're one click away from finishing your registration."
 #~ msgstr ""
 #~ "ለደቀመዝሙር እንቅስቃሴ ስልታዊ ጸሎት ስለተቀላቀሉን እናመሰግናለን! ምዝገባዎን ለመጨረስ አንድ ጠቅታ ብቻ ይቀርዎታል።"
-
-#, fuzzy
-#~ msgid ""
-#~ "Click here to verify your email address and confirm your prayer times:"
-#~ msgstr "የኢሜል አድራሻዎን ለማረጋገጥ እና የጸሎት ጊዜዎን ለማረጋገጥ እዚህ ጠቅ ያድርጉ።"
 
 #, fuzzy
 #~ msgid "Registration Confirmation"

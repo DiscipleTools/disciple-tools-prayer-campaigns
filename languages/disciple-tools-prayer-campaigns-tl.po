@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-11-28T15:31:57+00:00\n"
+"POT-Creation-Date: 2023-11-30T13:56:02+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Tagalog <https://translate.disciple.tools/projects/disciple-"
@@ -61,7 +61,7 @@ msgstr "Nakarehistro upang manalangin kasama namin!"
 
 #: campaign-functions/send-email-utility.php:185
 #: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:354
 #, fuzzy
 msgid "Hello %s,"
 msgstr "Hello %s,"
@@ -101,7 +101,7 @@ msgid "Times are shown according to: %s time"
 msgstr "Ang mga oras ay ipinapakita ayon sa: %s oras"
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:334
+#: magic-links/subscription-management/subscription-management.php:335
 #, fuzzy
 msgid "Download Calendar"
 msgstr "I-download ang Calendar"
@@ -128,11 +128,11 @@ msgstr "Salamat sa pagdarasal kasama namin!"
 msgid "Here are your upcoming prayer times:"
 msgstr "Narito ang iyong mga paparating na oras ng panalangin:"
 
-#: campaign-functions/send-email-utility.php:350
+#: campaign-functions/send-email-utility.php:352
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:353
+#: campaign-functions/send-email-utility.php:355
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -141,95 +141,98 @@ msgstr ""
 "2 linggo kang wala para sa iyong huling oras ng pagdarasal. Gusto mo bang "
 "patuloy na manalangin?"
 
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:356
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Mag-sign up para sa higit pang mga oras ng panalangin o pahabain ang iyong "
 "umuulit na oras dito:"
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:358
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:357
+#: campaign-functions/send-email-utility.php:359
+#: porches/generic/site/archive-body.php:81
+#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
 msgstr "Salamat"
 
-#: campaign-functions/send-email-utility.php:403
+#: campaign-functions/send-email-utility.php:405
 #: porches/generic/site/stats.php:144
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "Salamat sa pagdarasal kasama namin!"
 
-#: campaign-functions/send-email-utility.php:426
-#: campaign-functions/send-email-utility.php:456
+#: campaign-functions/send-email-utility.php:428
+#: campaign-functions/send-email-utility.php:458
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Madiskarteng panalangin para sa isang Kilusang Paggawa ng Disipulo"
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:430
+#: campaign-functions/send-email-utility.php:460
+#: porches/generic/dt-generic-porch-settings.php:59
 #, fuzzy
-msgid "Strategic prayer for a disciple making movement"
+msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Madiskarteng panalangin para sa isang Kilusang Paggawa ng Disipulo"
 
-#: campaign-functions/send-email-utility.php:433
-#: campaign-functions/send-email-utility.php:463
+#: campaign-functions/send-email-utility.php:435
+#: campaign-functions/send-email-utility.php:465
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:436
-#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:438
+#: campaign-functions/send-email-utility.php:468
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Salamat sa pagsama sa amin sa panalangin para sa %1$s sa %2$s."
 
-#: campaign-functions/send-email-utility.php:439
+#: campaign-functions/send-email-utility.php:441
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:442
+#: campaign-functions/send-email-utility.php:444
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:446
+#: campaign-functions/send-email-utility.php:448
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "Pumili ng oras ng panalangin"
 
-#: campaign-functions/send-email-utility.php:448
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:450
+#: campaign-functions/send-email-utility.php:486
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:469
+#: campaign-functions/send-email-utility.php:471
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:475
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:480
+#: campaign-functions/send-email-utility.php:482
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:484
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -276,45 +279,78 @@ msgstr "araw"
 msgid "days"
 msgstr "araw"
 
+#: magic-links/campaign-resend-email/magic-link-post-type.php:159
+#, fuzzy
+msgid "Retrieve Prayer Time Management Link"
+msgstr "Tumanggap ng mga abiso sa oras ng panalangin"
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:168
+#, fuzzy
+msgid "Enter you email address and receive a link to your prayer times."
+msgstr ""
+"Mag-click dito upang i-verify ang iyong email address at kumpirmahin ang "
+"iyong mga oras ng panalangin."
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:170
+#: parts/components-enqueue.php:51 porches/generic/site/stats.php:272
+#, fuzzy
+msgid "Email"
+msgstr "Email"
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:175
+msgid "Email My Access Link"
+msgstr ""
+
+#: magic-links/campaign-resend-email/magic-link-post-type.php:178
+#, fuzzy
+msgid "Please check your email address now for your access link."
+msgstr ""
+"Mag-click dito upang i-verify ang iyong email address at kumpirmahin ang "
+"iyong mga oras ng panalangin."
+
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:323
+#: magic-links/subscription-management/subscription-management.php:324
 #: parts/components-enqueue.php:48
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "Mga Pangako sa Panalangin"
 
-#: magic-links/subscription-management/subscription-management.php:305
+#: magic-links/subscription-management/subscription-management.php:306
 #: porches/generic/site/stats.php:205
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "Mga Pangako sa Panalangin"
 
-#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:307
 msgid "Account"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:313
+msgid "Links"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:314
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "Bahay"
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:316
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:331
+#: magic-links/subscription-management/subscription-management.php:332
 #, fuzzy
 msgid "My Calendar"
 msgstr "I-download ang Calendar"
 
-#: magic-links/subscription-management/subscription-management.php:347
+#: magic-links/subscription-management/subscription-management.php:348
 #, fuzzy
 msgid "Sign up for more prayer"
 msgstr "Mag-sign Up para Magdasal"
 
-#: magic-links/subscription-management/subscription-management.php:370
+#: magic-links/subscription-management/subscription-management.php:371
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Ang subscription na ito ay natapos na o hindi na-configure nang tama."
@@ -387,11 +423,6 @@ msgstr ""
 #, fuzzy
 msgid "Name"
 msgstr "Pangalan"
-
-#: parts/components-enqueue.php:51 porches/generic/site/stats.php:272
-#, fuzzy
-msgid "Email"
-msgstr "Email"
 
 #: parts/components-enqueue.php:52
 msgid "Start Here"
@@ -636,10 +667,109 @@ msgstr "Tanggalin"
 msgid "Select a timezone"
 msgstr "Pumili ng oras"
 
-#: porches/generic/dt-generic-porch-settings.php:59
+#: parts/components-enqueue.php:104
 #, fuzzy
-msgid "Strategic prayer for a Disciple Making Movement"
-msgstr "Madiskarteng panalangin para sa isang Kilusang Paggawa ng Disipulo"
+msgid "See Prayer Fuel"
+msgstr "Gatong ng Panalangin"
+
+#: parts/components-enqueue.php:105
+#, fuzzy
+msgid "change time"
+msgstr "Baguhin ang araw-araw na oras"
+
+#: parts/components-enqueue.php:106
+#, fuzzy
+msgid "Remove all"
+msgstr "Tanggalin ang lahat"
+
+#: parts/components-enqueue.php:107
+#, fuzzy
+msgid "See prayer times"
+msgstr "Magdagdag ng oras ng pagdarasal"
+
+#: parts/components-enqueue.php:108
+#, fuzzy
+msgid "Delete Prayer Times"
+msgstr "Oras ng pagdadasal"
+
+#: parts/components-enqueue.php:109
+#, fuzzy
+msgid "Really delete these prayer times?"
+msgstr "Pumili ng oras ng panalangin"
+
+#: parts/components-enqueue.php:110
+#, fuzzy
+msgid "extend"
+msgstr "Palawigin"
+
+#: parts/components-enqueue.php:111
+#, fuzzy
+msgid "Extend Prayer Times"
+msgstr "Oras ng pagdadasal"
+
+#: parts/components-enqueue.php:112
+#, fuzzy
+msgid "Really delete this prayer time?"
+msgstr "Pumili ng oras ng panalangin"
+
+#: parts/components-enqueue.php:113
+#, fuzzy
+msgid "Delete Prayer Time"
+msgstr "Mga Piling Oras"
+
+#: parts/components-enqueue.php:114
+#, fuzzy
+msgid "Mondays"
+msgstr "araw"
+
+#: parts/components-enqueue.php:115
+#, fuzzy
+msgid "Tuesdays"
+msgstr "araw"
+
+#: parts/components-enqueue.php:116
+msgid "Wednesdays"
+msgstr ""
+
+#: parts/components-enqueue.php:117
+#, fuzzy
+msgid "Thursdays"
+msgstr "araw"
+
+#: parts/components-enqueue.php:118
+#, fuzzy
+msgid "Fridays"
+msgstr "araw"
+
+#: parts/components-enqueue.php:119
+#, fuzzy
+msgid "Saturdays"
+msgstr "araw"
+
+#: parts/components-enqueue.php:120
+#, fuzzy
+msgid "Sundays"
+msgstr "araw"
+
+#: parts/components-enqueue.php:121
+#, fuzzy
+msgid "Change Prayer Time"
+msgstr "Piliin ang Oras ng Panalangin"
+
+#: parts/components-enqueue.php:122
+#, fuzzy
+msgid "Your current prayer time is %s"
+msgstr "Ang iyong mga bagong oras ng panalangin ay na-save na."
+
+#: parts/components-enqueue.php:123
+#, fuzzy
+msgid "Select a new time:"
+msgstr "Pumili ng oras"
+
+#: parts/components-enqueue.php:124
+#, fuzzy
+msgid "Select a time"
+msgstr "Pumili ng oras"
 
 #: porches/generic/dt-generic-porch-settings.php:68
 #, fuzzy
@@ -764,12 +894,6 @@ msgstr ""
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
 msgstr ""
-
-#: porches/generic/site/archive-body.php:81
-#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:291
-#, fuzzy
-msgid "Thank You"
-msgstr "Salamat"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
@@ -924,6 +1048,11 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Mag-sign Up"
 
+#: porches/ramadan/dt-ramadan-porch-loader.php:10
+#, fuzzy
+msgid "Ramadan Landing Page"
+msgstr "Matatapos na ang Ramadan..."
+
 #: porches/ramadan/settings.php:6
 #, fuzzy
 msgid ""
@@ -1010,12 +1139,12 @@ msgid "Now praying..."
 msgstr "Ngayon nagdadasal..."
 
 #, fuzzy
-#~ msgid "Prayer Times"
-#~ msgstr "Oras ng pagdadasal"
+#~ msgid "Strategic prayer for a disciple making movement"
+#~ msgstr "Madiskarteng panalangin para sa isang Kilusang Paggawa ng Disipulo"
 
 #, fuzzy
-#~ msgid "prayer times"
-#~ msgstr "Magdagdag ng oras ng pagdarasal"
+#~ msgid "Thank You"
+#~ msgstr "Salamat"
 
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
@@ -1036,10 +1165,6 @@ msgstr "Ngayon nagdadasal..."
 #, fuzzy
 #~ msgid "Extend for 3 months"
 #~ msgstr "Palawigin ng 3 buwan"
-
-#, fuzzy
-#~ msgid "Change daily time"
-#~ msgstr "Baguhin ang araw-araw na oras"
 
 #, fuzzy
 #~ msgctxt "80% covered"
@@ -1071,10 +1196,6 @@ msgstr "Ngayon nagdadasal..."
 #~ msgstr "Magdagdag ng Indibidwal na Oras ng Panalangin"
 
 #, fuzzy
-#~ msgid "Help us cover these prayer times"
-#~ msgstr "Pumili ng oras ng panalangin"
-
-#, fuzzy
 #~ msgid "My commitments"
 #~ msgstr "Aking mga pangako"
 
@@ -1083,24 +1204,12 @@ msgstr "Ngayon nagdadasal..."
 #~ msgstr "Gaano katagal"
 
 #, fuzzy
-#~ msgid "Your new prayer times have been saved."
-#~ msgstr "Ang iyong mga bagong oras ng panalangin ay na-save na."
-
-#, fuzzy
 #~ msgid "ok"
 #~ msgstr "ok"
 
 #, fuzzy
-#~ msgid "Delete Time"
-#~ msgstr "Mga Piling Oras"
-
-#, fuzzy
 #~ msgid "Select a day and choose a time"
 #~ msgstr "Pumili ng araw at pumili ng oras"
-
-#, fuzzy
-#~ msgid "Select a prayer time"
-#~ msgstr "Pumili ng oras ng panalangin"
 
 #, fuzzy
 #~ msgid "Time added"
@@ -1117,14 +1226,6 @@ msgstr "Ngayon nagdadasal..."
 #, fuzzy
 #~ msgid "Choose a different time:"
 #~ msgstr "Pumili ng ibang oras:"
-
-#, fuzzy
-#~ msgid "Delete all"
-#~ msgstr "Tanggalin ang lahat"
-
-#, fuzzy
-#~ msgid "Extend"
-#~ msgstr "Palawigin"
 
 #, fuzzy
 #~ msgid "Extend my prayer commitments until:"
@@ -1206,10 +1307,6 @@ msgstr "Ngayon nagdadasal..."
 #~ msgstr "Nilo-load ang data ng prayer campaign..."
 
 #, fuzzy
-#~ msgid "Choose Prayer Times"
-#~ msgstr "Piliin ang Oras ng Panalangin"
-
-#, fuzzy
 #~ msgid "Select an option"
 #~ msgstr "Pumili ng opsyon"
 
@@ -1260,13 +1357,6 @@ msgstr "Ngayon nagdadasal..."
 #~ "Salamat sa pagsama sa amin sa estratehikong panalangin para sa isang "
 #~ "kilusang gumagawa ng alagad! Isang click mo na lang para matapos na ang "
 #~ "iyong pagpaparehistro."
-
-#, fuzzy
-#~ msgid ""
-#~ "Click here to verify your email address and confirm your prayer times:"
-#~ msgstr ""
-#~ "Mag-click dito upang i-verify ang iyong email address at kumpirmahin ang "
-#~ "iyong mga oras ng panalangin."
 
 #, fuzzy
 #~ msgid "Registration Confirmation"
