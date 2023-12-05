@@ -14,7 +14,7 @@ class DT_Porch_Settings {
      */
     public static function settings( string $tab = null, string $section = null, $use_cache = true, $campaign_id = null ): array {
 
-        $current_campaign = DT_Campaign_Landing_Settings::get_campaign($campaign_id);
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         if ( empty( $current_campaign ) ) {
             return [];
         }
@@ -101,7 +101,7 @@ class DT_Porch_Settings {
     }
 
     public static function update_values( $updates, $campaign_id = null ) {
-        $current_campaign = DT_Campaign_Landing_Settings::get_campaign($campaign_id);
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
         $changes = [];
@@ -175,7 +175,7 @@ class DT_Porch_Settings {
             $code = dt_campaign_get_current_lang();
         }
 
-        $fields = self::settings(null, null, true, $campaign_id);
+        $fields = self::settings( null, null, true, $campaign_id );
 
         if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
             return '';
