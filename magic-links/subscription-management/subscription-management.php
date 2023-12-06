@@ -160,6 +160,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         //get summary from campaign strings
         $calendar_title = $post['campaigns'][0]['post_title'];
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
         $calendar_description = '';
@@ -231,7 +232,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             }
 
             $content .= 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
-            $content .= 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
+            $content .= 'LOCATION:' . esc_html( $campaign_url . '/list' ) . "\r\n";
             $content .= "STATUS:CONFIRMED\r\n";
             $content .= "SEQUENCE:3\r\n";
             $content .= "BEGIN:VALARM\r\n";
