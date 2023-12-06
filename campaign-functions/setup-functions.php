@@ -71,12 +71,12 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
         return $prayer_campaign_email_name;
     }
     if ( class_exists( 'DT_Campaign_Global_Settings' ) ){
-        $name = DT_Campaign_Global_Settings::get( 'email_name' );
-        if ( !empty( $name ) ){
-            return $name;
+        $email_name = DT_Campaign_Global_Settings::get( 'email_name' );
+        if ( !empty( $email_name ) ){
+            return $email_name;
         }
     }
-    if ( empty( $name ) && class_exists( 'DT_Porch_Settings' ) ){
+    if ( class_exists( 'DT_Porch_Settings' ) ){
         $campaign_name = DT_Porch_Settings::get_field_translation( 'title' );
         if ( !empty( $campaign_name ) ){
             $name = $campaign_name;
