@@ -332,7 +332,7 @@ class DT_Campaign_Landing_Settings {
 
         if ( $search_my_campaigns || is_admin() ) {
             $campaigns = DT_Posts::list_posts( 'campaigns', [] );
-            if ( !is_wp_error( $campaigns ) &&  !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
+            if ( !is_wp_error( $campaigns ) && !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
                 return $campaigns['posts'][0]['ID'];
             }
         }
