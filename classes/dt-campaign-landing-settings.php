@@ -83,6 +83,22 @@ class DT_Campaign_Landing_Settings {
         return site_url( $url );
     }
 
+    public static function get_campaign_color( $campaign_id = null ){
+        $campaign = self::get_campaign( $campaign_id );
+        if ( !empty( $campaign['custom_theme_color'] ) ) {
+            return $campaign['custom_theme_color'];
+        }
+        $theme_manager = new DT_Porch_Theme();
+        if ( !empty( $campaign['theme_color']['key'] ) ) {
+            $theme_name = $campaign['theme_color']['key'];
+            $theme = $theme_manager->get_theme( $theme_name );
+            return $theme['color'];
+        }
+        $theme = $theme_manager->get_default_theme();
+        return $theme['color'];
+    }
+
+
     public function dt_details_additional_tiles( $tiles, $post_type ){
         if ( $post_type !== 'campaigns' ){
             return $tiles;

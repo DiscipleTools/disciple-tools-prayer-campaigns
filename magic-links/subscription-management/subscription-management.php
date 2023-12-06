@@ -271,12 +271,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
 
-        $campaign_settings = DT_Porch_Settings::settings( $campaign_id );
-        $current_selected_porch = $campaign_settings['selected_porch'] ?? 'generic-porch';
-        $color = PORCH_COLOR_SCHEME_HEX;
-        if ( $color === 'preset' ){
-            $color = '#4676fa';
-        }
+        $color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign_id );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
 
         ?>
         <style>
@@ -324,9 +320,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <!-- links -->
             <div style="margin: 10px; text-align: center">
                 <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
-                <a href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
-                <a href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
-                <a href="<?php echo esc_url( site_url() ) ?>/prayer/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
 
             <div id="prayer-times" class="display-panel" style="display: block">
@@ -353,9 +349,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         </my-calendar>
                     </div>
                 </div>
-
-                <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
-
 
                 <div style="background-color: white; margin: 150px 50px 50px 50px">
                     <h2 style="text-align: center"><?php esc_html_e( 'Sign up for more prayer', 'disciple-tools-prayer-campaigns' ); ?></h2>
