@@ -25,49 +25,12 @@ class DT_Generic_Porch_Stats {
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
         add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
 
-        add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 100, 1 );
-        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 100, 1 );
-        add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 99 );
     }
-    public function dt_custom_dir_attr( $lang ){
-        return dt_campaign_custom_dir_attr( $lang );
-    }
-
     public function dt_blank_title( $title ) {
         return $this->page_title;
     }
 
-    public function dt_magic_url_base_allowed_js( $allowed_js ) {
-        $allowed_js = [];
-        $allowed_js[] = 'dt_campaign_core';
-        $allowed_js[] = 'dt_campaign';
-        $allowed_js[] = 'luxon';
-        $allowed_js[] = 'jquery';
-        $allowed_js[] = 'lodash';
-        $allowed_js[] = 'lodash-core';
-
-        $allowed_js[] = 'campaign_css';
-        $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_component_sign_up';
-        $allowed_js[] = 'campaign_component_css';
-        $allowed_js[] = 'toastify-js';
-
-
-        return array_merge( $allowed_js, DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
-    }
-
-    public function dt_magic_url_base_allowed_css( $allowed_css ) {
-        return DT_Generic_Porch_Landing_Enqueue::load_allowed_styles();
-    }
-
-    public function wp_enqueue_scripts() {
-        DT_Generic_Porch_Landing_Enqueue::load_scripts();
-    }
-
     public function body(){
-//        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
-
-        $porch_fields = DT_Porch_Settings::settings();
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
         $langs = dt_campaign_list_languages();
         $post_id = $campaign_fields['ID'];
@@ -75,18 +38,9 @@ class DT_Generic_Porch_Stats {
         dt_campaign_set_translation( $lang );
         $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
-        $campaign_name = $porch_fields['title']['value'];
+        $campaign_name = $campaign_fields['title'];
         $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'title' );
 
-        $timezone = 'America/Chicago';
-        if ( isset( $campaign_fields['campaign_timezone']['key'] ) ){
-            $timezone = $campaign_fields['campaign_timezone']['key'];
-        }
-
-        $min_time_duration = 15;
-        if ( isset( $campaign_fields['min_time_duration']['key'] ) ){
-            $min_time_duration = (int) $campaign_fields['min_time_duration']['key'];
-        }
         $subscribers_count = DT_Subscriptions::get_subscribers_count( $post_id );
         $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
 
@@ -128,9 +82,6 @@ class DT_Generic_Porch_Stats {
         }
 
         $thank_you = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
-        if ( !empty( $porch_fields['people_name']['value'] ) && !empty( $porch_fields['country_name']['value'] ) ){
-            $thank_you = sprintf( _x( 'Thank you for joining us in prayer for the %1$s in %2$s.', 'Thank you for joining us in prayer for the French in France.', 'disciple-tools-prayer-campaigns' ), $porch_fields['people_name']['value'], $porch_fields['country_name']['value'] );
-        }
         ?>
 
         <style>
