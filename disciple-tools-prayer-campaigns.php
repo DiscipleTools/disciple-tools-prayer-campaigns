@@ -79,7 +79,6 @@ require_once( 'campaign-functions/setup-functions.php' );
 add_action( 'after_setup_theme', function() : void {
     require_once __DIR__ . '/porches/interfaces/dt-porch-loader-interface.php';
     require_once __DIR__ . '/porches/generic/dt-generic-porch-loader.php';
-    require_once __DIR__ . '/porches/ongoing/dt-ongoing-porch-loader.php';
     require_once __DIR__ . '/porches/ramadan/dt-ramadan-porch-loader.php';
 } );
 
