@@ -74,7 +74,7 @@ class DT_Campaign_Landing_Settings {
     public static function get_landing_page_url( $campaign_id = null ){
         $campaign = self::get_campaign( $campaign_id );
         $url = $campaign['campaign_url'];
-        if ( empty( $url ) ){
+        if ( !empty( $campaign ) && empty( $url ) ){
             $url = str_replace( ' ', '-', strtolower( trim( $campaign['name'] ) ) );
             DT_Posts::update_post( 'campaigns', $campaign_id, [
                 'campaign_url' => $url,
@@ -316,7 +316,7 @@ class DT_Campaign_Landing_Settings {
 
         if ( $search_my_campaigns || is_admin() ) {
             $campaigns = DT_Posts::list_posts( 'campaigns', [] );
-            if ( !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
+            if ( !is_wp_error( $campaigns ) &&  !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
                 return $campaigns['posts'][0]['ID'];
             }
         }
