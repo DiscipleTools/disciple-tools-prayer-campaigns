@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2023-11-29T09:45:13+00:00\n"
-"PO-Revision-Date: 2023-12-01 10:28+0000\n"
+"PO-Revision-Date: 2023-12-06 12:57+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -157,13 +157,13 @@ msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
-"Clicca sul pulsante sottostante per vedere a che cosa hai contribuito a "
-"realizzare. In più ci farebbe piacere sentire le tue impressioni o le parole "
-"di conoscenza che hai ricevuto da Dio mentre hai pregato."
+"Clicca il pulsante sottostante per vedere a cosa hai contribuito. In più, ci "
+"piacerebbe sentire le tue impressioni o le parole che hai ricevuto da Dio "
+"mentre pregavi."
 
 #: campaign-functions/send-email-utility.php:424
 msgid "See Prayer Stats"
-msgstr "Guarda i dati sulla preghiera"
+msgstr "Visualizza I Numeri Della Preghiera"
 
 #: campaign-functions/send-email-utility.php:426
 #: campaign-functions/send-email-utility.php:462
@@ -176,8 +176,8 @@ msgid ""
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
-"Capiremo solo nell'eternità qual impatto hanno avuto le migliaia di ore di "
-"preghiera per il mondo musulmano durante Ramadan. Però, sappiamo che la "
+"Capiremo solo nell'eternità quale impatto hanno avuto le migliaia di "
+"preghiere per il mondo musulmano durante Ramadan. Però, sappiamo che la "
 "Parola di Dio dice che la preghiera è potente ed efficace (Giacomo 5:16)."
 
 #: campaign-functions/send-email-utility.php:451
@@ -186,9 +186,9 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
-"Clicca sul pulsante sottostante per vedere a cosa hai contributo durante "
-"questo Ramadan. In più, ci farebbe piacere sentire le tue impressioni o le "
-"parole di conoscenza che hai ricevuto da Dio mentre hai pregato."
+"Clicca sul pulsante sotto per darti un'idea a cosa hai contribuito questo "
+"Ramadan. In più, ci piacerebbe sentire le tue impressioni o le parole che "
+"hai sentito da Dio mentre pregavi."
 
 #: campaign-functions/send-email-utility.php:458
 msgid ""
@@ -196,14 +196,14 @@ msgid ""
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
-"Infine, la pagina dei dati per la preghiera 24/7 per Ramadan ha una sezione "
-"per registrarsi in fondo alla pagina. Assicurati di esserti registrato per "
-"ricevere notizie su futuri progetti di preghiera da Pray4Movement, i "
-"creatore di questo strumento di preghiera."
+"Inoltre, in fondo alla pagina dei Numeri della Preghiera 24/7 per Ramadan "
+"troverai una sezione dove puoi iscriverti. Fa' l'iscrizione per ricevere "
+"notizie sui futuri progetti di Pray4Movement, i creatori di questo strumento "
+"di preghiera."
 
 #: campaign-functions/send-email-utility.php:460
 msgid "See Ramadan 24/7 Prayer Stats"
-msgstr "Guarda i dati sulla preghiera 24/7 per Ramadan"
+msgstr "Visualizza i Numeri della Preghiera 24/7 per Ramadan"
 
 #: campaign-functions/time-utilities.php:168
 msgid "5 minutes"
@@ -537,7 +537,7 @@ msgstr ""
 
 #: parts/components.php:60
 msgid "No prayer times selected"
-msgstr "Nessuni intervallo di preghiera è stato selezionato"
+msgstr "Non hai selezionato nessun intervallo di preghiera"
 
 #: parts/components.php:64
 msgid "Verify and submit"
@@ -552,7 +552,7 @@ msgid ""
 "Please enter the code below in the next 10 minutes to confirm your email "
 "address."
 msgstr ""
-"Inserisci il codice di verifica nel campo sottostante entro 10 minuti per "
+"Inserisci il codice nella casella sotto nei prossimi 10 minuti per "
 "verificare il tuo indirizzo email."
 
 #: parts/components.php:123
@@ -694,13 +694,13 @@ msgstr "Il contenuto per la preghiera inizierà tra %s giorni"
 #: porches/generic/site/archive-body.php:48
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
-"Questa campagna di preghiera è finita. Guarda sotto per il propellente per "
-"la preghiera"
+"Questa campagna di preghiera è terminata. Visualizza sotto il propellente "
+"per la preghiera"
 
 #: porches/generic/site/archive-body.php:62
 #: porches/generic/site/landing-body.php:38
 msgid "Praying as a group?"
-msgstr "Preghi con un gruppo di persone?"
+msgstr "State pregando in gruppo?"
 
 #: porches/generic/site/archive-body.php:67
 #: porches/generic/site/landing-body.php:43
@@ -709,15 +709,15 @@ msgid ""
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
-"Guidare altre persone nella preghiera è un grande passo nel fare discepoli. "
-"Vogliamo festeggiare la tua e la loro fedeltà. Per ogni persona che prega "
-"insieme a te, aggiungeremo altri 15 minuti ai %s giorni di preghiera "
-"promessi finora."
+"Guidare altri nella preghiera è buon passo per fare discepoli. Vogliamo "
+"festeggiare la fedeltà tua e anche di loro. Per ogni persona che prega con "
+"te, aggiungeremo altri 15 minuti ai %s giorni di preghiera programmati "
+"finora."
 
 #: porches/generic/site/archive-body.php:70
 #: porches/generic/site/landing-body.php:47
 msgid "How many prayed today (including yourself)?"
-msgstr "Quanti hanno pregato oggi (te compreso)?"
+msgstr "Quanti hanno pregato oggi, te incluso?"
 
 #: porches/generic/site/archive-body.php:81
 #: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:283
@@ -826,7 +826,7 @@ msgstr "Leggi"
 
 #: porches/generic/site/post-list-body.php:148
 msgid "No prayer fuel found"
-msgstr "Nessun propellente per la preghiera trovato"
+msgstr "Nessun propellente di preghiera ritrovato"
 
 #: porches/generic/site/stats.php:138
 msgctxt "Thank you for joining us in prayer for the French in France."
@@ -835,7 +835,7 @@ msgstr "Grazie per esserti unito a noi in preghiera per i %1$s in %2$s."
 
 #: porches/generic/site/stats.php:162
 msgid "Stats"
-msgstr "I Dati"
+msgstr "I Numeri"
 
 #: porches/generic/site/stats.php:189
 msgid "Percentage Covered"
@@ -851,7 +851,7 @@ msgstr "Tempo già riservato"
 
 #: porches/generic/site/stats.php:215
 msgid "Time Prayed in Groups"
-msgstr "Quantità di tempo che dei gruppi hanno pregato insieme"
+msgstr "Tempo pregato da gruppi"
 
 #: porches/generic/site/stats.php:225
 msgid "Number of People who Prayed"
@@ -871,7 +871,7 @@ msgstr ""
 
 #: porches/generic/site/stats.php:319
 msgid "Global Ramadan Stats"
-msgstr "I Dati Globali Per Ramadan"
+msgstr "I Numeri Globali Per Ramadan"
 
 #: porches/generic/site/stats.php:326
 msgid "Total Prayer Campaigns"
@@ -879,7 +879,7 @@ msgstr "Numero Totale di Campagne di Preghiera"
 
 #: porches/generic/site/stats.php:334
 msgid "Countries Prayed For"
-msgstr "Paesi per cui abbiamo pregato"
+msgstr "Le Nazioni per le quali abbiamo pregato"
 
 #: porches/generic/site/stats.php:342
 msgid "Intercessors"
@@ -887,11 +887,11 @@ msgstr "Intercessori"
 
 #: porches/generic/site/stats.php:350
 msgid "Time Prayed"
-msgstr "Tempo in preghiera"
+msgstr "Tempo in Preghiera"
 
 #: porches/generic/site/stats.php:358
 msgid "15 Minute Time Slots Filled"
-msgstr "Intervalli di 15 minuti coperti"
+msgstr "Intervalli di 15 Minuti Occupati"
 
 #: porches/generic/site/stats.php:381
 msgid "More Prayer Opportunities"
@@ -903,8 +903,8 @@ msgid ""
 "Pray4Movement.org and receive occasional communication from GospelAmbition."
 "org."
 msgstr ""
-"Registrati per conoscere altri iniziative e opportunità di preghiera con "
-"Pray4Movement.org e per ricevere comunicazioni sporadiche da GospelAmbition."
+"Iscriviti per essere aggiornato su altre opportunità e iniziative di "
+"Pray4Movement.org e per ricevere comunicazioni occasionali da GospelAmbition."
 "org."
 
 #: porches/generic/site/top-section.php:21
