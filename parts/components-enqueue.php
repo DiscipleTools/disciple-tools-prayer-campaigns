@@ -7,7 +7,7 @@ add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
     return $tag;
 }, 10, 3 );
 
-function dt_campaigns_register_scripts( $atts = [] ){
+function dt_campaigns_register_scripts( $atts, $campaign_id ){
     $plugin_dir_path = DT_Prayer_Campaigns::get_dir_path();
     $plugin_dir_url = DT_Prayer_Campaigns::get_url_path();
 
@@ -30,7 +30,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                 ],
                 'rest_url' => get_rest_url(),
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
-                'home' => class_exists( 'DT_Campaign_Landing_Settings' ) && $atts['root'] === 'campaign_app' ? DT_Campaign_Landing_Settings::get_landing_page_url( $atts['post_id'] ?? null ) : home_url(),
+                'home' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ) : home_url(),
                 'plugin_url' => $plugin_dir_url,
                 'translations' => [
                     'Detected time zone' => __( 'Detected time zone', 'disciple-tools-prayer-campaigns' ),

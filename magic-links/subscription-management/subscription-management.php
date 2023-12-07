@@ -84,8 +84,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        dt_campaigns_register_scripts( $this->parts );
-
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
@@ -96,6 +94,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( empty( $campaign_id ) ){
             $campaign_id = $post['campaigns'][0]['ID'];
         }
+        dt_campaigns_register_scripts( $this->parts, $campaign_id );
 
 
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );

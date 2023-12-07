@@ -420,12 +420,12 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
-        $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign_id === (int) $current_campaign['ID'];
-        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
-        if ( $is_current_campaign && $current_selected_porch === 'ramadan-porch' ){
-            $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $record['lang'] ?? 'en_US', $location );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+
+        if ( $current_campaign['porch_type'] === 'ramadan-porch' ){
+            $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $campaign_url, $location );
         } else {
-            $message = self::end_of_campaign_generic_email( $record['name'], $title, $location );
+            $message = self::end_of_campaign_generic_email( $record['name'], $title, $campaign_url, $location );
         }
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
@@ -438,7 +438,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
     }
 
-    public static function end_of_campaign_generic_email( $name, $campaign_title, $location = '' ){
+    public static function end_of_campaign_generic_email( $name, $campaign_title, $campaign_url, $location = '' ){
 
         if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
@@ -446,7 +446,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
-        $url = trailingslashit( site_url() ) . 'prayer/stats';
+        $url = $campaign_url . '/stats';
 
         $message = Campaigns_Email_Template::email_content_part( '<h3>' . sprintf( __( 'Dear %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $name ) ) . '</h3>' );
 
@@ -469,14 +469,14 @@ class DT_Prayer_Campaigns_Send_Email {
         return $message;
     }
 
-    public static function end_of_campaign_ramadan_email( $name, $campaign_title, $lang = 'en_US', $location = '' ){
+    public static function end_of_campaign_ramadan_email( $name, $campaign_title, $campaign_url, $location = '' ){
         if ( $location ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
-        $url = trailingslashit( site_url() ) . 'prayer/stats';
+        $url = $campaign_url . '/stats';
 
         $message = Campaigns_Email_Template::email_content_part( '<h3>' . sprintf( __( 'Dear %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $name ) ) . '</h3>' );
 
@@ -486,15 +486,9 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             __( "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16).", 'disciple-tools-prayer-campaigns' )
         );
-        if ( empty( $location ) || $lang !== 'en_US' ){
-            $message .= Campaigns_Email_Template::email_content_part(
-                __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
-            );
-        } else {
-            $message .= Campaigns_Email_Template::email_content_part(
-                sprintf( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God for %s as you prayed.', $location )
-            );
-        }
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
+        );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Pray4Movement, the makers of this prayer tool.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Ramadan 24/7 Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );

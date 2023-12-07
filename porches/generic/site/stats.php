@@ -203,7 +203,7 @@ class DT_Generic_Porch_Stats {
                         <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
-                    <form onSubmit="submit_feedback_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
+                    <form onSubmit="event.preventDefault();submit_feedback_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
                         <p>
                             <label style="width: 100%">
                                 <?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>
@@ -241,7 +241,28 @@ class DT_Generic_Porch_Stats {
 
                     let email = $('#email-2').val();
                     let story = $('#campaign-stories').val()
-                    window.makeRequest( "POST", '/stories', { parts: jsObject.parts, email, story }, jsObject.parts.root + /v1/ + jsObject.parts.type ).done(function(data){
+
+
+                    let payload = {
+                        'parts': window.campaign_objects.magic_link_parts,
+                        campaign_id: window.campaign_objects.magic_link_parts.post_id,
+                        email,
+                        story
+                    };
+
+                    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/stories';
+
+
+                    jQuery.ajax({
+                        type: 'POST',
+                        data: JSON.stringify(payload),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: link,
+                        beforeSend: (xhr) => {
+                          xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
+                        },
+                    }).done(function(data){
                         $('#stories-submit-spinner').show()
                         $('#form-content').hide()
                         $('#form-confirm').show()
@@ -467,40 +488,8 @@ class DT_Generic_Porch_Stats {
         require_once( 'header.php' );
     }
 
-    public function add_endpoints() {
-        $namespace = $this->root . '/v1/'. $this->type;
-        register_rest_route(
-            $namespace, 'stories', [
-                [
-                    'methods'  => 'POST',
-                    'callback' => [ $this, 'add_story' ],
-                    'permission_callback' => '__return_true',
-                ],
-            ]
-        );
-    }
 
-    public function add_story( WP_REST_Request $request ) {
-        $params = $request->get_params();
-        $params = dt_recursive_sanitize_array( $params );
-        if ( !isset( $params['story'], $params['email'] ) ){
-            return false;
-        }
-        $params['story'] = wp_kses_post( $request->get_params()['story'] );
 
-        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-        $post_id = $campaign_fields['ID'];
-
-        $comment = 'Story feedback from ' . site_url( 'prayer/stats' ) . ' by ' . $params['email'] . ": \n" . $params['story'];
-        DT_Posts::add_post_comment( 'campaigns', $post_id, $comment, 'stories', [], false );
-
-        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );
-        if ( sizeof( $subs['posts'] ) === 1 ){
-            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
-        }
-
-        return true;
-    }
 
 }
 DT_Generic_Porch_Stats::instance();
