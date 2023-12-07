@@ -169,15 +169,15 @@ class DT_Campaign_Landing_Settings {
             'tile' => 'campaign_email',
             'description' => __( 'The logo that will be used in emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
             'campaign_section' => $sections['settings'],
-            'default' => Campaigns_Email_Template::get_email_logo_url()
+            'default' => 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png'
         ];
         //reminder_content_disable_fuel
         $fields['reminder_content_disable_fuel'] = [
             'name' => __( 'Disable Prayer Email Fuel Link', 'disciple-tools-prayer-campaigns' ),
             'type' => 'key_select',
             'default' => [
-                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
                 'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
             ],
             'tile' => 'campaign_email',
             'description' => __( 'Whether or not to disable prayer fuel emails.', 'disciple-tools-prayer-campaigns' ),
