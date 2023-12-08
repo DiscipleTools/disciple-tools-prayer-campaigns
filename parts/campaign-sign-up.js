@@ -1043,7 +1043,7 @@ export class campaignSubscriptions extends LitElement {
         </dt-modal>
         
         ${(this.recurring_signups||[]).map((value, index) => {
-            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last < this.campaign_data.end_timestamp - 86400 * 30 )
+            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
             let day_in_seconds = 86400
             //in the next 60 days and not more than 2 weeks old
             let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
