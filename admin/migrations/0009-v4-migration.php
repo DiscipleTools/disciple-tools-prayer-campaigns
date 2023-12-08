@@ -16,6 +16,9 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
             return;
         }
 
+        $porch_selector = DT_Porch_Selector::instance();
+        $porch_selector->load_selected_porch();
+
         $porch_settings = get_option( 'dt_campaign_porch_settings' );
         $global_campaign_settings = get_option( 'dt_prayer_campaign_settings' );
         $campaign = DT_Posts::get_post( 'campaigns', (int) $active_campaign, false, false );
@@ -47,10 +50,10 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
                     continue;
                 }
                 if ( isset( $strings['signup_content'] ) && !empty( $strings['signup_content'] ) ){
-                    DT_Campaign_Languages::save_translation( $campaign['id'], 'signup_content', $language, $strings['signup_content'] );
+                    DT_Campaign_Languages::save_translation( $campaign['ID'], 'signup_content', $language, $strings['signup_content'] );
                 }
                 if ( isset( $strings['reminder_content'] ) && !empty( $strings['reminder_content'] ) ){
-                    DT_Campaign_Languages::save_translation( $campaign['id'], 'reminder_content', $language, $strings['reminder_content'] );
+                    DT_Campaign_Languages::save_translation( $campaign['ID'], 'reminder_content', $language, $strings['reminder_content'] );
                 }
             }
         }
