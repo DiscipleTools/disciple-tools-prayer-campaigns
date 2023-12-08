@@ -18,6 +18,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
     } // End instance()
 
     public function __construct() {
+        $this->page_title = __( 'Campaign Stats', 'disciple-tools-prayer-campaigns' );
         parent::__construct();
         add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
@@ -58,6 +59,13 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         $allowed_js[] = 'jquery';
         $allowed_js[] = 'lodash';
         $allowed_js[] = 'lodash-core';
+
+        $allowed_js[] = 'campaign_css';
+        $allowed_js[] = 'campaign_components';
+        $allowed_js[] = 'campaign_component_sign_up';
+        $allowed_js[] = 'campaign_component_css';
+        $allowed_js[] = 'toastify-js';
+
 
         return array_merge( $allowed_js, DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
     }
@@ -109,7 +117,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         $total_mins_prayed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $post_id );
         $mins_as_a_group = DT_Campaigns_Base::time_prayed_as_a_group( $post_id );
         $campaign_root = 'campaign_app';
-        $campaign_type = $campaign_fields['type']['key'];
+        $campaign_type = $campaign_fields['type']['key'] ?? 'ongoing';
         $key_name = 'public_key';
         $key = '';
         if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
@@ -174,7 +182,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                     <p class="center"><?php echo esc_html( $thank_you ); ?></p>
 
                     <div class="row" style="padding-top:40px">
-                        <div class="col-sm-12 col-md-9">
+                        <div class="col-sm-12 col-md-8">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
@@ -230,7 +238,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-4">
                             <?php
                             if ( empty( $selected_campaign_magic_link_settings ) ) :?>
                                 <div class="container">
@@ -238,7 +246,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                                 </div>
                             <?php else :
                                 $selected_campaign_magic_link_settings['section'] = 'calendar';
-                                echo dt_24hour_campaign_shortcode( //phpcs:ignore
+                                echo dt_ongoing_campaign_calendar( //phpcs:ignore
                                     $selected_campaign_magic_link_settings
                                 );
                             endif;
@@ -280,7 +288,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                         </p>
                     </form>
                     <div id="form-confirm" class="center" style="display: none">
-                        <h3><?php esc_html_e( 'Thank You', 'disciple-tools-prayer-campaigns' ); ?></h3>
+                        <h3><?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?></h3>
                     </div>
                 </div>
             </section>

@@ -186,6 +186,7 @@ class DT_Campaign_Languages {
      * Get the languages from the already translated languages
      */
     private function get_from_defaults() {
+//        @todo this should not be called on every request.
         $installed_languages = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
 
         $available_language_codes = [ 'en_US' ];

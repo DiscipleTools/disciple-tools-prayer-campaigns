@@ -30,4 +30,4 @@ class DT_Ongoing_Porch_Loader extends DT_Generic_Porch_Loader {
     }
 
 }
-( new DT_Ongoing_Porch_Loader() )->register_porch();
+//( new DT_Ongoing_Porch_Loader() )->register_porch();

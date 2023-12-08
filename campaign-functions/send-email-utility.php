@@ -106,9 +106,9 @@ class DT_Prayer_Campaigns_Send_Email {
         return $attachments;
     }
 
-    public static function send_registration( $post_id, $campaign_id ) {
+    public static function send_registration( $subscriber_id, $campaign_id, $recurring_signups ) {
 
-        $record = DT_Posts::get_post( 'subscriptions', $post_id, true, false );
+        $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $record ) ){
             dt_write_log( 'failed to record' );
             return;
@@ -116,7 +116,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( ! isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
             return;
         }
-        $commitments = Disciple_Tools_Reports::get( $post_id, 'post_id' );
+        $commitments = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id, $only_future = true );
         if ( empty( $commitments ) ) {
             dt_write_log( 'failed to commitments' );
             return;
@@ -132,23 +132,32 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
-        $commitment_list = '';
-        foreach ( $commitments as $row ){
+        $commitment_list = '<ul>';
+        foreach ( $commitments as $index => $row ){
             $begin_date = new DateTime( '@'.$row['time_begin'] );
             $end_date = new DateTime( '@'.$row['time_end'] );
             $begin_date->setTimezone( $tz );
             $end_date->setTimezone( $tz );
+            $commitment_list .= '<li>';
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
                 $begin_date->format( 'F d, Y' ),
                 '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
                 '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
             );
-            if ( !empty( $row['label'] ) ){
-                $commitment_list .= ' for ' . $row['label'];
+            $commitment_list .= '</li>';
+            if ( $index > 3 ){
+                $commitment_list .= '<li>' . __( 'see more on your account', 'disciple-tools-prayer-campaigns' ) . '</li>';
+                break;
             }
-            $commitment_list .= '<br>';
         }
+        $commitment_list .= '</ul>';
+
+        $recurring_list = '<ul>';
+        foreach ( $recurring_signups as $signup ){
+            $recurring_list .= '<li><strong>' . $signup['label'] . '</strong></li>';
+        }
+        $recurring_list .= '</ul>';
 
         $subject = __( 'Registered to pray with us!', 'disciple-tools-prayer-campaigns' );
 
@@ -165,6 +174,8 @@ class DT_Prayer_Campaigns_Send_Email {
             $sign_up_email_extra_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $sign_up_email_extra_message );
         }
 
+        $calendar_url = trailingslashit( DT_Magic_URL::get_link_url_for_post( 'subscriptions', $subscriber_id, 'subscriptions_app', 'manage' ) ) . 'download_calendar';
+
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
         $link = self::management_link( $record );
@@ -174,15 +185,27 @@ class DT_Prayer_Campaigns_Send_Email {
             $message .= Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
         }
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Here are the times you have committed to pray:', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_content_part( $commitment_list );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $link );
+        if ( !empty( $recurring_signups ) ){
+            $message .= Campaigns_Email_Template::email_content_part(
+                __( 'You signed up to pray:', 'disciple-tools-prayer-campaigns' )
+                . $recurring_list
+            );
+        }
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'These are your next prayer commitments:', 'disciple-tools-prayer-campaigns' )
+            . $commitment_list
+        );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );
-        $message .= Campaigns_Email_Template::email_content_part( $sign_up_email_extra_message );
-        $message .= Campaigns_Email_Template::email_content_part( '<hr><a href="'. $link .'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a>' );
+        if ( !empty( $sign_up_email_extra_message ) ){
+            $message .= Campaigns_Email_Template::email_content_part( $sign_up_email_extra_message );
+        }
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Download Calendar', 'disciple-tools-prayer-campaigns' ), $calendar_url );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
-        $attachments = self::generate_registration_attachments( $post_id );
+        $attachments = self::generate_registration_attachments( $subscriber_id );
 
         $sent = self::send_prayer_campaign_email( $to, $subject, $full_email, [], $attachments );
         if ( ! $sent ){
@@ -200,8 +223,6 @@ class DT_Prayer_Campaigns_Send_Email {
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
         foreach ( $reports as $row ){
-
-            $to[$row['email']] = $row['email'];
             $begin_date = new DateTime( '@'.$row['time_begin'] );
             $end_date = new DateTime( '@'.$row['time_end'] );
             $begin_date->setTimezone( $tz );
@@ -241,7 +262,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $management_link = self::management_link( $record );
 
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( $commitment_list );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );
@@ -251,7 +272,8 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $prayer_content_message ) ){
             $message .= Campaigns_Email_Template::email_content_part( $prayer_content_message );
         }
-        $message .= Campaigns_Email_Template::email_content_part( '<hr><a href="'. $management_link .'">' .  __( 'Click here to manage your account and time commitments', 'disciple-tools-prayer-campaigns' ) . '</a>' );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $management_link );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
@@ -288,7 +310,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         if ( ! empty( $keys ) ) {
             foreach ( $keys as $public_key ) {
-                $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us!' );
+                $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us.' );
                 $message .= Campaigns_Email_Template::email_content_part( 'Here is the link you requested to your prayer commitments:' );
                 $message .= Campaigns_Email_Template::email_content_part( '<a href="'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $public_key.'">Link to your commitments!</a>' );
                 $message .= Campaigns_Email_Template::email_content_part( '<hr>' );
@@ -303,7 +325,7 @@ class DT_Prayer_Campaigns_Send_Email {
                 }
             }
         } else {
-            $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us!' );
+            $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us.' );
             $message .= Campaigns_Email_Template::email_content_part( 'Sorry, we were unable to find a sign up associated with this email address.' );
             $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
@@ -320,6 +342,8 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
+        self::switch_email_locale( $subscriber['lang'] ?? null );
+
         $manage_link = self::management_link( $subscriber );
         $porch_fields = DT_Porch_Settings::settings();
 
@@ -403,7 +427,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
-            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
         $url = trailingslashit( site_url() ) . 'prayer/stats';
@@ -433,7 +457,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( $location ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
-            $tag = __( 'Strategic prayer for a disciple making movement', 'disciple-tools-prayer-campaigns' );
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
         $url = trailingslashit( site_url() ) . 'prayer/stats';
@@ -652,7 +676,7 @@ class Campaigns_Email_Template {
         ?>
         <tr><td class="r2-c" align="center">
             <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;"><!-- -->
-                <tr><td class="r4-i" style="background-color: #ffffff; padding-bottom: 20px; padding-top: 20px;">
+                <tr><td class="r4-i" style="background-color: #ffffff;">
                 <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
                 <tr><th width="100%" valign="top" class="r5-c" style="font-weight: normal;">
                 <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r6-o" style="table-layout: fixed; width: 100%;"><!-- -->

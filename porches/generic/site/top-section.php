@@ -11,6 +11,13 @@ $langs = dt_campaign_list_languages();
 
 $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up';
 ?>
+<style>
+    :root {
+        --cp-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ) ?>;
+        --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
+        --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
+    }
+</style>
 
 <!-- Nav -->
 <div class="menu-wrap">

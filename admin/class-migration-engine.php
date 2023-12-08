@@ -16,7 +16,7 @@ class DT_Prayer_Campaigns_Migration_Engine
      * Current Migration number for the mapping system
      * @var int
      */
-    public static $migration_number = 6;
+    public static $migration_number = 7;
 
     protected static $migrations = null;
 
@@ -95,10 +95,10 @@ class DT_Prayer_Campaigns_Migration_Engine
 
             self::sanity_check_expected_tables( $migration->get_expected_tables() );
 
-            if ( (int) get_option( 'dt_prayer_campaign_migration_lock', 0 ) ) {
+            if ( get_transient( 'dt_prayer_campaign_migration_lock' ) ) {
                 throw new DT_Prayer_Campaign_Migration_Lock_Exception();
             }
-            update_option( 'dt_prayer_campaign_migration_lock', '1' );
+            set_transient( 'dt_prayer_campaign_migration_lock', '1', DAY_IN_SECONDS );
 
             error_log( gmdate( ' Y-m-d H:i:s T' ) . " Starting migrating Prayer Campaign to number $activating_migration_number" );
             try {
@@ -116,7 +116,7 @@ class DT_Prayer_Campaigns_Migration_Engine
             update_option( 'dt_prayer_campaign_migration_number', (string) $activating_migration_number );
             error_log( gmdate( ' Y-m-d H:i:s T' ) . " Done migrating Prayer Campaign to number $activating_migration_number" );
 
-            update_option( 'dt_prayer_campaign_migration_lock', '0' );
+            delete_transient( 'dt_prayer_campaign_migration_lock' );
 
             $migration->test();
         }
@@ -149,7 +149,7 @@ class DT_Prayer_Campaigns_Migration_Engine
     }
     public static function display_migration_and_lock(){
         add_action( 'dt_utilities_system_details', function () {
-            $lock = get_option( 'dt_prayer_campaign_migration_lock', 0 ); ?>
+            $lock = get_transient( 'dt_prayer_campaign_migration_lock' ); ?>
             <tr>
                 <td><?php echo esc_html( sprintf( __( 'Prayer Campaign migration version: %1$s of %2$s' ), self::get_current_db_migration(), self::$migration_number ) ); ?>. Lock: <?php echo esc_html( $lock ); ?>  </td>
                 <td> <button name="reset_lock" value="dt_prayer_campaign_migration_lock">Reset Lock</button></td>

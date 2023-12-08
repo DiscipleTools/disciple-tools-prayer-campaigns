@@ -11,6 +11,10 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
     public function body(){
         $atts = $this->parts;
         $atts['rest_url'] = rest_url();
+        $atts['color'] = PORCH_COLOR_SCHEME_HEX;
+        if ( $atts['color'] === 'preset' || empty( $atts['color'] ) ){
+            $atts['color'] = '#4676fa';
+        }
         $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-calendar', $atts );
         $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-signup', $atts );
         $prayer_timer_shortcode = dt_campaigns_build_shortcode_from_array( 'dt_prayer_timer', [ 'color' => '#3e729a', 'duration' => '15' ] );
@@ -34,7 +38,7 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
         </style>
         <div id="dt-ongoing-display">
             <div class="center">
-                <div class="display-section">
+                <div class="display-section center">
                     <h1>The Calendar</h1>
                     <?php echo do_shortcode( $calendar_shortcode ); ?>
                     <code><?php echo esc_html( $calendar_shortcode ); ?></code>

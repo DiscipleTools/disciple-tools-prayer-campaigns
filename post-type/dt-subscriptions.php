@@ -97,7 +97,7 @@ class DT_Subscriptions {
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null );
+            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
@@ -115,7 +115,7 @@ class DT_Subscriptions {
      * @param null $location_id
      * @return false|int|WP_Error
      */
-    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $verified = true ){
+    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, $meta = [] ){
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
@@ -147,9 +147,9 @@ class DT_Subscriptions {
             'post_id' => $subscription_id,
             'post_type' => 'subscriptions',
             'type' => 'campaign_app',
-            'subtype' => $campaign['type']['key'],
+            'subtype' => $recurring_sign_up_id > 0 ? 'recurring_signup' : 'selected_time',
             'payload' => null,
-            'value' => $verified ? 1 : 0,
+            'value' => $recurring_sign_up_id,
             'lng' => null,
             'lat' => null,
             'level' => null,
@@ -157,6 +157,7 @@ class DT_Subscriptions {
             'grid_id' => $location_id,
             'time_begin' => $time,
             'time_end' => $time + $duration_mins * 60,
+            'meta_input' => $meta,
         ];
 
         if ( !empty( $location_id ) ){
@@ -184,6 +185,65 @@ class DT_Subscriptions {
     }
 
 
+    public static function save_recurring_signups( $subscriber_id, $campaign_id, $recurring_signups ){
+        $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
+        foreach ( $recurring_signups as $recurring_signup_info ){
+            $first = $recurring_signup_info['selected_times'][0]['time'];
+            $last = end( $recurring_signup_info['selected_times'] )['time'];
+
+            $report_id = $recurring_signups_class->create_recurring_signup(
+                $recurring_signup_info['type'],
+                $recurring_signup_info['label'],
+                $recurring_signup_info['selected_times'],
+                $first,
+                $last,
+                $recurring_signup_info['time'],
+                $recurring_signup_info['week_day'] ?? null,
+            );
+
+            foreach ( $recurring_signup_info['selected_times'] as $time ){
+                if ( !isset( $time['time'] ) ){
+                    continue;
+                }
+                $new_report = self::add_subscriber_time(
+                    $campaign_id,
+                    $subscriber_id,
+                    $time['time'],
+                    $time['duration'],
+                    $time['grid_id'] ?? null,
+                    $report_id
+                );
+                if ( !$new_report ){
+                    return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
+                }
+            }
+        }
+        return true;
+    }
+
+    public static function get_recurring_signups( $subscriber_id, $campaign_id ){
+        $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
+        return $recurring_signups_class->get_recurring_signups();
+    }
+
+    public static function get_recurring_signup( $report_id ){
+        global $wpdb;
+        $report = $wpdb->get_row( $wpdb->prepare(
+            "SELECT r.*
+            FROM $wpdb->dt_reports r
+            WHERE r.id = %s
+            ", $report_id
+        ), ARRAY_A );
+        $times_report_ids = $wpdb->get_results( $wpdb->prepare( "
+            SELECT report_id
+            FROM $wpdb->dt_reportmeta
+            WHERE meta_key = 'recurring_signup'
+            AND meta_value = %s
+        ", $report_id ), ARRAY_A );
+        $report['signups'] = $times_report_ids;
+        return Recurring_Signups::format_from_report( $report );
+    }
+
     public static function get_number_of_notification_emails_sent( $campaign_id ){
         global $wpdb;
         $a = $wpdb->get_var( $wpdb->prepare(
@@ -196,4 +256,183 @@ class DT_Subscriptions {
         return (int) $a;
     }
 
+    public static function delete_recurring_signup( $subscriber_id, $recurring_signup_report_id ){
+        global $wpdb;
+        $recurring_signup = Disciple_Tools_Reports::get( $recurring_signup_report_id, 'id' );
+        $campaign_id = $recurring_signup['parent_id'];
+        //delete the report
+        $wpdb->delete( $wpdb->dt_reports, [ 'id' => $recurring_signup_report_id ] );
+
+        //delete the reports with the recurring_signup meta
+        $wpdb->query( $wpdb->prepare(
+            "DELETE r
+            FROM $wpdb->dt_reports r
+            WHERE parent_id = %s
+            AND post_id = %s
+            AND type = 'campaign_app'
+            AND subtype = 'recurring_signup'
+            AND time_begin >= %s
+            AND value = %s
+            ",
+            $campaign_id, $subscriber_id, time(), $recurring_signup_report_id
+        ) );
+
+        return true;
+    }
+
+    public static function update_recurring_signup( $subscriber_id, $recurring_signup_report_id, $recurring_signup_info ){
+        if ( empty( $subscriber_id ) || empty( $recurring_signup_report_id ) || empty( $recurring_signup_info ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
+        }
+        $recurring_signup = Disciple_Tools_Reports::get( $recurring_signup_report_id, 'id' );
+        if ( empty( $recurring_signup ) ){
+            return new WP_Error( __METHOD__, 'Missing recurring signup', [ 'status' => 400 ] );
+        }
+
+        if ( empty( $recurring_signup_info['selected_times'] ) ){
+            return new WP_Error( __METHOD__, 'Missing times', [ 'status' => 400 ] );
+        }
+        $campaign_id = $recurring_signup['parent_id'];
+
+        foreach ( $recurring_signup_info['selected_times'] as $time ){
+            if ( !isset( $time['time'] ) ){
+                continue;
+            }
+            $new_report = self::add_subscriber_time(
+                $campaign_id,
+                $subscriber_id,
+                $time['time'],
+                $time['duration'],
+                $time['grid_id'] ?? null,
+                $recurring_signup_report_id
+            );
+            if ( !$new_report ){
+                return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
+            }
+        }
+
+        $recurring_signup['time_end'] = end( $recurring_signup_info['selected_times'] )['time'];
+        Disciple_Tools_Reports::update( $recurring_signup );
+
+        return self::get_recurring_signup( $recurring_signup_report_id );
+    }
+
+    public static function get_subscriber_prayer_times( $campaign_id, $subscriber_id, $only_future = false ){
+        global $wpdb;
+        $subs  = $wpdb->get_results( $wpdb->prepare( "
+            SELECT time_begin, time_end, subtype, id, value
+            FROM $wpdb->dt_reports
+            WHERE parent_id = %s
+            AND post_id = %s
+            AND post_type = 'subscriptions'
+            AND type = 'campaign_app'
+            AND time_begin >= %s
+            ORDER BY time_begin ASC
+        ", $campaign_id, $subscriber_id, ( $only_future ? time() : 0 ) ), ARRAY_A );
+
+        $my_commitments = [];
+        foreach ( $subs as $commitments_report ){
+            $my_commitments[] = [
+                'time_begin' => (int) $commitments_report['time_begin'],
+                'time_end' => (int) $commitments_report['time_end'],
+                'report_id' => (int) $commitments_report['id'],
+                'type' => $commitments_report['subtype'],
+                'recurring_id' => (int) $commitments_report['value'] ?? null,
+            ];
+        }
+
+        return $my_commitments;
+    }
+}
+
+/**
+ * Report structure
+ * id: 1
+ * parent_id: the id of the campaign
+ * post_id: the id of the subscriber
+ * post_type: subscriptions
+ * type: recurring_signup
+ * subtype: 'daily' | 'weekly' | 'monthly'
+ * payload: {
+ *    selected_times: array of individual times
+ *    type: 'daily' | 'weekly' | 'monthly'
+ *    duration: 15 minutes
+ *    label: 'Daily at 8am'
+ * }
+ * value: not used
+ * label: not used, for locations
+ * time_begin: the first time of the recurring signup
+ * time_end: the last time of the recurring signup
+ * timestamp: the time the recurring signup was created
+ *
+ */
+
+class Recurring_Signups {
+    public $campaign_id;
+    public $subscriber_id;
+
+    public function __construct( $subscriber_id, $campaign_id ) {
+        $this->campaign_id = $campaign_id;
+        $this->subscriber_id = $subscriber_id;
+    }
+
+    public function create_recurring_signup( $type, $label, $selected_times, $first_time, $last_time, $time, $week_day ){
+        $args = [
+            'parent_id' => $this->campaign_id,
+            'post_id' => $this->subscriber_id,
+            'post_type' => 'subscriptions',
+            'type' => 'recurring_signup',
+            'subtype' => $type,
+            'payload' => [
+                'selected_times' => $selected_times,
+                'type' => $type,
+                'label' => $label,
+                'duration' => $selected_times[0]['duration'] ?? 15,
+                'time' => $time ?? null,
+                'week_day' => $week_day,
+            ],
+            'value' => 0,
+            'label' => '',
+            'time_begin' => $first_time,
+            'time_end' => $last_time,
+            'lng' => null,
+            'level' => null,
+            'lat' => null,
+            'grid_id' => null,
+        ];
+        return Disciple_Tools_Reports::insert( $args, true, false );
+    }
+
+    public function get_recurring_signups(){
+        global $wpdb;
+        $reports = $wpdb->get_results( $wpdb->prepare(
+            "SELECT *
+            FROM $wpdb->dt_reports r
+            WHERE r.parent_id = %s
+            AND r.post_id = %s
+            AND r.type = 'recurring_signup'
+            GROUP BY r.id
+            ", $this->campaign_id, $this->subscriber_id
+        ), ARRAY_A );
+        $recurring_signups = [];
+        foreach ( $reports as $index => $report ){
+            $recurring_signups[] = self::format_from_report( $report );
+        }
+        return $recurring_signups;
+    }
+
+    public static function format_from_report( $report ){
+        $report['payload'] = maybe_unserialize( $report['payload'] );
+        return [
+            'report_id' => (int) $report['id'],
+            'campaign_id' => (int) $report['parent_id'],
+            'type' => $report['subtype'],
+            'label' => $report['payload']['label'] ?? $report['label'],
+            'first' => (int) $report['time_begin'],
+            'last' => (int) $report['time_end'],
+            'duration' => (int) ( $report['payload']['duration'] ?? 15 ),
+            'time' => (int) $report['payload']['time'] ?? 0,
+            'week_day' => isset( $report['payload']['week_day'] ) ? ( (int) $report['payload']['week_day'] ) : null,
+        ];
+    }
 }
