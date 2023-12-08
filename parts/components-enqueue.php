@@ -122,6 +122,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Your current prayer time is %s' => __( 'Your current prayer time is %s', 'disciple-tools-prayer-campaigns' ),
                     'Select a new time:' => __( 'Select a new time:', 'disciple-tools-prayer-campaigns' ),
                     'Select a time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                    'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
+                    'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
