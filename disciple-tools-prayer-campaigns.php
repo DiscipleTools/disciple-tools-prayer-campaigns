@@ -352,7 +352,8 @@ add_action( 'plugins_loaded', function (){
     /**
      * Plugin Releases and updates
      */
-    if ( is_admin() ){
+    $disable = isset( $_POST['wppusher'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+    if ( !$disable && is_admin() ){
         require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
 
         if ( class_exists( '\YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
