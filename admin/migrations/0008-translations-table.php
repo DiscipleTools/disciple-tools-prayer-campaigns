@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 /**
  * Class DT_Prayer_Campaign_Migration_0007
  */
-class DT_Prayer_Campaign_Migration_0007 extends DT_Prayer_Campaign_Migration {
+class DT_Prayer_Campaign_Migration_0008 extends DT_Prayer_Campaign_Migration {
     /**
      * @throws \Exception  Got error when creating table $name.
      */
