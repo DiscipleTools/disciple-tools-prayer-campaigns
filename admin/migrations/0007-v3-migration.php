@@ -28,14 +28,14 @@ class DT_Prayer_Campaign_Migration_0007 extends DT_Prayer_Campaign_Migration {
 
 
         global $wpdb;
-        $current_subscribers = $wpdb->get_results( $wpdb->prepare( "
+        $current_subscribers = $wpdb->get_results( "
             SELECT post_id, parent_id, time_end
             FROM $wpdb->dt_reports r
             WHERE post_type = 'subscriptions'
             AND ( subtype = 'ongoing' OR subtype = '24hour' )
             GROUP BY parent_id, post_ID
             
-        " ), ARRAY_A );
+        ", ARRAY_A );
 
         foreach ( $current_subscribers as $subscriber ){
             $subscriber_times = $wpdb->get_results( $wpdb->prepare( "
