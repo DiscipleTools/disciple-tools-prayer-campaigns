@@ -13,6 +13,12 @@ password.
 At the root of all movements you find extra-ordinary prayer. Adding this module to your Disciple.Tools system, allows
 you to publish a prayer subscriptions form with the supporting management tools for subscribers through email magic links.
 
+## Resources
+- Example: [https://ramadandemo.pray4movement.org/](https://ramadandemo.pray4movement.org/)
+- Documentation is available at [https://pray4movement.org/docs/](https://pray4movement.org/docs/)
+- Translation: [Plugin Translation on Weblate](https://translate.disciple.tools/projects/pray4movement/disciple-tools-prayer-campaigns/)
+
+
 ## Usage
 
 #### Will Do

@@ -356,12 +356,12 @@ add_action( 'plugins_loaded', function (){
      * Plugin Releases and updates
      */
     $disable = isset( $_POST['wppusher'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-    if ( is_admin() && !$disable ){
+    if ( !$disable && is_admin() ){
         require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
 
 
         if ( class_exists( '\YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
-            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/components/version-control.json';
+            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
 
             PucFactory::buildUpdateChecker(
                 $hosted_json,

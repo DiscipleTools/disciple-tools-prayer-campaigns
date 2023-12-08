@@ -32,6 +32,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
                 'home' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ) : home_url(),
                 'plugin_url' => $plugin_dir_url,
+                'dt_campaigns_is_p4m_news_enabled' => dt_campaigns_is_p4m_news_enabled(),
                 'translations' => [
                     'Detected time zone' => __( 'Detected time zone', 'disciple-tools-prayer-campaigns' ),
                     'Choose a timezone' => __( 'Choose a timezone', 'disciple-tools-prayer-campaigns' ),
@@ -123,6 +124,9 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Your current prayer time is %s' => __( 'Your current prayer time is %s', 'disciple-tools-prayer-campaigns' ),
                     'Select a new time:' => __( 'Select a new time:', 'disciple-tools-prayer-campaigns' ),
                     'Select a time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
+                    'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
+                    'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
+                    'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
                     'modals' => [
                         'edit' => [
                             'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
