@@ -31,20 +31,11 @@ class DT_Prayer_Campaign_Migration_0007 extends DT_Prayer_Campaign_Migration {
         $current_subscribers = $wpdb->get_results( $wpdb->prepare( "
             SELECT post_id, parent_id, time_end
             FROM $wpdb->dt_reports r
-            WHERE parent_id IN ( 
-                SELECT p.ID
-                FROM $wpdb->posts p
-                INNER JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'status' AND pm.meta_value = 'active' )
-                LEFT JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'end_date' )
-                WHERE post_type = 'campaigns'
-                AND ( pm2.meta_value IS NULL OR pm2.meta_value > %d )
-            )
-            AND r.time_end > %d
-            AND post_type = 'subscriptions'
+            WHERE post_type = 'subscriptions'
             AND ( subtype = 'ongoing' OR subtype = '24hour' )
-            GROUP BY post_ID
+            GROUP BY parent_id, post_ID
             
-        ", time(), time() - 2 * WEEK_IN_SECONDS ), ARRAY_A );
+        " ), ARRAY_A );
 
         foreach ( $current_subscribers as $subscriber ){
             $subscriber_times = $wpdb->get_results( $wpdb->prepare( "
