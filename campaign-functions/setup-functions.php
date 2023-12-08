@@ -87,5 +87,5 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
 
 function dt_campaigns_is_p4m_news_enabled(){
     //maybe make this a setting too.
-    return apply_filters( 'dt_campaigns_is_p4m_news_enabled', true );
+    return apply_filters( 'dt_campaigns_is_p4m_news_enabled', defined( 'WP_DEBUG' ) ? !WP_DEBUG : true );
 }

@@ -158,6 +158,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
+      receive_pray4movement_news: false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -234,6 +235,7 @@ export class CampaignSignUp extends LitElement {
       name: this._form_items.name,
       email: this._form_items.email,
       code: this._form_items.code,
+      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: selected_times,
       recurring_signups: this.recurring_signups,
     }
@@ -1041,7 +1043,7 @@ export class campaignSubscriptions extends LitElement {
         </dt-modal>
         
         ${(this.recurring_signups||[]).map((value, index) => {
-            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last < this.campaign_data.end_timestamp - 86400 * 30 )
+            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
             let day_in_seconds = 86400
             //in the next 60 days and not more than 2 weeks old
             let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
