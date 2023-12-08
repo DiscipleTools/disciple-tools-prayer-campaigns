@@ -1,5 +1,11 @@
 import {html, css, LitElement, range, map, classMap, styleMap} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+function translate(str){
+  if ( !strings[str] ){
+    console.error("'" + str + "' => __( '" + str + "', 'disciple-tools-prayer-campaigns' ),");
+  }
+  return strings[str] || str
+}
 const day_in_seconds = 86400
 
 export class cpTemplate extends LitElement {
@@ -251,6 +257,7 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
+      receive_pray4movement_news: false,
     }
     this.selected_times_count = 0;
   }
@@ -260,6 +267,7 @@ export class ContactInfo extends LitElement {
   }
 
   handleInput(e){
+    console.log(e);
     let val = e.target.value
     let name = e.target.name
     this._form_items[name] = val
@@ -274,6 +282,7 @@ export class ContactInfo extends LitElement {
     if ( this._form_items.EMAIL){
       return;
     }
+    console.log(this._form_items);
 
     if ( !this._form_items.name || !this._is_email(this._form_items.email) ){
       this.form_error = strings['Please enter a valid name or email address']
@@ -297,6 +306,13 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="EMAIL" id="email" placeholder="${strings['Email']}" @input=${this.handleInput}/>
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
+      </div>
+      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? 
+          html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
+                <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
+                ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
+          </label>`
+      : ``}
       </div>
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
