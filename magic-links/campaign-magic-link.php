@@ -67,6 +67,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 99 );
         require_once( DT_Prayer_Campaigns::get_dir_path() . 'porches/generic/site/enqueue.php' );
+        DT_Porch_Selector::instance();
         add_filter( 'language_attributes', [ $this, 'dt_custom_dir_attr' ] );
 
 

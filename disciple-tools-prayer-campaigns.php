@@ -83,25 +83,6 @@ add_action( 'after_setup_theme', function() : void {
 } );
 
 /**
- * The mother porch loads at 20
- * Child porches need to load between 20 and 60
- * We can safely run functions regarding registered porches at 60
- */
-function dt_after_all_porches_have_loaded() {
-    //@todo only if loading front page
-    if ( class_exists( 'DT_Porch_Selector' ) ){
-        $porch_selector = DT_Porch_Selector::instance();
-
-        if ( $porch_selector->has_selected_porch() ) {
-            require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
-        }
-
-        $porch_selector->load_selected_porch();
-    }
-}
-add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 150 );
-
-/**
  * Singleton class for setting up the plugin.
  *
  * @since  0.1

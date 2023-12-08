@@ -19,6 +19,9 @@ class DT_Porch_Selector {
     public function __construct() {
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $this->selected_porch_id = $campaign['porch_type']['key'] ?? 'generic-porch';
+
+        add_action( 'after_setup_theme', [ $this, 'dt_after_all_porches_have_loaded' ], 150 );
+
     }
 
     public function load_selected_porch() {
@@ -29,6 +32,15 @@ class DT_Porch_Selector {
 
     public function has_selected_porch() {
         return $this->selected_porch_id && !empty( $this->selected_porch_id ) && $this->porch_exists( $this->selected_porch_id );
+    }
+
+    public function dt_after_all_porches_have_loaded() {
+
+        $plugin_dir = DT_Prayer_Campaigns::get_dir_path();
+        if ( $this->has_selected_porch() ) {
+            require_once trailingslashit( $plugin_dir ) . 'porches/prayer-fuel-post-type.php';
+        }
+        $this->load_selected_porch();
     }
 
     public function porch_exists( $porch_id ) {

@@ -512,7 +512,7 @@ class DT_Campaigns_Base {
                     if ( data ) {
                         jQuery.each(data, function(i,v){
                             content += `<li>
-                                <a href="/subscriptions/${window.lodash.escape(v.ID)}">
+                                <a href="${window.wpApiShare.site_url}/subscriptions/${window.lodash.escape(v.ID)}">
                                     ${window.lodash.escape(v.name)}
                                 </a>
                                  (${window.lodash.escape(v.commitments)})
