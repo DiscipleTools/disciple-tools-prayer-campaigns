@@ -199,6 +199,22 @@ class DT_Generic_Porch_Strings {
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::FUEL,
             ],
+            'scheduled_prayer_fuel_title' => [
+                'label' => 'Scheduled Prayer Fuel Title',
+                'default' => __( 'Scheduled Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
+            'scheduled_prayer_fuel_description' => [
+                'label' => 'Scheduled Prayer Fuel Description',
+                'default' => __( 'All Scheduled Prayer Fuel in all available languages. Add and edit the prayer fuel below', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
 //            'country_name' => [
 //                'label' => 'Location Name',
 //                'value' => '',
