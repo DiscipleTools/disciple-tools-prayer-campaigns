@@ -1,5 +1,10 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$landing_post_type = PORCH_LANDING_POST_TYPE;
+
+if ( !current_user_can( 'edit_' . $landing_post_type ) ) { exit; }
+
 $max_days = 1000;
 
 $campaign = DT_Campaign_Landing_Settings::get_campaign();
