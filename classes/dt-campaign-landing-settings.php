@@ -227,7 +227,7 @@ class DT_Campaign_Landing_Settings {
         ];
         $fields['custom_theme_color'] = [
             'name' => __( 'Custom Theme Color', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'text',
+            'type' => 'color',
             'tile' => 'campaign_landing',
             'description' => __( 'The color that will be used as the custom theme color for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
