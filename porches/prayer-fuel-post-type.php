@@ -95,7 +95,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             $lang = isset( $_GET['post_language'] ) ? sanitize_text_field( wp_unslash( $_GET['post_language'] ) ) : null;
         }
 
-        $langs = $this->language_settings->get_enabled_languages();
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
+        $langs = $this->language_settings->get_enabled_languages( $campaign_id );
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }

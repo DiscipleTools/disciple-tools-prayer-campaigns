@@ -3,10 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
-    private $languages_manager;
-
     public function __construct() {
-        $this->languages_manager = new DT_Campaign_Languages();
         parent::__construct();
     }
 
@@ -184,7 +181,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 <?php
                 break;
             case 'language':
-                $languages = $this->languages_manager->get_enabled_languages();
+                $campaign = DT_Campaign_Landing_Settings::get_campaign();
+                $languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
 
                 $translated_languages = [];
                 foreach ( $items as $post ) {
@@ -196,7 +194,6 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     $translated_languages[$lang][] = $post;
                 }
 
-                $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
                 foreach ( $languages as $code => $language ) {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );
