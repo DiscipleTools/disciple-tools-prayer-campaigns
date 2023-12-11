@@ -133,7 +133,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $post_id = $campaign_fields['ID'];
         $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $post_id );
 
-        $comment = 'Story feedback from ' . $campaign_url . '/stats' . ' by ' . $params['email'] . ": \n" . $params['story'];
+        $comment = 'Story feedback from ' . $campaign_url . '/stats by ' . $params['email'] . ': \n' . $params['story'];
         DT_Posts::add_post_comment( 'campaigns', $post_id, $comment, 'stories', [], false );
 
         $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );

@@ -291,6 +291,12 @@ class DT_Campaigns_Base {
                 'type' => 'key_select',
                 'default' => DT_Time_Utilities::get_slot_duration_options(),
             ];
+            $fields['enabled_languages'] = [
+                'name' => 'Enabled Languages',
+                'type' => 'tags',
+                'default' => [],
+                'tile' => 'campaign_landing',
+            ];
 
             $fields['strings_translations'] = [
                 'name' => 'String Translations',

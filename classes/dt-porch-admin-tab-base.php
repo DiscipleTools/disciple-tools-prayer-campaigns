@@ -79,10 +79,10 @@ class DT_Porch_Admin_Tab_Base {
     }
 
     public function main_column() {
-        $langs = dt_campaign_list_languages();
         $allowed_tags = $this->get_allowed_tags();
 
         $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
+        $langs = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
         $campaign_settings = DT_Porch_Settings::settings();
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
@@ -135,7 +135,32 @@ class DT_Porch_Admin_Tab_Base {
                             if ( isset( $field['enabled'] ) && $field['enabled'] === false ){
                                 continue;
                             }
-                            if ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
+                            if ( $key === 'default_language' ) : ?>
+                                <?php $enabled_languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['name'] ); ?>
+                                    </td>
+                                    <td>
+                                        <select name="list[<?php echo esc_html( $key ); ?>]">
+                                            <?php
+                                            $selected_option = isset( $campaign[$key] ) ? $campaign[$key] : '';
+                                            if ( !empty( $selected_option ) && isset( $enabled_languages[$selected_option] ) ) {
+                                                ?>
+                                                <option value="<?php echo esc_attr( $selected_option ) ?>"><?php echo esc_html( $enabled_languages[$selected_option]['native_name'] ) ?></option>
+                                                <option disabled>-----</option>
+                                                <?php
+                                            }
+                                            foreach ( $enabled_languages as $list_key => $value ) {
+                                                ?>
+                                                <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $value['native_name'] ) ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                </tr>
+                            <?php elseif ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
                                 <tr>
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
@@ -299,9 +324,10 @@ class DT_Porch_Admin_Tab_Base {
         <?php
     }
     private function get_new_translations( $post ) {
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
         $fields = DT_Posts::get_post_field_settings( 'campaigns' );
         $allowed_tags = $this->get_allowed_tags();
-        $langs = dt_campaign_list_languages();
+        $langs = DT_Campaign_Languages::get_enabled_languages( $campaign_id );
 
         $new_translations = [];
         foreach ( $fields as $field_key => $field ){

@@ -75,6 +75,14 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
         //set campaign_url
         $campaign_update['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $name ) ) );
 
+        $language_settings = get_option( 'dt_campaign_languages' );
+        $campaign_update['enabled_languages'] = [ 'values' => [ [ 'value' => 'en_US' ] ] ];
+        foreach ( $language_settings as $language_code => $language_setting ){
+            if ( $language_setting['enabled'] === true ){
+                $campaign_update['enabled_languages']['values'][] = [ 'value' => $language_code ];
+            }
+        }
+
         if ( !empty( $campaign_update ) ){
             $update = DT_Posts::update_post( 'campaigns', (int) $active_campaign, $campaign_update );
         }

@@ -111,7 +111,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
                 'campaign_id' => (int) $campaign_id,
-                'languages' => dt_campaign_list_languages(),
+                'languages' => DT_Campaign_Languages::get_enabled_languages( $campaign_id ),
                 'current_language' => $lang
             ]
         );
