@@ -145,13 +145,12 @@ class DT_Prayer_Campaigns_Campaigns {
         ?>
         <div class="wrap">
             <div id="poststuff">
-                <?php // $is_wizard_open = !DT_Porch_Selector::instance()->has_selected_porch() || $this->no_campaigns(); ?>
-                <?php $is_wizard_open = false ?>
+                <?php $is_wizard_open = $this->no_campaigns(); ?>
 
                 <button
                     class="button"
                     id="campaign-wizard-toggle"
-                    style="display: none; margin-bottom: 1rem;"
+                    style="margin-bottom: 1rem;"
                 >
                     Show Campaign Wizard
                 </button>
@@ -205,6 +204,10 @@ class DT_Prayer_Campaigns_Campaigns {
     public function box_default_campaign(){
         $home_url = home_url();
         $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        if ( empty( $campaign ) ){
+            return;
+        }
 
         ?>
         <table class="widefat striped">
@@ -255,6 +258,10 @@ class DT_Prayer_Campaigns_Campaigns {
         $participation = $this->settings_manager->get( 'p4m_participation', true );
         $participation_force = apply_filters( 'p4m_participation', false ) && !is_super_admin();
 
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
+        if ( empty( $campaign_id ) ){
+            return;
+        }
 
         ?>
 
@@ -351,6 +358,9 @@ class DT_Prayer_Campaigns_Campaigns {
         $porches = DT_Porch_Selector::instance()->get_porch_loaders();
         $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        if ( empty( $campaign ) ) {
+            return;
+        }
         ?>
 
         <table class="widefat striped">
@@ -448,7 +458,7 @@ class DT_Prayer_Campaigns_Campaigns {
     public function box_campaign() {
         $fields = DT_Campaign_Landing_Settings::get_campaign( null, true );
         if ( empty( $fields ) ) {
-            $fields = [ 'ID' => 0 ];
+            return;
         }
 
 
