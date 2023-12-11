@@ -57,6 +57,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
+        DT_Porch_Selector::instance();
+
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -109,7 +111,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
                 'campaign_id' => (int) $campaign_id,
-                'languages' => dt_campaign_list_languages(),
+                'languages' => DT_Campaign_Languages::get_enabled_languages( $campaign_id ),
                 'current_language' => $lang
             ]
         );

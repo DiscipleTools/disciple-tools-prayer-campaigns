@@ -6,7 +6,7 @@ dt_campaign_add_lang_to_cookie( $lang );
 dt_campaign_set_translation( $lang );
 
 $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-$langs = dt_campaign_list_languages();
+$langs = DT_Campaign_Languages::get_enabled_languages( $campaign_fields['ID'] );
 $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
 $url_path = dt_get_url_path();
 

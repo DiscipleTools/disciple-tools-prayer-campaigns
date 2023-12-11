@@ -73,7 +73,7 @@ class DT_Campaign_Landing_Settings {
 
     public static function get_landing_page_url( $campaign_id = null ){
         $campaign = self::get_campaign( $campaign_id );
-        $url = $campaign['campaign_url'];
+        $url = $campaign['campaign_url'] ?? '';
         if ( !empty( $campaign ) && empty( $url ) ){
             $url = str_replace( ' ', '-', strtolower( trim( $campaign['name'] ) ) );
             DT_Posts::update_post( 'campaigns', $campaign_id, [
@@ -251,21 +251,13 @@ class DT_Campaign_Landing_Settings {
             'description' => __( 'The URL that will be used as the background image for the header on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
 
-        $languages_manager = new DT_Campaign_Languages();
-        $langs = $languages_manager->get_enabled_languages();
-        $lang_options = [];
-        foreach ( $langs as $lang_code => $lang ){
-            $lang_options[$lang_code] = [
-                'label' => $lang['label'],
-            ];
-        }
         //default_language
         $fields['default_language'] = [
             'name' => __( 'Default Language', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'key_select',
+            'type' => 'text',
             'tile' => 'campaign_landing',
             'description' => __( 'The default language that will be used for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
-            'default' => $lang_options,
+            'default' => 'en_US',
         ];
         //facebook
         $fields['facebook'] = [
