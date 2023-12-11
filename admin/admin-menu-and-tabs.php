@@ -170,12 +170,13 @@ class DT_Prayer_Campaigns_Menu {
                     <a href="<?php echo esc_attr( $link . $prayer_fuel_tab->token ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_fuel_tab->token ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_fuel_tab->title ) ?>
                     </a>
-                <?php endif; ?>
+                <?php endif;
 
-                <?php do_action( 'dt_prayer_campaigns_tab_headers', !empty( $campaign ), $link, $tab ); ?>
+                do_action( 'dt_prayer_campaigns_tab_headers', !empty( $campaign ), $link, $tab );
 
+                !empty( $campaign ) && $porch_admin->tab_headers( $link );
 
-                <?php !empty( $campaign ) && $porch_admin->tab_headers( $link ); ?>
+                ?>
 
             </h2>
             <?php $this->campaign_selector(); ?>
