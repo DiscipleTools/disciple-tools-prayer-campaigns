@@ -61,7 +61,7 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
         DT_Posts::get_post_settings( 'campaigns', false );
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns', false );
         //porch settings
-        foreach ( $porch_settings as $porch_setting_key => $porch_setting ){
+        foreach ( $porch_settings ?? [] as $porch_setting_key => $porch_setting ){
             if ( $porch_setting_key === 'title' ){
                 $porch_setting_key = 'name';
             }
@@ -77,7 +77,7 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
 
         $language_settings = get_option( 'dt_campaign_languages' );
         $campaign_update['enabled_languages'] = [ 'values' => [ [ 'value' => 'en_US' ] ] ];
-        foreach ( $language_settings as $language_code => $language_setting ){
+        foreach ( $language_settings ?? [] as $language_code => $language_setting ){
             if ( $language_setting['enabled'] === true ){
                 $campaign_update['enabled_languages']['values'][] = [ 'value' => $language_code ];
             }
@@ -88,7 +88,7 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
         }
 
         $porch_string_translations = get_option( 'dt_campaign_porch_translations' );
-        foreach ( $porch_string_translations as $porch_string_key => $porch_string_translation ){
+        foreach ( $porch_string_translations ?? [] as $porch_string_key => $porch_string_translation ){
             foreach ( $porch_string_translation as $language => $translation ){
                 if ( !empty( $translation ) ){
                     DT_Campaign_Languages::save_translation( $campaign['ID'], $porch_string_key, $language, $translation );
