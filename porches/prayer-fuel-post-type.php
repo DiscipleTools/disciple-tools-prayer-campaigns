@@ -159,11 +159,12 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     }
 
     public function admin_head(){
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
         ?>
         <script>
             jQuery(document).ready(function($) {
                 setTimeout(function (){
-                    $('.edit-post-fullscreen-mode-close').attr('href', '<?php echo esc_url_raw( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=dt_prayer_fuel' ) ) ?>')
+                    $('.edit-post-fullscreen-mode-close').attr('href', '<?php echo esc_url_raw( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=dt_prayer_fuel&campaign=' . $campaign_id ) ) ?>')
                 }, 2000)
             })
         </script>
