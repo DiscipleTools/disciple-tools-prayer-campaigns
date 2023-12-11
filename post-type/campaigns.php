@@ -1131,13 +1131,6 @@ class DT_Campaigns_Base {
             if ( !isset( $fields['porch_type'] ) ){
                 $fields['porch_type'] = 'generic-porch';
             }
-//            $key_name = 'public_key';
-//            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-//                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $fields['type'] );
-//            }
-//            if ( !isset( $fields[$key_name] ) ) {
-//                $fields[$key_name] = dt_create_unique_key();
-//            }
             if ( !isset( $fields['custom_theme_color'] ) ) {
                 $fields['custom_theme_color'] = self::rand_color();
             }
