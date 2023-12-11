@@ -291,6 +291,12 @@ class DT_Campaigns_Base {
                 'type' => 'key_select',
                 'default' => DT_Time_Utilities::get_slot_duration_options(),
             ];
+            $fields['enabled_languages'] = [
+                'name' => 'Enabled Languages',
+                'type' => 'tags',
+                'default' => [],
+                'tile' => 'campaign_landing',
+            ];
 
             $fields['strings_translations'] = [
                 'name' => 'String Translations',
@@ -512,7 +518,7 @@ class DT_Campaigns_Base {
                     if ( data ) {
                         jQuery.each(data, function(i,v){
                             content += `<li>
-                                <a href="/subscriptions/${window.lodash.escape(v.ID)}">
+                                <a href="${window.wpApiShare.site_url}/subscriptions/${window.lodash.escape(v.ID)}">
                                     ${window.lodash.escape(v.name)}
                                 </a>
                                  (${window.lodash.escape(v.commitments)})
@@ -1125,13 +1131,6 @@ class DT_Campaigns_Base {
             if ( !isset( $fields['porch_type'] ) ){
                 $fields['porch_type'] = 'generic-porch';
             }
-//            $key_name = 'public_key';
-//            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-//                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $fields['type'] );
-//            }
-//            if ( !isset( $fields[$key_name] ) ) {
-//                $fields[$key_name] = dt_create_unique_key();
-//            }
             if ( !isset( $fields['custom_theme_color'] ) ) {
                 $fields['custom_theme_color'] = self::rand_color();
             }

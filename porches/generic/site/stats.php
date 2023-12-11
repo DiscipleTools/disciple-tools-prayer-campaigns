@@ -32,7 +32,7 @@ class DT_Generic_Porch_Stats {
 
     public function body(){
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-        $langs = dt_campaign_list_languages();
+        $langs = DT_Campaign_Languages::get_enabled_languages( $campaign_fields['ID'] );
         $post_id = $campaign_fields['ID'];
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );

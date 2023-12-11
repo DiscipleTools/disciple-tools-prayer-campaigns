@@ -1,5 +1,11 @@
 import {html, css, LitElement, range, map, classMap, styleMap} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+function translate(str){
+  if ( !strings[str] ){
+    console.error("'" + str + "' => __( '" + str + "', 'disciple-tools-prayer-campaigns' ),");
+  }
+  return strings[str] || str
+}
 const day_in_seconds = 86400
 
 export class cpTemplate extends LitElement {
@@ -234,7 +240,7 @@ export class ContactInfo extends LitElement {
       #email {
         display:none;
       }
-    
+
     `,
     campaignStyles, ];
 
@@ -251,6 +257,7 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
+      receive_pray4movement_news: false,
     }
     this.selected_times_count = 0;
   }
@@ -260,6 +267,7 @@ export class ContactInfo extends LitElement {
   }
 
   handleInput(e){
+    console.log(e);
     let val = e.target.value
     let name = e.target.name
     this._form_items[name] = val
@@ -274,6 +282,7 @@ export class ContactInfo extends LitElement {
     if ( this._form_items.EMAIL){
       return;
     }
+    console.log(this._form_items);
 
     if ( !this._form_items.name || !this._is_email(this._form_items.email) ){
       this.form_error = strings['Please enter a valid name or email address']
@@ -297,6 +306,13 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="EMAIL" id="email" placeholder="${strings['Email']}" @input=${this.handleInput}/>
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
+      </div>
+      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? 
+          html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
+                <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
+                ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
+          </label>`
+      : ``}
       </div>
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
@@ -341,7 +357,7 @@ export class select extends LitElement {
         width: 100%;
         text-align: start;
         //line-height: ;
-        
+
       }
       .select.selected {
         border: 1px solid #ccc;
@@ -357,7 +373,7 @@ export class select extends LitElement {
       .select:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        
+
       }
     `
   ]
@@ -388,8 +404,8 @@ export class select extends LitElement {
                 ${o.label}
               <span>${o.desc}</span>
           </button>`
-      )}  
-      
+      )}
+
     `
   }
 }
@@ -410,10 +426,12 @@ export class cpCalendarDaySelect extends LitElement {
     css`
       :host {
         display: block;
+        container-type: inline-size;
+        container-name: calendar;
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 14cqw);
       }
       .day-cell {
         display: flex;
@@ -530,7 +548,7 @@ export class cpCalendarDaySelect extends LitElement {
     let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${month_start.toSeconds() < now}"
@@ -713,7 +731,7 @@ export class cpMyCalendar extends LitElement {
 
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${ month_start.toSeconds() < now }"
@@ -744,7 +762,7 @@ export class cpMyCalendar extends LitElement {
               })}
         </div>
       </div>
-            
+
       `
 
   }
@@ -893,7 +911,7 @@ export class cpTimes extends LitElement {
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ? 
+                          ${time.progress < 100 ?
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
                               html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
                         </span>
@@ -1078,7 +1096,7 @@ export class cpVerify extends LitElement {
             </svg>
         </div>
       </div>
-      
+
     `
 
   }
@@ -1087,7 +1105,11 @@ customElements.define('cp-verify', cpVerify);
 
 export class cpProgressRing extends LitElement {
   static styles = [
-    css``
+    css`
+    .inner-text {
+      font-size: clamp(1em, 4cqw, 2rem);
+    }
+    `
   ]
 
   static properties = {
@@ -1168,7 +1190,7 @@ export class cpProgressRing extends LitElement {
              cx="${this.radius}"
              cy="${this.radius}"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
               ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
@@ -1275,7 +1297,7 @@ class DtModal extends LitElement {
         justify-content: space-between;
         align-items: flex-start;
       }
-      
+
       .button.opener {
         color: var(--dt-modal-button-opener-color,var(--dt-modal-button-color, #fff) );
         background: var(--dt-modal-button-opener-background, var(--dt-modal-button-background, #000) );
@@ -1451,7 +1473,7 @@ class DtModal extends LitElement {
             >
               <slot name="close-button">Close</slot>
             </button>
-              
+
             <button
               class="button small ${this.confirmButtonClass}"
               data-close=""
