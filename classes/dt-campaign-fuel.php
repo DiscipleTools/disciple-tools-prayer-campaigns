@@ -14,8 +14,8 @@ class DT_Campaign_Fuel {
      *
      * @return int
      */
-    public static function what_day_in_campaign( string $date ) {
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+    public static function what_day_in_campaign( string $date, $campaign_id = null ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $campaign_start_date = $campaign['start_date']['formatted'];
 
 
