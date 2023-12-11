@@ -158,6 +158,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
+      receive_pray4movement_news: false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -234,6 +235,7 @@ export class CampaignSignUp extends LitElement {
       name: this._form_items.name,
       email: this._form_items.email,
       code: this._form_items.code,
+      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: selected_times,
       recurring_signups: this.recurring_signups,
     }
@@ -416,7 +418,7 @@ export class CampaignSignUp extends LitElement {
                   <div class="nav-buttons">
                       <button @click=${()=>window.location.reload()}>${translate('Ok')}</button>
                       <a ?hidden="${this.account_link.length===0}" class="button" href="${this.account_link}">${translate('Access Account')}</a>
-                      <a class="button" href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}</a>
+                      <a class="button" href="${window.campaign_objects.home + '/list'}">${translate('See Prayer Fuel')}</a>
                   </div>
 
           </div>
@@ -971,6 +973,8 @@ export class campaignSubscriptions extends LitElement {
     _delete_time_modal_open: {type: Boolean, state: true},
     _extend_modal_open: {type: Boolean, state: true},
     _extend_modal_message: {type: String, state: true},
+    _renew_modal_open: {type: Boolean, state: true},
+    _renew_modal_message: {type: String, state: true},
     _change_times_modal_open: {type: String, state: true},
   }
 
@@ -980,6 +984,7 @@ export class campaignSubscriptions extends LitElement {
     this._selected_time_to_delete = null;
     this._delete_modal_open = false;
     this._extend_modal_open = false;
+    this._renew_modal_open = false;
     this._change_times_modal_open = false;
     this._extend_modal_message = 'Def';
     this.change_time_details = null
@@ -1005,6 +1010,7 @@ export class campaignSubscriptions extends LitElement {
     this.selected_times = window.campaign_data.subscriber_info.my_commitments;
     this.my_recurring = window.campaign_data.subscriber_info.my_recurring;
     this.recurring_signups = window.campaign_data.subscriber_info.my_recurring_signups;
+    this.recurring_signups.sort((a,b)=>b.last-a.last);
     return html`
         <!--delete modal-->
         <dt-modal
@@ -1035,7 +1041,16 @@ export class campaignSubscriptions extends LitElement {
             confirmButtonClass="danger"
             @close="${e=>this.extend_times_modal_closed(e)}" >
         </dt-modal>
-
+        <!--extend modal-->
+        <dt-modal
+            .isOpen="${this._renew_modal_open}"
+            .content="${this._renew_modal_message}"
+            title="${translate('Renew Prayer Times')}"
+            hideButton="true"
+            confirmButtonClass="danger"
+            @close="${e=>this.extend_times_modal_closed(e, true)}" >
+        </dt-modal>
+        
         <!--change times modal-->
         <dt-modal
             .isOpen="${this._change_times_modal_open}"
@@ -1053,15 +1068,21 @@ export class campaignSubscriptions extends LitElement {
         </dt-modal>
 
         ${(this.recurring_signups||[]).map((value, index) => {
-            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last < this.campaign_data.end_timestamp - 86400 * 30 )
-            let enabled_renew = !last_prayer_time_near_campaign_end && value.last < now + 86400 * 60
+            let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
+            let day_in_seconds = 86400
+            //in the next 60 days and not more than 2 weeks old
+            let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
+            //more than 2 weeks old
+            let renew_extended = !last_prayer_time_near_campaign_end && value.last < now - day_in_seconds * 14
+            
             const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">
                 <div class="selected-time-content">
                   <div class="title-row">
-                    <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>
-                    <button ?hidden="${!enabled_renew}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>
+                      <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>
+                      <button ?hidden="${!extend_enabled}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>
+                      <button ?hidden="${!renew_extended}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id, true)}">${translate('renew')}</button>
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
@@ -1201,7 +1222,7 @@ export class campaignSubscriptions extends LitElement {
     this._delete_time_modal_open = false;
   }
 
-  open_extend_times_modal(report_id){
+  open_extend_times_modal(report_id, renew){
     const recurring_sign = this.recurring_signups.find(k=>k.report_id===report_id)
     if ( !recurring_sign ){
       return;
@@ -1209,11 +1230,16 @@ export class campaignSubscriptions extends LitElement {
     this.selected_recurring_signup_to_extend = report_id
     let frequency_option = window.campaign_data.frequency_options.find(k=>k.value===recurring_sign.type)
 
-    this._extend_modal_message = ("Extend for %s months?").replace('%s', frequency_option.month_limit );
-    this._extend_modal_open = true;
+    if ( renew ){
+      this._renew_modal_message = ("Renew for %s months?").replace('%s', frequency_option.month_limit );
+      this._renew_modal_open = true;
+    } else {
+      this._extend_modal_message = ("Extend for %s months?").replace('%s', frequency_option.month_limit );
+      this._extend_modal_open = true;
+    }
   }
 
-  extend_times_modal_closed(e){
+  extend_times_modal_closed(e, renew = false){
     this._extend_modal_open = false;
     if ( e.detail?.action === 'confirm' ){
       let recurring_sign = this.recurring_signups.find(k=>k.report_id===this.selected_recurring_signup_to_extend)
@@ -1221,28 +1247,42 @@ export class campaignSubscriptions extends LitElement {
         return;
       }
 
-      let recurring_extend = window.campaign_scripts.build_selected_times_for_recurring( recurring_sign.time, recurring_sign.type, recurring_sign.duration, recurring_sign.week_day || null, recurring_sign.last );
+      if ( !recurring_sign.time || recurring_sign.time == 0 ){
+        recurring_sign.time = recurring_sign.first % ( 86400 * 24 )
+      }
+
+      let recurring_extend = window.campaign_scripts.build_selected_times_for_recurring(
+        recurring_sign.time, recurring_sign.type,
+        recurring_sign.duration,
+        recurring_sign.week_day || null,
+        renew ? null : recurring_sign.last, );
       recurring_extend.report_id = recurring_sign.report_id
 
       //filter out existing times
       let existing_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>recurring_sign.report_id === c.recurring_id).map(c=>parseInt(c.time_begin))
+
+
       recurring_extend.selected_times = recurring_extend.selected_times.filter(c=>!existing_times.includes(c.time))
 
-      // let data = {
-      //   recurring_signups: [recurring_extend],
-      // }
+      if ( renew ){
+        let data = {
+          recurring_signups: [recurring_extend],
+        }
+        window.campaign_scripts.submit_prayer_times( recurring_sign.campaign_id, data, 'add').then(resp=>{
+          window.location.reload() //@todo replace with event
+        })
 
-      window.campaign_scripts.submit_prayer_times( recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(data=>{
-        // window.location.reload() //@todo replace with event
-      })
+      } else {
+        window.campaign_scripts.submit_prayer_times( recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(resp=>{
+          window.location.reload() //@todo replace with event
+        })
+      }
     }
   }
 
 
   open_change_time_modal(e,report_id){
-    console.log(report_id);
     const recurring_sign = this.recurring_signups.find(k=>k.report_id===report_id)
-    console.log(recurring_sign);
     if ( !recurring_sign ){
       return;
     }

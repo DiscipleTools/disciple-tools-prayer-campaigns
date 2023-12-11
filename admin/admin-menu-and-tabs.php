@@ -35,12 +35,18 @@ class DT_Prayer_Campaigns_Menu {
      * @since   0.1.0
      */
     public function __construct() {
+        add_action( 'admin_menu', array( $this, 'register_menu' ) );
+
+        $page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+        if ( $page != $this->token ) {
+            return;
+        }
+
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-home.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-email-settings.php';
 
-        add_action( 'admin_menu', array( $this, 'register_menu' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'dt_options_script_pages', array( $this, 'dt_options_script_pages' ) );
 

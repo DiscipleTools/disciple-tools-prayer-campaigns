@@ -106,6 +106,42 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 ]
             ]
         );
+
+        register_rest_route(
+            $namespace, '/'. $this->type . '/stories', [
+                [
+                    'methods'  => 'POST',
+                    'callback' => [ $this, 'add_story' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+    }
+
+    public function add_story( WP_REST_Request $request ) {
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        if ( !isset( $params['story'], $params['email'], $params['campaign_id'] ) ){
+            return false;
+        }
+        $params['story'] = wp_kses_post( $request->get_params()['story'] );
+
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $params['campaign_id'] );
+        $post_id = $campaign_fields['ID'];
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $post_id );
+
+        $comment = 'Story feedback from ' . $campaign_url . '/stats by ' . $params['email'] . ': \n' . $params['story'];
+        DT_Posts::add_post_comment( 'campaigns', $post_id, $comment, 'stories', [], false );
+
+        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );
+        if ( sizeof( $subs['posts'] ) === 1 ){
+            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
+        }
+
+        return true;
     }
 
     public function verify_email_with_code( WP_REST_Request $request ){
@@ -127,7 +163,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
 
         set_transient( 'campaign_verify_' . $email, $six_digit_code, 20 * MINUTE_IN_SECONDS );
 
-        $sent = DT_Prayer_Campaigns_Send_Email::send_verification( $email, $six_digit_code );
+        $sent = DT_Prayer_Campaigns_Send_Email::send_verification( $email, $six_digit_code, $params['campaign_id'] );
         return $sent; // true on success
     }
 
@@ -244,7 +280,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( empty( $title ) ) {
             $title = $email;
         }
-        if ( isset( $params['p4m_news'] ) && !empty( $params['p4m_news'] ) ){
+        if ( isset( $params['receive_pray4movement_news'] ) && !empty( $params['receive_pray4movement_news'] ) ){
             p4m_subscribe_to_news( $params['email'], $title );
         }
 
@@ -282,7 +318,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         }
 
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
-        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber );
+        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber, $campaign_id );
 
         return [
             'account_link' => $account_link,

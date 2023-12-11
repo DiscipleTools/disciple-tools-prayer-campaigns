@@ -41,9 +41,10 @@ $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
                     <p>
                         <?php if ( !is_user_logged_in() ) : ?>
                             <a href="<?php echo esc_html( wp_login_url( $campaign_url ) ); ?>">Login</a> |
+                        <?php else : ?>
+                            <a href="<?php echo esc_html( home_url( 'campaigns/' . CAMPAIGN_ID ) ); ?>">Campaign Settings</a> |
                         <?php endif; ?>
-                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . CAMPAIGN_ID ) ); ?>">Page Settings</a> |
-                        <a href="<?php echo esc_html( home_url( 'campaigns/' . CAMPAIGN_ID ) ); ?>">Campaign Settings</a>
+                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . CAMPAIGN_ID ) ); ?>">Page Settings</a>
                     </p>
                 </div>
             </div>

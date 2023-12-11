@@ -6,7 +6,7 @@ dt_campaign_add_lang_to_cookie( $lang );
 dt_campaign_set_translation( $lang );
 
 $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-$langs = dt_campaign_list_languages();
+$langs = DT_Campaign_Languages::get_enabled_languages( $campaign_fields['ID'] );
 $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
 $url_path = dt_get_url_path();
 
@@ -26,13 +26,13 @@ $sign_up_link = $campaign_url . '#sign-up';
         <div class="icon-list navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href='<?php echo esc_url( $sign_up_link ) ?>'><?php esc_html_e( 'Sign Up', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/list' ) ?>"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
                 </li>
             </ul>
         </div>

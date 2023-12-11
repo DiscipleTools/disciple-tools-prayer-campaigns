@@ -79,28 +79,8 @@ require_once( 'campaign-functions/setup-functions.php' );
 add_action( 'after_setup_theme', function() : void {
     require_once __DIR__ . '/porches/interfaces/dt-porch-loader-interface.php';
     require_once __DIR__ . '/porches/generic/dt-generic-porch-loader.php';
-    require_once __DIR__ . '/porches/ongoing/dt-ongoing-porch-loader.php';
     require_once __DIR__ . '/porches/ramadan/dt-ramadan-porch-loader.php';
 } );
-
-/**
- * The mother porch loads at 20
- * Child porches need to load between 20 and 60
- * We can safely run functions regarding registered porches at 60
- */
-function dt_after_all_porches_have_loaded() {
-    //@todo only if loading front page
-    if ( class_exists( 'DT_Porch_Selector' ) ){
-        $porch_selector = DT_Porch_Selector::instance();
-
-        if ( $porch_selector->has_selected_porch() ) {
-            require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
-        }
-
-        $porch_selector->load_selected_porch();
-    }
-}
-add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 150 );
 
 /**
  * Singleton class for setting up the plugin.
@@ -357,12 +337,12 @@ add_action( 'plugins_loaded', function (){
      * Plugin Releases and updates
      */
     $disable = isset( $_POST['wppusher'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-    if ( is_admin() && !$disable ){
+    if ( !$disable && is_admin() ){
         require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
 
 
         if ( class_exists( '\YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
-            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/components/version-control.json';
+            $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
 
             PucFactory::buildUpdateChecker(
                 $hosted_json,

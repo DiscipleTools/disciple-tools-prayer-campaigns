@@ -73,8 +73,8 @@ class DT_Campaign_Landing_Settings {
 
     public static function get_landing_page_url( $campaign_id = null ){
         $campaign = self::get_campaign( $campaign_id );
-        $url = $campaign['campaign_url'];
-        if ( empty( $url ) ){
+        $url = $campaign['campaign_url'] ?? '';
+        if ( !empty( $campaign ) && empty( $url ) ){
             $url = str_replace( ' ', '-', strtolower( trim( $campaign['name'] ) ) );
             DT_Posts::update_post( 'campaigns', $campaign_id, [
                 'campaign_url' => $url,
@@ -82,6 +82,22 @@ class DT_Campaign_Landing_Settings {
         }
         return site_url( $url );
     }
+
+    public static function get_campaign_color( $campaign_id = null ){
+        $campaign = self::get_campaign( $campaign_id );
+        if ( !empty( $campaign['custom_theme_color'] ) ) {
+            return $campaign['custom_theme_color'];
+        }
+        $theme_manager = new DT_Porch_Theme();
+        if ( !empty( $campaign['theme_color']['key'] ) ) {
+            $theme_name = $campaign['theme_color']['key'];
+            $theme = $theme_manager->get_theme( $theme_name );
+            return $theme['color'];
+        }
+        $theme = $theme_manager->get_default_theme();
+        return $theme['color'];
+    }
+
 
     public function dt_details_additional_tiles( $tiles, $post_type ){
         if ( $post_type !== 'campaigns' ){
@@ -153,15 +169,15 @@ class DT_Campaign_Landing_Settings {
             'tile' => 'campaign_email',
             'description' => __( 'The logo that will be used in emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
             'campaign_section' => $sections['settings'],
-            'default' => Campaigns_Email_Template::get_email_logo_url()
+            'default' => 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png'
         ];
         //reminder_content_disable_fuel
         $fields['reminder_content_disable_fuel'] = [
             'name' => __( 'Disable Prayer Email Fuel Link', 'disciple-tools-prayer-campaigns' ),
             'type' => 'key_select',
             'default' => [
-                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
                 'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
             ],
             'tile' => 'campaign_email',
             'description' => __( 'Whether or not to disable prayer fuel emails.', 'disciple-tools-prayer-campaigns' ),
@@ -235,21 +251,13 @@ class DT_Campaign_Landing_Settings {
             'description' => __( 'The URL that will be used as the background image for the header on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
 
-        $languages_manager = new DT_Campaign_Languages();
-        $langs = $languages_manager->get_enabled_languages();
-        $lang_options = [];
-        foreach ( $langs as $lang_code => $lang ){
-            $lang_options[$lang_code] = [
-                'label' => $lang['label'],
-            ];
-        }
         //default_language
         $fields['default_language'] = [
             'name' => __( 'Default Language', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'key_select',
+            'type' => 'text',
             'tile' => 'campaign_landing',
             'description' => __( 'The default language that will be used for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
-            'default' => $lang_options,
+            'default' => 'en_US',
         ];
         //facebook
         $fields['facebook'] = [
@@ -316,7 +324,7 @@ class DT_Campaign_Landing_Settings {
 
         if ( $search_my_campaigns || is_admin() ) {
             $campaigns = DT_Posts::list_posts( 'campaigns', [] );
-            if ( !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
+            if ( !is_wp_error( $campaigns ) && !empty( $campaigns['posts'] ) && isset( $campaigns['posts'][0]['ID'] ) ){
                 return $campaigns['posts'][0]['ID'];
             }
         }
