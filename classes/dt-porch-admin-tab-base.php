@@ -135,7 +135,7 @@ class DT_Porch_Admin_Tab_Base {
                             if ( isset( $field['enabled'] ) && $field['enabled'] === false ){
                                 continue;
                             }
-                            if ( !isset( $field['type'] ) || 'text' === $field['type'] ) : ?>
+                            if ( !isset( $field['type'] ) || in_array( $field['type'], [ 'text', 'color' ] ) ) : ?>
                                 <tr>
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
@@ -155,7 +155,7 @@ class DT_Porch_Admin_Tab_Base {
                                                 <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
                                                 button to set a value for each language:</p>
                                         <?php endif; ?>
-                                        <input style="width: 100%" type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
+                                        <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field['translations'] ) ){
