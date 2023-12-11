@@ -240,7 +240,7 @@ export class ContactInfo extends LitElement {
       #email {
         display:none;
       }
-    
+
     `,
     campaignStyles, ];
 
@@ -357,7 +357,7 @@ export class select extends LitElement {
         width: 100%;
         text-align: start;
         //line-height: ;
-        
+
       }
       .select.selected {
         border: 1px solid #ccc;
@@ -373,7 +373,7 @@ export class select extends LitElement {
       .select:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        
+
       }
     `
   ]
@@ -404,8 +404,8 @@ export class select extends LitElement {
                 ${o.label}
               <span>${o.desc}</span>
           </button>`
-      )}  
-      
+      )}
+
     `
   }
 }
@@ -426,10 +426,12 @@ export class cpCalendarDaySelect extends LitElement {
     css`
       :host {
         display: block;
+        container-type: inline-size;
+        container-name: calendar;
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 14cqw);
       }
       .day-cell {
         display: flex;
@@ -546,7 +548,7 @@ export class cpCalendarDaySelect extends LitElement {
     let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${month_start.toSeconds() < now}"
@@ -729,7 +731,7 @@ export class cpMyCalendar extends LitElement {
 
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${ month_start.toSeconds() < now }"
@@ -760,7 +762,7 @@ export class cpMyCalendar extends LitElement {
               })}
         </div>
       </div>
-            
+
       `
 
   }
@@ -909,7 +911,7 @@ export class cpTimes extends LitElement {
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ? 
+                          ${time.progress < 100 ?
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
                               html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
                         </span>
@@ -1094,7 +1096,7 @@ export class cpVerify extends LitElement {
             </svg>
         </div>
       </div>
-      
+
     `
 
   }
@@ -1103,7 +1105,11 @@ customElements.define('cp-verify', cpVerify);
 
 export class cpProgressRing extends LitElement {
   static styles = [
-    css``
+    css`
+    .inner-text {
+      font-size: clamp(1em, 4cqw, 2rem);
+    }
+    `
   ]
 
   static properties = {
@@ -1184,7 +1190,7 @@ export class cpProgressRing extends LitElement {
              cx="${this.radius}"
              cy="${this.radius}"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
               ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
@@ -1291,7 +1297,7 @@ class DtModal extends LitElement {
         justify-content: space-between;
         align-items: flex-start;
       }
-      
+
       .button.opener {
         color: var(--dt-modal-button-opener-color,var(--dt-modal-button-color, #fff) );
         background: var(--dt-modal-button-opener-background, var(--dt-modal-button-background, #000) );
@@ -1467,7 +1473,7 @@ class DtModal extends LitElement {
             >
               <slot name="close-button">Close</slot>
             </button>
-              
+
             <button
               class="button small ${this.confirmButtonClass}"
               data-close=""
