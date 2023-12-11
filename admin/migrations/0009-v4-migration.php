@@ -95,6 +95,15 @@ class DT_Prayer_Campaign_Migration_0009 extends DT_Prayer_Campaign_Migration {
                 }
             }
         }
+
+        global $wpdb;
+        $wpdb->query( "
+            UPDATE $wpdb->postmeta
+            SET meta_value = 'generic-porch'
+            WHERE meta_key = 'porch_type'
+            AND meta_value = 'ongoing-porch'
+            OR meta_value = '24hour-porch'
+        " );
     }
 
     /**
