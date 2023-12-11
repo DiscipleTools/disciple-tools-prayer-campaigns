@@ -11,8 +11,7 @@ $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
 $days = [];
 $campaign_length = DT_Campaign_Fuel::total_days_in_campaign();
-$languages_manager = new DT_Campaign_Languages();
-$languages = $languages_manager->get_enabled_languages();
+$languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
 
 for ( $i = 0; $i < 50; $i++ ) {
     if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
@@ -125,7 +124,7 @@ if ( $campaign_length > 0 ) {
                         unset( $translated_languages[$lang] );
                     }
                     $day_post_id = $day_post['ID'];
-                    $url = "/wp-admin/post.php?post=$day_post_id&action=edit&campaign=7";
+                    $url = site_url() . "/wp-admin/post.php?post=$day_post_id&action=edit&campaign=7";
                     ?>
                     <?php if ( $day_post['ID'] ) { ?>
                         <h4 class="edit-post-titles">
@@ -139,7 +138,7 @@ if ( $campaign_length > 0 ) {
                 <?php
                 foreach ( $translated_languages as $lang => $language ) {
                     // $url = add_query_arg( [ 'lang' => $lang ], $url );
-                    $url = "/wp-admin/post-new.php?post_type=landing&post_language=$lang&day=$day&campaign=" . $campaign['ID'];
+                    $url = site_url() . "/wp-admin/post-new.php?post_type=landing&post_language=$lang&day=$day&campaign=" . $campaign['ID'];
                     ?>
                         <h4 class="edit-post-titles">
                             <?php echo esc_html( $language['flag'] ) ?>
