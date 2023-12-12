@@ -606,26 +606,28 @@ export class CampaignSignUp extends LitElement {
                       </span>
                   </div>
                   <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
-                      ${this.recurring_signups.map((value, index) => html`
-                          <div class="selected-times selected-time-labels">
-                              <div class="selected-time-frequency">
-                                  <div>${value.label}</div>
-                                  <div>
-                                      <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button">
-                                          <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
-                                      </button>
-                                  </div>
-                              </div>
-                              <ul>
-                                  <li>
-                                      ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
-                                  </li>
-                                  <li>
-                                      ${translate('Renews on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
-                                  </li>
-                              </ul>
-                          </div>
-                      `)}
+                      ${this.recurring_signups.map((value, index) => {
+                          let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
+                          return html`
+                            <div class="selected-times selected-time-labels">
+                                <div class="selected-time-frequency">
+                                    <div>${value.label}</div>
+                                    <div>
+                                        <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button">
+                                            <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
+                                        </button>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                    </li>
+                                    <li>
+                                        ${translate( last_prayer_time_near_campaign_end ? 'Ends on %s' : 'Renews on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                    </li>
+                                </ul>
+                            </div>
+                      `})}
                       ${this.selected_times.map((value, index) => html`
                           <div class="selected-times">
                               <span>${value.date_time.toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
@@ -645,24 +647,26 @@ export class CampaignSignUp extends LitElement {
                       <span class="step-circle">*</span>
                       <span>${translate('My Prayer Commitments')} (${this.selected_times_count()})</span>
                   </h2>
-                  ${this.recurring_signups.map((value, index) => html`
-                      <div class="selected-times selected-time-labels">
-                          <div class="selected-time-frequency">
-                            <div>${value.label}</div>
-                            <div>
-                                <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
-                            </div>        
-                          </div>
-                          <ul>
-                              <li>
-                                  ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
-                              </li>
-                              <li>
-                                  ${translate('Renews on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
-                              </li>
-                          </ul>
-                      </div>
-                  `)}
+                  ${this.recurring_signups.map((value, index) => {
+                      let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
+                      return html`
+                        <div class="selected-times selected-time-labels">
+                            <div class="selected-time-frequency">
+                              <div>${value.label}</div>
+                              <div>
+                                  <button @click="${e=>this.remove_recurring_prayer_time(index)}" class="remove-prayer-time-button"><img src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
+                              </div>        
+                            </div>
+                            <ul>
+                                <li>
+                                    ${strings['Starting on %s'].replace('%s', value.first.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                </li>
+                                <li>
+                                    ${translate( last_prayer_time_near_campaign_end ? 'Ends on %s' : 'Renews on %s').replace('%s', value.last.toLocaleString({ month: 'long', day: 'numeric'}))}
+                                </li>
+                            </ul>
+                        </div>
+                  `})}
                   ${this.selected_times.map((value, index) => html`
                       <div class="selected-times">
                           <span class="aligned-row">
@@ -851,7 +855,7 @@ export class cpCalendar extends LitElement {
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
-                                ${ ( day.disabled && day.key < window.campaign_data.start_timestamp ) ? window.campaign_scripts.escapeHTML(day.day) : html`
+                                ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
                                     <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
