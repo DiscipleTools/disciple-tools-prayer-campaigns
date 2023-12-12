@@ -1140,6 +1140,13 @@ class DT_Campaigns_Base {
             if ( !isset( $fields['min_time_duration'] ) ){
                 $fields['min_time_duration'] = '15';
             }
+            $key_name = 'public_key';
+            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', 'ongoing' );
+            }
+            if ( !isset( $fields[$key_name] ) ) {
+                $fields[$key_name] = dt_create_unique_key();
+            }
         }
         return $fields;
     }
