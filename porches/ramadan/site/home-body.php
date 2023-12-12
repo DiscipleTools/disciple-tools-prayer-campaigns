@@ -112,7 +112,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             <div class="col-sm-12 col-md-8 what-content-text">
                 <?php
                     global $allowedtags;
-                    echo wp_kses( DT_Porch_Settings::get_field_translation( 'what_content' ), $allowedtags );
+                    echo nl2br( wp_kses( DT_Porch_Settings::get_field_translation( 'what_content' ), $allowedtags ) );
                 ?>
             </div>
             <div class="col-sm-12 col-md-4">
