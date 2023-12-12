@@ -24,6 +24,8 @@ class DT_Porch_Settings {
         }
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
+        $campaign_field_settings = apply_filters( 'dt_campaign_porch_settings', $campaign_field_settings, $current_campaign['porch_type']['key'] ?? null );
+
         $lang = dt_campaign_get_current_lang();
 
         $defaults = [];

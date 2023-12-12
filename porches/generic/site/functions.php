@@ -54,7 +54,7 @@ function display_translated_field( $field_key, $section_tag, $section_id, $secti
         if ( $split_text ) {
             echo esc_html( dt_split_sentence( $field_translation, 1, 2 ) ) ?> <span><?php echo esc_html( dt_split_sentence( $field_translation, 2, 2 ) );
         } else {
-            echo esc_html( nl2br( wp_kses( $field_translation, $allowed_tags ) ) );
+            echo nl2br( wp_kses( $field_translation, $allowed_tags ) );
         }
 
         // Display edit button, if user is currently logged in.
