@@ -412,7 +412,7 @@ export class CampaignSignUp extends LitElement {
                   <br>
                   <br>
                   <div>
-                      <a class="button" href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}</a>
+                      <a class="button" href="${window.campaign_objects.home + '/list'}">${translate('See Prayer Fuel')}</a>
                   </div>
               </div>
           </div>
