@@ -400,6 +400,26 @@ export class CampaignSignUp extends LitElement {
     if ( !this.frequency ){
       return;
     }
+    if ( this.campaign_data.end_timestamp && this.campaign_data.end_timestamp < this.now ){
+      return html`
+        <div id="campaign">
+          <div class="column" style="text-align: center">
+              <div class="section-div">
+                  <h2 class="section-title">
+                      <span class="step-circle">!</span>
+                      <span style="flex-grow: 1">${translate('Campaign Ended')}</span>
+                  </h2>
+                  <br>
+                  <br>
+                  <div>
+                      <a class="button" href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}</a>
+                  </div>
+              </div>
+          </div>
+        </div>
+      `
+    }
+
     if ( this._view === 'confirmation' ){
       return html`
         <div id="campaign">
@@ -806,8 +826,20 @@ export class cpCalendar extends LitElement {
   render() {
     let now = new Date().getTime()/1000;
     let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, this.campaign_data.start_timestamp))
+    if ( this.campaign_data.end_timestamp && this.campaign_data.end_timestamp < now ){
+      if ( this.campaign_data.end_timestamp - this.campaign_data.start_timestamp < 86400 * 60 ){
+        now_date = window.luxon.DateTime.fromSeconds(this.campaign_data.start_timestamp)
+      } else {
+        now_date = window.luxon.DateTime.fromSeconds(this.campaign_data.end_timestamp).minus({month:1})
+      }
+    }
     let months_to_show = [];
     for( let i = 0; i < 2; i++ ){
+      let next_month = now_date.plus({month:i})
+      if ( this.campaign_data.end_timestamp && next_month.toSeconds() > this.campaign_data.end_timestamp ){
+        continue;
+      }
+
       let month_days = window.campaign_scripts.build_calendar_days(now_date.plus({month:i}))
       let covered_slots = 0
       let total_slots = 0
@@ -819,7 +851,7 @@ export class cpCalendar extends LitElement {
       months_to_show.push({
         date: now_date.plus({month:i}),
         days: month_days,
-        percentage: (covered_slots / total_slots * 100).toFixed( 2 ),
+        percentage: ((total_slots ? ( covered_slots / total_slots ) : 0 ) * 100).toFixed( 2 ),
         days_covered: ( this.campaign_data.slot_length * covered_slots / 60 / 24 ).toFixed( 1 )
       })
     }
