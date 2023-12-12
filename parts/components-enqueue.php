@@ -85,6 +85,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),
                     'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
                     'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
+                    'Ends on %s' => __( 'Ends on %s', 'disciple-tools-prayer-campaigns' ),
                     'Success' => __( 'Success', 'disciple-tools-prayer-campaigns' ),
                     'Your registration was successful.' => __( 'Your registration was successful.', 'disciple-tools-prayer-campaigns' ),
                     'Check your email for additional details and to manage your account.' => __( 'Check your email for additional details and to manage your account.', 'disciple-tools-prayer-campaigns' ),
