@@ -154,7 +154,7 @@ window.campaign_scripts = {
         })
 
 
-        if ( time_iterator > now ){
+        if ( time_iterator > now || time_iterator < end ){
           if (!window.campaign_scripts.time_label_counts[time_formatted]) {
             window.campaign_scripts.time_label_counts[time_formatted] = 0
           }
