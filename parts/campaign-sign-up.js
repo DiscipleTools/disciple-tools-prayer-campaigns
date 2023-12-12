@@ -835,7 +835,7 @@ export class cpCalendar extends LitElement {
     }
     let months_to_show = [];
     for( let i = 0; i < 2; i++ ){
-      let next_month = now_date.plus({month:i})
+      let next_month = now_date.startOf('month').plus({month:i})
       if ( this.campaign_data.end_timestamp && next_month.toSeconds() > this.campaign_data.end_timestamp ){
         continue;
       }
