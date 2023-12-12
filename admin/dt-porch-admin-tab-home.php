@@ -116,7 +116,11 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
                             <input type="hidden" name="add_language_nonce" id="add_language_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'add_language' ) ) ?>"/>
 
-                            <?php $language_list = dt_get_available_languages( false, true ); ?>
+                            <?php $language_list = dt_get_available_languages( false, true );
+                            //sort by english name
+                            $english_name_column = array_column( $language_list, 'label' );
+                            array_multisort( $english_name_column, SORT_ASC, $language_list );
+                            ?>
 
                             <select name="new_language" id="language_list">
 

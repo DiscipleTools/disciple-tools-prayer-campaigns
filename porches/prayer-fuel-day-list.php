@@ -204,11 +204,12 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                     if ( count( $posts_in_language ) === 0 ) {
                         $link = $add_link . "&post_language=$code";
+                        $link .= '&campaign=' . $campaign['ID'];
                     } else if ( count( $posts_in_language ) === 1 ) {
                         $id = $posts_in_language[0]['ID'];
                         $link = "post.php?post=$id&action=edit";
+                        $link .= '&campaign=' . $campaign['ID'];
                     }
-                    $link .= '&campaign=' . $campaign['ID']
                     ?>
 
                     <?php if ( count( $posts_in_language ) < 2 ): ?>
