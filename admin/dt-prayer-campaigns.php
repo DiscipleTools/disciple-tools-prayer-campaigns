@@ -36,7 +36,6 @@ class DT_Prayer_Campaigns_Campaigns {
 
         $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
         $porch_type = isset( $wizard_details['porch'] ) ? $wizard_details['porch'] : 'generic-porch';
-        $campaign_type = isset( $wizard_details['campaign_type'] ) ? $wizard_details['campaign_type'] : 'ongoing';
 
         if ( empty( $wizard_details ) ) {
             return;
@@ -44,7 +43,6 @@ class DT_Prayer_Campaigns_Campaigns {
 
         $fields = [
             'name' => 'Campaign',
-            'type' => $campaign_type,
             'start_date' => dt_format_date( time(), 'Y-m-d' ),
             'status' => 'active',
         ];
@@ -54,11 +52,9 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields['start_date'] = $next_ramadan_start_date;
             $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
             $fields['name'] = 'Ramadan Campaign';
-        } else if ( $campaign_type === '24hour' ) {
+        } else {
             $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
-            $fields['name'] = 'Fixed Dates Campaign';
-        } elseif ( $campaign_type === 'ongoing' ){
-            $fields['name'] = 'Ongoing Campaign';
+            $fields['name'] = 'Prayer Campaign';
         }
 
         if ( $new_campaign_name ) {
