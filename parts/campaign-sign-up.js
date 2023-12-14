@@ -779,7 +779,7 @@ export class cpCalendar extends LitElement {
         height: 14cqw;
         width: 14cqw;
         color:black;
-        font-size: max(0.75em, 0.5em + 2cqi);
+        font-size: max(0.75em, 0.5em + 1.75cqi);
         font-weight:550;
       }
 
@@ -1086,7 +1086,7 @@ export class campaignSubscriptions extends LitElement {
             confirmButtonClass="danger"
             @close="${e=>this.extend_times_modal_closed(e, true)}" >
         </dt-modal>
-        
+
         <!--change times modal-->
         <dt-modal
             .isOpen="${this._change_times_modal_open}"
@@ -1110,7 +1110,7 @@ export class campaignSubscriptions extends LitElement {
             let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
             //more than 2 weeks old
             let renew_extended = !last_prayer_time_near_campaign_end && value.last < now - day_in_seconds * 14
-            
+
             const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">

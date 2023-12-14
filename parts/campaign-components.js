@@ -307,7 +307,7 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
       </div>
-      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? 
+      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ?
           html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
                 <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
                 ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
@@ -456,6 +456,7 @@ export class cpCalendarDaySelect extends LitElement {
         height: 40px;
         width: 40px;
         font-weight: bold;
+        font-size:max(0.75em, 0.5em + 1.75cqi);
       }
       .selected-time {
         color: black;
@@ -610,6 +611,7 @@ export class cpMyCalendar extends LitElement {
         height: var(--size);
         width: var(--size);
         font-weight: bold;
+        font-size:max(0.75em, 0.5em + 1.75cqi);
       }
       .selected-time {
         //color: black;
@@ -1107,7 +1109,7 @@ export class cpProgressRing extends LitElement {
   static styles = [
     css`
     .inner-text {
-      font-size: clamp(1em, 4cqw, 2rem);
+      font-size: clamp(1em, 4cqw, 0.5em + 1.75cqi);
     }
     `
   ]
