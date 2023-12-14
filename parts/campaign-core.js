@@ -498,9 +498,6 @@ jQuery(document).ready(function ($) {
 
         let content = `
         <input id="edit_modal_field_key" type="hidden"/>
-        <input id="edit_modal_section_id" type="hidden"/>
-        <input id="edit_modal_split_text" type="hidden"/>
-
         <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -545,18 +542,14 @@ jQuery(document).ready(function ($) {
     $(document).on('click', '.edit-btn', function (e) {
 
         // Set translation field values and display modal.
-        let field_key = $(e.currentTarget).data('field_key');
-        let section_id = $(e.currentTarget).data('section_id');
-        let split_text = $(e.currentTarget).data('split_text');
-
-        let lang_default = $('#' + section_id + '_lang_default').val().trim();
-        let lang_all = $('#' + section_id + '_lang_all').val().trim();
-        let lang_selected = $('#' + section_id + '_lang_selected').val().trim();
+        let edit_btn = $(e.currentTarget);
+        let field_key = $(edit_btn).data('field_key');
+        let lang_default = $(edit_btn).data('lang_default');
+        let lang_all = $(edit_btn).data('lang_all');
+        let lang_selected = $(edit_btn).data('lang_selected');
 
         // Capture hidden values to be applied further down stream.
         $('#edit_modal_field_key').val(field_key);
-        $('#edit_modal_section_id').val(section_id);
-        $('#edit_modal_split_text').val(split_text);
 
         // Obtain element handles and set modal display values.
         let edit_modal_original_string = $('#edit_modal_original_string');
@@ -577,16 +570,10 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.edit-update-btn', function (e) {
         let field_key = $('#edit_modal_field_key').val();
-        let section_id = $('#edit_modal_section_id').val();
-        let split_text = $('#edit_modal_split_text').val();
-        let lang_default = $('#edit_modal_original_string').text();
         let lang_all = $('#edit_modal_all_languages').val();
         let lang_selected = $('#edit_modal_selected_language').val();
         let lang_code = $('.dt-magic-link-language-selector').val();
         let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
-
-        // Capture nested edit button html, to be re-assigned following update.
-        let edit_btn = $('#' + section_id).find('button.edit-btn');
 
         // Dispatch edit update request.
         let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_edit';
@@ -616,52 +603,10 @@ jQuery(document).ready(function ($) {
         })
         .promise()
         .then((response) => {
-            if ( response && response['updated'] ) {
-              if ( response['lang_all'] !== undefined ) {
-                $('#' + section_id + '_lang_all').val( response['lang_all'] );
-              }
-
-              if ( response['lang_translate'] !== undefined ) {
-                $('#' + section_id + '_lang_selected').val( response['lang_translate'] );
-              }
-
-              if ( response['section_lang'] !== undefined ) {
-                let section_lang = response['section_lang'];
-
-                // If split text, then ensure styling is maintained.
-                if ( split_text === 'true' ) {
-                  let parts = section_lang.split(/\s+/);
-                  if ( parts.length > 0 ) {
-                    let arr = [parts.shift(), parts.join(' ')];
-                    $('#' + section_id).fadeOut('fast', function () {
-                      $(this).html(`${arr[0]} <span>${arr[1]}</span>`).fadeIn('fast', function () {
-                        if ( edit_btn ) {
-                          $(this).append( edit_btn );
-                        }
-                      });
-                    });
-                  } else {
-                    $('#' + section_id).fadeOut('fast', function () {
-                      $(this).text(section_lang).fadeIn('fast', function () {
-                          if ( edit_btn ) {
-                              $(this).append( edit_btn );
-                          }
-                      });
-                    });
-                  }
-                } else {
-                  $('#' + section_id).fadeOut('fast', function () {
-                    $(this).text(section_lang).fadeIn('fast', function () {
-                        if ( edit_btn ) {
-                            $(this).append( edit_btn );
-                        }
-                    });
-                  });
-                }
-              }
-            }
-
             $('#edit_modal').modal('hide');
+            if ( response && response['updated'] ) {
+              location.reload();
+            }
         });
     });
 });
