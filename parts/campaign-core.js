@@ -522,14 +522,19 @@ jQuery(document).ready(function ($) {
                                     <td>
                                         <textarea id="edit_modal_all_languages" rows="5" style="min-width: 100%;"></textarea>
                                     </td>
-                                </tr>
-                                <tr style="background-color: #ffffff;">
-                                    <td style="vertical-align: top; width: 30%;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${((current_lang !== null) ? ' - ['+ current_lang +']' : '' )}</td>
+                                </tr>`;
+
+                                if ( current_lang ) {
+                                  content += `<tr style="background-color: #ffffff;">
+                                    <td
+                                      style="vertical-align: top; width: 30%;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${' - [' + escapeHTML( current_lang ) + ']'}</td>
                                     <td>
-                                        <textarea id="edit_modal_selected_language" rows="5" style="min-width: 100%;"></textarea>
+                                      <textarea id="edit_modal_selected_language" rows="5" style="min-width: 100%;"></textarea>
                                     </td>
-                                </tr>
-                            </tbody>
+                                  </tr>`;
+                                }
+
+                            content += `</tbody>
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -598,11 +603,17 @@ jQuery(document).ready(function ($) {
           campaign_id,
           'edit': {
             'field_key': field_key,
-            'lang_all': lang_all,
-            'lang_translate': lang_selected,
-            'lang_code': lang_code
+            'lang_all': lang_all
           }
         };
+
+        if ( lang_selected !== undefined ) {
+          payload['edit']['lang_translate'] = lang_selected;
+        }
+
+        if ( lang_code !== undefined ) {
+          payload['edit']['lang_code'] = lang_code;
+        }
 
         jQuery.ajax({
             type: 'POST',
