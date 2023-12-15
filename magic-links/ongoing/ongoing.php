@@ -119,6 +119,38 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 ],
             ]
         );
+
+        register_rest_route(
+            $namespace, '/'. $this->type . '/contact_us', [
+                [
+                    'methods'  => 'POST',
+                    'callback' => [ $this, 'contact_us' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+    }
+
+    public function contact_us( WP_REST_Request $request ) {
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+
+        if ( !isset( $params['message'], $params['email'], $params['campaign_id'] ) ) {
+            return false;
+        }
+
+        $email = $params['email'];
+        $message = $params['message'];
+        $campaign_id = $params['campaign_id'];
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+
+        return DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( get_bloginfo('admin_email'), ( $campaign_fields['title'] ?? 'Prayer Campaigns' ) . ': Contact Us', $message, [
+            'From: ' . $email . ' <' . $email . '>',
+            'Reply-To: ' . $email
+        ] );
     }
 
     public function add_story( WP_REST_Request $request ) {
