@@ -147,7 +147,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $campaign_id = $params['campaign_id'];
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
 
-        return DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( get_bloginfo('admin_email'), ( $campaign_fields['title'] ?? 'Prayer Campaigns' ) . ': Contact Us', $message, [
+        return DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( get_bloginfo( 'admin_email' ), ( $campaign_fields['title'] ?? 'Prayer Campaigns' ) . ': Contact Us', $message, [
             'From: ' . $email . ' <' . $email . '>',
             'Reply-To: ' . $email
         ] );
