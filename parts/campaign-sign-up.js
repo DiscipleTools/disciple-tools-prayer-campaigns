@@ -805,6 +805,7 @@ export class cpCalendar extends LitElement {
   render() {
     let now = new Date().getTime()/1000;
     let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, this.campaign_data.start_timestamp))
+    //when campaign has ended, show the last month
     if ( this.campaign_data.end_timestamp && this.campaign_data.end_timestamp < now ){
       if ( this.campaign_data.end_timestamp - this.campaign_data.start_timestamp < 86400 * 60 ){
         now_date = window.luxon.DateTime.fromSeconds(this.campaign_data.start_timestamp)
