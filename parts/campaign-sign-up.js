@@ -776,6 +776,17 @@ export class cpCalendar extends LitElement {
       .disabled-calendar-day {
         color: #c4c4c4;
       }
+      .incomplete-day {
+          width: 31px;
+          height: 16px;
+          border-radius: 40px 40px 0 0;
+          background: #a5a0b55c;
+          display: block;
+          position: absolute;
+          margin-top: 11px;
+          margin-left: 11px;
+          transform: rotate(130deg);
+      }
     `
   ]
 
@@ -855,6 +866,7 @@ export class cpCalendar extends LitElement {
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
+                                ${ day.slots.length > 0 && day.slots.length < 96 ? html`<div class="incomplete-day"></div>` : `` }
                                 ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
                                     <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
