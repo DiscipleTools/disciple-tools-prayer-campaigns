@@ -387,7 +387,7 @@ window.campaign_scripts = {
           slots: [],
         }
       }
-      day.disabled = next_day < now || (window.campaign_data.end_timestamp && day_date.toSeconds() > window.campaign_data.end_timestamp ) || next_day < window.campaign_data.start_timestamp;
+      day.disabled = next_day < now || (window.campaign_data.end_timestamp && day_date.toSeconds() > window.campaign_data.end_timestamp ) || next_day <= window.campaign_data.start_timestamp;
       month_days.push(day)
     }
     return month_days
