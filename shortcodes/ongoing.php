@@ -38,7 +38,7 @@ class DT_Ongoing_Shortcode {
             dt_campaign_reload_text_domain();
         }
         dt_campaigns_register_scripts( $atts );
-
+        set_transient( 'dt_magic_link_remote_' . $atts['post_id'], $atts['rest_url'], DAY_IN_SECONDS );
     }
 }
 
