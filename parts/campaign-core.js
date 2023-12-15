@@ -196,7 +196,7 @@ window.campaign_scripts = {
 
     if ( campaign_data_promise === null ){
       let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_info';
-      if (window.campaign_objects.remote) {
+      if ( window.campaign_objects.remote ) {
         link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
       }
       campaign_data_promise = jQuery.ajax({
@@ -387,7 +387,7 @@ window.campaign_scripts = {
           slots: [],
         }
       }
-      day.disabled = next_day < now || (window.campaign_data.end_timestamp && next_day > window.campaign_data.end_timestamp ) || next_day < window.campaign_data.start_timestamp;
+      day.disabled = next_day < now || (window.campaign_data.end_timestamp && day_date.toSeconds() > window.campaign_data.end_timestamp ) || next_day < window.campaign_data.start_timestamp;
       month_days.push(day)
     }
     return month_days
