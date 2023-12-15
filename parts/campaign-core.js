@@ -196,6 +196,9 @@ window.campaign_scripts = {
 
     if ( campaign_data_promise === null ){
       let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_info';
+      if ( window.campaign_objects.remote ) {
+        link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
+      }
       campaign_data_promise = jQuery.ajax({
         type: 'GET',
         data: {action: 'get', parts: window.campaign_objects.magic_link_parts, 'url': 'campaign_info', time: new Date().getTime(), campaign_id},
