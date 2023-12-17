@@ -1109,7 +1109,7 @@ export class cpProgressRing extends LitElement {
   static styles = [
     css`
     .inner-text {
-      font-size: clamp(1em, 4cqw, 0.5em + 1.75cqi);
+      font-size: clamp(1em, 2cqw, 0.5em + 1cqi);
     }
     `
   ]
