@@ -5,7 +5,7 @@
  * Description: Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
  * Text Domain: disciple-tools-prayer-campaigns
  * Domain Path: /languages
- * Version: 4.0.0
+ * Version: 3.0.4
  * Author URI: https://github.com/DiscipleTools
  * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-campaigns
  * Requires at least: 4.7.0
@@ -79,8 +79,27 @@ require_once( 'campaign-functions/setup-functions.php' );
 add_action( 'after_setup_theme', function() : void {
     require_once __DIR__ . '/porches/interfaces/dt-porch-loader-interface.php';
     require_once __DIR__ . '/porches/generic/dt-generic-porch-loader.php';
+    require_once __DIR__ . '/porches/ongoing/dt-ongoing-porch-loader.php';
     require_once __DIR__ . '/porches/ramadan/dt-ramadan-porch-loader.php';
 } );
+
+/**
+ * The mother porch loads at 20
+ * Child porches need to load between 20 and 60
+ * We can safely run functions regarding registered porches at 60
+ */
+function dt_after_all_porches_have_loaded() {
+    if ( class_exists( 'DT_Porch_Selector' ) ){
+        $porch_selector = DT_Porch_Selector::instance();
+
+        if ( $porch_selector->has_selected_porch() ) {
+            require_once trailingslashit( __DIR__ ) . 'porches/prayer-fuel-post-type.php';
+        }
+
+        $porch_selector->load_selected_porch();
+    }
+}
+add_action( 'after_setup_theme', 'dt_after_all_porches_have_loaded', 150 );
 
 /**
  * Singleton class for setting up the plugin.
@@ -119,8 +138,7 @@ class DT_Prayer_Campaigns {
         require_once( 'campaign-functions/cron-schedule.php' );
 
         require_once( 'post-type/loader.php' );
-        require_once( 'classes/dt-campaign-fuel.php' );
-        require_once( 'classes/dt-campaign-global-settings.php' );
+        require_once( 'classes/dt-campaign-settings.php' );
         require_once( 'classes/dt-porch-settings.php' );
         require_once( 'classes/dt-campaign-languages.php' );
         require_once( 'classes/dt-porch-theme.php' );
@@ -128,9 +146,7 @@ class DT_Prayer_Campaigns {
         require_once( 'classes/dt-porch-selector.php' );
 
         require_once( 'porches/loader.php' );
-        require_once( 'classes/dt-campaign-landing-settings.php' );
 
-        require_once( 'magic-links/campaign-magic-link.php' );
         require_once( 'magic-links/ongoing/ongoing.php' );
         require_once( 'magic-links/subscription-management/subscription-management.php' );
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
@@ -339,7 +355,6 @@ add_action( 'plugins_loaded', function (){
     $disable = isset( $_POST['wppusher'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
     if ( !$disable && is_admin() ){
         require_once( __DIR__ . '/admin/plugin-update-checker/plugin-update-checker.php' );
-
 
         if ( class_exists( '\YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
             $hosted_json = 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-prayer-campaigns/master/version-control.json';
