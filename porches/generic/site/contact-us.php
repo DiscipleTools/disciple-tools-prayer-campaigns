@@ -62,17 +62,6 @@ class DT_Generic_Porch_Contact_Us {
             .wow p {
                 font-weight: 600;
             }
-            /*#form-confirm .center {
-                text-align: center;
-            }
-            #campaign-stats .dt-magic-link-language-selector {
-                border: 1px solid black;
-                background-color: transparent;
-                color: black;
-                border-radius: 5px;
-                padding: 5px;
-                margin-inline-start: 1em;
-            }*/
         </style>
         <div id="campaign-contact-us">
             <section class="section" data-stellar-background-ratio="0.2">
