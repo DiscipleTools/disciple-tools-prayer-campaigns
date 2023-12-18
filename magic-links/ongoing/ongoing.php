@@ -154,7 +154,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
 
         $campaign_admin_user_id = $campaign_fields['post_author'];
         $mention = dt_get_user_mention_syntax( $campaign_admin_user_id );
-        $comment = sprintf( _x( '%s %s (%s) - %s', 'disciple-tools-prayer-campaigns' ), $mention, $name, $email, $message );
+        $comment = sprintf( _x( '%1$s %2$s (%3$s) - %4$s', 'disciple-tools-prayer-campaigns' ), $mention, $name, $email, $message );
 
         $current_user_id = get_current_user_id();
         wp_set_current_user( 0 );
