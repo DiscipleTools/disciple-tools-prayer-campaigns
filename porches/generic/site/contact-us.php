@@ -62,7 +62,7 @@ class DT_Generic_Porch_Contact_Us {
             .wow p {
                 font-weight: 600;
             }
-            #campaign-stats .center {
+            /*#form-confirm .center {
                 text-align: center;
             }
             #campaign-stats .dt-magic-link-language-selector {
@@ -72,16 +72,23 @@ class DT_Generic_Porch_Contact_Us {
                 border-radius: 5px;
                 padding: 5px;
                 margin-inline-start: 1em;
-            }
+            }*/
         </style>
         <div id="campaign-contact-us">
             <section class="section" data-stellar-background-ratio="0.2">
                 <div class="container">
                     <div class="section-header" style="padding-bottom: 40px;">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your comments and suggestions', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <form onSubmit="event.preventDefault();submit_contact_us_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
+                        <p>
+                            <label style="width: 100%">
+                                <?php esc_html_e( 'Name', 'disciple-tools-prayer-campaigns' ); ?>
+                                <br>
+                                <input type="text" id="contact-name" required style="width: 100%">
+                            </label>
+                        </p>
                         <p>
                             <label style="width: 100%">
                                 <?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>
@@ -92,7 +99,7 @@ class DT_Generic_Porch_Contact_Us {
                         </p>
                         <p>
                             <label style="width: 100%">
-                                <?php esc_html_e( 'Please share any comments or suggestions you may have.', 'disciple-tools-prayer-campaigns' ); ?>
+                                <?php esc_html_e( 'Message', 'disciple-tools-prayer-campaigns' ); ?>
                                 <br>
                                 <textarea id="contact-message" required rows="4" type="text" style="width: 100%"></textarea>
                             </label>
@@ -102,8 +109,8 @@ class DT_Generic_Porch_Contact_Us {
                             </button>
                         </p>
                     </form>
-                    <div id="form-confirm" class="center" style="display: none">
-                        <h3><?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?></h3>
+                    <div id="form-confirm" class="section-header" style="display: none">
+                        <h3 class="section-subtitle"><?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?></h3>
                     </div>
                 </div>
             </section>
@@ -117,12 +124,14 @@ class DT_Generic_Porch_Contact_Us {
                         return;
                     }
 
+                    let name = $('#contact-name').val();
                     let email = $('#email-2').val();
                     let message = $('#contact-message').val()
 
                     let payload = {
                         'parts': window.campaign_objects.magic_link_parts,
                         campaign_id:  window.campaign_objects.magic_link_parts.post_id,
+                        name,
                         email,
                         message
                     };

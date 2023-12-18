@@ -138,19 +138,30 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
 
-        if ( !isset( $params['message'], $params['email'], $params['campaign_id'] ) ) {
+        if ( !isset( $params['message'], $params['email'], $params['name'], $params['campaign_id'] ) ) {
             return false;
         }
 
+        $name = $params['name'];
         $email = $params['email'];
         $message = $params['message'];
         $campaign_id = $params['campaign_id'];
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
 
-        return DT_Prayer_Campaigns_Send_Email::send_prayer_campaign_email( get_bloginfo( 'admin_email' ), ( $campaign_fields['title'] ?? 'Prayer Campaigns' ) . ': Contact Us', $message, [
-            'From: ' . $email . ' <' . $email . '>',
-            'Reply-To: ' . $email
-        ] );
+        if ( !isset( $campaign_fields['post_author'] ) ) {
+            return false;
+        }
+
+        $campaign_admin_user_id = $campaign_fields['post_author'];
+        $mention = dt_get_user_mention_syntax( $campaign_admin_user_id );
+        $comment = sprintf( _x( '%s %s (%s) - %s', 'disciple-tools-prayer-campaigns' ), $mention, $name, $email, $message );
+
+        $current_user_id = get_current_user_id();
+        wp_set_current_user( 0 );
+        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $comment, 'comment', [], false );
+        wp_set_current_user( $current_user_id );
+
+        return $added_comment;
     }
 
     public function add_story( WP_REST_Request $request ) {
