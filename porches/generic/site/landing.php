@@ -108,7 +108,7 @@ class DT_Generic_Porch_Landing extends DT_Magic_Url_Base
             'post_id' => 0,
             'post_type' => 'campaigns',
             'type' => 'fuel',
-            'subtype' => $campaign['type']['key'],
+            'subtype' => 'ongoing',
             'payload' => null,
             'value' => $params['number'],
         ];
