@@ -142,25 +142,31 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return false;
         }
 
+        $message = wp_kses_post( $request->get_params()['message'] );
+
         $name = $params['name'];
         $email = $params['email'];
-        $message = $params['message'];
         $campaign_id = $params['campaign_id'];
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
 
-        if ( !isset( $campaign_fields['post_author'] ) ) {
-            return false;
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+
+
+        $mention = '';
+        //get shared with
+        $users = DT_Posts::get_shared_with( 'campaigns', $campaign_id, false );
+        foreach ( $users as $user ){
+            $mention .= dt_get_user_mention_syntax( $user['user_id'] );
+            $mention .= ', ';
         }
+        $comment = 'Message on [Contact Us](' . $campaign_url . '/contact-us) by ' . $name . ' ' . $email . ": \n" . $message;
 
-        $campaign_admin_user_id = $campaign_fields['post_author'];
-        $mention = dt_get_user_mention_syntax( $campaign_admin_user_id );
-        $comment = sprintf( _x( '%1$s %2$s (%3$s) - %4$s', 'disciple-tools-prayer-campaigns' ), $mention, $name, $email, $message );
+        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $mention . $comment, 'contact_us', [], false );
 
-        $current_user_id = get_current_user_id();
-        wp_set_current_user( 0 );
-        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $comment, 'comment', [], false );
-        wp_set_current_user( $current_user_id );
-
+        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $campaign_id ], 'contact_email' => [ $params['email'] ] ], false );
+        if ( sizeof( $subs['posts'] ) === 1 ){
+            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'contact_us', [], false, true );
+        }
         return $added_comment;
     }
 

@@ -412,6 +412,11 @@ class DT_Campaigns_Base {
                 'label' => 'Stories',
                 'selected_by_default' => true
             ];
+            $sections[] = [
+                'key' => 'contact_us',
+                'label' => 'Contact US',
+                'selected_by_default' => true
+            ];
         }
         return $sections;
     }
