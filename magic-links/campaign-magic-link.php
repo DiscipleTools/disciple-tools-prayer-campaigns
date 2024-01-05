@@ -17,7 +17,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
     public $show_app_tile = false; // enables addition to "app" tile sharing features
 
-    public $pages = [ '', 'list', 'fuel', 'stats' ];
+    public $pages = [ '', 'list', 'fuel', 'stats', 'contact-us' ];
     public $current_page = '';
 
     public function __construct(){
@@ -73,6 +73,9 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
         if ( $this->current_page === 'stats' ){
             require_once DT_Prayer_Campaigns::get_dir_path() . 'porches/generic/site/stats.php';
+        }
+        if ( $this->current_page === 'contact-us' ){
+            require_once DT_Prayer_Campaigns::get_dir_path() . 'porches/generic/site/contact-us.php';
         }
     }
 
