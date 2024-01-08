@@ -202,6 +202,10 @@ class DT_Prayer_Campaigns_Campaigns {
 
 
     public function box_default_campaign(){
+        if ( !current_user_can( 'update_any_campaigns' ) ){
+            return;
+        }
+
         $home_url = home_url();
         $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
@@ -254,6 +258,9 @@ class DT_Prayer_Campaigns_Campaigns {
     }
 
     public function box_p4m_participation() {
+        if ( !current_user_can( 'update_any_campaigns' ) ){
+            return;
+        }
 
         $participation = $this->settings_manager->get( 'p4m_participation', true );
         $participation_force = apply_filters( 'p4m_participation', false ) && !is_super_admin();
@@ -556,10 +563,10 @@ class DT_Prayer_Campaigns_Campaigns {
                                                 <a href="<?php echo esc_html( site_url() . '/subscriptions/' ); ?>" target="_blank">See Subscribers</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Export Campaign Subscribers</td>
-                                            <td><button type="submit" class="button" name="download_csv">Download CSV</td>
-                                        </tr>
+<!--                                        <tr>-->
+<!--                                            <td>Export Campaign Subscribers</td>-->
+<!--                                            <td><button type="submit" class="button" name="download_csv">Download CSV</td>-->
+<!--                                        </tr>-->
                                     <?php endif; ?>
                                 </tbody>
                             </table>
@@ -598,6 +605,8 @@ class DT_Prayer_Campaigns_Campaigns {
     }
 
     public function right_column() {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
         ?>
 
         <table class="widefat striped">
@@ -610,7 +619,7 @@ class DT_Prayer_Campaigns_Campaigns {
             <tr>
                 <td>
                     <ul>
-                        <li><a href="<?php echo esc_html( home_url() ); ?>" target="_blank">Landing Page</a></li>
+                        <li><a href="<?php echo esc_html( $campaign_url ); ?>" target="_blank">Landing Page</a></li>
                         <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>" target="_blank">Campaigns</a></li>
                         <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
                         <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
@@ -621,13 +630,13 @@ class DT_Prayer_Campaigns_Campaigns {
             <tr>
                 <td>
                     <br>
-                    Landing Page QR code:
+                    QR code to: <a href="<?php echo esc_html( $campaign_url ); ?>"> <?php echo esc_html( $campaign_url ) ?></a>
                     <br>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=323a68&data=<?php echo esc_url( home_url() ) ?>"
-                        title="<?php echo esc_url( home_url() ) ?>" alt="<?php echo esc_url( home_url() ) ?>"
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=323a68&data=<?php echo esc_url( $campaign_url ) ?>"
+                        title="<?php echo esc_url( $campaign_url ) ?>" alt="<?php echo esc_url( $campaign_url ) ?>"
                         style='width:100%;'/>
                         <br>
-                        <a target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=323a68&data=<?php echo esc_url( home_url() ) ?>">direct link</a>
+                        <a target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=323a68&data=<?php echo esc_url( $campaign_url ) ?>">QR code image link</a>
                     <br>
                 </td>
             </tr>
