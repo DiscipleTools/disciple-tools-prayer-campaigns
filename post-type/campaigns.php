@@ -146,6 +146,8 @@ class DT_Campaigns_Base {
             $expected_roles['administrator']['permissions']['create_' . $this->post_type] = true;
             $expected_roles['administrator']['permissions']['view_any_'.$this->post_type ] = true;
             $expected_roles['administrator']['permissions']['update_any_'.$this->post_type ] = true;
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $landing_page_permissions );
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $all_campaigns_admin_permissions );
         }
 
         return $expected_roles;
