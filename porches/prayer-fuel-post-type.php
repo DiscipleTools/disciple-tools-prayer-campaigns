@@ -495,7 +495,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     }
 
-    public function get_most_recent_post(){
+    public function get_most_recent_post( int $day ){
         $campaign = DT_Campaign_Settings::get_campaign();
 
         $lang = dt_campaign_get_current_lang();
@@ -521,6 +521,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             'day_clause' => [
                 'key' => 'day',
                 'type' => 'numeric',
+                'value' => $day,
+                'compare' => '<=',
             ],
             [
                 'key' => 'linked_campaign',

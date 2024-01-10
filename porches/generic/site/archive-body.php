@@ -4,7 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 $lang = dt_campaign_get_current_lang();
 $porch_fields = DT_Porch_Settings::settings();
 
-$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
+$frequency = isset( $porch_fields['prayer_fuel_frequency']['value'] ) ? $porch_fields['prayer_fuel_frequency']['value'] : 'daily';
+$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ), $frequency );
 
 $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_campaign_day );
 ?>
@@ -25,7 +26,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
                 dt_campaign_post( $item );
             endforeach;
             if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) ):
-                $most_recent = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_most_recent_post();
+                $most_recent = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_most_recent_post( $todays_campaign_day );
                 if ( (int) $todays_campaign_day <= 0 ) : ?>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
                         <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">

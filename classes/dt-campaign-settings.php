@@ -65,12 +65,19 @@ class DT_Campaign_Settings {
      *
      * @return int
      */
-    public static function what_day_in_campaign( string $date ) {
+    public static function what_day_in_campaign( string $date, $frequency = 'daily' ) {
         $campaign = self::get_campaign();
         $campaign_start_date = $campaign['start_date']['formatted'];
 
 
         $diff = self::diff_days_between_dates( $campaign_start_date, $date );
+
+        if ( $frequency === 'weekly' ) {
+            $diff = round( $diff / 7 );
+        } elseif ( $frequency === 'monthly' ) {
+            $diff = round( $diff / 30 );
+        }
+
 
         /* If the date given is the same as the start, then this is day 1 not day 0 */
         /* If the date given is before the start, then this is a negative day */

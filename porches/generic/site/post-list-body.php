@@ -17,8 +17,9 @@ if ( $lang === 'en_US' ){
     ];
     $lang_query['relation'] = 'OR';
 }
-
-$todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ) );
+$porch_fields = DT_Porch_Settings::settings();
+$frequency = isset( $porch_fields['prayer_fuel_frequency']['value'] ) ? $porch_fields['prayer_fuel_frequency']['value'] : 'daily';
+$todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ), $frequency );
 $campaign = DT_Campaign_Settings::get_campaign();
 
 $meta_query = [
