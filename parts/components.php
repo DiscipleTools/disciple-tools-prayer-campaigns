@@ -22,11 +22,11 @@ function dt_campaign_post( $post ) {
 
 
 function dt_campaign_user_record_prayed(){
-    $campaign = DT_Campaign_Settings::get_campaign();
+    $campaign = DT_Campaign_Landing_Settings::get_campaign();
     $minutes_scheduled = isset( $campaign['ID'] ) ? DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign['ID'] ) : 0;
     $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 24 / 60 ) : 0, 1 );
     ?>
-        <form onsubmit='submit_group_count();return false;' id='form-content'>
+        <form onsubmit="event.preventDefault(); submit_group_count();return false;" id='form-content'>
             <div class='section-header col'>
                 <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
                     data-wow-delay='0.3s'><?php echo esc_html( __( 'Praying as a group?', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
@@ -48,13 +48,12 @@ function dt_campaign_user_record_prayed(){
                              width='22px;' alt='spinner '/>
                     </button>
                     <span id="group-size-thank-you" style="display: none">
-                                        <?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?>
-                                    </span>
+                        <?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?>
+                    </span>
                 </div>
             </div>
         </form>
         <script>
-
           let submit_group_count = function () {
             $('#prayer_group_size-spinner').show()
             let honey = $('#email').val();
@@ -62,10 +61,18 @@ function dt_campaign_user_record_prayed(){
               return false;
             }
             let number = $('#prayer_group_size').val() || 1
-            return window.makeRequest('POST', '/group-count', {
-              parts: jsObject.parts,
-              number,
-            }, jsObject.parts.root + '/v1/fuel').done(function (data) {
+            let options = {
+              type: 'POST',
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              data: JSON.stringify({
+                parts: jsObject.parts,
+                number,
+                campaign_id: <?php echo esc_html( $campaign['ID'] ) ?>,
+              }),
+              url: '<?php echo esc_html( rest_url() ) ?>campaign_app/v1/group-count',
+            }
+            jQuery.ajax(options).done(function (data) {
               $('#prayer_group_size-spinner').hide()
               $('#group-size-thank-you').show()
               $('#prayer-group-size-button').attr('disabled', true)

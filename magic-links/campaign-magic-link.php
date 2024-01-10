@@ -22,6 +22,10 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
     public function __construct(){
         $page_info = DT_Campaign_Landing_Settings::determine_campaign_via_url( $this->pages );
+        if ( dt_is_rest() ){
+            add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
+//            return;
+        }
         if ( empty( $page_info ) ) {
             return;
         }
@@ -34,10 +38,6 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         $this->current_page = $page_info['current_page'];
         $selected_campaign_id = $page_info['campaign_id'];
 
-        if ( dt_is_rest() ){
-            add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
-//            return;
-        }
 
         parent::__construct();
 
@@ -180,7 +180,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
             'post_id' => 0,
             'post_type' => 'campaigns',
             'type' => 'fuel',
-            'subtype' => $campaign['type']['key'],
+            'subtype' => 'ongoing',
             'payload' => null,
             'value' => $params['number'],
         ];
