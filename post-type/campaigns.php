@@ -43,6 +43,7 @@ class DT_Campaigns_Base {
 
         // hooks
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
+        add_action( 'post_connection_added', [ $this, 'post_connection_added' ], 10, 4 );
 
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
@@ -145,6 +146,8 @@ class DT_Campaigns_Base {
             $expected_roles['administrator']['permissions']['create_' . $this->post_type] = true;
             $expected_roles['administrator']['permissions']['view_any_'.$this->post_type ] = true;
             $expected_roles['administrator']['permissions']['update_any_'.$this->post_type ] = true;
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $landing_page_permissions );
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $all_campaigns_admin_permissions );
         }
 
         return $expected_roles;
@@ -179,6 +182,17 @@ class DT_Campaigns_Base {
                 'select_cannot_be_empty' => true,
             ];
             // end basic framework fields
+
+            $fields['assigned_user'] = [
+                'name' => 'Assigned Users',
+                'description' => 'Users responsible for managing the campaign.',
+                'type' => 'connection',
+                'post_type' => 'contacts',
+                'tile' => 'status',
+                'p2p_direction' => 'from',
+                'p2p_key' => $this->post_type.'_to_contacts',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
+            ];
 
             $fields['name']['tile'] = 'status';
 
@@ -405,11 +419,27 @@ class DT_Campaigns_Base {
         return $fields;
     }
 
+    public function post_connection_added( $post_type, $post_id, $post_key, $value ){
+        if ( $post_type === 'campaigns' ){
+            if ( $post_key === 'assigned_user' ){
+                $user_id = get_post_meta( $value, 'corresponds_to_user', true );
+                if ( $user_id ){
+                    DT_Posts::add_shared( $post_type, $post_id, $user_id, null, true, false, true );
+                }
+            }
+        }
+    }
+
     public function dt_comments_additional_sections( $sections, $post_type ){
         if ( $post_type === 'campaigns' || $post_type === 'subscriptions' ){
             $sections[] = [
                 'key' => 'stories',
                 'label' => 'Stories',
+                'selected_by_default' => true
+            ];
+            $sections[] = [
+                'key' => 'contact_us',
+                'label' => 'Contact US',
                 'selected_by_default' => true
             ];
         }

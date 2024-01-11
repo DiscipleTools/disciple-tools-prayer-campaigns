@@ -24,7 +24,7 @@ class DT_Campaign_Porch_Roles
     }
 
     public function __construct() {
-        add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 50, 1 );
+//        add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 50, 1 );
         add_filter( 'dt_allow_rest_access', [ $this, 'dt_allow_rest_access' ] ); // allows access
         add_filter( 'allowed_wp_v2_paths', [ $this, 'dt_porch_template_allowed_wp_v2_paths' ], 10, 1 );
     }

@@ -135,6 +135,9 @@ class DT_Porch_Admin_Tab_Base {
                             if ( isset( $field['enabled'] ) && $field['enabled'] === false ){
                                 continue;
                             }
+                            if ( isset( $field['hidden'] ) && $field['hidden'] === true ){
+                                continue;
+                            }
                             if ( $key === 'default_language' ) : ?>
                                 <?php $enabled_languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
                                 ?>

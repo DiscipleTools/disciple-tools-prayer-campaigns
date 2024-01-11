@@ -629,7 +629,7 @@ class DT_Subscriptions_Base {
 
     //build list page filters
     public static function dt_user_list_filters( $filters, $post_type ){
-        if ( $post_type === self::post_type() && current_user_can( 'view_any_'.self::post_type() ) ){
+        if ( $post_type === self::post_type() && current_user_can( 'access_' . $post_type ) ){
 
             $fields = DT_Posts::get_post_field_settings( $post_type );
 

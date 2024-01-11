@@ -121,7 +121,8 @@ class DT_Porch_Settings {
         }
 
         if ( !empty( $changes ) ){
-            DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
+            $updated = DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
+            return !is_wp_error( $updated );
         }
         return true;
     }
@@ -169,7 +170,7 @@ class DT_Porch_Settings {
             array_push( $sections, '' );
         }
 
-        return $sections;
+        return array_unique( $sections );
     }
 
     public static function get_field_translation( string $field_name, string $code = '', $campaign_id = null ) {
