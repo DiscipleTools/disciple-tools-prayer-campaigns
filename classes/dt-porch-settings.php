@@ -170,7 +170,7 @@ class DT_Porch_Settings {
             array_push( $sections, '' );
         }
 
-        return $sections;
+        return array_unique( $sections );
     }
 
     public static function get_field_translation( string $field_name, string $code = '', $campaign_id = null ) {
