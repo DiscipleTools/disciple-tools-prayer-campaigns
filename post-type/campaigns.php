@@ -902,14 +902,9 @@ class DT_Campaigns_Base {
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
             SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
-            FROM (
-                SELECT p2p_to as post_id
-                FROM $wpdb->p2p
-                WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s
-            ) as t1
-            INNER JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
-            WHERE r.parent_id = %s AND r.post_type = 'subscriptions' AND r.type = 'campaign_app'
-        ", $campaign_post_id, $campaign_post_id
+            FROM $wpdb->dt_reports
+            WHERE parent_id = %s AND r.post_type = 'subscriptions' AND r.type = 'campaign_app'
+        ", $campaign_post_id
         ) );
     }
 
