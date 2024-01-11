@@ -779,7 +779,7 @@ export class cpCalendar extends LitElement {
         height: 14cqw;
         width: 14cqw;
         color:black;
-        font-size: max(0.75em, 0.5em + 1.75cqi);
+        font-size: clamp(1em, 2cqw, 0.5em + 1cqi)
         font-weight:550;
       }
 

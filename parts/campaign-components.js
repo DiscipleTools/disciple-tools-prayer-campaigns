@@ -456,7 +456,7 @@ export class cpCalendarDaySelect extends LitElement {
         height: 40px;
         width: 40px;
         font-weight: bold;
-        font-size:max(0.75em, 0.5em + 1.75cqi);
+        font-size:clamp(1em, 2cqw, 0.5em + 1cqi);
       }
       .selected-time {
         color: black;
@@ -585,7 +585,7 @@ export class cpMyCalendar extends LitElement {
     css`
       :host {
         display: block;
-        --size: min(60px, calc((100vw - 2rem) / 7))
+        --size: min(40px, calc((100vw - 2rem) / 7))
       }
       .calendar {
         display: grid;
@@ -611,7 +611,7 @@ export class cpMyCalendar extends LitElement {
         height: var(--size);
         width: var(--size);
         font-weight: bold;
-        font-size:max(0.75em, 0.5em + 1.75cqi);
+        font-size:clamp(1em, 2cqw, 0.5em + 1cqi);
       }
       .selected-time {
         //color: black;
@@ -729,7 +729,7 @@ export class cpMyCalendar extends LitElement {
 
     //get width of #prayer-times
     let max_cell_size = document.querySelector('#prayer-times').offsetWidth / 7;
-    let size = Math.min(max_cell_size, 60)
+    let size = Math.min(max_cell_size, 40)
 
 
     return html`
@@ -1126,7 +1126,7 @@ export class cpProgressRing extends LitElement {
 
   constructor() {
     super();
-    this.radius = 30
+    this.radius = 20
     this.stroke = 3
     this.font_size = 15
     this.color = 'dodgerblue'
