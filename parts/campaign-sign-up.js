@@ -749,7 +749,8 @@ export class cpCalendar extends LitElement {
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 14cqw);
+        grid-template-columns: repeat(7, 12.5cqw);
+        gap: 0.3rem;
         margin-bottom: 1rem;
         justify-items: center;
       }
@@ -882,7 +883,7 @@ export class cpCalendar extends LitElement {
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
                                 ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
-                                    <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                    <progress-ring class="progress-ring" stroke="3" radius="18" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
                         })}
