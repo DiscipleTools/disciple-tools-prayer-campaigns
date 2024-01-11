@@ -121,7 +121,7 @@ class DT_Prayer_Campaigns_Send_Email {
         return $attachments;
     }
 
-    public static function send_registration( $subscriber_id, $campaign_id, $recurring_signups ) {
+    public static function send_registration( $subscriber_id, $campaign_id, $recurring_signups = [] ) {
 
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $record ) ){

@@ -119,6 +119,55 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 ],
             ]
         );
+
+        register_rest_route(
+            $namespace, '/'. $this->type . '/contact_us', [
+                [
+                    'methods'  => 'POST',
+                    'callback' => [ $this, 'contact_us' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+    }
+
+    public function contact_us( WP_REST_Request $request ) {
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+
+        if ( !isset( $params['message'], $params['email'], $params['name'], $params['campaign_id'] ) ) {
+            return false;
+        }
+
+        $message = wp_kses_post( $request->get_params()['message'] );
+
+        $name = $params['name'];
+        $email = $params['email'];
+        $campaign_id = $params['campaign_id'];
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+
+
+        $mention = '';
+        //get shared with
+        $users = DT_Posts::get_shared_with( 'campaigns', $campaign_id, false );
+        foreach ( $users as $user ){
+            $mention .= dt_get_user_mention_syntax( $user['user_id'] );
+            $mention .= ', ';
+        }
+        $comment = 'Message on [Contact Us](' . $campaign_url . '/contact-us) by ' . $name . ' ' . $email . ": \n" . $message;
+
+        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $mention . $comment, 'contact_us', [], false );
+
+        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $campaign_id ], 'contact_email' => [ $params['email'] ] ], false );
+        if ( sizeof( $subs['posts'] ) === 1 ){
+            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'contact_us', [], false, true );
+        }
+        return $added_comment;
     }
 
     public function add_story( WP_REST_Request $request ) {

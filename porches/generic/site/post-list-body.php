@@ -17,9 +17,9 @@ if ( $lang === 'en_US' ){
     ];
     $lang_query['relation'] = 'OR';
 }
-
-$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ) );
 $campaign = DT_Campaign_Landing_Settings::get_campaign();
+$frequency = isset( $campaign['prayer_fuel_frequency']['key'] ) ? $campaign['prayer_fuel_frequency']['key'] : 'daily';
+$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ), $campaign['ID'], $frequency );
 
 $meta_query = [
    'relation' => 'AND',

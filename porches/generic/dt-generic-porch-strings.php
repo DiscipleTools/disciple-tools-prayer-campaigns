@@ -25,13 +25,6 @@ class DT_Generic_Porch_Strings {
 //        $campaign_name = isset( $current_campaign['name'] ) ? $current_campaign['name'] : '';
 
         return [
-//            'campaign_name' => [
-//                'label' => 'Campaign Name',
-//                'value' => '',
-//                'type' => 'text',
-//                'translations' => [],
-//                'tab' => 'translations',
-//            ],
 //            'title' => [
 //                'label' => 'Campaign/Site Title',
 //                'value' => get_bloginfo( 'name' ),
@@ -215,20 +208,30 @@ class DT_Generic_Porch_Strings {
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::FUEL,
             ],
-//            'country_name' => [
-//                'label' => 'Location Name',
-//                'value' => '',
-//                'type' => 'text',
-//                'translations' => [],
-//                'tab' => 'translations',
-//            ],
-//            'people_name' => [
-//                'label' => 'People Name',
-//                'value' => '',
-//                'type' => 'text',
-//                'translations' => [],
-//                'tab' => 'translations',
-//            ],
+            'country_name' => [
+                'label' => 'Location Name',
+                'value' => '',
+                'type' => 'text',
+                'translations' => [],
+                'tab' => 'translations',
+                'hidden' => true,
+            ],
+            'people_name' => [
+                'label' => 'People Name',
+                'value' => '',
+                'type' => 'text',
+                'translations' => [],
+                'tab' => 'translations',
+                'hidden' => true,
+            ],
+            'campaign_name' => [
+                'label' => 'Campaign Name',
+                'value' => '',
+                'type' => 'text',
+                'translations' => [],
+                'tab' => 'translations',
+                'hidden' => true,
+            ],
             'footer_content' => [
                 'label' => 'Extra Footer Content',
                 'default' => '',
@@ -258,6 +261,7 @@ class DT_Generic_Porch_Strings {
                 'description' => $field['placeholder'] ?? '',
                 'campaign_tab' => isset( $field['tab'] ) ? $field['tab'] : 'translations',
                 'campaign_section' => isset( $field['section'] ) ? $field['section'] : '',
+                'hidden' => !empty( $field['hidden'] ),
             ];
             if ( $field['type'] === 'text' || $field['type'] === 'textarea' ){
                 $fields[$key]['translations'] = [];

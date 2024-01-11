@@ -196,6 +196,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
             $day = get_post_meta( $id, 'day', true );
             $lang = get_post_meta( $id, 'post_language', true );
+            $linked_campaign = get_post_meta( $id, 'linked_campaign', true );
 
             if ( empty( $day ) && isset( $_GET['day'] ) && !empty( $_GET['day'] ) ){
                 $day = sanitize_key( wp_unslash( $_GET['day'] ) );
@@ -210,9 +211,11 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
             }
 
-            $campaign = DT_Campaign_Landing_Settings::get_campaign();
-            if ( isset( $campaign['ID'] ) && $update === false ){
-                update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
+            if ( empty( $linked_campaign ) && $update === false ){
+                $campaign = DT_Campaign_Landing_Settings::get_campaign();
+                if ( !empty( $campaign['ID'] ) ){
+                    update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
+                }
             }
         }
     }
@@ -499,7 +502,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     }
 
-    public function get_most_recent_post(){
+    public function get_most_recent_post( int $day ){
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $lang = dt_campaign_get_current_lang();
@@ -525,6 +528,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             'day_clause' => [
                 'key' => 'day',
                 'type' => 'numeric',
+                'value' => $day,
+                'compare' => '<=',
             ],
             [
                 'key' => 'linked_campaign',

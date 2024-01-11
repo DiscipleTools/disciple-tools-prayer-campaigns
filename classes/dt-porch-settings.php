@@ -24,6 +24,8 @@ class DT_Porch_Settings {
         }
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
+        $campaign_field_settings = apply_filters( 'dt_campaign_porch_settings', $campaign_field_settings, $current_campaign['porch_type']['key'] ?? null );
+
         $lang = dt_campaign_get_current_lang();
 
         $defaults = [];
@@ -119,7 +121,8 @@ class DT_Porch_Settings {
         }
 
         if ( !empty( $changes ) ){
-            DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
+            $updated = DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
+            return !is_wp_error( $updated );
         }
         return true;
     }
@@ -167,7 +170,7 @@ class DT_Porch_Settings {
             array_push( $sections, '' );
         }
 
-        return $sections;
+        return array_unique( $sections );
     }
 
     public static function get_field_translation( string $field_name, string $code = '', $campaign_id = null ) {
