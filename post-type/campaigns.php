@@ -378,6 +378,23 @@ class DT_Campaigns_Base {
             if ( isset( $fields['tags'] ) ){
                 $fields['tags']['tile'] = 'details';
             }
+
+
+            $fields['country_name'] = [
+                'name' => 'Country Name',
+                'type' => 'text',
+                'hidden' => true,
+            ];
+            $fields['people_name'] = [
+                'name' => 'People Name',
+                'type' => 'text',
+                'hidden' => true,
+            ];
+            $fields['campaign_name'] = [
+                'name' => 'Campaign Name',
+                'type' => 'text',
+                'hidden' => true,
+            ];
         }
 
         if ( $post_type === 'subscriptions' ){
