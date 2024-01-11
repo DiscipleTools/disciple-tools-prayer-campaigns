@@ -89,7 +89,7 @@ add_action( 'after_setup_theme', function() : void {
  * We can safely run functions regarding registered porches at 60
  */
 function dt_after_all_porches_have_loaded() {
-    if ( class_exists( 'DT_Porch_Selector' ) ){
+    if ( class_exists( 'DT_Porch_Selector' ) && !dt_is_rest() ){
         $porch_selector = DT_Porch_Selector::instance();
 
         if ( $porch_selector->has_selected_porch() ) {

@@ -8,7 +8,7 @@ class DT_Generic_Porch_Settings {
     private $defaults = [];
 
     public function __construct() {
-        $this->load_defaults();
+//        $this->load_defaults();
         add_filter( 'dt_campaign_porch_settings', [ $this, 'dt_prayer_campaigns_porch_settings' ], 10, 1 );
         add_filter( 'dt_campaign_porch_theme_options', [ $this, 'dt_generic_porch_themes' ], 10, 1 );
         add_filter( 'dt_campaign_porch_default_settings', [ $this, 'dt_campaign_porch_default_settings' ], 10, 1 );

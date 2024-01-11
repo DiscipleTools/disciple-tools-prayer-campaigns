@@ -16,6 +16,10 @@ class DT_Porch_Settings {
      * @param string $section The name of the section we want the settings for
      */
     public static function settings( string $tab = null, string $section = null ): array {
+        $cached = wp_cache_get( 'dt_campaign_porch_settings', 'dt_campaign_porch_settings' );
+        if ( $cached !== false ) {
+            return $cached;
+        }
         $defaults = self::fields();
 
         $saved_fields = self::get_values();
@@ -48,6 +52,7 @@ class DT_Porch_Settings {
             $merged_settings = self::filter_settings( $merged_settings, 'section', $section );
         }
 
+        wp_cache_set( 'dt_campaign_porch_settings', $merged_settings, 'dt_campaign_porch_settings' );
         return $merged_settings;
     }
 
