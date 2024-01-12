@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Generic_Porch {
 
+    public $items;
     private $child_porch_dir;
     private static $instance = null;
     public static function instance( $child_porch_dir = '' ) {
