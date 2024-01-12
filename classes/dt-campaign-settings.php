@@ -73,9 +73,9 @@ class DT_Campaign_Settings {
         $diff = self::diff_days_between_dates( $campaign_start_date, $date );
 
         if ( $frequency === 'weekly' ) {
-            $diff = round( $diff / 7 );
+            $diff = floor( $diff / 7 );
         } elseif ( $frequency === 'monthly' ) {
-            $diff = round( $diff / 30 );
+            $diff = floor( $diff / 30 );
         }
 
 
