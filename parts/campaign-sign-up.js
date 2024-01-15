@@ -174,7 +174,6 @@ export class CampaignSignUp extends LitElement {
         value: this.campaign_data.enabled_frequencies.length > 0 ? this.campaign_data.enabled_frequencies[0] : '',
       }
       let options = []
-      console.log(this.campaign_data)
       if (this.campaign_data.slot_length <= 5) {
         options.push({value: 5, label: `${strings['%s Minutes'].replace('%s', 5)}`},)
       }

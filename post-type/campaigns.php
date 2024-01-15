@@ -628,7 +628,6 @@ class DT_Campaigns_Base {
                     /* top row */
                     content += `<tr><th></th>`
                     let column_count = 0
-                    console.log(Object.keys(data));
                     jQuery.each(data[Object.keys(data)[1]].hours, function(i,time_slot){
                         if ( column_count >= 20 ){
                              content += `<th></th>`
