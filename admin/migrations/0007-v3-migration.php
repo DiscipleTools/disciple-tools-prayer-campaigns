@@ -80,8 +80,9 @@ class DT_Prayer_Campaign_Migration_0007 extends DT_Prayer_Campaign_Migration {
 
         //change Subscriber dt_reports subtype to 'selected_time'
         $wpdb->query( "UPDATE $wpdb->dt_reports SET subtype = 'selected_time', value = '0'
-            WHERE subtype = 'ongoing'
-            OR subtype = '24hour'
+            WHERE post_type = 'subscriptions'
+            AND type = 'campaign_app'
+            AND ( subtype = 'ongoing' OR subtype = '24hour' )
         " );
     }
 
