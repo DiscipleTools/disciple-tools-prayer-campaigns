@@ -282,7 +282,6 @@ export class ContactInfo extends LitElement {
     if ( this._form_items.EMAIL){
       return;
     }
-    console.log(this._form_items);
 
     if ( !this._form_items.name || !this._is_email(this._form_items.email) ){
       this.form_error = strings['Please enter a valid name or email address']

@@ -42,6 +42,8 @@ window.campaign_data = {
   end_timestamp: null,
   slot_length: 15,
   duration_options: [
+    {value: 5, label: `${strings['%s Minutes'].replace('%s', 5)}`},
+    {value: 10, label: `${strings['%s Minutes'].replace('%s', 10)}`},
     {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
     {value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},
     {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},

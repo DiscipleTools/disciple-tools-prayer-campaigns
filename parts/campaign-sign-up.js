@@ -173,13 +173,26 @@ export class CampaignSignUp extends LitElement {
       this.frequency = {
         value: this.campaign_data.enabled_frequencies.length > 0 ? this.campaign_data.enabled_frequencies[0] : '',
       }
+      let options = []
+      if (this.campaign_data.slot_length <= 5) {
+        options.push({value: 5, label: `${strings['%s Minutes'].replace('%s', 5)}`},)
+      }
+      if (this.campaign_data.slot_length <= 10) {
+        options.push({value: 10, label: `${strings['%s Minutes'].replace('%s', 10)}`},)
+      }
+      if (this.campaign_data.slot_length <= 15) {
+        options.push({value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},)
+      }
+      if (this.campaign_data.slot_length <= 30) {
+        options.push({value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},)
+      }
+      if (this.campaign_data.slot_length <= 60) {
+        options.push({value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},)
+      }
+
       this.duration = {
         value: 15,
-        options: [
-          {value: 15, label: `${strings['%s Minutes'].replace('%s', 15)}`},
-          {value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},
-          {value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},
-        ]
+        options: options
       }
       this.week_day = {
         value: '',
