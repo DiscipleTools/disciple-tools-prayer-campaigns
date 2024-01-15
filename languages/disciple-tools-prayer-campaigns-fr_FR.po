@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-12-08T13:04:17+00:00\n"
+"POT-Creation-Date: 2024-01-15T10:44:20+00:00\n"
 "PO-Revision-Date: 2023-12-08 14:40+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
@@ -72,7 +72,7 @@ msgstr "Accédez à votre compte pour consulter et modifier vos engagements :"
 
 #: campaign-functions/send-email-utility.php:189
 #: campaign-functions/send-email-utility.php:276
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 msgid "Access Account"
 msgstr "Accéder au compte"
 
@@ -104,7 +104,7 @@ msgid "Prayer Time reminder!"
 msgstr "Rappel de l'heure de la prière !"
 
 #: campaign-functions/send-email-utility.php:265
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "Thank you for praying with us."
 msgstr "Merci de nous rejoindre en prière."
 
@@ -134,9 +134,8 @@ msgstr ""
 msgid "Or click this link:"
 msgstr "Ou cliquez sur ce lien :"
 
-#: campaign-functions/send-email-utility.php:359
-#: porches/generic/site/archive-body.php:81
-#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:291
+#: campaign-functions/send-email-utility.php:359 parts/components.php:51
+#: porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Merci"
 
@@ -433,8 +432,8 @@ msgstr "Terminant le %s"
 msgid "Review"
 msgstr "Révision"
 
-#: parts/components-enqueue.php:64 porches/generic/site/archive-body.php:75
-#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:285
+#: parts/components-enqueue.php:64 parts/components.php:45
+#: porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -534,24 +533,31 @@ msgid "Renews on %s"
 msgstr "Se renouvelle le %s"
 
 #: parts/components-enqueue.php:87
+#, fuzzy
+#| msgctxt "Ending on October 4"
+#| msgid "Ending on %s"
+msgid "Ends on %s"
+msgstr "Terminant le %s"
+
+#: parts/components-enqueue.php:88
 msgid "Success"
 msgstr "Succès"
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 msgid "Your registration was successful."
 msgstr "Votre inscription a réussi."
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
 "Vérifiez votre courrier électronique pour plus de détails et pour gérer "
 "votre compte."
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Ok"
 msgstr "D'accord"
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -564,31 +570,31 @@ msgstr ""
 "Cela empêchera la chaîne de prière d'être brisée ET donnera à quelqu'un la "
 "joie de se battre pour les perdus ! Merci !"
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid "Account Settings"
 msgstr "Paramètres du compte"
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Timezone"
 msgstr "Fuseau horaire"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid "Receive Prayer time notifications"
 msgstr "Recevoir des notifications d'heure de prière"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 msgid "Advanced Settings"
 msgstr "Réglages avancés"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "show"
 msgstr "montrer"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "Supprimer ce compte et toutes les heures de prière"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
@@ -596,121 +602,140 @@ msgstr ""
 "Désolé. Quelque chose s'est mal passé. S'il vous plaît, contactez-nous pour "
 "vous aider, ou réessayez encore."
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid "Your account has been deleted!"
 msgstr "Votre compte a été supprimé !"
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 msgid "Language"
 msgstr "Langue"
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid "Delete"
 msgstr "Supprimer"
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 msgid "Select a timezone"
 msgstr "Sélectionnez un fuseau horaire"
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 msgid "See Prayer Fuel"
 msgstr "Voir le guide de prière"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 msgid "change time"
 msgstr "changer l'heure"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 msgid "Remove all"
 msgstr "tout supprimer"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 msgid "See prayer times"
 msgstr "Voir les temps de prière"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 msgid "Delete Prayer Times"
 msgstr "Supprimer les temps de prière"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 msgid "Really delete these prayer times?"
 msgstr "Vraiment supprimer ces temps de prière ?"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 msgid "extend"
 msgstr "prolonger"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 msgid "Extend Prayer Times"
 msgstr "Prolonger les temps de prière"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 msgid "Really delete this prayer time?"
 msgstr "Vraiment supprimer ce temps de prière ?"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 msgid "Delete Prayer Time"
 msgstr "Supprimer le temps de prière"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 msgid "Mondays"
 msgstr "Les lundis"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 msgid "Tuesdays"
 msgstr "Les mardis"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Wednesdays"
 msgstr "Les mercredis"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 msgid "Thursdays"
 msgstr "Les jeudis"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 msgid "Fridays"
 msgstr "Les vendredis"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 msgid "Saturdays"
 msgstr "Les samedis"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 msgid "Sundays"
 msgstr "Les dimanches"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 msgid "Change Prayer Time"
 msgstr "Changer l'heure de la prière"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 msgid "Your current prayer time is %s"
 msgstr "Votre heure de prière actuelle est %s"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 msgid "Select a new time:"
 msgstr "Sélectionnez une nouvelle heure :"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 msgid "Select a time"
 msgstr "Sélectionnez une heure"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 msgid "Renew Prayer Times"
 msgstr "Renouveler les heures de prière"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "renew"
 msgstr "renouveler"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
 msgstr ""
 "Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
 "communications occasionnelles de GospelAmbition.org."
+
+#: parts/components.php:32
+msgid "Praying as a group?"
+msgstr "Priez-vous en groupe ?"
+
+#: parts/components.php:37
+msgid ""
+"Leading others in prayer is a great step in making disciples. We want to "
+"celebrate your and their faithfulness.  For each person that prays with you, "
+"we will add 15 minutes to the %s days of prayer committed so far."
+msgstr ""
+"Diriger d'autres personnes dans la prière est une étape importante pour "
+"faire des disciples. Nous voulons célébrer votre fidélité et la leur.  Pour "
+"chaque personne qui prie avec vous, nous ajouterons 15 minutes aux %s jours "
+"de prière engagés jusqu'à présent."
+
+#: parts/components.php:40
+msgid "How many prayed today (including yourself)?"
+msgstr "Combien ont prié aujourd'hui (y compris vous-même) ?"
 
 #: porches/generic/dt-generic-porch-settings.php:68
 msgid "Our Vision"
@@ -793,36 +818,14 @@ msgstr ""
 "Essayez d'utiliser certains des liens du menu pour vous remettre sur la "
 "bonne voie."
 
-#: porches/generic/site/archive-body.php:36
-#: porches/generic/site/post-list-body.php:146
+#: porches/generic/site/archive-body.php:34
+#: porches/generic/site/post-list-body.php:147
 msgid "Content will start in %s days"
 msgstr "Le contenu commencera dans %s jours"
 
-#: porches/generic/site/archive-body.php:48
+#: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
-
-#: porches/generic/site/archive-body.php:62
-#: porches/generic/site/landing-body.php:38
-msgid "Praying as a group?"
-msgstr "Priez-vous en groupe ?"
-
-#: porches/generic/site/archive-body.php:67
-#: porches/generic/site/landing-body.php:43
-msgid ""
-"Leading others in prayer is a great step in making disciples. We want to "
-"celebrate your and their faithfulness.  For each person that prays with you, "
-"we will add 15 minutes to the %s days of prayer committed so far."
-msgstr ""
-"Diriger d'autres personnes dans la prière est une étape importante pour "
-"faire des disciples. Nous voulons célébrer votre fidélité et la leur.  Pour "
-"chaque personne qui prie avec vous, nous ajouterons 15 minutes aux %s jours "
-"de prière engagés jusqu'à présent."
-
-#: porches/generic/site/archive-body.php:70
-#: porches/generic/site/landing-body.php:47
-msgid "How many prayed today (including yourself)?"
-msgstr "Combien ont prié aujourd'hui (y compris vous-même) ?"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
@@ -869,11 +872,11 @@ msgstr "Heures Restantes"
 msgid "View All"
 msgstr "Tout voir"
 
-#: porches/generic/site/post-list-body.php:133
+#: porches/generic/site/post-list-body.php:134
 msgid "Read"
 msgstr "Lire"
 
-#: porches/generic/site/post-list-body.php:148
+#: porches/generic/site/post-list-body.php:149
 msgid "No prayer fuel found"
 msgstr "Aucun guide de prière trouvé"
 
