@@ -901,9 +901,9 @@ class DT_Campaigns_Base {
     public static function query_scheduled_minutes( $campaign_post_id ){
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-            SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
+            SUM( ( time_end - time_begin ) / 60 ) AS minutes
             FROM $wpdb->dt_reports
-            WHERE parent_id = %s AND r.post_type = 'subscriptions' AND r.type = 'campaign_app'
+            WHERE parent_id = %s AND post_type = 'subscriptions' AND type = 'campaign_app'
         ", $campaign_post_id
         ) );
     }
@@ -916,6 +916,7 @@ class DT_Campaigns_Base {
             SUM( r.value - 1 ) AS extra_people
             FROM $wpdb->dt_reports r
             WHERE r.parent_id = %s AND r.post_type = 'campaigns' AND r.type = 'fuel'
+            AND r.value > 1
             ;", $campaign_post_id
         ) );
         return $extra_people * $prayer_time_duration;
