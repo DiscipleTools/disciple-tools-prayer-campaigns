@@ -1296,7 +1296,7 @@ class DT_Campaigns_Base {
                     ]
                 ],
                 'campaign_progress' => $coverage_levels[0]['percent'],
-                'campaign_type' => $campaign['type']['key'],
+                //'campaign_type' => $campaign['type']['key'],
                 'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
                 'minutes_committed' => $mins_scheduled + $mins_extra,
                 'subscriber_count' => sizeof( $campaign['subscriptions'] ?? [] ),
