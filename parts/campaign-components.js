@@ -308,7 +308,7 @@ export class ContactInfo extends LitElement {
       </div>
       ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? 
           html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
-                <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
+                <input type="checkbox" checked id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
                 ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
           </label>`
       : ``}
