@@ -335,7 +335,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                             <?php foreach ( $languages as $code => $language ):
                                 ?>
 
-                                <tr class="<?php echo $language['enabled'] === false ? 'disabled-language' : '' ?>">
+                                <tr>
                                     <td><?php echo esc_html( $language['flag'] ) ?> <?php echo esc_html( $language['english_name'] ) ?></td>
 
                                     <td><?php echo esc_html( $installed_langs[$code] ?? 0 ); ?></td>
