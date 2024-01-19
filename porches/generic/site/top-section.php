@@ -34,6 +34,13 @@ $sign_up_link = $campaign_url . '#sign-up';
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/list' ) ?>"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
                 </li>
+                <?php
+                $landing_post_type = PORCH_LANDING_POST_TYPE;
+                if ( is_user_logged_in() && current_user_can( 'edit_' . $landing_post_type ) ) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/listEdit' ) ?>"><?php esc_html_e( 'Edit Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>

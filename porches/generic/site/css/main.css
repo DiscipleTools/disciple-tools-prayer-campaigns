@@ -1355,3 +1355,17 @@ footer a {
     margin-top: -70px;
     padding-top: 70px;
 }
+
+/* ==========================================================================
+   Edit List Style
+   ========================================================================== */
+
+.edit-post-titles {
+    font-size: 1.75rem;
+    line-height: 2em;
+}
+
+.edit-post-titles .plus-icon {
+    vertical-align: bottom;
+    font-size: 2em;
+}
