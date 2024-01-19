@@ -124,7 +124,7 @@ if ( $campaign_length > 0 ) {
                         unset( $translated_languages[$lang] );
                     }
                     $day_post_id = $day_post['ID'];
-                    $url = site_url() . "/wp-admin/post.php?post=$day_post_id&action=edit&campaign=7";
+                    $url = site_url() . "/wp-admin/post.php?post=$day_post_id&action=edit&campaign=" . $campaign['ID'];
                     ?>
                     <?php if ( $day_post['ID'] ) { ?>
                         <h4 class="edit-post-titles">
