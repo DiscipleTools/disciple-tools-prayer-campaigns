@@ -9,6 +9,14 @@ $max_days = 1000;
 
 $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
+$lang = dt_campaign_get_current_lang();
+
+$formatter = new IntlDateFormatter(
+    $lang,  // the locale to use, e.g. 'en_GB'
+    IntlDateFormatter::LONG, // how the date should be formatted, e.g. IntlDateFormatter::FULL
+    IntlDateFormatter::NONE,  // how the time should be formatted, e.g. IntlDateFormatter::FULL
+);
+
 $days = [];
 $campaign_length = DT_Campaign_Fuel::total_days_in_campaign();
 $languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
@@ -112,7 +120,7 @@ if ( $campaign_length > 0 ) {
                                 <?php echo esc_html( sprintf( __( 'Day %s', 'disciple-tools-prayer-campaigns' ), $campaign_day ) )?>
                             </h3>
                             <div class="meta-tags">
-                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
+                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( $formatter->format( strtotime( $date ) ) )  ?></span>
                             </div>
 
 
