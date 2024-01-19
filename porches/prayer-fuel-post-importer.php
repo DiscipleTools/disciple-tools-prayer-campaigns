@@ -57,8 +57,9 @@ class DT_Campaign_Prayer_Post_Importer {
             return [];
         }
 
-        $language_settings = new DT_Campaign_Languages();
-        $available_languages = $language_settings->get();
+        $languages_manager = new DT_Campaign_Languages();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $available_languages = $languages_manager->get_enabled_languages( $campaign['ID'] );
         $post_scheduled_start_date = [];
 
         $start_posting_from_date = $this->start_posting_from_date();
@@ -83,7 +84,7 @@ class DT_Campaign_Prayer_Post_Importer {
             $post['post_date_gmt'] = $this->mysql_date( time() );
             $post['post_status'] = 'publish';
 
-            $campaign_day = DT_Campaign_Fuel::what_day_in_campaign( $post_start_date );
+            $campaign_day = DT_Campaign_Fuel::what_day_in_campaign( $post_start_date, $campaign['ID'] );
 
             $post['postmeta'] = [
                 [

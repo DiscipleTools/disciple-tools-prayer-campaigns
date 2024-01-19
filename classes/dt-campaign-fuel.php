@@ -14,10 +14,16 @@ class DT_Campaign_Fuel {
      *
      * @return int
      */
-    public static function what_day_in_campaign( string $date, $campaign_id = null, $frequency = 'daily' ) {
+    public static function what_day_in_campaign( string $date, $campaign_id = null, $frequency = null ) {
         $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $campaign_start_date = $campaign['start_date']['formatted'];
 
+        if ( $frequency === null ){
+            $frequency = 'daily';
+            if ( isset( $campaign['prayer_fuel_frequency']['key'] ) ) {
+                $frequency = $campaign['prayer_fuel_frequency']['key'];
+            }
+        }
 
         $diff = self::diff_days_between_dates( $campaign_start_date, $date );
 
