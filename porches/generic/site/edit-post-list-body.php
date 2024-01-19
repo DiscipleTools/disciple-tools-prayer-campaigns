@@ -109,56 +109,51 @@ if ( $campaign_length > 0 ) {
                     <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
                         <div class="blog-item-text">
                             <h3>
-                                <?php echo esc_html( sprintf( __( 'Day %s', 'disciple-tools-prayer-campaigns' ), $campaign_day ) )?></a>
+                                <?php echo esc_html( sprintf( __( 'Day %s', 'disciple-tools-prayer-campaigns' ), $campaign_day ) )?>
                             </h3>
                             <div class="meta-tags">
                                 <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
                             </div>
 
 
-                <?php
-                foreach ( $days_posts as $day_post ) {
-                    $post_obj = get_post( $day_post['ID'] );
-                    $lang = get_post_meta( $day_post['ID'], 'post_language', true );
-                    if ( isset( $lang ) ) {
-                        unset( $translated_languages[$lang] );
-                    }
-                    $day_post_id = $day_post['ID'];
-                    $url = site_url() . "/wp-admin/post.php?post=$day_post_id&action=edit&campaign=" . $campaign['ID'];
-                    ?>
-                    <?php if ( $day_post['ID'] ) { ?>
-                        <h4 class="edit-post-titles">
-                            <?php echo esc_html( $day_post['post_title'] ) ?></a> -
-                            <?php echo esc_html( $languages[$lang]['flag'] ) ?>
+                            <?php
+                            foreach ( $days_posts as $day_post ) {
+                                $post_obj = get_post( $day_post['ID'] );
+                                $lang = get_post_meta( $day_post['ID'], 'post_language', true );
+                                if ( isset( $lang ) ) {
+                                    unset( $translated_languages[$lang] );
+                                }
+                                $day_post_id = $day_post['ID'];
+                                $url = site_url() . "/wp-admin/post.php?post=$day_post_id&action=edit&campaign=" . $campaign['ID'];
+                                ?>
+                                <?php if ( $day_post['ID'] ) { ?>
+                                    <h4 class="edit-post-titles">
+                                        <?php echo esc_html( $day_post['post_title'] ) ?> -
+                                        <?php echo esc_html( $languages[$lang]['flag'] ) ?>
 
-                            <a href="<?php echo esc_url( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Edit', 'disciple-tools-prayer-campaigns' ); ?></a>
-                        </h4>
-                    <?php } ?>
-            <?php } ?>
-                <?php
-                foreach ( $translated_languages as $lang => $language ) {
-                    // $url = add_query_arg( [ 'lang' => $lang ], $url );
-                    $url = site_url() . "/wp-admin/post-new.php?post_type=landing&post_language=$lang&day=$day&campaign=" . $campaign['ID'];
-                    ?>
-                        <h4 class="edit-post-titles">
-                            <?php echo esc_html( $language['flag'] ) ?>
+                                        <a href="<?php echo esc_url( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Edit', 'disciple-tools-prayer-campaigns' ); ?></a>
+                                    </h4>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php
+                            foreach ( $translated_languages as $lang => $language ) {
+                                // $url = add_query_arg( [ 'lang' => $lang ], $url );
+                                $url = site_url() . "/wp-admin/post-new.php?post_type=landing&post_language=$lang&day=$day&campaign=" . $campaign['ID'];
+                                ?>
+                                    <h4 class="edit-post-titles">
+                                        <?php echo esc_html( $language['flag'] ) ?>
 
-                            <a href="<?php echo esc_url( $url ) ?>" class="">
-                                <span class="plus-icon">+</span>
-                            </a>
-                        </>
-            <?php } ?>
+                                        <a href="<?php echo esc_url( $url ) ?>" class="">
+                                            <span class="plus-icon">+</span>
+                                        </a>
+                                    </>
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- Blog Item Wrapper Ends-->
                 </div>
             <?php } ?>
-            </div>
         </div>
     </div>
  </section>
-
-        </div>
-    </div>
-</section>
 <!-- blog Section End -->
