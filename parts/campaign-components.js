@@ -456,7 +456,7 @@ export class cpCalendarDaySelect extends LitElement {
         height: 40px;
         width: 40px;
         font-weight: bold;
-        font-size:clamp(1em, 2cqw, 0.5em + 1cqi);
+        font-size:clamp(0.75em, 0.65rem + 2cqi, 1em);
       }
       .selected-time {
         color: black;
