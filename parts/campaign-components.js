@@ -1108,26 +1108,57 @@ customElements.define('cp-verify', cpVerify);
 export class cpProgressRing extends LitElement {
   static styles = [
     css`
+    :host {
+      --radius: 7.142cqi;
+      --stroke-width: 3px;
+      --normalized-radius: calc(var(--radius) - var(--stroke-width));
+      --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
+      --circumference: calc(var(--normalized-radius) * 2 * 3.14159);
+      --circumference2 = calc(var(--normalized-radius2) * 2 * 3.14159);
+
+      --offset2: calc(var(--progress) / 100 * var(--circumference));
+      --offset: calc( var(--circumference) - var(--offset2));
+      --offset3: calc( var(--circumference2) - var(--progress2) / 100 * var(--circumference2));
+    }
     .inner-text {
-      font-size: clamp(1em, 2cqw, 0.5em + 1cqi);
+      font-size: clamp(1em, 0.5em + 3cqi, 1.25rem);
+    }
+
+    svg {
+      width: 14.285cqi;
+      height: 14.285cqi;
+    }
+
+    circle {
+      transition: stroke-dashoffset 0.35s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      stroke-width: var(--stroke-width);
+      stroke-dasharray: var(--circumference) var(--circumference);
+      r: var(--normalized-radius);
+      cx: var(--radius);
+      cy: var(--radius);
+    }
+
+    circle.first-circle {
+      stroke-dashoffset: var(--offset);
+    }
+    circle.second-circle {
+      stroke-dashoffset: var(--offset2);
     }
     `
   ]
 
   static properties = {
-    radius: {type: Number},
     text: {type: String},
     progress: {type: Number},
     progress2: {type: Number},
     font_size: {type: Number},
-    stroke: {type: Number},
     color: {type: String},
   }
 
   constructor() {
     super();
-    this.radius = 20
-    this.stroke = 3
     this.font_size = 15
     this.color = 'dodgerblue'
     this.progress = 0;
@@ -1136,20 +1167,6 @@ export class cpProgressRing extends LitElement {
 
   render() {
     this.progress = parseInt(this.progress).toFixed()
-    this.radius = parseInt(this.radius).toFixed()
-    this.stroke = parseInt(this.stroke).toFixed()
-    const normalizedRadius = this.radius - this.stroke;
-    this._circumference = normalizedRadius * 2 * Math.PI;
-
-    let normalizedRadius2 = parseInt(this.radius) - this.stroke/2 + 1
-    this._circumference2 = normalizedRadius2 * 2 * Math.PI;
-
-    let offset = this._circumference - (this.progress / 100 * this._circumference);
-    const offset2 = -(this.progress / 100 * this._circumference);
-    if ( this._progress2 ){
-      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
-    }
-
     this.color = parseInt( this.progress ) >= 100 ? 'mediumseagreen' : this.color
 
     // if ( text2 ){
@@ -1167,42 +1184,27 @@ export class cpProgressRing extends LitElement {
 
 
     return html`
-      <svg height="${this.radius * 2}"
-           width="${this.radius * 2}" >
+      <svg>
            <circle
              class="first-circle"
              stroke="${this.color}"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${offset}"
-             stroke-width="${this.stroke}"
              fill="transparent"
-             r="${normalizedRadius}"
-             cx="${this.radius}"
-             cy="${this.radius}"
           />
           <circle
              class="second-circle"
              stroke="${this.color}"
              stroke-opacity="0.1"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${offset2}"
-             stroke-width="${this.stroke}"
              fill="transparent"
-             r="${normalizedRadius}"
-             cx="${this.radius}"
-             cy="${this.radius}"
           />
           <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
               ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
-
       <style>
-          circle {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-          }
+        :host{
+          --progress: ${this.progress};
+          --progress2: ${this.progress2};
+        }
       </style>
     `
 
