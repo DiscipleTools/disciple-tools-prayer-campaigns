@@ -585,8 +585,16 @@ export class cpMyCalendar extends LitElement {
     css`
       :host {
         display: block;
-        --size: min(40px, calc((100vw - 2rem) / 7))
+        --size: min(40px, calc((100vw - 2rem) / 7));
       }
+      .calendar-wrapper {
+        container-type: inline-size;
+        container-name: cp-calendar;
+        border-radius: 10px;
+        padding: 1em;
+        display: block;
+      }
+
       .calendar {
         display: grid;
         grid-template-columns: repeat(7, var(--size));
@@ -646,9 +654,6 @@ export class cpMyCalendar extends LitElement {
         height: 5px;
         background-color: #57d449;
         border-radius: 100px;
-      }
-      progress-ring {
-        height: var(--size);
       }
     `,
     window.campaignStyles
