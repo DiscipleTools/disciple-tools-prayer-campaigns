@@ -811,6 +811,7 @@ export class cpTimes extends LitElement {
       }
       progress-ring {
         height: 20px;
+        width: 20px;
       }
       .time {
         flex-basis: 20%;
@@ -1114,24 +1115,29 @@ export class cpProgressRing extends LitElement {
   static styles = [
     css`
     :host {
-      --radius: 7.142cqi;
+      --radius: 50cqi;
       --stroke-width: 3px;
       --normalized-radius: calc(var(--radius) - var(--stroke-width));
       --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
-      --circumference: calc(var(--normalized-radius) * 2 * 3.14159);
-      --circumference2 = calc(var(--normalized-radius2) * 2 * 3.14159);
+      --circumference: calc(var(--normalized-radius) * 2 * 15);
+      --circumference2 = calc(var(--normalized-radius2) * 2 * 15);
 
       --offset2: calc(var(--progress) / 100 * var(--circumference));
       --offset: calc( var(--circumference) - var(--offset2));
       --offset3: calc( var(--circumference2) - var(--progress2) / 100 * var(--circumference2));
+
+
+      height: 95%;
+      width: 95%;
+      container-type: inline-size;
     }
     .inner-text {
       font-size: clamp(1em, 0.5em + 3cqi, 1.25rem);
     }
 
     svg {
-      width: 14.285cqi;
-      height: 14.285cqi;
+      width: 100cqi;
+      height: 100cqi;
     }
 
     circle {
