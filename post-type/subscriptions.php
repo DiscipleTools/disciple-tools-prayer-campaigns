@@ -325,6 +325,10 @@ class DT_Subscriptions_Base {
         if ( $post_type === $this->post_type ){
             $tiles['commitments'] = [ 'label' => __( 'Commitments', 'disciple-tools-subscriptions' ) ];
             $tiles['other'] = [ 'label' => __( 'Other', 'disciple-tools-prayer-campaigns' ) ];
+            $tiles['signup_form'] = [
+                'label' => __( 'Extra Signup Form Fields', 'disciple-tools-prayer-campaigns' ),
+                'description' => '',
+            ];
         }
 
         return $tiles;
