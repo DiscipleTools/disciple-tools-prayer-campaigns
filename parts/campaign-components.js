@@ -257,7 +257,7 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: false,
+      receive_pray4movement_news: true,
     }
     this.selected_times_count = 0;
   }
@@ -267,8 +267,7 @@ export class ContactInfo extends LitElement {
   }
 
   handleInput(e){
-    console.log(e);
-    let val = e.target.value
+    let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     let name = e.target.name
     this._form_items[name] = val
     this.requestUpdate()

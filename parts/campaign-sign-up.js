@@ -158,7 +158,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: false,
+      receive_pray4movement_news: true,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
