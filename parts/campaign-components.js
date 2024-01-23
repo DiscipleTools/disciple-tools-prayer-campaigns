@@ -1117,7 +1117,7 @@ export class cpProgressRing extends LitElement {
     :host {
       display: block;
       --radius: 50cqi;
-      --stroke-width: 3px;
+      --stroke-width: 5%;
       --normalized-radius: calc(var(--radius) - var(--stroke-width));
       --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
       --circumference: calc(var(--normalized-radius) * 2 * pi);
