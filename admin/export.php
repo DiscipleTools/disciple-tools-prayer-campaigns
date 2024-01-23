@@ -2,7 +2,7 @@
 
 $wordpress_root_path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
 require_once( $wordpress_root_path . 'wp-admin/admin.php' );
-if ( !( current_user_can( 'manage_dt' ) || current_user_can( 'edit_landings' ) ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
+if ( !( current_user_can( 'manage_dt' ) || !current_user_can( 'edit_landings' ) ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
     wp_die( 'You do not have sufficient permissions to access this page.' );
 }
 
