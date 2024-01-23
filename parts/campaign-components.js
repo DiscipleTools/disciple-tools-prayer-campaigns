@@ -1119,11 +1119,11 @@ export class cpProgressRing extends LitElement {
       --stroke-width: 3px;
       --normalized-radius: calc(var(--radius) - var(--stroke-width));
       --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
-      --circumference: calc(var(--normalized-radius) * 2 * 15);
-      --circumference2 = calc(var(--normalized-radius2) * 2 * 15);
+      --circumference: calc(var(--normalized-radius) * 2 * pi);
+      --circumference2: calc(var(--normalized-radius2) * 2 * pi);
 
-      --offset2: calc(var(--progress) / 100 * var(--circumference));
-      --offset: calc( var(--circumference) - var(--offset2));
+      --offset2: calc((var(--progress) / 100 * var(--circumference))*-1);
+      --offset: calc( var(--circumference) + var(--offset2));
       --offset3: calc( var(--circumference2) - var(--progress2) / 100 * var(--circumference2));
 
 
