@@ -759,7 +759,7 @@ export class cpMyCalendar extends LitElement {
                        data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                    <progress-ring class="${day.disabled?'disabled':0}" stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                    <progress-ring class="${day.disabled?'disabled':0}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                     <div class="indicator-section">
                       ${map(range(my_commitments[day.formatted]||0),i=> {
                         return html`<span class="prayer-time-indicator"></span>`
@@ -920,7 +920,7 @@ export class cpTimes extends LitElement {
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
                           ${time.progress < 100 ?
-                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
+                              html`<progress-ring progress="${time.progress}"></progress-ring>` :
                               html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
                         </span>
                     </div>

@@ -794,11 +794,6 @@ export class cpCalendar extends LitElement {
       .loading {
         min-height: 600px;
       }
-      /* .progress-ring {
-        width: 14cqw;
-        height: 14cqw;
-        padding-top: 4.8cqw;
-      } */
       .disabled-calendar-day {
         color: #c4c4c4;
       }
@@ -883,7 +878,7 @@ export class cpCalendar extends LitElement {
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
                                 ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
-                                    <progress-ring class="progress-ring" stroke="3" radius="18" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                    <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
                         })}
@@ -929,7 +924,7 @@ export class cpPercentage extends LitElement {
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
         <div id="main-progress" class="cp-center">
-            <progress-ring stroke="10" radius="80" font="18"
+            <progress-ring font="18"
                            progress="${this.campaign_data.coverage_percent || 0}"
                            progress2="0"
                            text="${this.campaign_data.coverage_percent || 0}%"
