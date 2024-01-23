@@ -239,6 +239,15 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
 
+        $subscriber_fields = DT_Posts::get_post_field_settings( 'subscriptions' );
+        $signup_form_fields = [];
+        foreach ( $subscriber_fields as $key => $field ){
+            if ( $field['tile'] === 'signup_form' ){
+                $field['key'] = $key;
+                $signup_form_fields[] = $field;
+            }
+        }
+
         return [
             'campaign_id' => $post_id,
             'start_timestamp' => $start,
@@ -250,6 +259,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'coverage_percent' => $coverage_percent ?? null,
+            'signup_form_fields' => $signup_form_fields,
         ];
     }
 
@@ -359,6 +369,23 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             }
         }
         DT_Subscriptions::save_recurring_signups( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
+
+        $subscriber_fields = DT_Posts::get_post_field_settings( 'subscriptions' );
+        $extra_fields_update = [];
+        foreach ( $subscriber_fields as $key => $field ){
+            if ( ( $field['tile'] ?? '' ) === 'signup_form' ){
+                if ( isset( $params[ $key ] ) && !empty( $params[ $key ] ) ){
+                    if ( $field['type'] === 'boolean' ){
+                        $extra_fields_update[ $key ] = !empty( $params[ $key ] );
+                    } elseif ( $field['type'] === 'text' ){
+                        $extra_fields_update[ $key ] = $params[ $key ];
+                    }
+                }
+            }
+        }
+        if ( !empty( $extra_fields_update ) ){
+            DT_Posts::update_post( 'subscriptions', $subscriber_id, $extra_fields_update, true, false );
+        }
 
         $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
 

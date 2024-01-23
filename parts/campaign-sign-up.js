@@ -158,7 +158,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: false,
+      receive_pray4movement_news: true,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -232,13 +232,13 @@ export class CampaignSignUp extends LitElement {
     let selected_times = this.selected_times;
 
     let data = {
-      name: this._form_items.name,
-      email: this._form_items.email,
-      code: this._form_items.code,
-      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: selected_times,
       recurring_signups: this.recurring_signups,
     }
+    //add this._form_items
+    Object.keys(this._form_items).forEach(key=>{
+      data[key] = this._form_items[key]
+    })
 
     window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
     .done((response)=>{

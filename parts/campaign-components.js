@@ -257,8 +257,11 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: false,
+      receive_pray4movement_news: true,
     }
+    window.campaign_data.signup_form_fields?.map(f=>{
+      this._form_items[f.key] = f.default || null;
+    })
     this.selected_times_count = 0;
   }
 
@@ -267,8 +270,7 @@ export class ContactInfo extends LitElement {
   }
 
   handleInput(e){
-    console.log(e);
-    let val = e.target.value
+    let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     let name = e.target.name
     this._form_items[name] = val
     this.requestUpdate()
@@ -282,7 +284,6 @@ export class ContactInfo extends LitElement {
     if ( this._form_items.EMAIL){
       return;
     }
-    console.log(this._form_items);
 
     if ( !this._form_items.name || !this._is_email(this._form_items.email) ){
       this.form_error = strings['Please enter a valid name or email address']
@@ -309,11 +310,43 @@ export class ContactInfo extends LitElement {
       </div>
       ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? 
           html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
-                <input type="checkbox" id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
+                <input type="checkbox" checked id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
                 ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
           </label>`
       : ``}
-      </div>
+      
+      <!-- Additional Fields -->
+      ${ window.campaign_data.signup_form_fields?.map(f=>{
+        let key = window.campaign_scripts.escapeHTML(f.key)
+        let name = window.campaign_scripts.escapeHTML(f.name)
+        let description = window.campaign_scripts.escapeHTML(f.description)
+        if ( f.type === 'text' ){
+          return html`
+            <div>
+                <label for="${key}">${name}<br>
+                    <input 
+                        class="cp-input" 
+                        type="text" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}/>
+                </label>
+            </div>
+          `
+        } else if ( f.type === 'boolean' ){
+          return html`
+            <div>
+                <label for="${key}" style="font-weight: normal; display: block">
+                    <input 
+                        type="checkbox"
+                        name="${key}" 
+                        id="${key}"
+                        ?checked=${f.default}
+                        @input=${this.handleInput}/>
+                    ${description || name}
+                </label>
+            </div>
+          `
+        }
+      } ) }
+      
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
               ${strings['No prayer times selected']}
