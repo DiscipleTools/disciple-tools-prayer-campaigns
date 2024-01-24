@@ -198,7 +198,7 @@ class DT_Campaigns_Base {
 
             $fields['campaign_url'] = [
                 'name' => 'Campaign URL',
-                'description' => 'The URL that will be used as the link for the logo on the campaign landing page.',
+                'description' => 'The URL of the campaign landing page. It must be unique',
                 'type' => 'text',
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
@@ -400,6 +400,7 @@ class DT_Campaigns_Base {
     }
 
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        global $wpdb;
         if ( $post_type === 'campaigns' ){
             foreach ( $fields as $field_key => $field_value ){
                 if ( strpos( $field_key, 'hack-campaign_strings' ) === 0 ){
@@ -414,6 +415,15 @@ class DT_Campaigns_Base {
                     update_post_meta( $post_id, 'campaign_strings', $campaign_strings );
                     unset( $fields[$field_key] );
                 }
+            }
+            //make sure the campaign_url is unique
+            if ( isset( $fields['campaign_url'] ) ) {
+                $campaign_url = str_replace( ' ', '-', strtolower( trim( $fields['campaign_url'] ) ) );
+                $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $campaign_url ) );
+                if ( !empty( $url_exists ) ){
+                    $campaign_url = dt_create_field_key( $campaign_url, true );
+                }
+                $fields['campaign_url'] = $campaign_url;
             }
         }
         return $fields;
@@ -1154,6 +1164,7 @@ class DT_Campaigns_Base {
 
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
+        global $wpdb;
         if ( $post_type === $this->post_type ) {
             if ( !isset( $fields['status'] ) ) {
                 $fields['status'] = 'active';
@@ -1166,6 +1177,10 @@ class DT_Campaigns_Base {
             }
             if ( !isset( $fields['campaign_url'] ) ) {
                 $fields['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $fields['name'] ) ) );
+            }
+            $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $fields['campaign_url'] ) );
+            if ( !empty( $url_exists ) ){
+                $fields['campaign_url'] = dt_create_field_key( $fields['campaign_url'], true );
             }
             if ( !isset( $fields['min_time_duration'] ) ){
                 $fields['min_time_duration'] = '15';
