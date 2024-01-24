@@ -749,7 +749,8 @@ export class cpCalendar extends LitElement {
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 14cqw);
+        grid-template-columns: repeat(7, 12.5cqw);
+        gap: 0.3rem;
         margin-bottom: 1rem;
         justify-items: center;
       }
@@ -779,7 +780,7 @@ export class cpCalendar extends LitElement {
         height: 14cqw;
         width: 14cqw;
         color:black;
-        font-size: max(0.75em, 0.5em + 2cqi);
+        font-size: clamp(1em, 2cqw, 0.5em + 1cqi)
         font-weight:550;
       }
 
@@ -793,11 +794,6 @@ export class cpCalendar extends LitElement {
       .loading {
         min-height: 600px;
       }
-      /* .progress-ring {
-        width: 14cqw;
-        height: 14cqw;
-        padding-top: 4.8cqw;
-      } */
       .disabled-calendar-day {
         color: #c4c4c4;
       }
@@ -882,7 +878,7 @@ export class cpCalendar extends LitElement {
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
                                 ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
-                                    <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                    <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
                         })}
@@ -927,12 +923,13 @@ export class cpPercentage extends LitElement {
 
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
-        <div id="main-progress" class="cp-center">
-            <progress-ring stroke="10" radius="80" font="18"
-                           progress="${this.campaign_data.coverage_percent || 0}"
-                           progress2="0"
-                           text="${this.campaign_data.coverage_percent || 0}%"
-                           text2="">
+        <div id="main-progress" class="cp-center" style="display: flex;justify-content: center">
+            <progress-ring 
+               style="max-width: 150px"
+               progress="${this.campaign_data.coverage_percent || 0}"
+               progress2="0"
+               text="${this.campaign_data.coverage_percent || 0}%"
+               text2="">
             </progress-ring>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center">${strings['Percentage covered in prayer']}</div>
@@ -1087,7 +1084,7 @@ export class campaignSubscriptions extends LitElement {
             confirmButtonClass="danger"
             @close="${e=>this.extend_times_modal_closed(e, true)}" >
         </dt-modal>
-        
+
         <!--change times modal-->
         <dt-modal
             .isOpen="${this._change_times_modal_open}"
@@ -1111,7 +1108,7 @@ export class campaignSubscriptions extends LitElement {
             let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
             //more than 2 weeks old
             let renew_extended = !last_prayer_time_near_campaign_end && value.last < now - day_in_seconds * 14
-            
+
             const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">

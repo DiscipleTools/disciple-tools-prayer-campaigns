@@ -365,4 +365,3 @@ if ( ! function_exists( 'dt_hook_ajax_notice_handler' ) ){
         }
     }
 }
-
