@@ -776,10 +776,19 @@ customElements.define('my-calendar', cpMyCalendar);
 export class cpTimes extends LitElement {
   static styles = [
     css`
+      .legend-row {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+          grid-gap: 1rem 0.3rem;
+          max-width: 400px;
+          margin-right: 25px;
+          text-align: center;
+          margin-bottom: 0.1rem;
+      }
       .prayer-hour {
         margin-bottom: 1rem;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
         grid-gap: 1rem 0.3rem;
         max-width: 400px;
       }
@@ -893,6 +902,16 @@ export class cpTimes extends LitElement {
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
     return html`
+        <div class="legend-row">
+            <div class=""></div>
+            ${map(range(time_slots), (i) => {
+              let time = this.times[i];
+              return html`<div>
+                  ${time.minute}
+              </div>
+              `
+            })}
+        </div>
         <div class="times-container">
         ${map(range(24),index => html`
             ${ this.times[index*time_slots] ? html`
@@ -903,10 +922,10 @@ export class cpTimes extends LitElement {
                 ${map(range(time_slots), (i) => {
                     let time = this.times[index*time_slots+i];
                     return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}"
+                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
                          @click="${(e)=>this.time_selected(e,time.key)}"
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
-                        <span class="time-label">${time.minute}</span>
+                        <span class="time-label">&nbsp;</span>
                         <span class="control">
                           ${time.progress < 100 ? 
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
