@@ -776,22 +776,37 @@ customElements.define('my-calendar', cpMyCalendar);
 export class cpTimes extends LitElement {
   static styles = [
     css`
-      .legend-row {
+      .times-container {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-          grid-gap: 1rem 0.3rem;
-          max-width: 400px;
+          grid-gap: 0.3rem 1rem;
           margin-right: 25px;
           text-align: center;
           margin-bottom: 0.1rem;
+          //overflow-y: scroll;
+          //max-height: 500px;
+          //padding-inline-end: 10px;
+      }
+      .times-section {
+          display: inline-grid;
+          align-items: center;
+          margin-bottom: 0.5rem;
+          grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-gap: 0.2rem 1rem;
+      }
+
+      .section-column {
+          display: grid;
+          grid-gap: 0.3rem 1rem;
+      }
+      .time-column .time {
+          background-color: white;
+          justify-content: end;
       }
       .prayer-hour {
-        margin-bottom: 1rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-        grid-gap: 1rem 0.3rem;
-        max-width: 400px;
+        font-size: 0.8rem;
+        white-space: nowrap;
       }
+
       .prayer-hour:hover {
         background-color: #4676fa1a;
       }
@@ -803,57 +818,55 @@ export class cpTimes extends LitElement {
         justify-content: center;
         white-space: nowrap;
       }
-      .time.full-progress {
-          background-color: #00800052;
-      }
-      .time.selected-time {
-        color: white;
-        background-color: var(--cp-color);
-      }
+      
       progress-ring {
         height: 20px;
       }
       .time {
-        flex-basis: 20%;
         background-color: #4676fa1a;
         font-size: 0.8rem;
         border-radius: 5px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         cursor: pointer;
+        padding: 0.1rem;
+        text-align: center;
       }
-      .time:hover .time-label {
-        background-color: var(--cp-color);
-        opacity: 0.5;
-        color: #fff;
+      .empty-time {
+          opacity: .3;
+          font-size:.8rem;
       }
-      .time:hover .control{
+        
+      .time:hover {
         background-color: var(--cp-color);
         opacity: 0.8;
+        color: #fff;
+      }
+      .time:hover .empty-time{
+        background-color: var(--cp-color);
+        opacity: 1;
         color: #fff;
       }
       .time[disabled] {
         opacity: 0.3;
         cursor: not-allowed;
       }
-      .time-label {
-        padding: 0.3rem;
-        padding-inline-start: 1rem;
-        width: 100%;
+      .time.full-progress {
+          background-color: #00800052;
       }
-      .control {
-        background-color: #4676fa36;
+      .time.selected-time {
+          color: white;
+          opacity: 1;
+          background-color: var(--cp-color);
+      }
+      .time.selected-time .empty-time {
+        opacity: 1;
+      }
+      
+      .time img {
         display: flex;
-        align-items: center;
-        padding: 0 0.1rem;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        font-weight: bold;
-      }
-      .times-container {
-        overflow-y: scroll;
-        max-height: 500px;
-        padding-inline-end: 10px;
+        align-self: center;
+        margin-inline-start: 0.1rem;
       }
     `
   ]
@@ -901,39 +914,52 @@ export class cpTimes extends LitElement {
     }
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
+
+    let index = 0;
     return html`
-        <div class="legend-row">
-            <div class=""></div>
-            ${map(range(time_slots), (i) => {
-              let time = this.times[i];
-              return html`<div>
-                  ${time.minute}
-              </div>
-              `
+
+      <div class="times-container">
+        ${map(range(4),row => html`
+          <div class="times-section">
+            <div class="section-column time-column">
+              <div>&nbsp;</div>
+               ${map(range(time_slots),i=>html`<div class="time">${this.times[i].minute}</div>`)} 
+            </div>
+            
+            ${map(range(6),i => {
+              index = i + row * 6
+              return html`
+                
+              ${ this.times[index*time_slots] ? html`
+              <div class="section-column">
+                  <div class="prayer-hour">
+                      ${this.times[index*time_slots].hour}
+                  </div>
+                  ${map(range(time_slots), (i) => {
+                      let time = this.times[index*time_slots+i];
+                      
+                      let html2 = ``
+                      if ( time.progress == 0 ){
+                          html2 = html`<span class="empty-time">${time.minute}</span>`
+                      } else if ( time.progress < 100 ) {
+                          html2 = html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>`
+                      } else if ( time.coverage_count ) {
+                          html2 = html`${time.coverage_count} <img style="width:10px; height: 10px" src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
+                      } else {
+                          html2 = html`&nbsp;`
+                      }
+                      
+                      return html`
+                      <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
+                           @click="${(e)=>this.time_selected(e,time.key)}"
+                           ?disabled="${this.frequency === 'pick' && time.key < now}">
+                          ${html2}
+                      </div>
+                  `})}
+              </div>` : html``}
+            `
             })}
-        </div>
-        <div class="times-container">
-        ${map(range(24),index => html`
-            ${ this.times[index*time_slots] ? html`
-            <div class="prayer-hour prayer-times">
-                <div class="hour-cell">
-                    ${this.times[index*time_slots].hour}
-                </div>
-                ${map(range(time_slots), (i) => {
-                    let time = this.times[index*time_slots+i];
-                    return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
-                         @click="${(e)=>this.time_selected(e,time.key)}"
-                         ?disabled="${this.frequency === 'pick' && time.key < now}">
-                        <span class="time-label">&nbsp;</span>
-                        <span class="control">
-                          ${time.progress < 100 ? 
-                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                              html`<div class="" style="height:20px;width:20px;display:flex;justify-content: center">${time.coverage_count}</div>`}
-                        </span>
-                    </div>
-                `})}
-            </div>` : html``}
+          </div>
         `)}
       </div>
     `
