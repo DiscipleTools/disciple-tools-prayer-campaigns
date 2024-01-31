@@ -839,6 +839,7 @@ export class cpTimes extends LitElement {
         padding: 0 0.1rem;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
+        font-weight: bold;
       }
       .times-container {
         overflow-y: scroll;
@@ -909,7 +910,7 @@ export class cpTimes extends LitElement {
                         <span class="control">
                           ${time.progress < 100 ? 
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
+                              html`<div class="" style="height:20px;width:20px;display:flex;justify-content: center">${time.coverage_count}</div>`}
                         </span>
                     </div>
                 `})}
@@ -963,7 +964,15 @@ export class cpTimes extends LitElement {
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
 
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress, selected})
+      options.push({
+        key: key,
+        time_formatted: time_formatted,
+        minute: min,
+        hour: time.toFormat('hh a'),
+        progress,
+        selected,
+        coverage_count: Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])),
+      })
       key += window.campaign_data.slot_length * 60
     }
     return options;
@@ -1007,6 +1016,7 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toFormat('hh a'),
         progress,
+        coverage_count: Math.min(...(coverage[time_formatted] || [0])),
         selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
       })
       key += this.slot_length * 60
