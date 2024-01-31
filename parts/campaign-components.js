@@ -794,6 +794,9 @@ export class cpTimes extends LitElement {
         justify-content: center;
         white-space: nowrap;
       }
+      .time.full-progress {
+          background-color: #00800052;
+      }
       .time.selected-time {
         color: white;
         background-color: var(--cp-color);
@@ -809,9 +812,6 @@ export class cpTimes extends LitElement {
         display: flex;
         justify-content: space-between;
         cursor: pointer;
-      }
-      .time.full-progress {
-        background-color: #00800052;
       }
       .time:hover .time-label {
         background-color: var(--cp-color);
