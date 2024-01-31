@@ -178,11 +178,9 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
-        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? null );
+        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? null, $campaign['signup_content'] );
         if ( $sign_up_content_translation ){
             $sign_up_email_extra_message = '<p>' .  $sign_up_content_translation . '</p>';
-        } elseif ( $campaign['signup_content'] ){
-            $sign_up_email_extra_message = '<p>' .  $campaign['signup_content'] . '</p>';
         }
 
         if ( strpos( $sign_up_email_extra_message, '<a' ) === false ){
@@ -200,7 +198,8 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !empty( $record['name'] ) ){
             $message .= Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
         }
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ) );
+        $tagline = DT_Porch_Settings::get_field_translation( 'email_tagline' );
+        $message .= Campaigns_Email_Template::email_content_part( $tagline );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $link );
         if ( !empty( $recurring_signups ) ){

@@ -185,6 +185,16 @@ class DT_Campaign_Landing_Settings {
         ];
 
         //reminder_content
+        $fields['email_tagline'] = [
+            'name' => __( 'Tagline', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'textarea',
+            'tile' => 'campaign_email',
+            'description' => __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ),
+            'default' => __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ),
+            'translations' => [],
+            'campaign_section' => 'Email Content',
+        ];
+        //reminder_content
         $fields['reminder_content'] = [
             'name' => __( 'Reminder Email Content', 'disciple-tools-prayer-campaigns' ),
             'type' => 'textarea',
