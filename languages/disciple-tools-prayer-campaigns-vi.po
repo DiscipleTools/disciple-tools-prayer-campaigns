@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
@@ -496,9 +496,7 @@ msgstr "Thời gian cam kết"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "Tiếp theo"
@@ -909,52 +907,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Đăng ký để cầu nguyện"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "Ngày"
+msgid "Time Committed"
+msgstr "Thời gian cam kết"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "Tháng"
+msgid "Prayer Warriors"
+msgstr "Thời gian cầu nguyện của tôi"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "Giờ cầu nguyện"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "Giờ"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Cần có những cam kết cầu nguyện"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "Số giờ còn lại"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "Xem tất cả"
@@ -983,11 +959,6 @@ msgstr "Cảm ơn bạn đã cùng chúng tôi cầu nguyện cho% 1 $ s trong% 
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Phần trăm được bảo hiểm"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "Thời gian cam kết"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1059,6 +1030,21 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Đăng ký"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "Tháng"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "Giờ"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Số giờ còn lại"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1106,30 +1092,35 @@ msgstr ""
 "bằng 1/10 Kinh thánh). Sự tìm kiếm chân thành này khiến chúng ta trở thành "
 "thời điểm chiến lược để cầu nguyện cho họ."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Tháng Ramadan Bắt đầu ..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Tháng Ramadan Kết thúc ..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramadan đã kết thúc"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "nơi đây"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "Nhiều giờ hơn được bảo hiểm"
+msgid "Days"
+msgstr "Ngày"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "Giờ cầu nguyện"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1148,6 +1139,10 @@ msgid "Now praying..."
 msgstr "Bây giờ đang cầu nguyện ..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "Nhiều giờ hơn được bảo hiểm"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "Lời cầu nguyện chiến lược cho một phong trào lập môn đồ"
 
@@ -1158,10 +1153,6 @@ msgstr "Bây giờ đang cầu nguyện ..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "Đây là những lần bạn đã cam kết cầu nguyện:"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "Thời gian cầu nguyện của tôi"
 
 #, fuzzy
 #~ msgid "fully covered once"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2024-01-31 15:25+0000\n"
 "Last-Translator: Toni Albright <tja@gcnow.org>\n"
 "Language-Team: Turkish <https://translate.disciple.tools/projects/"
@@ -499,9 +499,7 @@ msgstr "Taahhüt Süresi"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "Sonraki"
@@ -919,52 +917,30 @@ msgstr "Bu kampanya bitti. Aşağıdaki Yakıta bakın"
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Dua etmek için kaydolun"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "Günler"
+msgid "Time Committed"
+msgstr "Taahhüt Süresi"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "Ay"
+msgid "Prayer Warriors"
+msgstr "Namaz Vakitlerim"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "Namaz Saatleri"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "Saat"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Gerekli Dua Taahhütleri"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "Kalan Saatler"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "Hepsini gör"
@@ -994,11 +970,6 @@ msgstr "%2$s'deki %1$s duasında bize katıldığınız için teşekkür ederiz.
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Kapsanan Yüzde"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "Taahhüt Süresi"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1070,6 +1041,21 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Üye olmak"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "Ay"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "Saat"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Kalan Saatler"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1116,30 +1102,35 @@ msgstr ""
 "Kuran'ın tamamını (İncil'in yaklaşık onda biri kadar) okur. Bu samimi "
 "arayış, onlar için dua etmemizi stratejik bir zaman haline getiriyor."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramazan Başlıyor..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramazan Bitiyor..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramazan Bitti"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "burada"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "Kapsanacak Daha Fazla Saat"
+msgid "Days"
+msgstr "Günler"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "Namaz Saatleri"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1158,6 +1149,10 @@ msgid "Now praying..."
 msgstr "Şimdi dua ediyor..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "Kapsanacak Daha Fazla Saat"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "Bir Öğrenci Hareketi Yapmak için stratejik dua"
 
@@ -1168,10 +1163,6 @@ msgstr "Şimdi dua ediyor..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "Namaz kılmayı taahhüt ettiğiniz vakitler şunlardır:"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "Namaz Vakitlerim"
 
 #, fuzzy
 #~ msgid "fully covered once"

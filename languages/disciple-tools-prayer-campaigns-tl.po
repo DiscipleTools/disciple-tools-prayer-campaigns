@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Tagalog <https://translate.disciple.tools/projects/disciple-"
@@ -498,9 +498,7 @@ msgstr "Oras na nakatuon"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "Susunod"
@@ -916,52 +914,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Mag-sign Up para Magdasal"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "Mga araw"
+msgid "Time Committed"
+msgstr "Oras na nakatuon"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "buwan"
+msgid "Prayer Warriors"
+msgstr "Aking Mga Oras ng Panalangin"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "Mga Oras ng Panalangin"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "Oras"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Mga Pangako sa Panalangin na Kailangan"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "Mga Oras na Natitira"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "Tingnan lahat"
@@ -990,11 +966,6 @@ msgstr "Salamat sa pagsama sa amin sa panalangin para sa %1$s sa %2$s."
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Porsiyento na Saklaw"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "Oras na nakatuon"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1066,6 +1037,21 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Mag-sign Up"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "buwan"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "Oras"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Mga Oras na Natitira"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1115,30 +1101,35 @@ msgstr ""
 "(mga ikasampu ang haba ng Bibliya). Ang taos-pusong paghahanap na ito ay "
 "ginagawang isang estratehikong panahon para ipagdasal natin sila."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Magsisimula na ang Ramadan..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Matatapos na ang Ramadan..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Tapos na ang Ramadan"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "dito"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "Higit pang mga Oras na sasakupin"
+msgid "Days"
+msgstr "Mga araw"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "Mga Oras ng Panalangin"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1157,6 +1148,10 @@ msgid "Now praying..."
 msgstr "Ngayon nagdadasal..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "Higit pang mga Oras na sasakupin"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "Madiskarteng panalangin para sa isang Kilusang Paggawa ng Disipulo"
 
@@ -1167,10 +1162,6 @@ msgstr "Ngayon nagdadasal..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "Narito ang mga oras na nangako kang manalangin:"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "Aking Mga Oras ng Panalangin"
 
 #, fuzzy
 #~ msgid "fully covered once"

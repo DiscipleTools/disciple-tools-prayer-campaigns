@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2023-12-08 14:40+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
@@ -453,9 +453,7 @@ msgstr "%s engagé"
 msgid "Please enter a valid name or email address"
 msgstr "Veuillez saisir un nom ou une adresse électronique valide"
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 msgid "Next"
 msgstr "Continuer"
 
@@ -830,45 +828,28 @@ msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 msgid "Sign Up to Pray"
 msgstr "Inscrivez-vous pour prier"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
-msgid "Days"
-msgstr "Jours"
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
+msgid "Time Committed"
+msgstr "Temps engagé"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
-msgid "Month"
-msgstr "Mois"
+#: porches/generic/site/home-body.php:185
+#, fuzzy
+#| msgid "My Prayer Times"
+msgid "Prayer Warriors"
+msgstr "Mes horaires de prière"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-msgid "Hours of Prayer"
-msgstr "Heures de prière"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-msgid "Hours"
-msgstr "Heures"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 msgid "Prayer Commitments Needed"
 msgstr "Engagements de prière requis"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-msgid "Hours Remaining"
-msgstr "Heures Restantes"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 msgid "View All"
 msgstr "Tout voir"
 
@@ -892,10 +873,6 @@ msgstr "Merci de nous rejoindre en prière pour les %1$s en %2$s."
 #: porches/generic/site/stats.php:197
 msgid "Percentage Covered"
 msgstr "Pourcentage couvert"
-
-#: porches/generic/site/stats.php:213
-msgid "Time Committed"
-msgstr "Temps engagé"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -959,6 +936,18 @@ msgstr ""
 msgid "Sign Up"
 msgstr "S'inscrire"
 
+#: porches/ongoing/site/home-body.php:159
+msgid "Month"
+msgstr "Mois"
+
+#: porches/ongoing/site/home-body.php:176
+msgid "Hours"
+msgstr "Heures"
+
+#: porches/ongoing/site/home-body.php:191
+msgid "Hours Remaining"
+msgstr "Heures Restantes"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
 msgstr "Page de destination du Ramadan"
@@ -1006,25 +995,29 @@ msgstr ""
 "de la Bible). Cette recherche sincère en fait un moment stratégique pour "
 "nous de prier pour eux."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 msgid "Ramadan Begins ..."
 msgstr "Ramadan commence..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 msgid "Ramadan Ends ..."
 msgstr "Le ramadan se termine..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 msgid "Ramadan Is Finished"
 msgstr "Le ramadan est terminé"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 msgid "here"
 msgstr "ici"
 
-#: porches/ramadan/site/home-body.php:220
-msgid "More Hours to be covered"
-msgstr "Plus d'heures à couvrir"
+#: porches/ramadan/site/home-body.php:166
+msgid "Days"
+msgstr "Jours"
+
+#: porches/ramadan/site/home-body.php:179
+msgid "Hours of Prayer"
+msgstr "Heures de prière"
 
 #: shortcodes/prayer-timer.php:219
 msgid "Start Praying!"
@@ -1039,6 +1032,9 @@ msgstr "Temps de prière : %s min"
 msgid "Now praying..."
 msgstr "Prier maintenant..."
 
+#~ msgid "More Hours to be covered"
+#~ msgstr "Plus d'heures à couvrir"
+
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "Prière stratégique pour un mouvement de formation de disciples"
 
@@ -1047,9 +1043,6 @@ msgstr "Prier maintenant..."
 
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "Voici les temps que vous avez sélectionné pour prier :"
-
-#~ msgid "My Prayer Times"
-#~ msgstr "Mes horaires de prière"
 
 #~ msgid "fully covered once"
 #~ msgstr "entièrement couvert une fois"
