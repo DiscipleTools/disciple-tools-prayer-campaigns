@@ -782,6 +782,7 @@ export class cpTimes extends LitElement {
           text-align: center;
           margin-bottom: 0.1rem;
           max-height: 600px;
+          overflow-y: auto;
       }
       .times-section {
           display: inline-grid;
