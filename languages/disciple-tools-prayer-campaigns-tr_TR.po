@@ -5,17 +5,17 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-15T10:44:20+00:00\n"
-"PO-Revision-Date: 2022-12-08 12:13+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Turkish <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/tr_TR/>\n"
+"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"PO-Revision-Date: 2024-01-31 15:25+0000\n"
+"Last-Translator: Toni Albright <tja@gcnow.org>\n"
+"Language-Team: Turkish <https://translate.disciple.tools/projects/"
+"pray4movement/disciple-tools-prayer-campaigns/tr_TR/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.3.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/cron-schedule.php:82
@@ -152,7 +152,7 @@ msgstr ""
 #: porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
-msgstr "Teşekkürler"
+msgstr "Teşekkür ederiz"
 
 #: campaign-functions/send-email-utility.php:405
 #: porches/generic/site/stats.php:144
@@ -175,8 +175,9 @@ msgstr "Bir Öğrenci Hareketi Yapmak için stratejik dua"
 
 #: campaign-functions/send-email-utility.php:435
 #: campaign-functions/send-email-utility.php:465
+#, fuzzy
 msgid "Dear %s,"
-msgstr ""
+msgstr "Sayın %s,"
 
 #: campaign-functions/send-email-utility.php:438
 #: campaign-functions/send-email-utility.php:468
@@ -257,20 +258,19 @@ msgid "1 hour"
 msgstr "1 saat"
 
 #: campaign-functions/time-utilities.php:186
+#, fuzzy
 msgid "years"
-msgstr ""
+msgstr "yıllar"
 
 #: campaign-functions/time-utilities.php:186
 msgid "year"
-msgstr ""
+msgstr "yıl"
 
 #: campaign-functions/time-utilities.php:189
-#, fuzzy
 msgid "day"
-msgstr "günler"
+msgstr "gün"
 
 #: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
-#, fuzzy
 msgid "days"
 msgstr "günler"
 
@@ -317,8 +317,9 @@ msgid "Prayer Commitments"
 msgstr "Dua Taahhütleri"
 
 #: magic-links/subscription-management/subscription-management.php:307
+#, fuzzy
 msgid "Account"
-msgstr ""
+msgstr "Hesap"
 
 #: magic-links/subscription-management/subscription-management.php:313
 msgid "Links"
@@ -328,7 +329,7 @@ msgstr ""
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
-msgstr "Ev"
+msgstr "Anasayfa"
 
 #: magic-links/subscription-management/subscription-management.php:316
 #: porches/generic/site/stats.php:170
@@ -364,7 +365,7 @@ msgstr "Saat diliminizi değiştirin:"
 #: porches/generic/site/stats.php:227
 #, fuzzy
 msgid "hours"
-msgstr "saat"
+msgstr "saatler"
 
 #: parts/components-enqueue.php:40
 #, fuzzy
@@ -411,8 +412,9 @@ msgid "At what time?"
 msgstr "Bir zaman seçin"
 
 #: parts/components-enqueue.php:50
+#, fuzzy
 msgid "Contact Info"
-msgstr ""
+msgstr "İletişim bilgileri"
 
 #: parts/components-enqueue.php:51
 #, fuzzy
@@ -420,16 +422,19 @@ msgid "Name"
 msgstr "İsim"
 
 #: parts/components-enqueue.php:53
+#, fuzzy
 msgid "Start Here"
-msgstr ""
+msgstr "Buradan başlayın"
 
 #: parts/components-enqueue.php:54
+#, fuzzy
 msgid "Continue here"
-msgstr ""
+msgstr "Buradan devam edin"
 
 #: parts/components-enqueue.php:55
+#, fuzzy
 msgid "On which week day?"
-msgstr ""
+msgstr "Haftanın hangi gününde?"
 
 #: parts/components-enqueue.php:56
 #, fuzzy
@@ -449,7 +454,7 @@ msgstr "Bir zaman seçin"
 #: parts/components-enqueue.php:59
 #, fuzzy
 msgid "Close"
-msgstr "Kapat"
+msgstr "Kapatın"
 
 #: parts/components-enqueue.php:60
 #, fuzzy
@@ -512,22 +517,24 @@ msgid "Daily"
 msgstr "Günlük Saat"
 
 #: parts/components-enqueue.php:72
+#, fuzzy
 msgid "Weekly"
-msgstr ""
+msgstr "Haftalık"
 
 #: parts/components-enqueue.php:73
 #, fuzzy
 msgid "Monthly"
-msgstr "Ay"
+msgstr "Aylık"
 
 #: parts/components-enqueue.php:74
 msgid "Pick Dates and Times"
 msgstr ""
 
 #: parts/components-enqueue.php:75
+#, fuzzy
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr ""
+msgstr "%s aya kadar"
 
 #: parts/components-enqueue.php:76
 msgid "A confirmation code hase been sent to %s."
@@ -560,8 +567,9 @@ msgid "for %s minutes"
 msgstr "%2$s dakika için %1$s."
 
 #: parts/components-enqueue.php:82
+#, fuzzy
 msgid "Every %s"
-msgstr ""
+msgstr "Her %s"
 
 #: parts/components-enqueue.php:83
 #, fuzzy
@@ -602,7 +610,7 @@ msgstr "E-postada namaz vakitlerinizi yönetmek için bir bağlantı var."
 
 #: parts/components-enqueue.php:91
 msgid "Ok"
-msgstr ""
+msgstr "Tamam"
 
 #: parts/components-enqueue.php:93
 msgid ""
@@ -651,8 +659,9 @@ msgid "Your account has been deleted!"
 msgstr ""
 
 #: parts/components-enqueue.php:103
+#, fuzzy
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: parts/components-enqueue.php:104
 #, fuzzy
@@ -717,36 +726,37 @@ msgstr "Seçilen Zamanlar"
 #: parts/components-enqueue.php:116
 #, fuzzy
 msgid "Mondays"
-msgstr "günler"
+msgstr "Pazartesi günleri"
 
 #: parts/components-enqueue.php:117
 #, fuzzy
 msgid "Tuesdays"
-msgstr "günler"
+msgstr "Salı günleri"
 
 #: parts/components-enqueue.php:118
+#, fuzzy
 msgid "Wednesdays"
-msgstr ""
+msgstr "Çarşamba günleri"
 
 #: parts/components-enqueue.php:119
 #, fuzzy
 msgid "Thursdays"
-msgstr "günler"
+msgstr "Perşembe günleri"
 
 #: parts/components-enqueue.php:120
 #, fuzzy
 msgid "Fridays"
-msgstr "günler"
+msgstr "Cuma günleri"
 
 #: parts/components-enqueue.php:121
 #, fuzzy
 msgid "Saturdays"
-msgstr "günler"
+msgstr "Cumartesi günleri"
 
 #: parts/components-enqueue.php:122
 #, fuzzy
 msgid "Sundays"
-msgstr "günler"
+msgstr "Pazar günleri"
 
 #: parts/components-enqueue.php:123
 #, fuzzy
@@ -798,8 +808,9 @@ msgid ""
 msgstr ""
 
 #: parts/components.php:40
+#, fuzzy
 msgid "How many prayed today (including yourself)?"
-msgstr ""
+msgstr "Bugün kaç kişi dua etti (siz dahil)?"
 
 #: porches/generic/dt-generic-porch-settings.php:68
 #, fuzzy
@@ -901,8 +912,9 @@ msgid "Content will start in %s days"
 msgstr ""
 
 #: porches/generic/site/archive-body.php:46
+#, fuzzy
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
+msgstr "Bu kampanya bitti. Aşağıdaki Yakıta bakın"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
@@ -960,11 +972,12 @@ msgstr "Hepsini gör"
 #: porches/generic/site/post-list-body.php:134
 #, fuzzy
 msgid "Read"
-msgstr "Okumak"
+msgstr "Okuyun"
 
 #: porches/generic/site/post-list-body.php:149
+#, fuzzy
 msgid "No prayer fuel found"
-msgstr ""
+msgstr "Dua yakıtı bulunamadı"
 
 #: porches/generic/site/stats.php:21
 #, fuzzy
@@ -1022,7 +1035,7 @@ msgstr "Dua kampanyası verileri yükleniyor..."
 #: porches/generic/site/stats.php:342
 #, fuzzy
 msgid "Countries Prayed For"
-msgstr "Namaz Saatleri"
+msgstr "Dua Edilen Ülkeler"
 
 #: porches/generic/site/stats.php:350
 msgid "Intercessors"
@@ -1060,7 +1073,7 @@ msgstr "Üye olmak"
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
-msgstr "Ramazan Bitiyor..."
+msgstr "Ramazan Açılış Sayfası"
 
 #: porches/ramadan/settings.php:6
 #, fuzzy
