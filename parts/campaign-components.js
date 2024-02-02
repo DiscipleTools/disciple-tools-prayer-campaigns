@@ -831,7 +831,7 @@ export class cpTimes extends LitElement {
         text-align: center;
       }
       .empty-time {
-          opacity: .3;
+          opacity: .8;
           font-size:.8rem;
       }
         
@@ -848,9 +848,6 @@ export class cpTimes extends LitElement {
       .time[disabled] {
         opacity: 0.3;
         cursor: not-allowed;
-      }
-      .time.full-progress {
-          background-color: #00800052;
       }
       .time.selected-time {
           color: white;
@@ -937,16 +934,15 @@ export class cpTimes extends LitElement {
                       let time = this.times[index*time_slots+i];
                       
                       let html2 = ``
-                      if ( time.progress == 0 ){
-                          html2 = html`<span class="empty-time">${time.minute}</span>`
-                      } else if ( time.progress < 100 ) {
-                          html2 = html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>`
-                      } else if ( time.coverage_count ) {
+                      if ( time.coverage_count ) {
                           html2 = html`${time.coverage_count} <img style="width:10px; height: 10px" src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
                       } else {
-                          html2 = html`&nbsp;`
+                          html2 = html`<span class="empty-time">
+                              ${time.minute}
+                          </span>`
                       }
-                      
+                      // } else if ( false && time.progress < 100 ) {
+                      //     html2 = html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>`
                       return html`
                       <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
                            @click="${(e)=>this.time_selected(e,time.key)}"
@@ -984,6 +980,7 @@ export class cpTimes extends LitElement {
         minute: time.toFormat('mm'),
         progress: progress,
         selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
+        coverage_count: s.subscribers,
       })
     })
     return times;
@@ -1014,7 +1011,7 @@ export class cpTimes extends LitElement {
         hour: time.toFormat('hh a'),
         progress,
         selected,
-        coverage_count: Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])),
+        coverage_count: progress >= 100 ? Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])) : 0,
       })
       key += window.campaign_data.slot_length * 60
     }
@@ -1059,7 +1056,7 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toFormat('hh a'),
         progress,
-        coverage_count: Math.min(...(coverage[time_formatted] || [0])),
+        coverage_count: progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0,
         selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
       })
       key += this.slot_length * 60
