@@ -11,7 +11,7 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
     public function body(){
         $atts = $this->parts;
         $atts['rest_url'] = rest_url();
-        $atts['color'] = PORCH_COLOR_SCHEME_HEX;
+        $atts['color'] = defined( 'PORCH_COLOR_SCHEME_HEX' ) ? PORCH_COLOR_SCHEME_HEX : '#4676fa';
         if ( $atts['color'] === 'preset' || empty( $atts['color'] ) ){
             $atts['color'] = '#4676fa';
         }
