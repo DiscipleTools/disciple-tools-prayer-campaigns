@@ -778,7 +778,6 @@ export class cpTimes extends LitElement {
     css`
       .times-container {
           display: grid;
-          grid-gap: 0.3rem 1rem;
           text-align: center;
           margin-bottom: 0.1rem;
           max-height: 600px;
@@ -802,21 +801,11 @@ export class cpTimes extends LitElement {
       }
       .prayer-hour {
         font-size: 0.8rem;
+        font-weight: bold;
         white-space: nowrap;
       }
 
-      .prayer-hour:hover {
-        background-color: #4676fa1a;
-      }
-      .hour-cell {
-        font-size: 0.8rem;
-        display: flex;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-      }
-      
+
       progress-ring {
         height: 20px;
       }
@@ -834,7 +823,7 @@ export class cpTimes extends LitElement {
           opacity: .8;
           font-size:.8rem;
       }
-        
+
       .time:hover {
         background-color: var(--cp-color);
         opacity: 0.8;
@@ -857,11 +846,25 @@ export class cpTimes extends LitElement {
       .time.selected-time .empty-time {
         opacity: 1;
       }
-      
       .time img {
         display: flex;
         align-self: center;
         margin-inline-start: 0.1rem;
+        width: 0.7rem;
+        height: 0.7rem;
+      }
+
+      .legend-row {
+        display: flex;
+        font-size: 0.8rem;
+        grid-column-gap: 0.3rem;
+        justify-content: right;
+        margin-bottom: 0.5rem;
+      }
+      .legend-row span {
+        padding: 0.3rem 0.5rem;
+        display: flex;
+        align-items: center;
       }
     `
   ]
@@ -914,6 +917,19 @@ export class cpTimes extends LitElement {
     return html`
 
       <div class="times-container">
+          <div class="legend-row">
+              <span class="time">
+                  :15
+              </span>
+              <span>${translate('Empty time slot')}</span>
+              <span class="time">
+                  2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
+              </span>
+              <span>
+                  ${translate('Fully covered twice' )}
+              </span>
+          </div>
+
         ${map(range(4),row => html`
           <div class="times-section">
             <div class="section-column time-column">
@@ -935,7 +951,7 @@ export class cpTimes extends LitElement {
                       
                       let html2 = ``
                       if ( time.coverage_count ) {
-                          html2 = html`${time.coverage_count} <img style="width:10px; height: 10px" src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
+                          html2 = html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
                       } else {
                           html2 = html`<span class="empty-time">
                               ${time.minute}

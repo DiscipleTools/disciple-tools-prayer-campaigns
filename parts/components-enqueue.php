@@ -127,6 +127,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
+                    'Fully covered twice' => __( 'Fully covered twice', 'disciple-tools-prayer-campaigns' ),
+                    'Empty time slot' => __( 'Empty time slot', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
