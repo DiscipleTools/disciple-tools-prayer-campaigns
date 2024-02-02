@@ -953,8 +953,8 @@ export class cpTimes extends LitElement {
     let time_frame_day_start = start_of_time_frame.startOf('day').toSeconds()
     let in_one_month = start_of_time_frame.plus({months:1}).toSeconds()
     let next_month = this.days.filter(d=>{
-      return d.key > time_frame_day_start &&
-        d.key <= ( window.campaign_data.end_date || in_one_month )
+      return d.key >= time_frame_day_start &&
+        d.key <= (( window.campaign_data.end_timestamp || in_one_month ))
     })
     let coverage = {}
     next_month.forEach(d=>{
@@ -974,7 +974,7 @@ export class cpTimes extends LitElement {
       let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
-        coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
+        coverage[time_formatted] ? coverage[time_formatted].length / ( next_month.length - 1 ) * 100 : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
