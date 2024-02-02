@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-15T10:44:20+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://translate.disciple.tools/"
@@ -488,9 +488,7 @@ msgstr "承諾時間"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "下一個"
@@ -894,52 +892,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "註冊祈禱"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "天"
+msgid "Time Committed"
+msgstr "承諾時間"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "月"
+msgid "Prayer Warriors"
+msgstr "我的禱告時間"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "禱告時間"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "小時"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "需要禱告承諾"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "剩余小時數"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "查看全部"
@@ -968,11 +944,6 @@ msgstr "感謝您加入我們為 %2$s 中的 %1$s 祈禱。"
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "覆蓋百分比"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "承諾時間"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1040,6 +1011,21 @@ msgstr "您想通過 Pray4Movement.org 了解其他的禱告工作和機會嗎�
 msgid "Sign Up"
 msgstr "報名"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "月"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "小時"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "剩余小時數"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1079,30 +1065,35 @@ msgstr ""
 "務並進行其他儀式祈禱。有些人甚至閱讀了整本古蘭經（大約是聖經長度的十分之"
 "一）。這種真誠的尋求使我們成為為他們祈禱的戰略時機。"
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "齋月開始..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "齋月結束..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "齋月結束"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "這裡"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "覆蓋更多小時"
+msgid "Days"
+msgstr "天"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "禱告時間"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1121,6 +1112,10 @@ msgid "Now praying..."
 msgstr "現在祈禱..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "覆蓋更多小時"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "為門徒造就運動的策略性禱告"
 
@@ -1131,10 +1126,6 @@ msgstr "現在祈禱..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "以下是你承諾祈禱的時間："
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "我的禱告時間"
 
 #, fuzzy
 #~ msgid "fully covered once"

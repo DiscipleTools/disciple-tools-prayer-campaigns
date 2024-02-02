@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-15T10:44:20+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Sinhala <https://translate.disciple.tools/projects/disciple-"
@@ -493,9 +493,7 @@ msgstr "කාලය කැප කර ඇත"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "ඊළඟ"
@@ -901,52 +899,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "යාච්ඤා කිරීමට ලියාපදිංචි වන්න"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "දින"
+msgid "Time Committed"
+msgstr "කාලය කැප කර ඇත"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "මාසික"
+msgid "Prayer Warriors"
+msgstr "මගේ යාඥා කාලය"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "යාච්ඤාවේ පැය ගණන"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "පැය"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "යාඥා කැපවීම් අවශ්‍යයි"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "ඉතිරි පැය"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "සියල්ල බලන්න"
@@ -975,11 +951,6 @@ msgstr "%2$s හි %1$s සඳහා යාච්ඤාවට අප හා එ
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "ප්‍රතිශතය ආවරණය කර ඇත"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "කාලය කැප කර ඇත"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1048,6 +1019,21 @@ msgstr "Pray4Movement.org සමඟින් වෙනත් යාච්ඤා 
 msgid "Sign Up"
 msgstr "ලියාපදිංචි වන්න"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "මාසික"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "පැය"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "ඉතිරි පැය"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1091,30 +1077,35 @@ msgstr ""
 "යාච්ඤාවන් කරති. සමහරු මුළු කුරානයම කියවති (බයිබලයෙන් දශමයක් පමණ දිග). මෙම අවංක සෙවීම ඔවුන් "
 "වෙනුවෙන් යාච්ඤා කිරීමට අපට උපායමාර්ගික කාලයක් බවට පත් කරයි."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "රාමසාන් ආරම්භය..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "රාමසාන් අවසන්..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "රාමසාන් සමය අවසන්"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "මෙතන"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "ආවරණය කිරීමට තවත් පැය ගණනක්"
+msgid "Days"
+msgstr "දින"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "යාච්ඤාවේ පැය ගණන"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1133,6 +1124,10 @@ msgid "Now praying..."
 msgstr "දැන් යාඥා කරනවා..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "ආවරණය කිරීමට තවත් පැය ගණනක්"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "ගෝලයන් සෑදීමේ ව්යාපාරයක් සඳහා උපාය මාර්ගික යාච්ඤාව"
 
@@ -1143,10 +1138,6 @@ msgstr "දැන් යාඥා කරනවා..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "මෙන්න ඔබ යාච්ඤා කිරීමට කැප වූ වේලාවන්:"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "මගේ යාඥා කාලය"
 
 #, fuzzy
 #~ msgid "fully covered once"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-15T10:44:20+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.disciple.tools/projects/disciple-"
@@ -494,9 +494,7 @@ msgstr "Отдадено време"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "Следващия"
@@ -910,52 +908,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Запишете се за молитва"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "Дни"
+msgid "Time Committed"
+msgstr "Отдадено време"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "месец"
+msgid "Prayer Warriors"
+msgstr "Моите времена за молитва"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "Часове на молитва"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "Часа"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Необходими са молитвени ангажименти"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "Оставащи часове"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "Виж всички"
@@ -984,11 +960,6 @@ msgstr "Благодарим ви, че се присъединихте към �
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Процент на покритие"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "Отдадено време"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1060,6 +1031,21 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Регистрирай се"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "месец"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "Часа"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Оставащи часове"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1107,30 +1093,35 @@ msgstr ""
 "една десета от дължината на Библията). Това искрено търсене ни прави "
 "стратегически момент да се молим за тях."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Рамазан започва..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Рамаданът свършва..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Рамаданът приключи"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "тук"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "Повече часове, които трябва да бъдат покрити"
+msgid "Days"
+msgstr "Дни"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "Часове на молитва"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1149,6 +1140,10 @@ msgid "Now praying..."
 msgstr "Сега се моли..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "Повече часове, които трябва да бъдат покрити"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "Стратегическа молитва за движение за създаване на ученици"
 
@@ -1159,10 +1154,6 @@ msgstr "Сега се моли..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "Ето моментите, в които сте се ангажирали да се молите:"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "Моите времена за молитва"
 
 #, fuzzy
 #~ msgid "fully covered once"
