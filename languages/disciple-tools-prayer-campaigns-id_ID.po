@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2024-02-01 01:49+0000\n"
 "Last-Translator: Jelita Malau <jelitam64@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -174,8 +174,8 @@ msgid ""
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 "Kita hanya akan mengetahui dalam kekekalan dampak penuh dari doa kita. "
-"Namun, kita tahu dari Firman Tuhan bahwa doa itu penuh kuasa dan efektif ("
-"Yakobus 5:16)."
+"Namun, kita tahu dari Firman Tuhan bahwa doa itu penuh kuasa dan efektif "
+"(Yakobus 5:16)."
 
 #: campaign-functions/send-email-utility.php:444
 msgid ""
@@ -461,9 +461,7 @@ msgstr "%s komitmen"
 msgid "Please enter a valid name or email address"
 msgstr "Silakan masukkan nama atau alamat email yang valid"
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "Lanjut"
@@ -559,7 +557,8 @@ msgstr "Pendaftaran Anda berhasil."
 
 #: parts/components-enqueue.php:90
 msgid "Check your email for additional details and to manage your account."
-msgstr "Periksa email Anda untuk detail tambahan dan untuk mengelola akun Anda."
+msgstr ""
+"Periksa email Anda untuk detail tambahan dan untuk mengelola akun Anda."
 
 #: parts/components-enqueue.php:91
 msgid "Ok"
@@ -846,48 +845,29 @@ msgstr "Kampanye ini telah selesai. Lihat Bahan di bawah"
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 msgid "Sign Up to Pray"
 msgstr "Mendaftar untuk berdoa"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
-msgid "Days"
-msgstr "Hari-hari"
-
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Month"
-msgstr "Bulan"
+msgid "Time Committed"
+msgstr "Waktu Berkomitmen"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:185
+#, fuzzy
+#| msgid "My Prayer Times"
+msgid "Prayer Warriors"
+msgstr "Waktu Doaku"
+
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-msgid "Hours of Prayer"
-msgstr "Jam-jam Doa"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "Jam"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 msgid "Prayer Commitments Needed"
 msgstr "Komitmen Doa Diperlukan"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "Jam Tersisa"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 msgid "View All"
 msgstr "Tampilkan Keseluruhan"
 
@@ -913,11 +893,6 @@ msgstr "Terima kasih telah bergabung dengan kami dalam doa untuk %1$s di %2$s."
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Persentase Tercakup"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "Waktu Berkomitmen"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -981,6 +956,21 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Mendaftar"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "Bulan"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "Jam"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "Jam Tersisa"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1027,28 +1017,32 @@ msgstr ""
 "Quran (kira-kira sepersepuluh panjang Alkitab). Pencarian tulus ini "
 "menjadikannya saat yang strategis bagi kita untuk mendoakan mereka."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramadhan Dimulai..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramadhan Berakhir..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 msgid "Ramadan Is Finished"
 msgstr "Ramadan Selesai"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "di sini"
 
-#: porches/ramadan/site/home-body.php:220
-msgid "More Hours to be covered"
-msgstr "Lebih banyak waktu untuk dilingkup"
+#: porches/ramadan/site/home-body.php:166
+msgid "Days"
+msgstr "Hari-hari"
+
+#: porches/ramadan/site/home-body.php:179
+msgid "Hours of Prayer"
+msgstr "Jam-jam Doa"
 
 #: shortcodes/prayer-timer.php:219
 msgid "Start Praying!"
@@ -1063,6 +1057,9 @@ msgstr "Waktu berdoa: %s mnt"
 msgid "Now praying..."
 msgstr "Berdoa sekarang..."
 
+#~ msgid "More Hours to be covered"
+#~ msgstr "Lebih banyak waktu untuk dilingkup"
+
 #, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "Doa Strategis untuk Gerakan Pemuridan"
@@ -1073,9 +1070,6 @@ msgstr "Berdoa sekarang..."
 
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "Inilah waktu-waktu yang Anda telah berkomitmen untuk berdoa:"
-
-#~ msgid "My Prayer Times"
-#~ msgstr "Waktu Doaku"
 
 #~ msgid "fully covered once"
 #~ msgstr "terpenuhi sekaligus"

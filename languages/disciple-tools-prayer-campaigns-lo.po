@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lao <https://translate.disciple.tools/projects/disciple-tools/"
@@ -488,9 +488,7 @@ msgstr "ເວລາສັນຍາ"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "ຕໍ່ໄປ"
@@ -895,52 +893,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "ລົງທະບຽນເພື່ອອະທິຖານ"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "ມື້"
+msgid "Time Committed"
+msgstr "ເວລາສັນຍາ"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "ເດືອນ"
+msgid "Prayer Warriors"
+msgstr "ເວລາອະທິຖານຂອງຂ້ອຍ"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "ຊົ່ວໂມງຂອງການອະທິຖານ"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "ຊົ່ວໂມງ"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "ຄໍາຫມັ້ນສັນຍາການອະທິຖານຕ້ອງການ"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "ຊົ່ວໂມງທີ່ຍັງເຫຼືອ"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "ເບິ່ງທັງຫມົດ"
@@ -969,11 +945,6 @@ msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການເຂົ້
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "ເປີເຊັນກວມເອົາ"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "ເວລາສັນຍາ"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1042,6 +1013,21 @@ msgstr "ເຈົ້າຢາກໄດ້ຍິນກ່ຽວກັບຄວາ
 msgid "Sign Up"
 msgstr "ລົງທະບຽນ"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "ເດືອນ"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "ຊົ່ວໂມງ"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "ຊົ່ວໂມງທີ່ຍັງເຫຼືອ"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1085,30 +1071,35 @@ msgstr ""
 "(ປະມານຫນຶ່ງສ່ວນສິບຂອງຄວາມຍາວຂອງຄໍາພີໄບເບິນ). "
 "ການສະແຫວງຫາຄວາມຈິງໃຈນີ້ເຮັດໃຫ້ມັນເປັນເວລາຍຸດທະສາດສໍາລັບພວກເຮົາທີ່ຈະອະທິຖານເພື່ອເຂົາເຈົ້າ."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramadan ເລີ່ມຕົ້ນ ..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramadan ສິ້ນສຸດ ..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramadan ແມ່ນ ສຳ ເລັດແລ້ວ"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "ທີ່ນີ້"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "ຊົ່ວໂມງເພີ່ມເຕີມທີ່ຈະໄດ້ຮັບການຄຸ້ມຄອງ"
+msgid "Days"
+msgstr "ມື້"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "ຊົ່ວໂມງຂອງການອະທິຖານ"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1127,6 +1118,10 @@ msgid "Now praying..."
 msgstr "ບັດນີ້ອະທິຖານ..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "ຊົ່ວໂມງເພີ່ມເຕີມທີ່ຈະໄດ້ຮັບການຄຸ້ມຄອງ"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "ການອະທິຖານຍຸດທະສາດສໍາລັບການເຄື່ອນໄຫວສ້າງສານຸສິດ"
 
@@ -1137,10 +1132,6 @@ msgstr "ບັດນີ້ອະທິຖານ..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "ນີ້ແມ່ນເວລາທີ່ທ່ານຕັ້ງໃຈທີ່ຈະອະທິຖານ:"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "ເວລາອະທິຖານຂອງຂ້ອຍ"
 
 #, fuzzy
 #~ msgid "fully covered once"

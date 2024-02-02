@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-01-22T12:19:46+00:00\n"
+"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Amharic <https://translate.disciple.tools/projects/disciple-"
@@ -488,9 +488,7 @@ msgstr "ጊዜ የተሰጠ"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "ቀጥሎ"
@@ -894,52 +892,30 @@ msgstr ""
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "ለመጸለይ ይመዝገቡ"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Days"
-msgstr "ቀናት"
+msgid "Time Committed"
+msgstr "ጊዜ የተሰጠ"
 
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:185
 #, fuzzy
-msgid "Month"
-msgstr "ወር"
+msgid "Prayer Warriors"
+msgstr "የጸሎት ጊዜዬ"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
-msgid "Hours of Prayer"
-msgstr "የጸሎት ሰዓታት"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "ሰዓታት"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "የጸሎት ቃል ኪዳኖች ያስፈልጋሉ።"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "የቀሩ ሰዓቶች"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 #, fuzzy
 msgid "View All"
 msgstr "ሁሉንም ይመልከቱ"
@@ -968,11 +944,6 @@ msgstr "በ%2$s ውስጥ ለ%1$s በፀሎት ስለተቀላቀሉን እና�
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "የተሸፈነው መቶኛ"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "ጊዜ የተሰጠ"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1040,6 +1011,21 @@ msgstr "ስለሌሎች የጸሎት ጥረቶች እና እድሎች በPray4Mo
 msgid "Sign Up"
 msgstr "ክፈት"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "ወር"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "ሰዓታት"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "የቀሩ ሰዓቶች"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1081,30 +1067,35 @@ msgstr ""
 "አገልግሎቶች ላይ ይሳተፋሉ እና ሌሎች የአምልኮ ሥርዓቶችን ያደርጋሉ። እንዲያውም አንዳንዶች ሙሉውን ቁርኣን ያነባሉ "
 "(የመጽሃፍ ቅዱስን ርዝመት አንድ አስረኛ ያህላል)። ይህ ልባዊ መፈለግ ለእነሱ የምንጸልይበት ስልታዊ ጊዜ ያደርገዋል።"
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "ረመዳን ተጀመረ..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "ረመዳን ያበቃል..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "ረመዳን ተጠናቀቀ"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "እዚህ"
 
-#: porches/ramadan/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:166
 #, fuzzy
-msgid "More Hours to be covered"
-msgstr "የሚሸፈኑ ተጨማሪ ሰዓቶች"
+msgid "Days"
+msgstr "ቀናት"
+
+#: porches/ramadan/site/home-body.php:179
+#, fuzzy
+msgid "Hours of Prayer"
+msgstr "የጸሎት ሰዓታት"
 
 #: shortcodes/prayer-timer.php:219
 #, fuzzy
@@ -1123,6 +1114,10 @@ msgid "Now praying..."
 msgstr "አሁን መጸለይ..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "የሚሸፈኑ ተጨማሪ ሰዓቶች"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "ደቀ መዝሙር የማድረጉ እንቅስቃሴ ስትራቴጂያዊ ጸሎት"
 
@@ -1133,10 +1128,6 @@ msgstr "አሁን መጸለይ..."
 #, fuzzy
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "ለመጸለይ ያደረጋችሁባቸው ጊዜያት እነሆ፡-"
-
-#, fuzzy
-#~ msgid "My Prayer Times"
-#~ msgstr "የጸሎት ጊዜዬ"
 
 #, fuzzy
 #~ msgid "fully covered once"
