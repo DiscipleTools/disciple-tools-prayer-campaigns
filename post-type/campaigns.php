@@ -1202,7 +1202,7 @@ class DT_Campaigns_Base {
      * @return array|false|WP_Error
      */
     public static function send_campaign_info(){
-        $p4m_participation = DT_Campaign_Settings::get( 'p4m_participation', true );
+        $p4m_participation = apply_filters( 'p4m_participation', DT_Campaign_Settings::get( 'p4m_participation', true ) );
         $current_campaign = DT_Campaign_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
 

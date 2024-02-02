@@ -205,7 +205,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             </label>
                                         </td>
                                         <td style="min-width: 100px; vertical-align: middle">
-                                            <button type='submit' name='p4m_participation_submit' class='button'>
+                                            <button type='submit' name='p4m_participation_submit' class='button' <?php disabled( $participation_force ) ?>>
                                                 <?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?>
                                             </button>
                                         </td>
