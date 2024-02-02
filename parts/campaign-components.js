@@ -43,12 +43,12 @@ export class campaignButton extends LitElement {
         font-weight: normal;
         padding: .85rem 1rem;
         cursor:pointer;
-        background-color: var( --cp-color, 'dodgerblue' );
+        background-color: var( --cp-color, dodgerblue );
       }
       button:hover {
         background-color: transparent;
-        border-color: var( --cp-color, 'dodgerblue' );
-        color: var( --cp-color, 'dodgerblue' );
+        border-color: var( --cp-color, dodgerblue );
+        color: var( --cp-color, dodgerblue );
       }
       button[disabled] {
         opacity: .25;

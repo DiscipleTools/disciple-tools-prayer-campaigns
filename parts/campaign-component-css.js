@@ -72,13 +72,13 @@ export const campaignStyles = css`
     font-weight: normal;
     padding: .85rem 1rem;
     cursor:pointer;
-    background-color: var( --cp-color, 'dodgerblue' );
+    background-color: var( --cp-color, dodgerblue );
     line-height: 1;
   }
   button:hover {
     background-color: transparent;
-    border-color: var( --cp-color, 'dodgerblue' );
-    color: var( --cp-color, 'dodgerblue' );
+    border-color: var( --cp-color, dodgerblue );
+    color: var( --cp-color, dodgerblue );
   }
   button[disabled] {
     opacity: .25;
@@ -93,7 +93,7 @@ export const campaignStyles = css`
     border-color: #cc4b37;
   }
   button.clear-button {
-    color: var( --cp-color, 'dodgerblue' );
+    color: var( --cp-color, dodgerblue );
     background-color: transparent;
   }
   button.clear-button.danger {
@@ -102,8 +102,8 @@ export const campaignStyles = css`
   }
   button.hollow-button {
     background-color: transparent;
-    border-color: var( --cp-color, 'dodgerblue' );
-    color: var( --cp-color, 'dodgerblue' );
+    border-color: var( --cp-color, dodgerblue );
+    color: var( --cp-color, dodgerblue );
   }
   button.hollow-button.danger {
     border-color: #cc4b37;
@@ -119,13 +119,13 @@ export const campaignStyles = css`
     font-weight: normal;
     padding: .85rem 1rem;
     cursor:pointer;
-    background-color: var( --cp-color, 'dodgerblue' );
+    background-color: var( --cp-color, dodgerblue );
     line-height: 1;
   }
   a.button:hover {
     background-color: transparent;
-    border-color: var( --cp-color, 'dodgerblue' );
-    color: var( --cp-color, 'dodgerblue' );
+    border-color: var( --cp-color, dodgerblue );
+    color: var( --cp-color, dodgerblue );
   }
 
   
