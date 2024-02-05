@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-01T13:03:41+00:00\n"
-"PO-Revision-Date: 2024-02-01 01:49+0000\n"
+"POT-Creation-Date: 2024-02-02T15:35:11+00:00\n"
+"PO-Revision-Date: 2024-02-04 16:28+0000\n"
 "Last-Translator: Jelita Malau <jelitam64@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/id_ID/>\n"
@@ -164,9 +164,8 @@ msgstr "Yang Terkasih %s,"
 
 #: campaign-functions/send-email-utility.php:438
 #: campaign-functions/send-email-utility.php:468
-#, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Terima kasih telah bergabung dengan kami dalam doa untuk %1$s di %2$s."
+msgstr "Terima kasih telah bergabung dengan kami %1$s di %2$s."
 
 #: campaign-functions/send-email-utility.php:441
 msgid ""
@@ -855,10 +854,8 @@ msgid "Time Committed"
 msgstr "Waktu Berkomitmen"
 
 #: porches/generic/site/home-body.php:185
-#, fuzzy
-#| msgid "My Prayer Times"
 msgid "Prayer Warriors"
-msgstr "Waktu Doaku"
+msgstr "Prajurit Doa"
 
 #: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
@@ -903,9 +900,8 @@ msgid "Number of People who Prayed"
 msgstr "Jumlah Orang yang Doa"
 
 #: porches/generic/site/stats.php:266
-#, fuzzy
 msgid "Share with us your Prayer Stories"
-msgstr "Bagikan dengan kami Kisah Doa Anda"
+msgstr "Bagikan dengan kami cerita doa anda"
 
 #: porches/generic/site/stats.php:280
 msgid ""
