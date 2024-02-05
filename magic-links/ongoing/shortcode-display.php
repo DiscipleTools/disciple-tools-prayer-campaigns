@@ -9,12 +9,14 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
         $this->parts = $magic_link_parts;
     }
     public function body(){
+        ( new DT_Generic_Porch_Loader() )->load_porch();
         $atts = $this->parts;
         $atts['rest_url'] = rest_url();
         $atts['color'] = PORCH_COLOR_SCHEME_HEX;
         if ( $atts['color'] === 'preset' || empty( $atts['color'] ) ){
             $atts['color'] = '#4676fa';
         }
+        $progress_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-generic-campaign-percentage', $atts );
         $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-calendar', $atts );
         $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-signup', $atts );
         $prayer_timer_shortcode = dt_campaigns_build_shortcode_from_array( 'dt_prayer_timer', [ 'color' => '#3e729a', 'duration' => '15' ] );
@@ -39,8 +41,16 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
         <div id="dt-ongoing-display">
             <div class="center">
                 <div class="display-section center">
+                    <h1>The Progress</h1>
+
+                        <?php echo do_shortcode( $progress_shortcode ); ?>
+                    <code><?php echo esc_html( $progress_shortcode ); ?></code>
+                </div>
+                <div class="display-section center">
                     <h1>The Calendar</h1>
-                    <?php echo do_shortcode( $calendar_shortcode ); ?>
+                    <div style="max-width: 500px" class="center">
+                        <?php echo do_shortcode( $calendar_shortcode ); ?>
+                    </div>
                     <code><?php echo esc_html( $calendar_shortcode ); ?></code>
                 </div>
                 <div class="display-section">

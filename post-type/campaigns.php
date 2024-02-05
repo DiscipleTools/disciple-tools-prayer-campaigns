@@ -43,6 +43,7 @@ class DT_Campaigns_Base {
 
         // hooks
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
+        add_action( 'post_connection_added', [ $this, 'post_connection_added' ], 10, 4 );
 
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
@@ -145,6 +146,8 @@ class DT_Campaigns_Base {
             $expected_roles['administrator']['permissions']['create_' . $this->post_type] = true;
             $expected_roles['administrator']['permissions']['view_any_'.$this->post_type ] = true;
             $expected_roles['administrator']['permissions']['update_any_'.$this->post_type ] = true;
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $landing_page_permissions );
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $all_campaigns_admin_permissions );
         }
 
         return $expected_roles;
@@ -180,11 +183,24 @@ class DT_Campaigns_Base {
             ];
             // end basic framework fields
 
+            $fields['assigned_user'] = [
+                'name' => 'Assigned Users',
+                'description' => 'Users responsible for managing the campaign.',
+                'type' => 'connection',
+                'post_type' => 'contacts',
+                'tile' => 'status',
+                'p2p_direction' => 'from',
+                'p2p_key' => $this->post_type.'_to_contacts',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
+            ];
+
+            $fields['name']['tile'] = 'status';
+
             $fields['campaign_url'] = [
                 'name' => 'Campaign URL',
-                'description' => 'The URL that will be used as the link for the logo on the campaign landing page.',
+                'description' => 'The URL of the campaign landing page. It must be unique',
                 'type' => 'text',
-                'tile' => 'details',
+                'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
                 'show_in_table' => 20,
             ];
@@ -213,7 +229,7 @@ class DT_Campaigns_Base {
                 'name' => 'Landing Page Type',
                 'type' => 'key_select',
                 'default' => [],
-                'tile' => 'status',
+                'tile' => 'campaign_setup',
                 'in_create_form' => true,
                 'select_cannot_be_empty' => true,
             ];
@@ -288,6 +304,12 @@ class DT_Campaigns_Base {
                 'name' => 'Duration options',
                 'type' => 'key_select',
                 'default' => DT_Time_Utilities::get_slot_duration_options(),
+            ];
+            $fields['enabled_languages'] = [
+                'name' => 'Enabled Languages',
+                'type' => 'tags',
+                'default' => [],
+                'tile' => 'campaign_landing',
             ];
 
             $fields['strings_translations'] = [
@@ -378,6 +400,7 @@ class DT_Campaigns_Base {
     }
 
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        global $wpdb;
         if ( $post_type === 'campaigns' ){
             foreach ( $fields as $field_key => $field_value ){
                 if ( strpos( $field_key, 'hack-campaign_strings' ) === 0 ){
@@ -393,8 +416,28 @@ class DT_Campaigns_Base {
                     unset( $fields[$field_key] );
                 }
             }
+            //make sure the campaign_url is unique
+            if ( isset( $fields['campaign_url'] ) ) {
+                $campaign_url = str_replace( ' ', '-', strtolower( trim( $fields['campaign_url'] ) ) );
+                $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $campaign_url ) );
+                if ( !empty( $url_exists ) ){
+                    $campaign_url = dt_create_field_key( $campaign_url, true );
+                }
+                $fields['campaign_url'] = $campaign_url;
+            }
         }
         return $fields;
+    }
+
+    public function post_connection_added( $post_type, $post_id, $post_key, $value ){
+        if ( $post_type === 'campaigns' ){
+            if ( $post_key === 'assigned_user' ){
+                $user_id = get_post_meta( $value, 'corresponds_to_user', true );
+                if ( $user_id ){
+                    DT_Posts::add_shared( $post_type, $post_id, $user_id, null, true, false, true );
+                }
+            }
+        }
     }
 
     public function dt_comments_additional_sections( $sections, $post_type ){
@@ -402,6 +445,11 @@ class DT_Campaigns_Base {
             $sections[] = [
                 'key' => 'stories',
                 'label' => 'Stories',
+                'selected_by_default' => true
+            ];
+            $sections[] = [
+                'key' => 'contact_us',
+                'label' => 'Contact US',
                 'selected_by_default' => true
             ];
         }
@@ -510,7 +558,7 @@ class DT_Campaigns_Base {
                     if ( data ) {
                         jQuery.each(data, function(i,v){
                             content += `<li>
-                                <a href="/subscriptions/${window.lodash.escape(v.ID)}">
+                                <a href="${window.wpApiShare.site_url}/subscriptions/${window.lodash.escape(v.ID)}">
                                     ${window.lodash.escape(v.name)}
                                 </a>
                                  (${window.lodash.escape(v.commitments)})
@@ -1116,6 +1164,7 @@ class DT_Campaigns_Base {
 
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
+        global $wpdb;
         if ( $post_type === $this->post_type ) {
             if ( !isset( $fields['status'] ) ) {
                 $fields['status'] = 'active';
@@ -1123,21 +1172,25 @@ class DT_Campaigns_Base {
             if ( !isset( $fields['porch_type'] ) ){
                 $fields['porch_type'] = 'generic-porch';
             }
-//            $key_name = 'public_key';
-//            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
-//                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', $fields['type'] );
-//            }
-//            if ( !isset( $fields[$key_name] ) ) {
-//                $fields[$key_name] = dt_create_unique_key();
-//            }
             if ( !isset( $fields['custom_theme_color'] ) ) {
                 $fields['custom_theme_color'] = self::rand_color();
             }
             if ( !isset( $fields['campaign_url'] ) ) {
                 $fields['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $fields['name'] ) ) );
             }
+            $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $fields['campaign_url'] ) );
+            if ( !empty( $url_exists ) ){
+                $fields['campaign_url'] = dt_create_field_key( $fields['campaign_url'], true );
+            }
             if ( !isset( $fields['min_time_duration'] ) ){
                 $fields['min_time_duration'] = '15';
+            }
+            $key_name = 'public_key';
+            if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+                $key_name = DT_Magic_URL::get_public_key_meta_key( 'campaign_app', 'ongoing' );
+            }
+            if ( !isset( $fields[$key_name] ) ) {
+                $fields[$key_name] = dt_create_unique_key();
             }
         }
         return $fields;

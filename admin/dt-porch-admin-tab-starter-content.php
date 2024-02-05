@@ -270,11 +270,8 @@ class DT_Porch_Admin_Tab_Starter_Content {
 
 
     public function export_prayer_content_box(){
-
-
-        $languages_manager = new DT_Campaign_Languages();
-        $languages = $languages_manager->get_enabled_languages();
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
 
 
         global $wpdb;
@@ -338,7 +335,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                             <?php foreach ( $languages as $code => $language ):
                                 ?>
 
-                                <tr class="<?php echo $language['enabled'] === false ? 'disabled-language' : '' ?>">
+                                <tr>
                                     <td><?php echo esc_html( $language['flag'] ) ?> <?php echo esc_html( $language['english_name'] ) ?></td>
 
                                     <td><?php echo esc_html( $installed_langs[$code] ?? 0 ); ?></td>

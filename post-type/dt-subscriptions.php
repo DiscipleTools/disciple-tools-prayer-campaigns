@@ -387,7 +387,7 @@ class Recurring_Signups {
                 'selected_times' => $selected_times,
                 'type' => $type,
                 'label' => $label,
-                'duration' => $selected_times[0]['duration'],
+                'duration' => $selected_times[0]['duration'] ?? 15,
                 'time' => $time ?? null,
                 'week_day' => $week_day,
             ],

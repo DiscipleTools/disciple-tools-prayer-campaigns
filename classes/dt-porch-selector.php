@@ -6,8 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
  */
 class DT_Porch_Selector {
 
-    public $selected_porch_id;
-
     private static $instance;
     public static function instance() {
         if ( is_null( self::$instance ) ) {
@@ -17,8 +15,7 @@ class DT_Porch_Selector {
     }
 
     public function __construct() {
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
-        $this->selected_porch_id = $campaign['porch_type']['key'] ?? 'generic-porch';
+        add_action( 'after_setup_theme', [ $this, 'dt_after_all_porches_have_loaded' ], 150 );
     }
 
     public function load_selected_porch() {
@@ -28,7 +25,17 @@ class DT_Porch_Selector {
     }
 
     public function has_selected_porch() {
-        return $this->selected_porch_id && !empty( $this->selected_porch_id ) && $this->porch_exists( $this->selected_porch_id );
+        //all campaigns have a landing page now.
+        return true;
+    }
+
+    public function dt_after_all_porches_have_loaded() {
+
+        $plugin_dir = DT_Prayer_Campaigns::get_dir_path();
+        if ( $this->has_selected_porch() ) {
+            require_once trailingslashit( $plugin_dir ) . 'porches/prayer-fuel-post-type.php';
+        }
+        $this->load_selected_porch();
     }
 
     public function porch_exists( $porch_id ) {
@@ -42,11 +49,13 @@ class DT_Porch_Selector {
     }
 
     public function get_selected_porch_id() {
-        return $this->selected_porch_id;
-    }
-
-    public function set_selected_porch_id( $new_selected_porch_id ) {
-        $this->selected_porch_id = $new_selected_porch_id;
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $porches = $this->get_porch_loaders();
+        if ( isset( $campaign['porch_type']['key'] ) && array_key_exists( $campaign['porch_type']['key'], $porches ) ){
+            return $campaign['porch_type']['key'];
+        } else {
+            return 'generic-porch';
+        }
     }
 
     /**

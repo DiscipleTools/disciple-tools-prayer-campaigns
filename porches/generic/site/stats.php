@@ -25,68 +25,22 @@ class DT_Generic_Porch_Stats {
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
         add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
 
-        add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 100, 1 );
-        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 100, 1 );
-        add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 99 );
     }
-    public function dt_custom_dir_attr( $lang ){
-        return dt_campaign_custom_dir_attr( $lang );
-    }
-
     public function dt_blank_title( $title ) {
         return $this->page_title;
     }
 
-    public function dt_magic_url_base_allowed_js( $allowed_js ) {
-        $allowed_js = [];
-        $allowed_js[] = 'dt_campaign_core';
-        $allowed_js[] = 'dt_campaign';
-        $allowed_js[] = 'luxon';
-        $allowed_js[] = 'jquery';
-        $allowed_js[] = 'lodash';
-        $allowed_js[] = 'lodash-core';
-
-        $allowed_js[] = 'campaign_css';
-        $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_component_sign_up';
-        $allowed_js[] = 'campaign_component_css';
-        $allowed_js[] = 'toastify-js';
-
-
-        return array_merge( $allowed_js, DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
-    }
-
-    public function dt_magic_url_base_allowed_css( $allowed_css ) {
-        return DT_Generic_Porch_Landing_Enqueue::load_allowed_styles();
-    }
-
-    public function wp_enqueue_scripts() {
-        DT_Generic_Porch_Landing_Enqueue::load_scripts();
-    }
-
     public function body(){
-//        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
-
-        $porch_fields = DT_Porch_Settings::settings();
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-        $langs = dt_campaign_list_languages();
+        $langs = DT_Campaign_Languages::get_enabled_languages( $campaign_fields['ID'] );
         $post_id = $campaign_fields['ID'];
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
         $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
-        $campaign_name = $porch_fields['title']['value'];
+        $campaign_name = $campaign_fields['title'];
         $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'title' );
 
-        $timezone = 'America/Chicago';
-        if ( isset( $campaign_fields['campaign_timezone']['key'] ) ){
-            $timezone = $campaign_fields['campaign_timezone']['key'];
-        }
-
-        $min_time_duration = 15;
-        if ( isset( $campaign_fields['min_time_duration']['key'] ) ){
-            $min_time_duration = (int) $campaign_fields['min_time_duration']['key'];
-        }
         $subscribers_count = DT_Subscriptions::get_subscribers_count( $post_id );
         $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
 
@@ -128,9 +82,6 @@ class DT_Generic_Porch_Stats {
         }
 
         $thank_you = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
-        if ( !empty( $porch_fields['people_name']['value'] ) && !empty( $porch_fields['country_name']['value'] ) ){
-            $thank_you = sprintf( _x( 'Thank you for joining us in prayer for the %1$s in %2$s.', 'Thank you for joining us in prayer for the French in France.', 'disciple-tools-prayer-campaigns' ), $porch_fields['people_name']['value'], $porch_fields['country_name']['value'] );
-        }
         ?>
 
         <style>
@@ -252,7 +203,7 @@ class DT_Generic_Porch_Stats {
                         <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
-                    <form onSubmit="submit_feedback_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
+                    <form onSubmit="event.preventDefault();submit_feedback_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
                         <p>
                             <label style="width: 100%">
                                 <?php esc_html_e( 'Email', 'disciple-tools-prayer-campaigns' ); ?>
@@ -290,7 +241,28 @@ class DT_Generic_Porch_Stats {
 
                     let email = $('#email-2').val();
                     let story = $('#campaign-stories').val()
-                    window.makeRequest( "POST", '/stories', { parts: jsObject.parts, email, story }, jsObject.parts.root + /v1/ + jsObject.parts.type ).done(function(data){
+
+
+                    let payload = {
+                        'parts': window.campaign_objects.magic_link_parts,
+                        campaign_id: window.campaign_objects.magic_link_parts.post_id,
+                        email,
+                        story
+                    };
+
+                    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/stories';
+
+
+                    jQuery.ajax({
+                        type: 'POST',
+                        data: JSON.stringify(payload),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: link,
+                        beforeSend: (xhr) => {
+                          xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
+                        },
+                    }).done(function(data){
                         $('#stories-submit-spinner').show()
                         $('#form-content').hide()
                         $('#form-confirm').show()
@@ -516,40 +488,8 @@ class DT_Generic_Porch_Stats {
         require_once( 'header.php' );
     }
 
-    public function add_endpoints() {
-        $namespace = $this->root . '/v1/'. $this->type;
-        register_rest_route(
-            $namespace, 'stories', [
-                [
-                    'methods'  => 'POST',
-                    'callback' => [ $this, 'add_story' ],
-                    'permission_callback' => '__return_true',
-                ],
-            ]
-        );
-    }
 
-    public function add_story( WP_REST_Request $request ) {
-        $params = $request->get_params();
-        $params = dt_recursive_sanitize_array( $params );
-        if ( !isset( $params['story'], $params['email'] ) ){
-            return false;
-        }
-        $params['story'] = wp_kses_post( $request->get_params()['story'] );
 
-        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-        $post_id = $campaign_fields['ID'];
-
-        $comment = 'Story feedback from ' . site_url( 'prayer/stats' ) . ' by ' . $params['email'] . ": \n" . $params['story'];
-        DT_Posts::add_post_comment( 'campaigns', $post_id, $comment, 'stories', [], false );
-
-        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );
-        if ( sizeof( $subs['posts'] ) === 1 ){
-            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
-        }
-
-        return true;
-    }
 
 }
 DT_Generic_Porch_Stats::instance();

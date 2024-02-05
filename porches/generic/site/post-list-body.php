@@ -2,6 +2,12 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
+
+$formatter = new IntlDateFormatter(
+    $lang,  // the locale to use, e.g. 'en_GB'
+    IntlDateFormatter::LONG, // how the date should be formatted, e.g. IntlDateFormatter::FULL
+    IntlDateFormatter::NONE,  // how the time should be formatted, e.g. IntlDateFormatter::FULL
+);
 //  for getting posts in the selected language.
 $lang_query = [
     [
@@ -17,9 +23,9 @@ if ( $lang === 'en_US' ){
     ];
     $lang_query['relation'] = 'OR';
 }
-
-$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ) );
 $campaign = DT_Campaign_Landing_Settings::get_campaign();
+$frequency = isset( $campaign['prayer_fuel_frequency']['key'] ) ? $campaign['prayer_fuel_frequency']['key'] : 'daily';
+$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ), $campaign['ID'], $frequency );
 
 $meta_query = [
    'relation' => 'AND',
@@ -126,7 +132,7 @@ if ( empty( $list->posts ) ){
                                 <a href="<?php echo esc_url( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
                             </h3>
                             <div class="meta-tags">
-                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
+                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( $formatter->format( strtotime( $date ) ) )  ?></span>
                             </div>
                             <p>
                                 <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>

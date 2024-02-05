@@ -1,5 +1,11 @@
 import {html, css, LitElement, range, map, classMap, styleMap} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
+function translate(str){
+  if ( !strings[str] ){
+    console.error("'" + str + "' => __( '" + str + "', 'disciple-tools-prayer-campaigns' ),");
+  }
+  return strings[str] || str
+}
 const day_in_seconds = 86400
 
 export class cpTemplate extends LitElement {
@@ -251,7 +257,11 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
+      receive_pray4movement_news: true,
     }
+    window.campaign_data.signup_form_fields?.map(f=>{
+      this._form_items[f.key] = f.default || null;
+    })
     this.selected_times_count = 0;
   }
 
@@ -260,7 +270,7 @@ export class ContactInfo extends LitElement {
   }
 
   handleInput(e){
-    let val = e.target.value
+    let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     let name = e.target.name
     this._form_items[name] = val
     this.requestUpdate()
@@ -298,6 +308,45 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
       </div>
+      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ?
+          html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
+                <input type="checkbox" checked id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
+                ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
+          </label>`
+      : ``}
+      
+      <!-- Additional Fields -->
+      ${ window.campaign_data.signup_form_fields?.map(f=>{
+        let key = window.campaign_scripts.escapeHTML(f.key)
+        let name = window.campaign_scripts.escapeHTML(f.name)
+        let description = window.campaign_scripts.escapeHTML(f.description)
+        if ( f.type === 'text' ){
+          return html`
+            <div>
+                <label for="${key}">${name}<br>
+                    <input 
+                        class="cp-input" 
+                        type="text" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}/>
+                </label>
+            </div>
+          `
+        } else if ( f.type === 'boolean' ){
+          return html`
+            <div>
+                <label for="${key}" style="font-weight: normal; display: block">
+                    <input 
+                        type="checkbox"
+                        name="${key}" 
+                        id="${key}"
+                        ?checked=${f.default}
+                        @input=${this.handleInput}/>
+                    ${description || name}
+                </label>
+            </div>
+          `
+        }
+      } ) }
+      
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
               ${strings['No prayer times selected']}
@@ -410,10 +459,12 @@ export class cpCalendarDaySelect extends LitElement {
     css`
       :host {
         display: block;
+        container-type: inline-size;
+        container-name: calendar;
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 14cqw);
       }
       .day-cell {
         display: flex;
@@ -438,6 +489,7 @@ export class cpCalendarDaySelect extends LitElement {
         height: 40px;
         width: 40px;
         font-weight: bold;
+        font-size:clamp(0.75em, 0.65rem + 2cqi, 1em);
       }
       .selected-time {
         color: black;
@@ -566,8 +618,16 @@ export class cpMyCalendar extends LitElement {
     css`
       :host {
         display: block;
-        --size: min(60px, calc((100vw - 2rem) / 7))
+        --size: min(60px, calc((100vw - 2rem) / 7));
       }
+      .calendar-wrapper {
+        //container-type: inline-size;
+        container-name: cp-calendar;
+        border-radius: 10px;
+        padding: 1em;
+        display: block;
+      }
+
       .calendar {
         display: grid;
         grid-template-columns: repeat(7, var(--size));
@@ -592,6 +652,7 @@ export class cpMyCalendar extends LitElement {
         height: var(--size);
         width: var(--size);
         font-weight: bold;
+        font-size:clamp(1em, 2cqw, 0.5em + 1cqi);
       }
       .selected-time {
         //color: black;
@@ -626,9 +687,6 @@ export class cpMyCalendar extends LitElement {
         height: 5px;
         background-color: #57d449;
         border-radius: 100px;
-      }
-      progress-ring {
-        height: var(--size);
       }
     `,
     window.campaignStyles
@@ -709,7 +767,7 @@ export class cpMyCalendar extends LitElement {
 
     //get width of #prayer-times
     let max_cell_size = document.querySelector('#prayer-times').offsetWidth / 7;
-    let size = Math.min(max_cell_size, 60)
+    let size = Math.min(max_cell_size, 40)
 
 
     return html`
@@ -734,7 +792,7 @@ export class cpMyCalendar extends LitElement {
                        data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                    <progress-ring class="${day.disabled?'disabled':0}" stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                    <progress-ring class="${day.disabled?'disabled':0}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                     <div class="indicator-section">
                       ${map(range(my_commitments[day.formatted]||0),i=> {
                         return html`<span class="prayer-time-indicator"></span>`
@@ -802,6 +860,7 @@ export class cpTimes extends LitElement {
       }
       progress-ring {
         height: 20px;
+        width: 20px;
       }
       .time {
         display: none;
@@ -917,7 +976,7 @@ export class cpTimes extends LitElement {
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
                           ${time.progress < 100 ?
-                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
+                              html`<progress-ring progress="${time.progress}"></progress-ring>` :
                               html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
                         </span>
                     </div>
@@ -1110,23 +1169,65 @@ customElements.define('cp-verify', cpVerify);
 
 export class cpProgressRing extends LitElement {
   static styles = [
-    css``
+    css`
+    :host {
+      display: block;
+      --pi: 3.14159265358979;
+      --radius: 50cqi;
+      --stroke-width: max(3px, 5%);
+      --normalized-radius: calc(var(--radius) - var(--stroke-width));
+      --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
+      --circumference: calc(var(--normalized-radius) * 2 * var(--pi));
+      --circumference2: calc(var(--normalized-radius2) * 2 * var(--pi));
+
+      --offset2: calc((var(--progress) / 100 * var(--circumference))*-1);
+      --offset: calc( var(--circumference) + var(--offset2));
+      --offset3: calc( var(--circumference2) - var(--progress2) / 100 * var(--circumference2));
+
+
+      height: 95%;
+      width: 95%;
+      container-type: inline-size;
+    }
+    .inner-text {
+      font-size: clamp(1em, 0.5em + 3cqi, 1.25rem);
+    }
+
+    svg {
+      width: 100cqi;
+      height: 100cqi;
+    }
+
+    circle {
+      transition: stroke-dashoffset 0.35s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      stroke-width: var(--stroke-width);
+      stroke-dasharray: var(--circumference) var(--circumference);
+      r: var(--normalized-radius);
+      cx: var(--radius);
+      cy: var(--radius);
+    }
+
+    circle.first-circle {
+      stroke-dashoffset: var(--offset);
+    }
+    circle.second-circle {
+      stroke-dashoffset: var(--offset2);
+    }
+    `
   ]
 
   static properties = {
-    radius: {type: Number},
     text: {type: String},
     progress: {type: Number},
     progress2: {type: Number},
     font_size: {type: Number},
-    stroke: {type: Number},
     color: {type: String},
   }
 
   constructor() {
     super();
-    this.radius = 30
-    this.stroke = 3
     this.font_size = 15
     this.color = 'dodgerblue'
     this.progress = 0;
@@ -1135,20 +1236,6 @@ export class cpProgressRing extends LitElement {
 
   render() {
     this.progress = parseInt(this.progress).toFixed()
-    this.radius = parseInt(this.radius).toFixed()
-    this.stroke = parseInt(this.stroke).toFixed()
-    const normalizedRadius = this.radius - this.stroke;
-    this._circumference = normalizedRadius * 2 * Math.PI;
-
-    let normalizedRadius2 = parseInt(this.radius) - this.stroke/2 + 1
-    this._circumference2 = normalizedRadius2 * 2 * Math.PI;
-
-    let offset = this._circumference - (this.progress / 100 * this._circumference);
-    const offset2 = -(this.progress / 100 * this._circumference);
-    if ( this._progress2 ){
-      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
-    }
-
     this.color = parseInt( this.progress ) >= 100 ? 'mediumseagreen' : this.color
 
     // if ( text2 ){
@@ -1166,42 +1253,27 @@ export class cpProgressRing extends LitElement {
 
 
     return html`
-      <svg height="${this.radius * 2}"
-           width="${this.radius * 2}" >
+      <svg>
            <circle
              class="first-circle"
              stroke="${this.color}"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${offset}"
-             stroke-width="${this.stroke}"
              fill="transparent"
-             r="${normalizedRadius}"
-             cx="${this.radius}"
-             cy="${this.radius}"
           />
           <circle
              class="second-circle"
              stroke="${this.color}"
              stroke-opacity="0.1"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${offset2}"
-             stroke-width="${this.stroke}"
              fill="transparent"
-             r="${normalizedRadius}"
-             cx="${this.radius}"
-             cy="${this.radius}"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
               ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
-
       <style>
-          circle {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-          }
+        :host{
+          --progress: ${this.progress};
+          --progress2: ${this.progress2};
+        }
       </style>
     `
 

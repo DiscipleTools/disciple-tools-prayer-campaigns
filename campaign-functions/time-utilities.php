@@ -79,7 +79,7 @@ class DT_Time_Utilities {
         $start = self::start_of_campaign_with_timezone( $campaign_post_id );
         $end = self::end_of_campaign_with_timezone( $campaign_post_id, $month_limit, $start );
 
-        if ( $start < time() - 31 * DAY_IN_SECONDS ){
+        if ( $start < time() - 31 * DAY_IN_SECONDS && $end > time() ){
             $start = time() - 31 * DAY_IN_SECONDS;
         }
 

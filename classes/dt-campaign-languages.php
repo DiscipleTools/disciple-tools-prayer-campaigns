@@ -2,90 +2,58 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Campaign_Languages {
-
-    const CACHE_EXPIRY = 3600000;
-    private $option_name = 'dt_campaign_languages';
-    private $allowed_fields = [
-        'language',
-        'label',
-        'native_name',
-        'flag',
-        'enabled',
-    ];
-    private $default_language = 'en_US';
-
-    /**
-     * Add new language
-     *
-     * @param string $code
-     * @param array $language
-     */
-    public function add( string $code, array $language ) {
-        $languages = $this->get();
-
-        if ( $this->is_language_in_list( $code, $languages ) ) {
-            return;
-        }
-
-        $new_language = [
-            'language' => $code,
-            'label' => $language['label'],
-            'english_name' => $language['label'],
-            'native_name' => $language['native_name'],
-            'flag' => $language['flag'],
-            'rtl' => $language['rtl'],
-            'enabled' => true,
-        ];
-        $custom_options = get_option( $this->option_name, [] );
-        $custom_options[$code] = $new_language;
-        update_option( $this->option_name, $custom_options );
-
-        return $this->get( true );
-    }
-
     /**
      * Add a language from the list of names, codes, flags etc.
      *
      * @param string $code
      */
-    public function add_from_code( $code ) {
-        $available_languages = $this->language_list();
+    public static function add_from_code( $code ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $enabled_languages = $campaign['enabled_languages'] ?? [ 'en_US' ];
 
-        if ( !array_key_exists( $code, $available_languages ) ) {
-            return;
+        if ( !in_array( $code, $enabled_languages ) ){
+            DT_Posts::update_post( 'campaigns', $campaign['ID'], [ 'enabled_languages' => [ 'values' => [ [ 'value' => $code ] ] ] ] );
         }
-
-        $new_language = $available_languages[$code];
-
-        $this->add( $code, $new_language );
+        return self::get_enabled_languages( $campaign['ID'] );
     }
 
     /**
      * Get the available languages
     */
-    public function get( $reset_cache = false ) {
-        $languages = $reset_cache ? [] : $this->get_from_cache();
+    public static function get_installed_languages( $campaign_id ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+        $enabled_languages = $campaign['enabled_languages'] ?? [ 'en_US' ];
+        $installed_languages = self::get_translated_languages();
 
-        if ( empty( $languages ) ) {
-            $languages = $this->get_from_options_or_defaults();
 
-            $this->cache( $languages );
+        $all = array_unique( array_merge( $enabled_languages, $installed_languages ) );
+
+        $available_languages = self::get_languages_for_codes( $all );
+
+        foreach ( $available_languages as $code => $language ){
+            if ( in_array( $code, $enabled_languages ) ){
+                $available_languages[$code]['enabled'] = true;
+            } else {
+                $available_languages[$code]['enabled'] = false;
+            }
+            if ( in_array( $code, $installed_languages ) ){
+                $available_languages[$code]['default'] = true;
+            }
         }
 
-        return $languages;
+        return $available_languages;
     }
 
     /**
      * Get the enabled languages
      */
-    public function get_enabled_languages() {
-        $languages = $this->get();
+    public static function get_enabled_languages( $campaign_id ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+        $enabled_codes = $campaign['enabled_languages'] ?? [ 'en_US' ];
 
-        $filter_by_enabled = function ( $language ) {
-            return isset( $language['enabled'] ) && $language['enabled'] === true;
-        };
+        $languages = self::get_languages_for_codes( $enabled_codes );
 
-        return array_filter( $languages, $filter_by_enabled );
+        return $languages;
     }
 
     /**
@@ -94,10 +62,10 @@ class DT_Campaign_Languages {
      * @param string $lang
      * @return string
      */
-    public function get_language_direction( string $lang ) {
-        $languages = $this->get_enabled_languages();
-        if ( $this->is_language_in_list( $lang, $languages ) ) {
-            $language = $languages[$lang];
+    public static function get_language_direction( string $lang ) {
+        $all_languages = dt_get_global_languages_list();
+        if ( isset( $all_languages[ $lang ] ) ) {
+            $language = $all_languages[$lang];
 
             if ( isset( $language['rtl'] ) && $language['rtl'] === true ) {
                 return 'rtl';
@@ -108,26 +76,18 @@ class DT_Campaign_Languages {
     }
 
     /**
-     * Update a language
-     *
-     * @param string $code
-     * @param array $updates
-     */
-    public function update( string $code, array $updates ) {
-        return $this->apply_updates( $code, $updates );
-    }
-
-    /**
      * Disable language
      *
      * @param string $code
      */
-    public function disable( string $code ) {
-        $updates = [
-            'enabled' => false,
-        ];
+    public static function disable( string $code ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $enabled_languages = $campaign['enabled_languages'] ?? [ 'en_US' ];
 
-        return $this->apply_updates( $code, $updates );
+        if ( in_array( $code, $enabled_languages ) ){
+            DT_Posts::update_post( 'campaigns', $campaign['ID'], [ 'enabled_languages' => [ 'values' => [ [ 'value' => $code, 'delete' => true ] ] ] ] );
+        }
+        return self::get_enabled_languages( $campaign['ID'] );
     }
 
     /**
@@ -135,12 +95,14 @@ class DT_Campaign_Languages {
      *
      * @param string $code
      */
-    public function enable( string $code ) {
-        $updates = [
-            'enabled' => true,
-        ];
+    public static function enable( string $code ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $enabled_languages = $campaign['enabled_languages'] ?? [ 'en_US' ];
 
-        return $this->apply_updates( $code, $updates );
+        if ( !in_array( $code, $enabled_languages ) ){
+            DT_Posts::update_post( 'campaigns', $campaign['ID'], [ 'enabled_languages' => [ 'values' => [ [ 'value' => $code ] ] ] ] );
+        }
+        return self::get_enabled_languages( $campaign['ID'] );
     }
 
     /**
@@ -148,45 +110,21 @@ class DT_Campaign_Languages {
      *
      * @param string $code
      */
-    public function remove( string $code ) {
-        $languages = $this->get();
+    public static function remove( string $code ) {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $enabled_languages = $campaign['enabled_languages'] ?? [ 'en_US' ];
 
-        if ( !$this->is_language_in_list( $code, $languages ) ) {
-            return;
+        if ( in_array( $code, $enabled_languages ) ){
+            DT_Posts::update_post( 'campaigns', $campaign['ID'], [ 'enabled_languages' => [ 'values' => [ [ 'value' => $code, 'delete' => true ] ] ] ] );
         }
-
-        if ( isset( $languages[$code]['default'] ) ) {
-            return;
-        }
-        $custom_options = get_option( $this->option_name, [] );
-        if ( !isset( $custom_options[$code] ) ) {
-            return;
-        }
-        unset( $custom_options[$code] );
-        update_option( $this->option_name, $custom_options );
-
-
-        return $this->get( true );
+        return self::get_enabled_languages( $campaign['ID'] );
     }
 
-    /**
-     * Get the languages from the options or create it from the already translated languages
-     *
-     * @return array
-     */
-    private function get_from_options_or_defaults() {
-        $custom_languages = get_option( $this->option_name, [] );
-
-        $available_languages = $this->get_from_defaults();
-
-        return dt_array_merge_recursive_distinct( $available_languages, $custom_languages );
+    private static function get_languages_for_codes( $codes ){
+        return dt_get_available_languages( true, false, $codes );
     }
 
-    /**
-     * Get the languages from the already translated languages
-     */
-    private function get_from_defaults() {
-//        @todo this should not be called on every request.
+    private static function get_translated_languages(){
         $installed_languages = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
 
         $available_language_codes = [ 'en_US' ];
@@ -208,7 +146,7 @@ class DT_Campaign_Languages {
         }
         switch_to_locale( 'en_US' );
 
-        array_unshift( $available_language_codes, $this->default_language );
+        array_unshift( $available_language_codes, 'en_US' );
 
         $remove_plugin_name = function ( $code ) {
             return str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
@@ -216,97 +154,8 @@ class DT_Campaign_Languages {
 
         $available_language_codes = array_map( $remove_plugin_name, $available_language_codes );
 
-        $available_languages = dt_get_available_languages( true, false, $available_language_codes );
-
-        foreach ( $available_languages as $code => $language_info ) {
-            $available_languages[$code]['enabled'] = $code === 'en_US';
-            $available_languages[$code]['default'] = true;
-        }
-
-        return $available_languages;
+        return $available_language_codes;
     }
-
-    /**
-     * Get the languages from the cache
-     */
-    private function get_from_cache() {
-        $cache = wp_cache_get( $this->option_name );
-
-        return !$cache ? [] : $cache;
-    }
-
-    /**
-     * Check that the code is in the list of languages
-     *
-     * @param string $code
-     * @param array $languages
-     */
-    private function is_language_in_list( string $code, array $languages ) {
-        return isset( $languages[$code] );
-    }
-
-    /**
-     * cache the languages
-     *
-     * @param array $languages
-     */
-    private function cache( array $languages ) {
-        wp_cache_set( $this->option_name, $languages, '', self::CACHE_EXPIRY );
-    }
-
-    /**
-     * Enable language
-     *
-     * @param string $code
-     */
-    public function apply_updates( string $code, array $updates ) {
-        $languages = $this->get();
-
-        if ( !$this->is_language_in_list( $code, $languages ) ) {
-            return;
-        }
-
-
-        $custom_options = get_option( $this->option_name, [] );
-        if ( !isset( $custom_options[$code] ) ) {
-            $custom_options[$code] = [];
-        }
-        $custom_options[$code] = array_merge( $custom_options[$code], $updates );
-        update_option( $this->option_name, $custom_options );
-
-        return $this->get( true );
-    }
-
-
-    /**
-     *  Merge the updates into the languages array
-     *
-     * @param array $languages
-     * @param string $code
-     * @param array $updates
-     */
-    private function merge_updates( $languages, $code, $updates ) {
-        foreach ( $updates as $key => $value ) {
-            if ( !in_array( $key, $this->allowed_fields, true ) ) {
-                continue;
-            }
-
-            $languages[$code][$key] = $value;
-        }
-
-        return $languages;
-    }
-
-    /**
-     * The master list of ready made languages
-     *
-     * @return array
-     */
-    public function language_list() {
-        return dt_get_available_languages( false, true );
-    }
-
-
 
     public static function get_translation( $campaign_id, $key, $language, $default = '' ){
         global $wpdb;
