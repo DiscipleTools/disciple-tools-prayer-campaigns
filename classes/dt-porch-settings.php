@@ -102,7 +102,7 @@ class DT_Porch_Settings {
         return DT_Campaign_Languages::get_translations( $campaign_id );
     }
 
-    public static function update_values( $updates, $campaign_id = null ) {
+    public static function update_values( $updates, $campaign_id = null, $states = [] ) {
         $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
 
@@ -118,6 +118,11 @@ class DT_Porch_Settings {
                     $changes[$key] = $value;
                 }
             }
+        }
+
+        // Observe custom states, to alter generic flows.
+        if ( isset( $states['custom_theme_color'] ) && $states['custom_theme_color'] === 'reset' ) {
+            $changes['custom_theme_color'] = '';
         }
 
         if ( !empty( $changes ) ){
