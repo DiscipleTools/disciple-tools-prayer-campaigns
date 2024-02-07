@@ -222,6 +222,8 @@ class DT_Campaigns_Base {
                 'name' => 'Minimum Prayer Time Duration',
                 'type' => 'key_select',
                 'default' => [
+                    '60' => [ 'label' => '1 Hour' ],
+                    '30' => [ 'label' => '30 Minutes' ], //keep as first item
                     '15' => [ 'label' => '15 Minutes', 'default' => true ], //keep as first item
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
