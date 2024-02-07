@@ -42,7 +42,7 @@ class DT_Prayer_Campaigns_Campaigns {
         }
 
         $fields = [
-            'name' => 'Campaign',
+            'name' => 'Prayer Campaign',
             'start_date' => dt_format_date( time(), 'Y-m-d' ),
             'status' => 'active',
         ];
@@ -52,9 +52,8 @@ class DT_Prayer_Campaigns_Campaigns {
             $fields['start_date'] = $next_ramadan_start_date;
             $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
             $fields['name'] = 'Ramadan Campaign';
-        } else {
+        } else if ( $wizard_type === 'generic' ) {
             $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
-            $fields['name'] = 'Prayer Campaign';
         }
 
         if ( $new_campaign_name ) {
