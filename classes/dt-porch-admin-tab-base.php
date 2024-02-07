@@ -87,6 +87,8 @@ class DT_Porch_Admin_Tab_Base {
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
 
+            $states = isset( $_POST['states'] ) ? dt_recursive_sanitize_array( $_POST['states'] ) : [];
+
             if ( isset( $_POST['list'] ) ) {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
                 $allowed_tags = $this->get_allowed_tags();
@@ -97,7 +99,7 @@ class DT_Porch_Admin_Tab_Base {
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
-                DT_Porch_Settings::update_values( $post_list );
+                DT_Porch_Settings::update_values( $post_list, null, $states );
 
                 $new_translations = $this->get_new_translations( $_POST );
                 DT_Porch_Settings::update_translations( $campaign['ID'], $new_translations );
@@ -183,9 +185,18 @@ class DT_Porch_Admin_Tab_Base {
                                                 <img style="height: 15px; vertical-align: middle" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/languages.svg' ); ?>">
                                                 button to set a value for each language:</p>
                                         <?php endif; ?>
-                                        <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
+                                        <?php if ( $field['type'] === 'color' ) { ?>
+                                            <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"
+                                                onChange="jQuery('#<?php echo esc_html( $key ); ?>_state').val('');"/>
+                                        <?php } else { ?>
+                                            <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
+                                        <?php } ?>
                                     </td>
                                     <td style="vertical-align: middle;">
+                                        <?php if ( $field['type'] === 'color' ) { ?>
+                                            <i class="mdi mdi-backup-restore" style="font-size: 20px; cursor: pointer;" onClick="jQuery('#<?php echo esc_html( $key ); ?>').val(''); jQuery('#<?php echo esc_html( $key ); ?>_state').val('reset');"></i>
+                                            <input type="hidden" name="states[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>_state" value="<?php echo esc_html( empty( $campaign[$key] ) ? 'reset' : $campaign[$key] ); ?>" />
+                                        <?php } ?>
                                         <?php if ( isset( $field['translations'] ) ){
                                             self::translation_cell( $langs, $key, $field, $section_name );
                                         } ?>
