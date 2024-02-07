@@ -183,7 +183,7 @@ class DT_Generic_Porch_Stats {
                                 </div>
                             <?php else :
                                 $selected_campaign_magic_link_settings['section'] = 'calendar';
-                                echo dt_ongoing_campaign_calendar( //phpcs:ignore
+                                echo dt_generic_calendar_shortcode( //phpcs:ignore
                                     $selected_campaign_magic_link_settings
                                 );
                             endif;

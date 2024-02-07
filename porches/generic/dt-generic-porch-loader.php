@@ -37,7 +37,11 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
         $default_wizards = [
             'generic' => [
                 'porch' => 'generic-porch',
-                'label' => '24/7 Campaign with a start and optional end date'
+                'label' => '24/7 Campaign with a start and end date'
+            ],
+            'ongoing' => [
+                'porch' => 'generic-porch',
+                'label' => '24/7 Campaign with a start date and no end date'
             ],
         ];
         return array_merge( $default_wizards, $wizard_types );

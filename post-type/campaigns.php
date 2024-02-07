@@ -281,6 +281,8 @@ class DT_Campaigns_Base {
                 'name' => 'Minimum Prayer Time Duration',
                 'type' => 'key_select',
                 'default' => [
+                    '60' => [ 'label' => '1 Hour' ],
+                    '30' => [ 'label' => '30 Minutes' ], //keep as first item
                     '15' => [ 'label' => '15 Minutes', 'default' => true ], //keep as first item
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
@@ -713,7 +715,6 @@ class DT_Campaigns_Base {
                     /* top row */
                     content += `<tr><th></th>`
                     let column_count = 0
-                    console.log(Object.keys(data));
                     jQuery.each(data[Object.keys(data)[1]].hours, function(i,time_slot){
                         if ( column_count >= 20 ){
                              content += `<th></th>`
@@ -987,15 +988,10 @@ class DT_Campaigns_Base {
     public static function query_scheduled_minutes( $campaign_post_id ){
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-            SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
-            FROM (
-                SELECT p2p_to as post_id
-                FROM $wpdb->p2p
-                WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s
-            ) as t1
-            INNER JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
-            WHERE r.parent_id = %s AND r.post_type = 'subscriptions' AND r.type = 'campaign_app'
-        ", $campaign_post_id, $campaign_post_id
+            SUM( ( time_end - time_begin ) / 60 ) AS minutes
+            FROM $wpdb->dt_reports
+            WHERE parent_id = %s AND post_type = 'subscriptions' AND type = 'campaign_app'
+        ", $campaign_post_id
         ) );
     }
 
@@ -1007,6 +1003,7 @@ class DT_Campaigns_Base {
             SUM( r.value - 1 ) AS extra_people
             FROM $wpdb->dt_reports r
             WHERE r.parent_id = %s AND r.post_type = 'campaigns' AND r.type = 'fuel'
+            AND r.value > 1
             ;", $campaign_post_id
         ) );
         return $extra_people * $prayer_time_duration;
@@ -1311,7 +1308,7 @@ class DT_Campaigns_Base {
      * @return array|false|WP_Error
      */
     public static function send_campaign_info(){
-        $p4m_participation = DT_Campaign_Global_Settings::get( 'p4m_participation', true );
+        $p4m_participation = apply_filters( 'p4m_participation', DT_Campaign_Global_Settings::get( 'p4m_participation', true ) );
         $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
@@ -1404,7 +1401,7 @@ class DT_Campaigns_Base {
                     ]
                 ],
                 'campaign_progress' => $coverage_levels[0]['percent'],
-                'campaign_type' => $campaign['type']['key'],
+                //'campaign_type' => $campaign['type']['key'],
                 'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
                 'minutes_committed' => $mins_scheduled + $mins_extra,
                 'subscriber_count' => sizeof( $campaign['subscriptions'] ?? [] ),

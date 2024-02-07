@@ -43,12 +43,12 @@ export class campaignButton extends LitElement {
         font-weight: normal;
         padding: .85rem 1rem;
         cursor:pointer;
-        background-color: var( --cp-color, 'dodgerblue' );
+        background-color: var( --cp-color, dodgerblue );
       }
       button:hover {
         background-color: transparent;
-        border-color: var( --cp-color, 'dodgerblue' );
-        color: var( --cp-color, 'dodgerblue' );
+        border-color: var( --cp-color, dodgerblue );
+        color: var( --cp-color, dodgerblue );
       }
       button[disabled] {
         opacity: .25;
@@ -838,6 +838,9 @@ export class cpTimes extends LitElement {
         justify-content: center;
         white-space: nowrap;
       }
+      .time.full-progress {
+          background-color: #00800052;
+      }
       .time.selected-time {
         color: white;
         background-color: var(--cp-color);
@@ -854,9 +857,6 @@ export class cpTimes extends LitElement {
         display: flex;
         justify-content: space-between;
         cursor: pointer;
-      }
-      .time.full-progress {
-        background-color: #00800052;
       }
       .time:hover .time-label {
         background-color: var(--cp-color);
@@ -990,26 +990,49 @@ export class cpTimes extends LitElement {
     return times;
   }
   get_daily_times(){
-    let day_in_seconds = 86400;
-    let key = 0;
-    let start_of_today = new Date('2023-01-01')
-    start_of_today.setHours(0, 0, 0, 0)
-    let start_time_stamp = start_of_today.getTime() / 1000
+    let start_of_time_frame = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
+    if ( start_of_time_frame.toSeconds() < window.campaign_data.start_timestamp ){
+      start_of_time_frame = window.luxon.DateTime.fromSeconds(window.campaign_data.start_timestamp, {zone:window.campaign_user_data.timezone})
+    }
+
+    let time_frame_day_start = start_of_time_frame.startOf('day').toSeconds()
+    let in_one_month = start_of_time_frame.plus({months:1}).toSeconds()
+    let next_month = this.days.filter(d=>{
+      return d.key >= time_frame_day_start &&
+        d.key <= (( window.campaign_data.end_timestamp || in_one_month ))
+    })
+    let coverage = {}
+    next_month.forEach(d=>{
+      d.slots.forEach(s=>{
+        if ( s.key >= start_of_time_frame.toSeconds() && s.subscribers ){
+          if ( !coverage[s.formatted] ){
+            coverage[s.formatted] = []
+          }
+          coverage[s.formatted].push(s.subscribers)
+        }
+      })
+    })
 
     let options = [];
+    let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(start_time_stamp + key, {zone:window.campaign_user_data.timezone})
+      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
-        window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
-          window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
-          : 0
+        coverage[time_formatted] ? coverage[time_formatted].length / ( next_month.length - 1 ) * 100 : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
 
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress, selected})
-      key += window.campaign_data.slot_length * 60
+      options.push({
+        key: key,
+        time_formatted: time_formatted,
+        minute: min,
+        hour: time.toFormat('hh a'),
+        progress,
+        selected
+      })
+      key += this.slot_length * 60
     }
     return options;
   }

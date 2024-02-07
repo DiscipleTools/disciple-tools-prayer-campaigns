@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2023-12-08T13:04:17+00:00\n"
+"POT-Creation-Date: 2024-02-06T09:22:46+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic (Egypt) <https://translate.disciple.tools/projects/"
@@ -73,7 +73,7 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:189
 #: campaign-functions/send-email-utility.php:276
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 msgid "Access Account"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgid "Prayer Time reminder!"
 msgstr "تذكير بمواعيد الصلاة!"
 
 #: campaign-functions/send-email-utility.php:265
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 #, fuzzy
 #| msgid "Thank you for praying with us!"
 msgid "Thank you for praying with us."
@@ -142,9 +142,8 @@ msgstr "اشترك للحصول على مزيد من أوقات الصلاة أ�
 msgid "Or click this link:"
 msgstr "اختر رابط مواعيد الصلاة:"
 
-#: campaign-functions/send-email-utility.php:359
-#: porches/generic/site/archive-body.php:81
-#: porches/generic/site/landing-body.php:58 porches/generic/site/stats.php:291
+#: campaign-functions/send-email-utility.php:359 parts/components.php:51
+#: porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
 msgstr "شكرًا لك"
@@ -461,8 +460,8 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:64 porches/generic/site/archive-body.php:75
-#: porches/generic/site/landing-body.php:52 porches/generic/site/stats.php:285
+#: parts/components-enqueue.php:64 parts/components.php:45
+#: porches/generic/site/stats.php:285
 #, fuzzy
 msgid "Submit"
 msgstr "يُقدِّم"
@@ -484,9 +483,7 @@ msgstr "الوقت الملتزم به"
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/generic/site/home-body.php:169
-#: porches/ongoing/site/home-body.php:158
-#: porches/ramadan/site/home-body.php:169
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 #, fuzzy
 msgid "Next"
 msgstr "التالي"
@@ -582,25 +579,29 @@ msgid "Renews on %s"
 msgstr ""
 
 #: parts/components-enqueue.php:87
-msgid "Success"
+msgid "Ends on %s"
 msgstr ""
 
 #: parts/components-enqueue.php:88
+msgid "Success"
+msgstr ""
+
+#: parts/components-enqueue.php:89
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "تم تسجيلكم بنجاح."
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 #, fuzzy
 #| msgid "In the email is a link to manage your prayer times."
 msgid "Check your email for additional details and to manage your account."
 msgstr "يوجد في البريد الإلكتروني رابط لإدارة مواعيد الصلاة."
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -608,197 +609,212 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 #, fuzzy
 msgid "Account Settings"
 msgstr "إعدادات متقدمة"
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 #, fuzzy
 msgid "Receive Prayer time notifications"
 msgstr "تلقي إشعارات مواقيت الصلاة"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "إعدادات متقدمة"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 #, fuzzy
 #| msgid "Delete this profile and all the scheduled prayer times?"
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "حذف هذا الملف الشخصي وجميع أوقات الصلاة المجدولة؟"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid "Delete"
 msgstr "حذف"
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a timezone"
 msgstr "اختر وقتًا"
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 #, fuzzy
 #| msgid "Prayer Fuel"
 msgid "See Prayer Fuel"
 msgstr "وثود لصلاة لمدة"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 #, fuzzy
 msgid "change time"
 msgstr "تغيير الوقت اليومي"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 #, fuzzy
 msgid "Remove all"
 msgstr "حذف الكل"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #, fuzzy
 #| msgid "Add prayer time"
 msgid "See prayer times"
 msgstr "أضف وقت الصلاة"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 #, fuzzy
 #| msgid "Prayer Time"
 msgid "Delete Prayer Times"
 msgstr "وقت الصلاة"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "Really delete these prayer times?"
 msgstr "حدد وقت الصلاة"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 #, fuzzy
 msgid "extend"
 msgstr "تمديد"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 #, fuzzy
 #| msgid "Prayer Time"
 msgid "Extend Prayer Times"
 msgstr "وقت الصلاة"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "Really delete this prayer time?"
 msgstr "حدد وقت الصلاة"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 #, fuzzy
 #| msgid "Selected Times"
 msgid "Delete Prayer Time"
 msgstr "الأوقات المحددة"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 #, fuzzy
 #| msgid "days"
 msgid "Mondays"
 msgstr "يومًا"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 #, fuzzy
 #| msgid "days"
 msgid "Tuesdays"
 msgstr "يومًا"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Wednesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 #, fuzzy
 #| msgid "days"
 msgid "Thursdays"
 msgstr "يومًا"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 #, fuzzy
 #| msgid "days"
 msgid "Fridays"
 msgstr "يومًا"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 #, fuzzy
 #| msgid "days"
 msgid "Saturdays"
 msgstr "يومًا"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 #, fuzzy
 #| msgid "days"
 msgid "Sundays"
 msgstr "يومًا"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 #, fuzzy
 #| msgid "Choose Prayer Times"
 msgid "Change Prayer Time"
 msgstr "اختر مواعيد الصلاة"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 #, fuzzy
 #| msgid "Your new prayer times have been saved."
 msgid "Your current prayer time is %s"
 msgstr "تم حفظ أوقات صلاتك الجديدة."
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a new time:"
 msgstr "اختر وقتًا"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a time"
 msgstr "اختر وقتًا"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 #, fuzzy
 #| msgid "Prayer Time"
 msgid "Renew Prayer Times"
 msgstr "وقت الصلاة"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 #, fuzzy
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
 msgstr ""
 "هل تود أن تسمع عن جهود الصلاة الأخرى والفرص المتاحة مع Pray4Movement.org؟"
+
+#: parts/components.php:32
+msgid "Praying as a group?"
+msgstr ""
+
+#: parts/components.php:37
+msgid ""
+"Leading others in prayer is a great step in making disciples. We want to "
+"celebrate your and their faithfulness.  For each person that prays with you, "
+"we will add 15 minutes to the %s days of prayer committed so far."
+msgstr ""
+
+#: parts/components.php:40
+msgid "How many prayed today (including yourself)?"
+msgstr ""
 
 #: porches/generic/dt-generic-porch-settings.php:68
 #, fuzzy
@@ -884,86 +900,49 @@ msgstr "واسع هو الطريق الذي يؤدي إلى 404."
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "حاول استخدام بعض الروابط في القائمة للعودة إلى المسار الصحيح."
 
-#: porches/generic/site/archive-body.php:36
-#: porches/generic/site/post-list-body.php:146
+#: porches/generic/site/archive-body.php:34
+#: porches/generic/site/post-list-body.php:147
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:48
+#: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
-
-#: porches/generic/site/archive-body.php:62
-#: porches/generic/site/landing-body.php:38
-msgid "Praying as a group?"
-msgstr ""
-
-#: porches/generic/site/archive-body.php:67
-#: porches/generic/site/landing-body.php:43
-msgid ""
-"Leading others in prayer is a great step in making disciples. We want to "
-"celebrate your and their faithfulness.  For each person that prays with you, "
-"we will add 15 minutes to the %s days of prayer committed so far."
-msgstr ""
-
-#: porches/generic/site/archive-body.php:70
-#: porches/generic/site/landing-body.php:47
-msgid "How many prayed today (including yourself)?"
 msgstr ""
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:83 porches/ramadan/site/home-body.php:129
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 msgid "Sign Up to Pray"
 msgstr "اشترك في الصلاة"
 
-#: porches/generic/site/home-body.php:165
-#: porches/ramadan/site/home-body.php:165
-msgid "Days"
-msgstr "يومًا"
-
-#: porches/generic/site/home-body.php:170
-#: porches/ongoing/site/home-body.php:159
-#: porches/ramadan/site/home-body.php:170
+#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
 #, fuzzy
-msgid "Month"
-msgstr "شهر"
+msgid "Time Committed"
+msgstr "الوقت الملتزم به"
 
-#: porches/generic/site/home-body.php:192
+#: porches/generic/site/home-body.php:185
+#, fuzzy
+#| msgid "My Prayer Times"
+msgid "Prayer Warriors"
+msgstr "أوقات صلاتي"
+
+#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-msgid "Hours of Prayer"
-msgstr "ساعة من الصلاة"
-
-#: porches/generic/site/home-body.php:197
-#: porches/ongoing/site/home-body.php:176
-#: porches/ramadan/site/home-body.php:197
-#, fuzzy
-msgid "Hours"
-msgstr "ساعات"
-
-#: porches/generic/site/home-body.php:215 porches/generic/site/stats.php:189
-#: porches/ramadan/site/home-body.php:215
 msgid "Prayer Commitments Needed"
 msgstr "المطلوب التزام صلاة"
 
 #: porches/generic/site/home-body.php:220
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "الساعات المتبقية"
-
-#: porches/generic/site/home-body.php:241
 #: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:241
+#: porches/ramadan/site/home-body.php:211
 msgid "View All"
 msgstr "رؤية الكل"
 
-#: porches/generic/site/post-list-body.php:133
+#: porches/generic/site/post-list-body.php:134
 msgid "Read"
 msgstr "اقرأ"
 
-#: porches/generic/site/post-list-body.php:148
+#: porches/generic/site/post-list-body.php:149
 msgid "No prayer fuel found"
 msgstr ""
 
@@ -982,11 +961,6 @@ msgstr "شكرًا لك على الانضمام إلينا في الصلاة م�
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "النسبة المئوية المغطاة"
-
-#: porches/generic/site/stats.php:213
-#, fuzzy
-msgid "Time Committed"
-msgstr "الوقت الملتزم به"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
@@ -1057,6 +1031,21 @@ msgstr ""
 msgid "Sign Up"
 msgstr "الاشتراك"
 
+#: porches/ongoing/site/home-body.php:159
+#, fuzzy
+msgid "Month"
+msgstr "شهر"
+
+#: porches/ongoing/site/home-body.php:176
+#, fuzzy
+msgid "Hours"
+msgstr "ساعات"
+
+#: porches/ongoing/site/home-body.php:191
+#, fuzzy
+msgid "Hours Remaining"
+msgstr "الساعات المتبقية"
+
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
 msgid "Ramadan Landing Page"
@@ -1101,30 +1090,33 @@ msgstr ""
 "طول الكتاب المقدس). هذا البحث الصادق يجعله وقتًا استراتيجيًا لنا للصلاة من "
 "أجلهم."
 
-#: porches/ramadan/site/home-body.php:101
+#: porches/ramadan/site/home-body.php:103
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "بداية رمضان ..."
 
-#: porches/ramadan/site/home-body.php:102
+#: porches/ramadan/site/home-body.php:104
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "نهاية رمضان ..."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:105
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "تم الانتهاء من٪ s"
 
-#: porches/ramadan/site/home-body.php:136
+#: porches/ramadan/site/home-body.php:138
 #, fuzzy
 msgid "here"
 msgstr "هنا"
 
-#: porches/ramadan/site/home-body.php:220
-#, fuzzy
-msgid "More Hours to be covered"
-msgstr "المزيد من الساعات ليتم تغطيتها"
+#: porches/ramadan/site/home-body.php:166
+msgid "Days"
+msgstr "يومًا"
+
+#: porches/ramadan/site/home-body.php:179
+msgid "Hours of Prayer"
+msgstr "ساعة من الصلاة"
 
 #: shortcodes/prayer-timer.php:219
 msgid "Start Praying!"
@@ -1140,6 +1132,10 @@ msgid "Now praying..."
 msgstr "صلي الآن ..."
 
 #, fuzzy
+#~ msgid "More Hours to be covered"
+#~ msgstr "المزيد من الساعات ليتم تغطيتها"
+
+#, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement"
 #~ msgstr "صلاة استراتيجية من أجل حركة التلمذة"
 
@@ -1149,9 +1145,6 @@ msgstr "صلي الآن ..."
 
 #~ msgid "Here are the times you have committed to pray:"
 #~ msgstr "إليك مواعيدك للصلاة:"
-
-#~ msgid "My Prayer Times"
-#~ msgstr "أوقات صلاتي"
 
 #~ msgid "fully covered once"
 #~ msgstr "مغطاة بالكامل مرة واحدة"

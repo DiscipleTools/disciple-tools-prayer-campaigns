@@ -12,13 +12,13 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
         ( new DT_Generic_Porch_Loader() )->load_porch();
         $atts = $this->parts;
         $atts['rest_url'] = rest_url();
-        $atts['color'] = PORCH_COLOR_SCHEME_HEX;
+        $atts['color'] = defined( 'PORCH_COLOR_SCHEME_HEX' ) ? PORCH_COLOR_SCHEME_HEX : '#4676fa';
         if ( $atts['color'] === 'preset' || empty( $atts['color'] ) ){
             $atts['color'] = '#4676fa';
         }
         $progress_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-generic-campaign-percentage', $atts );
-        $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-calendar', $atts );
-        $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-ongoing-campaign-signup', $atts );
+        $calendar_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-generic-campaign-calendar', $atts );
+        $sign_up_shortcode = dt_campaigns_build_shortcode_from_array( 'dt-generic-campaign-signup', $atts );
         $prayer_timer_shortcode = dt_campaigns_build_shortcode_from_array( 'dt_prayer_timer', [ 'color' => '#3e729a', 'duration' => '15' ] );
         ?>
         <style>

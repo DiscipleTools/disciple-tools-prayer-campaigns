@@ -62,7 +62,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             </div>
             <?php if ( $campaign_has_end_date ): ?>
                 <div class="col-sm-12 col-md-4">
-                    <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                    <?php echo dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
                 </div>
             <?php endif; ?>
         </div>
@@ -124,7 +124,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
         <div class="row" style="margin-top: 30px">
             <div class="col-sm-12 col-md-7 col-lg-8 what-content-text"><?php display_translated_field( 'what_content', 'btn-border' ); ?></div>
             <div class="col-sm-12 col-md-5 col-lg-4">
-                <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                <?php echo dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">
-            <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+            <?php echo dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
         </div>
     </div>
 </section>
@@ -149,8 +149,14 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <?php $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign();?>
-            <div class="col-sm-6 col-md-4 col-lg-4">
+            <?php
+            $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign();
+            $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign_fields['ID'] );
+            $time_committed = DT_Time_Utilities::display_minutes_in_time( $minutes_committed );
+
+            $size = $campaign_has_end_date ? 'col-sm-6 col-md-4 col-lg-4' : 'col-sm-6 col-md-6 col-lg-6';
+            ?>
+            <div class="<?php echo esc_html( $size ); ?>">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">
                         <div class="icon">
@@ -158,49 +164,30 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         </div>
                         <div class="fact-count">
 
-                            <?php if ( $campaign_has_end_date ): ?>
-
-                                <h3><span class="counter"><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign ) : '30' ?></span></h3>
-                                <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
-                            <?php else : ?>
-
-                                <h3><?php esc_html_e( 'Next', 'disciple-tools-prayer-campaigns' ) ?></h3>
-                                <h4><?php esc_html_e( 'Month', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
-                            <?php endif; ?>
+                            <h3><?php echo esc_html( $time_committed ); ?></h3>
+                            <h4><?php esc_html_e( 'Time Committed', 'disciple-tools-prayer-campaigns' ) ?></h4>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <?php $hours_next_month = DT_Campaigns_Base::number_of_hours_next_month() ?>
-            <?php $more_hours_needed = $hours_next_month - ceil( DT_Campaigns_Base::query_scheduled_minutes_next_month( $campaign_fields['ID'] ) / 60 ) ?>
-            <?php /* 96 daily prayer warriors would be needed to cover the campaign... Do I use that number? */ ?>
-            <div class="col-sm-6 col-md-4 col-lg-4">
+            <?php $subscribers_count =DT_Subscriptions::get_subscribers_count( $campaign_fields['ID'] ); ?>
+
+            <div class="<?php echo esc_html( $size ); ?>">
                 <div class="wow fadeInUp" data-wow-delay=".6s">
                     <div class="facts-item">
                         <div class="icon">
                             <i class="lnr lnr-user"></i>
                         </div>
                         <div class="fact-count">
-
-                            <?php if ( $campaign_has_end_date ): ?>
-
-                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 ) : '720' ?></h3>
-                                <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
-                            <?php else : ?>
-
-                                <h3><?php echo esc_html( $hours_next_month ) ?></h3>
-                                <h4><?php esc_html_e( 'Hours', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
-                            <?php endif; ?>
+                            <h3><?php echo esc_html( $subscribers_count ?? 0 ) ?></h3>
+                            <h4><?php esc_html_e( 'Prayer Warriors', 'disciple-tools-prayer-campaigns' ); ?></h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
+            <?php if ( $campaign_has_end_date ) : ?>
+            <div class="<?php echo esc_html( $size ); ?>">
                 <div class="wow fadeInUp" data-wow-delay=".8s">
                     <div class="facts-item">
                         <div class="icon">
@@ -208,22 +195,14 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                         </div>
                         <div class="fact-count">
 
-                            <?php if ( $campaign_has_end_date ): ?>
-
                                 <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : '2880' ?></h3>
                                 <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
-                            <?php else : ?>
-
-                                <h3><?php echo esc_html( $more_hours_needed ) ?></h3>
-                                <h4><?php esc_html_e( 'Hours Remaining', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
-                            <?php endif; ?>
 
                         </div>
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
