@@ -86,9 +86,6 @@ class DT_Porch_Admin_Tab_Base {
         $campaign_settings = DT_Porch_Settings::settings();
 
         if ( isset( $_POST['generic_porch_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['generic_porch_settings_nonce'] ) ), 'generic_porch_settings' ) ) {
-
-            $states = isset( $_POST['states'] ) ? dt_recursive_sanitize_array( $_POST['states'] ) : [];
-
             if ( isset( $_POST['list'] ) ) {
                 $post_list = dt_recursive_sanitize_array( $_POST['list'] );
                 $allowed_tags = $this->get_allowed_tags();
@@ -99,12 +96,22 @@ class DT_Porch_Admin_Tab_Base {
                         $post_list[$field_key] = wp_kses( wp_unslash( $_POST['list'][$field_key] ), $allowed_tags );
                     }
                 }
-                DT_Porch_Settings::update_values( $post_list, null, $states );
+                DT_Porch_Settings::update_values( $post_list );
 
                 $new_translations = $this->get_new_translations( $_POST );
                 DT_Porch_Settings::update_translations( $campaign['ID'], $new_translations );
                 DT_Posts::get_post( 'campaigns', $campaign['ID'], false );
             }
+
+            // Observe custom states, to alter generic flows.
+            $states = isset( $_POST['states'] ) ? dt_recursive_sanitize_array( $_POST['states'] ) : [];
+            if ( isset( $states['custom_theme_color'] ) && $states['custom_theme_color'] === 'reset' ) {
+                $changes = [
+                    'custom_theme_color' => ''
+                ];
+                DT_Posts::update_post( 'campaigns', $campaign['ID'], $changes, false, false );
+            }
+
             //refresh the campaign
             $campaign = DT_Posts::get_post( 'campaigns', $campaign['ID'], false, true );
             $campaign_settings = DT_Porch_Settings::settings( null, null, false );
