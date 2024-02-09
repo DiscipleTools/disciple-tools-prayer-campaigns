@@ -1281,7 +1281,7 @@ class DT_Campaigns_Base {
                 }
             }
 
-            $campaigns_to_send[] = [
+            $data = [
                 'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
                 'name' => $is_current_campaign ? $porch_name : $name,
                 'campaign_name' => $campaign['name'],
@@ -1308,6 +1308,8 @@ class DT_Campaigns_Base {
                 'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
                 'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
             ];
+
+            $campaigns_to_send[] = apply_filters( 'p4m_campaigns_to_send', $data, $campaign );
         }
 
 //        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
