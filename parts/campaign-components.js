@@ -793,10 +793,9 @@ export class cpTimes extends LitElement {
         align-items: center;
         justify-content: center;
         white-space: nowrap;
+        font-weight: bold;
       }
-      .time.full-progress {
-          background-color: #00800052;
-      }
+
       .time.selected-time {
         color: white;
         background-color: var(--cp-color);
@@ -805,7 +804,6 @@ export class cpTimes extends LitElement {
         height: 20px;
       }
       .time {
-        flex-basis: 20%;
         background-color: #4676fa1a;
         font-size: 0.8rem;
         border-radius: 5px;
@@ -828,22 +826,42 @@ export class cpTimes extends LitElement {
         cursor: not-allowed;
       }
       .time-label {
-        padding: 0.3rem;
-        padding-inline-start: 1rem;
-        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        padding: 0.3rem 0.5rem;
       }
       .control {
         background-color: #4676fa36;
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 0 0.1rem;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
+        flex-basis: 2rem;
       }
-      .times-container {
-        overflow-y: scroll;
-        max-height: 500px;
-        padding-inline-end: 10px;
+
+      .time img {
+          display: flex;
+          align-self: center;
+          margin-inline-start: 0.1rem;
+          width: 0.7rem;
+          height: 0.7rem;
+      }
+
+      .legend-row {
+          display: flex;
+          font-size: 0.8rem;
+          grid-column-gap: 0.3rem;
+          justify-content: right;
+          margin-bottom: 0.5rem;
+      }
+      .legend-row span {
+          padding: 0.3rem 0.5rem;
+          display: flex;
+          align-items: center;
       }
     `
   ]
@@ -893,6 +911,18 @@ export class cpTimes extends LitElement {
     let time_slots = 60 / this.slot_length;
     return html`
         <div class="times-container">
+          <div class="legend-row">
+            <span class="time">
+                :15
+            </span>
+              <span>${translate('Empty time slot')}</span>
+              <span class="time">
+                2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
+            </span>
+              <span>
+                ${translate('Fully covered twice' )}
+            </span>
+          </div>
         ${map(range(24),index => html`
             ${ this.times[index*time_slots] ? html`
             <div class="prayer-hour prayer-times">
@@ -901,15 +931,22 @@ export class cpTimes extends LitElement {
                 </div>
                 ${map(range(time_slots), (i) => {
                     let time = this.times[index*time_slots+i];
+
+                 
+                    // ${time.progress < 100 ?
+                    //             html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
+                    //
+                    // html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`}
+                    
                     return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}"
+                    <div class="time ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
                          @click="${(e)=>this.time_selected(e,time.key)}"
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ? 
-                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
+                          ${time.coverage_count ?
+                              html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
+                              : ''}
                         </span>
                     </div>
                 `})}
@@ -940,6 +977,7 @@ export class cpTimes extends LitElement {
         minute: time.toFormat('mm'),
         progress: progress,
         selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
+        coverage_count: s.subscribers,
       })
     })
     return times;
@@ -985,9 +1023,10 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toFormat('hh a'),
         progress,
-        selected
+        selected,
+        coverage_count: progress >= 100 ? Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])) : 0,
       })
-      key += this.slot_length * 60
+      key += window.campaign_data.slot_length * 60
     }
     return options;
   }
@@ -1030,6 +1069,7 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toFormat('hh a'),
         progress,
+        coverage_count: progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0,
         selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
       })
       key += this.slot_length * 60
