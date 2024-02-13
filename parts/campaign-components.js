@@ -831,6 +831,7 @@ export class cpTimes extends LitElement {
         justify-content: center;
         flex-grow: 1;
         padding: 0.3rem 0.5rem;
+        opacity: 0.8;
       }
       .control {
         background-color: #4676fa36;
@@ -910,47 +911,44 @@ export class cpTimes extends LitElement {
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
     return html`
-        <div class="times-container">
-          <div class="legend-row">
-            <span class="time">
-                :15
-            </span>
-              <span>${translate('Empty time slot')}</span>
-              <span class="time">
-                2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
-            </span>
-              <span>
-                ${translate('Fully covered twice' )}
-            </span>
-          </div>
+      <div class="times-container">
+        <div class="legend-row">
+          <span class="time">
+              2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
+          </span>
+          <span>
+            ${translate('Fully covered twice' )}
+          </span>
+        </div>
         ${map(range(24),index => html`
-            ${ this.times[index*time_slots] ? html`
+          ${ this.times[index*time_slots] ? html`
             <div class="prayer-hour prayer-times">
-                <div class="hour-cell">
-                    ${this.times[index*time_slots].hour}
-                </div>
-                ${map(range(time_slots), (i) => {
-                    let time = this.times[index*time_slots+i];
+              <div class="hour-cell">
+                  ${this.times[index*time_slots].hour}
+              </div>
+              ${map(range(time_slots), (i) => {
+                let time = this.times[index*time_slots+i];
 
-                 
-                    // ${time.progress < 100 ?
-                    //             html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                    //
-                    // html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`}
-                    
-                    return html`
-                    <div class="time ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
-                         @click="${(e)=>this.time_selected(e,time.key)}"
-                         ?disabled="${this.frequency === 'pick' && time.key < now}">
-                        <span class="time-label">${time.minute}</span>
-                        <span class="control">
-                          ${time.coverage_count ?
-                              html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
-                              : ''}
-                        </span>
-                    </div>
-                `})}
-            </div>` : html``}
+             
+                // ${time.progress < 100 ?
+                //             html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
+                //
+                // html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`}
+                
+                return html`
+                <div class="time ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
+                     @click="${(e)=>this.time_selected(e,time.key)}"
+                     ?disabled="${this.frequency === 'pick' && time.key < now}">
+                    <span class="time-label">${time.minute}</span>
+                    <span class="control">
+                      ${time.coverage_count ?
+                          html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
+                          : ''}
+                    </span>
+                </div>
+              `})}
+            </div>` : html``
+          }
         `)}
       </div>
     `
