@@ -76,6 +76,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'A confirmation code hase been sent to %s.' => __( 'A confirmation code hase been sent to %s.', 'disciple-tools-prayer-campaigns' ),
                     'Please enter the code below in the next 10 minutes to confirm your email address.' => __( 'Please enter the code below in the next 10 minutes to confirm your email address.', 'disciple-tools-prayer-campaigns' ),
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
+                    '%s Hour' => __( '%s Hour', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
                     '%1$s at %2$s for %3$s' => __( '%1$s at %2$s for %3$s', 'disciple-tools-prayer-campaigns' ),
                     'for %s minutes' => __( 'for %s minutes', 'disciple-tools-prayer-campaigns' ),

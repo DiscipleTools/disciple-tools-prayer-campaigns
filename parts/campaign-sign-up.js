@@ -187,7 +187,7 @@ export class CampaignSignUp extends LitElement {
         options.push({value: 30, label: `${strings['%s Minutes'].replace('%s', 30)}`},)
       }
       if (this.campaign_data.slot_length <= 60) {
-        options.push({value: 60, label: `${strings['%s Hours'].replace('%s', 1)}`},)
+        options.push({value: 60, label: `${strings['%s Hour'].replace('%s', 1)}`},)
       }
 
       this.duration = {

@@ -49,7 +49,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                <?php echo dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore?>
             </div>
         </div>
         <div class="row">
@@ -118,7 +118,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 ?>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                <?php echo dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
 
             <?php else : ?>
 
-                <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                <?php echo dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
 
             <?php endif; ?>
         </div>

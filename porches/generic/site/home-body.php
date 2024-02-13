@@ -59,7 +59,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             </div>
             <?php if ( $campaign_has_end_date ): ?>
                 <div class="col-sm-12 col-md-4">
-                    <?php dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                    <?php echo dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
                 </div>
             <?php endif; ?>
         </div>
@@ -121,11 +121,12 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
         <div class="row" style="margin-top: 30px">
             <div class="col-sm-12 col-md-8 what-content-text">
                 <?php
-                    echo wp_kses( DT_Porch_Settings::get_field_translation( 'what_content' ), $allowedtags );
+                    global $allowedtags;
+                    echo nl2br( wp_kses( DT_Porch_Settings::get_field_translation( 'what_content' ), $allowedtags ) );
                 ?>
             </div>
             <div class="col-sm-12 col-md-4">
-                <?php dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+                <?php echo dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
             </div>
         </div>
     </div>
@@ -139,7 +140,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
         </div>
         <div class="row">
-            <?php dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); ?>
+            <?php echo dt_generic_signup_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
         </div>
     </div>
 </section>

@@ -222,6 +222,8 @@ class DT_Campaigns_Base {
                 'name' => 'Minimum Prayer Time Duration',
                 'type' => 'key_select',
                 'default' => [
+                    '60' => [ 'label' => '1 Hour' ],
+                    '30' => [ 'label' => '30 Minutes' ], //keep as first item
                     '15' => [ 'label' => '15 Minutes', 'default' => true ], //keep as first item
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
@@ -1279,7 +1281,7 @@ class DT_Campaigns_Base {
                 }
             }
 
-            $campaigns_to_send[] = [
+            $data = [
                 'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
                 'name' => $is_current_campaign ? $porch_name : $name,
                 'campaign_name' => $campaign['name'],
@@ -1306,6 +1308,8 @@ class DT_Campaigns_Base {
                 'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
                 'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
             ];
+
+            $campaigns_to_send[] = apply_filters( 'p4m_campaigns_to_send', $data, $campaign );
         }
 
 //        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';

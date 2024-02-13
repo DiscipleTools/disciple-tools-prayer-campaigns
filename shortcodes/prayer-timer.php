@@ -198,9 +198,9 @@ function show_prayer_timer( $atts ) {
                     <?php echo esc_html( $prayer_duration_min ); ?>:00
                 </span>
 
-                <img class="clock-sticky-play-icon" src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/play-white.svg' ) ?>"/>
+                <img class="clock-sticky-play-icon" src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/play-white.svg' ) ?>"/>
                 <span style="display: none"; id="clock-sticky-clock">
-                    <img src="<?php echo esc_html( DT_Prayer_Campaigns::instance()->plugin_dir_url . 'assets/clock-white.svg' ) ?>"/>
+                    <img src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/clock-white.svg' ) ?>"/>
                 </span>
             </button>
         </span>
