@@ -2,6 +2,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+remove_filter( 'the_content', [ $GLOBALS['wp_embed'], 'autoembed' ], 8 );
+
 add_filter( 'cron_schedules', 'dt_prayer_campaign_cron_schedules' );
 
 function dt_prayer_campaign_cron_schedules( $schedules ){
