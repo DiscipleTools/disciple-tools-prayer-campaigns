@@ -32,7 +32,7 @@ class DT_Campaigns_Base {
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
         add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
-        add_filter( 'dt_front_page', [ $this, 'dt_front_page' ] );
+//        add_filter( 'dt_front_page', [ $this, 'dt_front_page' ] );
 
         //setup tiles and fields
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
