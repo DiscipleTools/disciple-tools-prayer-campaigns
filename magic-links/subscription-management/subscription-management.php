@@ -96,6 +96,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
 
         $lang = $post['lang'] ?: 'en_US';
+        $languages_manager = new DT_Campaign_Languages();
 
         wp_localize_script(
             'dt_subscription_js', 'subscription_page_data', [
@@ -104,7 +105,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
                 'campaign_id' => $campaign_id,
-                'languages' => dt_campaign_list_languages(),
+                'languages' => $languages_manager->get_enabled_languages(),
                 'current_language' => $lang
             ]
         );
@@ -260,7 +261,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
 
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
-        $color = PORCH_COLOR_SCHEME_HEX;
+        $color = defined( 'PORCH_COLOR_SCHEME_HEX' ) ? PORCH_COLOR_SCHEME_HEX : '#4676fa';
         if ( $color === 'preset' ){
             $color = '#4676fa';
         }
