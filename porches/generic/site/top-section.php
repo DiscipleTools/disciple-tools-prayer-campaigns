@@ -2,8 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
-dt_campaign_add_lang_to_cookie( $lang );
-dt_campaign_set_translation( $lang );
 
 $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
 $langs = DT_Campaign_Languages::get_enabled_languages( $campaign_fields['ID'] );
@@ -53,7 +51,7 @@ $sign_up_link = $campaign_url . '#sign-up';
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?? $campaign_url ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ?? 'Set Up a Campaign' ) ?></a>
+                <a href="<?php echo esc_url( $campaign_fields['logo_link_url'] ?: $campaign_url ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ?? 'Set Up a Campaign' ) ?></a>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>

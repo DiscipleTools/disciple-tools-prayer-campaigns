@@ -143,7 +143,9 @@ class DT_Prayer_Campaigns {
             DT_Prayer_Campaigns_Menu::instance();
         }
 
-        $this->i18n();
+        $lang = dt_campaign_get_current_lang();
+        dt_campaign_add_lang_to_cookie( $lang );
+        dt_campaign_set_translation( $lang );
 
 
         if ( is_admin() ) { // adds links to the plugin description area in the plugin admin list.
