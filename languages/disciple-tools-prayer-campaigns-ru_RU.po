@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-09T16:03:14+00:00\n"
+"POT-Creation-Date: 2024-02-14T10:27:21+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -97,7 +97,7 @@ msgid "Times are shown according to: %s time"
 msgstr "Время указано в соответствии с: %s временем"
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:335
+#: magic-links/subscription-management/subscription-management.php:336
 msgid "Download Calendar"
 msgstr "Скачать календарь"
 
@@ -294,49 +294,49 @@ msgstr ""
 "доступа."
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:324
+#: magic-links/subscription-management/subscription-management.php:325
 #: parts/components-enqueue.php:49
 #, fuzzy
 #| msgid "Prayer Commitments"
 msgid "My Prayer Commitments"
 msgstr "Молитвенные посвящения"
 
-#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:307
 #: porches/generic/site/stats.php:205
 msgid "Prayer Commitments"
 msgstr "Молитвенные посвящения"
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:308
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:313
+#: magic-links/subscription-management/subscription-management.php:314
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:315
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "Домой"
 
-#: magic-links/subscription-management/subscription-management.php:316
+#: magic-links/subscription-management/subscription-management.php:317
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:332
+#: magic-links/subscription-management/subscription-management.php:333
 #, fuzzy
 #| msgid "Download Calendar"
 msgid "My Calendar"
 msgstr "Скачать календарь"
 
-#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:349
 #, fuzzy
 #| msgid "Sign Up to Pray"
 msgid "Sign up for more prayer"
 msgstr "Зарегистрироваться чтобы молиться"
 
-#: magic-links/subscription-management/subscription-management.php:371
+#: magic-links/subscription-management/subscription-management.php:372
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Эта подписка закончилась или настроена неправильно."
 
