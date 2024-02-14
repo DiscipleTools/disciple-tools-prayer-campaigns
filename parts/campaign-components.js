@@ -780,24 +780,25 @@ export class cpTimes extends LitElement {
           display: grid;
           text-align: center;
           margin-bottom: 0.1rem;
-          max-height: 600px;
-          overflow-y: auto;
+          //max-height: 600px;
+          //overflow-y: auto;
       }
       .times-section {
-          display: inline-grid;
+          display: grid;
           align-items: center;
           margin-bottom: 0.5rem;
-          grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
-          grid-gap: 0.2rem 1rem;
+          //grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-gap: 0.3rem 1rem;
       }
 
       .section-column {
           display: grid;
           grid-gap: 0.3rem 1rem;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       }
       .time-column .time {
           background-color: white;
-          justify-content: end;
+          justify-content: center;
       }
       .prayer-hour {
         font-size: 0.8rem;
