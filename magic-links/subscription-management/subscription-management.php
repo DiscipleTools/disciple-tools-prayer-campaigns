@@ -153,7 +153,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $locale = $post['lang'] ?: 'en_US';
 
         //get summary from campaign strings
-        $calendar_title = $post['campaigns'][0]['post_title'];
+        //load porch fields
+        if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
+            ( new DT_Generic_Porch_Loader() )->load_porch();
+        }
+        $calendar_title = DT_Porch_Settings::get_field_translation( 'title', $locale );
+        if ( empty( $calendar_title ) ) {
+            $calendar_title = $post['campaigns'][0]['post_title'];
+        }
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
