@@ -170,8 +170,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         if ( strpos( $sign_up_email_extra_message, '<a' ) === false ){
-            $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
-            $sign_up_email_extra_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $sign_up_email_extra_message );
+            $sign_up_email_extra_message = make_clickable( $sign_up_email_extra_message );
         }
 
         $calendar_url = trailingslashit( DT_Magic_URL::get_link_url_for_post( 'subscriptions', $subscriber_id, 'subscriptions_app', 'manage' ) ) . 'download_calendar';
@@ -256,8 +255,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         if ( strpos( $prayer_content_message, '<a' ) === false ){
-            $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
-            $prayer_content_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $prayer_content_message );
+            $prayer_content_message = make_clickable( $prayer_content_message );
         }
         $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
