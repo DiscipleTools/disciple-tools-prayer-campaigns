@@ -979,13 +979,15 @@ class DT_Campaigns_Base {
     public static function query_minutes_prayed( $campaign_post_id ){
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-        SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
-        FROM (SELECT p2p_to as post_id
-        FROM $wpdb->p2p
-        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
-        LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
-        WHERE r.post_id IS NOT NULL
-        AND r.time_end <= UNIX_TIMESTAMP();", $campaign_post_id
+            SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
+            FROM (SELECT p2p_to as post_id
+            FROM $wpdb->p2p
+            WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
+            LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+            WHERE r.post_id IS NOT NULL
+            AND r.type = 'campaign_app'
+            AND r.post_type = 'subscriptions'
+            AND r.time_end <= UNIX_TIMESTAMP();", $campaign_post_id
         ) );
     }
 
