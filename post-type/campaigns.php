@@ -71,7 +71,7 @@ class DT_Campaigns_Base {
 
     public function dt_nav( $nav ){
         if ( isset( $nav['admin']['settings']['submenu']['admin'] ) ){
-            $nav['admin']['settings']['submenu']['admin']['hidden'] = !current_user_can( 'manage_dt' ) && !current_user_can( 'edit_' . PORCH_LANDING_POST_TYPE );
+            $nav['admin']['settings']['submenu']['admin']['hidden'] = !current_user_can( 'manage_dt' ) && !current_user_can( 'edit_' . CAMPAIGN_LANDING_POST_TYPE );
         }
         return $nav;
     }
@@ -107,14 +107,14 @@ class DT_Campaigns_Base {
         ];
         $landing_page_permissions = [
             // landing page access
-            'create_' . PORCH_LANDING_POST_TYPE => true,
-            'edit_' . PORCH_LANDING_POST_TYPE => true,
-            'read_' . PORCH_LANDING_POST_TYPE => true,
-            'delete_' . PORCH_LANDING_POST_TYPE => true,
-            'delete_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'edit' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'publish_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'read_private_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'create_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'edit_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'read_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'delete_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'delete_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'edit' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'publish_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'read_private_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
 
             // rest access for blocks editor
             'wp_api_allowed_user' => true,
@@ -128,8 +128,8 @@ class DT_Campaigns_Base {
         $all_campaigns_admin_permissions = [
             'update_any_'.$this->post_type => true,
             'view_any_'.$this->post_type => true,
-            'delete_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'edit_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'delete_others_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'edit_others_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
         ];
 
         //campaign creator permissions

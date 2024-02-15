@@ -38,7 +38,7 @@ $atts = [
     'lang' => $lang
 ];
 $dt_campaign_selected_campaign_magic_link_settings = $atts;
-$dt_campaign_selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME_HEX;
+$dt_campaign_selected_campaign_magic_link_settings['color'] = CAMPAIGN_LANDING_COLOR_SCHEME_HEX;
 if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     $dt_campaign_selected_campaign_magic_link_settings['color'] = '#4676fa';
 }

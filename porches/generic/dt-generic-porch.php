@@ -18,9 +18,9 @@ class DT_Generic_Porch {
 
         require_once __DIR__ . '/site/functions.php';
         $fields = DT_Campaign_Landing_Settings::get_campaign();
-        if ( ! defined( 'PORCH_TITLE' ) ) {
+        if ( ! defined( 'CAMPAIGN_LANDING_TITLE' ) ) {
             $title = $fields['title'] ?? '24/7 Prayer';
-            define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
+            define( 'CAMPAIGN_LANDING_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
         }
 
         // Set Default Language
@@ -36,7 +36,7 @@ class DT_Generic_Porch {
 
         $theme_manager = new DT_Porch_Theme();
         $theme = $theme_manager->get_default_theme();
-        if ( !empty( $fields['theme_color']['key'] ) && !defined( 'PORCH_COLOR_SCHEME' ) ) {
+        if ( !empty( $fields['theme_color']['key'] ) && !defined( 'CAMPAIGN_LANDING_COLOR_SCHEME' ) ) {
             $theme_name = $fields['theme_color']['key'];
             $theme = $theme_manager->get_theme( $theme_name );
         }
@@ -46,11 +46,11 @@ class DT_Generic_Porch {
             $theme['name'] = 'custom';
             $theme['color'] = $fields['custom_theme_color'];
         }
-        if ( !defined( 'PORCH_COLOR_SCHEME' ) ) {
-            define( 'PORCH_COLOR_SCHEME', $theme['name'] );
+        if ( !defined( 'CAMPAIGN_LANDING_COLOR_SCHEME' ) ) {
+            define( 'CAMPAIGN_LANDING_COLOR_SCHEME', $theme['name'] );
         }
-        if ( !defined( 'PORCH_COLOR_SCHEME_HEX' ) ) {
-            define( 'PORCH_COLOR_SCHEME_HEX', $theme['color'] );
+        if ( !defined( 'CAMPAIGN_LANDING_COLOR_SCHEME_HEX' ) ) {
+            define( 'CAMPAIGN_LANDING_COLOR_SCHEME_HEX', $theme['color'] );
         }
 
         // MICROSITE Magic Links

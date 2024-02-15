@@ -27,9 +27,9 @@ add_action( 'wp_enqueue_scripts', function (){
     wp_enqueue_style( 'animate-css', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/animate.css', array(), filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/animate.css' ) );
     wp_enqueue_style( 'menu_sideslide', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/menu_sideslide.css', array(), filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/menu_sideslide.css' ) );
     wp_enqueue_style( 'responsive', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/responsive.css', array(), filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/responsive.css' ) );
-    $custom_css_path = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/colors/' . PORCH_COLOR_SCHEME . '.css';
+    $custom_css_path = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/colors/' . CAMPAIGN_LANDING_COLOR_SCHEME . '.css';
     if ( file_exists( $custom_css_path ) ){
-        wp_enqueue_style( 'p4m-colors', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/colors/' . PORCH_COLOR_SCHEME . '.css', array(), filemtime( $custom_css_path ) );
+        wp_enqueue_style( 'p4m-colors', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/colors/' . CAMPAIGN_LANDING_COLOR_SCHEME . '.css', array(), filemtime( $custom_css_path ) );
     }
 
 });

@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
 class DT_Campaign_Porch_Roles
 {
     // needs to match post-type.php
-    public $post_type = PORCH_LANDING_POST_TYPE;
+    public $post_type = CAMPAIGN_LANDING_POST_TYPE;
 
     private static $_instance = null;
     public static function instance() {
@@ -71,12 +71,12 @@ class DT_Campaign_Porch_Roles
     public function dt_porch_template_allowed_wp_v2_paths( $allowed_wp_v2_paths ) {
         if ( user_can( get_current_user_id(), 'wp_api_allowed_user' ) ) {
 
-            $allowed_wp_v2_paths[] = '/wp/v2/'.PORCH_LANDING_POST_TYPE;
-            $allowed_wp_v2_paths[] = '/wp/v2/'.PORCH_LANDING_POST_TYPE.'/(?P<id>[\d]+)';
-            $allowed_wp_v2_paths[] = '/wp/v2/'.PORCH_LANDING_POST_TYPE.'/(?P<parent>[\d]+)/revisions';
-            $allowed_wp_v2_paths[] = '/wp/v2/'.PORCH_LANDING_POST_TYPE.'/(?P<parent>[\d]+)/revisions/(?P<id>[\d]+)';
-            $allowed_wp_v2_paths[] = '/wp/v2/'.PORCH_LANDING_POST_TYPE.'/(?P<id>[\d]+)/autosaves';
-            $allowed_wp_v2_paths[] = '/wp/v2/'.PORCH_LANDING_POST_TYPE.'/(?P<parent>[\d]+)/autosaves/(?P<id>[\d]+)';
+            $allowed_wp_v2_paths[] = '/wp/v2/'.CAMPAIGN_LANDING_POST_TYPE;
+            $allowed_wp_v2_paths[] = '/wp/v2/'.CAMPAIGN_LANDING_POST_TYPE.'/(?P<id>[\d]+)';
+            $allowed_wp_v2_paths[] = '/wp/v2/'.CAMPAIGN_LANDING_POST_TYPE.'/(?P<parent>[\d]+)/revisions';
+            $allowed_wp_v2_paths[] = '/wp/v2/'.CAMPAIGN_LANDING_POST_TYPE.'/(?P<parent>[\d]+)/revisions/(?P<id>[\d]+)';
+            $allowed_wp_v2_paths[] = '/wp/v2/'.CAMPAIGN_LANDING_POST_TYPE.'/(?P<id>[\d]+)/autosaves';
+            $allowed_wp_v2_paths[] = '/wp/v2/'.CAMPAIGN_LANDING_POST_TYPE.'/(?P<parent>[\d]+)/autosaves/(?P<id>[\d]+)';
 
             $allowed_wp_v2_paths[] = '/wp/v2/types';
             $allowed_wp_v2_paths[] = '/wp/v2/types/(?P<type>[\w-]+)';

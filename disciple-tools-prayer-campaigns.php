@@ -158,32 +158,23 @@ class DT_Prayer_Campaigns {
     }
 
     private function define_porch_constants() {
-        if ( ! defined( 'PORCH_ROOT' ) ) {
-            define( 'PORCH_ROOT', 'porch_app' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
+        if ( ! defined( 'CAMPAIGN_LANDING_ROOT' ) ) {
+            define( 'CAMPAIGN_LANDING_ROOT', 'prayer' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
         }
-        if ( ! defined( 'PORCH_TYPE' ) ) {
-            define( 'PORCH_TYPE', '5' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
+        if ( ! defined( 'CAMPAIGN_LANDING_TYPE' ) ) {
+            define( 'CAMPAIGN_LANDING_TYPE', 'fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
-        if ( ! defined( 'PORCH_TOKEN' ) ) {
-            define( 'PORCH_TOKEN', 'porch_app_5' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        if ( ! defined( 'CAMPAIGN_LANDING_META_KEY' ) ) {
+            define( 'CAMPAIGN_LANDING_META_KEY', CAMPAIGN_LANDING_ROOT . '_' . CAMPAIGN_LANDING_TYPE . '_magic_key' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
-        if ( ! defined( 'PORCH_LANDING_ROOT' ) ) {
-            define( 'PORCH_LANDING_ROOT', 'prayer' ); // Alphanumeric key. Use underscores not hyphens. No special characters.
+        if ( ! defined( 'CAMPAIGN_LANDING_POST_TYPE' ) ) {
+            define( 'CAMPAIGN_LANDING_POST_TYPE', 'landing' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
-        if ( ! defined( 'PORCH_LANDING_TYPE' ) ) {
-            define( 'PORCH_LANDING_TYPE', 'fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        if ( ! defined( 'CAMPAIGN_LANDING_POST_TYPE_SINGLE' ) ) {
+            define( 'CAMPAIGN_LANDING_POST_TYPE_SINGLE', 'Prayer Fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
-        if ( ! defined( 'PORCH_LANDING_META_KEY' ) ) {
-            define( 'PORCH_LANDING_META_KEY', PORCH_LANDING_ROOT . '_' . PORCH_LANDING_TYPE . '_magic_key' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE', 'landing' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE_SINGLE' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE_SINGLE', 'Prayer Fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
-        }
-        if ( ! defined( 'PORCH_LANDING_POST_TYPE_PLURAL' ) ) {
-            define( 'PORCH_LANDING_POST_TYPE_PLURAL', 'Prayer Fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
+        if ( ! defined( 'CAMPAIGN_LANDING_POST_TYPE_PLURAL' ) ) {
+            define( 'CAMPAIGN_LANDING_POST_TYPE_PLURAL', 'Prayer Fuel' ); // Alphanumeric key. Use underscores not hyphens. No special characters. Must be less than 20 characters
         }
     }
 

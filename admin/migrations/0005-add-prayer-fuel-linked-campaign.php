@@ -18,7 +18,7 @@ class DT_Prayer_Campaign_Migration_0005 extends DT_Prayer_Campaign_Migration {
         $campaign_id = $campaign['ID'] ?? null;
 
         $prayer_fuel_posts = new WP_Query( [
-            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_type' => CAMPAIGN_LANDING_POST_TYPE,
             'post_status' => [ 'publish', 'future' ] ,
             'posts_per_page' => -1,
             'orderby' => 'post_date',

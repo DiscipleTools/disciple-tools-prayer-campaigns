@@ -100,7 +100,7 @@ class DT_Campaign_Prayer_Post_Importer {
                     'value' => $campaign_day,
                 ],
                 [
-                    'key' => PORCH_LANDING_META_KEY,
+                    'key' => CAMPAIGN_LANDING_META_KEY,
                     'value' => $campaign_day,
                 ]
             ];
@@ -254,7 +254,7 @@ class DT_Campaign_Prayer_Post_Importer {
                     p.post_status = 'future'
                 )
             ";
-        $args[] = PORCH_LANDING_POST_TYPE;
+        $args[] = CAMPAIGN_LANDING_POST_TYPE;
 
         if ( $lang ) {
             $query .= "

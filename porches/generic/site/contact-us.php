@@ -3,10 +3,10 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Generic_Porch_Contact_Us {
     public $page_title = '';
-    public $root = PORCH_LANDING_ROOT;
+    public $root = CAMPAIGN_LANDING_ROOT;
     public $type = 'contact-us';
-    public $post_type = PORCH_LANDING_POST_TYPE;
-    public $meta_key = PORCH_LANDING_META_KEY;
+    public $post_type = CAMPAIGN_LANDING_POST_TYPE;
+    public $meta_key = CAMPAIGN_LANDING_META_KEY;
 
     private static $_instance = null;
     public static function instance() {

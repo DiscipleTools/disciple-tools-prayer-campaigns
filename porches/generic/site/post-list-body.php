@@ -44,7 +44,7 @@ $meta_query = [
     $lang_query,
 ];
 $list = new WP_Query( [
-    'post_type' => PORCH_LANDING_POST_TYPE,
+    'post_type' => CAMPAIGN_LANDING_POST_TYPE,
     'post_status' => [ 'publish' ],
     'posts_per_page' => -1,
     'meta_key' => 'day',
@@ -56,7 +56,7 @@ $list = new WP_Query( [
 // if no posts in the selected language, get posts in english.
 if ( empty( $list->posts ) ){
     $args = array(
-        'post_type' => PORCH_LANDING_POST_TYPE,
+        'post_type' => CAMPAIGN_LANDING_POST_TYPE,
         'post_status' => [ 'publish' ],
         'posts_per_page' => -1,
         'orderby' => 'day_clause',

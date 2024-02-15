@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$landing_post_type = PORCH_LANDING_POST_TYPE;
+$landing_post_type = CAMPAIGN_LANDING_POST_TYPE;
 
 if ( !current_user_can( 'edit_' . $landing_post_type ) ) { exit; }
 
@@ -39,7 +39,7 @@ $query = "
     AND p.post_status IN ( 'draft', 'publish', 'future' )
     AND pm.meta_value IN ( %1s )
 ";
-$args = [ $campaign['ID'], PORCH_LANDING_POST_TYPE, $days_string ];
+$args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $days_string ];
 
 if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
     $query .= '

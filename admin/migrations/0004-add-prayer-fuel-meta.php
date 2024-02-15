@@ -18,7 +18,7 @@ class DT_Prayer_Campaign_Migration_0004 extends DT_Prayer_Campaign_Migration {
         }
 
         $prayer_fuel_posts = new WP_Query( [
-            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_type' => CAMPAIGN_LANDING_POST_TYPE,
             'post_status' => [ 'publish', 'future' ] ,
             'posts_per_page' => -1,
             'orderby' => 'post_date',
@@ -32,7 +32,7 @@ class DT_Prayer_Campaign_Migration_0004 extends DT_Prayer_Campaign_Migration {
             }
 
             update_post_meta( $post->ID, 'day', $day_in_campaign );
-            update_post_meta( $post->ID, PORCH_LANDING_META_KEY, $day_in_campaign );
+            update_post_meta( $post->ID, CAMPAIGN_LANDING_META_KEY, $day_in_campaign );
         }
     }
 

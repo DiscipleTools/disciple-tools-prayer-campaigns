@@ -3,10 +3,10 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Generic_Porch_Stats {
     public $page_title = '';
-    public $root = PORCH_LANDING_ROOT;
+    public $root = CAMPAIGN_LANDING_ROOT;
     public $type = 'stats';
-    public $post_type = PORCH_LANDING_POST_TYPE;
-    public $meta_key = PORCH_LANDING_META_KEY;
+    public $post_type = CAMPAIGN_LANDING_POST_TYPE;
+    public $meta_key = CAMPAIGN_LANDING_META_KEY;
 
     private static $_instance = null;
     public static function instance() {
@@ -76,7 +76,7 @@ class DT_Generic_Porch_Stats {
             'lang' => $lang
         ];
         $selected_campaign_magic_link_settings = $atts;
-        $selected_campaign_magic_link_settings['color'] = PORCH_COLOR_SCHEME_HEX;
+        $selected_campaign_magic_link_settings['color'] = CAMPAIGN_LANDING_COLOR_SCHEME_HEX;
         if ( $selected_campaign_magic_link_settings['color'] === 'preset' ){
             $selected_campaign_magic_link_settings['color'] = '#4676fa';
         }
