@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-09T16:03:14+00:00\n"
+"POT-Creation-Date: 2024-02-14T10:27:21+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian <https://translate.disciple.tools/projects/disciple-"
@@ -100,7 +100,7 @@ msgid "Times are shown according to: %s time"
 msgstr "Времена су приказана према: %с времену"
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:335
+#: magic-links/subscription-management/subscription-management.php:336
 #, fuzzy
 msgid "Download Calendar"
 msgstr "Преузмите календар"
@@ -304,48 +304,48 @@ msgstr ""
 "Кликните овде да потврдите своју адресу е-поште и потврдите време молитве."
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:324
+#: magic-links/subscription-management/subscription-management.php:325
 #: parts/components-enqueue.php:49
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "Молитвене обавезе"
 
-#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:307
 #: porches/generic/site/stats.php:205
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "Молитвене обавезе"
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:308
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:313
+#: magic-links/subscription-management/subscription-management.php:314
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:315
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "Кућа"
 
-#: magic-links/subscription-management/subscription-management.php:316
+#: magic-links/subscription-management/subscription-management.php:317
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:332
+#: magic-links/subscription-management/subscription-management.php:333
 #, fuzzy
 msgid "My Calendar"
 msgstr "Преузмите календар"
 
-#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:349
 #, fuzzy
 msgid "Sign up for more prayer"
 msgstr "Пријавите се за молитву"
 
-#: magic-links/subscription-management/subscription-management.php:371
+#: magic-links/subscription-management/subscription-management.php:372
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Ова претплата је завршена или није исправно конфигурисана."
