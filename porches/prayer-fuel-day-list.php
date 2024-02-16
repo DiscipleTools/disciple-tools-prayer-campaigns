@@ -262,7 +262,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 if ( empty( $items ) ) {
                     break;
                 }
-                $url = trailingslashit( site_url() ) . CAMPAIGN_LANDING_ROOT . '/' . CAMPAIGN_LANDING_TYPE . '/' . $day;
+                $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url();
+                $url = trailingslashit( $campaign_url ) . CAMPAIGN_LANDING_TYPE . '/' . $day;
                 echo '<a href="' . esc_url( $url ) . '">'. esc_html( $url ) .'</a>';
                 break;
             default:
