@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-14T10:27:21+00:00\n"
+"POT-Creation-Date: 2024-02-15T11:38:13+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -39,7 +39,7 @@ msgid "If you did not request this email, please ignore it."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:231
+#: campaign-functions/send-email-utility.php:233
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s с %2$s до %3$s"
@@ -55,8 +55,8 @@ msgid "Registered to pray with us!"
 msgstr "Зарегистрировались, чтобы молиться с нами!"
 
 #: campaign-functions/send-email-utility.php:185
-#: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:266
+#: campaign-functions/send-email-utility.php:356
 msgid "Hello %s,"
 msgstr "Привет %s,"
 
@@ -68,12 +68,12 @@ msgid ""
 msgstr "Стратегическая молитва за движение умножения учеников"
 
 #: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:275
+#: campaign-functions/send-email-utility.php:277
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:189
-#: campaign-functions/send-email-utility.php:276
+#: campaign-functions/send-email-utility.php:278
 #: parts/components-enqueue.php:93
 msgid "Access Account"
 msgstr ""
@@ -92,40 +92,40 @@ msgstr ""
 "Нажать здесь, чтобы управлять своей учетной записью и посвященным временем"
 
 #: campaign-functions/send-email-utility.php:200
-#: campaign-functions/send-email-utility.php:268
+#: campaign-functions/send-email-utility.php:270
 msgid "Times are shown according to: %s time"
 msgstr "Время указано в соответствии с: %s временем"
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:336
+#: magic-links/subscription-management/subscription-management.php:343
 msgid "Download Calendar"
 msgstr "Скачать календарь"
 
-#: campaign-functions/send-email-utility.php:237
+#: campaign-functions/send-email-utility.php:239
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "для %s"
 
-#: campaign-functions/send-email-utility.php:247
+#: campaign-functions/send-email-utility.php:249
 msgid "Prayer Time reminder!"
 msgstr "Напоминание о молитве!"
 
-#: campaign-functions/send-email-utility.php:265
+#: campaign-functions/send-email-utility.php:267
 #: parts/components-enqueue.php:103
 #, fuzzy
 #| msgid "Thank you for praying with us!"
 msgid "Thank you for praying with us."
 msgstr "Спасибо, что молитесь вместе с нами!"
 
-#: campaign-functions/send-email-utility.php:266
+#: campaign-functions/send-email-utility.php:268
 msgid "Here are your upcoming prayer times:"
 msgstr "Ваше предстоящее время молитвы:"
 
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:354
 msgid "Continue Praying?"
 msgstr "Хотите продолжать молиться?"
 
-#: campaign-functions/send-email-utility.php:355
+#: campaign-functions/send-email-utility.php:357
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
@@ -133,99 +133,99 @@ msgstr ""
 "У вас осталось 2 недели до завершения вашего молитвенного времени. Хотели бы "
 "вы продолжить молиться?"
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:358
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Подпишитесь, чтобы продолжать молиться или продлите свое повторяющееся время "
 "здесь:"
 
-#: campaign-functions/send-email-utility.php:358
+#: campaign-functions/send-email-utility.php:360
 #, fuzzy
 #| msgid "Or open this link:"
 msgid "Or click this link:"
 msgstr "Или нажмите на ссылку:"
 
-#: campaign-functions/send-email-utility.php:359 parts/components.php:51
+#: campaign-functions/send-email-utility.php:361 parts/components.php:51
 #: porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Спасибо"
 
-#: campaign-functions/send-email-utility.php:405
+#: campaign-functions/send-email-utility.php:407
 #: porches/generic/site/stats.php:144
 msgid "Thank you for praying with us!"
 msgstr "Спасибо, что молитесь вместе с нами!"
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:430
+#: campaign-functions/send-email-utility.php:460
 #, fuzzy
 #| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Стратегическая молитва за движение умножения учеников"
 
-#: campaign-functions/send-email-utility.php:430
-#: campaign-functions/send-email-utility.php:460
+#: campaign-functions/send-email-utility.php:432
+#: campaign-functions/send-email-utility.php:462
 #: porches/generic/dt-generic-porch-settings.php:59
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Стратегическая молитва за движение умножения учеников"
 
-#: campaign-functions/send-email-utility.php:435
-#: campaign-functions/send-email-utility.php:465
+#: campaign-functions/send-email-utility.php:437
+#: campaign-functions/send-email-utility.php:467
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:438
-#: campaign-functions/send-email-utility.php:468
+#: campaign-functions/send-email-utility.php:440
+#: campaign-functions/send-email-utility.php:470
 #, fuzzy
 #| msgctxt "Thank you for joining us in prayer for the French in France."
 #| msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Спасибо, что присоединились к нам в молитве за %1$s в %2$s."
 
-#: campaign-functions/send-email-utility.php:441
+#: campaign-functions/send-email-utility.php:443
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:444
+#: campaign-functions/send-email-utility.php:446
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:448
+#: campaign-functions/send-email-utility.php:450
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "See Prayer Stats"
 msgstr "Выбрать время молитвы"
 
-#: campaign-functions/send-email-utility.php:450
-#: campaign-functions/send-email-utility.php:486
+#: campaign-functions/send-email-utility.php:452
+#: campaign-functions/send-email-utility.php:488
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:471
+#: campaign-functions/send-email-utility.php:473
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:475
+#: campaign-functions/send-email-utility.php:477
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:484
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:486
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -294,49 +294,49 @@ msgstr ""
 "доступа."
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:325
+#: magic-links/subscription-management/subscription-management.php:332
 #: parts/components-enqueue.php:49
 #, fuzzy
 #| msgid "Prayer Commitments"
 msgid "My Prayer Commitments"
 msgstr "Молитвенные посвящения"
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:314
 #: porches/generic/site/stats.php:205
 msgid "Prayer Commitments"
 msgstr "Молитвенные посвящения"
 
-#: magic-links/subscription-management/subscription-management.php:308
+#: magic-links/subscription-management/subscription-management.php:315
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:321
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:322
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "Домой"
 
-#: magic-links/subscription-management/subscription-management.php:317
+#: magic-links/subscription-management/subscription-management.php:324
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:333
+#: magic-links/subscription-management/subscription-management.php:340
 #, fuzzy
 #| msgid "Download Calendar"
 msgid "My Calendar"
 msgstr "Скачать календарь"
 
-#: magic-links/subscription-management/subscription-management.php:349
+#: magic-links/subscription-management/subscription-management.php:356
 #, fuzzy
 #| msgid "Sign Up to Pray"
 msgid "Sign up for more prayer"
 msgstr "Зарегистрироваться чтобы молиться"
 
-#: magic-links/subscription-management/subscription-management.php:372
+#: magic-links/subscription-management/subscription-management.php:379
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Эта подписка закончилась или настроена неправильно."
 

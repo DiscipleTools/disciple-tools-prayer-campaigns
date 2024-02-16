@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-14T10:27:21+00:00\n"
+"POT-Creation-Date: 2024-02-15T11:38:13+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/disciple-"
@@ -42,7 +42,7 @@ msgid "If you did not request this email, please ignore it."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:231
+#: campaign-functions/send-email-utility.php:233
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
@@ -59,8 +59,8 @@ msgid "Registered to pray with us!"
 msgstr "మాతో ప్రార్థించడానికి నమోదు చేయబడింది!"
 
 #: campaign-functions/send-email-utility.php:185
-#: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:266
+#: campaign-functions/send-email-utility.php:356
 #, fuzzy
 msgid "Hello %s,"
 msgstr "హలో %s,"
@@ -72,12 +72,12 @@ msgid ""
 msgstr "శిష్యుల మేకింగ్ ఉద్యమం కోసం వ్యూహాత్మక ప్రార్థన"
 
 #: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:275
+#: campaign-functions/send-email-utility.php:277
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:189
-#: campaign-functions/send-email-utility.php:276
+#: campaign-functions/send-email-utility.php:278
 #: parts/components-enqueue.php:93
 msgid "Access Account"
 msgstr ""
@@ -93,139 +93,139 @@ msgid "These are your next prayer commitments:"
 msgstr "మీ ఖాతా మరియు సమయ నిబద్ధతలను నిర్వహించడానికి ఇక్కడ క్లిక్ చేయండి"
 
 #: campaign-functions/send-email-utility.php:200
-#: campaign-functions/send-email-utility.php:268
+#: campaign-functions/send-email-utility.php:270
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "సమయాలు దీని ప్రకారం చూపబడతాయి: %s సమయం"
 
 #: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:336
+#: magic-links/subscription-management/subscription-management.php:343
 #, fuzzy
 msgid "Download Calendar"
 msgstr "క్యాలెండర్‌ని డౌన్‌లోడ్ చేయండి"
 
-#: campaign-functions/send-email-utility.php:237
+#: campaign-functions/send-email-utility.php:239
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "%s కోసం"
 
-#: campaign-functions/send-email-utility.php:247
+#: campaign-functions/send-email-utility.php:249
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "ప్రార్థన సమయం రిమైండర్!"
 
-#: campaign-functions/send-email-utility.php:265
+#: campaign-functions/send-email-utility.php:267
 #: parts/components-enqueue.php:103
 #, fuzzy
 msgid "Thank you for praying with us."
 msgstr "మాతో కలిసి ప్రార్థించినందుకు ధన్యవాదాలు!"
 
-#: campaign-functions/send-email-utility.php:266
+#: campaign-functions/send-email-utility.php:268
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "మీ రాబోయే ప్రార్థన సమయాలు ఇక్కడ ఉన్నాయి:"
 
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:354
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:355
+#: campaign-functions/send-email-utility.php:357
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr "మీరు మీ చివరి ప్రార్థన సమయానికి 2 వారాలు మిగిలి ఉన్నారు. మీరు ప్రార్థన చేస్తూ ఉండాలనుకుంటున్నారా?"
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:358
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "మరిన్ని ప్రార్థన సమయాల కోసం సైన్ అప్ చేయండి లేదా మీ పునరావృత సమయాన్ని ఇక్కడ పొడిగించండి:"
 
-#: campaign-functions/send-email-utility.php:358
+#: campaign-functions/send-email-utility.php:360
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:359 parts/components.php:51
+#: campaign-functions/send-email-utility.php:361 parts/components.php:51
 #: porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
 msgstr "ధన్యవాదాలు"
 
-#: campaign-functions/send-email-utility.php:405
+#: campaign-functions/send-email-utility.php:407
 #: porches/generic/site/stats.php:144
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "మాతో కలిసి ప్రార్థించినందుకు ధన్యవాదాలు!"
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:430
+#: campaign-functions/send-email-utility.php:460
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "శిష్యుల మేకింగ్ ఉద్యమం కోసం వ్యూహాత్మక ప్రార్థన"
 
-#: campaign-functions/send-email-utility.php:430
-#: campaign-functions/send-email-utility.php:460
+#: campaign-functions/send-email-utility.php:432
+#: campaign-functions/send-email-utility.php:462
 #: porches/generic/dt-generic-porch-settings.php:59
 #, fuzzy
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "శిష్యుల మేకింగ్ ఉద్యమం కోసం వ్యూహాత్మక ప్రార్థన"
 
-#: campaign-functions/send-email-utility.php:435
-#: campaign-functions/send-email-utility.php:465
+#: campaign-functions/send-email-utility.php:437
+#: campaign-functions/send-email-utility.php:467
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:438
-#: campaign-functions/send-email-utility.php:468
+#: campaign-functions/send-email-utility.php:440
+#: campaign-functions/send-email-utility.php:470
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "%2$sలో %1$s కోసం ప్రార్థనలో మాతో చేరినందుకు ధన్యవాదాలు."
 
-#: campaign-functions/send-email-utility.php:441
+#: campaign-functions/send-email-utility.php:443
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:444
+#: campaign-functions/send-email-utility.php:446
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:448
+#: campaign-functions/send-email-utility.php:450
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "ప్రార్థన సమయాన్ని ఎంచుకోండి"
 
-#: campaign-functions/send-email-utility.php:450
-#: campaign-functions/send-email-utility.php:486
+#: campaign-functions/send-email-utility.php:452
+#: campaign-functions/send-email-utility.php:488
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:471
+#: campaign-functions/send-email-utility.php:473
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:475
+#: campaign-functions/send-email-utility.php:477
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:484
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:486
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -298,48 +298,48 @@ msgid "Please check your email address now for your access link."
 msgstr "మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి మరియు మీ ప్రార్థన సమయాలను నిర్ధారించడానికి ఇక్కడ క్లిక్ చేయండి."
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:325
+#: magic-links/subscription-management/subscription-management.php:332
 #: parts/components-enqueue.php:49
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "ప్రార్థన కట్టుబాట్లు"
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:314
 #: porches/generic/site/stats.php:205
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "ప్రార్థన కట్టుబాట్లు"
 
-#: magic-links/subscription-management/subscription-management.php:308
+#: magic-links/subscription-management/subscription-management.php:315
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:321
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:315
+#: magic-links/subscription-management/subscription-management.php:322
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "హోమ్"
 
-#: magic-links/subscription-management/subscription-management.php:317
+#: magic-links/subscription-management/subscription-management.php:324
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:333
+#: magic-links/subscription-management/subscription-management.php:340
 #, fuzzy
 msgid "My Calendar"
 msgstr "క్యాలెండర్‌ని డౌన్‌లోడ్ చేయండి"
 
-#: magic-links/subscription-management/subscription-management.php:349
+#: magic-links/subscription-management/subscription-management.php:356
 #, fuzzy
 msgid "Sign up for more prayer"
 msgstr "ప్రార్థన చేయడానికి సైన్ అప్ చేయండి"
 
-#: magic-links/subscription-management/subscription-management.php:372
+#: magic-links/subscription-management/subscription-management.php:379
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ఈ సభ్యత్వం ముగిసింది లేదా సరిగ్గా కాన్ఫిగర్ చేయబడలేదు."
