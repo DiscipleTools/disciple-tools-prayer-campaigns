@@ -110,19 +110,23 @@ window.campaign_scripts = {
     let next_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day')
     let time_iterator = parseInt( start_of_day );
     let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+    let double_flush_processing_save = false
 
     while ( time_iterator < end ){
 
       if ( !days.length || time_iterator >= next_day.toSeconds() ){
         next_day = next_day.plus({days:1})
         let timezone_date = window.luxon.DateTime.fromSeconds( time_iterator + day_in_seconds, {zone: custom_timezone}).toFormat('h:mm a')
-        if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
+        if ( double_flush_processing_save || (timezone_change_ref !== null && timezone_date !== timezone_change_ref) ){
           // Timezone change detected. Recalculating time slots.
           window.campaign_scripts.processing_save = {}
+          double_flush_processing_save = !double_flush_processing_save
         }
         timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
 
-        start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+        start_of_day = time_iterator //keep for march daily savings change
+        // start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+
         let date_time = window.luxon.DateTime.fromSeconds(start_of_day, {zone: custom_timezone});
 
         days.push({

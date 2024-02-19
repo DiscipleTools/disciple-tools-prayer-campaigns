@@ -871,6 +871,7 @@ export class cpTimes extends LitElement {
       this.shadowRoot.querySelector('.times-container').scrollTop = 250;
     })
     window.addEventListener('campaign_timezone_change', (e)=>{
+      this.days = window.campaign_scripts.days
       this.requestUpdate()
     });
   }
