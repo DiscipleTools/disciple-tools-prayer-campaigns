@@ -408,6 +408,7 @@ window.campaign_scripts = {
     }
     let start_time = start_of_day + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
+    let date_ref = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
     if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
       return null;
@@ -418,7 +419,7 @@ window.campaign_scripts = {
       limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
     }
 
-    let date_ref = start_date
+    let index = 1;
     while ( date_ref.toSeconds() <= limit ){
       let time = date_ref.toSeconds();
       let time_label = date_ref.toFormat('hh:mm a');
@@ -426,7 +427,8 @@ window.campaign_scripts = {
       if ( !already_added && time > now && time >= window.campaign_data.start_timestamp ) {
         selected_times.push({time: time, duration: duration, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
       }
-      date_ref = date_ref.plus({[frequency_option.step]:1})
+      date_ref = start_date.plus({[frequency_option.step]:index})
+      index += 1
     }
     let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
 
