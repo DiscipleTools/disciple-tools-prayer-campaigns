@@ -365,7 +365,7 @@ window.campaign_scripts = {
   },
   recurring_time_slot_label(value){
     let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})
-    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric' });
     const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
     let freq_label = frequency_option.label
     const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
@@ -426,7 +426,7 @@ window.campaign_scripts = {
     let index = 1;
     while ( date_ref.toSeconds() <= limit ){
       let time = date_ref.toSeconds();
-      let time_label = date_ref.toFormat('hh:mm a');
+      let time_label = date_ref.toLocaleString({ hour: '2-digit', minute: '2-digit' });
       let already_added = selected_times.find(k=>k.time===time)
       if ( !already_added && time > now && time >= window.campaign_data.start_timestamp ) {
         selected_times.push({time: time, duration: duration, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
@@ -483,7 +483,7 @@ window.campaign_scripts = {
       let time_formatted = time.toFormat('hh:mm a')
       let progress = 0
       let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toLocaleString({ hour: '2-digit' }), progress})
       key += window.campaign_data.slot_length * 60
     }
     return options;

@@ -937,7 +937,7 @@ export class cpTimes extends LitElement {
       let progress = s.subscribers ? 100 : 0;
       times.push({
         key: s.key,
-        hour: time.toFormat('hh a'),
+        hour: time.toLocaleString({ hour: '2-digit' }),
         minute: time.toFormat('mm'),
         progress: progress,
         selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
@@ -993,7 +993,7 @@ export class cpTimes extends LitElement {
         key: key,
         time_formatted: time_formatted,
         minute: min,
-        hour: time.toFormat('hh a'),
+        hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
         selected
       })
@@ -1038,7 +1038,7 @@ export class cpTimes extends LitElement {
         key: key,
         time_formatted: time_formatted,
         minute: min,
-        hour: time.toFormat('hh a'),
+        hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
         selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
       })

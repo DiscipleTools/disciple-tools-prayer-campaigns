@@ -121,8 +121,8 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log( 'failed to commitments' );
             return;
         }
-
-        self::switch_email_locale( $record['lang'] ?? null );
+        $locale = $record['lang'] ?? null;
+        self::switch_email_locale( $locale );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -141,9 +141,9 @@ class DT_Prayer_Campaigns_Send_Email {
             $commitment_list .= '<li>';
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                $begin_date->format( 'F d, Y' ),
-                '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
-                '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
+                DT_Time_Utilities::display_date_localized( $begin_date, $locale ),
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale ) . '</strong>',
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale ) . '</strong>'
             );
             $commitment_list .= '</li>';
             if ( $index > 3 ){
@@ -218,7 +218,8 @@ class DT_Prayer_Campaigns_Send_Email {
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
 
-        self::switch_email_locale( $record['lang'] ?? null );
+        $locale = $record['lang'] ?? null;
+        self::switch_email_locale( $locale );
 
         $commitment_list = '';
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
@@ -230,9 +231,9 @@ class DT_Prayer_Campaigns_Send_Email {
             $end_date->setTimezone( $tz );
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                $begin_date->format( 'F d, Y' ),
-                '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
-                '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
+                DT_Time_Utilities::display_date_localized( $begin_date, $locale ),
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale ) . '</strong>',
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale ) . '</strong>'
             );
             if ( !empty( $row['label'] ) ){
                 $commitment_list .= ' ' . sprintf( _x( 'for %s', 'for Paris, France', 'disciple-tools-prayer-campaigns' ), $row['label'] );
