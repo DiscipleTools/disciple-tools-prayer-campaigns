@@ -156,9 +156,9 @@ class DT_Prayer_Campaigns_Send_Email {
             $commitment_list .= '<li>';
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                DT_Time_Utilities::display_date_localized( $begin_date, $locale ),
-                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale ) . '</strong>',
-                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale ) . '</strong>'
+                DT_Time_Utilities::display_date_localized( $begin_date, $locale, $timezone ),
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale, $timezone ) . '</strong>',
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale, $timezone ) . '</strong>'
             );
             $commitment_list .= '</li>';
             if ( $index > 3 ){
@@ -246,9 +246,9 @@ class DT_Prayer_Campaigns_Send_Email {
             $end_date->setTimezone( $tz );
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                DT_Time_Utilities::display_date_localized( $begin_date, $locale ),
-                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale ) . '</strong>',
-                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale ) . '</strong>'
+                DT_Time_Utilities::display_date_localized( $begin_date, $locale, $timezone ),
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale, $timezone ) . '</strong>',
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale, $timezone ) . '</strong>'
             );
             if ( !empty( $row['label'] ) ){
                 $commitment_list .= ' ' . sprintf( _x( 'for %s', 'for Paris, France', 'disciple-tools-prayer-campaigns' ), $row['label'] );

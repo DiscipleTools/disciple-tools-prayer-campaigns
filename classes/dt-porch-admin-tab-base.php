@@ -198,6 +198,9 @@ class DT_Porch_Admin_Tab_Base {
                                         <?php } else { ?>
                                             <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
                                         <?php } ?>
+                                        <?php if ( isset( $field['description'] ) ): ?>
+                                            <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ) ) ); //phpcs:ignore ?></p>
+                                        <?php endif; ?>
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( $field['type'] === 'color' ) { ?>
