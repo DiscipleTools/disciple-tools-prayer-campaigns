@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-15T11:38:13+00:00\n"
+"POT-Creation-Date: 2024-02-16T13:29:47+00:00\n"
 "PO-Revision-Date: 2024-02-04 16:28+0000\n"
 "Last-Translator: Jelita Malau <jelitam64@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -39,7 +39,7 @@ msgid "If you did not request this email, please ignore it."
 msgstr "Jika Anda tidak meminta email ini, harap abaikan saja."
 
 #: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:233
+#: campaign-functions/send-email-utility.php:232
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s dari %2$s hingga %3$s"
@@ -52,71 +52,71 @@ msgstr "lihat selengkapnya di akun Anda"
 msgid "Registered to pray with us!"
 msgstr "Terdaftar untuk berdoa bersama kami!"
 
-#: campaign-functions/send-email-utility.php:185
-#: campaign-functions/send-email-utility.php:266
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:184
+#: campaign-functions/send-email-utility.php:264
+#: campaign-functions/send-email-utility.php:354
 msgid "Hello %s,"
 msgstr "Halo %s,"
 
-#: campaign-functions/send-email-utility.php:187
+#: campaign-functions/send-email-utility.php:186
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr ""
 "Terima kasih telah bergabung dengan kami dalam doa strategis untuk gerakan "
 "pemuridan!"
 
-#: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:277
+#: campaign-functions/send-email-utility.php:187
+#: campaign-functions/send-email-utility.php:275
 msgid "Access your account to see your commitments and make changes:"
 msgstr "Akses akun Anda untuk melihat komitmen Anda dan melakukan perubahan:"
 
-#: campaign-functions/send-email-utility.php:189
-#: campaign-functions/send-email-utility.php:278
+#: campaign-functions/send-email-utility.php:188
+#: campaign-functions/send-email-utility.php:276
 #: parts/components-enqueue.php:93
 msgid "Access Account"
 msgstr "Akses Akun"
 
-#: campaign-functions/send-email-utility.php:192
+#: campaign-functions/send-email-utility.php:191
 msgid "You signed up to pray:"
 msgstr "Anda mendaftar untuk berdoa:"
 
-#: campaign-functions/send-email-utility.php:197
+#: campaign-functions/send-email-utility.php:196
 msgid "These are your next prayer commitments:"
 msgstr "Ini adalah komitmen doa Anda berikutnya:"
 
-#: campaign-functions/send-email-utility.php:200
-#: campaign-functions/send-email-utility.php:270
+#: campaign-functions/send-email-utility.php:199
+#: campaign-functions/send-email-utility.php:268
 msgid "Times are shown according to: %s time"
 msgstr "Waktu ditampilkan menurut: %s waktu"
 
-#: campaign-functions/send-email-utility.php:204
+#: campaign-functions/send-email-utility.php:203
 #: magic-links/subscription-management/subscription-management.php:343
 msgid "Download Calendar"
 msgstr "Unduh Kalender"
 
-#: campaign-functions/send-email-utility.php:239
+#: campaign-functions/send-email-utility.php:238
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "untuk %s"
 
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:248
 msgid "Prayer Time reminder!"
 msgstr "Pengingat waktu berdoa!"
 
-#: campaign-functions/send-email-utility.php:267
+#: campaign-functions/send-email-utility.php:265
 #: parts/components-enqueue.php:103
 msgid "Thank you for praying with us."
 msgstr "Terima kasih telah berdoa bersama kami."
 
-#: campaign-functions/send-email-utility.php:268
+#: campaign-functions/send-email-utility.php:266
 msgid "Here are your upcoming prayer times:"
 msgstr "Berikut adalah waktu doa Anda yang akan datang:"
 
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:352
 msgid "Continue Praying?"
 msgstr "Lanjut Berdoa?"
 
-#: campaign-functions/send-email-utility.php:357
+#: campaign-functions/send-email-utility.php:355
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
@@ -124,50 +124,50 @@ msgstr ""
 "Anda memiliki waktu 2 minggu untuk waktu doa terakhir Anda. Apakah Anda "
 "ingin terus berdoa?"
 
-#: campaign-functions/send-email-utility.php:358
+#: campaign-functions/send-email-utility.php:356
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Daftar untuk lebih banyak waktu berdoa atau perpanjang waktu rutin anda di "
 "sini:"
 
-#: campaign-functions/send-email-utility.php:360
+#: campaign-functions/send-email-utility.php:358
 msgid "Or click this link:"
 msgstr "atau pilih tautan ini:"
 
-#: campaign-functions/send-email-utility.php:361 parts/components.php:51
+#: campaign-functions/send-email-utility.php:359 parts/components.php:51
 #: porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
 msgstr "Terima kasih"
 
-#: campaign-functions/send-email-utility.php:407
+#: campaign-functions/send-email-utility.php:405
 #: porches/generic/site/stats.php:144
 msgid "Thank you for praying with us!"
 msgstr "Terima kasih telah berdoa bersama kami!"
 
-#: campaign-functions/send-email-utility.php:430
-#: campaign-functions/send-email-utility.php:460
+#: campaign-functions/send-email-utility.php:428
+#: campaign-functions/send-email-utility.php:458
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Doa Strategis untuk Gerakan Pemuridan di &s"
 
-#: campaign-functions/send-email-utility.php:432
-#: campaign-functions/send-email-utility.php:462
+#: campaign-functions/send-email-utility.php:430
+#: campaign-functions/send-email-utility.php:460
 #: porches/generic/dt-generic-porch-settings.php:59
 #, fuzzy
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Doa Strategis untuk Gerakan Pemuridan"
 
-#: campaign-functions/send-email-utility.php:437
-#: campaign-functions/send-email-utility.php:467
+#: campaign-functions/send-email-utility.php:435
+#: campaign-functions/send-email-utility.php:465
 msgid "Dear %s,"
 msgstr "Yang Terkasih %s,"
 
-#: campaign-functions/send-email-utility.php:440
-#: campaign-functions/send-email-utility.php:470
+#: campaign-functions/send-email-utility.php:438
+#: campaign-functions/send-email-utility.php:468
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Terima kasih telah bergabung dengan kami %1$s di %2$s."
 
-#: campaign-functions/send-email-utility.php:443
+#: campaign-functions/send-email-utility.php:441
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
@@ -176,7 +176,7 @@ msgstr ""
 "Namun, kita tahu dari Firman Tuhan bahwa doa itu penuh kuasa dan efektif "
 "(Yakobus 5:16)."
 
-#: campaign-functions/send-email-utility.php:446
+#: campaign-functions/send-email-utility.php:444
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
@@ -184,16 +184,16 @@ msgstr ""
 "Klik tombol di bawah untuk melihat sekilas kontribusi Anda. Kami juga ingin "
 "mendengar kesan atau perkataan yang Anda terima dari Tuhan saat Anda berdoa."
 
-#: campaign-functions/send-email-utility.php:450
+#: campaign-functions/send-email-utility.php:448
 msgid "See Prayer Stats"
 msgstr "Lihat Statistik Doa"
 
-#: campaign-functions/send-email-utility.php:452
-#: campaign-functions/send-email-utility.php:488
+#: campaign-functions/send-email-utility.php:450
+#: campaign-functions/send-email-utility.php:486
 msgid "In Christ with you,"
 msgstr "Dalam Kristus bersamamu,"
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:471
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -203,7 +203,7 @@ msgstr ""
 "shalat bagi dunia Muslim selama Ramadhan. Namun, kita tahu dari Firman Tuhan "
 "bahwa doa itu penuh kuasa dan efektif (Yakobus 5:16)."
 
-#: campaign-functions/send-email-utility.php:477
+#: campaign-functions/send-email-utility.php:475
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
@@ -213,7 +213,7 @@ msgstr ""
 "ini. Kami juga ingin mendengar kesan atau perkataan yang Anda terima dari "
 "Tuhan saat Anda berdoa."
 
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:482
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -223,7 +223,7 @@ msgstr ""
 "pendaftaran di bagian bawah. Pastikan Anda mendaftar untuk menerima berita "
 "tentang peluang doa di masa depan dari Pray4Movement, pembuat alat doa ini."
 
-#: campaign-functions/send-email-utility.php:486
+#: campaign-functions/send-email-utility.php:484
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr "Lihat Statistik Doa Ramadhan 24/7"
 
