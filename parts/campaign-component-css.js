@@ -134,6 +134,7 @@ export const campaignStyles = css`
     justify-content: space-between;
     align-items: flex-end;
     margin-top: 1em;
+    column-gap: .5em;
   }
   .button-spinner {
     filter: invert(1);

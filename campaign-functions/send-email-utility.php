@@ -136,8 +136,8 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log( 'failed to commitments' );
             return;
         }
-
-        self::switch_email_locale( $record['lang'] ?? null );
+        $locale = $record['lang'] ?? null;
+        self::switch_email_locale( $locale );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -156,9 +156,9 @@ class DT_Prayer_Campaigns_Send_Email {
             $commitment_list .= '<li>';
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                $begin_date->format( 'F d, Y' ),
-                '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
-                '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
+                DT_Time_Utilities::display_date_localized( $begin_date, $locale ),
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale ) . '</strong>',
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale ) . '</strong>'
             );
             $commitment_list .= '</li>';
             if ( $index > 3 ){
@@ -184,8 +184,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         if ( strpos( $sign_up_email_extra_message, '<a' ) === false ){
-            $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
-            $sign_up_email_extra_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $sign_up_email_extra_message );
+            $sign_up_email_extra_message = make_clickable( $sign_up_email_extra_message );
         }
 
         $calendar_url = trailingslashit( DT_Magic_URL::get_link_url_for_post( 'subscriptions', $subscriber_id, 'subscriptions_app', 'manage' ) ) . 'download_calendar';
@@ -234,6 +233,9 @@ class DT_Prayer_Campaigns_Send_Email {
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
 
+        $locale = $record['lang'] ?? null;
+        self::switch_email_locale( $locale );
+
         $commitment_list = '';
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
@@ -244,9 +246,9 @@ class DT_Prayer_Campaigns_Send_Email {
             $end_date->setTimezone( $tz );
             $commitment_list .= sprintf(
                 _x( '%1$s from %2$s to %3$s', 'August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan', 'disciple-tools-prayer-campaigns' ),
-                $begin_date->format( 'F d, Y' ),
-                '<strong>' . $begin_date->format( 'H:i a' ) . '</strong>',
-                '<strong>' . $end_date->format( 'H:i a' ) . '</strong>'
+                DT_Time_Utilities::display_date_localized( $begin_date, $locale ),
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $begin_date, $locale ) . '</strong>',
+                '<strong>' . DT_Time_Utilities::display_hour_localized( $end_date, $locale ) . '</strong>'
             );
             if ( !empty( $row['label'] ) ){
                 $commitment_list .= ' ' . sprintf( _x( 'for %s', 'for Paris, France', 'disciple-tools-prayer-campaigns' ), $row['label'] );
@@ -269,8 +271,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
 
         if ( strpos( $prayer_content_message, '<a' ) === false ){
-            $url_regex = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
-            $prayer_content_message = preg_replace( $url_regex, '<a href="http$2://$4" title="$0">$0</a>', $prayer_content_message );
+            $prayer_content_message = make_clickable( $prayer_content_message );
         }
         $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 

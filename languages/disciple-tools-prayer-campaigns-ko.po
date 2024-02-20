@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-06T09:22:46+00:00\n"
+"POT-Creation-Date: 2024-02-16T13:29:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -39,7 +39,7 @@ msgid "If you did not request this email, please ignore it."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:231
+#: campaign-functions/send-email-utility.php:232
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr ""
@@ -52,57 +52,57 @@ msgstr ""
 msgid "Registered to pray with us!"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:185
+#: campaign-functions/send-email-utility.php:184
 #: campaign-functions/send-email-utility.php:264
 #: campaign-functions/send-email-utility.php:354
 msgid "Hello %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:187
+#: campaign-functions/send-email-utility.php:186
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:188
+#: campaign-functions/send-email-utility.php:187
 #: campaign-functions/send-email-utility.php:275
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:189
+#: campaign-functions/send-email-utility.php:188
 #: campaign-functions/send-email-utility.php:276
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid "Access Account"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:192
+#: campaign-functions/send-email-utility.php:191
 msgid "You signed up to pray:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:197
+#: campaign-functions/send-email-utility.php:196
 msgid "These are your next prayer commitments:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:200
+#: campaign-functions/send-email-utility.php:199
 #: campaign-functions/send-email-utility.php:268
 msgid "Times are shown according to: %s time"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:335
+#: campaign-functions/send-email-utility.php:203
+#: magic-links/subscription-management/subscription-management.php:343
 msgid "Download Calendar"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:237
+#: campaign-functions/send-email-utility.php:238
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:247
+#: campaign-functions/send-email-utility.php:248
 msgid "Prayer Time reminder!"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:265
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 msgid "Thank you for praying with us."
 msgstr ""
 
@@ -263,43 +263,43 @@ msgid "Please check your email address now for your access link."
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:324
+#: magic-links/subscription-management/subscription-management.php:332
 #: parts/components-enqueue.php:49
 msgid "My Prayer Commitments"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:306
+#: magic-links/subscription-management/subscription-management.php:314
 #: porches/generic/site/stats.php:205
 msgid "Prayer Commitments"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:315
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:313
+#: magic-links/subscription-management/subscription-management.php:321
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:322
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:316
+#: magic-links/subscription-management/subscription-management.php:324
 #: porches/generic/site/stats.php:170
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:332
+#: magic-links/subscription-management/subscription-management.php:340
 msgid "My Calendar"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:356
 msgid "Sign up for more prayer"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:371
+#: magic-links/subscription-management/subscription-management.php:379
 msgid "This subscription has ended or is not configured correctly."
 msgstr ""
 
@@ -472,58 +472,62 @@ msgid "%s Minutes"
 msgstr ""
 
 #: parts/components-enqueue.php:79
-msgid "%s Hours"
+msgid "%s Hour"
 msgstr ""
 
 #: parts/components-enqueue.php:80
-msgid "%1$s at %2$s for %3$s"
+msgid "%s Hours"
 msgstr ""
 
 #: parts/components-enqueue.php:81
-msgid "for %s minutes"
+msgid "%1$s at %2$s for %3$s"
 msgstr ""
 
 #: parts/components-enqueue.php:82
-msgid "Every %s"
+msgid "for %s minutes"
 msgstr ""
 
 #: parts/components-enqueue.php:83
-msgid "Confirmation Code"
+msgid "Every %s"
 msgstr ""
 
 #: parts/components-enqueue.php:84
-msgid "Prayer Time Selected"
+msgid "Confirmation Code"
 msgstr ""
 
 #: parts/components-enqueue.php:85
-msgid "Select a Day"
+msgid "Prayer Time Selected"
 msgstr ""
 
 #: parts/components-enqueue.php:86
-msgid "Renews on %s"
+msgid "Select a Day"
 msgstr ""
 
 #: parts/components-enqueue.php:87
-msgid "Ends on %s"
+msgid "Renews on %s"
 msgstr ""
 
 #: parts/components-enqueue.php:88
-msgid "Success"
+msgid "Ends on %s"
 msgstr ""
 
 #: parts/components-enqueue.php:89
-msgid "Your registration was successful."
+msgid "Success"
 msgstr ""
 
 #: parts/components-enqueue.php:90
-msgid "Check your email for additional details and to manage your account."
+msgid "Your registration was successful."
 msgstr ""
 
 #: parts/components-enqueue.php:91
+msgid "Check your email for additional details and to manage your account."
+msgstr ""
+
+#: parts/components-enqueue.php:92
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -531,145 +535,145 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Account Settings"
 msgstr ""
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 msgid "Receive Prayer time notifications"
 msgstr ""
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "Advanced Settings"
 msgstr ""
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 msgid "Delete this account and all the scheduled prayer times"
 msgstr ""
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 msgid "Delete"
 msgstr ""
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 msgid "Select a timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 msgid "See Prayer Fuel"
 msgstr ""
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 msgid "change time"
 msgstr ""
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 msgid "Remove all"
 msgstr ""
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 msgid "See prayer times"
 msgstr ""
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 msgid "Delete Prayer Times"
 msgstr ""
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 msgid "Really delete these prayer times?"
 msgstr ""
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 msgid "extend"
 msgstr ""
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 msgid "Extend Prayer Times"
 msgstr ""
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 msgid "Really delete this prayer time?"
 msgstr ""
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 msgid "Delete Prayer Time"
 msgstr ""
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 msgid "Mondays"
 msgstr ""
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Tuesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 msgid "Wednesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 msgid "Thursdays"
 msgstr ""
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 msgid "Fridays"
 msgstr ""
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 msgid "Saturdays"
 msgstr ""
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 msgid "Sundays"
 msgstr ""
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 msgid "Change Prayer Time"
 msgstr ""
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 msgid "Your current prayer time is %s"
 msgstr ""
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 msgid "Select a new time:"
 msgstr ""
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 msgid "Select a time"
 msgstr ""
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "Renew Prayer Times"
 msgstr ""
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:130
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
@@ -771,27 +775,27 @@ msgstr ""
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:138
+#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
 #: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 msgid "Sign Up to Pray"
 msgstr ""
 
-#: porches/generic/site/home-body.php:169 porches/generic/site/stats.php:213
+#: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
 msgid "Time Committed"
 msgstr ""
 
-#: porches/generic/site/home-body.php:185
+#: porches/generic/site/home-body.php:186
 msgid "Prayer Warriors"
 msgstr ""
 
-#: porches/generic/site/home-body.php:200 porches/generic/site/stats.php:189
+#: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
 msgid "Prayer Commitments Needed"
 msgstr ""
 
-#: porches/generic/site/home-body.php:220
+#: porches/generic/site/home-body.php:221
 #: porches/ongoing/site/home-body.php:210
 #: porches/ramadan/site/home-body.php:211
 msgid "View All"

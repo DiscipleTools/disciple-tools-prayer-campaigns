@@ -350,7 +350,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
 
         if ( (int) $existing_posts['total'] === 1 ){
             $subscriber_id = $existing_posts['posts'][0]['ID'];
-            $added_times = DT_Subscriptions::add_subscriber_times( $campaign_id, $subscriber_id, $params['selected_times'] );
+            $added_times = DT_Subscriptions::add_subscriber_times( $campaign_id, $subscriber_id, $params['selected_times'] ?? [] );
             if ( is_wp_error( $added_times ) ){
                 return $added_times;
             }
@@ -359,7 +359,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             if ( isset( $params['parts']['lang'] ) ){
                 $lang = $params['parts']['lang'];
             }
-            $subscriber_id = DT_Subscriptions::create_subscriber( $campaign_id, $email, $title, $params['selected_times'], [
+            $subscriber_id = DT_Subscriptions::create_subscriber( $campaign_id, $email, $title, $params['selected_times'] ?? [], [
                 'receive_prayer_time_notifications' => true,
                 'timezone' => $params['timezone'],
                 'lang' => $lang,

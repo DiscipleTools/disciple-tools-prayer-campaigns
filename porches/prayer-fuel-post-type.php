@@ -307,7 +307,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
     /**
      * Order post list by date by default
-     * @param $query
+     * @param WP_Query $query
      * @return void
      */
     public function dt_landing_order_by_date( $query ){

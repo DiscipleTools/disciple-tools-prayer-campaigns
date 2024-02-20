@@ -110,19 +110,23 @@ window.campaign_scripts = {
     let next_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day')
     let time_iterator = parseInt( start_of_day );
     let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+    let double_flush_processing_save = false
 
     while ( time_iterator < end ){
 
       if ( !days.length || time_iterator >= next_day.toSeconds() ){
         next_day = next_day.plus({days:1})
         let timezone_date = window.luxon.DateTime.fromSeconds( time_iterator + day_in_seconds, {zone: custom_timezone}).toFormat('h:mm a')
-        if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
+        if ( double_flush_processing_save || (timezone_change_ref !== null && timezone_date !== timezone_change_ref) ){
           // Timezone change detected. Recalculating time slots.
           window.campaign_scripts.processing_save = {}
+          double_flush_processing_save = !double_flush_processing_save
         }
         timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
 
-        start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+        start_of_day = time_iterator //keep for march daily savings change
+        // start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+
         let date_time = window.luxon.DateTime.fromSeconds(start_of_day, {zone: custom_timezone});
 
         days.push({
@@ -361,7 +365,7 @@ window.campaign_scripts = {
   },
   recurring_time_slot_label(value){
     let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})
-    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric' });
     const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
     let freq_label = frequency_option.label
     const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
@@ -408,6 +412,7 @@ window.campaign_scripts = {
     }
     let start_time = start_of_day + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
+    let date_ref = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
     if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
       return null;
@@ -418,15 +423,16 @@ window.campaign_scripts = {
       limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
     }
 
-    let date_ref = start_date
+    let index = 1;
     while ( date_ref.toSeconds() <= limit ){
       let time = date_ref.toSeconds();
-      let time_label = date_ref.toFormat('hh:mm a');
+      let time_label = date_ref.toLocaleString({ hour: '2-digit', minute: '2-digit' });
       let already_added = selected_times.find(k=>k.time===time)
       if ( !already_added && time > now && time >= window.campaign_data.start_timestamp ) {
         selected_times.push({time: time, duration: duration, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
       }
-      date_ref = date_ref.plus({[frequency_option.step]:1})
+      date_ref = start_date.plus({[frequency_option.step]:index})
+      index += 1
     }
     let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
 
@@ -477,7 +483,7 @@ window.campaign_scripts = {
       let time_formatted = time.toFormat('hh:mm a')
       let progress = 0
       let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toLocaleString({ hour: '2-digit' }), progress})
       key += window.campaign_data.slot_length * 60
     }
     return options;

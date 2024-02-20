@@ -32,7 +32,7 @@ class DT_Campaigns_Base {
         //setup post type
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
         add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
-        add_filter( 'dt_front_page', [ $this, 'dt_front_page' ] );
+//        add_filter( 'dt_front_page', [ $this, 'dt_front_page' ] );
 
         //setup tiles and fields
         add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
@@ -1065,13 +1065,15 @@ class DT_Campaigns_Base {
     public static function query_minutes_prayed( $campaign_post_id ){
         global $wpdb;
         return $wpdb->get_var( $wpdb->prepare( "SELECT
-        SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
-        FROM (SELECT p2p_to as post_id
-        FROM $wpdb->p2p
-        WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
-        LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
-        WHERE r.post_id IS NOT NULL
-        AND r.time_end <= UNIX_TIMESTAMP();", $campaign_post_id
+            SUM( ( r.time_end - r.time_begin ) / 60 ) AS minutes
+            FROM (SELECT p2p_to as post_id
+            FROM $wpdb->p2p
+            WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s) as t1
+            LEFT JOIN $wpdb->dt_reports r ON t1.post_id=r.post_id
+            WHERE r.post_id IS NOT NULL
+            AND r.type = 'campaign_app'
+            AND r.post_type = 'subscriptions'
+            AND r.time_end <= UNIX_TIMESTAMP();", $campaign_post_id
         ) );
     }
 
@@ -1137,7 +1139,7 @@ class DT_Campaigns_Base {
 
     /**
      * Get the number of time slots the campaign will cover
-     * @param $campaign_post_id
+     * @param int $campaign_post_id
      * @return int
      */
     public static function query_coverage_total_time_slots( $campaign_post_id ){
@@ -1385,7 +1387,7 @@ class DT_Campaigns_Base {
                 }
             }
 
-            $campaigns_to_send[] = [
+            $data = [
                 'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
                 'name' => $is_current_campaign ? $porch_name : $name,
                 'campaign_name' => $campaign['name'],
@@ -1412,6 +1414,8 @@ class DT_Campaigns_Base {
                 'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
                 'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
             ];
+
+            $campaigns_to_send[] = apply_filters( 'p4m_campaigns_to_send', $data, $campaign );
         }
 
 //        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';

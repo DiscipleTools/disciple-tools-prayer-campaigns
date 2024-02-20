@@ -451,7 +451,7 @@ export class CampaignSignUp extends LitElement {
                   <div class="nav-buttons">
                       <button @click=${()=>window.location.reload()}>${translate('Ok')}</button>
                       <a ?hidden="${this.account_link.length===0}" class="button" href="${this.account_link}">${translate('Access Account')}</a>
-                      <a class="button" href="${window.campaign_objects.home + '/list'}">${translate('See Prayer Fuel')}</a>
+                      ${ window.campaign_objects.remote ? `` : html`<a class="button" href="${window.campaign_objects.home + '/list'}">${translate('See Prayer Fuel')}</a>`}
                   </div>
 
           </div>
