@@ -974,9 +974,18 @@ export class cpTimes extends LitElement {
     while (key < day_in_seconds) {
       let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
-      let progress = (
-        coverage[time_formatted] ? coverage[time_formatted].length / ( next_month.length - 1 ) * 100 : 0
-      ).toFixed(1)
+      let progress = 0;
+      if ( window.campaign_data.end_timestamp ){
+        progress = (
+          window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
+            window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
+            : 0
+        ).toFixed(1)
+      } else {
+        progress = (
+          coverage[time_formatted] ? coverage[time_formatted].length / ( next_month.length - 1 ) * 100 : 0
+        ).toFixed(1)
+      }
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
 
