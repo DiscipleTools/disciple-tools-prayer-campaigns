@@ -99,7 +99,7 @@ class DT_Subscriptions_Base {
 
     /**
      * Modifies the top tabs to add subscriptions under the campaigns drop down
-     * @param $tabs
+     * @param array $tabs
      * @return mixed
      */
     public function desktop_navbar_menu_options( $tabs ) {

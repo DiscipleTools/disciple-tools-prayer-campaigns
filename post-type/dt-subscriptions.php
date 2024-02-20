@@ -87,9 +87,9 @@ class DT_Subscriptions {
 
 
     /**
-     * @param $campaign_id
-     * @param $subscription_id
-     * @param $times
+     * @param int $campaign_id
+     * @param int $subscription_id
+     * @param array $times
      * @return bool|WP_Error
      */
     public static function add_subscriber_times( $campaign_id, $subscription_id, $times ){
@@ -108,11 +108,13 @@ class DT_Subscriptions {
 
 
     /**
-     * @param $campaign_id
-     * @param $subscription_id
-     * @param $time int the start time of the prayer time
-     * @param $duration int prayer time in minutes
+     * @param int $campaign_id
+     * @param int $subscription_id
+     * @param int $time the start time of the prayer time
+     * @param int $duration int prayer time in minutes
      * @param null $location_id
+     * @param int $recurring_sign_up_id
+     * @param array $meta
      * @return false|int|WP_Error
      */
     public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, $meta = [] ){

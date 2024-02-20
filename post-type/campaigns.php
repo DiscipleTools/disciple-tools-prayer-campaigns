@@ -1053,7 +1053,7 @@ class DT_Campaigns_Base {
 
     /**
      * Get the number of time slots the campaign will cover
-     * @param $campaign_post_id
+     * @param int $campaign_post_id
      * @return int
      */
     public static function query_coverage_total_time_slots( $campaign_post_id ){
