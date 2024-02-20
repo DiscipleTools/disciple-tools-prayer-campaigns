@@ -202,7 +202,8 @@ class DT_Porch_Settings {
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
-                'placeholder' => 'Hex value'
+                'placeholder' => 'Hex value',
+                'description' => 'Enter a custom color for the theme. This will override the preset color. Hex value should look like: #a1c4ef'
             ],
             'logo_url' => [
                 'label' => 'Custom Logo',
@@ -212,15 +213,16 @@ class DT_Porch_Settings {
                 'placeholder' => 'Url of image'
             ],
             'logo_link_url' => [
-                'label' => 'Logo URL',
+                'label' => 'Logo Link',
                 'value' => '',
                 'type' => 'text',
                 'tab' => 'settings',
-                'placeholder' => 'URL where clicking the logo should bring you to'
+                'placeholder' => 'Link to where clicking the logo should bring you to'
             ],
             'header_background_url' => [
-                'label' => 'Header Background URL',
+                'label' => 'Header Background Image',
                 'value' => DT_Prayer_Campaigns::instance()->plugin_dir_url . 'porches/generic/site/img/stencil-header.png',
+                'description' => 'This is the background image for the header. If you leave this blank, the default image will be used. See https://prayerpoints.pray4movement.org/gallery/ for more images.',
                 'type' => 'text',
                 'tab' => 'settings',
             ],

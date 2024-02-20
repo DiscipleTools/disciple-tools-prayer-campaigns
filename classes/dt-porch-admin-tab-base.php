@@ -151,6 +151,9 @@ class DT_Porch_Admin_Tab_Base {
                                                 button to set a value for each language:</p>
                                         <?php endif; ?>
                                         <input type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $field['value'] ); ?>" placeholder="<?php echo esc_html( $field['placeholder'] ?? $field['label'] ); ?>"/>
+                                        <?php if ( isset( $field['description'] ) ): ?>
+                                            <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ) ) ); //phpcs:ignore ?></p>
+                                        <?php endif; ?>
                                     </td>
                                     <td style="vertical-align: middle;">
                                         <?php if ( isset( $field['translations'] ) ){
