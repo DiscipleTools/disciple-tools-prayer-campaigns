@@ -490,7 +490,10 @@ class DT_Prayer_Campaigns_Campaigns {
                                         </tr>
                                         <tr>
                                             <td>Export Campaign Subscribers</td>
-                                            <td><button type="submit" class="button" name="download_csv">Download CSV</td>
+                                            <td>
+                                                Download a CSV file of this campaign's subscribers on the subscribers list:
+                                                <a href="<?php echo esc_html( site_url() . '/subscriptions/' ); ?>" target="_blank">See Subscribers</a>
+                                            </td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
