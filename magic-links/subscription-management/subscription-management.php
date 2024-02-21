@@ -164,6 +164,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
+
         $calendar_description = '';
         if ( isset( $campaign['campaign_strings'][$locale]['reminder_content'] ) ){
             $calendar_description = $campaign['campaign_strings'][$locale]['reminder_content'];
@@ -171,7 +172,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $calendar_description = $campaign['campaign_strings']['en_US']['reminder_content'];
         }
 
-        $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
         $my_commitments_reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $post_id, $campaign_id );
 
@@ -180,12 +180,20 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         // Package $my_commitments accordingly, based on overall commitment type.
         foreach ( $my_commitments_reports as $commitments_report ) {
             if ( $commitments_report['type'] === 'selected_time' ) {
-                $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
-                $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
+
+                $dt_start = new DateTime();
+                $dt_start->setTimezone( new DateTimeZone( $calendar_timezone ) );
+                $dt_start->setTimestamp( $commitments_report['time_begin'] );
+                $calendar_format = $dt_start->format( 'Ymd' ) . 'T' . $dt_start->format( 'His' );
+
+                $dt_end = new DateTime();
+                $dt_end->setTimezone( new DateTimeZone( $calendar_timezone ) );
+                $dt_end->setTimestamp( $commitments_report['time_end'] );
+                $calendar_format_end = $dt_end->format( 'Ymd' ) . 'T' . $dt_end->format( 'His' );
 
                 $my_commitments[] = [
-                    'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T' . gmdate( 'His', $commitments_report['time_begin'] ),
-                    'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T' . gmdate( 'His', $commitments_report['time_end'] ),
+                    'time_begin' => $calendar_format,
+                    'time_end' => $calendar_format_end,
                     'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
                     'location' => $commitments_report['label'] ?? '',
                 ];
@@ -194,13 +202,23 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         foreach ( $my_recurring_signups as $recurring_signup ) {
             $type = ( $recurring_signup['type'] === 'daily' ) ? 'DAILY' : 'WEEKLY';
-            $time_begin = $recurring_signup['first'] + ( $calendar_timezone_offset * 3600 );
-            $time_end = ( $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 ) ) + ( $calendar_timezone_offset * 3600 );
+            $time_end = $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 );
+
+            $dt_start = new DateTime();
+            // Set a non-default timezone if needed
+            $dt_start->setTimezone( new DateTimeZone( $calendar_timezone ) );
+            $dt_start->setTimestamp( $recurring_signup['first'] );
+            $calendar_format = $dt_start->format( 'Ymd' ) . 'T' . $dt_start->format( 'His' );
+
+            $dt_end = new DateTime();
+            $dt_end->setTimezone( new DateTimeZone( $calendar_timezone ) );
+            $dt_end->setTimestamp( $time_end );
+            $calendar_format_end = $dt_end->format( 'Ymd' ) . 'T' . $dt_end->format( 'His' );
 
             $my_commitments[] = [
-                'time_begin' => gmdate( 'Ymd', $time_begin ) . 'T'. gmdate( 'His', $time_begin ),
-                'time_end' => gmdate( 'Ymd', $time_end ) . 'T'. gmdate( 'His', $time_end ),
-                'rrule' => 'FREQ='. $type .';UNTIL=' . gmdate( 'Ymd', $recurring_signup['last'] ) . 'T'. gmdate( 'His', $recurring_signup['last'] )
+                'time_begin' => $calendar_format,
+                'time_end' => $calendar_format_end,
+                'rrule' => 'FREQ='. $type .';UNTIL=' . gmdate( 'Ymd', $recurring_signup['last'] ) . 'T'. gmdate( 'His', $recurring_signup['last'] ) . 'Z',
             ];
         }
 
@@ -208,25 +226,19 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $content .= "VERSION:2.0\r\n";
         $content .= "PRODID:-//disciple.tools\r\n";
         $content .= "CALSCALE:GREGORIAN\r\n";
-        $content .= "BEGIN:VTIMEZONE\r\n";
         $content .= 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
-        $content .= "BEGIN:STANDARD\r\n";
-        $content .= 'TZNAME:' . esc_html( $calendar_timezone_offset ) . "\r\n";
-        $content .= 'TZOFFSETFROM:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        $content .= 'TZOFFSETTO:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        $content .= "DTSTART:19700101T000000\r\n";
-        $content .= "END:STANDARD\r\n";
-        $content .= "END:VTIMEZONE\r\n";
+        $content .= 'X-WR-TIMEZONE:' . esc_html( $calendar_timezone ) . "\r\n";
 
         foreach ( $my_commitments as $mc ) {
             $calendar_uid = md5( uniqid( mt_rand(), true ) ) . '@disciple.tools';
 
             $content .= "BEGIN:VEVENT\r\n";
+            $content .= 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
             $content .= 'UID:' . esc_html( $calendar_uid ) . "\r\n";
             $content .= 'DTSTAMP:' . esc_html( $calendar_dtstamp ) . "\r\n";
             $content .= 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
-            $content .= 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
-            $content .= 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
+            $content .= 'DTSTART;TZID=' . esc_html( $calendar_timezone ) . ':' . esc_html( $mc['time_begin'] ) . "\r\n";
+            $content .= 'DTEND;TZID=' . esc_html( $calendar_timezone ) . ':' . esc_html( $mc['time_end'] ) . "\r\n";
 
             if ( isset( $mc['rrule'] ) ) {
                 $content .= 'RRULE:' . esc_html( $mc['rrule'] ) . "\r\n";
