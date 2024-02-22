@@ -980,28 +980,10 @@ export class cpTimes extends LitElement {
         progress = 0
       } else {
         if ( window.campaign_data.end_timestamp ){
-          if ( window.campaign_data.campaign_goal === 'quantity' ){
-            let sum = 0
-            window.campaign_scripts.time_slot_coverage?.[time_formatted].forEach(s=>{
-              sum += s
-            })
-            progress = sum / window.campaign_scripts.time_label_counts[time_formatted] * 100
-          } else {
             progress = window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
-          }
         } else {
-
-          if ( window.campaign_data.campaign_goal === 'quantity' ) {
-            let sum = 0
-            coverage[time_formatted].forEach(s => {
-              sum += s
-            })
-            progress = sum / ( next_month.length - 1 ) * 100
-          } else {
             progress = coverage[time_formatted].length / ( next_month.length - 1 ) * 100
-          }
         }
-
       }
       progress = progress.toFixed(1)
       let min = time.toFormat(':mm')
