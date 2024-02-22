@@ -159,6 +159,21 @@ class DT_Campaigns_Base {
             ];
             // end basic framework fields
 
+            $fields['goal'] = [
+                'name' => 'Campaign Goal',
+                'type' => 'key_select',
+                'tile' => 'status',
+                'default' => [
+                    '247coverage' => [
+                        'label' => '24/7 Coverage',
+                    ],
+                    'quantity' => [
+                        'label' => '24 Hours Quantity',
+                        'description' => 'Get to 24 Hours of prayer every day.'
+                    ]
+                ]
+            ];
+
 
             $fields['languages'] = [
                 'name' => 'Subscriber Preferred Language',
@@ -995,12 +1010,18 @@ class DT_Campaigns_Base {
         $percent = 0;
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
         //or time commitments / campaign length / prayer time duration * 100
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
+        $campaign_goal = isset( $campaign['goal']['key'] ) ? $campaign['goal']['key'] : '247coverage';
 
         $blocks_covered = 0;
         $blocks = 0;
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
-                $blocks_covered += $day['blocks_covered'];
+                if ( $campaign_goal === '247coverage' ){
+                    $blocks_covered += $day['blocks_covered'];
+                } else {
+                    $blocks_covered += $day['prayer_times'];
+                }
                 $blocks += $day['time_slot_count'];
             }
 

@@ -30,6 +30,7 @@ class DT_Time_Utilities {
                         'formatted' => gmdate( 'F d', $start ),
                         'percent' => 0,
                         'blocks_covered' => 0,
+                        'prayer_times' => 0,
                         'hours' => [],
                         'time_slot_count' => 0,
                     ];
@@ -60,6 +61,7 @@ class DT_Time_Utilities {
             foreach ( $day['hours'] as $time ) {
                 if ( $time['subscribers'] > 0 && !$time['outside_of_campaign'] ){
                     $covered++;
+                    $data[$index]['prayer_times'] += $time['subscribers'];
                 }
             }
 

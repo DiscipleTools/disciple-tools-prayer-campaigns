@@ -153,6 +153,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'coverage_percent' => $coverage_percent ?? null,
+            'campaign_goal' => isset( $record['goal']['key'] ) ? $record['goal']['key'] : '247coverage',
         ];
     }
 
