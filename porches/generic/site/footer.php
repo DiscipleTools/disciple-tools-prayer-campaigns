@@ -1,4 +1,3 @@
-
 <!-- Footer Section Start -->
 <footer>
     <div class="container">
@@ -35,7 +34,11 @@
                     </p>
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                    <p><a href="<?php echo esc_html( site_url( '/subscriptions' ) ); ?>">Login</a> | <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">Page Settings</a></p>
+                    <p>
+                        <a href="<?php echo esc_html( site_url( '/subscriptions' ) ); ?>">Login</a> |
+                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">Page Settings</a> |
+                        <a href="<?php echo esc_url( site_url( '/prayer/contact-us' ) ) ?>"> <?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    </p>
                 </div>
             </div>
         </div>
