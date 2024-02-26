@@ -128,6 +128,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
+                    'Confirmation code does not match or is expired. Please, try again.' => __( 'Confirmation code does not match or is expired. Please, try again.', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
