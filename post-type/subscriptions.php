@@ -396,12 +396,6 @@ class DT_Subscriptions_Base {
             usort($subs, function( $a, $b ) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
-            $email_verified = false;
-            foreach ( $subs ?? [] as $sub ){
-                if ( !empty( $sub['value'] ) ){
-                    $email_verified = true;
-                }
-            }
             $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
             $notifications = isset( $subscriber['receive_prayer_time_notifications'] ) && !empty( $subscriber['receive_prayer_time_notifications'] );
@@ -412,11 +406,11 @@ class DT_Subscriptions_Base {
                 <button class="loader button hollow tiny" type="button" id="resend_confirmation_email">Resend confirmation email</button>
                 <span id="confirmation_email_sent" style="display: none">Conformation Email Sent</span>
             </p>
-            <p>
-                Email address verified:
-                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
-                <a class="button hollow tiny" target="_blank" href="<?php echo esc_url( $link ) ?>">manually verify</a>
-            </p>
+<!--            <p>-->
+<!--                Email address verified:-->
+<!--                <img src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?><!--"/>-->
+<!--                <a class="button hollow tiny" target="_blank" href="--><?php //echo esc_url( $link ) ?><!--">manually verify</a>-->
+<!--            </p>-->
             <p>Notifications allowed:
                 <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </p>
