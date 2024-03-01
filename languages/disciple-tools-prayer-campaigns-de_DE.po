@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
-"PO-Revision-Date: 2024-02-28 11:38+0000\n"
+"PO-Revision-Date: 2024-02-29 13:59+0000\n"
 "Last-Translator: Hanna Duhm <hde21@proton.me>\n"
 "Language-Team: German <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/de_DE/>\n"
@@ -127,7 +127,7 @@ msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
-"Deine letzte Gebetszeit liegt nun 2 Wochen zurück. Möchsten du weiter beten?"
+"Deine letzte Gebetszeit liegt nun 2 Wochen zurück. Möchtest du weiter beten?"
 
 #: campaign-functions/send-email-utility.php:357
 msgid "Sign up for more prayer times or extend your recurring time here:"
@@ -693,7 +693,7 @@ msgstr "Sonntag"
 
 #: parts/components-enqueue.php:124
 msgid "Change Prayer Time"
-msgstr "Ändere Gebetszeiten"
+msgstr "Gebetszeiten ändern"
 
 #: parts/components-enqueue.php:125
 msgid "Your current prayer time is %s"

@@ -6,8 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
-"PO-Revision-Date: 2024-02-01 01:49+0000\n"
-"Last-Translator: Jaqueline Galhardo <jaqueline_galhardo@hotmail.com>\n"
+"PO-Revision-Date: 2024-02-29 13:59+0000\n"
+"Last-Translator: Toni Albright <tja@gcnow.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.disciple.tools/"
 "projects/pray4movement/disciple-tools-prayer-campaigns/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/cron-schedule.php:82
@@ -501,8 +501,6 @@ msgid "%s Minutes"
 msgstr "%s minutos"
 
 #: parts/components-enqueue.php:79
-#, fuzzy
-#| msgid "%s Hours"
 msgid "%s Hour"
 msgstr "%s horas"
 
@@ -841,8 +839,6 @@ msgid "Time Committed"
 msgstr "Tempo Comprometido"
 
 #: porches/generic/site/home-body.php:186
-#, fuzzy
-#| msgid "My Prayer Times"
 msgid "Prayer Warriors"
 msgstr "Meus horários de oração"
 
