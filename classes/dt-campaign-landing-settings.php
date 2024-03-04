@@ -319,6 +319,16 @@ class DT_Campaign_Landing_Settings {
             'description' => __( 'The frequency that prayer fuel emails will be sent to participants.', 'disciple-tools-prayer-campaigns' ),
         ];
 
+        $fields['enable_overlay_blur'] = [
+            'name' => __( 'Enable Overlay Blur', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'key_select',
+            'tile' => 'campaign_landing',
+            'description' => __( 'Whether or not to show the overlay blur on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
+            'default' => [
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
+                'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+            ]
+        ];
 
         return $fields;
 
