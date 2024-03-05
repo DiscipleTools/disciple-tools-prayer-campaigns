@@ -260,7 +260,17 @@ class DT_Campaign_Landing_Settings {
             'tile' => 'campaign_landing',
             'description' => __( 'The URL that will be used as the background image for the header on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
-
+        //enable_overlay_blur
+        $fields['enable_overlay_blur'] = [
+            'name' => __( 'Header Background Image Blur', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'key_select',
+            'tile' => 'campaign_landing',
+            'description' => __( 'Whether or not to show the overlay blur on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
+            'default' => [
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
+                'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+            ]
+        ];
         //default_language
         $fields['default_language'] = [
             'name' => __( 'Default Language', 'disciple-tools-prayer-campaigns' ),
@@ -318,7 +328,6 @@ class DT_Campaign_Landing_Settings {
             ],
             'description' => __( 'The frequency that prayer fuel emails will be sent to participants.', 'disciple-tools-prayer-campaigns' ),
         ];
-
 
         return $fields;
 

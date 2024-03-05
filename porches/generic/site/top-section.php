@@ -77,7 +77,9 @@ $sign_up_link = $campaign_url . '#sign-up';
             </div>
         </div>
     </div>
+    <?php if ( !isset( $campaign_fields['enable_overlay_blur'] ) || $campaign_fields['enable_overlay_blur']['key'] === 'yes' ) : ?>
     <div class="overlay"></div>
+    <?php endif; ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
