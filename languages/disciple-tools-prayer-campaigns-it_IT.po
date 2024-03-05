@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
-"PO-Revision-Date: 2024-02-12 20:54+0000\n"
+"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
+"PO-Revision-Date: 2024-03-04 20:23+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/cron-schedule.php:82
@@ -138,7 +138,7 @@ msgid "Or click this link:"
 msgstr "Oppure clicca questo link:"
 
 #: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Grazie"
 
@@ -278,7 +278,8 @@ msgstr ""
 "preghiera."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
+#: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr "Email"
 
@@ -385,7 +386,7 @@ msgstr "A che ora?"
 msgid "Contact Info"
 msgstr "Contatti"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 msgid "Name"
 msgstr "Nome"
 
@@ -436,7 +437,7 @@ msgid "Review"
 msgstr "Controlla"
 
 #: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Invia"
 
@@ -721,6 +722,10 @@ msgstr ""
 "Ricevi altre opportunità e iniziative di Pray4Movement.org e anche "
 "comunicazioni occasionali da GospelAmbition.org."
 
+#: parts/components-enqueue.php:131
+msgid "Confirmation code does not match or is expired. Please, try again."
+msgstr "Il codice di verifica non è giusto o è scaduto. Riprova."
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "State pregando in gruppo?"
@@ -832,6 +837,15 @@ msgid "This campaign is finished. See Fuel below"
 msgstr ""
 "Questa campagna di preghiera è terminata. Visualizza sotto il propellente "
 "per la preghiera"
+
+#: porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr "Contattaci"
+
+#: porches/generic/site/contact-us.php:118
+msgid "Message"
+msgstr "Invia Messaggio"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:100

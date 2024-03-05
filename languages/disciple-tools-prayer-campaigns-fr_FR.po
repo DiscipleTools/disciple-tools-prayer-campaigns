@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
-"PO-Revision-Date: 2024-02-09 16:00+0000\n"
+"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
+"PO-Revision-Date: 2024-03-04 20:23+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/fr_FR/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: campaign-functions/cron-schedule.php:82
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
@@ -135,7 +135,7 @@ msgid "Or click this link:"
 msgstr "Ou cliquez sur ce lien :"
 
 #: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Merci"
 
@@ -274,7 +274,8 @@ msgstr ""
 "Entrez votre adresse e-mail et recevez un lien vers vos heures de prière."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
+#: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr "Email"
 
@@ -382,7 +383,7 @@ msgstr "À quel temps ?"
 msgid "Contact Info"
 msgstr "Informations de contact"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 msgid "Name"
 msgstr "Nom"
 
@@ -433,7 +434,7 @@ msgid "Review"
 msgstr "Révision"
 
 #: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -717,6 +718,11 @@ msgstr ""
 "Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
 "communications occasionnelles de GospelAmbition.org."
 
+#: parts/components-enqueue.php:131
+msgid "Confirmation code does not match or is expired. Please, try again."
+msgstr ""
+"Le code de confirmation ne correspond pas ou est expiré. Veuillez réessayer."
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "Priez-vous en groupe ?"
@@ -825,6 +831,15 @@ msgstr "Le contenu commencera dans %s jours"
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
+
+#: porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr "Contactez-nous"
+
+#: porches/generic/site/contact-us.php:118
+msgid "Message"
+msgstr "Message"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:100

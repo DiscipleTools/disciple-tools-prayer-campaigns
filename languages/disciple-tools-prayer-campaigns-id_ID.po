@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
+"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
 "PO-Revision-Date: 2024-03-01 07:30+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -134,7 +134,7 @@ msgid "Or click this link:"
 msgstr "atau pilih tautan ini:"
 
 #: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Terima kasih"
 
@@ -269,7 +269,8 @@ msgid "Enter you email address and receive a link to your prayer times."
 msgstr "Masukkan alamat email Anda dan dapatkan tautan ke waktu doa anda."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
+#: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr "email"
 
@@ -376,7 +377,7 @@ msgstr "Pada waktu kapan?"
 msgid "Contact Info"
 msgstr "Kontak Info"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 msgid "Name"
 msgstr "Nama"
 
@@ -427,7 +428,7 @@ msgid "Review"
 msgstr "Tinjauan"
 
 #: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Kirim"
 
@@ -710,6 +711,10 @@ msgstr ""
 "Terima berita dan peluang Pray4Movement, dan komunikasi sesekali dari "
 "GospelAmbition.org."
 
+#: parts/components-enqueue.php:131
+msgid "Confirmation code does not match or is expired. Please, try again."
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "Berdoa secara kelompok?"
@@ -816,6 +821,17 @@ msgstr "Konten akan dimulai dalam %s hari"
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr "Kampanye ini telah selesai. Lihat Bahan di bawah"
+
+#: porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+#, fuzzy
+#| msgid "Contact Info"
+msgid "Contact Us"
+msgstr "Kontak Info"
+
+#: porches/generic/site/contact-us.php:118
+msgid "Message"
+msgstr ""
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:100
