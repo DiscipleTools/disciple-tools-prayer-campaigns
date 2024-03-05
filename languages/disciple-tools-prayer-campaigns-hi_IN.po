@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
+"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hindi <https://translate.disciple.tools/projects/disciple-"
@@ -148,7 +148,7 @@ msgid "Or click this link:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 #, fuzzy
 msgid "Thank you"
 msgstr "आपको धन्यवाद"
@@ -285,7 +285,8 @@ msgstr ""
 "अपना ईमेल पता सत्यापित करने और अपने प्रार्थना समय की पुष्टि करने के लिए यहां क्लिक करें।"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
+#: porches/generic/site/stats.php:272
 #, fuzzy
 msgid "Email"
 msgstr "ईमेल"
@@ -411,7 +412,7 @@ msgstr "एक समय चुनें"
 msgid "Contact Info"
 msgstr ""
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 #, fuzzy
 msgid "Name"
 msgstr "नाम"
@@ -468,7 +469,7 @@ msgid "Review"
 msgstr ""
 
 #: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 #, fuzzy
 msgid "Submit"
 msgstr "प्रस्तुत करना"
@@ -785,6 +786,10 @@ msgid ""
 msgstr ""
 "क्या आप Pray4Movement.org के साथ अन्य प्रार्थना प्रयासों और अवसरों के बारे में सुनना चाहेंगे?"
 
+#: parts/components-enqueue.php:131
+msgid "Confirmation code does not match or is expired. Please, try again."
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr ""
@@ -898,6 +903,15 @@ msgstr ""
 
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
+msgstr ""
+
+#: porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr ""
+
+#: porches/generic/site/contact-us.php:118
+msgid "Message"
 msgstr ""
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139

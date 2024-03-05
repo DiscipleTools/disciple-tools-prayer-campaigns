@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
-"PO-Revision-Date: 2023-12-22 11:57+0000\n"
-"Last-Translator: Gabo Ayala <ayala.gabo@gmail.com>\n"
+"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
+"PO-Revision-Date: 2024-03-02 08:55+0000\n"
+"Last-Translator: Simar Paulino <simarpaulino@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/es_ES/>\n"
 "Language: es_ES\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: campaign-functions/cron-schedule.php:82
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
@@ -135,7 +135,7 @@ msgid "Or click this link:"
 msgstr "O haz clic en este enlace:"
 
 #: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Gracias"
 
@@ -273,7 +273,8 @@ msgstr ""
 "Escriba su correo electrónico y reciba un enlace para sus tiempos de oración."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
+#: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr "Correo Electrónico"
 
@@ -382,7 +383,7 @@ msgstr "¿A qué hora?"
 msgid "Contact Info"
 msgstr "Información de Contacto"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 msgid "Name"
 msgstr "Nombre"
 
@@ -433,7 +434,7 @@ msgid "Review"
 msgstr "Revisar"
 
 #: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Enviar"
 
@@ -499,10 +500,8 @@ msgid "%s Minutes"
 msgstr "%s Minutos"
 
 #: parts/components-enqueue.php:79
-#, fuzzy
-#| msgid "%s Hours"
 msgid "%s Hour"
-msgstr "%s Horas"
+msgstr "%s Hora"
 
 #: parts/components-enqueue.php:80
 msgid "%s Hours"
@@ -537,11 +536,8 @@ msgid "Renews on %s"
 msgstr "Se renueva en %s"
 
 #: parts/components-enqueue.php:88
-#, fuzzy
-#| msgctxt "Ending on October 4"
-#| msgid "Ending on %s"
 msgid "Ends on %s"
-msgstr "Termiinando el %s"
+msgstr "Termina en %s"
 
 #: parts/components-enqueue.php:89
 msgid "Success"
@@ -721,6 +717,12 @@ msgstr ""
 "Recibe noticias y nuevas oportunidades de Pray4Movement, y en algunos casos "
 "comunicaciones de GospelAmbition.org."
 
+#: parts/components-enqueue.php:131
+msgid "Confirmation code does not match or is expired. Please, try again."
+msgstr ""
+"El código de confirmación no coincide o ha caducado. Por favor inténtalo de "
+"nuevo."
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "¿Orando como grupo?"
@@ -829,6 +831,15 @@ msgstr "El contenido comenzará en %s días"
 msgid "This campaign is finished. See Fuel below"
 msgstr "Esta campaña ha terminado. Ver combustible para la oración abajo"
 
+#: porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr "Contactanos"
+
+#: porches/generic/site/contact-us.php:118
+msgid "Message"
+msgstr "Mensaje"
+
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:100
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
@@ -841,10 +852,8 @@ msgid "Time Committed"
 msgstr "Compromisos de Tiempo"
 
 #: porches/generic/site/home-body.php:186
-#, fuzzy
-#| msgid "My Prayer Times"
 msgid "Prayer Warriors"
-msgstr "Mis Tiempos de Oración"
+msgstr "Guerreros de oración"
 
 #: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192

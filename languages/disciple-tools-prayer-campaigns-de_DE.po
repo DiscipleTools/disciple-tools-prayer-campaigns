@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
+"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
 "PO-Revision-Date: 2024-02-29 13:59+0000\n"
 "Last-Translator: Hanna Duhm <hde21@proton.me>\n"
 "Language-Team: German <https://translate.disciple.tools/projects/"
@@ -140,7 +140,7 @@ msgid "Or click this link:"
 msgstr "Oder öffne diesen Link:"
 
 #: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Vielen Dank"
 
@@ -168,7 +168,8 @@ msgstr "Hallo %s"
 #: campaign-functions/send-email-utility.php:439
 #: campaign-functions/send-email-utility.php:469
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Vielen Dank, dass du dich uns im Gebet für die %1$s in %2$s anschließt."
+msgstr ""
+"Vielen Dank, dass du dich uns im Gebet für die %1$s in %2$s anschließt."
 
 #: campaign-functions/send-email-utility.php:442
 msgid ""
@@ -176,8 +177,8 @@ msgid ""
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 "Wir werden erst in der Ewigkeit erfahren, welche Wirkung unser Gebet hat. "
-"Wir wissen jedoch aus Gottes Wort, dass Gebet mächtig und wirksam ist ("
-"Jakobus 5,16)."
+"Wir wissen jedoch aus Gottes Wort, dass Gebet mächtig und wirksam ist "
+"(Jakobus 5,16)."
 
 #: campaign-functions/send-email-utility.php:445
 msgid ""
@@ -280,7 +281,8 @@ msgstr ""
 "Gib deine E-Mail-Adresse ein und erhalte einen Link zu deinen Gebetszeiten."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
+#: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr "E-Mail"
 
@@ -388,7 +390,7 @@ msgstr "Um wie viel Uhr?"
 msgid "Contact Info"
 msgstr "Kontaktinfo"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 msgid "Name"
 msgstr "Name"
 
@@ -439,7 +441,7 @@ msgid "Review"
 msgstr "Überprüfen"
 
 #: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Senden"
 
@@ -497,8 +499,8 @@ msgid ""
 "Please enter the code below in the next 10 minutes to confirm your email "
 "address."
 msgstr ""
-"Bitte gib in den nächsten 10 Minuten den unten stehenden Code ein, um deine E"
-"-Mail-Adresse zu bestätigen."
+"Bitte gib in den nächsten 10 Minuten den unten stehenden Code ein, um deine "
+"E-Mail-Adresse zu bestätigen."
 
 #: parts/components-enqueue.php:78
 msgid "%s Minutes"
@@ -723,6 +725,10 @@ msgstr ""
 "Erhalte Neuigkeiten von Pray4Movement sowie gelegentliche Mitteilungen von "
 "GospelAmbition.org."
 
+#: parts/components-enqueue.php:131
+msgid "Confirmation code does not match or is expired. Please, try again."
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "Als Gruppe beten?"
@@ -830,6 +836,17 @@ msgstr "wird  in %s  Tagen veröffentlicht"
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr "Diese Aktion ist beendet. Siehe Anliegen unten"
+
+#: porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+#, fuzzy
+#| msgid "Contact Info"
+msgid "Contact Us"
+msgstr "Kontaktinfo"
+
+#: porches/generic/site/contact-us.php:118
+msgid "Message"
+msgstr ""
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:100
@@ -995,9 +1012,9 @@ msgstr ""
 "ganzen Monat über allgegenwärtig sind, abgeschreckt werden, nehmen andere "
 "während dieser Zeit die Regeln des Islam noch ernster. Viele besuchen die "
 "abendlichen Gebetsgottesdienste und verrichten die anderen rituellen Gebete. "
-"Einige lesen sogar den gesamten Koran (etwa ein Zehntel der Länge der Bibel)"
-". Dieses aufrichtige Suchen macht es zu einer strategisch wertvollen Zeit "
-"für uns, für sie zu beten."
+"Einige lesen sogar den gesamten Koran (etwa ein Zehntel der Länge der "
+"Bibel). Dieses aufrichtige Suchen macht es zu einer strategisch wertvollen "
+"Zeit für uns, für sie zu beten."
 
 #: porches/ramadan/site/home-body.php:103
 msgid "Ramadan Begins ..."
