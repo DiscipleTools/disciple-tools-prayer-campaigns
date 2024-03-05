@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.1.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-01T07:43:03+00:00\n"
+"POT-Creation-Date: 2024-03-05T13:06:08+00:00\n"
 "PO-Revision-Date: 2024-03-05 12:54+0000\n"
 "Last-Translator: James Keefer <exilecream@mailfence.com>\n"
 "Language-Team: Wolof <https://translate.disciple.tools/projects/"
@@ -28,7 +28,8 @@ msgid "Verify your email address"
 msgstr "Vérifiez votre adresse e-mail"
 
 #: campaign-functions/send-email-utility.php:52
-msgid "Please copy and paste the following code into the Confirmation Code field."
+msgid ""
+"Please copy and paste the following code into the Confirmation Code field."
 msgstr ""
 "Veuillez copier et coller le code suivant dans le champ Code de confirmation."
 
@@ -61,7 +62,8 @@ msgid "Hello %s,"
 msgstr "Bonjour %s,"
 
 #: campaign-functions/send-email-utility.php:186
-msgid "Thank you for joining us in strategic prayer for a disciple making movement!"
+msgid ""
+"Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr ""
 "Merci de vous joindre à nous dans la prière stratégique pour un mouvement de "
 "formation de disciples !"
@@ -118,7 +120,9 @@ msgid "Continue Praying?"
 msgstr "Continuer à prier ?"
 
 #: campaign-functions/send-email-utility.php:356
-msgid "You are 2 weeks out from your last prayer time. Would you like to keep praying?"
+msgid ""
+"You are 2 weeks out from your last prayer time. Would you like to keep "
+"praying?"
 msgstr ""
 "Il reste 2 semaines jusqu'à votre dernier temps de prière. Voulez vous "
 "continuer la prière ?"
@@ -133,10 +137,8 @@ msgstr ""
 msgid "Or click this link:"
 msgstr "Ou cliquez sur ce lien :"
 
-#: campaign-functions/send-email-utility.php:360
-#: parts/components.php:51
-#: porches/generic/site/contact-us.php:129
-#: porches/generic/site/stats.php:291
+#: campaign-functions/send-email-utility.php:360 parts/components.php:51
+#: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
 msgid "Thank you"
 msgstr "Merci"
 
@@ -167,14 +169,18 @@ msgid "Thank you for joining %1$s in %2$s."
 msgstr "Merci de rejoindre %1$s en %2$s."
 
 #: campaign-functions/send-email-utility.php:442
-msgid "We will only know in eternity the full impact of our prayer. However, we know from God's Word that prayer is powerful and effective (James 5:16)."
+msgid ""
+"We will only know in eternity the full impact of our prayer. However, we "
+"know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 "Nous ne connaîtrons que dans l’éternité le plein impact de notre prière. "
 "Cependant, nous savons grâce à la Parole de Dieu que la prière est puissante "
 "et efficace (Jacques 5 : 16)."
 
 #: campaign-functions/send-email-utility.php:445
-msgid "Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed."
+msgid ""
+"Click the button below for a glimpse at what you contributed to. We would "
+"also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 "Cliquez sur le bouton ci-dessous pour avoir un aperçu de ce à quoi vous avez "
 "contribué. Nous aimerions également entendre les impressions ou les paroles "
@@ -190,22 +196,31 @@ msgid "In Christ with you,"
 msgstr "En Christ avec vous,"
 
 #: campaign-functions/send-email-utility.php:472
-msgid "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16)."
+msgid ""
+"We will only know in eternity the full impact of the thousands of hours of "
+"prayer for the Muslim world during Ramadan. However, we know from God's Word "
+"that prayer is powerful and effective (James 5:16)."
 msgstr ""
-"Nous ne connaîtrons que dans l’éternité le plein impact des milliers d’"
-"heures de prière pour le monde musulman pendant le Ramadan. Cependant, nous "
-"savons grâce à la Parole de Dieu que la prière est puissante et efficace ("
-"Jacques 5 : 16)."
+"Nous ne connaîtrons que dans l’éternité le plein impact des milliers "
+"d’heures de prière pour le monde musulman pendant le Ramadan. Cependant, "
+"nous savons grâce à la Parole de Dieu que la prière est puissante et "
+"efficace (Jacques 5 : 16)."
 
 #: campaign-functions/send-email-utility.php:476
-msgid "Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed."
+msgid ""
+"Click the button below for a glimpse at what you contributed to this "
+"Ramadan. We would also love to hear impressions or words you received from "
+"God as you prayed."
 msgstr ""
 "Cliquez sur le bouton ci-dessous pour avoir un aperçu de ce que vous avez "
 "contribué à ce Ramadan. Nous aimerions également entendre les impressions ou "
 "les paroles que vous avez reçues de Dieu pendant que vous priiez."
 
 #: campaign-functions/send-email-utility.php:483
-msgid "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Pray4Movement, the makers of this prayer tool."
+msgid ""
+"Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
+"bottom. Make sure you are signed up to receive news about future prayer "
+"opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 "Enfin, la page Statistiques de prière du Ramadan 24/7 comporte également une "
 "section d'inscription en bas. Assurez-vous d'être inscrit pour recevoir des "
@@ -248,8 +263,7 @@ msgstr "an"
 msgid "day"
 msgstr "jour"
 
-#: campaign-functions/time-utilities.php:189
-#: parts/components-enqueue.php:38
+#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
 msgid "days"
 msgstr "jours"
 
@@ -263,8 +277,7 @@ msgstr ""
 "Entrez votre adresse e-mail et recevez un lien vers vos heures de prière."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52
-#: porches/generic/site/contact-us.php:110
+#: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
 #: porches/generic/site/stats.php:272
 msgid "Email"
 msgstr "Email"
@@ -327,8 +340,7 @@ msgstr "Fuseau horaire  détecté"
 msgid "Choose a timezone"
 msgstr "Choisissez le fuseau horaire"
 
-#: parts/components-enqueue.php:39
-#: porches/generic/site/stats.php:217
+#: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
 #: porches/generic/site/stats.php:227
 msgid "hours"
 msgstr "heures"
@@ -374,8 +386,7 @@ msgstr "À quel temps ?"
 msgid "Contact Info"
 msgstr "Informations de contact"
 
-#: parts/components-enqueue.php:51
-#: porches/generic/site/contact-us.php:103
+#: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
 msgid "Name"
 msgstr "Nom"
 
@@ -425,10 +436,8 @@ msgstr "Terminant le %s"
 msgid "Review"
 msgstr "Révision"
 
-#: parts/components-enqueue.php:64
-#: parts/components.php:45
-#: porches/generic/site/contact-us.php:123
-#: porches/generic/site/stats.php:285
+#: parts/components-enqueue.php:64 parts/components.php:45
+#: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -448,8 +457,7 @@ msgstr "%s engagé"
 msgid "Please enter a valid name or email address"
 msgstr "Veuillez saisir un nom ou une adresse électronique valide"
 
-#: parts/components-enqueue.php:69
-#: porches/ongoing/site/home-body.php:158
+#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
 msgid "Next"
 msgstr "Continuer"
 
@@ -483,7 +491,9 @@ msgid "A confirmation code hase been sent to %s."
 msgstr "Un code de confirmation a été envoyé à %s."
 
 #: parts/components-enqueue.php:77
-msgid "Please enter the code below in the next 10 minutes to confirm your email address."
+msgid ""
+"Please enter the code below in the next 10 minutes to confirm your email "
+"address."
 msgstr ""
 "Veuillez entrer le code ci-dessous dans les 10 prochaines minutes pour "
 "confirmer votre adresse e-mail."
@@ -551,7 +561,11 @@ msgid "Ok"
 msgstr "D'accord"
 
 #: parts/components-enqueue.php:94
-msgid "Need to cancel? We get it! But wait! If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you. That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!"
+msgid ""
+"Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
+"to start in less than 48-hours, please ask a friend to cover it for you. "
+"That will keep the prayer chain from being broken AND will give someone the "
+"joy of fighting for the lost! Thanks!"
 msgstr ""
 "Besoin d'annuler ? Nous avons compris ! Mais attendez ! Si votre engagement "
 "de prière commence dans moins de 48 heures, veuillez demander à un ami de le "
@@ -583,7 +597,9 @@ msgid "Delete this account and all the scheduled prayer times"
 msgstr "Supprimer ce compte et toutes les heures de prière"
 
 #: parts/components-enqueue.php:101
-msgid "So sorry. Something went wrong. Please, contact us to help you through it, or just try again."
+msgid ""
+"So sorry. Something went wrong. Please, contact us to help you through it, "
+"or just try again."
 msgstr ""
 "Désolé. Quelque chose s'est mal passé. S'il vous plaît, contactez-nous pour "
 "vous aider, ou réessayez encore."
@@ -697,7 +713,9 @@ msgid "renew"
 msgstr "renouveler"
 
 #: parts/components-enqueue.php:130
-msgid "Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org."
+msgid ""
+"Receive Pray4Movement news and opportunities, and occasional communication "
+"from GospelAmbition.org."
 msgstr ""
 "Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
 "communications occasionnelles de GospelAmbition.org."
@@ -712,7 +730,10 @@ msgid "Praying as a group?"
 msgstr "Priez-vous en groupe ?"
 
 #: parts/components.php:37
-msgid "Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far."
+msgid ""
+"Leading others in prayer is a great step in making disciples. We want to "
+"celebrate your and their faithfulness.  For each person that prays with you, "
+"we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 "Diriger d'autres personnes dans la prière est une étape importante pour "
 "faire des disciples. Nous voulons célébrer votre fidélité et la leur.  Pour "
@@ -736,7 +757,9 @@ msgid "Extraordinary Prayer"
 msgstr "Prière extraordinaire"
 
 #: porches/generic/dt-generic-porch-settings.php:103
-msgid "Every disciple making movement in history has happened in the context of extraordinary prayer."
+msgid ""
+"Every disciple making movement in history has happened in the context of "
+"extraordinary prayer."
 msgstr ""
 "Chaque mouvement de formation de disciples dans l'histoire s'est produit "
 "dans le contexte de prière extraordinaire."
@@ -746,7 +769,9 @@ msgid "Movement Focused"
 msgstr "Concentré sur un mouvement"
 
 #: porches/generic/dt-generic-porch-settings.php:129
-msgid "Join us in asking, seeking, and knocking for streams of disciples and churches to be made."
+msgid ""
+"Join us in asking, seeking, and knocking for streams of disciples and "
+"churches to be made."
 msgstr ""
 "Rejoignez-nous pour demander, chercher et frapper afin que des flots de "
 "disciples et d'églises se fassent."
@@ -756,15 +781,16 @@ msgid "24/7 Every Day"
 msgstr "24/7 tous les jours"
 
 #: porches/generic/dt-generic-porch-settings.php:155
-msgid "Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too."
+msgid ""
+"Choose a 15-minute (or more!) time slot that you can pray during each day. "
+"Invite someone else to sign up too."
 msgstr ""
 "Choisissez un créneau horaire de 15 minutes (ou plus !) pendant lequel vous "
 "pouvez prier chaque jour. Invitez quelqu'un d'autre à s'inscrire également."
 
 #: porches/generic/dt-generic-porch-settings.php:173
 #: porches/generic/dt-generic-porch-settings.php:182
-#: porches/generic/site/archive.php:22
-#: porches/generic/site/landing.php:24
+#: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
 msgid "Prayer Fuel"
 msgstr "Guide de Prière"
 
@@ -809,8 +835,7 @@ msgid "This campaign is finished. See Fuel below"
 msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
 
 #: porches/generic/site/contact-us.php:23
-#: porches/generic/site/contact-us.php:97
-#: porches/generic/site/footer.php:40
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
 msgid "Contact Us"
 msgstr "Contactez-nous"
 
@@ -818,18 +843,14 @@ msgstr "Contactez-nous"
 msgid "Message"
 msgstr "Message"
 
-#: porches/generic/site/home-body.php:96
-#: porches/generic/site/home-body.php:139
-#: porches/generic/site/top-section.php:100
-#: porches/ongoing/site/home-body.php:90
-#: porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:85
-#: porches/ramadan/site/home-body.php:131
+#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
+#: porches/generic/site/top-section.php:102
+#: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
+#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
 msgid "Sign Up to Pray"
 msgstr "Inscrivez-vous pour prier"
 
-#: porches/generic/site/home-body.php:170
-#: porches/generic/site/stats.php:213
+#: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
 msgid "Time Committed"
 msgstr "Temps engagé"
 
@@ -837,8 +858,7 @@ msgstr "Temps engagé"
 msgid "Prayer Warriors"
 msgstr "Guerriers de prière"
 
-#: porches/generic/site/home-body.php:201
-#: porches/generic/site/stats.php:189
+#: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
 msgid "Prayer Commitments Needed"
 msgstr "Engagements de prière requis"
@@ -883,7 +903,9 @@ msgid "Share with us your Prayer Stories"
 msgstr "Partagez vos histoires de prière avec nous"
 
 #: porches/generic/site/stats.php:280
-msgid "Share with us about your prayer time (E.g. testimonies, insights, blessings, etc)"
+msgid ""
+"Share with us about your prayer time (E.g. testimonies, insights, blessings, "
+"etc)"
 msgstr ""
 "Partagez avec nous votre temps de prière (par exemple, des témoignages, des "
 "idées, des bénédictions, etc.)"
@@ -917,7 +939,10 @@ msgid "More Prayer Opportunities"
 msgstr "Plus d'opportunités de prière"
 
 #: porches/generic/site/stats.php:393
-msgid "Sign up to hear about other prayer efforts and opportunities with Pray4Movement.org and receive occasional communication from GospelAmbition.org."
+msgid ""
+"Sign up to hear about other prayer efforts and opportunities with "
+"Pray4Movement.org and receive occasional communication from GospelAmbition."
+"org."
 msgstr ""
 "Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
 "avec Pray4Movement.org et recevez des communications occasionnelles de "
@@ -945,11 +970,24 @@ msgstr "Page de destination du Ramadan"
 
 #: porches/ramadan/settings.php:6
 msgid ""
-"Ramadan is one of the five requirements (or pillars) of Islam. During each of its 30 days, Muslims are obligated to fast from dawn until sunset. During this time they are supposed to abstain from food, drinking liquids, smoking, and sexual relations.\n"
+"Ramadan is one of the five requirements (or pillars) of Islam. During each "
+"of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
+"this time they are supposed to abstain from food, drinking liquids, smoking, "
+"and sexual relations.\n"
 "\n"
-"Women typically spend the afternoons preparing a big meal. At sunset, families often gather to break the fast. Traditionally the families break the fast with a drink of water, then three dried date fruits, and a multi-course meal. After watching the new Ramadan TV series, men (and some women) go out to coffee shops where they drink coffee, and smoke with friends until late into the night.\n"
+"Women typically spend the afternoons preparing a big meal. At sunset, "
+"families often gather to break the fast. Traditionally the families break "
+"the fast with a drink of water, then three dried date fruits, and a multi-"
+"course meal. After watching the new Ramadan TV series, men (and some women) "
+"go out to coffee shops where they drink coffee, and smoke with friends until "
+"late into the night.\n"
 "\n"
-"Though many have stopped fasting in recent years, and are turned off by the hypocrisy, increased crime rates, and rudeness that is pervasive through the month, others have become more serious about religion during this time. Many attend the evening prayer services and do the other ritual prayers. Some even read the entire Quran (about a tenth the length of the Bible). This sincere seeking makes it a strategic time for us to pray for them."
+"Though many have stopped fasting in recent years, and are turned off by the "
+"hypocrisy, increased crime rates, and rudeness that is pervasive through the "
+"month, others have become more serious about religion during this time. Many "
+"attend the evening prayer services and do the other ritual prayers. Some "
+"even read the entire Quran (about a tenth the length of the Bible). This "
+"sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
 "Le ramadan est l'une des cinq exigences (ou piliers) de l'islam. Pendant "
 "chacun de ses 30 jours, les musulmans sont obligés de jeûner de l'aube au "
@@ -960,9 +998,9 @@ msgstr ""
 "coucher du soleil, les familles se rassemblent souvent pour rompre le jeûne. "
 "Traditionnellement, les familles rompent le jeûne avec un verre d'eau, puis "
 "trois dattes séchées et un repas composé de plusieurs plats. Après avoir "
-"regardé la nouvelle série télévisée Ramadan, les hommes (et certaines femmes)"
-" sortent dans des cafés où ils boivent du café et fument avec des amis "
-"jusque tard dans la nuit.\n"
+"regardé la nouvelle série télévisée Ramadan, les hommes (et certaines "
+"femmes) sortent dans des cafés où ils boivent du café et fument avec des "
+"amis jusque tard dans la nuit.\n"
 "\n"
 "Bien que beaucoup aient cessé de jeûner ces dernières années et soient "
 "découragés par l'hypocrisie, l'augmentation du taux de criminalité et "
