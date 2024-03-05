@@ -226,6 +226,13 @@ class DT_Porch_Settings {
                 'type' => 'text',
                 'tab' => 'settings',
             ],
+            'enable_overlay_blur' => [
+                'label' => __( 'Header Background Image Blur', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'tab' => 'settings',
+                'value' => 'yes',
+                'default' => 'Yes'
+            ],
             'what_image' => [
                 'label' => 'What is 24/7 Image',
                 'value' => '',
@@ -285,13 +292,6 @@ class DT_Porch_Settings {
                 'type' => 'default_language_select',
                 'tab' => 'settings',
             ],
-            'enable_overlay_blur' => [
-                'label' => __( 'Enable Overlay Blur', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'boolean',
-                'tab' => 'settings',
-                'value' => 'yes',
-                'default' => 'Yes'
-            ]
         ];
 
         $keep_enabled_settings = function ( $setting ) {
