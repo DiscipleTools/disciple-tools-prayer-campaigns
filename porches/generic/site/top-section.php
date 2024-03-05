@@ -71,7 +71,9 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
             </div>
         </div>
     </div>
+    <?php if ( !isset( $porch_fields['enable_overlay_blur'] ) || $porch_fields['enable_overlay_blur']['value'] === 'yes' ) : ?>
     <div class="overlay"></div>
+    <?php endif; ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
