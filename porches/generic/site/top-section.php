@@ -54,11 +54,13 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
 
                         <?php foreach ( $langs as $code => $language ) : ?>
 
-                            <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
+                            <?php if ( isset( $language['native_name'] ) ) : ?>
+                                <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
 
-                            <?php echo esc_html( $language['flag'] ); ?> <?php echo esc_html( $language['native_name'] ); ?>
+                                <?php echo esc_html( $language['flag'] ?? '' ); ?> <?php echo esc_html( $language['native_name'] ); ?>
 
-                            </option>
+                                </option>
+                            <?php endif; ?>
 
                         <?php endforeach; ?>
 
@@ -71,7 +73,9 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
             </div>
         </div>
     </div>
+    <?php if ( !isset( $porch_fields['enable_overlay_blur'] ) || $porch_fields['enable_overlay_blur']['value'] === 'yes' ) : ?>
     <div class="overlay"></div>
+    <?php endif; ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
