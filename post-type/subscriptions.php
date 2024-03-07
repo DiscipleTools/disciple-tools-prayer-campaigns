@@ -140,6 +140,11 @@ class DT_Subscriptions_Base {
                         'description' => _x( 'No longer active.', 'field description', 'disciple-tools-prayer-campaigns' ),
                         'color' => '#F43636'
                     ],
+                    'pending' => [
+                        'label' => __( 'Pending', 'disciple-tools-prayer-campaigns' ),
+                        'description' => _x( 'Pending approval.', 'field description', 'disciple-tools-prayer-campaigns' ),
+                        'color' => '#FFA500'
+                    ],
                     'active'   => [
                         'label' => __( 'Active', 'disciple-tools-prayer-campaigns' ),
                         'description' => _x( 'Is active.', 'field description', 'disciple-tools-prayer-campaigns' ),
@@ -151,6 +156,15 @@ class DT_Subscriptions_Base {
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 'default_color' => '#366184',
                 'show_in_table' => 10,
+            ];
+
+            //activation code
+            $fields['activation_code'] = [
+                'name' => __( 'Activation Code', 'disciple-tools-prayer-campaigns' ),
+                'description' => __( 'Activation code for subscriber access', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'hash',
+                'hidden' => true,
+                'customizable' => false,
             ];
 
 

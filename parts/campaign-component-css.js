@@ -74,6 +74,10 @@ export const campaignStyles = css`
     cursor:pointer;
     background-color: var( --cp-color, dodgerblue );
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .5em;
   }
   button:hover {
     background-color: transparent;

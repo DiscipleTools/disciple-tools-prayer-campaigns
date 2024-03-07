@@ -14,6 +14,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public $type_actions = [
         '' => 'Manage',
         'download_calendar' => 'Download Calendar',
+        'activate' => 'Manage',
     ];
 
     public function __construct(){
@@ -285,6 +286,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $color = '#4676fa';
         }
 
+        $url_path = dt_get_url_path();
+        $account_verified = strpos( $url_path, 'verified' ) !== false;
+
         ?>
         <style>
             :root {
@@ -316,6 +320,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 background-color: var(--cp-color-dark);
                 color: white
             }
+            .verified-section {
+                background-color: #1eb858;
+                color: white;
+                text-align: center;
+                padding: 20px;
+                margin: 1rem;
+                border-radius: 10px;
+
+            }
         </style>
         <!-- header -->
         <div class="nav-bar" style="">
@@ -327,6 +340,14 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <button data-show="profile"><?php esc_html_e( 'Account', 'disciple-tools-prayer-campaigns' ); ?></button>
             </div>
         </div>
+
+        <?php if ( $account_verified ) : ?>
+            <div class="verified-section">
+                <h1><?php esc_html_e( 'Account activated!', 'disciple-tools-prayer-campaigns' ); ?></h1>
+                <h3><?php esc_html_e( 'Here you can manage your prayer commitments and account settings.', 'disciple-tools-prayer-campaigns' ); ?></h3>
+            </div>
+        <?php endif; ?>
+
         <div id="wrapper">
             <!-- links -->
             <div style="margin: 10px; text-align: center">
@@ -376,10 +397,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <?php do_action( 'dt_subscription_management_extra' ) ?>
                 </div>
             </div>
-                <div id="profile" class="display-panel" style="display: none">
-
+            <div id="profile" class="display-panel" style="display: none">
                   <cp-profile></cp-profile>
-                </div>
             </div>
         </div>
         <?php

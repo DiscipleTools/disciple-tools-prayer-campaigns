@@ -260,6 +260,7 @@ export class ContactInfo extends LitElement {
       receive_pray4movement_news: true,
     }
     this.selected_times_count = 0;
+    this._loading = false;
   }
 
   _is_email(val){
@@ -323,7 +324,7 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0}
+          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
                   @click=${()=>this.verify_contact_info()}>
 
               ${strings['Next']}
@@ -1109,21 +1110,13 @@ export class cpVerify extends LitElement {
     return html`
       <div class="verify-section">
         <p style="text-align: start">
-            ${strings['A confirmation code hase been sent to %s.'].replace('%s', this.email)}
+            ${translate('Almost there! Finish your signup by activating your account.')}
             <br>
-            ${strings['Please enter the code below in the next 10 minutes to confirm your email address.']}
+            ${translate('Click the Activate Account button in the email sent to %s.').replace('%s', this.email)}
         </p>
-        <label for="cp-confirmation-code" style="display: block">
-            <strong>${strings['Confirmation Code']}:</strong><br>
-        </label>
-        <div class="otp-input-wrapper" style="padding: 20px 0">
-            <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'
-                   autocomplete='off' required @input=${this.handleInput}>
-            <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
-                <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
-                      stroke-dasharray='20,22'/>
-            </svg>
-        </div>
+          <p>
+              <img style="width: 100%" src="${window.campaign_objects.plugin_url}assets/activate_account.gif"/>
+          </p>
       </div>
       
     `
