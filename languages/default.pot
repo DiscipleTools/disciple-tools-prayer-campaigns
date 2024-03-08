@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-03-08T11:18:37+00:00\n"
+"POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -28,7 +28,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:67
-msgid "Or click this link"
+#: campaign-functions/send-email-utility.php:372
+msgid "Or click this link:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:72
@@ -116,10 +117,6 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:370
 msgid "Sign up for more prayer times or extend your recurring time here:"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:372
-msgid "Or click this link:"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:373
@@ -661,7 +658,7 @@ msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
 
 #: parts/components-enqueue.php:129
-msgid "Click the Activate Account button in the email sent to: %s"
+msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 
 #: parts/components-enqueue.php:130

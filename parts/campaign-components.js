@@ -1121,7 +1121,7 @@ export class cpVerify extends LitElement {
         </p>
           
         <p style="text-align: start">
-            ${translate('Click the Activate Account button in the email sent to: %s').replace('%s', '')}
+            ${translate('Click the "Activate Account" button in the email sent to: %s').replace('%s', '')}
             <strong>${this.email}</strong>
         </p>
           
