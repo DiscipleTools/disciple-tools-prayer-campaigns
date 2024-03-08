@@ -3,13 +3,15 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Subscriptions {
 
-    public static function create_subscriber( $campaign_id, $email, $title, $times, $args = [] ) {
+    public static function create_subscriber( $campaign_id, $email, $title, $times, $args = [], $pending = false ){
         $args = wp_parse_args(
             $args,
             [
                 'receive_prayer_time_notifications' => false,
                 'timezone' => '',
-                'lang' => 'en_US'
+                'lang' => 'en_US',
+                'status' => 'active',
+                'activation_code' => '',
             ]
         );
 
@@ -37,6 +39,8 @@ class DT_Subscriptions {
             'lang' => $args['lang'],
             $key_name => $hash,
             'receive_prayer_time_notifications' => $args['receive_prayer_time_notifications'],
+            'status' => $args['status'],
+            'activation_code' => $args['activation_code'],
         ];
 
         // create post
@@ -45,7 +49,7 @@ class DT_Subscriptions {
             return $new_subscriber;
         }
 
-        $added_reports = self::add_subscriber_times( $campaign_id, $new_subscriber['ID'], $times );
+        $added_reports = self::add_subscriber_times( $campaign_id, $new_subscriber['ID'], $times, $pending );
         if ( is_wp_error( $added_reports ) ){
             return $added_reports;
         }
@@ -92,12 +96,12 @@ class DT_Subscriptions {
      * @param array $times
      * @return bool|WP_Error
      */
-    public static function add_subscriber_times( $campaign_id, $subscription_id, $times ){
+    public static function add_subscriber_times( $campaign_id, $subscription_id, $times, $pending = false ){
         foreach ( $times as $time ){
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
+            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0, [], $pending );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
@@ -115,9 +119,10 @@ class DT_Subscriptions {
      * @param null $location_id
      * @param int $recurring_sign_up_id
      * @param array $meta
+     * @param bool $pending
      * @return false|int|WP_Error
      */
-    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, $meta = [] ){
+    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, array $meta = [], bool $pending = false ){
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
@@ -148,7 +153,7 @@ class DT_Subscriptions {
             'parent_id' => $campaign_id,
             'post_id' => $subscription_id,
             'post_type' => 'subscriptions',
-            'type' => 'campaign_app',
+            'type' => $pending ? 'pending_signup' : 'campaign_app',
             'subtype' => $recurring_sign_up_id > 0 ? 'recurring_signup' : 'selected_time',
             'payload' => null,
             'value' => $recurring_sign_up_id,
@@ -187,7 +192,7 @@ class DT_Subscriptions {
     }
 
 
-    public static function save_recurring_signups( $subscriber_id, $campaign_id, $recurring_signups ){
+    public static function save_recurring_signups( $subscriber_id, $campaign_id, $recurring_signups, bool $pending = false ){
         $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
         foreach ( $recurring_signups as $recurring_signup_info ){
             $first = $recurring_signup_info['selected_times'][0]['time'];
@@ -213,7 +218,9 @@ class DT_Subscriptions {
                     $time['time'],
                     $time['duration'],
                     $time['grid_id'] ?? null,
-                    $report_id
+                    $report_id,
+                    [],
+                    $pending
                 );
                 if ( !$new_report ){
                     return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );

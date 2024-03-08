@@ -58,22 +58,35 @@ class DT_Prayer_Campaigns_Send_Email {
         return $link;
     }
 
-    public static function send_verification( $email, $code, $campaign_id ){
+    public static function send_verification( $email, $campaign_id, $subscriber_id ){
         $lang = dt_campaign_get_current_lang();
         self::switch_email_locale( $lang );
 
+        $activation_code = get_post_meta( $subscriber_id, 'activation_code', true );
+
+        if ( empty( $activation_code ) ){
+            return false;
+        }
+
+        $verify_link = trailingslashit( site_url() ) . 'wp-json/campaign_app/v1/ongoing/verify-email?id=' . $subscriber_id . '&code=' . $activation_code;
+
         $subject = __( 'Verify your email address', 'disciple-tools-prayer-campaigns' );
 
-        $message = Campaigns_Email_Template::email_content_part( __( 'Please copy and paste the following code into the Confirmation Code field.', 'disciple-tools-prayer-campaigns' ) );
+        $message = Campaigns_Email_Template::email_content_part( __( 'Confirm your participation in prayer by activating your account.', 'disciple-tools-prayer-campaigns' ) );
 
+        $message .= Campaigns_Email_Template::email_button_part(
+            'Activate Account',
+            $verify_link
+        );
         $message .= Campaigns_Email_Template::email_content_part(
-            '<span style="font-size:30px">' . $code . '</span>'
+            __( 'Or click this link:', 'disciple-tools-prayer-campaigns' ) . '<br>' .
+            '<a href="' . $verify_link. '">' . $verify_link . '</a>'
         );
 
         $message .= Campaigns_Email_Template::email_content_part(
-            __( 'This code will expire after 10 minutes.', 'disciple-tools-prayer-campaigns' ) . '<br>' .
             __( 'If you did not request this email, please ignore it.', 'disciple-tools-prayer-campaigns' )
         );
+
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 

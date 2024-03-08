@@ -60,11 +60,13 @@ $sign_up_link = $campaign_url . '#sign-up';
 
                         <?php foreach ( $langs as $code => $language ) : ?>
 
-                            <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
+                            <?php if ( isset( $language['native_name'] ) ) : ?>
+                                <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
 
-                            <?php echo esc_html( $language['flag'] ); ?> <?php echo esc_html( $language['native_name'] ); ?>
+                                <?php echo esc_html( $language['flag'] ?? '' ); ?> <?php echo esc_html( $language['native_name'] ); ?>
 
-                            </option>
+                                </option>
+                            <?php endif; ?>
 
                         <?php endforeach; ?>
 

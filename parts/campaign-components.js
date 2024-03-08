@@ -263,6 +263,7 @@ export class ContactInfo extends LitElement {
       this._form_items[f.key] = f.default || null;
     })
     this.selected_times_count = 0;
+    this._loading = false;
   }
 
   _is_email(val){
@@ -358,8 +359,10 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0}
-                  @click=${()=>this.verify_contact_info()}>
+          <button 
+              class="button-content"
+              ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
+              @click=${()=>this.verify_contact_info()}>
 
               ${strings['Next']}
               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
@@ -953,9 +956,11 @@ export class cpTimes extends LitElement {
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ?
+                          ${time.progress < 100 ? 
                               html`<progress-ring progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
+                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">
+                                  ${time.coverage_count}
+                              </div>`}
                         </span>
                     </div>
                 `})}
@@ -986,6 +991,7 @@ export class cpTimes extends LitElement {
         minute: time.toFormat('mm'),
         progress: progress,
         selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
+        coverage_count: s.subscribers,
       })
     })
     return times;
@@ -1040,7 +1046,8 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
-        selected
+        selected,
+        coverage_count: progress >= 100 ? Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])) : 0,
       })
       key += this.slot_length * 60
     }
@@ -1085,7 +1092,8 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
-        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
+        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60)),
+        coverage_count: progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0,
       })
       key += this.slot_length * 60
     }
@@ -1154,21 +1162,20 @@ export class cpVerify extends LitElement {
     return html`
       <div class="verify-section">
         <p style="text-align: start">
-            ${strings['A confirmation code hase been sent to %s.'].replace('%s', this.email)}
-            <br>
-            ${strings['Please enter the code below in the next 10 minutes to confirm your email address.']}
+            ${translate('Almost there! Finish signing up by activating your account.')}
         </p>
-        <label for="cp-confirmation-code" style="display: block">
-            <strong>${strings['Confirmation Code']}:</strong><br>
-        </label>
-        <div class="otp-input-wrapper" style="padding: 20px 0">
-            <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'
-                   autocomplete='off' required @input=${this.handleInput}>
-            <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
-                <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
-                      stroke-dasharray='20,22'/>
-            </svg>
-        </div>
+          
+        <p style="text-align: start">
+            ${translate('Click the "Activate Account" button in the email sent to: %s').replace('%s', '')}
+            <strong>${this.email}</strong>
+        </p>
+          
+        <p style="text-align: start">
+            ${translate('It will look like this:')}
+        </p>
+        <p style="margin-top: 1rem; margin-bottom: 1rem; border:1px solid; border-radius: 5px; padding: 4px">
+            <img style="width: 100%" src="${window.campaign_objects.plugin_url}assets/activate_account.gif"/>
+        </p>
       </div>
 
     `

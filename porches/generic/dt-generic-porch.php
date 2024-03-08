@@ -57,6 +57,7 @@ class DT_Generic_Porch {
 //        require_once( 'site/home.php' );
 //        require_once( 'site/archive.php' );
 //        require_once( 'site/stats.php' );
+//        require_once( 'site/contact-us.php' );
 //        require_once( 'site/landing.php' );
 //        require_once( 'site/rest.php' );
         require_once( 'site/404.php' );

@@ -1453,7 +1453,7 @@ class DT_Campaigns_Base {
 
 
     public static function schedule_campaign_sync_job(){
-        wp_queue()->push( new P4M_Sync_Campaigns() );
+        wp_queue()->push( new P4M_Sync_Campaigns(), 0, 'campaign_sync' );
     }
 }
 use WP_Queue\Job;

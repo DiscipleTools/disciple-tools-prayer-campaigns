@@ -1,208 +1,194 @@
-# Copyright (C) 2022 
+# Copyright (C) 2024 
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.1.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
-"PO-Revision-Date: 2022-12-08 12:12+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
-"disciple-tools/disciple-tools-prayer-campaigns/vi/>\n"
-"Language: vi\n"
+"PO-Revision-Date: 2024-03-08 11:38+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"Language-Team: Wolof <https://translate.disciple.tools/projects/"
+"pray4movement/disciple-tools-prayer-campaigns/wo/>\n"
+"Language: wo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.4.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/cron-schedule.php:82
-#, fuzzy
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
-msgstr "Nhấp vào đây để xem lời nhắc cầu nguyện cho ngày hôm nay:% s"
+msgstr "Cliquez ici pour voir les invites de prière d'aujourd'hui : %s"
 
 #: campaign-functions/send-email-utility.php:58
 msgid "Verify your email address"
-msgstr ""
+msgstr "Vérifiez votre adresse e-mail"
 
 #: campaign-functions/send-email-utility.php:60
 msgid "Confirm your participation in prayer by activating your account."
-msgstr ""
+msgstr "Confirmez votre participation à la prière en activant votre compte."
 
 #: campaign-functions/send-email-utility.php:67
 #: campaign-functions/send-email-utility.php:372
 msgid "Or click this link:"
-msgstr ""
+msgstr "Ou cliquez sur ce lien :"
 
 #: campaign-functions/send-email-utility.php:72
 msgid "If you did not request this email, please ignore it."
-msgstr ""
+msgstr "Si vous n'avez pas demandé cet e-mail, veuillez l'ignorer."
 
 #: campaign-functions/send-email-utility.php:156
 #: campaign-functions/send-email-utility.php:246
-#, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr "% 1 $ s từ% 2 $ s đến% 3 $ s"
+msgstr "%1$s de %2$s à %3$s"
 
 #: campaign-functions/send-email-utility.php:163
-#, fuzzy
 msgid "see more on your account"
-msgstr "Xác thực tài khoản của bạn"
+msgstr "voir plus sur votre compte"
 
 #: campaign-functions/send-email-utility.php:175
-#, fuzzy
 msgid "Registered to pray with us!"
-msgstr "Đã đăng ký để cầu nguyện với chúng tôi!"
+msgstr "Inscrits pour prier avec nous !"
 
 #: campaign-functions/send-email-utility.php:197
 #: campaign-functions/send-email-utility.php:278
 #: campaign-functions/send-email-utility.php:368
-#, fuzzy
 msgid "Hello %s,"
-msgstr "Xin chào% s!"
+msgstr "Bonjour %s,"
 
 #: campaign-functions/send-email-utility.php:199
-#, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
-msgstr "Lời cầu nguyện chiến lược cho một phong trào lập môn đồ"
+msgstr ""
+"Merci de vous joindre à nous dans la prière stratégique pour un mouvement de "
+"formation de disciples !"
 
 #: campaign-functions/send-email-utility.php:200
 #: campaign-functions/send-email-utility.php:289
 msgid "Access your account to see your commitments and make changes:"
-msgstr ""
+msgstr "Accédez à votre compte pour consulter et modifier vos engagements :"
 
 #: campaign-functions/send-email-utility.php:201
 #: campaign-functions/send-email-utility.php:290
 #: parts/components-enqueue.php:90
 msgid "Access Account"
-msgstr ""
+msgstr "Accéder au compte"
 
 #: campaign-functions/send-email-utility.php:204
-#, fuzzy
 msgid "You signed up to pray:"
-msgstr "Cảm ơn bạn đã đăng ký để cầu nguyện!"
+msgstr "Vous vous êtes inscrit pour prier :"
 
 #: campaign-functions/send-email-utility.php:209
-#, fuzzy
 msgid "These are your next prayer commitments:"
-msgstr "Nhấp vào đây để quản lý tài khoản và cam kết thời gian của bạn"
+msgstr "Voici vos prochains engagements de temps :"
 
 #: campaign-functions/send-email-utility.php:212
 #: campaign-functions/send-email-utility.php:282
-#, fuzzy
 msgid "Times are shown according to: %s time"
-msgstr "Thời gian được hiển thị theo:% s time"
+msgstr "Les temps sont affichés avec l'horaire de %s"
 
 #: campaign-functions/send-email-utility.php:216
 #: magic-links/subscription-management/subscription-management.php:376
-#, fuzzy
 msgid "Download Calendar"
-msgstr "Tải xuống lịch"
+msgstr "Télécharger le calendrier"
 
 #: campaign-functions/send-email-utility.php:252
-#, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr "cho% s"
+msgstr "pour %s"
 
 #: campaign-functions/send-email-utility.php:262
-#, fuzzy
 msgid "Prayer Time reminder!"
-msgstr "Lời nhắc thời gian cầu nguyện!"
+msgstr "Rappel de l'heure de la prière !"
 
 #: campaign-functions/send-email-utility.php:279
 #: parts/components-enqueue.php:100
-#, fuzzy
 msgid "Thank you for praying with us."
-msgstr "Cảm ơn bạn đã cầu nguyện với chúng tôi!"
+msgstr "Merci de nous rejoindre en prière."
 
 #: campaign-functions/send-email-utility.php:280
-#, fuzzy
 msgid "Here are your upcoming prayer times:"
-msgstr "Đây là thời gian cầu nguyện sắp tới của bạn:"
+msgstr "Voici vos temps de prière à venir :"
 
 #: campaign-functions/send-email-utility.php:366
 msgid "Continue Praying?"
-msgstr ""
+msgstr "Continuer à prier ?"
 
 #: campaign-functions/send-email-utility.php:369
-#, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr ""
-"Thời gian cầu nguyện cuối cùng của bạn là 2 tuần. Bạn có muốn tiếp tục cầu "
-"nguyện không?"
+"Il reste 2 semaines jusqu'à votre dernier temps de prière. Voulez vous "
+"continuer la prière ?"
 
 #: campaign-functions/send-email-utility.php:370
-#, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
-"Đăng ký để có thêm thời gian cầu nguyện hoặc kéo dài thời gian định kỳ của "
-"bạn tại đây:"
+"Inscrivez-vous pour plus de temps de prière ou prolongez votre temps "
+"récurrent ici :"
 
 #: campaign-functions/send-email-utility.php:373 parts/components.php:51
 #: porches/generic/site/contact-us.php:129 porches/generic/site/stats.php:291
-#, fuzzy
 msgid "Thank you"
-msgstr "Cảm ơn bạn"
+msgstr "Merci"
 
 #: campaign-functions/send-email-utility.php:419
 #: porches/generic/site/stats.php:144
-#, fuzzy
 msgid "Thank you for praying with us!"
-msgstr "Cảm ơn bạn đã cầu nguyện với chúng tôi!"
+msgstr "Merci de nous rejoindre en prière !"
 
 #: campaign-functions/send-email-utility.php:442
 #: campaign-functions/send-email-utility.php:472
-#, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "Lời cầu nguyện chiến lược cho một phong trào lập môn đồ"
+msgstr "Prière stratégique pour un mouvement de formation de disciples en %"
 
 #: campaign-functions/send-email-utility.php:444
 #: campaign-functions/send-email-utility.php:474
 #: porches/generic/dt-generic-porch-settings.php:59
-#, fuzzy
 msgid "Strategic prayer for a Disciple Making Movement"
-msgstr "Lời cầu nguyện chiến lược cho một phong trào lập môn đồ"
+msgstr "Prière stratégique pour un mouvement de formation de disciples"
 
 #: campaign-functions/send-email-utility.php:449
 #: campaign-functions/send-email-utility.php:479
 msgid "Dear %s,"
-msgstr ""
+msgstr "Bonjour %s,"
 
 #: campaign-functions/send-email-utility.php:452
 #: campaign-functions/send-email-utility.php:482
-#, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Cảm ơn bạn đã cùng chúng tôi cầu nguyện cho% 1 $ s trong% 2 $ s."
+msgstr "Merci de rejoindre %1$s en %2$s."
 
 #: campaign-functions/send-email-utility.php:455
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Nous ne connaîtrons que dans l’éternité le plein impact de notre prière. "
+"Cependant, nous savons grâce à la Parole de Dieu que la prière est puissante "
+"et efficace (Jacques 5 : 16)."
 
 #: campaign-functions/send-email-utility.php:458
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"Cliquez sur le bouton ci-dessous pour avoir un aperçu de ce à quoi vous avez "
+"contribué. Nous aimerions également entendre les impressions ou les paroles "
+"que vous avez reçues de Dieu pendant que vous priiez."
 
 #: campaign-functions/send-email-utility.php:462
-#, fuzzy
 msgid "See Prayer Stats"
-msgstr "Chọn thời gian cầu nguyện"
+msgstr "Voir les statistiques de prière"
 
 #: campaign-functions/send-email-utility.php:464
 #: campaign-functions/send-email-utility.php:500
 msgid "In Christ with you,"
-msgstr ""
+msgstr "En Christ avec vous,"
 
 #: campaign-functions/send-email-utility.php:485
 msgid ""
@@ -210,6 +196,10 @@ msgid ""
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Nous ne connaîtrons que dans l’éternité le plein impact des milliers "
+"d’heures de prière pour le monde musulman pendant le Ramadan. Cependant, "
+"nous savons grâce à la Parole de Dieu que la prière est puissante et "
+"efficace (Jacques 5 : 16)."
 
 #: campaign-functions/send-email-utility.php:489
 msgid ""
@@ -217,6 +207,9 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
+"Cliquez sur le bouton ci-dessous pour avoir un aperçu de ce que vous avez "
+"contribué à ce Ramadan. Nous aimerions également entendre les impressions ou "
+"les paroles que vous avez reçues de Dieu pendant que vous priiez."
 
 #: campaign-functions/send-email-utility.php:496
 msgid ""
@@ -224,380 +217,337 @@ msgid ""
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
+"Enfin, la page Statistiques de prière du Ramadan 24/7 comporte également une "
+"section d'inscription en bas. Assurez-vous d'être inscrit pour recevoir des "
+"nouvelles sur les futures opportunités de prière de Pray4Movement, les "
+"créateurs de cet outil de prière."
 
 #: campaign-functions/send-email-utility.php:498
 msgid "See Ramadan 24/7 Prayer Stats"
-msgstr ""
+msgstr "Voir les statistiques de prière du Ramadan 24/7"
 
 #: campaign-functions/time-utilities.php:173
-#, fuzzy
 msgid "5 minutes"
-msgstr "5 phút"
+msgstr "5 minutes"
 
 #: campaign-functions/time-utilities.php:174
-#, fuzzy
 msgid "10 minutes"
-msgstr "10 phút"
+msgstr "10 minutes"
 
 #: campaign-functions/time-utilities.php:175
-#, fuzzy
 msgid "15 minutes"
-msgstr "15 phút"
+msgstr "15 minutes"
 
 #: campaign-functions/time-utilities.php:176
-#, fuzzy
 msgid "30 minutes"
-msgstr "30 phút"
+msgstr "30 minutes"
 
 #: campaign-functions/time-utilities.php:177
-#, fuzzy
 msgid "1 hour"
-msgstr "1 giờ"
+msgstr "1 heure"
 
 #: campaign-functions/time-utilities.php:186
 msgid "years"
-msgstr ""
+msgstr "ans"
 
 #: campaign-functions/time-utilities.php:186
 msgid "year"
-msgstr ""
+msgstr "an"
 
 #: campaign-functions/time-utilities.php:189
-#, fuzzy
 msgid "day"
-msgstr "ngày"
+msgstr "jour"
 
 #: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
-#, fuzzy
 msgid "days"
-msgstr "ngày"
+msgstr "jours"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:159
-#, fuzzy
 msgid "Retrieve Prayer Time Management Link"
-msgstr "Nhận thông báo về thời gian cầu nguyện"
+msgstr "Récupérer le lien de gestion du temps de prière"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:168
-#, fuzzy
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Bấm vào đây để xác minh địa chỉ email của bạn và xác nhận thời gian cầu "
-"nguyện của bạn."
+"Entrez votre adresse e-mail et recevez un lien vers vos heures de prière."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
 #: parts/components-enqueue.php:52 porches/generic/site/contact-us.php:110
 #: porches/generic/site/stats.php:272
-#, fuzzy
 msgid "Email"
 msgstr "Email"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:175
 msgid "Email My Access Link"
-msgstr ""
+msgstr "Envoyer mon lien d'access"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:178
-#, fuzzy
 msgid "Please check your email address now for your access link."
 msgstr ""
-"Bấm vào đây để xác minh địa chỉ email của bạn và xác nhận thời gian cầu "
-"nguyện của bạn."
+"Veuillez vérifier votre adresse e-mail maintenant pour votre lien d'accès."
 
 #: magic-links/subscription-management/subscription-management.php:39
 #: magic-links/subscription-management/subscription-management.php:365
 #: parts/components-enqueue.php:49
-#, fuzzy
 msgid "My Prayer Commitments"
-msgstr "Cam kết cầu nguyện"
+msgstr "Mes engagements de prière"
 
 #: magic-links/subscription-management/subscription-management.php:339
 #: porches/generic/site/stats.php:205
-#, fuzzy
 msgid "Prayer Commitments"
-msgstr "Cam kết cầu nguyện"
+msgstr "Engagements de prière"
 
 #: magic-links/subscription-management/subscription-management.php:340
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #: magic-links/subscription-management/subscription-management.php:346
 msgid "Account activated!"
-msgstr ""
+msgstr "Compte activé !"
 
 #: magic-links/subscription-management/subscription-management.php:347
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
+"Ici, vous pouvez gérer vos engagements de prière et les paramètres de votre "
+"compte."
 
 #: magic-links/subscription-management/subscription-management.php:354
 msgid "Links"
-msgstr ""
+msgstr "Liens"
 
 #: magic-links/subscription-management/subscription-management.php:355
 #: porches/generic/site/top-section.php:28
-#, fuzzy
 msgid "Home"
-msgstr "Trang Chủ"
+msgstr "Acceuil"
 
 #: magic-links/subscription-management/subscription-management.php:357
 #: porches/generic/site/stats.php:170
 msgid "Stats"
-msgstr ""
+msgstr "Statistiques"
 
 #: magic-links/subscription-management/subscription-management.php:373
-#, fuzzy
 msgid "My Calendar"
-msgstr "Tải xuống lịch"
+msgstr "Mon calendrier"
 
 #: magic-links/subscription-management/subscription-management.php:389
-#, fuzzy
 msgid "Sign up for more prayer"
-msgstr "Đăng ký để cầu nguyện"
+msgstr "Inscrivez-vous pour plus de prière"
 
 #: magic-links/subscription-management/subscription-management.php:410
-#, fuzzy
 msgid "This subscription has ended or is not configured correctly."
-msgstr "Đăng ký này đã kết thúc hoặc không được định cấu hình chính xác."
+msgstr "Cet inscription est terminé ou n'est pas configuré correctement."
 
 #: parts/components-enqueue.php:36
-#, fuzzy
 msgid "Detected time zone"
-msgstr "Thời gian đã chọn"
+msgstr "Fuseau horaire  détecté"
 
 #: parts/components-enqueue.php:37
-#, fuzzy
 msgid "Choose a timezone"
-msgstr "Thay đổi múi giờ của bạn:"
+msgstr "Choisissez le fuseau horaire"
 
 #: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
 #: porches/generic/site/stats.php:227
-#, fuzzy
 msgid "hours"
-msgstr "giờ"
+msgstr "heures"
 
 #: parts/components-enqueue.php:40
-#, fuzzy
 msgid "minutes"
-msgstr "phút"
+msgstr "minutes"
 
 #: parts/components-enqueue.php:41
-#, fuzzy
 msgid "seconds"
-msgstr "giây"
+msgstr "secondes"
 
 #: parts/components-enqueue.php:42
-#, fuzzy
 msgid "Campaign Starts In"
-msgstr "Thống kê Chiến dịch"
+msgstr "La campagne commence dans"
 
 #: parts/components-enqueue.php:43
-#, fuzzy
 msgid "Campaign Ends In"
-msgstr "Thống kê Chiến dịch"
+msgstr "La campagne se termine dans"
 
 #: parts/components-enqueue.php:44
-#, fuzzy
 msgid "Campaign Ended"
-msgstr "Thống kê Chiến dịch"
+msgstr "Campagne terminée"
 
 #: parts/components-enqueue.php:45
-#, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr "% 1 $ s trong% 2 $ s phút."
+msgstr "%1$s pour %2$s minutes."
 
 #: parts/components-enqueue.php:46
 msgid "How often?"
-msgstr ""
+msgstr "À quelle fréquence ?"
 
 #: parts/components-enqueue.php:47
 msgid "I will pray for"
-msgstr ""
+msgstr "Je prie pour"
 
 #: parts/components-enqueue.php:48
-#, fuzzy
 msgid "At what time?"
-msgstr "Chọn thời gian"
+msgstr "À quel temps ?"
 
 #: parts/components-enqueue.php:50
 msgid "Contact Info"
-msgstr ""
+msgstr "Informations de contact"
 
 #: parts/components-enqueue.php:51 porches/generic/site/contact-us.php:103
-#, fuzzy
 msgid "Name"
-msgstr "Tên"
+msgstr "Nom"
 
 #: parts/components-enqueue.php:53
 msgid "Start Here"
-msgstr ""
+msgstr "Commencez ici"
 
 #: parts/components-enqueue.php:54
 msgid "Continue here"
-msgstr ""
+msgstr "Continuer ici"
 
 #: parts/components-enqueue.php:55
 msgid "On which week day?"
-msgstr ""
+msgstr "Quel jour de la semaine ?"
 
 #: parts/components-enqueue.php:56
-#, fuzzy
 msgid "Select a Date"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez une date"
 
 #: parts/components-enqueue.php:57
-#, fuzzy
 msgid "Select a Time"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez une heure"
 
 #: parts/components-enqueue.php:58
-#, fuzzy
 msgid "Select a Time for %s"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez une heure pour %s"
 
 #: parts/components-enqueue.php:59
-#, fuzzy
 msgid "Close"
-msgstr "Đóng"
+msgstr "Fermer"
 
 #: parts/components-enqueue.php:60
-#, fuzzy
 msgid "prayer commitments"
-msgstr "Cam kết cầu nguyện"
+msgstr "engagements de prière"
 
 #: parts/components-enqueue.php:61
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr ""
+msgstr "Commençant le %s"
 
 #: parts/components-enqueue.php:62
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr ""
+msgstr "Terminant le %s"
 
 #: parts/components-enqueue.php:63
 msgid "Review"
-msgstr ""
+msgstr "Révision"
 
 #: parts/components-enqueue.php:64 parts/components.php:45
 #: porches/generic/site/contact-us.php:123 porches/generic/site/stats.php:285
-#, fuzzy
 msgid "Submit"
-msgstr "Nộp"
+msgstr "Soumettre"
 
 #: parts/components-enqueue.php:65
 msgid "Verify"
-msgstr ""
+msgstr "Vérifier"
 
 #: parts/components-enqueue.php:66
-#, fuzzy
 msgid "Percentage covered in prayer"
-msgstr "Phần trăm được cầu nguyện"
+msgstr "Pourcentage couvert par la prière"
 
 #: parts/components-enqueue.php:67
-#, fuzzy
 msgid "%s committed"
-msgstr "Thời gian cam kết"
+msgstr "%s engagé"
 
 #: parts/components-enqueue.php:68
 msgid "Please enter a valid name or email address"
-msgstr ""
+msgstr "Veuillez saisir un nom ou une adresse électronique valide"
 
 #: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
-#, fuzzy
 msgid "Next"
-msgstr "Tiếp theo"
+msgstr "Continuer"
 
 #: parts/components-enqueue.php:70
-#, fuzzy
 msgid "No prayer times selected"
-msgstr "Thời gian cầu nguyện của bạn đã được xác minh!"
+msgstr "Aucun temps de prière sélectionné"
 
 #: parts/components-enqueue.php:71
-#, fuzzy
 msgid "Daily"
-msgstr "Giờ hàng ngày"
+msgstr "Chaque jour"
 
 #: parts/components-enqueue.php:72
 msgid "Weekly"
-msgstr ""
+msgstr "Chaque semaine"
 
 #: parts/components-enqueue.php:73
-#, fuzzy
 msgid "Monthly"
-msgstr "Tháng"
+msgstr "Chaque mois"
 
 #: parts/components-enqueue.php:74
 msgid "Pick Dates and Times"
-msgstr ""
+msgstr "Choisir les jours et heurs"
 
 #: parts/components-enqueue.php:75
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr ""
+msgstr "jusqu’a %s mois"
 
 #: parts/components-enqueue.php:76
-#, fuzzy
 msgid "%s Minutes"
-msgstr "5 phút"
+msgstr "%s minutes"
 
 #: parts/components-enqueue.php:77
-#, fuzzy
 msgid "%s Hour"
-msgstr "Giờ"
+msgstr "%s Heure"
 
 #: parts/components-enqueue.php:78
-#, fuzzy
 msgid "%s Hours"
-msgstr "Giờ"
+msgstr "%s Heures"
 
 #: parts/components-enqueue.php:79
-#, fuzzy
 msgid "%1$s at %2$s for %3$s"
-msgstr "% 1 $ s từ% 2 $ s đến% 3 $ s"
+msgstr "%1$s à %2$s pour %3$s"
 
 #: parts/components-enqueue.php:80
-#, fuzzy
 msgid "for %s minutes"
-msgstr "% 1 $ s trong% 2 $ s phút."
+msgstr "pour %s minutes"
 
 #: parts/components-enqueue.php:81
 msgid "Every %s"
-msgstr ""
+msgstr "Tous les %s"
 
 #: parts/components-enqueue.php:82
-#, fuzzy
 msgid "Prayer Time Selected"
-msgstr "Thời gian cầu nguyện của bạn đã được xác minh!"
+msgstr "Heure de prière sélectionnée"
 
 #: parts/components-enqueue.php:83
-#, fuzzy
 msgid "Select a Day"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez un jour"
 
 #: parts/components-enqueue.php:84
 msgid "Renews on %s"
-msgstr ""
+msgstr "Se renouvelle le %s"
 
 #: parts/components-enqueue.php:85
 msgid "Ends on %s"
-msgstr ""
+msgstr "Se termine le %s"
 
 #: parts/components-enqueue.php:86
 msgid "Success"
-msgstr ""
+msgstr "Succès"
 
 #: parts/components-enqueue.php:87
-#, fuzzy
 msgid "Your registration was successful."
-msgstr "Đăng ký của bạn đã thành công."
+msgstr "Votre inscription a réussi."
 
 #: parts/components-enqueue.php:88
-#, fuzzy
 msgid "Check your email for additional details and to manage your account."
-msgstr "Trong email là một liên kết để quản lý thời gian cầu nguyện của bạn."
+msgstr ""
+"Vérifiez votre courrier électronique pour plus de détails et pour gérer "
+"votre compte."
 
 #: parts/components-enqueue.php:89
 msgid "Ok"
-msgstr ""
+msgstr "D'accord"
 
 #: parts/components-enqueue.php:91
 msgid ""
@@ -606,196 +556,174 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
+"Besoin d'annuler ? Nous avons compris ! Mais attendez ! Si votre engagement "
+"de prière commence dans moins de 48 heures, veuillez demander à un ami de le "
+"couvrir pour vous. Cela empêchera la chaîne de prière d'être brisée ET "
+"donnera à quelqu'un la joie de se battre pour les perdus ! Merci !"
 
 #: parts/components-enqueue.php:92
-#, fuzzy
 msgid "Account Settings"
-msgstr "Cài đặt nâng cao"
+msgstr "Paramètres du compte"
 
 #: parts/components-enqueue.php:93
 msgid "Timezone"
-msgstr ""
+msgstr "Fuseau horaire"
 
 #: parts/components-enqueue.php:94
-#, fuzzy
 msgid "Receive Prayer time notifications"
-msgstr "Nhận thông báo về thời gian cầu nguyện"
+msgstr "Recevoir des notifications d'heure de prière"
 
 #: parts/components-enqueue.php:95
-#, fuzzy
 msgid "Advanced Settings"
-msgstr "Cài đặt nâng cao"
+msgstr "Réglages avancés"
 
 #: parts/components-enqueue.php:96
 msgid "show"
-msgstr ""
+msgstr "montrer"
 
 #: parts/components-enqueue.php:97
-#, fuzzy
 msgid "Delete this account and all the scheduled prayer times"
-msgstr "Xóa hồ sơ này và tất cả thời gian cầu nguyện đã lên lịch?"
+msgstr "Supprimer ce compte et toutes les heures de prière"
 
 #: parts/components-enqueue.php:98
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
+"Désolé. Quelque chose s'est mal passé. S'il vous plaît, contactez-nous pour "
+"vous aider, ou réessayez encore."
 
 #: parts/components-enqueue.php:99
 msgid "Your account has been deleted!"
-msgstr ""
+msgstr "Votre compte a été supprimé !"
 
 #: parts/components-enqueue.php:101
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: parts/components-enqueue.php:102
-#, fuzzy
 msgid "Delete"
-msgstr "Xóa"
+msgstr "Supprimer"
 
 #: parts/components-enqueue.php:103
-#, fuzzy
 msgid "Select a timezone"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez un fuseau horaire"
 
 #: parts/components-enqueue.php:104
-#, fuzzy
 msgid "See Prayer Fuel"
-msgstr "Nhiên liệu cầu nguyện"
+msgstr "Voir le guide de prière"
 
 #: parts/components-enqueue.php:105
-#, fuzzy
 msgid "change time"
-msgstr "Thay đổi thời gian hàng ngày"
+msgstr "changer l'heure"
 
 #: parts/components-enqueue.php:106
-#, fuzzy
 msgid "Remove all"
-msgstr "Xóa hết"
+msgstr "tout supprimer"
 
 #: parts/components-enqueue.php:107
-#, fuzzy
 msgid "See prayer times"
-msgstr "Thêm thời gian cầu nguyện"
+msgstr "Voir les temps de prière"
 
 #: parts/components-enqueue.php:108
-#, fuzzy
 msgid "Delete Prayer Times"
-msgstr "Thời điểm cầu nguyện"
+msgstr "Supprimer les temps de prière"
 
 #: parts/components-enqueue.php:109
-#, fuzzy
 msgid "Really delete these prayer times?"
-msgstr "Chọn thời gian cầu nguyện"
+msgstr "Vraiment supprimer ces temps de prière ?"
 
 #: parts/components-enqueue.php:110
-#, fuzzy
 msgid "extend"
-msgstr "Gia hạn"
+msgstr "prolonger"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
 msgid "Extend Prayer Times"
-msgstr "Thời điểm cầu nguyện"
+msgstr "Prolonger les temps de prière"
 
 #: parts/components-enqueue.php:112
-#, fuzzy
 msgid "Really delete this prayer time?"
-msgstr "Chọn thời gian cầu nguyện"
+msgstr "Vraiment supprimer ce temps de prière ?"
 
 #: parts/components-enqueue.php:113
-#, fuzzy
 msgid "Delete Prayer Time"
-msgstr "Thời gian đã chọn"
+msgstr "Supprimer le temps de prière"
 
 #: parts/components-enqueue.php:114
-#, fuzzy
 msgid "Mondays"
-msgstr "ngày"
+msgstr "Les lundis"
 
 #: parts/components-enqueue.php:115
-#, fuzzy
 msgid "Tuesdays"
-msgstr "ngày"
+msgstr "Les mardis"
 
 #: parts/components-enqueue.php:116
 msgid "Wednesdays"
-msgstr ""
+msgstr "Les mercredis"
 
 #: parts/components-enqueue.php:117
-#, fuzzy
 msgid "Thursdays"
-msgstr "ngày"
+msgstr "Les jeudis"
 
 #: parts/components-enqueue.php:118
-#, fuzzy
 msgid "Fridays"
-msgstr "ngày"
+msgstr "Les vendredis"
 
 #: parts/components-enqueue.php:119
-#, fuzzy
 msgid "Saturdays"
-msgstr "ngày"
+msgstr "Les samedis"
 
 #: parts/components-enqueue.php:120
-#, fuzzy
 msgid "Sundays"
-msgstr "ngày"
+msgstr "Les dimanches"
 
 #: parts/components-enqueue.php:121
-#, fuzzy
 msgid "Change Prayer Time"
-msgstr "Chọn thời gian cầu nguyện"
+msgstr "Changer l'heure de la prière"
 
 #: parts/components-enqueue.php:122
-#, fuzzy
 msgid "Your current prayer time is %s"
-msgstr "Thời gian cầu nguyện mới của bạn đã được lưu."
+msgstr "Votre heure de prière actuelle est %s"
 
 #: parts/components-enqueue.php:123
-#, fuzzy
 msgid "Select a new time:"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez une nouvelle heure :"
 
 #: parts/components-enqueue.php:124
-#, fuzzy
 msgid "Select a time"
-msgstr "Chọn thời gian"
+msgstr "Sélectionnez une heure"
 
 #: parts/components-enqueue.php:125
-#, fuzzy
 msgid "Renew Prayer Times"
-msgstr "Thời điểm cầu nguyện"
+msgstr "Renouveler les heures de prière"
 
 #: parts/components-enqueue.php:126
 msgid "renew"
-msgstr ""
+msgstr "renouveler"
 
 #: parts/components-enqueue.php:127
-#, fuzzy
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
 msgstr ""
-"Bạn có muốn nghe về những nỗ lực và cơ hội cầu nguyện khác với Pray4Movement."
-"org không?"
+"Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
+"communications occasionnelles de GospelAmbition.org."
 
 #: parts/components-enqueue.php:128
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
+msgstr "Presque là ! Terminez votre inscription en activant votre compte."
 
 #: parts/components-enqueue.php:129
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr ""
+msgstr "Cliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
 
 #: parts/components-enqueue.php:130
 msgid "It will look like this:"
-msgstr ""
+msgstr "Il ressemblera à ceci :"
 
 #: parts/components.php:32
 msgid "Praying as a group?"
-msgstr ""
+msgstr "Priez-vous en groupe ?"
 
 #: parts/components.php:37
 msgid ""
@@ -803,271 +731,240 @@ msgid ""
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
+"Diriger d'autres personnes dans la prière est une étape importante pour "
+"faire des disciples. Nous voulons célébrer votre fidélité et la leur.  Pour "
+"chaque personne qui prie avec vous, nous ajouterons 15 minutes aux %s jours "
+"de prière engagés jusqu'à présent."
 
 #: parts/components.php:40
 msgid "How many prayed today (including yourself)?"
-msgstr ""
+msgstr "Combien ont prié aujourd'hui (y compris vous-même) ?"
 
 #: porches/generic/dt-generic-porch-settings.php:68
-#, fuzzy
 msgid "Our Vision"
-msgstr "Tầm nhìn của chúng tôi"
+msgstr "Notre Vision"
 
 #: porches/generic/dt-generic-porch-settings.php:77
-#, fuzzy
 msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr "Chúng tôi muốn bao phủ khu vực này bằng sự cầu nguyện liên tục 24/7."
+msgstr "Nous voulons couvrir ce region avec de la prière 24/7 continuelle."
 
 #: porches/generic/dt-generic-porch-settings.php:94
-#, fuzzy
 msgid "Extraordinary Prayer"
-msgstr "Cầu nguyện đặc biệt"
+msgstr "Prière extraordinaire"
 
 #: porches/generic/dt-generic-porch-settings.php:103
-#, fuzzy
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
 msgstr ""
-"Mọi phong trào đào tạo môn đồ trong lịch sử đều xảy ra trong bối cảnh cầu "
-"nguyện phi thường."
+"Chaque mouvement de formation de disciples dans l'histoire s'est produit "
+"dans le contexte de prière extraordinaire."
 
 #: porches/generic/dt-generic-porch-settings.php:120
-#, fuzzy
 msgid "Movement Focused"
-msgstr "Tập trung vào chuyển động"
+msgstr "Concentré sur un mouvement"
 
 #: porches/generic/dt-generic-porch-settings.php:129
-#, fuzzy
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
 msgstr ""
-"Hãy tham gia cùng chúng tôi để yêu cầu, tìm kiếm và kêu gọi các dòng môn đồ "
-"và nhà thờ được tạo ra."
+"Rejoignez-nous pour demander, chercher et frapper afin que des flots de "
+"disciples et d'églises se fassent."
 
 #: porches/generic/dt-generic-porch-settings.php:146
-#, fuzzy
 msgid "24/7 Every Day"
-msgstr "24/7 mỗi ngày"
+msgstr "24/7 tous les jours"
 
 #: porches/generic/dt-generic-porch-settings.php:155
-#, fuzzy
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
 msgstr ""
-"Chọn khoảng thời gian 15 phút (hoặc hơn!) Mà bạn có thể cầu nguyện mỗi ngày. "
-"Mời người khác cũng đăng ký."
+"Choisissez un créneau horaire de 15 minutes (ou plus !) pendant lequel vous "
+"pouvez prier chaque jour. Invitez quelqu'un d'autre à s'inscrire également."
 
 #: porches/generic/dt-generic-porch-settings.php:173
 #: porches/generic/dt-generic-porch-settings.php:182
 #: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
-#, fuzzy
 msgid "Prayer Fuel"
-msgstr "Nhiên liệu cầu nguyện"
+msgstr "Guide de Prière"
 
 #: porches/generic/dt-generic-porch-settings.php:191
-#, fuzzy
 msgid "Use these resources to help pray specifically each day."
-msgstr "Sử dụng những nguồn này để giúp cầu nguyện cụ thể mỗi ngày."
+msgstr ""
+"Utilisez ces ressources pour vous aider à prier spécifiquement chaque jour."
 
 #: porches/generic/dt-generic-porch-settings.php:200
-#, fuzzy
 msgid "Today's Prayer Fuel"
-msgstr "Nhiên liệu Cầu nguyện Hôm nay"
+msgstr "Guide de prière pour aujourd'hui"
 
 #: porches/generic/dt-generic-porch-settings.php:209
-#, fuzzy
 msgid "All Days"
-msgstr "Tất cả các ngày"
+msgstr "Tous les jours"
 
 #: porches/generic/site/404-body.php:14
-#, fuzzy
 msgid "Epic 404 - Not Found"
-msgstr "Lỗi 404 - Không tìm thấy"
+msgstr "Erreur 404 – Article non trouvé"
 
 #: porches/generic/site/404-body.php:15
-#, fuzzy
 msgid "It looks like you may have strayed from the narrow path."
-msgstr "Có vẻ như bạn có thể đã đi lạc khỏi con đường hẹp."
+msgstr "Il semble que vous vous soyez écarté du chemin étroit."
 
 #: porches/generic/site/404-body.php:16
-#, fuzzy
 msgid "Wide is the path that leads to the 404."
-msgstr "Rộng là con đường dẫn đến 404."
+msgstr "Large est le chemin qui mène à la 404."
 
 #: porches/generic/site/404-body.php:17
-#, fuzzy
 msgid "Try using some of the links in the menu to get back on track."
-msgstr "Hãy thử sử dụng một số liên kết trong menu để trở lại đúng hướng."
+msgstr ""
+"Essayez d'utiliser certains des liens du menu pour vous remettre sur la "
+"bonne voie."
 
 #: porches/generic/site/archive-body.php:34
 #: porches/generic/site/post-list-body.php:147
 msgid "Content will start in %s days"
-msgstr ""
+msgstr "Le contenu commencera dans %s jours"
 
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
+msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
 
 #: porches/generic/site/contact-us.php:23
 #: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
 msgid "Contact Us"
-msgstr ""
+msgstr "Contactez-nous"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:104
 #: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
 #: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
-#, fuzzy
 msgid "Sign Up to Pray"
-msgstr "Đăng ký để cầu nguyện"
+msgstr "Inscrivez-vous pour prier"
 
 #: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
-#, fuzzy
 msgid "Time Committed"
-msgstr "Thời gian cam kết"
+msgstr "Temps engagé"
 
 #: porches/generic/site/home-body.php:186
-#, fuzzy
 msgid "Prayer Warriors"
-msgstr "Thời gian cầu nguyện của tôi"
+msgstr "Guerriers de prière"
 
 #: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
 msgid "Prayer Commitments Needed"
-msgstr "Cần có những cam kết cầu nguyện"
+msgstr "Engagements de prière requis"
 
 #: porches/generic/site/home-body.php:221
 #: porches/ongoing/site/home-body.php:210
 #: porches/ramadan/site/home-body.php:211
-#, fuzzy
 msgid "View All"
-msgstr "Xem tất cả"
+msgstr "Tout voir"
 
 #: porches/generic/site/post-list-body.php:134
-#, fuzzy
 msgid "Read"
-msgstr "Đọc"
+msgstr "Lire"
 
 #: porches/generic/site/post-list-body.php:149
 msgid "No prayer fuel found"
-msgstr ""
+msgstr "Aucun guide de prière trouvé"
 
 #: porches/generic/site/stats.php:21
-#, fuzzy
 msgid "Campaign Stats"
-msgstr "Thống kê Chiến dịch"
+msgstr "Statistiques de la campagne"
 
 #: porches/generic/site/stats.php:146
-#, fuzzy
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "Cảm ơn bạn đã cùng chúng tôi cầu nguyện cho% 1 $ s trong% 2 $ s."
+msgstr "Merci de nous rejoindre en prière pour les %1$s en %2$s."
 
 #: porches/generic/site/stats.php:197
-#, fuzzy
 msgid "Percentage Covered"
-msgstr "Phần trăm được bảo hiểm"
+msgstr "Pourcentage couvert"
 
 #: porches/generic/site/stats.php:223
 msgid "Time Prayed in Groups"
-msgstr ""
+msgstr "Temps de prière en groupe"
 
 #: porches/generic/site/stats.php:233
-#, fuzzy
 msgid "Number of People who Prayed"
-msgstr "Số người đã cầu nguyện"
+msgstr "Nombre de personnes qui ont prié"
 
 #: porches/generic/site/stats.php:266
-#, fuzzy
 msgid "Share with us your Prayer Stories"
-msgstr "Chia sẻ với chúng tôi những câu chuyện cầu nguyện của bạn"
+msgstr "Partagez vos histoires de prière avec nous"
 
 #: porches/generic/site/stats.php:280
-#, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc)"
 msgstr ""
-"Chia sẻ với chúng tôi về thời gian cầu nguyện của bạn (ví dụ: lời chứng, "
-"hiểu biết sâu sắc, phước lành, v.v.)"
+"Partagez avec nous votre temps de prière (par exemple, des témoignages, des "
+"idées, des bénédictions, etc.)"
 
 #: porches/generic/site/stats.php:327
 msgid "Global Ramadan Stats"
-msgstr ""
+msgstr "Statistiques mondiales du Ramadan"
 
 #: porches/generic/site/stats.php:334
-#, fuzzy
 msgid "Total Prayer Campaigns"
-msgstr "Đang tải dữ liệu chiến dịch cầu nguyện ..."
+msgstr "Nombre de campagnes de prière"
 
 #: porches/generic/site/stats.php:342
-#, fuzzy
 msgid "Countries Prayed For"
-msgstr "Giờ cầu nguyện"
+msgstr "Pays pour lesquels nous avons prié"
 
 #: porches/generic/site/stats.php:350
 msgid "Intercessors"
-msgstr ""
+msgstr "Intercesseurs"
 
 #: porches/generic/site/stats.php:358
-#, fuzzy
 msgid "Time Prayed"
-msgstr "Đã thêm thời gian"
+msgstr "Temps prié"
 
 #: porches/generic/site/stats.php:366
 msgid "15 Minute Time Slots Filled"
-msgstr ""
+msgstr "Créneaux horaires de 15 minutes remplis"
 
 #: porches/generic/site/stats.php:389
-#, fuzzy
 msgid "More Prayer Opportunities"
-msgstr "Nhiều cơ hội cầu nguyện hơn"
+msgstr "Plus d'opportunités de prière"
 
 #: porches/generic/site/stats.php:393
-#, fuzzy
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
 "Pray4Movement.org and receive occasional communication from GospelAmbition."
 "org."
 msgstr ""
-"Bạn có muốn nghe về những nỗ lực và cơ hội cầu nguyện khác với Pray4Movement."
-"org không?"
+"Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
+"avec Pray4Movement.org et recevez des communications occasionnelles de "
+"GospelAmbition.org."
 
 #: porches/generic/site/top-section.php:31
-#, fuzzy
 msgid "Sign Up"
-msgstr "Đăng ký"
+msgstr "S'inscrire"
 
 #: porches/ongoing/site/home-body.php:159
-#, fuzzy
 msgid "Month"
-msgstr "Tháng"
+msgstr "Mois"
 
 #: porches/ongoing/site/home-body.php:176
-#, fuzzy
 msgid "Hours"
-msgstr "Giờ"
+msgstr "Heures"
 
 #: porches/ongoing/site/home-body.php:191
-#, fuzzy
 msgid "Hours Remaining"
-msgstr "Số giờ còn lại"
+msgstr "Heures Restantes"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
-#, fuzzy
 msgid "Ramadan Landing Page"
-msgstr "Tháng Ramadan Kết thúc ..."
+msgstr "Page de destination du Ramadan"
 
 #: porches/ramadan/settings.php:6
-#, fuzzy
 msgid ""
 "Ramadan is one of the five requirements (or pillars) of Islam. During each "
 "of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
@@ -1088,369 +985,93 @@ msgid ""
 "even read the entire Quran (about a tenth the length of the Bible). This "
 "sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
-"Ramadan là một trong năm yêu cầu (hay trụ cột) của đạo Hồi. Trong mỗi 30 "
-"ngày của nó, người Hồi giáo có nghĩa vụ nhịn ăn từ bình minh cho đến khi mặt "
-"trời lặn. Trong thời gian này, họ phải kiêng ăn, uống chất lỏng, hút thuốc "
-"và quan hệ tình dục.\n"
+"Le ramadan est l'une des cinq exigences (ou piliers) de l'islam. Pendant "
+"chacun de ses 30 jours, les musulmans sont obligés de jeûner de l'aube au "
+"coucher du soleil. Pendant cette période, ils sont censés s'abstenir de "
+"manger, de boire des liquides, de fumer et d'avoir des relations sexuelles.\n"
 "\n"
-"     Phụ nữ thường dành các buổi chiều để chuẩn bị một bữa ăn thịnh soạn. "
-"Vào lúc hoàng hôn, các gia đình thường tụ tập để phá cỗ. Theo truyền thống, "
-"các gia đình thường ăn chay bằng một ly nước lọc, sau đó là ba quả chà là "
-"khô và một bữa ăn nhiều món. Sau khi xem bộ phim truyền hình Ramadan mới, "
-"đàn ông (và một số phụ nữ) ra quán cà phê uống cà phê và hút thuốc với bạn "
-"bè cho đến tận khuya.\n"
+"Les femmes passent généralement l'après-midi à préparer un gros repas. Au "
+"coucher du soleil, les familles se rassemblent souvent pour rompre le jeûne. "
+"Traditionnellement, les familles rompent le jeûne avec un verre d'eau, puis "
+"trois dattes séchées et un repas composé de plusieurs plats. Après avoir "
+"regardé la nouvelle série télévisée Ramadan, les hommes (et certaines "
+"femmes) sortent dans des cafés où ils boivent du café et fument avec des "
+"amis jusque tard dans la nuit.\n"
 "\n"
-"     Mặc dù nhiều người đã ngừng nhịn ăn trong những năm gần đây, và bị tắt "
-"bởi thói đạo đức giả, tỷ lệ tội phạm gia tăng và sự thô lỗ lan tràn trong "
-"tháng, những người khác đã trở nên nghiêm túc hơn với tôn giáo trong thời "
-"gian này. Nhiều người tham dự các buổi cầu nguyện buổi tối và thực hiện các "
-"nghi lễ cầu nguyện khác. Một số thậm chí còn đọc toàn bộ Kinh Qur'an (độ dài "
-"bằng 1/10 Kinh thánh). Sự tìm kiếm chân thành này khiến chúng ta trở thành "
-"thời điểm chiến lược để cầu nguyện cho họ."
+"Bien que beaucoup aient cessé de jeûner ces dernières années et soient "
+"découragés par l'hypocrisie, l'augmentation du taux de criminalité et "
+"l'impolitesse omniprésente tout au long du mois, d'autres sont devenus plus "
+"sérieux au sujet de la religion pendant cette période. Beaucoup assistent "
+"aux services de prière du soir et font les autres prières rituelles. "
+"Certains lisent même le Coran en entier (environ un dixième de la longueur "
+"de la Bible). Cette recherche sincère en fait un moment stratégique pour "
+"nous de prier pour eux."
 
 #: porches/ramadan/site/home-body.php:103
-#, fuzzy
 msgid "Ramadan Begins ..."
-msgstr "Tháng Ramadan Bắt đầu ..."
+msgstr "Ramadan commence..."
 
 #: porches/ramadan/site/home-body.php:104
-#, fuzzy
 msgid "Ramadan Ends ..."
-msgstr "Tháng Ramadan Kết thúc ..."
+msgstr "Le ramadan se termine..."
 
 #: porches/ramadan/site/home-body.php:105
-#, fuzzy
 msgid "Ramadan Is Finished"
-msgstr "Ramadan đã kết thúc"
+msgstr "Le ramadan est terminé"
 
 #: porches/ramadan/site/home-body.php:138
-#, fuzzy
 msgid "here"
-msgstr "nơi đây"
+msgstr "ici"
 
 #: porches/ramadan/site/home-body.php:166
-#, fuzzy
 msgid "Days"
-msgstr "Ngày"
+msgstr "Jours"
 
 #: porches/ramadan/site/home-body.php:179
-#, fuzzy
 msgid "Hours of Prayer"
-msgstr "Giờ cầu nguyện"
+msgstr "Heures de prière"
 
 #: shortcodes/prayer-timer.php:219
-#, fuzzy
 msgid "Start Praying!"
-msgstr "Bắt đầu cầu nguyện!"
+msgstr "Commencez à prier !"
 
 #: shortcodes/prayer-timer.php:222
-#, fuzzy
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr "Thời gian cầu nguyện:% s phút"
+msgstr "Temps de prière : %s min"
 
 #: shortcodes/prayer-timer.php:247
-#, fuzzy
 msgid "Now praying..."
-msgstr "Bây giờ đang cầu nguyện ..."
+msgstr "Prier maintenant..."
 
 #, fuzzy
+#~| msgid "Or click this link:"
+#~ msgid "Or click this link"
+#~ msgstr "Ou cliquez sur ce lien :"
+
+#~ msgid ""
+#~ "Please copy and paste the following code into the Confirmation Code field."
+#~ msgstr ""
+#~ "Veuillez copier et coller le code suivant dans le champ Code de "
+#~ "confirmation."
+
+#~ msgid "This code will expire after 10 minutes."
+#~ msgstr "Ce code expirera après 10 minutes."
+
+#~ msgid "A confirmation code hase been sent to %s."
+#~ msgstr "Un code de confirmation a été envoyé à %s."
+
+#~ msgid ""
+#~ "Please enter the code below in the next 10 minutes to confirm your email "
+#~ "address."
+#~ msgstr ""
+#~ "Veuillez entrer le code ci-dessous dans les 10 prochaines minutes pour "
+#~ "confirmer votre adresse e-mail."
+
 #~ msgid "Confirmation Code"
-#~ msgstr "Xác nhận thời gian"
+#~ msgstr "Code de confirmation"
 
-#, fuzzy
-#~ msgid "More Hours to be covered"
-#~ msgstr "Nhiều giờ hơn được bảo hiểm"
-
-#, fuzzy
-#~ msgid "Strategic prayer for a disciple making movement"
-#~ msgstr "Lời cầu nguyện chiến lược cho một phong trào lập môn đồ"
-
-#, fuzzy
-#~ msgid "Thank You"
-#~ msgstr "Cảm ơn"
-
-#, fuzzy
-#~ msgid "Here are the times you have committed to pray:"
-#~ msgstr "Đây là những lần bạn đã cam kết cầu nguyện:"
-
-#, fuzzy
-#~ msgid "fully covered once"
-#~ msgstr "được bảo hiểm đầy đủ một lần"
-
-#, fuzzy
-#~ msgid "fully covered %1$s times"
-#~ msgstr "được bảo hiểm đầy đủ% 1 $ s lần"
-
-#, fuzzy
-#~ msgid "Extend for 3 months"
-#~ msgstr "Gia hạn thêm 3 tháng"
-
-#, fuzzy
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "đề cập"
-
-#, fuzzy
-#~ msgid "Pray this time"
-#~ msgstr "Thời điểm cầu nguyện"
-
-#, fuzzy
-#~ msgid "Your prayer times have been verified!"
-#~ msgstr "Thời gian cầu nguyện của bạn đã được xác minh!"
-
-#, fuzzy
-#~ msgid "Cancel"
-#~ msgstr "Huỷ bỏ"
-
-#, fuzzy
-#~ msgid "Select"
-#~ msgstr "Lựa chọn"
-
-#, fuzzy
-#~ msgid "Add a Daily Prayer Time"
-#~ msgstr "Thêm thời gian cầu nguyện hàng ngày"
-
-#, fuzzy
-#~ msgid "Add Individual Prayer Times"
-#~ msgstr "Thêm thời gian cầu nguyện cá nhân"
-
-#, fuzzy
-#~ msgid "My commitments"
-#~ msgstr "Cam kết của tôi"
-
-#, fuzzy
-#~ msgid "For how long"
-#~ msgstr "Trong bao lâu"
-
-#, fuzzy
-#~ msgid "ok"
-#~ msgstr "Vâng"
-
-#, fuzzy
-#~ msgid "Select a day and choose a time"
-#~ msgstr "Chọn một ngày và chọn một thời gian"
-
-#, fuzzy
-#~ msgid "Time added"
-#~ msgstr "Đã thêm thời gian"
-
-#, fuzzy
-#~ msgid "No selected Time"
-#~ msgstr "Không có thời gian được chọn"
-
-#, fuzzy
-#~ msgid "Back"
-#~ msgstr "Quay lại"
-
-#, fuzzy
-#~ msgid "Choose a different time:"
-#~ msgstr "Chọn một thời điểm khác:"
-
-#, fuzzy
-#~ msgid "Extend my prayer commitments until:"
-#~ msgstr "Mở rộng cam kết cầu nguyện của tôi cho đến khi:"
-
-#, fuzzy
-#~ msgid "Confirm"
-#~ msgstr "Xác nhận"
-
-#, fuzzy
-#~ msgid "Profile Settings"
-#~ msgstr "Cài đặt cấu hình"
-
-#, fuzzy
-#~ msgid "Notifications allowed"
-#~ msgstr "Thông báo được phép"
-
-#, fuzzy
-#~ msgid "Notifications not allowed"
-#~ msgstr "Thông báo không được phép"
-
-#, fuzzy
-#~ msgid "Are you sure you want to delete your profile?"
-#~ msgstr "Bạn có chắc chắn muốn xóa hồ sơ của mình không?"
-
-#, fuzzy
-#~ msgid "This can not be undone."
-#~ msgstr "Điều này không thể được hoàn tác."
-
-#, fuzzy
-#~ msgid "Your email is required."
-#~ msgstr "Email của bạn là bắt buộc."
-
-#, fuzzy
-#~ msgid "The code is required"
-#~ msgstr "Email của bạn là bắt buộc."
-
-#, fuzzy
-#~ msgid "Return"
-#~ msgstr "Trở về"
-
-#, fuzzy
-#~ msgid "We are not longer looking for sign ups"
-#~ msgstr "Chúng tôi không còn tìm kiếm các đăng ký nữa"
-
-#, fuzzy
-#~ msgid "Thanks for praying with us!"
-#~ msgstr "Cảm ơn vì đã cầu nguyện với chúng tôi!"
-
-#, fuzzy
-#~ msgid "Showing times for:"
-#~ msgstr "Thời gian hiển thị cho:"
-
-#, fuzzy
-#~ msgctxt "Campaign Name is Finished"
-#~ msgid "%s is Finished"
-#~ msgstr "% s đã hoàn thành"
-
-#, fuzzy
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Ends In"
-#~ msgstr "% s Kết thúc sau"
-
-#, fuzzy
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Begins In"
-#~ msgstr "% s Bắt đầu"
-
-#, fuzzy
-#~ msgid "covered once"
-#~ msgstr "được bảo hiểm một lần"
-
-#, fuzzy
-#~ msgid "covered %1$s times"
-#~ msgstr "bao phủ% 1 $ s lần"
-
-#, fuzzy
-#~ msgid "Loading prayer campaign data..."
-#~ msgstr "Đang tải dữ liệu chiến dịch cầu nguyện ..."
-
-#, fuzzy
-#~ msgid "Select an option"
-#~ msgstr "Chọn một tùy chọn"
-
-#, fuzzy
-#~ msgid "Pray every day at the same time"
-#~ msgstr "Cầu nguyện mỗi ngày vào cùng một thời điểm"
-
-#, fuzzy
-#~ msgid "Example: Everyday at 4pm for 15mins"
-#~ msgstr "Ví dụ: Hàng ngày lúc 4 giờ chiều trong 15 phút"
-
-#, fuzzy
-#~ msgid "Select days and times to pray"
-#~ msgstr "Chọn ngày và giờ để cầu nguyện"
-
-#, fuzzy
-#~ msgid "Example: Monday 12th at 6pm for 15mins"
-#~ msgstr "Ví dụ: Thứ Hai ngày 12 lúc 6 giờ chiều trong 15 phút"
-
-#, fuzzy
-#~ msgid "Please note that daylight savings time may affect your prayer times."
+#~ msgid "Confirmation code does not match or is expired. Please, try again."
 #~ msgstr ""
-#~ "Trong email là một liên kết để quản lý thời gian cầu nguyện của bạn."
-
-#, fuzzy
-#~ msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
-#~ msgid "Everyday at %1$s for %2$s until %3$s"
-#~ msgstr "Hàng ngày ở% 1 $ s cho% 2 $ s cho đến% 3 $ s"
-
-#, fuzzy
-#~ msgctxt "Jun, Jul, Aug covered"
-#~ msgid "covered"
-#~ msgstr "đề cập"
-
-#, fuzzy
-#~ msgid ""
-#~ "Chose a time to pray everyday for the next 3 months. Near the end you'll "
-#~ "have the option to sign up for more."
-#~ msgstr ""
-#~ "Chọn thời gian để cầu nguyện hàng ngày trong 3 tháng tiếp theo. Gần cuối, "
-#~ "bạn sẽ có tùy chọn để đăng ký thêm."
-
-#, fuzzy
-#~ msgid ""
-#~ "Thank you for joining us in strategic prayer for a disciple making "
-#~ "movement! You're one click away from finishing your registration."
-#~ msgstr ""
-#~ "Cảm ơn bạn đã tham gia cùng chúng tôi trong lời cầu nguyện chiến lược cho "
-#~ "một phong trào tạo đồ đệ! Bạn chỉ cần một cú nhấp chuột là có thể hoàn "
-#~ "tất đăng ký của mình."
-
-#, fuzzy
-#~ msgid "Registration Confirmation"
-#~ msgstr "Xác nhận đăng ký"
-
-#, fuzzy
-#~ msgid ""
-#~ "We have some time before the campaign starts. We will send you another "
-#~ "email a couple months before the first day asking you to choose specific "
-#~ "times to pray. Working together we will cover the region in 24/7 prayer."
-#~ msgstr ""
-#~ "Chúng tôi có một thời gian trước khi chiến dịch bắt đầu. Chúng tôi sẽ gửi "
-#~ "cho bạn một email khác vài tháng trước ngày đầu tiên, yêu cầu bạn chọn "
-#~ "thời gian cụ thể để cầu nguyện. Làm việc cùng nhau, chúng tôi sẽ bao phủ "
-#~ "khu vực trong lời cầu nguyện 24/7."
-
-#, fuzzy
-#~ msgid "If you know your schedule already you can choose your times here:"
-#~ msgstr ""
-#~ "Nếu bạn đã biết lịch trình của mình, bạn có thể chọn thời gian của mình "
-#~ "tại đây:"
-
-#, fuzzy
-#~ msgid "Receive Prayer Time Notifications (email verification needed)."
-#~ msgstr "Nhận Thông báo Thời gian Cầu nguyện (cần xác minh email)."
-
-#, fuzzy
-#~ msgid "Submit Your Prayer Commitment"
-#~ msgstr "Gửi cam kết cầu nguyện của bạn"
-
-#, fuzzy
-#~ msgid "Check your email"
-#~ msgstr "Gởi! Kiểm tra hộp thư điện tử của bạn."
-
-#, fuzzy
-#~ msgid ""
-#~ "Click on the link included in the email to verify your commitment and "
-#~ "receive prayer time notifications!"
-#~ msgstr ""
-#~ "Nhấp vào liên kết có trong email để xác minh cam kết của bạn và nhận "
-#~ "thông báo về thời gian cầu nguyện!"
-
-#, fuzzy
-#~ msgid "OK"
-#~ msgstr "ĐƯỢC RỒI"
-
-#, fuzzy
-#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
-#~ msgstr "Nhận Bản tin Pray4Movement (cần xác minh email)."
-
-#, fuzzy
-#~ msgid "Sent! Check your email."
-#~ msgstr "Gởi! Kiểm tra hộp thư điện tử của bạn."
-
-#, fuzzy
-#~ msgid "Epic 404"
-#~ msgstr "Sử thi 404"
-
-#, fuzzy
-#~ msgid "Content to be added to the signup email"
-#~ msgstr "Nội dung được thêm vào email đăng ký"
-
-#, fuzzy
-#~ msgid "Content to be added to the reminder email"
-#~ msgstr "Nội dung được thêm vào email nhắc nhở"
-
-#, fuzzy
-#~ msgid "Update"
-#~ msgstr "Cập nhật"
-
-#, fuzzy
-#~ msgid "Yes"
-#~ msgstr "Có"
-
-#, fuzzy
-#~ msgid "No"
-#~ msgstr "Không"
+#~ "Le code de confirmation ne correspond pas ou est expiré. Veuillez "
+#~ "réessayer."
