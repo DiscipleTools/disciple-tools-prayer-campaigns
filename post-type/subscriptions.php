@@ -412,13 +412,29 @@ class DT_Subscriptions_Base {
             });
             $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
-            $notifications = isset( $subscriber['receive_prayer_time_notifications'] ) && !empty( $subscriber['receive_prayer_time_notifications'] );
             $link = $this->get_subscription_link( $post_type );
+
+            $welcome_email_sent = empty( $subscriber['activation_code'] );
+            $notifications = empty( $subscriber['activation_code'] ) && isset( $subscriber['receive_prayer_time_notifications'] ) && !empty( $subscriber['receive_prayer_time_notifications'] );
             ?>
-            <p>Conformation Email Sent:
-                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
-                <button class="loader button hollow tiny" type="button" id="resend_confirmation_email">Resend confirmation email</button>
-                <span id="confirmation_email_sent" style="display: none">Conformation Email Sent</span>
+            <p>
+                <?php if ( !empty( $subscriber['activation_code'] ) ) : ?>
+                    Activation email sent: <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/><br>
+                    Prayer commitments will only be counted after the user activates their account<br>
+                    <button class="loader button hollow tiny" type="button" id="resend_activation_email">Resend activation email</button>
+                    <button class="loader button clear tiny alert" type="button" id="manually_activate_email">Manually activate</button>
+                <?php else : ?>
+                    Account Activated: <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                <?php endif; ?>
+
+            </p>
+
+            <p>Welcome email sent:
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $welcome_email_sent ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
+                <?php if ( empty( $subscriber['activation_code'] ) ) : ?>
+                    <button class="loader button hollow tiny" type="button" id="resend_confirmation_email">Resend welocme email</button>
+                    <span id="confirmation_email_sent" style="display: none">Confirmation Email Sent</span>
+                <?php endif; ?>
             </p>
 <!--            <p>-->
 <!--                Email address verified:-->
@@ -497,6 +513,35 @@ class DT_Subscriptions_Base {
                             $('#confirmation_email_sent').show()
                         })
                     })
+                    $('#resend_activation_email').on("click", function (){
+                        $(this).addClass('loading')
+                        $.ajax({
+                            type: 'POST',
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/activation-email',
+                            beforeSend: (xhr) => {
+                                xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                            },
+                        }).then(()=>{
+                            $(this).removeClass('loading')
+                        })
+                    })
+                    $('#manually_activate_email').on("click", function (){
+                        $(this).addClass('loading')
+                        $.ajax({
+                            type: 'POST',
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/manually-activate',
+                            beforeSend: (xhr) => {
+                                xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                            },
+                        }).then(()=>{
+                            $(this).removeClass('loading')
+                            window.location.reload()
+                        })
+                    })
 
                 </script>
             <?php
@@ -516,7 +561,34 @@ class DT_Subscriptions_Base {
         register_rest_route( $namespace, '/(?P<id>\d+)/confirmation-email', [
             [
                 'methods'             => 'POST',
-                'callback'            => [ $this, 'send_confirmation_email' ],
+                'callback'            => [ $this, 'send_confirmation_email_endpoint' ],
+                'args' => [
+                        'id' => $arg_schemas['id'],
+                    ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+
+        register_rest_route( $namespace, '/(?P<id>\d+)/activation-email', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'send_activation_email' ],
+                'args' => [
+                        'id' => $arg_schemas['id'],
+                    ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+        register_rest_route( $namespace, '/(?P<id>\d+)/manually-activate', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'manually_activate_endpoint' ],
                 'args' => [
                         'id' => $arg_schemas['id'],
                     ],
@@ -528,16 +600,65 @@ class DT_Subscriptions_Base {
         ] );
     }
 
-    public function send_confirmation_email( WP_REST_Request $request ){
+    public function manually_activate_endpoint( WP_REST_Request $request ){
         $url_params = $request->get_url_params();
-        $subscription_id = $url_params['id'];
-        $subscription = DT_Posts::get_post( 'subscriptions', $subscription_id );
-        if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
+        if ( empty( $url_params['id'] ) ){
             return new WP_Error( __METHOD__, 'Missing parameters.' );
         }
-        $campaign = $subscription['campaigns'][0]['ID'];
+        $subscriber_id = $url_params['id'];
+        self::manually_activate_subscriber_account( $subscriber_id );
+        return self::send_welcome_email( $subscriber_id );
+    }
 
-        return DT_Prayer_Campaigns_Send_Email::send_registration( $subscription_id, $campaign );
+    public static function manually_activate_subscriber_account( $subscriber_id ){
+        DT_Posts::update_post( 'subscriptions', $subscriber_id, [
+            'status' => 'active',
+            'activation_code' => '',
+        ], true, false );
+        global $wpdb;
+        $wpdb->query( $wpdb->prepare( "
+            UPDATE $wpdb->dt_reports
+            SET type = 'campaign_app'
+            WHERE type = 'pending_signup'
+            AND post_id = %d
+        ", $subscriber_id ) );
+        return true;
+    }
+
+
+    public function send_activation_email( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id );
+        if ( is_wp_error( $subscription ) || !isset( $subscription['campaigns'][0]['ID'] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $campaign_id = $subscription['campaigns'][0]['ID'];
+
+        if ( !isset( $subscription['contact_email'][0]['value'] ) || empty( $subscription['contact_email'] ) ){
+            return new WP_Error( __METHOD__, 'Missing email.' );
+        }
+        return DT_Prayer_Campaigns_Send_Email::send_verification( $subscription['contact_email'][0]['value'], $subscriber_id );
+    }
+
+
+    public function send_confirmation_email_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscription_id = $url_params['id'];
+
+        return self::send_welcome_email( $subscription_id );
+    }
+
+    public static function send_welcome_email( $subscriber_id, $campaign_id = null ){
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( empty( $campaign_id ) ){
+            if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
+                return new WP_Error( __METHOD__, 'Missing parameters.' );
+            }
+            $campaign_id = $subscription['campaigns'][0]['ID'];
+        }
+        $recurring_signups = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
+        return DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $recurring_signups );
     }
 
 

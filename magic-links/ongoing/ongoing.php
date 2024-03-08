@@ -112,28 +112,16 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return new WP_Error( __METHOD__, 'Invalid Code', [ 'status' => 400 ] );
         }
 
-        DT_Posts::update_post( 'subscriptions', $params['id'], [
-            'status' => 'active',
-            'activation_code' => '',
-        ], true, false );
-        global $wpdb;
-        $wpdb->query( $wpdb->prepare( "
-            UPDATE $wpdb->dt_reports
-            SET type = 'campaign_app'
-            WHERE type = 'pending_signup'
-            AND post_id = %d
-        ", $params['id'] ) );
+        DT_Subscriptions_Base::manually_activate_subscriber_account( $params['id'] );
 
         $subscriber = DT_Posts::get_post( 'subscriptions', $params['id'], true, false );
-        $campaign_id = isset( $subscriber['campaigns'][0]['ID'] ) ? $subscriber['campaigns'][0]['ID'] : null;
 
-        if ( empty( $campaign_id ) ){
-            return new WP_Error( __METHOD__, 'Missing campaign', [ 'status' => 400 ] );
+        $sent = DT_Subscriptions_Base::send_welcome_email( $params['id'] );
+        if ( is_wp_error( $sent ) ){
+            return $sent;
         }
-        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber ) . '?verified=true';
 
-        $recurring_signups = DT_Subscriptions::get_recurring_signups( $params['id'], $campaign_id );
-        DT_Prayer_Campaigns_Send_Email::send_registration( $params['id'], $campaign_id, $recurring_signups );
+        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber ) . '?verified=true';
         return wp_redirect( $account_link );
     }
 
