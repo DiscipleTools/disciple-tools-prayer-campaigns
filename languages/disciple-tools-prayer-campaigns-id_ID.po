@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
-"PO-Revision-Date: 2024-03-01 07:30+0000\n"
+"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
+"PO-Revision-Date: 2024-03-08 14:15+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/id_ID/>\n"
@@ -26,7 +26,7 @@ msgstr "Verifikasi alamat email kamu"
 
 #: campaign-functions/send-email-utility.php:60
 msgid "Confirm your participation in prayer by activating your account."
-msgstr ""
+msgstr "Konfirmasikan partisipasi Anda dalam doa dengan mengaktifkan akun Anda."
 
 #: campaign-functions/send-email-utility.php:67
 #: campaign-functions/send-email-utility.php:372
@@ -295,11 +295,11 @@ msgstr "Akun"
 
 #: magic-links/subscription-management/subscription-management.php:346
 msgid "Account activated!"
-msgstr ""
+msgstr "Akun diaktifkan!"
 
 #: magic-links/subscription-management/subscription-management.php:347
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
+msgstr "Di sini Anda dapat mengatur komitmen doa dan pengaturan akun Anda."
 
 #: magic-links/subscription-management/subscription-management.php:354
 msgid "Links"
@@ -701,15 +701,23 @@ msgstr ""
 
 #: parts/components-enqueue.php:128
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
+msgstr "Hampir sampai! Selesaikan pendaftaran dengan mengaktifkan akun Anda."
 
 #: parts/components-enqueue.php:129
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr ""
+msgstr "Klik tombol \"Aktifkan Akun\" di email yang dikirim ke: %s"
 
 #: parts/components-enqueue.php:130
 msgid "It will look like this:"
-msgstr ""
+msgstr "Ini akan terlihat seperti ini:"
+
+#: parts/components-enqueue.php:131
+msgid "Pending - Verification Needed"
+msgstr "Tertunda - Diperlukan Verifikasi"
+
+#: parts/components-enqueue.php:132
+msgid "Back to sign-up"
+msgstr "Kembali ke pendaftaran"
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -820,14 +828,12 @@ msgstr "Kampanye ini telah selesai. Lihat Bahan di bawah"
 
 #: porches/generic/site/contact-us.php:23
 #: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
-#, fuzzy
-#| msgid "Contact Info"
 msgid "Contact Us"
-msgstr "Kontak Info"
+msgstr "Hubungi kami"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"
-msgstr ""
+msgstr "Pesan"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:104
