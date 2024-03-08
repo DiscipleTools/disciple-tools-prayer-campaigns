@@ -691,8 +691,7 @@ export class CampaignSignUp extends LitElement {
             <div class="section-div">
                 <h2 class="section-title" style="display: flex">
                     <span class="step-circle" style="background-color: red"></span>
-                    <span style="flex-grow: 1">${strings['Verify']}</span>
-                    <button @click="${() => this._view = 'main'}">Back</button>
+                    <span style="flex-grow: 1">${translate('Pending - Verification Needed')}</span>
                 </h2>
                 <cp-verify
                     email="${this._form_items.email}"
@@ -701,6 +700,7 @@ export class CampaignSignUp extends LitElement {
                         this.requestUpdate()
                     }}
                 ></cp-verify>
+                <button @click="${() => this._view = 'main'}">${translate('Back to sign-up')}</button>
                 <div class='form-error'
                      ?hidden=${!this._form_items?.code_error}>
                     ${this._form_items?.code_error}

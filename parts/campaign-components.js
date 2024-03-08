@@ -1128,7 +1128,7 @@ export class cpVerify extends LitElement {
         <p style="text-align: start">
             ${translate('It will look like this:')}
         </p>
-        <p style="margin-top: 2rem">
+        <p style="margin-top: 1rem; margin-bottom: 1rem; border:1px solid; border-radius: 5px; padding: 4px">
             <img style="width: 100%" src="${window.campaign_objects.plugin_url}assets/activate_account.gif"/>
         </p>
       </div>

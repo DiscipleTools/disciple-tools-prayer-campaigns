@@ -128,6 +128,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Almost there! Finish signing up by activating your account.' => __( 'Almost there! Finish signing up by activating your account.', 'disciple-tools-prayer-campaigns' ),
                     'Click the "Activate Account" button in the email sent to: %s' => __( 'Click the "Activate Account" button in the email sent to: %s', 'disciple-tools-prayer-campaigns' ),
                     'It will look like this:' => __( 'It will look like this:', 'disciple-tools-prayer-campaigns' ),
+                    'Pending - Verification Needed' => __( 'Pending - Verification Needed', 'disciple-tools-prayer-campaigns' ),
+                    'Back to sign-up' => __( 'Back to sign-up', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
