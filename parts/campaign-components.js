@@ -893,6 +893,11 @@ export class cpTimes extends LitElement {
         max-height: 500px;
         padding-inline-end: 10px;
       }
+      .center-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     `
   ]
 
@@ -958,7 +963,7 @@ export class cpTimes extends LitElement {
                         <span class="control">
                           ${time.progress < 100 ? 
                               html`<progress-ring progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">
+                              html`<div class="center-content" style="height:20px;width:20px;">
                                   ${time.coverage_count}
                               </div>`}
                         </span>
