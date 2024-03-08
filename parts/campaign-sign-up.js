@@ -142,10 +142,12 @@ export class CampaignSignUp extends LitElement {
   static properties = {
     already_signed_up: {type: Boolean},
     _view: {type: String, state: true},
+    _loading: {type: Boolean, state: true},
   }
 
   constructor() {
     super()
+    this._loading = false;
     this.campaign_data = {
       start_timestamp: 0,
       end_timestamp: 0,
@@ -247,7 +249,6 @@ export class CampaignSignUp extends LitElement {
     let data = {
       name: this._form_items.name,
       email: this._form_items.email,
-      code: this._form_items.code,
       receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: selected_times,
       recurring_signups: this.recurring_signups,
@@ -257,9 +258,6 @@ export class CampaignSignUp extends LitElement {
     .done((response)=>{
       this.selected_times = [];
       this._loading = false;
-      if ( response.account_link ){
-        this.account_link = response.account_link;
-      }
       this._view = 'confirmation';
       this.requestUpdate()
     })
@@ -267,9 +265,6 @@ export class CampaignSignUp extends LitElement {
       this._loading = false
       let message = html`So sorry. Something went wrong. Please, try again.<br>
           <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
-      if ( e.status === 401 ) {
-        message = translate('Confirmation code does not match or is expired. Please, try again.')
-      }
       this._form_items.code_error = message
       this.requestUpdate()
     })
@@ -283,20 +278,15 @@ export class CampaignSignUp extends LitElement {
       parts: window.campaign_objects.magic_link_parts,
       campaign_id: this.campaign_data.campaign_id,
       url: 'verify',
+      name: this._form_items.name,
+      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
+      selected_times: this.selected_times,
+      recurring_signups: this.recurring_signups,
     }
-    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/verify';
-    if (window.campaign_objects.remote) {
-      link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
-    }
-    jQuery.ajax({
-      type: 'POST',
-      data: JSON.stringify(data),
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      url: link
-    })
-    .done(()=>{
-      this._loading = false
+    window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
+    .done((response)=>{
+      this.selected_times = [];
+      this._loading = false;
       this._view = 'submit'
       this.requestUpdate()
       //scroll to #campaign
@@ -308,7 +298,7 @@ export class CampaignSignUp extends LitElement {
     })
     .fail((e)=>{
       console.log(e);
-      let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
+      const message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
         <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
       this._form_items.form_error = message
       this._loading = false
@@ -538,6 +528,7 @@ export class CampaignSignUp extends LitElement {
             </h2>
 
             <contact-info .selected_times_count="${this.selected_times_count()}"
+                          ._loading="${this._loading}"
                           @form-items=${this.handle_contact_info}
                           .form_error=${this._form_items.form_error}
                           @back=${()=>this._view = 'main'}
@@ -699,7 +690,7 @@ export class CampaignSignUp extends LitElement {
         <div class="column">
             <div class="section-div">
                 <h2 class="section-title" style="display: flex">
-                    <span class="step-circle"></span>
+                    <span class="step-circle" style="background-color: red"></span>
                     <span style="flex-grow: 1">${strings['Verify']}</span>
                     <button @click="${() => this._view = 'main'}">Back</button>
                 </h2>
@@ -713,16 +704,6 @@ export class CampaignSignUp extends LitElement {
                 <div class='form-error'
                      ?hidden=${!this._form_items?.code_error}>
                     ${this._form_items?.code_error}
-                </div>
-
-                <div style="text-align: center;margin-top:20px">
-                    <button ?disabled=${this._form_items?.code?.length!==6}
-                            @click=${() => this.submit()}>
-                        ${strings['Submit']}
-                        <img ?hidden=${!this._loading} class="button-spinner"
-                             src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
-                    </button>
-
                 </div>
             </div>
         </div>
@@ -745,10 +726,8 @@ export class CampaignSignUp extends LitElement {
             </p>
             <div class="nav-buttons">
                 <button @click=${() => window.location.reload()}>${translate('Ok')}</button>
-                <a ?hidden="${this.account_link.length===0}" class="button"
-                   href="${this.account_link}">${translate('Access Account')}</a>
-                ${window.campaign_objects.remote ? ``:html`<a class="button"
-                                                              href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}`}</a>
+                ${window.campaign_objects.remote ? ``:
+                    html`<a class="button" href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}`}</a>
             </div>
 
         </div>

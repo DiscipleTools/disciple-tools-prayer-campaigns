@@ -73,15 +73,12 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Monthly' => __( 'Monthly', 'disciple-tools-prayer-campaigns' ),
                     'Pick Dates and Times' => __( 'Pick Dates and Times', 'disciple-tools-prayer-campaigns' ),
                     'up to %s months' => _x( 'up to %s months', 'up to 3 months', 'disciple-tools-prayer-campaigns' ),
-                    'A confirmation code hase been sent to %s.' => __( 'A confirmation code hase been sent to %s.', 'disciple-tools-prayer-campaigns' ),
-                    'Please enter the code below in the next 10 minutes to confirm your email address.' => __( 'Please enter the code below in the next 10 minutes to confirm your email address.', 'disciple-tools-prayer-campaigns' ),
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
                     '%s Hour' => __( '%s Hour', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
                     '%1$s at %2$s for %3$s' => __( '%1$s at %2$s for %3$s', 'disciple-tools-prayer-campaigns' ),
                     'for %s minutes' => __( 'for %s minutes', 'disciple-tools-prayer-campaigns' ),
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
-                    'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),
                     'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
                     'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
@@ -128,7 +125,9 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
-                    'Confirmation code does not match or is expired. Please, try again.' => __( 'Confirmation code does not match or is expired. Please, try again.', 'disciple-tools-prayer-campaigns' ),
+                    'Almost there! Finish signing up by activating your account.' => __( 'Almost there! Finish signing up by activating your account.', 'disciple-tools-prayer-campaigns' ),
+                    'Click the Activate Account button in the email sent to: %s' => __( 'Click the Activate Account button in the email sent to: %s', 'disciple-tools-prayer-campaigns' ),
+                    'It will look like this:' => __( 'It will look like this:', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
