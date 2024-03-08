@@ -64,7 +64,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $verify_link
         );
         $message .= Campaigns_Email_Template::email_content_part(
-            __( 'Or click this link', 'disciple-tools-prayer-campaigns' ) . '<br>' .
+            __( 'Or click this link:', 'disciple-tools-prayer-campaigns' ) . '<br>' .
             '<a href="' . $verify_link. '">' . $verify_link . '</a>'
         );
 
