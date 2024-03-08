@@ -277,7 +277,7 @@ export class CampaignSignUp extends LitElement {
       email: this._form_items.email,
       parts: window.campaign_objects.magic_link_parts,
       campaign_id: this.campaign_data.campaign_id,
-      url: 'verify',
+      url: '',
       name: this._form_items.name,
       receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: this.selected_times,
