@@ -913,7 +913,9 @@ export class cpTimes extends LitElement {
                         <span class="control">
                           ${time.progress < 100 ? 
                               html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
+                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">
+                                  ${time.coverage_count}
+                              </div>`}
                         </span>
                     </div>
                 `})}
@@ -944,6 +946,7 @@ export class cpTimes extends LitElement {
         minute: time.toFormat('mm'),
         progress: progress,
         selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
+        coverage_count: s.subscribers,
       })
     })
     return times;
@@ -998,7 +1001,8 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
-        selected
+        selected,
+        coverage_count: progress >= 100 ? Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])) : 0,
       })
       key += this.slot_length * 60
     }
@@ -1043,7 +1047,8 @@ export class cpTimes extends LitElement {
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
-        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
+        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60)),
+        coverage_count: progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0,
       })
       key += this.slot_length * 60
     }
