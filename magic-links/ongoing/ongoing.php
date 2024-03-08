@@ -103,8 +103,10 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return new WP_Error( __METHOD__, 'Missing params', [ 'status' => 400 ] );
         }
         $status = get_post_meta( $params['id'], 'status', true );
+        $subscriber = DT_Posts::get_post( 'subscriptions', $params['id'], true, false );
+        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber );
         if ( $status === 'active' ){
-            return new WP_Error( __METHOD__, 'Already active', [ 'status' => 400 ] );
+            return wp_redirect( $account_link );
         }
         $saved_code = get_post_meta( $params['id'], 'activation_code', true );
         // create
@@ -114,15 +116,13 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
 
         DT_Subscriptions_Base::manually_activate_subscriber_account( $params['id'] );
 
-        $subscriber = DT_Posts::get_post( 'subscriptions', $params['id'], true, false );
 
         $sent = DT_Subscriptions_Base::send_welcome_email( $params['id'] );
         if ( is_wp_error( $sent ) ){
             return $sent;
         }
 
-        $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber ) . '?verified=true';
-        return wp_redirect( $account_link );
+        return wp_redirect( $account_link . '?verified=true' );
     }
 
     public function campaign_info( WP_REST_Request $request ){
