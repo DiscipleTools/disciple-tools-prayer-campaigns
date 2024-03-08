@@ -386,7 +386,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             if ( is_wp_error( $subscriber_id ) ){
                 return new WP_Error( __METHOD__, 'Could not create record', [ 'status' => 400 ] );
             }
-            $email_sent = DT_PRayer_Campaigns_Send_Email::send_verification( $email, $subscriber_id );
+            $email_sent = DT_PRayer_Campaigns_Send_Email::send_verification( $email, $campaign_id, $subscriber_id );
         }
         DT_Subscriptions::save_recurring_signups( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [], true );
         $subscriber_fields = DT_Posts::get_post_field_settings( 'subscriptions' );

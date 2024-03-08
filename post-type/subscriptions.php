@@ -663,7 +663,7 @@ class DT_Subscriptions_Base {
         if ( !isset( $subscription['contact_email'][0]['value'] ) || empty( $subscription['contact_email'] ) ){
             return new WP_Error( __METHOD__, 'Missing email.' );
         }
-        return DT_Prayer_Campaigns_Send_Email::send_verification( $subscription['contact_email'][0]['value'], $subscriber_id );
+        return DT_Prayer_Campaigns_Send_Email::send_verification( $subscription['contact_email'][0]['value'], $campaign_id, $subscriber_id );
     }
 
 
