@@ -65,8 +65,13 @@ class DT_Prayer_Campaigns_Send_Email {
         );
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'Or click this link', 'disciple-tools-prayer-campaigns' ) . '<br>' .
-            $verify_link
+            '<a href="' . $verify_link. '">' . $verify_link . '</a>'
         );
+
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'If you did not request this email, please ignore it.', 'disciple-tools-prayer-campaigns' )
+        );
+
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 

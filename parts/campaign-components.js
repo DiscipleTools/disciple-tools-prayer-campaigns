@@ -324,8 +324,10 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
-                  @click=${()=>this.verify_contact_info()}>
+          <button 
+              class="button-content"
+              ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
+              @click=${()=>this.verify_contact_info()}>
 
               ${strings['Next']}
               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
@@ -1110,13 +1112,20 @@ export class cpVerify extends LitElement {
     return html`
       <div class="verify-section">
         <p style="text-align: start">
-            ${translate('Almost there! Finish your signup by activating your account.')}
-            <br>
-            ${translate('Click the Activate Account button in the email sent to %s.').replace('%s', this.email)}
+            ${translate('Almost there! Finish signing up by activating your account.')}
         </p>
-          <p>
-              <img style="width: 100%" src="${window.campaign_objects.plugin_url}assets/activate_account.gif"/>
-          </p>
+          
+        <p style="text-align: start">
+            ${translate('Click the Activate Account button in the email sent to: %s').replace('%s', '')}
+            <strong>${this.email}</strong>
+        </p>
+          
+        <p style="text-align: start">
+            ${translate('It will look like this:')}
+        </p>
+        <p style="margin-top: 2rem">
+            <img style="width: 100%" src="${window.campaign_objects.plugin_url}assets/activate_account.gif"/>
+        </p>
       </div>
       
     `

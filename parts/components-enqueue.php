@@ -125,8 +125,8 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
-                    'Almost there! Finish your signup by activating your account.' => __( 'Almost there! Finish your signup by activating your account.', 'disciple-tools-prayer-campaigns' ),
-                    'Click the Activate Account button in the email sent to %s.' => __( 'Click the Activate Account button in the email sent to %s.', 'disciple-tools-prayer-campaigns' ),
+                    'Almost there! Finish signing up by activating your account.' => __( 'Almost there! Finish signing up by activating your account.', 'disciple-tools-prayer-campaigns' ),
+                    'Click the Activate Account button in the email sent to: %s' => __( 'Click the Activate Account button in the email sent to: %s', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
