@@ -127,6 +127,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
                     'Almost there! Finish signing up by activating your account.' => __( 'Almost there! Finish signing up by activating your account.', 'disciple-tools-prayer-campaigns' ),
                     'Click the Activate Account button in the email sent to: %s' => __( 'Click the Activate Account button in the email sent to: %s', 'disciple-tools-prayer-campaigns' ),
+                    'It will look like this:' => __( 'It will look like this:', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
