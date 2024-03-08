@@ -106,7 +106,8 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $subscriber = DT_Posts::get_post( 'subscriptions', $params['id'], true, false );
         $account_link = DT_Prayer_Campaigns_Send_Email::management_link( $subscriber );
         if ( $status === 'active' ){
-            return wp_redirect( $account_link );
+            wp_redirect( $account_link );
+            die();
         }
         $saved_code = get_post_meta( $params['id'], 'activation_code', true );
         // create
@@ -122,7 +123,8 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return $sent;
         }
 
-        return wp_redirect( $account_link . '?verified=true' );
+        wp_redirect( $account_link . '?verified=true' );
+        die();
     }
 
     public function campaign_info( WP_REST_Request $request ){
