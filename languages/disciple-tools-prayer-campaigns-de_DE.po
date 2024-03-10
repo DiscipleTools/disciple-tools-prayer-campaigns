@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
-"PO-Revision-Date: 2024-03-08 11:38+0000\n"
+"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
+"PO-Revision-Date: 2024-03-08 14:15+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: German <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/de_DE/>\n"
@@ -29,7 +29,8 @@ msgstr "Bestätige deine Email-Adresse"
 
 #: campaign-functions/send-email-utility.php:60
 msgid "Confirm your participation in prayer by activating your account."
-msgstr "Bestätigen Sie Ihre Teilnahme am Gebet, indem Sie Ihr Konto aktivieren."
+msgstr ""
+"Bestätigen Sie Ihre Teilnahme am Gebet, indem Sie Ihr Konto aktivieren."
 
 #: campaign-functions/send-email-utility.php:67
 #: campaign-functions/send-email-utility.php:372
@@ -42,7 +43,6 @@ msgstr "Wenn du diese E-Mail nicht angefordert hast, ignoriere sie bitte."
 
 #: campaign-functions/send-email-utility.php:156
 #: campaign-functions/send-email-utility.php:246
-#, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s von %2$s bis %3$s"
@@ -52,9 +52,8 @@ msgid "see more on your account"
 msgstr "Weitere Informationen findest du in deinem Benutzerkonto"
 
 #: campaign-functions/send-email-utility.php:175
-#, fuzzy
 msgid "Registered to pray with us!"
-msgstr "Melde dich an, um mit uns zu beten!"
+msgstr "Registriert, um mit uns zu beten!"
 
 #: campaign-functions/send-email-utility.php:197
 #: campaign-functions/send-email-utility.php:278
@@ -63,7 +62,6 @@ msgid "Hello %s,"
 msgstr "Hallo %s,"
 
 #: campaign-functions/send-email-utility.php:199
-#, fuzzy
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr ""
@@ -72,7 +70,6 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:200
 #: campaign-functions/send-email-utility.php:289
-#, fuzzy
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 "In deinem Benutzerkonto kannst du einsehen für welche Zeiten du dich "
@@ -117,7 +114,6 @@ msgid "Thank you for praying with us."
 msgstr "Danke, dass du mit uns betest."
 
 #: campaign-functions/send-email-utility.php:280
-#, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "Hier sind deinen bevorstehenden Gebetszeiten:"
 
@@ -133,7 +129,6 @@ msgstr ""
 "Deine letzte Gebetszeit liegt nun 2 Wochen zurück. Möchtest du weiter beten?"
 
 #: campaign-functions/send-email-utility.php:370
-#, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Melde dich hier für weitere Gebetszeiten an oder verlängere deine bisherige "
@@ -732,6 +727,14 @@ msgstr ""
 #: parts/components-enqueue.php:130
 msgid "It will look like this:"
 msgstr "Es wird so aussehen:"
+
+#: parts/components-enqueue.php:131
+msgid "Pending - Verification Needed"
+msgstr "Ausstehend – Verifizierung erforderlich"
+
+#: parts/components-enqueue.php:132
+msgid "Back to sign-up"
+msgstr "Zurück zur Anmeldung"
 
 #: parts/components.php:32
 msgid "Praying as a group?"

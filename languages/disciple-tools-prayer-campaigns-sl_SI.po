@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
+"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovenian <https://translate.disciple.tools/projects/disciple-"
@@ -786,6 +786,14 @@ msgstr ""
 
 #: parts/components-enqueue.php:130
 msgid "It will look like this:"
+msgstr ""
+
+#: parts/components-enqueue.php:131
+msgid "Pending - Verification Needed"
+msgstr ""
+
+#: parts/components-enqueue.php:132
+msgid "Back to sign-up"
 msgstr ""
 
 #: parts/components.php:32
