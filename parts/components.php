@@ -70,7 +70,7 @@ function dt_campaign_user_record_prayed(){
                 number,
                 campaign_id: <?php echo esc_html( $campaign['ID'] ) ?>,
               }),
-              url: '<?php echo esc_html( rest_url() ) ?>campaign_app/v1/group-count',
+              url: '<?php echo esc_html( rest_url() ) ?>campaign_app/v1/dt-public/group-count',
             }
             jQuery.ajax(options).done(function (data) {
               $('#prayer_group_size-spinner').hide()

@@ -160,7 +160,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         ];
     }
     public function add_api_routes(){
-        $namespace = $this->root . '/v1';
+        $namespace = $this->root . '/v1/dt-public';
         register_rest_route(
             $namespace, 'group-count', [
                 [
