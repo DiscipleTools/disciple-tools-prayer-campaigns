@@ -103,7 +103,11 @@ if ( empty( $list->posts ) ){
             foreach ( $list->posts as $item ) :
 
                 $campaign_day = get_post_meta( $item->ID, 'day', true );
-                $date = DT_Campaign_Settings::date_of_campaign_day( $campaign_day );
+                if ( empty( $campaign_day ) || !is_numeric( $campaign_day ) ) {
+                    continue;
+                }
+
+                $date = DT_Campaign_Settings::date_of_campaign_day( (int) $campaign_day );
 
                 if ( in_array( $campaign_day, $days_displayed ) || ( isset( $todays_campaign_day ) && $campaign_day === $todays_campaign_day ) ) {
                     continue;
