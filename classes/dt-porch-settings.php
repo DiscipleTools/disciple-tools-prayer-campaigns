@@ -244,7 +244,7 @@ class DT_Porch_Settings {
                 'label' => 'Show Timer on Prayer Fuel',
                 'default' => 'Yes',
                 'value' => 'yes',
-                'type' => 'prayer_timer_toggle',
+                'type' => 'boolean',
                 'tab' => 'settings',
             ],
             'prayer_fuel_frequency' => [

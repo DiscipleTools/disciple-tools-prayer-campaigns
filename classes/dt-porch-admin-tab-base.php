@@ -176,19 +176,6 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td></td>
                                 </tr>
-                            <?php elseif ( 'prayer_timer_toggle' === $field['type'] ) : ?>
-                                <tr>
-                                    <td>
-                                        <?php echo esc_html( $field['label'] ); ?>
-                                    </td>
-                                    <td>
-                                        <select name="list[<?php echo esc_html( $key ); ?>]">
-                                            <option value='daily' <?php selected( empty( $field['value'] ) || $field['value'] !== 'no' ); ?>><?php echo esc_html( __( 'Yes', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                            <option value='daily' <?php selected( $field['value'] === 'no' ); ?>><?php echo esc_html( __( 'No', 'disciple-tools-prayer-campaigns' ) ); ?></option>
-                                        </select>
-                                    </td>
-                                    <td></td>
-                                </tr>
                             <?php elseif ( 'prayer_fuel_frequency' === $field['type'] ) : ?>
                                 <tr>
                                     <td>

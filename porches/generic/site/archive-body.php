@@ -59,7 +59,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
 
             <div class='row'>
                 <?php
-                if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
+                if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
                     if ( function_exists( 'show_prayer_timer' ) ) : ?>
                         <div class="col">
                             <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
