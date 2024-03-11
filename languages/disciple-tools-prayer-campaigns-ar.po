@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
-"PO-Revision-Date: 2024-02-09 16:00+0000\n"
-"Last-Translator: Shad Stockton <shad.stockton@iles-tunis.com>\n"
+"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
+"PO-Revision-Date: 2024-03-08 14:15+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/ar/>\n"
 "Language: ar\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/cron-schedule.php:82
@@ -30,7 +30,7 @@ msgstr "تحقق من عنوان بريدك الإلكتروني"
 
 #: campaign-functions/send-email-utility.php:60
 msgid "Confirm your participation in prayer by activating your account."
-msgstr ""
+msgstr "قم بتأكيد مشاركتك في الصّلاة من خلال تفعيل حسابك."
 
 #: campaign-functions/send-email-utility.php:67
 #: campaign-functions/send-email-utility.php:372
@@ -291,11 +291,11 @@ msgstr "الحساب"
 
 #: magic-links/subscription-management/subscription-management.php:346
 msgid "Account activated!"
-msgstr ""
+msgstr "تمّ تفعيل الحساب!"
 
 #: magic-links/subscription-management/subscription-management.php:347
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
+msgstr "هنا يمكنك إدارة التزامات صلواتك وإعدادات حسابك."
 
 #: magic-links/subscription-management/subscription-management.php:354
 msgid "Links"
@@ -693,15 +693,23 @@ msgstr ""
 
 #: parts/components-enqueue.php:128
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
+msgstr "أوشكت على الوصول! قم بإنهاء التسجيل عن طريق تفعيل حسابك."
 
 #: parts/components-enqueue.php:129
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr ""
+msgstr "إضغط فوق الزرّ \"تنشيط الحساب\" في البريد الإلكتروني المرسل إلى: %s"
 
 #: parts/components-enqueue.php:130
 msgid "It will look like this:"
-msgstr ""
+msgstr "سوف يبدو مثل هذا:"
+
+#: parts/components-enqueue.php:131
+msgid "Pending - Verification Needed"
+msgstr "في انتظار المراجعة - مطلوب التحقق"
+
+#: parts/components-enqueue.php:132
+msgid "Back to sign-up"
+msgstr "العودة إلى التسجيل"
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -809,14 +817,12 @@ msgstr "انتهت هذه الحملة. انظر الوقود أدناه"
 
 #: porches/generic/site/contact-us.php:23
 #: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
-#, fuzzy
-#| msgid "Contact Info"
 msgid "Contact Us"
-msgstr "بيانات التواصل"
+msgstr "إتصل بنا"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"
-msgstr ""
+msgstr "رسالة"
 
 #: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
 #: porches/generic/site/top-section.php:104

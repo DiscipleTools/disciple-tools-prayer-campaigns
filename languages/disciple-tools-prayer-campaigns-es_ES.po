@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T11:26:30+00:00\n"
-"PO-Revision-Date: 2024-03-08 11:38+0000\n"
+"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
+"PO-Revision-Date: 2024-03-08 14:15+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/es_ES/>\n"
@@ -719,6 +719,14 @@ msgstr ""
 #: parts/components-enqueue.php:130
 msgid "It will look like this:"
 msgstr "Se verá así:"
+
+#: parts/components-enqueue.php:131
+msgid "Pending - Verification Needed"
+msgstr "Pendiente: se necesita verificación"
+
+#: parts/components-enqueue.php:132
+msgid "Back to sign-up"
+msgstr "Volver al registro"
 
 #: parts/components.php:32
 msgid "Praying as a group?"

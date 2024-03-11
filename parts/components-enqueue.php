@@ -35,7 +35,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                 'dt_campaigns_is_p4m_news_enabled' => dt_campaigns_is_p4m_news_enabled(),
                 'translations' => [
                     'Detected time zone' => __( 'Detected time zone', 'disciple-tools-prayer-campaigns' ),
-                    'Choose a timezone' => __( 'Choose a timezone', 'disciple-tools-prayer-campaigns' ),
+                    'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
                     'days' => __( 'days', 'disciple-tools-prayer-campaigns' ),
                     'hours' => __( 'hours', 'disciple-tools-prayer-campaigns' ),
                     'minutes' => __( 'minutes', 'disciple-tools-prayer-campaigns' ),
@@ -101,7 +101,6 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Thank you for praying with us.' => __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ),
                     'Language' => __( 'Language', 'disciple-tools-prayer-campaigns' ),
                     'Delete' => __( 'Delete', 'disciple-tools-prayer-campaigns' ),
-                    'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
                     'See Prayer Fuel' => __( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                     'change time' => __( 'change time', 'disciple-tools-prayer-campaigns' ),
                     'Remove all' => __( 'Remove all', 'disciple-tools-prayer-campaigns' ),
@@ -141,6 +140,10 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'It will look like this:' => __( 'It will look like this:', 'disciple-tools-prayer-campaigns' ),
                     'Pending - Verification Needed' => __( 'Pending - Verification Needed', 'disciple-tools-prayer-campaigns' ),
                     'Back to sign-up' => __( 'Back to sign-up', 'disciple-tools-prayer-campaigns' ),
+                    'So sorry. Something went wrong. You can:' => __( 'So sorry. Something went wrong. You can:', 'disciple-tools-prayer-campaigns' ),
+                    'Try Again' => __( 'Try Again', 'disciple-tools-prayer-campaigns' ),
+                    'Contact Us' => __( 'Contact Us', 'disciple-tools-prayer-campaigns' ),
+                    'Please check your email to activate your account before adding more prayer times.' => __( 'Please check your email to activate your account before adding more prayer times.', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );

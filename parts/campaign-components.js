@@ -124,7 +124,7 @@ export class TimeZonePicker extends LitElement {
             <button id="change-timezone-button" ?hidden=${!this.timezone} @click=${this.show_picker}>${this.timezone}</button>
             <div ?hidden=${this.timezone.length} >
                 <select @change=${this.timezone_changed}>
-                    <option value="">${strings['Choose a timezone']}</option>
+                    <option value="">${strings['Select a timezone']}</option>
                     ${Intl.supportedValuesOf('timeZone').map(o=>{
                         return html`<option value="${o}">${o}</option>`
                     })}
