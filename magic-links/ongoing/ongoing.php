@@ -210,10 +210,16 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $activation_code = '';
         if ( (int) $existing_posts['total'] === 1 ){
             $subscriber_id = $existing_posts['posts'][0]['ID'];
+            $status = get_post_meta( $subscriber_id, 'status', true );
+            if ( $status === 'pending' ){
+                DT_PRayer_Campaigns_Send_Email::send_verification( $email, $subscriber_id );
+                return new WP_Error( 'activate_account', 'Please activate your account before adding more times', [ 'status' => 400 ] );
+            }
             $added_times = DT_Subscriptions::add_subscriber_times( $campaign_id, $subscriber_id, $params['selected_times'] ?? [] );
             if ( is_wp_error( $added_times ) ){
                 return $added_times;
             }
+            $created = DT_Subscriptions::save_recurring_signups( (int) $subscriber_id, (int) $campaign_id, $params['recurring_signups'] ?? [], false );
         } else {
             $lang = 'en_US';
             if ( isset( $params['parts']['lang'] ) ){
@@ -238,9 +244,8 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 return new WP_Error( __METHOD__, 'Could not create record', [ 'status' => 400 ] );
             }
             $email_sent = DT_PRayer_Campaigns_Send_Email::send_verification( $email, $subscriber_id );
+            $created = DT_Subscriptions::save_recurring_signups( (int) $subscriber_id, (int) $campaign_id, $params['recurring_signups'] ?? [], true );
         }
-        DT_Subscriptions::save_recurring_signups( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [], true );
-
         if ( empty( $activation_code ) ){
             $email_sent = DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $params['recurring_signups'] ?? [] );
             if ( !$email_sent ){

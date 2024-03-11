@@ -298,8 +298,13 @@ export class CampaignSignUp extends LitElement {
     })
     .fail((e)=>{
       console.log(e);
-      const message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
-        <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
+      let message = html`${translate('So sorry. Something went wrong. You can:')} <br>
+        <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">${translate('Try Again')}</a> <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">${translate('Contact Us')}</a>`
+      if ( e?.responseJSON?.code === 'activate_account' ){
+        message = translate('Please check your email to activate your account before adding more prayer times.')
+      }
+
+
       this._form_items.form_error = message
       this._loading = false
       this.requestUpdate()

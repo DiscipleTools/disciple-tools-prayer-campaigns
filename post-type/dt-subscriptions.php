@@ -207,6 +207,9 @@ class DT_Subscriptions {
                 $recurring_signup_info['time'],
                 $recurring_signup_info['week_day'] ?? null,
             );
+            if ( empty( $report_id ) ){
+                return false;
+            }
 
             foreach ( $recurring_signup_info['selected_times'] as $time ){
                 if ( !isset( $time['time'] ) ){
@@ -409,7 +412,7 @@ class Recurring_Signups {
             'lat' => null,
             'grid_id' => null,
         ];
-        return Disciple_Tools_Reports::insert( $args, true, false );
+        return Disciple_Tools_Reports::insert( $args, true, true );
     }
 
     public function get_recurring_signups(){
