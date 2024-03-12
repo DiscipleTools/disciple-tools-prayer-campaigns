@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
-"PO-Revision-Date: 2024-03-08 14:15+0000\n"
+"POT-Creation-Date: 2024-03-11T13:33:36+00:00\n"
+"PO-Revision-Date: 2024-03-12 12:24+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/fr_FR/>\n"
@@ -339,8 +339,8 @@ msgid "Detected time zone"
 msgstr "Fuseau horaire  détecté"
 
 #: parts/components-enqueue.php:37
-msgid "Choose a timezone"
-msgstr "Choisissez le fuseau horaire"
+msgid "Select a timezone"
+msgstr "Sélectionnez un fuseau horaire"
 
 #: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
 #: porches/generic/site/stats.php:227
@@ -604,102 +604,98 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: parts/components-enqueue.php:103
-msgid "Select a timezone"
-msgstr "Sélectionnez un fuseau horaire"
-
-#: parts/components-enqueue.php:104
 msgid "See Prayer Fuel"
 msgstr "Voir le guide de prière"
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:104
 msgid "change time"
 msgstr "changer l'heure"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:105
 msgid "Remove all"
 msgstr "tout supprimer"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:106
 msgid "See prayer times"
 msgstr "Voir les temps de prière"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:107
 msgid "Delete Prayer Times"
 msgstr "Supprimer les temps de prière"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:108
 msgid "Really delete these prayer times?"
 msgstr "Vraiment supprimer ces temps de prière ?"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:109
 msgid "extend"
 msgstr "prolonger"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:110
 msgid "Extend Prayer Times"
 msgstr "Prolonger les temps de prière"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:111
 msgid "Really delete this prayer time?"
 msgstr "Vraiment supprimer ce temps de prière ?"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:112
 msgid "Delete Prayer Time"
 msgstr "Supprimer le temps de prière"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:113
 msgid "Mondays"
 msgstr "Les lundis"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:114
 msgid "Tuesdays"
 msgstr "Les mardis"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:115
 msgid "Wednesdays"
 msgstr "Les mercredis"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:116
 msgid "Thursdays"
 msgstr "Les jeudis"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:117
 msgid "Fridays"
 msgstr "Les vendredis"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:118
 msgid "Saturdays"
 msgstr "Les samedis"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:119
 msgid "Sundays"
 msgstr "Les dimanches"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:120
 msgid "Change Prayer Time"
 msgstr "Changer l'heure de la prière"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:121
 msgid "Your current prayer time is %s"
 msgstr "Votre heure de prière actuelle est %s"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:122
 msgid "Select a new time:"
 msgstr "Sélectionnez une nouvelle heure :"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:123
 msgid "Select a time"
 msgstr "Sélectionnez une heure"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:124
 msgid "Renew Prayer Times"
 msgstr "Renouveler les heures de prière"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:125
 msgid "renew"
 msgstr "renouveler"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:126
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
@@ -707,26 +703,47 @@ msgstr ""
 "Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
 "communications occasionnelles de GospelAmbition.org."
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:127
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "Presque là ! Terminez votre inscription en activant votre compte."
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:128
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "Cliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:129
 msgid "It will look like this:"
 msgstr "Il ressemblera à ceci :"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:130
 msgid "Pending - Verification Needed"
 msgstr "En attente – Vérification requise"
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:131
 msgid "Back to sign-up"
 msgstr "Retour à l'inscription"
+
+#: parts/components-enqueue.php:132
+msgid "So sorry. Something went wrong. You can:"
+msgstr "Désolé. Quelque chose s'est mal passé. Vous pouvez :"
+
+#: parts/components-enqueue.php:133
+msgid "Try Again"
+msgstr "Essayer à nouveau"
+
+#: parts/components-enqueue.php:134 porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr "Contactez-nous"
+
+#: parts/components-enqueue.php:135
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
+msgstr ""
+"Veuillez vérifier votre email pour activer votre compte avant d'ajouter "
+"d'autres heures de prière."
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -829,18 +846,13 @@ msgstr ""
 "bonne voie."
 
 #: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
+#: porches/generic/site/post-list-body.php:151
 msgid "Content will start in %s days"
 msgstr "Le contenu commencera dans %s jours"
 
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
-
-#: porches/generic/site/contact-us.php:23
-#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
-msgid "Contact Us"
-msgstr "Contactez-nous"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"
@@ -872,11 +884,11 @@ msgstr "Engagements de prière requis"
 msgid "View All"
 msgstr "Tout voir"
 
-#: porches/generic/site/post-list-body.php:134
+#: porches/generic/site/post-list-body.php:138
 msgid "Read"
 msgstr "Lire"
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:153
 msgid "No prayer fuel found"
 msgstr "Aucun guide de prière trouvé"
 
@@ -1050,6 +1062,9 @@ msgstr "Temps de prière : %s min"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Prier maintenant..."
+
+#~ msgid "Choose a timezone"
+#~ msgstr "Choisissez le fuseau horaire"
 
 #, fuzzy
 #~| msgid "Or click this link:"
