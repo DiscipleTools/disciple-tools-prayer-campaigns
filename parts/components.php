@@ -32,7 +32,7 @@ function dt_campaign_user_record_prayed(){
                     data-wow-delay='0.3s'><?php echo esc_html( __( 'Praying as a group?', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             </div>
-            <div class='leading-others'>
+            <div class='content-paragraph-padding'>
                 <p >
                     <?php echo esc_html( sprintf( __( 'Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far.', 'disciple-tools-prayer-campaigns' ), $days_scheduled ) ); ?>
                 </p>
