@@ -56,12 +56,7 @@ if ( ! empty( $porch_fields['google_analytics']['value'] ) ) { ?>
     .fixed-top.menu-bg .logo {
         color: <?php echo esc_attr( PORCH_COLOR_SCHEME_HEX ) ?> !important;
     }
-    a {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>
-    }
-    a:hover {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
-    }
+
     .btn-common {
         border-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
         background-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
