@@ -562,6 +562,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
             DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
         }
 
+        do_action( 'campaign_stats_message_submit', $post_id, $params['email'], $comment );
         return true;
     }
 

@@ -227,6 +227,7 @@ class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
             DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'contact_us', [], false );
         }
 
+        do_action( 'campaign_contact_us', $campaign_id, $name, $email, $message );
         return $added_comment;
     }
 }
