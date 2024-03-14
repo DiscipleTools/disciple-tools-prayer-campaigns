@@ -455,8 +455,17 @@ class DT_Campaigns_Base {
                 </div>
             </div>
             <div class="cell small-6 ">
+                <div class="section-subheader">
+                    Hours from group reports
+                </div>
+                <div>
+                    <span style="font-size:2rem;"><?php echo esc_html( self::query_extra_minutes( get_the_ID() ) / 60 ) ?></span>
+                </div>
+            </div>
+            <div class="cell small-12 ">
                 <button class="button hollow" id="campaign_coverage_stats">Stats</button>
                 <button class="button hollow" id="campaign_coverage_timeline">Timeline</button>
+                <button class="button hollow" id="campaign_group_reports">Group Reports</button>
             </div>
         </div>
         <script>
@@ -673,6 +682,40 @@ class DT_Campaigns_Base {
                 $('#modal-full').foundation('open')
             })
 
+            $('#campaign_group_reports').on('click', function(e){
+                $('#modal-small-title').empty().html(`<h2>Group Reports</h2><hr>`)
+
+                let container = $('#modal-small-content')
+                container.empty().html(`
+                    <span class="loading-spinner active"></span>
+                `)
+                window.makeRequest( 'GET', 'group-reports', { campaign_id: window.detailsSettings.post_id }, 'campaigns/v1')
+                .done(function(data){
+                    let content = `<table style="max-height:600px; overflow-y: scroll">
+                        <tr style="text-align: left">
+                            <th>Date</th>
+                            <th>Group Size</th>
+                            <th>Minutes Added</th>
+                        </tr>`
+                    if ( data ) {
+                        const slot_length = parseInt( window.detailsSettings?.post_fields?.min_time_duration?.key || 15 )
+                        jQuery.each(data, function(i,v){
+                            content += `<tr>
+                                <td>${window.lodash.escape(window.SHAREDFUNCTIONS.formatDate(v.timestamp))}</td>
+                                <td>${window.lodash.escape(v.count)}</td>
+                                <td>${window.lodash.escape( (parseInt( v.count ) - 1) * slot_length )}</td>
+                            </tr>`
+                        })
+                    } else {
+                        content += `<div class="cell">No group reports found</div>`
+                    }
+                    content += `</ul>`
+                    container.empty().html(content)
+                })
+
+                $('#modal-small').foundation('open')
+            })
+
         })
         </script>
 
@@ -747,6 +790,18 @@ class DT_Campaigns_Base {
                 [
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => [ $this, 'timeline_endpoint' ],
+                    'permission_callback' => function( WP_REST_Request $request ) {
+                        return dt_has_permissions( [ 'view_any_subscriptions' ] );
+                    },
+                ],
+            ]
+        );
+
+        register_rest_route(
+            $namespace, 'group-reports', [
+                [
+                    'methods'  => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'group_reports_endpoint' ],
                     'permission_callback' => function( WP_REST_Request $request ) {
                         return dt_has_permissions( [ 'view_any_subscriptions' ] );
                     },
@@ -862,6 +917,25 @@ class DT_Campaigns_Base {
         GROUP BY time_slot_begin, time_slot_end;
         ", $tz_offset, $time_format, $tz_offset, $time_format, $campaign_post_id ), ARRAY_A);
         return $timeline_slots;
+    }
+
+    public function group_reports_endpoint( WP_REST_Request $request ){
+        $params = $request->get_params();
+
+        if ( ! isset( $params['campaign_id'] ) ) {
+            return new WP_Error( __METHOD__, 'Required parameter not set' );
+        }
+
+        global $wpdb;
+        $values = $wpdb->get_results( $wpdb->prepare( "SELECT
+            r.value as count, r.timestamp as timestamp
+            FROM $wpdb->dt_reports r
+            WHERE r.parent_id = %s AND r.post_type = 'campaigns' AND r.type = 'fuel'
+            ;", $params['campaign_id']
+        ), ARRAY_A );
+
+        return $values;
+
     }
 
     public static function query_scheduled_count( $campaign_post_id ){
