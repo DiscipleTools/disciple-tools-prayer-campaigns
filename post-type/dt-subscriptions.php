@@ -86,7 +86,13 @@ class DT_Subscriptions {
 
     public static function get_subscribers_count( $campaign_id ){
         global $wpdb;
-        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s", $campaign_id ) );
+        return $wpdb->get_var( $wpdb->prepare( "
+            SELECT count(DISTINCT p2p_to) as count
+            FROM $wpdb->p2p
+            INNER JOIN $wpdb->postmeta pm ON ( pm.post_id = p2p_to AND pm.meta_key = 'status' AND pm.meta_value != 'pending' )
+            WHERE p2p_type = 'campaigns_to_subscriptions'
+            AND p2p_from = %s
+        ", $campaign_id ) );
     }
 
 

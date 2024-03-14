@@ -171,7 +171,7 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                     </div>
                 </div>
             </div>
-            <?php $subscribers_count =DT_Subscriptions::get_subscribers_count( $campaign_fields['ID'] ); ?>
+            <?php $subscribers_count = DT_Subscriptions::get_subscribers_count( $campaign_fields['ID'] ); ?>
 
             <div class="<?php echo esc_html( $size ); ?>">
                 <div class="wow fadeInUp" data-wow-delay=".6s">

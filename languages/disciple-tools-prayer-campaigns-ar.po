@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
+"POT-Creation-Date: 2024-03-11T13:33:36+00:00\n"
 "PO-Revision-Date: 2024-03-08 14:15+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
@@ -328,7 +328,7 @@ msgid "Detected time zone"
 msgstr "المنطقة الزمنية المُكتشفة"
 
 #: parts/components-enqueue.php:37
-msgid "Choose a timezone"
+msgid "Select a timezone"
 msgstr "اختر منطقة زمنية"
 
 #: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
@@ -588,102 +588,98 @@ msgid "Delete"
 msgstr "حذف"
 
 #: parts/components-enqueue.php:103
-msgid "Select a timezone"
-msgstr "اختر منطقة زمنية"
-
-#: parts/components-enqueue.php:104
 msgid "See Prayer Fuel"
 msgstr "اكتشاف وقود الصلاة"
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:104
 msgid "change time"
 msgstr "تغيير الوقت"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:105
 msgid "Remove all"
 msgstr "حذف الكل"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:106
 msgid "See prayer times"
 msgstr "انظر إلى أوقات الصلاة"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:107
 msgid "Delete Prayer Times"
 msgstr "حذف أوقات الصلاة"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:108
 msgid "Really delete these prayer times?"
 msgstr "هل تريد حقًا حذف هذه الأوقات؟"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:109
 msgid "extend"
 msgstr "مَدّد"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:110
 msgid "Extend Prayer Times"
 msgstr "تمديد أوقات الصلاة"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:111
 msgid "Really delete this prayer time?"
 msgstr "هل تريد حقًا حذف وقت الصلاة هذا؟"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:112
 msgid "Delete Prayer Time"
 msgstr "حذف وقت الصلاة"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:113
 msgid "Mondays"
 msgstr "أيام الاثنين"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:114
 msgid "Tuesdays"
 msgstr "الثلثاء"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:115
 msgid "Wednesdays"
 msgstr "أيام الأربعاء"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:116
 msgid "Thursdays"
 msgstr "أيام الخميس"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:117
 msgid "Fridays"
 msgstr "أيام الجمعة"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:118
 msgid "Saturdays"
 msgstr "أيام السبت"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:119
 msgid "Sundays"
 msgstr "أيام الأحد"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:120
 msgid "Change Prayer Time"
 msgstr "تغيير وقت الصلاة"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:121
 msgid "Your current prayer time is %s"
 msgstr "وقت صلاتك الحالي هو %s"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:122
 msgid "Select a new time:"
 msgstr "اختر وقتًا جديدًا:"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:123
 msgid "Select a time"
 msgstr "اختر وقتًا"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:124
 msgid "Renew Prayer Times"
 msgstr "تجديد أوقات الصلاة"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:125
 msgid "renew"
 msgstr "تجديد"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:126
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
@@ -691,25 +687,44 @@ msgstr ""
 "احصل على الأخبار والفرص في Pray4Movement ، والاتصالات العرضية من "
 "GospelAmbition.org."
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:127
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "أوشكت على الوصول! قم بإنهاء التسجيل عن طريق تفعيل حسابك."
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:128
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "إضغط فوق الزرّ \"تنشيط الحساب\" في البريد الإلكتروني المرسل إلى: %s"
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:129
 msgid "It will look like this:"
 msgstr "سوف يبدو مثل هذا:"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:130
 msgid "Pending - Verification Needed"
 msgstr "في انتظار المراجعة - مطلوب التحقق"
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:131
 msgid "Back to sign-up"
 msgstr "العودة إلى التسجيل"
+
+#: parts/components-enqueue.php:132
+msgid "So sorry. Something went wrong. You can:"
+msgstr ""
+
+#: parts/components-enqueue.php:133
+msgid "Try Again"
+msgstr ""
+
+#: parts/components-enqueue.php:134 porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr "إتصل بنا"
+
+#: parts/components-enqueue.php:135
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
+msgstr ""
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -807,18 +822,13 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "حاول استخدام بعض الروابط في القائمة للعودة إلى المسار الصحيح."
 
 #: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
+#: porches/generic/site/post-list-body.php:151
 msgid "Content will start in %s days"
 msgstr "سيبدأ المحتوى خلال %s يوم"
 
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr "انتهت هذه الحملة. انظر الوقود أدناه"
-
-#: porches/generic/site/contact-us.php:23
-#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
-msgid "Contact Us"
-msgstr "إتصل بنا"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"
@@ -850,11 +860,11 @@ msgstr "التزامات الصلاة مطلوبة"
 msgid "View All"
 msgstr "مشاهدة الكل"
 
-#: porches/generic/site/post-list-body.php:134
+#: porches/generic/site/post-list-body.php:138
 msgid "Read"
 msgstr "اقرأ"
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:153
 msgid "No prayer fuel found"
 msgstr "لم يتم العثور على وقود للصلاة"
 
@@ -1019,6 +1029,9 @@ msgstr "وقت الصلاة: %s دقيقة"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "نصلي الآن ..."
+
+#~ msgid "Choose a timezone"
+#~ msgstr "اختر منطقة زمنية"
 
 #, fuzzy
 #~| msgid "Or click this link:"

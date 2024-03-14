@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-08T14:01:56+00:00\n"
+"POT-Creation-Date: 2024-03-11T13:33:36+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Gujarati <https://translate.disciple.tools/projects/disciple-"
@@ -360,8 +360,8 @@ msgstr "પસંદ કરેલ સમય"
 
 #: parts/components-enqueue.php:37
 #, fuzzy
-msgid "Choose a timezone"
-msgstr "તમારો સમય ઝોન બદલો:"
+msgid "Select a timezone"
+msgstr "સમય પસંદ કરો"
 
 #: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
 #: porches/generic/site/stats.php:227
@@ -652,123 +652,118 @@ msgstr "કા .ી નાખો"
 
 #: parts/components-enqueue.php:103
 #, fuzzy
-msgid "Select a timezone"
-msgstr "સમય પસંદ કરો"
-
-#: parts/components-enqueue.php:104
-#, fuzzy
 msgid "See Prayer Fuel"
 msgstr "પ્રાર્થના બળતણ"
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:104
 #, fuzzy
 msgid "change time"
 msgstr "દૈનિક સમય બદલો"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:105
 #, fuzzy
 msgid "Remove all"
 msgstr "બધું કાઢી નાંખો"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:106
 #, fuzzy
 msgid "See prayer times"
 msgstr "પ્રાર્થનાનો સમય ઉમેરો"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:107
 #, fuzzy
 msgid "Delete Prayer Times"
 msgstr "પ્રાર્થનાનો સમય"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:108
 #, fuzzy
 msgid "Really delete these prayer times?"
 msgstr "પ્રાર્થનાનો સમય પસંદ કરો"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:109
 #, fuzzy
 msgid "extend"
 msgstr "વિસ્તૃત કરો"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:110
 #, fuzzy
 msgid "Extend Prayer Times"
 msgstr "પ્રાર્થનાનો સમય"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:111
 #, fuzzy
 msgid "Really delete this prayer time?"
 msgstr "પ્રાર્થનાનો સમય પસંદ કરો"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:112
 #, fuzzy
 msgid "Delete Prayer Time"
 msgstr "પસંદ કરેલ સમય"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:113
 #, fuzzy
 msgid "Mondays"
 msgstr "દિવસ"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:114
 #, fuzzy
 msgid "Tuesdays"
 msgstr "દિવસ"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:115
 msgid "Wednesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:116
 #, fuzzy
 msgid "Thursdays"
 msgstr "દિવસ"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:117
 #, fuzzy
 msgid "Fridays"
 msgstr "દિવસ"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:118
 #, fuzzy
 msgid "Saturdays"
 msgstr "દિવસ"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:119
 #, fuzzy
 msgid "Sundays"
 msgstr "દિવસ"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:120
 #, fuzzy
 msgid "Change Prayer Time"
 msgstr "પ્રાર્થનાનો સમય પસંદ કરો"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:121
 #, fuzzy
 msgid "Your current prayer time is %s"
 msgstr "તમારા નવા પ્રાર્થના સમય સાચવવામાં આવ્યા છે."
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:122
 #, fuzzy
 msgid "Select a new time:"
 msgstr "સમય પસંદ કરો"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:123
 #, fuzzy
 msgid "Select a time"
 msgstr "સમય પસંદ કરો"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:124
 #, fuzzy
 msgid "Renew Prayer Times"
 msgstr "પ્રાર્થનાનો સમય"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:125
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:126
 #, fuzzy
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
@@ -776,24 +771,43 @@ msgid ""
 msgstr ""
 "શું તમે Pray4Movement.org સાથે અન્ય પ્રાર્થના પ્રયાસો અને તકો વિશે સાંભળવા માંગો છો?"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:127
 msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:128
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:129
 msgid "It will look like this:"
 msgstr ""
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:130
 msgid "Pending - Verification Needed"
 msgstr ""
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:131
 msgid "Back to sign-up"
+msgstr ""
+
+#: parts/components-enqueue.php:132
+msgid "So sorry. Something went wrong. You can:"
+msgstr ""
+
+#: parts/components-enqueue.php:133
+msgid "Try Again"
+msgstr ""
+
+#: parts/components-enqueue.php:134 porches/generic/site/contact-us.php:23
+#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
+msgid "Contact Us"
+msgstr ""
+
+#: parts/components-enqueue.php:135
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
 msgstr ""
 
 #: parts/components.php:32
@@ -903,17 +917,12 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "ટ્રેક પર પાછા આવવા માટે મેનૂમાંની કેટલીક લિંક્સનો ઉપયોગ કરવાનો પ્રયાસ કરો."
 
 #: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
+#: porches/generic/site/post-list-body.php:151
 msgid "Content will start in %s days"
 msgstr ""
 
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
-
-#: porches/generic/site/contact-us.php:23
-#: porches/generic/site/contact-us.php:97 porches/generic/site/footer.php:40
-msgid "Contact Us"
 msgstr ""
 
 #: porches/generic/site/contact-us.php:118
@@ -951,12 +960,12 @@ msgstr "પ્રાર્થના પ્રતિબદ્ધતાઓ જર�
 msgid "View All"
 msgstr "બધુજ જુઓ"
 
-#: porches/generic/site/post-list-body.php:134
+#: porches/generic/site/post-list-body.php:138
 #, fuzzy
 msgid "Read"
 msgstr "વાંચવું"
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:153
 msgid "No prayer fuel found"
 msgstr ""
 
@@ -1148,6 +1157,10 @@ msgstr "પ્રાર્થનાનો સમય: %s મિનિટ"
 #, fuzzy
 msgid "Now praying..."
 msgstr "હવે પ્રાર્થના..."
+
+#, fuzzy
+#~ msgid "Choose a timezone"
+#~ msgstr "તમારો સમય ઝોન બદલો:"
 
 #, fuzzy
 #~ msgid "Confirmation Code"
