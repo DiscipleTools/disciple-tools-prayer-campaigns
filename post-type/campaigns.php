@@ -1302,7 +1302,7 @@ class DT_Campaigns_Base {
                 //'campaign_type' => $campaign['type']['key'],
                 'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
                 'minutes_committed' => $mins_scheduled + $mins_extra,
-                'subscriber_count' => sizeof( $campaign['subscriptions'] ?? [] ),
+                'subscriber_count' => DT_Subscriptions::get_subscribers_count( $campaign['ID'] ),
                 'slot_length' => (int) $min_time_duration,
                 'number_of_time_slots' => self::query_coverage_total_time_slots( $campaign['ID'] ),
                 'time_slots_covered' => $time_lots_covered,
