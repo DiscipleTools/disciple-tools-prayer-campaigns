@@ -166,6 +166,8 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( sizeof( $subs['posts'] ) === 1 ){
             DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'contact_us', [], false, true );
         }
+        do_action( 'campaign_contact_us', $campaign_id, $name, $email, $message );
+
         return $added_comment;
     }
 
@@ -188,6 +190,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( sizeof( $subs['posts'] ) === 1 ){
             DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
         }
+        do_action( 'campaign_stats_message_submit', $post_id, $params['email'], $comment );
 
         return true;
     }
