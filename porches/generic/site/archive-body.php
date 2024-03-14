@@ -57,27 +57,23 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
                 <?php dt_campaign_user_record_prayed(); ?>
             </div>
 
-            <?php do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed' ); ?>
+            <?php do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed' );
 
 
-            <div class='row' style="margin-top: 30px">
-                <div class='section-header col'>
-                    <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
-                        data-wow-delay='0.3s'><?php echo esc_html( __( 'Prayer Circle', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
-                    <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+            if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
+                if ( function_exists( 'show_prayer_timer' ) ) : ?>
+                <div style="margin-top: 30px">
+                    <div class='section-header'>
+                        <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
+                            data-wow-delay='0.3s'><?php echo esc_html( __( 'Prayer Timer', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
+                        <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                    </div>
                     <div>
-                        <?php
-                        if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
-                            if ( function_exists( 'show_prayer_timer' ) ) : ?>
-                                <div class="col">
-                                    <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
-                                </div>
-                            <?php endif;
-                        endif; ?>
+                        <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
                     </div>
                 </div>
-            </div>
-
+                <?php endif;
+            endif; ?>
         <?php endif; ?>
     </div>
 </section>
