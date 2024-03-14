@@ -179,9 +179,9 @@ class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
     }
 
     public function add_endpoints(){
-        $namespace = $this->root . '/v1/';
+        $namespace = $this->root . '/v1';
         register_rest_route(
-            $namespace, $this->type, [
+            $namespace, '/' . $this->type, [
                 [
                     'methods' => 'POST',
                     'callback' => [ $this, 'contact_us' ],
