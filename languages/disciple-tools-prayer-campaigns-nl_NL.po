@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-11T13:33:36+00:00\n"
+"POT-Creation-Date: 2024-03-14T08:32:05+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/disciple-"
@@ -940,6 +940,13 @@ msgstr ""
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
+
+#: porches/generic/site/archive-body.php:68
+#: porches/generic/site/landing-body.php:43
+#, fuzzy
+#| msgid "Selected Times"
+msgid "Prayer Timer"
+msgstr "Geselecteerde tijden"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"

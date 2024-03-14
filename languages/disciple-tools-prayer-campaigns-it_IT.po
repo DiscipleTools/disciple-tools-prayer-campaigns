@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-03-11T13:33:36+00:00\n"
+"POT-Creation-Date: 2024-03-14T08:32:05+00:00\n"
 "PO-Revision-Date: 2024-03-12 12:24+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
@@ -860,6 +860,13 @@ msgid "This campaign is finished. See Fuel below"
 msgstr ""
 "Questa campagna di preghiera è terminata. Visualizza sotto il propellente "
 "per la preghiera"
+
+#: porches/generic/site/archive-body.php:68
+#: porches/generic/site/landing-body.php:43
+#, fuzzy
+#| msgid "Delete Prayer Time"
+msgid "Prayer Timer"
+msgstr "Cancella Intervallo di preghiera"
 
 #: porches/generic/site/contact-us.php:118
 msgid "Message"
