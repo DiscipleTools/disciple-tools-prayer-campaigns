@@ -435,7 +435,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
 
-        if ( $current_campaign['porch_type'] === 'ramadan-porch' ){
+        if ( $current_campaign['porch_type']['key'] === 'ramadan-porch' ){
             $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $campaign_url, $location );
         } else {
             $message = self::end_of_campaign_generic_email( $record['name'], $title, $campaign_url, $location );
