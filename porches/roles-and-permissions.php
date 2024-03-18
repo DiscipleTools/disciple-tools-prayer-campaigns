@@ -42,6 +42,7 @@ class DT_Campaign_Porch_Roles
             'edit_others_'.$this->post_type.'s' => true,
             'publish_'.$this->post_type.'s' => true,
             'read_private_'.$this->post_type.'s' => true,
+            'edit_posts' => true, //needed for using patterns
 
             // rest access for blocks editor
             'wp_api_allowed_user' => true,
@@ -88,6 +89,11 @@ class DT_Campaign_Porch_Roles
             $allowed_wp_v2_paths[] = '/wp/v2/blocks/(?P<id>[\d]+)/autosaves';
             $allowed_wp_v2_paths[] = '/wp/v2/blocks/(?P<parent>[\d]+)/autosaves/(?P<id>[\d]+)';
             $allowed_wp_v2_paths[] = '/wp/v2/block-directory/search';
+
+            $allowed_wp_v2_paths[] = '/wp/v2/block-patterns/patterns';
+            $allowed_wp_v2_paths[] = '/wp/v2/block-patterns/categories';
+            $allowed_wp_v2_paths[] = '/wp/v2/wp_pattern_category';
+
 
             $allowed_wp_v2_paths[] = '/wp/v2/media';
             $allowed_wp_v2_paths[] = '/wp/v2/media/(?P<id>[\d]+)';

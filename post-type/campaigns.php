@@ -115,7 +115,7 @@ class DT_Campaigns_Base {
             'edit' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
             'publish_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
             'read_private_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
-
+            'edit_posts' => true, //needed for using patterns
             // rest access for blocks editor
             'wp_api_allowed_user' => true,
             'edit_files' => true,

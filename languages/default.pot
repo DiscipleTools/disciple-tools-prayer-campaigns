@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.3.1\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-03-11T13:33:36+00:00\n"
+"POT-Creation-Date: 2024-03-14T08:32:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -774,6 +774,11 @@ msgstr ""
 
 #: porches/generic/site/archive-body.php:46
 msgid "This campaign is finished. See Fuel below"
+msgstr ""
+
+#: porches/generic/site/archive-body.php:68
+#: porches/generic/site/landing-body.php:43
+msgid "Prayer Timer"
 msgstr ""
 
 #: porches/generic/site/contact-us.php:118
