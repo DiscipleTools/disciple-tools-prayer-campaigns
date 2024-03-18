@@ -249,12 +249,11 @@ class DT_Prayer_Campaigns_Send_Email {
         $locale = $record['lang'] ?? null;
         self::switch_email_locale( $locale );
 
-        $porch_selected = DT_Porch_Selector::instance()->get_selected_porch_id();
         $prayer_fuel_link_text = '';
         $prayer_fuel_link = '';
-        $porch_email_settings = DT_Porch_Settings::settings( 'email-settings' );
-        if ( !empty( $porch_selected ) && empty( $porch_email_settings['reminder_content_disable_fuel']['value'] ) ){
-            $prayer_fuel_link = site_url() . '/prayer/list';
+        if ( !isset( $campaign['reminder_content_disable_fuel']['key'] ) || $campaign['reminder_content_disable_fuel']['key'] === 'no' ){
+            $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+            $prayer_fuel_link = $campaign_url . '/list';
             $prayer_fuel_link_text = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), '' ) . '</p>';
         }
 
@@ -288,7 +287,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $prayer_content_message = DT_Campaign_Languages::get_translation( $campaign_id, 'reminder_content', $record['lang'] ?? null );
         if ( $prayer_content_message ){
             $prayer_content_message = '<p>' .  $prayer_content_message . '</p>';
-        } elseif ( $campaign['reminder_content'] ){
+        } elseif ( !empty( $campaign['reminder_content'] ) ){
             $prayer_content_message = '<p>' .  $campaign['reminder_content'] . '</p>';
         }
 
