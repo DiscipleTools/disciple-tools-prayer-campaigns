@@ -484,8 +484,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( isset( $new_values['language'] ) ){
             $updates['lang'] = $new_values['language'];
         }
-        $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
-
+        if ( isset( $new_values['receive_prayer_time_notifications'] ) ){
+            $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
+        }
         $updated = DT_Posts::update_post( 'subscriptions', $subscriber_id, $updates, true, false );
         return true;
     }
