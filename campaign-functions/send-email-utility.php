@@ -234,6 +234,15 @@ class DT_Prayer_Campaigns_Send_Email {
         $locale = $record['lang'] ?? null;
         self::switch_email_locale( $locale );
 
+        $porch_selected = DT_Porch_Selector::instance()->get_selected_porch_id();
+        $prayer_fuel_link_text = '';
+        $prayer_fuel_link = '';
+        $porch_email_settings = DT_Porch_Settings::settings( 'email-settings' );
+        if ( !empty( $porch_selected ) && empty( $porch_email_settings['reminder_content_disable_fuel']['value'] ) ){
+            $prayer_fuel_link = site_url() . '/prayer/list';
+            $prayer_fuel_link_text = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), '' ) . '</p>';
+        }
+
         $commitment_list = '';
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
@@ -280,14 +289,15 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( $commitment_list );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );
-        if ( !empty( $prayer_fuel_link ) ){
-            $message .= Campaigns_Email_Template::email_content_part( $prayer_fuel_link );
+        if ( !empty( $prayer_fuel_link_text ) ){
+            $message .= Campaigns_Email_Template::email_content_part( $prayer_fuel_link_text );
+            $message .= Campaigns_Email_Template::email_button_part( __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ), $prayer_fuel_link );
         }
         if ( !empty( $prayer_content_message ) ){
             $message .= Campaigns_Email_Template::email_content_part( $prayer_content_message );
         }
         $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $management_link );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $management_link, '#a3a3a3' );
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message );
 
@@ -683,8 +693,7 @@ class Campaigns_Email_Template {
         return $part;
     }
 
-    public static function email_button_part( $button_text, $button_url ){
-        $button_color = '#dc3822';
+    public static function email_button_part( $button_text, $button_url, $button_color = '#dc3822' ){
 
         ob_start();
         ?>

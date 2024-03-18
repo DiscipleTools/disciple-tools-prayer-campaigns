@@ -73,15 +73,6 @@ function dt_prayer_campaign_prayer_time_reminder(){
         $grouped_reminders[$reminder['parent_id']][$reminder['post_id']][] = $reminder;
     }
 
-    $porch_selected = DT_Porch_Selector::instance()->get_selected_porch_id();
-    $prayer_fuel_link = '';
-    $porch_email_settings = DT_Porch_Settings::settings( 'email-settings' );
-    if ( !empty( $porch_selected ) && empty( $porch_email_settings['reminder_content_disable_fuel']['value'] ) ){
-        $url = site_url() . '/prayer/list';
-        $link = '<a href="' . $url . '">' . $url . '</a>';
-        $prayer_fuel_link = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), $link ) . '</p>';
-    }
-
     // build message by campaign, and then by user, and grouping times per user message
     foreach ( $grouped_reminders as $campaign_id => $subscriber_values ) {
         // get campaign messages and links for the day
@@ -92,7 +83,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
             if ( is_wp_error( $record ) ){
                 continue;
             }
-            $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_time_reminder( $subscriber_id, $reports, $campaign_id, $prayer_fuel_link );
+            $sent = DT_Prayer_Campaigns_Send_Email::send_prayer_time_reminder( $subscriber_id, $reports, $campaign_id );
 
             if ( ! $sent ){
                 dt_write_log( __METHOD__ . ': Unable to send email to ' . $subscriber_id . '. Subscriber: ' . $subscriber_id );
