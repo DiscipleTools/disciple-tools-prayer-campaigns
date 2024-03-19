@@ -272,7 +272,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                 'exclude_from_search' => true,
                 'show_ui' => true,
                 'query_var' => true,
-                'show_in_nav_menus' => true,
+                'show_in_menu' => false,
+                'show_in_nav_menus' => false,
                 'menu_position' => 5, /* this is what order you want it to appear in on the left hand side menu */
                 'menu_icon' => 'dashicons-book', /* the icon for the custom post type menu. uses built-in dashicons (CSS class name) */
                 'rewrite' => true, /* you can specify its url slug */
