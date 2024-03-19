@@ -60,7 +60,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message = Campaigns_Email_Template::email_content_part( __( 'Confirm your participation in prayer by activating your account.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part(
-            'Activate Account',
+            __( 'Activate Account', 'disciple_tools' ),
             $verify_link
         );
         $message .= Campaigns_Email_Template::email_content_part(
