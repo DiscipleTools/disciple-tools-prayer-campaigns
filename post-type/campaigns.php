@@ -108,7 +108,9 @@ class DT_Campaigns_Base {
             'edit_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
             'publish_' . PORCH_LANDING_POST_TYPE . 's' => true,
             'read_private_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'edit_posts' => true, //needed for using patterns
+            'edit_posts' => true, // list patterns and all creating landing posts
+            'publish_posts' => true, //create new patterns
+            'edit_published_posts' => true, //edit synced posts and create un-synced posts
             // rest access for blocks editor
             'wp_api_allowed_user' => true,
             'edit_files' => true,
