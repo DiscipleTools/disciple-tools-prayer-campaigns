@@ -294,12 +294,13 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             // Update for all languages.
             if ( isset( $lang_all ) ) {
                 $updates = [];
-                $response['lang_all'] = $updates[ $field_key ] = $lang_all;
+                $response['lang_all'] = $updates[ $field_key ] = wp_kses_post( $request->get_params()['edit']['lang_all'] );
                 $response['updated'] = DT_Porch_Settings::update_values( $updates, $campaign_id );
             }
 
             // Update for a specific language translation.
             if ( isset( $lang_translate, $lang_code ) ) {
+                $lang_translate = wp_kses_post( $request->get_params()['edit']['lang_translate'] );
                 $translations = [];
                 $translations[ $field_key ] = [
                     $lang_code => $lang_translate
