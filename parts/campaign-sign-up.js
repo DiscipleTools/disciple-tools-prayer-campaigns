@@ -1432,6 +1432,7 @@ export class campaignSubscriptions extends LitElement {
       let data = {
         report_id: this.change_time_details.report_id,
         offset: this.change_time_details.new_time - this.change_time_details.time,
+        time: this.change_time_details.new_time
       }
 
       window.campaign_scripts.submit_prayer_times( this.change_time_details.campaign_id, data, 'change_times').then(response=>{
