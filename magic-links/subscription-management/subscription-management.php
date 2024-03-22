@@ -591,8 +591,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     private function delete_subscription_endpoint( $post_id, $params ) {
-        $this->delete_subscription( $post_id, $params['report_id'] );
-        return true;
+        return $this->delete_subscription( $post_id, $params['report_id'] );
     }
 
     private function add_subscriptions( $subscriber_id, $params ){
