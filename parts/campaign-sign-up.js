@@ -1265,7 +1265,7 @@ export class campaignSubscriptions extends LitElement {
                     ${prayer_times.map(c=>html`
                         <div class="remove-row">
                             <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone: this.timezone}).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-                            <button @click="${e=>this.open_delete_time_modal(e,c.report_id)}"
+                            <button ?disabled="${c.time_begin < now}" @click="${e=>this.open_delete_time_modal(e,c.report_id)}"
                                     class="remove-prayer-times-button clear-button">
                                 <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                             </button>
@@ -1286,7 +1286,7 @@ export class campaignSubscriptions extends LitElement {
                       <span class="dt-tag">${date.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                       ${translate('for %s minutes').replace('%s', (value.time_end - value.time_begin)/60)}
                     </div>
-                    <button class="clear-button danger loader remove-prayer-times-button" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
+                    <button ?disabled="${value.time_begin < now}" class="clear-button danger loader remove-prayer-times-button" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
                         <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                     </button>
                   </div>
@@ -1458,6 +1458,7 @@ export class campaignSubscriptions extends LitElement {
       let data = {
         report_id: this.change_time_details.report_id,
         offset: this.change_time_details.new_time - this.change_time_details.time,
+        time: this.change_time_details.new_time
       }
 
       window.campaign_scripts.submit_prayer_times( this.change_time_details.campaign_id, data, 'change_times').then(response=>{

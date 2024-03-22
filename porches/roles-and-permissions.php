@@ -42,7 +42,10 @@ class DT_Campaign_Porch_Roles
             'edit_others_'.$this->post_type.'s' => true,
             'publish_'.$this->post_type.'s' => true,
             'read_private_'.$this->post_type.'s' => true,
-            'edit_posts' => true, //needed for using patterns
+
+            'edit_posts' => true, // list patterns and all creating landing posts
+            'publish_posts' => true, //create new patterns
+            'edit_published_posts' => true, //edit synced posts and create un-synced posts
 
             // rest access for blocks editor
             'wp_api_allowed_user' => true,

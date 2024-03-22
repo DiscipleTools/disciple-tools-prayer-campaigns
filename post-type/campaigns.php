@@ -115,7 +115,9 @@ class DT_Campaigns_Base {
             'edit' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
             'publish_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
             'read_private_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
-            'edit_posts' => true, //needed for using patterns
+            'edit_posts' => true, // list patterns and all creating landing posts
+            'publish_posts' => true, //create new patterns
+            'edit_published_posts' => true, //edit synced posts and create un-synced posts
             // rest access for blocks editor
             'wp_api_allowed_user' => true,
             'edit_files' => true,
@@ -569,7 +571,7 @@ class DT_Campaigns_Base {
                     if ( data ) {
                         jQuery.each(data, function(i,v){
                             content += `<li>
-                                <a href="${window.wpApiShare.site_url}/subscriptions/${window.lodash.escape(v.ID)}">
+                                <a href="${window.SHAREDFUNCTIONS.escapeHTML(window.wpApiShare.site_url)}/subscriptions/${window.lodash.escape(v.ID)}">
                                     ${window.lodash.escape(v.name)}
                                 </a>
                                  (${window.lodash.escape(v.commitments)})
