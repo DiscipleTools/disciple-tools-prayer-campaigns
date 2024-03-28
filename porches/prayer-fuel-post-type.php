@@ -39,9 +39,9 @@ class DT_Campaign_Prayer_Fuel_Post_Type
      * @param array $taxonomies
      */
     public function __construct( $args = [], $taxonomies = [] ){
-        $this->post_type = PORCH_LANDING_POST_TYPE;
-        $this->singular = PORCH_LANDING_POST_TYPE_SINGLE;
-        $this->plural = PORCH_LANDING_POST_TYPE_PLURAL;
+        $this->post_type = CAMPAIGN_LANDING_POST_TYPE;
+        $this->singular = CAMPAIGN_LANDING_POST_TYPE_SINGLE;
+        $this->plural = CAMPAIGN_LANDING_POST_TYPE_PLURAL;
         $this->args = $args;
         $this->taxonomies = $taxonomies;
         $this->language_settings = new DT_Campaign_Languages();
@@ -52,7 +52,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         add_action( 'save_post', [ $this, 'save_post' ], 10, 3 );
         add_action( 'dt_post_updated', [ $this, 'update_post' ], 10, 5 );
 
-        if ( is_admin() && isset( $_GET['post_type'] ) && PORCH_LANDING_POST_TYPE === $_GET['post_type'] ){
+        if ( is_admin() && isset( $_GET['post_type'] ) && CAMPAIGN_LANDING_POST_TYPE === $_GET['post_type'] ){
             add_action( 'pre_get_posts', [ $this, 'dt_landing_order_by_date' ] );
             add_filter( 'manage_'.$this->post_type.'_posts_columns', [ $this, 'set_custom_edit_columns' ] );
             add_action( 'manage_'.$this->post_type.'_posts_custom_column', [ $this, 'custom_column' ], 10, 2 );
@@ -68,17 +68,19 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     } // End __construct()
 
     public function add_meta_box( $post_type ) {
-        if ( PORCH_LANDING_POST_TYPE === $post_type ) {
-            add_meta_box( PORCH_LANDING_POST_TYPE . '_custom_permalink', PORCH_LANDING_POST_TYPE_SINGLE . ' Url', [ $this, 'meta_box_custom_permalink' ], PORCH_LANDING_POST_TYPE, 'side', 'default' );
-            add_meta_box( PORCH_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], PORCH_LANDING_POST_TYPE, 'side', 'core' );
-            add_meta_box( PORCH_LANDING_POST_TYPE . '_campaign_day', 'Campaign Day', [ $this, 'meta_box_campaign_day' ], PORCH_LANDING_POST_TYPE, 'side', 'core' );
+        if ( CAMPAIGN_LANDING_POST_TYPE === $post_type ) {
+            add_meta_box( CAMPAIGN_LANDING_POST_TYPE . '_custom_permalink', CAMPAIGN_LANDING_POST_TYPE_SINGLE . ' Url', [ $this, 'meta_box_custom_permalink' ], CAMPAIGN_LANDING_POST_TYPE, 'side', 'default' );
+            add_meta_box( CAMPAIGN_LANDING_POST_TYPE . '_page_language', 'Post Language', [ $this, 'meta_box_page_language' ], CAMPAIGN_LANDING_POST_TYPE, 'side', 'core' );
+            add_meta_box( CAMPAIGN_LANDING_POST_TYPE . '_campaign_day', 'Campaign Day', [ $this, 'meta_box_campaign_day' ], CAMPAIGN_LANDING_POST_TYPE, 'side', 'core' );
         }
     }
 
     public static function get_prayer_fuel_permalink( $post ){
-        $public_key = get_post_meta( $post->ID, PORCH_LANDING_META_KEY, true );
+        $public_key = get_post_meta( $post->ID, CAMPAIGN_LANDING_META_KEY, true );
+        $linked_campaign = get_post_meta( $post->ID, 'linked_campaign', true );
+        $campaign_url = get_post_meta( $linked_campaign, 'campaign_url', true );
         $lang = get_post_meta( $post->ID, 'post_language', true );
-        return trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key . '?lang=' . $lang;
+        return trailingslashit( site_url() ) . ( $campaign_url ?? CAMPAIGN_LANDING_ROOT ) . '/' . CAMPAIGN_LANDING_TYPE . '/' . $public_key . '?lang=' . $lang;
     }
 
     public function meta_box_custom_permalink( $post ) {
@@ -93,7 +95,8 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             $lang = isset( $_GET['post_language'] ) ? sanitize_text_field( wp_unslash( $_GET['post_language'] ) ) : null;
         }
 
-        $langs = $this->language_settings->get_enabled_languages();
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
+        $langs = $this->language_settings->get_enabled_languages( $campaign_id );
         if ( empty( $lang ) ){
             $lang = 'en_US';
         }
@@ -119,7 +122,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         $value = !empty( $campaign_day ) ? $campaign_day : $day;
 
-        $date = DT_Campaign_Settings::date_of_campaign_day( (int) $value );
+        $date = DT_Campaign_Fuel::date_of_campaign_day( (int) $value );
         ?>
 
         <?php wp_nonce_field( 'landing-day-selector', 'landing-day-selector' ) ?>
@@ -149,18 +152,19 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     }
 
     public function post_type_link( $link, $post, $leavename ){
-        if ( $post->post_type === PORCH_LANDING_POST_TYPE ){
+        if ( $post->post_type === CAMPAIGN_LANDING_POST_TYPE ){
             return self::get_prayer_fuel_permalink( $post );
         }
         return $link;
     }
 
     public function admin_head(){
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
         ?>
         <script>
             jQuery(document).ready(function($) {
                 setTimeout(function (){
-                    $('.edit-post-fullscreen-mode-close').attr('href', '<?php echo esc_url_raw( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=dt_prayer_fuel' ) ) ?>')
+                    $('.edit-post-fullscreen-mode-close').attr('href', '<?php echo esc_url_raw( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=dt_prayer_fuel&campaign=' . $campaign_id ) ) ?>')
                 }, 2000)
             })
         </script>
@@ -182,16 +186,17 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             if ( !empty( $_POST['dt-landing-date-selector'] ) ) {
                 update_post_meta( $id, 'fixed', true );
                 $post_date = $post_submission['dt-landing-date-selector'];
-                $day = DT_Campaign_Settings::what_day_in_campaign( $post_date );
+                $day = DT_Campaign_Fuel::what_day_in_campaign( $post_date );
             } else if ( isset( $_POST['dt-landing-day-selector'] ) ){
                 $day = $post_submission['dt-landing-day-selector'];
             }
             update_post_meta( $id, 'day', $day );
         }
 
-        if ( $post->post_type === PORCH_LANDING_POST_TYPE ) {
+        if ( $post->post_type === CAMPAIGN_LANDING_POST_TYPE ) {
             $day = get_post_meta( $id, 'day', true );
             $lang = get_post_meta( $id, 'post_language', true );
+            $linked_campaign = get_post_meta( $id, 'linked_campaign', true );
 
             if ( empty( $day ) && isset( $_GET['day'] ) && !empty( $_GET['day'] ) ){
                 $day = sanitize_key( wp_unslash( $_GET['day'] ) );
@@ -203,12 +208,14 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             }
 
             if ( !empty( $day ) ) {
-                update_post_meta( $id, PORCH_LANDING_META_KEY, $day );
+                update_post_meta( $id, CAMPAIGN_LANDING_META_KEY, $day );
             }
 
-            $campaign = DT_Campaign_Settings::get_campaign();
-            if ( isset( $campaign['ID'] ) && $update === false ){
-                update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
+            if ( empty( $linked_campaign ) && $update === false ){
+                $campaign = DT_Campaign_Landing_Settings::get_campaign();
+                if ( !empty( $campaign['ID'] ) ){
+                    update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
+                }
             }
         }
     }
@@ -223,7 +230,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                     $old_start_date = $existing_post['start_date']['formatted'];
                     $new_start_date = $post['start_date']['formatted'];
 
-                    $diff_in_start_days = DT_Campaign_Settings::diff_days_between_dates( $old_start_date, $new_start_date );
+                    $diff_in_start_days = DT_Campaign_Fuel::diff_days_between_dates( $old_start_date, $new_start_date );
 
                     $result = $wpdb->query( $wpdb->prepare( "
                         UPDATE $wpdb->postmeta as pm
@@ -236,7 +243,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
                         SET pm.meta_value = pm.meta_value - %1s,
                         pm3.meta_value = pm3.meta_value - %1s
                         WHERE pm.meta_key = 'day'
-                    ", PORCH_LANDING_POST_TYPE, PORCH_LANDING_META_KEY, $diff_in_start_days, $diff_in_start_days  ) );
+                    ", CAMPAIGN_LANDING_POST_TYPE, CAMPAIGN_LANDING_META_KEY, $diff_in_start_days, $diff_in_start_days  ) );
                 }
             }
         }
@@ -252,7 +259,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             // let's now add all the options for this post type
             array(
                 'labels' => array(
-                    'name' => 'Landing Posts', /* This is the Title of the Group */
+                    'name' => $this->plural, /* This is the Title of the Group */
                     'singular_name' => $this->singular, /* This is the individual type */
                     'all_items' => 'All '.$this->plural, /* the all items menu item */
                     'add_new' => 'Add New', /* The add new menu item */
@@ -328,7 +335,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
 
     public function transition_post( $new_status, $old_status, $post ) {
-        if ( ( 'publish' == $new_status || 'future' == $new_status ) && $post->post_type == PORCH_LANDING_POST_TYPE ) {
+        if ( ( 'publish' == $new_status || 'future' == $new_status ) && $post->post_type == CAMPAIGN_LANDING_POST_TYPE ) {
 
             $post_id = $post->ID;
             $day = get_post_meta( $post_id, 'day', true );
@@ -346,11 +353,11 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             $slug = str_replace( '/', '', $slug );
             $slug = urlencode( $slug );
 
-            $current_public_key = get_post_meta( $post_id, PORCH_LANDING_META_KEY, true );
+            $current_public_key = get_post_meta( $post_id, CAMPAIGN_LANDING_META_KEY, true );
             if ( $slug !== $current_public_key ) {
-                update_post_meta( $post_id, PORCH_LANDING_META_KEY, $slug );
+                update_post_meta( $post_id, CAMPAIGN_LANDING_META_KEY, $slug );
                 global $wpdb;
-                $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET guid = %s WHERE ID = %s;", trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $slug . ( !empty( $lang ) ? '&lang=' . $lang : '' ), $post_id ) );
+                $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET guid = %s WHERE ID = %s;", trailingslashit( site_url() ) . CAMPAIGN_LANDING_ROOT . '/' . CAMPAIGN_LANDING_TYPE . '/' . $slug . ( !empty( $lang ) ? '&lang=' . $lang : '' ), $post_id ) );
             }
         }
     }
@@ -371,12 +378,12 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     public function custom_column( $column, $post_id ) {
         switch ( $column ) {
             case 'url' :
-                $public_key = get_post_meta( $post_id, PORCH_LANDING_META_KEY, true );
+                $public_key = get_post_meta( $post_id, CAMPAIGN_LANDING_META_KEY, true );
                 $language = get_post_meta( $post_id, 'post_language', true );
                 if ( empty( $language ) ){
                     $language = 'en_US';
                 }
-                $url = trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $public_key . '?lang=' . $language;
+                $url = trailingslashit( site_url() ) . CAMPAIGN_LANDING_ROOT . '/' . CAMPAIGN_LANDING_TYPE . '/' . $public_key . '?lang=' . $language;
                 echo '<a href="' . esc_url( $url ) . '">'. esc_html( $url ) .'</a>';
                 break;
             case 'language' :
@@ -409,7 +416,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
      */
     public function get_days_posts( int $day ) {
 
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $lang = dt_campaign_get_current_lang();
 
@@ -446,7 +453,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         //get latest published post
         $today = new WP_Query( [
-            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_type' => CAMPAIGN_LANDING_POST_TYPE,
             'post_status' => [ 'publish', 'future' ] ,
             'posts_per_page' => -1,
             'orderby' => 'post_date',
@@ -458,7 +465,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         if ( empty( $today->posts ) ){
 
             $args = array(
-                'post_type' => PORCH_LANDING_POST_TYPE,
+                'post_type' => CAMPAIGN_LANDING_POST_TYPE,
                 'post_status' => [ 'publish', 'future' ],
                 'posts_per_page' => 1,
                 'orderby' => 'post_date',
@@ -497,7 +504,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     }
 
     public function get_most_recent_post( int $day ){
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $lang = dt_campaign_get_current_lang();
 
@@ -535,7 +542,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
 
         //get latest published post
         $today = new WP_Query( [
-            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_type' => CAMPAIGN_LANDING_POST_TYPE,
             'post_status' => [ 'publish', 'future' ] ,
             'posts_per_page' => 1,
             'orderby' => 'day_clause',
@@ -547,7 +554,7 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         if ( empty( $today->posts ) ){
 
             $args = array(
-                'post_type' => PORCH_LANDING_POST_TYPE,
+                'post_type' => CAMPAIGN_LANDING_POST_TYPE,
                 'post_status' => [ 'publish', 'future' ],
                 'posts_per_page' => 1,
                 'orderby' => 'post_date',

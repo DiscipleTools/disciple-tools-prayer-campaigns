@@ -55,7 +55,7 @@ export class CampaignSignUp extends LitElement {
         font-size: 1rem;
         min-height: 500px;
       }
-      
+
       .selected-times {
         border: 1px solid var(--cp-color);
         border-radius: 5px;
@@ -81,7 +81,7 @@ export class CampaignSignUp extends LitElement {
       .desktop {
         display:block;
       }
-      
+
       .column {
         max-width: 400px;
         flex-basis: 30%;
@@ -111,7 +111,7 @@ export class CampaignSignUp extends LitElement {
           display:none;
         }
       }
-      
+
       .section-div[disabled] {
         opacity: 0.5;
       }
@@ -129,13 +129,13 @@ export class CampaignSignUp extends LitElement {
         justify-content: center;
       }
       .remove-prayer-time-button:hover {
-        border: 1px solid red;    
+        border: 1px solid red;
       }
       .remove-prayer-time-button img {
         width: 1rem;
       }
-      
-      
+
+
     `
   ];
 
@@ -253,6 +253,10 @@ export class CampaignSignUp extends LitElement {
       selected_times: selected_times,
       recurring_signups: this.recurring_signups,
     }
+    //add this._form_items
+    Object.keys(this._form_items).forEach(key=>{
+      data[key] = this._form_items[key]
+    })
 
     window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
     .done((response)=>{
@@ -848,10 +852,15 @@ customElements.define('campaign-sign-up', CampaignSignUp);
 export class cpCalendar extends LitElement {
   static styles = [
     css`
+    :host {
+    }
       .calendar-wrapper {
+        container-type: inline-size;
+        container-name: cp-calendar;
         background-color: #f8f9fad1;
         border-radius: 10px;
-        padding: 1em
+        padding: 1em;
+        display: block;
       }
       .calendar-month {
         display: block;
@@ -869,34 +878,50 @@ export class cpCalendar extends LitElement {
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 12.5cqw);
+        gap: 0.3rem;
         margin-bottom: 1rem;
+        justify-items: center;
       }
       .day-cell {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 14cqw;
+        width: 14cqw;
         font-size: 15px;
+      }
+
+      @container cp-calendar (min-width: 250px) {
+        .day-cell {
+          height: 15cqw;
+          width: 15cqw;
+        }
+        .week-day {
+          height: 15cqw;
+          width: 15cqw;
+        }
       }
       .week-day {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 14cqw;
+        width: 14cqw;
         color:black;
-        font-size:12px;
+        font-size: clamp(1em, 2cqw, 0.5em + 1cqi);
         font-weight:550;
       }
+
+      @container cp-calendar (min-width: 350px) {
+        .week-day {
+          height: 7.5cqw;
+          width: 15cqw;
+        }
+      }
+
       .loading {
         min-height: 600px;
-      }
-      .progress-ring {
-        width: 40px;
-        height: 40px;
-        padding-top: 2px;
       }
       .disabled-calendar-day {
         color: #c4c4c4;
@@ -982,7 +1007,7 @@ export class cpCalendar extends LitElement {
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
                                 ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
-                                    <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                    <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
                         })}
@@ -999,7 +1024,7 @@ customElements.define('cp-calendar', cpCalendar);
 export class cpPercentage extends LitElement {
   static styles = [
     css`
-      
+
     `
   ]
 
@@ -1019,7 +1044,7 @@ export class cpPercentage extends LitElement {
     this.timezone = window.campaign_user_data.timezone
     this.requestUpdate()
   }
-  
+
   render() {
     if ( !this.campaign_data ){
       return html`<div class="loading"></div>`
@@ -1027,12 +1052,13 @@ export class cpPercentage extends LitElement {
 
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
-        <div id="main-progress" class="cp-center">
-            <progress-ring stroke="10" radius="80" font="18"
-                           progress="${this.campaign_data.coverage_percent || 0}"
-                           progress2="0"
-                           text="${this.campaign_data.coverage_percent || 0}%"
-                           text2="">
+        <div id="main-progress" class="cp-center" style="display: flex;justify-content: center">
+            <progress-ring 
+               style="max-width: 150px"
+               progress="${this.campaign_data.coverage_percent || 0}"
+               progress2="0"
+               text="${this.campaign_data.coverage_percent || 0}%"
+               text2="">
             </progress-ring>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center">${strings['Percentage covered in prayer']}</div>
@@ -1059,7 +1085,7 @@ export class campaignSubscriptions extends LitElement {
       }
       .remove-prayer-times-button img {
         width: 1rem;
-        
+
       }
       .selected-times {
         //background-color: rgba(70, 118, 250, 0.1);
@@ -1090,7 +1116,7 @@ export class campaignSubscriptions extends LitElement {
         margin-bottom: 10px;
       }
       .selected-time-content .title-row .dt-tag{
-        
+
         margin-inline-start: 10px;
       }
       button.hollow-button {
@@ -1187,7 +1213,7 @@ export class campaignSubscriptions extends LitElement {
             confirmButtonClass="danger"
             @close="${e=>this.extend_times_modal_closed(e, true)}" >
         </dt-modal>
-        
+
         <!--change times modal-->
         <dt-modal
             .isOpen="${this._change_times_modal_open}"
@@ -1203,7 +1229,7 @@ export class campaignSubscriptions extends LitElement {
                 ${this.build_select_for_day_times()}
             ` : ''}</p>
         </dt-modal>
-        
+
         ${(this.recurring_signups||[]).map((value, index) => {
             let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
             let day_in_seconds = 86400
@@ -1211,19 +1237,19 @@ export class campaignSubscriptions extends LitElement {
             let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
             //more than 2 weeks old
             let renew_extended = !last_prayer_time_near_campaign_end && value.last < now - day_in_seconds * 14
-            
+
             const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">
                 <div class="selected-time-content">
                   <div class="title-row">
-                    <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
-                    <button ?hidden="${!extend_enabled}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>  
-                    <button ?hidden="${!renew_extended}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id, true)}">${translate('renew')}</button>  
+                      <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>
+                      <button ?hidden="${!extend_enabled}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>
+                      <button ?hidden="${!renew_extended}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id, true)}">${translate('renew')}</button>
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
-                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}" 
+                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}"
                           class="clear-button">${translate('change time')}</button>
                   </div>
                   <div class="selected-time-actions">
@@ -1246,11 +1272,11 @@ export class campaignSubscriptions extends LitElement {
                         </div>
                     `)}
                 </div>
-                
+
             </div>
         `})}
         ${(window.campaign_data.subscriber_info.my_commitments).filter(c=>c.type==='selected_time').map((value, index) => {
-          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})  
+          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})
           return html`
             <div class="selected-times">
                 <div class="selected-time-content">
@@ -1267,7 +1293,7 @@ export class campaignSubscriptions extends LitElement {
                 </div>
             </div>
         `})}
-        
+
     `
   }
 

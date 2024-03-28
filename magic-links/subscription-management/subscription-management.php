@@ -58,6 +58,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
+        DT_Porch_Selector::instance();
+
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -85,19 +87,23 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        dt_campaigns_register_scripts( $this->parts );
-
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
         }
-        $campaign_id = $post['campaigns'][0]['ID'];
+        if ( isset( $_GET['campaign'] ) ){
+            $campaign_id = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+        }
+        if ( empty( $campaign_id ) ){
+            $campaign_id = $post['campaigns'][0]['ID'];
+        }
+        dt_campaigns_register_scripts( $this->parts, $campaign_id );
+
 
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
 
         $lang = $post['lang'] ?: 'en_US';
-        $languages_manager = new DT_Campaign_Languages();
 
         wp_localize_script(
             'dt_subscription_js', 'subscription_page_data', [
@@ -105,8 +111,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
-                'campaign_id' => $campaign_id,
-                'languages' => $languages_manager->get_enabled_languages(),
+                'campaign_id' => (int) $campaign_id,
+                'languages' => DT_Campaign_Languages::get_enabled_languages( $campaign_id ),
                 'current_language' => $lang
             ]
         );
@@ -154,15 +160,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $locale = $post['lang'] ?: 'en_US';
 
         //get summary from campaign strings
-        //load porch fields
-        if ( class_exists( 'DT_Generic_Porch_Loader' ) ) {
-            ( new DT_Generic_Porch_Loader() )->load_porch();
-        }
-        $calendar_title = DT_Porch_Settings::get_field_translation( 'title', $locale );
-        if ( empty( $calendar_title ) ) {
-            $calendar_title = $post['campaigns'][0]['post_title'];
-        }
+        $calendar_title = $post['campaigns'][0]['post_title'];
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
 
@@ -246,7 +246,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             }
 
             $content .= 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
-            $content .= 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
+            $content .= 'LOCATION:' . esc_html( $campaign_url . '/list' ) . "\r\n";
             $content .= "STATUS:CONFIRMED\r\n";
             $content .= "SEQUENCE:3\r\n";
             $content .= "BEGIN:VALARM\r\n";
@@ -267,7 +267,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        $campaign_id = $post['campaigns'][0]['ID'];
+        if ( isset( $_GET['campaign'] ) ){
+            $campaign_id = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+        }
+        if ( empty( $campaign_id ) ){
+            $campaign_id = $post['campaigns'][0]['ID'];
+        }
+
         //cannot manage a subscription that has no campaign
         if ( empty( $campaign_id ) ){
             $this->error_body();
@@ -280,11 +286,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
 
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
-        $color = defined( 'PORCH_COLOR_SCHEME_HEX' ) ? PORCH_COLOR_SCHEME_HEX : '#4676fa';
-        if ( $color === 'preset' ){
-            $color = '#4676fa';
-        }
+        $color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign_id );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
 
         $url_path = dt_get_url_path();
         $account_verified = strpos( $url_path, 'verified' ) !== false;
@@ -352,9 +355,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <!-- links -->
             <div style="margin: 10px; text-align: center">
                 <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
-                <a href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
-                <a href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
-                <a href="<?php echo esc_url( site_url() ) ?>/prayer/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
 
             <div id="prayer-times" class="display-panel" style="display: block">
@@ -381,9 +384,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                         </my-calendar>
                     </div>
                 </div>
-
-                <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
-
 
                 <div style="background-color: white; margin: 150px 50px 50px 50px">
                     <h2 style="text-align: center"><?php esc_html_e( 'Sign up for more prayer', 'disciple-tools-prayer-campaigns' ); ?></h2>

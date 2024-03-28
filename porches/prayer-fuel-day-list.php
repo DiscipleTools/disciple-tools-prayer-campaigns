@@ -3,10 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
-    private $languages_manager;
-
     public function __construct() {
-        $this->languages_manager = new DT_Campaign_Languages();
         parent::__construct();
     }
 
@@ -21,12 +18,12 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $offset = ( $current_page - 1 ) * $per_page;
         $max_days = 1000;
 
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
         $days = [];
-        $campaign_length = DT_Campaign_Settings::total_days_in_campaign();
+        $campaign_length = DT_Campaign_Fuel::total_days_in_campaign();
         for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
             if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
                 continue;
@@ -44,7 +41,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             AND p.post_status IN ( 'draft', 'publish', 'future' )
             AND pm.meta_value IN ( %1s )
         ";
-        $args = [ $campaign['ID'], PORCH_LANDING_POST_TYPE, $days_string ];
+        $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $days_string ];
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
             $query .= '
@@ -74,7 +71,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         foreach ( $days as $day ) {
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [
-                    [ 'ID' => null, 'day' => $day ],
+                    [ 'ID' => null, 'day' => $day, 'campaign' => $campaign['ID'] ],
                 ];
             }
         }
@@ -140,9 +137,12 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         switch ( $column_name ) {
             case 'day':
-                //$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ) );
+                //$todays_campaign_day = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y-m-d' ) );
                 $porch_fields = DT_Porch_Settings::settings();
                 $frequency = $porch_fields['prayer_fuel_frequency']['value'];
+                if ( empty( $frequency ) ) {
+                    $frequency = 'daily';
+                }
                 $frequency_options = [
                     'daily' => 'Day',
                     'weekly' => 'Week',
@@ -165,7 +165,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 <?php
                 break;
             case 'date':
-                $date = DT_Campaign_Settings::date_of_campaign_day( intval( $day ) );
+                $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
                 $date = gmdate( 'Y/m/d', strtotime( $date ) );
                 echo esc_html( $date );
                 break;
@@ -181,7 +181,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 <?php
                 break;
             case 'language':
-                $languages = $this->languages_manager->get_enabled_languages();
+                $campaign = DT_Campaign_Landing_Settings::get_campaign();
+                $languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
 
                 $translated_languages = [];
                 foreach ( $items as $post ) {
@@ -193,18 +194,21 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                     $translated_languages[$lang][] = $post;
                 }
 
+
                 foreach ( $languages as $code => $language ) {
                     $button_on = in_array( $code, array_keys( $translated_languages ), true );
                     $posts_in_language = $translated_languages[$code] ?? [];
 
-                    $add_link = 'post-new.php?post_type=' . PORCH_LANDING_POST_TYPE . "&day=$day";
+                    $add_link = 'post-new.php?post_type=' . CAMPAIGN_LANDING_POST_TYPE . "&day=$day";
 
 
                     if ( count( $posts_in_language ) === 0 ) {
                         $link = $add_link . "&post_language=$code";
+                        $link .= '&campaign=' . $campaign['ID'];
                     } else if ( count( $posts_in_language ) === 1 ) {
                         $id = $posts_in_language[0]['ID'];
                         $link = "post.php?post=$id&action=edit";
+                        $link .= '&campaign=' . $campaign['ID'];
                     }
                     ?>
 
@@ -258,7 +262,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 if ( empty( $items ) ) {
                     break;
                 }
-                $url = trailingslashit( site_url() ) . PORCH_LANDING_ROOT . '/' . PORCH_LANDING_TYPE . '/' . $day;
+                $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url();
+                $url = trailingslashit( $campaign_url ) . CAMPAIGN_LANDING_TYPE . '/' . $day;
                 echo '<a href="' . esc_url( $url ) . '">'. esc_html( $url ) .'</a>';
                 break;
             default:
@@ -272,7 +277,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
     }
 
     public function get_views() {
-        $post_counts = wp_count_posts( PORCH_LANDING_POST_TYPE );
+        $post_counts = wp_count_posts( CAMPAIGN_LANDING_POST_TYPE );
 
         $total = intval( $post_counts->future ) + intval( $post_counts->draft ) + intval( $post_counts->publish );
 

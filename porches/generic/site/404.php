@@ -1,10 +1,10 @@
 <?php
 
-/* Catch any routes beginning with PORCH_LANDING_ROOT that don't match the registered urls */
+/* Catch any routes beginning with CAMPAIGN_LANDING_ROOT that don't match the registered urls */
 
 class DT_Generic_Porch_404 extends DT_Magic_Url_Base {
     public $page_title = '404';
-    public $root = PORCH_LANDING_ROOT;
+    public $root = CAMPAIGN_LANDING_ROOT;
 
     private static $_instance = null;
     public static function instance() {

@@ -7,7 +7,7 @@ add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
     return $tag;
 }, 10, 3 );
 
-function dt_campaigns_register_scripts( $atts = [] ){
+function dt_campaigns_register_scripts( $atts, $campaign_id ){
     $plugin_dir_path = DT_Prayer_Campaigns::get_dir_path();
     $plugin_dir_url = DT_Prayer_Campaigns::get_url_path();
 
@@ -19,6 +19,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
         wp_localize_script(
             'dt_campaign_core', 'campaign_objects', [
+                'nonce' => wp_create_nonce( 'wp_rest' ),
                 'magic_link_parts' => [
                     'root' => $atts['root'],
                     'type' => $atts['type'],
@@ -29,7 +30,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
                 ],
                 'rest_url' => get_rest_url(),
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
-                'home' => home_url(),
+                'home' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ) : home_url(),
                 'plugin_url' => $plugin_dir_url,
                 'dt_campaigns_is_p4m_news_enabled' => dt_campaigns_is_p4m_news_enabled(),
                 'translations' => [
@@ -124,6 +125,16 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
+                    'modals' => [
+                        'edit' => [
+                            'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
+                            'edit_original_string' => __( 'Original String', 'disciple-tools-prayer-campaigns' ),
+                            'edit_all_languages' => __( 'Custom Value For All Languages', 'disciple-tools-prayer-campaigns' ),
+                            'edit_selected_language' => __( 'Translation For Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_close' => __( 'Close', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_update' => __( 'Update', 'disciple-tools-prayer-campaigns' )
+                        ]
+                    ],
                     'Almost there! Finish signing up by activating your account.' => __( 'Almost there! Finish signing up by activating your account.', 'disciple-tools-prayer-campaigns' ),
                     'Click the "Activate Account" button in the email sent to: %s' => __( 'Click the "Activate Account" button in the email sent to: %s', 'disciple-tools-prayer-campaigns' ),
                     'It will look like this:' => __( 'It will look like this:', 'disciple-tools-prayer-campaigns' ),

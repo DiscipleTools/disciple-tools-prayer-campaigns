@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Generic_Porch {
 
+    public $items;
     private $child_porch_dir;
     private static $instance = null;
     public static function instance( $child_porch_dir = '' ) {
@@ -16,17 +17,17 @@ class DT_Generic_Porch {
         $this->child_porch_dir = $child_porch_dir;
 
         require_once __DIR__ . '/site/functions.php';
-        $fields = DT_Porch_Settings::settings();
-        if ( ! defined( 'PORCH_TITLE' ) ) {
-            $title = $fields['title']['value'] ?? '24/7 Prayer';
-            define( 'PORCH_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
+        $fields = DT_Campaign_Landing_Settings::get_campaign();
+        if ( ! defined( 'CAMPAIGN_LANDING_TITLE' ) ) {
+            $title = $fields['title'] ?? '24/7 Prayer';
+            define( 'CAMPAIGN_LANDING_TITLE', $title ); // Used in tabs and titles, avoid special characters. Spaces are okay.
         }
 
         // Set Default Language
         $default_language = 'en_US';
 
-        if ( isset( $fields['default_language'] ) && ! empty( $fields['default_language']['value'] ) ) {
-            $default_language = $fields['default_language']['value'];
+        if ( !empty( $fields['default_language']['key'] ) ) {
+            $default_language = $fields['default_language']['key'];
         }
 
         if ( ! defined( 'PORCH_DEFAULT_LANGUAGE' ) ) {
@@ -35,30 +36,30 @@ class DT_Generic_Porch {
 
         $theme_manager = new DT_Porch_Theme();
         $theme = $theme_manager->get_default_theme();
-        if ( isset( $fields['theme_color']['value'] ) && ! empty( $fields['theme_color']['value'] ) && ! defined( 'PORCH_COLOR_SCHEME' ) ) {
-            $theme_name = $fields['theme_color']['value'];
+        if ( !empty( $fields['theme_color']['key'] ) && !defined( 'CAMPAIGN_LANDING_COLOR_SCHEME' ) ) {
+            $theme_name = $fields['theme_color']['key'];
             $theme = $theme_manager->get_theme( $theme_name );
         }
 
-        if ( isset( $fields['custom_theme_color']['value'] ) && ! empty( $fields['custom_theme_color']['value'] ) ) {
+        if ( !empty( $fields['custom_theme_color'] ) ) {
             $theme = [];
             $theme['name'] = 'custom';
-            $theme['color'] = $fields['custom_theme_color']['value'];
+            $theme['color'] = $fields['custom_theme_color'];
         }
-        if ( !defined( 'PORCH_COLOR_SCHEME' ) ) {
-            define( 'PORCH_COLOR_SCHEME', $theme['name'] );
+        if ( !defined( 'CAMPAIGN_LANDING_COLOR_SCHEME' ) ) {
+            define( 'CAMPAIGN_LANDING_COLOR_SCHEME', $theme['name'] );
         }
-        if ( !defined( 'PORCH_COLOR_SCHEME_HEX' ) ) {
-            define( 'PORCH_COLOR_SCHEME_HEX', $theme['color'] );
+        if ( !defined( 'CAMPAIGN_LANDING_COLOR_SCHEME_HEX' ) ) {
+            define( 'CAMPAIGN_LANDING_COLOR_SCHEME_HEX', $theme['color'] );
         }
 
         // MICROSITE Magic Links
-        require_once( 'site/home.php' );
-        require_once( 'site/archive.php' );
-        require_once( 'site/stats.php' );
-        require_once( 'site/contact-us.php' );
-        require_once( 'site/landing.php' );
-        require_once( 'site/rest.php' );
+//        require_once( 'site/home.php' );
+//        require_once( 'site/archive.php' );
+//        require_once( 'site/stats.php' );
+//        require_once( 'site/contact-us.php' );
+//        require_once( 'site/landing.php' );
+//        require_once( 'site/rest.php' );
         require_once( 'site/404.php' );
 
         /* TODO: Porch emails need setting up like the ramadan porch in this file... */

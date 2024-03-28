@@ -76,8 +76,6 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     }
 
     public function load_porch() {
-        $this->load_porch_settings();
-
         DT_Generic_Porch::instance( $this->porch_dir );
     }
 
@@ -87,9 +85,9 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
      * extend or overload this function.
      */
     public function load_porch_settings() {
-        require_once __DIR__ . '/dt-generic-porch-settings.php';
+        require_once __DIR__ . '/dt-generic-porch-strings.php';
 
-        new DT_Generic_Porch_Settings();
+        new DT_Generic_Porch_Strings();
     }
 
     public function register_porch() {
@@ -98,6 +96,7 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
 
     public function dt_register_porch( $porches ) {
         $porches[$this->id] = $this->get_porch_details();
+        $this->load_porch_settings();
 
         return $porches;
     }
