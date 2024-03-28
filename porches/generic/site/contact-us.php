@@ -218,6 +218,10 @@ class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
             $mention .= dt_get_user_mention_syntax( $user['user_id'] );
             $mention .= ', ';
         }
+        if ( empty( $mention ) ){
+            $mention = dt_get_user_mention_syntax( dt_get_base_user( true ) );
+            $mention .= ', ';
+        }
         $comment = 'Message on Contact Us by ' . $name . ' ' . $email . ": \n" . $message;
 
         $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $mention . $comment, 'contact_us', [], false );

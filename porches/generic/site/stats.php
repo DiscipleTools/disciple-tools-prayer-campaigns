@@ -554,8 +554,19 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
         $campaign_fields = DT_Campaign_Settings::get_campaign();
         $post_id = $campaign_fields['ID'];
 
+        $mention = '';
+        $users = DT_Posts::get_shared_with( 'campaigns', $post_id, false );
+        foreach ( $users as $user ){
+            $mention .= dt_get_user_mention_syntax( $user['user_id'] );
+            $mention .= ', ';
+        }
+        if ( empty( $mention ) ){
+            $mention = dt_get_user_mention_syntax( dt_get_base_user( true ) );
+            $mention .= ', ';
+        }
+
         $comment = 'Story feedback from ' . site_url( 'prayer/stats' ) . ' by ' . $params['email'] . ": \n" . $params['story'];
-        DT_Posts::add_post_comment( 'campaigns', $post_id, $comment, 'stories', [], false );
+        DT_Posts::add_post_comment( 'campaigns', $post_id, $mention . $comment, 'stories', [], false );
 
         $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );
         if ( sizeof( $subs['posts'] ) === 1 ){
