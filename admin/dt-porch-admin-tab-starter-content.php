@@ -171,7 +171,7 @@ class DT_Porch_Admin_Tab_Starter_Content {
                         <tr>
                             <td>
                                 <p>
-                                    In order to import prayer fuel you need to install/activate the Wordpress Installer plugin
+                                    In order to import prayer fuel you need to install/activate the <a href="https://wordpress.org/plugins/wordpress-importer/" target="_blank"> Wordpress Importer</a> plugin
                                 </p>
                                 <a class="button" href="plugins.php?page=tgmpa-install-plugins">Click here to fix this</a>
                             </td>
