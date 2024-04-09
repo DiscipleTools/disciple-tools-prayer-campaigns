@@ -22,7 +22,8 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
         </div>
 
         <div class="row">
-            <?php foreach ( $today->posts as $item ) :
+            <?php do_action( 'dt_campaigns_before_prayer_fuel', $today->posts, $todays_campaign_day );
+            foreach ( $today->posts as $item ) :
                 dt_campaign_post( $item );
             endforeach;
             if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) ):
@@ -57,7 +58,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
                 <?php dt_campaign_user_record_prayed(); ?>
             </div>
 
-            <?php do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed' );
+            <?php do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed', $today->posts, $todays_campaign_day );
 
 
             if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
