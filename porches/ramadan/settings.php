@@ -14,6 +14,7 @@ Though many have stopped fasting in recent years, and are turned off by the hypo
 
 
 add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaign_day ){
+    $link = site_url( '/prayer/stats' );
     if ( class_exists( 'DT_Campaign_Settings' ) ){
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
         if ( $current_selected_porch !== 'ramadan-porch' ){
@@ -24,6 +25,7 @@ add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaig
         if ( $campaign_fields['porch_type']['key'] !== 'ramadan-porch' ){
             return;
         }
+        $link = DT_Campaign_Landing_Settings::get_landing_root_url() . '/stats';
     }
     if ( empty( $posts ) ){ ?>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
@@ -32,13 +34,17 @@ add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaig
                     <div class="section-header">
                         <h2 class="section-title">No Prayer Fuel Today</h2>
                     </div>
-                    <p>Thank you for joining over 6000 people in praying during this ramadan!</p>
+                    <p>Thank you for joining over 6,000 people in praying during this Ramadan!</p>
 
                     <p>As you pray today look back over the past month and continue praying what God has put on your heart.</p>
                     <p>Pray that God will continue working powerfully in this place.</p>
 
-                    <p>Before you leave check out the end of campaign <a href="<?php echo esc_html( site_url( '/prayer/stats' ) ); ?>">stats page</a> and
-                    consider <a href="<?php echo esc_html( site_url( '/prayer/stats#share' ) ); ?>">sharing with us</a>  about your prayer time (E.g. testimonies, insights, blessings, etc)</p>
+                    <p>Before you leave check out the end of campaign stats page and
+                        consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc)</p>
+                    <div style="display: flex; justify-content: center">
+                        <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link ); ?>">View stats</a>
+                        <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link . '#share' ); ?>">Share your experience</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,6 +57,7 @@ add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [],
     if ( $position !== 'after_record_prayed' || $todays_campaign_day != 31 || empty( $posts ) ){
         return;
     }
+    $link = site_url( '/prayer/stats' );
     if ( class_exists( 'DT_Campaign_Settings' ) ){
         $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
         if ( $current_selected_porch !== 'ramadan-porch' ){
@@ -61,6 +68,7 @@ add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [],
         if ( $campaign_fields['porch_type']['key'] !== 'ramadan-porch' ){
             return;
         }
+        $link = DT_Campaign_Landing_Settings::get_landing_root_url() . '/stats';
     }
 
     ?>
@@ -70,13 +78,17 @@ add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [],
                 <div class="section-header">
                     <h2 class="section-title">Thank you</h2>
                 </div>
-                <p>Thank you for joining over 6000 people in praying during this ramadan!</p>
+                <p>Thank you for joining over 6,000 people in praying during this Ramadan!</p>
 
                 <p>Please continue praying for this place, especially all that He has put on your heart over the past month.</p>
                 <p>Pray that God will continue working powerfully in this place.</p>
 
-                <p>Before you leave check out the end of campaign <a href="<?php echo esc_html( site_url( '/prayer/stats' ) ); ?>">stats page</a> and
-                    consider <a href="<?php echo esc_html( site_url( '/prayer/stats#share' ) ); ?>">sharing with us</a>  about your prayer time (E.g. testimonies, insights, blessings, etc)</p>
+                <p>Before you leave check out the end of campaign stats page and
+                    consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc)</p>
+                <div style="display: flex; justify-content: center">
+                    <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link ); ?>">View stats</a>
+                    <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link . '#share' ); ?>">Share your experience</a>
+                </div>
             </div>
         </div>
     </div>
