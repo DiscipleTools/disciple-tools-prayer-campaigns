@@ -277,7 +277,7 @@ class DT_Generic_Porch_Stats extends DT_Magic_Url_Base
                         </p>
                         <p>
                             <label style="width: 100%">
-                                <?php esc_html_e( 'Share with us about your prayer time (E.g. testimonies, insights, blessings, etc)', 'disciple-tools-prayer-campaigns' ); ?>
+                                <?php esc_html_e( 'Share with us about your prayer time (E.g. testimonies, insights, blessings, etc.)', 'disciple-tools-prayer-campaigns' ); ?>
                                 <br>
                                 <textarea id="campaign-stories" required rows="4" type="text" style="width: 100%"></textarea>
                             </label>

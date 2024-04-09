@@ -40,7 +40,7 @@ add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaig
                     <p>Pray that God will continue working powerfully in this place.</p>
 
                     <p>Before you leave check out the end of campaign stats page and
-                        consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc)</p>
+                        consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc.)</p>
                     <div style="display: flex; justify-content: center">
                         <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link ); ?>">View stats</a>
                         <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link . '#share' ); ?>">Share your experience</a>
@@ -84,7 +84,7 @@ add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [],
                 <p>Pray that God will continue working powerfully in this place.</p>
 
                 <p>Before you leave check out the end of campaign stats page and
-                    consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc)</p>
+                    consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc.)</p>
                 <div style="display: flex; justify-content: center">
                     <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link ); ?>">View stats</a>
                     <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link . '#share' ); ?>">Share your experience</a>
