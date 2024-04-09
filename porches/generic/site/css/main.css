@@ -1368,3 +1368,7 @@ footer a {
     vertical-align: bottom;
     font-size: 2em;
 }
+
+#edit_modal_div textarea{
+    font-size: 0.8rem;
+}
