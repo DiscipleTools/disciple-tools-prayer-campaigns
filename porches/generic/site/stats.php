@@ -200,7 +200,7 @@ class DT_Generic_Porch_Stats {
             <section class="section" data-stellar-background-ratio="0.2">
                 <div class="container">
                     <div class="section-header" style="padding-bottom: 40px;">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                        <h2 id="share" class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'Share with us your Prayer Stories', 'disciple-tools-prayer-campaigns' ); ?></h2>
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <form onSubmit="event.preventDefault();submit_feedback_form();return false;" id="form-content" style="max-width: 600px; margin: auto">
@@ -276,7 +276,7 @@ class DT_Generic_Porch_Stats {
 
 
             <?php if ( $current_selected_porch === 'ramadan-porch' ) {
-                $ramadan_stats = p4m_cached_api_call( 'https://pray4movement.org/wp-json/dt-public/campaigns/campaigns-stats?start_date=2023-03-01&end_date=2023-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
+                $ramadan_stats = p4m_cached_api_call( 'https://pray4movement.org/wp-json/dt-public/campaigns/campaigns-stats?start_date=2024-03-01&end_date=2024-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
                 ?>
             <section class='section' data-stellar-background-ratio='0.2' style='padding-bottom: 0; min-height: 800px'>
                 <div class='container'>

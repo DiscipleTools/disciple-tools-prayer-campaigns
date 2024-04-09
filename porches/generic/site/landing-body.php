@@ -38,7 +38,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
         </div>
 
         <?php
-        do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed' );
+        do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed', $today->posts, $day );
 
         if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
             if ( function_exists( 'show_prayer_timer' ) ) : ?>
