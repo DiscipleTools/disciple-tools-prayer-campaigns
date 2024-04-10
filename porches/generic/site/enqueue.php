@@ -3,7 +3,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 // Add Open Graph Protocol meta tags in header
 
 add_action( 'wp_head', function() {
-    $og_title = DT_Porch_Settings::get_field_translation( 'title' );
+    $og_title = DT_Porch_Settings::get_field_translation( 'name' );
     $og_description = DT_Porch_Settings::get_field_translation( 'goal' );
     $og_url = get_site_url();
     ?>

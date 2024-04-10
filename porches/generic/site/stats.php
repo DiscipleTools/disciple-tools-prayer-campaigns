@@ -39,7 +39,7 @@ class DT_Generic_Porch_Stats {
         $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
         $campaign_name = $campaign_fields['title'];
-        $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'title' );
+        $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'name' );
 
         $subscribers_count = DT_Subscriptions::get_subscribers_count( $post_id );
         $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );

@@ -94,7 +94,7 @@ $sign_up_link = $campaign_url . '#sign-up';
                     <?php else : ?>
 
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <?php echo esc_html( $campaign_fields['name'] ?? 'Set Up A Campaign' ) ?>
+                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'name' ) ?? 'Set Up A Campaign' ) ?>
                         </h1>
 
                     <?php endif; ?>

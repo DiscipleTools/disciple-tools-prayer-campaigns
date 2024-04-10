@@ -416,7 +416,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
             return;
         }
-        if ( !isset( $porch_fields['title']['value'] ) ){
+        if ( !isset( $porch_fields['name']['value'] ) ){
             return;
         }
 
@@ -438,7 +438,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $location = implode( ', ', $location_grid );
         }
 
-        $title = DT_Porch_Settings::get_field_translation( 'title' );
+        $title = DT_Porch_Settings::get_field_translation( 'name' );
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
