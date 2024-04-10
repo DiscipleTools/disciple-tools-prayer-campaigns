@@ -481,7 +481,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
         );
-        $message .= Campaigns_Email_Template::email_content_part( 'Finally, the folks at Pray4Movement built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page.' );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Finally, the folks at Pray4Movement built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
         $message .= Campaigns_Email_Template::email_content_part(
