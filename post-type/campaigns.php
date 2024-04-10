@@ -1513,11 +1513,8 @@ class DT_Campaigns_Base {
                 ];
                 DT_Posts::update_post( 'campaigns', $campaign['ID'], $close, true, false );
 
-                $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
-                $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
-
                 //if the campaign is linked to the current porch and if it ended recently, send an email to all subscribers
-                if ( $is_current_campaign && $campaign['end_date']['timestamp'] > time() - MONTH_IN_SECONDS ){
+                if ( $campaign['end_date']['timestamp'] > time() - MONTH_IN_SECONDS ){
                     foreach ( $campaign['subscriptions'] as $subscription ){
                         wp_queue()->push( new End_Of_Campaign_Email_Job( $subscription['ID'], $campaign['ID'] ) );
 
