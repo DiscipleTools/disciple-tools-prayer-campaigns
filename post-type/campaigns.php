@@ -1386,6 +1386,9 @@ class DT_Campaigns_Base {
      * @return array|false|WP_Error
      */
     public static function send_campaign_info(){
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ){
+            return false;
+        }
         $p4m_participation = apply_filters( 'p4m_participation', DT_Campaign_Global_Settings::get( 'p4m_participation', true ) );
         $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
