@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-03-22T14:23:46+00:00\n"
-"PO-Revision-Date: 2024-03-19 11:18+0000\n"
+"PO-Revision-Date: 2024-04-11 12:59+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4.2\n"
+"X-Generator: Weblate 5.4.3\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:58
@@ -60,8 +60,8 @@ msgstr "Ciao %s,"
 msgid ""
 "Thank you for joining us in strategic prayer for a disciple making movement!"
 msgstr ""
-"Grazie per esserti unito a noi nella preghiera strategica per un movimento "
-"di discepoli che fanno discepoli!"
+"Grazie per esserti unito a noi in preghiera strategica per un movimento di "
+"discepoli che fanno discepoli!"
 
 #: campaign-functions/send-email-utility.php:200
 #: campaign-functions/send-email-utility.php:299
@@ -171,16 +171,16 @@ msgstr "Caro/a %s,"
 #: campaign-functions/send-email-utility.php:462
 #: campaign-functions/send-email-utility.php:492
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Grazie per esserti unito a noi per i %1$s in %2$s."
+msgstr "Grazie per esserti unito a noi di %1$s in %2$s."
 
 #: campaign-functions/send-email-utility.php:465
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
-"Capiremo solo nell'eternità qual impatto ha avuto le nostre preghiere. Però, "
-"la Parola di Dio ci dice che la preghiera è potente ed efficace (Giacomo "
-"5:16)."
+"Capiremo solo nell'eternità quale impatto hanno avuto le nostre preghiere. "
+"Però, la Parola di Dio ci dice che la preghiera è potente ed efficace ("
+"Giacomo 5:16)."
 
 #: campaign-functions/send-email-utility.php:468
 msgid ""
@@ -193,7 +193,7 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:472
 msgid "See Prayer Stats"
-msgstr "Visualizza I Numeri Della Preghiera"
+msgstr "Visualizza I Numeri Delle Nostre Preghiere"
 
 #: campaign-functions/send-email-utility.php:474
 #: campaign-functions/send-email-utility.php:510
@@ -226,14 +226,14 @@ msgid ""
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
-"Inoltre, in fondo alla pagina dei Numeri della Preghiera 24/7 per Ramadan "
-"troverai una sezione dove puoi iscriverti. Fa' l'iscrizione per ricevere "
-"notizie sui futuri progetti di Pray4Movement, i creatori di questo strumento "
-"di preghiera."
+"Inoltre, in fondo alla pagina I Numeri delle Nostre Preghiere 24/7 per "
+"Ramadan troverai una sezione dove puoi iscriverti. Fa' l'iscrizione per "
+"ricevere notizie sui futuri progetti di Pray4Movement, i creatori di questo "
+"strumento di preghiera."
 
 #: campaign-functions/send-email-utility.php:508
 msgid "See Ramadan 24/7 Prayer Stats"
-msgstr "Visualizza i Numeri della Preghiera 24/7 per Ramadan"
+msgstr "Visualizza i Numeri delle Nostre Preghiere 24/7 per Ramadan"
 
 #: campaign-functions/time-utilities.php:173
 msgid "5 minutes"
@@ -907,12 +907,12 @@ msgstr "Nessun propellente di preghiera ritrovato"
 
 #: porches/generic/site/stats.php:21
 msgid "Campaign Stats"
-msgstr "I Numeri della Campagna"
+msgstr "I Numeri della Campagna di Preghiera"
 
 #: porches/generic/site/stats.php:146
 msgctxt "Thank you for joining us in prayer for the French in France."
 msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "Grazie per esserti unito a noi in preghiera per i %1$s in %2$s."
+msgstr "Grazie per esserti unito a noi in preghiera per gli %1$s in %2$s."
 
 #: porches/generic/site/stats.php:197
 msgid "Percentage Covered"
