@@ -1,88 +1,61 @@
 <?php
-if ( !defined( 'ABSPATH' ) ){
-    exit;
-} // Exit if accessed directly.
+if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
-class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
-    public $page_title = 'Contact Us';
-    public $root = PORCH_LANDING_ROOT;
+class DT_Generic_Porch_Contact_Us {
+    public $page_title = '';
+    public $root = CAMPAIGN_LANDING_ROOT;
     public $type = 'contact-us';
-    public $post_type = PORCH_LANDING_POST_TYPE;
-    public $meta_key = PORCH_LANDING_META_KEY;
+    public $post_type = CAMPAIGN_LANDING_POST_TYPE;
+    public $meta_key = CAMPAIGN_LANDING_META_KEY;
 
     private static $_instance = null;
-
-    public static function instance(){
-        if ( is_null( self::$_instance ) ){
+    public static function instance() {
+        if ( is_null( self::$_instance ) ) {
             self::$_instance = new self();
         }
         return self::$_instance;
     } // End instance()
 
-    public function __construct(){
+    public function __construct() {
         $this->page_title = __( 'Contact Us', 'disciple-tools-prayer-campaigns' );
-        parent::__construct();
-        add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
-        /**
-         * tests if other URL
-         */
-        $url = dt_get_url_path();
-        $length = strlen( $this->root . '/' . $this->type );
-        if ( substr( $url, 0, $length ) !== $this->root . '/' . $this->type ){
-            return;
-        }
-        /**
-         * tests magic link parts are registered and have valid elements
-         */
-        if ( !$this->check_parts_match( false ) ){
-            return;
-        }
+        add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
 
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
+        add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
 
-        require_once( 'landing-enqueue.php' );
-        require_once( 'enqueue.php' );
-        add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
-        add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
-        add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 99 );
-        add_filter( 'language_attributes', [ $this, 'dt_custom_dir_attr' ] );
     }
-
-    public function dt_custom_dir_attr( $lang ){
-        return dt_campaign_custom_dir_attr( $lang );
-    }
-
-    public function dt_magic_url_base_allowed_js( $allowed_js ){
-        $allowed_js = [];
-        $allowed_js[] = 'dt_campaign_core';
-        $allowed_js[] = 'dt_campaign';
-        $allowed_js[] = 'luxon';
-        $allowed_js[] = 'jquery';
-        $allowed_js[] = 'lodash';
-        $allowed_js[] = 'lodash-core';
-
-        $allowed_js[] = 'campaign_css';
-        $allowed_js[] = 'campaign_components';
-        $allowed_js[] = 'campaign_component_sign_up';
-        $allowed_js[] = 'campaign_component_css';
-        $allowed_js[] = 'toastify-js';
-
-
-        return array_merge( $allowed_js, DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
-    }
-
-    public function dt_magic_url_base_allowed_css( $allowed_css ){
-        return DT_Generic_Porch_Landing_Enqueue::load_allowed_styles();
-    }
-
-    public function wp_enqueue_scripts(){
-        DT_Generic_Porch_Landing_Enqueue::load_scripts();
+    public function dt_blank_title( $title ) {
+        return $this->page_title;
     }
 
     public function body(){
-        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
+        $post_id = $campaign_fields['ID'];
+        $lang = dt_campaign_get_current_lang();
+
+        $campaign_root = 'campaign_app';
+        $campaign_type = $campaign_fields['type']['key'] ?? 'ongoing';
+        $key_name = 'public_key';
+        $key = '';
+        if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
+            $key_name = DT_Magic_URL::get_public_key_meta_key( $campaign_root, $campaign_type );
+        }
+        if ( isset( $campaign_fields[$key_name] ) ){
+            $key = $campaign_fields[$key_name];
+        }
+        $atts = [
+            'root' => $campaign_root,
+            'type' => $campaign_type,
+            'public_key' => $key,
+            'meta_key' => $key_name,
+            'post_id' => (int) $post_id,
+            'rest_url' => rest_url(),
+            'lang' => $lang
+        ];
+
+        dt_campaigns_register_scripts( $atts, $atts['post_id'] );
         ?>
 
         <style>
@@ -133,27 +106,35 @@ class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
             <script>
 
                 let submit_contact_us_form = function (){
-                    $('#contact-submit-spinner').show();
+
+                    $('#contact-submit-spinner').show()
                     let honey = $('#email').val();
                     if ( honey ){
                         return;
                     }
 
+                    let name = $('#contact-name').val();
+                    let email = $('#email-2').val();
+                    let message = $('#contact-message').val()
+
                     let payload = {
-                        'parts': jsObject.parts,
-                        'name': $('#contact-name').val(),
-                        'email': $('#email-2').val(),
-                        'message': $('#contact-message').val()
+                        'parts': window.campaign_objects.magic_link_parts,
+                        campaign_id:  window.campaign_objects.magic_link_parts.post_id,
+                        name,
+                        email,
+                        message
                     };
+
+                    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/contact_us';
 
                     jQuery.ajax({
                         type: 'POST',
                         data: JSON.stringify(payload),
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',
-                        url: jsObject.root + jsObject.parts.root + /v1/ + jsObject.parts.type,
+                        url: link,
                         beforeSend: (xhr) => {
-                            xhr.setRequestHeader("X-WP-Nonce", jsObject.nonce);
+                          xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
                         },
                     }).done(function(data){
                         $('#contact-submit-spinner').show()
@@ -161,10 +142,9 @@ class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
                         $('#form-confirm').show()
                     })
                     .fail(function(e) {
-                        console.log(e);
-                    });
+                        // jQuery('#error').html(e)
+                    })
                 }
-
             </script>
         </div>
         <?php
@@ -178,63 +158,8 @@ class DT_Generic_Porch_Contact_Us extends DT_Magic_Url_Base{
         require_once( 'header.php' );
     }
 
-    public function add_endpoints(){
-        $namespace = $this->root . '/v1';
-        register_rest_route(
-            $namespace, '/' . $this->type, [
-                [
-                    'methods' => 'POST',
-                    'callback' => [ $this, 'contact_us' ],
-                    'permission_callback' => function( WP_REST_Request $request ) {
-                        return true;
-                    }
-                ]
-            ]
-        );
-    }
 
-    public function contact_us( WP_REST_Request $request ){
-        $params = $request->get_params();
-        $params = dt_recursive_sanitize_array( $params );
 
-        if ( !isset( $params['message'], $params['email'], $params['name'] ) ) {
-            return false;
-        }
 
-        $name = $params['name'];
-        $email = $params['email'];
-        $message = wp_kses_post( $request->get_params()['message'] );
-
-        $campaign = DT_Campaign_Settings::get_campaign();
-        if ( empty( $campaign ) ){
-            return false;
-        }
-        $campaign_id = $campaign['ID'];
-
-        // Get shared with.
-        $mention = '';
-        $users = DT_Posts::get_shared_with( 'campaigns', $campaign_id, false );
-        foreach ( $users as $user ){
-            $mention .= dt_get_user_mention_syntax( $user['user_id'] );
-            $mention .= ', ';
-        }
-        if ( empty( $mention ) ){
-            $mention = dt_get_user_mention_syntax( dt_get_base_user( true ) );
-            $mention .= ', ';
-        }
-        $comment = 'Message on Contact Us by ' . $name . ' ' . $email . ": \n" . $message;
-
-        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $mention . $comment, 'contact_us', [], false );
-
-        $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $campaign_id ], 'contact_email' => [ $email ] ], false );
-        if ( sizeof( $subs['posts'] ) === 1 ){
-            DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'contact_us', [], false );
-        }
-
-        do_action( 'campaign_contact_us', $campaign_id, $name, $email, $message );
-        return $added_comment;
-    }
 }
-
 DT_Generic_Porch_Contact_Us::instance();
-

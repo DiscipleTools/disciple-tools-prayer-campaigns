@@ -2,15 +2,27 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class DT_Prayer_Campaigns_Send_Email {
-    public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [], $attachments = [] ){
+    public static function send_prayer_campaign_email( $to, $subject, $message, $headers = [], $attachments = [], $campaign_id = null ){
         if ( empty( $to ) ){
             return new WP_Error( 'send_prayer_campaign_email', 'No email address provided.' );
         }
-
-        if ( empty( $headers ) ){
+        if ( !in_array( 'Content-Type: text/html', $headers ) ){
             $headers[] = 'Content-Type: text/html';
+        }
+        if ( !in_array( 'charset=UTF-8', $headers ) ){
             $headers[] = 'charset=UTF-8';
         }
+        if ( $campaign_id ){
+            $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+            if ( !empty( $campaign['from_name'] ) && !empty( $campaign['from_email'] ) ){
+                $headers[] = 'From: ' . $campaign['from_name'] . ' <' . $campaign['from_email'] . '>';
+            }
+            if ( !empty( $campaign['reply_to_email'] ) ){
+                $headers[] = 'Reply-To: ' . $campaign['reply_to_email'];
+            }
+        }
+
+
         $sent = wp_mail( $to, $subject, $message, $headers, $attachments );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email to: ' . $to );
@@ -34,16 +46,19 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
-    public static function management_link( $record ){
+    public static function management_link( $record, $campaign_id = null ){
         $key_name = 'public_key';
         if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
             $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
         }
-        return trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
-
+        $link = trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $record[$key_name];
+        if ( !empty( $campaign_id ) ){
+            $link .= '?campaign=' . $campaign_id;
+        }
+        return $link;
     }
 
-    public static function send_verification( $email, $subscriber_id ){
+    public static function send_verification( $email, $campaign_id, $subscriber_id ){
         $lang = dt_campaign_get_current_lang();
         self::switch_email_locale( $lang );
 
@@ -73,7 +88,7 @@ class DT_Prayer_Campaigns_Send_Email {
         );
 
 
-        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
         $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
         if ( !$sent ){
@@ -119,7 +134,7 @@ class DT_Prayer_Campaigns_Send_Email {
         return $attachments;
     }
 
-    public static function send_registration( $subscriber_id, $campaign_id, $recurring_signups ) {
+    public static function send_registration( $subscriber_id, $campaign_id, $recurring_signups = [] ) {
 
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $record ) ){
@@ -176,10 +191,9 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
-        if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['signup_content'] ) && $campaign['campaign_strings'][$record['lang']]['signup_content'] !== '' ){
-            $sign_up_email_extra_message = '<p>' .  $campaign['campaign_strings'][$record['lang']]['signup_content'] . '</p>';
-        } else if ( isset( $campaign['campaign_strings']['default']['signup_content'] ) && $campaign['campaign_strings']['default']['signup_content'] !== '' ) {
-            $sign_up_email_extra_message = '<p>' .  $campaign['campaign_strings']['default']['signup_content'] . '</p>';
+        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? null, $campaign['signup_content'] );
+        if ( $sign_up_content_translation ){
+            $sign_up_email_extra_message = '<p>' .  $sign_up_content_translation . '</p>';
         }
 
         if ( strpos( $sign_up_email_extra_message, '<a' ) === false ){
@@ -190,13 +204,14 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $sign_up_email_extra_message = apply_filters( 'dt_campaign_signup_content', $sign_up_email_extra_message );
 
-        $link = self::management_link( $record );
+        $link = self::management_link( $record, $campaign_id );
 
         $message = '';
         if ( !empty( $record['name'] ) ){
             $message .= Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
         }
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for joining us in strategic prayer for a disciple making movement!', 'disciple-tools-prayer-campaigns' ) );
+        $tagline = DT_Porch_Settings::get_field_translation( 'email_tagline' );
+        $message .= Campaigns_Email_Template::email_content_part( $tagline );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $link );
         if ( !empty( $recurring_signups ) ){
@@ -215,11 +230,11 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $message .= Campaigns_Email_Template::email_button_part( __( 'Download Calendar', 'disciple-tools-prayer-campaigns' ), $calendar_url );
 
-        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
         $attachments = self::generate_registration_attachments( $subscriber_id );
 
-        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email, [], $attachments );
+        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email, [], $attachments, $campaign_id );
         if ( ! $sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         }
@@ -234,12 +249,11 @@ class DT_Prayer_Campaigns_Send_Email {
         $locale = $record['lang'] ?? null;
         self::switch_email_locale( $locale );
 
-        $porch_selected = DT_Porch_Selector::instance()->get_selected_porch_id();
         $prayer_fuel_link_text = '';
         $prayer_fuel_link = '';
-        $porch_email_settings = DT_Porch_Settings::settings( 'email-settings' );
-        if ( !empty( $porch_selected ) && empty( $porch_email_settings['reminder_content_disable_fuel']['value'] ) ){
-            $prayer_fuel_link = site_url() . '/prayer/list';
+        if ( !isset( $campaign['reminder_content_disable_fuel']['key'] ) || $campaign['reminder_content_disable_fuel']['key'] === 'no' ){
+            $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+            $prayer_fuel_link = $campaign_url . '/list';
             $prayer_fuel_link_text = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), '' ) . '</p>';
         }
 
@@ -270,11 +284,11 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign_subject_line = __( 'Prayer Time reminder!', 'disciple-tools-prayer-campaigns' );
 
-        $prayer_content_message = '';
-        if ( isset( $record['lang'], $campaign['campaign_strings'][$record['lang']]['reminder_content'] ) && $campaign['campaign_strings'][$record['lang']]['reminder_content'] !== '' ){
-            $prayer_content_message = $campaign['campaign_strings'][$record['lang']]['reminder_content'];
-        } else if ( isset( $campaign['campaign_strings']['default']['reminder_content'] ) && $campaign['campaign_strings']['default']['reminder_content'] !== '' ) {
-            $prayer_content_message = $campaign['campaign_strings']['default']['reminder_content'];
+        $prayer_content_message = DT_Campaign_Languages::get_translation( $campaign_id, 'reminder_content', $record['lang'] ?? null );
+        if ( $prayer_content_message ){
+            $prayer_content_message = '<p>' .  $prayer_content_message . '</p>';
+        } elseif ( !empty( $campaign['reminder_content'] ) ){
+            $prayer_content_message = '<p>' .  $campaign['reminder_content'] . '</p>';
         }
 
         if ( strpos( $prayer_content_message, '<a' ) === false ){
@@ -282,7 +296,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $prayer_content_message = apply_filters( 'dt_campaign_reminder_prayer_content', $prayer_content_message );
 
-        $management_link = self::management_link( $record );
+        $management_link = self::management_link( $record, $campaign_id );
 
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $record['name'] ) ) );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ) );
@@ -299,9 +313,9 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'Access your account to see your commitments and make changes:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $management_link, '#a3a3a3' );
 
-        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
-        return self::send_prayer_campaign_email( $to, $campaign_subject_line, $full_email );
+        return self::send_prayer_campaign_email( $to, $campaign_subject_line, $full_email, [], [], $campaign_id );
 
     }
 
@@ -341,7 +355,7 @@ class DT_Prayer_Campaigns_Send_Email {
                 $message .= Campaigns_Email_Template::email_content_part( 'If you did not request this link, just ignore this email.' );
                 $message .= Campaigns_Email_Template::email_content_part( '<'. trailingslashit( site_url() ) . 'subscriptions_app/manage/' . $public_key.'>' );
 
-                $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+                $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
                 $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
                 if ( ! $sent ){
@@ -351,7 +365,7 @@ class DT_Prayer_Campaigns_Send_Email {
         } else {
             $message = Campaigns_Email_Template::email_greeting_part( 'Thank you for praying with us.' );
             $message .= Campaigns_Email_Template::email_content_part( 'Sorry, we were unable to find a sign up associated with this email address.' );
-            $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+            $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
             $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
             if ( ! $sent ){
@@ -361,7 +375,7 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
-    public static function send_resubscribe_tickler( $subscriber_id ){
+    public static function send_resubscribe_tickler( $subscriber_id, $campaign_id ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
@@ -381,7 +395,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_button_part( 'Access Portal', $manage_link );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Or click this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. $manage_link.'">' . $manage_link .  '</a>' );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',<br>' . $title );
-        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
         return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $full_email );
     }
@@ -402,7 +416,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( !isset( $record['contact_email'] ) || empty( $record['contact_email'] ) ){
             return;
         }
-        if ( !isset( $porch_fields['title']['value'] ) ){
+        if ( !isset( $porch_fields['name']['value'] ) ){
             return;
         }
 
@@ -414,7 +428,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $to = implode( ',', $to );
 
-        $current_campaign = DT_Campaign_Settings::get_campaign();
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $location = DT_Porch_Settings::get_field_translation( 'country_name', $record['lang'] ?? 'en_US' );
         if ( empty( $location ) ){
             $location_grid = [];
@@ -424,18 +438,18 @@ class DT_Prayer_Campaigns_Send_Email {
             $location = implode( ', ', $location_grid );
         }
 
-        $title = DT_Porch_Settings::get_field_translation( 'title' );
+        $title = DT_Porch_Settings::get_field_translation( 'name' );
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
-        $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign_id === (int) $current_campaign['ID'];
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
-        if ( $is_current_campaign && $current_selected_porch === 'ramadan-porch' ){
-            $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $record['lang'] ?? 'en_US', $location );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+
+        if ( $current_campaign['porch_type']['key'] === 'ramadan-porch' ){
+            $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $campaign_url, $location );
         } else {
-            $message = self::end_of_campaign_generic_email( $record['name'], $title, $location );
+            $message = self::end_of_campaign_generic_email( $record['name'], $title, $campaign_url, $location );
         }
-        $full_email = Campaigns_Email_Template::build_campaign_email( $message );
+        $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
         $sent = self::send_prayer_campaign_email( $to, $subject, $full_email );
         if ( !$sent ){
@@ -446,7 +460,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
     }
 
-    public static function end_of_campaign_generic_email( $name, $campaign_title, $location = '' ){
+    public static function end_of_campaign_generic_email( $name, $campaign_title, $campaign_url, $location = '' ){
 
         if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
@@ -454,7 +468,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
-        $url = trailingslashit( site_url() ) . 'prayer/stats';
+        $url = $campaign_url . '/stats';
 
         $message = Campaigns_Email_Template::email_content_part( '<h3>' . sprintf( __( 'Dear %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $name ) ) . '</h3>' );
 
@@ -477,14 +491,14 @@ class DT_Prayer_Campaigns_Send_Email {
         return $message;
     }
 
-    public static function end_of_campaign_ramadan_email( $name, $campaign_title, $lang = 'en_US', $location = '' ){
+    public static function end_of_campaign_ramadan_email( $name, $campaign_title, $campaign_url, $location = '' ){
         if ( $location ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
         }
 
-        $url = trailingslashit( site_url() ) . 'prayer/stats';
+        $url = $campaign_url . '/stats';
 
         $message = Campaigns_Email_Template::email_content_part( '<h3>' . sprintf( __( 'Dear %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $name ) ) . '</h3>' );
 
@@ -494,15 +508,9 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             __( "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16).", 'disciple-tools-prayer-campaigns' )
         );
-        if ( empty( $location ) || $lang !== 'en_US' ){
-            $message .= Campaigns_Email_Template::email_content_part(
-                __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
-            );
-        } else {
-            $message .= Campaigns_Email_Template::email_content_part(
-                sprintf( __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God for %s as you prayed.', 'disciple-tools-prayer-campaigns' ), $location )
-            );
-        }
+        $message .= Campaigns_Email_Template::email_content_part(
+            __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
+        );
         $message .= Campaigns_Email_Template::email_content_part( __( 'Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Pray4Movement, the makers of this prayer tool.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Ramadan 24/7 Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
@@ -563,10 +571,10 @@ class End_Of_Campaign_Email_Job extends Job {
 class Campaigns_Email_Template {
 
 
-    public static function build_campaign_email( $content, $logo_url = null ){
+    public static function build_campaign_email( $content, $campaign_id, $logo_url = null ){
 
         $email = self::email_head_part();
-        $email .= self::email_logo_part( $logo_url );
+        $email .= self::email_logo_part( $campaign_id, $logo_url );
         $email .= $content;
         $email .= self::email_footer_part();
         return $email;
@@ -599,15 +607,11 @@ class Campaigns_Email_Template {
         return $part;
     }
 
-    public static function get_email_logo_url( $logo_url = null ){
+    public static function get_email_logo_url( $campaign_id, $logo_url = null ){
         if ( empty( $logo_url ) ){
-            $settings_manager = new DT_Campaign_Settings();
-            $logo_url = $settings_manager->get( 'email_logo' );
-        }
-        if ( empty( $logo_url ) ){
-            $settings = DT_Porch_Settings::settings();
-            if ( !empty( $settings['logo_url']['value'] ) ){
-                $logo_url = $settings['logo_url']['value'];
+            $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+            if ( !empty( $campaign['email_logo'] ) ){
+                $logo_url = $campaign['email_logo'];
             }
         }
         if ( empty( $logo_url ) ){
@@ -616,8 +620,8 @@ class Campaigns_Email_Template {
         return $logo_url;
     }
 
-    public static function email_logo_part( $logo_url = null ){
-        $logo_url = self::get_email_logo_url( $logo_url );
+    public static function email_logo_part( $campaign_id, $logo_url = null ){
+        $logo_url = self::get_email_logo_url( $campaign_id, $logo_url );
         ob_start();
         ?>
         <tr><td class="r2-c" align="center">

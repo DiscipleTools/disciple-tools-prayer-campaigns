@@ -5,7 +5,7 @@ $lang = dt_campaign_get_current_lang();
 $porch_fields = DT_Porch_Settings::settings();
 
 $frequency = isset( $porch_fields['prayer_fuel_frequency']['value'] ) ? $porch_fields['prayer_fuel_frequency']['value'] : 'daily';
-$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ), $frequency );
+$todays_campaign_day = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y-m-d' ), null, $frequency );
 
 $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_campaign_day );
 ?>
@@ -70,7 +70,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <div>
-                        <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
+                        <?php echo do_shortcode( "[dt_prayer_timer color='" . CAMPAIGN_LANDING_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
                     </div>
                 </div>
                 <?php endif;

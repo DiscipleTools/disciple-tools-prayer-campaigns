@@ -33,7 +33,7 @@ class DT_Campaign_Prayer_Fuel_Menu {
             wp_die( 'You do not have sufficient permissions to access this page.' );
         }
 
-        $campaign = DT_Campaign_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
 
 

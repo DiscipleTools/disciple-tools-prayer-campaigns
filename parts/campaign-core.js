@@ -490,3 +490,147 @@ window.campaign_scripts = {
   }
 }
 
+/**
+ * EDIT FUNCTIONALITY
+ */
+
+jQuery(document).ready(function ($) {
+
+    init_edit_bootstrap_modal();
+    function init_edit_bootstrap_modal() {
+        let current_lang = null;
+        let lang_select = $('.dt-magic-link-language-selector');
+        if ($(lang_select).length > 0) {
+            current_lang = $(lang_select).find('option:selected').text().trim();
+        }
+
+        let content = `
+        <input id="edit_modal_field_key" type="hidden"/>
+        <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${escapeHTML(strings['modals']['edit']['modal_title'])}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tbody>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_original_string'])}</td>
+                                    <td id="edit_modal_original_string" style="font-size: 12px; color: #3c3c3c;"></td>
+                                </tr>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_all_languages'])}</td>
+                                    <td>
+                                        <textarea id="edit_modal_all_languages" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                </tr>`;
+
+                                if ( current_lang ) {
+                                  content += `<tr style="background-color: #ffffff;">
+                                    <td
+                                      style="vertical-align: top; width: 30%;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${' - [' + escapeHTML( current_lang ) + ']'}</td>
+                                    <td>
+                                      <textarea id="edit_modal_selected_language" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                  </tr>`;
+                                }
+
+                            content += `</tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-common edit-close-btn">${escapeHTML(strings['modals']['edit']['edit_btn_close'])}</button>
+                        <button class="btn btn-common edit-update-btn">${escapeHTML(strings['modals']['edit']['edit_btn_update'])}</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        $('#edit_modal_div').empty().html(content);
+    }
+
+    $(document).on('click', '.edit-btn', function (e) {
+
+        // Set translation field values and display modal.
+        let edit_btn = $(e.currentTarget);
+        let field_key = $(edit_btn).data('field_key');
+        let lang_default = $(edit_btn).data('lang_default');
+        let lang_all = $(edit_btn).data('lang_all');
+        let lang_selected = $(edit_btn).data('lang_selected');
+
+        // Capture hidden values to be applied further down stream.
+        $('#edit_modal_field_key').val(field_key);
+
+        // Obtain element handles and set modal display values.
+        let edit_modal_original_string = $('#edit_modal_original_string');
+        let edit_modal_all_languages = $('#edit_modal_all_languages');
+        let edit_modal_selected_language = $('#edit_modal_selected_language');
+
+        $(edit_modal_original_string).text( escapeHTML( lang_default ) );
+        $(edit_modal_all_languages).val( escapeHTML( lang_all ) );
+        $(edit_modal_selected_language).val( escapeHTML( lang_selected ) );
+
+        // Display modal.
+        $('#edit_modal').modal('show');
+    });
+
+    $(document).on('click', '.edit-close-btn', function (e) {
+        $('#edit_modal').modal('hide');
+    });
+
+    $(document).on('click', '.edit-update-btn', function (e) {
+        let field_key = $('#edit_modal_field_key').val();
+        let lang_all = $('#edit_modal_all_languages').val();
+        let lang_selected = $('#edit_modal_selected_language').val();
+        let lang_code = $('.dt-magic-link-language-selector').val();
+        let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+
+        // Dispatch edit update request.
+        let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_edit';
+        let payload = {
+          'action': 'post',
+          'parts': window.campaign_objects.magic_link_parts,
+          'url': 'campaign_edit',
+          'time': new Date().getTime(),
+          campaign_id,
+          'edit': {
+            'field_key': field_key,
+            'lang_all': lang_all
+          }
+        };
+
+        if ( lang_selected !== undefined ) {
+          payload['edit']['lang_translate'] = lang_selected;
+        }
+
+        if ( lang_code !== undefined ) {
+          payload['edit']['lang_code'] = lang_code;
+        }
+
+        jQuery.ajax({
+            type: 'POST',
+            data: JSON.stringify(payload),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            url: link,
+          beforeSend: (xhr) => {
+            xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
+          },
+        })
+        .promise()
+        .then((response) => {
+            $('#edit_modal').modal('hide');
+            if ( response && response['updated'] ) {
+              location.reload();
+            }
+        });
+    });
+});
+
+/**
+ * EDIT FUNCTIONALITY
+ */
+

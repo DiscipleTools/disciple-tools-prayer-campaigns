@@ -43,6 +43,7 @@ class DT_Campaigns_Base {
 
         // hooks
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
+        add_action( 'post_connection_added', [ $this, 'post_connection_added' ], 10, 4 );
 
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
@@ -70,7 +71,7 @@ class DT_Campaigns_Base {
 
     public function dt_nav( $nav ){
         if ( isset( $nav['admin']['settings']['submenu']['admin'] ) ){
-            $nav['admin']['settings']['submenu']['admin']['hidden'] = !current_user_can( 'manage_dt' ) && !current_user_can( 'edit_' . PORCH_LANDING_POST_TYPE );
+            $nav['admin']['settings']['submenu']['admin']['hidden'] = !current_user_can( 'manage_dt' ) && !current_user_can( 'edit_' . CAMPAIGN_LANDING_POST_TYPE );
         }
         return $nav;
     }
@@ -90,24 +91,30 @@ class DT_Campaigns_Base {
                 ]
             ];
         }
+        if ( !isset( $expected_roles['campaigns_creator'] ) ){
+            $expected_roles['campaigns_creator'] = [
+                'label' => 'Campaign Creator',
+                'description' => 'Create and edit prayer campaigns',
+                'permissions' => [
+                    'access_disciple_tools' => true,
+                ]
+            ];
+        }
         $campaigns_permissions = [
             'access_'.$this->post_type => true,
             'create_'.$this->post_type => true,
-            'update_any_'.$this->post_type => true,
-            'view_any_'.$this->post_type => true,
+
         ];
         $landing_page_permissions = [
             // landing page access
-            'create_' . PORCH_LANDING_POST_TYPE => true,
-            'edit_' . PORCH_LANDING_POST_TYPE => true,
-            'read_' . PORCH_LANDING_POST_TYPE => true,
-            'delete_' . PORCH_LANDING_POST_TYPE => true,
-            'delete_others_' . PORCH_LANDING_POST_TYPE . 's',
-            'delete_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'edit' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'edit_others_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'publish_' . PORCH_LANDING_POST_TYPE . 's' => true,
-            'read_private_' . PORCH_LANDING_POST_TYPE . 's' => true,
+            'create_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'edit_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'read_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'delete_' . CAMPAIGN_LANDING_POST_TYPE => true,
+            'delete_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'edit' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'publish_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'read_private_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
             'edit_posts' => true, // list patterns and all creating landing posts
             'publish_posts' => true, //create new patterns
             'edit_published_posts' => true, //edit synced posts and create un-synced posts
@@ -118,14 +125,31 @@ class DT_Campaigns_Base {
             // wp-admin dashboard access
             'read' => true,
         ];
+
+        //all campaigns permissions
+        $all_campaigns_admin_permissions = [
+            'update_any_'.$this->post_type => true,
+            'view_any_'.$this->post_type => true,
+            'delete_others_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+            'edit_others_' . CAMPAIGN_LANDING_POST_TYPE . 's' => true,
+        ];
+
+        //campaign creator permissions
+        $expected_roles['campaigns_creator']['permissions'] = array_merge( $expected_roles['campaigns_creator']['permissions'], $campaigns_permissions );
+        $expected_roles['campaigns_creator']['permissions'] = array_merge( $expected_roles['campaigns_creator']['permissions'], $landing_page_permissions );
+
+        //campaign admin permissions
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $campaigns_permissions );
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $landing_page_permissions );
+        $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $all_campaigns_admin_permissions );
 
         if ( isset( $expected_roles['administrator'] ) ){
             $expected_roles['administrator']['permissions']['access_' . $this->post_type ] = true;
             $expected_roles['administrator']['permissions']['create_' . $this->post_type] = true;
             $expected_roles['administrator']['permissions']['view_any_'.$this->post_type ] = true;
             $expected_roles['administrator']['permissions']['update_any_'.$this->post_type ] = true;
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $landing_page_permissions );
+            $expected_roles['administrator']['permissions'] = array_merge( $expected_roles['administrator']['permissions'], $all_campaigns_admin_permissions );
         }
 
         return $expected_roles;
@@ -161,6 +185,28 @@ class DT_Campaigns_Base {
             ];
             // end basic framework fields
 
+            $fields['assigned_user'] = [
+                'name' => 'Assigned Users',
+                'description' => 'Users responsible for managing the campaign.',
+                'type' => 'connection',
+                'post_type' => 'contacts',
+                'tile' => 'status',
+                'p2p_direction' => 'from',
+                'p2p_key' => $this->post_type.'_to_contacts',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/assigned-to.svg',
+            ];
+
+            $fields['name']['tile'] = 'status';
+
+            $fields['campaign_url'] = [
+                'name' => 'Campaign URL',
+                'description' => 'The URL of the campaign landing page. It must be unique',
+                'type' => 'text',
+                'tile' => 'campaign_setup',
+                'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
+                'show_in_table' => 20,
+            ];
+
 
             $fields['languages'] = [
                 'name' => 'Subscriber Preferred Language',
@@ -180,6 +226,19 @@ class DT_Campaigns_Base {
                 'p2p_key' => $this->post_type.'_to_peoplegroups'
             ];
 
+            $porches = apply_filters( 'dt_register_prayer_campaign_porch', [] );
+            $fields['porch_type'] = [
+                'name' => 'Landing Page Type',
+                'type' => 'key_select',
+                'default' => [],
+                'tile' => 'campaign_setup',
+                'in_create_form' => true,
+                'select_cannot_be_empty' => true,
+            ];
+            foreach ( $porches as $porch ){
+                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'] ];
+            }
+
             $fields['start_date'] = [
                 'name'        => 'Start Date',
                 'required' => true,
@@ -192,7 +251,7 @@ class DT_Campaigns_Base {
                 'show_in_table' => 101
             ];
             $fields['end_date'] = [
-                'name'        => 'End Date',
+                'name'        => 'End Date (optional)',
                 'description' => '',
                 'type'        => 'date',
                 'default'     => '',
@@ -213,7 +272,7 @@ class DT_Campaigns_Base {
             }
             $fields['campaign_timezone'] = [
                 'name' => 'Campaign Time Zone',
-                'required' => true,
+                'required' => false,
                 'in_create_form' => true,
                 'default' => $timezones,
                 'type' => 'key_select',
@@ -249,6 +308,12 @@ class DT_Campaigns_Base {
                 'name' => 'Duration options',
                 'type' => 'key_select',
                 'default' => DT_Time_Utilities::get_slot_duration_options(),
+            ];
+            $fields['enabled_languages'] = [
+                'name' => 'Enabled Languages',
+                'type' => 'tags',
+                'default' => [],
+                'tile' => 'campaign_landing',
             ];
 
             $fields['strings_translations'] = [
@@ -339,6 +404,7 @@ class DT_Campaigns_Base {
     }
 
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        global $wpdb;
         if ( $post_type === 'campaigns' ){
             foreach ( $fields as $field_key => $field_value ){
                 if ( strpos( $field_key, 'hack-campaign_strings' ) === 0 ){
@@ -354,8 +420,28 @@ class DT_Campaigns_Base {
                     unset( $fields[$field_key] );
                 }
             }
+            //make sure the campaign_url is unique
+            if ( isset( $fields['campaign_url'] ) ) {
+                $campaign_url = str_replace( ' ', '-', strtolower( trim( $fields['campaign_url'] ) ) );
+                $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $campaign_url ) );
+                if ( !empty( $url_exists ) ){
+                    $campaign_url = dt_create_field_key( $campaign_url, true );
+                }
+                $fields['campaign_url'] = $campaign_url;
+            }
         }
         return $fields;
+    }
+
+    public function post_connection_added( $post_type, $post_id, $post_key, $value ){
+        if ( $post_type === 'campaigns' ){
+            if ( $post_key === 'assigned_user' ){
+                $user_id = get_post_meta( $value, 'corresponds_to_user', true );
+                if ( $user_id ){
+                    DT_Posts::add_shared( $post_type, $post_id, $user_id, null, true, false, true );
+                }
+            }
+        }
     }
 
     public function dt_comments_additional_sections( $sections, $post_type ){
@@ -363,6 +449,11 @@ class DT_Campaigns_Base {
             $sections[] = [
                 'key' => 'stories',
                 'label' => 'Stories',
+                'selected_by_default' => true
+            ];
+            $sections[] = [
+                'key' => 'contact_us',
+                'label' => 'Contact US',
                 'selected_by_default' => true
             ];
         }
@@ -376,12 +467,6 @@ class DT_Campaigns_Base {
         if ( $post_type === $this->post_type ){
             $tiles['campaign_setup'] = [ 'label' => 'Campaign Setup' ];
             $tiles['commitments'] = [ 'label' => 'Commitments' ];
-            if ( $post_type === 'campaigns' && ! isset( $tiles['campaign_magic_links'] ) ){
-                $tiles['campaign_magic_links'] = [
-                    'label' => 'Magic Urls',
-                    'description' => 'The Magic URL sets up a page accessible without authentication, only the link is needed. Useful for small applications liked to this record, like quick surveys or updates.'
-                ];
-            }
             if ( !isset( $tiles['campaign_communication'] ) ){
                 $tiles['campaign_communication'] = [
                     'label' => __( 'Campaign Communication', 'disciple-tools-prayer-campaigns' ),
@@ -745,6 +830,7 @@ class DT_Campaigns_Base {
                         <?php esc_html_e( 'Shortcodes', 'disciple-tools-prayer-campaigns' ); ?>
                     </div>
                     <a class="button hollow small" target="_blank" href="<?php echo esc_html( $link ); ?>"><?php esc_html_e( 'View Components', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="button hollow small" target="_blank" href="<?php echo esc_html( DT_Campaign_Landing_Settings::get_landing_page_url( $record['ID'] ) ); ?>"><?php esc_html_e( 'View Landing Page', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </div>
                 <?php
             }
@@ -1080,7 +1166,7 @@ class DT_Campaigns_Base {
                 $blocks += $day['time_slot_count'];
             }
 
-            $percent = $blocks_covered / $blocks * 100;
+            $percent = $blocks ? ( $blocks_covered / $blocks * 100 ) : 0;
         }
         return round( $percent, 2 );
     }
@@ -1147,11 +1233,29 @@ class DT_Campaigns_Base {
         return 0;
     }
 
+    public static function rand_color() {
+        return sprintf( '#%06X', mt_rand( 0, 0xFFFFFF ) );
+    }
+
     // filter at the start of post creation
     public function dt_post_create_fields( $fields, $post_type ){
+        global $wpdb;
         if ( $post_type === $this->post_type ) {
             if ( !isset( $fields['status'] ) ) {
                 $fields['status'] = 'active';
+            }
+            if ( !isset( $fields['porch_type'] ) ){
+                $fields['porch_type'] = 'generic-porch';
+            }
+            if ( !isset( $fields['custom_theme_color'] ) ) {
+                $fields['custom_theme_color'] = self::rand_color();
+            }
+            if ( !isset( $fields['campaign_url'] ) ) {
+                $fields['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $fields['name'] ) ) );
+            }
+            $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $fields['campaign_url'] ) );
+            if ( !empty( $url_exists ) ){
+                $fields['campaign_url'] = dt_create_field_key( $fields['campaign_url'], true );
             }
             if ( !isset( $fields['min_time_duration'] ) ){
                 $fields['min_time_duration'] = '15';
@@ -1282,9 +1386,12 @@ class DT_Campaigns_Base {
      * @return array|false|WP_Error
      */
     public static function send_campaign_info(){
-        $p4m_participation = apply_filters( 'p4m_participation', DT_Campaign_Settings::get( 'p4m_participation', true ) );
-        $current_campaign = DT_Campaign_Settings::get_campaign();
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ){
+            return false;
+        }
+        $p4m_participation = apply_filters( 'p4m_participation', DT_Campaign_Global_Settings::get( 'p4m_participation', true ) );
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
         $porch_name = isset( DT_Porch_Settings::settings()['title']['value'] ) ? DT_Porch_Settings::settings()['title']['value'] : '';
 
@@ -1409,11 +1516,8 @@ class DT_Campaigns_Base {
                 ];
                 DT_Posts::update_post( 'campaigns', $campaign['ID'], $close, true, false );
 
-                $current_campaign = DT_Campaign_Settings::get_campaign();
-                $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
-
                 //if the campaign is linked to the current porch and if it ended recently, send an email to all subscribers
-                if ( $is_current_campaign && $campaign['end_date']['timestamp'] > time() - MONTH_IN_SECONDS ){
+                if ( $campaign['end_date']['timestamp'] > time() - MONTH_IN_SECONDS ){
                     foreach ( $campaign['subscriptions'] as $subscription ){
                         wp_queue()->push( new End_Of_Campaign_Email_Job( $subscription['ID'], $campaign['ID'] ) );
 

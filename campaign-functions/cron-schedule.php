@@ -77,7 +77,6 @@ function dt_prayer_campaign_prayer_time_reminder(){
     // build message by campaign, and then by user, and grouping times per user message
     foreach ( $grouped_reminders as $campaign_id => $subscriber_values ) {
         // get campaign messages and links for the day
-
         foreach ( $subscriber_values as $subscriber_id => $reports ) {
 
             $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
@@ -152,7 +151,7 @@ function dt_invitation_to_renew_subscription(){
 
     foreach ( $expiring_recurring_signups as $row ){
 
-        $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'] );
+        $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'], $row['parent_id'] );
         if ( $sent ){
             $report = [
                 'post_type' => 'subscriptions',

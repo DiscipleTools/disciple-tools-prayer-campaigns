@@ -4,7 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 $lang = dt_campaign_get_current_lang();
 $porch_fields = DT_Porch_Settings::settings();
 $content = 'No post found';
-$day = isset( $this->parts['public_key'] ) && ! empty( $this->parts['public_key'] ) ? $this->parts['public_key'] : 0;
+$url = dt_get_url_path( true );
+$url_parts = explode( '/', $url );
+$day = end( $url_parts );
+if ( !is_numeric( $day ) ){
+    die( 'Invalid day' );
+}
 
 $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
 ?>
@@ -44,7 +49,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
                     <div>
-                        <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
+                        <?php echo do_shortcode( "[dt_prayer_timer color='" . CAMPAIGN_LANDING_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
                     </div>
                 </div>
             <?php endif;

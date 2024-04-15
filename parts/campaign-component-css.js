@@ -13,6 +13,11 @@ export const campaignStyles = css`
   .cp-center {
     text-align: center;
   }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   strong, b {
     font-weight: bold;
   }

@@ -11,14 +11,14 @@ class DT_Prayer_Campaign_Migration_0004 extends DT_Prayer_Campaign_Migration {
      */
     public function up() {
         $selected_campaign_id = get_option( 'pray4ramadan_selected_campaign' );
-        $selected_campaign = DT_Campaign_Settings::get_campaign( $selected_campaign_id );
+        $selected_campaign = DT_Campaign_Landing_Settings::get_campaign( $selected_campaign_id );
 
         if ( !isset( $selected_campaign['start_date']['formatted'] ) ) {
             return;
         }
 
         $prayer_fuel_posts = new WP_Query( [
-            'post_type' => PORCH_LANDING_POST_TYPE,
+            'post_type' => CAMPAIGN_LANDING_POST_TYPE,
             'post_status' => [ 'publish', 'future' ] ,
             'posts_per_page' => -1,
             'orderby' => 'post_date',
@@ -26,13 +26,13 @@ class DT_Prayer_Campaign_Migration_0004 extends DT_Prayer_Campaign_Migration {
         ] );
 
         foreach ( $prayer_fuel_posts->posts as $post ) {
-            $day_in_campaign = DT_Campaign_Settings::diff_days_between_dates( $selected_campaign['start_date']['formatted'], $post->post_date );
+            $day_in_campaign = DT_Campaign_Fuel::diff_days_between_dates( $selected_campaign['start_date']['formatted'], $post->post_date );
             if ( $day_in_campaign >= 0 ) {
                 ++$day_in_campaign;
             }
 
             update_post_meta( $post->ID, 'day', $day_in_campaign );
-            update_post_meta( $post->ID, PORCH_LANDING_META_KEY, $day_in_campaign );
+            update_post_meta( $post->ID, CAMPAIGN_LANDING_META_KEY, $day_in_campaign );
         }
     }
 

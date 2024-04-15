@@ -6,21 +6,44 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  */
 class DT_Porch_Settings {
 
-    private static $values_option = 'dt_campaign_porch_settings';
-    private static $translations_option = 'dt_campaign_porch_translations';
-
     /**
      * Get all of the settings for the porch
      *
      * @param string $tab The name of the tab that we want the settings for
      * @param string $section The name of the section we want the settings for
      */
-    public static function settings( string $tab = null, string $section = null ): array {
-        $defaults = self::fields();
+    public static function settings( string $tab = null, string $section = null, $use_cache = true, $campaign_id = null ): array {
 
-        $saved_fields = self::get_values();
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+        if ( empty( $current_campaign ) ) {
+            return [];
+        }
+        $cached = wp_cache_get( 'dt_campaign_porch_settings_' . $current_campaign['ID'], 'dt_campaign_porch_settings' );
+        if ( $use_cache && $cached && empty( $tab ) && empty( $section ) ) {
+            return $cached;
+        }
+        $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
+
+        $campaign_field_settings = apply_filters( 'dt_campaign_porch_settings', $campaign_field_settings, $current_campaign['porch_type']['key'] ?? null );
 
         $lang = dt_campaign_get_current_lang();
+
+        $defaults = [];
+        foreach ( $campaign_field_settings as $key => $field ) {
+//            if ( !str_starts_with( $field['tile'] ?? '', 'campaign_' ) ) {
+//                continue;
+//            }
+
+            $defaults[$key] = $field;
+            $defaults[$key]['value'] = $field['type'] === 'key_select' ? '' : ( $field['default'] ?? '' );
+            if ( isset( $current_campaign[$key] ) ) {
+                if ( $field['type'] === 'key_select' ){
+                    $defaults[$key]['value'] = $current_campaign[$key]['key'];
+                } else {
+                    $defaults[$key]['value'] = $current_campaign[$key];
+                }
+            }
+        }
 
         /**
          * Filter to allow the defaults to be changed according to the saved settings and the current language
@@ -29,24 +52,25 @@ class DT_Porch_Settings {
          * @param array $saved_fields contains the current saved porch settings
          * @param string $lang the current language the campaign is being viewed in
          */
-        $defaults = apply_filters( 'dt_campaign_fields_after_get_saved_settings', $defaults, $saved_fields, $lang );
+//        $defaults = apply_filters( 'dt_campaign_fields_after_get_saved_settings', $defaults, $saved_fields, $lang );
 
-        $saved_translations = self::get_translations();
+        $saved_translations = self::get_translations( $current_campaign['ID'] );
 
         /**
          * Filter to allow the translations to be run through any porch specific massaging
          */
-        $saved_translations = apply_filters( 'dt_campaign_translations', $saved_translations, $lang );
+        $saved_translations = apply_filters( 'dt_campaign_translations', $saved_translations, $lang, $current_campaign['ID'] );
 
-        $merged_settings = dt_merge_settings( $saved_fields, $defaults );
-        $merged_settings = dt_merge_settings( $saved_translations, $merged_settings, 'translations' );
+        $merged_settings = dt_merge_settings( $saved_translations, $defaults, 'translations' );
 
         if ( $tab !== null ) {
-            $merged_settings = self::filter_settings( $merged_settings, 'tab', $tab );
+            $merged_settings = self::filter_settings( $merged_settings, 'campaign_tab', $tab );
         }
         if ( $section !== null ) {
-            $merged_settings = self::filter_settings( $merged_settings, 'section', $section );
+            $merged_settings = self::filter_settings( $merged_settings, 'campaign_section', $section );
         }
+
+        wp_cache_set( 'dt_campaign_porch_settings_' . $current_campaign['ID'], $merged_settings, 'dt_campaign_porch_settings' );
 
         return $merged_settings;
     }
@@ -74,50 +98,47 @@ class DT_Porch_Settings {
         return array_filter( $settings, $match_settings_with_tab );
     }
 
-    private static function get_values() {
-        return get_option( self::$values_option, [] );
+    private static function get_translations( $campaign_id ) {
+        return DT_Campaign_Languages::get_translations( $campaign_id );
     }
 
-    private static function get_translations() {
-        return get_option( self::$translations_option, [] );
+    public static function update_values( $updates, $campaign_id = null ) {
+        $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+        $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
+
+        $changes = [];
+        foreach ( $updates as $key => $value ){
+            $field_type = $campaign_field_settings[$key]['type'] ?? '';
+            if ( $field_type === 'key_select' ){
+                if ( $value !== ( $current_campaign[$key]['key'] ?? '' ) ){
+                    $changes[$key] = $value;
+                }
+            } else {
+                if ( $value !== ( $current_campaign[$key] ?? '' ) ){
+                    $changes[$key] = $value;
+                }
+            }
+        }
+        if ( !empty( $changes ) ){
+            $updated = DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
+            return !is_wp_error( $updated );
+        }
+        return true;
     }
 
-    public static function update_values( $updates ) {
-        $current_settings = self::get_values();
+    public static function update_translations( $campaign_id, $new_translations ) {
+        $current_translations = self::get_translations( $campaign_id );
 
-        $updated_settings = dt_validate_settings( $updates, self::fields() );
+        foreach ( $new_translations as $key => $lang_translations ){
+            foreach ( $lang_translations as $language => $value ){
+                $existing_translation = isset( $current_translations[$key][$language] ) ? $current_translations[$key][$language] : '';
+                if ( $existing_translation !== $value ){
+                    DT_Campaign_Languages::save_translation( $campaign_id, $key, $language, $value );
+                }
+            }
+        }
 
-        $updated_settings = array_merge( $current_settings, $updated_settings );
-
-        update_option( self::$values_option, $updated_settings );
-    }
-
-    public static function update_translations( $new_translations ) {
-        $current_translations = self::get_translations();
-
-        $updated_translations = dt_validate_settings( $new_translations, self::fields() );
-
-        $updated_translations = array_merge( $current_translations, $updated_translations );
-
-        update_option( self::$translations_option, $updated_translations );
-    }
-
-    public static function reset() {
-        update_option( 'dt_campaign_porch_settings', [] );
-    }
-
-    public static function fields() {
-        $defaults = self::get_defaults();
-
-        /**
-         * Filter to allow porches to add their own specific settings when they are loaded
-         *
-         * @param array $defaults contains the settings common to all porches
-         */
-        $porch = DT_Porch_Selector::instance()->get_selected_porch_id();
-        $defaults = apply_filters( 'dt_campaign_porch_settings', $defaults, $porch );
-
-        return $defaults;
+        return true;
     }
 
     /**
@@ -128,19 +149,19 @@ class DT_Porch_Settings {
      * @param string $tab
      */
     public static function sections( string $tab ) {
-        $fields = self::fields();
+        $fields = DT_Posts::get_post_field_settings( 'campaigns' );
 
-        $fields = self::filter_settings( $fields, 'tab', $tab );
+        $fields = self::filter_settings( $fields, 'tile', $tab );
 
         $sections = [];
 
         $has_fields_with_no_section = false;
         foreach ( $fields as $key => $field ) {
-            if ( !$has_fields_with_no_section && ( !isset( $field['section'] ) || !$field['section'] ) ) {
+            if ( !$has_fields_with_no_section && ( !isset( $field['campaign_section'] ) || !$field['campaign_section'] ) ) {
                 $has_fields_with_no_section = true;
             }
-            if ( isset( $field['section'] ) && !in_array( $field['section'], $sections, true ) ) {
-                $sections[] = $field['section'];
+            if ( isset( $field['campaign_section'] ) && !in_array( $field['campaign_section'], $sections, true ) ) {
+                $sections[] = $field['campaign_section'];
             }
         }
 
@@ -148,15 +169,15 @@ class DT_Porch_Settings {
             array_push( $sections, '' );
         }
 
-        return $sections;
+        return array_unique( $sections );
     }
 
-    public static function get_field_translation( string $field_name, string $code = '' ) {
+    public static function get_field_translation( string $field_name, string $code = '', $campaign_id = null ) {
         if ( empty( $code ) ) {
             $code = dt_campaign_get_current_lang();
         }
 
-        $fields = self::settings();
+        $fields = self::settings( null, null, true, $campaign_id );
 
         if ( empty( $field_name ) || !isset( $fields[$field_name] ) ) {
             return '';
@@ -173,131 +194,18 @@ class DT_Porch_Settings {
 
 
     public static function has_user_translations() {
-        $defaults = apply_filters( 'dt_campaign_porch_default_settings', self::get_defaults() );
         $settings = self::settings();
 
-        foreach ( $defaults as $key => $values ) {
-            if ( !isset( $settings[$key] ) ) {
+        foreach ( $settings as $key => $value ) {
+            if ( !in_array( $value['type'], [ 'text', 'textarea' ] ) ) {
                 continue;
             }
 
-            if ( $values['value'] !== $settings[$key]['value'] ) {
+            if ( ( $value['default'] ?? '' ) !== $value['value'] ) {
                 return true;
             }
         }
 
         return false;
-    }
-
-    private static function get_defaults() {
-        $defaults = [
-            'theme_color' => [
-                'label' => 'Theme Color',
-                'value' => 'preset',
-                'type' => 'theme_select',
-                'tab' => 'settings',
-            ],
-            'custom_theme_color' => [
-                'label' => 'Custom Theme Color',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-                'placeholder' => 'Hex value',
-                'description' => 'Enter a custom color for the theme. This will override the preset color. Hex value should look like: #a1c4ef'
-            ],
-            'logo_url' => [
-                'label' => 'Custom Logo',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-                'placeholder' => 'Url of image'
-            ],
-            'logo_link_url' => [
-                'label' => 'Logo Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-                'placeholder' => 'Link to where clicking the logo should bring you to'
-            ],
-            'header_background_url' => [
-                'label' => 'Header Background Image',
-                'value' => DT_Prayer_Campaigns::instance()->plugin_dir_url . 'porches/generic/site/img/stencil-header.png',
-                'description' => 'This is the background image for the header. If you leave this blank, the default image will be used. See https://prayerpoints.pray4movement.org/gallery/ for more images.',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'enable_overlay_blur' => [
-                'label' => __( 'Header Background Image Blur', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'boolean',
-                'tab' => 'settings',
-                'value' => 'yes',
-                'default' => 'Yes'
-            ],
-            'what_image' => [
-                'label' => 'What is 24/7 Image',
-                'value' => '',
-                'type' => 'text',
-                'enabled' => false,
-                'tab' => 'settings',
-            ],
-            'show_prayer_timer' => [
-                'label' => 'Show Timer on Prayer Fuel',
-                'default' => 'Yes',
-                'value' => 'yes',
-                'type' => 'boolean',
-                'tab' => 'settings',
-            ],
-            'prayer_fuel_frequency' => [
-                'label' => 'Prayer Fuel Frequency',
-                'default' => 'Daily',
-                'value' => 'daily',
-                'type' => 'prayer_fuel_frequency',
-                'tab' => 'settings',
-            ],
-            'reminder_content_disable_fuel' => [
-                'label' => __( 'Disable default prayer fuel link', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'boolean',
-                'tab' => 'email-settings',
-                'value' => false,
-            ],
-            'facebook' => [
-                'label' => 'Footer Facebook Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'instagram' => [
-                'label' => 'Footer Instagram Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'twitter' => [
-                'label' => 'Footer Twitter Link',
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'google_analytics' => [
-                'label' => 'Google Analytics ID (optional)',
-                'default' => get_site_option( 'p4r_porch_google_analytics' ),
-                'value' => '',
-                'type' => 'text',
-                'tab' => 'settings',
-            ],
-            'default_language' => [
-                'label' => 'Default Language',
-                'default' => 'en_US',
-                'value' => '',
-                'type' => 'default_language_select',
-                'tab' => 'settings',
-            ],
-        ];
-
-        $keep_enabled_settings = function ( $setting ) {
-            return !isset( $setting['enabled'] ) || $setting['enabled'] !== false;
-        };
-
-        return array_filter( $defaults, $keep_enabled_settings );
     }
 }

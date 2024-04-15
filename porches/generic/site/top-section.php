@@ -2,18 +2,17 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
-dt_campaign_add_lang_to_cookie( $lang );
-dt_campaign_set_translation( $lang );
 
-$porch_fields = DT_Porch_Settings::settings();
-$campaign_fields = DT_Campaign_Settings::get_campaign();
-$langs = dt_campaign_list_languages();
+$campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
+$langs = DT_Campaign_Languages::get_enabled_languages( $campaign_fields['ID'] );
+$campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
+$url_path = dt_get_url_path();
 
-$sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up';
+$sign_up_link = $campaign_url . '#sign-up';
 ?>
 <style>
     :root {
-        --cp-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ) ?>;
+        --cp-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ) ?>;
         --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
         --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
     }
@@ -25,14 +24,21 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
         <div class="icon-list navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href='<?php echo esc_url( $sign_up_link ) ?>'><?php esc_html_e( 'Sign Up', 'disciple-tools-prayer-campaigns' ); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/list' ) ?>"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
                 </li>
+                <?php
+                $landing_post_type = CAMPAIGN_LANDING_POST_TYPE;
+                if ( is_user_logged_in() && current_user_can( 'edit_' . $landing_post_type ) ) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/listEdit' ) ?>"><?php esc_html_e( 'Edit Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
@@ -45,7 +51,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( $porch_fields['logo_link_url']['value'] ?: site_url() ) ?>" class="logo"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'title', $lang ) ) ?></a>
+                <a href="<?php echo esc_url( !empty( $campaign_fields['logo_link_url'] ) ? $campaign_fields['logo_link_url'] : $campaign_url ) ?>" class="logo"><?php echo esc_html( $campaign_fields['name'] ?? 'Set Up a Campaign' ) ?></a>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>
@@ -73,7 +79,7 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
             </div>
         </div>
     </div>
-    <?php if ( !isset( $porch_fields['enable_overlay_blur'] ) || $porch_fields['enable_overlay_blur']['value'] === 'yes' ) : ?>
+    <?php if ( !isset( $campaign_fields['enable_overlay_blur'] ) || $campaign_fields['enable_overlay_blur']['key'] === 'yes' ) : ?>
     <div class="overlay"></div>
     <?php endif; ?>
     <div class="container">
@@ -81,20 +87,20 @@ $sign_up_link = empty( dt_get_url_path() ) ? '#sign-up' : site_url() . '#sign-up
             <div class="col-md-12">
                 <div class="contents content-height text-center">
 
-                    <?php if ( isset( $porch_fields['logo_url']['value'] ) && ! empty( $porch_fields['logo_url']['value'] ) ) : ?>
+                    <?php if ( !empty( $campaign_fields['logo_url'] ) ) : ?>
 
-                        <img class="logo-image" src="<?php echo esc_url( $porch_fields['logo_url']['value'] ) ?>" alt=""  />
+                        <img class="logo-image" src="<?php echo esc_url( $campaign_fields['logo_url'] ) ?>" alt=""  />
 
                     <?php else : ?>
 
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'title', $lang ) ) ?>
+                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'name' ) ?? 'Set Up A Campaign' ) ?>
                         </h1>
 
                     <?php endif; ?>
 
                     <h4>
-                        <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'subtitle', $lang ) ); ?>
+                        <?php display_translated_field( 'subtitle' ); ?>
                     </h4>
 
                     <?php
