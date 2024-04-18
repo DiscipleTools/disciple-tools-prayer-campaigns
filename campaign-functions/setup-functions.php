@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-remove_filter( 'the_content', [ $GLOBALS['wp_embed'], 'autoembed' ], 8 );
+//remove_filter( 'the_content', [ $GLOBALS['wp_embed'], 'autoembed' ], 8 ); needed for video players
 
 add_filter( 'cron_schedules', 'dt_prayer_campaign_cron_schedules' );
 
