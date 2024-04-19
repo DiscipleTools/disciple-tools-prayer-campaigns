@@ -608,6 +608,9 @@ class DT_Prayer_Campaigns_Campaigns {
 
     public function right_column() {
         $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
+        if ( empty( $campaign ) ) {
+            return;
+        }
         $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
         ?>
 

@@ -16,7 +16,7 @@ class DT_Prayer_Campaigns_Migration_Engine
      * Current Migration number for the mapping system
      * @var int
      */
-    public static $migration_number = 9;
+    public static $migration_number = 10;
 
     protected static $migrations = null;
 
