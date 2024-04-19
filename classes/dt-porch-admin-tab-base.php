@@ -226,7 +226,12 @@ class DT_Porch_Admin_Tab_Base {
                                         <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
                                         <br><br>
                                     <?php endif; ?>
+                                    <h3>Custom icon:</h3>
+                                    <?php if ( !empty( $campaign[$key] ?? '' ) ): ?>
+                                        <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $campaign[$key] ); ?>" />
+                                    <?php endif; ?>
                                     <input style="width: 100%" type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
+
                                 </td>
                                 <td style="vertical-align: middle;">
                                     <?php if ( isset( $field['translations'] ) ){
