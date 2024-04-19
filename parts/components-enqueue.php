@@ -13,7 +13,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
 
     wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
     if ( !wp_script_is( 'dt_campaign_core', 'registered' ) ){
-        wp_enqueue_script( 'dt_campaign_core', $plugin_dir_url . 'dist/assets/main-bundle.js', [
+        wp_enqueue_script( 'dt_campaign_core', $plugin_dir_url . 'dist/main-bundle.js', [
             'jquery',
             'luxon'
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
