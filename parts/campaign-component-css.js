@@ -1,4 +1,4 @@
-import {css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import {css} from 'lit';
 
 export const campaignStyles = css`
   .cp-wrapper {

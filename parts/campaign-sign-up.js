@@ -1,4 +1,7 @@
-import {html, css, LitElement, range, map} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import {html, css, LitElement} from 'lit'
+import { range } from 'lit/directives/range.js';
+import { map } from 'lit/directives/map.js';
+
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
 function translate(str){
   if ( !strings[str] ){

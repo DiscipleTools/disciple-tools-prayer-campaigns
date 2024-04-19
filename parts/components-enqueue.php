@@ -13,7 +13,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
 
     wp_register_script( 'luxon', 'https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js', false, '2.3.1', true );
     if ( !wp_script_is( 'dt_campaign_core', 'registered' ) ){
-        wp_enqueue_script( 'dt_campaign_core', $plugin_dir_url . 'parts/campaign-core.js', [
+        wp_enqueue_script( 'dt_campaign_core', $plugin_dir_url . 'dist/assets/main-bundle.js', [
             'jquery',
             'luxon'
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
@@ -148,9 +148,9 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
             ]
         );
 
-        wp_enqueue_script( 'campaign_component_css', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
-        wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
-        wp_enqueue_script( 'campaign_component_sign_up', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
+//        wp_enqueue_script( 'campaign_component_css', $plugin_dir_url . 'parts/campaign-component-css.js', [], filemtime( $plugin_dir_path . 'parts/campaign-component-css.js' ), false );
+//        wp_enqueue_script( 'campaign_components', $plugin_dir_url . 'parts/campaign-components.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-components.js' ), true );
+//        wp_enqueue_script( 'campaign_component_sign_up', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
         wp_enqueue_style( 'toastify-js-css', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css', [], '1.12.0' );
         wp_enqueue_script( 'toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js', [ 'jquery' ], '1.12.0' );
     }
