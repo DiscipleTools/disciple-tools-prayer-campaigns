@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-04-18T10:03:00+00:00\n"
-"PO-Revision-Date: 2024-04-11 12:59+0000\n"
+"POT-Creation-Date: 2024-04-19T11:31:49+00:00\n"
+"PO-Revision-Date: 2024-04-22 18:48+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4.3\n"
+"X-Generator: Weblate 5.5\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:73
@@ -186,20 +186,14 @@ msgstr ""
 "mentre pregavi."
 
 #: campaign-functions/send-email-utility.php:484
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgid ""
 "Finally, the folks at Pray4Movement built this prayer tool. You can make "
 "sure you’re signed up to receive news about future prayer opportunities on "
 "the Stats page."
 msgstr ""
-"Inoltre, in fondo alla pagina I Numeri delle Nostre Preghiere 24/7 per "
-"Ramadan troverai una sezione dove puoi iscriverti. Fa' l'iscrizione per "
-"ricevere notizie sui futuri progetti di Pray4Movement, i creatori di questo "
-"strumento di preghiera."
+"Infine, i ragazzi di Pray4Movement hanno realizzato questo strumento di "
+"preghiera. Sulla pagina delle Statistiche puoi assicurarti di essere "
+"iscritto per ricevere notizie da loro di future opportunità di preghiera."
 
 #: campaign-functions/send-email-utility.php:486
 msgid "See Prayer Stats"
@@ -727,22 +721,21 @@ msgstr ""
 
 #: parts/components-enqueue.php:130
 msgid "Text Translations"
-msgstr ""
+msgstr "Traduzioni del Testo"
 
 #: parts/components-enqueue.php:131
 msgid "Original String"
-msgstr ""
+msgstr "Stringa Originale"
 
 #: parts/components-enqueue.php:132
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "Valore personalizzato per tutte le lingue"
 
 #: parts/components-enqueue.php:133
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "Traduzione per la lingua attualmente selezionata"
 
 #: parts/components-enqueue.php:135
-#, fuzzy
 msgid "Update"
 msgstr "Aggiorna"
 
@@ -866,16 +859,16 @@ msgid "All Days"
 msgstr "Tutti i giorni"
 
 #: porches/generic/dt-generic-porch-strings.php:197
-#, fuzzy
-#| msgid "See Prayer Fuel"
 msgid "Scheduled Prayer Fuel"
-msgstr "Visualizza il Propellente per la preghiera"
+msgstr "Propellente per la preghiera programmato"
 
 #: porches/generic/dt-generic-porch-strings.php:205
 msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
+"Tutti i Propellente per la preghiera in tutte le lingue disponibili. "
+"Aggiungi e modifica i Propellente per la preghiera di sotto"
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
@@ -916,12 +909,12 @@ msgstr "Invia Messaggio"
 
 #: porches/generic/site/edit-post-list-body.php:120
 msgid "Day %s"
-msgstr ""
+msgstr "Giorno %s"
 
 #: porches/generic/site/edit-post-list-body.php:142
 #: porches/generic/site/functions.php:72
 msgid "Edit"
-msgstr ""
+msgstr "Modifica"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:110
@@ -972,16 +965,12 @@ msgid "Share with us your Prayer Stories"
 msgstr "Condividi con noi le tue storie di preghiera"
 
 #: porches/generic/site/stats.php:217
-#, fuzzy
-#| msgid ""
-#| "Share with us about your prayer time (E.g. testimonies, insights, "
-#| "blessings, etc)"
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc.)"
 msgstr ""
 "Condividi con noi in merito al tuo tempo di preghiera (ad es. testimonianze, "
-"spunti, benedizioni, ecc.)"
+"percezioni, benedizioni, ecc.)"
 
 #: porches/generic/site/stats.php:285
 msgid "Global Ramadan Stats"
@@ -1026,10 +1015,8 @@ msgid "Sign Up"
 msgstr "Registrati"
 
 #: porches/generic/site/top-section.php:39
-#, fuzzy
-#| msgid "Prayer Fuel"
 msgid "Edit Prayer Fuel"
-msgstr "Propellente per la preghiera"
+msgstr "Modifica Propellente per la preghiera"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
