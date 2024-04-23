@@ -22,6 +22,16 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
     public function __construct(){
         $page_info = DT_Campaign_Landing_Settings::determine_campaign_via_url( $this->pages );
+        $path = dt_get_url_path( true );
+        //redirects for pre v4 urls
+        if ( $path === 'prayer/stats' ){
+            wp_redirect( home_url( '/stats' ) );
+            exit;
+        }
+        if ( $path === 'prayer/list' ){
+            wp_redirect( home_url( '/list' ) );
+            exit;
+        }
         if ( dt_is_rest() ){
             add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
 //            return;
