@@ -426,6 +426,7 @@ class DT_Campaigns_Base {
                 $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $campaign_url ) );
                 if ( !empty( $url_exists ) ){
                     $campaign_url = dt_create_field_key( $campaign_url, true );
+                    $campaign_url = str_replace( '/', '', $campaign_url );
                 }
                 $fields['campaign_url'] = $campaign_url;
             }
