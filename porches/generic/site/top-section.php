@@ -9,6 +9,7 @@ $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
 $url_path = dt_get_url_path();
 
 $sign_up_link = $campaign_url . '#sign-up';
+$prayer_fuel_link = $campaign_url . '/list';
 ?>
 <style>
     :root {
@@ -108,6 +109,7 @@ $sign_up_link = $campaign_url . '#sign-up';
 
                         <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
                             <a href="<?php echo esc_url( $sign_up_link ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
+                            <a href="<?php echo esc_url( $prayer_fuel_link ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?></a>
                         </p>
 
                     <?php endif; ?>
