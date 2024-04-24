@@ -7,8 +7,6 @@ $allowed_tags['script'] = array(
     'src' => array()
 );
 $porch_fields = DT_Porch_Settings::settings();
-dt_write_log('header image check');
-dt_write_log($porch_fields['header_background_url'])
 ?>
 
 <!-- Required meta tags -->
