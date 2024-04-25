@@ -35,8 +35,10 @@ class DT_Porch_Settings {
 //            }
 
             $defaults[$key] = $field;
-            $defaults[$key]['value'] = $field['type'] === 'key_select' ? '' : ( $field['default'] ?? '' );
-            if ( isset( $current_campaign[$key] ) ) {
+            if ( !isset( $defaults[$key]['value'] ) ) {
+                $defaults[$key]['value'] = $field['type'] === 'key_select' ? '' : ( $field['default'] ?? '' );
+            }
+            if ( isset( $current_campaign[$key] ) && !empty( $current_campaign[$key] ) ) {
                 if ( $field['type'] === 'key_select' ){
                     $defaults[$key]['value'] = $current_campaign[$key]['key'];
                 } else {
@@ -44,7 +46,6 @@ class DT_Porch_Settings {
                 }
             }
         }
-
         /**
          * Filter to allow the defaults to be changed according to the saved settings and the current language
          *
