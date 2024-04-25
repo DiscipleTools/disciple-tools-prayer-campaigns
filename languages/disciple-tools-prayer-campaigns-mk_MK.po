@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-04-19T11:31:49+00:00\n"
+"POT-Creation-Date: 2024-04-25T13:02:37+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Macedonian <https://translate.disciple.tools/projects/"
@@ -121,8 +121,8 @@ msgid "Here are your upcoming prayer times:"
 msgstr "Еве ги вашите претстојни молитвени времиња:"
 
 #: campaign-functions/send-email-utility.php:308
-#: magic-links/campaign-magic-link.php:100
-#: magic-links/campaign-magic-link.php:102
+#: magic-links/campaign-magic-link.php:110
+#: magic-links/campaign-magic-link.php:112
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
 #, fuzzy
@@ -342,7 +342,7 @@ msgid "Links"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:358
-#: porches/generic/site/top-section.php:27
+#: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "Дома"
@@ -664,7 +664,7 @@ msgstr ""
 msgid "Delete"
 msgstr "Избриши"
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:104 porches/generic/site/top-section.php:112
 #, fuzzy
 msgid "See Prayer Fuel"
 msgstr "Гориво за молитва"
@@ -991,7 +991,7 @@ msgid "Edit"
 msgstr ""
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:110
+#: porches/generic/site/top-section.php:111
 #: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 #, fuzzy
 msgid "Sign Up to Pray"
@@ -1098,12 +1098,12 @@ msgstr ""
 "Дали сакате да слушнете за други напори и можности за молитва со "
 "Pray4Movement.org?"
 
-#: porches/generic/site/top-section.php:30
+#: porches/generic/site/top-section.php:31
 #, fuzzy
 msgid "Sign Up"
 msgstr "Пријавете се"
 
-#: porches/generic/site/top-section.php:39
+#: porches/generic/site/top-section.php:40
 #, fuzzy
 msgid "Edit Prayer Fuel"
 msgstr "Гориво за молитва"
