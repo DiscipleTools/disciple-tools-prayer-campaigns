@@ -208,6 +208,9 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
 
 
 function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_signup' ){
+    if ( !dt_campaigns_is_p4m_news_enabled() ) {
+        return;
+    }
 
     $lists = [ 'list_23', 'list_29' ]; //P4M News, P4M Campaign subscriber
     $tags = [];
