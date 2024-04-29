@@ -1499,7 +1499,7 @@ class DT_Campaigns_Base {
         }
 
 //        $url = WP_DEBUG ? 'http://p4m.local/wp-json/dt-public/campaigns/report' : 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
-        $url = 'https://pray4movement.org/wp-json/dt-public/campaigns/report';
+        $url = apply_filters( 'p4m_report_url', 'https://pray4movement.org/wp-json/dt-public/campaigns/report' );
 
         if ( !empty( $campaigns_to_send ) ){
             return wp_remote_post( $url, [ 'body' => [ 'campaigns' => $campaigns_to_send ] ] );
