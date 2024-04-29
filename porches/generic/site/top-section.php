@@ -37,7 +37,7 @@ $prayer_fuel_link = $campaign_url . '/list';
                 $landing_post_type = CAMPAIGN_LANDING_POST_TYPE;
                 if ( is_user_logged_in() && current_user_can( 'edit_' . $landing_post_type ) ) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/listEdit' ) ?>"><?php esc_html_e( 'Edit Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        <a class="nav-link" href="<?php echo esc_url( $campaign_url . '/listEdit' ) ?>"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'edit_fuel_title' ) ) ?></a>
                     </li>
                 <?php endif; ?>
             </ul>
@@ -109,7 +109,7 @@ $prayer_fuel_link = $campaign_url . '/list';
 
                         <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
                             <a href="<?php echo esc_url( $sign_up_link ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
-                            <a href="<?php echo esc_url( $prayer_fuel_link ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?></a>
+                            <a href="<?php echo esc_url( $prayer_fuel_link ) ?>" class="btn btn-common btn-rm"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'see_fuel_button' ) ) ?></a>
                         </p>
 
                     <?php endif; ?>
