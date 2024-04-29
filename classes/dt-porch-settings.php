@@ -33,13 +33,14 @@ class DT_Porch_Settings {
 //            if ( !str_starts_with( $field['tile'] ?? '', 'campaign_' ) ) {
 //                continue;
 //            }
-
+//
+            $type = $field['type'] ?? '';
             $defaults[$key] = $field;
             if ( !isset( $defaults[$key]['value'] ) ) {
-                $defaults[$key]['value'] = $field['type'] === 'key_select' ? '' : ( $field['default'] ?? '' );
+                $defaults[$key]['value'] = $type === 'key_select' ? '' : ( $field['default'] ?? '' );
             }
             if ( isset( $current_campaign[$key] ) && !empty( $current_campaign[$key] ) ) {
-                if ( $field['type'] === 'key_select' ){
+                if ( $type === 'key_select' ){
                     $defaults[$key]['value'] = $current_campaign[$key]['key'];
                 } else {
                     $defaults[$key]['value'] = $current_campaign[$key];
