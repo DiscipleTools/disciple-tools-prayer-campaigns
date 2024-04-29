@@ -160,7 +160,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: true,
+      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -418,7 +418,7 @@ export class CampaignSignUp extends LitElement {
               <span class="step-circle">${position}</span>
               <span>${translate('I will pray for')}</span></h2>
           <div>
-              <cp-select 
+              <cp-select
                   .value="${this.duration.value}"
                   .options="${this.duration.options}"
                   @change="${e=>this.handle_click('duration', e.detail)}">
@@ -441,7 +441,7 @@ export class CampaignSignUp extends LitElement {
               <span class="step-circle">${position}</span>
               <span>${strings['How often?']}</span> <span ?hidden="${this.frequency?.value}" class="place-indicator">${strings['Start Here']}</span>
           </h2>
-          <cp-select 
+          <cp-select
               show_desc="${!!this.campaign_data.end_timestamp}"
               .options="${window.campaign_data.frequency_options}"
               .value="${this.frequency.value}"
@@ -460,14 +460,14 @@ export class CampaignSignUp extends LitElement {
       <!--
         Week Day
       -->
-      
+
       <h2 class="section-title">
           <span class="step-circle">${position}</span>
           <span>${strings['On which week day?']}</span>
           <span ?hidden="${this.week_day.value}" class="place-indicator">${strings['Continue here']}</span>
       </h2>
       <div>
-          <cp-select 
+          <cp-select
               .value="${this.week_day.value}"
               .options="${this.week_day.options}"
               @change="${e=>this.handle_click('week_day', e.detail)}">
@@ -561,8 +561,8 @@ export class CampaignSignUp extends LitElement {
 
             </div>
         </div>
-              
-        
+
+
     `
   }
 
@@ -1053,7 +1053,7 @@ export class cpPercentage extends LitElement {
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
         <div id="main-progress" class="cp-center" style="display: flex;justify-content: center">
-            <progress-ring 
+            <progress-ring
                style="max-width: 150px"
                progress="${this.campaign_data.coverage_percent || 0}"
                progress2="0"
