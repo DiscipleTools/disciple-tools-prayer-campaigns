@@ -293,12 +293,10 @@ export class ContactInfo extends LitElement {
     }
 
     //bubble up form items
-    console.log(this._form_items);
     this.dispatchEvent(new CustomEvent('form-items', { detail: this._form_items }));
   }
 
   render(){
-    console.log(window.campaign_objects.dt_campaigns_is_p4m_news_enabled)
     return html`
       <div>
           <label for="name">${strings['Name']}<br>
