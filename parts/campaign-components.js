@@ -257,7 +257,7 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: true,
+      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
     }
     window.campaign_data.signup_form_fields?.map(f=>{
       this._form_items[f.key] = f.default || null;
@@ -315,7 +315,7 @@ export class ContactInfo extends LitElement {
                 ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
           </label>`
       : ``}
-      
+
       <!-- Additional Fields -->
       ${ window.campaign_data.signup_form_fields?.map(f=>{
         let key = window.campaign_scripts.escapeHTML(f.key)
@@ -325,8 +325,8 @@ export class ContactInfo extends LitElement {
           return html`
             <div>
                 <label for="${key}">${name}<br>
-                    <input 
-                        class="cp-input" 
+                    <input
+                        class="cp-input"
                         type="text" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}/>
                 </label>
             </div>
@@ -335,9 +335,9 @@ export class ContactInfo extends LitElement {
           return html`
             <div>
                 <label for="${key}" style="font-weight: normal; display: block">
-                    <input 
+                    <input
                         type="checkbox"
-                        name="${key}" 
+                        name="${key}"
                         id="${key}"
                         ?checked=${f.default}
                         @input=${this.handleInput}/>
@@ -347,7 +347,7 @@ export class ContactInfo extends LitElement {
           `
         }
       } ) }
-      
+
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
               ${strings['No prayer times selected']}
@@ -359,7 +359,7 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <button 
+          <button
               class="button-content"
               ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
               @click=${()=>this.verify_contact_info()}>
@@ -961,7 +961,7 @@ export class cpTimes extends LitElement {
                          ?disabled="${this.frequency === 'pick' && time.key < now}">
                         <span class="time-label">${time.minute}</span>
                         <span class="control">
-                          ${time.progress < 100 ? 
+                          ${time.progress < 100 ?
                               html`<progress-ring progress="${time.progress}"></progress-ring>` :
                               html`<div class="center-content" style="height:20px;width:20px;">
                                   ${time.coverage_count}
@@ -1169,12 +1169,12 @@ export class cpVerify extends LitElement {
         <p style="text-align: start">
             ${translate('Almost there! Finish signing up by activating your account.')}
         </p>
-          
+
         <p style="text-align: start">
             ${translate('Click the "Activate Account" button in the email sent to: %s').replace('%s', '')}
             <strong>${this.email}</strong>
         </p>
-          
+
         <p style="text-align: start">
             ${translate('It will look like this:')}
         </p>
