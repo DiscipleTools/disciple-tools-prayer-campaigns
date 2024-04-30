@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-04-19T11:31:49+00:00\n"
+"POT-Creation-Date: 2024-04-25T13:02:37+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Malayalam <https://translate.disciple.tools/projects/disciple-"
@@ -121,8 +121,8 @@ msgid "Here are your upcoming prayer times:"
 msgstr "നിങ്ങളുടെ വരാനിരിക്കുന്ന പ്രാർത്ഥന സമയങ്ങൾ ഇതാ:"
 
 #: campaign-functions/send-email-utility.php:308
-#: magic-links/campaign-magic-link.php:100
-#: magic-links/campaign-magic-link.php:102
+#: magic-links/campaign-magic-link.php:110
+#: magic-links/campaign-magic-link.php:112
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
 #, fuzzy
@@ -342,7 +342,7 @@ msgid "Links"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:358
-#: porches/generic/site/top-section.php:27
+#: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "വീട്"
@@ -664,7 +664,7 @@ msgstr ""
 msgid "Delete"
 msgstr "ഇല്ലാതാക്കുക"
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:104 porches/generic/site/top-section.php:112
 #, fuzzy
 msgid "See Prayer Fuel"
 msgstr "പ്രാർത്ഥന ഇന്ധനം"
@@ -987,7 +987,7 @@ msgid "Edit"
 msgstr ""
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:110
+#: porches/generic/site/top-section.php:111
 #: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 #, fuzzy
 msgid "Sign Up to Pray"
@@ -1094,12 +1094,12 @@ msgstr ""
 "Pray4Movement.org-ലെ മറ്റ് പ്രാർത്ഥനാ ശ്രമങ്ങളെയും അവസരങ്ങളെയും കുറിച്ച് കേൾക്കാൻ നിങ്ങൾക്ക് "
 "താൽപ്പര്യമുണ്ടോ?"
 
-#: porches/generic/site/top-section.php:30
+#: porches/generic/site/top-section.php:31
 #, fuzzy
 msgid "Sign Up"
 msgstr "സൈൻ അപ്പ് ചെയ്യുക"
 
-#: porches/generic/site/top-section.php:39
+#: porches/generic/site/top-section.php:40
 #, fuzzy
 msgid "Edit Prayer Fuel"
 msgstr "പ്രാർത്ഥന ഇന്ധനം"
