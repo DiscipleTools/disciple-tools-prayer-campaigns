@@ -360,7 +360,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             $title = $email;
         }
 
-        if ( isset( $params['receive_pray4movement_news'] ) && !empty( $params['receive_pray4movement_news'] ) && dt_campaigns_is_p4m_news_enabled() ){
+        if ( isset( $params['receive_pray4movement_news'] ) && !empty( $params['receive_pray4movement_news'] ) ){
             p4m_subscribe_to_news( $params['email'], $title );
         }
 
