@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.2.3\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.2.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-25T13:02:37+00:00\n"
+"POT-Creation-Date: 2024-04-30T09:30:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -563,7 +563,7 @@ msgid "Delete"
 msgstr ""
 
 #: parts/components-enqueue.php:104
-#: porches/generic/site/top-section.php:112
+#: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
 msgstr ""
 
@@ -775,10 +775,14 @@ msgid "All Days"
 msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:197
+msgid "Edit Prayer Fuel"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-strings.php:215
 msgid "Scheduled Prayer Fuel"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-strings.php:205
+#: porches/generic/dt-generic-porch-strings.php:223
 msgid "All Scheduled Prayer Fuel in all available languages. Add and edit the prayer fuel below"
 msgstr ""
 
@@ -915,10 +919,6 @@ msgstr ""
 
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
-msgstr ""
-
-#: porches/generic/site/top-section.php:40
-msgid "Edit Prayer Fuel"
 msgstr ""
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
