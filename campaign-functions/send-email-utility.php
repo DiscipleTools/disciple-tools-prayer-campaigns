@@ -385,7 +385,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $manage_link = self::management_link( $subscriber );
         $porch_fields = DT_Porch_Settings::settings();
 
-        $title = isset( $porch_fields['title']['value'] ) ? $porch_fields['title']['value'] : site_url();
+        $title = isset( $porch_fields['name']['value'] ) ? $porch_fields['name']['value'] : site_url();
 
         $subject = __( 'Continue Praying?', 'disciple-tools-prayer-campaigns' );
 

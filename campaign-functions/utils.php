@@ -225,8 +225,8 @@ function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_sign
     $campaign_name = '';
     if ( class_exists( 'DT_Porch_Settings' ) ){
         $porch_fields = DT_Porch_Settings::settings();
-        if ( isset( $porch_fields['title']['value'] ) ){
-            $campaign_name = $porch_fields['title']['value'];
+        if ( isset( $porch_fields['name']['value'] ) ){
+            $campaign_name = $porch_fields['name']['value'];
         }
     }
     if ( empty( $campaign_name ) ){
