@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
 
-    public $title = 'Landing Page Settings';
+    public $title = 'Campaign Settings';
 
     public $key = 'campaign_landing';
 

@@ -138,7 +138,7 @@ class DT_Porch_Admin_Tab_Base {
                     <tbody>
 
                         <?php foreach ( $campaign_settings as $key => $field ) :
-                            if ( ( $field['tile'] ?? '' ) !== $this->tab || ( $field['campaign_section'] ?? '' ) !== $section ){
+                            if ( ( ( $field['tile'] ?? '' ) !== $this->tab && ( $field['settings_tab'] ?? '' ) !== $this->tab ) || ( $field['settings_section'] ?? '' ) !== $section ){
                                 continue;
                             }
                             if ( isset( $field['enabled'] ) && $field['enabled'] === false ){

@@ -127,7 +127,7 @@ class DT_Prayer_Campaigns_Menu {
         $porch_admin = $porch->load_admin();
         $porch_dir = $porch_admin->get_porch_dir();
 
-        $home_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
+        $campaign_settings_tab = new DT_Porch_Admin_Tab_Home( $porch_dir );
         $translations_tab = new DT_Porch_Admin_Tab_Translations( $porch_dir );
         $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
         $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
@@ -139,6 +139,11 @@ class DT_Prayer_Campaigns_Menu {
 
         <div class="wrap">
             <h2>Prayer Campaigns</h2>
+            <?php
+            if ( !empty( $campaign_id ) ){
+                $this->campaign_selector();
+            }
+            ?>
             <h2 class="nav-tab-wrapper">
                 <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( admin_url( 'admin.php?page='. $this->token ) ) ?>"
@@ -147,11 +152,17 @@ class DT_Prayer_Campaigns_Menu {
                     </a>
                 <?php endif; ?>
                 <?php if ( empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
-                    <a href="<?php echo esc_attr( $link . $new_campaign_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $new_campaign_tab->key ) ? 'nav-tab-active' : '' ); ?>">
+                    <a href="<?php echo esc_attr( admin_url( 'admin.php?page='. $this->token . '&tab=' . $new_campaign_tab->key ) ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $new_campaign_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $new_campaign_tab->title ) ?>
                         <?php if ( empty( $campaign ) ): ?>
                             <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
                         <?php endif; ?>
+                    </a>
+                <?php endif; ?>
+
+                <?php if ( !empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
+                    <a href="<?php echo esc_attr( $link . $campaign_settings_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $campaign_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $campaign_settings_tab->title ) ?>
                     </a>
                 <?php endif; ?>
 
@@ -163,11 +174,7 @@ class DT_Prayer_Campaigns_Menu {
                         <?php endif; ?>
                     </a>
                 <?php endif; ?>
-                <?php if ( !empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
-                    <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
-                        <?php echo esc_html( $home_tab->title ) ?>
-                    </a>
-                <?php endif; ?>
+
                 <?php if ( !empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $email_settings_tab->key ) ?>"
                        class="nav-tab <?php echo esc_html( ( $tab == $email_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
@@ -207,8 +214,8 @@ class DT_Prayer_Campaigns_Menu {
 
             if ( !empty( $campaign ) ) {
                 switch ( $tab ) {
-                    case $home_tab->key:
-                        $home_tab->content();
+                    case $campaign_settings_tab->key:
+                        $campaign_settings_tab->content();
                         break;
                     case $translations_tab->key:
                         $translations_tab->content();
@@ -271,7 +278,6 @@ class DT_Prayer_Campaigns_Menu {
                 <tr style="background-color: <?php echo esc_html( $campaign_color2 ) ?>">
                     <td>
                         <select name="campaign" id="campaign-selection" onchange="this.form.submit()">
-                            <option value="">Select Campaign</option>
                             <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign_id ) ?>
                         </select>
                         <a href="<?php echo esc_html( $landing_page_url ); ?>">Show Landing Page</a> |

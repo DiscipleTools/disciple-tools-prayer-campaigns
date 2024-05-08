@@ -205,6 +205,8 @@ class DT_Campaigns_Base {
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
                 'show_in_table' => 20,
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
 
@@ -234,6 +236,8 @@ class DT_Campaigns_Base {
                 'tile' => 'campaign_setup',
                 'in_create_form' => true,
                 'select_cannot_be_empty' => true,
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
             foreach ( $porches as $porch ){
                 $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'] ];
@@ -246,6 +250,8 @@ class DT_Campaigns_Base {
                 'type'        => 'date',
                 'default'     => time(),
                 'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
                 'in_create_form' => true,
                 'show_in_table' => 101
@@ -256,6 +262,8 @@ class DT_Campaigns_Base {
                 'type'        => 'date',
                 'default'     => '',
                 'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
                 'in_create_form' => true,
                 'show_in_table' => 102
@@ -277,6 +285,8 @@ class DT_Campaigns_Base {
                 'default' => $timezones,
                 'type' => 'key_select',
                 'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
             $fields['min_time_duration'] = [
@@ -289,7 +299,9 @@ class DT_Campaigns_Base {
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
                 ],
-                'tile' => 'campaign_setup'
+                'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
             $fields['enabled_frequencies'] = [
@@ -301,30 +313,23 @@ class DT_Campaigns_Base {
 //                    'monthly' => [ 'label' => 'Monthly' ],
                     'pick' => [ 'label' => 'Pick Days' ],
                 ],
-                'tile' => 'campaign_setup'
+                'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
             $fields['duration_options'] = [
                 'name' => 'Duration options',
                 'type' => 'key_select',
                 'default' => DT_Time_Utilities::get_slot_duration_options(),
+                'settings_section' => 'Campaign',
+                'settings_tab' => 'campaign_landing',
             ];
             $fields['enabled_languages'] = [
                 'name' => 'Enabled Languages',
                 'type' => 'tags',
                 'default' => [],
                 'tile' => 'campaign_landing',
-            ];
-
-            $fields['strings_translations'] = [
-                'name' => 'String Translations',
-                'type' => 'array',
-                $default = [
-                    'en_US' => [
-                        'title' => 'Campaign Description'
-                    ]
-                ],
-                'hidden' => true
             ];
 
             /**

@@ -242,14 +242,14 @@ class DT_Generic_Porch_Strings {
                 'tab' => 'translations',
                 'hidden' => true,
             ],
-            'campaign_name' => [
-                'label' => 'Campaign Name',
-                'value' => '',
-                'type' => 'text',
-                'translations' => [],
-                'tab' => 'translations',
-                'hidden' => true,
-            ],
+//            'campaign_name' => [
+//                'label' => 'Campaign Name',
+//                'value' => '',
+//                'type' => 'text',
+//                'translations' => [],
+//                'tab' => 'translations',
+//                'hidden' => true,
+//            ],
             'footer_content' => [
                 'label' => 'Extra Footer Content',
                 'default' => '',
@@ -277,8 +277,8 @@ class DT_Generic_Porch_Strings {
                 'type' => isset( $field['type'] ) && in_array( $field['type'], $valid_types ) ? $field['type'] : 'text',
                 'default' => isset( $field['default'] ) ? $field['default'] : '',
                 'description' => $field['placeholder'] ?? '',
-                'campaign_tab' => isset( $field['tab'] ) ? $field['tab'] : 'translations',
-                'campaign_section' => isset( $field['section'] ) ? $field['section'] : '',
+                'settings_tab' => 'campaign_landing_strings',
+                'settings_section' => isset( $field['section'] ) ? $field['section'] : '',
                 'hidden' => !empty( $field['hidden'] ),
             ];
             if ( $field['type'] === 'text' || $field['type'] === 'textarea' ){
