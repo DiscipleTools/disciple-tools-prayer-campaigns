@@ -427,7 +427,7 @@ class DT_Campaigns_Base {
             }
             //make sure the campaign_url is unique
             if ( isset( $fields['campaign_url'] ) ) {
-                $campaign_url = str_replace( ' ', '-', strtolower( trim( $fields['campaign_url'] ) ) );
+                $campaign_url = DT_Campaign_Landing_Settings::format_landing_page_url( $fields['campaign_url'] );
                 $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $campaign_url ) );
                 if ( !empty( $url_exists ) ){
                     $campaign_url = dt_create_field_key( $campaign_url, true );
@@ -1257,7 +1257,7 @@ class DT_Campaigns_Base {
                 $fields['custom_theme_color'] = self::rand_color();
             }
             if ( !isset( $fields['campaign_url'] ) ) {
-                $fields['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $fields['name'] ) ) );
+                $fields['campaign_url'] = DT_Campaign_Landing_Settings::format_landing_page_url( $fields['name'] );
             }
             $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $fields['campaign_url'] ) );
             if ( !empty( $url_exists ) ){

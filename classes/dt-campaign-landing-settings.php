@@ -71,11 +71,17 @@ class DT_Campaign_Landing_Settings {
         }
     }
 
+    public static function format_landing_page_url( $name ){
+        $url = preg_replace( '/[^0-9a-zA-Z ]/', '', strtolower( trim( $name ) ) );
+        $url = str_replace( ' ', '-', $url );
+        return $url;
+    }
+
     public static function get_landing_page_url( $campaign_id = null ){
         $campaign = self::get_campaign( $campaign_id );
         $url = $campaign['campaign_url'] ?? '';
         if ( !empty( $campaign ) && empty( $url ) ){
-            $url = str_replace( ' ', '-', strtolower( trim( $campaign['name'] ) ) );
+            $url = self::format_landing_page_url( $campaign['name'] );
             DT_Posts::update_post( 'campaigns', $campaign_id, [
                 'campaign_url' => $url,
             ] );
