@@ -103,6 +103,7 @@ class DT_Prayer_Campaigns_Menu {
                 $tab = 'dt_prayer_fuel';
             }
         }
+        $campaign_id = isset( $_GET['campaign'] ) ? sanitize_key( wp_unslash( $_GET['campaign'] ) ) : null;
         $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
         $campaign_url_part = '';
         if ( !empty( $campaign['ID'] ) ){
@@ -140,21 +141,21 @@ class DT_Prayer_Campaigns_Menu {
             <h2>Prayer Campaigns</h2>
             <h2 class="nav-tab-wrapper">
                 <?php if ( current_user_can( 'create_campaigns' ) ) : ?>
-                    <a href="<?php echo esc_attr( $link ) . 'campaigns' ?>"
+                    <a href="<?php echo esc_attr( admin_url( 'admin.php?page='. $this->token ) ) ?>"
                         class="nav-tab <?php echo esc_html( ( $tab == 'campaigns' || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         General Settings
                     </a>
                 <?php endif; ?>
-                <?php if ( !empty( $campaign ) && current_user_can( 'create_campaigns' ) ) : ?>
+                <?php if ( empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $new_campaign_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $new_campaign_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $new_campaign_tab->title ) ?>
-                        <?php if ( !DT_Porch_Settings::has_user_translations() ): ?>
+                        <?php if ( empty( $campaign ) ): ?>
                             <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
                         <?php endif; ?>
                     </a>
                 <?php endif; ?>
 
-                <?php if ( !empty( $campaign ) && current_user_can( 'create_campaigns' ) ) : ?>
+                <?php if ( !empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
                         <?php if ( !DT_Porch_Settings::has_user_translations() ): ?>
@@ -162,23 +163,23 @@ class DT_Prayer_Campaigns_Menu {
                         <?php endif; ?>
                     </a>
                 <?php endif; ?>
-                <?php if ( !empty( $campaign ) && current_user_can( 'create_campaigns' ) ) : ?>
+                <?php if ( !empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $home_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $home_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $home_tab->title ) ?>
                     </a>
                 <?php endif; ?>
-                <?php if ( !empty( $campaign ) && current_user_can( 'create_campaigns' ) ) : ?>
+                <?php if ( !empty( $campaign_id ) && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $email_settings_tab->key ) ?>"
                        class="nav-tab <?php echo esc_html( ( $tab == $email_settings_tab->key || !isset( $tab ) ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $email_settings_tab->title ) ?>
                     </a>
                 <?php endif; ?>
-                <?php if ( !empty( $campaign ) ) : ?>
+                <?php if ( !empty( $campaign_id ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $prayer_content_tab->key . '&import=wordpress' ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_content_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_content_tab->title ) ?>
                     </a>
                 <?php endif; ?>
-                <?php if ( !empty( $campaign ) ) : ?>
+                <?php if ( !empty( $campaign_id ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $prayer_fuel_tab->token ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $prayer_fuel_tab->token ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $prayer_fuel_tab->title ) ?>
                     </a>
@@ -191,8 +192,6 @@ class DT_Prayer_Campaigns_Menu {
                 ?>
 
             </h2>
-            <?php $this->campaign_selector(); ?>
-
 
             <?php
             switch ( $tab ) {
@@ -241,6 +240,7 @@ class DT_Prayer_Campaigns_Menu {
     public function campaign_selector(){
         //todo set default campaign
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $campaign_id = isset( $_GET['campaign'] ) ? sanitize_key( wp_unslash( $_GET['campaign'] ) ) : null;
         if ( empty( $campaign ) ){
             $campaigns = DT_Posts::list_posts( 'campaigns', [] );
             if ( !empty( $campaigns['posts'] ) ){
@@ -271,7 +271,8 @@ class DT_Prayer_Campaigns_Menu {
                 <tr style="background-color: <?php echo esc_html( $campaign_color2 ) ?>">
                     <td>
                         <select name="campaign" id="campaign-selection" onchange="this.form.submit()">
-                            <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign['ID'] ) ?>
+                            <option value="">Select Campaign</option>
+                            <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign_id ) ?>
                         </select>
                         <a href="<?php echo esc_html( $landing_page_url ); ?>">Show Landing Page</a> |
                         <a href="<?php echo esc_html( site_url() . '/campaigns/' . $campaign['ID'] ); ?>">Edit Campaign</a>

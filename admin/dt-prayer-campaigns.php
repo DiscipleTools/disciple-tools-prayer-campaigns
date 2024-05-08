@@ -158,17 +158,13 @@ class DT_Prayer_Campaigns_Campaigns {
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
-
-                        <div id="campaign-wizard" style="display: <?php echo esc_attr( $is_wizard_open ? 'block' : 'none' ) ?>;">
-                            <?php $this->setup_wizard(); ?>
-                        </div>
-
+                        <?php $this->campaign_selector(); ?>
 
                         <?php
 
-                        $this->box_select_porch();
+//                        $this->box_select_porch();
 
-                        $this->box_campaign();
+//                        $this->box_campaign();
 
                         $this->box_default_campaign();
 
@@ -187,6 +183,46 @@ class DT_Prayer_Campaigns_Campaigns {
             </div>
         </div>
         <?php
+    }
+
+    public function campaign_selector(){
+        $campaigns = DT_Posts::list_posts( 'campaigns', [] );
+        if ( is_wp_error( $campaigns ) ){
+            $campaigns = [ 'posts' => [] ];
+        }
+        ?>
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th>Select Campaign to edit settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <?php if ( empty( $campaigns['posts'] ) ) : ?>
+                            <p>Let's Get Started!</p>
+                            <p>
+                                <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
+                                    Create a new Campaign
+                                </a>
+                            </p>
+                        <?php else :
+
+                            foreach ( $campaigns['posts'] as $campaign ) : ?>
+                                <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
+                                    <?php echo esc_html( $campaign['name'] ) ?>
+                                </a>
+                            <?php endforeach;
+                        endif; ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <?php
+
     }
 
 
@@ -215,7 +251,7 @@ class DT_Prayer_Campaigns_Campaigns {
                         <form method="POST">
                             <?php wp_nonce_field( 'default_campaign_nonce', 'default_campaign_nonce' ) ?>
 
-                            <p>Which campaign should be shown on this page: <?php echo esc_html( $home_url ); ?></p>
+                            <p>Which campaign should be shown on this page: <a href="<?php echo esc_html( $home_url ); ?>"><?php echo esc_html( $home_url ); ?></a></p>
 
                             <table class="widefat">
                                 <tbody>
@@ -281,7 +317,7 @@ class DT_Prayer_Campaigns_Campaigns {
                                             <input name="p4m_participation" id="p4m_participation" type="checkbox"
                                                    <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
                                             <label for="p4m_participation">
-                                                List my campaign on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>.
+                                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>.
                                                 <br>
                                                 This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
                                             </label>
@@ -311,44 +347,6 @@ class DT_Prayer_Campaigns_Campaigns {
         <?php
     }
 
-    private function setup_wizard(){
-        ?>
-
-        <table class="widefat striped">
-            <thead>
-            <tr>
-                <th>Campaign Wizard</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <form method="POST">
-                        <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
-                               value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
-
-                        <h2>Choose the type of campaign to create:</h2>
-                        <p>
-                            <?php $this->display_wizard_buttons() ?>
-                        </p>
-                        <p>
-                            <label for="new-campaign-name">Campaign Name</label>
-                            <input id="new-campaign-name" name="new-campaign-name" required type="text" placeholder="My next prayer campaign name">
-                        </p>
-
-                        <p>
-                            <button type="submit" class="button" name="setup_wizard_submit">Continue</button>
-                        </p>
-                        <p>This selects landing page and creates a corresponding campaign</p>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br>
-        <?php
-    }
 
     private function box_select_porch() {
         $porches = DT_Porch_Selector::instance()->get_porch_loaders();
@@ -383,33 +381,6 @@ class DT_Prayer_Campaigns_Campaigns {
                             <table class="widefat">
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <label for="select_porch"><?php echo esc_html( 'Select Landing Page Type' ) ?></label>
-                                        </td>
-                                        <td>
-                                            <select name="select_porch" id="select_porch">
-                                                    <option
-                                                        <?php echo !isset( $settings['selected_porch'] ) ? 'selected' : '' ?>
-                                                        value=""
-                                                    >
-                                                        <?php esc_html_e( 'None', 'disciple-tools-prayer-campaigns' ) ?>
-                                                    </option>
-
-                                                <?php foreach ( $porches as $id => $porch ): ?>
-
-                                                    <option
-                                                        value="<?php echo esc_html( $id ) ?>"
-                                                        <?php echo $selected_porch === $id ? 'selected' : '' ?>
-                                                    >
-                                                        <?php echo esc_html( $porch['label'] ) ?>
-                                                    </option>
-
-                                                <?php endforeach; ?>
-
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
 
                                         <td>Campaign Title</td>
                                         <td>
@@ -431,22 +402,6 @@ class DT_Prayer_Campaigns_Campaigns {
             </tbody>
         </table>
         <br>
-
-        <?php
-    }
-
-    private function display_wizard_buttons() {
-        $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] )
-        ?>
-
-        <?php foreach ( $wizard_types as $wizard_type => $wizard_details ): ?>
-
-            <label style="display: block; padding: 8px">
-                <input type="radio" name="setup_wizard_type" value="<?php echo esc_html( $wizard_type ); ?>" required>
-                <?php echo isset( $wizard_details['label'] ) ? esc_html( $wizard_details['label'] ) : esc_html( "$wizard_type" ) ?>
-            </label>
-
-        <?php endforeach; ?>
 
         <?php
     }
@@ -597,11 +552,7 @@ class DT_Prayer_Campaigns_Campaigns {
     }
 
     public function right_column() {
-        $campaign = DT_Campaign_Landing_Settings::get_campaign( null, true );
-        if ( empty( $campaign ) ) {
-            return;
-        }
-        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
+        $campaign_url = home_url();
         ?>
 
         <table class="widefat striped">
