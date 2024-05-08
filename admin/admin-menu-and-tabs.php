@@ -252,6 +252,8 @@ class DT_Prayer_Campaigns_Menu {
         }
         $tab = sanitize_key( wp_unslash( !empty( $_GET['tab'] ) ? $_GET['tab'] : 'campaigns' ) );
         $landing_page_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
+        $campaign_color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign['ID'], 50 );
+        $campaign_color2 = DT_Campaign_Landing_Settings::get_campaign_color( $campaign['ID'], 30 );
         ?>
 
         <br>
@@ -261,12 +263,12 @@ class DT_Prayer_Campaigns_Menu {
 
             <table class="widefat striped metabox-table">
                 <thead>
-                <tr>
+                <tr style="background-color: <?php echo esc_html( $campaign_color ) ?>">
                     <th>Select Campaign to edit settings</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr style="background-color: <?php echo esc_html( $campaign_color2 ) ?>">
                     <td>
                         <select name="campaign" id="campaign-selection" onchange="this.form.submit()">
                             <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign['ID'] ) ?>

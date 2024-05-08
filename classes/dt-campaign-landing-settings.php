@@ -83,19 +83,25 @@ class DT_Campaign_Landing_Settings {
         return site_url( $url );
     }
 
-    public static function get_campaign_color( $campaign_id = null ){
+    /**
+     * @param $campaign_id
+     * @param $opacity, from 00 to FF
+     * @return string, a hex value
+     */
+    public static function get_campaign_color( $campaign_id = null, $opacity = null ){
+        $opacity = $opacity ?? 'FF';
         $campaign = self::get_campaign( $campaign_id );
         if ( !empty( $campaign['custom_theme_color'] ) ) {
-            return $campaign['custom_theme_color'];
+            return $campaign['custom_theme_color'] . $opacity;
         }
         $theme_manager = new DT_Porch_Theme();
         if ( !empty( $campaign['theme_color']['key'] ) ) {
             $theme_name = $campaign['theme_color']['key'];
             $theme = $theme_manager->get_theme( $theme_name );
-            return $theme['color'];
+            return $theme['color'] . $opacity;
         }
         $theme = $theme_manager->get_default_theme();
-        return $theme['color'];
+        return $theme['color'] . $opacity;
     }
 
 
