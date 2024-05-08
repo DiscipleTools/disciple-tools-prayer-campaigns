@@ -46,6 +46,7 @@ class DT_Prayer_Campaigns_Menu {
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-email-settings.php';
+        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-new-campaign.php';
 
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'dt_options_script_pages', array( $this, 'dt_options_script_pages' ) );
@@ -130,6 +131,7 @@ class DT_Prayer_Campaigns_Menu {
         $prayer_content_tab = new DT_Porch_Admin_Tab_Starter_Content( $porch_dir );
         $prayer_fuel_tab = new DT_Campaign_Prayer_Fuel_Menu();
         $email_settings_tab = new DT_Porch_Admin_Tab_Email_Settings( $porch_dir );
+        $new_campaign_tab = new DT_Porch_Admin_Tab_New_Campaign( $porch_dir );
 
 
         ?>
@@ -143,6 +145,15 @@ class DT_Prayer_Campaigns_Menu {
                         General Settings
                     </a>
                 <?php endif; ?>
+                <?php if ( !empty( $campaign ) && current_user_can( 'create_campaigns' ) ) : ?>
+                    <a href="<?php echo esc_attr( $link . $new_campaign_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $new_campaign_tab->key ) ? 'nav-tab-active' : '' ); ?>">
+                        <?php echo esc_html( $new_campaign_tab->title ) ?>
+                        <?php if ( !DT_Porch_Settings::has_user_translations() ): ?>
+                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
+                        <?php endif; ?>
+                    </a>
+                <?php endif; ?>
+
                 <?php if ( !empty( $campaign ) && current_user_can( 'create_campaigns' ) ) : ?>
                     <a href="<?php echo esc_attr( $link . $translations_tab->key ) ?>" class="nav-tab <?php echo esc_html( ( $tab == $translations_tab->key ) ? 'nav-tab-active' : '' ); ?>">
                         <?php echo esc_html( $translations_tab->title ) ?>
@@ -213,10 +224,10 @@ class DT_Prayer_Campaigns_Menu {
                         break;
                 }
 
-                do_action( 'dt_prayer_campaigns_tab_content', $tab );
 
                 $porch_admin->tab_content();
             }
+            do_action( 'dt_prayer_campaigns_tab_content', $tab );
 
             ?>
 

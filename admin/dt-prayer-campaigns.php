@@ -144,19 +144,9 @@ class DT_Prayer_Campaigns_Campaigns {
         ?>
         <div class="wrap">
             <div id="poststuff">
-                <?php $is_wizard_open = $this->no_campaigns(); ?>
-
-                <button
-                    class="button"
-                    id="campaign-wizard-toggle"
-                    style="margin-bottom: 1rem;"
-                >
-                    Show Campaign Wizard
-                </button>
-
                 <a
                     class="button"
-                    href="<?php echo esc_html( home_url( 'campaigns/new' ) ); ?>"
+                    href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>"
                 >
                     Create a new Campaign
                 </a>
