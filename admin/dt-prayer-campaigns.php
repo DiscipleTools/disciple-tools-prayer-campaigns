@@ -207,14 +207,17 @@ class DT_Prayer_Campaigns_Campaigns {
                                     Create a new Campaign
                                 </a>
                             </p>
-                        <?php else :
-
-                            foreach ( $campaigns['posts'] as $campaign ) : ?>
-                                <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
+                        <?php else : ?>
+                            <ol>
+                            <?php foreach ( $campaigns['posts'] as $campaign ) : ?>
+                            <li>
+                                <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
                                     <?php echo esc_html( $campaign['name'] ) ?>
                                 </a>
-                            <?php endforeach;
-                        endif; ?>
+                            </li>
+                            <?php endforeach; ?>
+                            </ol>
+                        <?php endif; ?>
                     </td>
                 </tr>
             </tbody>
