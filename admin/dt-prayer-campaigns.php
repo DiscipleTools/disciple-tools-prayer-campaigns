@@ -251,26 +251,13 @@ class DT_Prayer_Campaigns_Campaigns {
                         <form method="POST">
                             <?php wp_nonce_field( 'default_campaign_nonce', 'default_campaign_nonce' ) ?>
 
-                            <p>Which campaign should be shown on this page: <a href="<?php echo esc_html( $home_url ); ?>"><?php echo esc_html( $home_url ); ?></a></p>
+                            <p>Which campaign should be shown on the landing page: <a href="<?php echo esc_html( $home_url ); ?>"><?php echo esc_html( $home_url ); ?></a></p>
 
-                            <table class="widefat">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label for="default_campaign">Select Campaign</label>
-                                        </td>
-                                        <td>
-                                            <select name="default_campaign" id="default_campaign">
-                                                <option value="none">None</option>
-                                                <?php $this->echo_my_campaigns_select_options( $default_campaign ) ?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="button float-right" name="default_campaign_submit">Update</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <select name="default_campaign" id="default_campaign">
+                                <option value="none">None</option>
+                                <?php $this->echo_my_campaigns_select_options( $default_campaign ) ?>
+                            </select>
+                            <button type="submit" class="button float-right" name="default_campaign_submit">Update</button>
 
                         </form>
                     </td>
@@ -310,33 +297,17 @@ class DT_Prayer_Campaigns_Campaigns {
                             <input type="hidden" name="p4m_participation_nonce" id="p4m_participation_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'p4m_participation' ) ) ?>"/>
 
-                            <table class="widefat">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: min-content">
-                                            <input name="p4m_participation" id="p4m_participation" type="checkbox"
-                                                   <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
-                                            <label for="p4m_participation">
-                                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>.
-                                                <br>
-                                                This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
-                                            </label>
-                                        </td>
-                                        <td style="min-width: 100px; vertical-align: middle">
-                                            <button type='submit' name='p4m_participation_submit' class='button' <?php disabled( $participation_force ) ?>>
-                                                <?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <button type="submit" name="p4m_participation_send_now">Send</button> Stats Now
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                            <input name="p4m_participation" id="p4m_participation" type="checkbox"
+                                   <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
+                            <label for="p4m_participation">
+                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>.
+                                <br>
+                                This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
+                            </label>
+                            <br>
+                            <button type='submit' name='p4m_participation_submit' class='button' <?php disabled( $participation_force ) ?>>
+                                <?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?>
+                            </button>
                         </form>
                     </td>
                 </tr>
