@@ -100,6 +100,9 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                 padding-left: 20px;
                 font-weight: 200;
             }
+            .form-table td {
+                vertical-align: top;
+            }
         </style>
         <div class="wrap">
             <div id="poststuff">
@@ -116,6 +119,9 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                 <tr>
                                     <th scope="row"><label for="campaign_name">Campaign Name</label></th>
                                     <td><input type="text" name="campaign_name" id="campaign_name" class="regular-text" required></td>
+                                    <td>
+                                        Examples: Pray4France, Pray4Morocco Ramadan 2024 etc
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th><label for="wizard_type">Type</label></th>
@@ -129,17 +135,24 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
 
                                         <?php endforeach; ?>
                                     </td>
+                                    <td>
+                                        See <a href="https://pray4movement.org/docs/campaign-types/">documentation</a> for types.
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <th><label for="campaign_start_date">Start Date</label></th>
                                     <td><input type="date" name="campaign_start_date" id="campaign_start_date" class="regular-text" required></td>
+                                    <td>When the campaign will start</td>
                                 </tr>
                                 <tr>
-                                    <th><label for="campaign_end_date">End Date (optional)</label><br>
-                                        Don't set for an ongoing campaign.
+                                    <th><label for="campaign_end_date">End Date (optional)</label>
+
                                     </th>
                                     <td><input type="date" name="campaign_end_date" id="campaign_end_date" class="regular-text"></td>
+                                    <td>
+                                        When the campaign will end. Leave empty for ongoing campaigns.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th><label for="campaign_languages">Languages</label></th>
@@ -155,6 +168,11 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                                 <?php echo esc_html( $language['label'] ) ?>
                                             </label>
                                         <?php endforeach; ?>
+                                    </td>
+                                    <td>
+                                        Show the campaign interface and prayer fuel in these languages.
+                                        <br>
+                                        Please don't enable languages you don't plan on creation or installing prayer fuel for.
                                     </td>
                                 </tr>
                                 <tr>
