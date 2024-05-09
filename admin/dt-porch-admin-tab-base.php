@@ -19,7 +19,7 @@ class DT_Porch_Admin_Tab_Base {
         ?>
         <style>
             .metabox-table input {
-                width: 100%;
+                /*width: 100%;*/
             }
             .metabox-table select {
                 width: 100%;
@@ -250,15 +250,15 @@ class DT_Porch_Admin_Tab_Base {
                                         <select name="list[<?php echo esc_html( $key ); ?>]">
                                             <?php
                                             $selected_option = isset( $campaign[$key]['key'] ) ? $campaign[$key]['key'] : '';
-                                            if ( !empty( $selected_option ) && isset( $field['default'][$selected_option] ) ) {
-                                                ?>
-                                                <option value="<?php echo esc_attr( $selected_option ) ?>"><?php echo esc_html( $field['default'][$selected_option]['label'] ) ?? ''?></option>
-                                                <option disabled>-----</option>
-                                                <?php
-                                            }
+                                            ?>
+                                            <option value="<?php echo esc_attr( $selected_option ) ?>"><?php echo esc_html( $field['default'][$selected_option]['label'] ?? '' )?></option>
+                                            <option disabled>-----</option>
+                                            <?php
                                             foreach ( $field['default'] as $list_key => $value ) {
                                                 ?>
-                                                <option value="<?php echo esc_attr( $list_key ) ?>"><?php echo esc_attr( $value['label'] ) ?></option>
+                                                <option value="<?php echo esc_attr( $list_key ) ?>">
+                                                    <?php echo esc_attr( $value['label'] ) ?>
+                                                </option>
                                                 <?php
                                             }
                                             ?>
@@ -266,7 +266,42 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td></td>
                                 </tr>
+                            <?php elseif ( 'date' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['name'] ); ?>
+                                    </td>
+                                    <td>
+                                        <input type="date"
+                                               name="list[<?php echo esc_html( $key ); ?>]"
+                                               id="<?php echo esc_html( $key ); ?>"
+                                               value="<?php echo esc_html( $campaign[$key]['formatted'] ?? '' ); ?>"
+                                               placeholder="<?php echo esc_html( $field['description'] ?? $field['default'] ); ?>"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            <?php elseif ( 'multi_select' === $field['type'] ) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo esc_html( $field['name'] ); ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $selected_options = isset( $campaign[$key] ) ? $campaign[$key] : [];
+                                        foreach ( $field['default'] as $list_key => $value ) {
+                                            ?>
+                                            <label>
+                                                <input type="checkbox"
+                                                       name="list[<?php echo esc_html( $key ); ?>][]"
+                                                       value="<?php echo esc_attr( $list_key ) ?>" <?php echo in_array( $list_key, $selected_options ) ? 'checked' : '' ?>>
+                                                <?php echo esc_attr( $value['label'] ) ?>
+                                            </label>
+                                            <?php
+                                        } ?>
+                                    </td>
+                                </tr>
                             <?php endif; ?>
+
                         <?php endforeach; ?>
 
                         <tr>

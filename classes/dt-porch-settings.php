@@ -115,6 +115,11 @@ class DT_Porch_Settings {
                 if ( $value !== ( $current_campaign[$key]['key'] ?? '' ) ){
                     $changes[$key] = $value;
                 }
+            } elseif ( $field_type === 'multi_select' ){
+                $changes[$key] = [ 'values' => [], 'force_values' => true ];
+                foreach ( $value as $val ){
+                    $changes[$key]['values'][] = [ 'value' => $val ];
+                }
             } else {
                 if ( $value !== ( $current_campaign[$key] ?? '' ) ){
                     $changes[$key] = $value;
