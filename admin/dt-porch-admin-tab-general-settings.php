@@ -144,17 +144,6 @@ class DT_Prayer_Campaigns_Campaigns {
         ?>
         <div class="wrap">
             <div id="poststuff">
-                <a
-                    class="button"
-                    href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>"
-                >
-                    Create a new Campaign
-                </a>
-
-                <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
-
-                <br>
-                <br>
                 <div id="post-body" class="metabox-holder columns-2">
                     <div id="post-body-content">
 
