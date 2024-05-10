@@ -158,15 +158,15 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
         if ( isset( $_POST['language_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['language_settings_nonce'] ) ), 'language_settings' ) ) {
 
             if ( isset( $_POST['language_settings_disable'] ) ) {
-                DT_Campaign_Languages::disable( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'language_settings_disable' ) );
+                DT_Campaign_Languages::disable( sanitize_text_field( wp_unslash( $_POST['language_settings_disable'] ) ) );
             }
 
             if ( isset( $_POST['language_settings_enable'] ) ) {
-                DT_Campaign_Languages::enable( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'language_settings_enable' ) );
+                DT_Campaign_Languages::enable( sanitize_text_field( wp_unslash( $_POST['language_settings_enable'] ) ) );
             }
 
             if ( isset( $_POST['language_settings_remove'] ) ) {
-                DT_Campaign_Languages::remove( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'language_settings_remove' ) );
+                DT_Campaign_Languages::remove( sanitize_text_field( wp_unslash( $_POST['language_settings_remove'] ) ) );
             }
         }
     }
@@ -177,7 +177,7 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
     public function process_new_language() {
         if ( isset( $_POST['add_language_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['add_language_nonce'] ) ), 'add_language' ) ) {
             if ( isset( $_POST['new_language'] ) ) {
-                DT_Campaign_Languages::add_from_code( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'new_language' ) );
+                DT_Campaign_Languages::add_from_code( sanitize_text_field( wp_unslash( $_POST['new_language'] ) ) );
             }
         }
     }

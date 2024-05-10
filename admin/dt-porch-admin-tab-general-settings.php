@@ -23,16 +23,13 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
             return;
         }
         $this->process_default_campaign_setting();
-        $this->process_porch_settings();
         $this->process_p4m_participation_settings();
         $this->content( true );
     }
 
     public function body_content() {
         $this->campaign_selector();
-
         $this->box_default_campaign();
-
         $this->box_p4m_participation();
     }
 
@@ -97,40 +94,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
     }
 
 
-    /**
-     * Process changes to the porch settings
-     */
-    public function process_porch_settings() {
-        if ( isset( $_POST['campaign_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['campaign_settings_nonce'] ) ), 'campaign_settings' ) ) {
-
-            if ( isset( $_POST['select_porch'], $_POST['porch_type_submit'] ) ) {
-                $selected_porch = sanitize_text_field( wp_unslash( $_POST['select_porch'] ) );
-
-                $this->settings_manager->update( 'selected_porch', $selected_porch );
-
-                DT_Posts::update_post( 'campaigns', DT_Campaign_Landing_Settings::get_campaign_id(), [ 'porch_type' => $selected_porch ] );
-
-                /* Make sure that the prayer fuel custom post type is flushed or set up straight after the porch has been changed */
-                header( 'Refresh:0.01' );
-            }
-            if ( isset( $_POST['setup_wizard_submit'], $_POST['setup_wizard_type'], $_POST['new-campaign-name'] ) ){
-                $wizard_type = sanitize_text_field( wp_unslash( $_POST['setup_wizard_type'] ) );
-                $new_campaign_name = sanitize_text_field( wp_unslash( $_POST['new-campaign-name'] ) );
-                $new_campaign_id = self::setup_wizard_for_type( $wizard_type, $new_campaign_name );
-
-
-                if ( !empty( $new_campaign_id ) && !is_wp_error( $new_campaign_id ) ){
-                    $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
-                    if ( (int) $default_campaign === (int) $new_campaign_id ){
-                        return wp_redirect( home_url() );
-                    } else {
-                        return wp_redirect( DT_Campaign_Landing_Settings::get_landing_page_url( $new_campaign_id ) );
-                    }
-                }
-            }
-        }
-    }
-
     public function process_default_campaign_setting(){
         if ( isset( $_POST['default_campaign_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['default_campaign_nonce'] ) ), 'default_campaign_nonce' ) ) {
 
@@ -152,13 +115,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                 DT_Campaigns_Base::send_campaign_info();
             }
         }
-    }
-
-    public static function sanitized_post_field( $post, $key ) {
-        if ( !isset( $post[$key] ) ) {
-            return '';
-        }
-        return sanitize_text_field( wp_unslash( $post[$key] ) );
     }
 
 
@@ -299,186 +255,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
     }
 
 
-    private function box_select_porch() {
-        $porches = DT_Porch_Selector::instance()->get_porch_loaders();
-        $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
-        if ( empty( $campaign ) ) {
-            return;
-        }
-        ?>
-
-        <table class="widefat striped">
-            <thead>
-                <tr>
-                    <th>
-                        Landing page Selection
-                        <?php if ( DT_Porch_Selector::instance()->get_selected_porch_id() ) : ?>
-                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
-                        <?php else : ?>
-                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                        <?php endif;?>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <form method="POST">
-                            <input type="hidden" name="campaign_settings_nonce" id="campaign_settings_nonce"
-                                    value="<?php echo esc_attr( wp_create_nonce( 'campaign_settings' ) ) ?>"/>
-
-
-                            <table class="widefat">
-                                <tbody>
-                                    <tr>
-
-                                        <td>Campaign Title</td>
-                                        <td>
-                                            <strong><?php echo esc_html( $campaign['name'] ); ?></strong>
-                                            <a style="margin-inline-start: 10px" href="<?php echo esc_html( site_url( 'campaigns/' . $campaign['ID'] ) ); ?>">change</a>
-                                        </td>
-                                    </tr>
-                                    <?php do_action( 'dt_campaigns_landing_page_selection' ) ?>
-                                </tbody>
-                            </table>
-
-                            <br>
-                            <span style="float:right;">
-                                <button type="submit" name="porch_type_submit" class="button float-right"><?php esc_html_e( 'Update', 'disciple-tools-prayer-campaigns' ) ?></button>
-                            </span>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-
-        <?php
-    }
-
-    public function box_campaign() {
-        $fields = DT_Campaign_Landing_Settings::get_campaign( null, true );
-        if ( empty( $fields ) ) {
-            return;
-        }
-
-
-        ?>
-        <style>
-            .metabox-table select {
-                width: 100%;
-            }
-        </style>
-       <table class="widefat striped">
-            <thead>
-                <tr>
-                    <th>
-                        Campaign Selection
-                        <?php if ( $fields['ID'] ) : ?>
-                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
-                        <?php else : ?>
-                            <img style="width: 20px; vertical-align: sub" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                        <?php endif;?>
-                    </th>
-                </tr>
-            </thead>
-           <tbody>
-               <tr>
-                   <td>
-                        <form method="post" class="metabox-table">
-                            <?php wp_nonce_field( 'install_campaign_nonce', 'install_campaign_nonce' ) ?>
-                            <!-- Box -->
-                            <table class="widefat striped">
-                                <tbody>
-                                    <?php if ( ! empty( $fields['ID'] ) ) : ?>
-                                        <tr>
-                                            <td>Status</td>
-                                            <td><?php echo esc_html( isset( $fields['status']['label'] ) ? $fields['status']['label'] : '' ); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Porch Type</td>
-                                            <td><?php echo esc_html( isset( $fields['porch_type']['label'] ) ? $fields['porch_type']['label'] : '' ); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Start Date</td>
-                                            <td>
-                                                <?php echo esc_html( isset( $fields['start_date']['formatted'] ) ? $fields['start_date']['formatted'] : '' ); ?>
-                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>End Date</td>
-                                            <td>
-                                                <?php echo esc_html( isset( $fields['end_date']['formatted'] ) ? $fields['end_date']['formatted'] : 'No end date' ); ?>
-                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Timezone</td>
-                                            <td>
-                                                <?php if ( isset( $fields['campaign_timezone']['label'] ) ){
-                                                    echo esc_html( $fields['campaign_timezone']['label'] );
-                                                } else {
-                                                    echo esc_html( 'No Campaign Timezone Set' ); ?>
-                                                    <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>"/>
-                                                <?php } ?>
-                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Locations</td>
-                                            <td>
-                                                <?php
-                                                if ( isset( $fields['location_grid_meta'] ) ){
-                                                    echo esc_html( join( ' | ', array_map( function ( $a ){
-                                                        return $a['label'];
-                                                    }, $fields['location_grid_meta'] ) ) );
-                                                } elseif ( isset( $fields['location_grid'][0] ) ){
-                                                    echo esc_html( join( ' | ', array_map( function ( $a ){
-                                                        return $a['label'];
-                                                    }, $fields['location_grid'] ) ) );
-                                                } else {
-                                                    echo esc_html( 'No Campaign Locations set' ); ?>
-                                                    <img class='dt-icon' src = "<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/broken.svg' ) ?>" />
-                                                <?php } ?>
-                                                <a style="margin: 0 10px" href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>">edit campaign</a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Edit Campaign Details</td>
-                                            <td>
-                                                <a href="<?php echo esc_html( site_url() . '/campaigns/' . $fields['ID'] ); ?>" target="_blank">Edit Campaign</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>See subscribers</td>
-                                            <td>
-                                                <a href="<?php echo esc_html( site_url() . '/subscriptions/' ); ?>" target="_blank">See Subscribers</a>
-                                            </td>
-                                        </tr>
-<!--                                        <tr>-->
-<!--                                            <td>Export Campaign Subscribers</td>-->
-<!--                                            <td>-->
-<!--                                                Download a CSV file of this campaign's subscribers on the subscribers list:-->
-<!--                                                <a href="--><?php //echo esc_html( site_url() . '/subscriptions/' ); ?><!--" target="_blank">See Subscribers</a>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                            <br>
-                            <!-- End Box -->
-                        </form>
-                   </td>
-               </tr>
-           </tbody>
-       </table>
-       <br/>
-        <?php
-    }
-
     public static function echo_my_campaigns_select_options( $selected_id ) {
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'status' => [ 'active', 'pre_signup', 'inactive' ] ] );
         if ( is_wp_error( $campaigns ) ){
@@ -496,10 +272,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <?php endforeach; ?>
 
         <?php
-    }
-
-    private function no_campaigns() {
-        return empty( DT_Posts::list_posts( 'campaigns', [], false )['posts'] );
     }
 
     public function right_column() {
