@@ -8,8 +8,8 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
     public $key = 'new_campaign';
     public $title = 'New Campaign';
 
-    public function __construct( string $porch_dir ) {
-        parent::__construct( $this->key, $porch_dir );
+    public function __construct() {
+        parent::__construct( $this->key );
 
         $this->handle_new_campaign();
         add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
@@ -190,3 +190,4 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
         <?php
     }
 }
+new DT_Porch_Admin_Tab_New_Campaign();

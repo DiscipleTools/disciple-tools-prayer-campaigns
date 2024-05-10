@@ -25,6 +25,11 @@ class DT_Campaign_Prayer_Fuel_Menu {
 
     public function __construct(){
         add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+        add_filter( 'prayer_campaign_tabs', [ $this, 'prayer_campaign_tabs' ], 21, 1 );
+    }
+    public function prayer_campaign_tabs( $tabs ) {
+        $tabs[ $this->token ] = $this->title;
+        return $tabs;
     }
     public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
         if ( $tab !== $this->token || empty( $campaign_id ) ){
@@ -79,4 +84,4 @@ class DT_Campaign_Prayer_Fuel_Menu {
     }
 }
 
-//DT_Campaign_Prayer_Fuel_Menu::instance();
+DT_Campaign_Prayer_Fuel_Menu::instance();

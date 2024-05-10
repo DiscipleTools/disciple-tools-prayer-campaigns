@@ -9,13 +9,16 @@ define( 'WXR_VERSION', '1.2' );
 class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
     public $key = 'starter-content';
     public $title = 'Install Prayer Fuel';
-    public $porch_dir;
 
-    public function __construct( $porch_dir ) {
-        parent::__construct( $this->key, $porch_dir );
-        $this->porch_dir = $porch_dir;
+    public function __construct() {
+        parent::__construct( $this->key );
 
         add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+        add_filter( 'prayer_campaign_tabs', [ $this, 'prayer_campaign_tabs' ], 20, 1 );
+    }
+    public function prayer_campaign_tabs( $tabs ) {
+        $tabs[ $this->key ] = $this->title;
+        return $tabs;
     }
 
     public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
@@ -350,6 +353,5 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
         <!-- End Box -->
         <?php
     }
-
-
 }
+new DT_Porch_Admin_Tab_Starter_Content();

@@ -316,3 +316,4 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <?php
     }
 }
+new DT_Prayer_Campaigns_Campaigns();
