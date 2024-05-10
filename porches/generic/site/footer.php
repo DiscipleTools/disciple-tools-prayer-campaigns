@@ -44,7 +44,7 @@ $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
                         <?php else : ?>
                             <a href="<?php echo esc_html( home_url( 'campaigns/' . CAMPAIGN_ID ) ); ?>">Campaign Settings</a> |
                         <?php endif; ?>
-                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . CAMPAIGN_ID ) ); ?>">Page Settings</a> |
+                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . CAMPAIGN_ID . '&tab=campaign_landing' ) ); ?>">Page Settings</a> |
                         <a href="<?php echo esc_url( $campaign_url ) ?>/contact-us"> <?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></a>
                     </p>
                 </div>
