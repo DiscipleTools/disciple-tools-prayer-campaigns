@@ -4,15 +4,36 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 /**
  * Class DT_Prayer_Campaigns_Tab_General
  */
-class DT_Prayer_Campaigns_Campaigns {
+class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
 
     private $settings_manager;
 
     public static $no_campaign_key = 'none';
+    public $key = 'campaigns';
 
     public function __construct() {
+        parent::__construct( $this->key );
         $this->settings_manager = new DT_Campaign_Global_Settings();
+        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
 
+    }
+
+    public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
+        if ( $tab !== $this->key ){
+            return;
+        }
+        $this->process_default_campaign_setting();
+        $this->process_porch_settings();
+        $this->process_p4m_participation_settings();
+        $this->content( true );
+    }
+
+    public function body_content() {
+        $this->campaign_selector();
+
+        $this->box_default_campaign();
+
+        $this->box_p4m_participation();
     }
 
 
@@ -140,39 +161,6 @@ class DT_Prayer_Campaigns_Campaigns {
         return sanitize_text_field( wp_unslash( $post[$key] ) );
     }
 
-    public function content() {
-        ?>
-        <div class="wrap">
-            <div id="poststuff">
-                <div id="post-body" class="metabox-holder columns-2">
-                    <div id="post-body-content">
-
-                        <?php $this->campaign_selector(); ?>
-
-                        <?php
-
-//                        $this->box_select_porch();
-
-//                        $this->box_campaign();
-
-                        $this->box_default_campaign();
-
-                        $this->box_p4m_participation();
-
-                        ?>
-                     </div>
-                    <div id="postbox-container-1" class="postbox-container">
-                        <!-- Right Column -->
-
-                        <?php $this->right_column() ?>
-
-                        <!-- End Right Column -->
-                    </div><!-- postbox-container 1 -->
-                </div>
-            </div>
-        </div>
-        <?php
-    }
 
     public function campaign_selector(){
         $campaigns = DT_Posts::list_posts( 'campaigns', [] );

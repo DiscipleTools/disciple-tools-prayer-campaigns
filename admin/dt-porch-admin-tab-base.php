@@ -9,13 +9,17 @@ class DT_Porch_Admin_Tab_Base {
     private $theme_file_dir;
     private string $tab;
 
-    public function __construct( string $settings_key, string $porch_dir ) {
+    public function __construct( string $settings_key, string $porch_dir = '' ){
         $this->tab = $settings_key;
 
-        $this->theme_file_dir = $porch_dir . 'site/css/colors';
+        if ( !empty( $porch_dir ) ){
+            $this->theme_file_dir = $porch_dir . 'site/css/colors';
+        }
     }
 
-    public function content() {
+    public function content( $with_side_column = false ) {
+        $columns = $with_side_column ? 'columns-2' : 'columns-1';
+
         ?>
         <style>
             .metabox-table input {
@@ -31,20 +35,49 @@ class DT_Porch_Admin_Tab_Base {
         </style>
         <div class="wrap">
             <div id="poststuff">
-                <div id="post-body" class="metabox-holder columns-1">
+                <div id="post-body" class="metabox-holder <?php echo esc_html( $columns ); ?>">
                     <div id="post-body-content">
 
                         <?php $this->body_content() ?>
 
                     </div>
+                    <?php if ( $with_side_column ) : ?>
+                        <div id="postbox-container-1" class="postbox-container">
+                            <div id="side-sortables" class="meta-box-sortables">
+                                <?php $this->right_column() ?>
+                            </div>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
         <?php
     }
 
+    public function right_column() {
+        ?>
+        <!-- Box -->
+        <table class="widefat striped">
+            <thead>
+            <tr>
+                <th>Information</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Content
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <!-- End Box -->
+        <?php
+    }
+
     public function body_content() {
-        $this->main_column();
+//        $this->main_column();
     }
 
     public static function translation_cell( $langs, $key, $field, $form_name ){
@@ -115,6 +148,12 @@ class DT_Porch_Admin_Tab_Base {
             //refresh the campaign
             $campaign = DT_Posts::get_post( 'campaigns', $campaign['ID'], false, true );
             $campaign_settings = DT_Porch_Settings::settings( null, null, false );
+        }
+
+
+        $a = $this->tab;
+        if ( $a !== $this->tab ){
+            return;
         }
 
         foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>

@@ -23,17 +23,27 @@ class DT_Campaign_Prayer_Fuel_Menu {
         return self::$_instance;
     }
 
+    public function __construct(){
+        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+    }
+    public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
+        if ( $tab !== $this->token || empty( $campaign_id ) ){
+            return;
+        }
+        $this->content_body2( $campaign_id );
+    }
+
     /**
      * Builds page contents
      * @since 0.1
      */
-    public function content() {
+    public function content_body2( $campaign_id ) {
 
         if ( !current_user_can( 'wp_api_allowed_user' ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
             wp_die( 'You do not have sufficient permissions to access this page.' );
         }
 
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
 
 
 
@@ -69,4 +79,4 @@ class DT_Campaign_Prayer_Fuel_Menu {
     }
 }
 
-DT_Campaign_Prayer_Fuel_Menu::instance();
+//DT_Campaign_Prayer_Fuel_Menu::instance();

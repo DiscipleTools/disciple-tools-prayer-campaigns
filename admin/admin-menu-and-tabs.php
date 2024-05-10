@@ -42,12 +42,12 @@ class DT_Prayer_Campaigns_Menu {
             return;
         }
 
-        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-home.php';
+        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-campaign-settings.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-translations.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-email-settings.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-new-campaign.php';
-
+//
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'dt_options_script_pages', array( $this, 'dt_options_script_pages' ) );
 
@@ -112,16 +112,6 @@ class DT_Prayer_Campaigns_Menu {
 
         $link = 'admin.php?page='. $this->token . $campaign_url_part . '&tab=';
 
-
-        switch ( $tab ) {
-            case 'campaigns':
-                $this->campaigns->process_p4m_participation_settings();
-                $this->campaigns->process_porch_settings();
-                $this->campaigns->process_default_campaign_setting();
-                break;
-            default:
-                break;
-        }
 
         $porch = $this->porch_selector->get_selected_porch_loader();
         $porch_admin = $porch->load_admin();
@@ -192,43 +182,16 @@ class DT_Prayer_Campaigns_Menu {
 
                 </h2>
 
-                <?php
-            }
-            switch ( $tab ) {
-                case 'campaigns':
-                    $this->campaigns->content();
-                    break;
-                case $email_settings_tab->key:
-                    $email_settings_tab->content();
-                    break;
-                default:
-                    break;
-            }
+            <?php } ?>
 
-            if ( !empty( $campaign ) ) {
-                switch ( $tab ) {
-                    case $campaign_settings_tab->key:
-                        $campaign_settings_tab->content();
-                        break;
-                    case $translations_tab->key:
-                        $translations_tab->content();
-                        break;
-                    case $prayer_content_tab->key:
-                        $prayer_content_tab->content();
-                        break;
-                    case $prayer_fuel_tab->token:
-                        $prayer_fuel_tab->content();
-                        break;
-                    default:
-                        break;
-                }
+            <?php
 
 
-                $porch_admin->tab_content();
-            }
-            do_action( 'dt_prayer_campaigns_tab_content', $tab );
+
+            do_action( 'dt_prayer_campaigns_tab_content', $tab, $campaign_id );
 
             ?>
+
 
         </div>
 

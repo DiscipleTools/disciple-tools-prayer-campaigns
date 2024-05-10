@@ -12,7 +12,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
         parent::__construct( $this->key, $porch_dir );
 
         $this->handle_new_campaign();
-        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ] );
+        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
     }
 
     public function handle_new_campaign(){
@@ -73,7 +73,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
         exit;
     }
 
-    public function dt_prayer_campaigns_tab_content( $tab ) {
+    public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ) {
         if ( $tab !== $this->key ) {
             return;
         }
