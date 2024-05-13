@@ -32,18 +32,32 @@ class DT_Porch_Admin_Tab_Base {
                 width: 100%;
                 height: 100px;
             }
+            .sticky {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 100px;
+                align-self: flex-start
+            }
+            #post-body {
+                display: flex;
+                grid-gap: 20px;
+            }
+            .right-column {
+                flex-basis: 300px;
+                min-width: 300px;
+            }
         </style>
         <div class="wrap">
             <div id="poststuff">
-                <div id="post-body" class="metabox-holder <?php echo esc_html( $columns ); ?>">
-                    <div id="post-body-content">
+                <div id="post-body">
+                    <div style="flex-grow: 1">
 
                         <?php $this->body_content() ?>
 
                     </div>
                     <?php if ( $with_side_column ) : ?>
-                        <div id="postbox-container-1" class="postbox-container">
-                            <div id="side-sortables" class="meta-box-sortables">
+                        <div class="sticky right-column">
+                            <div>
                                 <?php $this->right_column() ?>
                             </div>
                         </div>
@@ -60,13 +74,21 @@ class DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
             <tr>
-                <th>Information</th>
+                <th>On this page</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    Content
+                    <ol>
+                        <?php foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ):
+                            $section = $section ?: 'Other';
+                            ?>
+                            <li>
+                                <a href="#<?php echo esc_html( $section ) ?>"><?php echo esc_html( $section ) ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
                 </td>
             </tr>
             </tbody>
@@ -150,12 +172,6 @@ class DT_Porch_Admin_Tab_Base {
             $campaign_settings = DT_Porch_Settings::settings( null, null, false );
         }
 
-
-        $a = $this->tab;
-        if ( $a !== $this->tab ){
-            return;
-        }
-
         foreach ( DT_Porch_Settings::sections( $this->tab ) as $section ): ?>
             <?php if ( empty( $section ) ) {
                 $section_name = 'Other';
@@ -163,13 +179,13 @@ class DT_Porch_Admin_Tab_Base {
                 $section_name = $section;
             } ?>
 
-            <form method="post" class="metabox-table" name="<?php echo esc_html( $section ) ?>">
+            <form method="post" class="metabox-table" name="<?php echo esc_html( $section_name ) ?>">
                 <?php wp_nonce_field( 'generic_porch_settings', 'generic_porch_settings_nonce' ) ?>
                 <!-- Box -->
                 <table class="widefat striped">
                     <thead>
                     <tr>
-                        <th style="width:20%"><?php echo esc_html( $section_name ) ?> Content</th>
+                        <th style="width:20%"><h3 id="<?php echo esc_html( $section_name ); ?>"><?php echo esc_html( $section_name ) ?> Content</h3></th>
                         <th style="width:50%"></th>
                         <th style="width:30%"></th>
                     </tr>

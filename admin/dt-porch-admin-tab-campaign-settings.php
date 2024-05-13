@@ -41,7 +41,7 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Language Settings</th>
+                    <th><h3 id="Languages">Language Settings</h3></th>
                     <th></th>
                 </tr>
             </thead>
@@ -186,5 +186,38 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
             }
         }
     }
+
+    public function right_column() {
+        $sections = DT_Porch_Settings::sections( $this->key );
+        $sections[] = 'Languages';
+        ?>
+        <!-- Box -->
+        <table class="widefat striped">
+            <thead>
+            <tr>
+                <th>On this page</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <?php foreach ( $sections as $section ):
+                            $section = $section ?: 'Other';
+                            ?>
+                            <li>
+                                <a href="#<?php echo esc_html( $section ) ?>"><?php echo esc_html( $section ) ?> Settings</a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <!-- End Box -->
+        <?php
+    }
+
 }
 new DT_Porch_Admin_Tab_Campaign_Settings();

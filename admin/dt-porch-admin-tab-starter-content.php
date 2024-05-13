@@ -25,7 +25,7 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
         if ( $tab !== $this->key || empty( $campaign_id ) ){
             return;
         }
-        $this->content( true );
+        $this->content( false );
     }
 
     public function body_content() {
