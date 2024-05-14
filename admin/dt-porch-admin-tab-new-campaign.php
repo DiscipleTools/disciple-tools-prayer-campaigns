@@ -109,13 +109,20 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                 <div id="post-body" class="metabox-holder columns-1">
                     <div id="post-body-content">
                         <!-- Main Column -->
-                        <h1>New Campaign</h1>
-
+                        <table class="widefat striped">
+                            <thead>
+                            <tr>
+                                <th><h3>New Campaign</h3></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="padding: 0">
                         <form method="post">
                             <input type="hidden" name="action" value="dt_prayer_campaigns_new_campaign">
                             <input type="hidden" name="dt_prayer_campaigns_new_campaign_nonce" value="<?php echo esc_html( wp_create_nonce( 'dt_prayer_campaigns_new_campaign' ) ); ?>">
 
-                            <table class="form-table striped widefat">
+                            <table class="form-table striped widefat" style="margin: 0; border: none">
                                 <tr>
                                     <th scope="row"><label for="campaign_name">Campaign Name</label></th>
                                     <td><input type="text" name="campaign_name" id="campaign_name" class="regular-text" required></td>
@@ -183,6 +190,9 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                 </tr>
                             </table>
                         </form>
+                                </td>
+                            </tr>
+                        </tbody>
                     </div>
                 </div>
             </div>

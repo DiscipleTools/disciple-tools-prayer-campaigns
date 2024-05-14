@@ -124,15 +124,20 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
             $campaigns = [ 'posts' => [] ];
         }
         ?>
+        <style>
+            .campaigns-list tr:hover {
+                background-color: rgba(186, 185, 185, 0.73);
+            }
+        </style>
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Select Campaign to edit settings</th>
+                    <th><h3>Select a campaign to edit settings</h3></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>
+                    <td style="padding: 0">
                         <?php if ( empty( $campaigns['posts'] ) ) : ?>
                             <p>Let's Get Started!</p>
                             <p>
@@ -141,15 +146,35 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                 </a>
                             </p>
                         <?php else : ?>
-                            <ol>
-                            <?php foreach ( $campaigns['posts'] as $campaign ) : ?>
-                            <li>
-                                <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
-                                    <?php echo esc_html( $campaign['name'] ) ?>
-                                </a>
-                            </li>
-                            <?php endforeach; ?>
-                            </ol>
+                            <table class="widefat striped campaigns-list" style="margin: 0; border: none">
+                                <thead>
+                                    <tr>
+                                        <th>Campaign Name</th>
+                                        <th>Edit</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ( $campaigns['posts'] as $index => $campaign ) : ?>
+                                    <tr>
+                                        <td>
+                                            <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
+                                                <?php echo esc_html( $campaign['name'] ) ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo esc_html( DT_Campaign_Landing_Settings::get_landing_root_url( $campaign['ID'] ) ) ?>" target="_blank">
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -178,7 +203,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Default Campaign</th>
+                    <th><h3>Default Campaign</h3></th>
                 </tr>
             </thead>
             <tbody>
@@ -223,7 +248,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>P4M Participation</th>
+                    <th><h3>Pray4Movement.org Participation</h3></th>
                 </tr>
             </thead>
             <tbody>
@@ -236,7 +261,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                             <input name="p4m_participation" id="p4m_participation" type="checkbox"
                                    <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
                             <label for="p4m_participation">
-                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>.
+                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>. See the <a href="https://pray4movement.org/campaigns" target="_blank">Global campaign list</a>
                                 <br>
                                 This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
                             </label>
