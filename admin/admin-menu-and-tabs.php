@@ -186,7 +186,9 @@ class DT_Prayer_Campaigns_Menu {
                             <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign_id ) ?>
                         </select>
                         <a href="<?php echo esc_html( $landing_page_url ); ?>">Show Landing Page</a> |
-                        <a href="<?php echo esc_html( site_url() . '/campaigns/' . $campaign['ID'] ); ?>">Edit Campaign</a>
+
+                        <a href="<?php echo esc_html( site_url() . '/subscriptions/?filter_id=campaign_' . $campaign['ID'] ); ?>">Subscribers List</a> |
+                        <a href="<?php echo esc_html( site_url() . '/campaigns/' . $campaign['ID'] ); ?>">Advanced Edit</a>
                     </td>
                 </tr>
                 </tbody>
