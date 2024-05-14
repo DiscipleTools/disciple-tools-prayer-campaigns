@@ -90,8 +90,8 @@ class DT_Campaign_Landing_Settings {
     }
 
     /**
-     * @param $campaign_id
-     * @param $opacity, from 00 to FF
+     * @param int $campaign_id
+     * @param string $opacity from 00 to FF
      * @return string, a hex value
      */
     public static function get_campaign_color( $campaign_id = null, $opacity = null ){
