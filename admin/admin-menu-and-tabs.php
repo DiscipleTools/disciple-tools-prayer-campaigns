@@ -112,11 +112,11 @@ class DT_Prayer_Campaigns_Menu {
         <div class="wrap">
             <h2>Prayer Campaigns</h2>
             <div>
-                <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">
+                <a class="button <?php echo esc_html( $tab === 'campaigns' ? 'button-primary' : '' ); ?>" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">
                     General Settings
                 </a>
-                <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
-                    Create a new Campaign
+                <a class="button <?php echo esc_html( $tab === 'new_campaign' ? 'button-primary' : '' ); ?>" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
+                    Create a New Campaign
                 </a>
                 <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
             </div>

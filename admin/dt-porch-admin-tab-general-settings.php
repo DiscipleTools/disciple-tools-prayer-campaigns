@@ -123,6 +123,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         if ( is_wp_error( $campaigns ) ){
             $campaigns = [ 'posts' => [] ];
         }
+        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
         ?>
         <style>
             .campaigns-list tr:hover {
@@ -142,7 +143,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                             <p>Let's Get Started!</p>
                             <p>
                                 <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
-                                    Create a new Campaign
+                                    Create a New Campaign
                                 </a>
                             </p>
                         <?php else : ?>
@@ -155,7 +156,9 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ( $campaigns['posts'] as $index => $campaign ) : ?>
+                                <?php foreach ( $campaigns['posts'] as $index => $campaign ) :
+                                    $url = $campaign['ID'] === $default_campaign ? home_url() : DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
+                                    ?>
                                     <tr>
                                         <td>
                                             <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
@@ -167,8 +170,8 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="<?php echo esc_html( DT_Campaign_Landing_Settings::get_landing_root_url( $campaign['ID'] ) ) ?>" target="_blank">
-                                                View
+                                            <a href="<?php echo esc_html( $url ) ?>" target="_blank">
+                                                View Landing Page
                                             </a>
                                         </td>
                                     </tr>
