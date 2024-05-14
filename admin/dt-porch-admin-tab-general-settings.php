@@ -138,15 +138,17 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
             </thead>
             <tbody>
                 <tr>
-                    <td style="padding: 0">
-                        <?php if ( empty( $campaigns['posts'] ) ) : ?>
+                    <?php if ( empty( $campaigns['posts'] ) ) : ?>
+                        <td>
                             <p>Let's Get Started!</p>
                             <p>
                                 <a class="button" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
                                     Create a New Campaign
                                 </a>
                             </p>
-                        <?php else : ?>
+                         </td>
+                    <?php else : ?>
+                        <td style="padding: 0">
                             <table class="widefat striped campaigns-list" style="margin: 0; border: none">
                                 <thead>
                                     <tr>
@@ -178,8 +180,8 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                 <?php endforeach; ?>
                                 </tbody>
                             </table>
-                        <?php endif; ?>
-                    </td>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             </tbody>
         </table>
