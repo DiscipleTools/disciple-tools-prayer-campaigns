@@ -318,11 +318,11 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
             <tr>
                 <td>
                     <ul>
-                        <li><a href="<?php echo esc_html( $campaign_url ); ?>" target="_blank">Landing Page</a></li>
-                        <li><a href="<?php echo esc_html( home_url( '/campaigns' ) ); ?>" target="_blank">Campaigns</a></li>
-                        <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
+<!--                        <li><a href="--><?php //echo esc_html( $campaign_url ); ?><!--" target="_blank">Landing Page</a></li>-->
+<!--                        <li><a href="--><?php //echo esc_html( home_url( '/campaigns' ) ); ?><!--" target="_blank">Campaigns</a></li>-->
                         <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
-                        <li><a href="https://pray4movement.org/docs/translation/" target="_blank">Translate Pages and Emails</a></li>
+                        <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
+                        <li><a href="https://pray4movement.org/docs/translation/" target="_blank">Translate Campaign Tool</a></li>
                     </ul>
                 </td>
             </tr>
