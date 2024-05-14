@@ -11,8 +11,8 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
     public function __construct() {
         parent::__construct( $this->key );
 
-        $this->handle_new_campaign();
         add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+        add_action( 'init', [ $this, 'handle_new_campaign' ] );
     }
 
     public function handle_new_campaign(){
@@ -28,7 +28,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
             'start_date' => dt_format_date( time(), 'Y-m-d' ),
             'status' => 'active',
             'enabled_languages' => [ 'values' => [] ],
-            'porch_type' => 'generic-generic',
+            'porch_type' => 'generic-porch',
         ];
 
         if ( $post_args['wizard_type'] === 'ramadan-porch' ) {
