@@ -248,20 +248,16 @@ class DT_Porch_Admin_Tab_Base {
                                                 button to set a value for each language:</p>
                                         <?php endif; ?>
                                         <?php if ( $field['type'] === 'color' ) { ?>
-                                            <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"
+                                            <input type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>"
                                                 onChange="jQuery('#<?php echo esc_html( $key ); ?>_state').val('');"/>
-                                        <?php } else { ?>
-                                            <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
-                                        <?php } ?>
-                                        <?php if ( isset( $field['description'] ) ): ?>
-                                            <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ) ) ); //phpcs:ignore ?></p>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td style="vertical-align: middle;">
-                                        <?php if ( $field['type'] === 'color' ) { ?>
                                             <i class="mdi mdi-backup-restore" style="font-size: 20px; cursor: pointer;" onClick="jQuery('#<?php echo esc_html( $key ); ?>').val(''); jQuery('#<?php echo esc_html( $key ); ?>_state').val('reset');"></i>
                                             <input type="hidden" name="states[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>_state" value="<?php echo esc_html( empty( $campaign[$key] ) ? 'reset' : $campaign[$key] ); ?>" />
+                                        <?php } else { ?>
+                                            <input style="width: 100%" type="<?php echo esc_html( $field['type'] ); ?>" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>"/>
                                         <?php } ?>
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ?? '' ) ) ); //phpcs:ignore ?></p>
                                         <?php if ( isset( $field['translations'] ) ){
                                             self::translation_cell( $langs, $key, $field, $section_name );
                                         } ?>
@@ -303,15 +299,16 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                         <select name="list[<?php echo esc_html( $key ); ?>]">
-                                            <?php
-                                            $selected_option = isset( $campaign[$key]['key'] ) ? $campaign[$key]['key'] : '';
-                                            ?>
-                                            <option value="<?php echo esc_attr( $selected_option ) ?>"><?php echo esc_html( $field['default'][$selected_option]['label'] ?? '' )?></option>
-                                            <option disabled>-----</option>
-                                            <?php
-                                            foreach ( $field['default'] as $list_key => $value ) {
+                                            <?php if ( empty( $field['select_cannot_be_empty'] ) ) : ?>
+                                                <option value=""></option>
+                                            <?php endif; ?>
+                                            <?php foreach ( $field['default'] as $list_key => $value ) {
+                                                $selected = isset( $campaign[$key]['key'] ) && $campaign[$key]['key'] == $list_key;
+                                                if ( empty( $campaign[$key]['key'] ) && !empty( $value['default'] ) ){
+                                                    $selected = true;
+                                                }
                                                 ?>
-                                                <option value="<?php echo esc_attr( $list_key ) ?>">
+                                                <option value="<?php echo esc_attr( $list_key ) ?>" <?php selected( $selected ) ?>>
                                                     <?php echo esc_attr( $value['label'] ) ?>
                                                 </option>
                                                 <?php
@@ -319,7 +316,9 @@ class DT_Porch_Admin_Tab_Base {
                                             ?>
                                         </select>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ?? '' ) ) ); //phpcs:ignore ?></p>
+                                    </td>
                                 </tr>
                             <?php elseif ( 'date' === $field['type'] ) : ?>
                                 <tr>
@@ -331,9 +330,11 @@ class DT_Porch_Admin_Tab_Base {
                                                name="list[<?php echo esc_html( $key ); ?>]"
                                                id="<?php echo esc_html( $key ); ?>"
                                                value="<?php echo esc_html( $campaign[$key]['formatted'] ?? '' ); ?>"
-                                               placeholder="<?php echo esc_html( $field['description'] ?? $field['default'] ); ?>"/>
+                                               />
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ?? '' ) ) ); //phpcs:ignore ?></p>
+                                    </td>
                                 </tr>
                             <?php elseif ( 'multi_select' === $field['type'] ) : ?>
                                 <tr>
@@ -353,6 +354,9 @@ class DT_Porch_Admin_Tab_Base {
                                             </label>
                                             <?php
                                         } ?>
+                                    </td>
+                                    <td>
+                                        <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ?? '' ) ) ); //phpcs:ignore ?></p>
                                     </td>
                                 </tr>
                             <?php endif; ?>
