@@ -124,7 +124,7 @@ class DT_Prayer_Campaigns {
         require_once( 'classes/dt-porch-settings.php' );
         require_once( 'classes/dt-campaign-languages.php' );
         require_once( 'classes/dt-porch-theme.php' );
-        require_once( 'classes/dt-porch-admin-tab-base.php' );
+        require_once( 'admin/dt-porch-admin-tab-base.php' );
         require_once( 'classes/dt-porch-selector.php' );
 
         require_once( 'porches/loader.php' );
@@ -137,7 +137,7 @@ class DT_Prayer_Campaigns {
 
         if ( is_admin() ) {
             require_once( __DIR__ . '/admin/config-required-plugins.php' );
-            require_once __DIR__ . '/admin/dt-prayer-campaigns.php';
+            require_once __DIR__ . '/admin/dt-porch-admin-tab-general-settings.php';
             require_once __DIR__ . '/admin/admin-menu-and-tabs.php'; // adds starter admin page and section for plugin
             require_once __DIR__ . '/admin/admin-media-tab.php';
             DT_Prayer_Campaigns_Menu::instance();

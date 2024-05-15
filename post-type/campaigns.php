@@ -197,34 +197,37 @@ class DT_Campaigns_Base {
             ];
 
             $fields['name']['tile'] = 'status';
+            $fields['name']['description'] = 'The name of your campaign. Shown on your landing page and in email signatures.';
 
             $fields['campaign_url'] = [
                 'name' => 'Campaign URL',
-                'description' => 'The URL of the campaign landing page. It must be unique',
+                'description' => 'The URL of the campaign landing page. It must be unique.',
                 'type' => 'text',
                 'tile' => 'campaign_setup',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/link.svg',
                 'show_in_table' => 20,
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
 
-            $fields['languages'] = [
-                'name' => 'Subscriber Preferred Language',
-                'description' => 'Subscriber preferred language',
-                'type' => 'key_select',
-                'tile' => 'details',
-                'default' => dt_get_option( 'dt_working_languages' ) ?: [ 'en' ],
-                'icon' => get_template_directory_uri() . '/dt-assets/images/languages.svg',
-            ];
-            $fields['peoplegroups'] = [
-                'name' => 'People Groups',
-                'description' => 'The people groups connected to this record.',
-                'type' => 'connection',
-                'post_type' => 'peoplegroups',
-                'tile' => 'details',
-                'p2p_direction' => 'to',
-                'p2p_key' => $this->post_type.'_to_peoplegroups'
-            ];
+//            $fields['languages'] = [
+//                'name' => 'Subscriber Preferred Language',
+//                'description' => 'Subscriber preferred language',
+//                'type' => 'key_select',
+//                'tile' => 'details',
+//                'default' => dt_get_option( 'dt_working_languages' ) ?: [ 'en' ],
+//                'icon' => get_template_directory_uri() . '/dt-assets/images/languages.svg',
+//            ];
+//            $fields['peoplegroups'] = [
+//                'name' => 'People Groups',
+//                'description' => 'The people groups connected to this record.',
+//                'type' => 'connection',
+//                'post_type' => 'peoplegroups',
+//                'tile' => 'details',
+//                'p2p_direction' => 'to',
+//                'p2p_key' => $this->post_type.'_to_peoplegroups'
+//            ];
 
             $porches = apply_filters( 'dt_register_prayer_campaign_porch', [] );
             $fields['porch_type'] = [
@@ -234,28 +237,35 @@ class DT_Campaigns_Base {
                 'tile' => 'campaign_setup',
                 'in_create_form' => true,
                 'select_cannot_be_empty' => true,
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
+                'description' => 'The type of landing page to use for this campaign. Types will have different layouts and content.'
             ];
             foreach ( $porches as $porch ){
-                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'] ];
+                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'], 'default' => $porch['id'] === 'generic-porch'];
             }
 
             $fields['start_date'] = [
                 'name'        => 'Start Date',
                 'required' => true,
-                'description' => '',
+                'description' => 'On what day will your campaign start?',
                 'type'        => 'date',
                 'default'     => time(),
                 'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-start.svg',
                 'in_create_form' => true,
                 'show_in_table' => 101
             ];
             $fields['end_date'] = [
                 'name'        => 'End Date (optional)',
-                'description' => '',
+                'description' => 'When will be the last day of your campaign?',
                 'type'        => 'date',
                 'default'     => '',
                 'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
                 'icon' => get_template_directory_uri() . '/dt-assets/images/date-end.svg',
                 'in_create_form' => true,
                 'show_in_table' => 102
@@ -272,15 +282,19 @@ class DT_Campaigns_Base {
             }
             $fields['campaign_timezone'] = [
                 'name' => 'Campaign Time Zone',
+                'description' => 'The time zone for the campaign. This will affect exactly when the campaign starts and ends.',
                 'required' => false,
                 'in_create_form' => true,
                 'default' => $timezones,
                 'type' => 'key_select',
                 'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
             $fields['min_time_duration'] = [
                 'name' => 'Minimum Prayer Time Duration',
+                'description' => 'The minimum duration a user can select for a prayer slot.',
                 'type' => 'key_select',
                 'default' => [
                     '60' => [ 'label' => '1 Hour' ],
@@ -289,11 +303,15 @@ class DT_Campaigns_Base {
                     '10' => [ 'label' => '10 Minutes' ],
                     '5' => [ 'label' => '5 Minutes' ],
                 ],
-                'tile' => 'campaign_setup'
+                'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
+                'select_cannot_be_empty' => true,
             ];
 
             $fields['enabled_frequencies'] = [
-                'name' => 'Enabled Frequencies',
+                'name' => 'Sign up Frequencies',
+                'description' => 'Let the user choose between these during sign up. Default: daily and pick days.',
                 'type' => 'multi_select',
                 'default' => [
                     'daily' => [ 'label' => 'Daily' ],
@@ -301,30 +319,23 @@ class DT_Campaigns_Base {
 //                    'monthly' => [ 'label' => 'Monthly' ],
                     'pick' => [ 'label' => 'Pick Days' ],
                 ],
-                'tile' => 'campaign_setup'
+                'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
-            $fields['duration_options'] = [
-                'name' => 'Duration options',
-                'type' => 'key_select',
-                'default' => DT_Time_Utilities::get_slot_duration_options(),
-            ];
+//            $fields['duration_options'] = [
+//                'name' => 'Duration options',
+//                'type' => 'key_select',
+//                'default' => DT_Time_Utilities::get_slot_duration_options(),
+//                'settings_section' => 'Campaign',
+//                'settings_tab' => 'campaign_landing',
+//            ];
             $fields['enabled_languages'] = [
                 'name' => 'Enabled Languages',
                 'type' => 'tags',
                 'default' => [],
                 'tile' => 'campaign_landing',
-            ];
-
-            $fields['strings_translations'] = [
-                'name' => 'String Translations',
-                'type' => 'array',
-                $default = [
-                    'en_US' => [
-                        'title' => 'Campaign Description'
-                    ]
-                ],
-                'hidden' => true
             ];
 
             /**
@@ -422,7 +433,7 @@ class DT_Campaigns_Base {
             }
             //make sure the campaign_url is unique
             if ( isset( $fields['campaign_url'] ) ) {
-                $campaign_url = str_replace( ' ', '-', strtolower( trim( $fields['campaign_url'] ) ) );
+                $campaign_url = DT_Campaign_Landing_Settings::format_landing_page_url( $fields['campaign_url'] );
                 $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $campaign_url ) );
                 if ( !empty( $url_exists ) ){
                     $campaign_url = dt_create_field_key( $campaign_url, true );
@@ -1252,7 +1263,7 @@ class DT_Campaigns_Base {
                 $fields['custom_theme_color'] = self::rand_color();
             }
             if ( !isset( $fields['campaign_url'] ) ) {
-                $fields['campaign_url'] = str_replace( ' ', '-', strtolower( trim( $fields['name'] ) ) );
+                $fields['campaign_url'] = DT_Campaign_Landing_Settings::format_landing_page_url( $fields['name'] );
             }
             $url_exists = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->postmeta WHERE meta_key = 'campaign_url' AND meta_value = %s", $fields['campaign_url'] ) );
             if ( !empty( $url_exists ) ){

@@ -66,10 +66,10 @@ class DT_Porch_Settings {
         $merged_settings = dt_merge_settings( $saved_translations, $defaults, 'translations' );
 
         if ( $tab !== null ) {
-            $merged_settings = self::filter_settings( $merged_settings, 'campaign_tab', $tab );
+            $merged_settings = self::filter_settings( $merged_settings, 'settings_tab', $tab );
         }
         if ( $section !== null ) {
-            $merged_settings = self::filter_settings( $merged_settings, 'campaign_section', $section );
+            $merged_settings = self::filter_settings( $merged_settings, 'settings_section', $section );
         }
 
         wp_cache_set( 'dt_campaign_porch_settings_' . $current_campaign['ID'], $merged_settings, 'dt_campaign_porch_settings' );
@@ -115,6 +115,11 @@ class DT_Porch_Settings {
                 if ( $value !== ( $current_campaign[$key]['key'] ?? '' ) ){
                     $changes[$key] = $value;
                 }
+            } elseif ( $field_type === 'multi_select' ){
+                $changes[$key] = [ 'values' => [], 'force_values' => true ];
+                foreach ( $value as $val ){
+                    $changes[$key]['values'][] = [ 'value' => $val ];
+                }
             } else {
                 if ( $value !== ( $current_campaign[$key] ?? '' ) ){
                     $changes[$key] = $value;
@@ -153,17 +158,17 @@ class DT_Porch_Settings {
     public static function sections( string $tab ) {
         $fields = DT_Posts::get_post_field_settings( 'campaigns' );
 
-        $fields = self::filter_settings( $fields, 'tile', $tab );
+        $fields = array_merge( self::filter_settings( $fields, 'settings_tab', $tab ), self::filter_settings( $fields, 'tile', $tab ) );
 
         $sections = [];
 
         $has_fields_with_no_section = false;
         foreach ( $fields as $key => $field ) {
-            if ( !$has_fields_with_no_section && ( !isset( $field['campaign_section'] ) || !$field['campaign_section'] ) ) {
+            if ( !$has_fields_with_no_section && ( !isset( $field['settings_section'] ) || !$field['settings_section'] ) ) {
                 $has_fields_with_no_section = true;
             }
-            if ( isset( $field['campaign_section'] ) && !in_array( $field['campaign_section'], $sections, true ) ) {
-                $sections[] = $field['campaign_section'];
+            if ( isset( $field['settings_section'] ) && !in_array( $field['settings_section'], $sections, true ) ) {
+                $sections[] = $field['settings_section'];
             }
         }
 

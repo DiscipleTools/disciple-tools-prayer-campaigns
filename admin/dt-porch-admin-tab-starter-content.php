@@ -6,34 +6,33 @@ define( 'WXR_VERSION', '1.2' );
 /**
  * Class DT_Generic_Porch_Landing_Tab_Starter_Content
  */
-class DT_Porch_Admin_Tab_Starter_Content {
+class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
     public $key = 'starter-content';
     public $title = 'Install Prayer Fuel';
-    public $porch_dir;
 
-    public function __construct( $porch_dir ) {
-        $this->porch_dir = $porch_dir;
+    public function __construct() {
+        parent::__construct( $this->key );
+
+        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+        add_filter( 'prayer_campaign_tabs', [ $this, 'prayer_campaign_tabs' ], 20, 1 );
+    }
+    public function prayer_campaign_tabs( $tabs ) {
+        $tabs[ $this->key ] = $this->title;
+        return $tabs;
     }
 
-    public function content() {
-
-        ?>
-        <div class="wrap">
-            <div id="poststuff">
-                <div id="post-body" class="metabox-holder columns-1">
-                    <div id="post-body-content">
-                        <!-- Main Column -->
-
-                        <?php $this->main_column(); ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
+    public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
+        if ( $tab !== $this->key || empty( $campaign_id ) ){
+            return;
+        }
+        $this->content( false );
     }
 
-    public function main_column() {
+    public function body_content() {
+        $this->starter_content();
+    }
+
+    public function starter_content() {
 
         $fields = DT_Campaign_Landing_Settings::get_campaign();
 
@@ -139,13 +138,6 @@ class DT_Porch_Admin_Tab_Starter_Content {
         }
 
         ?>
-
-
-        <div class='wrap'>
-            <div id='poststuff'>
-                <div id='post-body' class='metabox-holder columns-2'>
-                    <div id='post-body-content'>
-
         <form method="post" enctype="multipart/form-data">
             <?php wp_nonce_field( 'install_from_file', 'install_from_file_nonce' ) ?>
             <!-- Box -->
@@ -157,86 +149,86 @@ class DT_Porch_Admin_Tab_Starter_Content {
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td>
+                        Documentation
+                    </td>
+                    <td>
+                        <a href='https://pray4movement.org/docs/exporting-and-importing/' target='_blank'>Click here to
+                            view documentation</a>
+                    </td>
+                </tr>
+
+                <?php if ( !$has_installed_importer_plugin ): ?>
                     <tr>
                         <td>
-                            Documentation
+                            <p>
+                                In order to import prayer fuel you need to install/activate the <a href="https://wordpress.org/plugins/wordpress-importer/" target="_blank"> Wordpress Importer</a> plugin
+                            </p>
+                            <a class="button" href="plugins.php?page=tgmpa-install-plugins">Click here to fix this</a>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                <?php else : ?>
+
+                    <tr>
+                        <td>
+                            <input id="install_from_file_append_date" name="append_date" type="date" value="<?php echo esc_html( gmdate( 'Y-m-d', strtotime( $post_start_date ) ) ) ?>" />
+                            <p id="install_from_file_append_date_text">
+                                Posts will automatically be scheduled to start from the date
+                                <strong><?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?></strong>
+                            </p>
                         </td>
                         <td>
-                            <a href='https://pray4movement.org/docs/exporting-and-importing/' target='_blank'>Click here to
-                                view documentation</a>
+                            What date should the imported posts be scheduled to start at:
+
+                            <p>
+                                If the campaign has had posts imported previously, then they will be appended to the last scheduled post.
+                                If no posts have been imported yet, then it will either schedule the posts to start today or the first day of the campaign, whichever comes last.
+                            </p>
+                        </td>
+                    </tr>
+                    <!--                        <tr>-->
+                    <!--                            <td>-->
+                    <!--                                <input id="rss-feed-url" name="rss-feed-url" type="text" placeholder="RSS Feed URL">-->
+                    <!--                                --><?php //if ( $invalidurl ): ?>
+                    <!---->
+                    <!--                                    <p>-->
+                    <!--                                        The url is invalid-->
+                    <!--                                    </p>-->
+                    <!---->
+                    <!--                                --><?php //endif; ?>
+                    <!---->
+                    <!--                                --><?php //if ( $feeds && empty( $feeds ) ): ?>
+                    <!---->
+                    <!--                                    <p>-->
+                    <!--                                        The feed is empty-->
+                    <!--                                    </p>-->
+                    <!---->
+                    <!--                                --><?php //endif; ?>
+                    <!--                            </td>-->
+                    <!--                            <td>-->
+                    <!--                                <label for="rss-reed-url">RSS Feed URL</label>-->
+                    <!--                            </td>-->
+                    <!--                        </tr>-->
+                    <tr>
+                        <td>
+                            <input name="file" type="file" accept="application/xml text/xml">
+                            <?php if ( $message !== '' ): ?>
+
+                                <p>
+                                    <?php echo esc_html( $message ) ?>
+                                </p>
+
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            The xml file of prayer posts to import.
                         </td>
                     </tr>
 
-                    <?php if ( !$has_installed_importer_plugin ): ?>
-                        <tr>
-                            <td>
-                                <p>
-                                    In order to import prayer fuel you need to install/activate the <a href="https://wordpress.org/plugins/wordpress-importer/" target="_blank"> Wordpress Importer</a> plugin
-                                </p>
-                                <a class="button" href="plugins.php?page=tgmpa-install-plugins">Click here to fix this</a>
-                            </td>
-                            <td></td>
-                        </tr>
-
-                    <?php else : ?>
-
-                        <tr>
-                            <td>
-                                <input id="install_from_file_append_date" name="append_date" type="date" value="<?php echo esc_html( gmdate( 'Y-m-d', strtotime( $post_start_date ) ) ) ?>" />
-                                <p id="install_from_file_append_date_text">
-                                    Posts will automatically be scheduled to start from the date
-                                    <strong><?php echo esc_html( gmdate( 'd M Y', strtotime( $post_start_date ) ) ) ?></strong>
-                                </p>
-                            </td>
-                            <td>
-                                What date should the imported posts be scheduled to start at:
-
-                                <p>
-                                    If the campaign has had posts imported previously, then they will be appended to the last scheduled post.
-                                    If no posts have been imported yet, then it will either schedule the posts to start today or the first day of the campaign, whichever comes last.
-                                </p>
-                            </td>
-                        </tr>
-<!--                        <tr>-->
-<!--                            <td>-->
-<!--                                <input id="rss-feed-url" name="rss-feed-url" type="text" placeholder="RSS Feed URL">-->
-<!--                                --><?php //if ( $invalidurl ): ?>
-<!---->
-<!--                                    <p>-->
-<!--                                        The url is invalid-->
-<!--                                    </p>-->
-<!---->
-<!--                                --><?php //endif; ?>
-<!---->
-<!--                                --><?php //if ( $feeds && empty( $feeds ) ): ?>
-<!---->
-<!--                                    <p>-->
-<!--                                        The feed is empty-->
-<!--                                    </p>-->
-<!---->
-<!--                                --><?php //endif; ?>
-<!--                            </td>-->
-<!--                            <td>-->
-<!--                                <label for="rss-reed-url">RSS Feed URL</label>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-                        <tr>
-                            <td>
-                                <input name="file" type="file" accept="application/xml text/xml">
-                                <?php if ( $message !== '' ): ?>
-
-                                    <p>
-                                        <?php echo esc_html( $message ) ?>
-                                    </p>
-
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                The xml file of prayer posts to import.
-                            </td>
-                        </tr>
-
-                        <?php if ( $all_good_to_go ): ?>
+                    <?php if ( $all_good_to_go ): ?>
 
                         <tr>
                             <td>
@@ -245,25 +237,20 @@ class DT_Porch_Admin_Tab_Starter_Content {
                             </td>
                         </tr>
 
-                        <?php endif; ?>
-
-                        <tr>
-                            <td>
-                                <button class="button">Upload</button>
-                            </td>
-                            <td></td>
-                        </tr>
-
                     <?php endif; ?>
+
+                    <tr>
+                        <td>
+                            <button class="button">Upload</button>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                <?php endif; ?>
 
                 </tbody>
             </table>
         </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <?php
     }
@@ -366,6 +353,5 @@ class DT_Porch_Admin_Tab_Starter_Content {
         <!-- End Box -->
         <?php
     }
-
-
 }
+new DT_Porch_Admin_Tab_Starter_Content();

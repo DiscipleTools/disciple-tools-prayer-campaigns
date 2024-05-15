@@ -8,42 +8,25 @@ class DT_Porch_Admin_Tab_Email_Settings extends DT_Porch_Admin_Tab_Base {
     public $key = 'campaign_email';
     public $title = 'Email Settings';
 
-    public function __construct( string $porch_dir ) {
-        parent::__construct( $this->key, $porch_dir );
+    public function __construct() {
+        parent::__construct( $this->key );
+        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+        add_filter( 'prayer_campaign_tabs', [ $this, 'prayer_campaign_tabs' ], 10, 1 );
+    }
+    public function prayer_campaign_tabs( $tabs ) {
+        $tabs[ $this->key ] = $this->title;
+        return $tabs;
+    }
+
+    public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
+        if ( $tab !== $this->key || empty( $campaign_id ) ){
+            return;
+        }
+        $this->content( true );
     }
 
     public function body_content() {
-
         $this->main_column();
     }
-
-    public function content() {
-
-        ?>
-        <style>
-            .metabox-table input {
-                /*width: 100%;*/
-            }
-            .metabox-table select {
-                width: 100%;
-            }
-            .metabox-table textarea {
-                width: 100%;
-                height: 100px;
-            }
-        </style>
-        <div class="wrap">
-            <div id="poststuff">
-                <div id="post-body" class="metabox-holder columns-1">
-                    <div id="post-body-content">
-                        <!-- Main Column -->
-
-                        <?php $this->main_column(); ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
 }
+new DT_Porch_Admin_Tab_Email_Settings();
