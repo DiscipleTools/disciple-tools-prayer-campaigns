@@ -69,7 +69,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
         if ( empty( $default_campaign ) ){
             update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
         }
-        wp_safe_redirect( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . $new_campaign['ID'] ) );
+        wp_safe_redirect( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $new_campaign['ID'] ) );
         exit;
     }
 
