@@ -282,6 +282,7 @@ class DT_Campaigns_Base {
             }
             $fields['campaign_timezone'] = [
                 'name' => 'Campaign Time Zone',
+                'description' => 'The time zone for the campaign. This will affect exactly when the campaign starts and ends.',
                 'required' => false,
                 'in_create_form' => true,
                 'default' => $timezones,
@@ -293,6 +294,7 @@ class DT_Campaigns_Base {
 
             $fields['min_time_duration'] = [
                 'name' => 'Minimum Prayer Time Duration',
+                'description' => 'The minimum duration a user can select for a prayer slot.',
                 'type' => 'key_select',
                 'default' => [
                     '60' => [ 'label' => '1 Hour' ],
