@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-02T10:19:26+00:00\n"
+"POT-Creation-Date: 2024-05-16T08:49:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -726,7 +726,7 @@ msgid "Try Again"
 msgstr ""
 
 #: parts/components-enqueue.php:146 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:48
+#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr ""
 
