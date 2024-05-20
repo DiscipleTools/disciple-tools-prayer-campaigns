@@ -110,19 +110,23 @@ window.campaign_scripts = {
     let next_day = window.luxon.DateTime.fromSeconds( start, {zone: custom_timezone}).startOf('day')
     let time_iterator = parseInt( start_of_day );
     let timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
+    let double_flush_processing_save = false
 
     while ( time_iterator < end ){
 
       if ( !days.length || time_iterator >= next_day.toSeconds() ){
         next_day = next_day.plus({days:1})
         let timezone_date = window.luxon.DateTime.fromSeconds( time_iterator + day_in_seconds, {zone: custom_timezone}).toFormat('h:mm a')
-        if ( timezone_change_ref !== null && timezone_date !== timezone_change_ref ){
+        if ( double_flush_processing_save || (timezone_change_ref !== null && timezone_date !== timezone_change_ref) ){
           // Timezone change detected. Recalculating time slots.
           window.campaign_scripts.processing_save = {}
+          double_flush_processing_save = !double_flush_processing_save
         }
         timezone_change_ref = window.luxon.DateTime.fromSeconds( time_iterator, {zone: custom_timezone}).toFormat('h:mm a')
 
-        start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+        start_of_day = time_iterator //keep for march daily savings change
+        // start_of_day = ( time_iterator >= start_of_day + day_in_seconds ) ? time_iterator : start_of_day
+
         let date_time = window.luxon.DateTime.fromSeconds(start_of_day, {zone: custom_timezone});
 
         days.push({
@@ -361,7 +365,7 @@ window.campaign_scripts = {
   },
   recurring_time_slot_label(value){
     let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})
-    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true });
+    let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric' });
     const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
     let freq_label = frequency_option.label
     const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
@@ -408,6 +412,7 @@ window.campaign_scripts = {
     }
     let start_time = start_of_day + selected_time;
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
+    let date_ref = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
     if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
       return null;
@@ -418,15 +423,16 @@ window.campaign_scripts = {
       limit = start_date.plus({days: frequency_option.days_limit}).toSeconds();
     }
 
-    let date_ref = start_date
+    let index = 1;
     while ( date_ref.toSeconds() <= limit ){
       let time = date_ref.toSeconds();
-      let time_label = date_ref.toFormat('hh:mm a');
+      let time_label = date_ref.toLocaleString({ hour: '2-digit', minute: '2-digit' });
       let already_added = selected_times.find(k=>k.time===time)
       if ( !already_added && time > now && time >= window.campaign_data.start_timestamp ) {
         selected_times.push({time: time, duration: duration, label: time_label, day_key:date_ref.startOf('day'), date_time:date_ref})
       }
-      date_ref = date_ref.plus({[frequency_option.step]:1})
+      date_ref = start_date.plus({[frequency_option.step]:index})
+      index += 1
     }
     let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
 
@@ -477,10 +483,154 @@ window.campaign_scripts = {
       let time_formatted = time.toFormat('hh:mm a')
       let progress = 0
       let min = time.toFormat(':mm')
-      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toFormat('hh a'), progress})
+      options.push({key: key, time_formatted: time_formatted, minute: min, hour: time.toLocaleString({ hour: '2-digit' }), progress})
       key += window.campaign_data.slot_length * 60
     }
     return options;
   }
 }
+
+/**
+ * EDIT FUNCTIONALITY
+ */
+
+jQuery(document).ready(function ($) {
+
+    init_edit_bootstrap_modal();
+    function init_edit_bootstrap_modal() {
+        let current_lang = null;
+        let lang_select = $('.dt-magic-link-language-selector');
+        if ($(lang_select).length > 0) {
+            current_lang = $(lang_select).find('option:selected').text().trim();
+        }
+
+        let content = `
+        <input id="edit_modal_field_key" type="hidden"/>
+        <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${escapeHTML(strings['modals']['edit']['modal_title'])}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tbody>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_original_string'])}</td>
+                                    <td id="edit_modal_original_string" style="font-size: 12px; color: #3c3c3c;"></td>
+                                </tr>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_all_languages'])}</td>
+                                    <td>
+                                        <textarea id="edit_modal_all_languages" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                </tr>`;
+
+                                if ( current_lang ) {
+                                  content += `<tr style="background-color: #ffffff;">
+                                    <td
+                                      style="vertical-align: top; width: 30%;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${' - [' + escapeHTML( current_lang ) + ']'}</td>
+                                    <td>
+                                      <textarea id="edit_modal_selected_language" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                  </tr>`;
+                                }
+
+                            content += `</tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-common edit-close-btn">${escapeHTML(strings['modals']['edit']['edit_btn_close'])}</button>
+                        <button class="btn btn-common edit-update-btn">${escapeHTML(strings['modals']['edit']['edit_btn_update'])}</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        $('#edit_modal_div').empty().html(content);
+    }
+
+    $(document).on('click', '.edit-btn', function (e) {
+
+        // Set translation field values and display modal.
+        let edit_btn = $(e.currentTarget);
+        let field_key = $(edit_btn).data('field_key');
+        let lang_default = $(edit_btn).data('lang_default');
+        let lang_all = $(edit_btn).data('lang_all');
+        let lang_selected = $(edit_btn).data('lang_selected');
+
+        // Capture hidden values to be applied further down stream.
+        $('#edit_modal_field_key').val(field_key);
+
+        // Obtain element handles and set modal display values.
+        let edit_modal_original_string = $('#edit_modal_original_string');
+        let edit_modal_all_languages = $('#edit_modal_all_languages');
+        let edit_modal_selected_language = $('#edit_modal_selected_language');
+
+        $(edit_modal_original_string).text( escapeHTML( lang_default ) );
+        $(edit_modal_all_languages).val( escapeHTML( lang_all ) );
+        $(edit_modal_selected_language).val( escapeHTML( lang_selected ) );
+
+        // Display modal.
+        $('#edit_modal').modal('show');
+    });
+
+    $(document).on('click', '.edit-close-btn', function (e) {
+        $('#edit_modal').modal('hide');
+    });
+
+    $(document).on('click', '.edit-update-btn', function (e) {
+        let field_key = $('#edit_modal_field_key').val();
+        let lang_all = $('#edit_modal_all_languages').val();
+        let lang_selected = $('#edit_modal_selected_language').val();
+        let lang_code = $('.dt-magic-link-language-selector').val();
+        let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+
+        // Dispatch edit update request.
+        let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_edit';
+        let payload = {
+          'action': 'post',
+          'parts': window.campaign_objects.magic_link_parts,
+          'url': 'campaign_edit',
+          'time': new Date().getTime(),
+          campaign_id,
+          'edit': {
+            'field_key': field_key,
+            'lang_all': lang_all
+          }
+        };
+
+        if ( lang_selected !== undefined ) {
+          payload['edit']['lang_translate'] = lang_selected;
+        }
+
+        if ( lang_code !== undefined ) {
+          payload['edit']['lang_code'] = lang_code;
+        }
+
+        jQuery.ajax({
+            type: 'POST',
+            data: JSON.stringify(payload),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            url: link,
+          beforeSend: (xhr) => {
+            xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
+          },
+        })
+        .promise()
+        .then((response) => {
+            $('#edit_modal').modal('hide');
+            if ( response && response['updated'] ) {
+              location.reload();
+            }
+        });
+    });
+});
+
+/**
+ * EDIT FUNCTIONALITY
+ */
 

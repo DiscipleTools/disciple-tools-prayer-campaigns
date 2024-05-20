@@ -12,7 +12,7 @@ class DT_Campaigns_Ongoing_Shortcode_Display {
         ( new DT_Generic_Porch_Loader() )->load_porch();
         $atts = $this->parts;
         $atts['rest_url'] = rest_url();
-        $atts['color'] = defined( 'PORCH_COLOR_SCHEME_HEX' ) ? PORCH_COLOR_SCHEME_HEX : '#4676fa';
+        $atts['color'] = defined( 'CAMPAIGN_LANDING_COLOR_SCHEME_HEX' ) ? CAMPAIGN_LANDING_COLOR_SCHEME_HEX : '#4676fa';
         if ( $atts['color'] === 'preset' || empty( $atts['color'] ) ){
             $atts['color'] = '#4676fa';
         }

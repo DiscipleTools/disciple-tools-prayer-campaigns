@@ -23,7 +23,7 @@ class Porch_Campaigns_API {
         $params = dt_recursive_sanitize_array( $params );
         if ( isset( $params['parts']['post_id'] ) ){
             $remote = get_transient( 'dt_magic_link_remote_' . $params['parts']['post_id'] );
-            $url = $remote . $params['parts']['root'] . '/v1/' .  $params['parts']['type'] . '/' . $params['url'];
+            $url = $remote . $params['parts']['root'] . '/v1/' .  $params['parts']['type'] . '/' . ( $params['url'] ?? '' );
             if ( !empty( $remote ) ){
                 if ( $request->get_method() === 'GET' ){
                     $fetch = wp_remote_get( $url, [ 'body' => $params ] );
@@ -34,7 +34,8 @@ class Porch_Campaigns_API {
                 if ( $request->get_method() === 'POST' ){
                     $fetch = wp_remote_post( $url, [ 'body' => $params ] );
                     if ( !is_wp_error( $fetch ) ){
-                        return json_decode( wp_remote_retrieve_body( $fetch ) );
+                        $body = json_decode( wp_remote_retrieve_body( $fetch ), true );
+                        return new WP_REST_Response( $body, isset( $fetch['response']['code'] ) ? $fetch['response']['code'] : 200 );
                     }
                 }
             }

@@ -14,6 +14,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     public $type_actions = [
         '' => 'Manage',
         'download_calendar' => 'Download Calendar',
+        'activate' => 'Manage',
     ];
 
     public function __construct(){
@@ -57,6 +58,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
+        DT_Porch_Selector::instance();
+
     }
 
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
@@ -84,13 +87,18 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
-        dt_campaigns_register_scripts( $this->parts );
-
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
         if ( is_wp_error( $post ) ) {
             return $post;
         }
-        $campaign_id = $post['campaigns'][0]['ID'];
+        if ( isset( $_GET['campaign'] ) ){
+            $campaign_id = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+        }
+        if ( empty( $campaign_id ) ){
+            $campaign_id = $post['campaigns'][0]['ID'];
+        }
+        dt_campaigns_register_scripts( $this->parts, $campaign_id );
+
 
         wp_enqueue_style( 'dt_subscription_css', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.css', [], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.css' ) );
         wp_enqueue_script( 'dt_subscription_js', DT_Prayer_Campaigns::instance()->plugin_dir_url . 'magic-links/subscription-management/subscription-management.js', [ 'jquery', 'dt_campaign_core' ], filemtime( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'magic-links/subscription-management/subscription-management.js' ), true );
@@ -103,8 +111,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
                 'name' => get_the_title( $this->parts['post_id'] ),
-                'campaign_id' => $campaign_id,
-                'languages' => dt_campaign_list_languages(),
+                'campaign_id' => (int) $campaign_id,
+                'languages' => DT_Campaign_Languages::get_enabled_languages( $campaign_id ),
                 'current_language' => $lang
             ]
         );
@@ -154,8 +162,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         //get summary from campaign strings
         $calendar_title = $post['campaigns'][0]['post_title'];
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
         $calendar_timezone = $post['timezone'];
         $calendar_dtstamp = gmdate( 'Ymd' ).'T'. gmdate( 'His' ) . 'Z';
+
         $calendar_description = '';
         if ( isset( $campaign['campaign_strings'][$locale]['reminder_content'] ) ){
             $calendar_description = $campaign['campaign_strings'][$locale]['reminder_content'];
@@ -163,7 +173,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             $calendar_description = $campaign['campaign_strings']['en_US']['reminder_content'];
         }
 
-        $calendar_timezone_offset = self::get_timezone_offset( esc_html( $calendar_timezone ) );
         $my_commitments_reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $post_id );
         $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $post_id, $campaign_id );
 
@@ -172,12 +181,20 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         // Package $my_commitments accordingly, based on overall commitment type.
         foreach ( $my_commitments_reports as $commitments_report ) {
             if ( $commitments_report['type'] === 'selected_time' ) {
-                $commitments_report['time_begin'] = $commitments_report['time_begin'] + $calendar_timezone_offset * 3600;
-                $commitments_report['time_end'] = $commitments_report['time_end'] + $calendar_timezone_offset * 3600;
+
+                $dt_start = new DateTime();
+                $dt_start->setTimezone( new DateTimeZone( $calendar_timezone ) );
+                $dt_start->setTimestamp( $commitments_report['time_begin'] );
+                $calendar_format = $dt_start->format( 'Ymd' ) . 'T' . $dt_start->format( 'His' );
+
+                $dt_end = new DateTime();
+                $dt_end->setTimezone( new DateTimeZone( $calendar_timezone ) );
+                $dt_end->setTimestamp( $commitments_report['time_end'] );
+                $calendar_format_end = $dt_end->format( 'Ymd' ) . 'T' . $dt_end->format( 'His' );
 
                 $my_commitments[] = [
-                    'time_begin' => gmdate( 'Ymd', $commitments_report['time_begin'] ) . 'T' . gmdate( 'His', $commitments_report['time_begin'] ),
-                    'time_end' => gmdate( 'Ymd', $commitments_report['time_end'] ) . 'T' . gmdate( 'His', $commitments_report['time_end'] ),
+                    'time_begin' => $calendar_format,
+                    'time_end' => $calendar_format_end,
                     'time_duration' => self::get_clean_duration( $commitments_report['time_end'], $commitments_report['time_begin'] ),
                     'location' => $commitments_report['label'] ?? '',
                 ];
@@ -186,13 +203,23 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
         foreach ( $my_recurring_signups as $recurring_signup ) {
             $type = ( $recurring_signup['type'] === 'daily' ) ? 'DAILY' : 'WEEKLY';
-            $time_begin = $recurring_signup['first'] + ( $calendar_timezone_offset * 3600 );
-            $time_end = ( $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 ) ) + ( $calendar_timezone_offset * 3600 );
+            $time_end = $recurring_signup['first'] + ( $recurring_signup['duration'] * 60 );
+
+            $dt_start = new DateTime();
+            // Set a non-default timezone if needed
+            $dt_start->setTimezone( new DateTimeZone( $calendar_timezone ) );
+            $dt_start->setTimestamp( $recurring_signup['first'] );
+            $calendar_format = $dt_start->format( 'Ymd' ) . 'T' . $dt_start->format( 'His' );
+
+            $dt_end = new DateTime();
+            $dt_end->setTimezone( new DateTimeZone( $calendar_timezone ) );
+            $dt_end->setTimestamp( $time_end );
+            $calendar_format_end = $dt_end->format( 'Ymd' ) . 'T' . $dt_end->format( 'His' );
 
             $my_commitments[] = [
-                'time_begin' => gmdate( 'Ymd', $time_begin ) . 'T'. gmdate( 'His', $time_begin ),
-                'time_end' => gmdate( 'Ymd', $time_end ) . 'T'. gmdate( 'His', $time_end ),
-                'rrule' => 'FREQ='. $type .';UNTIL=' . gmdate( 'Ymd', $recurring_signup['last'] ) . 'T'. gmdate( 'His', $recurring_signup['last'] )
+                'time_begin' => $calendar_format,
+                'time_end' => $calendar_format_end,
+                'rrule' => 'FREQ='. $type .';UNTIL=' . gmdate( 'Ymd', $recurring_signup['last'] ) . 'T'. gmdate( 'His', $recurring_signup['last'] ) . 'Z',
             ];
         }
 
@@ -200,32 +227,26 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $content .= "VERSION:2.0\r\n";
         $content .= "PRODID:-//disciple.tools\r\n";
         $content .= "CALSCALE:GREGORIAN\r\n";
-        $content .= "BEGIN:VTIMEZONE\r\n";
         $content .= 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
-        $content .= "BEGIN:STANDARD\r\n";
-        $content .= 'TZNAME:' . esc_html( $calendar_timezone_offset ) . "\r\n";
-        $content .= 'TZOFFSETFROM:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        $content .= 'TZOFFSETTO:' . esc_html( $calendar_timezone_offset ) . "00\r\n";
-        $content .= "DTSTART:19700101T000000\r\n";
-        $content .= "END:STANDARD\r\n";
-        $content .= "END:VTIMEZONE\r\n";
+        $content .= 'X-WR-TIMEZONE:' . esc_html( $calendar_timezone ) . "\r\n";
 
         foreach ( $my_commitments as $mc ) {
             $calendar_uid = md5( uniqid( mt_rand(), true ) ) . '@disciple.tools';
 
             $content .= "BEGIN:VEVENT\r\n";
+            $content .= 'TZID:' . esc_html( $calendar_timezone ) . "\r\n";
             $content .= 'UID:' . esc_html( $calendar_uid ) . "\r\n";
             $content .= 'DTSTAMP:' . esc_html( $calendar_dtstamp ) . "\r\n";
             $content .= 'SUMMARY:' . esc_html( $calendar_title ) . "\r\n";
-            $content .= 'DTSTART:' . esc_html( $mc['time_begin'] ) . "\r\n";
-            $content .= 'DTEND:' . esc_html( $mc['time_end'] ) . "\r\n";
+            $content .= 'DTSTART;TZID=' . esc_html( $calendar_timezone ) . ':' . esc_html( $mc['time_begin'] ) . "\r\n";
+            $content .= 'DTEND;TZID=' . esc_html( $calendar_timezone ) . ':' . esc_html( $mc['time_end'] ) . "\r\n";
 
             if ( isset( $mc['rrule'] ) ) {
                 $content .= 'RRULE:' . esc_html( $mc['rrule'] ) . "\r\n";
             }
 
             $content .= 'DESCRIPTION:' . esc_html( $calendar_description ) . "\r\n";
-            $content .= 'LOCATION:' . esc_html( get_site_url( null, '/prayer/list' ) ) . "\r\n";
+            $content .= 'LOCATION:' . esc_html( $campaign_url . '/list' ) . "\r\n";
             $content .= "STATUS:CONFIRMED\r\n";
             $content .= "SEQUENCE:3\r\n";
             $content .= "BEGIN:VALARM\r\n";
@@ -246,7 +267,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
         }
-        $campaign_id = $post['campaigns'][0]['ID'];
+        if ( isset( $_GET['campaign'] ) ){
+            $campaign_id = sanitize_key( wp_unslash( $_GET['campaign'] ) );
+        }
+        if ( empty( $campaign_id ) ){
+            $campaign_id = $post['campaigns'][0]['ID'];
+        }
+
         //cannot manage a subscription that has no campaign
         if ( empty( $campaign_id ) ){
             $this->error_body();
@@ -259,11 +286,11 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return $campaign;
         }
 
-        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
-        $color = PORCH_COLOR_SCHEME_HEX;
-        if ( $color === 'preset' ){
-            $color = '#4676fa';
-        }
+        $color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign_id );
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+
+        $url_path = dt_get_url_path();
+        $account_verified = strpos( $url_path, 'verified' ) !== false;
 
         ?>
         <style>
@@ -296,6 +323,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 background-color: var(--cp-color-dark);
                 color: white
             }
+            .verified-section {
+                background-color: #1eb858;
+                color: white;
+                text-align: center;
+                padding: 20px;
+                margin: 1rem;
+                border-radius: 10px;
+
+            }
         </style>
         <!-- header -->
         <div class="nav-bar" style="">
@@ -307,13 +343,21 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 <button data-show="profile"><?php esc_html_e( 'Account', 'disciple-tools-prayer-campaigns' ); ?></button>
             </div>
         </div>
+
+        <?php if ( $account_verified ) : ?>
+            <div class="verified-section">
+                <h1><?php esc_html_e( 'Account activated!', 'disciple-tools-prayer-campaigns' ); ?></h1>
+                <h3><?php esc_html_e( 'Here you can manage your prayer commitments and account settings.', 'disciple-tools-prayer-campaigns' ); ?></h3>
+            </div>
+        <?php endif; ?>
+
         <div id="wrapper">
             <!-- links -->
             <div style="margin: 10px; text-align: center">
                 <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
-                <a href="<?php echo esc_url( site_url() ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
-                <a href="<?php echo esc_url( site_url() ) ?>/prayer/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
-                <a href="<?php echo esc_url( site_url() ) ?>/prayer/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
             </div>
 
             <div id="prayer-times" class="display-panel" style="display: block">
@@ -341,9 +385,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     </div>
                 </div>
 
-                <?php do_action( 'campaign_management_signup_controls', $current_selected_porch ); ?>
-
-
                 <div style="background-color: white; margin: 150px 50px 50px 50px">
                     <h2 style="text-align: center"><?php esc_html_e( 'Sign up for more prayer', 'disciple-tools-prayer-campaigns' ); ?></h2>
                     <campaign-sign-up
@@ -356,10 +397,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <?php do_action( 'dt_subscription_management_extra' ) ?>
                 </div>
             </div>
-                <div id="profile" class="display-panel" style="display: none">
-
+            <div id="profile" class="display-panel" style="display: none">
                   <cp-profile></cp-profile>
-                </div>
             </div>
         </div>
         <?php
@@ -445,8 +484,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( isset( $new_values['language'] ) ){
             $updates['lang'] = $new_values['language'];
         }
-        $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
-
+        if ( isset( $new_values['receive_prayer_time_notifications'] ) ){
+            $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
+        }
         $updated = DT_Posts::update_post( 'subscriptions', $subscriber_id, $updates, true, false );
         return true;
     }
@@ -551,8 +591,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
     }
 
     private function delete_subscription_endpoint( $post_id, $params ) {
-        $this->delete_subscription( $post_id, $params['report_id'] );
-        return true;
+        return $this->delete_subscription( $post_id, $params['report_id'] );
     }
 
     private function add_subscriptions( $subscriber_id, $params ){
@@ -588,6 +627,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $params['offset'] ) ){
             return false;
         }
+        if ( !isset( $params['time'] ) ){
+            return false;
+        }
 
         global $wpdb;
         $wpdb->query( $wpdb->prepare( "
@@ -597,16 +639,15 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             AND type = 'campaign_app'
             AND post_id = %d
             AND value = %d
-        ", (int) $params['offset'], (int) $params['offset'], (int) $post_id, (int) $params['report_id'] ) );
+            AND time_begin >= %d
+        ", (int) $params['offset'], (int) $params['offset'], (int) $post_id, (int) $params['report_id'], time() ) );
 
-        $wpdb->query( $wpdb->prepare( "
-            UPDATE $wpdb->dt_reports
-            SET time_begin = time_begin + %d, time_end = time_end + %d
-            WHERE post_type = 'subscriptions'
-            AND type = 'recurring_signup'
-            AND post_id = %d
-            AND id = %d
-        ", (int) $params['offset'], (int) $params['offset'], (int) $post_id, (int) $params['report_id'] ) );
+        $report = Disciple_Tools_Reports::get( $params['report_id'], 'id' );
+        $report['payload'] = maybe_unserialize( $report['payload'] );
+        $report['payload']['time'] = $params['time'];
+        $report['time_begin'] += (int) $params['offset'];
+        $report['time_end'] += (int) $params['offset'];
+        Disciple_Tools_Reports::update( $report );
 
         return true;
     }

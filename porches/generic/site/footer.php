@@ -1,3 +1,6 @@
+<?php
+$campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
+?>
 
 <!-- Footer Section Start -->
 <footer>
@@ -35,7 +38,13 @@
                     </p>
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                    <p><a href="<?php echo esc_html( site_url( '/subscriptions' ) ); ?>">Login</a> | <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">Page Settings</a></p>
+                    <p>
+                        <?php if ( !is_user_logged_in() ) : ?>
+                            <a href="<?php echo esc_html( wp_login_url( $campaign_url ) ); ?>">Login</a> |
+                        <?php endif; ?>
+                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . CAMPAIGN_ID . '&tab=campaign_landing' ) ); ?>">Campaign Settings</a> |
+                        <a href="<?php echo esc_url( $campaign_url ) ?>/contact-us"> <?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></a>
+                    </p>
                 </div>
             </div>
         </div>

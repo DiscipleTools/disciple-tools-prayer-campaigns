@@ -1,36 +1,47 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
+class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
 
-    public $title = 'Landing Page Settings';
+    public $title = 'Campaign Settings';
 
-    public $key = 'settings';
-    private $languages_manager;
+    public $key = 'campaign_landing';
 
-    public function __construct( string $porch_dir ) {
-        parent::__construct( $this->key, $porch_dir );
-        $this->languages_manager = new DT_Campaign_Languages();
+    public function __construct() {
+        parent::__construct( $this->key );
+        add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
+        add_filter( 'prayer_campaign_tabs', [ $this, 'prayer_campaign_tabs' ], 10, 1 );
+    }
+    public function prayer_campaign_tabs( $tabs ) {
+        $tabs[ $this->key ] = $this->title;
+        return $tabs;
     }
 
-    public function body_content() {
-
+    public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ) {
+        if ( $tab !== $this->key || empty( $campaign_id ) ){
+            return;
+        }
         $this->process_language_settings();
         $this->process_new_language();
 
-        $this->main_column();
-        $this->box_languages();
+        $this->content( true );
 
     }
 
+    public function body_content(){
+        $this->main_column();
+        $this->box_languages();
+    }
+
     private function box_languages() {
-            $languages = $this->languages_manager->get();
+        $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
+        $languages = DT_Campaign_Languages::get_installed_languages( $campaign_id );
         ?>
 
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th>Language Settings</th>
+                    <th><h3 id="Languages">Language Settings</h3></th>
                     <th></th>
                 </tr>
             </thead>
@@ -117,7 +128,11 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
                             <input type="hidden" name="add_language_nonce" id="add_language_nonce"
                                     value="<?php echo esc_attr( wp_create_nonce( 'add_language' ) ) ?>"/>
 
-                            <?php $language_list = $this->languages_manager->language_list() ?>
+                            <?php $language_list = dt_get_available_languages( false, true );
+                            //sort by english name
+                            $english_name_column = array_column( $language_list, 'label' );
+                            array_multisort( $english_name_column, SORT_ASC, $language_list );
+                            ?>
 
                             <select name="new_language" id="language_list">
 
@@ -148,15 +163,15 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
         if ( isset( $_POST['language_settings_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['language_settings_nonce'] ) ), 'language_settings' ) ) {
 
             if ( isset( $_POST['language_settings_disable'] ) ) {
-                $this->languages_manager->disable( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'language_settings_disable' ) );
+                DT_Campaign_Languages::disable( sanitize_text_field( wp_unslash( $_POST['language_settings_disable'] ) ) );
             }
 
             if ( isset( $_POST['language_settings_enable'] ) ) {
-                $this->languages_manager->enable( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'language_settings_enable' ) );
+                DT_Campaign_Languages::enable( sanitize_text_field( wp_unslash( $_POST['language_settings_enable'] ) ) );
             }
 
             if ( isset( $_POST['language_settings_remove'] ) ) {
-                $this->languages_manager->remove( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'language_settings_remove' ) );
+                DT_Campaign_Languages::remove( sanitize_text_field( wp_unslash( $_POST['language_settings_remove'] ) ) );
             }
         }
     }
@@ -167,10 +182,42 @@ class DT_Porch_Admin_Tab_Home extends DT_Porch_Admin_Tab_Base {
     public function process_new_language() {
         if ( isset( $_POST['add_language_nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['add_language_nonce'] ) ), 'add_language' ) ) {
             if ( isset( $_POST['new_language'] ) ) {
-                $this->languages_manager->add_from_code( DT_Prayer_Campaigns_Campaigns::sanitized_post_field( $_POST, 'new_language' ) );
+                DT_Campaign_Languages::add_from_code( sanitize_text_field( wp_unslash( $_POST['new_language'] ) ) );
             }
         }
     }
 
+    public function right_column() {
+        $sections = DT_Porch_Settings::sections( $this->key );
+        $sections[] = 'Languages';
+        ?>
+        <!-- Box -->
+        <table class="widefat striped">
+            <thead>
+            <tr>
+                <th>On this page</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <?php foreach ( $sections as $section ):
+                            $section = $section ?: 'Other';
+                            ?>
+                            <li>
+                                <a href="#<?php echo esc_html( $section ) ?>"><?php echo esc_html( $section ) ?> Settings</a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <!-- End Box -->
+        <?php
+    }
 
 }
+new DT_Porch_Admin_Tab_Campaign_Settings();

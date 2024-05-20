@@ -118,7 +118,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
     public function dt_details_additional_section( $section, $post_type ) {
         // test if campaigns post type and campaigns_app_module enabled
         if ( $post_type === $this->post_type ) {
-            if ( 'campaign_magic_links' === $section ) {
+            if ( 'apps' === $section ) {
                 $link = DT_Magic_URL::get_link_url_for_post( $post_type, get_the_ID(), $this->root, $this->type )
                 ?>
                 <a class="button hollow" style="display: block" href="<?php echo esc_html( $link ); ?>" target="_blank">Retrieve Prayer Time Management Link</a>
@@ -135,7 +135,7 @@ class Disciple_Tools_Resend_Email_Magic_Link extends DT_Magic_Url_Base {
      * - description:       Magic link type description.
      * - settings_display:  Boolean flag which determines if magic link type is to be listed within frontend user profile settings.
      *
-     * @param $apps_list
+     * @param array $apps_list
      *
      * @return mixed
      */

@@ -12,7 +12,7 @@ class DT_Prayer_Campaign_Migration_0001 extends DT_Prayer_Campaign_Migration {
     public function up() {
         $to_setup = get_option( 'p4m_porch_type_to_set_up' );
         if ( !empty( $to_setup ) ){
-            require_once( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'admin/dt-prayer-campaigns.php' );
+            require_once( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'admin/dt-porch-admin-tab-general-settings.php' );
             $site_name = get_bloginfo( 'name' );
             DT_Prayer_Campaigns_Campaigns::setup_wizard_for_type( $to_setup, $site_name );
         }

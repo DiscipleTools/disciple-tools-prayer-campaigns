@@ -2,6 +2,12 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
+
+$formatter = new IntlDateFormatter(
+    $lang,  // the locale to use, e.g. 'en_GB'
+    IntlDateFormatter::LONG, // how the date should be formatted, e.g. IntlDateFormatter::FULL
+    IntlDateFormatter::NONE,  // how the time should be formatted, e.g. IntlDateFormatter::FULL
+);
 //  for getting posts in the selected language.
 $lang_query = [
     [
@@ -17,10 +23,9 @@ if ( $lang === 'en_US' ){
     ];
     $lang_query['relation'] = 'OR';
 }
-$porch_fields = DT_Porch_Settings::settings();
-$frequency = isset( $porch_fields['prayer_fuel_frequency']['value'] ) ? $porch_fields['prayer_fuel_frequency']['value'] : 'daily';
-$todays_day_in_campaign = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y/m/d' ), $frequency );
-$campaign = DT_Campaign_Settings::get_campaign();
+$campaign = DT_Campaign_Landing_Settings::get_campaign();
+$frequency = isset( $campaign['prayer_fuel_frequency']['key'] ) ? $campaign['prayer_fuel_frequency']['key'] : 'daily';
+$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ), $campaign['ID'], $frequency );
 
 $meta_query = [
    'relation' => 'AND',
@@ -39,7 +44,7 @@ $meta_query = [
     $lang_query,
 ];
 $list = new WP_Query( [
-    'post_type' => PORCH_LANDING_POST_TYPE,
+    'post_type' => CAMPAIGN_LANDING_POST_TYPE,
     'post_status' => [ 'publish' ],
     'posts_per_page' => -1,
     'meta_key' => 'day',
@@ -51,7 +56,7 @@ $list = new WP_Query( [
 // if no posts in the selected language, get posts in english.
 if ( empty( $list->posts ) ){
     $args = array(
-        'post_type' => PORCH_LANDING_POST_TYPE,
+        'post_type' => CAMPAIGN_LANDING_POST_TYPE,
         'post_status' => [ 'publish' ],
         'posts_per_page' => -1,
         'orderby' => 'day_clause',
@@ -103,14 +108,19 @@ if ( empty( $list->posts ) ){
             foreach ( $list->posts as $item ) :
 
                 $campaign_day = get_post_meta( $item->ID, 'day', true );
-                $date = DT_Campaign_Settings::date_of_campaign_day( $campaign_day );
+                if ( empty( $campaign_day ) || !is_numeric( $campaign_day ) ) {
+                    continue;
+                }
+
+                $date = DT_Campaign_Fuel::date_of_campaign_day( (int) $campaign_day );
 
                 if ( in_array( $campaign_day, $days_displayed ) || ( isset( $todays_campaign_day ) && $campaign_day === $todays_campaign_day ) ) {
                     continue;
                 }
 
                 $days_displayed[] = $campaign_day;
-                $url = site_url( "/prayer/fuel/$campaign_day" );
+                $root_url = DT_Campaign_Landing_Settings::get_landing_root_url();
+                $url = $root_url . "/fuel/$campaign_day";
                 ?>
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
@@ -126,7 +136,7 @@ if ( empty( $list->posts ) ){
                                 <a href="<?php echo esc_url( $url ) ?>"><?php echo esc_html( $item->post_title ) ?></a>
                             </h3>
                             <div class="meta-tags">
-                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( gmdate( 'Y-m-d', strtotime( $date ) ) )  ?></span>
+                                <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( $formatter->format( strtotime( $date ) ) )  ?></span>
                             </div>
                             <p>
                                 <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
