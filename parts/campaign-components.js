@@ -1003,13 +1003,12 @@ export class cpTimes extends LitElement {
                   </div>
                   ${map(range(time_slots), (i) => {
                       let time = this.times[index*time_slots+i];
-                      
                       let html2 = ``
                       if ( time.coverage_count ) {
                           html2 = html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
                       } else {
                           html2 = html`<span class="empty-time">
-                              ${time.minute}
+                              ${time.hour_minute}
                           </span>`
                       }
                       // } else if ( false && time.progress < 100 ) {
@@ -1049,6 +1048,7 @@ export class cpTimes extends LitElement {
         key: s.key,
         hour: time.toLocaleString({ hour: '2-digit' }),
         minute: time.toFormat('mm'),
+        hour_minute: time.toFormat('hh:mm'),
         progress: progress,
         selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
         coverage_count: s.subscribers,
@@ -1103,6 +1103,7 @@ export class cpTimes extends LitElement {
       options.push({
         key: key,
         time_formatted: time_formatted,
+        hour_minute: time.toFormat('hh:mm'),
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
@@ -1151,6 +1152,7 @@ export class cpTimes extends LitElement {
         time_formatted: time_formatted,
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
+        hour_minute: time.toFormat('hh:mm'),
         progress,
         coverage_count: progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0,
         selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60)),
