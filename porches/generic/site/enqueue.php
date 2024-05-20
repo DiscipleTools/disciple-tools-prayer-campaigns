@@ -10,7 +10,7 @@ add_action( 'wp_head', function() {
     if ( !empty( $campaign_fields['logo_url'] ) ){
         $og_image_url = $campaign_fields['logo_url'];
     } else {
-        $og_image_url = 'https://pray4movement.org/wp-content/uploads/2021/08/cropped-p4m-logo-192x192.png';
+        $og_image_url = 'https://s3.gospelambition.org/icons%2Fp4m.png';
     }
     ?>
 
