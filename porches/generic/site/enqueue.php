@@ -6,6 +6,12 @@ add_action( 'wp_head', function() {
     $og_title = DT_Porch_Settings::get_field_translation( 'name' );
     $og_description = DT_Porch_Settings::get_field_translation( 'goal' );
     $og_url = get_site_url();
+    $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
+    if ( !empty( $campaign_fields['logo_url'] ) ){
+        $og_image_url = $campaign_fields['logo_url'];
+    } else {
+        $og_image_url = 'https://pray4movement.org/wp-content/uploads/2021/08/cropped-p4m-logo-192x192.png';
+    }
     ?>
 
 
@@ -15,7 +21,7 @@ add_action( 'wp_head', function() {
     <meta property="og:type" content="article"/>
     <meta property="og:url" content="<?php echo esc_attr( $og_url ); ?>"/>
     <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo() ); ?>"/>
-    <meta property="og:image" content="https://pray4movement.org/wp-content/uploads/2021/08/cropped-p4m-logo-192x192.png"/>
+    <meta property="og:image" content=<?php echo esc_attr( $og_image_url ); ?>/>
     <?php
 });
 
