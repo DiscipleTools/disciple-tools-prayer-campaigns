@@ -132,8 +132,14 @@ class DT_Prayer_Campaigns_Menu {
                 $link = 'admin.php?page='. $this->token . $campaign_url_part . '&tab=';
                 ?>
                 <h2 class="nav-tab-wrapper">
-                    <?php foreach ( $tabs as $key => $title ) : ?>
-                        <a href="<?php echo esc_attr( $link . $key ) ?>"
+                    <?php foreach ( $tabs as $key => $title ) :
+                        $tab_link = $link . $key;
+                        if ( $key === 'starter-content' ){
+                            $tab_link .= '&import=true';
+                        }
+                        ?>
+
+                        <a href="<?php echo esc_attr( $tab_link ) ?>"
                            class="nav-tab <?php echo esc_html( ( $tab == $key ) ? 'nav-tab-active' : '' ); ?>">
                             <?php echo esc_html( $title ) ?>
                         </a>
