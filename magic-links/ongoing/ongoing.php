@@ -261,7 +261,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $subscriber_fields = DT_Posts::get_post_field_settings( 'subscriptions' );
         $signup_form_fields = [];
         foreach ( $subscriber_fields as $key => $field ){
-            if ( $field['tile'] === 'signup_form' ){
+            if ( isset( $field['tile'] ) && $field['tile'] === 'signup_form' ){
                 $field['key'] = $key;
                 $signup_form_fields[] = $field;
             }
