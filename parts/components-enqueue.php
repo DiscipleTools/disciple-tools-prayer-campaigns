@@ -7,7 +7,7 @@ add_filter( 'script_loader_tag', function ( $tag, $handle, $src ){
     return $tag;
 }, 10, 3 );
 
-function dt_campaigns_register_scripts( $atts = [] ){
+function dt_campaigns_register_scripts( $atts, $campaign_id ){
     $plugin_dir_path = DT_Prayer_Campaigns::get_dir_path();
     $plugin_dir_url = DT_Prayer_Campaigns::get_url_path();
 
@@ -19,6 +19,7 @@ function dt_campaigns_register_scripts( $atts = [] ){
         ], filemtime( $plugin_dir_path . 'parts/campaign-core.js' ), true );
         wp_localize_script(
             'dt_campaign_core', 'campaign_objects', [
+                'nonce' => wp_create_nonce( 'wp_rest' ),
                 'magic_link_parts' => [
                     'root' => $atts['root'],
                     'type' => $atts['type'],
@@ -29,12 +30,13 @@ function dt_campaigns_register_scripts( $atts = [] ){
                 ],
                 'rest_url' => get_rest_url(),
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
-                'home' => home_url(),
+                'home' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ) : home_url(),
+                'campaign_root' => DT_Campaign_Landing_Settings::get_landing_root_url(),
                 'plugin_url' => $plugin_dir_url,
                 'dt_campaigns_is_p4m_news_enabled' => dt_campaigns_is_p4m_news_enabled(),
                 'translations' => [
                     'Detected time zone' => __( 'Detected time zone', 'disciple-tools-prayer-campaigns' ),
-                    'Choose a timezone' => __( 'Choose a timezone', 'disciple-tools-prayer-campaigns' ),
+                    'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
                     'days' => __( 'days', 'disciple-tools-prayer-campaigns' ),
                     'hours' => __( 'hours', 'disciple-tools-prayer-campaigns' ),
                     'minutes' => __( 'minutes', 'disciple-tools-prayer-campaigns' ),
@@ -73,15 +75,12 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Monthly' => __( 'Monthly', 'disciple-tools-prayer-campaigns' ),
                     'Pick Dates and Times' => __( 'Pick Dates and Times', 'disciple-tools-prayer-campaigns' ),
                     'up to %s months' => _x( 'up to %s months', 'up to 3 months', 'disciple-tools-prayer-campaigns' ),
-                    'A confirmation code hase been sent to %s.' => __( 'A confirmation code hase been sent to %s.', 'disciple-tools-prayer-campaigns' ),
-                    'Please enter the code below in the next 10 minutes to confirm your email address.' => __( 'Please enter the code below in the next 10 minutes to confirm your email address.', 'disciple-tools-prayer-campaigns' ),
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
                     '%s Hour' => __( '%s Hour', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
                     '%1$s at %2$s for %3$s' => __( '%1$s at %2$s for %3$s', 'disciple-tools-prayer-campaigns' ),
                     'for %s minutes' => __( 'for %s minutes', 'disciple-tools-prayer-campaigns' ),
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
-                    'Confirmation Code' => __( 'Confirmation Code', 'disciple-tools-prayer-campaigns' ),
                     'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),
                     'Select a Day' => __( 'Select a Day', 'disciple-tools-prayer-campaigns' ),
                     'Renews on %s' => __( 'Renews on %s', 'disciple-tools-prayer-campaigns' ),
@@ -103,7 +102,6 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Thank you for praying with us.' => __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ),
                     'Language' => __( 'Language', 'disciple-tools-prayer-campaigns' ),
                     'Delete' => __( 'Delete', 'disciple-tools-prayer-campaigns' ),
-                    'Select a timezone' => __( 'Select a timezone', 'disciple-tools-prayer-campaigns' ),
                     'See Prayer Fuel' => __( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
                     'change time' => __( 'change time', 'disciple-tools-prayer-campaigns' ),
                     'Remove all' => __( 'Remove all', 'disciple-tools-prayer-campaigns' ),
@@ -130,6 +128,25 @@ function dt_campaigns_register_scripts( $atts = [] ){
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
                     'Fully covered twice' => __( 'Fully covered twice', 'disciple-tools-prayer-campaigns' ),
                     'Empty time slot' => __( 'Empty time slot', 'disciple-tools-prayer-campaigns' ),
+                    'modals' => [
+                        'edit' => [
+                            'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
+                            'edit_original_string' => __( 'Original String', 'disciple-tools-prayer-campaigns' ),
+                            'edit_all_languages' => __( 'Custom Value For All Languages', 'disciple-tools-prayer-campaigns' ),
+                            'edit_selected_language' => __( 'Translation For Currently Selected Language', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_close' => __( 'Close', 'disciple-tools-prayer-campaigns' ),
+                            'edit_btn_update' => __( 'Update', 'disciple-tools-prayer-campaigns' )
+                        ]
+                    ],
+                    'Almost there! Finish signing up by activating your account.' => __( 'Almost there! Finish signing up by activating your account.', 'disciple-tools-prayer-campaigns' ),
+                    'Click the "Activate Account" button in the email sent to: %s' => __( 'Click the "Activate Account" button in the email sent to: %s', 'disciple-tools-prayer-campaigns' ),
+                    'It will look like this:' => __( 'It will look like this:', 'disciple-tools-prayer-campaigns' ),
+                    'Pending - Verification Needed' => __( 'Pending - Verification Needed', 'disciple-tools-prayer-campaigns' ),
+                    'Back to sign-up' => __( 'Back to sign-up', 'disciple-tools-prayer-campaigns' ),
+                    'So sorry. Something went wrong. You can:' => __( 'So sorry. Something went wrong. You can:', 'disciple-tools-prayer-campaigns' ),
+                    'Try Again' => __( 'Try Again', 'disciple-tools-prayer-campaigns' ),
+                    'Contact Us' => __( 'Contact Us', 'disciple-tools-prayer-campaigns' ),
+                    'Please check your email to activate your account before adding more prayer times.' => __( 'Please check your email to activate your account before adding more prayer times.', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
