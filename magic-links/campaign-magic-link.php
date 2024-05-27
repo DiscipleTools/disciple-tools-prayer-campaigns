@@ -167,6 +167,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
             'menu_sideslide',
             'responsive',
             'p4m-colors',
+            'wp-block-library',
         ];
     }
     public function add_api_routes(){

@@ -21,7 +21,7 @@ add_action( 'wp_head', function() {
     <meta property="og:type" content="article"/>
     <meta property="og:url" content="<?php echo esc_attr( $og_url ); ?>"/>
     <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo() ); ?>"/>
-    <meta property="og:image" content=<?php echo esc_attr( $og_image_url ); ?>/>
+    <meta property="og:image" content="<?php echo esc_attr( $og_image_url ); ?>" />
     <?php
 });
 
