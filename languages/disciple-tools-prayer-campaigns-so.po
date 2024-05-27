@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-07T15:19:55+00:00\n"
+"POT-Creation-Date: 2024-05-02T10:19:26+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Somali <https://translate.disciple.tools/projects/disciple-"
@@ -18,119 +18,122 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:82
-#, fuzzy
-msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
-msgid "Click here to see the prayer prompts for today: %s"
-msgstr "Riix halkan si aad u aragto ducada maanta: %s"
-
-#: campaign-functions/send-email-utility.php:50
+#: campaign-functions/send-email-utility.php:73
 msgid "Verify your email address"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:52
-msgid ""
-"Please copy and paste the following code into the Confirmation Code field."
+#: campaign-functions/send-email-utility.php:75
+msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:59
-msgid "This code will expire after 10 minutes."
+#: campaign-functions/send-email-utility.php:82
+#: campaign-functions/send-email-utility.php:396
+msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:60
+#: campaign-functions/send-email-utility.php:87
 msgid "If you did not request this email, please ignore it."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:231
+#: campaign-functions/send-email-utility.php:171
+#: campaign-functions/send-email-utility.php:269
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s laga bilaabo %2$s ilaa %3$s"
 
-#: campaign-functions/send-email-utility.php:150
+#: campaign-functions/send-email-utility.php:178
 #, fuzzy
 msgid "see more on your account"
 msgstr "Xaqiiji akoonkaaga"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:190
 #, fuzzy
 msgid "Registered to pray with us!"
 msgstr "Diiwaangashan inuu nala tukado!"
 
-#: campaign-functions/send-email-utility.php:185
-#: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:211
+#: campaign-functions/send-email-utility.php:301
+#: campaign-functions/send-email-utility.php:392
 #, fuzzy
 msgid "Hello %s,"
 msgstr "Hello %s,"
 
-#: campaign-functions/send-email-utility.php:187
-#, fuzzy
-msgid ""
-"Thank you for joining us in strategic prayer for a disciple making movement!"
-msgstr "Ducada istiraatijiyadeed ee Dhaqdhaqaaqa Xerta Samaynta"
-
-#: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:275
+#: campaign-functions/send-email-utility.php:215
+#: campaign-functions/send-email-utility.php:313
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:189
-#: campaign-functions/send-email-utility.php:276
-#: parts/components-enqueue.php:93
+#: campaign-functions/send-email-utility.php:216
+#: campaign-functions/send-email-utility.php:314
+#: parts/components-enqueue.php:92
 msgid "Access Account"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:192
+#: campaign-functions/send-email-utility.php:219
 #, fuzzy
 msgid "You signed up to pray:"
 msgstr "Waad ku mahadsan tahay isdiiwaangelinta si aad u tukato!"
 
-#: campaign-functions/send-email-utility.php:197
+#: campaign-functions/send-email-utility.php:224
 #, fuzzy
 msgid "These are your next prayer commitments:"
 msgstr "Riix halkan si aad u maamusho akoonkaaga iyo wakhtiga ballan qaadyada"
 
-#: campaign-functions/send-email-utility.php:200
-#: campaign-functions/send-email-utility.php:268
+#: campaign-functions/send-email-utility.php:227
+#: campaign-functions/send-email-utility.php:305
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "Waqtiyada waxaa lagu muujiyaa si waafaqsan: %s wakhtiga"
 
-#: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:335
+#: campaign-functions/send-email-utility.php:231
+#: magic-links/subscription-management/subscription-management.php:379
 #, fuzzy
 msgid "Download Calendar"
 msgstr "Soo deji jadwalka"
 
-#: campaign-functions/send-email-utility.php:237
+#: campaign-functions/send-email-utility.php:257
+#, fuzzy
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr "Riix halkan si aad u aragto ducada maanta: %s"
+
+#: campaign-functions/send-email-utility.php:275
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "%s"
 
-#: campaign-functions/send-email-utility.php:247
+#: campaign-functions/send-email-utility.php:285
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "Xusuusin Waqtiga Salaadda!"
 
-#: campaign-functions/send-email-utility.php:265
-#: parts/components-enqueue.php:103
+#: campaign-functions/send-email-utility.php:302
+#: parts/components-enqueue.php:102
 #, fuzzy
 msgid "Thank you for praying with us."
 msgstr "Waad ku mahadsan tahay inaad nala tukatay!"
 
-#: campaign-functions/send-email-utility.php:266
+#: campaign-functions/send-email-utility.php:303
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "Waa kuwan waqtiyadaada salaadda ee soo socda:"
 
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:308
+#: magic-links/campaign-magic-link.php:110
+#: magic-links/campaign-magic-link.php:112
+#: porches/generic/dt-generic-porch-strings.php:152
+#: porches/generic/dt-generic-porch-strings.php:161
+#, fuzzy
+msgid "Prayer Fuel"
+msgstr "Shidaalka Salaadda"
+
+#: campaign-functions/send-email-utility.php:390
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:355
+#: campaign-functions/send-email-utility.php:393
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
@@ -139,97 +142,100 @@ msgstr ""
 "2 todobaad ayaad ka maqnayd wakhtiga salaadaadii u dambaysay. Ma jeclaan "
 "lahayd inaad sii wadato tukashada?"
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:394
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr ""
 "Isku qor wakhtiyo badan oo salaad ah ama ku kordhi wakhtigaaga soo noqnoqda "
 "halkan:"
 
-#: campaign-functions/send-email-utility.php:358
-msgid "Or click this link:"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:359 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: campaign-functions/send-email-utility.php:397 parts/components.php:51
+#: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
 #, fuzzy
 msgid "Thank you"
 msgstr "Mahadsanid"
 
-#: campaign-functions/send-email-utility.php:405
-#: porches/generic/site/stats.php:144
+#: campaign-functions/send-email-utility.php:443
+#: porches/generic/site/stats.php:84
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "Waad ku mahadsan tahay inaad nala tukatay!"
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:496
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Ducada istiraatijiyadeed ee Dhaqdhaqaaqa Xerta Samaynta"
 
-#: campaign-functions/send-email-utility.php:430
-#: campaign-functions/send-email-utility.php:460
-#: porches/generic/dt-generic-porch-settings.php:59
+#: campaign-functions/send-email-utility.php:468
+#: campaign-functions/send-email-utility.php:498
+#: porches/generic/dt-generic-porch-strings.php:38
 #, fuzzy
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Ducada istiraatijiyadeed ee Dhaqdhaqaaqa Xerta Samaynta"
 
-#: campaign-functions/send-email-utility.php:435
-#: campaign-functions/send-email-utility.php:465
+#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:503
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:438
-#: campaign-functions/send-email-utility.php:468
+#: campaign-functions/send-email-utility.php:476
+#: campaign-functions/send-email-utility.php:506
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Waad ku mahadsan tahay inaad nagu soo biirto ducada %1$s ee %2$s."
 
-#: campaign-functions/send-email-utility.php:441
+#: campaign-functions/send-email-utility.php:479
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:444
+#: campaign-functions/send-email-utility.php:482
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:448
+#: campaign-functions/send-email-utility.php:484
+msgid ""
+"Finally, the folks at Pray4Movement built this prayer tool. You can make "
+"sure you’re signed up to receive news about future prayer opportunities on "
+"the Stats page."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:486
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "Dooro wakhtiga salaadda"
 
-#: campaign-functions/send-email-utility.php:450
-#: campaign-functions/send-email-utility.php:486
+#: campaign-functions/send-email-utility.php:488
+#: campaign-functions/send-email-utility.php:518
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:471
+#: campaign-functions/send-email-utility.php:509
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:475
+#: campaign-functions/send-email-utility.php:512
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:514
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:516
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -271,7 +277,7 @@ msgstr ""
 msgid "day"
 msgstr "maalmo"
 
-#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
+#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:40
 #, fuzzy
 msgid "days"
 msgstr "maalmo"
@@ -289,7 +295,8 @@ msgstr ""
 "wakhtiyada salaadaada."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:54 porches/generic/site/contact-us.php:83
+#: porches/generic/site/stats.php:209
 #, fuzzy
 msgid "Email"
 msgstr "Email"
@@ -305,238 +312,236 @@ msgstr ""
 "Riix halkan si aad u xaqiijiso ciwaankaaga iimaylka oo aad u xaqiijiso "
 "wakhtiyada salaadaada."
 
-#: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:324
-#: parts/components-enqueue.php:49
+#: magic-links/subscription-management/subscription-management.php:39
+#: magic-links/subscription-management/subscription-management.php:368
+#: parts/components-enqueue.php:51
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "Ballanqaadka Ducada"
 
-#: magic-links/subscription-management/subscription-management.php:306
-#: porches/generic/site/stats.php:205
+#: magic-links/subscription-management/subscription-management.php:342
+#: porches/generic/site/stats.php:142
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "Ballanqaadka Ducada"
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:343
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:313
+#: magic-links/subscription-management/subscription-management.php:349
+msgid "Account activated!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:350
+msgid "Here you can manage your prayer commitments and account settings."
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:357
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:358
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "Guri"
 
-#: magic-links/subscription-management/subscription-management.php:316
-#: porches/generic/site/stats.php:170
+#: magic-links/subscription-management/subscription-management.php:360
+#: porches/generic/site/stats.php:20 porches/generic/site/stats.php:107
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:332
+#: magic-links/subscription-management/subscription-management.php:376
 #, fuzzy
 msgid "My Calendar"
 msgstr "Soo deji jadwalka"
 
-#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:389
 #, fuzzy
 msgid "Sign up for more prayer"
 msgstr "Saxiix Si Aad U Tukato"
 
-#: magic-links/subscription-management/subscription-management.php:371
+#: magic-links/subscription-management/subscription-management.php:410
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Diiwaangelintani way dhammaatay ama si sax ah looma habayn."
 
-#: parts/components-enqueue.php:36
+#: parts/components-enqueue.php:38
 #, fuzzy
 msgid "Detected time zone"
 msgstr "Waqtiyada la doortay"
 
-#: parts/components-enqueue.php:37
+#: parts/components-enqueue.php:39
 #, fuzzy
-msgid "Choose a timezone"
-msgstr "Beddel aaggaaga wakhtiga:"
+msgid "Select a timezone"
+msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
-#: porches/generic/site/stats.php:227
+#: parts/components-enqueue.php:41 porches/generic/site/stats.php:154
+#: porches/generic/site/stats.php:164
 #, fuzzy
 msgid "hours"
 msgstr "saacadood"
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:42
 #, fuzzy
 msgid "minutes"
 msgstr "daqiiqado"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:43
 #, fuzzy
 msgid "seconds"
 msgstr "ilbiriqsi"
 
-#: parts/components-enqueue.php:42
+#: parts/components-enqueue.php:44
 #, fuzzy
 msgid "Campaign Starts In"
 msgstr "Ololaha Tirakoobka"
 
-#: parts/components-enqueue.php:43
+#: parts/components-enqueue.php:45
 #, fuzzy
 msgid "Campaign Ends In"
 msgstr "Ololaha Tirakoobka"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:46
 #, fuzzy
 msgid "Campaign Ended"
 msgstr "Ololaha Tirakoobka"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:47
 #, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s %2$s daqiiqo"
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:48
 msgid "How often?"
 msgstr ""
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:49
 msgid "I will pray for"
 msgstr ""
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:50
 #, fuzzy
 msgid "At what time?"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:52
 msgid "Contact Info"
 msgstr ""
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:53 porches/generic/site/contact-us.php:76
 #, fuzzy
 msgid "Name"
 msgstr "Magaca"
 
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:55
 msgid "Start Here"
 msgstr ""
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:56
 msgid "Continue here"
 msgstr ""
 
-#: parts/components-enqueue.php:55
+#: parts/components-enqueue.php:57
 msgid "On which week day?"
 msgstr ""
 
-#: parts/components-enqueue.php:56
+#: parts/components-enqueue.php:58
 #, fuzzy
 msgid "Select a Date"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:59
 #, fuzzy
 msgid "Select a Time"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:60
 #, fuzzy
 msgid "Select a Time for %s"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:61 parts/components-enqueue.php:135
 #, fuzzy
 msgid "Close"
 msgstr "Xidh"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:62
 #, fuzzy
 msgid "prayer commitments"
 msgstr "Ballanqaadka Ducada"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:63
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:64
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:63
+#: parts/components-enqueue.php:65
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: parts/components-enqueue.php:66 parts/components.php:45
+#: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
 #, fuzzy
 msgid "Submit"
 msgstr "Gudbi"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:67
 msgid "Verify"
 msgstr ""
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:68
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "Boqolkiiba waxa lagu daboolay salaadda"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:69
 #, fuzzy
 msgid "%s committed"
 msgstr "Waqtiga La Qabtay"
 
-#: parts/components-enqueue.php:68
+#: parts/components-enqueue.php:70
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
+#: parts/components-enqueue.php:71
 #, fuzzy
 msgid "Next"
 msgstr "Xiga"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:72
 #, fuzzy
 msgid "No prayer times selected"
 msgstr "Waqtiyada salaaddaada waa la xaqiijiyay!"
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:73
 #, fuzzy
 msgid "Daily"
 msgstr "Maalin walba"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:74
 msgid "Weekly"
 msgstr ""
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:75
 #, fuzzy
 msgid "Monthly"
 msgstr "Bisha"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:76
 msgid "Pick Dates and Times"
 msgstr ""
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:77
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr ""
-
-#: parts/components-enqueue.php:76
-msgid "A confirmation code hase been sent to %s."
-msgstr ""
-
-#: parts/components-enqueue.php:77
-msgid ""
-"Please enter the code below in the next 10 minutes to confirm your email "
-"address."
 msgstr ""
 
 #: parts/components-enqueue.php:78
@@ -570,46 +575,41 @@ msgstr ""
 
 #: parts/components-enqueue.php:84
 #, fuzzy
-msgid "Confirmation Code"
-msgstr "Xaqiiji wakhtiyada"
-
-#: parts/components-enqueue.php:85
-#, fuzzy
 msgid "Prayer Time Selected"
 msgstr "Waqtiyada salaaddaada waa la xaqiijiyay!"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:85
 #, fuzzy
 msgid "Select a Day"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:86
 msgid "Renews on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:87
 msgid "Ends on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:88
 msgid "Success"
 msgstr ""
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:89
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "Diwaan galintaadu waa lagu guulaystay"
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:90
 #, fuzzy
 msgid "Check your email for additional details and to manage your account."
 msgstr "Iimaylku waxa ku jira isku xidhka lagu maareeyo wakhtiyada salaadaada."
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:91
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:93
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -617,172 +617,168 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:94
 #, fuzzy
 msgid "Account Settings"
 msgstr "Settings horumarsan"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:95
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:96
 #, fuzzy
 msgid "Receive Prayer time notifications"
 msgstr "Hel ogeysiisyada wakhtiga salaadda"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:97
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "Settings horumarsan"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:98
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:99
 #, fuzzy
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "Tirtir astaantan iyo dhammaan waqtiyada salaadda ee la qorsheeyay?"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:100
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:101
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:103
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:104
 #, fuzzy
 msgid "Delete"
 msgstr "Tirtir"
 
-#: parts/components-enqueue.php:106
-#, fuzzy
-msgid "Select a timezone"
-msgstr "Dooro wakhti"
-
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:105
+#: porches/generic/dt-generic-porch-strings.php:206
 #, fuzzy
 msgid "See Prayer Fuel"
 msgstr "Shidaalka Salaadda"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:106
 #, fuzzy
 msgid "change time"
 msgstr "Bedel maalin kasta"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:107
 #, fuzzy
 msgid "Remove all"
 msgstr "Tirtir dhammaan"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:108
 #, fuzzy
 msgid "See prayer times"
 msgstr "Ku dar wakhtiga salaadda"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:109
 #, fuzzy
 msgid "Delete Prayer Times"
 msgstr "Waqtiga Salaadda"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:110
 #, fuzzy
 msgid "Really delete these prayer times?"
 msgstr "Dooro wakhtiga salaadda"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:111
 #, fuzzy
 msgid "extend"
 msgstr "Kordhi"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:112
 #, fuzzy
 msgid "Extend Prayer Times"
 msgstr "Waqtiga Salaadda"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:113
 #, fuzzy
 msgid "Really delete this prayer time?"
 msgstr "Dooro wakhtiga salaadda"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:114
 #, fuzzy
 msgid "Delete Prayer Time"
 msgstr "Waqtiyada la doortay"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:115
 #, fuzzy
 msgid "Mondays"
 msgstr "maalmo"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:116
 #, fuzzy
 msgid "Tuesdays"
 msgstr "maalmo"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:117
 msgid "Wednesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:118
 #, fuzzy
 msgid "Thursdays"
 msgstr "maalmo"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:119
 #, fuzzy
 msgid "Fridays"
 msgstr "maalmo"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:120
 #, fuzzy
 msgid "Saturdays"
 msgstr "maalmo"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:121
 #, fuzzy
 msgid "Sundays"
 msgstr "maalmo"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:122
 #, fuzzy
 msgid "Change Prayer Time"
 msgstr "Dooro Waqtiyada Salaadda"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:123
 #, fuzzy
 msgid "Your current prayer time is %s"
 msgstr "Waqtiyadaada salaadda cusub waa la badbaadiyay."
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:124
 #, fuzzy
 msgid "Select a new time:"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:125
 #, fuzzy
 msgid "Select a time"
 msgstr "Dooro wakhti"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:126
 #, fuzzy
 msgid "Renew Prayer Times"
 msgstr "Waqtiga Salaadda"
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:127
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:128
 #, fuzzy
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
@@ -790,6 +786,66 @@ msgid ""
 msgstr ""
 "Ma jeclaan lahayd inaad wax ku saabsan dadaallada kale ee ducada iyo "
 "fursadaha ka maqasho Pray4Movement.org?"
+
+#: parts/components-enqueue.php:131
+msgid "Text Translations"
+msgstr ""
+
+#: parts/components-enqueue.php:132
+msgid "Original String"
+msgstr ""
+
+#: parts/components-enqueue.php:133
+msgid "Custom Value For All Languages"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+msgid "Translation For Currently Selected Language"
+msgstr ""
+
+#: parts/components-enqueue.php:136
+#, fuzzy
+msgid "Update"
+msgstr "Cusboonaysiinta"
+
+#: parts/components-enqueue.php:139
+msgid "Almost there! Finish signing up by activating your account."
+msgstr ""
+
+#: parts/components-enqueue.php:140
+msgid "Click the \"Activate Account\" button in the email sent to: %s"
+msgstr ""
+
+#: parts/components-enqueue.php:141
+msgid "It will look like this:"
+msgstr ""
+
+#: parts/components-enqueue.php:142
+msgid "Pending - Verification Needed"
+msgstr ""
+
+#: parts/components-enqueue.php:143
+msgid "Back to sign-up"
+msgstr ""
+
+#: parts/components-enqueue.php:144
+msgid "So sorry. Something went wrong. You can:"
+msgstr ""
+
+#: parts/components-enqueue.php:145
+msgid "Try Again"
+msgstr ""
+
+#: parts/components-enqueue.php:146 porches/generic/site/contact-us.php:20
+#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:48
+msgid "Contact Us"
+msgstr ""
+
+#: parts/components-enqueue.php:147
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
+msgstr ""
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -806,22 +862,22 @@ msgstr ""
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:68
+#: porches/generic/dt-generic-porch-strings.php:47
 #, fuzzy
 msgid "Our Vision"
 msgstr "Aragtideena"
 
-#: porches/generic/dt-generic-porch-settings.php:77
+#: porches/generic/dt-generic-porch-strings.php:56
 #, fuzzy
 msgid "We want to cover this region with continuous 24/7 prayer."
 msgstr "Waxaan rabnaa in aan ku daboolno gobolkan ducada 24/7 oo joogto ah."
 
-#: porches/generic/dt-generic-porch-settings.php:94
+#: porches/generic/dt-generic-porch-strings.php:73
 #, fuzzy
 msgid "Extraordinary Prayer"
 msgstr "Duco aan Caadi ahayn"
 
-#: porches/generic/dt-generic-porch-settings.php:103
+#: porches/generic/dt-generic-porch-strings.php:82
 #, fuzzy
 msgid ""
 "Every disciple making movement in history has happened in the context of "
@@ -830,12 +886,12 @@ msgstr ""
 "Qof kasta oo xer ah oo dhaqdhaqaaq sameeya taariikhda wuxuu ku dhacay ducada "
 "aan caadiga ahayn."
 
-#: porches/generic/dt-generic-porch-settings.php:120
+#: porches/generic/dt-generic-porch-strings.php:99
 #, fuzzy
 msgid "Movement Focused"
 msgstr "Dhaqdhaqaaqa Diirada Saaray"
 
-#: porches/generic/dt-generic-porch-settings.php:129
+#: porches/generic/dt-generic-porch-strings.php:108
 #, fuzzy
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
@@ -844,12 +900,12 @@ msgstr ""
 "Nagu soo biir oo weydiisanaya, raadinta, oo garaaca in durdurrada xerta iyo "
 "kaniisadaha la sameeyo."
 
-#: porches/generic/dt-generic-porch-settings.php:146
+#: porches/generic/dt-generic-porch-strings.php:125
 #, fuzzy
 msgid "24/7 Every Day"
 msgstr "24/7 Maalin kasta"
 
-#: porches/generic/dt-generic-porch-settings.php:155
+#: porches/generic/dt-generic-porch-strings.php:134
 #, fuzzy
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
@@ -858,28 +914,37 @@ msgstr ""
 "Dooro wakhti 15-daqiiqo ah (ama ka badan!) oo aad ku tukan karto maalin "
 "kasta. Ku casuun qof kale inuu is diiwaan geliyo."
 
-#: porches/generic/dt-generic-porch-settings.php:173
-#: porches/generic/dt-generic-porch-settings.php:182
-#: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
-#, fuzzy
-msgid "Prayer Fuel"
-msgstr "Shidaalka Salaadda"
-
-#: porches/generic/dt-generic-porch-settings.php:191
+#: porches/generic/dt-generic-porch-strings.php:170
 #, fuzzy
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
 "Isticmaal agabkan si aad uga caawiso tukashada si gaar ah maalin kasta."
 
-#: porches/generic/dt-generic-porch-settings.php:200
+#: porches/generic/dt-generic-porch-strings.php:179
 #, fuzzy
 msgid "Today's Prayer Fuel"
 msgstr "Shidaalka Salaada Maanta"
 
-#: porches/generic/dt-generic-porch-settings.php:209
+#: porches/generic/dt-generic-porch-strings.php:188
 #, fuzzy
 msgid "All Days"
 msgstr "Maalmaha oo dhan"
+
+#: porches/generic/dt-generic-porch-strings.php:197
+#, fuzzy
+msgid "Edit Prayer Fuel"
+msgstr "Shidaalka Salaadda"
+
+#: porches/generic/dt-generic-porch-strings.php:215
+#, fuzzy
+msgid "Scheduled Prayer Fuel"
+msgstr "Shidaalka Salaadda"
+
+#: porches/generic/dt-generic-porch-strings.php:223
+msgid ""
+"All Scheduled Prayer Fuel in all available languages. Add and edit the "
+"prayer fuel below"
+msgstr ""
 
 #: porches/generic/site/404-body.php:14
 #, fuzzy
@@ -903,127 +968,133 @@ msgstr ""
 "Isku day inaad isticmaasho qaar ka mid ah xidhiidhada ku jira liiska si aad "
 "dib ugu soo laabato wadada."
 
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
+#: porches/generic/site/archive-body.php:35
+#: porches/generic/site/post-list-body.php:157
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:46
+#: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
-#: porches/generic/site/top-section.php:100
-#: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
+#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:48
+#, fuzzy
+msgid "Prayer Timer"
+msgstr "Waqtiyada la doortay"
+
+#: porches/generic/site/contact-us.php:91
+msgid "Message"
+msgstr ""
+
+#: porches/generic/site/edit-post-list-body.php:120
+msgid "Day %s"
+msgstr ""
+
+#: porches/generic/site/edit-post-list-body.php:142
+#: porches/generic/site/functions.php:72
+msgid "Edit"
+msgstr ""
+
+#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/top-section.php:111
+#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Saxiix Si Aad U Tukato"
 
-#: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
+#: porches/generic/site/home-body.php:168 porches/generic/site/stats.php:150
 #, fuzzy
 msgid "Time Committed"
 msgstr "Waqtiga La Qabtay"
 
-#: porches/generic/site/home-body.php:186
+#: porches/generic/site/home-body.php:184
 #, fuzzy
 msgid "Prayer Warriors"
 msgstr "Waqtiyada Ducadayda"
 
-#: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
+#: porches/generic/site/home-body.php:199 porches/generic/site/stats.php:126
 #: porches/ramadan/site/home-body.php:192
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Ballanqaadka Salaadda ayaa loo baahan yahay"
 
-#: porches/generic/site/home-body.php:221
-#: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:211
+#: porches/generic/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:212
 #, fuzzy
 msgid "View All"
 msgstr "Fiiri Dhamaan"
 
-#: porches/generic/site/post-list-body.php:134
+#: porches/generic/site/post-list-body.php:144
 #, fuzzy
 msgid "Read"
 msgstr "Akhriso"
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:159
 msgid "No prayer fuel found"
 msgstr ""
 
-#: porches/generic/site/stats.php:21
-#, fuzzy
-msgid "Campaign Stats"
-msgstr "Ololaha Tirakoobka"
-
-#: porches/generic/site/stats.php:146
-#, fuzzy
-msgctxt "Thank you for joining us in prayer for the French in France."
-msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "Waad ku mahadsan tahay inaad nagu soo biirto ducada %1$s ee %2$s."
-
-#: porches/generic/site/stats.php:197
+#: porches/generic/site/stats.php:134
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "Boqolkiiba la dabooshay"
 
-#: porches/generic/site/stats.php:223
+#: porches/generic/site/stats.php:160
 msgid "Time Prayed in Groups"
 msgstr ""
 
-#: porches/generic/site/stats.php:233
+#: porches/generic/site/stats.php:170
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "Tirada Dadka Tukaday"
 
-#: porches/generic/site/stats.php:266
+#: porches/generic/site/stats.php:203
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "Nala wadaag Sheekooyinkiina Ducada"
 
-#: porches/generic/site/stats.php:280
+#: porches/generic/site/stats.php:217
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
-"etc)"
+"etc.)"
 msgstr ""
 "Nala wadaag wax ku saabsan wakhtigaaga salaadda (Tusaale ahaan, "
 "markhaatifurka, aragtiyaha, barakada, iwm)"
 
-#: porches/generic/site/stats.php:327
+#: porches/generic/site/stats.php:285
 msgid "Global Ramadan Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:334
+#: porches/generic/site/stats.php:292
 #, fuzzy
 msgid "Total Prayer Campaigns"
 msgstr "Soodejinaya xogta ololaha ducada..."
 
-#: porches/generic/site/stats.php:342
+#: porches/generic/site/stats.php:300
 #, fuzzy
 msgid "Countries Prayed For"
 msgstr "Saacadaha Salaadda"
 
-#: porches/generic/site/stats.php:350
+#: porches/generic/site/stats.php:308
 msgid "Intercessors"
 msgstr ""
 
-#: porches/generic/site/stats.php:358
+#: porches/generic/site/stats.php:316
 #, fuzzy
 msgid "Time Prayed"
 msgstr "Waqti ku daray"
 
-#: porches/generic/site/stats.php:366
+#: porches/generic/site/stats.php:324
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:389
+#: porches/generic/site/stats.php:347
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "Fursado Duco Badan"
 
-#: porches/generic/site/stats.php:393
+#: porches/generic/site/stats.php:351
 #, fuzzy
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
@@ -1037,21 +1108,6 @@ msgstr ""
 #, fuzzy
 msgid "Sign Up"
 msgstr "Isdiiwaangeli"
-
-#: porches/ongoing/site/home-body.php:159
-#, fuzzy
-msgid "Month"
-msgstr "Bisha"
-
-#: porches/ongoing/site/home-body.php:176
-#, fuzzy
-msgid "Hours"
-msgstr "Saacadaha"
-
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "Saacadaha Harsan"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
@@ -1103,25 +1159,20 @@ msgstr ""
 "Raadintan daacadda ah ayaa ka dhigaysa wakhti istaraatiiji ah oo aan u "
 "ducaynno iyaga."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:117
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramadaanku wuu bilaabmay..."
 
-#: porches/ramadan/site/home-body.php:104
+#: porches/ramadan/site/home-body.php:118
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramadaanku wuu dhamaaday..."
 
-#: porches/ramadan/site/home-body.php:105
+#: porches/ramadan/site/home-body.php:119
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramadaan way dhamaatay"
-
-#: porches/ramadan/site/home-body.php:138
-#, fuzzy
-msgid "here"
-msgstr "halkan"
 
 #: porches/ramadan/site/home-body.php:166
 #, fuzzy
@@ -1148,6 +1199,45 @@ msgstr "Waqtiga salaadda: %s min"
 #, fuzzy
 msgid "Now praying..."
 msgstr "Hadda tukanaya..."
+
+#, fuzzy
+#~ msgid ""
+#~ "Thank you for joining us in strategic prayer for a disciple making "
+#~ "movement!"
+#~ msgstr "Ducada istiraatijiyadeed ee Dhaqdhaqaaqa Xerta Samaynta"
+
+#, fuzzy
+#~ msgid "Campaign Stats"
+#~ msgstr "Ololaha Tirakoobka"
+
+#, fuzzy
+#~ msgctxt "Thank you for joining us in prayer for the French in France."
+#~ msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+#~ msgstr "Waad ku mahadsan tahay inaad nagu soo biirto ducada %1$s ee %2$s."
+
+#, fuzzy
+#~ msgid "Month"
+#~ msgstr "Bisha"
+
+#, fuzzy
+#~ msgid "Hours"
+#~ msgstr "Saacadaha"
+
+#, fuzzy
+#~ msgid "Hours Remaining"
+#~ msgstr "Saacadaha Harsan"
+
+#, fuzzy
+#~ msgid "here"
+#~ msgstr "halkan"
+
+#, fuzzy
+#~ msgid "Choose a timezone"
+#~ msgstr "Beddel aaggaaga wakhtiga:"
+
+#, fuzzy
+#~ msgid "Confirmation Code"
+#~ msgstr "Xaqiiji wakhtiyada"
 
 #, fuzzy
 #~ msgid "More Hours to be covered"
@@ -1437,10 +1527,6 @@ msgstr "Hadda tukanaya..."
 #, fuzzy
 #~ msgid "Content to be added to the reminder email"
 #~ msgstr "Waxa ay ka kooban tahay in lagu daro iimaylka xasuusinta"
-
-#, fuzzy
-#~ msgid "Update"
-#~ msgstr "Cusboonaysiinta"
 
 #, fuzzy
 #~ msgid "Yes"

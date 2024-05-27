@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-07T15:19:55+00:00\n"
+"POT-Creation-Date: 2024-05-02T10:19:26+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lao <https://translate.disciple.tools/projects/disciple-tools/"
@@ -18,214 +18,220 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:82
-#, fuzzy
-msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
-msgid "Click here to see the prayer prompts for today: %s"
-msgstr "ຄລິກທີ່ນີ້ເພື່ອເບິ່ງການເຕືອນໃຈອະທິຖານສໍາລັບມື້ນີ້: %s"
-
-#: campaign-functions/send-email-utility.php:50
+#: campaign-functions/send-email-utility.php:73
 msgid "Verify your email address"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:52
-msgid ""
-"Please copy and paste the following code into the Confirmation Code field."
+#: campaign-functions/send-email-utility.php:75
+msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:59
-msgid "This code will expire after 10 minutes."
+#: campaign-functions/send-email-utility.php:82
+#: campaign-functions/send-email-utility.php:396
+msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:60
+#: campaign-functions/send-email-utility.php:87
 msgid "If you did not request this email, please ignore it."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:231
+#: campaign-functions/send-email-utility.php:171
+#: campaign-functions/send-email-utility.php:269
 #, fuzzy
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s ຈາກ %2$s ຫາ %3$s"
 
-#: campaign-functions/send-email-utility.php:150
+#: campaign-functions/send-email-utility.php:178
 #, fuzzy
 msgid "see more on your account"
 msgstr "ຢືນຢັນບັນຊີຂອງທ່ານ"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:190
 #, fuzzy
 msgid "Registered to pray with us!"
 msgstr "ລົງທະບຽນເພື່ອອະທິຖານກັບພວກເຮົາ!"
 
-#: campaign-functions/send-email-utility.php:185
-#: campaign-functions/send-email-utility.php:264
-#: campaign-functions/send-email-utility.php:354
+#: campaign-functions/send-email-utility.php:211
+#: campaign-functions/send-email-utility.php:301
+#: campaign-functions/send-email-utility.php:392
 #, fuzzy
 msgid "Hello %s,"
 msgstr "ສະບາຍດີ %s,"
 
-#: campaign-functions/send-email-utility.php:187
-#, fuzzy
-msgid ""
-"Thank you for joining us in strategic prayer for a disciple making movement!"
-msgstr "ການອະທິຖານຍຸດທະສາດສໍາລັບການເຄື່ອນໄຫວສ້າງສານຸສິດ"
-
-#: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:275
+#: campaign-functions/send-email-utility.php:215
+#: campaign-functions/send-email-utility.php:313
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:189
-#: campaign-functions/send-email-utility.php:276
-#: parts/components-enqueue.php:93
+#: campaign-functions/send-email-utility.php:216
+#: campaign-functions/send-email-utility.php:314
+#: parts/components-enqueue.php:92
 msgid "Access Account"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:192
+#: campaign-functions/send-email-utility.php:219
 #, fuzzy
 msgid "You signed up to pray:"
 msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການລົງທະບຽນເພື່ອອະທິຖານ!"
 
-#: campaign-functions/send-email-utility.php:197
+#: campaign-functions/send-email-utility.php:224
 #, fuzzy
 msgid "These are your next prayer commitments:"
 msgstr "ຄລິກທີ່ນີ້ເພື່ອຈັດການບັນຊີ ແລະຄໍາໝັ້ນສັນຍາເວລາຂອງທ່ານ"
 
-#: campaign-functions/send-email-utility.php:200
-#: campaign-functions/send-email-utility.php:268
+#: campaign-functions/send-email-utility.php:227
+#: campaign-functions/send-email-utility.php:305
 #, fuzzy
 msgid "Times are shown according to: %s time"
 msgstr "ເວລາແມ່ນສະແດງຕາມ: ເວລາ %s"
 
-#: campaign-functions/send-email-utility.php:204
-#: magic-links/subscription-management/subscription-management.php:335
+#: campaign-functions/send-email-utility.php:231
+#: magic-links/subscription-management/subscription-management.php:379
 #, fuzzy
 msgid "Download Calendar"
 msgstr "ດາວໂຫຼດປະຕິທິນ"
 
-#: campaign-functions/send-email-utility.php:237
+#: campaign-functions/send-email-utility.php:257
+#, fuzzy
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr "ຄລິກທີ່ນີ້ເພື່ອເບິ່ງການເຕືອນໃຈອະທິຖານສໍາລັບມື້ນີ້: %s"
+
+#: campaign-functions/send-email-utility.php:275
 #, fuzzy
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "ສໍາລັບ %s"
 
-#: campaign-functions/send-email-utility.php:247
+#: campaign-functions/send-email-utility.php:285
 #, fuzzy
 msgid "Prayer Time reminder!"
 msgstr "ເຕືອນເວລາອະທິຖານ!"
 
-#: campaign-functions/send-email-utility.php:265
-#: parts/components-enqueue.php:103
+#: campaign-functions/send-email-utility.php:302
+#: parts/components-enqueue.php:102
 #, fuzzy
 msgid "Thank you for praying with us."
 msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການອະທິຖານກັບພວກເຮົາ!"
 
-#: campaign-functions/send-email-utility.php:266
+#: campaign-functions/send-email-utility.php:303
 #, fuzzy
 msgid "Here are your upcoming prayer times:"
 msgstr "ນີ້ແມ່ນເວລາອະທິຖານທີ່ຈະມາເຖິງຂອງເຈົ້າ:"
 
-#: campaign-functions/send-email-utility.php:352
+#: campaign-functions/send-email-utility.php:308
+#: magic-links/campaign-magic-link.php:110
+#: magic-links/campaign-magic-link.php:112
+#: porches/generic/dt-generic-porch-strings.php:152
+#: porches/generic/dt-generic-porch-strings.php:161
+#, fuzzy
+msgid "Prayer Fuel"
+msgstr "ເຊື້ອໄຟອະທິຖານ"
+
+#: campaign-functions/send-email-utility.php:390
 msgid "Continue Praying?"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:355
+#: campaign-functions/send-email-utility.php:393
 #, fuzzy
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
 msgstr "ເຈົ້າຢູ່ 2 ອາທິດສຳລັບເວລາອະທິຖານຄັ້ງສຸດທ້າຍຂອງເຈົ້າ. ເຈົ້າຢາກອະທິຖານຕໍ່ໄປບໍ?"
 
-#: campaign-functions/send-email-utility.php:356
+#: campaign-functions/send-email-utility.php:394
 #, fuzzy
 msgid "Sign up for more prayer times or extend your recurring time here:"
 msgstr "ລົງທະບຽນສຳລັບເວລາອະທິຖານເພີ່ມເຕີມ ຫຼືຂະຫຍາຍເວລາປະຈຳຕົວຂອງທ່ານຢູ່ທີ່ນີ້:"
 
-#: campaign-functions/send-email-utility.php:358
-msgid "Or click this link:"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:359 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: campaign-functions/send-email-utility.php:397 parts/components.php:51
+#: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
 #, fuzzy
 msgid "Thank you"
 msgstr "ຂອບໃຈ"
 
-#: campaign-functions/send-email-utility.php:405
-#: porches/generic/site/stats.php:144
+#: campaign-functions/send-email-utility.php:443
+#: porches/generic/site/stats.php:84
 #, fuzzy
 msgid "Thank you for praying with us!"
 msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການອະທິຖານກັບພວກເຮົາ!"
 
-#: campaign-functions/send-email-utility.php:428
-#: campaign-functions/send-email-utility.php:458
+#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:496
 #, fuzzy
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "ການອະທິຖານຍຸດທະສາດສໍາລັບການເຄື່ອນໄຫວສ້າງສານຸສິດ"
 
-#: campaign-functions/send-email-utility.php:430
-#: campaign-functions/send-email-utility.php:460
-#: porches/generic/dt-generic-porch-settings.php:59
+#: campaign-functions/send-email-utility.php:468
+#: campaign-functions/send-email-utility.php:498
+#: porches/generic/dt-generic-porch-strings.php:38
 #, fuzzy
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "ການອະທິຖານຍຸດທະສາດສໍາລັບການເຄື່ອນໄຫວສ້າງສານຸສິດ"
 
-#: campaign-functions/send-email-utility.php:435
-#: campaign-functions/send-email-utility.php:465
+#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:503
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:438
-#: campaign-functions/send-email-utility.php:468
+#: campaign-functions/send-email-utility.php:476
+#: campaign-functions/send-email-utility.php:506
 #, fuzzy
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການເຂົ້າຮ່ວມກັບພວກເຮົາໃນການອະທິຖານສໍາລັບ %1$s ໃນ %2$s."
 
-#: campaign-functions/send-email-utility.php:441
+#: campaign-functions/send-email-utility.php:479
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:444
+#: campaign-functions/send-email-utility.php:482
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:448
+#: campaign-functions/send-email-utility.php:484
+msgid ""
+"Finally, the folks at Pray4Movement built this prayer tool. You can make "
+"sure you’re signed up to receive news about future prayer opportunities on "
+"the Stats page."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:486
 #, fuzzy
 msgid "See Prayer Stats"
 msgstr "ເລືອກເວລາອະທິຖານ"
 
-#: campaign-functions/send-email-utility.php:450
-#: campaign-functions/send-email-utility.php:486
+#: campaign-functions/send-email-utility.php:488
+#: campaign-functions/send-email-utility.php:518
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:471
+#: campaign-functions/send-email-utility.php:509
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:475
+#: campaign-functions/send-email-utility.php:512
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:514
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:516
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -267,7 +273,7 @@ msgstr ""
 msgid "day"
 msgstr "ມື້"
 
-#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
+#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:40
 #, fuzzy
 msgid "days"
 msgstr "ມື້"
@@ -283,7 +289,8 @@ msgid "Enter you email address and receive a link to your prayer times."
 msgstr "ຄລິກທີ່ນີ້ເພື່ອຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານແລະຢືນຢັນເວລາອະທິຖານຂອງທ່ານ."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:54 porches/generic/site/contact-us.php:83
+#: porches/generic/site/stats.php:209
 #, fuzzy
 msgid "Email"
 msgstr "ອີເມວ"
@@ -297,238 +304,236 @@ msgstr ""
 msgid "Please check your email address now for your access link."
 msgstr "ຄລິກທີ່ນີ້ເພື່ອຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານແລະຢືນຢັນເວລາອະທິຖານຂອງທ່ານ."
 
-#: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:324
-#: parts/components-enqueue.php:49
+#: magic-links/subscription-management/subscription-management.php:39
+#: magic-links/subscription-management/subscription-management.php:368
+#: parts/components-enqueue.php:51
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "ຄໍາຫມັ້ນສັນຍາການອະທິຖານ"
 
-#: magic-links/subscription-management/subscription-management.php:306
-#: porches/generic/site/stats.php:205
+#: magic-links/subscription-management/subscription-management.php:342
+#: porches/generic/site/stats.php:142
 #, fuzzy
 msgid "Prayer Commitments"
 msgstr "ຄໍາຫມັ້ນສັນຍາການອະທິຖານ"
 
-#: magic-links/subscription-management/subscription-management.php:307
+#: magic-links/subscription-management/subscription-management.php:343
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:313
+#: magic-links/subscription-management/subscription-management.php:349
+msgid "Account activated!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:350
+msgid "Here you can manage your prayer commitments and account settings."
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:357
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:314
+#: magic-links/subscription-management/subscription-management.php:358
 #: porches/generic/site/top-section.php:28
 #, fuzzy
 msgid "Home"
 msgstr "ເຮືອນ"
 
-#: magic-links/subscription-management/subscription-management.php:316
-#: porches/generic/site/stats.php:170
+#: magic-links/subscription-management/subscription-management.php:360
+#: porches/generic/site/stats.php:20 porches/generic/site/stats.php:107
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:332
+#: magic-links/subscription-management/subscription-management.php:376
 #, fuzzy
 msgid "My Calendar"
 msgstr "ດາວໂຫຼດປະຕິທິນ"
 
-#: magic-links/subscription-management/subscription-management.php:348
+#: magic-links/subscription-management/subscription-management.php:389
 #, fuzzy
 msgid "Sign up for more prayer"
 msgstr "ລົງທະບຽນເພື່ອອະທິຖານ"
 
-#: magic-links/subscription-management/subscription-management.php:371
+#: magic-links/subscription-management/subscription-management.php:410
 #, fuzzy
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ການສະໝັກໃຊ້ນີ້ໄດ້ສິ້ນສຸດລົງ ຫຼື ບໍ່ໄດ້ກຳນົດຄ່າຢ່າງຖືກຕ້ອງ."
 
-#: parts/components-enqueue.php:36
+#: parts/components-enqueue.php:38
 #, fuzzy
 msgid "Detected time zone"
 msgstr "ເວລາທີ່ເລືອກ"
 
-#: parts/components-enqueue.php:37
+#: parts/components-enqueue.php:39
 #, fuzzy
-msgid "Choose a timezone"
-msgstr "ປ່ຽນເຂດເວລາຂອງທ່ານ:"
+msgid "Select a timezone"
+msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
-#: porches/generic/site/stats.php:227
+#: parts/components-enqueue.php:41 porches/generic/site/stats.php:154
+#: porches/generic/site/stats.php:164
 #, fuzzy
 msgid "hours"
 msgstr "ຊົ່ວໂມງ"
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:42
 #, fuzzy
 msgid "minutes"
 msgstr "ນາທີ"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:43
 #, fuzzy
 msgid "seconds"
 msgstr "ວິນາທີ"
 
-#: parts/components-enqueue.php:42
+#: parts/components-enqueue.php:44
 #, fuzzy
 msgid "Campaign Starts In"
 msgstr "ສະຖິຕິແຄມເປນ"
 
-#: parts/components-enqueue.php:43
+#: parts/components-enqueue.php:45
 #, fuzzy
 msgid "Campaign Ends In"
 msgstr "ສະຖິຕິແຄມເປນ"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:46
 #, fuzzy
 msgid "Campaign Ended"
 msgstr "ສະຖິຕິແຄມເປນ"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:47
 #, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s ສໍາລັບ %2$s ນາທີ."
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:48
 msgid "How often?"
 msgstr ""
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:49
 msgid "I will pray for"
 msgstr ""
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:50
 #, fuzzy
 msgid "At what time?"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:52
 msgid "Contact Info"
 msgstr ""
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:53 porches/generic/site/contact-us.php:76
 #, fuzzy
 msgid "Name"
 msgstr "ຊື່"
 
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:55
 msgid "Start Here"
 msgstr ""
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:56
 msgid "Continue here"
 msgstr ""
 
-#: parts/components-enqueue.php:55
+#: parts/components-enqueue.php:57
 msgid "On which week day?"
 msgstr ""
 
-#: parts/components-enqueue.php:56
+#: parts/components-enqueue.php:58
 #, fuzzy
 msgid "Select a Date"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:59
 #, fuzzy
 msgid "Select a Time"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:60
 #, fuzzy
 msgid "Select a Time for %s"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:61 parts/components-enqueue.php:135
 #, fuzzy
 msgid "Close"
 msgstr "ປິດ"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:62
 #, fuzzy
 msgid "prayer commitments"
 msgstr "ຄໍາຫມັ້ນສັນຍາການອະທິຖານ"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:63
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:64
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:63
+#: parts/components-enqueue.php:65
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: parts/components-enqueue.php:66 parts/components.php:45
+#: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
 #, fuzzy
 msgid "Submit"
 msgstr "ສົ່ງ"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:67
 msgid "Verify"
 msgstr ""
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:68
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "ເປີເຊັນກວມເອົາໃນການອະທິຖານ"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:69
 #, fuzzy
 msgid "%s committed"
 msgstr "ເວລາສັນຍາ"
 
-#: parts/components-enqueue.php:68
+#: parts/components-enqueue.php:70
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
+#: parts/components-enqueue.php:71
 #, fuzzy
 msgid "Next"
 msgstr "ຕໍ່ໄປ"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:72
 #, fuzzy
 msgid "No prayer times selected"
 msgstr "ເວລາອະທິຖານຂອງທ່ານໄດ້ຮັບການຢືນຢັນແລ້ວ!"
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:73
 #, fuzzy
 msgid "Daily"
 msgstr "ເວລາປະຈໍາວັນ"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:74
 msgid "Weekly"
 msgstr ""
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:75
 #, fuzzy
 msgid "Monthly"
 msgstr "ເດືອນ"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:76
 msgid "Pick Dates and Times"
 msgstr ""
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:77
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr ""
-
-#: parts/components-enqueue.php:76
-msgid "A confirmation code hase been sent to %s."
-msgstr ""
-
-#: parts/components-enqueue.php:77
-msgid ""
-"Please enter the code below in the next 10 minutes to confirm your email "
-"address."
 msgstr ""
 
 #: parts/components-enqueue.php:78
@@ -562,46 +567,41 @@ msgstr ""
 
 #: parts/components-enqueue.php:84
 #, fuzzy
-msgid "Confirmation Code"
-msgstr "ຢືນຢັນເວລາ"
-
-#: parts/components-enqueue.php:85
-#, fuzzy
 msgid "Prayer Time Selected"
 msgstr "ເວລາອະທິຖານຂອງທ່ານໄດ້ຮັບການຢືນຢັນແລ້ວ!"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:85
 #, fuzzy
 msgid "Select a Day"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:86
 msgid "Renews on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:87
 msgid "Ends on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:88
 msgid "Success"
 msgstr ""
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:89
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "ການລົງທະບຽນຂອງທ່ານສຳເລັດແລ້ວ."
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:90
 #, fuzzy
 msgid "Check your email for additional details and to manage your account."
 msgstr "ໃນອີເມລ໌ແມ່ນການເຊື່ອມຕໍ່ເພື່ອຈັດການເວລາອະທິຖານຂອງທ່ານ."
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:91
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:93
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -609,177 +609,233 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:94
 #, fuzzy
 msgid "Account Settings"
 msgstr "ຕັ້ງຄ່າຂັ້ນສູງ"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:95
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:96
 #, fuzzy
 msgid "Receive Prayer time notifications"
 msgstr "ໄດ້ຮັບການແຈ້ງເຕືອນເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:97
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "ຕັ້ງຄ່າຂັ້ນສູງ"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:98
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:99
 #, fuzzy
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "ລຶບໂປຣໄຟລ໌ນີ້ ແລະເວລາອະທິຖານທັງໝົດທີ່ກຳນົດໄວ້ບໍ?"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:100
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:101
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:103
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:104
 #, fuzzy
 msgid "Delete"
 msgstr "ລົບ"
 
-#: parts/components-enqueue.php:106
-#, fuzzy
-msgid "Select a timezone"
-msgstr "ເລືອກເວລາ"
-
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:105
+#: porches/generic/dt-generic-porch-strings.php:206
 #, fuzzy
 msgid "See Prayer Fuel"
 msgstr "ເຊື້ອໄຟອະທິຖານ"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:106
 #, fuzzy
 msgid "change time"
 msgstr "ປ່ຽນເວລາປະຈໍາວັນ"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:107
 #, fuzzy
 msgid "Remove all"
 msgstr "ລົບທັງຫມົດ"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:108
 #, fuzzy
 msgid "See prayer times"
 msgstr "ເພີ່ມເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:109
 #, fuzzy
 msgid "Delete Prayer Times"
 msgstr "ເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:110
 #, fuzzy
 msgid "Really delete these prayer times?"
 msgstr "ເລືອກເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:111
 #, fuzzy
 msgid "extend"
 msgstr "ຂະຫຍາຍ"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:112
 #, fuzzy
 msgid "Extend Prayer Times"
 msgstr "ເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:113
 #, fuzzy
 msgid "Really delete this prayer time?"
 msgstr "ເລືອກເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:114
 #, fuzzy
 msgid "Delete Prayer Time"
 msgstr "ເວລາທີ່ເລືອກ"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:115
 #, fuzzy
 msgid "Mondays"
 msgstr "ມື້"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:116
 #, fuzzy
 msgid "Tuesdays"
 msgstr "ມື້"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:117
 msgid "Wednesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:118
 #, fuzzy
 msgid "Thursdays"
 msgstr "ມື້"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:119
 #, fuzzy
 msgid "Fridays"
 msgstr "ມື້"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:120
 #, fuzzy
 msgid "Saturdays"
 msgstr "ມື້"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:121
 #, fuzzy
 msgid "Sundays"
 msgstr "ມື້"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:122
 #, fuzzy
 msgid "Change Prayer Time"
 msgstr "ເລືອກເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:123
 #, fuzzy
 msgid "Your current prayer time is %s"
 msgstr "ເວລາອະທິຖານໃໝ່ຂອງເຈົ້າໄດ້ຖືກບັນທຶກໄວ້."
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:124
 #, fuzzy
 msgid "Select a new time:"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:125
 #, fuzzy
 msgid "Select a time"
 msgstr "ເລືອກເວລາ"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:126
 #, fuzzy
 msgid "Renew Prayer Times"
 msgstr "ເວລາອະທິຖານ"
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:127
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:128
 #, fuzzy
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
 msgstr "ເຈົ້າຢາກໄດ້ຍິນກ່ຽວກັບຄວາມພະຍາຍາມ ແລະໂອກາດການອະທິຖານອື່ນໆກັບ Pray4Movement.org ບໍ?"
+
+#: parts/components-enqueue.php:131
+msgid "Text Translations"
+msgstr ""
+
+#: parts/components-enqueue.php:132
+msgid "Original String"
+msgstr ""
+
+#: parts/components-enqueue.php:133
+msgid "Custom Value For All Languages"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+msgid "Translation For Currently Selected Language"
+msgstr ""
+
+#: parts/components-enqueue.php:136
+#, fuzzy
+msgid "Update"
+msgstr "ປັບປຸງໃຫ້ທັນ"
+
+#: parts/components-enqueue.php:139
+msgid "Almost there! Finish signing up by activating your account."
+msgstr ""
+
+#: parts/components-enqueue.php:140
+msgid "Click the \"Activate Account\" button in the email sent to: %s"
+msgstr ""
+
+#: parts/components-enqueue.php:141
+msgid "It will look like this:"
+msgstr ""
+
+#: parts/components-enqueue.php:142
+msgid "Pending - Verification Needed"
+msgstr ""
+
+#: parts/components-enqueue.php:143
+msgid "Back to sign-up"
+msgstr ""
+
+#: parts/components-enqueue.php:144
+msgid "So sorry. Something went wrong. You can:"
+msgstr ""
+
+#: parts/components-enqueue.php:145
+msgid "Try Again"
+msgstr ""
+
+#: parts/components-enqueue.php:146 porches/generic/site/contact-us.php:20
+#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:48
+msgid "Contact Us"
+msgstr ""
+
+#: parts/components-enqueue.php:147
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
+msgstr ""
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -796,34 +852,34 @@ msgstr ""
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:68
+#: porches/generic/dt-generic-porch-strings.php:47
 #, fuzzy
 msgid "Our Vision"
 msgstr "ວິໄສທັດຂອງພວກເຮົາ"
 
-#: porches/generic/dt-generic-porch-settings.php:77
+#: porches/generic/dt-generic-porch-strings.php:56
 #, fuzzy
 msgid "We want to cover this region with continuous 24/7 prayer."
 msgstr "ພວກເຮົາຕ້ອງການທີ່ຈະກວມເອົາພາກພື້ນນີ້ດ້ວຍການອະທິຖານ 24/7 ຢ່າງຕໍ່ເນື່ອງ."
 
-#: porches/generic/dt-generic-porch-settings.php:94
+#: porches/generic/dt-generic-porch-strings.php:73
 #, fuzzy
 msgid "Extraordinary Prayer"
 msgstr "ການອະທິຖານພິເສດ"
 
-#: porches/generic/dt-generic-porch-settings.php:103
+#: porches/generic/dt-generic-porch-strings.php:82
 #, fuzzy
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
 msgstr "ທຸກໆການເຄື່ອນໄຫວສ້າງສານຸສິດໃນປະຫວັດສາດໄດ້ເກີດຂື້ນໃນສະພາບການຂອງການອະທິຖານທີ່ພິເສດ."
 
-#: porches/generic/dt-generic-porch-settings.php:120
+#: porches/generic/dt-generic-porch-strings.php:99
 #, fuzzy
 msgid "Movement Focused"
 msgstr "ສຸມໃສ່ການເຄື່ອນໄຫວ"
 
-#: porches/generic/dt-generic-porch-settings.php:129
+#: porches/generic/dt-generic-porch-strings.php:108
 #, fuzzy
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
@@ -832,39 +888,48 @@ msgstr ""
 "ເຂົ້າຮ່ວມກັບພວກເຮົາໃນການຮ້ອງຂໍ, ສະແຫວງຫາ, "
 "ແລະເຄາະສໍາລັບການສາຍນ້ໍຂອງສານຸສິດແລະສາດສະຫນາຈັກທີ່ຈະເຮັດໄດ້."
 
-#: porches/generic/dt-generic-porch-settings.php:146
+#: porches/generic/dt-generic-porch-strings.php:125
 #, fuzzy
 msgid "24/7 Every Day"
 msgstr "24/7 ທຸກໆມື້"
 
-#: porches/generic/dt-generic-porch-settings.php:155
+#: porches/generic/dt-generic-porch-strings.php:134
 #, fuzzy
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
 msgstr "ເລືອກເວລາ 15 ນາທີ (ຫຼືຫຼາຍກວ່ານັ້ນ!) ທີ່ເຈົ້າສາມາດອະທິຖານໃນແຕ່ລະມື້. ເຊີນຜູ້ອື່ນມາສະໝັກນຳ."
 
-#: porches/generic/dt-generic-porch-settings.php:173
-#: porches/generic/dt-generic-porch-settings.php:182
-#: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
-#, fuzzy
-msgid "Prayer Fuel"
-msgstr "ເຊື້ອໄຟອະທິຖານ"
-
-#: porches/generic/dt-generic-porch-settings.php:191
+#: porches/generic/dt-generic-porch-strings.php:170
 #, fuzzy
 msgid "Use these resources to help pray specifically each day."
 msgstr "ໃຊ້ຊັບພະຍາກອນເຫຼົ່ານີ້ເພື່ອຊ່ວຍອະທິຖານໂດຍສະເພາະໃນແຕ່ລະມື້."
 
-#: porches/generic/dt-generic-porch-settings.php:200
+#: porches/generic/dt-generic-porch-strings.php:179
 #, fuzzy
 msgid "Today's Prayer Fuel"
 msgstr "ນໍ້າມັນເຊື້ອໄຟອະທິຖານໃນມື້ນີ້"
 
-#: porches/generic/dt-generic-porch-settings.php:209
+#: porches/generic/dt-generic-porch-strings.php:188
 #, fuzzy
 msgid "All Days"
 msgstr "ມື້ທັງຫມົດ"
+
+#: porches/generic/dt-generic-porch-strings.php:197
+#, fuzzy
+msgid "Edit Prayer Fuel"
+msgstr "ເຊື້ອໄຟອະທິຖານ"
+
+#: porches/generic/dt-generic-porch-strings.php:215
+#, fuzzy
+msgid "Scheduled Prayer Fuel"
+msgstr "ເຊື້ອໄຟອະທິຖານ"
+
+#: porches/generic/dt-generic-porch-strings.php:223
+msgid ""
+"All Scheduled Prayer Fuel in all available languages. Add and edit the "
+"prayer fuel below"
+msgstr ""
 
 #: porches/generic/site/404-body.php:14
 #, fuzzy
@@ -886,126 +951,132 @@ msgstr "ກວ້າງແມ່ນເສັ້ນທາງທີ່ນໍາໄ
 msgid "Try using some of the links in the menu to get back on track."
 msgstr "ລອງໃຊ້ບາງລິ້ງໃນເມນູເພື່ອກັບມາຕິດຕາມ."
 
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
+#: porches/generic/site/archive-body.php:35
+#: porches/generic/site/post-list-body.php:157
 msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:46
+#: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
 msgstr ""
 
-#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
-#: porches/generic/site/top-section.php:100
-#: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
+#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:48
+#, fuzzy
+msgid "Prayer Timer"
+msgstr "ເວລາທີ່ເລືອກ"
+
+#: porches/generic/site/contact-us.php:91
+msgid "Message"
+msgstr ""
+
+#: porches/generic/site/edit-post-list-body.php:120
+msgid "Day %s"
+msgstr ""
+
+#: porches/generic/site/edit-post-list-body.php:142
+#: porches/generic/site/functions.php:72
+msgid "Edit"
+msgstr ""
+
+#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/top-section.php:111
+#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "ລົງທະບຽນເພື່ອອະທິຖານ"
 
-#: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
+#: porches/generic/site/home-body.php:168 porches/generic/site/stats.php:150
 #, fuzzy
 msgid "Time Committed"
 msgstr "ເວລາສັນຍາ"
 
-#: porches/generic/site/home-body.php:186
+#: porches/generic/site/home-body.php:184
 #, fuzzy
 msgid "Prayer Warriors"
 msgstr "ເວລາອະທິຖານຂອງຂ້ອຍ"
 
-#: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
+#: porches/generic/site/home-body.php:199 porches/generic/site/stats.php:126
 #: porches/ramadan/site/home-body.php:192
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "ຄໍາຫມັ້ນສັນຍາການອະທິຖານຕ້ອງການ"
 
-#: porches/generic/site/home-body.php:221
-#: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:211
+#: porches/generic/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:212
 #, fuzzy
 msgid "View All"
 msgstr "ເບິ່ງທັງຫມົດ"
 
-#: porches/generic/site/post-list-body.php:134
+#: porches/generic/site/post-list-body.php:144
 #, fuzzy
 msgid "Read"
 msgstr "ອ່ານ"
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:159
 msgid "No prayer fuel found"
 msgstr ""
 
-#: porches/generic/site/stats.php:21
-#, fuzzy
-msgid "Campaign Stats"
-msgstr "ສະຖິຕິແຄມເປນ"
-
-#: porches/generic/site/stats.php:146
-#, fuzzy
-msgctxt "Thank you for joining us in prayer for the French in France."
-msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການເຂົ້າຮ່ວມກັບພວກເຮົາໃນການອະທິຖານສໍາລັບ %1$s ໃນ %2$s."
-
-#: porches/generic/site/stats.php:197
+#: porches/generic/site/stats.php:134
 #, fuzzy
 msgid "Percentage Covered"
 msgstr "ເປີເຊັນກວມເອົາ"
 
-#: porches/generic/site/stats.php:223
+#: porches/generic/site/stats.php:160
 msgid "Time Prayed in Groups"
 msgstr ""
 
-#: porches/generic/site/stats.php:233
+#: porches/generic/site/stats.php:170
 #, fuzzy
 msgid "Number of People who Prayed"
 msgstr "ຈໍານວນຄົນທີ່ອະທິຖານ"
 
-#: porches/generic/site/stats.php:266
+#: porches/generic/site/stats.php:203
 #, fuzzy
 msgid "Share with us your Prayer Stories"
 msgstr "ແບ່ງປັນເລື່ອງການອະທິຖານຂອງເຈົ້າກັບພວກເຮົາ"
 
-#: porches/generic/site/stats.php:280
+#: porches/generic/site/stats.php:217
 #, fuzzy
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
-"etc)"
+"etc.)"
 msgstr ""
 "ແບ່ງປັນກັບພວກເຮົາກ່ຽວກັບເວລາອະທິຖານຂອງທ່ານ (ເຊັ່ນ: ປະຈັກພະຍານ, ຄວາມເຂົ້າໃຈ, ພອນ, ແລະອື່ນໆ)"
 
-#: porches/generic/site/stats.php:327
+#: porches/generic/site/stats.php:285
 msgid "Global Ramadan Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:334
+#: porches/generic/site/stats.php:292
 #, fuzzy
 msgid "Total Prayer Campaigns"
 msgstr "ກຳລັງໂຫຼດຂໍ້ມູນການໂຄສະນາການອະທິຖານ..."
 
-#: porches/generic/site/stats.php:342
+#: porches/generic/site/stats.php:300
 #, fuzzy
 msgid "Countries Prayed For"
 msgstr "ຊົ່ວໂມງຂອງການອະທິຖານ"
 
-#: porches/generic/site/stats.php:350
+#: porches/generic/site/stats.php:308
 msgid "Intercessors"
 msgstr ""
 
-#: porches/generic/site/stats.php:358
+#: porches/generic/site/stats.php:316
 #, fuzzy
 msgid "Time Prayed"
 msgstr "ເພີ່ມເວລາ"
 
-#: porches/generic/site/stats.php:366
+#: porches/generic/site/stats.php:324
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:389
+#: porches/generic/site/stats.php:347
 #, fuzzy
 msgid "More Prayer Opportunities"
 msgstr "ໂອກາດການອະທິຖານເພີ່ມເຕີມ"
 
-#: porches/generic/site/stats.php:393
+#: porches/generic/site/stats.php:351
 #, fuzzy
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
@@ -1017,21 +1088,6 @@ msgstr "ເຈົ້າຢາກໄດ້ຍິນກ່ຽວກັບຄວາ
 #, fuzzy
 msgid "Sign Up"
 msgstr "ລົງທະບຽນ"
-
-#: porches/ongoing/site/home-body.php:159
-#, fuzzy
-msgid "Month"
-msgstr "ເດືອນ"
-
-#: porches/ongoing/site/home-body.php:176
-#, fuzzy
-msgid "Hours"
-msgstr "ຊົ່ວໂມງ"
-
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "ຊົ່ວໂມງທີ່ຍັງເຫຼືອ"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
@@ -1076,25 +1132,20 @@ msgstr ""
 "(ປະມານຫນຶ່ງສ່ວນສິບຂອງຄວາມຍາວຂອງຄໍາພີໄບເບິນ). "
 "ການສະແຫວງຫາຄວາມຈິງໃຈນີ້ເຮັດໃຫ້ມັນເປັນເວລາຍຸດທະສາດສໍາລັບພວກເຮົາທີ່ຈະອະທິຖານເພື່ອເຂົາເຈົ້າ."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:117
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramadan ເລີ່ມຕົ້ນ ..."
 
-#: porches/ramadan/site/home-body.php:104
+#: porches/ramadan/site/home-body.php:118
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramadan ສິ້ນສຸດ ..."
 
-#: porches/ramadan/site/home-body.php:105
+#: porches/ramadan/site/home-body.php:119
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramadan ແມ່ນ ສຳ ເລັດແລ້ວ"
-
-#: porches/ramadan/site/home-body.php:138
-#, fuzzy
-msgid "here"
-msgstr "ທີ່ນີ້"
 
 #: porches/ramadan/site/home-body.php:166
 #, fuzzy
@@ -1121,6 +1172,45 @@ msgstr "ເວລາອະທິຖານ: %s ນາທີ"
 #, fuzzy
 msgid "Now praying..."
 msgstr "ບັດນີ້ອະທິຖານ..."
+
+#, fuzzy
+#~ msgid ""
+#~ "Thank you for joining us in strategic prayer for a disciple making "
+#~ "movement!"
+#~ msgstr "ການອະທິຖານຍຸດທະສາດສໍາລັບການເຄື່ອນໄຫວສ້າງສານຸສິດ"
+
+#, fuzzy
+#~ msgid "Campaign Stats"
+#~ msgstr "ສະຖິຕິແຄມເປນ"
+
+#, fuzzy
+#~ msgctxt "Thank you for joining us in prayer for the French in France."
+#~ msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+#~ msgstr "ຂໍຂອບໃຈທ່ານສໍາລັບການເຂົ້າຮ່ວມກັບພວກເຮົາໃນການອະທິຖານສໍາລັບ %1$s ໃນ %2$s."
+
+#, fuzzy
+#~ msgid "Month"
+#~ msgstr "ເດືອນ"
+
+#, fuzzy
+#~ msgid "Hours"
+#~ msgstr "ຊົ່ວໂມງ"
+
+#, fuzzy
+#~ msgid "Hours Remaining"
+#~ msgstr "ຊົ່ວໂມງທີ່ຍັງເຫຼືອ"
+
+#, fuzzy
+#~ msgid "here"
+#~ msgstr "ທີ່ນີ້"
+
+#, fuzzy
+#~ msgid "Choose a timezone"
+#~ msgstr "ປ່ຽນເຂດເວລາຂອງທ່ານ:"
+
+#, fuzzy
+#~ msgid "Confirmation Code"
+#~ msgstr "ຢືນຢັນເວລາ"
 
 #, fuzzy
 #~ msgid "More Hours to be covered"
@@ -1399,10 +1489,6 @@ msgstr "ບັດນີ້ອະທິຖານ..."
 #, fuzzy
 #~ msgid "Content to be added to the reminder email"
 #~ msgstr "ເນື້ອຫາທີ່ຈະຖືກເພີ່ມໃສ່ອີເມວເຕືອນ"
-
-#, fuzzy
-#~ msgid "Update"
-#~ msgstr "ປັບປຸງໃຫ້ທັນ"
 
 #, fuzzy
 #~ msgid "Yes"

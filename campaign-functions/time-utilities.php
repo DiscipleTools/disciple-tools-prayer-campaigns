@@ -190,4 +190,21 @@ class DT_Time_Utilities {
         return $string;
     }
 
+    public static function display_hour_localized( $date_time, $locale = null, $time_zone = null ){
+        if ( !$locale ){
+            $locale = get_locale();
+        }
+        $formatter = new IntlDateFormatter( $locale, IntlDateFormatter::NONE, IntlDateFormatter::SHORT, $time_zone );
+
+        return $formatter->format( $date_time );
+    }
+    public static function display_date_localized( $date_time, $locale = null, $time_zone = null ){
+        if ( !$locale ){
+            $locale = get_locale();
+        }
+        $formatter = new IntlDateFormatter( $locale, IntlDateFormatter::LONG, IntlDateFormatter::NONE, $time_zone );
+
+        return $formatter->format( $date_time );
+    }
+
 }

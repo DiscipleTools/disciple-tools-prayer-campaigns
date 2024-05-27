@@ -54,63 +54,58 @@ if ( ! empty( $porch_fields['google_analytics']['value'] ) ) { ?>
 
     }
     .fixed-top.menu-bg .logo {
-        color: <?php echo esc_attr( PORCH_COLOR_SCHEME_HEX ) ?> !important;
+        color: <?php echo esc_attr( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ) ?> !important;
     }
-    a {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>
-    }
-    a:hover {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
-    }
+
     .btn-common {
-        border-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
-        background-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        border-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
+        background-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .btn-common:hover {
-        border-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        border-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .btn-border:hover {
-        background-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        background-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .section-header .section-title span {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .section-header .lines {
-        border-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        border-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .section-header .lines:before {
-        background: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        background: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .overlay {
-        background: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        background: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.active::before, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .open > .nav-link {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:hover:before {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .navbar-light .navbar-nav .nav-link:before {
-        background: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        background: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .menu-wrap .navbar-nav li .active,
     .menu-wrap .navbar-nav li .active::before {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .menu-wrap a:hover, .menu-wrap a:focus {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .icon-list a::before {
-        background: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        background: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .item-boxes .icon {
-        border-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        border-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .item-boxes .icon i {
-        color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
     .back-to-top i {
-        background-color: <?php echo esc_html( PORCH_COLOR_SCHEME_HEX ); ?>;
+        background-color: <?php echo esc_html( CAMPAIGN_LANDING_COLOR_SCHEME_HEX ); ?>;
     }
 </style>

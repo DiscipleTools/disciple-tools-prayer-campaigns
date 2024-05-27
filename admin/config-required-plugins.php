@@ -42,8 +42,8 @@ add_action( 'tgmpa_register', function() {
         [
             'name' => 'Wordpress Importer',
             'slug' => 'wordpress-importer',
-            'required' => true,
-            'version' => '0.7',
+            'required' => false,
+            'version' => '0.8',
         ]
     ];
 
@@ -58,7 +58,7 @@ add_action( 'tgmpa_register', function() {
         'menu'         => 'tgmpa-install-plugins', // Menu slug.
         'parent_slug'  => 'plugins.php',            // Parent menu slug.
         'capability'   => 'manage_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
-        'has_notices'  => true,                    // Show admin notices or not.
+        'has_notices'  => false,                    // Show admin notices or not.
         'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
         'dismiss_msg'  => 'These are recommended plugins to complement your Disciple.Tools system.',                      // If 'dismissable' is false, this message will be output at top of nag.
         'is_automatic' => true,                   // Automatically activate plugins after installation or not.

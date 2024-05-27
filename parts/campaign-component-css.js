@@ -13,6 +13,11 @@ export const campaignStyles = css`
   .cp-center {
     text-align: center;
   }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   strong, b {
     font-weight: bold;
   }
@@ -41,7 +46,7 @@ export const campaignStyles = css`
     font-size: 1rem;
     line-height: 1rem;
     color: black;
-    border: 1px solid var(--cp-color, 'dodgerblue');
+    border: 1px solid var(--cp-color, dodgerblue);
     border-radius: 5px;
   }
   label {
@@ -75,6 +80,12 @@ export const campaignStyles = css`
     background-color: var( --cp-color, dodgerblue );
     line-height: 1;
   }
+  .button-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: .5em;
+  }  
   button:hover {
     background-color: transparent;
     border-color: var( --cp-color, dodgerblue );
@@ -134,9 +145,13 @@ export const campaignStyles = css`
     justify-content: space-between;
     align-items: flex-end;
     margin-top: 1em;
+    column-gap: .5em;
   }
   .button-spinner {
     filter: invert(1);
+  }
+  button:hover .button-spinner {
+    filter: invert(0);    
   }
 
   label {
