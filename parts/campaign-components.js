@@ -892,6 +892,9 @@ export class cpTimes extends LitElement {
           opacity: 1;
           background-color: var(--cp-color);
       }
+      .time.selected-time img {
+          filter: invert(1);
+      }
       .time.selected-time .empty-time {
         opacity: 1;
       }
@@ -1044,14 +1047,15 @@ export class cpTimes extends LitElement {
       let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_user_data.timezone} )
 
       let progress = s.subscribers ? 100 : 0;
+      const selected = this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60));
       times.push({
         key: s.key,
         hour: time.toLocaleString({ hour: '2-digit' }),
         minute: time.toFormat('mm'),
         hour_minute: time.toFormat('hh:mm'),
         progress: progress,
-        selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
-        coverage_count: s.subscribers,
+        selected: selected,
+        coverage_count: s.subscribers + (selected ? 1 : 0),
       })
     })
     return times;
@@ -1099,6 +1103,8 @@ export class cpTimes extends LitElement {
       }
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
+      let coverage_count = progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0
+      coverage_count += selected ? 1 : 0
 
       options.push({
         key: key,
@@ -1108,7 +1114,7 @@ export class cpTimes extends LitElement {
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
         selected,
-        coverage_count: progress >= 100 ? Math.min(...(window.campaign_scripts.time_slot_coverage?.[time_formatted] || [0])) : 0,
+        coverage_count: coverage_count
       })
       key += window.campaign_data.slot_length * 60
     }
@@ -1147,6 +1153,7 @@ export class cpTimes extends LitElement {
         coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
+      const selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60));
       options.push({
         key: key,
         time_formatted: time_formatted,
@@ -1154,8 +1161,8 @@ export class cpTimes extends LitElement {
         hour: time.toLocaleString({ hour: '2-digit' }),
         hour_minute: time.toFormat('hh:mm'),
         progress,
-        coverage_count: progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0,
-        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60)),
+        coverage_count: ( progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0 ) + (selected ? 1 : 0),
+        selected: selected
       })
       key += this.slot_length * 60
     }

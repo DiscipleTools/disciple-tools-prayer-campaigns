@@ -143,6 +143,7 @@ export class CampaignSignUp extends LitElement {
     already_signed_up: {type: Boolean},
     _view: {type: String, state: true},
     _loading: {type: Boolean, state: true},
+    selected_times: {type: Array},
   }
 
   constructor() {
@@ -351,8 +352,16 @@ export class CampaignSignUp extends LitElement {
     if ( recurring_signup ){
       this.recurring_signups = [...this.recurring_signups, recurring_signup]
       window.campaign_user_data.recurring_signups = this.recurring_signups;
-      this.requestUpdate()
       this.show_toast()
+      this.requestUpdate()
+    } else {
+      //remove time from selected
+      let index = this.recurring_signups.findIndex(k=>k.time===selected_time)
+      if ( index > -1 ){
+        this.recurring_signups.splice(index,1)
+        this.show_toast(translate('Prayer Time Removed'), 'warn')
+        this.requestUpdate()
+      }
     }
   }
   day_selected(selected_day){
