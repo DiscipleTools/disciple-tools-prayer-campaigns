@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
+$total_days = DT_Campaign_Fuel::total_days_in_campaign();
 
 $formatter = new IntlDateFormatter(
     $lang,  // the locale to use, e.g. 'en_GB'
@@ -33,6 +34,12 @@ $meta_query = [
         'key' => 'day',
         'value' => $todays_day_in_campaign > 0 ? $todays_day_in_campaign : 0,
         'compare' => $todays_day_in_campaign > 0 ? '<=' : '>',
+        'type' => 'numeric',
+    ],
+    'total_days_clause' => [
+        'key' => 'day',
+        'value' => $total_days,
+        'compare' => '<=',
         'type' => 'numeric',
     ],
     'campaign_clause' =>[
