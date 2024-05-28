@@ -979,12 +979,12 @@ export class cpTimes extends LitElement {
               <span class="time">
                   :15
               </span>
-              <span>${translate('Empty time slot')}</span>
+              <span>${translate('No one committed')}</span>
               <span class="time">
                   2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
               </span>
               <span>
-                  ${translate('Fully covered twice' )}
+                  ${translate('Number of people committed' )}
               </span>
           </div>
 
