@@ -843,45 +843,26 @@ export class cpTimes extends LitElement {
           grid-gap: 0.3rem 1rem;
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       }
-      .time-column .time {
-          background-color: white;
-          justify-content: center;
-      }
       .prayer-hour {
         font-size: 0.8rem;
         font-weight: bold;
         white-space: nowrap;
       }
-
-
-      progress-ring {
-        height: 20px;
-        width: 20px;
+      .grid-cell {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 0.1rem;
       }
       .time {
         background-color: #4676fa1a;
-        font-size: 0.8rem;
         border-radius: 5px;
-        display: flex;
-        justify-content: center;
         cursor: pointer;
-        padding: 0.1rem;
-        text-align: center;
       }
       .empty-time {
           opacity: .8;
           font-size:.8rem;
-      }
-
-      .time:hover {
-        background-color: var(--cp-color);
-        opacity: 0.8;
-        color: #fff;
-      }
-      .time:hover .empty-time{
-        background-color: var(--cp-color);
-        opacity: 1;
-        color: #fff;
       }
       .time[disabled] {
         opacity: 0.3;
@@ -922,6 +903,13 @@ export class cpTimes extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      @media (min-width: 640px) {
+          .time:hover {
+              background-color: var(--cp-color);
+              opacity: 0.8;
+              color: #fff;
+          }
       }
     `
   ]
@@ -992,7 +980,7 @@ export class cpTimes extends LitElement {
           <div class="times-section">
             <div class="section-column time-column">
               <div>&nbsp;</div>
-               ${map(range(time_slots),i=>html`<div class="time">${this.times[i].minute}</div>`)} 
+               ${map(range(time_slots),i=>html`<div class="grid-cell">${this.times[i].minute}</div>`)} 
             </div>
             
             ${map(range(6),i => {
@@ -1017,7 +1005,7 @@ export class cpTimes extends LitElement {
                       // } else if ( false && time.progress < 100 ) {
                       //     html2 = html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>`
                       return html`
-                      <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
+                      <div class="grid-cell time ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
                            @click="${(e)=>this.time_selected(e,time.key)}"
                            ?disabled="${this.frequency === 'pick' && time.key < now}">
                           ${html2}
