@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-20T15:20:18+00:00\n"
+"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -996,7 +996,7 @@ msgstr ""
 "русло."
 
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:157
+#: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
 msgstr "Содержание начнется через %s дней"
 
@@ -1050,11 +1050,11 @@ msgstr "Нужда в молитвенном посвящении"
 msgid "View All"
 msgstr "Посмотреть все"
 
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/post-list-body.php:151
 msgid "Read"
 msgstr "Прочитать"
 
-#: porches/generic/site/post-list-body.php:159
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr ""
 
