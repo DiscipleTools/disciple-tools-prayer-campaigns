@@ -99,7 +99,7 @@ window.campaign_scripts = {
     let days = [];
     let now = parseInt( new Date().getTime() / 1000 );
     if (!end){
-      end = Math.max(now, start) + 365 * day_in_seconds;
+      end = Math.max(now, start) + 90 * day_in_seconds;
     }
 
     if ( !custom_timezone ){
@@ -160,7 +160,7 @@ window.campaign_scripts = {
         })
 
 
-        if ( time_iterator > now || time_iterator < end ){
+        if ( time_iterator > now && time_iterator < end ){
           if (!window.campaign_scripts.time_label_counts[time_formatted]) {
             window.campaign_scripts.time_label_counts[time_formatted] = 0
           }
