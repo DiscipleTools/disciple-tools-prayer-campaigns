@@ -895,9 +895,11 @@ export class cpTimes extends LitElement {
         margin-bottom: 0.5rem;
       }
       .legend-row span {
-        padding: 0.3rem 0.5rem;
         display: flex;
         align-items: center;
+      }
+      .legend-row span.time {
+        padding: 0.3rem 0.5rem;
       }
       .center-content {
         display: flex;
@@ -965,14 +967,14 @@ export class cpTimes extends LitElement {
       <div class="times-container">
           <div class="legend-row">
               <span class="time">
-                  :15
+                  06:15
               </span>
-              <span>${translate('No one committed')}</span>
+              <span>${translate('Time not covered')}</span>
               <span class="time">
                   2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
               </span>
               <span>
-                  ${translate('Number of people committed' )}
+                  ${translate('# of people covering this time' )}
               </span>
           </div>
 

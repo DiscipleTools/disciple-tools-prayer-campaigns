@@ -126,8 +126,6 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
                     'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
-                    'Fully covered twice' => __( 'Fully covered twice', 'disciple-tools-prayer-campaigns' ),
-                    'Empty time slot' => __( 'Empty time slot', 'disciple-tools-prayer-campaigns' ),
                     'modals' => [
                         'edit' => [
                             'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
@@ -147,6 +145,8 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Try Again' => __( 'Try Again', 'disciple-tools-prayer-campaigns' ),
                     'Contact Us' => __( 'Contact Us', 'disciple-tools-prayer-campaigns' ),
                     'Please check your email to activate your account before adding more prayer times.' => __( 'Please check your email to activate your account before adding more prayer times.', 'disciple-tools-prayer-campaigns' ),
+                    'Time not covered' => __( 'Time not covered', 'disciple-tools-prayer-campaigns' ),
+                    '# of people covering this time' => __( '# of people covering this time', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );
