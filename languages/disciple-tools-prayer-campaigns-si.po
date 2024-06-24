@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-20T15:20:18+00:00\n"
+"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Sinhala <https://translate.disciple.tools/projects/disciple-"
@@ -958,7 +958,7 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "නැවත මාර්ගයට යාමට මෙනුවේ ඇති සබැඳි කිහිපයක් භාවිතා කිරීමට උත්සාහ කරන්න."
 
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:157
+#: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
 msgstr ""
 
@@ -1014,12 +1014,12 @@ msgstr "යාඥා කැපවීම් අවශ්‍යයි"
 msgid "View All"
 msgstr "සියල්ල බලන්න"
 
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/post-list-body.php:151
 #, fuzzy
 msgid "Read"
 msgstr "කියවන්න"
 
-#: porches/generic/site/post-list-body.php:159
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr ""
 

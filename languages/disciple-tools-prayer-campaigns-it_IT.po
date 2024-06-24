@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-20T15:20:18+00:00\n"
+"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
 "PO-Revision-Date: 2024-04-22 18:48+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
@@ -893,7 +893,7 @@ msgstr ""
 "Prova a utilizzare alcuni dei link nel menu per tornare sulla giusta via."
 
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:157
+#: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
 msgstr "Il contenuto per la preghiera inizierà tra %s giorni"
 
@@ -945,11 +945,11 @@ msgstr "Intervalli di preghiera ancora necessari"
 msgid "View All"
 msgstr "Mostra tutto"
 
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/post-list-body.php:151
 msgid "Read"
 msgstr "Leggi"
 
-#: porches/generic/site/post-list-body.php:159
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr "Nessun propellente di preghiera ritrovato"
 
