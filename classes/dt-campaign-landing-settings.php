@@ -256,7 +256,8 @@ class DT_Campaign_Landing_Settings {
         //header_background_url
         $fields['header_background_url'] = [
             'name' => __( 'Header Background URL', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'text',
+            'default' => DT_Generic_Porch::assets_dir() . 'img/stencil-header.png',
+            'type' => 'icon',
             'tile' => 'campaign_landing',
             'description' => __( 'The URL that will be used as the background image for the header on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
         ];
