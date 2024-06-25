@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-20T15:20:18+00:00\n"
+"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:00+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -884,7 +884,7 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "Coba gunakan beberapa tautan di menu untuk kembali ke menu semula."
 
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:157
+#: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
 msgstr "Konten akan dimulai dalam %s hari"
 
@@ -936,11 +936,11 @@ msgstr "Komitmen Doa Diperlukan"
 msgid "View All"
 msgstr "Tampilkan Keseluruhan"
 
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/post-list-body.php:151
 msgid "Read"
 msgstr "Baca"
 
-#: porches/generic/site/post-list-body.php:159
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr "Tidak ada bahan doa yang ditemukan"
 

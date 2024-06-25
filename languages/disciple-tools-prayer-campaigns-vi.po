@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-20T15:20:18+00:00\n"
+"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:18+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
@@ -959,7 +959,7 @@ msgid "Try using some of the links in the menu to get back on track."
 msgstr "Hãy thử sử dụng một số liên kết trong menu để trở lại đúng hướng."
 
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:157
+#: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
 msgstr ""
 
@@ -1015,12 +1015,12 @@ msgstr "Cần có những cam kết cầu nguyện"
 msgid "View All"
 msgstr "Xem tất cả"
 
-#: porches/generic/site/post-list-body.php:144
+#: porches/generic/site/post-list-body.php:151
 #, fuzzy
 msgid "Read"
 msgstr "Đọc"
 
-#: porches/generic/site/post-list-body.php:159
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr ""
 
