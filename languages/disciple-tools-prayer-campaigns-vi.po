@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
+"POT-Creation-Date: 2024-06-25T13:33:39+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:18+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
@@ -840,6 +840,15 @@ msgid ""
 "times."
 msgstr ""
 
+#: parts/components-enqueue.php:148
+#, fuzzy
+msgid "Time not covered"
+msgstr "đề cập"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr ""
@@ -1253,11 +1262,6 @@ msgstr "Bây giờ đang cầu nguyện ..."
 #, fuzzy
 #~ msgid "Extend for 3 months"
 #~ msgstr "Gia hạn thêm 3 tháng"
-
-#, fuzzy
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "đề cập"
 
 #, fuzzy
 #~ msgid "Pray this time"

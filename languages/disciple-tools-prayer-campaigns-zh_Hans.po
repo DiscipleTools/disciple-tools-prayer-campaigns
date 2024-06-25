@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
+"POT-Creation-Date: 2024-06-25T13:33:39+00:00\n"
 "PO-Revision-Date: 2024-06-24 21:00+0000\n"
 "Last-Translator: may plum <mayflower2465@proton.me>\n"
 "Language-Team: Chinese (Simplified) <https://translate.disciple.tools/"
@@ -164,14 +164,16 @@ msgstr "感谢您加入我们为 %2$s 中的 %1$s 祈祷。"
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
-msgstr "我们只有在永恒中才能知道透过我们的祷告祈求所带来的影响。不管怎样，我们从神的"
+msgstr ""
+"我们只有在永恒中才能知道透过我们的祷告祈求所带来的影响。不管怎样，我们从神的"
 "话语中可以知道：祷告是大有能力且有果效的（雅各书5章16节）。"
 
 #: campaign-functions/send-email-utility.php:482
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
-msgstr "点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
+msgstr ""
+"点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
 "语和感想"
 
 #: campaign-functions/send-email-utility.php:484
@@ -179,7 +181,8 @@ msgid ""
 "Finally, the folks at Pray4Movement built this prayer tool. You can make "
 "sure you’re signed up to receive news about future prayer opportunities on "
 "the Stats page."
-msgstr "最后，是Pray4Movement的工人开发了这个祷告软件工具。您可在“统计”页面上去确认您"
+msgstr ""
+"最后，是Pray4Movement的工人开发了这个祷告软件工具。您可在“统计”页面上去确认您"
 "是否已注册接收关于未来祈祷机会的新消息。"
 
 #: campaign-functions/send-email-utility.php:486
@@ -206,7 +209,8 @@ msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
-msgstr "点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
+msgstr ""
+"点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
 "语和感想"
 
 #: campaign-functions/send-email-utility.php:514
@@ -216,8 +220,8 @@ msgid ""
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 "最后，斋月24/7祷告的统计页面下方也有关于注册部分的内容，同时你也需确认是否登"
-"记了接收Pray4Movement祷告软件工具创健者所发送关于将来成为祷告者机会的消息通知"
-"。"
+"记了接收Pray4Movement祷告软件工具创健者所发送关于将来成为祷告者机会的消息通"
+"知。"
 
 #: campaign-functions/send-email-utility.php:516
 msgid "See Ramadan 24/7 Prayer Stats"
@@ -690,8 +694,9 @@ msgstr "更新"
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
-msgstr "接收Pray4Movement的最新消息和机会，还有偶尔来自GospelAmbition."
-"org网页的消息推送。"
+msgstr ""
+"接收Pray4Movement的最新消息和机会，还有偶尔来自GospelAmbition.org网页的消息推"
+"送。"
 
 #: parts/components-enqueue.php:131
 msgid "Text Translations"
@@ -751,6 +756,15 @@ msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr "请查阅您的电子邮件来激活您的账号，然后再添加更多的祷告时间。"
+
+#: parts/components-enqueue.php:148
+#, fuzzy
+msgid "Time not covered"
+msgstr "覆盖"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr ""
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -963,7 +977,8 @@ msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
 "Pray4Movement.org and receive occasional communication from GospelAmbition."
 "org."
-msgstr "通过Pray4Movement.org 注册了解其他的祈祷工作和机会，并偶尔接收GospelAmbition."
+msgstr ""
+"通过Pray4Movement.org 注册了解其他的祈祷工作和机会，并偶尔接收GospelAmbition."
 "org.发送给您的信息。"
 
 #: porches/generic/site/top-section.php:31
@@ -1106,11 +1121,6 @@ msgstr "现在祈祷..."
 #, fuzzy
 #~ msgid "Extend for 3 months"
 #~ msgstr "延长3个月"
-
-#, fuzzy
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "覆盖"
 
 #, fuzzy
 #~ msgid "Pray this time"

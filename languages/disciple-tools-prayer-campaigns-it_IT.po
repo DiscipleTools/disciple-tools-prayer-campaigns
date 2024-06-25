@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
+"POT-Creation-Date: 2024-06-25T13:33:39+00:00\n"
 "PO-Revision-Date: 2024-04-22 18:48+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
@@ -781,6 +781,17 @@ msgstr ""
 "Controlla la tua casella di posta elettronica per attivare il tuo profilo "
 "prima di aggiungere altri intervalli di preghiera."
 
+#: parts/components-enqueue.php:148
+#, fuzzy
+#| msgctxt "Jun, Jul, Aug covered"
+#| msgid "covered"
+msgid "Time not covered"
+msgstr "coperto"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "State pregando in gruppo?"
@@ -1177,13 +1188,6 @@ msgstr "Sto pregando ora..."
 
 #~ msgid "Extend for 3 months"
 #~ msgstr "Prolunga per 3 mesi"
-
-#, fuzzy
-#~| msgctxt "Jun, Jul, Aug covered"
-#~| msgid "covered"
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "coperto"
 
 #, fuzzy
 #~| msgid "Prayer Time"
