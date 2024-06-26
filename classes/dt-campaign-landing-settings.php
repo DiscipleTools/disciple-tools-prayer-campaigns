@@ -268,7 +268,7 @@ class DT_Campaign_Landing_Settings {
         ];
         $fields['logo_url'] = [
             'name' => __( 'Custom Logo Image', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'text',
+            'type' => 'icon',
             'tile' => 'campaign_landing',
             'description' => __( 'The logo that will be used as the logo for the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
             'settings_section' => 'Hero',
