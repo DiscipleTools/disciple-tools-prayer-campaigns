@@ -273,12 +273,12 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                     <?php if ( !empty( $field['default'] ) ) : ?>
-                                        <h3>Default icon:</h3>
+                                        <h3>Default image:</h3>
                                         <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
                                         <br><br>
                                     <?php endif; ?>
                                     <?php if ( !empty( $campaign[$key] ?? '' ) ): ?>
-                                        <h3>Custom icon:</h3>
+                                        <h3>Custom image:</h3>
                                         <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $campaign[$key] ); ?>" />
                                         <br><br>
                                     <?php endif; ?>
