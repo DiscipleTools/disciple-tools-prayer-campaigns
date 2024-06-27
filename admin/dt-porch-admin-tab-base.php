@@ -273,16 +273,19 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                     <?php if ( !empty( $field['default'] ) ) : ?>
-                                        <h3>Default icon:</h3>
+                                        <h3>Default image:</h3>
                                         <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
                                         <br><br>
                                     <?php endif; ?>
-                                    <h3>Custom icon:</h3>
                                     <?php if ( !empty( $campaign[$key] ?? '' ) ): ?>
+                                        <h3>Custom image:</h3>
                                         <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $campaign[$key] ); ?>" />
+                                        <br><br>
                                     <?php endif; ?>
                                     <input style="width: 100%" type="text" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>" placeholder="<?php echo esc_html( $field['description'] ?? $field['name'] ); ?>"/>
-
+                                    <br><br>
+                                    <button class="button" name="list[<?php echo esc_html( $key ); ?>]"><?php esc_html_e( 'Default', 'disciple_tools' ); ?></button>
+                                    <button class="button file-upload-display-uploader" data-form="<?php echo esc_html( $section_name ) ?>" data-icon-input="list[<?php echo esc_html( $key ); ?>]" style="margin-left:1%"><?php esc_html_e( 'Upload', 'disciple_tools' ); ?></button>
                                 </td>
                                 <td style="vertical-align: middle;">
                                     <?php if ( isset( $field['translations'] ) ){
