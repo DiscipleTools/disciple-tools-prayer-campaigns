@@ -80,6 +80,7 @@ add_action( 'after_setup_theme', function() : void {
     require_once __DIR__ . '/porches/interfaces/dt-porch-loader-interface.php';
     require_once __DIR__ . '/porches/generic/dt-generic-porch-loader.php';
     require_once __DIR__ . '/porches/ramadan/dt-ramadan-porch-loader.php';
+    require_once( 'campaign-functions/utils.php' );
 } );
 
 /**
@@ -113,7 +114,7 @@ class DT_Prayer_Campaigns {
         $this->plugin_dir_url = trailingslashit( plugin_dir_url( __FILE__ ) );
         $this->define_porch_constants();
 
-        require_once( 'campaign-functions/utils.php' );
+
         require_once( 'campaign-functions/time-utilities.php' );
         require_once( 'campaign-functions/send-email-utility.php' );
         require_once( 'campaign-functions/cron-schedule.php' );

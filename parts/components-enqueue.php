@@ -31,7 +31,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                 'rest_url' => get_rest_url(),
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
                 'home' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ) : home_url(),
-                'campaign_root' => DT_Campaign_Landing_Settings::get_landing_root_url(),
+                'campaign_root' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_root_url() : '',
                 'plugin_url' => $plugin_dir_url,
                 'dt_campaigns_is_p4m_news_enabled' => dt_campaigns_is_p4m_news_enabled(),
                 'translations' => [
