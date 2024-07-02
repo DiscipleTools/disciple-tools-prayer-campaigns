@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
-"PO-Revision-Date: 2024-06-24 21:00+0000\n"
+"POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
+"PO-Revision-Date: 2024-06-29 17:59+0000\n"
 "Last-Translator: may plum <mayflower2465@proton.me>\n"
 "Language-Team: Chinese (Simplified) <https://translate.disciple.tools/"
 "projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:73
@@ -47,7 +47,7 @@ msgstr "在你账号上可查阅更多信息"
 
 #: campaign-functions/send-email-utility.php:190
 msgid "Registered to pray with us!"
-msgstr "注册后和我们一起祈祷！"
+msgstr "注册与我们一起祈祷！"
 
 #: campaign-functions/send-email-utility.php:211
 #: campaign-functions/send-email-utility.php:301
@@ -123,7 +123,7 @@ msgstr "要继续祷告吗？"
 msgid ""
 "You are 2 weeks out from your last prayer time. Would you like to keep "
 "praying?"
-msgstr "您的最后一次祷告时间还有 2 周。你愿意继续祷告吗？"
+msgstr "距离您的上一次祷告时间已经超过 2 周了。你愿意继续祷告吗？"
 
 #: campaign-functions/send-email-utility.php:394
 msgid "Sign up for more prayer times or extend your recurring time here:"
@@ -142,7 +142,7 @@ msgstr "感谢您与我们一起祈祷！"
 #: campaign-functions/send-email-utility.php:466
 #: campaign-functions/send-email-utility.php:496
 msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "为门徒造就运动的策略性祷告"
+msgstr "为门徒造就运动的策略性祷告%s"
 
 #: campaign-functions/send-email-utility.php:468
 #: campaign-functions/send-email-utility.php:498
@@ -153,7 +153,7 @@ msgstr "为门徒造就运动的策略性祷告"
 #: campaign-functions/send-email-utility.php:473
 #: campaign-functions/send-email-utility.php:503
 msgid "Dear %s,"
-msgstr "亲爱的%s"
+msgstr "亲爱的%s，"
 
 #: campaign-functions/send-email-utility.php:476
 #: campaign-functions/send-email-utility.php:506
@@ -164,7 +164,8 @@ msgstr "感谢您加入我们为 %2$s 中的 %1$s 祈祷。"
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
-msgstr "我们只有在永恒中才能知道透过我们的祷告祈求所带来的影响。不管怎样，我们从神的"
+msgstr ""
+"我们只有在永恒中才能知道透过我们的祷告祈求所带来的影响。不管怎样，我们从神的"
 "话语中可以知道：祷告是大有能力且有果效的（雅各书5章16节）。"
 
 #: campaign-functions/send-email-utility.php:482
@@ -172,14 +173,15 @@ msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr "点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
-"语和感想"
+"语和感想。"
 
 #: campaign-functions/send-email-utility.php:484
 msgid ""
 "Finally, the folks at Pray4Movement built this prayer tool. You can make "
 "sure you’re signed up to receive news about future prayer opportunities on "
 "the Stats page."
-msgstr "最后，是Pray4Movement的工人开发了这个祷告软件工具。您可在“统计”页面上去确认您"
+msgstr ""
+"最后，是Pray4Movement的工人开发了这个祷告软件工具。您可在“统计”页面上去确认您"
 "是否已注册接收关于未来祈祷机会的新消息。"
 
 #: campaign-functions/send-email-utility.php:486
@@ -189,7 +191,7 @@ msgstr "查看祷告统计"
 #: campaign-functions/send-email-utility.php:488
 #: campaign-functions/send-email-utility.php:518
 msgid "In Christ with you,"
-msgstr "基督与你同在"
+msgstr "基督与你同在,"
 
 #: campaign-functions/send-email-utility.php:509
 msgid ""
@@ -198,8 +200,8 @@ msgid ""
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 "只有在永恒中我们才能知道在斋月期间所花上千小时为穆斯林群体祷告祈求所带来的影"
-"响。不管怎样，我们从神的话语中可以知道：祷告是大有能力且有果效的。（雅各书5章"
-"16节）"
+"响。不管怎样，我们从神的话语中可以知道：祷告是大有能力且有果效的（雅各书5章16"
+"节）。"
 
 #: campaign-functions/send-email-utility.php:512
 msgid ""
@@ -207,7 +209,7 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr "点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
-"语和感想"
+"语和感想。"
 
 #: campaign-functions/send-email-utility.php:514
 msgid ""
@@ -216,8 +218,8 @@ msgid ""
 "opportunities by Pray4Movement, the makers of this prayer tool."
 msgstr ""
 "最后，斋月24/7祷告的统计页面下方也有关于注册部分的内容，同时你也需确认是否登"
-"记了接收Pray4Movement祷告软件工具创健者所发送关于将来成为祷告者机会的消息通知"
-"。"
+"记了接收Pray4Movement祷告软件工具创健者所发送关于将来成为祷告者机会的消息通"
+"知。"
 
 #: campaign-functions/send-email-utility.php:516
 msgid "See Ramadan 24/7 Prayer Stats"
@@ -265,7 +267,7 @@ msgstr "接收祷告时间管理通知链接"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:168
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr "输入您的电子邮件地址来接收链接进入你安排的祈祷时间"
+msgstr "输入您的电子邮件地址来接收链接从而进入你已安排的祈祷时间。"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
 #: parts/components-enqueue.php:54 porches/generic/site/contact-us.php:83
@@ -482,7 +484,7 @@ msgstr "选择一个日期和时间"
 #: parts/components-enqueue.php:77
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr "%s  个月以下"
+msgstr "%s 个月以下"
 
 #: parts/components-enqueue.php:78
 msgid "%s Minutes"
@@ -502,7 +504,7 @@ msgstr "%1$s 从 %2$s 到 %3$s"
 
 #: parts/components-enqueue.php:82
 msgid "for %s minutes"
-msgstr "%1$s %2$s 分钟。"
+msgstr "为%$s 分钟"
 
 #: parts/components-enqueue.php:83
 msgid "Every %s"
@@ -534,7 +536,7 @@ msgstr "您注册成功了。"
 
 #: parts/components-enqueue.php:90
 msgid "Check your email for additional details and to manage your account."
-msgstr "查看您的电子邮件以获取更多详细信息并管理您的账号"
+msgstr "查看您的电子邮件以获取更多详细信息来管理您的账号。"
 
 #: parts/components-enqueue.php:91
 msgid "Ok"
@@ -579,7 +581,7 @@ msgstr "删除此账号和所有已安排的祈祷时间"
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
-msgstr "抱歉。有时候会有小出错，请联系我们帮助您完成，或者请您再次试试"
+msgstr "抱歉。有时候会有小出错，请联系我们帮助您完成，或者请您再次试试。"
 
 #: parts/components-enqueue.php:101
 msgid "Your account has been deleted!"
@@ -672,7 +674,7 @@ msgstr "您当前的祈祷时间是"
 
 #: parts/components-enqueue.php:124
 msgid "Select a new time:"
-msgstr "选择一个新的时间"
+msgstr "选择一个新的时间："
 
 #: parts/components-enqueue.php:125
 msgid "Select a time"
@@ -690,8 +692,9 @@ msgstr "更新"
 msgid ""
 "Receive Pray4Movement news and opportunities, and occasional communication "
 "from GospelAmbition.org."
-msgstr "接收Pray4Movement的最新消息和机会，还有偶尔来自GospelAmbition."
-"org网页的消息推送。"
+msgstr ""
+"接收Pray4Movement的最新消息和机会，还有偶尔来自GospelAmbition.org网页的消息推"
+"送。"
 
 #: parts/components-enqueue.php:131
 msgid "Text Translations"
@@ -752,6 +755,14 @@ msgid ""
 "times."
 msgstr "请查阅您的电子邮件来激活您的账号，然后再添加更多的祷告时间。"
 
+#: parts/components-enqueue.php:148
+msgid "Time not covered"
+msgstr "没有覆盖的时间点"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr "#个人已经覆盖这个时间"
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "和小组一起祷告？"
@@ -767,7 +778,7 @@ msgstr ""
 
 #: parts/components.php:40
 msgid "How many prayed today (including yourself)?"
-msgstr "今天有多少人祈祷？（包括您自己）"
+msgstr "今天有多少人祈祷（也包含您自己）？"
 
 #: porches/generic/dt-generic-porch-strings.php:47
 msgid "Our Vision"
@@ -779,7 +790,7 @@ msgstr "我们希望通过不间断24/7 的祈祷来覆盖这个地区。"
 
 #: porches/generic/dt-generic-porch-strings.php:73
 msgid "Extraordinary Prayer"
-msgstr "特别的祈祷"
+msgstr "非凡的祈祷"
 
 #: porches/generic/dt-generic-porch-strings.php:82
 msgid ""
@@ -963,7 +974,8 @@ msgid ""
 "Sign up to hear about other prayer efforts and opportunities with "
 "Pray4Movement.org and receive occasional communication from GospelAmbition."
 "org."
-msgstr "通过Pray4Movement.org 注册了解其他的祈祷工作和机会，并偶尔接收GospelAmbition."
+msgstr ""
+"通过Pray4Movement.org 注册了解其他的祈祷工作和机会，并偶尔接收GospelAmbition."
 "org.发送给您的信息。"
 
 #: porches/generic/site/top-section.php:31
@@ -998,14 +1010,14 @@ msgstr ""
 "斋月是伊斯兰教的五个要求（或支柱）之一。在其 30 天的每一天中，穆斯林都有义务"
 "从黎明到日落禁食。在此期间，他们应该避免食物、饮用液体、吸烟和性关系。\n"
 "\n"
-"     女性通常会在下午准备一顿大餐。日落时分，家人经常聚在一起开斋。传统上，这"
-"些家庭以喝水、然后是三个干枣和一顿多道菜的方式来开斋。看完新的斋月电视剧后，"
-"男人（和一些女人）会去咖啡店喝咖啡，和朋友一起抽烟直到深夜。\n"
+"女性通常会在下午准备一顿大餐。日落时分，家人经常聚在一起开斋。传统上，这些家"
+"庭以喝水、然后是三个干枣和一顿多道菜的方式来开斋。看完新的斋月电视剧后，男人"
+"（和一些女人）会去咖啡店喝咖啡，和朋友一起抽烟直到深夜。\n"
 "\n"
-"     尽管近年来许多人已经停止禁食，并且被这个月普遍存在的虚伪、犯罪率上升和粗"
-"鲁无礼所打动，但其他人在这段时间里对宗教变得更加认真。许多人参加晚间祈祷服务"
-"并进行其他仪式祈祷。有些人甚至阅读了整本古兰经（大约是圣经长度的十分之一）。"
-"这种真诚的寻求给与我们为他们祈祷的战略时机。"
+"尽管近年来许多人已经停止禁食，并且被这个月普遍存在的虚伪、犯罪率上升和粗鲁无"
+"礼所打动，但其他人在这段时间里对宗教变得更加认真。许多人参加晚间祈祷服务并进"
+"行其他仪式祈祷。有些人甚至阅读了整本古兰经（大约是圣经长度的十分之一）。这种"
+"真诚的寻求给与我们为他们祈祷的战略时机。"
 
 #: porches/ramadan/site/home-body.php:117
 msgid "Ramadan Begins ..."
@@ -1106,11 +1118,6 @@ msgstr "现在祈祷..."
 #, fuzzy
 #~ msgid "Extend for 3 months"
 #~ msgstr "延长3个月"
-
-#, fuzzy
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "覆盖"
 
 #, fuzzy
 #~ msgid "Pray this time"

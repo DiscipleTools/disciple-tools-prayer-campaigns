@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
+"POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
 "PO-Revision-Date: 2024-05-10 06:16+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
@@ -784,6 +784,17 @@ msgstr ""
 "Veuillez vérifier votre email pour activer votre compte avant d'ajouter "
 "d'autres heures de prière."
 
+#: parts/components-enqueue.php:148
+#, fuzzy
+#| msgctxt "80% covered"
+#| msgid "%s covered"
+msgid "Time not covered"
+msgstr "%s couvert"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "Priez-vous en groupe ?"
@@ -1189,10 +1200,6 @@ msgstr "Prier maintenant..."
 
 #~ msgid "Change time on all"
 #~ msgstr "Changer l’heure pour tous"
-
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "%s couvert"
 
 #~ msgctxt "on 5 days"
 #~ msgid "On %s days"

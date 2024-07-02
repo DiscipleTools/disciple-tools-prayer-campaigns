@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
-"PO-Revision-Date: 2024-03-08 14:15+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
+"PO-Revision-Date: 2024-06-28 15:59+0000\n"
+"Last-Translator: Gabo Ayala <ayala.gabo@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/es_ES/>\n"
 "Language: es_ES\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4.2\n"
+"X-Generator: Weblate 5.6.1\n"
 
 #: campaign-functions/send-email-utility.php:73
 msgid "Verify your email address"
@@ -722,19 +722,19 @@ msgstr ""
 
 #: parts/components-enqueue.php:131
 msgid "Text Translations"
-msgstr ""
+msgstr "Traducción de Textos"
 
 #: parts/components-enqueue.php:132
 msgid "Original String"
-msgstr ""
+msgstr "Texto Original"
 
 #: parts/components-enqueue.php:133
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "Valor personalizado para todos los idiomas"
 
 #: parts/components-enqueue.php:134
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "Traducción para él lenguaje seleccionado actualmente"
 
 #: parts/components-enqueue.php:136
 #, fuzzy
@@ -765,11 +765,11 @@ msgstr "Volver al registro"
 
 #: parts/components-enqueue.php:144
 msgid "So sorry. Something went wrong. You can:"
-msgstr ""
+msgstr "Lo sentimos. Algo no salió bien. Puedes:"
 
 #: parts/components-enqueue.php:145
 msgid "Try Again"
-msgstr ""
+msgstr "Inténtalo de nuevo"
 
 #: parts/components-enqueue.php:146 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:46
@@ -781,6 +781,19 @@ msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
+"Por favor revisa tu correo para activar tu cuenta antes de añadir mas "
+"tiempos de oración."
+
+#: parts/components-enqueue.php:148
+#, fuzzy
+#| msgctxt "80% covered"
+#| msgid "%s covered"
+msgid "Time not covered"
+msgstr "%s cubierto"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr "# de personas cubriendo este tiempo"
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -1185,10 +1198,6 @@ msgstr "Orando..."
 
 #~ msgid "Extend for 3 months"
 #~ msgstr "Extender por 3 meses"
-
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "%s cubierto"
 
 #~ msgctxt "on 5 days"
 #~ msgid "On %s days"
