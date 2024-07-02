@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
+"POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -885,6 +885,17 @@ msgid ""
 "times."
 msgstr ""
 
+#: parts/components-enqueue.php:148
+#, fuzzy
+#| msgctxt "80% covered"
+#| msgid "%s covered"
+msgid "Time not covered"
+msgstr "покрыто"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "Молитесь вместе с группой?"
@@ -1283,10 +1294,6 @@ msgstr "Сейчас молятся..."
 
 #~ msgid "Extend for 3 months"
 #~ msgstr "Продлить на 3 месяца"
-
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "покрыто"
 
 #, fuzzy
 #~| msgid "Prayer Time"
