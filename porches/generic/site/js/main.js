@@ -86,7 +86,7 @@
 /*
    Page Loader
    ========================================================================== */
-   $(window).load(function() {
+   $(window).on('load', function() {
     "use strict";
     $('#loader').fadeOut();
    });
@@ -94,10 +94,54 @@
 /*
   Language Selector
   ========================================================================== */
+  jQuery(document).ready(function( $ ) {
+    $('.dt-magic-link-language-selector').on('change', (e) => {
+      const val = $(e.currentTarget).val()
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('lang', val);
+      window.location.search = urlParams;
+    })
+  });
 
-$('.dt-magic-link-language-selector').change(e => {
-  const val = $(e.currentTarget).val()
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.set('lang', val);
-  window.location.search = urlParams;
-})
+/**
+ * main.js
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2014, Codrops
+ * http://www.codrops.com
+ */
+(function() {
+
+  var bodyEl = document.body,
+    content = document.querySelector( '.content-wrap' ),
+    openbtn = document.getElementById( 'open-button' ),
+    closebtn = document.getElementById( 'close-button' ),
+    isOpen = false;
+
+  function init() {
+    initEvents();
+  }
+
+  function initEvents() {
+    openbtn.addEventListener( 'click', toggleMenu );
+    if( closebtn ) {
+      closebtn.addEventListener( 'click', toggleMenu );
+    }
+  }
+
+  function toggleMenu() {
+    if( isOpen ) {
+      classie.remove( bodyEl, 'show-menu' );
+    }
+    else {
+      classie.add( bodyEl, 'show-menu' );
+    }
+    isOpen = !isOpen;
+  }
+
+  init();
+
+})();
