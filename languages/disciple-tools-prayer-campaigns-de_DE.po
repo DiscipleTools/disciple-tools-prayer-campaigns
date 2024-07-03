@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-05-30T08:58:19+00:00\n"
+"POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
 "PO-Revision-Date: 2024-03-08 14:15+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: German <https://translate.disciple.tools/projects/"
@@ -790,6 +790,17 @@ msgid ""
 "times."
 msgstr ""
 
+#: parts/components-enqueue.php:148
+#, fuzzy
+#| msgctxt "80% covered"
+#| msgid "%s covered"
+msgid "Time not covered"
+msgstr "abgedeckt"
+
+#: parts/components-enqueue.php:149
+msgid "# of people covering this time"
+msgstr ""
+
 #: parts/components.php:32
 msgid "Praying as a group?"
 msgstr "Als Gruppe beten?"
@@ -1191,10 +1202,6 @@ msgstr "Ich bete jetzt..."
 
 #~ msgid "Extend for 3 months"
 #~ msgstr "3 Monate verlängern"
-
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "abgedeckt"
 
 #~ msgctxt "on 5 days"
 #~ msgid "On %s days"
