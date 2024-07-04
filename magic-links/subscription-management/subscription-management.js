@@ -172,6 +172,8 @@ export class cpProfile extends LitElement {
     }).then((data)=>{
       this.show_spinner = false;
       if ( this.updates.language ){
+        //delete dt-magic-link-lang cookie
+        document.cookie = 'dt-magic-link-lang=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         window.location.reload()
       }
       this.updates = {}
