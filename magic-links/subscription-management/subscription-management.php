@@ -81,6 +81,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js = [];
         $allowed_js[] = 'dt_subscription_css';
         $allowed_js[] = 'toastify-js-css';
+//        $allowed_js[] = 'foundation-css'; //@chore remove
+//        $allowed_js[] = 'site-css'; //@chore remove
         return $allowed_js;
     }
 
@@ -280,7 +282,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        $title = DT_Porch_Settings::get_field_translation( 'name', $post['lang'] ?? null, $campaign_id );
         if ( is_wp_error( $campaign ) ) {
             return $campaign;
         }
@@ -291,8 +292,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $url_path = dt_get_url_path();
         $account_verified = strpos( $url_path, 'verified' ) !== false;
 
-        $display_section = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'prayer-times';
-
         ?>
         <style>
             :root {
@@ -302,6 +301,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             }
             .nav-bar {
                 display: flex;
+                justify-content: center;
                 background-color: var(--cp-color);
                 color: white;
             }
@@ -336,11 +336,10 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <!-- header -->
         <div class="nav-bar" style="">
             <div style="padding:10px">
-                <strong><?php echo esc_html( $title ); ?></strong>
+                <h1><?php echo esc_html( $post['name'] ); ?></h1>
             </div>
-            <div style="display: flex; justify-content: center; flex-grow: 1">
-                <button class="<?php echo esc_html( $display_section === 'prayer-times' ? 'active' : '' ); ?>" data-show="prayer-times"><?php esc_html_e( 'Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></button>
-                <button class="<?php echo esc_html( $display_section === 'fuel' ? 'active' : '' ); ?>" data-show="fuel"><?php esc_html_e( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?></button>
+            <div style="display: flex;">
+                <button class="active" data-show="prayer-times"><?php esc_html_e( 'Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></button>
                 <button data-show="profile"><?php esc_html_e( 'Account', 'disciple-tools-prayer-campaigns' ); ?></button>
             </div>
         </div>
@@ -352,16 +351,16 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             </div>
         <?php endif; ?>
 
-        <div id="wrapper" style="background: <?php echo esc_html( $display_section === 'fuel' ? '#eee' : 'white' ); ?>">
+        <div id="wrapper">
+            <!-- links -->
+            <div style="margin: 10px; text-align: center">
+                <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
+                <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/list"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'prayer_fuel_name' ) ) ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
+            </div>
 
-            <div id="prayer-times" class="display-panel"
-                 style="display:<?php echo esc_html( $display_section === 'prayer-times' ? 'block' : 'none' ); ?>">
-                <!-- links -->
-                <div style="margin: 10px; text-align: center">
-                    <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
-                    <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
-                    <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
-                </div>
+            <div id="prayer-times" class="display-panel" style="display: block">
 
                 <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
                     <!-- my times -->
@@ -401,120 +400,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             <div id="profile" class="display-panel" style="display: none">
                   <cp-profile></cp-profile>
             </div>
-            <div id="fuel" class="display-panel" style="display:<?php echo esc_html( $display_section === 'fuel' ? 'block ' : 'none' ); ?>; background: #eee">
-                <div style="padding:20px; max-width:1100px; margin: auto; ">
-                    <?php
-                        self::display_prayer_fuel( $campaign_id, $post['lang'] );
-                    ?>
-                </div>
-            </div>
         </div>
-        <?php
-    }
-
-    public static function display_prayer_fuel( $campaign_id, $lang ){
-        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-
-        $day = isset( $_GET['day'] ) ? sanitize_key( wp_unslash( $_GET['day'] ) ) : null;
-        if ( empty( $day ) ){
-            $frequency = isset( $campaign['prayer_fuel_frequency']['key'] ) ? $campaign['prayer_fuel_frequency']['key'] : 'daily';
-            $day = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y-m-d' ), null, $frequency );
-        }
-
-        $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
-
-        ?>
-        <!-- TODAY'S (or most recent POST Section) -->
-        <style>
-            .fuel-block {
-                background: #fff;
-                padding: 30px;
-                overflow: hidden;
-                font-size: 18px;
-            }
-            .fuel-block strong {
-                font-weight: 600;
-            }
-            .fuel-block img {
-                max-width: 100%;
-                height: auto;
-            }
-            .fuel-block h3 {
-                margin-top: 40px;
-            }
-            .fuel-block figure {
-                margin: 0 0 1rem;
-            }
-        </style>
-        <section id="contact" class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="section-header col">
-                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( _x( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ) ) ?></h2>
-                        <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <?php do_action( 'dt_campaigns_before_prayer_fuel', $today->posts, $day );
-                    foreach ( $today->posts as $item ) :
-                        dt_campaign_post( $item );
-                    endforeach;
-                    if ( empty( $today->posts ) && is_numeric( $day ) ):
-                        $most_recent = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_most_recent_post( $day );
-                        if ( (int) $day <= 0 ) : ?>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
-                                <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
-                                    <div class="blog-item-text">
-                                        <?php echo esc_html( sprintf( __( 'Content will start in %s days', 'disciple-tools-prayer-campaigns' ), - $day ) ); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php elseif ( !empty( $most_recent ) ) :
-                            foreach ( $most_recent->posts as $item ) :
-                                dt_campaign_post( $item );
-                            endforeach;
-                        else : ?>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
-                                <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
-                                    <div class="blog-item-text">
-                                        <?php echo esc_html( __( 'This campaign is finished. See Fuel below', 'disciple-tools-prayer-campaigns' ) ); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </div>
-
-                <?php if ( $today->found_posts || $most_recent ) : ?>
-
-                    <div class="row" style="margin-top: 30px">
-                        <?php dt_campaign_user_record_prayed(); ?>
-                    </div>
-
-                    <?php do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed', $today->posts, $day );
-
-
-                    if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
-                        if ( function_exists( 'show_prayer_timer' ) ) : ?>
-                            <div style="margin-top: 30px">
-                                <div class='section-header'>
-                                    <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
-                                        data-wow-delay='0.3s'><?php echo esc_html( __( 'Prayer Timer', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
-                                    <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-                                </div>
-                                <div>
-                                    <?php echo do_shortcode( "[dt_prayer_timer color='" . CAMPAIGN_LANDING_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
-                                </div>
-                            </div>
-                        <?php endif;
-                    endif; ?>
-                <?php endif; ?>
-            </div>
-        </section>
-        <!-- Contact Section End -->
-
         <?php
     }
 
