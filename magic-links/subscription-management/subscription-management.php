@@ -305,7 +305,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 background-color: var(--cp-color);
                 color: white;
             }
-            .nav-bar h1 {
+            .nav-bar h3 {
                 margin: 0;
             }
             .nav-bar button {
@@ -336,7 +336,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <!-- header -->
         <div class="nav-bar" style="">
             <div style="padding:10px">
-                <strong><?php echo esc_html( $title ); ?></strong>
+                <h3><?php echo esc_html( $title ); ?></h3>
             </div>
             <div style="display: flex; justify-content: center; flex-grow: 1">
                 <button class="<?php echo esc_html( $display_section === 'prayer-times' ? 'active' : '' ); ?>" data-show="prayer-times"><?php esc_html_e( 'Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></button>
@@ -352,61 +352,59 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             </div>
         <?php endif; ?>
 
-        <div id="wrapper" style="background: <?php echo esc_html( $display_section === 'fuel' ? '#eee' : 'white' ); ?>">
 
-            <div id="prayer-times" class="display-panel"
-                 style="display:<?php echo esc_html( $display_section === 'prayer-times' ? 'block' : 'none' ); ?>">
-                <!-- links -->
-                <div style="margin: 10px; text-align: center">
-                    <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
-                    <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
-                    <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
-                </div>
+        <div id="prayer-times" class="display-panel"
+             style="display:<?php echo esc_html( $display_section === 'prayer-times' ? 'block' : 'none' ); ?>">
+            <!-- links -->
+            <div style="margin: 10px; text-align: center">
+                <?php esc_html_e( 'Links', 'disciple-tools-prayer-campaigns' ); ?>:
+                <a href="<?php echo esc_url( $campaign_url ) ?>"><?php esc_html_e( 'Home', 'disciple-tools-prayer-campaigns' ); ?></a>
+                <a href="<?php echo esc_url( $campaign_url ) ?>/stats"> <?php esc_html_e( 'Stats', 'disciple-tools-prayer-campaigns' ); ?></a>
+            </div>
 
-                <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
-                    <!-- my times -->
-                    <div>
-                        <h2><?php esc_html_e( 'My Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                        <campaign-subscriptions></campaign-subscriptions>
-                    </div>
-
-                    <!-- calendar -->
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 10px">
-                            <h2>
-                                <?php esc_html_e( 'My Calendar', 'disciple-tools-prayer-campaigns' ); ?>
-                            </h2>
-                            <a class="clear-button" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
-                                <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
-                            </a>
-                        </div>
-                        <my-calendar>
-
-                        </my-calendar>
-                    </div>
-                </div>
-
-                <div style="background-color: white; margin: 150px 50px 50px 50px">
-                    <h2 style="text-align: center"><?php esc_html_e( 'Sign up for more prayer', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                    <campaign-sign-up
-                        already_signed_up="true"
-                    ></campaign-sign-up>
-                </div>
-
-                <!-- Extra setting depending on the campaign type -->
+            <div style="display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap-reverse; flex-direction: row">
+                <!-- my times -->
                 <div>
-                    <?php do_action( 'dt_subscription_management_extra' ) ?>
+                    <h2><?php esc_html_e( 'My Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                    <campaign-subscriptions></campaign-subscriptions>
+                </div>
+
+                <!-- calendar -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px">
+                        <h2>
+                            <?php esc_html_e( 'My Calendar', 'disciple-tools-prayer-campaigns' ); ?>
+                        </h2>
+                        <a class="clear-button" target="_blank" href="<?php echo esc_attr( self::get_download_url() ); ?>">
+                            <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
+                        </a>
+                    </div>
+                    <my-calendar>
+
+                    </my-calendar>
                 </div>
             </div>
-            <div id="profile" class="display-panel" style="display: none">
-                  <cp-profile></cp-profile>
+
+            <div style="background-color: white; margin: 150px 50px 50px 50px">
+                <h2 style="text-align: center"><?php esc_html_e( 'Sign up for more prayer', 'disciple-tools-prayer-campaigns' ); ?></h2>
+                <campaign-sign-up
+                    already_signed_up="true"
+                ></campaign-sign-up>
             </div>
-            <div id="fuel" class="display-panel" style="display:<?php echo esc_html( $display_section === 'fuel' ? 'block ' : 'none' ); ?>; background: #eee">
-                <div style="padding:20px; max-width:1100px; margin: auto; ">
-                    <?php
-                        self::display_prayer_fuel( $campaign_id, $post['lang'] );
-                    ?>
-                </div>
+
+            <!-- Extra setting depending on the campaign type -->
+            <div>
+                <?php do_action( 'dt_subscription_management_extra' ) ?>
+            </div>
+        </div>
+        <div id="profile" class="display-panel" style="display: none">
+              <cp-profile></cp-profile>
+        </div>
+        <div id="fuel" class="display-panel" style="display:<?php echo esc_html( $display_section === 'fuel' ? 'block ' : 'none' ); ?>; background: #eee">
+            <div style="padding:20px; max-width:1100px; margin: auto; ">
+                <?php
+                    self::display_prayer_fuel( $campaign_id, $post['lang'] );
+                ?>
             </div>
         </div>
         <?php

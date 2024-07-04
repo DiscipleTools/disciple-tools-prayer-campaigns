@@ -11,6 +11,8 @@ jQuery(document).ready(function($){
     var url = new URL(window.location.href)
     url.searchParams.delete('tab')
     window.history.replaceState({}, '', url)
+    //hide .verified-section
+    $('.verified-section').hide()
   })
 
   /**
@@ -41,7 +43,7 @@ jQuery(document).ready(function($){
 
             recurring_extend.selected_times = recurring_extend.selected_times.filter(c => !existing_times.includes(c.time))
             window.campaign_scripts.submit_prayer_times(recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(resp => {
-              console.log(resp);
+              // console.log(resp);
               //@todo
             })
           }
