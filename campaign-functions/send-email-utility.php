@@ -383,9 +383,8 @@ class DT_Prayer_Campaigns_Send_Email {
         self::switch_email_locale( $subscriber['lang'] ?? null );
 
         $manage_link = self::management_link( $subscriber );
-        $porch_fields = DT_Porch_Settings::settings();
 
-        $title = isset( $porch_fields['name']['value'] ) ? $porch_fields['name']['value'] : site_url();
+        $title = DT_Porch_Settings::get_field_translation( 'name', $subscriber['lang'] ?? null, $campaign_id );
 
         $subject = __( '[ACTION NEEDED] Continue Praying?', 'disciple-tools-prayer-campaigns' );
 
@@ -415,9 +414,8 @@ class DT_Prayer_Campaigns_Send_Email {
         self::switch_email_locale( $subscriber['lang'] ?? null );
 
         $manage_link = self::management_link( $subscriber );
-        $porch_fields = DT_Porch_Settings::settings();
 
-        $title = isset( $porch_fields['name']['value'] ) ? $porch_fields['name']['value'] : site_url();
+        $title = DT_Porch_Settings::get_field_translation( 'name', $subscriber['lang'] ?? null, $campaign_id );
 
         $subject = __( '[ACTION NEEDED] Last chance to extend prayer times', 'disciple-tools-prayer-campaigns' );
 
@@ -472,7 +470,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $location = implode( ', ', $location_grid );
         }
 
-        $title = DT_Porch_Settings::get_field_translation( 'name' );
+        $title = DT_Porch_Settings::get_field_translation( 'name', $record['lang'] ?? null, $campaign_id );
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
