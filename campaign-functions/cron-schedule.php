@@ -237,7 +237,7 @@ function dt_invitation_to_renew_subscription(){
 
     foreach ( $expired_recurring_signups as $row ){
 
-        $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'], $row['parent_id'], 1 );
+        $sent = DT_Prayer_Campaigns_Send_Email::send_last_resubscribe_tickler( $row['post_id'], $row['parent_id'] );
         if ( $sent ){
             $report = [
                 'post_type' => 'subscriptions',
