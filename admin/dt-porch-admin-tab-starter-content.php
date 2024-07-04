@@ -232,8 +232,7 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
 
                         <tr>
                             <td>
-                                <?php //phpcs:ignore ?>
-                                <?php echo $import_output ?>
+                                <strong style="color: green">Import successful</strong>
                             </td>
                         </tr>
 
