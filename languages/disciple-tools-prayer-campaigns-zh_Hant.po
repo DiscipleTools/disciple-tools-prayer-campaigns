@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
-"PO-Revision-Date: 2024-06-29 17:59+0000\n"
+"PO-Revision-Date: 2024-07-04 15:25+0000\n"
 "Last-Translator: may plum <mayflower2465@proton.me>\n"
 "Language-Team: Chinese (Traditional) <https://translate.disciple.tools/"
 "projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hant/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.1\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:73
@@ -400,161 +400,140 @@ msgid "On which week day?"
 msgstr "一周裏的哪一天？"
 
 #: parts/components-enqueue.php:58
-#, fuzzy
 msgid "Select a Date"
-msgstr "選擇時間"
+msgstr "選擇一個日期"
 
 #: parts/components-enqueue.php:59
-#, fuzzy
 msgid "Select a Time"
-msgstr "選擇時間"
+msgstr "選擇具體的時間"
 
 #: parts/components-enqueue.php:60
-#, fuzzy
 msgid "Select a Time for %s"
-msgstr "選擇時間"
+msgstr "為% s選擇一個時間"
 
 #: parts/components-enqueue.php:61 parts/components-enqueue.php:135
-#, fuzzy
 msgid "Close"
 msgstr "關"
 
 #: parts/components-enqueue.php:62
-#, fuzzy
 msgid "prayer commitments"
-msgstr "禱告承諾"
+msgstr "祈禱承諾"
 
 #: parts/components-enqueue.php:63
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr ""
+msgstr "在%s開始"
 
 #: parts/components-enqueue.php:64
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr ""
+msgstr "在%s結束"
 
 #: parts/components-enqueue.php:65
 msgid "Review"
-msgstr ""
+msgstr "回顧"
 
 #: parts/components-enqueue.php:66 parts/components.php:45
 #: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
-#, fuzzy
 msgid "Submit"
 msgstr "提交"
 
 #: parts/components-enqueue.php:67
 msgid "Verify"
-msgstr ""
+msgstr "核實"
 
 #: parts/components-enqueue.php:68
-#, fuzzy
 msgid "Percentage covered in prayer"
-msgstr "禱告的百分比"
+msgstr "祈禱覆蓋的百分比"
 
 #: parts/components-enqueue.php:69
-#, fuzzy
 msgid "%s committed"
-msgstr "承諾時間"
+msgstr "%s已承諾"
 
 #: parts/components-enqueue.php:70
 msgid "Please enter a valid name or email address"
-msgstr ""
+msgstr "請輸入有效姓名或電子郵件地址"
 
 #: parts/components-enqueue.php:71
-#, fuzzy
 msgid "Next"
 msgstr "下一個"
 
 #: parts/components-enqueue.php:72
-#, fuzzy
 msgid "No prayer times selected"
-msgstr "您的祈禱時間已驗證！"
+msgstr "沒有可選的祈禱時間"
 
 #: parts/components-enqueue.php:73
-#, fuzzy
 msgid "Daily"
-msgstr "每日時間"
+msgstr "每日"
 
 #: parts/components-enqueue.php:74
 msgid "Weekly"
-msgstr ""
+msgstr "每周"
 
 #: parts/components-enqueue.php:75
-#, fuzzy
 msgid "Monthly"
-msgstr "月"
+msgstr "每月"
 
 #: parts/components-enqueue.php:76
 msgid "Pick Dates and Times"
-msgstr ""
+msgstr "選擇一個日期和時間"
 
 #: parts/components-enqueue.php:77
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr ""
+msgstr "%s個月以下"
 
 #: parts/components-enqueue.php:78
-#, fuzzy
 msgid "%s Minutes"
-msgstr "5分鐘"
+msgstr "%s分鐘"
 
 #: parts/components-enqueue.php:79
-#, fuzzy
 msgid "%s Hour"
-msgstr "小時"
+msgstr "%s小時"
 
 #: parts/components-enqueue.php:80
-#, fuzzy
 msgid "%s Hours"
-msgstr "小時"
+msgstr "%s小時"
 
 #: parts/components-enqueue.php:81
-#, fuzzy
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s 從 %2$s 到 %3$s"
 
 #: parts/components-enqueue.php:82
-#, fuzzy
 msgid "for %s minutes"
-msgstr "%1$s %2$s 分鐘。"
+msgstr "為 %$s 分鐘。"
 
 #: parts/components-enqueue.php:83
 msgid "Every %s"
-msgstr ""
+msgstr "每個%s"
 
 #: parts/components-enqueue.php:84
-#, fuzzy
 msgid "Prayer Time Selected"
-msgstr "您的祈禱時間已驗證！"
+msgstr "已選擇的祈禱時間"
 
 #: parts/components-enqueue.php:85
-#, fuzzy
 msgid "Select a Day"
-msgstr "選擇時間"
+msgstr "選擇一天"
 
 #: parts/components-enqueue.php:86
 msgid "Renews on %s"
-msgstr ""
+msgstr "回顧在%s"
 
 #: parts/components-enqueue.php:87
 msgid "Ends on %s"
-msgstr ""
+msgstr "結束在%s"
 
 #: parts/components-enqueue.php:88
 msgid "Success"
-msgstr ""
+msgstr "成功"
 
 #: parts/components-enqueue.php:89
-#, fuzzy
 msgid "Your registration was successful."
-msgstr "您註冊成功。"
+msgstr "您註冊成功了。"
 
 #: parts/components-enqueue.php:90
-#, fuzzy
 msgid "Check your email for additional details and to manage your account."
-msgstr "電子郵件中有一個鏈接來管理您的祈禱時間。"
+msgstr "查看您的電子郵件以獲取更多詳細信息來管理您的賬號。"
 
 #: parts/components-enqueue.php:91
 msgid "Ok"
