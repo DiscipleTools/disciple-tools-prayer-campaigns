@@ -303,6 +303,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'Here are your upcoming prayer times:', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( $commitment_list );
         $message .= Campaigns_Email_Template::email_content_part( sprintf( __( 'Times are shown according to: %s time', 'disciple-tools-prayer-campaigns' ), '<strong>' . esc_html( $timezone ) . '</strong>' ) );
+        $prayer_fuel_link = $management_link . '&tab=fuel';
         if ( !empty( $prayer_fuel_link_text ) ){
             $message .= Campaigns_Email_Template::email_content_part( $prayer_fuel_link_text );
             $message .= Campaigns_Email_Template::email_button_part( __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ), $prayer_fuel_link );
