@@ -27,8 +27,8 @@ jQuery(document).ready(function($){
         recurring_signups.forEach((recurring_sign) => {
 
           //extend the prayer times if the last time is within the next two months
-          const two_months_from_now = new Date().getTime() + 5184000000
-          const now = new Date().getTime()
+          const two_months_from_now = (new Date().getTime() /1000) + 60 * day_in_seconds
+          const now = new Date().getTime()/1000
           if (recurring_sign.last > now && recurring_sign.last < two_months_from_now) {
             let recurring_extend = window.campaign_scripts.build_selected_times_for_recurring(
               recurring_sign.time, recurring_sign.type,
