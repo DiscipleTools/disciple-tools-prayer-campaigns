@@ -40,8 +40,8 @@ jQuery(document).ready(function($){
 
             //filter out existing times
             let existing_times = window.campaign_data.subscriber_info.my_commitments.filter(c => recurring_sign.report_id===c.recurring_id).map(c => parseInt(c.time_begin))
-
             recurring_extend.selected_times = recurring_extend.selected_times.filter(c => !existing_times.includes(c.time))
+            recurring_extend.auto_extend = true
             window.campaign_scripts.submit_prayer_times(recurring_sign.campaign_id, recurring_extend, 'update_recurring_signup').then(resp => {
               // console.log(resp);
               //@todo
