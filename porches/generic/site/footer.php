@@ -12,17 +12,17 @@ $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
                         <?php $porch_fields = DT_Porch_Settings::settings(); ?>
                         <!-- facebook -->
                         <?php if ( isset( $porch_fields['facebook']['value'] ) && !empty( $porch_fields['facebook']['value'] ) ) : ?>
-                            <li class="facebook"><a href="<?php echo esc_url( $porch_fields['facebook']['value'] ) ?>"><i class="fa fa-facebook"></i></a></li>
+                            <li class="facebook"><a href="<?php echo esc_url( $porch_fields['facebook']['value'] ) ?>"><img src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/facebook.svg' ) ?>"></a></li>
                         <?php endif; ?>
 
                         <!-- instagram -->
                         <?php if ( isset( $porch_fields['instagram']['value'] ) && !empty( $porch_fields['instagram']['value'] ) ) : ?>
-                            <li class="instagram"><a href="<?php echo esc_url( $porch_fields['instagram']['value'] ) ?>"><i class="fa fa-instagram"></i></a></li>
+                            <li class="instagram"><a href="<?php echo esc_url( $porch_fields['instagram']['value'] ) ?>"><img src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/instagram.svg' ) ?>"></a></li>
                         <?php endif; ?>
 
                         <!-- twitter -->
                         <?php if ( isset( $porch_fields['twitter']['value'] ) && !empty( $porch_fields['twitter']['value'] ) ) : ?>
-                            <li class="twitter"><a href="<?php echo esc_url( $porch_fields['twitter']['value'] ) ?>"><i class="fa fa-twitter"></i></a></li>
+                            <li class="twitter"><a href="<?php echo esc_url( $porch_fields['twitter']['value'] ) ?>"><img src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/twitter.svg' ) ?>"></a></li>
                         <?php endif; ?>
                     </ul>
                 </div>

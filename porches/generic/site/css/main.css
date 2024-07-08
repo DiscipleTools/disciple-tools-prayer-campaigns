@@ -1153,6 +1153,10 @@ footer a {
 .social-icons ul li a:hover {
   color: #ffffff;
 }
+.social-icons img {
+    max-height: 20px;
+    vertical-align: sub;
+}
 .facebook a {
   color: #4867aa;
 }
