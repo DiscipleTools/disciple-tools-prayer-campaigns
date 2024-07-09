@@ -1410,8 +1410,6 @@ class DT_Campaigns_Base {
         $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
         $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
 
-        $porch_name = isset( DT_Porch_Settings::settings()['title']['value'] ) ? DT_Porch_Settings::settings()['title']['value'] : '';
-
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
         $campaigns_to_send = [];
         $site_url = get_site_url( null, '', 'https' );
@@ -1472,8 +1470,6 @@ class DT_Campaigns_Base {
 
             $linked_crm_contact = get_option( 'p4m_linked_crm_contact' );
 
-            $name = home_url() . ' - ' . dt_format_date( $campaign['start_date']['timestamp'], 'Y-m' );
-
             $creator_email = '';
             $post = get_post( $campaign['ID'] );
             if ( isset( $post->post_author ) ){
@@ -1485,7 +1481,7 @@ class DT_Campaigns_Base {
 
             $data = [
                 'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
-                'name' => $is_current_campaign ? $porch_name : $name,
+                'name' => $campaign['name'],
                 'campaign_name' => $campaign['name'],
 //                'status' => $campaign['status']['key'],
                 'start_date' => $campaign['start_date']['timestamp'],
