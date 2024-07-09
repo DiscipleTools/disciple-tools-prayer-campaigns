@@ -391,11 +391,11 @@ class DT_Prayer_Campaigns_Send_Email {
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) );
 
         if ( $weeks === 1 ){
-            $message .= Campaigns_Email_Template::email_content_part( __( 'You are 1 week out from your last prayer time.', 'disciple-tools-prayer-campaigns' ) );
+            $message .= Campaigns_Email_Template::email_content_part( __( 'Your last prayer time will be one week from today. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) );
         } else {
-            $message .= Campaigns_Email_Template::email_content_part( __( 'You are 2 weeks out from your last prayer time. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) );
+            $message .= Campaigns_Email_Template::email_content_part( __( 'Your last prayer time will be 2 weeks from today. Would you like to keep praying? ', 'disciple-tools-prayer-campaigns' ) );
         }
-        $message .= Campaigns_Email_Template::email_content_part( __( 'To continue praying, and to keep receiving the notifications, please access the portal and click "renew" on the most recent commitment.', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'To continue praying, and to keep receiving the notifications, please access the portal and click "extend" on the most recent commitment.', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( 'Access Portal', $manage_link );
         $message .= Campaigns_Email_Template::email_content_part( __( 'This will extend your commitment and your prayer times will be counted towards the campaign stats.', 'disciple-tools-prayer-campaigns' ) );
 
@@ -421,8 +421,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) );
 
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Today was the last prayer time you subscribed to. Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'You will no longer receive prayer time notifications and you ', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Today was your last day of prayer. Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_content_part( __( 'If you wish to continue praying, please access the portal and click "renew" on the most recent commitment.', 'disciple-tools-prayer-campaigns' ) );
         $message .= Campaigns_Email_Template::email_button_part( 'Access Portal', $manage_link );
 
