@@ -63,4 +63,65 @@ jQuery(document).ready(function ($) {
     /* return the currentDay adjusted by this difference */
     return parseInt( Math.round(currentDay + diffInDays) )
   }
+
+  /**
+   * CAMPAIGN CLONING
+   */
+
+  $('#clone_campaign_but').on('click', function () {
+    $('#clone_modal_new_name').val('');
+    $('#clone_modal').modal('show');
+  });
+
+  $('#clone_modal_close_but').on('click', function () {
+    $('#clone_modal_new_name').val('');
+    $('#clone_modal').modal('hide');
+  });
+
+  $('#clone_modal_clone_but').on('click', function () {
+    const new_name_input = $('#clone_modal_new_name');
+    const new_name = $(new_name_input).val();
+    if (!new_name) {
+      $(new_name_input).focus();
+    } else {
+      const clone_modal_campaign_id = $('#clone_modal_campaign').val();
+      const clone_modal_close_but = $('#clone_modal_close_but');
+      const clone_modal_clone_but = $('#clone_modal_clone_but');
+      const clone_modal_spinner = $('#clone_modal_spinner');
+
+      $(clone_modal_close_but).prop('disabled', true);
+      $(clone_modal_clone_but).prop('disabled', true);
+      $(clone_modal_spinner).fadeIn('fast', function () {
+
+        const payload = {
+          'new_name': new_name,
+          'campaign_id': clone_modal_campaign_id
+        };
+
+        jQuery.ajax({
+          type: 'POST',
+          data: JSON.stringify(payload),
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          url: window.dt_campaign_admin.root + 'admin/v1/clone_campaign'
+        }).then((response) => {
+          $(clone_modal_spinner).fadeOut('fast', function () {
+            $(new_name_input).val('');
+            $(clone_modal_close_but).prop('disabled', false);
+            $(clone_modal_clone_but).prop('disabled', false);
+
+            if ( response?.success && response?.campaign_id ) {
+              window.location.href = window.location.origin + '/wp-admin/admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' + response.campaign_id;
+            } else {
+              $('#clone_modal').modal('hide');
+            }
+          });
+        });
+      });
+    }
+  });
+
+  /**
+   * CAMPAIGN CLONING
+   */
 })

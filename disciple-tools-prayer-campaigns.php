@@ -110,6 +110,8 @@ class DT_Prayer_Campaigns {
     }
 
     private function __construct() {
+        require_once( __DIR__ . '/admin/dt-porch-admin-tab-endpoints.php' );
+
         $this->plugin_dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
         $this->plugin_dir_url = trailingslashit( plugin_dir_url( __FILE__ ) );
         $this->define_porch_constants();
