@@ -397,7 +397,11 @@ class DT_Prayer_Campaigns_Send_Email {
                 $end_date = new DateTime( '@' . $signup['last'] );
                 $end_date->setTimezone( $tz );
                 $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $end_date, $locale, $timezone ) . '</strong>';
-                $string = $signup['label'] . ', ';
+                $time = DT_Time_Utilities::display_hour_localized( $end_date, $locale, $timezone );
+
+                $week_day = DT_Time_Utilities::display_weekday_localized( $end_date, $locale, $timezone );
+                $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $signup['duration'] );
+                $string .= ', ';
                 $string .= sprintf( _x( 'ending on %s', 'Praying Daily at 4:15 PM, ending on July 18, 2026', 'disciple-tools-prayer-campaigns' ), $end_date_string );
 
                 $expiring_signups_list .= '<li>' . $string . '</li>';
@@ -416,8 +420,8 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $message .= Campaigns_Email_Template::email_content_part( $expiring_signups_list );
 
-        $message .= Campaigns_Email_Template::email_content_part( __( 'To continue praying, and to keep receiving the notifications, please access the portal and click "extend" next to your commitment(s). You can also sign up for a different time if you wish.', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_button_part( 'Access Portal', $manage_link );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'To continue praying, and to keep receiving the notifications, please access your account and click "extend" next to your commitment(s). You can also sign up for a different time if you wish.', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $manage_link );
         $message .= Campaigns_Email_Template::email_content_part( __( 'You do not have to do anything if you do not want to continue praying when your prayer times end.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',<br>' . $title );

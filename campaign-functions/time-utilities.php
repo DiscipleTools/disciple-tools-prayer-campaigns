@@ -206,5 +206,12 @@ class DT_Time_Utilities {
 
         return $formatter->format( $date_time );
     }
+    public static function display_weekday_localized( $date_time, $locale = null, $time_zone = null ){
+        if ( !$locale ){
+            $locale = get_locale();
+        }
+        $formatter = new IntlDateFormatter( $locale, IntlDateFormatter::NONE, IntlDateFormatter::NONE, $time_zone, IntlDateFormatter::GREGORIAN, 'EEEE' );
+        return $formatter->format( $date_time );
+    }
 
 }
