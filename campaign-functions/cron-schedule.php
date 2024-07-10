@@ -140,6 +140,7 @@ function dt_invitation_to_renew_subscription(){
             LEFT JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'end_date' )
             WHERE post_type = 'campaigns'
             AND ( pm2.meta_value IS NULL OR pm2.meta_value > %d )
+            AND parent_id = p.ID
         )
         AND r.time_end < %d  # less than 2 weeks away
         AND r.time_end > %d  # in the future
@@ -169,7 +170,4 @@ function dt_invitation_to_renew_subscription(){
 
         DT_Posts::add_post_comment( 'subscriptions', $row['post_id'], 'Sent email invitation to extend prayer times on [campaign](' . site_url( 'campaigns/' . $row['parent_id'] ) . ').', 'comment', [], false, true );
     }
-
-    //@todo make sure the sub gets 3 emails per rec
-    //@todo migrate from old system
 }
