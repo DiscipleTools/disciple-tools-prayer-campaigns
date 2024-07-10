@@ -390,12 +390,12 @@ class DT_Prayer_Campaigns_Send_Email {
         } );
         $expiring_signups_list = '<ul>';
         foreach ( $signups as $signup ){
-            if ( $signup['last'] < time() + 3 * WEEK_IN_SECONDS ){
+            if ( $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ){
                 $days = (int) floor( ( $signup['last'] - time() ) / DAY_IN_SECONDS );
                 if ( $days === 0 ){
                     $string = sprintf( _x( '%1$s, ending today!', 'Daily at 4:15 PM, ending today', 'disciple-tools-prayer-campaigns' ), $signup['label'] );
                 } else {
-                    $string = sprintf( _x( '%1$s, ending in %2$s days', 'Daily at 4:15 PM, ending in 3 days', 'disciple-tools-prayer-campaigns' ), $signup['label'], $days );
+                    $string = sprintf( _x( '%1$s, ending in %2$s day(s)', 'Daily at 4:15 PM, ending in 3 day(s)', 'disciple-tools-prayer-campaigns' ), $signup['label'], $days );
                 }
                 $expiring_signups_list .= '<li>' . $string . '</li>';
             }

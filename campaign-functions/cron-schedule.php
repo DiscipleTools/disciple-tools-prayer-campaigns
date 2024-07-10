@@ -121,10 +121,11 @@ function dt_invitation_to_renew_subscription(){
     //where time_end is in the future and is less than 2 weeks away
     //and we haven't sent them a tickler in the last week
 
-    $one_month_in_future = time() + 30 * DAY_IN_SECONDS;
-    $two_weeks_in_future = time() + 14 * DAY_IN_SECONDS;
-    $three_weeks_in_future = time() + 21 * DAY_IN_SECONDS;
-    $one_week_ago = time() - 7 * DAY_IN_SECONDS;
+    $now = time();
+    $one_month_in_future = $now + 30 * DAY_IN_SECONDS;
+    $two_weeks_in_future = $now + 15 * DAY_IN_SECONDS;
+    $three_weeks_in_future = $now + 21 * DAY_IN_SECONDS;
+    $one_week_ago = $now - 7 * DAY_IN_SECONDS;
 
     //record on the sub when the last tickler was sent or create records in the report table?
     global $wpdb;
@@ -150,7 +151,7 @@ function dt_invitation_to_renew_subscription(){
             AND rm.meta_value > %d
         )
         GROUP BY r.post_id
-    ", $one_month_in_future, $two_weeks_in_future, time(), $one_week_ago ), ARRAY_A );
+    ", $one_month_in_future, $two_weeks_in_future, $now, $one_week_ago ), ARRAY_A );
 
 
     foreach ( $expiring_recurring_signups_grouped as $row ){
@@ -160,8 +161,8 @@ function dt_invitation_to_renew_subscription(){
         $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'], $row['parent_id'], $signups );
         if ( $sent ){
             foreach ( $signups as $signup ){
-                if ( $signup['last'] < $three_weeks_in_future ){
-                    Disciple_Tools_Reports::add_meta( $signup['report_id'], 'resubscribe_tickler', time() );
+                if ( $signup['last'] < $three_weeks_in_future && $signup['last'] > $now ){
+                    Disciple_Tools_Reports::add_meta( $signup['report_id'], 'resubscribe_tickler', $now );
                 }
             }
         }
