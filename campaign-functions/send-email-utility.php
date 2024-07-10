@@ -149,7 +149,7 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log( 'failed to commitments' );
             return;
         }
-        $locale = $record['lang'] ?? null;
+        $locale = $record['lang'] ?? 'en_US';
         self::switch_email_locale( $locale );
 
         $to = [];
@@ -191,7 +191,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
-        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? null, $campaign['signup_content'] );
+        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? 'en_US', $campaign['signup_content'] );
         if ( $sign_up_content_translation ){
             $sign_up_email_extra_message = '<p>' .  $sign_up_content_translation . '</p>';
         }
@@ -246,7 +246,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
 
-        $locale = $record['lang'] ?? null;
+        $locale = $record['lang'] ?? 'en_US';
         self::switch_email_locale( $locale );
 
         $prayer_fuel_link_text = '';
@@ -284,7 +284,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign_subject_line = __( 'Prayer Time reminder!', 'disciple-tools-prayer-campaigns' );
 
-        $prayer_content_message = DT_Campaign_Languages::get_translation( $campaign_id, 'reminder_content', $record['lang'] ?? null );
+        $prayer_content_message = DT_Campaign_Languages::get_translation( $campaign_id, 'reminder_content', $record['lang'] ?? 'en_US' );
         if ( $prayer_content_message ){
             $prayer_content_message = '<p>' .  $prayer_content_message . '</p>';
         } elseif ( !empty( $campaign['reminder_content'] ) ){
@@ -380,7 +380,7 @@ class DT_Prayer_Campaigns_Send_Email {
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
-        $locale = $subscriber['lang'] ?? null;
+        $locale = $subscriber['lang'] ?? 'en_US';
         self::switch_email_locale( $locale );
         $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
@@ -405,7 +405,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $expiring_signups_list .= '</ul>';
 
-        $title = DT_Porch_Settings::get_field_translation( 'name', $subscriber['lang'] ?? null, $campaign_id );
+        $title = DT_Porch_Settings::get_field_translation( 'name', $locale, $campaign_id );
 
         $subject = __( '[ACTION NEEDED] Continue Praying?', 'disciple-tools-prayer-campaigns' );
 
@@ -446,7 +446,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
-        self::switch_email_locale( $record['lang'] ?? null );
+        self::switch_email_locale( $record['lang'] ?? 'en_US' );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -464,7 +464,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $location = implode( ', ', $location_grid );
         }
 
-        $title = DT_Porch_Settings::get_field_translation( 'name', $record['lang'] ?? null, $campaign_id );
+        $title = DT_Porch_Settings::get_field_translation( 'name', $record['lang'] ?? 'en_US', $campaign_id );
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
