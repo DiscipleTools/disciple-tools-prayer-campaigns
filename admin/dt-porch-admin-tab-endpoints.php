@@ -53,8 +53,8 @@ class Porch_Admin_Endpoints {
 
             // Capture magic link meta keys to also be ignored.
             $magic_link_keys = apply_filters( 'dt_magic_url_register_types', [] );
-            foreach( $magic_link_keys as $ml_type_key => $ml_type ) {
-                foreach( $ml_type as $key => $type ) {
+            foreach ( $magic_link_keys as $ml_type_key => $ml_type ) {
+                foreach ( $ml_type as $key => $type ) {
                     if ( !empty( $type['meta_key'] ) && !in_array( $type['meta_key'], $ignored_fields ) ) {
                         $ignored_fields[] = $type['meta_key'];
                     }
@@ -89,14 +89,14 @@ class Porch_Admin_Endpoints {
                                 break;
                             case 'key_select':
                                 $key_select_value = $value['key'];
-                                if ( !empty( $key_select_value) ) {
+                                if ( !empty( $key_select_value ) ) {
                                     $fields[ $key ] = $key_select_value;
                                 }
                                 break;
                             case 'tags':
                             case 'multi_select':
                                 $multi_select_values = $value;
-                                if ( !empty( $multi_select_values) ) {
+                                if ( !empty( $multi_select_values ) ) {
                                     $values = [];
                                     foreach ( $multi_select_values as $multi_value ) {
                                         $values[] = [
