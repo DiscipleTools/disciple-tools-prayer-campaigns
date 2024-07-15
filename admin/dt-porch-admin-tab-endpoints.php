@@ -134,6 +134,49 @@ class Porch_Admin_Endpoints {
                     update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
                 }
 
+                /**
+                 * Clone Prayer Fuel Metadata
+                 */
+
+                // Identify campaign length and subsequent prayer fuel days count.
+                $campaign_length = DT_Campaign_Fuel::total_days_in_campaign( $campaign['ID'] );
+                $prayer_fuel_days_count = ( $campaign_length > 0 ) ? $campaign_length : 1000;
+
+                $prayer_fuel_days = [];
+                for ( $i = 0; $i < $prayer_fuel_days_count; $i++ ) {
+                    $prayer_fuel_days[] = $i + 1;
+                }
+                $prayer_fuel_days_string = implode( ', ', $prayer_fuel_days );
+
+                // List prayer fuel posts currently associated with primary campaign.
+                global $wpdb;
+                $query = "
+                    SELECT DISTINCT ID, post_title, CAST( pm.meta_value as unsigned ) as day FROM $wpdb->posts p
+                    JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'day' )
+                    JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
+                    WHERE p.post_type = %s
+                    AND p.post_status IN ( 'draft', 'publish', 'future' )
+                    AND pm.meta_value IN ( %1s )
+                ";
+                $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $prayer_fuel_days_string ];
+                $prayer_fuel_posts = $wpdb->get_results( $wpdb->prepare( $query, $args ), ARRAY_A );
+
+                // Associated prayer fuel post detected? Build prayer fuel insert sql.
+                if ( !empty( $prayer_fuel_posts ) ) {
+                    $prayer_fuel_sql = [];
+                    foreach ( $prayer_fuel_posts as $prayer_fuel_post ) {
+                        $prayer_fuel_sql[] = "(" . $prayer_fuel_post['ID'] . ", 'linked_campaign', ". $new_campaign['ID'] .")";
+                    }
+
+                    $query = "
+                        INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value)
+                        VALUES ". implode( ', ', $prayer_fuel_sql ) ."
+                        ON DUPLICATE KEY UPDATE post_id = VALUES(post_id), meta_key = VALUES(meta_key), meta_value = VALUES(meta_value)
+                    ";
+
+                    $wpdb->get_results( $query, ARRAY_A );
+                }
+
                 $response['success'] = true;
                 $response['campaign_id'] = $new_campaign['ID'];
             }
