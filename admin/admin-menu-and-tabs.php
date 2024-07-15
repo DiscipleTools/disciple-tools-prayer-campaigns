@@ -67,11 +67,11 @@ class DT_Prayer_Campaigns_Menu {
     }
 
     public function enqueue_scripts() {
-        wp_enqueue_script( 'bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/js/bootstrap.min.js', [ 'jquery' ], '4.5.3', true );
-        wp_enqueue_style( 'bootstrap-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css', array(), '4.5.3' );
+        wp_enqueue_script( 'foundation-js', 'https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js', [ 'jquery' ], '6.8.1', true );
+        wp_enqueue_style( 'foundation-css', 'https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css', array(), '6.8.1' );
 
         wp_enqueue_style( 'dt_campaign_admin_style', plugin_dir_url( __FILE__ ) . 'admin.css', [], filemtime( __DIR__. '/admin.css' ) );
-        wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery', 'bootstrap-js' ], filemtime( __DIR__ . '/admin.js' ), true );
+        wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery', 'foundation-js' ], filemtime( __DIR__ . '/admin.js' ), true );
         wp_localize_script(
             'dt_campaign_admin_script', 'dt_campaign_admin', [
                 'root' => esc_url_raw( rest_url() ),
@@ -118,48 +118,39 @@ class DT_Prayer_Campaigns_Menu {
 
         ?>
         <!-- MODALS -->
-        <div id="clone_modal_div">
-            <div id="clone_modal" class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Clone Existing Campaign</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <table style="min-width: 100%;">
-                                <tbody>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: middle;">
-                                            <label for="clone_modal_new_name">New Name</label>
-                                        </td>
-                                        <td>
-                                            <input id="clone_modal_new_name" name="clone_modal_new_name" type="text" style="width: 100%;" placeholder="Specify new name for cloned campaign." />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: middle;">
-                                            <label for="clone_modal_campaign">Campaign</label>
-                                        </td>
-                                        <td>
-                                            <select id="clone_modal_campaign" name="clone_modal_campaign" style="width: 100%;">
-                                                <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign_id ) ?>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <span id="clone_modal_spinner" class="loading-spinner active" style="margin-right: 5px; display: none;"></span>
-                            <button id="clone_modal_close_but" class="button" style="margin-right: 5px;">Close</button>
-                            <button id="clone_modal_clone_but" class="button">Clone</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="reveal small" id="clone_modal" style="margin-top: 100px;" data-v-offset="10" data-reveal>
+            <h4 id="modal-small-title"><?php esc_html_e( 'Clone Existing Campaign', 'disciple_tools' ); ?></h4>
+            <div id="modal-small-content">
+                <br>
+                <table style="min-width: 100%;">
+                    <tbody>
+                    <tr>
+                        <td style="padding-right: 10px; vertical-align: middle;">
+                            <label for="clone_modal_new_name">New Name</label>
+                        </td>
+                        <td>
+                            <input id="clone_modal_new_name" name="clone_modal_new_name" type="text" style="width: 100%;" placeholder="Specify new name for cloned campaign." />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 10px; vertical-align: middle;">
+                            <label for="clone_modal_campaign">Campaign</label>
+                        </td>
+                        <td>
+                            <select id="clone_modal_campaign" name="clone_modal_campaign" style="width: 100%;" disabled>
+                                <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign_id ) ?>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button id="clone_modal_close_but" class="button" style="margin-right: 5px;">Close</button>
+                <button id="clone_modal_clone_but" class="button">Clone</button>
+                <span id="clone_modal_spinner" class="loading-spinner active" style="margin-left: 5px; display: none;"></span>
             </div>
+            <button class="close-button" data-close aria-label="<?php esc_html_e( 'Close', 'disciple_tools' ); ?>" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <!-- MODALS -->
 
@@ -171,9 +162,6 @@ class DT_Prayer_Campaigns_Menu {
                 </a>
                 <a class="button <?php echo esc_html( $tab === 'new_campaign' ? 'button-primary' : '' ); ?>" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
                     Create a New Campaign
-                </a>
-                <a id="clone_campaign_but" class="button">
-                    Clone Existing Campaign
                 </a>
                 <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
             </div>

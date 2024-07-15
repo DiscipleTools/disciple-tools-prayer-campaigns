@@ -68,14 +68,22 @@ jQuery(document).ready(function ($) {
    * CAMPAIGN CLONING
    */
 
-  $('#clone_campaign_but').on('click', function () {
+  new window.Foundation.Reveal( jQuery('#clone_modal') );
+  $('.clone-campaign-but').on('click', function (e) {
+    const campaign_id = $(e.target).data('campaign_id');
+
     $('#clone_modal_new_name').val('');
-    $('#clone_modal').modal('show');
+    $('#clone_modal_campaign').val(campaign_id);
+
+    const clone_modal = jQuery('#clone_modal');
+    clone_modal.foundation('open');
   });
 
   $('#clone_modal_close_but').on('click', function () {
     $('#clone_modal_new_name').val('');
-    $('#clone_modal').modal('hide');
+
+    const clone_modal = jQuery('#clone_modal');
+    clone_modal.foundation('close');
   });
 
   $('#clone_modal_clone_but').on('click', function () {
@@ -103,18 +111,17 @@ jQuery(document).ready(function ($) {
           data: JSON.stringify(payload),
           contentType: 'application/json; charset=utf-8',
           dataType: 'json',
-          url: window.dt_campaign_admin.root + 'admin/v1/clone_campaign'
+          url: window.dt_campaign_admin.root + 'admin/v1/clone_campaign',
+          beforeSend: (xhr) => {
+            xhr.setRequestHeader("X-WP-Nonce", window.dt_campaign_admin.nonce);
+          }
         }).then((response) => {
           $(clone_modal_spinner).fadeOut('fast', function () {
             $(new_name_input).val('');
             $(clone_modal_close_but).prop('disabled', false);
             $(clone_modal_clone_but).prop('disabled', false);
 
-            if ( response?.success && response?.campaign_id ) {
-              window.location.href = window.location.origin + '/wp-admin/admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' + response.campaign_id;
-            } else {
-              $('#clone_modal').modal('hide');
-            }
+            window.location.reload();
           });
         });
       });

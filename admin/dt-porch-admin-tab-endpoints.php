@@ -13,11 +13,7 @@ class Porch_Admin_Endpoints {
                     'methods'  => [ 'POST' ],
                     'callback' => [ $this, 'dt_campaign_clone_endpoint' ],
                     'permission_callback' => function( WP_REST_Request $request ) {
-
-                        // TODO: Investigate why defaults to zero for current user!?
-                        // return dt_has_permissions( [ 'administrator', 'view_any_subscriptions' ] );
-
-                        return true;
+                        return dt_has_permissions( [ 'administrator', 'view_any_subscriptions' ] );
                     }
                 ],
             ]
@@ -42,6 +38,7 @@ class Porch_Admin_Endpoints {
             $ignored_fields = [
                 'ID',
                 'name',
+                'type',
                 'title',
                 'permalink',
                 'post_type',
@@ -113,6 +110,18 @@ class Porch_Admin_Endpoints {
                         $fields[ $key ] = $value;
                     }
                 }
+            }
+
+            // Final sanity check to ensure no magic keys have fallen through the cracks.
+            $fields_to_unset = [];
+            foreach ( $fields as $key => $value ) {
+                if ( strpos( $key, '_magic_key' ) !== false ) {
+                    $fields_to_unset[] = $key;
+                }
+            }
+
+            foreach ( $fields_to_unset as $field_key ) {
+                unset( $fields[ $field_key ] );
             }
 
             // Create cloned campaign post.

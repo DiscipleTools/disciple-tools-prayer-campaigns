@@ -155,6 +155,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                         <th>Campaign Name</th>
                                         <th>Edit</th>
                                         <th>View</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -174,6 +175,11 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                         <td>
                                             <a href="<?php echo esc_html( $url ) ?>" target="_blank">
                                                 View Landing Page
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="button clone-campaign-but" data-campaign_id="<?php echo esc_attr( $campaign['ID'] ) ?>">
+                                                Clone
                                             </a>
                                         </td>
                                     </tr>
