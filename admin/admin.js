@@ -68,64 +68,79 @@ jQuery(document).ready(function ($) {
    * CAMPAIGN CLONING
    */
 
-  new window.Foundation.Reveal( jQuery('#clone_modal') );
   $('.clone-campaign-but').on('click', function (e) {
     const campaign_id = $(e.target).data('campaign_id');
+    const clone_modal_new_name = $('#clone_modal_new_name');
+    const clone_modal_campaign = $('#clone_modal_campaign');
 
-    $('#clone_modal_new_name').val('');
-    $('#clone_modal_campaign').val(campaign_id);
+    $(clone_modal_new_name).val('');
+    $(clone_modal_campaign).val(campaign_id);
 
-    const clone_modal = jQuery('#clone_modal');
-    clone_modal.foundation('open');
-  });
+    const clone_dialog = jQuery('#clone_dialog');
+    clone_dialog.dialog({
+      modal: true,
+      autoOpen: false,
+      hide: 'fade',
+      show: 'fade',
+      height: 'auto',
+      width: '450px',
+      resizable: true,
+      title: 'Clone Existing Campaign',
+      buttons: {
+        Close: function () {
+          $(this).dialog('close');
+        },
+        Clone: function () {
+          const new_name = $(clone_modal_new_name).val();
+          if (!new_name) {
+            $(clone_modal_new_name).focus();
+          } else {
+            const clone_modal_campaign_id = $(clone_modal_campaign).val();
+            const clone_modal_buttons = $(this).parent().find('.ui-button');
+            const clone_modal_spinner = $('#clone_modal_spinner');
+            const clone_modal_msg = $('#clone_modal_msg');
 
-  $('#clone_modal_close_but').on('click', function () {
-    $('#clone_modal_new_name').val('');
+            $(clone_modal_msg).fadeOut('fast');
+            $(clone_modal_msg).text('');
 
-    const clone_modal = jQuery('#clone_modal');
-    clone_modal.foundation('close');
-  });
+            $(clone_modal_buttons).prop('disabled', true);
+            $(clone_modal_spinner).fadeIn('fast', function () {
 
-  $('#clone_modal_clone_but').on('click', function () {
-    const new_name_input = $('#clone_modal_new_name');
-    const new_name = $(new_name_input).val();
-    if (!new_name) {
-      $(new_name_input).focus();
-    } else {
-      const clone_modal_campaign_id = $('#clone_modal_campaign').val();
-      const clone_modal_close_but = $('#clone_modal_close_but');
-      const clone_modal_clone_but = $('#clone_modal_clone_but');
-      const clone_modal_spinner = $('#clone_modal_spinner');
+              const payload = {
+                'new_name': new_name,
+                'campaign_id': clone_modal_campaign_id
+              };
 
-      $(clone_modal_close_but).prop('disabled', true);
-      $(clone_modal_clone_but).prop('disabled', true);
-      $(clone_modal_spinner).fadeIn('fast', function () {
+              jQuery.ajax({
+                type: 'POST',
+                data: JSON.stringify(payload),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                url: window.dt_campaign_admin.root + 'admin/v1/clone_campaign',
+                beforeSend: (xhr) => {
+                  xhr.setRequestHeader("X-WP-Nonce", window.dt_campaign_admin.nonce);
+                }
+              }).then((response) => {
+                console.log(response);
+                $(clone_modal_spinner).fadeOut('fast', function () {
+                  $(clone_modal_new_name).val('');
+                  $(clone_modal_buttons).prop('disabled', false);
 
-        const payload = {
-          'new_name': new_name,
-          'campaign_id': clone_modal_campaign_id
-        };
-
-        jQuery.ajax({
-          type: 'POST',
-          data: JSON.stringify(payload),
-          contentType: 'application/json; charset=utf-8',
-          dataType: 'json',
-          url: window.dt_campaign_admin.root + 'admin/v1/clone_campaign',
-          beforeSend: (xhr) => {
-            xhr.setRequestHeader("X-WP-Nonce", window.dt_campaign_admin.nonce);
+                  if ( response?.success ) {
+                    clone_dialog.dialog('close');
+                    window.location.reload();
+                  } else {
+                    $(clone_modal_msg).text( response?.msg ? response.msg : 'Failed to clone existing campaign!' );
+                    $(clone_modal_msg).fadeIn('fast');
+                  }
+                });
+              });
+            });
           }
-        }).then((response) => {
-          $(clone_modal_spinner).fadeOut('fast', function () {
-            $(new_name_input).val('');
-            $(clone_modal_close_but).prop('disabled', false);
-            $(clone_modal_clone_but).prop('disabled', false);
-
-            window.location.reload();
-          });
-        });
-      });
-    }
+        }
+      }
+    });
+    clone_dialog.dialog('open');
   });
 
   /**

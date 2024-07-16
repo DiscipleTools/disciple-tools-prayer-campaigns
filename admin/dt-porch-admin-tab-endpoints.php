@@ -32,7 +32,7 @@ class Porch_Admin_Endpoints {
             $new_name = $params['new_name'];
             $campaign_id = $params['campaign_id'];
             $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
-            $campaign_field_settings = DT_Posts::get_post_field_settings( 'campaigns' );
+            $campaign_field_settings = apply_filters( 'dt_custom_fields_settings', Disciple_Tools_Post_Type_Template::get_base_post_type_fields(), 'campaigns' );
 
             // Specify general fields to be ignored.
             $ignored_fields = [
@@ -45,7 +45,8 @@ class Porch_Admin_Endpoints {
                 'post_author',
                 'post_author_display_name',
                 'last_modified',
-                'post_date'
+                'post_date',
+                'campaign_url'
             ];
 
             // Capture magic link meta keys to also be ignored.
@@ -106,8 +107,6 @@ class Porch_Admin_Endpoints {
                                 }
                                 break;
                         }
-                    } elseif ( !is_array( $value ) ) { // Otherwise capture, only if it's a text based value.
-                        $fields[ $key ] = $value;
                     }
                 }
             }
@@ -150,36 +149,38 @@ class Porch_Admin_Endpoints {
 
                 // List prayer fuel posts currently associated with primary campaign.
                 global $wpdb;
-                $query = "
+                $prayer_fuel_posts = $wpdb->get_results( $wpdb->prepare( "
                     SELECT DISTINCT ID, post_title, CAST( pm.meta_value as unsigned ) as day FROM $wpdb->posts p
                     JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'day' )
                     JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
                     WHERE p.post_type = %s
                     AND p.post_status IN ( 'draft', 'publish', 'future' )
                     AND pm.meta_value IN ( %1s )
-                ";
-                $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $prayer_fuel_days_string ];
-                $prayer_fuel_posts = $wpdb->get_results( $wpdb->prepare( $query, $args ), ARRAY_A );
+                ", [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $prayer_fuel_days_string ] ), ARRAY_A );
 
                 // Associated prayer fuel post detected? Build prayer fuel insert sql.
                 if ( !empty( $prayer_fuel_posts ) ) {
                     $prayer_fuel_sql = [];
                     foreach ( $prayer_fuel_posts as $prayer_fuel_post ) {
-                        $prayer_fuel_sql[] = "(" . $prayer_fuel_post['ID'] . ", 'linked_campaign', ". $new_campaign['ID'] .")";
+                        $prayer_fuel_sql[] = '(' . $prayer_fuel_post['ID'] . ", 'linked_campaign', ". $new_campaign['ID'] . ')';
                     }
 
-                    $query = "
+                    $wpdb->get_results( $wpdb->prepare( "
                         INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value)
                         VALUES ". implode( ', ', $prayer_fuel_sql ) ."
                         ON DUPLICATE KEY UPDATE post_id = VALUES(post_id), meta_key = VALUES(meta_key), meta_value = VALUES(meta_value)
-                    ";
-
-                    $wpdb->get_results( $query, ARRAY_A );
+                    ", [] ), ARRAY_A );
                 }
 
                 $response['success'] = true;
                 $response['campaign_id'] = $new_campaign['ID'];
+            } else {
+                $response['success'] = false;
+                $response['msg'] = $new_campaign->get_error_message();
             }
+        } else {
+            $response['success'] = false;
+            $response['msg'] = 'Invalid parameters';
         }
 
         return $response;
