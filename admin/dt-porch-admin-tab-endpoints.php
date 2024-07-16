@@ -165,11 +165,12 @@ class Porch_Admin_Endpoints {
                         $prayer_fuel_sql[] = '(' . $prayer_fuel_post['ID'] . ", 'linked_campaign', ". $new_campaign['ID'] . ')';
                     }
 
+                    // phpcs:disable
                     $wpdb->get_results( $wpdb->prepare( "
                         INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value)
-                        VALUES ". implode( ', ', $prayer_fuel_sql ) ."
-                        ON DUPLICATE KEY UPDATE post_id = VALUES(post_id), meta_key = VALUES(meta_key), meta_value = VALUES(meta_value)
-                    ", [] ), ARRAY_A );
+                        VALUES ". implode( ', ', $prayer_fuel_sql ) ." ON DUPLICATE KEY UPDATE post_id = VALUES(post_id), meta_key = VALUES(meta_key), meta_value = VALUES(meta_value)",
+                        [] ), ARRAY_A );
+                    // phpcs:enable
                 }
 
                 $response['success'] = true;
