@@ -76,6 +76,7 @@ class Porch_Admin_Endpoints {
                         switch ( $field_setting['type'] ) {
                             case 'icon':
                             case 'text':
+                            case 'color':
                             case 'textarea':
                                 $fields[ $key ] = $value;
                                 break;
@@ -134,7 +135,19 @@ class Porch_Admin_Endpoints {
                 }
 
                 /**
-                 * Clone Prayer Fuel Metadata
+                 * Clone Translations
+                 */
+
+                foreach ( DT_Campaign_Languages::get_translations( $campaign['ID'] ) ?? [] as $key => $translations ) {
+                    foreach ( $translations ?? [] as $language => $value ) {
+                        if ( !empty( $key ) && !empty( $language ) && !empty( $value ) ) {
+                            DT_Campaign_Languages::save_translation( $new_campaign['ID'], $key, $language, $value );
+                        }
+                    }
+                }
+
+                /**
+                 * Clone Prayer Fuel Campaign Links
                  */
 
                 // Identify campaign length and subsequent prayer fuel days count.
@@ -158,19 +171,35 @@ class Porch_Admin_Endpoints {
                     AND pm.meta_value IN ( %1s )
                 ", [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $prayer_fuel_days_string ] ), ARRAY_A );
 
-                // Associated prayer fuel post detected? Build prayer fuel insert sql.
+                // Duplicate detected prayer fuel posts and link with cloned campaign.
                 if ( !empty( $prayer_fuel_posts ) ) {
-                    $prayer_fuel_sql = [];
                     foreach ( $prayer_fuel_posts as $prayer_fuel_post ) {
-                        $prayer_fuel_sql[] = '(' . $prayer_fuel_post['ID'] . ", 'linked_campaign', ". $new_campaign['ID'] . ')';
-                    }
+                        $prayer_fuel_post_id = $prayer_fuel_post['ID'];
+                        $fuel_post = get_post( $prayer_fuel_post_id, ARRAY_A );
+                        $fuel_post_meta = get_post_custom( $prayer_fuel_post_id );
 
-                    // phpcs:disable
-                    $wpdb->get_results( $wpdb->prepare( "
-                        INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value)
-                        VALUES ". implode( ', ', $prayer_fuel_sql ) ." ON DUPLICATE KEY UPDATE post_id = VALUES(post_id), meta_key = VALUES(meta_key), meta_value = VALUES(meta_value)",
-                        [] ), ARRAY_A );
-                    // phpcs:enable
+                        if ( !empty( $fuel_post ) && !empty( $fuel_post_meta ) ) {
+
+                            // Unset unwanted fields; in order to force generation of new values.
+                            unset( $fuel_post['ID'] );
+                            unset( $fuel_post['guid'] );
+                            $new_fuel_post_id = wp_insert_post( $fuel_post );
+
+                            // On successful insert, proceed with prayer fuel metadata duplicates.
+                            if ( !is_wp_error( $new_fuel_post_id ) ) {
+
+                                // Ensure linked campaign only points to new cloned campaign.
+                                $fuel_post_meta['linked_campaign'] = [ $new_campaign['ID'] ];
+
+                                // Proceed with copying prayer fuel metadata.
+                                foreach ( $fuel_post_meta as $fuel_post_meta_key => $fuel_post_meta_values ) {
+                                    foreach ( $fuel_post_meta_values as $fuel_post_meta_value ) {
+                                        update_post_meta( $new_fuel_post_id, $fuel_post_meta_key, maybe_unserialize( $fuel_post_meta_value ) );
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 $response['success'] = true;
