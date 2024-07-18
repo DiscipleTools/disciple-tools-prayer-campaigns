@@ -55,8 +55,8 @@ class DT_Campaign_Fuel {
      *
      * @return int
      */
-    public static function total_days_in_campaign(): int {
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+    public static function total_days_in_campaign( $selected_campaign = null ): int {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $selected_campaign );
 
         if ( !isset( $campaign['end_date'] ) ) {
             return -1;
