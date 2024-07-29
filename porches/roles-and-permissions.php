@@ -96,7 +96,8 @@ class DT_Campaign_Porch_Roles
             $allowed_wp_v2_paths[] = '/wp/v2/block-patterns/patterns';
             $allowed_wp_v2_paths[] = '/wp/v2/block-patterns/categories';
             $allowed_wp_v2_paths[] = '/wp/v2/wp_pattern_category';
-
+            $allowed_wp_v2_paths[] = '/wp/v2/global-styles/themes';
+            $allowed_wp_v2_paths[] = '/wp/v2/template-parts';
 
             $allowed_wp_v2_paths[] = '/wp/v2/media';
             $allowed_wp_v2_paths[] = '/wp/v2/media/(?P<id>[\d]+)';
@@ -119,6 +120,7 @@ class DT_Campaign_Porch_Roles
             $allowed_wp_v2_paths[] = '/wp/v2/users/me';
             $allowed_wp_v2_paths[] = '/wp/v2/users/me?_locale=user';
             $allowed_wp_v2_paths[] = '/wp/v2/users';
+            $allowed_wp_v2_paths[] = '/wp/v2/settings';
 
         }
         return $allowed_wp_v2_paths;
