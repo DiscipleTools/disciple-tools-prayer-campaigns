@@ -366,7 +366,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <!-- my times -->
                     <div>
                         <h2><?php esc_html_e( 'My Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></h2>
-                        <campaign-subscriptions></campaign-subscriptions>
+                        <campaign-subscriptions
+                            locale="<?php echo esc_attr( dt_campaign_get_current_lang() ); ?>"
+                        ></campaign-subscriptions>
                     </div>
 
                     <!-- calendar -->

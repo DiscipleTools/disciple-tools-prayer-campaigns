@@ -1154,6 +1154,7 @@ export class campaignSubscriptions extends LitElement {
     _renew_modal_open: {type: Boolean, state: true},
     _renew_modal_message: {type: String, state: true},
     _change_times_modal_open: {type: String, state: true},
+    locale: {type: String},
   }
 
   constructor() {
@@ -1172,6 +1173,7 @@ export class campaignSubscriptions extends LitElement {
     super.connectedCallback();
     this.campaign_data = await window.campaign_scripts.get_campaign_data()
     this.timezone = window.campaign_user_data.timezone
+    this.locale = this.locale.replace('_', '-');
     this.requestUpdate()
     window.addEventListener('campaign_timezone_change', (e)=>{
       this.timezone = e.detail.timezone
@@ -1258,7 +1260,14 @@ export class campaignSubscriptions extends LitElement {
             <div class="selected-times">
                 <div class="selected-time-content">
                   <div class="title-row">
-                      <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>
+                      <h3>
+                        ${window.luxon.DateTime.fromSeconds(value.first, { zone: this.timezone })
+                          .setLocale(this.locale)
+                          .toLocaleString({ month: 'short', year: 'numeric' })} -
+                        ${window.luxon.DateTime.fromSeconds(value.last, { zone: this.timezone })
+                          .setLocale(this.locale)
+                          .toLocaleString({ month: 'short', year: 'numeric' })}
+                      </h3>
                       <button ?hidden="${!extend_enabled}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>
                       <button ?hidden="${!renew_extended}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id, true)}">${translate('renew')}</button>
                   </div>
