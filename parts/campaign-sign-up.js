@@ -144,6 +144,7 @@ export class CampaignSignUp extends LitElement {
     _view: {type: String, state: true},
     _loading: {type: Boolean, state: true},
     selected_times: {type: Array},
+    locale: {type: String},
   }
 
   constructor() {
@@ -215,6 +216,7 @@ export class CampaignSignUp extends LitElement {
 
   connectedCallback() {
     super.connectedCallback()
+    this.locale = this.locale.replace('_', '-');
 
     window.addEventListener('campaign_timezone_change', (e)=>{
       this.timezone = e.detail.timezone
@@ -530,7 +532,9 @@ export class CampaignSignUp extends LitElement {
                 .selected_day="${this.selected_day}"
                 .selected_times="${this.selected_times}"
                 .recurring_signups="${['bob']}"
-                @time-selected="${e => this.time_selected(e.detail)}">
+                @time-selected="${e => this.time_selected(e.detail)}"
+                locale=${this.locale}
+                >
             </cp-times>
         </div>
     `
@@ -940,6 +944,7 @@ export class cpCalendar extends LitElement {
 
   static properties = {
     prop: {type: String},
+    locale: {type: String},
   }
 
   constructor() {
@@ -956,6 +961,7 @@ export class cpCalendar extends LitElement {
     this.loading = false
     this.days = window.campaign_scripts.days
     this.timezone = window.campaign_user_data.timezone
+    this.locale = this.locale.replace('_', '-');
     this.requestUpdate()
   }
 
@@ -1002,7 +1008,7 @@ export class cpCalendar extends LitElement {
             ${months_to_show.map(month=>html`
                 <div class="calendar-month">
                     <h3 class="month-title center">
-                        ${month.date.toFormat( 'MMM y')}
+                        ${month.date.setLocale(this.locale).toLocaleString({ month: 'short', year: 'numeric' }) }
                         <span class="month-percentage">${ month.percentage || 0 }% | ${month.days_covered} ${translate('days')}</span>
 
                     </h3>

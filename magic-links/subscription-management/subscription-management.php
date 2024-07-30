@@ -379,7 +379,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                                 <?php esc_html_e( 'Download Calendar', 'disciple-tools-prayer-campaigns' ); ?>
                             </a>
                         </div>
-                        <my-calendar>
+                        <my-calendar
+                            locale="<?php echo esc_attr( dt_campaign_get_current_lang() ); ?>"
+                        >
 
                         </my-calendar>
                     </div>
@@ -389,6 +391,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                     <h2 style="text-align: center"><?php esc_html_e( 'Sign up for more prayer', 'disciple-tools-prayer-campaigns' ); ?></h2>
                     <campaign-sign-up
                         already_signed_up="true"
+                        locale="<?php echo esc_attr( dt_campaign_get_current_lang() ); ?>"
                     ></campaign-sign-up>
                 </div>
 

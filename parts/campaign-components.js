@@ -524,6 +524,7 @@ export class cpCalendarDaySelect extends LitElement {
     end_timestamp: {type: String},
     days: {type: Array},
     selected_times: {type: Array},
+    locale: {type: String},
   }
 
   constructor() {
@@ -540,6 +541,7 @@ export class cpCalendarDaySelect extends LitElement {
     //get days from days ready event
     window.addEventListener('campaign_days_ready', e=>{
       this.days = e.detail
+      this.locale = this.locale.replace('_', '-');
       this.requestUpdate()
     })
   }
@@ -592,7 +594,8 @@ export class cpCalendarDaySelect extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toFormat('MMMM y')}
+            ${month.date.setLocale(this.locale).toLocaleString({ month: 'short', year: 'numeric' })}
+
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -700,6 +703,7 @@ export class cpMyCalendar extends LitElement {
     end_timestamp: {type: String},
     days: {type: Array},
     selected_times: {type: Array},
+    locale: {type: String},
   }
 
   constructor() {
@@ -716,6 +720,7 @@ export class cpMyCalendar extends LitElement {
     //get days from days ready event
     window.addEventListener('campaign_days_ready', e=>{
       this.days = e.detail
+      this.locale = this.locale.replace('_', '-');
       this.requestUpdate()
     })
   }
@@ -781,7 +786,7 @@ export class cpMyCalendar extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toFormat('MMMM y')}
+            ${month_date.setLocale(this.locale).toLocaleString({ month: 'short', year: 'numeric' })}
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -924,6 +929,7 @@ export class cpTimes extends LitElement {
     weekday: {type: String},
     selected_times: {type: Array},
     recurring_signups: {type: Array},
+    locale: {type: String},
   }
 
   constructor() {
@@ -982,13 +988,13 @@ export class cpTimes extends LitElement {
           <div class="times-section">
             <div class="section-column time-column">
               <div>&nbsp;</div>
-               ${map(range(time_slots),i=>html`<div class="grid-cell">${this.times[i].minute}</div>`)} 
+               ${map(range(time_slots),i=>html`<div class="grid-cell">${this.times[i].minute}</div>`)}
             </div>
-            
+
             ${map(range(6),i => {
               index = i + row * 6
               return html`
-                
+
               ${ this.times[index*time_slots] ? html`
               <div class="section-column">
                   <div class="prayer-hour">
@@ -1040,7 +1046,8 @@ export class cpTimes extends LitElement {
       const selected = this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60));
       times.push({
         key: s.key,
-        hour: time.toLocaleString({ hour: '2-digit' }),
+        hour: time.setLocale(this.locale).toLocaleString({ hour: '2-digit' }),
+
         minute: time.toFormat('mm'),
         hour_minute: time.toFormat('hh:mm'),
         progress: progress,
@@ -1101,7 +1108,7 @@ export class cpTimes extends LitElement {
         time_formatted: time_formatted,
         hour_minute: time.toFormat('hh:mm'),
         minute: min,
-        hour: time.toLocaleString({ hour: '2-digit' }),
+        hour: time.setLocale(this.locale).toLocaleString({ hour: '2-digit' }),
         progress,
         selected,
         coverage_count: coverage_count
@@ -1148,7 +1155,7 @@ export class cpTimes extends LitElement {
         key: key,
         time_formatted: time_formatted,
         minute: min,
-        hour: time.toLocaleString({ hour: '2-digit' }),
+        hour: time.setLocale(this.locale).toLocaleString({ hour: '2-digit' }),
         hour_minute: time.toFormat('hh:mm'),
         progress,
         coverage_count: ( progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0 ) + (selected ? 1 : 0),

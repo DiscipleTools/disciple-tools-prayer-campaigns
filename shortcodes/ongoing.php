@@ -72,7 +72,9 @@ function dt_ongoing_campaign_calendar( $atts ){
                 --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
         </style>
-        <cp-calendar></cp-calendar>
+        <cp-calendar
+            locale="<?php echo esc_attr( dt_campaign_get_current_lang() ); ?>"
+        ></cp-calendar>
         <?php
         return ob_get_clean();
     }
@@ -92,7 +94,9 @@ function dt_ongoing_campaign_signup( $atts ){
                 --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
         </style>
-        <campaign-sign-up></campaign-sign-up>
+        <campaign-sign-up
+            locale="<?php echo esc_attr( dt_campaign_get_current_lang() ); ?>"
+        ></campaign-sign-up>
         <?php
         return ob_get_clean();
     }
