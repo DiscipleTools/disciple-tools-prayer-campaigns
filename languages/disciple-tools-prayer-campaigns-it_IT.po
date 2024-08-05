@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-07-18T10:53:31+00:00\n"
-"PO-Revision-Date: 2024-07-02 09:59+0000\n"
+"PO-Revision-Date: 2024-08-02 07:59+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -119,35 +119,26 @@ msgid "Prayer Fuel"
 msgstr "Propellente per la preghiera"
 
 #: campaign-functions/send-email-utility.php:403
-#, fuzzy
-#| msgid "%1$s at %2$s for %3$s"
 msgctxt "Every Wednesday at 5pm for 15 minutes"
 msgid "Every %1$s at %2$s for %3$s minutes"
-msgstr "%1$s a %2$s per %3$s"
+msgstr "Ogni %1$s alle %2$s per %3$s minuti"
 
 #: campaign-functions/send-email-utility.php:405
-#, fuzzy
-#| msgctxt "Ending on October 4"
-#| msgid "Ending on %s"
 msgctxt "Praying Daily at 4:15 PM, ending on July 18, 2026"
 msgid "ending on %s"
-msgstr "Termina il %s"
+msgstr "termina il %s"
 
 #: campaign-functions/send-email-utility.php:414
-#, fuzzy
-#| msgid "Continue Praying?"
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr "Continua a pregare?"
+msgstr "[AZIONE NECESSARIA] Continua a pregare?"
 
 #: campaign-functions/send-email-utility.php:418
 msgid "Some of your prayer times will be ending soon."
-msgstr ""
+msgstr "Alcuni dei tuoi intervalli di preghiera stanno per terminare."
 
 #: campaign-functions/send-email-utility.php:419
-#, fuzzy
-#| msgid "See prayer times"
 msgid "The prayer times are:"
-msgstr "Visualizza gli intervalli di preghiera"
+msgstr "Gli intervalli di preghiera sono:"
 
 #: campaign-functions/send-email-utility.php:423
 msgid ""
@@ -155,12 +146,17 @@ msgid ""
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
+"Per continuare a pregare e ricevere le notifiche, accedi al tuo profilo e "
+"clicca su \"Protrarre\" accanto ai tuoi intervalli. Puoi anche registrare "
+"per un intervallo diverso, se lo desideri."
 
 #: campaign-functions/send-email-utility.php:425
 msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
+"Se non vuoi continuare a pregare quando i tuoi intervalli terminano, basta "
+"non fare niente."
 
 #: campaign-functions/send-email-utility.php:427 parts/components.php:51
 #: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
