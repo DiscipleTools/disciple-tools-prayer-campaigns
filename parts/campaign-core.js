@@ -17,8 +17,10 @@ const strings = escapeObject(window.campaign_objects.translations)
 
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
+  locale: window.campaign_objects.locale.replace('_', '-'),
   recurring_signups: [],
 }
+window.luxon.Settings.defaultLocale = window.campaign_user_data.locale
 window.set_user_data = function (data, campaign = false){
   let timezone_changes = false
   if ( data.timezone !== window.campaign_user_data.timezone ){
