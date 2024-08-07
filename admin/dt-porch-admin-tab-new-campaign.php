@@ -143,7 +143,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                         <?php endforeach; ?>
                                     </td>
                                     <td>
-                                        See <a href="https://pray4movement.org/docs/campaign-types/">documentation</a> for types.
+                                        See <a href="https://prayer.tools/docs/campaign-types/">documentation</a> for types.
                                     </td>
                                 </tr>
 

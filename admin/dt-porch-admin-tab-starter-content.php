@@ -154,7 +154,7 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
                         Documentation
                     </td>
                     <td>
-                        <a href='https://pray4movement.org/docs/exporting-and-importing/' target='_blank'>Click here to
+                        <a href='https://prayer.tools/docs/exporting-and-importing/' target='_blank'>Click here to
                             view documentation</a>
                     </td>
                 </tr>
@@ -302,7 +302,7 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
                 <tbody>
                 <tr>
                     <td>
-                        Documentation: <a href='https://pray4movement.org/docs/exporting-and-importing/' target='_blank'>Click
+                        Documentation: <a href='https://prayer.tools/docs/exporting-and-importing/' target='_blank'>Click
                             here to view documentation</a>
                     </td>
                 </tr>

@@ -157,7 +157,7 @@ class DT_Prayer_Campaigns_Menu {
                 <a class="button <?php echo esc_html( $tab === 'new_campaign' ? 'button-primary' : '' ); ?>" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
                     Create a New Campaign
                 </a>
-                <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
+                <a class="button" href="https://prayer.tools/docs/overview/" target="_blank">See Help Documentation</a>
             </div>
             <?php
             if ( !empty( $campaign_id ) ){

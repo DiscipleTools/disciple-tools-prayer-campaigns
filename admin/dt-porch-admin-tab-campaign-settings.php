@@ -50,7 +50,7 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
                     <td colspan="2">
                         <p>
                             These are the languages with existing translations, where the landing page and emails are translated. <br>
-                            Please help us and new translations and improve existing ones. See <a href="https://pray4movement.org/docs/translation/" target="_blank">translation</a>.
+                            Please help us and new translations and improve existing ones. See <a href="https://prayer.tools/docs/translation/" target="_blank">translation</a>.
                         </p>
                         <form method="POST">
                             <input type="hidden" name="language_settings_nonce" id="language_settings_nonce"
