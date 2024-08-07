@@ -1401,7 +1401,7 @@ class DT_Campaigns_Base {
         if ( defined( 'WP_DEBUG' ) && WP_DEBUG ){
             return false;
         }
-        $url = apply_filters( 'p4m_report_url', 'https://pray4movement.org/wp-json/dt-public/campaigns/report' );
+        $url = apply_filters( 'p4m_report_url', 'https://prayer.tools/wp-json/dt-public/campaigns/report' );
         if ( empty( $url ) ){
             return false;
         }

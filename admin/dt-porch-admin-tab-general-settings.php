@@ -259,7 +259,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th><h3>Pray4Movement.org Participation</h3></th>
+                    <th><h3>Prayer.tools Participation</h3></th>
                 </tr>
             </thead>
             <tbody>
@@ -272,7 +272,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                             <input name="p4m_participation" id="p4m_participation" type="checkbox"
                                    <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
                             <label for="p4m_participation">
-                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>. See the <a href="https://pray4movement.org/campaigns" target="_blank">Global campaign list</a>
+                                List my campaigns on <a href="https://prayer.tools/" target="_blank">https://prayer.tools</a>. See the <a href="https://prayer.tools/campaigns" target="_blank">Global campaign list</a>
                                 <br>
                                 This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
                             </label>
