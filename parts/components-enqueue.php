@@ -126,7 +126,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Select a time' => __( 'Select a time', 'disciple-tools-prayer-campaigns' ),
                     'Renew Prayer Times' => __( 'Renew Prayer Times', 'disciple-tools-prayer-campaigns' ),
                     'renew' => __( 'renew', 'disciple-tools-prayer-campaigns' ),
-                    'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
+                    'Receive Prayer.Tools news and opportunities, and occasional communication from GospelAmbition.org.' => __( 'Receive Prayer.Tools news and opportunities, and occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ),
                     'modals' => [
                         'edit' => [
                             'modal_title' => __( 'Text Translations', 'disciple-tools-prayer-campaigns' ),
