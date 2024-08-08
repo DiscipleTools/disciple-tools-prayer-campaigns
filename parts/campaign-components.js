@@ -592,7 +592,7 @@ export class cpCalendarDaySelect extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toLocaleString({ month: 'short', year: 'numeric' })}
+            ${month_date.toLocaleString({ month: 'long', year: 'numeric' })}
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -781,7 +781,7 @@ export class cpMyCalendar extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toLocaleString({ month: 'short', year: 'numeric' })} }
+            ${month_date.toLocaleString({ month: 'long', year: 'numeric' })} }
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
