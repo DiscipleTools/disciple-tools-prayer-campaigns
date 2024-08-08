@@ -1002,7 +1002,7 @@ export class cpCalendar extends LitElement {
             ${months_to_show.map(month=>html`
                 <div class="calendar-month">
                     <h3 class="month-title center">
-                        ${month.date.toFormat( 'MMM y')}
+                        ${month.date.toLocaleString({ month: 'short', year: 'numeric' })}
                         <span class="month-percentage">${ month.percentage || 0 }% | ${month.days_covered} ${translate('days')}</span>
 
                     </h3>

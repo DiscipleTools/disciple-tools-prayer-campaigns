@@ -592,7 +592,7 @@ export class cpCalendarDaySelect extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toFormat('MMMM y')}
+            ${month_date.toLocaleString({ month: 'long', year: 'numeric' })}
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -781,7 +781,7 @@ export class cpMyCalendar extends LitElement {
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toFormat('MMMM y')}
+            ${month_date.toLocaleString({ month: 'long', year: 'numeric' })} }
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -982,13 +982,13 @@ export class cpTimes extends LitElement {
           <div class="times-section">
             <div class="section-column time-column">
               <div>&nbsp;</div>
-               ${map(range(time_slots),i=>html`<div class="grid-cell">${this.times[i].minute}</div>`)} 
+               ${map(range(time_slots),i=>html`<div class="grid-cell">${this.times[i].minute}</div>`)}
             </div>
-            
+
             ${map(range(6),i => {
               index = i + row * 6
               return html`
-                
+
               ${ this.times[index*time_slots] ? html`
               <div class="section-column">
                   <div class="prayer-hour">
