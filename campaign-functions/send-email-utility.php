@@ -645,7 +645,7 @@ class Campaigns_Email_Template {
             }
         }
         if ( empty( $logo_url ) ){
-            $logo_url = 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png';
+            $logo_url = 'https://s3.prayer.tools/pt-logo.png';
         }
         return $logo_url;
     }
