@@ -33,8 +33,7 @@ $campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
                             global $allowedtags;
                             echo wp_kses( DT_Porch_Settings::get_field_translation( 'footer_content' ), $allowedtags ) ?><br>
                         <?php endif; ?>
-                        Made by <a href="https://pray4movement.org">Pray4Movement.org</a>. Powered by <a href="https://disciple.tools">Disciple.Tools</a><br>
-                        &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+                        Built using <a href="https://prayer.tools/campaigns-tool/" target="_blank">Prayer.Tools</a> &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
                     </p>
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">

@@ -239,7 +239,7 @@ function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_sign
         $campaign_name = get_the_title();
     }
 
-    wp_remote_post( 'https://pray4movement.org/wp-json/go-webform/optin', [
+    wp_remote_post( 'https://prayer.tools/wp-json/go-webform/optin', [
         'body' => [
             'email' => $email,
             'name' => $name,

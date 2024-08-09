@@ -276,7 +276,7 @@ class DT_Generic_Porch_Stats {
 
 
             <?php if ( $current_selected_porch === 'ramadan-porch' ) {
-                $ramadan_stats = p4m_cached_api_call( 'https://pray4movement.org/wp-json/dt-public/campaigns/campaigns-stats?start_date=2024-03-01&end_date=2024-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
+                $ramadan_stats = p4m_cached_api_call( 'https://prayer.tools/wp-json/dt-public/campaigns/campaigns-stats?start_date=2024-03-01&end_date=2024-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
                 ?>
             <section class='section' data-stellar-background-ratio='0.2' style='padding-bottom: 0; min-height: 800px'>
                 <div class='container'>
@@ -329,7 +329,7 @@ class DT_Generic_Porch_Stats {
                         </div>
                     </div>
                     <div class="center">
-                        See <a href="https://pray4movement.org/ramadan"> https://pray4movement.org/ramadan</a> for more details.
+                        See <a href="https://prayer.tools/ramadan"> https://prayer.tools/ramadan</a> for more details.
                     </div>
                 </div>
             </section>
@@ -348,7 +348,7 @@ class DT_Generic_Porch_Stats {
                         <hr class="lines wow zoomIn" data-wow-delay="0.3s">
                     </div>
 
-                    <p class="center"><?php esc_html_e( 'Sign up to hear about other prayer efforts and opportunities with Pray4Movement.org and receive occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ); ?></p>
+                    <p class="center"><?php esc_html_e( 'Sign up to hear about other prayer efforts and opportunities with Prayer.Tools and receive occasional communication from GospelAmbition.org.', 'disciple-tools-prayer-campaigns' ); ?></p>
 
                     <style>
                         #go-optin-form .dt-form-error {
@@ -385,7 +385,7 @@ class DT_Generic_Porch_Stats {
 
                     </style>
                     <div class='go-opt-in__form'>
-                        <form id='go-optin-form' action='https://pray4movement.org/wp-json/go-webform/optin' method='post'>
+                        <form id='go-optin-form' action='https://prayer.tools/wp-json/go-webform/optin' method='post'>
                             <div class='form-group'>
                                 <label>
                                     Email Address <span class='asterisk'>*</span>
@@ -445,7 +445,7 @@ class DT_Generic_Porch_Stats {
                             named_tags: {'p4m_campaign_name': '<?php echo esc_html( $campaign_name ); ?>'}
                         }
 
-                        fetch('https://pray4movement.org/wp-json/go-webform/optin', {
+                        fetch('https://prayer.tools/wp-json/go-webform/optin', {
                           method: 'POST',
                           body: JSON.stringify(data),
                           headers: {
