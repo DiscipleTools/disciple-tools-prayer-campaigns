@@ -332,6 +332,10 @@ class DT_Subscriptions {
         $recurring_signup['time_end'] = end( $recurring_signup_info['selected_times'] )['time'];
         Disciple_Tools_Reports::update( $recurring_signup );
 
+        if ( !empty( $recurring_signup_info['auto_extend'] ) ){
+            DT_Prayer_Campaigns_Send_Email::send_auto_extend_notification( $subscriber_id, $campaign_id, $recurring_signup_info );
+        }
+
         return self::get_recurring_signup( $recurring_signup_report_id );
     }
 

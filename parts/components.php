@@ -66,7 +66,10 @@ function dt_campaign_user_record_prayed(){
               contentType: 'application/json; charset=utf-8',
               dataType: 'json',
               data: JSON.stringify({
-                parts: jsObject.parts,
+                parts: {
+                  root: '<?php echo esc_html( $campaign['campaign_url'] ) ?>',
+                  type: ''
+                },
                 number,
                 campaign_id: <?php echo esc_html( $campaign['ID'] ) ?>,
               }),
