@@ -259,7 +259,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th><h3>Prayer.tools Participation</h3></th>
+                    <th><h3>Prayer.Tools Participation</h3></th>
                 </tr>
             </thead>
             <tbody>
