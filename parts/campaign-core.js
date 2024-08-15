@@ -201,7 +201,7 @@ window.campaign_scripts = {
   },
   get_campaign_data: function( timezone ){
 
-    let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+    let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.campaign_id;
 
     if ( campaign_data_promise === null ){
       let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_info';

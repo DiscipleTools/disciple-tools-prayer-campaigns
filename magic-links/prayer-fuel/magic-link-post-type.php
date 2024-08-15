@@ -64,21 +64,25 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
     }
 
     public function wp_enqueue_scripts(){
+        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        if ( is_wp_error( $post ) || empty( $post['campaigns'] ) ){
+            return;
+        }
+        $campaign_id = $post['campaigns'][0]['ID'];
+        dt_campaigns_register_scripts( $this->parts, $campaign_id );
         $porch_dir = DT_Prayer_Campaigns::get_dir_path() . 'porches/generic/site/';
         $porch_url = DT_Prayer_Campaigns::get_url_path() . 'porches/generic/site/';
         wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css', array(), '4.5.3' );
         wp_enqueue_style( 'main-styles', $porch_url . 'css/main.css', array(), filemtime( $porch_dir . 'css/main.css' ) );
         wp_enqueue_style( 'menu_sideslide', $porch_url . 'css/menu_sideslide.css', array(), filemtime( $porch_dir . 'css/menu_sideslide.css' ) );
 
-        wp_enqueue_script( 'my-jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', [], '2.1.4', true );
-        wp_enqueue_script( 'main', $porch_url . 'js/main.js', [ 'my-jquery' ], filemtime( $porch_dir . 'js/main.js' ), true );
+        wp_enqueue_script( 'main', $porch_url . 'js/main.js', [ 'jquery' ], filemtime( $porch_dir . 'js/main.js' ), true );
 
         wp_enqueue_script( 'magic_link_scripts', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'magic-link.js', [
             'jquery',
-            'lodash',
         ], filemtime( plugin_dir_path( __FILE__ ) . 'magic-link.js' ), true );
         wp_localize_script(
-            'magic_link_scripts', 'jsObject', [
+            'magic_link_scripts', 'prayer_fuel_scripts', [
                 'map_key' => DT_Mapbox_API::get_key(),
                 'rest_base' => esc_url( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -94,9 +98,11 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         $allowed_js = [
             'magic_link_scripts',
             'main',
-            'my-jquery',
+            'jquery',
             'jquery.counterup',
-            'bootstrap'
+            'bootstrap',
+            'dt_campaign_core',
+            'luxon'
         ];
         return $allowed_js;
     }
@@ -312,10 +318,22 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
     public function add_endpoints() {
         $namespace = $this->root . '/v1';
         register_rest_route(
-            $namespace, '/' . $this->type, [
+            $namespace, '/'.$this->type . '/campaign_info', [
+                [
+                    'methods'  => 'GET',
+                    'callback' => [ $this, 'campaign_info' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+        register_rest_route(
+            $namespace, '/'.$this->type, [
                 [
                     'methods'  => 'POST',
-                    'callback' => [ $this, 'access_account' ],
+                    'callback' => [ $this, 'manage_profile' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
                         return $magic->verify_rest_endpoint_permissions_on_post( $request );
@@ -325,19 +343,32 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         );
     }
 
-    public function access_account( WP_REST_Request $request ) {
+    public function campaign_info( WP_REST_Request $request ) {
+        return DT_Prayer_Subscription_Management_Magic_Link::campaign_info( $request );
+    }
+    public function manage_profile( WP_REST_Request $request ) {
         $params = $request->get_params();
-        $params = dt_recursive_sanitize_array( $params );
 
-        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
-
-        if ( empty( $params['email'] ) ){
-            return new WP_Error( __METHOD__, 'Missing required parameter.', [ 'status' => 400 ] );
+        if ( ! isset( $params['parts'], $params['parts']['meta_key'], $params['parts']['public_key'], $params['action'] ) ) {
+            return new WP_Error( __METHOD__, 'Missing parameters', [ 'status' => 400 ] );
         }
 
-        DT_Prayer_Campaigns_Send_Email::send_account_access( $post_id, $params['email'] );
+        $params = dt_recursive_sanitize_array( $params );
+        $action = $params['action'];
+        $campaign_id = $params['campaign_id'] ?? null;
 
-        return $params;
+        // manage
+        $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
+        if ( ! $post_id ){
+            return new WP_Error( __METHOD__, 'Missing post record', [ 'status' => 400 ] );
+        }
+
+        switch ( $action ) {
+            case 'update_recurring_signup':
+                return DT_Subscriptions::update_recurring_signup( $post_id, $params['report_id'] ?? null, $params );
+            default:
+                return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
+        }
     }
 
 }

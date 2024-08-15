@@ -26,7 +26,8 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'public_key' => $atts['public_key'],
                     'meta_key' => $atts['meta_key'],
                     'post_id' => $atts['post_id'],
-                    'lang' => $atts['lang'] ?? 'en_US'
+                    'lang' => $atts['lang'] ?? 'en_US',
+                    'campaign_id' => $campaign_id,
                 ],
                 'rest_url' => get_rest_url(),
                 'remote' => ( $atts['rest_url'] ?? get_rest_url() ) !== get_rest_url(),
