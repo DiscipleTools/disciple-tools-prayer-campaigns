@@ -224,7 +224,7 @@ export class CampaignSignUp extends LitElement {
   }
   selected_times_count(){
     let count = 0;
-    this.recurring_signups.forEach(v=>{
+    window.campaign_user_data.recurring_signups_combined.forEach(v=>{
       count += v.selected_times.length
     })
     count += this.selected_times.length
@@ -252,7 +252,7 @@ export class CampaignSignUp extends LitElement {
       email: this._form_items.email,
       receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: selected_times,
-      recurring_signups: this.recurring_signups,
+      recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
     //add this._form_items
     Object.keys(this._form_items).forEach(key=>{
@@ -286,7 +286,7 @@ export class CampaignSignUp extends LitElement {
       name: this._form_items.name,
       receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: this.selected_times,
-      recurring_signups: this.recurring_signups,
+      recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
     window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
     .done((response)=>{
@@ -352,6 +352,7 @@ export class CampaignSignUp extends LitElement {
     if ( recurring_signup ){
       this.recurring_signups = [...this.recurring_signups, recurring_signup]
       window.campaign_user_data.recurring_signups = this.recurring_signups;
+      window.campaign_scripts.combine_recurring_signups()
       this.show_toast()
       this.requestUpdate()
     } else {
@@ -359,6 +360,8 @@ export class CampaignSignUp extends LitElement {
       let index = this.recurring_signups.findIndex(k=>k.time===selected_time)
       if ( index > -1 ){
         this.recurring_signups.splice(index,1)
+        window.campaign_user_data.recurring_signups = this.recurring_signups;
+        window.campaign_scripts.combine_recurring_signups()
         this.show_toast(translate('Prayer Time Removed'), 'warn')
         this.requestUpdate()
       }
@@ -404,8 +407,10 @@ export class CampaignSignUp extends LitElement {
     window.set_user_data({timezone: this.timezone})
   }
 
-  remove_recurring_prayer_time(index){
-    this.recurring_signups.splice(index,1)
+  remove_recurring_prayer_time(root, duration, type){
+    this.recurring_signups = this.recurring_signups.filter(k=> !(k.root >= root && k.root <= root + duration * 60 && k.type===type))
+    window.campaign_user_data.recurring_signups = this.recurring_signups;
+    window.campaign_scripts.combine_recurring_signups()
     this.requestUpdate()
   }
 
@@ -598,14 +603,14 @@ export class CampaignSignUp extends LitElement {
                 </span>
             </div>
             <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
-                ${this.recurring_signups.map((value, index) => {
+                ${window.campaign_user_data.recurring_signups_combined.map((value, index) => {
                     let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && (value.last > this.campaign_data.end_timestamp - 86400 * 30)
                     return html`
                         <div class="selected-times selected-time-labels">
                             <div class="selected-time-frequency">
                                 <div>${value.label}</div>
                                 <div>
-                                    <button @click="${e => this.remove_recurring_prayer_time(index)}"
+                                    <button @click="${e => this.remove_recurring_prayer_time(value.root, value.duration, value.type)}"
                                             class="remove-prayer-time-button">
                                         <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                                     </button>
@@ -652,14 +657,14 @@ export class CampaignSignUp extends LitElement {
                 <span class="step-circle">*</span>
                 <span>${translate('My Prayer Commitments')} (${this.selected_times_count()})</span>
             </h2>
-            ${this.recurring_signups.map((value, index) => {
+            ${window.campaign_user_data.recurring_signups_combined.map((value, index) => {
                 let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && (value.last > this.campaign_data.end_timestamp - 86400 * 30)
                 return html`
                     <div class="selected-times selected-time-labels">
                         <div class="selected-time-frequency">
                             <div>${value.label}</div>
                             <div>
-                                <button @click="${e => this.remove_recurring_prayer_time(index)}"
+                                <button @click="${e => this.remove_recurring_prayer_time(value.root, value.duration, value.type)}"
                                         class="remove-prayer-time-button"><img
                                     src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
                             </div>

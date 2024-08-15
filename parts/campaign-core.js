@@ -19,6 +19,7 @@ window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
   locale: window.campaign_objects.locale.replace('_', '-'),
   recurring_signups: [],
+  recurring_signups_combined: [],
 }
 window.luxon.Settings.defaultLocale = window.campaign_user_data.locale
 window.set_user_data = function (data, campaign = false){
@@ -370,7 +371,14 @@ window.campaign_scripts = {
     let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric' });
     const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
     let freq_label = frequency_option.label
-    const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
+    let hours = Math.floor(value.duration / 60)
+    let minutes = value.duration % 60
+    let duration_label = minutes > 0 ? `${minutes} ${strings['Minutes']}` : ''
+    if ( hours > 1 ){
+      duration_label = `${hours} ${strings['Hours']} ${duration_label}`
+    } else if ( hours === 1 ){
+      duration_label = `${hours} ${strings['Hour']} ${duration_label}`
+    }
     if ( frequency_option.value === 'weekly' ){
       let day_number_of_the_week = first.toFormat('c')
       let weekly_label_options = [ strings['Mondays'], strings['Tuesdays'], strings['Wednesdays'], strings['Thursdays'], strings['Fridays'], strings['Saturdays'], strings['Sundays'] ]
@@ -418,7 +426,7 @@ window.campaign_scripts = {
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
     let date_ref = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
-    if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
+    if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time && k.type === frequency) ){
       return null;
     }
 
@@ -453,6 +461,29 @@ window.campaign_scripts = {
       week_day: weekday,
       selected_times,
     }
+  },
+
+  combine_recurring_signups(){
+    let recurring_signups = window.campaign_user_data.recurring_signups
+    let combined_signups = []
+
+    recurring_signups.sort((a,b)=>{
+      return a.root - b.root
+    })
+
+    recurring_signups.forEach(signup=>{
+      //find previous signup
+      let previous_signup = combined_signups.find(k=>k.root + k.duration * 60 === signup.root && k.type === signup.type)
+      if ( !previous_signup ){
+        combined_signups.push(Object.assign({}, signup)); //clone object to avoid double updating
+      } else {
+        previous_signup.duration += signup.duration
+        previous_signup.last = signup.last
+        previous_signup.label = window.campaign_scripts.recurring_time_slot_label({first:previous_signup.first.toSeconds(), type: previous_signup.type, duration: previous_signup.duration})
+        previous_signup.selected_times.forEach(k=>k.duration = k.duration + signup.duration)
+      }
+    })
+    window.campaign_user_data.recurring_signups_combined = combined_signups
   },
 
   submit_prayer_times: function (campaign_id, data, action = 'add' ){
