@@ -480,7 +480,7 @@ window.campaign_scripts = {
         previous_signup.duration += signup.duration
         previous_signup.last = signup.last
         previous_signup.label = window.campaign_scripts.recurring_time_slot_label({first:previous_signup.first.toSeconds(), type: previous_signup.type, duration: previous_signup.duration})
-        previous_signup.selected_times.forEach(k=>k.duration = k.duration + signup.duration)
+        previous_signup.selected_times.forEach(k=>k.duration = previous_signup.duration)
       }
     })
     window.campaign_user_data.recurring_signups_combined = combined_signups
