@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-07-18T10:53:31+00:00\n"
+"POT-Creation-Date: 2024-08-14T10:03:22+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/disciple-"
@@ -66,7 +66,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:216
 #: campaign-functions/send-email-utility.php:314
 #: campaign-functions/send-email-utility.php:424
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid "Access Account"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr "பிரார்த்தனை நேரம் நினைவூட�
 
 #: campaign-functions/send-email-utility.php:302
 #: campaign-functions/send-email-utility.php:418
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 #, fuzzy
 msgid "Thank you for praying with us."
 msgstr "எங்களுடன் பிரார்த்தனை செய்ததற்கு நன்றி!"
@@ -217,9 +217,9 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:514
 msgid ""
-"Finally, the folks at Pray4Movement built this prayer tool. You can make "
-"sure you’re signed up to receive news about future prayer opportunities on "
-"the Stats page."
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:516
@@ -250,7 +250,7 @@ msgstr ""
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
-"opportunities by Pray4Movement, the makers of this prayer tool."
+"opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:546
@@ -295,7 +295,7 @@ msgstr ""
 msgid "day"
 msgstr "நாட்களில்"
 
-#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:40
+#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:41
 #, fuzzy
 msgid "days"
 msgstr "நாட்களில்"
@@ -313,7 +313,7 @@ msgstr ""
 "இங்கே கிளிக் செய்யவும்."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:54 porches/generic/site/contact-us.php:83
+#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:83
 #: porches/generic/site/stats.php:209
 #, fuzzy
 msgid "Email"
@@ -332,7 +332,7 @@ msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:39
 #: magic-links/subscription-management/subscription-management.php:368
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:52
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "பிரார்த்தனை அர்ப்பணிப்புகள்"
@@ -385,249 +385,249 @@ msgstr "பிரார்த்தனை செய்ய பதிவு செ
 msgid "This subscription has ended or is not configured correctly."
 msgstr "இந்த சந்தா முடிவடைந்தது அல்லது சரியாக உள்ளமைக்கப்படவில்லை."
 
-#: parts/components-enqueue.php:38
+#: parts/components-enqueue.php:39
 #, fuzzy
 msgid "Detected time zone"
 msgstr "தேர்ந்தெடுக்கப்பட்ட நேரங்கள்"
 
-#: parts/components-enqueue.php:39
+#: parts/components-enqueue.php:40
 #, fuzzy
 msgid "Select a timezone"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:41 porches/generic/site/stats.php:154
+#: parts/components-enqueue.php:42 porches/generic/site/stats.php:154
 #: porches/generic/site/stats.php:164
 #, fuzzy
 msgid "hours"
 msgstr "மணி"
 
-#: parts/components-enqueue.php:42
+#: parts/components-enqueue.php:43
 #, fuzzy
 msgid "minutes"
 msgstr "நிமிடங்கள்"
 
-#: parts/components-enqueue.php:43
+#: parts/components-enqueue.php:44
 #, fuzzy
 msgid "seconds"
 msgstr "வினாடிகள்"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:45
 #, fuzzy
 msgid "Campaign Starts In"
 msgstr "பிரச்சார புள்ளிவிவரங்கள்"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:46
 #, fuzzy
 msgid "Campaign Ends In"
 msgstr "பிரச்சார புள்ளிவிவரங்கள்"
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:47
 #, fuzzy
 msgid "Campaign Ended"
 msgstr "பிரச்சார புள்ளிவிவரங்கள்"
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:48
 #, fuzzy
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%2$s நிமிடங்களுக்கு %1$s."
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:49
 msgid "How often?"
 msgstr ""
 
-#: parts/components-enqueue.php:49
+#: parts/components-enqueue.php:50
 msgid "I will pray for"
 msgstr ""
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:51
 #, fuzzy
 msgid "At what time?"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:52
+#: parts/components-enqueue.php:53
 msgid "Contact Info"
 msgstr ""
 
-#: parts/components-enqueue.php:53 porches/generic/site/contact-us.php:76
+#: parts/components-enqueue.php:54 porches/generic/site/contact-us.php:76
 #, fuzzy
 msgid "Name"
 msgstr "பெயர்"
 
-#: parts/components-enqueue.php:55
+#: parts/components-enqueue.php:56
 msgid "Start Here"
 msgstr ""
 
-#: parts/components-enqueue.php:56
+#: parts/components-enqueue.php:57
 msgid "Continue here"
 msgstr ""
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:58
 msgid "On which week day?"
 msgstr ""
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:59
 #, fuzzy
 msgid "Select a Date"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:60
 #, fuzzy
 msgid "Select a Time"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:61
 #, fuzzy
 msgid "Select a Time for %s"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:61 parts/components-enqueue.php:135
+#: parts/components-enqueue.php:62 parts/components-enqueue.php:136
 #, fuzzy
 msgid "Close"
 msgstr "நெருக்கமான"
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:63
 #, fuzzy
 msgid "prayer commitments"
 msgstr "பிரார்த்தனை அர்ப்பணிப்புகள்"
 
-#: parts/components-enqueue.php:63
+#: parts/components-enqueue.php:64
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:64
+#: parts/components-enqueue.php:65
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:66
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:66 parts/components.php:45
+#: parts/components-enqueue.php:67 parts/components.php:45
 #: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
 #, fuzzy
 msgid "Submit"
 msgstr "சமர்ப்பிக்கவும்"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:68
 msgid "Verify"
 msgstr ""
 
-#: parts/components-enqueue.php:68
+#: parts/components-enqueue.php:69
 #, fuzzy
 msgid "Percentage covered in prayer"
 msgstr "ஜெபத்தில் உள்ளடக்கப்பட்ட சதவீதம்"
 
-#: parts/components-enqueue.php:69
+#: parts/components-enqueue.php:70
 #, fuzzy
 msgid "%s committed"
 msgstr "நேரம் உறுதி"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:71
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:72
 #, fuzzy
 msgid "Next"
 msgstr "அடுத்தது"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:73
 #, fuzzy
 msgid "No prayer times selected"
 msgstr "உங்கள் பிரார்த்தனை நேரம் சரிபார்க்கப்பட்டது!"
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:74
 #, fuzzy
 msgid "Daily"
 msgstr "தினசரி நேரம்"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:75
 msgid "Weekly"
 msgstr ""
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:76
 #, fuzzy
 msgid "Monthly"
 msgstr "மாதம்"
 
-#: parts/components-enqueue.php:76
+#: parts/components-enqueue.php:77
 msgid "Pick Dates and Times"
 msgstr ""
 
-#: parts/components-enqueue.php:77
+#: parts/components-enqueue.php:78
 msgctxt "up to 3 months"
 msgid "up to %s months"
 msgstr ""
 
-#: parts/components-enqueue.php:78
+#: parts/components-enqueue.php:79
 #, fuzzy
 msgid "%s Minutes"
 msgstr "5 நிமிடம்"
 
-#: parts/components-enqueue.php:79
+#: parts/components-enqueue.php:80
 #, fuzzy
 msgid "%s Hour"
 msgstr "மணி"
 
-#: parts/components-enqueue.php:80
+#: parts/components-enqueue.php:81
 #, fuzzy
 msgid "%s Hours"
 msgstr "மணி"
 
-#: parts/components-enqueue.php:81
+#: parts/components-enqueue.php:82
 #, fuzzy
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s %2$s முதல் %3$s வரை"
 
-#: parts/components-enqueue.php:82
+#: parts/components-enqueue.php:83
 #, fuzzy
 msgid "for %s minutes"
 msgstr "%2$s நிமிடங்களுக்கு %1$s."
 
-#: parts/components-enqueue.php:83
+#: parts/components-enqueue.php:84
 msgid "Every %s"
 msgstr ""
 
-#: parts/components-enqueue.php:84
+#: parts/components-enqueue.php:85
 #, fuzzy
 msgid "Prayer Time Selected"
 msgstr "உங்கள் பிரார்த்தனை நேரம் சரிபார்க்கப்பட்டது!"
 
-#: parts/components-enqueue.php:85
+#: parts/components-enqueue.php:86
 #, fuzzy
 msgid "Select a Day"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:87
 msgid "Renews on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:88
 msgid "Ends on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 msgid "Success"
 msgstr ""
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "உங்கள் பதிவு வெற்றிகரமாக முடிந்தது."
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 #, fuzzy
 msgid "Check your email for additional details and to manage your account."
 msgstr "உங்கள் பிரார்த்தனை நேரங்களை நிர்வகிப்பதற்கான இணைப்பு மின்னஞ்சலில் உள்ளது."
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -635,242 +635,242 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 #, fuzzy
 msgid "Account Settings"
 msgstr "மேம்பட்ட அமைப்புகள்"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 #, fuzzy
 msgid "Receive Prayer time notifications"
 msgstr "பிரார்த்தனை நேர அறிவிப்புகளைப் பெறவும்"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "மேம்பட்ட அமைப்புகள்"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 #, fuzzy
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "இந்த சுயவிவரத்தையும் திட்டமிடப்பட்ட பிரார்த்தனை நேரங்களையும் நீக்கவா?"
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 #, fuzzy
 msgid "Delete"
 msgstr "அழி"
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 #: porches/generic/dt-generic-porch-strings.php:206
 #, fuzzy
 msgid "See Prayer Fuel"
 msgstr "பிரார்த்தனை எரிபொருள்"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 #, fuzzy
 msgid "change time"
 msgstr "தினசரி நேரத்தை மாற்றவும்"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 #, fuzzy
 msgid "Remove all"
 msgstr "அனைத்தையும் நீக்கு"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #, fuzzy
 msgid "See prayer times"
 msgstr "பிரார்த்தனை நேரத்தைச் சேர்க்கவும்"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 #, fuzzy
 msgid "Delete Prayer Times"
 msgstr "பிரார்த்தனை நேரம்"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 #, fuzzy
 msgid "Really delete these prayer times?"
 msgstr "பிரார்த்தனை நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 #, fuzzy
 msgid "extend"
 msgstr "நீட்டிக்கவும்"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 #, fuzzy
 msgid "Extend Prayer Times"
 msgstr "பிரார்த்தனை நேரம்"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 #, fuzzy
 msgid "Really delete this prayer time?"
 msgstr "பிரார்த்தனை நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 #, fuzzy
 msgid "Delete Prayer Time"
 msgstr "தேர்ந்தெடுக்கப்பட்ட நேரங்கள்"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 #, fuzzy
 msgid "Mondays"
 msgstr "நாட்களில்"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 #, fuzzy
 msgid "Tuesdays"
 msgstr "நாட்களில்"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Wednesdays"
 msgstr ""
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 #, fuzzy
 msgid "Thursdays"
 msgstr "நாட்களில்"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 #, fuzzy
 msgid "Fridays"
 msgstr "நாட்களில்"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 #, fuzzy
 msgid "Saturdays"
 msgstr "நாட்களில்"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 #, fuzzy
 msgid "Sundays"
 msgstr "நாட்களில்"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 #, fuzzy
 msgid "Change Prayer Time"
 msgstr "பிரார்த்தனை நேரங்களைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 #, fuzzy
 msgid "Your current prayer time is %s"
 msgstr "உங்கள் புதிய பிரார்த்தனை நேரங்கள் சேமிக்கப்பட்டுள்ளன."
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 #, fuzzy
 msgid "Select a new time:"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 #, fuzzy
 msgid "Select a time"
 msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 #, fuzzy
 msgid "Renew Prayer Times"
 msgstr "பிரார்த்தனை நேரம்"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 #, fuzzy
 msgid ""
-"Receive Pray4Movement news and opportunities, and occasional communication "
-"from GospelAmbition.org."
+"Receive news from Prayer.Tools about upcoming prayer campaigns and "
+"occasional communication from GospelAmbition.org"
 msgstr ""
 "Pray4Movement.org உடன் பிற பிரார்த்தனை முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய "
 "விரும்புகிறீர்களா?"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:132
 msgid "Text Translations"
 msgstr ""
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:133
 msgid "Original String"
 msgstr ""
 
-#: parts/components-enqueue.php:133
+#: parts/components-enqueue.php:134
 msgid "Custom Value For All Languages"
 msgstr ""
 
-#: parts/components-enqueue.php:134
+#: parts/components-enqueue.php:135
 msgid "Translation For Currently Selected Language"
 msgstr ""
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:137
 #, fuzzy
 msgid "Update"
 msgstr "புதுப்பிப்பு"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:140
 msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
 
-#: parts/components-enqueue.php:140
+#: parts/components-enqueue.php:141
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:142
 msgid "It will look like this:"
 msgstr ""
 
-#: parts/components-enqueue.php:142
+#: parts/components-enqueue.php:143
 msgid "Pending - Verification Needed"
 msgstr ""
 
-#: parts/components-enqueue.php:143
+#: parts/components-enqueue.php:144
 msgid "Back to sign-up"
 msgstr ""
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:145
 msgid "So sorry. Something went wrong. You can:"
 msgstr ""
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:146
 msgid "Try Again"
 msgstr ""
 
-#: parts/components-enqueue.php:146 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:46
+#: parts/components-enqueue.php:147 porches/generic/site/contact-us.php:20
+#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:45
 msgid "Contact Us"
 msgstr ""
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:148
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:149
 #, fuzzy
 msgid "Time not covered"
 msgstr "மூடப்பட்ட"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:150
 msgid "# of people covering this time"
 msgstr ""
 
@@ -1121,9 +1121,8 @@ msgstr "மேலும் பிரார்த்தனை வாய்ப்�
 #: porches/generic/site/stats.php:351
 #, fuzzy
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org and receive occasional communication from GospelAmbition."
-"org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Pray4Movement.org உடன் பிற பிரார்த்தனை முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய "
 "விரும்புகிறீர்களா?"
