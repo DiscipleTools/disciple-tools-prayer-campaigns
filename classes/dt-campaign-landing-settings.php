@@ -192,7 +192,7 @@ class DT_Campaign_Landing_Settings {
             'tile' => 'campaign_email',
             'description' => __( 'The logo that will be used in emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
             'settings_section' => $sections['settings'],
-            'default' => 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png'
+            'default' => 'https://s3.prayer.tools/pt-logo.png'
         ];
         //reminder_content_disable_fuel
         $fields['reminder_content_disable_fuel'] = [

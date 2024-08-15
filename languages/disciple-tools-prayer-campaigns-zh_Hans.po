@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-06-27T15:31:55+00:00\n"
-"PO-Revision-Date: 2024-06-29 17:59+0000\n"
+"POT-Creation-Date: 2024-07-18T10:53:31+00:00\n"
+"PO-Revision-Date: 2024-07-14 15:02+0000\n"
 "Last-Translator: may plum <mayflower2465@proton.me>\n"
 "Language-Team: Chinese (Simplified) <https://translate.disciple.tools/"
 "projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.1\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:73
@@ -27,7 +27,6 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "通过激活您的账号来确认您加入祈祷。"
 
 #: campaign-functions/send-email-utility.php:82
-#: campaign-functions/send-email-utility.php:396
 msgid "Or click this link:"
 msgstr "或者点击此链接："
 
@@ -51,7 +50,7 @@ msgstr "注册与我们一起祈祷！"
 
 #: campaign-functions/send-email-utility.php:211
 #: campaign-functions/send-email-utility.php:301
-#: campaign-functions/send-email-utility.php:392
+#: campaign-functions/send-email-utility.php:416
 msgid "Hello %s,"
 msgstr "您好 %s，"
 
@@ -62,6 +61,7 @@ msgstr "通过访问您的账号来查看您的承诺和做些改变："
 
 #: campaign-functions/send-email-utility.php:216
 #: campaign-functions/send-email-utility.php:314
+#: campaign-functions/send-email-utility.php:424
 #: parts/components-enqueue.php:92
 msgid "Access Account"
 msgstr "访问账号"
@@ -99,6 +99,7 @@ msgid "Prayer Time reminder!"
 msgstr "祈祷时间提醒！"
 
 #: campaign-functions/send-email-utility.php:302
+#: campaign-functions/send-email-utility.php:418
 #: parts/components-enqueue.php:102
 msgid "Thank you for praying with us."
 msgstr "感谢您与我们一起祈祷。"
@@ -115,52 +116,75 @@ msgstr "以下是您即将到来的祈祷时间："
 msgid "Prayer Fuel"
 msgstr "祷告燃料"
 
-#: campaign-functions/send-email-utility.php:390
-msgid "Continue Praying?"
+#: campaign-functions/send-email-utility.php:403
+msgctxt "Every Wednesday at 5pm for 15 minutes"
+msgid "Every %1$s at %2$s for %3$s minutes"
+msgstr "每%1$s 从 %2$s 到 %3$s"
+
+#: campaign-functions/send-email-utility.php:405
+msgctxt "Praying Daily at 4:15 PM, ending on July 18, 2026"
+msgid "ending on %s"
+msgstr "结束在%s"
+
+#: campaign-functions/send-email-utility.php:414
+msgid "[ACTION NEEDED] Continue Praying?"
 msgstr "要继续祷告吗？"
 
-#: campaign-functions/send-email-utility.php:393
+#: campaign-functions/send-email-utility.php:418
+msgid "Some of your prayer times will be ending soon."
+msgstr "你的一些承諾禱告時間即將結束。"
+
+#: campaign-functions/send-email-utility.php:419
+msgid "The prayer times are:"
+msgstr "祈祷时间是："
+
+#: campaign-functions/send-email-utility.php:423
 msgid ""
-"You are 2 weeks out from your last prayer time. Would you like to keep "
-"praying?"
-msgstr "距离您的上一次祷告时间已经超过 2 周了。你愿意继续祷告吗？"
+"To continue praying, and to keep receiving the notifications, please access "
+"your account and click \"extend\" next to your commitment(s). You can also "
+"sign up for a different time if you wish."
+msgstr ""
+"要继续祷告和保持接收消息通知，请登录你的账号并在你所作的承诺旁边处点击“延"
+"长”。如果你想的话你也可以注册另外的祷告时间。"
 
-#: campaign-functions/send-email-utility.php:394
-msgid "Sign up for more prayer times or extend your recurring time here:"
-msgstr "在此处注册更多祈祷时间或延长您的重复时间："
+#: campaign-functions/send-email-utility.php:425
+msgid ""
+"You do not have to do anything if you do not want to continue praying when "
+"your prayer times end."
+msgstr "当你的祷告时间结束，如果你不想要继续祷告的话就不需要作些什么。"
 
-#: campaign-functions/send-email-utility.php:397 parts/components.php:51
+#: campaign-functions/send-email-utility.php:427 parts/components.php:51
 #: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
 msgid "Thank you"
 msgstr "谢谢"
 
-#: campaign-functions/send-email-utility.php:443
+#: campaign-functions/send-email-utility.php:473
 #: porches/generic/site/stats.php:84
 msgid "Thank you for praying with us!"
 msgstr "感谢您与我们一起祈祷！"
 
-#: campaign-functions/send-email-utility.php:466
 #: campaign-functions/send-email-utility.php:496
+#: campaign-functions/send-email-utility.php:526
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "为门徒造就运动的策略性祷告%s"
 
-#: campaign-functions/send-email-utility.php:468
 #: campaign-functions/send-email-utility.php:498
+#: campaign-functions/send-email-utility.php:528
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "为门徒造就运动的策略性祷告"
 
-#: campaign-functions/send-email-utility.php:473
 #: campaign-functions/send-email-utility.php:503
+#: campaign-functions/send-email-utility.php:533
 msgid "Dear %s,"
 msgstr "亲爱的%s，"
 
-#: campaign-functions/send-email-utility.php:476
 #: campaign-functions/send-email-utility.php:506
+#: campaign-functions/send-email-utility.php:536
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "感谢您加入我们为 %2$s 中的 %1$s 祈祷。"
 
-#: campaign-functions/send-email-utility.php:479
+#: campaign-functions/send-email-utility.php:509
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
@@ -168,14 +192,15 @@ msgstr ""
 "我们只有在永恒中才能知道透过我们的祷告祈求所带来的影响。不管怎样，我们从神的"
 "话语中可以知道：祷告是大有能力且有果效的（雅各书5章16节）。"
 
-#: campaign-functions/send-email-utility.php:482
+#: campaign-functions/send-email-utility.php:512
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
-msgstr "点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
+msgstr ""
+"点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
 "语和感想。"
 
-#: campaign-functions/send-email-utility.php:484
+#: campaign-functions/send-email-utility.php:514
 msgid ""
 "Finally, the folks at Pray4Movement built this prayer tool. You can make "
 "sure you’re signed up to receive news about future prayer opportunities on "
@@ -184,16 +209,16 @@ msgstr ""
 "最后，是Pray4Movement的工人开发了这个祷告软件工具。您可在“统计”页面上去确认您"
 "是否已注册接收关于未来祈祷机会的新消息。"
 
-#: campaign-functions/send-email-utility.php:486
+#: campaign-functions/send-email-utility.php:516
 msgid "See Prayer Stats"
 msgstr "查看祷告统计"
 
-#: campaign-functions/send-email-utility.php:488
 #: campaign-functions/send-email-utility.php:518
+#: campaign-functions/send-email-utility.php:548
 msgid "In Christ with you,"
 msgstr "基督与你同在,"
 
-#: campaign-functions/send-email-utility.php:509
+#: campaign-functions/send-email-utility.php:539
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -203,15 +228,16 @@ msgstr ""
 "响。不管怎样，我们从神的话语中可以知道：祷告是大有能力且有果效的（雅各书5章16"
 "节）。"
 
-#: campaign-functions/send-email-utility.php:512
+#: campaign-functions/send-email-utility.php:542
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
-msgstr "点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
+msgstr ""
+"点击下方的按钮即可查看您所做的贡献。同时我们也很想听听您在祷告时从神而来的话"
 "语和感想。"
 
-#: campaign-functions/send-email-utility.php:514
+#: campaign-functions/send-email-utility.php:544
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -221,7 +247,7 @@ msgstr ""
 "记了接收Pray4Movement祷告软件工具创健者所发送关于将来成为祷告者机会的消息通"
 "知。"
 
-#: campaign-functions/send-email-utility.php:516
+#: campaign-functions/send-email-utility.php:546
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr "查看斋月24/7的祷告统计"
 
@@ -292,7 +318,7 @@ msgstr "我的祈祷承诺"
 #: magic-links/subscription-management/subscription-management.php:342
 #: porches/generic/site/stats.php:142
 msgid "Prayer Commitments"
-msgstr "祷告者承诺"
+msgstr "祷告承诺"
 
 #: magic-links/subscription-management/subscription-management.php:343
 msgid "Account"
@@ -425,12 +451,12 @@ msgstr "祈祷承诺"
 #: parts/components-enqueue.php:63
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr "10月4号开始%s"
+msgstr "开始在%s"
 
 #: parts/components-enqueue.php:64
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr "10月4号结束%s"
+msgstr "结束在%s"
 
 #: parts/components-enqueue.php:65
 msgid "Review"
@@ -451,7 +477,7 @@ msgstr "祷告覆盖的百分比"
 
 #: parts/components-enqueue.php:69
 msgid "%s committed"
-msgstr "承诺"
+msgstr "%s承诺"
 
 #: parts/components-enqueue.php:70
 msgid "Please enter a valid name or email address"
@@ -484,7 +510,7 @@ msgstr "选择一个日期和时间"
 #: parts/components-enqueue.php:77
 msgctxt "up to 3 months"
 msgid "up to %s months"
-msgstr "%s 个月以下"
+msgstr "%s 个月以上"
 
 #: parts/components-enqueue.php:78
 msgid "%s Minutes"
@@ -670,7 +696,7 @@ msgstr "改变祈祷时间"
 
 #: parts/components-enqueue.php:123
 msgid "Your current prayer time is %s"
-msgstr "您当前的祈祷时间是"
+msgstr "您当前的祈祷时间是%s"
 
 #: parts/components-enqueue.php:124
 msgid "Select a new time:"
@@ -1051,6 +1077,32 @@ msgstr "祈祷时间：%s 分钟"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "现在祈祷..."
+
+#, fuzzy
+#~| msgid ""
+#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
+#~| "praying?"
+#~ msgid ""
+#~ "Your last prayer time will be one week from today. Would you like to keep "
+#~ "praying?"
+#~ msgstr "距离您的上一次祷告时间已经超过 2 周了。你愿意继续祷告吗？"
+
+#, fuzzy
+#~| msgid ""
+#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
+#~| "praying?"
+#~ msgid ""
+#~ "Your last prayer time will be 2 weeks from today. Would you like to keep "
+#~ "praying? "
+#~ msgstr "距离您的上一次祷告时间已经超过 2 周了。你愿意继续祷告吗？"
+
+#, fuzzy
+#~| msgid "Thank you for praying with us."
+#~ msgid "Today was your last day of prayer. Thank you for praying with us."
+#~ msgstr "感谢您与我们一起祈祷。"
+
+#~ msgid "Sign up for more prayer times or extend your recurring time here:"
+#~ msgstr "在此处注册更多祈祷时间或延长您的重复时间："
 
 #, fuzzy
 #~ msgid ""

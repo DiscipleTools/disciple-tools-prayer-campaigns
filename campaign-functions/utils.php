@@ -82,6 +82,12 @@ function dt_campaign_get_current_lang(): string {
         $lang = sanitize_text_field( wp_unslash( $_GET['lang'] ) );
     } elseif ( isset( $_COOKIE['dt-magic-link-lang'] ) && !empty( $_COOKIE['dt-magic-link-lang'] ) ){
         $lang = sanitize_text_field( wp_unslash( $_COOKIE['dt-magic-link-lang'] ) );
+    } else {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign_id();
+        $default_lang = get_post_meta( $campaign, 'default_language', true );
+        if ( !empty( $default_lang ) ){
+            $lang = $default_lang;
+        }
     }
     return $lang;
 }
@@ -233,7 +239,7 @@ function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_sign
         $campaign_name = get_the_title();
     }
 
-    wp_remote_post( 'https://pray4movement.org/wp-json/go-webform/optin', [
+    wp_remote_post( 'https://prayer.tools/wp-json/go-webform/optin', [
         'body' => [
             'email' => $email,
             'name' => $name,

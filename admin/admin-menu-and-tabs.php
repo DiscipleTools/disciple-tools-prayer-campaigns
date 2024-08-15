@@ -67,8 +67,14 @@ class DT_Prayer_Campaigns_Menu {
     }
 
     public function enqueue_scripts() {
-        wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery' ], filemtime( __DIR__ . '/admin.js' ), true );
         wp_enqueue_style( 'dt_campaign_admin_style', plugin_dir_url( __FILE__ ) . 'admin.css', [], filemtime( __DIR__. '/admin.css' ) );
+        wp_enqueue_script( 'dt_campaign_admin_script', plugin_dir_url( __FILE__ ) . 'admin.js', [ 'jquery' ], filemtime( __DIR__ . '/admin.js' ), true );
+        wp_localize_script(
+            'dt_campaign_admin_script', 'dt_campaign_admin', [
+                'root' => esc_url_raw( rest_url() ),
+                'nonce' => wp_create_nonce( 'wp_rest' )
+            ]
+        );
     }
 
     public function dt_options_script_pages( $allowed_pages ) {
@@ -108,6 +114,39 @@ class DT_Prayer_Campaigns_Menu {
         $tabs = apply_filters( 'prayer_campaign_tabs', [] );
 
         ?>
+        <!-- MODALS -->
+        <dialog id="clone_dialog">
+            <table style="min-width: 100%;">
+                <tbody>
+                <tr>
+                    <td style="padding-right: 10px; vertical-align: middle;">
+                        <label for="clone_modal_new_name">New Name</label>
+                    </td>
+                    <td>
+                        <input id="clone_modal_new_name" name="clone_modal_new_name" type="text" style="width: 100%;" placeholder="Specify new name for cloned campaign." />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 10px; vertical-align: middle;">
+                        <label for="clone_modal_campaign">Campaign</label>
+                    </td>
+                    <td>
+                        <select id="clone_modal_campaign" name="clone_modal_campaign" style="width: 100%;" disabled>
+                            <?php DT_Prayer_Campaigns_Campaigns::echo_my_campaigns_select_options( $campaign_id ) ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <br>
+                        <span id="clone_modal_spinner" class="loading-spinner active" style="margin-left: 5px; display: none;"></span>
+                        <span id="clone_modal_msg"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </dialog>
+        <!-- MODALS -->
 
         <div class="wrap">
             <h2>Prayer Campaigns</h2>
@@ -118,7 +157,7 @@ class DT_Prayer_Campaigns_Menu {
                 <a class="button <?php echo esc_html( $tab === 'new_campaign' ? 'button-primary' : '' ); ?>" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=new_campaign' ) ); ?>">
                     Create a New Campaign
                 </a>
-                <a class="button" href="https://pray4movement.org/docs/overview/" target="_blank">See Help Documentation</a>
+                <a class="button" href="https://prayer.tools/docs/overview/" target="_blank">See Help Documentation</a>
             </div>
             <?php
             if ( !empty( $campaign_id ) ){

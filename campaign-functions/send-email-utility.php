@@ -149,7 +149,7 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log( 'failed to commitments' );
             return;
         }
-        $locale = $record['lang'] ?? null;
+        $locale = $record['lang'] ?? 'en_US';
         self::switch_email_locale( $locale );
 
         $to = [];
@@ -191,7 +191,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
-        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? null, $campaign['signup_content'] );
+        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? 'en_US', $campaign['signup_content'] );
         if ( $sign_up_content_translation ){
             $sign_up_email_extra_message = '<p>' .  $sign_up_content_translation . '</p>';
         }
@@ -308,7 +308,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
 
-        $locale = $record['lang'] ?? null;
+        $locale = $record['lang'] ?? 'en_US';
         self::switch_email_locale( $locale );
 
         $prayer_fuel_link_text = '';
@@ -346,7 +346,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign_subject_line = __( 'Prayer Time reminder!', 'disciple-tools-prayer-campaigns' );
 
-        $prayer_content_message = DT_Campaign_Languages::get_translation( $campaign_id, 'reminder_content', $record['lang'] ?? null );
+        $prayer_content_message = DT_Campaign_Languages::get_translation( $campaign_id, 'reminder_content', $record['lang'] ?? 'en_US' );
         if ( $prayer_content_message ){
             $prayer_content_message = '<p>' .  $prayer_content_message . '</p>';
         } elseif ( !empty( $campaign['reminder_content'] ) ){
@@ -438,25 +438,55 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
-    public static function send_resubscribe_tickler( $subscriber_id, $campaign_id ){
+    public static function send_resubscribe_tickler( $subscriber_id, $campaign_id, $signups ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
         }
-        self::switch_email_locale( $subscriber['lang'] ?? null );
+        $locale = $subscriber['lang'] ?? 'en_US';
+        self::switch_email_locale( $locale );
+        $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
+        $tz = new DateTimeZone( $timezone );
 
         $manage_link = self::management_link( $subscriber );
-        $porch_fields = DT_Porch_Settings::settings();
 
-        $title = isset( $porch_fields['name']['value'] ) ? $porch_fields['name']['value'] : site_url();
+        //Order signups by "last"
+        usort( $signups, function( $a, $b ){
+            return $a['last'] <=> $b['last'];
+        } );
+        $expiring_signups_list = '<ul>';
+        foreach ( $signups as $signup ){
+            if ( $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ){
+                $end_date = new DateTime( '@' . $signup['last'] );
+                $end_date->setTimezone( $tz );
+                $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $end_date, $locale, $timezone ) . '</strong>';
+                $time = DT_Time_Utilities::display_hour_localized( $end_date, $locale, $timezone );
 
-        $subject = __( 'Continue Praying?', 'disciple-tools-prayer-campaigns' );
+                $week_day = DT_Time_Utilities::display_weekday_localized( $end_date, $locale, $timezone );
+                $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $signup['duration'] );
+                $string .= ', ';
+                $string .= sprintf( _x( 'ending on %s', 'Praying Daily at 4:15 PM, ending on July 18, 2026', 'disciple-tools-prayer-campaigns' ), $end_date_string );
+
+                $expiring_signups_list .= '<li>' . $string . '</li>';
+            }
+        }
+        $expiring_signups_list .= '</ul>';
+
+        $title = DT_Porch_Settings::get_field_translation( 'name', $locale, $campaign_id );
+
+        $subject = __( '[ACTION NEEDED] Continue Praying?', 'disciple-tools-prayer-campaigns' );
 
         $message = Campaigns_Email_Template::email_greeting_part( sprintf( __( 'Hello %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $subscriber['name'] ) ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'You are 2 weeks out from your last prayer time. Would you like to keep praying?', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Sign up for more prayer times or extend your recurring time here:', 'disciple-tools-prayer-campaigns' ) );
-        $message .= Campaigns_Email_Template::email_button_part( 'Access Portal', $manage_link );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Or click this link:', 'disciple-tools-prayer-campaigns' ) . ' <a href="'. $manage_link.'">' . $manage_link .  '</a>' );
+
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you for praying with us.', 'disciple-tools-prayer-campaigns' ) . ' ' . __( 'Some of your prayer times will be ending soon.', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'The prayer times are:', 'disciple-tools-prayer-campaigns' ) );
+
+        $message .= Campaigns_Email_Template::email_content_part( $expiring_signups_list );
+
+        $message .= Campaigns_Email_Template::email_content_part( __( 'To continue praying, and to keep receiving the notifications, please access your account and click "extend" next to your commitment(s). You can also sign up for a different time if you wish.', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_button_part( __( 'Access Account', 'disciple-tools-prayer-campaigns' ), $manage_link );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'You do not have to do anything if you do not want to continue praying when your prayer times end.', 'disciple-tools-prayer-campaigns' ) );
+
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',<br>' . $title );
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
@@ -483,7 +513,7 @@ class DT_Prayer_Campaigns_Send_Email {
             return;
         }
 
-        self::switch_email_locale( $record['lang'] ?? null );
+        self::switch_email_locale( $record['lang'] ?? 'en_US' );
 
         $to = [];
         foreach ( $record['contact_email'] as $value ){
@@ -501,7 +531,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $location = implode( ', ', $location_grid );
         }
 
-        $title = DT_Porch_Settings::get_field_translation( 'name' );
+        $title = DT_Porch_Settings::get_field_translation( 'name', $record['lang'] ?? 'en_US', $campaign_id );
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
@@ -544,7 +574,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
         );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Finally, the folks at Pray4Movement built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page.', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Finally, the folks at Prayer.Tools built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
         $message .= Campaigns_Email_Template::email_content_part(
@@ -574,7 +604,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part(
             __( 'Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed.', 'disciple-tools-prayer-campaigns' )
         );
-        $message .= Campaigns_Email_Template::email_content_part( __( 'Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Pray4Movement, the makers of this prayer tool.', 'disciple-tools-prayer-campaigns' ) );
+        $message .= Campaigns_Email_Template::email_content_part( __( 'Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Prayer.Tools, the makers of this prayer tool.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Ramadan 24/7 Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
         $message .= Campaigns_Email_Template::email_content_part(
@@ -652,7 +682,7 @@ class Campaigns_Email_Template {
         <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
         <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Pray4Movement</title><style type="text/css" emogrify="no">#outlook a { padding:0; } .ExternalClass { width:100%; } .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; } table td { border-collapse: collapse; mso-line-height-rule: exactly; } .editable.image { font-size: 0 !important; line-height: 0 !important; } .nl2go_preheader { display: none !important; mso-hide:all !important; mso-line-height-rule: exactly; visibility: hidden !important; line-height: 0px !important; font-size: 0px !important; } body { width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; } img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; } a img { border:none; } table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; } th { font-weight: normal; text-align: left; } *[class="gmail-fix"] { display: none !important; } </style>
+            <title>Prayer.Tools</title><style type="text/css" emogrify="no">#outlook a { padding:0; } .ExternalClass { width:100%; } .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; } table td { border-collapse: collapse; mso-line-height-rule: exactly; } .editable.image { font-size: 0 !important; line-height: 0 !important; } .nl2go_preheader { display: none !important; mso-hide:all !important; mso-line-height-rule: exactly; visibility: hidden !important; line-height: 0px !important; font-size: 0px !important; } body { width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; } img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; } a img { border:none; } table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; } th { font-weight: normal; text-align: left; } *[class="gmail-fix"] { display: none !important; } </style>
             <style type="text/css" emogrify="no"> @media (max-width: 600px) { .gmx-killpill { content: ' \03D1';} } </style>
             <style type="text/css" emogrify="no">@media (max-width: 600px) { .gmx-killpill { content: ' \03D1';} .r0-c { box-sizing: border-box !important; text-align: center !important; valign: top !important; width: 320px !important } .r1-o { border-style: solid !important; margin: 0 auto 0 auto !important; width: 320px !important } .r2-c { box-sizing: border-box !important; text-align: center !important; valign: top !important; width: 100% !important } .r3-o { border-style: solid !important; margin: 0 auto 0 auto !important; width: 100% !important } .r4-i { background-color: #ffffff !important; padding-bottom: 20px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 20px !important } .r5-c { box-sizing: border-box !important; display: block !important; valign: top !important; width: 100% !important } .r6-o { border-style: solid !important; width: 100% !important } .r7-i { padding-left: 0px !important; padding-right: 0px !important } .r8-o { background-size: auto !important; border-style: solid !important; margin: 0 auto 0 auto !important; width: 100% !important } .r9-i { padding-bottom: 15px !important; padding-top: 15px !important } .r10-c { box-sizing: border-box !important; text-align: left !important; valign: top !important; width: 100% !important } .r11-o { border-style: solid !important; margin: 0 auto 0 0 !important; width: 100% !important } .r12-i { padding-bottom: 15px !important; padding-top: 15px !important; text-align: left !important } .r13-o { border-style: solid !important; margin: 0 auto 0 auto !important; margin-bottom: 15px !important; margin-top: 15px !important; width: 100% !important } .r14-i { text-align: center !important } .r15-r { border-radius: 4px !important; border-width: 0px !important; box-sizing: border-box; height: initial !important; padding-bottom: 12px !important; padding-left: 5px !important; padding-right: 5px !important; padding-top: 12px !important; text-align: center !important; width: 100% !important } body { -webkit-text-size-adjust: none } .nl2go-responsive-hide { display: none } .nl2go-body-table { min-width: unset !important } .mobshow { height: auto !important; overflow: visible !important; max-height: unset !important; visibility: visible !important; border: none !important } .resp-table { display: inline-table !important } .magic-resp { display: table-cell !important } } </style><!--[if !mso]><!-->
             <style type="text/css" emogrify="no"> </style><!--<![endif]--><style type="text/css">p, h1, h2, h3, h4, ol, ul { margin: 0; } a, a:link { color: #2e2d2c; text-decoration: underline } .nl2go-default-textstyle { color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px; line-height: 1.5; word-break: break-word } .default-button { color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 16px; font-style: normal; font-weight: bold; line-height: 1.15; text-decoration: none; word-break: break-word } .default-heading1 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 36px; word-break: break-word } .default-heading2 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 32px; word-break: break-word } .default-heading3 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 24px; word-break: break-word } .default-heading4 { color: #1F2D3D; font-family: arial,helvetica,sans-serif; font-size: 18px; word-break: break-word } a[x-apple-data-detectors] { color: inherit !important; text-decoration: inherit !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; } .no-show-for-you { border: none; display: none; float: none; font-size: 0; height: 0; line-height: 0; max-height: 0; mso-hide: all; overflow: hidden; table-layout: fixed; visibility: hidden; width: 0; } </style><!--[if mso]><xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml><![endif]--><style type="text/css">a:link{color: #2e2d2c; text-decoration: underline;}</style>
@@ -678,7 +708,7 @@ class Campaigns_Email_Template {
             }
         }
         if ( empty( $logo_url ) ){
-            $logo_url = 'https://gospelambition.s3.amazonaws.com/logos/pray4movement-logo.png';
+            $logo_url = 'https://s3.prayer.tools/pt-logo.png';
         }
         return $logo_url;
     }

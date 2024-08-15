@@ -17,8 +17,10 @@ const strings = escapeObject(window.campaign_objects.translations)
 
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
+  locale: window.campaign_objects.locale.replace('_', '-'),
   recurring_signups: [],
 }
+window.luxon.Settings.defaultLocale = window.campaign_user_data.locale
 window.set_user_data = function (data, campaign = false){
   let timezone_changes = false
   if ( data.timezone !== window.campaign_user_data.timezone ){
@@ -370,7 +372,9 @@ window.campaign_scripts = {
     let freq_label = frequency_option.label
     const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
     if ( frequency_option.value === 'weekly' ){
-      freq_label = strings['Every %s'].replace('%s', first.toFormat('cccc') );
+      let day_number_of_the_week = first.toFormat('c')
+      let weekly_label_options = [ strings['Mondays'], strings['Tuesdays'], strings['Wednesdays'], strings['Thursdays'], strings['Fridays'], strings['Saturdays'], strings['Sundays'] ]
+      freq_label = weekly_label_options[day_number_of_the_week-1]
     }
     let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
     return label;

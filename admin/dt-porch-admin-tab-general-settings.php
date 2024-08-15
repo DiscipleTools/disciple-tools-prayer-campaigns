@@ -155,6 +155,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                         <th>Campaign Name</th>
                                         <th>Edit</th>
                                         <th>View</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -174,6 +175,11 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                         <td>
                                             <a href="<?php echo esc_html( $url ) ?>" target="_blank">
                                                 View Landing Page
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="button clone-campaign-but" data-campaign_id="<?php echo esc_attr( $campaign['ID'] ) ?>">
+                                                Clone
                                             </a>
                                         </td>
                                     </tr>
@@ -253,7 +259,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th><h3>Pray4Movement.org Participation</h3></th>
+                    <th><h3>Prayer.Tools Participation</h3></th>
                 </tr>
             </thead>
             <tbody>
@@ -266,7 +272,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                             <input name="p4m_participation" id="p4m_participation" type="checkbox"
                                    <?php checked( $participation || $participation_force ); disabled( $participation_force ) ?> />
                             <label for="p4m_participation">
-                                List my campaigns on <a href="https://pray4movement.org/" target="_blank">https://pray4movement.org</a>. See the <a href="https://pray4movement.org/campaigns" target="_blank">Global campaign list</a>
+                                List my campaigns on <a href="https://prayer.tools/" target="_blank">https://prayer.tools</a>. See the <a href="https://prayer.tools/campaigns" target="_blank">Global campaign list</a>
                                 <br>
                                 This allows other users to see your campaign and join in prayer. And shows the progress towards global prayer coverage.
                             </label>
@@ -320,9 +326,9 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                     <ul>
 <!--                        <li><a href="--><?php //echo esc_html( $campaign_url ); ?><!--" target="_blank">Landing Page</a></li>-->
 <!--                        <li><a href="--><?php //echo esc_html( home_url( '/campaigns' ) ); ?><!--" target="_blank">Campaigns</a></li>-->
-                        <li><a href="https://pray4movement.org/docs/overview/" target="_blank">Documentation</a></li>
+                        <li><a href="https://prayer.tools/docs/overview/" target="_blank">Documentation</a></li>
                         <li><a href="<?php echo esc_html( home_url( '/subscriptions' ) ); ?>" target="_blank">Prayer Warriors (Subscribers)</a></li>
-                        <li><a href="https://pray4movement.org/docs/translation/" target="_blank">Translate Campaign Tool</a></li>
+                        <li><a href="https://prayer.tools/docs/translation/" target="_blank">Translate Campaign Tool</a></li>
                     </ul>
                 </td>
             </tr>

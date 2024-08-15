@@ -117,51 +117,57 @@ add_action( 'dt_prayer_resubscription_reminders', 'dt_invitation_to_renew_subscr
  * add report
  */
 function dt_invitation_to_renew_subscription(){
-    $one_month_in_future = time() + 30 * DAY_IN_SECONDS;
-    $two_weeks_in_future = time() + 14 * DAY_IN_SECONDS;
-
-    //find active campaigns that don't end or don't end in the next month
-    //select the recurring subscriptions that are about to expire
+    //get all recurring subscriptions that are about to expire
     //where time_end is in the future and is less than 2 weeks away
-    //and we didn't send a tickler for the current end time
+    //and we haven't sent them a tickler in the last week
+
+    $now = time();
+    $one_month_in_future = $now + 30 * DAY_IN_SECONDS;
+    $two_weeks_in_future = $now + 15 * DAY_IN_SECONDS;
+    $three_weeks_in_future = $now + 21 * DAY_IN_SECONDS;
+    $one_week_ago = $now - 7 * DAY_IN_SECONDS;
+
+    //record on the sub when the last tickler was sent or create records in the report table?
     global $wpdb;
-    $expiring_recurring_signups = $wpdb->get_results( $wpdb->prepare( "
-            SELECT post_id, parent_id, time_end
-            FROM $wpdb->dt_reports r
-            WHERE parent_id IN ( 
-                SELECT p.ID
-                FROM $wpdb->posts p
-                INNER JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'status' AND pm.meta_value = 'active' )
-                LEFT JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'end_date' )
-                WHERE post_type = 'campaigns'
-                AND ( pm2.meta_value IS NULL OR pm2.meta_value > %d )
-            )
-            AND r.time_end < %d
-            AND r.time_end > %d
-            AND post_type = 'subscriptions'
-            AND type = 'recurring_signup'
-            AND r.post_id NOT IN (
-                SELECT post_id from $wpdb->dt_reports r3
-                WHERE r3.post_id = r.post_id
-                AND r3.parent_id = r.parent_id
-                AND r3.type = '2_week_tickler'
-                AND ( r3.time_end = r.time_end )
-            )
-        ", $one_month_in_future, $two_weeks_in_future, time() ), ARRAY_A );
+    $expiring_recurring_signups_grouped = $wpdb->get_results( $wpdb->prepare( "
+        SELECT id, post_id, parent_id, time_end
+        FROM $wpdb->dt_reports r
+        /* of active campaigns */
+        WHERE parent_id IN ( 
+            SELECT p.ID
+            FROM $wpdb->posts p
+            INNER JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'status' AND pm.meta_value = 'active' )
+            LEFT JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'end_date' )
+            WHERE post_type = 'campaigns'
+            AND ( pm2.meta_value IS NULL OR pm2.meta_value > %d )
+            AND parent_id = p.ID
+        )
+        AND r.time_end < %d  # less than 2 weeks away
+        AND r.time_end > %d  # in the future
+        AND post_type = 'subscriptions'
+        AND type = 'recurring_signup'
+        AND r.id NOT IN (
+            SELECT report_id from $wpdb->dt_reportmeta rm
+            WHERE rm.meta_key = 'resubscribe_tickler'
+            AND rm.meta_value > %d
+        )
+        GROUP BY r.post_id
+    ", $one_month_in_future, $two_weeks_in_future, $now, $one_week_ago ), ARRAY_A );
 
-    foreach ( $expiring_recurring_signups as $row ){
 
-        $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'], $row['parent_id'] );
+    foreach ( $expiring_recurring_signups_grouped as $row ){
+
+        $rc = new Recurring_Signups( $row['post_id'], $row['parent_id'] );
+        $signups = $rc->get_recurring_signups();
+        $sent = DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $row['post_id'], $row['parent_id'], $signups );
         if ( $sent ){
-            $report = [
-                'post_type' => 'subscriptions',
-                'type' => '2_week_tickler',
-                'post_id' => $row['post_id'], // subscriber id
-                'parent_id' => $row['parent_id'], //campaign id
-                'time_end' => $row['time_end'], //the end time this reminder is for
-            ];
-            Disciple_Tools_Reports::insert( $report, true, false );
-            DT_Posts::add_post_comment( 'subscriptions', $row['post_id'], 'Sent email invitation to extend prayer times on [campaign](' . site_url( 'campaigns/' . $row['parent_id'] ) . ').', 'comment', [], false, true );
+            foreach ( $signups as $signup ){
+                if ( $signup['last'] < $three_weeks_in_future && $signup['last'] > $now ){
+                    Disciple_Tools_Reports::add_meta( $signup['report_id'], 'resubscribe_tickler', $now );
+                }
+            }
         }
+
+        DT_Posts::add_post_comment( 'subscriptions', $row['post_id'], 'Sent email invitation to extend prayer times on [campaign](' . site_url( 'campaigns/' . $row['parent_id'] ) . ').', 'comment', [], false, true );
     }
 }
