@@ -1,0 +1,9 @@
+body {
+    background-color: white !important;
+}
+.logo-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    align-items: center;
+}

@@ -137,6 +137,7 @@ class DT_Prayer_Campaigns {
         require_once( 'magic-links/ongoing/ongoing.php' );
         require_once( 'magic-links/subscription-management/subscription-management.php' );
         require_once( 'magic-links/campaign-resend-email/magic-link-post-type.php' );
+        require_once( 'magic-links/prayer-fuel/magic-link-post-type.php' );
 
         if ( is_admin() ) {
             require_once( __DIR__ . '/admin/config-required-plugins.php' );
