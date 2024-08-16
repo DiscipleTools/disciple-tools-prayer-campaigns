@@ -241,6 +241,8 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
 
         <section id="contact" class="section">
             <div class="container">
+                <div id="alert-section" class="row"></div>
+
                 <div class="row">
                     <div class="section-header col">
                         <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( _x( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ) ) ?></h2>
