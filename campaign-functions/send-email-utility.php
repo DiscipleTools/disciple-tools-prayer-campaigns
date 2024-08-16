@@ -375,7 +375,7 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
-    public static function send_resubscribe_tickler( $subscriber_id, $campaign_id, $signups ){
+    public static function send_resubscribe_tickler( $subscriber_id, $campaign_id, $signups, $force_display = false ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $subscriber ) || !isset( $subscriber['contact_email'][0]['value'] ) ){
             return false;
@@ -393,7 +393,7 @@ class DT_Prayer_Campaigns_Send_Email {
         } );
         $expiring_signups_list = '<ul>';
         foreach ( $signups as $signup ){
-            if ( $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ){
+            if ( $force_display || $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ){
                 $end_date = new DateTime( '@' . $signup['last'] );
                 $end_date->setTimezone( $tz );
                 $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $end_date, $locale, $timezone ) . '</strong>';
@@ -488,6 +488,7 @@ class DT_Prayer_Campaigns_Send_Email {
             DT_Posts::update_post( 'subscriptions', $subscriber_id, [ 'tags' => [ 'values' => [ [ 'value' => 'end_of_campaign_email_' . $campaign_id ] ] ] ], true, false );
             DT_Posts::add_post_comment( 'subscribers', $subscriber_id, 'Sent end of campaign email', 'comment', [], false, true );
         }
+        return $sent;
     }
 
     public static function end_of_campaign_generic_email( $name, $campaign_title, $campaign_url, $location = '' ){
