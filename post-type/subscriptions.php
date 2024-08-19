@@ -302,7 +302,15 @@ class DT_Subscriptions_Base {
                 'hidden' => true
             ];
             $fields['receive_prayer_time_notifications'] = [
-                'name' => __( 'Receive Prayer Time Notifications', 'disciple-tools-prayer-campaigns' ),
+                'name' => __( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'tile' => 'details',
+                'default' => false,
+                'hidden' => false,
+                'show_in_table' => 50,
+            ];
+            $fields['auto_extend_prayer_times'] = [
+                'name' => __( 'Auto extend prayer times', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'boolean',
                 'tile' => 'details',
                 'default' => false,
@@ -529,6 +537,9 @@ class DT_Subscriptions_Base {
             <span id="expiring_email_sent" style="display: none">Expiring email sent</span>
             <button class="loader button hollow tiny" type="button" id="send_end_campaign_email">Send end of campaign email</button>
             <span id="end_campaign_email_sent" style="display: none">End of campaign email sent</span>
+            <!--auto renew email-->
+            <button class="loader button hollow tiny" type="button" id="send_auto_renew_email">Send auto renewed email</button>
+            <span id="auto_renew_email_sent" style="display: none">Auto renewed email sent</span>
 
             <script type="application/javascript">
                 $('#resend_confirmation_email').on("click", function (){
@@ -620,7 +631,21 @@ class DT_Subscriptions_Base {
                         window.location.reload()
                     })
                 })
-
+                $('#send_auto_renew_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/auto-renew-email',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                        $('#auto_renew_email_sent').show()
+                    })
+                })
                 </script>
             <?php
         }
@@ -641,8 +666,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_confirmation_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -655,8 +680,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_reminder_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -670,8 +695,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_expiring_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -684,8 +709,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_end_campaign_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -698,8 +723,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_activation_email' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -711,8 +736,21 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'manually_activate_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+        register_rest_route( $namespace, '/(?P<id>\d+)/auto-renew-email', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'auto_renew_email_endpoint' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -824,6 +862,26 @@ class DT_Subscriptions_Base {
         $campaign_id = $subscription['campaigns'][0]['ID'];
 
         return DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $subscriber_id, $campaign_id );
+    }
+
+    public static function auto_renew_email_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+
+        if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $campaign_id = $subscription['campaigns'][0]['ID'];
+
+        $reports = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
+
+        $report = $reports[0] ?? [];
+        if ( empty( $report ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+
+        return DT_Prayer_Campaigns_Send_Email::send_auto_extend_notification( $subscriber_id, $campaign_id, $report  );
     }
 
 

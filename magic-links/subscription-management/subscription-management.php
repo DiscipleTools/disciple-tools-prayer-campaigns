@@ -486,6 +486,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( isset( $new_values['receive_prayer_time_notifications'] ) ){
             $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
         }
+        if ( isset( $new_values['auto_extend_prayer_times'] ) ){
+            $updates['auto_extend_prayer_times'] = !empty( $new_values['auto_extend_prayer_times'] );
+        }
         $updated = DT_Posts::update_post( 'subscriptions', $subscriber_id, $updates, true, false );
         return true;
     }
@@ -719,6 +722,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'my_recurring_signups' => $my_recurring_signups,
                 'timezone' => $subscriber['timezone'] ?? 'America/Chicago',
                 'receive_prayer_time_notifications' => $subscriber['receive_prayer_time_notifications'] ?? false,
+                'auto_extend_prayer_times' => $subscriber['auto_extend_prayer_times'] ?? true,
                 'email' => $subscriber['contact_email'][0]['value'] ?? '',
                 'name' => $subscriber['name'] ?? '',
             ]

@@ -120,10 +120,19 @@ export class cpProfile extends LitElement {
         </div>
         <div class="row">
             <label style="display: flex">
-                ${translate('Receive Prayer time notifications')}
+                ${translate('Receive prayer time notifications')}
                 <input type="checkbox"
                        @change="${e=>this.updates.receive_prayer_time_notifications = e.target.checked}"
                        ?checked="${this.subscriber_data.receive_prayer_time_notifications}"
+                >
+            </label>
+        </div>
+          <div class="row">
+            <label style="display: flex">
+                ${translate('Auto extend prayer times')}
+                <input type="checkbox"
+                       @change="${e=>this.updates.auto_extend_prayer_times = e.target.checked}"
+                       ?checked="${this.subscriber_data.auto_extend_prayer_times}"
                 >
             </label>
         </div>

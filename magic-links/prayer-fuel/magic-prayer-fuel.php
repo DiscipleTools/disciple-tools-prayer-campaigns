@@ -146,8 +146,17 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $lang = dt_campaign_get_current_lang();
 
+        $color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign_id );
 
         ?>
+        <style>
+            :root {
+                --cp-color: <?php echo esc_html( $color ) ?>;
+                --cp-color-dark: color-mix(in srgb, var(--cp-color), #000 10%);
+                --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
+            }
+        </style>
+
         <!-- HEADER -->
         <header id="hero-area" data-stellar-background-ratio="0.5" class="stencil-background">
             <div class="fixed-top">
@@ -346,7 +355,54 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
     }
 
     public function campaign_info( WP_REST_Request $request ) {
-        return DT_Prayer_Subscription_Management_Magic_Link::campaign_info( $request );
+        //return DT_Prayer_Subscription_Management_Magic_Link::campaign_info( $request );
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+        $subscriber_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
+
+        $campaign_id = $params['campaign_id'] ?? null;
+        if ( empty( $campaign_id ) ){
+            return new WP_Error( __METHOD__, 'Missing campaign id', [ 'status' => 400 ] );
+        }
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( is_wp_error( $subscriber ) ){
+            return;
+        }
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+
+        $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id );
+        $end = $campaign['end_date']['timestamp'] ?? null;
+        if ( $end ){
+            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 3, $start );
+        }
+        $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_id );
+
+        $lang = dt_campaign_get_current_lang(); //todo remove?
+        dt_campaign_set_translation( $lang );
+
+
+        //subscriber info
+
+        $my_recurring_signups = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
+        $my_commitments = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
+
+
+
+        return [
+            'campaign_id' => (int) $campaign_id,
+            'start_timestamp' => $start,
+            'end_timestamp' => $end,
+            'slot_length' => (int) $min_time_duration,
+            'current_commitments' => [],
+            'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
+            'subscriber_info' => [
+                'my_commitments' => $my_commitments,
+                'my_recurring_signups' => $my_recurring_signups,
+                'timezone' => $subscriber['timezone'] ?? 'America/Chicago',
+                'receive_prayer_time_notifications' => $subscriber['receive_prayer_time_notifications'] ?? false,
+                'auto_extend_prayer_times' => $subscriber['auto_extend_prayer_times'] ?? true,
+            ]
+        ];
     }
     public function manage_profile( WP_REST_Request $request ) {
         $params = $request->get_params();

@@ -278,7 +278,11 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $timezone = !empty( $record['timezone'] ) ? $record['timezone'] : 'America/Chicago';
         $tz = new DateTimeZone( $timezone );
-        $end_date = new DateTime( $recurring_signup['last'] );
+        if ( is_numeric( $recurring_signup['last'] ) ){
+            $end_date = new DateTime( '@' . $recurring_signup['last'] );
+        } else {
+            $end_date = new DateTime( $recurring_signup['last'] );
+        }
         $end_date->setTimezone( $tz );
         $end_date_string = DT_Time_Utilities::display_date_localized( $end_date, $locale, $timezone );
 

@@ -5,6 +5,9 @@ jQuery(document).ready(function($) {
   window.campaign_scripts.get_campaign_data().then((data) => {
     const recurring_signups = data?.subscriber_info?.my_recurring_signups
     const timezone = window.campaign_user_data.timezone
+
+    let query_params = new URLSearchParams(window.location.search)
+
     if (recurring_signups.length) {
       recurring_signups.forEach((recurring_sign) => {
         //extend the prayer times if the last time is within the next two months
@@ -26,17 +29,34 @@ jQuery(document).ready(function($) {
           //@todo translate
           //@todo dismiss
           let last_day = window.luxon.DateTime.fromSeconds(recurring_sign.last, {zone:timezone}).toLocaleString({ day: 'numeric', month: 'short', year: 'numeric' })
-          let html = `<div class="prayer-times-extend alert" id="${recurring_sign.report_id}">
-            <h4>Your prayer time will be ending soon.</h4>
-            <p>Extend it to keep on praying. You are signed up to pray:</p>
-            <p>${recurring_extend.label} ending on ${last_day}</p>
-            <button class="btn btn-primary btn-common extend-confirm" data-recurring-id="${recurring_sign.report_id}">Extend until ${recurring_extend.last.toLocaleString({ day: 'numeric', month: 'short', year: 'numeric' })}</button>
-            <button class="btn btn-secondary btn-common extend-cancel" style="background-color: grey" data-recurring-id="${recurring_sign.report_id}">Dismiss this reminder</button>
-          </div>`
-          $('#alert-section').append(html)
+          last_day = `<strong>${last_day}</strong>`
+          if ( query_params.get('auto') === 'true' && window.campaign_user_data.auto_extend_prayer_times ) {
+            //@todo auto extend
+            let html = `<div class="alert" id="${recurring_sign.report_id}">
+               <h4>Your prayer time has automatically been extended</h4>
+                <p>You are signed up to pray:</p>
+                <p>${recurring_extend.label} until ${last_day}</p>
+                <button class="btn btn-secondary btn-common dissmiss" data-recurring-id="${recurring_sign.report_id}">Ok</button>
+            </div>`
+            $('#alert-section').append(html)
+          } else {
+            let html = `<div class="prayer-times-extend alert" id="${recurring_sign.report_id}">
+              <h4>Your prayer time will be ending soon.</h4>
+              <p>Extend it to keep on praying. You are signed up to pray:</p>
+              <p>${recurring_extend.label} ending on ${last_day}</p>
+              <button class="btn btn-primary btn-common extend-confirm" data-recurring-id="${recurring_sign.report_id}">Extend until ${recurring_extend.last.toLocaleString({ day: 'numeric', month: 'short', year: 'numeric' })}</button>
+              <button class="btn btn-secondary btn-common extend-cancel" style="background-color: grey" data-recurring-id="${recurring_sign.report_id}">Dismiss this reminder</button>
+            </div>`
+            $('#alert-section').append(html)
+          }
         }
       })
     }
+  })
+
+  $(document).on('click', '.dissmiss', function(e) {
+    let recurring_id = $(this).data('recurring-id')
+    $('#'+recurring_id).fadeOut(1000)
   })
 
   $(document).on('click', '.extend-confirm', function(e) {
