@@ -89,6 +89,7 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
                 'parts' => $this->parts,
                 'translations' => [],
                 'rest_namespace' => $this->root . '/v1/' . $this->type,
+                'campaign_url' => DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ),
             ]
         );
         wp_enqueue_style( 'magic_link_css', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'magic-link.css', [], filemtime( plugin_dir_path( __FILE__ ) . 'magic-link.css' ) );
@@ -185,7 +186,9 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
 
                             <?php endif; ?>
 
-                            <button class="menu-button" id="open-button" aria-label="Menu Open"><i class="lnr lnr-menu"></i></button>
+                            <button class="share-button" id="share-button" aria-label="Share">
+                                <img class="dt-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/share.svg' ) ?>"/>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -211,7 +214,7 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
                             <?php endif; ?>
 
                             <h4>
-                                <?php display_translated_field( 'subtitle' ); ?>
+                                <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'subtitle' ) ?? '' ) ?>
                             </h4>
 
                         </div>
@@ -222,21 +225,12 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         <!-- Header Section End -->
         <?php
         self::display_prayer_fuel( $campaign_id, $post['lang'] );
-        ?>
-
-
-        <?php
     }
 
 
     public static function display_prayer_fuel( $campaign_id, $lang ){
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-        $theme_color =
-        $theme_color = defined( 'CAMPAIGN_LANDING_COLOR_SCHEME_HEX' ) ? CAMPAIGN_LANDING_COLOR_SCHEME_HEX : '#4676fa';
-        if ( !empty( $campaign['custom_theme_color'] ) ){
-            $theme_color = $campaign['custom_theme_color'];
-        }
-
+        $theme_color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign_id );
 
         $day = isset( $_GET['day'] ) ? sanitize_key( wp_unslash( $_GET['day'] ) ) : null;
         if ( empty( $day ) ){

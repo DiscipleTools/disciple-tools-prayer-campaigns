@@ -6,3 +6,14 @@
     border-radius: 5px;
     border: 1px solid var(--cp-color);
 }
+
+.share-button {
+    background-color: transparent;
+    border: none;
+    filter: invert(1);
+    margin-inline-start: 0.2rem;
+}
+
+.menu-bg .share-button {
+    filter: invert(0);
+}

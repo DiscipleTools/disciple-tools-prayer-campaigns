@@ -83,4 +83,28 @@ jQuery(document).ready(function($) {
       },1000)
     })
   })
+
+
+  $('#share-button').click(function() {
+    let url = window.prayer_fuel_scripts.campaign_url  + '/list/';
+
+    //@todo translate
+    let data = {
+      title: 'Prayer Fuel',
+      text: 'Join me in praying!',
+      url: url,
+    }
+
+    //if mobile
+    if (window.navigator.share && window.navigator.canShare(data)) {
+      window.navigator.share(data)
+    } else {
+      let $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val(url).select();
+      document.execCommand("copy");
+      $temp.remove();
+      $('#share-button').html('Link copied!')
+    }
+  })
 })
