@@ -204,19 +204,14 @@ msgstr ""
 "que vous avez reçues de Dieu pendant que vous priiez."
 
 #: campaign-functions/send-email-utility.php:514
-#, fuzzy
-#| msgid ""
-#| "Finally, the folks at Pray4Movement built this prayer tool. You can make "
-#| "sure you’re signed up to receive news about future prayer opportunities "
-#| "on the Stats page."
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
 "you’re signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "Enfin, sur la page Statistiques de prière assurez-vous d'être inscrit pour "
-"recevoir des nouvelles sur les futures opportunités de prière de "
-"Pray4Movement, les créateurs de cet outil de prière."
+"recevoir des nouvelles sur les futures opportunités de prière de Prayer."
+"Tools, les créateurs de cet outil de prière."
 
 #: campaign-functions/send-email-utility.php:516
 msgid "See Prayer Stats"
@@ -249,11 +244,6 @@ msgstr ""
 "les paroles que vous avez reçues de Dieu pendant que vous priiez."
 
 #: campaign-functions/send-email-utility.php:544
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -261,7 +251,7 @@ msgid ""
 msgstr ""
 "Enfin, la page Statistiques de prière du Ramadan 24/7 comporte également une "
 "section d'inscription en bas. Assurez-vous d'être inscrit pour recevoir des "
-"nouvelles sur les futures opportunités de prière de Pray4Movement, les "
+"nouvelles sur les futures opportunités de prière de Prayer.Tools, les "
 "créateurs de cet outil de prière."
 
 #: campaign-functions/send-email-utility.php:546
@@ -741,15 +731,11 @@ msgid "renew"
 msgstr "renouveler"
 
 #: parts/components-enqueue.php:129
-#, fuzzy
-#| msgid ""
-#| "Receive Pray4Movement news and opportunities, and occasional "
-#| "communication from GospelAmbition.org."
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
+"Recevez des nouvelles et des opportunités de Prayer.Tools, ainsi que des "
 "communications occasionnelles de GospelAmbition.org."
 
 #: parts/components-enqueue.php:132
@@ -1044,17 +1030,12 @@ msgid "More Prayer Opportunities"
 msgstr "Plus d'opportunités de prière"
 
 #: porches/generic/site/stats.php:351
-#, fuzzy
-#| msgid ""
-#| "Sign up to hear about other prayer efforts and opportunities with "
-#| "Pray4Movement.org and receive occasional communication from "
-#| "GospelAmbition.org."
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
-"avec Pray4Movement.org et recevez des communications occasionnelles de "
+"avec Prayer.Tools et recevez des communications occasionnelles de "
 "GospelAmbition.org."
 
 #: porches/generic/site/top-section.php:31
@@ -1142,9 +1123,6 @@ msgid "Now praying..."
 msgstr "Prier maintenant..."
 
 #, fuzzy
-#~| msgid ""
-#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
-#~| "praying?"
 #~ msgid ""
 #~ "Your last prayer time will be one week from today. Would you like to keep "
 #~ "praying?"
@@ -1153,9 +1131,6 @@ msgstr "Prier maintenant..."
 #~ "continuer la prière ?"
 
 #, fuzzy
-#~| msgid ""
-#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
-#~| "praying?"
 #~ msgid ""
 #~ "Your last prayer time will be 2 weeks from today. Would you like to keep "
 #~ "praying? "
@@ -1164,7 +1139,6 @@ msgstr "Prier maintenant..."
 #~ "continuer la prière ?"
 
 #, fuzzy
-#~| msgid "Thank you for praying with us."
 #~ msgid "Today was your last day of prayer. Thank you for praying with us."
 #~ msgstr "Merci de nous rejoindre en prière."
 
@@ -1203,7 +1177,6 @@ msgstr "Prier maintenant..."
 #~ msgstr "Choisissez le fuseau horaire"
 
 #, fuzzy
-#~| msgid "Or click this link:"
 #~ msgid "Or click this link"
 #~ msgstr "Ou cliquez sur ce lien :"
 
@@ -1553,3 +1526,38 @@ msgstr "Prier maintenant..."
 
 #~ msgid "Once every 15 minutes"
 #~ msgstr "Une fois tous les 15 minutes"
+
+#~ msgid ""
+#~ "Finally, the folks at Pray4Movement built this prayer tool. You can make "
+#~ "sure you’re signed up to receive news about future prayer opportunities "
+#~ "on the Stats page."
+#~ msgstr ""
+#~ "Enfin, sur la page Statistiques de prière assurez-vous d'être inscrit "
+#~ "pour recevoir des nouvelles sur les futures opportunités de prière de "
+#~ "Pray4Movement, les créateurs de cet outil de prière."
+
+#~ msgid ""
+#~ "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
+#~ "the bottom. Make sure you are signed up to receive news about future "
+#~ "prayer opportunities by Pray4Movement, the makers of this prayer tool."
+#~ msgstr ""
+#~ "Enfin, la page Statistiques de prière du Ramadan 24/7 comporte également "
+#~ "une section d'inscription en bas. Assurez-vous d'être inscrit pour "
+#~ "recevoir des nouvelles sur les futures opportunités de prière de "
+#~ "Pray4Movement, les créateurs de cet outil de prière."
+
+#~ msgid ""
+#~ "Receive Pray4Movement news and opportunities, and occasional "
+#~ "communication from GospelAmbition.org."
+#~ msgstr ""
+#~ "Recevez des nouvelles et des opportunités de Pray4Movement, ainsi que des "
+#~ "communications occasionnelles de GospelAmbition.org."
+
+#~ msgid ""
+#~ "Sign up to hear about other prayer efforts and opportunities with "
+#~ "Pray4Movement.org and receive occasional communication from "
+#~ "GospelAmbition.org."
+#~ msgstr ""
+#~ "Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
+#~ "avec Pray4Movement.org et recevez des communications occasionnelles de "
+#~ "GospelAmbition.org."

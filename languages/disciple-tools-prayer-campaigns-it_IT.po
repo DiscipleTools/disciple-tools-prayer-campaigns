@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-08-14T10:03:22+00:00\n"
-"PO-Revision-Date: 2024-08-02 07:59+0000\n"
+"PO-Revision-Date: 2024-08-20 09:59+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:73
@@ -209,17 +209,12 @@ msgstr ""
 "mentre pregavi."
 
 #: campaign-functions/send-email-utility.php:514
-#, fuzzy
-#| msgid ""
-#| "Finally, the folks at Pray4Movement built this prayer tool. You can make "
-#| "sure you’re signed up to receive news about future prayer opportunities "
-#| "on the Stats page."
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
 "you’re signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
-"Infine, i ragazzi di Pray4Movement hanno realizzato questo strumento di "
+"Infine, i ragazzi di Prayer.Tools hanno realizzato questo strumento di "
 "preghiera. Sulla pagina delle Statistiche puoi assicurarti di essere "
 "iscritto per ricevere notizie da loro di future opportunità di preghiera."
 
@@ -253,11 +248,6 @@ msgstr ""
 "hai sentito da Dio mentre pregavi."
 
 #: campaign-functions/send-email-utility.php:544
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -265,7 +255,7 @@ msgid ""
 msgstr ""
 "Inoltre, in fondo alla pagina I Numeri delle Nostre Preghiere 24/7 per "
 "Ramadan troverai una sezione dove puoi iscriverti. Fa' l'iscrizione per "
-"ricevere notizie sui futuri progetti di Pray4Movement, i creatori di questo "
+"ricevere notizie sui futuri progetti di Prayer.Tools, i creatori di questo "
 "strumento di preghiera."
 
 #: campaign-functions/send-email-utility.php:546
@@ -746,16 +736,12 @@ msgid "renew"
 msgstr "Rinnova"
 
 #: parts/components-enqueue.php:129
-#, fuzzy
-#| msgid ""
-#| "Receive Pray4Movement news and opportunities, and occasional "
-#| "communication from GospelAmbition.org."
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"Ricevi altre opportunità e iniziative di Pray4Movement.org e anche "
-"comunicazioni occasionali da GospelAmbition.org."
+"Ricevi altre opportunità e iniziative di Prayer.Tools e anche comunicazioni "
+"occasionali da GospelAmbition.org"
 
 #: parts/components-enqueue.php:132
 msgid "Text Translations"
@@ -1051,18 +1037,12 @@ msgid "More Prayer Opportunities"
 msgstr "Altre opportunità di preghiera"
 
 #: porches/generic/site/stats.php:351
-#, fuzzy
-#| msgid ""
-#| "Sign up to hear about other prayer efforts and opportunities with "
-#| "Pray4Movement.org and receive occasional communication from "
-#| "GospelAmbition.org."
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Iscriviti per essere aggiornato su altre opportunità e iniziative di "
-"Pray4Movement.org e per ricevere comunicazioni occasionali da GospelAmbition."
-"org."
+"Prayer.Tools e per ricevere comunicazioni occasionali da GospelAmbition.org."
 
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
