@@ -725,8 +725,8 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'name' => $subscriber['name'] ?? '',
             ],
             'frequency_durations' => [
-                'daily' => min( is_numeric( $campaign['daily_signup_length'] ) ? (int)$campaign['daily_signup_length'] : 90, 365 ),
-                'weekly' => min( is_numeric( $campaign['weekly_signup_length'] ) ? (int)$campaign['weekly_signup_length'] : 180, 365 ),
+                'daily' => min( is_numeric( $campaign['daily_signup_length'] ) ? (int) $campaign['daily_signup_length'] : 90, 365 ),
+                'weekly' => min( is_numeric( $campaign['weekly_signup_length'] ) ? (int) $campaign['weekly_signup_length'] : 180, 365 ),
             ]
         ];
     }
