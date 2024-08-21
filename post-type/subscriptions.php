@@ -881,7 +881,7 @@ class DT_Subscriptions_Base {
             return new WP_Error( __METHOD__, 'Missing parameters.' );
         }
 
-        return DT_Prayer_Campaigns_Send_Email::send_auto_extend_notification( $subscriber_id, $campaign_id, $report  );
+        return DT_Prayer_Campaigns_Send_Email::send_auto_extend_notification( $subscriber_id, $campaign_id, $report );
     }
 
 
