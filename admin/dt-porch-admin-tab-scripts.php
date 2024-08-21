@@ -22,66 +22,184 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
             return;
         }
         $post_args = dt_recursive_sanitize_array( $_POST );
-        if ( !isset( $post_args['campaign_name'], $post_args['wizard_type'], $post_args['campaign_start_date'], $post_args['campaign_languages'] ) ){
-            return;
-        }
-        $fields = [
-            'name' => $post_args['campaign_name'],
-            'start_date' => dt_format_date( time(), 'Y-m-d' ),
-            'status' => 'active',
-            'enabled_languages' => [ 'values' => [] ],
-            'porch_type' => 'generic-porch',
-        ];
 
-        if ( $post_args['wizard_type'] === 'ramadan-porch' ){
-            $fields['porch_type'] = 'ramadan-porch';
-            $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
-            $fields['start_date'] = $next_ramadan_start_date;
-            $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
-            $fields['name'] = 'Ramadan Campaign';
-        }
+        global $wpdb;
+        if ( isset( $post_args['remove_duplicate_signups'] ) ){
+            $dups = $wpdb->get_results( "
+                SELECT r2.id, r.post_id, r.parent_id
+                FROM $wpdb->dt_reports r
+                INNER JOIN $wpdb->dt_reports r2 ON ( 
+                    r2.post_id = r.post_id
+                    AND r2.parent_id = r.parent_id
+                    AND r2.time_begin = r.time_begin
+                    AND r2.time_end = r.time_end
+                    AND r2.value = r.value
+                    AND r2.id > r.id
+                )
+                WHERE r.type = 'recurring_signup'
+            ", ARRAY_A );
 
-        //start date
-        $start_time = strtotime( $post_args['campaign_start_date'] );
-        if ( $start_time > time() ){
-            $fields['start_date'] = $post_args['campaign_start_date'];
-        }
-        //end date
-        if ( !empty( $post_args['campaign_end_date'] ) ){
-            if ( strtotime( $post_args['campaign_end_date'] ) > $start_time ){
-                $fields['end_date'] = $post_args['campaign_end_date'];
+            foreach ( $dups as $dup ){
+                Disciple_Tools_Reports::delete( $dup['id'] );
+                $wpdb->query( $wpdb->prepare(
+                    "DELETE r
+                        FROM $wpdb->dt_reports r
+                        WHERE parent_id = %s
+                        AND post_id = %s
+                        AND type = 'campaign_app'
+                        AND subtype = 'recurring_signup'
+                        AND value = %s
+                        ",
+                    $dup['parent_id'], $dup['post_id'], $dup['id']
+                ) );
             }
         }
-        //languages
-        if ( !empty( $post_args['campaign_languages'] ) ){
-            foreach ( $post_args['campaign_languages'] as $language ){
-                $fields['enabled_languages']['values'][] = [ 'value' => $language ];
+
+        if ( isset( $post_args['fix_durations'] ) ){
+            $to_fix = $wpdb->get_results( "
+                SELECT r.post_id, r.parent_id FROM $wpdb->dt_reports r 
+                INNER JOIN $wpdb->dt_reports r2 ON 
+                  ( r2.post_id = r.post_id 
+                    AND r2.type = r.type AND r2.subtype = r.subtype
+                    AND r2.time_begin > r.time_begin
+                    AND r2.time_begin < r.time_end
+                  )
+                WHERE r.subtype = 'recurring_signup'
+                GROUP BY r.post_id, r.parent_id
+            ", ARRAY_A );
+
+            foreach ( $to_fix as $row ){
+                $rc = new Recurring_Signups( $row['post_id'], $row['parent_id'] );
+                $r_signups = $rc->get_recurring_signups();
+                //order by first
+                usort( $r_signups, function ( $a, $b ){
+                    return $a['first'] <=> $b['first'];
+                } );
+                $signups = [];
+                foreach ( $r_signups as $signup ){
+                    $signups[$signup['first']] = $signup;
+                }
+
+                foreach ( $signups as $signup_time => $signup ){
+                    $next_signup = null;
+                    foreach ( $signups as $s ){
+                        if ( $signup['first'] < $s['first'] &&  $signup['first'] + $signup['duration'] * 60 > $s['first'] ){
+                            $next_signup = $s;
+                            break;
+                        }
+                    }
+                    if ( $next_signup ){
+                        $different = ( $next_signup['first'] - $signup['first'] ) / 60;
+                        $new_duration = $different;
+                        //change duration
+                        $recurring_signup = Disciple_Tools_Reports::get( $signup['report_id'], 'id' );
+                        $recurring_signup['payload']['duration'] = $new_duration;
+                        $recurring_signup['payload']['label'] = ''; //@todo
+                        $recurring_signup['label'] = ''; //@todo
+                        Disciple_Tools_Reports::update( $recurring_signup );
+                        //updates prayer times
+                        //adjust the duration on each signup
+                        $wpdb->query( $wpdb->prepare( "
+                            UPDATE $wpdb->dt_reports
+                            SET time_end = time_begin + %d
+                            WHERE post_id = %d
+                            AND type = 'campaign_app'
+                            AND subtype = 'recurring_signup'
+                            AND value = %d
+                        ", $new_duration * 60, $signup['post_id'], $signup['report_id'] ) );
+                    }
+                }
             }
-        } else{
-            $fields['enabled_languages']['values'][] = [ 'value' => 'en_US' ];
         }
 
-        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
 
-        $scripts = DT_Posts::create_post( 'campaigns', $fields, true, false );
-        if ( is_wp_error( $scripts ) ){
-            return;
-        }
+        if ( isset( $post_args['combine_prayer_campaigns'] ) ){
+            $to_combine = $wpdb->get_results( "
+                SELECT r.post_id, r.parent_id FROM $wpdb->dt_reports r 
+                INNER JOIN $wpdb->dt_reports r2 ON 
+                  ( r2.post_id = r.post_id 
+                    AND r2.type = r.type AND r2.subtype = r.subtype
+                    AND r2.time_begin = r.time_begin + 900
+                  )
+                WHERE r.type = 'recurring_signup'
+                GROUP BY r.post_id, r.parent_id
+            ", ARRAY_A );
+            foreach ( $to_combine as $row ){
+                $rc = new Recurring_Signups( $row['post_id'], $row['parent_id'] );
+                $r_signups = $rc->get_recurring_signups();
+                //order by first
+                usort( $r_signups, function( $a, $b ){
+                    return $a['first'] <=> $b['first'];
+                } );
+                $signups = [];
+                foreach ( $r_signups as $signup ){
+                    $signups[$signup['first']] = $signup;
+                }
 
-        if ( empty( $default_campaign ) ){
-            update_option( 'dt_campaign_selected_campaign', $scripts['ID'] );
+                foreach ( $signups as $signup_time => $signup ){
+                    $previous_signup = null;
+                    foreach( $signups as $s ){
+                        if ( $s['first'] + $s['duration'] * 60 === $signup['first'] && !isset( $s['combined'] ) ){
+                            $previous_signup = $s;
+                            break;
+                        }
+                    }
+
+                    if ( $previous_signup && isset( $signups[$previous_signup['first']] )) {
+                        $signups[$previous_signup['first']]['duration'] += $signup['duration'];
+                        $signups[$previous_signup['first']]['last'] = $signup['last'];
+                        $signups[$previous_signup['first']]['label'] = '';
+                        $signups[$previous_signup['first']]['update'] = true;
+                        $signups[$signup['first']]['combined'] = $previous_signup['report_id'];
+                    }
+                }
+
+                foreach( $signups as $signup ){
+                    if ( isset( $signup['update'] ) ){
+                        $recurring_signup = Disciple_Tools_Reports::get( $signup['report_id'], 'id' );
+                        $recurring_signup['time_begin'] = $signup['first'];
+                        $recurring_signup['time_end'] = $signup['last'];
+                        $recurring_signup['label'] = '';  //@todo
+                        $recurring_signup['payload']['label'] = '';  //@todo
+                        $recurring_signup['payload']['duration'] = $signup['duration'];
+                        Disciple_Tools_Reports::update( $recurring_signup );
+
+                        //adjust the duration on each signup
+                        $wpdb->query( $wpdb->prepare( "
+                            UPDATE $wpdb->dt_reports
+                            SET time_end = time_begin + %d
+                            WHERE post_id = %d
+                            AND type = 'campaign_app'
+                            AND subtype = 'recurring_signup'
+                            AND value = %d
+                        ", $signup['duration'] * 60, $signup['post_id'], $signup['report_id'] ) );
+                    }
+                }
+                foreach( $signups as $signup ){
+                    if ( isset( $signup['combined'] ) ){
+                        //delete the report
+                        Disciple_Tools_Reports::delete( $signup['report_id'] );
+                        $wpdb->query( $wpdb->prepare(
+                            "DELETE r
+                                FROM $wpdb->dt_reports r
+                                WHERE parent_id = %s
+                                AND post_id = %s
+                                AND type = 'campaign_app'
+                                AND subtype = 'recurring_signup'
+                                AND value = %s
+                                ",
+                            $signup['campaign_id'], $signup['post_id'], $signup['report_id']
+                        ) );
+                    }
+                }
+            }
         }
-        wp_safe_redirect( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $scripts['ID'] ) );
-        exit;
     }
 
     public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
         if ( $tab !== $this->key ){
             return;
         }
-        $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
-        $languages = DT_Campaign_Languages::get_installed_languages( null );
-        $enabled_languages = [ 'en_US' ];
 
         ?>
         <style>
@@ -134,76 +252,21 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                                             <tr>
                                                 <th scope="row"><label for="prayer_notifications">Trigger Prayer Time Notifications</label></th>
                                                 <td><button type="submit">Send</button> </td>
-                                                <td>
-                                                    Examples: Pray4France, Pray4Morocco Ramadan 2024 etc
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th><label for="wizard_type">Type</label></th>
-                                                <td>
-                                                    <?php foreach ( $wizard_types as $wizard_type => $wizard_details ): ?>
 
-                                                        <label style="display: block; padding: 8px">
-                                                            <input type="radio" name="wizard_type"
-                                                                   value="<?php echo esc_html( $wizard_type ); ?>"
-                                                                   required>
-                                                            <?php echo isset( $wizard_details['label'] ) ? esc_html( $wizard_details['label'] ) : esc_html( "$wizard_type" ) ?>
-                                                        </label>
-
-                                                    <?php endforeach; ?>
-                                                </td>
-                                                <td>
-                                                    See <a href="https://prayer.tools/docs/campaign-types/">documentation</a>
-                                                    for types.
-                                                </td>
                                             </tr>
 
                                             <tr>
-                                                <th><label for="campaign_start_date">Start Date</label></th>
-                                                <td><input type="date" name="campaign_start_date"
-                                                           id="campaign_start_date" class="regular-text" required></td>
-                                                <td>When the campaign will start</td>
+                                                <th>Remove Duplicate Signups</th>
+                                                <td><button type="submit" name="remove_duplicate_signups" value="remove_duplicate_signups">Remove</button></td>
                                             </tr>
                                             <tr>
-                                                <th><label for="campaign_end_date">End Date (optional)</label>
+                                                <th>Fix Durations</th>
+                                                <td><button type="submit" name="fix_durations" value="fix_durations">Fix</button></td>
+                                            <tr>
+                                                <th>Combine Adjacent Prayer Times</th>
+                                                <td><button type="submit" name="combine_prayer_campaigns" value="combine_prayer_campaigns">Combine</button></td>
+                                            </tr>
 
-                                                </th>
-                                                <td><input type="date" name="campaign_end_date" id="campaign_end_date"
-                                                           class="regular-text"></td>
-                                                <td>
-                                                    When the campaign will end. Leave empty for ongoing campaigns.
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th><label for="campaign_languages">Languages</label></th>
-                                                <td>
-                                                    <?php foreach ( $languages as $language_key => $language ):
-                                                        $lang_enabled = in_array( $language_key, $enabled_languages, true );
-                                                        ?>
-                                                        <label style="display: block; padding: 8px">
-                                                            <input type="checkbox"
-                                                                   name="campaign_languages[]"
-                                                                <?php checked( $lang_enabled ) ?>
-                                                                   value="<?php echo esc_html( $language_key ) ?>">
-                                                            <?php echo esc_html( $language['label'] ) ?>
-                                                        </label>
-                                                    <?php endforeach; ?>
-                                                </td>
-                                                <td>
-                                                    Show the campaign interface and prayer fuel in these languages.
-                                                    <br>
-                                                    Please don't enable languages you don't plan on creation or
-                                                    installing prayer fuel for.
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <td>
-                                                    <button type="submit" class="button button-primary">Create
-                                                        Campaign
-                                                    </button>
-                                                </td>
-                                            </tr>
                                         </table>
                                     </form>
                                 </td>
