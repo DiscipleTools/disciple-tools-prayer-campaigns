@@ -241,14 +241,14 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $post_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
 
 
-        $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
-        if ( is_wp_error( $record ) ){
+        $campaign = DT_Posts::get_post( 'campaigns', $post_id, true, false );
+        if ( is_wp_error( $campaign ) ){
             return;
         }
         $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $post_id );
         $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id, 13 );
         $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id );
-        $end = $record['end_date']['timestamp'] ?? null;
+        $end = $campaign['end_date']['timestamp'] ?? null;
         if ( $end ){
             $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 3, $start );
             $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
@@ -272,13 +272,17 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'start_timestamp' => $start,
             'end_timestamp' => $end,
             'slot_length' => (int) $min_time_duration,
-            'status' => $record['status']['key'],
+            'status' => $campaign['status']['key'],
             'current_commitments' => $current_commitments,
             'minutes_committed' => $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
-            'enabled_frequencies' => $record['enabled_frequencies'] ?? [ 'daily', 'pick' ],
+            'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'coverage_percent' => $coverage_percent ?? null,
             'signup_form_fields' => $signup_form_fields,
+            'frequency_durations' => [
+                'daily' => min( is_numeric( $campaign['daily_signup_length'] ) ? (int)$campaign['daily_signup_length'] : 90, 365 ),
+                'weekly' => min( is_numeric( $campaign['weekly_signup_length'] ) ? (int)$campaign['weekly_signup_length'] : 180, 365 ),
+            ]
         ];
     }
 
