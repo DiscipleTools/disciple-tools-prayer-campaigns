@@ -87,9 +87,19 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
                 'rest_base' => esc_url( rest_url() ),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'parts' => $this->parts,
-                'translations' => [],
+                'translations' => [
+                    'Your prayer time has been extended' => __( 'Your prayer time has been extended', 'disciple-tools-prayer-campaigns' ),
+                    'signup_up_to_pray' => _x( 'You are signed up to pray %1$s until %2$s.', 'You are signed up to pray daily at 3pm until October 23, 2030.', 'disciple-tools-prayer-campaigns' ),
+                    'OK' => __( 'OK', 'disciple-tools-prayer-campaigns' ),
+                    'Email me the updated calendar' => __( 'Email me the updated calendar', 'disciple-tools-prayer-campaigns' ),
+                    'Prayer Fuel' => __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                    'Join me in praying!' => __( 'Join me in praying!', 'disciple-tools-prayer-campaigns' ),
+
+                ],
                 'rest_namespace' => $this->root . '/v1/' . $this->type,
                 'campaign_url' => DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ),
+                'auto_extend_prayer_times' => $post['auto_extend_prayer_times'] ?? true,
+                'site_url' => site_url(),
             ]
         );
         wp_enqueue_style( 'magic_link_css', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'magic-link.css', [], filemtime( plugin_dir_path( __FILE__ ) . 'magic-link.css' ) );
@@ -335,10 +345,22 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
             ]
         );
         register_rest_route(
-            $namespace, '/'.$this->type, [
+            $namespace, '/'. $this->type, [
                 [
                     'methods'  => 'POST',
                     'callback' => [ $this, 'manage_profile' ],
+                    'permission_callback' => function( WP_REST_Request $request ){
+                        $magic = new DT_Magic_URL( $this->root );
+                        return $magic->verify_rest_endpoint_permissions_on_post( $request );
+                    },
+                ],
+            ]
+        );
+        register_rest_route(
+            $namespace, '/'. $this->type . '/email-calendar', [
+                [
+                    'methods'  => 'POST',
+                    'callback' => [ $this, 'email_calendar' ],
                     'permission_callback' => function( WP_REST_Request $request ){
                         $magic = new DT_Magic_URL( $this->root );
                         return $magic->verify_rest_endpoint_permissions_on_post( $request );
@@ -421,6 +443,14 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
             default:
                 return new WP_Error( __METHOD__, 'Missing valid action', [ 'status' => 400 ] );
         }
+    }
+
+    public function email_calendar( WP_REST_Request $request ){
+        $params = $request->get_params();
+        $params = dt_recursive_sanitize_array( $params );
+
+        DT_Subscriptions_Base::send_welcome_email( $params['parts']['post_id'], $params['campaign_id'] );
+        return true;
     }
 
 }
