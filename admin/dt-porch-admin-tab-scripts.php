@@ -83,7 +83,7 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                 foreach ( $signups as $signup_time => $signup ){
                     $next_signup = null;
                     foreach ( $signups as $s ){
-                        if ( $signup['first'] < $s['first'] &&  $signup['first'] + $signup['duration'] * 60 > $s['first'] ){
+                        if ( $signup['first'] < $s['first'] && $signup['first'] + $signup['duration'] * 60 > $s['first'] ){
                             $next_signup = $s;
                             break;
                         }
@@ -128,7 +128,7 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                 $rc = new Recurring_Signups( $row['post_id'], $row['parent_id'] );
                 $r_signups = $rc->get_recurring_signups();
                 //order by first
-                usort( $r_signups, function( $a, $b ){
+                usort( $r_signups, function ( $a, $b ){
                     return $a['first'] <=> $b['first'];
                 } );
                 $signups = [];
@@ -138,14 +138,14 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
 
                 foreach ( $signups as $signup_time => $signup ){
                     $previous_signup = null;
-                    foreach( $signups as $s ){
+                    foreach ( $signups as $s ){
                         if ( $s['first'] + $s['duration'] * 60 === $signup['first'] && !isset( $s['combined'] ) ){
                             $previous_signup = $s;
                             break;
                         }
                     }
 
-                    if ( $previous_signup && isset( $signups[$previous_signup['first']] )) {
+                    if ( $previous_signup && isset( $signups[$previous_signup['first']] ) ){
                         $signups[$previous_signup['first']]['duration'] += $signup['duration'];
                         $signups[$previous_signup['first']]['last'] = $signup['last'];
                         $signups[$previous_signup['first']]['label'] = '';
@@ -154,7 +154,7 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                     }
                 }
 
-                foreach( $signups as $signup ){
+                foreach ( $signups as $signup ){
                     if ( isset( $signup['update'] ) ){
                         $recurring_signup = Disciple_Tools_Reports::get( $signup['report_id'], 'id' );
                         $recurring_signup['time_begin'] = $signup['first'];
@@ -175,7 +175,7 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                         ", $signup['duration'] * 60, $signup['post_id'], $signup['report_id'] ) );
                     }
                 }
-                foreach( $signups as $signup ){
+                foreach ( $signups as $signup ){
                     if ( isset( $signup['combined'] ) ){
                         //delete the report
                         Disciple_Tools_Reports::delete( $signup['report_id'] );
@@ -250,21 +250,36 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
 
                                         <table class="form-table striped widefat" style="margin: 0; border: none">
                                             <tr>
-                                                <th scope="row"><label for="prayer_notifications">Trigger Prayer Time Notifications</label></th>
-                                                <td><button type="submit">Send</button> </td>
+                                                <th scope="row"><label for="prayer_notifications">Trigger Prayer Time
+                                                        Notifications</label></th>
+                                                <td>
+                                                    <button type="submit">Send</button>
+                                                </td>
 
                                             </tr>
 
                                             <tr>
                                                 <th>Remove Duplicate Signups</th>
-                                                <td><button type="submit" name="remove_duplicate_signups" value="remove_duplicate_signups">Remove</button></td>
+                                                <td>
+                                                    <button type="submit" name="remove_duplicate_signups"
+                                                            value="remove_duplicate_signups">Remove
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th>Fix Durations</th>
-                                                <td><button type="submit" name="fix_durations" value="fix_durations">Fix</button></td>
+                                                <td>
+                                                    <button type="submit" name="fix_durations" value="fix_durations">
+                                                        Fix
+                                                    </button>
+                                                </td>
                                             <tr>
                                                 <th>Combine Adjacent Prayer Times</th>
-                                                <td><button type="submit" name="combine_prayer_campaigns" value="combine_prayer_campaigns">Combine</button></td>
+                                                <td>
+                                                    <button type="submit" name="combine_prayer_campaigns"
+                                                            value="combine_prayer_campaigns">Combine
+                                                    </button>
+                                                </td>
                                             </tr>
 
                                         </table>
