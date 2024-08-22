@@ -127,15 +127,17 @@ export class cpProfile extends LitElement {
                 >
             </label>
         </div>
-          <div class="row">
-            <label style="display: flex">
-                ${translate('Auto extend prayer times')}
-                <input type="checkbox"
-                       @change="${e=>this.updates.auto_extend_prayer_times = e.target.checked}"
-                       ?checked="${this.subscriber_data.auto_extend_prayer_times}"
-                >
-            </label>
+        ${window.campaign_data.magic_fuel ? html`  
+        <div class="row">
+          <label style="display: flex">
+              ${translate('Auto extend prayer times')}
+              <input type="checkbox"
+                     @change="${e=>this.updates.auto_extend_prayer_times = e.target.checked}"
+                     ?checked="${this.subscriber_data.auto_extend_prayer_times}"
+              >
+          </label>
         </div>
+        ` : ''}
         <div class="row">
             <button class="loader ${this.show_spinner ? 'loading' : ''}" @click="${this.save_profile}">Save</button>
         </div>

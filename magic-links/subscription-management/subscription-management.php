@@ -717,6 +717,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             'minutes_committed' => (int) $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
+            'magic_fuel' => isset( $campaign['magic_fuel']['key'] ) && $campaign['magic_fuel']['key'] === 'yes',
             'subscriber_info' => [
                 'my_commitments' => $my_commitments,
                 'my_recurring_signups' => $my_recurring_signups,
