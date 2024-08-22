@@ -383,7 +383,6 @@ class DT_Prayer_Campaigns_Send_Email {
         $locale = $subscriber['lang'] ?? 'en_US';
         self::switch_email_locale( $locale );
         $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
-        $tz = new DateTimeZone( $timezone );
 
         $manage_link = self::management_link( $subscriber );
 
@@ -394,16 +393,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $expiring_signups_list = '<ul>';
         foreach ( $signups as $signup ){
             if ( $force_display || $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ){
-                $end_date = new DateTime( '@' . $signup['last'] );
-                $end_date->setTimezone( $tz );
-                $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $end_date, $locale, $timezone ) . '</strong>';
-                $time = DT_Time_Utilities::display_hour_localized( $end_date, $locale, $timezone );
-
-                $week_day = DT_Time_Utilities::display_weekday_localized( $end_date, $locale, $timezone );
-                $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $signup['duration'] );
-                $string .= ', ';
-                $string .= sprintf( _x( 'ending on %s', 'Praying Daily at 4:15 PM, ending on July 18, 2026', 'disciple-tools-prayer-campaigns' ), $end_date_string );
-
+                $string = DT_Subscriptions::get_recurring_signup_label( $signup, $timezone, $locale, true );
                 $expiring_signups_list .= '<li>' . $string . '</li>';
             }
         }

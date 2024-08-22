@@ -46,6 +46,7 @@ class DT_Prayer_Campaigns_Menu {
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-starter-content.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-email-settings.php';
         require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-new-campaign.php';
+        require_once trailingslashit( __DIR__ ) . 'dt-porch-admin-tab-scripts.php';
 
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'dt_options_script_pages', array( $this, 'dt_options_script_pages' ) );
