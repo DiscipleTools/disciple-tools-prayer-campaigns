@@ -324,6 +324,26 @@ class DT_Campaigns_Base {
                 'settings_section' => 'Campaign',
             ];
 
+            $fields['weekly_signup_length'] = [
+                'name' => 'Weekly Signup Length (in days)',
+                'description' => 'The number of days a user can sign up for at one time with a weekly signup. Max 365 days',
+                'type' => 'text',
+                'default' => 180,
+                'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
+            ];
+
+            $fields['daily_signup_length'] = [
+                'name' => 'Daily Signup Length (in days)',
+                'description' => 'The number of days a user can sign up for at one time with a daily signup. Max 365 days',
+                'type' => 'text',
+                'default' => 90,
+                'tile' => 'campaign_setup',
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
+            ];
+
 //            $fields['duration_options'] = [
 //                'name' => 'Duration options',
 //                'type' => 'key_select',

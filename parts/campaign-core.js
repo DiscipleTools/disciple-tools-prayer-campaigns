@@ -57,7 +57,6 @@ window.campaign_data = {
     {
       value: 'daily',
       label: strings['Daily'],
-      // desc: `(${strings['up to %s months'].replace('%s', '3')})`,
       days_limit: 90,
       month_limit: 3,
       step: 'day',
@@ -65,7 +64,6 @@ window.campaign_data = {
     {
       value: 'weekly',
       label: strings['Weekly'],
-      // desc: `(${strings['up to %s months'].replace('%s', '6')})`,
       days_limit: 180,
       step: 'week',
       month_limit: 6
@@ -73,7 +71,6 @@ window.campaign_data = {
     {
       value: 'monthly',
       label: strings['Monthly'],
-      // desc: `(${strings['up to %s months'].replace('%s', '12')})`,
       days_limit: 365,
       step: 'month',
       month_limit: 12
@@ -220,6 +217,10 @@ window.campaign_scripts = {
         window.campaign_data.frequency_options.forEach(k=>{
           if ( !window.campaign_data.enabled_frequencies.includes(k.value) ){
             k.disabled = true
+          }
+          if ( window.campaign_data.frequency_durations[k.value] ){
+            k.days_limit = window.campaign_data.frequency_durations[k.value]
+            k.month_limit = Math.floor(k.days_limit / 30)
           }
         })
         timezone = timezone || data.subscriber_info?.timezone || window.campaign_user_data.timezone
