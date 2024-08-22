@@ -350,6 +350,18 @@ export class CampaignSignUp extends LitElement {
     }
     let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
     if ( recurring_signup ){
+      //keep this new recurring signup from overlapping with an existing one
+      let has_overlay = this.recurring_signups.find(
+        k => k.type===recurring_signup.type && (
+          (k.first.toSeconds() < recurring_signup.first.toSeconds()
+            && k.first.toSeconds() + k.duration * 60 > recurring_signup.first.toSeconds())
+          ||
+          (k.first.toSeconds() > recurring_signup.first.toSeconds()
+            && k.first.toSeconds() < recurring_signup.first.toSeconds() + k.duration * 60)
+        ))
+      if ( has_overlay ){
+        return;
+      }
       this.recurring_signups = [...this.recurring_signups, recurring_signup]
       window.campaign_user_data.recurring_signups = this.recurring_signups;
       window.campaign_scripts.combine_recurring_signups()
