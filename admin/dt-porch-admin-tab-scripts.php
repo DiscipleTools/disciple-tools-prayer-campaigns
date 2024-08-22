@@ -269,15 +269,6 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
 
                                         <table class="form-table striped widefat" style="margin: 0; border: none">
                                             <tr>
-                                                <th scope="row"><label for="prayer_notifications">Trigger Prayer Time
-                                                        Notifications</label></th>
-                                                <td>
-                                                    <button type="submit">Send</button>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-
-                                            <tr>
                                                 <th>Remove Duplicate Recurring Signups</th>
                                                 <td>
                                                     <button type="submit" name="remove_duplicate_signups"
