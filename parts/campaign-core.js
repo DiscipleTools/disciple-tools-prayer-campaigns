@@ -218,8 +218,8 @@ window.campaign_scripts = {
           if ( !window.campaign_data.enabled_frequencies.includes(k.value) ){
             k.disabled = true
           }
-          if ( window.campaign_data.frequency_durations[k.value] ){
-            k.days_limit = window.campaign_data.frequency_durations[k.value]
+          if ( window.campaign_data.frequency_durations?.[k.value] ){
+            k.days_limit = window.campaign_data.frequency_durations?.[k.value]
             k.month_limit = Math.floor(k.days_limit / 30)
           }
         })
