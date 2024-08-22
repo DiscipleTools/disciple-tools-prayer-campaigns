@@ -76,7 +76,6 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Weekly' => __( 'Weekly', 'disciple-tools-prayer-campaigns' ),
                     'Monthly' => __( 'Monthly', 'disciple-tools-prayer-campaigns' ),
                     'Pick Dates and Times' => __( 'Pick Dates and Times', 'disciple-tools-prayer-campaigns' ),
-                    'up to %s months' => _x( 'up to %s months', 'up to 3 months', 'disciple-tools-prayer-campaigns' ),
                     '%s Minutes' => __( '%s Minutes', 'disciple-tools-prayer-campaigns' ),
                     '%s Hour' => __( '%s Hour', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),

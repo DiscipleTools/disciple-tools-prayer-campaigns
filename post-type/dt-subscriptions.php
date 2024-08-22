@@ -244,6 +244,29 @@ class DT_Subscriptions {
         return $recurring_signups_class->get_recurring_signups();
     }
 
+    public static function get_recurring_signup_label( $recurring_signup, $timezone, $locale, $with_ending = false ){
+        $date = new DateTime( '@' . $recurring_signup['last'] );
+        $tz = new DateTimeZone( $timezone );
+        $date->setTimezone( $tz );
+        $time = DT_Time_Utilities::display_hour_localized( $date, $locale, $timezone );
+
+        if ( $recurring_signup['type'] === 'weekly' ){
+            $week_day = DT_Time_Utilities::display_weekday_localized( $date, $locale, $timezone );
+            $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $recurring_signup['duration'] );
+        } else {
+            $string = sprintf( _x( 'Every day at %1$s for %2$s minutes', 'Every day at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $time, $recurring_signup['duration'] );
+        }
+
+        if ( $with_ending ){
+            $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $date, $locale, $timezone ) . '</strong>';
+            $string .= ', ';
+            $string .= sprintf( _x( 'ending on %s', 'Praying Daily at 4:15 PM, ending on July 18, 2026', 'disciple-tools-prayer-campaigns' ), $end_date_string );
+        }
+
+        return $string;
+
+    }
+
     public static function get_recurring_signup( $report_id ){
         global $wpdb;
         $report = $wpdb->get_row( $wpdb->prepare(
@@ -441,9 +464,10 @@ class Recurring_Signups {
 
     public static function format_from_report( $report ){
         $report['payload'] = maybe_unserialize( $report['payload'] );
-        return [
+        $rc = [
             'report_id' => (int) $report['id'],
             'campaign_id' => (int) $report['parent_id'],
+            'post_id' => (int) $report['post_id'],
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
             'first' => (int) $report['time_begin'],
@@ -452,5 +476,11 @@ class Recurring_Signups {
             'time' => (int) $report['payload']['time'] ?? 0,
             'week_day' => isset( $report['payload']['week_day'] ) ? ( (int) $report['payload']['week_day'] ) : null,
         ];
+        if ( empty( $rc['label'] ) || $report['label'] === 'changed' ){
+            $subscriber = DT_Posts::get_post( 'subscriptions', $report['post_id'], true, false );
+            $rc['label'] = DT_Subscriptions::get_recurring_signup_label( $rc, $subscriber['timezone'], $subscriber['lang'] );
+        }
+
+        return $rc;
     }
 }
