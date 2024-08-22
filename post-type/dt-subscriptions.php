@@ -245,15 +245,20 @@ class DT_Subscriptions {
     }
 
     public static function get_recurring_signup_label( $recurring_signup, $timezone, $locale, $with_ending = false ){
-        $date = new DateTime( '@' . $recurring_signup['first'] );
+        $date = new DateTime( '@' . $recurring_signup['last'] );
         $tz = new DateTimeZone( $timezone );
         $date->setTimezone( $tz );
-        $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $date, $locale, $timezone ) . '</strong>';
         $time = DT_Time_Utilities::display_hour_localized( $date, $locale, $timezone );
 
-        $week_day = DT_Time_Utilities::display_weekday_localized( $date, $locale, $timezone );
-        $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $recurring_signup['duration'] );
+        if ( $recurring_signup['type'] === 'weekly' ){
+            $week_day = DT_Time_Utilities::display_weekday_localized( $date, $locale, $timezone );
+            $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $recurring_signup['duration'] );
+        } else {
+            $string = sprintf( _x( 'Every day at %1$s for %2$s minutes', 'Every day at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $time, $recurring_signup['duration'] );
+        }
+
         if ( $with_ending ){
+            $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $date, $locale, $timezone ) . '</strong>';
             $string .= ', ';
             $string .= sprintf( _x( 'ending on %s', 'Praying Daily at 4:15 PM, ending on July 18, 2026', 'disciple-tools-prayer-campaigns' ), $end_date_string );
         }
