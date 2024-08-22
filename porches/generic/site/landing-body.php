@@ -15,7 +15,7 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
 ?>
 
 
-<!-- Contact Section Start -->
+<!-- Single Prayer Fuel Section Start -->
 <section id="contact" class="section">
     <div class="container">
         <div class="row">
@@ -56,4 +56,4 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );
         endif; ?>
     </div>
 </section>
-<!-- Contact Section End -->
+<!-- Single Prayer Fuel Section End -->

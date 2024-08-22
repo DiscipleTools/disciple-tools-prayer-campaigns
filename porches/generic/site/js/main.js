@@ -2,9 +2,14 @@
    CounterUp
    ========================================================================== */
     jQuery(document).ready(function( $ ) {
-      $('.counter').counterUp({
-        time: 500
-      });
+      //if counterUp is a function
+      if ( typeof counterUp === 'function'){
+        $('.counter').counterUp({
+          time: 500
+        });
+
+      }
+
     });
 
 
@@ -45,29 +50,34 @@
    One Page Navigation & wow js
    ========================================================================== */
   jQuery(function($) {
-      //Initiat WOW JS
-      new WOW().init();
+    if ( typeof WOW !== 'function'){
+      return
+    }
+    //Initiat WOW JS
+    new WOW().init();
 
-      // one page navigation
-      $('.main-navigation').onePageNav({
-              currentClass: 'active'
-      });
+    // one page navigation
+    $('.main-navigation').onePageNav({
+            currentClass: 'active'
+    });
   });
 
   jQuery(document).ready(function() {
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 200) {
+            $('.fixed-top').addClass('menu-bg');
+        } else {
+            $('.fixed-top').removeClass('menu-bg');
+        }
+    });
+    if ( typeof scrollspy !== 'function'){
+      return
+    }
 
-      $('body').scrollspy({
-          target: '.navbar-collapse',
-          offset: 195
-      });
-
-      $(window).on('scroll', function() {
-          if ($(window).scrollTop() > 200) {
-              $('.fixed-top').addClass('menu-bg');
-          } else {
-              $('.fixed-top').removeClass('menu-bg');
-          }
-      });
+    $('body').scrollspy({
+        target: '.navbar-collapse',
+        offset: 195
+    });
 
   });
 
@@ -76,6 +86,9 @@
   /* stellar js
   ========================================================*/
   $(function(){
+    if ( typeof $.stellar !== 'function') {
+      return
+    }
     $.stellar({
       horizontalScrolling: false,
       verticalOffset: 0,
@@ -126,6 +139,9 @@
   }
 
   function initEvents() {
+    if ( !openbtn ) {
+      return
+    }
     openbtn.addEventListener( 'click', toggleMenu );
     if( closebtn ) {
       closebtn.addEventListener( 'click', toggleMenu );

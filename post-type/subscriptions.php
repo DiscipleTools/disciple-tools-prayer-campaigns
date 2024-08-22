@@ -302,7 +302,15 @@ class DT_Subscriptions_Base {
                 'hidden' => true
             ];
             $fields['receive_prayer_time_notifications'] = [
-                'name' => __( 'Receive Prayer Time Notifications', 'disciple-tools-prayer-campaigns' ),
+                'name' => __( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'tile' => 'details',
+                'default' => false,
+                'hidden' => false,
+                'show_in_table' => 50,
+            ];
+            $fields['auto_extend_prayer_times'] = [
+                'name' => __( 'Auto extend prayer times', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'boolean',
                 'tile' => 'details',
                 'default' => false,
@@ -620,7 +628,6 @@ class DT_Subscriptions_Base {
                         window.location.reload()
                     })
                 })
-
                 </script>
             <?php
         }
@@ -641,8 +648,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_confirmation_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -655,8 +662,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_reminder_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -670,8 +677,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_expiring_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -684,8 +691,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_end_campaign_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -698,8 +705,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'send_activation_email' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -711,8 +718,8 @@ class DT_Subscriptions_Base {
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'manually_activate_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -825,7 +832,6 @@ class DT_Subscriptions_Base {
 
         return DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $subscriber_id, $campaign_id );
     }
-
 
 
     public function post_connection_added( $post_type, $post_id, $field_key, $value ){

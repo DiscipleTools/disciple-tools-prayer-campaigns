@@ -58,6 +58,18 @@ class DT_Prayer_Campaigns_Send_Email {
         return $link;
     }
 
+    public static function prayer_fuel_link( $record, $campaign_id ){
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        if ( isset( $campaign['reminder_content_disable_fuel']['key'] ) && $campaign['reminder_content_disable_fuel']['key'] === 'yes' ){
+            return '';
+        }
+        if ( isset( $campaign['magic_fuel']['key'] ) && $campaign['magic_fuel']['key'] === 'yes' ){
+            return DT_Magic_URL::get_link_url_for_post( 'subscriptions', $record['ID'], 'prayer', 'fuel' );
+        }
+        $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
+        return $campaign_url . '/list';
+    }
+
     public static function send_verification( $email, $campaign_id, $subscriber_id ){
         $lang = dt_campaign_get_current_lang();
         self::switch_email_locale( $lang );
@@ -250,10 +262,8 @@ class DT_Prayer_Campaigns_Send_Email {
         self::switch_email_locale( $locale );
 
         $prayer_fuel_link_text = '';
-        $prayer_fuel_link = '';
-        if ( !isset( $campaign['reminder_content_disable_fuel']['key'] ) || $campaign['reminder_content_disable_fuel']['key'] === 'no' ){
-            $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
-            $prayer_fuel_link = $campaign_url . '/list';
+        $prayer_fuel_link = self::prayer_fuel_link( $record, $campaign_id );
+        if ( !empty( $prayer_fuel_link ) ){
             $prayer_fuel_link_text = '<p>' . sprintf( _x( 'Click here to see the prayer prompts for today: %s', 'Click here to see the prayer prompts for today: link-html-code-here', 'disciple-tools-prayer-campaigns' ), '' ) . '</p>';
         }
 

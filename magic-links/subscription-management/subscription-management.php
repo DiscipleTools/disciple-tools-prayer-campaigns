@@ -81,8 +81,6 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         $allowed_js = [];
         $allowed_js[] = 'dt_subscription_css';
         $allowed_js[] = 'toastify-js-css';
-//        $allowed_js[] = 'foundation-css'; //@chore remove
-//        $allowed_js[] = 'site-css'; //@chore remove
         return $allowed_js;
     }
 
@@ -282,6 +280,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        $title = DT_Porch_Settings::get_field_translation( 'name', $post['lang'] ?? null, $campaign_id );
         if ( is_wp_error( $campaign ) ) {
             return $campaign;
         }
@@ -300,12 +299,12 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 --cp-color-light: color-mix(in srgb, var(--cp-color), #fff 70%);
             }
             .nav-bar {
-                display: flex;
                 justify-content: center;
+                display: flex;
                 background-color: var(--cp-color);
                 color: white;
             }
-            .nav-bar h1 {
+            .nav-bar h3 {
                 margin: 0;
             }
             .nav-bar button {
@@ -336,7 +335,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         <!-- header -->
         <div class="nav-bar" style="">
             <div style="padding:10px">
-                <h1><?php echo esc_html( $post['name'] ); ?></h1>
+                <h3><?php echo esc_html( $title ); ?></h3>
             </div>
             <div style="display: flex;">
                 <button class="active" data-show="prayer-times"><?php esc_html_e( 'Prayer Commitments', 'disciple-tools-prayer-campaigns' ); ?></button>
@@ -486,6 +485,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         }
         if ( isset( $new_values['receive_prayer_time_notifications'] ) ){
             $updates['receive_prayer_time_notifications'] = !empty( $new_values['receive_prayer_time_notifications'] );
+        }
+        if ( isset( $new_values['auto_extend_prayer_times'] ) ){
+            $updates['auto_extend_prayer_times'] = !empty( $new_values['auto_extend_prayer_times'] );
         }
         $updated = DT_Posts::update_post( 'subscriptions', $subscriber_id, $updates, true, false );
         return true;
@@ -672,8 +674,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         return DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
     }
 
-    public function campaign_info( WP_REST_Request $request ){
-        //@todo this is a duplicate
+    public static function campaign_info( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
         $subscriber_id = $params['parts']['post_id']; //has been verified in verify_rest_endpoint_permissions_on_post()
@@ -716,11 +717,13 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             'minutes_committed' => (int) $minutes_committed,
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
+            'magic_fuel' => isset( $campaign['magic_fuel']['key'] ) && $campaign['magic_fuel']['key'] === 'yes',
             'subscriber_info' => [
                 'my_commitments' => $my_commitments,
                 'my_recurring_signups' => $my_recurring_signups,
                 'timezone' => $subscriber['timezone'] ?? 'America/Chicago',
                 'receive_prayer_time_notifications' => $subscriber['receive_prayer_time_notifications'] ?? false,
+                'auto_extend_prayer_times' => $subscriber['auto_extend_prayer_times'] ?? true,
                 'email' => $subscriber['contact_email'][0]['value'] ?? '',
                 'name' => $subscriber['name'] ?? '',
             ],

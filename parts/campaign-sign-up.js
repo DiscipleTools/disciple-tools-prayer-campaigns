@@ -1192,12 +1192,12 @@ export class campaignSubscriptions extends LitElement {
         <!--delete modal-->
         <dt-modal
             .isOpen="${this._delete_modal_open}"
-            title="${translate('Delete Prayer Times')}"
+            title="${translate('Stop Praying')}"
             hideButton="true"
             confirmButtonClass="danger"
             @close="${e=>this.delete_times_modal_closed(e)}"
         >
-        <p slot="content">${translate('Really delete these prayer times?')}</p>
+        <p slot="content">${translate('Your future prayer times will be canceled.')}</p>
         </dt-modal>
         <dt-modal
             .isOpen="${this._delete_time_modal_open}"
@@ -1271,7 +1271,7 @@ export class campaignSubscriptions extends LitElement {
                           ${translate('See prayer times')} (${prayer_times.length})
                       </button>
                       <button class="clear-button danger loader" @click="${e=>this.open_delete_times_modal(e,value.report_id)}">
-                          ${translate('Remove all')}
+                          ${translate('Stop Praying').toLowerCase()}
                       </button>
                   </div>
                 </div>

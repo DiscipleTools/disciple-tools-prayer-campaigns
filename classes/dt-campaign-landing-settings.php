@@ -205,6 +205,7 @@ class DT_Campaign_Landing_Settings {
             'tile' => 'campaign_email',
             'description' => __( 'Whether or not to disable prayer fuel emails.', 'disciple-tools-prayer-campaigns' ),
             'settings_section' => $sections['settings'],
+            'select_cannot_be_empty' => true
         ];
 
         //reminder_content
@@ -349,6 +350,7 @@ class DT_Campaign_Landing_Settings {
                 'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
             ],
             'settings_section' => 'Prayer Fuel',
+            'select_cannot_be_empty' => true
         ];
         //prayer_fuel_frequency
         $fields['prayer_fuel_frequency'] = [
@@ -362,6 +364,19 @@ class DT_Campaign_Landing_Settings {
             ],
             'description' => __( 'The frequency that prayer fuel emails will be sent to participants.', 'disciple-tools-prayer-campaigns' ),
             'settings_section' => 'Prayer Fuel',
+        ];
+        //default_language
+        $fields['magic_fuel'] = [
+            'name' => __( 'Prayer Fuel Magic Links', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'key_select',
+            'tile' => 'campaign_landing',
+            'description' => __( 'Open prayer fuel in private magic links', 'disciple-tools-prayer-campaigns' ),
+            'default' => [
+                'no' => [ 'label' => __( 'No', 'disciple-tools-prayer-campaigns' ) ],
+                'yes' => [ 'label' => __( 'Yes', 'disciple-tools-prayer-campaigns' ) ],
+            ],
+            'settings_section' => 'Prayer Fuel',
+            'select_cannot_be_empty' => true
         ];
 
         return $fields;
