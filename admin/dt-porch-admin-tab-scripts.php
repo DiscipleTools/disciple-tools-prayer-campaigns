@@ -24,6 +24,11 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
         $post_args = dt_recursive_sanitize_array( $_POST );
 
         global $wpdb;
+
+
+        /**
+         * Remove duplicate recurring signups
+         */
         if ( isset( $post_args['remove_duplicate_signups'] ) ){
             $dups = $wpdb->get_results( "
                 SELECT r2.id, r.post_id, r.parent_id
@@ -55,6 +60,9 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
             }
         }
 
+        /**
+         * Fixes the duration of signups that overlap. 10am for 30 mins. 10:15am for 30mins. etc
+         */
         if ( isset( $post_args['fix_durations'] ) ){
             $to_fix = $wpdb->get_results( "
                 SELECT r.post_id, r.parent_id FROM $wpdb->dt_reports r 
@@ -69,6 +77,10 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
             ", ARRAY_A );
 
             foreach ( $to_fix as $row ){
+                $subscriber = DT_Posts::get_post( 'subscriptions', $row['post_id'], true, false );
+                dt_campaign_set_translation( $subscriber['lang'] ?? 'en_US' );
+                $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
+
                 $rc = new Recurring_Signups( $row['post_id'], $row['parent_id'] );
                 $r_signups = $rc->get_recurring_signups();
                 //order by first
@@ -93,9 +105,10 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                         $new_duration = $different;
                         //change duration
                         $recurring_signup = Disciple_Tools_Reports::get( $signup['report_id'], 'id' );
+                        $label = DT_Subscriptions::get_recurring_signup_label( $signup, $timezone, $subscriber['lang'] ?? 'en_US' );
                         $recurring_signup['payload']['duration'] = $new_duration;
-                        $recurring_signup['payload']['label'] = ''; //@todo
-                        $recurring_signup['label'] = ''; //@todo
+                        $recurring_signup['payload']['label'] = $label;
+                        $recurring_signup['label'] = $label;
                         Disciple_Tools_Reports::update( $recurring_signup );
                         //updates prayer times
                         //adjust the duration on each signup
@@ -110,6 +123,7 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                     }
                 }
             }
+            dt_campaign_set_translation( 'en_US' );
         }
 
 
@@ -127,6 +141,9 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
             foreach ( $to_combine as $row ){
                 $rc = new Recurring_Signups( $row['post_id'], $row['parent_id'] );
                 $r_signups = $rc->get_recurring_signups();
+                $subscriber = DT_Posts::get_post( 'subscriptions', $row['post_id'], true, false );
+                dt_campaign_set_translation( $subscriber['lang'] ?? 'en_US' );
+                $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
                 //order by first
                 usort( $r_signups, function ( $a, $b ){
                     return $a['first'] <=> $b['first'];
@@ -159,8 +176,9 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                         $recurring_signup = Disciple_Tools_Reports::get( $signup['report_id'], 'id' );
                         $recurring_signup['time_begin'] = $signup['first'];
                         $recurring_signup['time_end'] = $signup['last'];
-                        $recurring_signup['label'] = '';  //@todo
-                        $recurring_signup['payload']['label'] = '';  //@todo
+                        $label = DT_Subscriptions::get_recurring_signup_label( $signup, $timezone, $subscriber['lang'] ?? 'en_US' );
+                        $recurring_signup['label'] = $label;
+                        $recurring_signup['payload']['label'] = $label;
                         $recurring_signup['payload']['duration'] = $signup['duration'];
                         Disciple_Tools_Reports::update( $recurring_signup );
 
@@ -193,6 +211,7 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                     }
                 }
             }
+            dt_campaign_set_translation( 'en_US' );
         }
     }
 
@@ -255,23 +274,29 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                                                 <td>
                                                     <button type="submit">Send</button>
                                                 </td>
-
+                                                <td></td>
                                             </tr>
 
                                             <tr>
-                                                <th>Remove Duplicate Signups</th>
+                                                <th>Remove Duplicate Recurring Signups</th>
                                                 <td>
                                                     <button type="submit" name="remove_duplicate_signups"
                                                             value="remove_duplicate_signups">Remove
                                                     </button>
                                                 </td>
+                                                <td>
+                                                    <p>10am for 15mins and 10am for 15mins</p>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <th>Fix Durations</th>
+                                                <th>Fix Singunp Durations</th>
                                                 <td>
                                                     <button type="submit" name="fix_durations" value="fix_durations">
                                                         Fix
                                                     </button>
+                                                </td>
+                                                <td>
+                                                    <p>Fixes the duration of signups that overlap. 10am for 30 mins. 10:15am for 30mins. etc </p>
                                                 </td>
                                             <tr>
                                                 <th>Combine Adjacent Prayer Times</th>
@@ -279,6 +304,9 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                                                     <button type="submit" name="combine_prayer_campaigns"
                                                             value="combine_prayer_campaigns">Combine
                                                     </button>
+                                                </td>
+                                                <td>
+                                                    <p>These become one prayer time: 10am for 15mins and 10:15am for 15mins</p>
                                                 </td>
                                             </tr>
 
