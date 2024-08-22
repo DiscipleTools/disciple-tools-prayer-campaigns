@@ -201,17 +201,12 @@ msgstr ""
 "和感想。"
 
 #: campaign-functions/send-email-utility.php:514
-#, fuzzy
-#| msgid ""
-#| "Finally, the folks at Pray4Movement built this prayer tool. You can make "
-#| "sure you’re signed up to receive news about future prayer opportunities "
-#| "on the Stats page."
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
 "you’re signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
-"最後，是Pray4Movement的同工們開發了這個禱告軟件工具。您可以在“統計”頁面上去確"
+"最後，是Prayer.Tools的同工們開發了這個禱告軟件工具。您可以在“統計”頁面上去確"
 "認您是否已注冊接收關於未來祈禱機會的的最新消息。"
 
 #: campaign-functions/send-email-utility.php:516
@@ -243,18 +238,13 @@ msgstr ""
 "而來的話語和感想。"
 
 #: campaign-functions/send-email-utility.php:544
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
 "最後，齋月24/7禱告統計頁面下方也有關於注冊部分的内容，同時您也需確認是否登記"
-"了接收Pray4Movement禱告軟件工具創建者所發送關於將來成爲禱告者機會的消息通知。"
+"了接收Prayer.Tools禱告軟件工具創建者所發送關於將來成爲禱告者機會的消息通知。"
 
 #: campaign-functions/send-email-utility.php:546
 msgid "See Ramadan 24/7 Prayer Stats"
@@ -724,16 +714,12 @@ msgid "renew"
 msgstr "更新"
 
 #: parts/components-enqueue.php:129
-#, fuzzy
-#| msgid ""
-#| "Receive Pray4Movement news and opportunities, and occasional "
-#| "communication from GospelAmbition.org."
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"通過 Pray4Movement.org 了解其他的禱告工作和機會，還有偶爾來自GospelAmbition."
-"org網頁的消息推送。"
+"通過 Prayer.Tools了解其他的禱告工作和機會，還有偶爾來自GospelAmbition.org網頁"
+"的消息推送。"
 
 #: parts/components-enqueue.php:132
 msgid "Text Translations"
@@ -1011,17 +997,12 @@ msgid "More Prayer Opportunities"
 msgstr "更多禱告機會"
 
 #: porches/generic/site/stats.php:351
-#, fuzzy
-#| msgid ""
-#| "Sign up to hear about other prayer efforts and opportunities with "
-#| "Pray4Movement.org and receive occasional communication from "
-#| "GospelAmbition.org."
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"通過 Pray4Movement.org 了解其他的禱告工作和機會，並偶爾接收GospelAmbition.org"
-"發送給你的消息。"
+"通過 Prayer.Tools 了解其他的禱告工作和機會，並偶爾接收GospelAmbition.org發送"
+"給你的消息。"
 
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
@@ -1098,25 +1079,18 @@ msgid "Now praying..."
 msgstr "現在祈禱..."
 
 #, fuzzy
-#~| msgid ""
-#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
-#~| "praying?"
 #~ msgid ""
 #~ "Your last prayer time will be one week from today. Would you like to keep "
 #~ "praying?"
 #~ msgstr "距離您的上一次禱告時間已經超過 2 週。你願意繼續禱告嗎？"
 
 #, fuzzy
-#~| msgid ""
-#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
-#~| "praying?"
 #~ msgid ""
 #~ "Your last prayer time will be 2 weeks from today. Would you like to keep "
 #~ "praying? "
 #~ msgstr "距離您的上一次禱告時間已經超過 2 週。你願意繼續禱告嗎？"
 
 #, fuzzy
-#~| msgid "Thank you for praying with us."
 #~ msgid "Today was your last day of prayer. Thank you for praying with us."
 #~ msgstr "感謝您與我們一起祈禱。"
 
@@ -1439,3 +1413,35 @@ msgstr "現在祈禱..."
 #, fuzzy
 #~ msgid "No"
 #~ msgstr "沒有"
+
+#~ msgid ""
+#~ "Finally, the folks at Pray4Movement built this prayer tool. You can make "
+#~ "sure you’re signed up to receive news about future prayer opportunities "
+#~ "on the Stats page."
+#~ msgstr ""
+#~ "最後，是Pray4Movement的同工們開發了這個禱告軟件工具。您可以在“統計”頁面上"
+#~ "去確認您是否已注冊接收關於未來祈禱機會的的最新消息。"
+
+#~ msgid ""
+#~ "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
+#~ "the bottom. Make sure you are signed up to receive news about future "
+#~ "prayer opportunities by Pray4Movement, the makers of this prayer tool."
+#~ msgstr ""
+#~ "最後，齋月24/7禱告統計頁面下方也有關於注冊部分的内容，同時您也需確認是否登"
+#~ "記了接收Pray4Movement禱告軟件工具創建者所發送關於將來成爲禱告者機會的消息"
+#~ "通知。"
+
+#~ msgid ""
+#~ "Receive Pray4Movement news and opportunities, and occasional "
+#~ "communication from GospelAmbition.org."
+#~ msgstr ""
+#~ "通過 Pray4Movement.org 了解其他的禱告工作和機會，還有偶爾來自"
+#~ "GospelAmbition.org網頁的消息推送。"
+
+#~ msgid ""
+#~ "Sign up to hear about other prayer efforts and opportunities with "
+#~ "Pray4Movement.org and receive occasional communication from "
+#~ "GospelAmbition.org."
+#~ msgstr ""
+#~ "通過 Pray4Movement.org 了解其他的禱告工作和機會，並偶爾接收GospelAmbition."
+#~ "org發送給你的消息。"
