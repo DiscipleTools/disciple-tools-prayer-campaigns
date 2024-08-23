@@ -345,6 +345,52 @@ export class ContactInfo extends LitElement {
                 </label>
             </div>
           `
+        } else if ( f.type === 'textarea' ) {
+          return html`
+            <div>
+              <label for="${key}">${name}<br>
+                <textarea class="cp-input" rows="5" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}></textarea>
+              </label>
+            </div>
+          `;
+
+        } else if ( f.type === 'number' ) {
+          return html`
+            <div>
+              <label for="${key}">${name}<br>
+                <input
+                  class="cp-input"
+                  type="number" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}/>
+              </label>
+            </div>
+          `;
+
+        } else if ( f.type === 'key_select' ) {
+
+          // Package default options.
+          let options = [];
+          for (const [key, option] of Object.entries(f.default)) {
+            options.push({
+              'key': key,
+              'label': option['label']
+            });
+          }
+
+          return html`
+            <div>
+              <label for="${key}">${name}<br>
+                <select class="cp-input" name="${key}" id="${key}" @input=${this.handleInput}>
+
+                  ${options.map((option, idx) =>
+                      html`
+                        <option value=${option['key']}>
+                          ${option['label']}
+                        </option>`)}
+
+                </select>
+              </label>
+            </div>
+          `;
         }
       } ) }
 

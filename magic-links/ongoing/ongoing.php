@@ -416,7 +416,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 if ( isset( $params[ $key ] ) && !empty( $params[ $key ] ) ){
                     if ( $field['type'] === 'boolean' ){
                         $extra_fields_update[ $key ] = !empty( $params[ $key ] );
-                    } elseif ( $field['type'] === 'text' ){
+                    } elseif ( in_array( $field['type'], [ 'text', 'textarea', 'number', 'key_select' ] ) ){
                         $extra_fields_update[ $key ] = $params[ $key ];
                     }
                 }

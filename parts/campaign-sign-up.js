@@ -288,6 +288,14 @@ export class CampaignSignUp extends LitElement {
       selected_times: this.selected_times,
       recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
+
+    // Capture additional custom fields.
+    Object.keys(this._form_items).forEach(key => {
+      if ( !data.hasOwnProperty(key) ) {
+        data[key] = this._form_items[key];
+      }
+    });
+
     window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
     .done((response)=>{
       this.selected_times = [];
