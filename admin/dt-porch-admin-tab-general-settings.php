@@ -70,10 +70,10 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         if ( $porch_type === 'ramadan-porch' ) {
             $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
             $fields['start_date'] = $next_ramadan_start_date;
-            $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
+            $fields['end_date'] = $next_ramadan_start_date + 29 * DAY_IN_SECONDS;
             $fields['name'] = 'Ramadan Campaign';
         } else if ( $wizard_type === 'generic' ) {
-            $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
+            $fields['end_date'] = dt_format_date( time() + 29 * DAY_IN_SECONDS, 'Y-m-d' );
         }
 
         if ( $new_campaign_name ) {

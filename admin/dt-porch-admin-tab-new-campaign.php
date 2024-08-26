@@ -156,7 +156,11 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                     <th><label for="campaign_end_date">End Date (optional)</label>
 
                                     </th>
-                                    <td><input type="date" name="campaign_end_date" id="campaign_end_date" class="regular-text"></td>
+                                    <td>
+                                        <input type="date" name="campaign_end_date" id="campaign_end_date" class="regular-text">
+                                        <br>
+                                        <span id="end-date-msg"></span>
+                                    </td>
                                     <td>
                                         When the campaign will end. Leave empty for ongoing campaigns.
                                     </td>
@@ -197,6 +201,25 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                 </div>
             </div>
         </div>
+
+        <script>
+          document.getElementById('campaign_start_date').valueAsDate = new Date();
+
+          jQuery(document).ready(function($){
+            $('input[name="wizard_type"]').on('change', function(){
+              $('#end-date-msg').html('');
+              $('#campaign_end_date').prop('disabled', false);
+              if ( $(this).val() === 'ramadan-porch' ){
+                $('#campaign_start_date').val('<?php echo esc_js( gmdate( 'Y-m-d', strtotime( dt_get_next_ramadan_start_date() ) ) ); ?>');
+                $('#campaign_end_date').val('<?php echo esc_js( gmdate( 'Y-m-d', strtotime( dt_get_next_ramadan_start_date() ) + 29 * DAY_IN_SECONDS ) ); ?>');
+                $('#end-date-msg').html('Please make sure these dates match the start end of ramadan in your target region.').css('color', 'red');
+              }
+              if ( $(this).val() === 'ongoing' ){
+                $('#campaign_end_date').val('').prop('disabled', true);
+              }
+            });
+          });
+        </script>
         <?php
     }
 }
