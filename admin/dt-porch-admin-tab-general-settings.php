@@ -35,7 +35,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
 
 
 
-    public static function setup_wizard_for_type( $wizard_type, $new_campaign_name = null ){
+    public static function setup_wizard_for_type( $wizard_type, $new_campaign_name = null, $start_date = null, $end_date = null ){
         /**
          * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
          * automatically
@@ -62,7 +62,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
 
         $fields = [
             'name' => 'Prayer Campaign',
-            'start_date' => dt_format_date( time(), 'Y-m-d' ),
+            'start_date' => $start_date ?: dt_format_date( time(), 'Y-m-d' ),
             'status' => 'active',
             'porch_type' => $porch_type,
         ];
@@ -70,10 +70,10 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         if ( $porch_type === 'ramadan-porch' ) {
             $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
             $fields['start_date'] = $next_ramadan_start_date;
-            $fields['end_date'] = $next_ramadan_start_date + 29 * DAY_IN_SECONDS;
+            $fields['end_date'] = $end_date ?: $next_ramadan_start_date + 29 * DAY_IN_SECONDS;
             $fields['name'] = 'Ramadan Campaign';
         } else if ( $wizard_type === 'generic' ) {
-            $fields['end_date'] = dt_format_date( time() + 29 * DAY_IN_SECONDS, 'Y-m-d' );
+            $fields['end_date'] = $end_date ?: dt_format_date( time() + 29 * DAY_IN_SECONDS, 'Y-m-d' );
         }
 
         if ( $new_campaign_name ) {
