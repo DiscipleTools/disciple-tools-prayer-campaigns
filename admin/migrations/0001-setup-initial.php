@@ -15,7 +15,7 @@ class DT_Prayer_Campaign_Migration_0001 extends DT_Prayer_Campaign_Migration {
             require_once( DT_Prayer_Campaigns::instance()->plugin_dir_path . 'admin/dt-porch-admin-tab-general-settings.php' );
             $site_name = get_bloginfo( 'name' );
             $campaign_details = get_option( 'pt_campaign' );
-            DT_Prayer_Campaigns_Campaigns::setup_wizard_for_type( $to_setup, $site_name, $campaign_details['start_date'] ?? null, $campaign_details['end_date'] ?? null );
+            DT_Prayer_Campaigns_Campaigns::setup_wizard_for_type( $to_setup, $site_name, $campaign_details );
         }
     }
 
