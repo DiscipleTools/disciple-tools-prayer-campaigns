@@ -36,7 +36,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
             $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
             $fields['start_date'] = $next_ramadan_start_date;
             $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
-            $fields['name'] = 'Ramadan Campaign';
+            $fields['name'] = $fields['name'] ?: 'Ramadan Campaign';
         }
 
         //start date
