@@ -250,7 +250,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id );
         $end = $campaign['end_date']['timestamp'] ?? null;
         if ( $end ){
-            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 3, $start );
+            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 12, $start );
             $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
         }
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );

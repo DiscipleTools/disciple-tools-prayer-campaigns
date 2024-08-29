@@ -389,7 +389,7 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_id );
         $end = $campaign['end_date']['timestamp'] ?? null;
         if ( $end ){
-            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 3, $start );
+            $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_id, 12, $start );
         }
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_id );
 
