@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-08-22T14:42:19+00:00\n"
+"POT-Creation-Date: 2024-08-29T12:55:35+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/disciple-"
@@ -286,7 +286,7 @@ msgstr "dagen"
 msgid "days"
 msgstr "dagen"
 
-#: campaign-functions/utils.php:282
+#: campaign-functions/utils.php:286
 #: porches/generic/site/edit-post-list-body.php:142
 msgid "Edit"
 msgstr ""

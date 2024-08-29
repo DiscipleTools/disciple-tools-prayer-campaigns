@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-08-22T14:42:19+00:00\n"
+"POT-Creation-Date: 2024-08-29T12:55:35+00:00\n"
 "PO-Revision-Date: 2024-07-14 15:02+0000\n"
 "Last-Translator: may plum <mayflower2465@proton.me>\n"
 "Language-Team: Chinese (Simplified) <https://translate.disciple.tools/"
@@ -280,7 +280,7 @@ msgstr "天"
 msgid "days"
 msgstr "天数"
 
-#: campaign-functions/utils.php:282
+#: campaign-functions/utils.php:286
 #: porches/generic/site/edit-post-list-body.php:142
 msgid "Edit"
 msgstr "编辑"
