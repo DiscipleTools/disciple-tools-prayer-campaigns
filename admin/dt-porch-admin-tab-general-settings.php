@@ -35,7 +35,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
 
 
 
-    public static function setup_wizard_for_type( $wizard_type, $new_campaign_name = null ){
+    public static function setup_wizard_for_type( $wizard_type, $new_campaign_name = null, $args = [] ){
         /**
          * Filter that contains the wizard types that can be used to create a campaign and choose an appropriate porch
          * automatically
@@ -52,6 +52,12 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
          */
         $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
 
+        $default_values = [
+            'start_date' => dt_format_date( time(), 'Y-m-d' ),
+            'languages' => [ 'en_US' ],
+        ];
+        $default_values = array_merge( $default_values, $args );
+
         $wizard_details = isset( $wizard_types[$wizard_type] ) ? $wizard_types[$wizard_type] : [];
         $porch_type = isset( $wizard_details['porch'] ) ? $wizard_details['porch'] : 'generic-porch';
         $campaign_type = isset( $wizard_details['campaign_type'] ) ? $wizard_details['campaign_type'] : 'generic';
@@ -62,22 +68,25 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
 
         $fields = [
             'name' => 'Prayer Campaign',
-            'start_date' => dt_format_date( time(), 'Y-m-d' ),
+            'start_date' => $default_values['start_date'],
             'status' => 'active',
             'porch_type' => $porch_type,
         ];
 
         if ( $porch_type === 'ramadan-porch' ) {
-            $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
-            $fields['start_date'] = $next_ramadan_start_date;
-            $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
+            $fields['start_date'] = $default_values['start_date'] ?: dt_get_next_ramadan_start_date();
+            $fields['end_date'] = $default_values['end_date'] ?: dt_get_next_ramadan_end_date();
             $fields['name'] = 'Ramadan Campaign';
         } else if ( $wizard_type === 'generic' ) {
-            $fields['end_date'] = dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
+            $fields['end_date'] = $default_values['end_date'] ?: dt_format_date( time() + 30 * DAY_IN_SECONDS, 'Y-m-d' );
         }
 
         if ( $new_campaign_name ) {
             $fields['name'] = $new_campaign_name;
+        }
+        $fields['enabled_languages'] = [ 'values' => [] ];
+        foreach ( $default_values['languages'] as $lang ){
+            $fields['enabled_languages']['values'][] = [ 'value' => $lang ];
         }
 
         $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
