@@ -210,8 +210,8 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
               $('#end-date-msg').html('');
               $('#campaign_end_date').prop('disabled', false);
               if ( $(this).val() === 'ramadan-porch' ){
-                $('#campaign_start_date').val('<?php echo esc_js( gmdate( 'Y-m-d', strtotime( dt_get_next_ramadan_start_date() ) ) ); ?>');
-                $('#campaign_end_date').val('<?php echo esc_js( gmdate( 'Y-m-d', strtotime( dt_get_next_ramadan_start_date() ) + 29 * DAY_IN_SECONDS ) ); ?>');
+                $('#campaign_start_date').val('<?php echo esc_js( dt_get_next_ramadan_start_date() ); ?>');
+                $('#campaign_end_date').val('<?php echo esc_js( dt_get_next_ramadan_end_date() ); ?>');
                 $('#end-date-msg').html('Please make sure these dates match the start end of ramadan in your target region.').css('color', 'red');
               }
               if ( $(this).val() === 'ongoing' ){
