@@ -37,12 +37,12 @@ export const campaignStyles = css`
   p {
     margin: 10px 0;
   }
-  
+
   p, button, label {
     font-size: 1rem;
   }
 
-  input {
+  select, textarea, input {
     font-size: 1rem;
     line-height: 1rem;
     color: black;
@@ -53,13 +53,26 @@ export const campaignStyles = css`
     display: grid;
     font-weight: bold;
   }
-  select, input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="number"] {
     min-width: 250px;
     padding: 0 0.5rem;
     min-height: 40px;
     display: block;
   }
 
+  textarea {
+    min-width: 250px;
+    padding: 0.5rem;
+    min-height: 40px;
+    display: block;
+  }
+
+  select {
+    min-width: 250px;
+    padding: 0.5rem;
+    height: 40px;
+    display: block;
+  }
 
   .cp-wrapper.loading-content h2, .cp-wrapper.loading-content p {
     background-color: #ededed;
@@ -85,7 +98,7 @@ export const campaignStyles = css`
       align-items: center;
       justify-content: center;
       column-gap: .5em;
-  }  
+  }
   button:hover {
     background-color: transparent;
     border-color: var( --cp-color, dodgerblue );
@@ -139,7 +152,7 @@ export const campaignStyles = css`
     color: var( --cp-color, dodgerblue );
   }
 
-  
+
   .nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -151,7 +164,7 @@ export const campaignStyles = css`
     filter: invert(1);
   }
   button:hover .button-spinner {
-    filter: invert(0);    
+    filter: invert(0);
   }
 
   label {
@@ -172,8 +185,8 @@ export const campaignStyles = css`
     list-style-type: none;
     padding: 0;
   }
-  
-  
+
+
 
   /**
    * Confirmation section
@@ -315,7 +328,7 @@ Loader
     display: flex;
     align-items: center;
   }
-  
+
   .disabled {
     opacity: .5;
     cursor: not-allowed;
