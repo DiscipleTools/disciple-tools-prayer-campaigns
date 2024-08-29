@@ -408,10 +408,7 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
             'slot_length' => (int) $min_time_duration,
             'current_commitments' => [],
             'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
-            'frequency_durations' => [
-                'daily' => min( is_numeric( $campaign['daily_signup_length'] ) ? (int) $campaign['daily_signup_length'] : 90, 365 ),
-                'weekly' => min( is_numeric( $campaign['weekly_signup_length'] ) ? (int) $campaign['weekly_signup_length'] : 180, 365 ),
-            ],
+            'frequency_durations' => campaigns_get_frequency_duration_days( $campaign ),
             'subscriber_info' => [
                 'my_commitments' => $my_commitments,
                 'my_recurring_signups' => $my_recurring_signups,

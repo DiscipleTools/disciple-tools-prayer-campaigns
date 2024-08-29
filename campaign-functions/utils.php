@@ -151,6 +151,20 @@ if ( !function_exists( 'set_magic_quotes_runtime' ) ) {
     }
 }
 
+function campaigns_get_frequency_duration_days( $campaign ) {
+    $frequencies = [
+        'daily' => 90,
+        'weekly' => 180,
+    ];
+    if ( isset( $campaign['daily_signup_length'] ) && is_numeric( $campaign['daily_signup_length'] ) ) {
+        $frequencies['daily'] = min( (int) $campaign['daily_signup_length'], 365 );
+    }
+    if ( isset( $campaign['weekly_signup_length'] ) && is_numeric( $campaign['weekly_signup_length'] ) ) {
+        $frequencies['weekly'] = min( (int) $campaign['weekly_signup_length'], 365 );
+    }
+    return $frequencies;
+}
+
 function dt_get_next_ramadan_start_date() {
     $ramadan_start_dates = [
         '2023-03-22',
