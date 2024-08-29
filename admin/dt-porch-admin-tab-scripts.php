@@ -25,6 +25,14 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
 
         global $wpdb;
 
+        /**
+         * Trigger Campaign Reporting
+         */
+        if ( isset( $post_args['trigger_campaign_reporting'] ) ){
+            DT_Campaigns_Base::send_campaign_info();
+            return;
+        }
+
 
         /**
          * Remove duplicate recurring signups
@@ -268,6 +276,17 @@ class DT_Porch_Admin_Tab_Scripts extends DT_Porch_Admin_Tab_Base{
                                                value="<?php echo esc_html( wp_create_nonce( 'dt_prayer_campaigns_scripts' ) ); ?>">
 
                                         <table class="form-table striped widefat" style="margin: 0; border: none">
+                                            <tr>
+                                                <th>Trigger Campaign Reporting</th>
+                                                <td>
+                                                    <button type="submit" name="trigger_campaign_reporting"
+                                                            value="trigger_campaign_reporting">Trigger
+                                                    </button>
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <th>Remove Duplicate Recurring Signups</th>
                                                 <td>
