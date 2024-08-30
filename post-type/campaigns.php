@@ -1471,10 +1471,7 @@ class DT_Campaigns_Base {
             $coverage_levels = self::query_coverage_levels_progress( $campaign['ID'] );
             $mins_scheduled = self::query_scheduled_minutes( $campaign['ID'] );
             $mins_extra = self::query_extra_minutes( $campaign['ID'] );
-
-
             $time_lots_covered = $mins_scheduled / $min_time_duration;
-
 
             $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
 
@@ -1488,17 +1485,6 @@ class DT_Campaigns_Base {
                 $location_grid[] = [ 'grid_id' => $grid['id'] ];
             }
 
-            $linked_crm_contact = get_option( 'p4m_linked_crm_contact' );
-
-            $creator_email = '';
-            $post = get_post( $campaign['ID'] );
-            if ( isset( $post->post_author ) ){
-                $creator = get_user_by( 'id', $post->post_author );
-                if ( $creator && isset( $creator->user_email ) ){
-                    $creator_email = $creator->user_email;
-                }
-            }
-
             $data = [
                 'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
                 'name' => $campaign['name'],
@@ -1507,7 +1493,6 @@ class DT_Campaigns_Base {
                 'start_date' => $campaign['start_date']['timestamp'],
                 'end_date' => isset( $campaign['end_date']['timestamp'] ) ? $campaign['end_date']['timestamp'] : null,
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
-                'creator_email' => $creator_email,
                 'campaign_link' => $is_current_campaign ? $site_url : '',
                 'campaign_links' => [
                     'values' => [
@@ -1523,7 +1508,6 @@ class DT_Campaigns_Base {
                 'number_of_time_slots' => self::query_coverage_total_time_slots( $campaign['ID'] ),
                 'time_slots_covered' => $time_lots_covered,
                 'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
-                'coordinators' => empty( $linked_crm_contact ) ? [] : [ 'values' => [ [ 'value' => $linked_crm_contact ] ] ],
                 'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
             ];
 
