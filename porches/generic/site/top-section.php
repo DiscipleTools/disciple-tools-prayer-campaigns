@@ -59,6 +59,10 @@ $prayer_fuel_link = $campaign_url . '/list';
 
                     <select class="dt-magic-link-language-selector">
 
+                        <?php if ( !isset( $langs[ $lang ] ) ) : ?>
+                            <option value="<?php echo esc_html( $lang ); ?>" selected><?php esc_html_e( 'Select Language', 'disciple-tools-prayer-campaigns' ); ?></option>
+                        <?php endif; ?>
+
                         <?php foreach ( $langs as $code => $language ) : ?>
 
                             <?php if ( isset( $language['native_name'] ) ) : ?>
