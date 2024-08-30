@@ -34,7 +34,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         global $wpdb;
         $query = "
-            SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day FROM $wpdb->posts p
+            SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day, post_status, post_date
+            FROM $wpdb->posts p
             JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'day' )
             JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
             WHERE p.post_type = %s
@@ -210,15 +211,21 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                         $link = "post.php?post=$id&action=edit";
                         $link .= '&campaign=' . $campaign['ID'];
                     }
+                    $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
                     ?>
 
                     <?php if ( count( $posts_in_language ) < 2 ): ?>
 
                         <a
-                            class="button language-button <?php echo $button_on ? '' : 'no-language' ?>"
+                            class="button language-button <?php echo $button_on ? '' : 'no-language' ?> "
                             href="<?php echo esc_attr( $link ) ?>"
                             title="<?php echo esc_attr( $language['native_name'] ) ?>"
                         >
+                            <?php if ( isset( $posts_in_language[0]['post_status'] ) && $posts_in_language[0]['post_status'] === 'draft' ): ?>
+                                <span class="prayer-fuel-draft-status" title="Draft Post">!</span>
+                            <?php elseif ( isset( $posts_in_language[0]['post_date'] ) && strtotime( $posts_in_language[0]['post_date'] ) > strtotime( $date ) ): ?>
+                                <span class="prayer-fuel-draft-status" title="Incorrect Publish Date" style="background-color: red">!</span>
+                            <?php endif;?>
 
                             <?php echo esc_html( $language['flag'] ); ?>
 
