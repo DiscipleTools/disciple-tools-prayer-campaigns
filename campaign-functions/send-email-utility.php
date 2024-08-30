@@ -16,6 +16,8 @@ class DT_Prayer_Campaigns_Send_Email {
             $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
             if ( !empty( $campaign['from_name'] ) && !empty( $campaign['from_email'] ) ){
                 $headers[] = 'From: ' . $campaign['from_name'] . ' <' . $campaign['from_email'] . '>';
+            } else if ( !empty( $campaign['from_name'] ) ){
+                $headers[] = 'From: ' . $campaign['from_name'] . ' <' . apply_filters( 'wp_mail_from', '' ) . '>';
             }
             if ( !empty( $campaign['reply_to_email'] ) ){
                 $headers[] = 'Reply-To: ' . $campaign['reply_to_email'];
@@ -102,7 +104,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
-        $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
+        $sent = self::send_prayer_campaign_email( $email, $subject, $full_email, [], [], $campaign_id );
         if ( !$sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
         }
@@ -367,7 +369,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
                 $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
-                $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
+                $sent = self::send_prayer_campaign_email( $email, $subject, $full_email, [], [], $campaign_id );
                 if ( ! $sent ){
                     dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
                 }
@@ -377,7 +379,7 @@ class DT_Prayer_Campaigns_Send_Email {
             $message .= Campaigns_Email_Template::email_content_part( 'Sorry, we were unable to find a sign up associated with this email address.' );
             $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
-            $sent = self::send_prayer_campaign_email( $email, $subject, $full_email );
+            $sent = self::send_prayer_campaign_email( $email, $subject, $full_email, [], [], $campaign_id );
             if ( ! $sent ){
                 dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
             }
@@ -427,7 +429,7 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'Thank you', 'disciple-tools-prayer-campaigns' ) . ',<br>' . $title );
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
-        return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $full_email );
+        return self::send_prayer_campaign_email( $subscriber['contact_email'][0]['value'], $subject, $full_email, [], [], $campaign_id );
     }
 
 
@@ -481,7 +483,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
-        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email );
+        $sent = self::send_prayer_campaign_email( $to, $subject, $full_email, [], [], $campaign_id );
         if ( !$sent ){
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $to );
         } else {

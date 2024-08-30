@@ -55,7 +55,13 @@ add_filter( 'wp_mail_from', function ( $email ) {
         $email = 'no-reply@' . $domain;
     }
     return $email;
-}, 200 );
+}, 50 );
+add_filter( 'wp_mail_from_name', function ( $name ) {
+    if ( 'WordPress' === $name || empty( $name ) ){
+        $name = get_bloginfo( 'name' );
+    }
+    return $name;
+}, 50, 1 );
 
 
 function dt_campaigns_is_p4m_news_enabled(){
