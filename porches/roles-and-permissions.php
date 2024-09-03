@@ -125,7 +125,5 @@ class DT_Campaign_Porch_Roles
         }
         return $allowed_wp_v2_paths;
     }
-
 } // End Class
 DT_Campaign_Porch_Roles::instance();
-

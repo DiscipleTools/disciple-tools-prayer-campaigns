@@ -426,7 +426,6 @@ class DT_Porch_Admin_Tab_Base {
         </tr>
 
         <?php
-
     }
 
     public static function message_box( string $title, string $content ) {

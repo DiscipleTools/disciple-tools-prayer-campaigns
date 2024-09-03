@@ -29,7 +29,6 @@ class DT_Prayer_Campaigns_Media_Tab {
         }
 
         add_filter( 'upload_mimes', [ $this, 'add_additional_mime_types' ], 1, 1 );
-
     } // End __construct()
 
     public function add_media_tab( $list ) {

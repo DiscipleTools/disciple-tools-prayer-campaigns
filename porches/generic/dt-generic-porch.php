@@ -103,7 +103,7 @@ class DT_Generic_Porch {
      * Return the directory that the generic porch assets can be found in
      */
     public static function assets_dir() {
-        return trailingslashit( plugin_dir_url( __File__ ) ) . 'site/';
+        return trailingslashit( plugin_dir_url( __FILE__ ) ) . 'site/';
     }
 
     /**

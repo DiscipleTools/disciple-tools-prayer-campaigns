@@ -40,9 +40,4 @@ class DT_Campaign_Global_Settings {
 
         update_option( self::$settings_key, $settings );
     }
-
-
-
-
-
 }

@@ -280,7 +280,6 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 DT_Campaign_Prayer_Fuel_Post_Type::instance()->custom_column( $column_name, $items[0]['ID'] );
                 break;
         }
-
     }
 
     public function get_views() {

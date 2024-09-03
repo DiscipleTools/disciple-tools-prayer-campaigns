@@ -45,7 +45,4 @@ class DT_Prayer_Campaign_Migration_0005 extends DT_Prayer_Campaign_Migration {
      */
     public function test() {
     }
-
 }
-
-

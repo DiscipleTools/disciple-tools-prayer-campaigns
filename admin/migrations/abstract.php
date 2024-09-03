@@ -120,8 +120,6 @@ abstract class DT_Prayer_Campaign_Migration {
         $rv = preg_replace( '/\s\s+/', ' ', $rv );
         return $rv;
     }
-
-
 }
 
 /**

@@ -113,7 +113,6 @@ class DT_Time_Utilities {
         }
 
         return $times_list;
-
     }
 
     public static function campaign_min_prayer_duration( $post_id ){
@@ -213,5 +212,4 @@ class DT_Time_Utilities {
         $formatter = new IntlDateFormatter( $locale, IntlDateFormatter::NONE, IntlDateFormatter::NONE, $time_zone, IntlDateFormatter::GREGORIAN, 'EEEE' );
         return $formatter->format( $date_time );
     }
-
 }

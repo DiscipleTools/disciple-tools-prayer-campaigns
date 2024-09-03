@@ -37,5 +37,4 @@ add_action( 'wp_enqueue_scripts', function (){
     if ( file_exists( $custom_css_path ) ){
         wp_enqueue_style( 'p4m-colors', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/colors/' . CAMPAIGN_LANDING_COLOR_SCHEME . '.css', array(), filemtime( $custom_css_path ) );
     }
-
 });

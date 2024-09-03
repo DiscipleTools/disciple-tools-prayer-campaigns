@@ -24,7 +24,6 @@ class DT_Generic_Porch_Contact_Us {
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
         add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
-
     }
     public function dt_blank_title( $title ) {
         return $this->page_title;
@@ -157,9 +156,5 @@ class DT_Generic_Porch_Contact_Us {
     public function header_javascript(){
         require_once( 'header.php' );
     }
-
-
-
-
 }
 DT_Generic_Porch_Contact_Us::instance();

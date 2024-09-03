@@ -50,7 +50,6 @@ add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaig
         </div>
 
     <?php }
-
 }, 10, 2);
 
 add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [], $todays_campaign_day = 0 ){
@@ -93,5 +92,4 @@ add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [],
         </div>
     </div>
     <?php
-
 }, 10, 3);

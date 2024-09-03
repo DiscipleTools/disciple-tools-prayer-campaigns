@@ -57,7 +57,6 @@ class DT_Subscriptions_Base {
         add_filter( 'dt_can_update_permission', [ $this, 'can_view_and_update_post' ], 20, 3 );
 
         add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
-
     }
 
     public function after_setup_theme(){
@@ -817,7 +816,6 @@ class DT_Subscriptions_Base {
         $reports = array_slice( $reports, 0, 10 ); //limit to 10
 
         return DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $subscriber_id, $campaign_id, $reports, true );
-
     }
 
     public static function send_end_campaign_email_endpoint( WP_REST_Request $request ){
