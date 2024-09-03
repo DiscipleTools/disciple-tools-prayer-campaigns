@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 add_action( 'wp_head', function() {
     $og_title = DT_Porch_Settings::get_field_translation( 'name' );
-    $og_description = DT_Porch_Settings::get_field_translation( 'goal' );
+    $og_description = DT_Porch_Settings::get_field_translation( 'description' );
     $og_url = get_site_url();
     $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
     if ( !empty( $campaign_fields['logo_url'] ) ){

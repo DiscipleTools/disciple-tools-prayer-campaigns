@@ -197,7 +197,9 @@ class DT_Campaigns_Base {
                         'label' => '24 Hours Quantity',
                         'description' => 'Get to 24 Hours of prayer every day.'
                     ]
-                ]
+                ],
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
             ];
 
             $fields['assigned_user'] = [
