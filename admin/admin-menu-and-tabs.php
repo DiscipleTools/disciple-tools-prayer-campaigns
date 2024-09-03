@@ -242,5 +242,4 @@ class DT_Prayer_Campaigns_Menu {
         </form>
         <?php
     }
-
 }

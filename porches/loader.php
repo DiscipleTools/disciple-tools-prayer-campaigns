@@ -12,4 +12,3 @@ require_once __DIR__ . '/prayer-fuel-post-importer.php';
 
 require_once __DIR__ . '/prayer-fuel-day-list.php';
 require_once __DIR__ . '/prayer-fuel-admin-page.php';
-

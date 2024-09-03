@@ -66,7 +66,6 @@ class DT_Campaign_Fuel {
         $campaign_end_date = $campaign['end_date']['timestamp'] + DAY_IN_SECONDS; //end of day.
 
         return round( ( $campaign_end_date - $campaign_start_date ) / DAY_IN_SECONDS );
-
     }
 
     /**

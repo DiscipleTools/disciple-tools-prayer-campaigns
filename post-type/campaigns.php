@@ -56,7 +56,6 @@ class DT_Campaigns_Base {
             wp_schedule_event( time(), 'daily', 'dt_prayer_campaigns_daily_cron' );
         }
         add_action( 'dt_prayer_campaigns_daily_cron', [ $this, 'dt_prayer_campaigns_daily_cron' ] );
-
     }
 
     public function after_setup_theme(){
@@ -259,7 +258,7 @@ class DT_Campaigns_Base {
                 'description' => 'The type of landing page to use for this campaign. Types will have different layouts and content.'
             ];
             foreach ( $porches as $porch ){
-                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'], 'default' => $porch['id'] === 'generic-porch'];
+                $fields['porch_type']['default'][$porch['id']] = [ 'label' => $porch['label'], 'default' => $porch['id'] === 'generic-porch' ];
             }
 
             $fields['start_date'] = [
@@ -956,7 +955,6 @@ class DT_Campaigns_Base {
         }
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         return DT_Subscriptions::get_subscribers( $campaign_post_id );
-
     }
 
     public function coverage_endpoint( WP_REST_Request $request ) {
@@ -966,7 +964,6 @@ class DT_Campaigns_Base {
         }
         $campaign_post_id = sanitize_text_field( wp_unslash( $params['campaign_id'] ) );
         return DT_Time_Utilities::campaign_times_list( $campaign_post_id );
-
     }
 
     public function coverage_stats_endpoint( WP_REST_Request $request ){
@@ -1072,7 +1069,6 @@ class DT_Campaigns_Base {
         ), ARRAY_A );
 
         return $values;
-
     }
 
     public static function query_scheduled_count( $campaign_post_id ){

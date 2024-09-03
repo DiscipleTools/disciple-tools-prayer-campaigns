@@ -109,7 +109,6 @@ class DT_Prayer_Campaigns_Send_Email {
             dt_write_log( __METHOD__ . ': Unable to send email. ' . $email );
         }
         return $sent;
-
     }
 
     public static function generate_registration_attachments( $post_id ): array {
@@ -328,7 +327,6 @@ class DT_Prayer_Campaigns_Send_Email {
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
         return self::send_prayer_campaign_email( $to, $campaign_subject_line, $full_email, [], [], $campaign_id );
-
     }
 
 
@@ -580,7 +578,6 @@ class DT_Prayer_Campaigns_Send_Email {
 
         return $default_name;
     }
-
 }
 
 use WP_Queue\Job;
@@ -611,7 +608,6 @@ class Campaigns_Email_Template {
         $email .= $content;
         $email .= self::email_footer_part();
         return $email;
-
     }
 
 
@@ -772,7 +768,5 @@ class Campaigns_Email_Template {
         <?php
         $part = ob_get_clean();
         return $part;
-
     }
-
 }

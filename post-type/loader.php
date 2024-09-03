@@ -51,5 +51,3 @@ DT_Campaigns_Base::instance();
  */
 
 require_once 'dt-subscriptions.php';
-
-

@@ -15,7 +15,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         parent::__construct( $this->key );
         $this->settings_manager = new DT_Campaign_Global_Settings();
         add_action( 'dt_prayer_campaigns_tab_content', [ $this, 'dt_prayer_campaigns_tab_content' ], 10, 2 );
-
     }
 
     public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){
@@ -203,7 +202,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         <br>
 
         <?php
-
     }
 
 
@@ -247,7 +245,6 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         </table>
         <br>
         <?php
-
     }
 
     public function box_p4m_participation() {

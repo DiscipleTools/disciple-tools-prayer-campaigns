@@ -67,7 +67,6 @@ function dt_prayer_campaigns() {
     }
 
     return DT_Prayer_Campaigns::instance();
-
 }
 add_action( 'after_setup_theme', 'dt_prayer_campaigns', 20 );
 require_once( 'campaign-functions/setup-functions.php' );

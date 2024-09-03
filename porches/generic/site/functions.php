@@ -39,4 +39,3 @@ add_filter( 'wp_kses_allowed_html', function ( $tags, $context ){
 
     return $tags;
 }, 10, 2 );
-

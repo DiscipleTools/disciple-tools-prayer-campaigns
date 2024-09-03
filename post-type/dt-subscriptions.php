@@ -194,7 +194,6 @@ class DT_Subscriptions {
         ] );
 
         return $new_report;
-
     }
 
 
@@ -264,7 +263,6 @@ class DT_Subscriptions {
         }
 
         return $string;
-
     }
 
     public static function get_recurring_signup( $report_id ){

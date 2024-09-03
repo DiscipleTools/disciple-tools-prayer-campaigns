@@ -97,7 +97,4 @@ class DT_Prayer_Campaign_Migration_0007 extends DT_Prayer_Campaign_Migration {
      */
     public function test() {
     }
-
 }
-
-

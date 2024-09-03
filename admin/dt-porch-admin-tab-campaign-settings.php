@@ -25,7 +25,6 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
         $this->process_new_language();
 
         $this->content( true );
-
     }
 
     public function body_content(){
@@ -218,6 +217,5 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
         <!-- End Box -->
         <?php
     }
-
 }
 new DT_Porch_Admin_Tab_Campaign_Settings();

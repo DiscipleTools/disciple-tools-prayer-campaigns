@@ -380,7 +380,6 @@ class DT_Campaign_Landing_Settings {
         ];
 
         return $fields;
-
     }
 
     public static function get_campaign_id( $search_my_campaigns = false ){
@@ -425,6 +424,5 @@ class DT_Campaign_Landing_Settings {
 //        wp_cache_set( 'dt_selected_campaign_' . $selected_campaign, $campaign );
         return $campaign;
     }
-
 }
 new DT_Campaign_Landing_Settings();

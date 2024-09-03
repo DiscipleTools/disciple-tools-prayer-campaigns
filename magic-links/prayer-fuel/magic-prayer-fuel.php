@@ -60,7 +60,6 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         add_filter( 'dt_magic_url_base_allowed_css', [ $this, 'dt_magic_url_base_allowed_css' ], 10, 1 );
         add_filter( 'dt_magic_url_base_allowed_js', [ $this, 'dt_magic_url_base_allowed_js' ], 10, 1 );
         add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 100 );
-
     }
 
     public function wp_enqueue_scripts(){
@@ -450,6 +449,5 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         DT_Subscriptions_Base::send_welcome_email( $params['parts']['post_id'], $params['campaign_id'] );
         return true;
     }
-
 }
 Campaigns_Prayer_Fuel::instance();

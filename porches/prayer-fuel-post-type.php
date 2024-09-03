@@ -64,7 +64,6 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         }
 
         add_filter( 'post_type_link', [ $this, 'post_type_link' ], 20, 3 );
-
     } // End __construct()
 
     public function add_meta_box( $post_type ) {
@@ -500,7 +499,6 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         }
 
         return $today;
-
     }
 
     public function get_most_recent_post( int $day ){
@@ -585,8 +583,6 @@ class DT_Campaign_Prayer_Fuel_Post_Type
         }
 
         return $today;
-
-
     }
 } // End Class
 DT_Campaign_Prayer_Fuel_Post_Type::instance();

@@ -43,7 +43,6 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
         } else {
             DT_Porch_Admin_Tab_Base::message_box( 'Upload Prayer Fuel', 'You need to select a campaign to start importing prayer fuel' );
         }
-
     }
 
     private function get_post_language_start_date() {
