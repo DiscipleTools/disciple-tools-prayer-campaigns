@@ -124,7 +124,7 @@ export class TimeZonePicker extends LitElement {
             <button id="change-timezone-button" ?hidden=${!this.timezone} @click=${this.show_picker}>${this.timezone}</button>
             <div ?hidden=${this.timezone.length} >
                 <select @change=${this.timezone_changed}>
-                    <option value="">${strings['Choose a timezone']}</option>
+                    <option value="">${strings['Select a timezone']}</option>
                     ${Intl.supportedValuesOf('timeZone').map(o=>{
                         return html`<option value="${o}">${o}</option>`
                     })}
@@ -240,7 +240,7 @@ export class ContactInfo extends LitElement {
       #email {
         display:none;
       }
-    
+
     `,
     campaignStyles, ];
 
@@ -257,9 +257,13 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: true,
+      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
     }
+    window.campaign_data.signup_form_fields?.map(f=>{
+      this._form_items[f.key] = f.default || null;
+    })
     this.selected_times_count = 0;
+    this._loading = false;
   }
 
   _is_email(val){
@@ -305,13 +309,91 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
       </div>
-      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? 
+      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ?
           html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
                 <input type="checkbox" checked id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
-                ${translate('Receive Pray4Movement news and opportunities, and occasional communication from GospelAmbition.org.')}
+                ${translate("Receive news from Prayer.Tools about upcoming prayer campaigns and occasional communication from GospelAmbition.org")}
           </label>`
       : ``}
-      </div>
+
+      <!-- Additional Fields -->
+      ${ window.campaign_data.signup_form_fields?.map(f=>{
+        let key = window.campaign_scripts.escapeHTML(f.key)
+        let name = window.campaign_scripts.escapeHTML(f.name)
+        let description = window.campaign_scripts.escapeHTML(f.description)
+        if ( f.type === 'text' ){
+          return html`
+            <div>
+                <label for="${key}">${name}<br>
+                    <input
+                        class="cp-input"
+                        type="text" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}/>
+                </label>
+            </div>
+          `
+        } else if ( f.type === 'boolean' ){
+          return html`
+            <div>
+                <label for="${key}" style="font-weight: normal; display: block">
+                    <input
+                        type="checkbox"
+                        name="${key}"
+                        id="${key}"
+                        ?checked=${f.default}
+                        @input=${this.handleInput}/>
+                    ${description || name}
+                </label>
+            </div>
+          `
+        } else if ( f.type === 'textarea' ) {
+          return html`
+            <div>
+              <label for="${key}">${name}<br>
+                <textarea class="cp-input" rows="5" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}></textarea>
+              </label>
+            </div>
+          `;
+
+        } else if ( f.type === 'number' ) {
+          return html`
+            <div>
+              <label for="${key}">${name}<br>
+                <input
+                  class="cp-input"
+                  type="number" name="${key}" id="${key}" placeholder="${description}" @input=${this.handleInput}/>
+              </label>
+            </div>
+          `;
+
+        } else if ( f.type === 'key_select' ) {
+
+          // Package default options.
+          let options = [];
+          for (const [key, option] of Object.entries(f.default)) {
+            options.push({
+              'key': key,
+              'label': option['label']
+            });
+          }
+
+          return html`
+            <div>
+              <label for="${key}">${name}<br>
+                <select class="cp-input" name="${key}" id="${key}" @input=${this.handleInput}>
+
+                  ${options.map((option, idx) =>
+                      html`
+                        <option value=${option['key']}>
+                          ${option['label']}
+                        </option>`)}
+
+                </select>
+              </label>
+            </div>
+          `;
+        }
+      } ) }
+
       <div>
           <div id='cp-no-selected-times' style='display: none' class="form-error" >
               ${strings['No prayer times selected']}
@@ -323,8 +405,10 @@ export class ContactInfo extends LitElement {
       </div>
 
       <div class="nav-buttons">
-          <button ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0}
-                  @click=${()=>this.verify_contact_info()}>
+          <button
+              class="button-content"
+              ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
+              @click=${()=>this.verify_contact_info()}>
 
               ${strings['Next']}
               <img ?hidden=${!this._loading} class="button-spinner" src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
@@ -355,7 +439,7 @@ export class select extends LitElement {
         width: 100%;
         text-align: start;
         //line-height: ;
-        
+
       }
       .select.selected {
         border: 1px solid #ccc;
@@ -371,7 +455,7 @@ export class select extends LitElement {
       .select:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        
+
       }
     `
   ]
@@ -402,8 +486,8 @@ export class select extends LitElement {
                 ${o.label}
               <span>${o.desc}</span>
           </button>`
-      )}  
-      
+      )}
+
     `
   }
 }
@@ -424,10 +508,12 @@ export class cpCalendarDaySelect extends LitElement {
     css`
       :host {
         display: block;
+        container-type: inline-size;
+        container-name: calendar;
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 14cqw);
       }
       .day-cell {
         display: flex;
@@ -452,6 +538,7 @@ export class cpCalendarDaySelect extends LitElement {
         height: 40px;
         width: 40px;
         font-weight: bold;
+        font-size:clamp(0.75em, 0.65rem + 2cqi, 1em);
       }
       .selected-time {
         color: black;
@@ -544,14 +631,14 @@ export class cpCalendarDaySelect extends LitElement {
     let next_month = month_start.plus({months:1}).toSeconds()
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${month_start.toSeconds() < now}"
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toFormat('MMMM y')}
+            ${month_date.toLocaleString({ month: 'long', year: 'numeric' })}
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -580,8 +667,16 @@ export class cpMyCalendar extends LitElement {
     css`
       :host {
         display: block;
-        --size: min(60px, calc((100vw - 2rem) / 7))
+        --size: min(60px, calc((100vw - 2rem) / 7));
       }
+      .calendar-wrapper {
+        //container-type: inline-size;
+        container-name: cp-calendar;
+        border-radius: 10px;
+        padding: 1em;
+        display: block;
+      }
+
       .calendar {
         display: grid;
         grid-template-columns: repeat(7, var(--size));
@@ -606,6 +701,7 @@ export class cpMyCalendar extends LitElement {
         height: var(--size);
         width: var(--size);
         font-weight: bold;
+        font-size:clamp(1em, 2cqw, 0.5em + 1cqi);
       }
       .selected-time {
         //color: black;
@@ -640,9 +736,6 @@ export class cpMyCalendar extends LitElement {
         height: 5px;
         background-color: #57d449;
         border-radius: 100px;
-      }
-      progress-ring {
-        height: var(--size);
       }
     `,
     window.campaignStyles
@@ -723,18 +816,18 @@ export class cpMyCalendar extends LitElement {
 
     //get width of #prayer-times
     let max_cell_size = document.querySelector('#prayer-times').offsetWidth / 7;
-    let size = Math.min(max_cell_size, 60)
+    let size = Math.min(max_cell_size, 40)
 
 
     return html`
-      
+
       <div class="calendar-wrapper">
         <h3 class="month-title center">
             <button class="month-next" ?disabled="${ month_start.toSeconds() < now }"
                     @click="${e=>this.next_view(previous_month)}">
                 <
             </button>
-            ${month_date.toFormat('MMMM y')}
+            ${month_date.toLocaleString({ month: 'long', year: 'numeric' })}
             <button class="month-next" ?disabled="${next_month > this.end_timestamp}" @click="${e=>this.next_view(next_month)}">
                 >
             </button>
@@ -748,7 +841,7 @@ export class cpMyCalendar extends LitElement {
                        data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                        @click="${e=>this.day_selected(e, day.key)}"
                   >
-                    <progress-ring class="${day.disabled?'disabled':0}" stroke="3" radius="${(size/2).toFixed()}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                    <progress-ring class="${day.disabled?'disabled':0}" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                     <div class="indicator-section">
                       ${map(range(my_commitments[day.formatted]||0),i=> {
                         return html`<span class="prayer-time-indicator"></span>`
@@ -758,7 +851,7 @@ export class cpMyCalendar extends LitElement {
               })}
         </div>
       </div>
-            
+
       `
 
   }
@@ -776,74 +869,95 @@ customElements.define('my-calendar', cpMyCalendar);
 export class cpTimes extends LitElement {
   static styles = [
     css`
+      .times-container {
+          display: grid;
+          text-align: center;
+          margin-bottom: 0.1rem;
+          //max-height: 600px;
+          //overflow-y: auto;
+      }
+      .times-section {
+          display: grid;
+          align-items: center;
+          margin-bottom: 0.5rem;
+          //grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-gap: 0.3rem 1rem;
+      }
+
+      .section-column {
+          display: grid;
+          grid-gap: 0.3rem 1rem;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
       .prayer-hour {
-        margin-bottom: 1rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 1rem 0.3rem;
-        max-width: 400px;
-      }
-      .prayer-hour:hover {
-        background-color: #4676fa1a;
-      }
-      .hour-cell {
         font-size: 0.8rem;
-        display: flex;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
+        font-weight: bold;
         white-space: nowrap;
       }
-      .time.full-progress {
-          background-color: #00800052;
-      }
-      .time.selected-time {
-        color: white;
-        background-color: var(--cp-color);
-      }
-      progress-ring {
-        height: 20px;
+      .grid-cell {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 0.1rem;
       }
       .time {
-        flex-basis: 20%;
         background-color: #4676fa1a;
-        font-size: 0.8rem;
         border-radius: 5px;
-        display: flex;
-        justify-content: space-between;
         cursor: pointer;
       }
-      .time:hover .time-label {
-        background-color: var(--cp-color);
-        opacity: 0.5;
-        color: #fff;
-      }
-      .time:hover .control{
-        background-color: var(--cp-color);
-        opacity: 0.8;
-        color: #fff;
+      .empty-time {
+          opacity: .8;
+          font-size:.8rem;
       }
       .time[disabled] {
         opacity: 0.3;
         cursor: not-allowed;
       }
-      .time-label {
-        padding: 0.3rem;
-        padding-inline-start: 1rem;
-        width: 100%;
+      .time.selected-time {
+          color: white;
+          opacity: 1;
+          background-color: var(--cp-color);
       }
-      .control {
-        background-color: #4676fa36;
+      .time.selected-time img {
+          filter: invert(1);
+      }
+      .time.selected-time .empty-time {
+        opacity: 1;
+      }
+      .time img {
+        display: flex;
+        align-self: center;
+        margin-inline-start: 0.1rem;
+        width: 0.7rem;
+        height: 0.7rem;
+      }
+
+      .legend-row {
+        display: flex;
+        font-size: 0.8rem;
+        grid-column-gap: 0.3rem;
+        justify-content: right;
+        margin-bottom: 0.5rem;
+      }
+      .legend-row span {
         display: flex;
         align-items: center;
-        padding: 0 0.1rem;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
       }
-      .times-container {
-        overflow-y: scroll;
-        max-height: 500px;
-        padding-inline-end: 10px;
+      .legend-row span.time {
+        padding: 0.3rem 0.5rem;
+      }
+      .center-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @media (min-width: 640px) {
+          .time:hover {
+              background-color: var(--cp-color);
+              opacity: 0.8;
+              color: #fff;
+          }
       }
     `
   ]
@@ -892,29 +1006,63 @@ export class cpTimes extends LitElement {
     }
     let now = window.luxon.DateTime.now().toSeconds();
     let time_slots = 60 / this.slot_length;
+
+    let index = 0;
     return html`
-        <div class="times-container">
-        ${map(range(24),index => html`
-            ${ this.times[index*time_slots] ? html`
-            <div class="prayer-hour prayer-times">
-                <div class="hour-cell">
-                    ${this.times[index*time_slots].hour}
-                </div>
-                ${map(range(time_slots), (i) => {
-                    let time = this.times[index*time_slots+i];
-                    return html`
-                    <div class="time ${time.progress >= 100 ? 'full-progress' : ''} ${time.selected ? 'selected-time' : ''}"
-                         @click="${(e)=>this.time_selected(e,time.key)}"
-                         ?disabled="${this.frequency === 'pick' && time.key < now}">
-                        <span class="time-label">${time.minute}</span>
-                        <span class="control">
-                          ${time.progress < 100 ? 
-                              html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>` :
-                              html`<div style="height:20px;width:20px;display:flex;justify-content: center">&#10003;</div>`}
-                        </span>
-                    </div>
-                `})}
-            </div>` : html``}
+
+      <div class="times-container">
+          <div class="legend-row">
+              <span class="time">
+                  06:15
+              </span>
+              <span>${translate('Time not covered')}</span>
+              <span class="time">
+                  2 <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">
+              </span>
+              <span>
+                  ${translate('# of people covering this time' )}
+              </span>
+          </div>
+
+        ${map(range(4),row => html`
+          <div class="times-section">
+            <div class="section-column time-column">
+              <div>&nbsp;</div>
+               ${map(range(time_slots),i=>html`<div class="grid-cell">${this.times[i].minute}</div>`)}
+            </div>
+
+            ${map(range(6),i => {
+              index = i + row * 6
+              return html`
+
+              ${ this.times[index*time_slots] ? html`
+              <div class="section-column">
+                  <div class="prayer-hour">
+                      ${this.times[index*time_slots].hour}
+                  </div>
+                  ${map(range(time_slots), (i) => {
+                      let time = this.times[index*time_slots+i];
+                      let html2 = ``
+                      if ( time.coverage_count ) {
+                          html2 = html`${time.coverage_count} <img src="${window.campaign_objects.plugin_url}assets/noun-person.png">`
+                      } else {
+                          html2 = html`<span class="empty-time">
+                              ${time.hour_minute}
+                          </span>`
+                      }
+                      // } else if ( false && time.progress < 100 ) {
+                      //     html2 = html`<progress-ring stroke="2" radius="10" progress="${time.progress}"></progress-ring>`
+                      return html`
+                      <div class="grid-cell time ${time.selected ? 'selected-time' : ''}" title=":${time.minute}"
+                           @click="${(e)=>this.time_selected(e,time.key)}"
+                           ?disabled="${this.frequency === 'pick' && time.key < now}">
+                          ${html2}
+                      </div>
+                  `})}
+              </div>` : html``}
+            `
+            })}
+          </div>
         `)}
       </div>
     `
@@ -935,12 +1083,15 @@ export class cpTimes extends LitElement {
       let time =  window.luxon.DateTime.fromSeconds( s.key, {zone:window.campaign_user_data.timezone} )
 
       let progress = s.subscribers ? 100 : 0;
+      const selected = this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60));
       times.push({
         key: s.key,
         hour: time.toLocaleString({ hour: '2-digit' }),
         minute: time.toFormat('mm'),
+        hour_minute: time.toFormat('hh:mm'),
         progress: progress,
-        selected: this.selected_times.find(t=>s.key>=t.time && s.key < (t.time + t.duration * 60)),
+        selected: selected,
+        coverage_count: s.subscribers + (selected ? 1 : 0),
       })
     })
     return times;
@@ -972,7 +1123,7 @@ export class cpTimes extends LitElement {
     let options = [];
     let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
+      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key)
       let time_formatted = time.toFormat('hh:mm a')
       let progress = 0;
       //quantity of prayer counts
@@ -988,16 +1139,20 @@ export class cpTimes extends LitElement {
       progress = progress.toFixed(1)
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
+      let coverage_count = progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0
+      coverage_count += selected ? 1 : 0
 
       options.push({
         key: key,
         time_formatted: time_formatted,
+        hour_minute: time.toFormat('hh:mm'),
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
         progress,
-        selected
+        selected,
+        coverage_count: coverage_count
       })
-      key += this.slot_length * 60
+      key += window.campaign_data.slot_length * 60
     }
     return options;
   }
@@ -1028,19 +1183,22 @@ export class cpTimes extends LitElement {
     let options = [];
     let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
+      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key)
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
         coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
       ).toFixed(1)
       let min = time.toFormat(':mm')
+      const selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60));
       options.push({
         key: key,
         time_formatted: time_formatted,
         minute: min,
         hour: time.toLocaleString({ hour: '2-digit' }),
+        hour_minute: time.toFormat('hh:mm'),
         progress,
-        selected: (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='weekly' && r.week_day===this.weekday && key >= r.time && key < (r.time + r.duration * 60))
+        coverage_count: ( progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0 ) + (selected ? 1 : 0),
+        selected: selected
       })
       key += this.slot_length * 60
     }
@@ -1109,23 +1267,22 @@ export class cpVerify extends LitElement {
     return html`
       <div class="verify-section">
         <p style="text-align: start">
-            ${strings['A confirmation code hase been sent to %s.'].replace('%s', this.email)}
-            <br>
-            ${strings['Please enter the code below in the next 10 minutes to confirm your email address.']}
+            ${translate('Almost there! Finish signing up by activating your account.')}
         </p>
-        <label for="cp-confirmation-code" style="display: block">
-            <strong>${strings['Confirmation Code']}:</strong><br>
-        </label>
-        <div class="otp-input-wrapper" style="padding: 20px 0">
-            <input class="cp-confirmation-code" name="code" type='text' maxlength='6' pattern='[0-9]*'
-                   autocomplete='off' required @input=${this.handleInput}>
-            <svg viewBox='0 0 240 1' xmlns='http://www.w3.org/2000/svg'>
-                <line x1='0' y1='0' x2='240' y2='0' stroke='#3e3e3e' stroke-width='2'
-                      stroke-dasharray='20,22'/>
-            </svg>
-        </div>
+
+        <p style="text-align: start">
+            ${translate('Click the "Activate Account" button in the email sent to: %s').replace('%s', '')}
+            <strong>${this.email}</strong>
+        </p>
+
+        <p style="text-align: start">
+            ${translate('It will look like this:')}
+        </p>
+        <p style="margin-top: 1rem; margin-bottom: 1rem; border:1px solid; border-radius: 5px; padding: 4px">
+            <img style="width: 100%" src="${window.campaign_objects.plugin_url}assets/activate_account.gif"/>
+        </p>
       </div>
-      
+
     `
 
   }
@@ -1134,23 +1291,65 @@ customElements.define('cp-verify', cpVerify);
 
 export class cpProgressRing extends LitElement {
   static styles = [
-    css``
+    css`
+    :host {
+      display: block;
+      --pi: 3.14159265358979;
+      --radius: 50cqi;
+      --stroke-width: max(3px, 5cqi);
+      --normalized-radius: calc(var(--radius) - var(--stroke-width));
+      --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
+      --circumference: calc(var(--normalized-radius) * 2 * var(--pi));
+      --circumference2: calc(var(--normalized-radius2) * 2 * var(--pi));
+
+      --offset2: calc((var(--progress) / 100 * var(--circumference))*-1);
+      --offset: calc( var(--circumference) + var(--offset2));
+      --offset3: calc( var(--circumference2) - var(--progress2) / 100 * var(--circumference2));
+
+
+      height: 95%;
+      width: 95%;
+      container-type: inline-size;
+    }
+    .inner-text {
+      font-size: clamp(1em, 0.5em + 3cqi, 1.25rem);
+    }
+
+    svg {
+      width: 100cqi;
+      height: 100cqi;
+    }
+
+    circle {
+      transition: stroke-dashoffset 0.35s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      stroke-width: var(--stroke-width);
+      stroke-dasharray: var(--circumference) var(--circumference);
+      r: var(--normalized-radius);
+      cx: var(--radius);
+      cy: var(--radius);
+    }
+
+    circle.first-circle {
+      stroke-dashoffset: var(--offset);
+    }
+    circle.second-circle {
+      stroke-dashoffset: var(--offset2);
+    }
+    `
   ]
 
   static properties = {
-    radius: {type: Number},
     text: {type: String},
     progress: {type: Number},
     progress2: {type: Number},
     font_size: {type: Number},
-    stroke: {type: Number},
     color: {type: String},
   }
 
   constructor() {
     super();
-    this.radius = 30
-    this.stroke = 3
     this.font_size = 15
     this.color = 'dodgerblue'
     this.progress = 0;
@@ -1159,20 +1358,6 @@ export class cpProgressRing extends LitElement {
 
   render() {
     this.progress = parseInt(this.progress).toFixed()
-    this.radius = parseInt(this.radius).toFixed()
-    this.stroke = parseInt(this.stroke).toFixed()
-    const normalizedRadius = this.radius - this.stroke;
-    this._circumference = normalizedRadius * 2 * Math.PI;
-
-    let normalizedRadius2 = parseInt(this.radius) - this.stroke/2 + 1
-    this._circumference2 = normalizedRadius2 * 2 * Math.PI;
-
-    let offset = this._circumference - (this.progress / 100 * this._circumference);
-    const offset2 = -(this.progress / 100 * this._circumference);
-    if ( this._progress2 ){
-      const offset3 = this._circumference2 - (this._progress2 / 100 * ( this._circumference2 ) );
-    }
-
     this.color = parseInt( this.progress ) >= 100 ? 'mediumseagreen' : this.color
 
     // if ( text2 ){
@@ -1190,42 +1375,27 @@ export class cpProgressRing extends LitElement {
 
 
     return html`
-      <svg height="${this.radius * 2}"
-           width="${this.radius * 2}" >
+      <svg>
            <circle
              class="first-circle"
              stroke="${this.color}"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${offset}"
-             stroke-width="${this.stroke}"
              fill="transparent"
-             r="${normalizedRadius}"
-             cx="${this.radius}"
-             cy="${this.radius}"
           />
           <circle
              class="second-circle"
              stroke="${this.color}"
              stroke-opacity="0.1"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${offset2}"
-             stroke-width="${this.stroke}"
              fill="transparent"
-             r="${normalizedRadius}"
-             cx="${this.radius}"
-             cy="${this.radius}"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="15px" dy=".3em">
+          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
               ${window.campaign_scripts.escapeHTML(this.text)}
           </text>
       </svg>
-
       <style>
-          circle {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-          }
+        :host{
+          --progress: ${this.progress};
+          --progress2: ${this.progress2};
+        }
       </style>
     `
 
@@ -1322,7 +1492,7 @@ class DtModal extends LitElement {
         justify-content: space-between;
         align-items: flex-start;
       }
-      
+
       .button.opener {
         color: var(--dt-modal-button-opener-color,var(--dt-modal-button-color, #fff) );
         background: var(--dt-modal-button-opener-background, var(--dt-modal-button-background, #000) );
@@ -1498,7 +1668,7 @@ class DtModal extends LitElement {
             >
               <slot name="close-button">Close</slot>
             </button>
-              
+
             <button
               class="button small ${this.confirmButtonClass}"
               data-close=""

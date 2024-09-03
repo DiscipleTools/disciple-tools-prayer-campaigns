@@ -17,8 +17,11 @@ const strings = escapeObject(window.campaign_objects.translations)
 
 window.campaign_user_data = {
   timezone: default_timezone, //@todo make default
+  locale: window.campaign_objects.locale.replace('_', '-'),
   recurring_signups: [],
+  recurring_signups_combined: [],
 }
+window.luxon.Settings.defaultLocale = window.campaign_user_data.locale
 window.set_user_data = function (data, campaign = false){
   let timezone_changes = false
   if ( data.timezone !== window.campaign_user_data.timezone ){
@@ -54,7 +57,6 @@ window.campaign_data = {
     {
       value: 'daily',
       label: strings['Daily'],
-      // desc: `(${strings['up to %s months'].replace('%s', '3')})`,
       days_limit: 90,
       month_limit: 3,
       step: 'day',
@@ -62,7 +64,6 @@ window.campaign_data = {
     {
       value: 'weekly',
       label: strings['Weekly'],
-      // desc: `(${strings['up to %s months'].replace('%s', '6')})`,
       days_limit: 180,
       step: 'week',
       month_limit: 6
@@ -70,7 +71,6 @@ window.campaign_data = {
     {
       value: 'monthly',
       label: strings['Monthly'],
-      // desc: `(${strings['up to %s months'].replace('%s', '12')})`,
       days_limit: 365,
       step: 'month',
       month_limit: 12
@@ -99,7 +99,7 @@ window.campaign_scripts = {
     let days = [];
     let now = parseInt( new Date().getTime() / 1000 );
     if (!end){
-      end = Math.max(now, start) + 365 * day_in_seconds;
+      end = Math.max(now, start) + 90 * day_in_seconds;
     }
 
     if ( !custom_timezone ){
@@ -161,7 +161,7 @@ window.campaign_scripts = {
         })
 
 
-        if ( time_iterator > now || time_iterator < end ){
+        if ( time_iterator > now && time_iterator < end ){
           if (!window.campaign_scripts.time_label_counts[time_formatted]) {
             window.campaign_scripts.time_label_counts[time_formatted] = 0
           }
@@ -200,7 +200,7 @@ window.campaign_scripts = {
   },
   get_campaign_data: function( timezone ){
 
-    let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+    let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.campaign_id;
 
     if ( campaign_data_promise === null ){
       let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_info';
@@ -219,6 +219,10 @@ window.campaign_scripts = {
         window.campaign_data.frequency_options.forEach(k=>{
           if ( !window.campaign_data.enabled_frequencies.includes(k.value) ){
             k.disabled = true
+          }
+          if ( window.campaign_data.frequency_durations?.[k.value] ){
+            k.days_limit = window.campaign_data.frequency_durations?.[k.value]
+            k.month_limit = Math.floor(k.days_limit / 30)
           }
         })
         timezone = timezone || data.subscriber_info?.timezone || window.campaign_user_data.timezone
@@ -370,9 +374,18 @@ window.campaign_scripts = {
     let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric' });
     const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
     let freq_label = frequency_option.label
-    const duration_label = window.campaign_data.duration_options.find(k=>k.value===parseInt(value.duration)).label;
+    let hours = Math.floor(value.duration / 60)
+    let minutes = value.duration % 60
+    let duration_label = minutes > 0 ? `${minutes} ${strings['Minutes']}` : ''
+    if ( hours > 1 ){
+      duration_label = `${hours} ${strings['Hours']} ${duration_label}`
+    } else if ( hours === 1 ){
+      duration_label = `${hours} ${strings['Hour']} ${duration_label}`
+    }
     if ( frequency_option.value === 'weekly' ){
-      freq_label = strings['Every %s'].replace('%s', first.toFormat('cccc') );
+      let day_number_of_the_week = first.toFormat('c')
+      let weekly_label_options = [ strings['Mondays'], strings['Tuesdays'], strings['Wednesdays'], strings['Thursdays'], strings['Fridays'], strings['Saturdays'], strings['Sundays'] ]
+      freq_label = weekly_label_options[day_number_of_the_week-1]
     }
     let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
     return label;
@@ -416,7 +429,7 @@ window.campaign_scripts = {
     let start_date = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
     let date_ref = window.luxon.DateTime.fromSeconds(start_time, {zone:window.campaign_user_data.timezone})
 
-    if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time) ){
+    if ( window.campaign_user_data.recurring_signups.find(k=>k.root===start_time && k.type === frequency) ){
       return null;
     }
 
@@ -451,6 +464,29 @@ window.campaign_scripts = {
       week_day: weekday,
       selected_times,
     }
+  },
+
+  combine_recurring_signups(){
+    let recurring_signups = window.campaign_user_data.recurring_signups
+    let combined_signups = []
+
+    recurring_signups.sort((a,b)=>{
+      return a.root - b.root
+    })
+
+    recurring_signups.forEach(signup=>{
+      //find previous signup
+      let previous_signup = combined_signups.find(k=>k.root + k.duration * 60 === signup.root && k.type === signup.type)
+      if ( !previous_signup ){
+        combined_signups.push(Object.assign({}, signup)); //clone object to avoid double updating
+      } else {
+        previous_signup.duration += signup.duration
+        previous_signup.last = signup.last
+        previous_signup.label = window.campaign_scripts.recurring_time_slot_label({first:previous_signup.first.toSeconds(), type: previous_signup.type, duration: previous_signup.duration})
+        previous_signup.selected_times.forEach(k=>k.duration = previous_signup.duration)
+      }
+    })
+    window.campaign_user_data.recurring_signups_combined = combined_signups
   },
 
   submit_prayer_times: function (campaign_id, data, action = 'add' ){
@@ -491,4 +527,148 @@ window.campaign_scripts = {
     return options;
   }
 }
+
+/**
+ * EDIT FUNCTIONALITY
+ */
+
+jQuery(document).ready(function ($) {
+
+    init_edit_bootstrap_modal();
+    function init_edit_bootstrap_modal() {
+        let current_lang = null;
+        let lang_select = $('.dt-magic-link-language-selector');
+        if ($(lang_select).length > 0) {
+            current_lang = $(lang_select).find('option:selected').text().trim();
+        }
+
+        let content = `
+        <input id="edit_modal_field_key" type="hidden"/>
+        <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${escapeHTML(strings['modals']['edit']['modal_title'])}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tbody>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_original_string'])}</td>
+                                    <td id="edit_modal_original_string" style="font-size: 12px; color: #3c3c3c;"></td>
+                                </tr>
+                                <tr style="background-color: #ffffff;">
+                                    <td style="vertical-align: top;  width: 30%;">${escapeHTML(strings['modals']['edit']['edit_all_languages'])}</td>
+                                    <td>
+                                        <textarea id="edit_modal_all_languages" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                </tr>`;
+
+                                if ( current_lang ) {
+                                  content += `<tr style="background-color: #ffffff;">
+                                    <td
+                                      style="vertical-align: top; width: 30%;">${escapeHTML(strings['modals']['edit']['edit_selected_language'])} ${' - [' + escapeHTML( current_lang ) + ']'}</td>
+                                    <td>
+                                      <textarea id="edit_modal_selected_language" rows="5" style="min-width: 100%;"></textarea>
+                                    </td>
+                                  </tr>`;
+                                }
+
+                            content += `</tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-common edit-close-btn">${escapeHTML(strings['modals']['edit']['edit_btn_close'])}</button>
+                        <button class="btn btn-common edit-update-btn">${escapeHTML(strings['modals']['edit']['edit_btn_update'])}</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        $('#edit_modal_div').empty().html(content);
+    }
+
+    $(document).on('click', '.edit-btn', function (e) {
+
+        // Set translation field values and display modal.
+        let edit_btn = $(e.currentTarget);
+        let field_key = $(edit_btn).data('field_key');
+        let lang_default = $(edit_btn).data('lang_default');
+        let lang_all = $(edit_btn).data('lang_all');
+        let lang_selected = $(edit_btn).data('lang_selected');
+
+        // Capture hidden values to be applied further down stream.
+        $('#edit_modal_field_key').val(field_key);
+
+        // Obtain element handles and set modal display values.
+        let edit_modal_original_string = $('#edit_modal_original_string');
+        let edit_modal_all_languages = $('#edit_modal_all_languages');
+        let edit_modal_selected_language = $('#edit_modal_selected_language');
+
+        $(edit_modal_original_string).text( escapeHTML( lang_default ) );
+        $(edit_modal_all_languages).val( escapeHTML( lang_all ) );
+        $(edit_modal_selected_language).val( escapeHTML( lang_selected ) );
+
+        // Display modal.
+        $('#edit_modal').modal('show');
+    });
+
+    $(document).on('click', '.edit-close-btn', function (e) {
+        $('#edit_modal').modal('hide');
+    });
+
+    $(document).on('click', '.edit-update-btn', function (e) {
+        let field_key = $('#edit_modal_field_key').val();
+        let lang_all = $('#edit_modal_all_languages').val();
+        let lang_selected = $('#edit_modal_selected_language').val();
+        let lang_code = $('.dt-magic-link-language-selector').val();
+        let campaign_id = window.subscription_page_data?.campaign_id || window.campaign_objects.magic_link_parts.post_id;
+
+        // Dispatch edit update request.
+        let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/campaign_edit';
+        let payload = {
+          'action': 'post',
+          'parts': window.campaign_objects.magic_link_parts,
+          'url': 'campaign_edit',
+          'time': new Date().getTime(),
+          campaign_id,
+          'edit': {
+            'field_key': field_key,
+            'lang_all': lang_all
+          }
+        };
+
+        if ( lang_selected !== undefined ) {
+          payload['edit']['lang_translate'] = lang_selected;
+        }
+
+        if ( lang_code !== undefined ) {
+          payload['edit']['lang_code'] = lang_code;
+        }
+
+        jQuery.ajax({
+            type: 'POST',
+            data: JSON.stringify(payload),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            url: link,
+          beforeSend: (xhr) => {
+            xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
+          },
+        })
+        .promise()
+        .then((response) => {
+            $('#edit_modal').modal('hide');
+            if ( response && response['updated'] ) {
+              location.reload();
+            }
+        });
+    });
+});
+
+/**
+ * EDIT FUNCTIONALITY
+ */
 

@@ -82,6 +82,12 @@ function dt_campaign_get_current_lang(): string {
         $lang = sanitize_text_field( wp_unslash( $_GET['lang'] ) );
     } elseif ( isset( $_COOKIE['dt-magic-link-lang'] ) && !empty( $_COOKIE['dt-magic-link-lang'] ) ){
         $lang = sanitize_text_field( wp_unslash( $_COOKIE['dt-magic-link-lang'] ) );
+    } else {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign_id();
+        $default_lang = get_post_meta( $campaign, 'default_language', true );
+        if ( !empty( $default_lang ) ){
+            $lang = $default_lang;
+        }
     }
     return $lang;
 }
@@ -145,11 +151,25 @@ if ( !function_exists( 'set_magic_quotes_runtime' ) ) {
     }
 }
 
+function campaigns_get_frequency_duration_days( $campaign ) {
+    $frequencies = [
+        'daily' => 90,
+        'weekly' => 180,
+    ];
+    if ( isset( $campaign['daily_signup_length'] ) && is_numeric( $campaign['daily_signup_length'] ) ) {
+        $frequencies['daily'] = min( (int) $campaign['daily_signup_length'], 365 );
+    }
+    if ( isset( $campaign['weekly_signup_length'] ) && is_numeric( $campaign['weekly_signup_length'] ) ) {
+        $frequencies['weekly'] = min( (int) $campaign['weekly_signup_length'], 365 );
+    }
+    return $frequencies;
+}
+
 function dt_get_next_ramadan_start_date() {
     $ramadan_start_dates = [
         '2023-03-22',
         '2024-03-10',
-        '2025-02-28',
+        '2025-03-01',
         '2026-02-18',
         '2027-02-08',
         '2028-01-28',
@@ -168,6 +188,10 @@ function dt_get_next_ramadan_start_date() {
         }
         return $start_date;
     }
+}
+function dt_get_next_ramadan_end_date(){
+    $start = dt_get_next_ramadan_start_date();
+    return gmdate( 'Y-m-d', strtotime( $start . ' +29 days' ) );
 }
 /*
 https://www.qppstudio.net/global-holidays-observances/start-of-ramadan.htm
@@ -208,6 +232,9 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
 
 
 function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_signup' ){
+    if ( !dt_campaigns_is_p4m_news_enabled() ) {
+        return;
+    }
 
     $lists = [ 'list_23', 'list_29' ]; //P4M News, P4M Campaign subscriber
     $tags = [];
@@ -215,22 +242,22 @@ function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_sign
     if ( class_exists( 'DT_Porch_Selector' ) ){
         $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
         if ( $selected_porch === 'ramadan-porch' ){
-            //$lists[] = 'list_'; //Ramadan Campaign subscriber
+            $lists[] = 'list_31'; //Ramadan Campaign subscriber
             $tags[] = [ 'value' => 'p4m_ramadan_subscriber' ];
         }
     }
     $campaign_name = '';
     if ( class_exists( 'DT_Porch_Settings' ) ){
         $porch_fields = DT_Porch_Settings::settings();
-        if ( isset( $porch_fields['title']['value'] ) ){
-            $campaign_name = $porch_fields['title']['value'];
+        if ( isset( $porch_fields['name']['value'] ) ){
+            $campaign_name = $porch_fields['name']['value'];
         }
     }
     if ( empty( $campaign_name ) ){
         $campaign_name = get_the_title();
     }
 
-    wp_remote_post( 'https://pray4movement.org/wp-json/go-webform/optin', [
+    wp_remote_post( 'https://prayer.tools/wp-json/go-webform/optin', [
         'body' => [
             'email' => $email,
             'name' => $name,
@@ -240,4 +267,39 @@ function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_sign
             'named_tags' => [ 'values' => [ [ 'value' => $campaign_name, 'type' => 'p4m_campaign_name' ] ] ],
         ]
     ] );
+}
+
+function display_translated_field( $field_key, $edit_btn_class = 'btn-common', $split_text = false ) {
+    $field_translation = DT_Porch_Settings::get_field_translation( $field_key );
+    if ( !empty( $field_translation ) ) {
+        global $allowedtags;
+
+        // Display translated text, splitting string accordingly, based on flag.
+        if ( $split_text ) {
+            echo esc_html( dt_split_sentence( $field_translation, 1, 2 ) ) ?> <span><?php echo esc_html( dt_split_sentence( $field_translation, 2, 2 ) );
+        } else {
+            echo nl2br( wp_kses( $field_translation, $allowedtags ) );
+        }
+
+        // Display edit button, if user is currently logged in.
+        if ( is_user_logged_in() ) {
+
+            // Capture existing values for processing further down stream.
+            $settings = DT_Porch_Settings::settings();
+            $lang_default = $settings[$field_key]['default'] ?? '';
+            $lang_all = $settings[$field_key]['value'] ?? '';
+            $lang_selected = $settings[$field_key]['translations'][dt_campaign_get_current_lang()] ?? '';
+            ?>
+            <button class="btn edit-btn <?php echo esc_attr( $edit_btn_class ) ?>"
+                    style="font-size: 10px; padding: 5px 15px;"
+                    data-field_key="<?php echo esc_attr( $field_key ) ?>"
+                    data-split_text="<?php echo esc_attr( ( $split_text ? 'true' : 'false' ) ) ?>"
+                    data-lang_default="<?php echo esc_attr( $lang_default ) ?>"
+                    data-lang_all="<?php echo esc_attr( $lang_all ) ?>"
+                    data-lang_selected="<?php echo esc_attr( $lang_selected ) ?>">
+                    <?php esc_html_e( 'Edit', 'disciple-tools-prayer-campaigns' ); ?>
+            </button>
+            <?php
+        }
+    }
 }

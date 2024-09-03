@@ -3,57 +3,36 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 /**
  * Adds the porch specific settings to the porch settings array
  */
-class DT_Generic_Porch_Settings {
+class DT_Generic_Porch_Strings {
 
     private $defaults = [];
 
-    public function __construct() {
-        $this->load_defaults();
-        add_filter( 'dt_campaign_porch_settings', [ $this, 'dt_prayer_campaigns_porch_settings' ], 10, 1 );
-        add_filter( 'dt_campaign_porch_theme_options', [ $this, 'dt_generic_porch_themes' ], 10, 1 );
-        add_filter( 'dt_campaign_porch_default_settings', [ $this, 'dt_campaign_porch_default_settings' ], 10, 1 );
-    }
+    public function __construct(){
+//        add_filter( 'dt_campaign_porch_default_settings', [ $this, 'dt_campaign_porch_default_settings' ], 10, 1 );
 
-    public function dt_prayer_campaigns_porch_settings( $settings ) {
-        $this->load_defaults(); //load defaults again to get current translations
-        return array_merge( $this->defaults, $settings );
-    }
-
-    public function dt_generic_porch_themes( $theme_options ) {
-        $theme_options['pink'] = [
-            'color' => '#FF55AA',
-        ];
-
-        return $theme_options;
+        add_filter( 'dt_custom_fields_settings', [ $this, 'dt_custom_fields_settings' ], 10, 2 );
     }
 
     public function dt_campaign_porch_default_settings( $defaults ) {
-        $this->load_defaults();
-        return array_merge( $this->defaults, $defaults );
+        $defaults = $this->load_defaults();
+        return array_merge( $defaults, $defaults );
     }
 
     private function load_defaults() {
 
-        $current_campaign = DT_Campaign_Settings::get_campaign();
+//        $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
+//
+//        $campaign_name = isset( $current_campaign['name'] ) ? $current_campaign['name'] : '';
 
-        $campaign_name = isset( $current_campaign['name'] ) ? $current_campaign['name'] : '';
-
-        $this->defaults = [
-            'campaign_name' => [
-                'label' => 'Campaign Name',
-                'value' => $campaign_name,
-                'type' => 'text',
-                'translations' => [],
-                'tab' => 'translations',
-            ],
-            'title' => [
-                'label' => 'Campaign/Site Title',
-                'value' => get_bloginfo( 'name' ),
-                'type' => 'text',
-                'translations' => [],
-                'tab' => 'translations',
-                'section' => DT_Generic_Porch_Translation_Sections::HERO,
-            ],
+        return [
+//            'title' => [
+//                'label' => 'Campaign/Site Title',
+//                'value' => get_bloginfo( 'name' ),
+//                'type' => 'text',
+//                'translations' => [],
+//                'tab' => 'translations',
+//                'section' => DT_Generic_Porch_Translation_Sections::HERO,
+//            ],
             'subtitle' => [
                 'label' => 'Subtitle',
                 'default' => __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' ),
@@ -213,12 +192,47 @@ class DT_Generic_Porch_Settings {
                 'tab' => 'translations',
                 'section' => DT_Generic_Porch_Translation_Sections::FUEL,
             ],
+            'edit_fuel_title' => [
+                'label' => 'Edit Prayer Fuel Title',
+                'default' => __( 'Edit Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
+                'type' => 'text',
+                'translations' => [],
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
+            'see_fuel_button' => [
+                'label' => 'See Prayer Fuel',
+                'default' => __( 'See Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
+                'type' => 'text',
+                'translations' => [],
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
+            'scheduled_prayer_fuel_title' => [
+                'label' => 'Scheduled Prayer Fuel Title',
+                'default' => __( 'Scheduled Prayer Fuel', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
+            'scheduled_prayer_fuel_description' => [
+                'label' => 'Scheduled Prayer Fuel Description',
+                'default' => __( 'All Scheduled Prayer Fuel in all available languages. Add and edit the prayer fuel below', 'disciple-tools-prayer-campaigns' ),
+                'value' => '',
+                'type' => 'text',
+                'tab' => 'translations',
+                'section' => DT_Generic_Porch_Translation_Sections::FUEL,
+            ],
             'country_name' => [
                 'label' => 'Location Name',
                 'value' => '',
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
+                'hidden' => true,
             ],
             'people_name' => [
                 'label' => 'People Name',
@@ -226,7 +240,16 @@ class DT_Generic_Porch_Settings {
                 'type' => 'text',
                 'translations' => [],
                 'tab' => 'translations',
+                'hidden' => true,
             ],
+//            'campaign_name' => [
+//                'label' => 'Campaign Name',
+//                'value' => '',
+//                'type' => 'text',
+//                'translations' => [],
+//                'tab' => 'translations',
+//                'hidden' => true,
+//            ],
             'footer_content' => [
                 'label' => 'Extra Footer Content',
                 'default' => '',
@@ -236,6 +259,34 @@ class DT_Generic_Porch_Settings {
                 'tab' => 'translations',
             ]
         ];
+    }
+
+    public function dt_custom_fields_settings( $fields ){
+        $string_fields = $this->load_defaults();
+
+        $valid_types = [
+            'text',
+            'textarea',
+            'icon'
+        ];
+
+        foreach ( $string_fields as $key => $field ){
+            $fields[$key] = [
+                'name' => $field['label'],
+                'tile' => 'campaign_landing_strings',
+                'type' => isset( $field['type'] ) && in_array( $field['type'], $valid_types ) ? $field['type'] : 'text',
+                'default' => isset( $field['default'] ) ? $field['default'] : '',
+                'description' => $field['placeholder'] ?? '',
+                'settings_tab' => 'campaign_landing_strings',
+                'settings_section' => isset( $field['section'] ) ? $field['section'] : '',
+                'hidden' => !empty( $field['hidden'] ),
+            ];
+            if ( $field['type'] === 'text' || $field['type'] === 'textarea' ){
+                $fields[$key]['translations'] = [];
+            }
+        }
+
+        return $fields;
     }
 }
 

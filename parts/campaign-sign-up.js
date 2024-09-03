@@ -55,7 +55,7 @@ export class CampaignSignUp extends LitElement {
         font-size: 1rem;
         min-height: 500px;
       }
-      
+
       .selected-times {
         border: 1px solid var(--cp-color);
         border-radius: 5px;
@@ -81,7 +81,7 @@ export class CampaignSignUp extends LitElement {
       .desktop {
         display:block;
       }
-      
+
       .column {
         max-width: 400px;
         flex-basis: 30%;
@@ -111,7 +111,7 @@ export class CampaignSignUp extends LitElement {
           display:none;
         }
       }
-      
+
       .section-div[disabled] {
         opacity: 0.5;
       }
@@ -129,23 +129,26 @@ export class CampaignSignUp extends LitElement {
         justify-content: center;
       }
       .remove-prayer-time-button:hover {
-        border: 1px solid red;    
+        border: 1px solid red;
       }
       .remove-prayer-time-button img {
         width: 1rem;
       }
-      
-      
+
+
     `
   ];
 
   static properties = {
     already_signed_up: {type: Boolean},
     _view: {type: String, state: true},
+    _loading: {type: Boolean, state: true},
+    selected_times: {type: Array},
   }
 
   constructor() {
     super()
+    this._loading = false;
     this.campaign_data = {
       start_timestamp: 0,
       end_timestamp: 0,
@@ -158,7 +161,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: true,
+      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -221,7 +224,7 @@ export class CampaignSignUp extends LitElement {
   }
   selected_times_count(){
     let count = 0;
-    this.recurring_signups.forEach(v=>{
+    window.campaign_user_data.recurring_signups_combined.forEach(v=>{
       count += v.selected_times.length
     })
     count += this.selected_times.length
@@ -247,19 +250,19 @@ export class CampaignSignUp extends LitElement {
     let data = {
       name: this._form_items.name,
       email: this._form_items.email,
-      code: this._form_items.code,
       receive_pray4movement_news: this._form_items.receive_pray4movement_news,
       selected_times: selected_times,
-      recurring_signups: this.recurring_signups,
+      recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
+    //add this._form_items
+    Object.keys(this._form_items).forEach(key=>{
+      data[key] = this._form_items[key]
+    })
 
     window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
     .done((response)=>{
       this.selected_times = [];
       this._loading = false;
-      if ( response.account_link ){
-        this.account_link = response.account_link;
-      }
       this._view = 'confirmation';
       this.requestUpdate()
     })
@@ -267,9 +270,6 @@ export class CampaignSignUp extends LitElement {
       this._loading = false
       let message = html`So sorry. Something went wrong. Please, try again.<br>
           <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
-      if ( e.status === 401 ) {
-        message = translate('Confirmation code does not match or is expired. Please, try again.')
-      }
       this._form_items.code_error = message
       this.requestUpdate()
     })
@@ -282,21 +282,24 @@ export class CampaignSignUp extends LitElement {
       email: this._form_items.email,
       parts: window.campaign_objects.magic_link_parts,
       campaign_id: this.campaign_data.campaign_id,
-      url: 'verify',
+      url: '',
+      name: this._form_items.name,
+      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
+      selected_times: this.selected_times,
+      recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
-    let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/verify';
-    if (window.campaign_objects.remote) {
-      link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/24hour-router';
-    }
-    jQuery.ajax({
-      type: 'POST',
-      data: JSON.stringify(data),
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      url: link
-    })
-    .done(()=>{
-      this._loading = false
+
+    // Capture additional custom fields.
+    Object.keys(this._form_items).forEach(key => {
+      if ( !data.hasOwnProperty(key) ) {
+        data[key] = this._form_items[key];
+      }
+    });
+
+    window.campaign_scripts.submit_prayer_times(this.campaign_data.campaign_id, data)
+    .done((response)=>{
+      this.selected_times = [];
+      this._loading = false;
       this._view = 'submit'
       this.requestUpdate()
       //scroll to #campaign
@@ -308,8 +311,13 @@ export class CampaignSignUp extends LitElement {
     })
     .fail((e)=>{
       console.log(e);
-      let message = `So sorry. Something went wrong. Please, contact us to help you through it, or just try again.<br>
-        <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">Try Again</a>`
+      let message = html`${translate('So sorry. Something went wrong. You can:')} <br>
+        <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">${translate('Try Again')}</a> <a href="${window.campaign_scripts.escapeHTML(window.location.href)}">${translate('Contact Us')}</a>`
+      if ( e?.responseJSON?.code === 'activate_account' ){
+        message = translate('Please check your email to activate your account before adding more prayer times.')
+      }
+
+
       this._form_items.form_error = message
       this._loading = false
       this.requestUpdate()
@@ -350,10 +358,33 @@ export class CampaignSignUp extends LitElement {
     }
     let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
     if ( recurring_signup ){
+      //keep this new recurring signup from overlapping with an existing one
+      let has_overlay = this.recurring_signups.find(
+        k => k.type===recurring_signup.type && (
+          (k.first.toSeconds() < recurring_signup.first.toSeconds()
+            && k.first.toSeconds() + k.duration * 60 > recurring_signup.first.toSeconds())
+          ||
+          (k.first.toSeconds() > recurring_signup.first.toSeconds()
+            && k.first.toSeconds() < recurring_signup.first.toSeconds() + k.duration * 60)
+        ))
+      if ( has_overlay ){
+        return;
+      }
       this.recurring_signups = [...this.recurring_signups, recurring_signup]
       window.campaign_user_data.recurring_signups = this.recurring_signups;
-      this.requestUpdate()
+      window.campaign_scripts.combine_recurring_signups()
       this.show_toast()
+      this.requestUpdate()
+    } else {
+      //remove time from selected
+      let index = this.recurring_signups.findIndex(k=>k.time===selected_time)
+      if ( index > -1 ){
+        this.recurring_signups.splice(index,1)
+        window.campaign_user_data.recurring_signups = this.recurring_signups;
+        window.campaign_scripts.combine_recurring_signups()
+        this.show_toast(translate('Prayer Time Removed'), 'warn')
+        this.requestUpdate()
+      }
     }
   }
   day_selected(selected_day){
@@ -396,8 +427,10 @@ export class CampaignSignUp extends LitElement {
     window.set_user_data({timezone: this.timezone})
   }
 
-  remove_recurring_prayer_time(index){
-    this.recurring_signups.splice(index,1)
+  remove_recurring_prayer_time(root, duration, type){
+    this.recurring_signups = this.recurring_signups.filter(k=> !(k.root >= root && k.root <= root + duration * 60 && k.type===type))
+    window.campaign_user_data.recurring_signups = this.recurring_signups;
+    window.campaign_scripts.combine_recurring_signups()
     this.requestUpdate()
   }
 
@@ -419,7 +452,7 @@ export class CampaignSignUp extends LitElement {
               <span class="step-circle">${position}</span>
               <span>${translate('I will pray for')}</span></h2>
           <div>
-              <cp-select 
+              <cp-select
                   .value="${this.duration.value}"
                   .options="${this.duration.options}"
                   @change="${e=>this.handle_click('duration', e.detail)}">
@@ -442,7 +475,7 @@ export class CampaignSignUp extends LitElement {
               <span class="step-circle">${position}</span>
               <span>${strings['How often?']}</span> <span ?hidden="${this.frequency?.value}" class="place-indicator">${strings['Start Here']}</span>
           </h2>
-          <cp-select 
+          <cp-select
               show_desc="${!!this.campaign_data.end_timestamp}"
               .options="${window.campaign_data.frequency_options}"
               .value="${this.frequency.value}"
@@ -461,14 +494,14 @@ export class CampaignSignUp extends LitElement {
       <!--
         Week Day
       -->
-      
+
       <h2 class="section-title">
           <span class="step-circle">${position}</span>
           <span>${strings['On which week day?']}</span>
           <span ?hidden="${this.week_day.value}" class="place-indicator">${strings['Continue here']}</span>
       </h2>
       <div>
-          <cp-select 
+          <cp-select
               .value="${this.week_day.value}"
               .options="${this.week_day.options}"
               @change="${e=>this.handle_click('week_day', e.detail)}">
@@ -538,6 +571,7 @@ export class CampaignSignUp extends LitElement {
             </h2>
 
             <contact-info .selected_times_count="${this.selected_times_count()}"
+                          ._loading="${this._loading}"
                           @form-items=${this.handle_contact_info}
                           .form_error=${this._form_items.form_error}
                           @back=${()=>this._view = 'main'}
@@ -561,8 +595,8 @@ export class CampaignSignUp extends LitElement {
 
             </div>
         </div>
-              
-        
+
+
     `
   }
 
@@ -589,14 +623,14 @@ export class CampaignSignUp extends LitElement {
                 </span>
             </div>
             <div ?hidden="${!this.show_selected_times}" style="margin-top:1rem; max-height:50%; overflow-y: scroll">
-                ${this.recurring_signups.map((value, index) => {
+                ${window.campaign_user_data.recurring_signups_combined.map((value, index) => {
                     let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && (value.last > this.campaign_data.end_timestamp - 86400 * 30)
                     return html`
                         <div class="selected-times selected-time-labels">
                             <div class="selected-time-frequency">
                                 <div>${value.label}</div>
                                 <div>
-                                    <button @click="${e => this.remove_recurring_prayer_time(index)}"
+                                    <button @click="${e => this.remove_recurring_prayer_time(value.root, value.duration, value.type)}"
                                             class="remove-prayer-time-button">
                                         <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                                     </button>
@@ -643,14 +677,14 @@ export class CampaignSignUp extends LitElement {
                 <span class="step-circle">*</span>
                 <span>${translate('My Prayer Commitments')} (${this.selected_times_count()})</span>
             </h2>
-            ${this.recurring_signups.map((value, index) => {
+            ${window.campaign_user_data.recurring_signups_combined.map((value, index) => {
                 let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && (value.last > this.campaign_data.end_timestamp - 86400 * 30)
                 return html`
                     <div class="selected-times selected-time-labels">
                         <div class="selected-time-frequency">
                             <div>${value.label}</div>
                             <div>
-                                <button @click="${e => this.remove_recurring_prayer_time(index)}"
+                                <button @click="${e => this.remove_recurring_prayer_time(value.root, value.duration, value.type)}"
                                         class="remove-prayer-time-button"><img
                                     src="${window.campaign_objects.plugin_url}assets/delete-red.svg"></button>
                             </div>
@@ -699,9 +733,8 @@ export class CampaignSignUp extends LitElement {
         <div class="column">
             <div class="section-div">
                 <h2 class="section-title" style="display: flex">
-                    <span class="step-circle"></span>
-                    <span style="flex-grow: 1">${strings['Verify']}</span>
-                    <button @click="${() => this._view = 'main'}">Back</button>
+                    <span class="step-circle" style="background-color: red"></span>
+                    <span style="flex-grow: 1">${translate('Pending - Verification Needed')}</span>
                 </h2>
                 <cp-verify
                     email="${this._form_items.email}"
@@ -710,19 +743,10 @@ export class CampaignSignUp extends LitElement {
                         this.requestUpdate()
                     }}
                 ></cp-verify>
+                <button @click="${() => this._view = 'main'}">${translate('Back to sign-up')}</button>
                 <div class='form-error'
                      ?hidden=${!this._form_items?.code_error}>
                     ${this._form_items?.code_error}
-                </div>
-
-                <div style="text-align: center;margin-top:20px">
-                    <button ?disabled=${this._form_items?.code?.length!==6}
-                            @click=${() => this.submit()}>
-                        ${strings['Submit']}
-                        <img ?hidden=${!this._loading} class="button-spinner"
-                             src="${window.campaign_objects.plugin_url}spinner.svg" width="22px" alt="spinner"/>
-                    </button>
-
                 </div>
             </div>
         </div>
@@ -745,10 +769,8 @@ export class CampaignSignUp extends LitElement {
             </p>
             <div class="nav-buttons">
                 <button @click=${() => window.location.reload()}>${translate('Ok')}</button>
-                <a ?hidden="${this.account_link.length===0}" class="button"
-                   href="${this.account_link}">${translate('Access Account')}</a>
-                ${window.campaign_objects.remote ? ``:html`<a class="button"
-                                                              href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}`}</a>
+                ${window.campaign_objects.remote ? ``:
+                    html`<a class="button" href="${window.campaign_objects.campaign_root + '/list'}">${translate('See Prayer Fuel')}`}</a>
             </div>
 
         </div>
@@ -765,7 +787,7 @@ export class CampaignSignUp extends LitElement {
             <br>
             <br>
             <div>
-                <a class="button" href="${window.campaign_objects.home + '/prayer/list'}">${translate('See Prayer Fuel')}</a>
+                <a class="button" href="${window.campaign_objects.campaign_root + '/list'}">${translate('See Prayer Fuel')}</a>
             </div>
         </div>
     `
@@ -864,10 +886,15 @@ customElements.define('campaign-sign-up', CampaignSignUp);
 export class cpCalendar extends LitElement {
   static styles = [
     css`
+    :host {
+    }
       .calendar-wrapper {
+        container-type: inline-size;
+        container-name: cp-calendar;
         background-color: #f8f9fad1;
         border-radius: 10px;
-        padding: 1em
+        padding: 1em;
+        display: block;
       }
       .calendar-month {
         display: block;
@@ -885,34 +912,50 @@ export class cpCalendar extends LitElement {
       }
       .calendar {
         display: grid;
-        grid-template-columns: repeat(7, 40px);
+        grid-template-columns: repeat(7, 12.5cqw);
+        gap: 0.3rem;
         margin-bottom: 1rem;
+        justify-items: center;
       }
       .day-cell {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 14cqw;
+        width: 14cqw;
         font-size: 15px;
+      }
+
+      @container cp-calendar (min-width: 250px) {
+        .day-cell {
+          height: 15cqw;
+          width: 15cqw;
+        }
+        .week-day {
+          height: 15cqw;
+          width: 15cqw;
+        }
       }
       .week-day {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 14cqw;
+        width: 14cqw;
         color:black;
-        font-size:12px;
+        font-size: clamp(1em, 2cqw, 0.5em + 1cqi);
         font-weight:550;
       }
+
+      @container cp-calendar (min-width: 350px) {
+        .week-day {
+          height: 7.5cqw;
+          width: 15cqw;
+        }
+      }
+
       .loading {
         min-height: 600px;
-      }
-      .progress-ring {
-        width: 40px;
-        height: 40px;
-        padding-top: 2px;
       }
       .disabled-calendar-day {
         color: #c4c4c4;
@@ -989,7 +1032,7 @@ export class cpCalendar extends LitElement {
             ${months_to_show.map(month=>html`
                 <div class="calendar-month">
                     <h3 class="month-title center">
-                        ${month.date.toFormat( 'MMM y')}
+                        ${month.date.toLocaleString({ month: 'short', year: 'numeric' })}
                         <span class="month-percentage">${ month.percentage || 0 }% | ${month.days_covered || 0} ${translate('days')}</span>
 
                     </h3>
@@ -1003,7 +1046,7 @@ export class cpCalendar extends LitElement {
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
                                 ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
-                                    <progress-ring class="progress-ring" stroke="3" radius="20" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
+                                    <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
                         })}
@@ -1020,7 +1063,7 @@ customElements.define('cp-calendar', cpCalendar);
 export class cpPercentage extends LitElement {
   static styles = [
     css`
-      
+
     `
   ]
 
@@ -1040,7 +1083,7 @@ export class cpPercentage extends LitElement {
     this.timezone = window.campaign_user_data.timezone
     this.requestUpdate()
   }
-  
+
   render() {
     if ( !this.campaign_data ){
       return html`<div class="loading"></div>`
@@ -1048,12 +1091,13 @@ export class cpPercentage extends LitElement {
 
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
-        <div id="main-progress" class="cp-center">
-            <progress-ring stroke="10" radius="80" font="18"
-                           progress="${this.campaign_data.coverage_percent || 0}"
-                           progress2="0"
-                           text="${this.campaign_data.coverage_percent || 0}%"
-                           text2="">
+        <div id="main-progress" class="cp-center" style="display: flex;justify-content: center">
+            <progress-ring
+               style="max-width: 150px"
+               progress="${this.campaign_data.coverage_percent || 0}"
+               progress2="0"
+               text="${this.campaign_data.coverage_percent || 0}%"
+               text2="">
             </progress-ring>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center">${strings['Percentage covered in prayer']}</div>
@@ -1080,7 +1124,7 @@ export class campaignSubscriptions extends LitElement {
       }
       .remove-prayer-times-button img {
         width: 1rem;
-        
+
       }
       .selected-times {
         //background-color: rgba(70, 118, 250, 0.1);
@@ -1111,7 +1155,7 @@ export class campaignSubscriptions extends LitElement {
         margin-bottom: 10px;
       }
       .selected-time-content .title-row .dt-tag{
-        
+
         margin-inline-start: 10px;
       }
       button.hollow-button {
@@ -1173,12 +1217,12 @@ export class campaignSubscriptions extends LitElement {
         <!--delete modal-->
         <dt-modal
             .isOpen="${this._delete_modal_open}"
-            title="${translate('Delete Prayer Times')}"
+            title="${translate('Stop Praying')}"
             hideButton="true"
             confirmButtonClass="danger"
             @close="${e=>this.delete_times_modal_closed(e)}"
         >
-        <p slot="content">${translate('Really delete these prayer times?')}</p>
+        <p slot="content">${translate('Your future prayer times will be canceled.')}</p>
         </dt-modal>
         <dt-modal
             .isOpen="${this._delete_time_modal_open}"
@@ -1208,7 +1252,7 @@ export class campaignSubscriptions extends LitElement {
             confirmButtonClass="danger"
             @close="${e=>this.extend_times_modal_closed(e, true)}" >
         </dt-modal>
-        
+
         <!--change times modal-->
         <dt-modal
             .isOpen="${this._change_times_modal_open}"
@@ -1224,7 +1268,7 @@ export class campaignSubscriptions extends LitElement {
                 ${this.build_select_for_day_times()}
             ` : ''}</p>
         </dt-modal>
-        
+
         ${(this.recurring_signups||[]).map((value, index) => {
             let last_prayer_time_near_campaign_end = this.campaign_data.end_timestamp && ( value.last > this.campaign_data.end_timestamp - 86400 * 30 )
             let day_in_seconds = 86400
@@ -1232,19 +1276,19 @@ export class campaignSubscriptions extends LitElement {
             let extend_enabled = !last_prayer_time_near_campaign_end && value.last < now + day_in_seconds * 60 && value.last > now - day_in_seconds * 14
             //more than 2 weeks old
             let renew_extended = !last_prayer_time_near_campaign_end && value.last < now - day_in_seconds * 14
-            
+
             const prayer_times = window.campaign_data.subscriber_info.my_commitments.filter(c=>value.report_id==c.recurring_id)
             return html`
             <div class="selected-times">
                 <div class="selected-time-content">
                   <div class="title-row">
-                    <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>  
-                    <button ?hidden="${!extend_enabled}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>  
-                    <button ?hidden="${!renew_extended}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id, true)}">${translate('renew')}</button>  
+                      <h3>${window.luxon.DateTime.fromSeconds(value.first, {zone: this.timezone}).toFormat('DD')} - ${window.luxon.DateTime.fromSeconds(value.last, {zone:this.timezone}).toFormat('DD')}</h3>
+                      <button ?hidden="${!extend_enabled}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id)}">${translate('extend')}</button>
+                      <button ?hidden="${!renew_extended}" class="clear-button" @click="${()=>this.open_extend_times_modal(value.report_id, true)}">${translate('renew')}</button>
                   </div>
                   <div>
                       <strong>${window.campaign_scripts.recurring_time_slot_label(value)}</strong>
-                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}" 
+                      <button @click="${e=>this.open_change_time_modal(e,value.report_id)}"
                           class="clear-button">${translate('change time')}</button>
                   </div>
                   <div class="selected-time-actions">
@@ -1252,7 +1296,7 @@ export class campaignSubscriptions extends LitElement {
                           ${translate('See prayer times')} (${prayer_times.length})
                       </button>
                       <button class="clear-button danger loader" @click="${e=>this.open_delete_times_modal(e,value.report_id)}">
-                          ${translate('Remove all')}
+                          ${translate('Stop Praying').toLowerCase()}
                       </button>
                   </div>
                 </div>
@@ -1260,18 +1304,18 @@ export class campaignSubscriptions extends LitElement {
                     ${prayer_times.map(c=>html`
                         <div class="remove-row">
                             <span>${window.luxon.DateTime.fromSeconds(parseInt(c.time_begin), {zone: this.timezone}).toLocaleString({ month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-                            <button @click="${e=>this.open_delete_time_modal(e,c.report_id)}"
+                            <button ?disabled="${c.time_begin < now}" @click="${e=>this.open_delete_time_modal(e,c.report_id)}"
                                     class="remove-prayer-times-button clear-button">
                                 <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                             </button>
                         </div>
                     `)}
                 </div>
-                
+
             </div>
         `})}
         ${(window.campaign_data.subscriber_info.my_commitments).filter(c=>c.type==='selected_time').map((value, index) => {
-          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})  
+          const date = window.luxon.DateTime.fromSeconds(value.time_begin, {zone: this.timezone})
           return html`
             <div class="selected-times">
                 <div class="selected-time-content">
@@ -1281,14 +1325,14 @@ export class campaignSubscriptions extends LitElement {
                       <span class="dt-tag">${date.toLocaleString({ hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                       ${translate('for %s minutes').replace('%s', (value.time_end - value.time_begin)/60)}
                     </div>
-                    <button class="clear-button danger loader remove-prayer-times-button" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
+                    <button ?disabled="${value.time_begin < now}" class="clear-button danger loader remove-prayer-times-button" @click="${e=>this.open_delete_time_modal(e,value.report_id)}">
                         <img src="${window.campaign_objects.plugin_url}assets/delete-red.svg">
                     </button>
                   </div>
                 </div>
             </div>
         `})}
-        
+
     `
   }
 
@@ -1453,6 +1497,7 @@ export class campaignSubscriptions extends LitElement {
       let data = {
         report_id: this.change_time_details.report_id,
         offset: this.change_time_details.new_time - this.change_time_details.time,
+        time: this.change_time_details.new_time
       }
 
       window.campaign_scripts.submit_prayer_times( this.change_time_details.campaign_id, data, 'change_times').then(response=>{

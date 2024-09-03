@@ -5,7 +5,7 @@ $lang = dt_campaign_get_current_lang();
 $porch_fields = DT_Porch_Settings::settings();
 
 $frequency = isset( $porch_fields['prayer_fuel_frequency']['value'] ) ? $porch_fields['prayer_fuel_frequency']['value'] : 'daily';
-$todays_campaign_day = DT_Campaign_Settings::what_day_in_campaign( gmdate( 'Y-m-d' ), $frequency );
+$todays_campaign_day = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y-m-d' ), null, $frequency );
 
 $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_campaign_day );
 ?>
@@ -22,7 +22,8 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
         </div>
 
         <div class="row">
-            <?php foreach ( $today->posts as $item ) :
+            <?php do_action( 'dt_campaigns_before_prayer_fuel', $today->posts, $todays_campaign_day );
+            foreach ( $today->posts as $item ) :
                 dt_campaign_post( $item );
             endforeach;
             if ( empty( $today->posts ) && is_numeric( $todays_campaign_day ) ):
@@ -57,18 +58,23 @@ $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $todays_
                 <?php dt_campaign_user_record_prayed(); ?>
             </div>
 
-            <div class='row'>
-                <?php
-                if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] === 'yes' ) :
-                    if ( function_exists( 'show_prayer_timer' ) ) : ?>
-                        <div class="col">
-                            <?php echo do_shortcode( "[dt_prayer_timer color='" . PORCH_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
-                        </div>
-                    <?php endif;
-                endif; ?>
+            <?php do_action( 'dt_campaigns_after_prayer_fuel', 'after_record_prayed', $today->posts, $todays_campaign_day );
 
-            </div>
 
+            if ( !isset( $porch_fields['show_prayer_timer']['value'] ) || empty( $porch_fields['show_prayer_timer']['value'] ) || $porch_fields['show_prayer_timer']['value'] !== 'no' ) :
+                if ( function_exists( 'show_prayer_timer' ) ) : ?>
+                <div style="margin-top: 30px">
+                    <div class='section-header'>
+                        <h2 class='section-title wow fadeIn' data-wow-duration='1000ms'
+                            data-wow-delay='0.3s'><?php echo esc_html( __( 'Prayer Timer', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
+                        <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                    </div>
+                    <div>
+                        <?php echo do_shortcode( "[dt_prayer_timer color='" . CAMPAIGN_LANDING_COLOR_SCHEME_HEX . "' duration='15' lang='" . $lang . "']" ); ?>
+                    </div>
+                </div>
+                <?php endif;
+            endif; ?>
         <?php endif; ?>
     </div>
 </section>

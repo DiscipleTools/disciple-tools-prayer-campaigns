@@ -11,3 +11,87 @@ Though many have stopped fasting in recent years, and are turned off by the hypo
     }
     return $settings;
 }, 20, 2 );
+
+
+add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaign_day ){
+    $link = site_url( '/prayer/stats' );
+    if ( class_exists( 'DT_Campaign_Settings' ) ){
+        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        if ( $current_selected_porch !== 'ramadan-porch' ){
+            return;
+        }
+    } else {
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
+        if ( $campaign_fields['porch_type']['key'] !== 'ramadan-porch' ){
+            return;
+        }
+        $link = DT_Campaign_Landing_Settings::get_landing_root_url() . '/stats';
+    }
+    if ( empty( $posts ) ){ ?>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+            <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+                <div class="blog-item-text">
+                    <div class="section-header">
+                        <h2 class="section-title">No Prayer Fuel Today</h2>
+                    </div>
+                    <p>Thank you for joining over 6,000 people in praying during this Ramadan!</p>
+
+                    <p>As you pray today look back over the past month and continue praying what God has put on your heart.</p>
+                    <p>Pray that God will continue working powerfully in this place.</p>
+
+                    <p>Before you leave check out the end of campaign stats page and
+                        consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc.)</p>
+                    <div style="display: flex; justify-content: center">
+                        <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link ); ?>">View stats</a>
+                        <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link . '#share' ); ?>">Share your experience</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <?php }
+
+}, 10, 2);
+
+add_action( 'dt_campaigns_after_prayer_fuel', function ( $position, $posts = [], $todays_campaign_day = 0 ){
+    if ( $position !== 'after_record_prayed' || $todays_campaign_day != 31 || empty( $posts ) ){
+        return;
+    }
+    $link = site_url( '/prayer/stats' );
+    if ( class_exists( 'DT_Campaign_Settings' ) ){
+        $current_selected_porch = DT_Campaign_Settings::get( 'selected_porch' );
+        if ( $current_selected_porch !== 'ramadan-porch' ){
+            return;
+        }
+    } else {
+        $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
+        if ( $campaign_fields['porch_type']['key'] !== 'ramadan-porch' ){
+            return;
+        }
+        $link = DT_Campaign_Landing_Settings::get_landing_root_url() . '/stats';
+    }
+
+    ?>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-item">
+        <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.3s">
+            <div class="blog-item-text">
+                <div class="section-header">
+                    <h2 class="section-title">Thank you</h2>
+                </div>
+                <p>Thank you for joining over 6,000 people in praying during this Ramadan!</p>
+
+                <p>Please continue praying for this place, especially all that He has put on your heart over the past month.</p>
+                <p>Pray that God will continue working powerfully in this place.</p>
+
+                <p>Before you leave check out the end of campaign stats page and
+                    consider sharing with us about your prayer time (E.g. testimonies, insights, blessings, etc.)</p>
+                <div style="display: flex; justify-content: center">
+                    <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link ); ?>">View stats</a>
+                    <a class="btn btn-common btn-rm" href="<?php echo esc_html( $link . '#share' ); ?>">Share your experience</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+
+}, 10, 3);

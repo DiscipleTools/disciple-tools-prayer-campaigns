@@ -3,13 +3,15 @@ if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
 
 class DT_Subscriptions {
 
-    public static function create_subscriber( $campaign_id, $email, $title, $times, $args = [] ) {
+    public static function create_subscriber( $campaign_id, $email, $title, $times, $args = [], $pending = false ){
         $args = wp_parse_args(
             $args,
             [
                 'receive_prayer_time_notifications' => false,
                 'timezone' => '',
-                'lang' => 'en_US'
+                'lang' => 'en_US',
+                'status' => 'active',
+                'activation_code' => '',
             ]
         );
 
@@ -37,6 +39,8 @@ class DT_Subscriptions {
             'lang' => $args['lang'],
             $key_name => $hash,
             'receive_prayer_time_notifications' => $args['receive_prayer_time_notifications'],
+            'status' => $args['status'],
+            'activation_code' => $args['activation_code'],
         ];
 
         // create post
@@ -45,7 +49,7 @@ class DT_Subscriptions {
             return $new_subscriber;
         }
 
-        $added_reports = self::add_subscriber_times( $campaign_id, $new_subscriber['ID'], $times );
+        $added_reports = self::add_subscriber_times( $campaign_id, $new_subscriber['ID'], $times, $pending );
         if ( is_wp_error( $added_reports ) ){
             return $added_reports;
         }
@@ -82,7 +86,13 @@ class DT_Subscriptions {
 
     public static function get_subscribers_count( $campaign_id ){
         global $wpdb;
-        return $wpdb->get_var( $wpdb->prepare( "SELECT count(DISTINCT p2p_to) as count FROM $wpdb->p2p WHERE p2p_type = 'campaigns_to_subscriptions' AND p2p_from = %s", $campaign_id ) );
+        return $wpdb->get_var( $wpdb->prepare( "
+            SELECT count(DISTINCT p2p_to) as count
+            FROM $wpdb->p2p
+            INNER JOIN $wpdb->postmeta pm ON ( pm.post_id = p2p_to AND pm.meta_key = 'status' AND pm.meta_value != 'pending' )
+            WHERE p2p_type = 'campaigns_to_subscriptions'
+            AND p2p_from = %s
+        ", $campaign_id ) );
     }
 
 
@@ -92,12 +102,12 @@ class DT_Subscriptions {
      * @param array $times
      * @return bool|WP_Error
      */
-    public static function add_subscriber_times( $campaign_id, $subscription_id, $times ){
+    public static function add_subscriber_times( $campaign_id, $subscription_id, $times, $pending = false ){
         foreach ( $times as $time ){
             if ( !isset( $time['time'] ) ){
                 continue;
             }
-            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0 );
+            $new_report = self::add_subscriber_time( $campaign_id, $subscription_id, $time['time'], $time['duration'], $time['grid_id'] ?? null, 0, [], $pending );
             if ( !$new_report ){
                 return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
             }
@@ -115,9 +125,10 @@ class DT_Subscriptions {
      * @param null $location_id
      * @param int $recurring_sign_up_id
      * @param array $meta
+     * @param bool $pending
      * @return false|int|WP_Error
      */
-    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, $meta = [] ){
+    public static function add_subscriber_time( $campaign_id, $subscription_id, $time, $duration, $location_id = null, $recurring_sign_up_id = 0, array $meta = [], bool $pending = false ){
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         if ( is_wp_error( $campaign ) ){
@@ -148,7 +159,7 @@ class DT_Subscriptions {
             'parent_id' => $campaign_id,
             'post_id' => $subscription_id,
             'post_type' => 'subscriptions',
-            'type' => 'campaign_app',
+            'type' => $pending ? 'pending_signup' : 'campaign_app',
             'subtype' => $recurring_sign_up_id > 0 ? 'recurring_signup' : 'selected_time',
             'payload' => null,
             'value' => $recurring_sign_up_id,
@@ -187,7 +198,7 @@ class DT_Subscriptions {
     }
 
 
-    public static function save_recurring_signups( $subscriber_id, $campaign_id, $recurring_signups ){
+    public static function save_recurring_signups( $subscriber_id, $campaign_id, $recurring_signups, bool $pending = false ){
         $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
         foreach ( $recurring_signups as $recurring_signup_info ){
             $first = $recurring_signup_info['selected_times'][0]['time'];
@@ -202,6 +213,9 @@ class DT_Subscriptions {
                 $recurring_signup_info['time'],
                 $recurring_signup_info['week_day'] ?? null,
             );
+            if ( empty( $report_id ) ){
+                return false;
+            }
 
             foreach ( $recurring_signup_info['selected_times'] as $time ){
                 if ( !isset( $time['time'] ) ){
@@ -213,7 +227,9 @@ class DT_Subscriptions {
                     $time['time'],
                     $time['duration'],
                     $time['grid_id'] ?? null,
-                    $report_id
+                    $report_id,
+                    [],
+                    $pending
                 );
                 if ( !$new_report ){
                     return new WP_Error( __METHOD__, 'Sorry, Something went wrong', [ 'status' => 400 ] );
@@ -226,6 +242,29 @@ class DT_Subscriptions {
     public static function get_recurring_signups( $subscriber_id, $campaign_id ){
         $recurring_signups_class = new Recurring_Signups( $subscriber_id, $campaign_id );
         return $recurring_signups_class->get_recurring_signups();
+    }
+
+    public static function get_recurring_signup_label( $recurring_signup, $timezone, $locale, $with_ending = false ){
+        $date = new DateTime( '@' . $recurring_signup['last'] );
+        $tz = new DateTimeZone( $timezone );
+        $date->setTimezone( $tz );
+        $time = DT_Time_Utilities::display_hour_localized( $date, $locale, $timezone );
+
+        if ( $recurring_signup['type'] === 'weekly' ){
+            $week_day = DT_Time_Utilities::display_weekday_localized( $date, $locale, $timezone );
+            $string = sprintf( _x( 'Every %1$s at %2$s for %3$s minutes', 'Every Wednesday at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $week_day, $time, $recurring_signup['duration'] );
+        } else {
+            $string = sprintf( _x( 'Every day at %1$s for %2$s minutes', 'Every day at 5pm for 15 minutes', 'disciple-tools-prayer-campaigns' ), $time, $recurring_signup['duration'] );
+        }
+
+        if ( $with_ending ){
+            $end_date_string = '<strong>' . DT_Time_Utilities::display_date_localized( $date, $locale, $timezone ) . '</strong>';
+            $string .= ', ';
+            $string .= sprintf( _x( 'ending on %s', 'Praying Daily at 4:15 PM, ending on July 18, 2026', 'disciple-tools-prayer-campaigns' ), $end_date_string );
+        }
+
+        return $string;
+
     }
 
     public static function get_recurring_signup( $report_id ){
@@ -402,7 +441,7 @@ class Recurring_Signups {
             'lat' => null,
             'grid_id' => null,
         ];
-        return Disciple_Tools_Reports::insert( $args, true, false );
+        return Disciple_Tools_Reports::insert( $args, true, true );
     }
 
     public function get_recurring_signups(){
@@ -425,9 +464,10 @@ class Recurring_Signups {
 
     public static function format_from_report( $report ){
         $report['payload'] = maybe_unserialize( $report['payload'] );
-        return [
+        $rc = [
             'report_id' => (int) $report['id'],
             'campaign_id' => (int) $report['parent_id'],
+            'post_id' => (int) $report['post_id'],
             'type' => $report['subtype'],
             'label' => $report['payload']['label'] ?? $report['label'],
             'first' => (int) $report['time_begin'],
@@ -436,5 +476,11 @@ class Recurring_Signups {
             'time' => (int) $report['payload']['time'] ?? 0,
             'week_day' => isset( $report['payload']['week_day'] ) ? ( (int) $report['payload']['week_day'] ) : null,
         ];
+        if ( empty( $rc['label'] ) || $report['label'] === 'changed' ){
+            $subscriber = DT_Posts::get_post( 'subscriptions', $report['post_id'], true, false );
+            $rc['label'] = DT_Subscriptions::get_recurring_signup_label( $rc, $subscriber['timezone'], $subscriber['lang'] );
+        }
+
+        return $rc;
     }
 }

@@ -998,12 +998,11 @@ a:not([href]):not([tabindex]):hover {
 .blog-item-text p {
   line-height: 25px;
   margin-bottom: 20px;
-    height: 125px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 /* ==========================================================================
     Contact Us
@@ -1347,7 +1346,29 @@ footer a {
         display: none;
     }
 }
-.leading-others {
+.content-paragraph-padding {
     text-align: start;
     padding: 30px;
+}
+#sign-up {
+    margin-top: -70px;
+    padding-top: 70px;
+}
+
+/* ==========================================================================
+   Edit List Style
+   ========================================================================== */
+
+.edit-post-titles {
+    font-size: 1.75rem;
+    line-height: 2em;
+}
+
+.edit-post-titles .plus-icon {
+    vertical-align: bottom;
+    font-size: 2em;
+}
+
+#edit_modal_div textarea{
+    font-size: 0.8rem;
 }

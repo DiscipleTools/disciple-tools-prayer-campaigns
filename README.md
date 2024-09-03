@@ -15,7 +15,7 @@ you to publish a prayer subscriptions form with the supporting management tools 
 
 ## Resources
 - Example: [https://ramadandemo.pray4movement.org/](https://ramadandemo.pray4movement.org/)
-- Documentation is available at [https://pray4movement.org/docs/](https://pray4movement.org/docs/)
+- Documentation is available at [https://prayer.tools/docs/](https://prayer.tools/docs/)
 - Translation: [Plugin Translation on Weblate](https://translate.disciple.tools/projects/pray4movement/disciple-tools-prayer-campaigns/)
 
 

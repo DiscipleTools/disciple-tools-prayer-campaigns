@@ -2,9 +2,14 @@
    CounterUp
    ========================================================================== */
     jQuery(document).ready(function( $ ) {
-      $('.counter').counterUp({
-        time: 500
-      });
+      //if counterUp is a function
+      if ( typeof counterUp === 'function'){
+        $('.counter').counterUp({
+          time: 500
+        });
+
+      }
+
     });
 
 
@@ -45,29 +50,34 @@
    One Page Navigation & wow js
    ========================================================================== */
   jQuery(function($) {
-      //Initiat WOW JS
-      new WOW().init();
+    if ( typeof WOW !== 'function'){
+      return
+    }
+    //Initiat WOW JS
+    new WOW().init();
 
-      // one page navigation
-      $('.main-navigation').onePageNav({
-              currentClass: 'active'
-      });
+    // one page navigation
+    $('.main-navigation').onePageNav({
+            currentClass: 'active'
+    });
   });
 
   jQuery(document).ready(function() {
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 200) {
+            $('.fixed-top').addClass('menu-bg');
+        } else {
+            $('.fixed-top').removeClass('menu-bg');
+        }
+    });
+    if ( typeof scrollspy !== 'function'){
+      return
+    }
 
-      $('body').scrollspy({
-          target: '.navbar-collapse',
-          offset: 195
-      });
-
-      $(window).on('scroll', function() {
-          if ($(window).scrollTop() > 200) {
-              $('.fixed-top').addClass('menu-bg');
-          } else {
-              $('.fixed-top').removeClass('menu-bg');
-          }
-      });
+    $('body').scrollspy({
+        target: '.navbar-collapse',
+        offset: 195
+    });
 
   });
 
@@ -76,6 +86,9 @@
   /* stellar js
   ========================================================*/
   $(function(){
+    if ( typeof $.stellar !== 'function') {
+      return
+    }
     $.stellar({
       horizontalScrolling: false,
       verticalOffset: 0,
@@ -86,7 +99,7 @@
 /*
    Page Loader
    ========================================================================== */
-   $(window).load(function() {
+   $(window).on('load', function() {
     "use strict";
     $('#loader').fadeOut();
    });
@@ -94,10 +107,57 @@
 /*
   Language Selector
   ========================================================================== */
+  jQuery(document).ready(function( $ ) {
+    $('.dt-magic-link-language-selector').on('change', (e) => {
+      const val = $(e.currentTarget).val()
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('lang', val);
+      window.location.search = urlParams;
+    })
+  });
 
-$('.dt-magic-link-language-selector').change(e => {
-  const val = $(e.currentTarget).val()
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.set('lang', val);
-  window.location.search = urlParams;
-})
+/**
+ * main.js
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2014, Codrops
+ * http://www.codrops.com
+ */
+(function() {
+
+  var bodyEl = document.body,
+    content = document.querySelector( '.content-wrap' ),
+    openbtn = document.getElementById( 'open-button' ),
+    closebtn = document.getElementById( 'close-button' ),
+    isOpen = false;
+
+  function init() {
+    initEvents();
+  }
+
+  function initEvents() {
+    if ( !openbtn ) {
+      return
+    }
+    openbtn.addEventListener( 'click', toggleMenu );
+    if( closebtn ) {
+      closebtn.addEventListener( 'click', toggleMenu );
+    }
+  }
+
+  function toggleMenu() {
+    if( isOpen ) {
+      classie.remove( bodyEl, 'show-menu' );
+    }
+    else {
+      classie.add( bodyEl, 'show-menu' );
+    }
+    isOpen = !isOpen;
+  }
+
+  init();
+
+})();

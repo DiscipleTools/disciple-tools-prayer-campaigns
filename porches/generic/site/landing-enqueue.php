@@ -6,25 +6,26 @@ class DT_Generic_Porch_Landing_Enqueue
 {
     public static function load_scripts() {
         $lang = dt_campaign_get_current_lang();
-        $translations = dt_campaign_list_languages();
-        if ( isset( $translations[$lang]['dir'] ) && $translations[$lang]['dir'] === 'rtl' ){
+        $lang_dir = DT_Campaign_Languages::get_language_direction( $lang );
+        if ( $lang_dir === 'rtl' ){
             wp_enqueue_style( 'porch-style-css', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/rtl.css', array(), filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/rtl.css' ), 'all' );
         }
 
         wp_deregister_script( 'jquery' );
-        wp_enqueue_script( 'my-jquery', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/jquery-min.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/jquery-min.js' ), true );
-        wp_enqueue_script( 'tether', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/tether.min.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/tether.min.js' ), true );
-        wp_enqueue_script( 'bootstrap', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/bootstrap.min.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/bootstrap.min.js' ), true );
-        wp_enqueue_script( 'classie', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/classie.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/classie.js' ), true );
-        wp_enqueue_script( 'jquery.stellar', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/jquery.stellar.min.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/jquery.stellar.min.js' ), true );
-        wp_enqueue_script( 'jquery.nav', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/jquery.nav.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/jquery.nav.js' ), true );
-        wp_enqueue_script( 'smooth-scroll', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/smooth-scroll.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/smooth-scroll.js' ), true );
-        wp_enqueue_script( 'smooth-on-scroll', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/smooth-on-scroll.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/smooth-on-scroll.js' ), true );
-        wp_enqueue_script( 'wow', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/wow.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/wow.js' ), true );
-        wp_enqueue_script( 'menu', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/menu.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/menu.js' ), true );
-        wp_enqueue_script( 'jquery.counterup', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/jquery.counterup.min.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/jquery.counterup.min.js' ), true );
-        wp_enqueue_script( 'waypoints', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/waypoints.min.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/waypoints.min.js' ), true );
-        wp_enqueue_script( 'main', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/main.js', [], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/main.js' ), true );
+        wp_enqueue_script( 'my-jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', [], '2.1.4', true );
+        wp_enqueue_script( 'tether', 'https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js', [ 'my-jquery' ], '1.4.7', true );
+        wp_enqueue_script( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/js/bootstrap.min.js', [ 'my-jquery' ], '4.5.3', true );
+        wp_enqueue_script( 'classie', 'https://cdnjs.cloudflare.com/ajax/libs/classie/1.0.1/classie.min.js', [ 'my-jquery' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/classie.js' ), true );
+        wp_enqueue_script( 'jquery.stellar', 'https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', [ 'my-jquery' ], '0.6.2', true );
+        wp_enqueue_script( 'jquery.nav', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js', [ 'my-jquery' ], '3.0.0', true );
+        wp_enqueue_script( 'smooth-scroll', 'https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js', [ 'my-jquery' ], '16.1.3', true );
+        wp_enqueue_script( 'smooth-on-scroll', 'https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js', [ 'my-jquery' ], '1.4.10', true );
+        wp_enqueue_script( 'wow', 'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', [ 'my-jquery' ], '1.1.2', true );
+        wp_enqueue_script( 'waypoints', 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js', [ 'my-jquery' ], '4.0.1', true );
+        wp_enqueue_script( 'jquery.counterup', 'https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js', [ 'waypoints' ], '1.0.0', true );
+        wp_enqueue_script( 'main', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/main.js', [ 'my-jquery', 'jquery.counterup', 'bootstrap' ], filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/main.js' ), true );
+
+        //todo, upgrade jquery, upgrade bootstrap, remove counter up, check that each file is needed, bundle them?.
     }
 
     public static function load_allowed_scripts() {

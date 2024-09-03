@@ -53,6 +53,9 @@ class DT_Subscriptions_Base {
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
         add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
 
+        add_filter( 'dt_can_view_permission', [ $this, 'can_view_and_update_post' ], 10, 3 );
+        add_filter( 'dt_can_update_permission', [ $this, 'can_view_and_update_post' ], 20, 3 );
+
         add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 
     }
@@ -79,13 +82,31 @@ class DT_Subscriptions_Base {
                 ]
             ];
         }
+        if ( !isset( $expected_roles['campaigns_creator'] ) ){
+            $expected_roles['campaigns_creator'] = [
+                'label' => 'Campaign Creator',
+                'description' => 'Create and edit prayer campaigns',
+                'permissions' => [
+                    'access_disciple_tools' => true,
+                ]
+            ];
+        }
         $subscriptions_permissions = [
             'access_'.$this->post_type => true,
             'create_'.$this->post_type => true,
+        ];
+
+        $all_subscribers_admin_permissions = [
             'update_any_'.$this->post_type => true,
             'view_any_'.$this->post_type => true,
         ];
+
+        $expected_roles['campaigns_creator']['permissions'] = array_merge( $expected_roles['campaigns_creator']['permissions'], $subscriptions_permissions );
+
         $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $subscriptions_permissions );
+        $expected_roles['campaigns_admin']['permissions'] = array_merge( $expected_roles['campaigns_admin']['permissions'], $all_subscribers_admin_permissions );
+
+
 
         if ( isset( $expected_roles['administrator'] ) ){
             $expected_roles['administrator']['permissions']['access_' . $this->post_type ] = true;
@@ -140,6 +161,11 @@ class DT_Subscriptions_Base {
                         'description' => _x( 'No longer active.', 'field description', 'disciple-tools-prayer-campaigns' ),
                         'color' => '#F43636'
                     ],
+                    'pending' => [
+                        'label' => __( 'Pending', 'disciple-tools-prayer-campaigns' ),
+                        'description' => _x( 'Pending approval.', 'field description', 'disciple-tools-prayer-campaigns' ),
+                        'color' => '#FFA500'
+                    ],
                     'active'   => [
                         'label' => __( 'Active', 'disciple-tools-prayer-campaigns' ),
                         'description' => _x( 'Is active.', 'field description', 'disciple-tools-prayer-campaigns' ),
@@ -151,6 +177,15 @@ class DT_Subscriptions_Base {
                 'icon' => get_template_directory_uri() . '/dt-assets/images/status.svg',
                 'default_color' => '#366184',
                 'show_in_table' => 10,
+            ];
+
+            //activation code
+            $fields['activation_code'] = [
+                'name' => __( 'Activation Code', 'disciple-tools-prayer-campaigns' ),
+                'description' => __( 'Activation code for subscriber access', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'hash',
+                'hidden' => true,
+                'customizable' => false,
             ];
 
 
@@ -267,7 +302,15 @@ class DT_Subscriptions_Base {
                 'hidden' => true
             ];
             $fields['receive_prayer_time_notifications'] = [
-                'name' => __( 'Receive Prayer Time Notifications', 'disciple-tools-prayer-campaigns' ),
+                'name' => __( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'tile' => 'details',
+                'default' => false,
+                'hidden' => false,
+                'show_in_table' => 50,
+            ];
+            $fields['auto_extend_prayer_times'] = [
+                'name' => __( 'Auto extend prayer times', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'boolean',
                 'tile' => 'details',
                 'default' => false,
@@ -304,6 +347,10 @@ class DT_Subscriptions_Base {
         if ( $post_type === $this->post_type ){
             $tiles['commitments'] = [ 'label' => __( 'Commitments', 'disciple-tools-subscriptions' ) ];
             $tiles['other'] = [ 'label' => __( 'Other', 'disciple-tools-prayer-campaigns' ) ];
+            $tiles['signup_form'] = [
+                'label' => __( 'Extra Signup Form Fields', 'disciple-tools-prayer-campaigns' ),
+                'description' => '',
+            ];
         }
 
         return $tiles;
@@ -396,27 +443,37 @@ class DT_Subscriptions_Base {
             usort($subs, function( $a, $b ) {
                 return $a['time_begin'] <=> $b['time_begin'];
             });
-            $email_verified = false;
-            foreach ( $subs ?? [] as $sub ){
-                if ( !empty( $sub['value'] ) ){
-                    $email_verified = true;
-                }
-            }
             $timezone = !empty( $subscriber['timezone'] ) ? $subscriber['timezone'] : 'America/Chicago';
             $tz = new DateTimeZone( $timezone );
-            $notifications = isset( $subscriber['receive_prayer_time_notifications'] ) && !empty( $subscriber['receive_prayer_time_notifications'] );
             $link = $this->get_subscription_link( $post_type );
+
+            $welcome_email_sent = empty( $subscriber['activation_code'] );
+            $notifications = empty( $subscriber['activation_code'] ) && isset( $subscriber['receive_prayer_time_notifications'] ) && !empty( $subscriber['receive_prayer_time_notifications'] );
             ?>
-            <p>Conformation Email Sent:
-                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
-                <button class="loader button hollow tiny" type="button" id="resend_confirmation_email">Resend confirmation email</button>
-                <span id="confirmation_email_sent" style="display: none">Conformation Email Sent</span>
-            </p>
             <p>
-                Email address verified:
-                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
-                <a class="button hollow tiny" target="_blank" href="<?php echo esc_url( $link ) ?>">manually verify</a>
+                <?php if ( !empty( $subscriber['activation_code'] ) ) : ?>
+                    Activation email sent: <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/><br>
+                    Prayer commitments will only be counted after the user activates their account<br>
+                    <button class="loader button hollow tiny" type="button" id="resend_activation_email">Resend activation email</button>
+                    <button class="loader button clear tiny alert" type="button" id="manually_activate_email">Manually activate</button>
+                <?php else : ?>
+                    Account Activated: <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/verified.svg' ) ?>"/>
+                <?php endif; ?>
+
             </p>
+
+            <p>Welcome email sent:
+                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $welcome_email_sent ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
+                <?php if ( empty( $subscriber['activation_code'] ) ) : ?>
+                    <button class="loader button hollow tiny" type="button" id="resend_confirmation_email">Resend welcome email</button>
+                    <span id="confirmation_email_sent" style="display: none">Confirmation Email Sent</span>
+                <?php endif; ?>
+            </p>
+<!--            <p>-->
+<!--                Email address verified:-->
+<!--                <img src="--><?php //echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $email_verified ? 'verified.svg' : 'invalid.svg' ) ) ?><!--"/>-->
+<!--                <a class="button hollow tiny" target="_blank" href="--><?php //echo esc_url( $link ) ?><!--">manually verify</a>-->
+<!--            </p>-->
             <p>Notifications allowed:
                 <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/' . ( $notifications ? 'verified.svg' : 'invalid.svg' ) ) ?>"/>
             </p>
@@ -471,25 +528,106 @@ class DT_Subscriptions_Base {
                 </div>
                 <?php
             }
-
             ?>
-                <script type="application/javascript">
-                    $('#resend_confirmation_email').on("click", function (){
-                        $(this).addClass('loading')
-                        $.ajax({
-                            type: 'POST',
-                            contentType: 'application/json; charset=utf-8',
-                            dataType: 'json',
-                            url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/confirmation-email',
-                            beforeSend: (xhr) => {
-                                xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
-                            },
-                        }).then(()=>{
-                            $(this).removeClass('loading')
-                            $('#confirmation_email_sent').show()
-                        })
-                    })
+            <br>
+            <h3>Manually Trigger Emails</h3>
+            <button class="loader button hollow tiny" type="button" id="send_notification_email">Send reminder email</button>
+            <span id="notification_email_sent" style="display: none">Reminder email sent</span>
+            <button class="loader button hollow tiny" type="button" id="send_expiring_email">Send expiring email</button>
+            <span id="expiring_email_sent" style="display: none">Expiring email sent</span>
+            <button class="loader button hollow tiny" type="button" id="send_end_campaign_email">Send end of campaign email</button>
+            <span id="end_campaign_email_sent" style="display: none">End of campaign email sent</span>
 
+            <script type="application/javascript">
+                $('#resend_confirmation_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/confirmation-email',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                        $('#confirmation_email_sent').show()
+                    })
+                })
+                $('#send_notification_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/reminder-email',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                        $('#notification_email_sent').show()
+                    })
+                })
+                $('#send_expiring_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/expiring-email',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                        $('#expiring_email_sent').show()
+                    })
+                })
+                $('#send_end_campaign_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/end-campaign-email',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                        $('#end_campaign_email_sent').show()
+                    })
+                })
+                $('#resend_activation_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/activation-email',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                    })
+                })
+                $('#manually_activate_email').on("click", function (){
+                    $(this).addClass('loading')
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/manually-activate',
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                        },
+                    }).then(()=>{
+                        $(this).removeClass('loading')
+                        window.location.reload()
+                    })
+                })
                 </script>
             <?php
         }
@@ -508,10 +646,80 @@ class DT_Subscriptions_Base {
         register_rest_route( $namespace, '/(?P<id>\d+)/confirmation-email', [
             [
                 'methods'             => 'POST',
-                'callback'            => [ $this, 'send_confirmation_email' ],
+                'callback'            => [ $this, 'send_confirmation_email_endpoint' ],
                 'args' => [
-                        'id' => $arg_schemas['id'],
-                    ],
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+
+        register_rest_route( $namespace, '/(?P<id>\d+)/reminder-email', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'send_reminder_email_endpoint' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+
+
+        register_rest_route( $namespace, '/(?P<id>\d+)/expiring-email', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'send_expiring_email_endpoint' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+
+        register_rest_route( $namespace, '/(?P<id>\d+)/end-campaign-email', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'send_end_campaign_email_endpoint' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+
+        register_rest_route( $namespace, '/(?P<id>\d+)/activation-email', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'send_activation_email' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+        register_rest_route( $namespace, '/(?P<id>\d+)/manually-activate', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'manually_activate_endpoint' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
                 'permission_callback' => function( WP_REST_Request $request ){
                     $url_params = $request->get_url_params();
                     return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
@@ -520,18 +728,110 @@ class DT_Subscriptions_Base {
         ] );
     }
 
-    public function send_confirmation_email( WP_REST_Request $request ){
+    public function manually_activate_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        if ( empty( $url_params['id'] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $subscriber_id = $url_params['id'];
+        self::manually_activate_subscriber_account( $subscriber_id );
+        return self::send_welcome_email( $subscriber_id );
+    }
+
+    public static function manually_activate_subscriber_account( $subscriber_id ){
+        DT_Posts::update_post( 'subscriptions', $subscriber_id, [
+            'status' => 'active',
+            'activation_code' => '',
+        ], true, false );
+        global $wpdb;
+        $wpdb->query( $wpdb->prepare( "
+            UPDATE $wpdb->dt_reports
+            SET type = 'campaign_app'
+            WHERE type = 'pending_signup'
+            AND post_id = %d
+        ", $subscriber_id ) );
+        return true;
+    }
+
+
+    public function send_activation_email( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id );
+        if ( is_wp_error( $subscription ) || !isset( $subscription['campaigns'][0]['ID'] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $campaign_id = $subscription['campaigns'][0]['ID'];
+
+        if ( !isset( $subscription['contact_email'][0]['value'] ) || empty( $subscription['contact_email'] ) ){
+            return new WP_Error( __METHOD__, 'Missing email.' );
+        }
+        return DT_Prayer_Campaigns_Send_Email::send_verification( $subscription['contact_email'][0]['value'], $campaign_id, $subscriber_id );
+    }
+
+
+    public function send_confirmation_email_endpoint( WP_REST_Request $request ){
         $url_params = $request->get_url_params();
         $subscription_id = $url_params['id'];
-        $subscription = DT_Posts::get_post( 'subscriptions', $subscription_id );
+
+        return self::send_welcome_email( $subscription_id );
+    }
+
+    public static function send_welcome_email( $subscriber_id, $campaign_id = null ){
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( empty( $campaign_id ) ){
+            if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
+                return new WP_Error( __METHOD__, 'Missing parameters.' );
+            }
+            $campaign_id = $subscription['campaigns'][0]['ID'];
+        }
+        $recurring_signups = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
+        return DT_Prayer_Campaigns_Send_Email::send_registration( $subscriber_id, $campaign_id, $recurring_signups );
+    }
+
+    public static function send_reminder_email_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+
         if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
             return new WP_Error( __METHOD__, 'Missing parameters.' );
         }
-        $campaign = $subscription['campaigns'][0]['ID'];
+        $campaign_id = $subscription['campaigns'][0]['ID'];
+        $reports = DT_Subscriptions::get_subscriber_prayer_times( $campaign_id, $subscriber_id );
+        $reports = array_slice( $reports, 0, 10 ); //limit to 10
 
-        return DT_Prayer_Campaigns_Send_Email::send_registration( $subscription_id, $campaign );
+        return DT_Prayer_Campaigns_Send_Email::send_prayer_time_reminder( $subscriber_id, $reports, $campaign_id );
     }
 
+    public static function send_expiring_email_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+
+        if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $campaign_id = $subscription['campaigns'][0]['ID'];
+        $reports = DT_Subscriptions::get_recurring_signups( $subscriber_id, $campaign_id );
+        $reports = array_slice( $reports, 0, 10 ); //limit to 10
+
+        return DT_Prayer_Campaigns_Send_Email::send_resubscribe_tickler( $subscriber_id, $campaign_id, $reports, true );
+
+    }
+
+    public static function send_end_campaign_email_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        $subscription = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+
+        if ( !isset( $subscription['campaigns'][0]['ID'] ) ){
+            return new WP_Error( __METHOD__, 'Missing parameters.' );
+        }
+        $campaign_id = $subscription['campaigns'][0]['ID'];
+
+        return DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $subscriber_id, $campaign_id );
+    }
 
 
     public function post_connection_added( $post_type, $post_id, $field_key, $value ){
@@ -608,7 +908,7 @@ class DT_Subscriptions_Base {
 
     //build list page filters
     public static function dt_user_list_filters( $filters, $post_type ){
-        if ( $post_type === self::post_type() && current_user_can( 'view_any_'.self::post_type() ) ){
+        if ( $post_type === self::post_type() && current_user_can( 'access_' . $post_type ) ){
 
             $fields = DT_Posts::get_post_field_settings( $post_type );
 
@@ -680,14 +980,53 @@ class DT_Subscriptions_Base {
         return $filters;
     }
 
-    // access permission
+    private static function get_user_campaigns() {
+        $user_id = get_current_user_id();
+
+        global $wpdb;
+        $campaign_ids = $wpdb->get_col( $wpdb->prepare("
+            SELECT post_id FROM $wpdb->dt_share
+            INNER JOIN $wpdb->posts p ON p.ID = post_id
+            WHERE p.post_type = 'campaigns'
+            AND user_id = %s
+        ", $user_id ) );
+
+        return $campaign_ids;
+    }
+
+    // list access permission
     public static function dt_filter_access_permissions( $permissions, $post_type ){
         if ( $post_type === self::post_type() ){
             if ( DT_Posts::can_view_all( $post_type ) ){
                 $permissions = [];
+            } else {
+                $campaign_ids = self::get_user_campaigns();
+                if ( !empty( $campaign_ids ) ){
+                    $permissions[] = [
+                        'campaigns' => $campaign_ids
+                    ];
+
+                }
             }
         }
         return $permissions;
+    }
+
+    //record access permission
+    public static function can_view_and_update_post( $has_permission, $post_id, $post_type ){
+        if ( $post_type === self::post_type() && !$has_permission ){
+            $campaign_ids = self::get_user_campaigns();
+            $post = DT_Posts::get_post( $post_type, $post_id, true, false );
+            if ( !empty( $post['campaigns'] ) ){
+                foreach ( $post['campaigns'] as $campaign ){
+                    if ( in_array( $campaign['ID'], $campaign_ids ) ){
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return $has_permission;
     }
 }
 

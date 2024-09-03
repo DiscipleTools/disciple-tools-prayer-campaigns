@@ -1,4 +1,7 @@
 jQuery(document).ready(function($){
+  /**
+   * Click the nav bar buttons to show the different panels
+   */
   $('.nav-bar button').on('click', function (){
     $('.nav-bar button').removeClass('active')
     $(this).addClass('active')
@@ -117,13 +120,24 @@ export class cpProfile extends LitElement {
         </div>
         <div class="row">
             <label style="display: flex">
-                ${translate('Receive Prayer time notifications')}
+                ${translate('Receive prayer time notifications')}
                 <input type="checkbox"
                        @change="${e=>this.updates.receive_prayer_time_notifications = e.target.checked}"
                        ?checked="${this.subscriber_data.receive_prayer_time_notifications}"
                 >
             </label>
         </div>
+        ${window.campaign_data.magic_fuel ? html`  
+        <div class="row">
+          <label style="display: flex">
+              ${translate('Auto extend prayer times')}
+              <input type="checkbox"
+                     @change="${e=>this.updates.auto_extend_prayer_times = e.target.checked}"
+                     ?checked="${this.subscriber_data.auto_extend_prayer_times}"
+              >
+          </label>
+        </div>
+        ` : ''}
         <div class="row">
             <button class="loader ${this.show_spinner ? 'loading' : ''}" @click="${this.save_profile}">Save</button>
         </div>
@@ -172,6 +186,8 @@ export class cpProfile extends LitElement {
     }).then((data)=>{
       this.show_spinner = false;
       if ( this.updates.language ){
+        //delete dt-magic-link-lang cookie
+        document.cookie = 'dt-magic-link-lang=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         window.location.reload()
       }
       this.updates = {}

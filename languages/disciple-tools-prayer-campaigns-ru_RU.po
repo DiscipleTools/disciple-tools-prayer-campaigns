@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
+"POT-Creation-Date: 2024-08-29T12:55:35+00:00\n"
 "PO-Revision-Date: 2023-03-15 11:37+0000\n"
 "Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
 "Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
@@ -16,216 +16,235 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#: campaign-functions/cron-schedule.php:82
-msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
-msgid "Click here to see the prayer prompts for today: %s"
-msgstr "Нажмите здесь, чтобы увидеть молитву на сегодня: %s"
-
-#: campaign-functions/send-email-utility.php:50
+#: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:52
-msgid ""
-"Please copy and paste the following code into the Confirmation Code field."
+#: campaign-functions/send-email-utility.php:87
+msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:59
-msgid "This code will expire after 10 minutes."
-msgstr ""
+#: campaign-functions/send-email-utility.php:94
+#, fuzzy
+#| msgid "Or open this link:"
+msgid "Or click this link:"
+msgstr "Или нажмите на ссылку:"
 
-#: campaign-functions/send-email-utility.php:60
+#: campaign-functions/send-email-utility.php:99
 msgid "If you did not request this email, please ignore it."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:233
+#: campaign-functions/send-email-utility.php:183
+#: campaign-functions/send-email-utility.php:279
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s с %2$s до %3$s"
 
-#: campaign-functions/send-email-utility.php:150
+#: campaign-functions/send-email-utility.php:190
 #, fuzzy
 #| msgid "Verify your account"
 msgid "see more on your account"
 msgstr "Подтвердите ваш аккаунт"
 
-#: campaign-functions/send-email-utility.php:162
+#: campaign-functions/send-email-utility.php:202
 msgid "Registered to pray with us!"
 msgstr "Зарегистрировались, чтобы молиться с нами!"
 
-#: campaign-functions/send-email-utility.php:184
-#: campaign-functions/send-email-utility.php:265
-#: campaign-functions/send-email-utility.php:355
+#: campaign-functions/send-email-utility.php:223
+#: campaign-functions/send-email-utility.php:311
+#: campaign-functions/send-email-utility.php:416
 msgid "Hello %s,"
 msgstr "Привет %s,"
 
-#: campaign-functions/send-email-utility.php:186
-#, fuzzy
-#| msgid "Strategic prayer for a Disciple Making Movement"
-msgid ""
-"Thank you for joining us in strategic prayer for a disciple making movement!"
-msgstr "Стратегическая молитва за движение умножения учеников"
-
-#: campaign-functions/send-email-utility.php:187
-#: campaign-functions/send-email-utility.php:276
+#: campaign-functions/send-email-utility.php:227
+#: campaign-functions/send-email-utility.php:323
 msgid "Access your account to see your commitments and make changes:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:277
-#: parts/components-enqueue.php:93
+#: campaign-functions/send-email-utility.php:228
+#: campaign-functions/send-email-utility.php:324
+#: campaign-functions/send-email-utility.php:424
+#: parts/components-enqueue.php:94
 msgid "Access Account"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:191
+#: campaign-functions/send-email-utility.php:231
 #, fuzzy
 #| msgid "Thank you for signing up to pray!"
 msgid "You signed up to pray:"
 msgstr "Спасибо, что подписались на молитву!"
 
-#: campaign-functions/send-email-utility.php:196
+#: campaign-functions/send-email-utility.php:236
 #, fuzzy
 #| msgid "Click here to manage your account and time commitments"
 msgid "These are your next prayer commitments:"
 msgstr ""
 "Нажать здесь, чтобы управлять своей учетной записью и посвященным временем"
 
-#: campaign-functions/send-email-utility.php:199
-#: campaign-functions/send-email-utility.php:269
+#: campaign-functions/send-email-utility.php:239
+#: campaign-functions/send-email-utility.php:315
 msgid "Times are shown according to: %s time"
 msgstr "Время указано в соответствии с: %s временем"
 
-#: campaign-functions/send-email-utility.php:203
-#: magic-links/subscription-management/subscription-management.php:355
+#: campaign-functions/send-email-utility.php:243
+#: magic-links/subscription-management/subscription-management.php:378
 msgid "Download Calendar"
 msgstr "Скачать календарь"
 
-#: campaign-functions/send-email-utility.php:239
+#: campaign-functions/send-email-utility.php:267
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr "Нажмите здесь, чтобы увидеть молитву на сегодня: %s"
+
+#: campaign-functions/send-email-utility.php:285
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "для %s"
 
-#: campaign-functions/send-email-utility.php:249
+#: campaign-functions/send-email-utility.php:295
 msgid "Prayer Time reminder!"
 msgstr "Напоминание о молитве!"
 
-#: campaign-functions/send-email-utility.php:266
-#: parts/components-enqueue.php:103
+#: campaign-functions/send-email-utility.php:312
+#: campaign-functions/send-email-utility.php:418
+#: parts/components-enqueue.php:105
 #, fuzzy
 #| msgid "Thank you for praying with us!"
 msgid "Thank you for praying with us."
 msgstr "Спасибо, что молитесь вместе с нами!"
 
-#: campaign-functions/send-email-utility.php:267
+#: campaign-functions/send-email-utility.php:313
 msgid "Here are your upcoming prayer times:"
 msgstr "Ваше предстоящее время молитвы:"
 
-#: campaign-functions/send-email-utility.php:353
-msgid "Continue Praying?"
+#: campaign-functions/send-email-utility.php:318
+#: magic-links/campaign-magic-link.php:110
+#: magic-links/campaign-magic-link.php:112
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:33
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:95
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:153
+#: porches/generic/dt-generic-porch-strings.php:152
+#: porches/generic/dt-generic-porch-strings.php:161
+msgid "Prayer Fuel"
+msgstr "Молитвенное Горючее"
+
+#: campaign-functions/send-email-utility.php:414
+#, fuzzy
+#| msgid "Continue Praying?"
+msgid "[ACTION NEEDED] Continue Praying?"
 msgstr "Хотите продолжать молиться?"
 
-#: campaign-functions/send-email-utility.php:356
-msgid ""
-"You are 2 weeks out from your last prayer time. Would you like to keep "
-"praying?"
+#: campaign-functions/send-email-utility.php:418
+msgid "Some of your prayer times will be ending soon."
 msgstr ""
-"У вас осталось 2 недели до завершения вашего молитвенного времени. Хотели бы "
-"вы продолжить молиться?"
 
-#: campaign-functions/send-email-utility.php:357
-msgid "Sign up for more prayer times or extend your recurring time here:"
-msgstr ""
-"Подпишитесь, чтобы продолжать молиться или продлите свое повторяющееся время "
-"здесь:"
-
-#: campaign-functions/send-email-utility.php:359
+#: campaign-functions/send-email-utility.php:419
 #, fuzzy
-#| msgid "Or open this link:"
-msgid "Or click this link:"
-msgstr "Или нажмите на ссылку:"
+#| msgid "Add prayer time"
+msgid "The prayer times are:"
+msgstr "Добавить время молитвы"
 
-#: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
+#: campaign-functions/send-email-utility.php:423
+msgid ""
+"To continue praying, and to keep receiving the notifications, please access "
+"your account and click \"extend\" next to your commitment(s). You can also "
+"sign up for a different time if you wish."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:425
+msgid ""
+"You do not have to do anything if you do not want to continue praying when "
+"your prayer times end."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:427 parts/components.php:51
+#: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
 msgid "Thank you"
 msgstr "Спасибо"
 
-#: campaign-functions/send-email-utility.php:406
-#: porches/generic/site/stats.php:144
+#: campaign-functions/send-email-utility.php:473
+#: porches/generic/site/stats.php:84
 msgid "Thank you for praying with us!"
 msgstr "Спасибо, что молитесь вместе с нами!"
 
-#: campaign-functions/send-email-utility.php:429
-#: campaign-functions/send-email-utility.php:459
+#: campaign-functions/send-email-utility.php:497
+#: campaign-functions/send-email-utility.php:527
 #, fuzzy
 #| msgid "Strategic prayer for a Disciple Making Movement"
 msgid "Strategic prayer for a disciple making movement in %s"
 msgstr "Стратегическая молитва за движение умножения учеников"
 
-#: campaign-functions/send-email-utility.php:431
-#: campaign-functions/send-email-utility.php:461
-#: porches/generic/dt-generic-porch-settings.php:59
+#: campaign-functions/send-email-utility.php:499
+#: campaign-functions/send-email-utility.php:529
+#: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Стратегическая молитва за движение умножения учеников"
 
-#: campaign-functions/send-email-utility.php:436
-#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:504
+#: campaign-functions/send-email-utility.php:534
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:439
-#: campaign-functions/send-email-utility.php:469
+#: campaign-functions/send-email-utility.php:507
+#: campaign-functions/send-email-utility.php:537
 #, fuzzy
 #| msgctxt "Thank you for joining us in prayer for the French in France."
 #| msgid "Thank you for joining us in prayer for the %1$s in %2$s."
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Спасибо, что присоединились к нам в молитве за %1$s в %2$s."
 
-#: campaign-functions/send-email-utility.php:442
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:445
+#: campaign-functions/send-email-utility.php:513
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:449
+#: campaign-functions/send-email-utility.php:515
+msgid ""
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:517
 #, fuzzy
 #| msgid "Select a prayer time"
 msgid "See Prayer Stats"
 msgstr "Выбрать время молитвы"
 
-#: campaign-functions/send-email-utility.php:451
-#: campaign-functions/send-email-utility.php:487
+#: campaign-functions/send-email-utility.php:519
+#: campaign-functions/send-email-utility.php:549
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:472
+#: campaign-functions/send-email-utility.php:540
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:476
+#: campaign-functions/send-email-utility.php:543
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:483
+#: campaign-functions/send-email-utility.php:545
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
-"opportunities by Pray4Movement, the makers of this prayer tool."
+"opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:485
+#: campaign-functions/send-email-utility.php:547
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
@@ -261,9 +280,14 @@ msgstr "год"
 msgid "day"
 msgstr "день"
 
-#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
+#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:42
 msgid "days"
 msgstr "дней"
+
+#: campaign-functions/utils.php:286
+#: porches/generic/site/edit-post-list-body.php:142
+msgid "Edit"
+msgstr ""
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:159
 #, fuzzy
@@ -277,7 +301,8 @@ msgstr ""
 "Введите свой адрес электронной почты и получите ссылку на время молитвы."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:83
+#: porches/generic/site/stats.php:209
 msgid "Email"
 msgstr "Электронная почта"
 
@@ -293,287 +318,318 @@ msgstr ""
 "Пожалуйста, проверьте свой адрес электронной почты сейчас для вашей ссылки "
 "доступа."
 
-#: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:344
-#: parts/components-enqueue.php:49
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:91
+#, fuzzy
+#| msgid "Your prayer times have been verified!"
+msgid "Your prayer time has been extended"
+msgstr "Ваше молитвенное время подтверждено!"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:92
+#, fuzzy
+#| msgid "Thank you for signing up to pray!"
+msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
+msgid "You are signed up to pray %1$s until %2$s."
+msgstr "Спасибо, что подписались на молитву!"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:93
+msgid "OK"
+msgstr "ОК"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:94
+msgid "Email me the updated calendar"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:96
+msgid "Join me in praying!"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:278
+#: porches/generic/site/archive-body.php:35
+#: porches/generic/site/post-list-body.php:164
+msgid "Content will start in %s days"
+msgstr "Содержание начнется через %s дней"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:290
+#: porches/generic/site/archive-body.php:47
+msgid "This campaign is finished. See Fuel below"
+msgstr "Эта кампания завершена. Посмотреть ниже"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:312
+#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:48
+#, fuzzy
+#| msgid "Delete Time"
+msgid "Prayer Timer"
+msgstr "Удалить время"
+
+#: magic-links/subscription-management/subscription-management.php:39
+#: magic-links/subscription-management/subscription-management.php:367
+#: parts/components-enqueue.php:53
 #, fuzzy
 #| msgid "Prayer Commitments"
 msgid "My Prayer Commitments"
 msgstr "Молитвенные посвящения"
 
-#: magic-links/subscription-management/subscription-management.php:326
-#: porches/generic/site/stats.php:205
+#: magic-links/subscription-management/subscription-management.php:341
+#: porches/generic/site/stats.php:142
 msgid "Prayer Commitments"
 msgstr "Молитвенные посвящения"
 
-#: magic-links/subscription-management/subscription-management.php:327
+#: magic-links/subscription-management/subscription-management.php:342
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:333
+#: magic-links/subscription-management/subscription-management.php:348
+msgid "Account activated!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:349
+msgid "Here you can manage your prayer commitments and account settings."
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:356
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:334
+#: magic-links/subscription-management/subscription-management.php:357
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "Домой"
 
-#: magic-links/subscription-management/subscription-management.php:336
-#: porches/generic/site/stats.php:170
+#: magic-links/subscription-management/subscription-management.php:359
+#: porches/generic/site/stats.php:20 porches/generic/site/stats.php:107
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:352
+#: magic-links/subscription-management/subscription-management.php:375
 #, fuzzy
 #| msgid "Download Calendar"
 msgid "My Calendar"
 msgstr "Скачать календарь"
 
-#: magic-links/subscription-management/subscription-management.php:368
+#: magic-links/subscription-management/subscription-management.php:388
 #, fuzzy
 #| msgid "Sign Up to Pray"
 msgid "Sign up for more prayer"
 msgstr "Зарегистрироваться чтобы молиться"
 
-#: magic-links/subscription-management/subscription-management.php:391
+#: magic-links/subscription-management/subscription-management.php:409
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Эта подписка закончилась или настроена неправильно."
 
-#: parts/components-enqueue.php:36
+#: parts/components-enqueue.php:40
 #, fuzzy
 #| msgid "Selected Times"
 msgid "Detected time zone"
 msgstr "Выбранное время"
 
-#: parts/components-enqueue.php:37
+#: parts/components-enqueue.php:41
 #, fuzzy
-#| msgid "Change your timezone:"
-msgid "Choose a timezone"
-msgstr "Изменить часовой пояс:"
+#| msgid "Select a time"
+msgid "Select a timezone"
+msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
-#: porches/generic/site/stats.php:227
+#: parts/components-enqueue.php:43 porches/generic/site/stats.php:154
+#: porches/generic/site/stats.php:164
 msgid "hours"
 msgstr "часы"
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:44
 msgid "minutes"
 msgstr "минуты"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:45
 msgid "seconds"
 msgstr "секунды"
 
-#: parts/components-enqueue.php:42
+#: parts/components-enqueue.php:46
 #, fuzzy
 #| msgid "Campaign Stats"
 msgid "Campaign Starts In"
 msgstr "Статистика кампании"
 
-#: parts/components-enqueue.php:43
+#: parts/components-enqueue.php:47
 #, fuzzy
 #| msgid "Campaign Stats"
 msgid "Campaign Ends In"
 msgstr "Статистика кампании"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:48
 #, fuzzy
 #| msgid "Campaign Stats"
 msgid "Campaign Ended"
 msgstr "Статистика кампании"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:49
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s на %2$s минут."
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:50
 msgid "How often?"
 msgstr ""
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:51
 msgid "I will pray for"
 msgstr ""
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:52
 #, fuzzy
 #| msgid "Select a time"
 msgid "At what time?"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:54
 msgid "Contact Info"
 msgstr ""
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:76
 msgid "Name"
 msgstr "Имя"
 
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:57
 msgid "Start Here"
 msgstr ""
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:58
 #, fuzzy
 #| msgid "Continue Praying?"
 msgid "Continue here"
 msgstr "Хотите продолжать молиться?"
 
-#: parts/components-enqueue.php:55
+#: parts/components-enqueue.php:59
 msgid "On which week day?"
 msgstr ""
 
-#: parts/components-enqueue.php:56
+#: parts/components-enqueue.php:60
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a Date"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:61
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a Time"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:62
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a Time for %s"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
 msgid "Close"
 msgstr "Закрыть"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:64
 #, fuzzy
 #| msgid "Prayer Commitments"
 msgid "prayer commitments"
 msgstr "Молитвенные посвящения"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:65
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:66
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:63
+#: parts/components-enqueue.php:67
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
+#: parts/components-enqueue.php:68 parts/components.php:45
+#: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
 msgid "Submit"
 msgstr "Отправить"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:69
 msgid "Verify"
 msgstr ""
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:70
 msgid "Percentage covered in prayer"
 msgstr "Покрытие молитвой в процентах"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:71
 #, fuzzy
 #| msgctxt "12.3 years committed"
 #| msgid "% committed"
 msgid "%s committed"
 msgstr "% посвящено"
 
-#: parts/components-enqueue.php:68
+#: parts/components-enqueue.php:72
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
+#: parts/components-enqueue.php:73
 msgid "Next"
 msgstr "Дальше"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:74
 msgid "No prayer times selected"
 msgstr "Молитвенное время не выбрано"
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:75
 #, fuzzy
 #| msgid "Daily Time"
 msgid "Daily"
 msgstr "Ежедневное время"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:76
 msgid "Weekly"
 msgstr ""
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:77
 #, fuzzy
 #| msgid "Month"
 msgid "Monthly"
 msgstr "Месяц"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:78
 msgid "Pick Dates and Times"
 msgstr ""
 
-#: parts/components-enqueue.php:75
-msgctxt "up to 3 months"
-msgid "up to %s months"
-msgstr ""
-
-#: parts/components-enqueue.php:76
-msgid "A confirmation code hase been sent to %s."
-msgstr ""
-
-#: parts/components-enqueue.php:77
-msgid ""
-"Please enter the code below in the next 10 minutes to confirm your email "
-"address."
-msgstr ""
-
-#: parts/components-enqueue.php:78
+#: parts/components-enqueue.php:79
 #, fuzzy
 #| msgid "5 minutes"
 msgid "%s Minutes"
 msgstr "5 минут"
 
-#: parts/components-enqueue.php:79
+#: parts/components-enqueue.php:80
 #, fuzzy
 #| msgid "Hours"
 msgid "%s Hour"
 msgstr "Часы"
 
-#: parts/components-enqueue.php:80
+#: parts/components-enqueue.php:81
 #, fuzzy
 #| msgid "Hours"
 msgid "%s Hours"
 msgstr "Часы"
 
-#: parts/components-enqueue.php:81
+#: parts/components-enqueue.php:82
 #, fuzzy
 #| msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 #| msgid "%1$s from %2$s to %3$s"
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s с %2$s до %3$s"
 
-#: parts/components-enqueue.php:82
+#: parts/components-enqueue.php:83
 #, fuzzy
 #| msgctxt "Monday 5pm for 15 minutes"
 #| msgid "%1$s for %2$s minutes."
 msgid "for %s minutes"
 msgstr "%1$s на %2$s минут."
 
-#: parts/components-enqueue.php:83
+#: parts/components-enqueue.php:84
 msgid "Every %s"
 msgstr ""
-
-#: parts/components-enqueue.php:84
-#, fuzzy
-#| msgid "Confirm Times"
-msgid "Confirmation Code"
-msgstr "Подтвердить время"
 
 #: parts/components-enqueue.php:85
 #, fuzzy
@@ -583,37 +639,43 @@ msgstr "Молитвенное время не выбрано"
 
 #: parts/components-enqueue.php:86
 #, fuzzy
+#| msgid "No prayer times selected"
+msgid "Prayer Time Removed"
+msgstr "Молитвенное время не выбрано"
+
+#: parts/components-enqueue.php:87
+#, fuzzy
 #| msgid "Select a time"
 msgid "Select a Day"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:88
 msgid "Renews on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 msgid "Ends on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 msgid "Success"
 msgstr ""
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Your registration was successful."
 msgstr "Ваша регистрация успешно завершена."
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 #, fuzzy
 #| msgid "In the email is a link to manage your prayer times."
 msgid "Check your email for additional details and to manage your account."
 msgstr "В электронном письме есть ссылка для управления временем молитвы."
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 #, fuzzy
 #| msgid ""
 #| "Need to cancel? We get it! But wait!\n"
@@ -633,95 +695,90 @@ msgstr ""
 "Это убережет молитвенную цепочку от разрыва и подарит кому-то радость битвы "
 "за заблудших! Спасибо!"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 #, fuzzy
 #| msgid "Advanced Settings"
 msgid "Account Settings"
 msgstr "Расширенные настройки"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 #, fuzzy
 #| msgid "Receive prayer time notifications"
-msgid "Receive Prayer time notifications"
+msgid "Receive prayer time notifications"
 msgstr "Получать уведомления о времени молитвы"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
+#, fuzzy
+#| msgid "Add prayer time"
+msgid "Auto extend prayer times"
+msgstr "Добавить время молитвы"
+
+#: parts/components-enqueue.php:100
 msgid "Advanced Settings"
 msgstr "Расширенные настройки"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:101
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:102
 #, fuzzy
 #| msgid "Delete this profile and all the scheduled prayer times?"
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "Удалить этот профиль и все запланированное молитвенное время?"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:103
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:104
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:106
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:107
 msgid "Delete"
 msgstr "Удалить"
 
-#: parts/components-enqueue.php:106
-#, fuzzy
-#| msgid "Select a time"
-msgid "Select a timezone"
-msgstr "Выбрать время"
-
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
+#: porches/generic/dt-generic-porch-strings.php:206
 #, fuzzy
 #| msgid "Prayer Fuel"
 msgid "See Prayer Fuel"
 msgstr "Молитвенное Горючее"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #, fuzzy
 #| msgid "Change daily time"
 msgid "change time"
 msgstr "Изменить ежедневное время"
 
-#: parts/components-enqueue.php:109
-#, fuzzy
-#| msgid "Delete all"
-msgid "Remove all"
-msgstr "Удалить все"
-
 #: parts/components-enqueue.php:110
+#, fuzzy
+#| msgid "Start Praying!"
+msgid "Stop Praying"
+msgstr "Начать молиться!"
+
+#: parts/components-enqueue.php:111
 #, fuzzy
 #| msgid "Add prayer time"
 msgid "See prayer times"
 msgstr "Добавить время молитвы"
 
-#: parts/components-enqueue.php:111
-#, fuzzy
-#| msgid "Prayer Time"
-msgid "Delete Prayer Times"
-msgstr "Время молитвы"
-
 #: parts/components-enqueue.php:112
 #, fuzzy
-#| msgid "Select a prayer time"
-msgid "Really delete these prayer times?"
-msgstr "Выбрать время молитвы"
+#| msgid "Your new prayer times have been saved."
+msgid "Your future prayer times will be canceled."
+msgstr "Ваше новое время молитвы сохранено."
 
 #: parts/components-enqueue.php:113
 #, fuzzy
@@ -788,50 +845,137 @@ msgid "Sundays"
 msgstr "дней"
 
 #: parts/components-enqueue.php:124
+msgid "Hours"
+msgstr "Часы"
+
+#: parts/components-enqueue.php:125
+#, fuzzy
+#| msgid "Hours"
+msgid "Hour"
+msgstr "Часы"
+
+#: parts/components-enqueue.php:126
+#, fuzzy
+#| msgid "minutes"
+msgid "Minutes"
+msgstr "минуты"
+
+#: parts/components-enqueue.php:127
 #, fuzzy
 #| msgid "Choose Prayer Times"
 msgid "Change Prayer Time"
 msgstr "Выбрать время молитвы"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:128
 #, fuzzy
 #| msgid "Your new prayer times have been saved."
 msgid "Your current prayer time is %s"
 msgstr "Ваше новое время молитвы сохранено."
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:129
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a new time:"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:130
 #, fuzzy
 #| msgid "Select a time"
 msgid "Select a time"
 msgstr "Выбрать время"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:131
 #, fuzzy
 #| msgid "Prayer Time"
 msgid "Renew Prayer Times"
 msgstr "Время молитвы"
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:132
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:133
 #, fuzzy
 #| msgid ""
 #| "Would you like to hear about other prayer efforts and opportunities with "
 #| "Pray4Movement.org?"
 msgid ""
-"Receive Pray4Movement news and opportunities, and occasional communication "
-"from GospelAmbition.org."
+"Receive news from Prayer.Tools about upcoming prayer campaigns and "
+"occasional communication from GospelAmbition.org"
 msgstr ""
 "Хотели бы вы услышать о других молитвенных усилиях и возможностях с "
 "Pray4Movement.org?"
+
+#: parts/components-enqueue.php:136
+msgid "Text Translations"
+msgstr ""
+
+#: parts/components-enqueue.php:137
+msgid "Original String"
+msgstr ""
+
+#: parts/components-enqueue.php:138
+msgid "Custom Value For All Languages"
+msgstr ""
+
+#: parts/components-enqueue.php:139
+msgid "Translation For Currently Selected Language"
+msgstr ""
+
+#: parts/components-enqueue.php:141
+#, fuzzy
+msgid "Update"
+msgstr "Обновить"
+
+#: parts/components-enqueue.php:144
+msgid "Almost there! Finish signing up by activating your account."
+msgstr ""
+
+#: parts/components-enqueue.php:145
+msgid "Click the \"Activate Account\" button in the email sent to: %s"
+msgstr ""
+
+#: parts/components-enqueue.php:146
+msgid "It will look like this:"
+msgstr ""
+
+#: parts/components-enqueue.php:147
+msgid "Pending - Verification Needed"
+msgstr ""
+
+#: parts/components-enqueue.php:148
+msgid "Back to sign-up"
+msgstr ""
+
+#: parts/components-enqueue.php:149
+msgid "So sorry. Something went wrong. You can:"
+msgstr ""
+
+#: parts/components-enqueue.php:150
+msgid "Try Again"
+msgstr ""
+
+#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:46
+msgid "Contact Us"
+msgstr ""
+
+#: parts/components-enqueue.php:152
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
+msgstr ""
+
+#: parts/components-enqueue.php:153
+#, fuzzy
+#| msgctxt "80% covered"
+#| msgid "%s covered"
+msgid "Time not covered"
+msgstr "покрыто"
+
+#: parts/components-enqueue.php:154
+msgid "# of people covering this time"
+msgstr ""
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -851,19 +995,19 @@ msgstr ""
 msgid "How many prayed today (including yourself)?"
 msgstr "Сколько людей помолилось сегодня (включая вас)?"
 
-#: porches/generic/dt-generic-porch-settings.php:68
+#: porches/generic/dt-generic-porch-strings.php:47
 msgid "Our Vision"
 msgstr "Наше видение"
 
-#: porches/generic/dt-generic-porch-settings.php:77
+#: porches/generic/dt-generic-porch-strings.php:56
 msgid "We want to cover this region with continuous 24/7 prayer."
 msgstr "Мы хотим охватить этот регион непрерывной круглосуточной молитвой."
 
-#: porches/generic/dt-generic-porch-settings.php:94
+#: porches/generic/dt-generic-porch-strings.php:73
 msgid "Extraordinary Prayer"
 msgstr "Экстраординарная молитва"
 
-#: porches/generic/dt-generic-porch-settings.php:103
+#: porches/generic/dt-generic-porch-strings.php:82
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
@@ -871,11 +1015,11 @@ msgstr ""
 "Каждое движение умножения учеников в истории, происходило в контексте "
 "экстраординарной молитвы."
 
-#: porches/generic/dt-generic-porch-settings.php:120
+#: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
 msgstr "Фокус на умножении"
 
-#: porches/generic/dt-generic-porch-settings.php:129
+#: porches/generic/dt-generic-porch-strings.php:108
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
@@ -883,11 +1027,11 @@ msgstr ""
 "Просите, ищите, стучите вместе с нами для излияния потоков учеников и "
 "церквей."
 
-#: porches/generic/dt-generic-porch-settings.php:146
+#: porches/generic/dt-generic-porch-strings.php:125
 msgid "24/7 Every Day"
 msgstr "24/7 каждый день"
 
-#: porches/generic/dt-generic-porch-settings.php:155
+#: porches/generic/dt-generic-porch-strings.php:134
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
@@ -895,23 +1039,35 @@ msgstr ""
 "Выберите 15-минутный (или более!) интервал, в который вы будете молиться "
 "каждый день. Пригласите кого-нибудь еще зарегистрироваться."
 
-#: porches/generic/dt-generic-porch-settings.php:173
-#: porches/generic/dt-generic-porch-settings.php:182
-#: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
-msgid "Prayer Fuel"
-msgstr "Молитвенное Горючее"
-
-#: porches/generic/dt-generic-porch-settings.php:191
+#: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr "Используйте эти ресурсы, чтобы молиться сфокусированно каждый день."
 
-#: porches/generic/dt-generic-porch-settings.php:200
+#: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
 msgstr "Молитвенное горючее на сегодня"
 
-#: porches/generic/dt-generic-porch-settings.php:209
+#: porches/generic/dt-generic-porch-strings.php:188
 msgid "All Days"
 msgstr "Все дни"
+
+#: porches/generic/dt-generic-porch-strings.php:197
+#, fuzzy
+#| msgid "Prayer Fuel"
+msgid "Edit Prayer Fuel"
+msgstr "Молитвенное Горючее"
+
+#: porches/generic/dt-generic-porch-strings.php:215
+#, fuzzy
+#| msgid "Prayer Fuel"
+msgid "Scheduled Prayer Fuel"
+msgstr "Молитвенное Горючее"
+
+#: porches/generic/dt-generic-porch-strings.php:223
+msgid ""
+"All Scheduled Prayer Fuel in all available languages. Add and edit the "
+"prayer fuel below"
+msgstr ""
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
@@ -931,129 +1087,118 @@ msgstr ""
 "Попробуйте использовать некоторые ссылки в меню, чтобы вернуться в нужное "
 "русло."
 
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
-msgid "Content will start in %s days"
-msgstr "Содержание начнется через %s дней"
+#: porches/generic/site/contact-us.php:91
+msgid "Message"
+msgstr ""
 
-#: porches/generic/site/archive-body.php:46
-msgid "This campaign is finished. See Fuel below"
-msgstr "Эта кампания завершена. Посмотреть ниже"
+#: porches/generic/site/edit-post-list-body.php:120
+msgid "Day %s"
+msgstr ""
 
-#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
-#: porches/generic/site/top-section.php:100
-#: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
+#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/top-section.php:111
+#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 msgid "Sign Up to Pray"
 msgstr "Зарегистрироваться чтобы молиться"
 
-#: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
+#: porches/generic/site/home-body.php:168 porches/generic/site/stats.php:150
 msgid "Time Committed"
 msgstr "Посвященное время"
 
-#: porches/generic/site/home-body.php:186
+#: porches/generic/site/home-body.php:184
 #, fuzzy
 #| msgid "My Prayer Times"
 msgid "Prayer Warriors"
 msgstr "Мое время молитвы"
 
-#: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
+#: porches/generic/site/home-body.php:199 porches/generic/site/stats.php:126
 #: porches/ramadan/site/home-body.php:192
 msgid "Prayer Commitments Needed"
 msgstr "Нужда в молитвенном посвящении"
 
-#: porches/generic/site/home-body.php:221
-#: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:211
+#: porches/generic/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:212
 msgid "View All"
 msgstr "Посмотреть все"
 
-#: porches/generic/site/post-list-body.php:134
+#: porches/generic/site/post-list-body.php:151
 msgid "Read"
 msgstr "Прочитать"
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr ""
 
-#: porches/generic/site/stats.php:21
-#, fuzzy
-#| msgid "Campaign Stats"
-msgid "Campaign Stats"
-msgstr "Статистика кампании"
-
-#: porches/generic/site/stats.php:146
-msgctxt "Thank you for joining us in prayer for the French in France."
-msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "Спасибо, что присоединились к нам в молитве за %1$s в %2$s."
-
-#: porches/generic/site/stats.php:197
+#: porches/generic/site/stats.php:134
 msgid "Percentage Covered"
 msgstr "Процент покрытия"
 
-#: porches/generic/site/stats.php:223
+#: porches/generic/site/stats.php:160
 msgid "Time Prayed in Groups"
 msgstr ""
 
-#: porches/generic/site/stats.php:233
+#: porches/generic/site/stats.php:170
 msgid "Number of People who Prayed"
 msgstr "Количество помолившихся"
 
-#: porches/generic/site/stats.php:266
+#: porches/generic/site/stats.php:203
 msgid "Share with us your Prayer Stories"
 msgstr "Поделитесь с нами своими молитвенными историями"
 
-#: porches/generic/site/stats.php:280
+#: porches/generic/site/stats.php:217
+#, fuzzy
+#| msgid ""
+#| "Share with us about your prayer time (E.g. testimonies, insights, "
+#| "blessings, etc)"
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
-"etc)"
+"etc.)"
 msgstr ""
 "Поделитесь, как прошло ваше молитвенное время (например, свидетельства, "
 "откровения, благословения и т.д.)"
 
-#: porches/generic/site/stats.php:327
+#: porches/generic/site/stats.php:285
 msgid "Global Ramadan Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:334
+#: porches/generic/site/stats.php:292
 #, fuzzy
 #| msgid "Disciple.Tools - Prayer Campaigns"
 msgid "Total Prayer Campaigns"
 msgstr "Disciple.Tools - Молитвенные проекты"
 
-#: porches/generic/site/stats.php:342
+#: porches/generic/site/stats.php:300
 #, fuzzy
 #| msgid "Hours of Prayer"
 msgid "Countries Prayed For"
 msgstr "Часы молитвы"
 
-#: porches/generic/site/stats.php:350
+#: porches/generic/site/stats.php:308
 msgid "Intercessors"
 msgstr ""
 
-#: porches/generic/site/stats.php:358
+#: porches/generic/site/stats.php:316
 #, fuzzy
 #| msgid "Time added"
 msgid "Time Prayed"
 msgstr "Время добавлено"
 
-#: porches/generic/site/stats.php:366
+#: porches/generic/site/stats.php:324
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:389
+#: porches/generic/site/stats.php:347
 msgid "More Prayer Opportunities"
 msgstr "Больше возможностей для молитвы"
 
-#: porches/generic/site/stats.php:393
+#: porches/generic/site/stats.php:351
 #, fuzzy
 #| msgid ""
 #| "Would you like to hear about other prayer efforts and opportunities with "
 #| "Pray4Movement.org?"
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org and receive occasional communication from GospelAmbition."
-"org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Хотели бы вы услышать о других молитвенных усилиях и возможностях с "
 "Pray4Movement.org?"
@@ -1061,18 +1206,6 @@ msgstr ""
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
 msgstr "Регистрация"
-
-#: porches/ongoing/site/home-body.php:159
-msgid "Month"
-msgstr "Месяц"
-
-#: porches/ongoing/site/home-body.php:176
-msgid "Hours"
-msgstr "Часы"
-
-#: porches/ongoing/site/home-body.php:191
-msgid "Hours Remaining"
-msgstr "Осталось часов"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
@@ -1120,23 +1253,19 @@ msgstr ""
 "даже прочитывают весь Коран (примерно десятая часть длины Библии). Этот "
 "искренний поиск делает для нас стратегически важным моментом молиться за них."
 
-#: porches/ramadan/site/home-body.php:103
+#: porches/ramadan/site/home-body.php:117
 msgid "Ramadan Begins ..."
 msgstr "Рамадан начнется..."
 
-#: porches/ramadan/site/home-body.php:104
+#: porches/ramadan/site/home-body.php:118
 msgid "Ramadan Ends ..."
 msgstr "Рамадан заканчивается..."
 
-#: porches/ramadan/site/home-body.php:105
+#: porches/ramadan/site/home-body.php:119
 #, fuzzy
 #| msgid "Ramadan is Finished"
 msgid "Ramadan Is Finished"
 msgstr "Рамадан завершился"
-
-#: porches/ramadan/site/home-body.php:138
-msgid "here"
-msgstr "здесь"
 
 #: porches/ramadan/site/home-body.php:166
 msgid "Days"
@@ -1158,6 +1287,100 @@ msgstr "Молитвенное время: %s минут"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Сейчас молятся..."
+
+#, fuzzy
+#~| msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
+#~| msgid "%1$s from %2$s to %3$s"
+#~ msgctxt "Every Wednesday at 5pm for 15 minutes"
+#~ msgid "Every %1$s at %2$s for %3$s minutes"
+#~ msgstr "%1$s с %2$s до %3$s"
+
+#, fuzzy
+#~| msgid "Delete all"
+#~ msgid "Remove all"
+#~ msgstr "Удалить все"
+
+#, fuzzy
+#~| msgid "Prayer Time"
+#~ msgid "Delete Prayer Times"
+#~ msgstr "Время молитвы"
+
+#, fuzzy
+#~| msgid "Select a prayer time"
+#~ msgid "Really delete these prayer times?"
+#~ msgstr "Выбрать время молитвы"
+
+#, fuzzy
+#~| msgid ""
+#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
+#~| "praying?"
+#~ msgid ""
+#~ "Your last prayer time will be one week from today. Would you like to keep "
+#~ "praying?"
+#~ msgstr ""
+#~ "У вас осталось 2 недели до завершения вашего молитвенного времени. Хотели "
+#~ "бы вы продолжить молиться?"
+
+#, fuzzy
+#~| msgid ""
+#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
+#~| "praying?"
+#~ msgid ""
+#~ "Your last prayer time will be 2 weeks from today. Would you like to keep "
+#~ "praying? "
+#~ msgstr ""
+#~ "У вас осталось 2 недели до завершения вашего молитвенного времени. Хотели "
+#~ "бы вы продолжить молиться?"
+
+#, fuzzy
+#~| msgid "Thank you for praying with us!"
+#~ msgid "Today was your last day of prayer. Thank you for praying with us."
+#~ msgstr "Спасибо, что молитесь вместе с нами!"
+
+#~ msgid "Sign up for more prayer times or extend your recurring time here:"
+#~ msgstr ""
+#~ "Подпишитесь, чтобы продолжать молиться или продлите свое повторяющееся "
+#~ "время здесь:"
+
+#, fuzzy
+#~| msgid "Strategic prayer for a Disciple Making Movement"
+#~ msgid ""
+#~ "Thank you for joining us in strategic prayer for a disciple making "
+#~ "movement!"
+#~ msgstr "Стратегическая молитва за движение умножения учеников"
+
+#, fuzzy
+#~| msgid "Campaign Stats"
+#~ msgid "Campaign Stats"
+#~ msgstr "Статистика кампании"
+
+#~ msgctxt "Thank you for joining us in prayer for the French in France."
+#~ msgid "Thank you for joining us in prayer for the %1$s in %2$s."
+#~ msgstr "Спасибо, что присоединились к нам в молитве за %1$s в %2$s."
+
+#~ msgid "Month"
+#~ msgstr "Месяц"
+
+#~ msgid "Hours Remaining"
+#~ msgstr "Осталось часов"
+
+#~ msgid "here"
+#~ msgstr "здесь"
+
+#, fuzzy
+#~| msgid "Change your timezone:"
+#~ msgid "Choose a timezone"
+#~ msgstr "Изменить часовой пояс:"
+
+#, fuzzy
+#~| msgid "Or open this link:"
+#~ msgid "Or click this link"
+#~ msgstr "Или нажмите на ссылку:"
+
+#, fuzzy
+#~| msgid "Confirm Times"
+#~ msgid "Confirmation Code"
+#~ msgstr "Подтвердить время"
 
 #~ msgid "More Hours to be covered"
 #~ msgstr "Больше часов, которые нужно охватить"
@@ -1182,17 +1405,10 @@ msgstr "Сейчас молятся..."
 #~ msgid "Extend for 3 months"
 #~ msgstr "Продлить на 3 месяца"
 
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "покрыто"
-
 #, fuzzy
 #~| msgid "Prayer Time"
 #~ msgid "Pray this time"
 #~ msgstr "Время молитвы"
-
-#~ msgid "Your prayer times have been verified!"
-#~ msgstr "Ваше молитвенное время подтверждено!"
 
 #~ msgid "Cancel"
 #~ msgstr "Отменить"
@@ -1374,9 +1590,6 @@ msgstr "Сейчас молятся..."
 #~ "Нажмите на ссылку в электронном письме, чтобы подтвердить свое "
 #~ "обязательство и получать уведомления о времени молитвы!"
 
-#~ msgid "OK"
-#~ msgstr "ОК"
-
 #~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
 #~ msgstr ""
 #~ "Получать новостную рассылку Pray4Movement (требуется подтверждение "
@@ -1398,10 +1611,6 @@ msgstr "Сейчас молятся..."
 #~ msgid "Content to be added to the reminder email"
 #~ msgstr ""
 #~ "Содержимое, которое будет добавлено в электронное письмо с напоминанием"
-
-#, fuzzy
-#~ msgid "Update"
-#~ msgstr "Обновить"
 
 #, fuzzy
 #~ msgid "Yes"

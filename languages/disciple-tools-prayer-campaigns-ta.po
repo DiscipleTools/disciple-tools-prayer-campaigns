@@ -1,262 +1,250 @@
-# Copyright (C) 2022 
+# Copyright (C) 2024 
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-02-21T10:28:53+00:00\n"
-"PO-Revision-Date: 2022-12-08 12:13+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Tamil <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/ta/>\n"
+"POT-Creation-Date: 2024-08-29T12:55:35+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
-#: campaign-functions/cron-schedule.php:82
-#, fuzzy
-msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
-msgid "Click here to see the prayer prompts for today: %s"
-msgstr "இன்றைக்கான பிரார்த்தனைக் கட்டளைகளைப் பார்க்க இங்கே கிளிக் செய்யவும்: %s"
-
-#: campaign-functions/send-email-utility.php:50
+#: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:52
-msgid ""
-"Please copy and paste the following code into the Confirmation Code field."
+#: campaign-functions/send-email-utility.php:87
+msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:59
-msgid "This code will expire after 10 minutes."
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:60
-msgid "If you did not request this email, please ignore it."
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:143
-#: campaign-functions/send-email-utility.php:233
-#, fuzzy
-msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
-msgid "%1$s from %2$s to %3$s"
-msgstr "%1$s %2$s முதல் %3$s வரை"
-
-#: campaign-functions/send-email-utility.php:150
-#, fuzzy
-msgid "see more on your account"
-msgstr "உங்கள் கணக்கை சரிபார்க்கவும்"
-
-#: campaign-functions/send-email-utility.php:162
-#, fuzzy
-msgid "Registered to pray with us!"
-msgstr "எங்களுடன் பிரார்த்தனை செய்ய பதிவு!"
-
-#: campaign-functions/send-email-utility.php:184
-#: campaign-functions/send-email-utility.php:265
-#: campaign-functions/send-email-utility.php:355
-#, fuzzy
-msgid "Hello %s,"
-msgstr "வணக்கம் %s,"
-
-#: campaign-functions/send-email-utility.php:186
-#, fuzzy
-msgid ""
-"Thank you for joining us in strategic prayer for a disciple making movement!"
-msgstr "ஒரு சீடரை உருவாக்கும் இயக்கத்திற்கான மூலோபாய பிரார்த்தனை"
-
-#: campaign-functions/send-email-utility.php:187
-#: campaign-functions/send-email-utility.php:276
-msgid "Access your account to see your commitments and make changes:"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:188
-#: campaign-functions/send-email-utility.php:277
-#: parts/components-enqueue.php:93
-msgid "Access Account"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:191
-#, fuzzy
-msgid "You signed up to pray:"
-msgstr "பிரார்த்தனை செய்ய பதிவு செய்ததற்கு நன்றி!"
-
-#: campaign-functions/send-email-utility.php:196
-#, fuzzy
-msgid "These are your next prayer commitments:"
-msgstr "உங்கள் கணக்கு மற்றும் நேரக் கடமைகளை நிர்வகிக்க இங்கே கிளிக் செய்யவும்"
-
-#: campaign-functions/send-email-utility.php:199
-#: campaign-functions/send-email-utility.php:269
-#, fuzzy
-msgid "Times are shown according to: %s time"
-msgstr "%s நேரத்தின்படி நேரங்கள் காட்டப்படுகின்றன"
-
-#: campaign-functions/send-email-utility.php:203
-#: magic-links/subscription-management/subscription-management.php:355
-#, fuzzy
-msgid "Download Calendar"
-msgstr "காலெண்டரைப் பதிவிறக்கவும்"
-
-#: campaign-functions/send-email-utility.php:239
-#, fuzzy
-msgctxt "for Paris, France"
-msgid "for %s"
-msgstr "%sக்கு"
-
-#: campaign-functions/send-email-utility.php:249
-#, fuzzy
-msgid "Prayer Time reminder!"
-msgstr "பிரார்த்தனை நேரம் நினைவூட்டல்!"
-
-#: campaign-functions/send-email-utility.php:266
-#: parts/components-enqueue.php:103
-#, fuzzy
-msgid "Thank you for praying with us."
-msgstr "எங்களுடன் பிரார்த்தனை செய்ததற்கு நன்றி!"
-
-#: campaign-functions/send-email-utility.php:267
-#, fuzzy
-msgid "Here are your upcoming prayer times:"
-msgstr "உங்கள் வரவிருக்கும் பிரார்த்தனை நேரங்கள் இதோ:"
-
-#: campaign-functions/send-email-utility.php:353
-msgid "Continue Praying?"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:356
-#, fuzzy
-msgid ""
-"You are 2 weeks out from your last prayer time. Would you like to keep "
-"praying?"
-msgstr ""
-"உங்கள் கடைசி பிரார்த்தனை நேரத்திற்கு 2 வாரங்கள் உள்ளன. நீங்கள் தொடர்ந்து ஜெபிக்க "
-"விரும்புகிறீர்களா?"
-
-#: campaign-functions/send-email-utility.php:357
-#, fuzzy
-msgid "Sign up for more prayer times or extend your recurring time here:"
-msgstr ""
-"அதிக பிரார்த்தனை நேரங்களுக்கு பதிவு செய்யவும் அல்லது உங்கள் தொடர்ச்சியான நேரத்தை இங்கே "
-"நீட்டிக்கவும்:"
-
-#: campaign-functions/send-email-utility.php:359
+#: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:360 parts/components.php:51
-#: porches/generic/site/stats.php:291
-#, fuzzy
+#: campaign-functions/send-email-utility.php:99
+msgid "If you did not request this email, please ignore it."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:183
+#: campaign-functions/send-email-utility.php:279
+msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
+msgid "%1$s from %2$s to %3$s"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:190
+msgid "see more on your account"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:202
+msgid "Registered to pray with us!"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:223
+#: campaign-functions/send-email-utility.php:311
+#: campaign-functions/send-email-utility.php:416
+msgid "Hello %s,"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:227
+#: campaign-functions/send-email-utility.php:323
+msgid "Access your account to see your commitments and make changes:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:228
+#: campaign-functions/send-email-utility.php:324
+#: campaign-functions/send-email-utility.php:424
+#: parts/components-enqueue.php:94
+msgid "Access Account"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:231
+msgid "You signed up to pray:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:236
+msgid "These are your next prayer commitments:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:239
+#: campaign-functions/send-email-utility.php:315
+msgid "Times are shown according to: %s time"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:243
+#: magic-links/subscription-management/subscription-management.php:378
+msgid "Download Calendar"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:267
+msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
+msgid "Click here to see the prayer prompts for today: %s"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:285
+msgctxt "for Paris, France"
+msgid "for %s"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:295
+msgid "Prayer Time reminder!"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:312
+#: campaign-functions/send-email-utility.php:418
+#: parts/components-enqueue.php:105
+msgid "Thank you for praying with us."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:313
+msgid "Here are your upcoming prayer times:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:318
+#: magic-links/campaign-magic-link.php:110
+#: magic-links/campaign-magic-link.php:112
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:33
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:95
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:153
+#: porches/generic/dt-generic-porch-strings.php:152
+#: porches/generic/dt-generic-porch-strings.php:161
+msgid "Prayer Fuel"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:414
+msgid "[ACTION NEEDED] Continue Praying?"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:418
+msgid "Some of your prayer times will be ending soon."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:419
+msgid "The prayer times are:"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:423
+msgid ""
+"To continue praying, and to keep receiving the notifications, please access "
+"your account and click \"extend\" next to your commitment(s). You can also "
+"sign up for a different time if you wish."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:425
+msgid ""
+"You do not have to do anything if you do not want to continue praying when "
+"your prayer times end."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:427 parts/components.php:51
+#: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
 msgid "Thank you"
-msgstr "நன்றி"
+msgstr ""
 
-#: campaign-functions/send-email-utility.php:406
-#: porches/generic/site/stats.php:144
-#, fuzzy
+#: campaign-functions/send-email-utility.php:473
+#: porches/generic/site/stats.php:84
 msgid "Thank you for praying with us!"
-msgstr "எங்களுடன் பிரார்த்தனை செய்ததற்கு நன்றி!"
+msgstr ""
 
-#: campaign-functions/send-email-utility.php:429
-#: campaign-functions/send-email-utility.php:459
-#, fuzzy
+#: campaign-functions/send-email-utility.php:497
+#: campaign-functions/send-email-utility.php:527
 msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "ஒரு சீடரை உருவாக்கும் இயக்கத்திற்கான மூலோபாய பிரார்த்தனை"
+msgstr ""
 
-#: campaign-functions/send-email-utility.php:431
-#: campaign-functions/send-email-utility.php:461
-#: porches/generic/dt-generic-porch-settings.php:59
-#, fuzzy
+#: campaign-functions/send-email-utility.php:499
+#: campaign-functions/send-email-utility.php:529
+#: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
-msgstr "ஒரு சீடரை உருவாக்கும் இயக்கத்திற்கான மூலோபாய பிரார்த்தனை"
+msgstr ""
 
-#: campaign-functions/send-email-utility.php:436
-#: campaign-functions/send-email-utility.php:466
+#: campaign-functions/send-email-utility.php:504
+#: campaign-functions/send-email-utility.php:534
 msgid "Dear %s,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:439
-#: campaign-functions/send-email-utility.php:469
-#, fuzzy
+#: campaign-functions/send-email-utility.php:507
+#: campaign-functions/send-email-utility.php:537
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "%2$s இல் %1$sக்கான பிரார்த்தனையில் எங்களுடன் இணைந்ததற்கு நன்றி."
+msgstr ""
 
-#: campaign-functions/send-email-utility.php:442
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:445
+#: campaign-functions/send-email-utility.php:513
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:449
-#, fuzzy
-msgid "See Prayer Stats"
-msgstr "பிரார்த்தனை நேரத்தைத் தேர்ந்தெடுக்கவும்"
+#: campaign-functions/send-email-utility.php:515
+msgid ""
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
+msgstr ""
 
-#: campaign-functions/send-email-utility.php:451
-#: campaign-functions/send-email-utility.php:487
+#: campaign-functions/send-email-utility.php:517
+msgid "See Prayer Stats"
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:519
+#: campaign-functions/send-email-utility.php:549
 msgid "In Christ with you,"
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:472
+#: campaign-functions/send-email-utility.php:540
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:476
+#: campaign-functions/send-email-utility.php:543
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:483
+#: campaign-functions/send-email-utility.php:545
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
-"opportunities by Pray4Movement, the makers of this prayer tool."
+"opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
 
-#: campaign-functions/send-email-utility.php:485
+#: campaign-functions/send-email-utility.php:547
 msgid "See Ramadan 24/7 Prayer Stats"
 msgstr ""
 
 #: campaign-functions/time-utilities.php:173
-#, fuzzy
 msgid "5 minutes"
-msgstr "5 நிமிடம்"
+msgstr ""
 
 #: campaign-functions/time-utilities.php:174
-#, fuzzy
 msgid "10 minutes"
-msgstr "10 நிமிடங்கள்"
+msgstr ""
 
 #: campaign-functions/time-utilities.php:175
-#, fuzzy
 msgid "15 minutes"
-msgstr "15 நிமிடங்கள்"
+msgstr ""
 
 #: campaign-functions/time-utilities.php:176
-#, fuzzy
 msgid "30 minutes"
-msgstr "30 நிமிடம்"
+msgstr ""
 
 #: campaign-functions/time-utilities.php:177
-#, fuzzy
 msgid "1 hour"
-msgstr "1 மணி நேரம்"
+msgstr ""
 
 #: campaign-functions/time-utilities.php:186
 msgid "years"
@@ -267,349 +255,337 @@ msgid "year"
 msgstr ""
 
 #: campaign-functions/time-utilities.php:189
-#, fuzzy
 msgid "day"
-msgstr "நாட்களில்"
+msgstr ""
 
-#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:38
-#, fuzzy
+#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:42
 msgid "days"
-msgstr "நாட்களில்"
+msgstr ""
+
+#: campaign-functions/utils.php:286
+#: porches/generic/site/edit-post-list-body.php:142
+msgid "Edit"
+msgstr ""
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:159
-#, fuzzy
 msgid "Retrieve Prayer Time Management Link"
-msgstr "பிரார்த்தனை நேர அறிவிப்புகளைப் பெறவும்"
+msgstr ""
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:168
-#, fuzzy
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"உங்கள் மின்னஞ்சல் முகவரியைச் சரிபார்க்கவும், உங்கள் பிரார்த்தனை நேரத்தை உறுதிப்படுத்தவும் "
-"இங்கே கிளிக் செய்யவும்."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:52 porches/generic/site/stats.php:272
-#, fuzzy
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:83
+#: porches/generic/site/stats.php:209
 msgid "Email"
-msgstr "மின்னஞ்சல்"
+msgstr ""
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:175
 msgid "Email My Access Link"
 msgstr ""
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:178
-#, fuzzy
 msgid "Please check your email address now for your access link."
 msgstr ""
-"உங்கள் மின்னஞ்சல் முகவரியைச் சரிபார்க்கவும், உங்கள் பிரார்த்தனை நேரத்தை உறுதிப்படுத்தவும் "
-"இங்கே கிளிக் செய்யவும்."
 
-#: magic-links/subscription-management/subscription-management.php:38
-#: magic-links/subscription-management/subscription-management.php:344
-#: parts/components-enqueue.php:49
-#, fuzzy
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:91
+msgid "Your prayer time has been extended"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:92
+msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
+msgid "You are signed up to pray %1$s until %2$s."
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:93
+msgid "OK"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:94
+msgid "Email me the updated calendar"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:96
+msgid "Join me in praying!"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:278
+#: porches/generic/site/archive-body.php:35
+#: porches/generic/site/post-list-body.php:164
+msgid "Content will start in %s days"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:290
+#: porches/generic/site/archive-body.php:47
+msgid "This campaign is finished. See Fuel below"
+msgstr ""
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:312
+#: porches/generic/site/archive-body.php:69
+#: porches/generic/site/landing-body.php:48
+msgid "Prayer Timer"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:39
+#: magic-links/subscription-management/subscription-management.php:367
+#: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
-msgstr "பிரார்த்தனை அர்ப்பணிப்புகள்"
+msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:326
-#: porches/generic/site/stats.php:205
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:341
+#: porches/generic/site/stats.php:142
 msgid "Prayer Commitments"
-msgstr "பிரார்த்தனை அர்ப்பணிப்புகள்"
+msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:327
+#: magic-links/subscription-management/subscription-management.php:342
 msgid "Account"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:333
+#: magic-links/subscription-management/subscription-management.php:348
+msgid "Account activated!"
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:349
+msgid "Here you can manage your prayer commitments and account settings."
+msgstr ""
+
+#: magic-links/subscription-management/subscription-management.php:356
 msgid "Links"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:334
+#: magic-links/subscription-management/subscription-management.php:357
 #: porches/generic/site/top-section.php:28
-#, fuzzy
 msgid "Home"
-msgstr "வீடு"
+msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:336
-#: porches/generic/site/stats.php:170
+#: magic-links/subscription-management/subscription-management.php:359
+#: porches/generic/site/stats.php:20 porches/generic/site/stats.php:107
 msgid "Stats"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:352
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:375
 msgid "My Calendar"
-msgstr "காலெண்டரைப் பதிவிறக்கவும்"
+msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:368
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:388
 msgid "Sign up for more prayer"
-msgstr "பிரார்த்தனை செய்ய பதிவு செய்யவும்"
+msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:391
-#, fuzzy
+#: magic-links/subscription-management/subscription-management.php:409
 msgid "This subscription has ended or is not configured correctly."
-msgstr "இந்த சந்தா முடிவடைந்தது அல்லது சரியாக உள்ளமைக்கப்படவில்லை."
-
-#: parts/components-enqueue.php:36
-#, fuzzy
-msgid "Detected time zone"
-msgstr "தேர்ந்தெடுக்கப்பட்ட நேரங்கள்"
-
-#: parts/components-enqueue.php:37
-#, fuzzy
-msgid "Choose a timezone"
-msgstr "உங்கள் நேர மண்டலத்தை மாற்றவும்:"
-
-#: parts/components-enqueue.php:39 porches/generic/site/stats.php:217
-#: porches/generic/site/stats.php:227
-#, fuzzy
-msgid "hours"
-msgstr "மணி"
+msgstr ""
 
 #: parts/components-enqueue.php:40
-#, fuzzy
-msgid "minutes"
-msgstr "நிமிடங்கள்"
+msgid "Detected time zone"
+msgstr ""
 
 #: parts/components-enqueue.php:41
-#, fuzzy
-msgid "seconds"
-msgstr "வினாடிகள்"
+msgid "Select a timezone"
+msgstr ""
 
-#: parts/components-enqueue.php:42
-#, fuzzy
-msgid "Campaign Starts In"
-msgstr "பிரச்சார புள்ளிவிவரங்கள்"
-
-#: parts/components-enqueue.php:43
-#, fuzzy
-msgid "Campaign Ends In"
-msgstr "பிரச்சார புள்ளிவிவரங்கள்"
+#: parts/components-enqueue.php:43 porches/generic/site/stats.php:154
+#: porches/generic/site/stats.php:164
+msgid "hours"
+msgstr ""
 
 #: parts/components-enqueue.php:44
-#, fuzzy
-msgid "Campaign Ended"
-msgstr "பிரச்சார புள்ளிவிவரங்கள்"
+msgid "minutes"
+msgstr ""
 
 #: parts/components-enqueue.php:45
-#, fuzzy
-msgctxt "Monday 5pm for 15 minutes"
-msgid "%1$s for %2$s minutes."
-msgstr "%2$s நிமிடங்களுக்கு %1$s."
+msgid "seconds"
+msgstr ""
 
 #: parts/components-enqueue.php:46
-msgid "How often?"
+msgid "Campaign Starts In"
 msgstr ""
 
 #: parts/components-enqueue.php:47
-msgid "I will pray for"
+msgid "Campaign Ends In"
 msgstr ""
 
 #: parts/components-enqueue.php:48
-#, fuzzy
-msgid "At what time?"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
+msgid "Campaign Ended"
+msgstr ""
+
+#: parts/components-enqueue.php:49
+msgctxt "Monday 5pm for 15 minutes"
+msgid "%1$s for %2$s minutes."
+msgstr ""
 
 #: parts/components-enqueue.php:50
-msgid "Contact Info"
+msgid "How often?"
 msgstr ""
 
 #: parts/components-enqueue.php:51
-#, fuzzy
-msgid "Name"
-msgstr "பெயர்"
+msgid "I will pray for"
+msgstr ""
 
-#: parts/components-enqueue.php:53
-msgid "Start Here"
+#: parts/components-enqueue.php:52
+msgid "At what time?"
 msgstr ""
 
 #: parts/components-enqueue.php:54
+msgid "Contact Info"
+msgstr ""
+
+#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:76
+msgid "Name"
+msgstr ""
+
+#: parts/components-enqueue.php:57
+msgid "Start Here"
+msgstr ""
+
+#: parts/components-enqueue.php:58
 msgid "Continue here"
 msgstr ""
 
-#: parts/components-enqueue.php:55
+#: parts/components-enqueue.php:59
 msgid "On which week day?"
 msgstr ""
 
-#: parts/components-enqueue.php:56
-#, fuzzy
-msgid "Select a Date"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
-
-#: parts/components-enqueue.php:57
-#, fuzzy
-msgid "Select a Time"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
-
-#: parts/components-enqueue.php:58
-#, fuzzy
-msgid "Select a Time for %s"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
-
-#: parts/components-enqueue.php:59
-#, fuzzy
-msgid "Close"
-msgstr "நெருக்கமான"
-
 #: parts/components-enqueue.php:60
-#, fuzzy
-msgid "prayer commitments"
-msgstr "பிரார்த்தனை அர்ப்பணிப்புகள்"
+msgid "Select a Date"
+msgstr ""
 
 #: parts/components-enqueue.php:61
+msgid "Select a Time"
+msgstr ""
+
+#: parts/components-enqueue.php:62
+msgid "Select a Time for %s"
+msgstr ""
+
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+msgid "Close"
+msgstr ""
+
+#: parts/components-enqueue.php:64
+msgid "prayer commitments"
+msgstr ""
+
+#: parts/components-enqueue.php:65
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:66
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:63
+#: parts/components-enqueue.php:67
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:64 parts/components.php:45
-#: porches/generic/site/stats.php:285
-#, fuzzy
+#: parts/components-enqueue.php:68 parts/components.php:45
+#: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
 msgid "Submit"
-msgstr "சமர்ப்பிக்கவும்"
+msgstr ""
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:69
 msgid "Verify"
 msgstr ""
 
-#: parts/components-enqueue.php:66
-#, fuzzy
+#: parts/components-enqueue.php:70
 msgid "Percentage covered in prayer"
-msgstr "ஜெபத்தில் உள்ளடக்கப்பட்ட சதவீதம்"
+msgstr ""
 
-#: parts/components-enqueue.php:67
-#, fuzzy
+#: parts/components-enqueue.php:71
 msgid "%s committed"
-msgstr "நேரம் உறுதி"
+msgstr ""
 
-#: parts/components-enqueue.php:68
+#: parts/components-enqueue.php:72
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:69 porches/ongoing/site/home-body.php:158
-#, fuzzy
+#: parts/components-enqueue.php:73
 msgid "Next"
-msgstr "அடுத்தது"
-
-#: parts/components-enqueue.php:70
-#, fuzzy
-msgid "No prayer times selected"
-msgstr "உங்கள் பிரார்த்தனை நேரம் சரிபார்க்கப்பட்டது!"
-
-#: parts/components-enqueue.php:71
-#, fuzzy
-msgid "Daily"
-msgstr "தினசரி நேரம்"
-
-#: parts/components-enqueue.php:72
-msgid "Weekly"
 msgstr ""
 
-#: parts/components-enqueue.php:73
-#, fuzzy
-msgid "Monthly"
-msgstr "மாதம்"
-
 #: parts/components-enqueue.php:74
-msgid "Pick Dates and Times"
+msgid "No prayer times selected"
 msgstr ""
 
 #: parts/components-enqueue.php:75
-msgctxt "up to 3 months"
-msgid "up to %s months"
+msgid "Daily"
 msgstr ""
 
 #: parts/components-enqueue.php:76
-msgid "A confirmation code hase been sent to %s."
+msgid "Weekly"
 msgstr ""
 
 #: parts/components-enqueue.php:77
-msgid ""
-"Please enter the code below in the next 10 minutes to confirm your email "
-"address."
+msgid "Monthly"
 msgstr ""
 
 #: parts/components-enqueue.php:78
-#, fuzzy
-msgid "%s Minutes"
-msgstr "5 நிமிடம்"
+msgid "Pick Dates and Times"
+msgstr ""
 
 #: parts/components-enqueue.php:79
-#, fuzzy
-msgid "%s Hour"
-msgstr "மணி"
+msgid "%s Minutes"
+msgstr ""
 
 #: parts/components-enqueue.php:80
-#, fuzzy
-msgid "%s Hours"
-msgstr "மணி"
+msgid "%s Hour"
+msgstr ""
 
 #: parts/components-enqueue.php:81
-#, fuzzy
-msgid "%1$s at %2$s for %3$s"
-msgstr "%1$s %2$s முதல் %3$s வரை"
+msgid "%s Hours"
+msgstr ""
 
 #: parts/components-enqueue.php:82
-#, fuzzy
-msgid "for %s minutes"
-msgstr "%2$s நிமிடங்களுக்கு %1$s."
+msgid "%1$s at %2$s for %3$s"
+msgstr ""
 
 #: parts/components-enqueue.php:83
-msgid "Every %s"
+msgid "for %s minutes"
 msgstr ""
 
 #: parts/components-enqueue.php:84
-#, fuzzy
-msgid "Confirmation Code"
-msgstr "நேரத்தை உறுதிப்படுத்தவும்"
+msgid "Every %s"
+msgstr ""
 
 #: parts/components-enqueue.php:85
-#, fuzzy
 msgid "Prayer Time Selected"
-msgstr "உங்கள் பிரார்த்தனை நேரம் சரிபார்க்கப்பட்டது!"
+msgstr ""
 
 #: parts/components-enqueue.php:86
-#, fuzzy
-msgid "Select a Day"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
+msgid "Prayer Time Removed"
+msgstr ""
 
 #: parts/components-enqueue.php:87
-msgid "Renews on %s"
+msgid "Select a Day"
 msgstr ""
 
 #: parts/components-enqueue.php:88
-msgid "Ends on %s"
+msgid "Renews on %s"
 msgstr ""
 
 #: parts/components-enqueue.php:89
-msgid "Success"
+msgid "Ends on %s"
 msgstr ""
 
 #: parts/components-enqueue.php:90
-#, fuzzy
-msgid "Your registration was successful."
-msgstr "உங்கள் பதிவு வெற்றிகரமாக முடிந்தது."
+msgid "Success"
+msgstr ""
 
 #: parts/components-enqueue.php:91
-#, fuzzy
-msgid "Check your email for additional details and to manage your account."
-msgstr "உங்கள் பிரார்த்தனை நேரங்களை நிர்வகிப்பதற்கான இணைப்பு மின்னஞ்சலில் உள்ளது."
+msgid "Your registration was successful."
+msgstr ""
 
 #: parts/components-enqueue.php:92
+msgid "Check your email for additional details and to manage your account."
+msgstr ""
+
+#: parts/components-enqueue.php:93
 msgid "Ok"
 msgstr ""
 
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -617,179 +593,225 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:95
-#, fuzzy
-msgid "Account Settings"
-msgstr "மேம்பட்ட அமைப்புகள்"
-
 #: parts/components-enqueue.php:96
-msgid "Timezone"
+msgid "Account Settings"
 msgstr ""
 
 #: parts/components-enqueue.php:97
-#, fuzzy
-msgid "Receive Prayer time notifications"
-msgstr "பிரார்த்தனை நேர அறிவிப்புகளைப் பெறவும்"
+msgid "Timezone"
+msgstr ""
 
 #: parts/components-enqueue.php:98
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "மேம்பட்ட அமைப்புகள்"
+msgid "Receive prayer time notifications"
+msgstr ""
 
 #: parts/components-enqueue.php:99
-msgid "show"
+msgid "Auto extend prayer times"
 msgstr ""
 
 #: parts/components-enqueue.php:100
-#, fuzzy
-msgid "Delete this account and all the scheduled prayer times"
-msgstr "இந்த சுயவிவரத்தையும் திட்டமிடப்பட்ட பிரார்த்தனை நேரங்களையும் நீக்கவா?"
+msgid "Advanced Settings"
+msgstr ""
 
 #: parts/components-enqueue.php:101
+msgid "show"
+msgstr ""
+
+#: parts/components-enqueue.php:102
+msgid "Delete this account and all the scheduled prayer times"
+msgstr ""
+
+#: parts/components-enqueue.php:103
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:104
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:106
 msgid "Language"
 msgstr ""
 
-#: parts/components-enqueue.php:105
-#, fuzzy
-msgid "Delete"
-msgstr "அழி"
-
-#: parts/components-enqueue.php:106
-#, fuzzy
-msgid "Select a timezone"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
-
 #: parts/components-enqueue.php:107
-#, fuzzy
-msgid "See Prayer Fuel"
-msgstr "பிரார்த்தனை எரிபொருள்"
+msgid "Delete"
+msgstr ""
 
 #: parts/components-enqueue.php:108
-#, fuzzy
-msgid "change time"
-msgstr "தினசரி நேரத்தை மாற்றவும்"
+#: porches/generic/dt-generic-porch-strings.php:206
+msgid "See Prayer Fuel"
+msgstr ""
 
 #: parts/components-enqueue.php:109
-#, fuzzy
-msgid "Remove all"
-msgstr "அனைத்தையும் நீக்கு"
+msgid "change time"
+msgstr ""
 
 #: parts/components-enqueue.php:110
-#, fuzzy
-msgid "See prayer times"
-msgstr "பிரார்த்தனை நேரத்தைச் சேர்க்கவும்"
+msgid "Stop Praying"
+msgstr ""
 
 #: parts/components-enqueue.php:111
-#, fuzzy
-msgid "Delete Prayer Times"
-msgstr "பிரார்த்தனை நேரம்"
+msgid "See prayer times"
+msgstr ""
 
 #: parts/components-enqueue.php:112
-#, fuzzy
-msgid "Really delete these prayer times?"
-msgstr "பிரார்த்தனை நேரத்தைத் தேர்ந்தெடுக்கவும்"
+msgid "Your future prayer times will be canceled."
+msgstr ""
 
 #: parts/components-enqueue.php:113
-#, fuzzy
 msgid "extend"
-msgstr "நீட்டிக்கவும்"
+msgstr ""
 
 #: parts/components-enqueue.php:114
-#, fuzzy
 msgid "Extend Prayer Times"
-msgstr "பிரார்த்தனை நேரம்"
+msgstr ""
 
 #: parts/components-enqueue.php:115
-#, fuzzy
 msgid "Really delete this prayer time?"
-msgstr "பிரார்த்தனை நேரத்தைத் தேர்ந்தெடுக்கவும்"
+msgstr ""
 
 #: parts/components-enqueue.php:116
-#, fuzzy
 msgid "Delete Prayer Time"
-msgstr "தேர்ந்தெடுக்கப்பட்ட நேரங்கள்"
+msgstr ""
 
 #: parts/components-enqueue.php:117
-#, fuzzy
 msgid "Mondays"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: parts/components-enqueue.php:118
-#, fuzzy
 msgid "Tuesdays"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: parts/components-enqueue.php:119
 msgid "Wednesdays"
 msgstr ""
 
 #: parts/components-enqueue.php:120
-#, fuzzy
 msgid "Thursdays"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: parts/components-enqueue.php:121
-#, fuzzy
 msgid "Fridays"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: parts/components-enqueue.php:122
-#, fuzzy
 msgid "Saturdays"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: parts/components-enqueue.php:123
-#, fuzzy
 msgid "Sundays"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: parts/components-enqueue.php:124
-#, fuzzy
-msgid "Change Prayer Time"
-msgstr "பிரார்த்தனை நேரங்களைத் தேர்ந்தெடுக்கவும்"
+msgid "Hours"
+msgstr ""
 
 #: parts/components-enqueue.php:125
-#, fuzzy
-msgid "Your current prayer time is %s"
-msgstr "உங்கள் புதிய பிரார்த்தனை நேரங்கள் சேமிக்கப்பட்டுள்ளன."
+msgid "Hour"
+msgstr ""
 
 #: parts/components-enqueue.php:126
-#, fuzzy
-msgid "Select a new time:"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
+msgid "Minutes"
+msgstr ""
 
 #: parts/components-enqueue.php:127
-#, fuzzy
-msgid "Select a time"
-msgstr "நேரத்தைத் தேர்ந்தெடுக்கவும்"
+msgid "Change Prayer Time"
+msgstr ""
 
 #: parts/components-enqueue.php:128
-#, fuzzy
-msgid "Renew Prayer Times"
-msgstr "பிரார்த்தனை நேரம்"
+msgid "Your current prayer time is %s"
+msgstr ""
 
 #: parts/components-enqueue.php:129
-msgid "renew"
+msgid "Select a new time:"
 msgstr ""
 
 #: parts/components-enqueue.php:130
-#, fuzzy
-msgid ""
-"Receive Pray4Movement news and opportunities, and occasional communication "
-"from GospelAmbition.org."
+msgid "Select a time"
 msgstr ""
-"Pray4Movement.org உடன் பிற பிரார்த்தனை முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய "
-"விரும்புகிறீர்களா?"
+
+#: parts/components-enqueue.php:131
+msgid "Renew Prayer Times"
+msgstr ""
+
+#: parts/components-enqueue.php:132
+msgid "renew"
+msgstr ""
+
+#: parts/components-enqueue.php:133
+msgid ""
+"Receive news from Prayer.Tools about upcoming prayer campaigns and "
+"occasional communication from GospelAmbition.org"
+msgstr ""
+
+#: parts/components-enqueue.php:136
+msgid "Text Translations"
+msgstr ""
+
+#: parts/components-enqueue.php:137
+msgid "Original String"
+msgstr ""
+
+#: parts/components-enqueue.php:138
+msgid "Custom Value For All Languages"
+msgstr ""
+
+#: parts/components-enqueue.php:139
+msgid "Translation For Currently Selected Language"
+msgstr ""
+
+#: parts/components-enqueue.php:141
+msgid "Update"
+msgstr ""
+
+#: parts/components-enqueue.php:144
+msgid "Almost there! Finish signing up by activating your account."
+msgstr ""
+
+#: parts/components-enqueue.php:145
+msgid "Click the \"Activate Account\" button in the email sent to: %s"
+msgstr ""
+
+#: parts/components-enqueue.php:146
+msgid "It will look like this:"
+msgstr ""
+
+#: parts/components-enqueue.php:147
+msgid "Pending - Verification Needed"
+msgstr ""
+
+#: parts/components-enqueue.php:148
+msgid "Back to sign-up"
+msgstr ""
+
+#: parts/components-enqueue.php:149
+msgid "So sorry. Something went wrong. You can:"
+msgstr ""
+
+#: parts/components-enqueue.php:150
+msgid "Try Again"
+msgstr ""
+
+#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:46
+msgid "Contact Us"
+msgstr ""
+
+#: parts/components-enqueue.php:152
+msgid ""
+"Please check your email to activate your account before adding more prayer "
+"times."
+msgstr ""
+
+#: parts/components-enqueue.php:153
+msgid "Time not covered"
+msgstr ""
+
+#: parts/components-enqueue.php:154
+msgid "# of people covering this time"
+msgstr ""
 
 #: parts/components.php:32
 msgid "Praying as a group?"
@@ -806,257 +828,191 @@ msgstr ""
 msgid "How many prayed today (including yourself)?"
 msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:68
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:47
 msgid "Our Vision"
-msgstr "எமது நோக்கம்"
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:77
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:56
 msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr "தொடர்ந்து 24/7 பிரார்த்தனையுடன் இந்த பிராந்தியத்தை மறைக்க விரும்புகிறோம்."
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:94
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:73
 msgid "Extraordinary Prayer"
-msgstr "அசாதாரண பிரார்த்தனை"
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:103
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:82
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
 msgstr ""
-"வரலாற்றில் ஒவ்வொரு சீடர் செய்யும் இயக்கமும் அசாதாரணமான பிரார்த்தனையின் பின்னணியில் "
-"நடந்துள்ளது."
 
-#: porches/generic/dt-generic-porch-settings.php:120
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
-msgstr "இயக்கம் கவனம்"
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:129
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:108
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
 msgstr ""
-"சீடர்கள் மற்றும் தேவாலயங்கள் உருவாக்கப்பட வேண்டும் என்று கேட்பதிலும், தேடுவதிலும், "
-"தட்டுவதிலும் எங்களுடன் சேருங்கள்."
 
-#: porches/generic/dt-generic-porch-settings.php:146
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:125
 msgid "24/7 Every Day"
-msgstr "24/7 ஒவ்வொரு நாளும்"
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:155
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:134
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
 msgstr ""
-"ஒவ்வொரு நாளிலும் நீங்கள் பிரார்த்தனை செய்யக்கூடிய 15 நிமிட (அல்லது அதற்கு மேற்பட்ட) "
-"நேரத்தைத் தேர்வு செய்யவும். பதிவு செய்ய வேறொருவரையும் அழைக்கவும்."
 
-#: porches/generic/dt-generic-porch-settings.php:173
-#: porches/generic/dt-generic-porch-settings.php:182
-#: porches/generic/site/archive.php:22 porches/generic/site/landing.php:24
-#, fuzzy
-msgid "Prayer Fuel"
-msgstr "பிரார்த்தனை எரிபொருள்"
-
-#: porches/generic/dt-generic-porch-settings.php:191
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
-msgstr "ஒவ்வொரு நாளும் குறிப்பாக ஜெபிக்க உதவ இந்த ஆதாரங்களைப் பயன்படுத்தவும்."
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:200
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
-msgstr "இன்றைய பிரார்த்தனை எரிபொருள்"
+msgstr ""
 
-#: porches/generic/dt-generic-porch-settings.php:209
-#, fuzzy
+#: porches/generic/dt-generic-porch-strings.php:188
 msgid "All Days"
-msgstr "எல்லா நாட்களும்"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-strings.php:197
+msgid "Edit Prayer Fuel"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-strings.php:215
+msgid "Scheduled Prayer Fuel"
+msgstr ""
+
+#: porches/generic/dt-generic-porch-strings.php:223
+msgid ""
+"All Scheduled Prayer Fuel in all available languages. Add and edit the "
+"prayer fuel below"
+msgstr ""
 
 #: porches/generic/site/404-body.php:14
-#, fuzzy
 msgid "Epic 404 - Not Found"
-msgstr "காவியம் 404 - கிடைக்கவில்லை"
+msgstr ""
 
 #: porches/generic/site/404-body.php:15
-#, fuzzy
 msgid "It looks like you may have strayed from the narrow path."
-msgstr "நீங்கள் குறுகலான பாதையிலிருந்து விலகிச் சென்றிருக்கலாம் என்று தெரிகிறது."
+msgstr ""
 
 #: porches/generic/site/404-body.php:16
-#, fuzzy
 msgid "Wide is the path that leads to the 404."
-msgstr "404க்கு செல்லும் பாதை அகலமானது."
+msgstr ""
 
 #: porches/generic/site/404-body.php:17
-#, fuzzy
 msgid "Try using some of the links in the menu to get back on track."
-msgstr "மீண்டும் பாதையில் செல்ல, மெனுவில் உள்ள சில இணைப்புகளைப் பயன்படுத்தவும்."
-
-#: porches/generic/site/archive-body.php:34
-#: porches/generic/site/post-list-body.php:147
-msgid "Content will start in %s days"
 msgstr ""
 
-#: porches/generic/site/archive-body.php:46
-msgid "This campaign is finished. See Fuel below"
+#: porches/generic/site/contact-us.php:91
+msgid "Message"
 msgstr ""
 
-#: porches/generic/site/home-body.php:96 porches/generic/site/home-body.php:139
-#: porches/generic/site/top-section.php:100
-#: porches/ongoing/site/home-body.php:90 porches/ongoing/site/home-body.php:135
-#: porches/ramadan/site/home-body.php:85 porches/ramadan/site/home-body.php:131
-#, fuzzy
+#: porches/generic/site/edit-post-list-body.php:120
+msgid "Day %s"
+msgstr ""
+
+#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/top-section.php:111
+#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 msgid "Sign Up to Pray"
-msgstr "பிரார்த்தனை செய்ய பதிவு செய்யவும்"
+msgstr ""
 
-#: porches/generic/site/home-body.php:170 porches/generic/site/stats.php:213
-#, fuzzy
+#: porches/generic/site/home-body.php:168 porches/generic/site/stats.php:150
 msgid "Time Committed"
-msgstr "நேரம் உறுதி"
+msgstr ""
 
-#: porches/generic/site/home-body.php:186
-#, fuzzy
+#: porches/generic/site/home-body.php:184
 msgid "Prayer Warriors"
-msgstr "என் பிரார்த்தனை நேரங்கள்"
+msgstr ""
 
-#: porches/generic/site/home-body.php:201 porches/generic/site/stats.php:189
+#: porches/generic/site/home-body.php:199 porches/generic/site/stats.php:126
 #: porches/ramadan/site/home-body.php:192
-#, fuzzy
 msgid "Prayer Commitments Needed"
-msgstr "பிரார்த்தனை அர்ப்பணிப்புகள் தேவை"
+msgstr ""
 
-#: porches/generic/site/home-body.php:221
-#: porches/ongoing/site/home-body.php:210
-#: porches/ramadan/site/home-body.php:211
-#, fuzzy
+#: porches/generic/site/home-body.php:220
+#: porches/ramadan/site/home-body.php:212
 msgid "View All"
-msgstr "அனைத்தையும் காட்டு"
+msgstr ""
 
-#: porches/generic/site/post-list-body.php:134
-#, fuzzy
+#: porches/generic/site/post-list-body.php:151
 msgid "Read"
-msgstr "படி"
+msgstr ""
 
-#: porches/generic/site/post-list-body.php:149
+#: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
 msgstr ""
 
-#: porches/generic/site/stats.php:21
-#, fuzzy
-msgid "Campaign Stats"
-msgstr "பிரச்சார புள்ளிவிவரங்கள்"
-
-#: porches/generic/site/stats.php:146
-#, fuzzy
-msgctxt "Thank you for joining us in prayer for the French in France."
-msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-msgstr "%2$s இல் %1$sக்கான பிரார்த்தனையில் எங்களுடன் இணைந்ததற்கு நன்றி."
-
-#: porches/generic/site/stats.php:197
-#, fuzzy
+#: porches/generic/site/stats.php:134
 msgid "Percentage Covered"
-msgstr "சதவீதம் மூடப்பட்டது"
+msgstr ""
 
-#: porches/generic/site/stats.php:223
+#: porches/generic/site/stats.php:160
 msgid "Time Prayed in Groups"
 msgstr ""
 
-#: porches/generic/site/stats.php:233
-#, fuzzy
+#: porches/generic/site/stats.php:170
 msgid "Number of People who Prayed"
-msgstr "பிரார்த்தனை செய்தவர்களின் எண்ணிக்கை"
+msgstr ""
 
-#: porches/generic/site/stats.php:266
-#, fuzzy
+#: porches/generic/site/stats.php:203
 msgid "Share with us your Prayer Stories"
-msgstr "உங்கள் பிரார்த்தனை கதைகளை எங்களுடன் பகிர்ந்து கொள்ளுங்கள்"
+msgstr ""
 
-#: porches/generic/site/stats.php:280
-#, fuzzy
+#: porches/generic/site/stats.php:217
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
-"etc)"
+"etc.)"
 msgstr ""
-"உங்கள் பிரார்த்தனை நேரத்தைப் பற்றி எங்களுடன் பகிர்ந்து கொள்ளுங்கள் (எ.கா. சாட்சியங்கள், "
-"நுண்ணறிவு, ஆசீர்வாதம் போன்றவை)"
 
-#: porches/generic/site/stats.php:327
+#: porches/generic/site/stats.php:285
 msgid "Global Ramadan Stats"
 msgstr ""
 
-#: porches/generic/site/stats.php:334
-#, fuzzy
+#: porches/generic/site/stats.php:292
 msgid "Total Prayer Campaigns"
-msgstr "பிரார்த்தனை பிரச்சாரத் தரவை ஏற்றுகிறது..."
+msgstr ""
 
-#: porches/generic/site/stats.php:342
-#, fuzzy
+#: porches/generic/site/stats.php:300
 msgid "Countries Prayed For"
-msgstr "பிரார்த்தனை மணி"
+msgstr ""
 
-#: porches/generic/site/stats.php:350
+#: porches/generic/site/stats.php:308
 msgid "Intercessors"
 msgstr ""
 
-#: porches/generic/site/stats.php:358
-#, fuzzy
+#: porches/generic/site/stats.php:316
 msgid "Time Prayed"
-msgstr "நேரம் சேர்க்கப்பட்டது"
+msgstr ""
 
-#: porches/generic/site/stats.php:366
+#: porches/generic/site/stats.php:324
 msgid "15 Minute Time Slots Filled"
 msgstr ""
 
-#: porches/generic/site/stats.php:389
-#, fuzzy
+#: porches/generic/site/stats.php:347
 msgid "More Prayer Opportunities"
-msgstr "மேலும் பிரார்த்தனை வாய்ப்புகள்"
-
-#: porches/generic/site/stats.php:393
-#, fuzzy
-msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Pray4Movement.org and receive occasional communication from GospelAmbition."
-"org."
 msgstr ""
-"Pray4Movement.org உடன் பிற பிரார்த்தனை முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய "
-"விரும்புகிறீர்களா?"
+
+#: porches/generic/site/stats.php:351
+msgid ""
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
+msgstr ""
 
 #: porches/generic/site/top-section.php:31
-#, fuzzy
 msgid "Sign Up"
-msgstr "பதிவு செய்யவும்"
-
-#: porches/ongoing/site/home-body.php:159
-#, fuzzy
-msgid "Month"
-msgstr "மாதம்"
-
-#: porches/ongoing/site/home-body.php:176
-#, fuzzy
-msgid "Hours"
-msgstr "மணி"
-
-#: porches/ongoing/site/home-body.php:191
-#, fuzzy
-msgid "Hours Remaining"
-msgstr "மீதமுள்ள மணிநேரம்"
+msgstr ""
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
-#, fuzzy
 msgid "Ramadan Landing Page"
-msgstr "ரமலான் நிறைவடைகிறது..."
+msgstr ""
 
 #: porches/ramadan/settings.php:6
-#, fuzzy
 msgid ""
 "Ramadan is one of the five requirements (or pillars) of Islam. During each "
 "of its 30 days, Muslims are obligated to fast from dawn until sunset. During "
@@ -1077,360 +1033,36 @@ msgid ""
 "even read the entire Quran (about a tenth the length of the Bible). This "
 "sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
-"ரமலான் இஸ்லாத்தின் ஐந்து தேவைகளில் (அல்லது தூண்களில்) ஒன்றாகும். அதன் ஒவ்வொரு 30 "
-"நாட்களிலும், முஸ்லீம்கள் விடியற்காலையில் இருந்து சூரியன் மறையும் வரை நோன்பு நோற்கக் "
-"கடமைப்பட்டுள்ளனர். இந்த நேரத்தில் அவர்கள் உணவு, திரவங்கள் குடிப்பது, புகைபிடித்தல் மற்றும் "
-"உடலுறவு ஆகியவற்றிலிருந்து விலகி இருக்க வேண்டும்.\n"
-"\n"
-"     பெண்கள் பொதுவாக மதிய வேளைகளில் ஒரு பெரிய உணவைத் தயாரிப்பார்கள். சூரிய "
-"அஸ்தமனத்தில், குடும்பங்கள் அடிக்கடி கூடி நோன்பு திறக்கும். பாரம்பரியமாக குடும்பங்கள் தண்ணீர் "
-"குடித்து, பின்னர் மூன்று உலர் பேரீச்சம் பழங்கள் மற்றும் பலவகை உணவுடன் நோன்பை முறித்துக் "
-"கொள்கின்றனர். புதிய ரமலான் தொலைக்காட்சித் தொடரைப் பார்த்துவிட்டு, ஆண்கள் (மற்றும் சில "
-"பெண்கள்) காபி கடைகளுக்குச் செல்கிறார்கள், அங்கு அவர்கள் காபி குடிக்கிறார்கள், மேலும் இரவு "
-"வெகுநேரம் வரை நண்பர்களுடன் புகைபிடிப்பார்கள்.\n"
-"\n"
-"     சமீப வருடங்களில் பலர் உண்ணாவிரதத்தை நிறுத்திவிட்டாலும், பாசாங்குத்தனம், அதிகரித்த "
-"குற்ற விகிதங்கள் மற்றும் மாதம் முழுவதும் பரவும் முரட்டுத்தனம் ஆகியவற்றால் முடக்கப்பட்டாலும், "
-"மற்றவர்கள் இந்த நேரத்தில் மதத்தின் மீது மிகவும் தீவிரமானவர்கள். பலர் மாலை பிரார்த்தனை "
-"ஆராதனைகளில் கலந்துகொள்வதுடன் மற்ற சடங்கு பிரார்த்தனைகளையும் செய்கிறார்கள். சிலர் முழு "
-"குர்ஆனையும் (பைபிளின் பத்தில் ஒரு பங்கு) படிப்பார்கள். இந்த நேர்மையான தேடுதல் அவர்களுக்காக "
-"ஜெபிப்பதற்கான ஒரு மூலோபாய நேரமாக அமைகிறது."
 
-#: porches/ramadan/site/home-body.php:103
-#, fuzzy
+#: porches/ramadan/site/home-body.php:117
 msgid "Ramadan Begins ..."
-msgstr "ரமலான் ஆரம்பம்..."
+msgstr ""
 
-#: porches/ramadan/site/home-body.php:104
-#, fuzzy
+#: porches/ramadan/site/home-body.php:118
 msgid "Ramadan Ends ..."
-msgstr "ரமலான் நிறைவடைகிறது..."
+msgstr ""
 
-#: porches/ramadan/site/home-body.php:105
-#, fuzzy
+#: porches/ramadan/site/home-body.php:119
 msgid "Ramadan Is Finished"
-msgstr "ரமலான் முடிந்து விட்டது"
-
-#: porches/ramadan/site/home-body.php:138
-#, fuzzy
-msgid "here"
-msgstr "இங்கே"
+msgstr ""
 
 #: porches/ramadan/site/home-body.php:166
-#, fuzzy
 msgid "Days"
-msgstr "நாட்களில்"
+msgstr ""
 
 #: porches/ramadan/site/home-body.php:179
-#, fuzzy
 msgid "Hours of Prayer"
-msgstr "பிரார்த்தனை மணி"
+msgstr ""
 
 #: shortcodes/prayer-timer.php:219
-#, fuzzy
 msgid "Start Praying!"
-msgstr "ஜெபிக்க ஆரம்பியுங்கள்!"
+msgstr ""
 
 #: shortcodes/prayer-timer.php:222
-#, fuzzy
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr "பிரார்த்தனை நேரம்: %s நிமிடம்"
+msgstr ""
 
 #: shortcodes/prayer-timer.php:247
-#, fuzzy
 msgid "Now praying..."
-msgstr "இப்போது பிரார்த்தனை..."
-
-#, fuzzy
-#~ msgid "More Hours to be covered"
-#~ msgstr "மேலும் மணிநேரங்கள் மறைக்கப்பட வேண்டும்"
-
-#, fuzzy
-#~ msgid "Strategic prayer for a disciple making movement"
-#~ msgstr "ஒரு சீடரை உருவாக்கும் இயக்கத்திற்கான மூலோபாய பிரார்த்தனை"
-
-#, fuzzy
-#~ msgid "Thank You"
-#~ msgstr "நன்றி"
-
-#, fuzzy
-#~ msgid "Here are the times you have committed to pray:"
-#~ msgstr "ஜெபிக்க நீங்கள் ஒப்புக்கொண்ட நேரங்கள் இங்கே:"
-
-#, fuzzy
-#~ msgid "fully covered once"
-#~ msgstr "ஒரு முறை முழுமையாக மூடப்பட்டிருக்கும்"
-
-#, fuzzy
-#~ msgid "fully covered %1$s times"
-#~ msgstr "%1$s முறை முழுமையாக மூடப்பட்டது"
-
-#, fuzzy
-#~ msgid "Extend for 3 months"
-#~ msgstr "3 மாதங்களுக்கு நீட்டிக்கவும்"
-
-#, fuzzy
-#~ msgctxt "80% covered"
-#~ msgid "%s covered"
-#~ msgstr "மூடப்பட்ட"
-
-#, fuzzy
-#~ msgid "Pray this time"
-#~ msgstr "பிரார்த்தனை நேரம்"
-
-#, fuzzy
-#~ msgid "Your prayer times have been verified!"
-#~ msgstr "உங்கள் பிரார்த்தனை நேரம் சரிபார்க்கப்பட்டது!"
-
-#, fuzzy
-#~ msgid "Cancel"
-#~ msgstr "ரத்துசெய்"
-
-#, fuzzy
-#~ msgid "Select"
-#~ msgstr "தேர்ந்தெடு"
-
-#, fuzzy
-#~ msgid "Add a Daily Prayer Time"
-#~ msgstr "தினசரி பிரார்த்தனை நேரத்தைச் சேர்க்கவும்"
-
-#, fuzzy
-#~ msgid "Add Individual Prayer Times"
-#~ msgstr "தனிப்பட்ட பிரார்த்தனை நேரங்களைச் சேர்க்கவும்"
-
-#, fuzzy
-#~ msgid "My commitments"
-#~ msgstr "எனது கடமைகள்"
-
-#, fuzzy
-#~ msgid "For how long"
-#~ msgstr "எவ்வளவு காலத்திற்கு"
-
-#, fuzzy
-#~ msgid "ok"
-#~ msgstr "சரி"
-
-#, fuzzy
-#~ msgid "Select a day and choose a time"
-#~ msgstr "ஒரு நாளைத் தேர்ந்தெடுத்து நேரத்தைத் தேர்ந்தெடுக்கவும்"
-
-#, fuzzy
-#~ msgid "Time added"
-#~ msgstr "நேரம் சேர்க்கப்பட்டது"
-
-#, fuzzy
-#~ msgid "No selected Time"
-#~ msgstr "தேர்ந்தெடுக்கப்பட்ட நேரம் இல்லை"
-
-#, fuzzy
-#~ msgid "Back"
-#~ msgstr "மீண்டும்"
-
-#, fuzzy
-#~ msgid "Choose a different time:"
-#~ msgstr "வேறு நேரத்தை தேர்வு செய்யவும்:"
-
-#, fuzzy
-#~ msgid "Extend my prayer commitments until:"
-#~ msgstr "எனது பிரார்த்தனை கடமைகளை இது வரை நீட்டிக்கவும்:"
-
-#, fuzzy
-#~ msgid "Confirm"
-#~ msgstr "உறுதிப்படுத்தவும்"
-
-#, fuzzy
-#~ msgid "Profile Settings"
-#~ msgstr "சுயவிவர அமைப்புகள்"
-
-#, fuzzy
-#~ msgid "Notifications allowed"
-#~ msgstr "அறிவிப்புகள் அனுமதிக்கப்படுகின்றன"
-
-#, fuzzy
-#~ msgid "Notifications not allowed"
-#~ msgstr "அறிவிப்புகள் அனுமதிக்கப்படவில்லை"
-
-#, fuzzy
-#~ msgid "Are you sure you want to delete your profile?"
-#~ msgstr "உங்கள் சுயவிவரத்தை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
-
-#, fuzzy
-#~ msgid "This can not be undone."
-#~ msgstr "இதை முடிக்காமல் விட கூடாது."
-
-#, fuzzy
-#~ msgid "Your email is required."
-#~ msgstr "உங்கள் மின்னஞ்சல் தேவை."
-
-#, fuzzy
-#~ msgid "The code is required"
-#~ msgstr "உங்கள் மின்னஞ்சல் தேவை."
-
-#, fuzzy
-#~ msgid "Return"
-#~ msgstr "திரும்பு"
-
-#, fuzzy
-#~ msgid "We are not longer looking for sign ups"
-#~ msgstr "நாங்கள் இனி பதிவுகளை தேடவில்லை"
-
-#, fuzzy
-#~ msgid "Thanks for praying with us!"
-#~ msgstr "எங்களுடன் பிரார்த்தனை செய்ததற்கு நன்றி!"
-
-#, fuzzy
-#~ msgid "Showing times for:"
-#~ msgstr "இதற்கான நேரங்களைக் காட்டுகிறது:"
-
-#, fuzzy
-#~ msgctxt "Campaign Name is Finished"
-#~ msgid "%s is Finished"
-#~ msgstr "%s முடிந்தது"
-
-#, fuzzy
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Ends In"
-#~ msgstr "%s இல் முடிகிறது"
-
-#, fuzzy
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Begins In"
-#~ msgstr "%s தொடங்குகிறது"
-
-#, fuzzy
-#~ msgid "covered once"
-#~ msgstr "ஒரு முறை மூடப்பட்டது"
-
-#, fuzzy
-#~ msgid "covered %1$s times"
-#~ msgstr "%1$s முறை மூடப்பட்டது"
-
-#, fuzzy
-#~ msgid "Loading prayer campaign data..."
-#~ msgstr "பிரார்த்தனை பிரச்சாரத் தரவை ஏற்றுகிறது..."
-
-#, fuzzy
-#~ msgid "Select an option"
-#~ msgstr "ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்"
-
-#, fuzzy
-#~ msgid "Pray every day at the same time"
-#~ msgstr "ஒவ்வொரு நாளும் ஒரே நேரத்தில் பிரார்த்தனை செய்யுங்கள்"
-
-#, fuzzy
-#~ msgid "Example: Everyday at 4pm for 15mins"
-#~ msgstr "உதாரணம்: தினமும் மாலை 4 மணிக்கு 15 நிமிடங்கள்"
-
-#, fuzzy
-#~ msgid "Select days and times to pray"
-#~ msgstr "பிரார்த்தனை செய்ய நாட்கள் மற்றும் நேரங்களைத் தேர்ந்தெடுக்கவும்"
-
-#, fuzzy
-#~ msgid "Example: Monday 12th at 6pm for 15mins"
-#~ msgstr "எடுத்துக்காட்டு: திங்கட்கிழமை 12 ஆம் தேதி மாலை 6 மணிக்கு 15 நிமிடங்கள்"
-
-#, fuzzy
-#~ msgid "Please note that daylight savings time may affect your prayer times."
-#~ msgstr "உங்கள் பிரார்த்தனை நேரங்களை நிர்வகிப்பதற்கான இணைப்பு மின்னஞ்சலில் உள்ளது."
-
-#, fuzzy
-#~ msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
-#~ msgid "Everyday at %1$s for %2$s until %3$s"
-#~ msgstr "தினமும் %1$s இல் %2$sக்கு %3$s வரை"
-
-#, fuzzy
-#~ msgctxt "Jun, Jul, Aug covered"
-#~ msgid "covered"
-#~ msgstr "மூடப்பட்ட"
-
-#, fuzzy
-#~ msgid ""
-#~ "Chose a time to pray everyday for the next 3 months. Near the end you'll "
-#~ "have the option to sign up for more."
-#~ msgstr ""
-#~ "அடுத்த 3 மாதங்களுக்கு தினமும் பிரார்த்தனை செய்ய ஒரு நேரத்தை தேர்வு செய்யவும். "
-#~ "முடிவில் நீங்கள் மேலும் பதிவு செய்வதற்கான விருப்பத்தைப் பெறுவீர்கள்."
-
-#, fuzzy
-#~ msgid ""
-#~ "Thank you for joining us in strategic prayer for a disciple making "
-#~ "movement! You're one click away from finishing your registration."
-#~ msgstr ""
-#~ "சீடர்களை உருவாக்கும் இயக்கத்திற்கான மூலோபாய பிரார்த்தனையில் எங்களுடன் இணைந்ததற்கு நன்றி! "
-#~ "உங்கள் பதிவை முடிக்க ஒரு கிளிக்கில் உள்ளீர்கள்."
-
-#, fuzzy
-#~ msgid "Registration Confirmation"
-#~ msgstr "பதிவு உறுதிப்படுத்தல்"
-
-#, fuzzy
-#~ msgid ""
-#~ "We have some time before the campaign starts. We will send you another "
-#~ "email a couple months before the first day asking you to choose specific "
-#~ "times to pray. Working together we will cover the region in 24/7 prayer."
-#~ msgstr ""
-#~ "பிரச்சாரம் தொடங்குவதற்கு சிறிது நேரம் உள்ளது. பிரார்த்தனை செய்ய குறிப்பிட்ட நேரங்களைத் "
-#~ "தேர்வு செய்யும்படி, முதல் நாளுக்கு இரண்டு மாதங்களுக்கு முன்பு உங்களுக்கு மற்றொரு "
-#~ "மின்னஞ்சலை அனுப்புவோம். ஒன்றாக வேலை செய்வதன் மூலம் 24/7 பிரார்த்தனையில் பிராந்தியத்தை "
-#~ "மூடுவோம்."
-
-#, fuzzy
-#~ msgid "If you know your schedule already you can choose your times here:"
-#~ msgstr "உங்கள் அட்டவணையை ஏற்கனவே அறிந்திருந்தால், உங்கள் நேரத்தை இங்கே தேர்வு செய்யலாம்:"
-
-#, fuzzy
-#~ msgid "Receive Prayer Time Notifications (email verification needed)."
-#~ msgstr "பிரார்த்தனை நேர அறிவிப்புகளைப் பெறவும் (மின்னஞ்சல் சரிபார்ப்பு தேவை)."
-
-#, fuzzy
-#~ msgid "Submit Your Prayer Commitment"
-#~ msgstr "உங்கள் பிரார்த்தனை அர்ப்பணிப்பை சமர்ப்பிக்கவும்"
-
-#, fuzzy
-#~ msgid "Check your email"
-#~ msgstr "அனுப்பப்பட்டது! உங்கள் மின்னஞ்சல் பார்க்க."
-
-#, fuzzy
-#~ msgid ""
-#~ "Click on the link included in the email to verify your commitment and "
-#~ "receive prayer time notifications!"
-#~ msgstr ""
-#~ "உங்கள் உறுதிப்பாட்டை சரிபார்க்க மற்றும் பிரார்த்தனை நேர அறிவிப்புகளைப் பெற மின்னஞ்சலில் "
-#~ "உள்ள இணைப்பைக் கிளிக் செய்யவும்!"
-
-#, fuzzy
-#~ msgid "OK"
-#~ msgstr "சரி"
-
-#, fuzzy
-#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
-#~ msgstr "Pray4Movement செய்திமடலைப் பெறவும் (மின்னஞ்சல் சரிபார்ப்பு தேவை)."
-
-#, fuzzy
-#~ msgid "Sent! Check your email."
-#~ msgstr "அனுப்பப்பட்டது! உங்கள் மின்னஞ்சல் பார்க்க."
-
-#, fuzzy
-#~ msgid "Epic 404"
-#~ msgstr "காவியம் 404"
-
-#, fuzzy
-#~ msgid "Content to be added to the signup email"
-#~ msgstr "பதிவுசெய்தல் மின்னஞ்சலில் சேர்க்க வேண்டிய உள்ளடக்கம்"
-
-#, fuzzy
-#~ msgid "Content to be added to the reminder email"
-#~ msgstr "நினைவூட்டல் மின்னஞ்சலில் சேர்க்க வேண்டிய உள்ளடக்கம்"
-
-#, fuzzy
-#~ msgid "Update"
-#~ msgstr "புதுப்பிப்பு"
-
-#, fuzzy
-#~ msgid "Yes"
-#~ msgstr "ஆம்"
-
-#, fuzzy
-#~ msgid "No"
-#~ msgstr "இல்லை"
+msgstr ""

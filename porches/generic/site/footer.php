@@ -1,3 +1,8 @@
+<?php
+$campaign_url = DT_Campaign_Landing_Settings::get_landing_root_url();
+$campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
+?>
+
 <!-- Footer Section Start -->
 <footer>
     <div class="container">
@@ -29,15 +34,16 @@
                             global $allowedtags;
                             echo wp_kses( DT_Porch_Settings::get_field_translation( 'footer_content' ), $allowedtags ) ?><br>
                         <?php endif; ?>
-                        Made by <a href="https://pray4movement.org">Pray4Movement.org</a>. Powered by <a href="https://disciple.tools">Disciple.Tools</a><br>
-                        &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+                        Built using <a href="https://prayer.tools/campaigns-tool/" target="_blank">Prayer.Tools</a> &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
                     </p>
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
                     <p>
-                        <a href="<?php echo esc_html( site_url( '/subscriptions' ) ); ?>">Login</a> |
-                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns' ) ); ?>">Page Settings</a> |
-                        <a href="<?php echo esc_url( site_url( '/prayer/contact-us' ) ) ?>"> <?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        <?php if ( !is_user_logged_in() ) : ?>
+                            <a href="<?php echo esc_html( wp_login_url( $campaign_url ) ); ?>">Login</a> |
+                        <?php endif; ?>
+                        <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . $campaign_id . '&tab=campaign_landing' ) ); ?>">Campaign Settings</a> |
+                        <a href="<?php echo esc_url( $campaign_url ) ?>/contact-us"> <?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></a>
                     </p>
                 </div>
             </div>
