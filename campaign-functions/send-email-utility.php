@@ -402,7 +402,7 @@ class DT_Prayer_Campaigns_Send_Email {
         } );
         $expiring_signups_list = '<ul>';
         foreach ( $signups as $signup ){
-            if ( $force_display || $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ){
+            if ( $force_display || ( $signup['last'] < time() + 3 * WEEK_IN_SECONDS && $signup['last'] > time() ) ){
                 $string = DT_Subscriptions::get_recurring_signup_label( $signup, $timezone, $locale, true );
                 $expiring_signups_list .= '<li>' . $string . '</li>';
             }
