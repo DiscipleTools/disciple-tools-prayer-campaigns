@@ -219,7 +219,7 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
             } else {
                 $response = wp_remote_post( $url, $args );
             }
-            if ( is_wp_error( $response ) || isset( $response['response']['code'] ) && $response['response']['code'] !== 200 ){
+            if ( is_wp_error( $response ) || ( isset( $response['response']['code'] ) && $response['response']['code'] !== 200 ) ){
                 return false;
             }
             $data = wp_remote_retrieve_body( $response );

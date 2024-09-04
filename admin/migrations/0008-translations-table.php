@@ -25,8 +25,8 @@ class DT_Prayer_Campaign_Migration_0008 extends DT_Prayer_Campaign_Migration {
                 `language` varchar(20) NOT NULL DEFAULT '',
                 `value` longtext NOT NULL,
                 PRIMARY KEY (`id`)
-            ) $charset_collate;"
-        ); // WPCS: unprepared SQL OK
+            ) $charset_collate;" //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        );
         if ( $rv == false ) {
             throw new Exception( "Got error when creating table $wpdb->dt_translations: $wpdb->last_error" );
         }
