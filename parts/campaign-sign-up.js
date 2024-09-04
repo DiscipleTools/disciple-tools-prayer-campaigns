@@ -1104,7 +1104,6 @@ export class cpPercentage extends LitElement {
             </progress-ring>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center">${message}</div>
-        <!-- <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display">${translate('%s total prayer').replace('%s', this.campaign_data.time_committed)}</div> -->
     </div>
     `
   }
