@@ -280,7 +280,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'coverage_percent' => $coverage_percent ?? null,
             'signup_form_fields' => $signup_form_fields,
             'frequency_durations' => campaigns_get_frequency_duration_days( $campaign ),
-            'campaign_goal' => isset( $record['goal']['key'] ) ? $record['goal']['key'] : '247coverage',
+            'campaign_goal' => isset( $campaign['goal']['key'] ) ? $campaign['goal']['key'] : '247coverage',
         ];
     }
 

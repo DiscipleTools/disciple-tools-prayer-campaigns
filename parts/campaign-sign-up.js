@@ -1088,6 +1088,9 @@ export class cpPercentage extends LitElement {
     if ( !this.campaign_data ){
       return html`<div class="loading"></div>`
     }
+    const message = this.campaign_data.campaign_goal==='quantity' ?
+      translate('Goal: %s hours of prayer every day').replace('%s', 24):
+      translate('Goal: 24/7 coverage')
 
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
@@ -1100,8 +1103,8 @@ export class cpPercentage extends LitElement {
                text2="">
             </progress-ring>
         </div>
-        <div style="color: rgba(0,0,0,0.57); text-align: center">${strings['Percentage covered in prayer']}</div>
-        <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display">${strings['%s committed'].replace('%s', this.campaign_data.time_committed)}</div>
+        <div style="color: rgba(0,0,0,0.57); text-align: center">${message}</div>
+        <!-- <div style="color: rgba(0,0,0,0.57); text-align: center" id="cp-time-committed-display">${translate('%s total prayer').replace('%s', this.campaign_data.time_committed)}</div> -->
     </div>
     `
   }

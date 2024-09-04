@@ -199,6 +199,7 @@ class DT_Campaigns_Base {
                 ],
                 'settings_tab' => 'campaign_landing',
                 'settings_section' => 'Campaign',
+                'select_cannot_be_empty' => true,
             ];
 
             $fields['assigned_user'] = [
