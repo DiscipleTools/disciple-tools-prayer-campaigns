@@ -1343,7 +1343,28 @@ class DT_Campaigns_Base {
             if ( !isset( $fields[$key_name] ) ) {
                 $fields[$key_name] = dt_create_unique_key();
             }
+            //campaign goal
+            if ( !isset( $fields['goal'] ) ){
+                $fields['goal'] = '247coverage';
+            }
         }
+        return $fields;
+    }
+
+    public function set_strings( $fields, $post_type, $post_id = null, $existing_post = [] ){
+        if ( $post_type !== 'campaigns' ){
+            return $fields;
+        }
+        $campaign_goal = ( $fields['goal'] ?? null ) ?: ( $existing_post['goal']['key'] ?? '' );
+        if ( $campaign_goal === 'quantity' ) {
+            if ( !isset( $fields['vision'] ) && empty( $existing_post['vision'] ) ){
+                $fields['vision'] = __( 'We want to cover this region with prayer.', 'disciple-tools-prayer-campaigns' );
+            }
+            if ( !isset( $fields['time_section_title'] ) && empty( $existing_post['time_section_title'] ) ){
+                $fields['time_section_title'] = __( 'Together', 'disciple-tools-prayer-campaigns' );
+            }
+        }
+
         return $fields;
     }
 
