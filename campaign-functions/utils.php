@@ -1,6 +1,21 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+
+class Campaign_Utils {
+    public static function get_campaign_goal_quantity( $campaign ) {
+        $goal = 24;
+        if ( !empty( $campaign['goal_quantity'] ) && is_numeric( $campaign['goal_quantity'] ) ){
+            $goal = (int) $campaign['goal_quantity'];
+        }
+        return $goal;
+    }
+    public static function get_campaign_goal( $campaign ) {
+        return isset( $campaign['goal']['key'] ) ? $campaign['goal']['key'] : '247coverage';
+    }
+}
+
+
 /**
  * Merges the $args and $defaults array recursively through sub arrays
  *

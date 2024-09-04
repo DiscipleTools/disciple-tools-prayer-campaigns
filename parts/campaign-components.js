@@ -1393,7 +1393,7 @@ export class cpProgressRing extends LitElement {
       </svg>
       <style>
         :host{
-          --progress: ${this.progress};
+          --progress: ${Math.min(this.progress, 100)};
           --progress2: ${this.progress2};
         }
       </style>

@@ -30,6 +30,23 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
     public function body_content(){
         $this->main_column();
         $this->box_languages();
+        $this->custom_js();
+    }
+
+    public function custom_js(){
+        ?>
+        <script>
+          jQuery(document).ready(function ($) {
+            // Add a new language
+            let goaltype = $('#goal').val();
+            $('#goal_quantity-row').toggle(goaltype==='quantity');
+            $('#goal').change(function () {
+              $('#goal_quantity-row').toggle($(this).val()==='quantity');
+            });
+          });
+        </script>
+
+        <?php
     }
 
     private function box_languages() {

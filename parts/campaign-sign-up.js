@@ -1008,20 +1008,23 @@ export class cpCalendar extends LitElement {
       let covered_slots = 0; // time slots with at least 1 person
       let total_slots = 0; // all the time slots in the day (different on daylight savings days)
       let total_times = 0 // have many prayer times are happening that day
+      let goal_hours = window.campaign_data.campaign_goal === 'quantity' ? ( window.campaign_data.goal_quantity || 24 ) : 24;
 
       month_days.forEach(day=>{
         covered_slots += day.covered_slots || 0
         total_slots += day.slots.length || 0
-        total_times += day.total_times || 0
+        total_times += Math.min(day.total_times, goal_hours * 60 / window.campaign_data.slot_length ) || 0
       })
 
       let percentage_of = window.campaign_data.campaign_goal !== '247coverage' ? total_times : covered_slots;
+      if ( window.campaign_data.campaign_goal === 'quantity' ){
+        total_slots = total_slots * goal_hours / 24
+      }
       months_to_show.push({
         date: now_date.plus({month:i}),
         days: month_days,
         percentage: ((total_slots ? ( percentage_of / total_slots ) : 0 ) * 100).toFixed( 2 ),
-        days_covered: ( this.campaign_data.slot_length * percentage_of / 60 / 24 ).toFixed( 1 ),
-        days_of_prayer: ( this.campaign_data.slot_length * percentage_of / 60 / 24 ).toFixed( 1 ),
+        days_of_prayer: ( this.campaign_data.slot_length * covered_slots / 60 / 24 ).toFixed( 1 ), //quantity of days for prayer
       })
     }
 
@@ -1033,7 +1036,7 @@ export class cpCalendar extends LitElement {
                 <div class="calendar-month">
                     <h3 class="month-title center">
                         ${month.date.toLocaleString({ month: 'short', year: 'numeric' })}
-                        <span class="month-percentage">${ month.percentage || 0 }% | ${month.days_covered || 0} ${translate('days')}</span>
+                        <span class="month-percentage">${ month.percentage || 0 }% | ${month.days_of_prayer || 0} ${translate('days')}</span>
 
                     </h3>
                     <div class="calendar">
@@ -1089,7 +1092,7 @@ export class cpPercentage extends LitElement {
       return html`<div class="loading"></div>`
     }
     const message = this.campaign_data.campaign_goal==='quantity' ?
-      translate('Goal: %s hours of prayer every day').replace('%s', 24):
+      translate('Goal: %s hours of prayer every day').replace('%s', this.campaign_data.goal_quantity || 24):
       translate('Goal: 24/7 coverage')
 
     return html`
