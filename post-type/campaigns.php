@@ -272,7 +272,7 @@ class DT_Campaigns_Base {
             $fields['last_modified']['show_in_table'] = false;
             $fields['favorite']['show_in_table'] = false;
 
-            $fields['goal'] = [
+            $fields['campaign_goal'] = [
                 'name' => 'Campaign Goal',
                 'type' => 'key_select',
                 'tile' => 'status',
@@ -1343,8 +1343,8 @@ class DT_Campaigns_Base {
                 $fields[$key_name] = dt_create_unique_key();
             }
             //campaign goal
-            if ( !isset( $fields['goal'] ) ){
-                $fields['goal'] = '247coverage';
+            if ( !isset( $fields['campaign_goal'] ) ){
+                $fields['campaign_goal'] = '247coverage';
             }
             //signup frequency
             if ( !isset( $fields['enabled_frequencies'] ) ){

@@ -38,7 +38,7 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
         <script>
           jQuery(document).ready(function ($) {
             // Only show goal quantity if goal is quantity
-            const goal_input = $('#goal');
+            const goal_input = $('#campaign_goal');
             const goal_type = goal_input.val();
             $('#goal_quantity-row').toggle(goal_type==='quantity');
             goal_input.change(function () {

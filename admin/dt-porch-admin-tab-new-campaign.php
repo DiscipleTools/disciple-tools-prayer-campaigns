@@ -52,7 +52,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
         }
         //goal
         if ( !empty( $post_args['campaign_goal'] ) ){
-            $fields['goal'] = $post_args['campaign_goal'];
+            $fields['campaign_goal'] = $post_args['campaign_goal'];
         }
         //languages
         if ( !empty( $post_args['campaign_languages'] ) ){
@@ -173,7 +173,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                 <tr>
                                     <th><label for="campaign_goal">Goal</label></th>
                                     <td>
-                                        <?php foreach ( $campaign_fields['goal']['default'] ?? [] as $key => $value ): ?>
+                                        <?php foreach ( $campaign_fields['campaign_goal']['default'] ?? [] as $key => $value ): ?>
 
                                             <label style="display: block; padding: 8px">
                                                 <input type="radio" name="campaign_goal" value="<?php echo esc_html( $key ); ?>" required>

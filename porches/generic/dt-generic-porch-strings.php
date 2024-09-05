@@ -259,9 +259,9 @@ class DT_Generic_Porch_Strings {
                 'tab' => 'translations',
             ]
         ];
-        $selected_campaign = DT_Campaign_Landing_Settings::get_campaign_id();
+        $selected_campaign = isset( $_GET['campaign'] ) ? sanitize_key( wp_unslash( $_GET['campaign'] ) ) : ( defined( 'CAMPAIGN_ID' ) ? CAMPAIGN_ID : null );
         if ( !empty( $selected_campaign ) ){
-            $campaign_goal = get_post_meta( $selected_campaign, 'goal', true );
+            $campaign_goal = get_post_meta( $selected_campaign, 'campaign_goal', true );
             if ( $campaign_goal === 'quantity' ){
                 $fields['vision']['default'] = __( 'We want to cover this region with prayer.', 'disciple-tools-prayer-campaigns' );
                 $fields['time_section_title']['default'] = __( 'Together', 'disciple-tools-prayer-campaigns' );

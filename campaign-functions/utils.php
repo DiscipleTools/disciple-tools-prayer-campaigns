@@ -11,7 +11,7 @@ class Campaign_Utils {
         return $goal;
     }
     public static function get_campaign_goal( $campaign ) {
-        return isset( $campaign['goal']['key'] ) ? $campaign['goal']['key'] : '247coverage';
+        return isset( $campaign['campaign_goal']['key'] ) ? $campaign['campaign_goal']['key'] : '247coverage';
     }
     public static function prayer_commitments_needed( $campaign ) {
         $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign( $campaign['ID'] );
