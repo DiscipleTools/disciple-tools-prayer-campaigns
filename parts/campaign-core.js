@@ -83,7 +83,9 @@ window.campaign_data = {
 
   current_commitments: {},
   minutes_committed: 0,
-  time_committed: ''
+  time_committed: '',
+  campaign_goal: '247coverage',
+  goal_quantity: undefined,
 }
 
 window.campaign_scripts = {
@@ -188,7 +190,12 @@ window.campaign_scripts = {
       time_iterator += slot_length * 60;
     }
     days.forEach(d=>{
-      d.percent = (window.campaign_data.campaign_goal !== '247coverage' ? d.total_times : d.covered_slots) / d.slots.length * 100
+      if ( window.campaign_data.campaign_goal === 'quantity' ){
+        // all the times prayer / the # times needed for reading the hours goal
+        d.percent = d.total_times / ( d.slots.length * window.campaign_data.goal_quantity / 24 ) * 100
+      } else {
+        d.percent = d.covered_slots / d.slots.length * 100
+      }
     })
     window.campaign_scripts.processing_save = {}
 
