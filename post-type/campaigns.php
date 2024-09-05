@@ -1349,7 +1349,7 @@ class DT_Campaigns_Base {
             }
             //signup frequency
             if ( !isset( $fields['enabled_frequencies'] ) ){
-                $fields['enabled_frequencies'] = [ 'daily', 'pick' ];
+                $fields['enabled_frequencies'] = [ 'values' => [ [ 'value' => 'daily' ], [ 'value' => 'pick' ] ] ];
             }
         }
         return $fields;
