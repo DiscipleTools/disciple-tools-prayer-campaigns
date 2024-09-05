@@ -4,16 +4,21 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 class DT_Time_Utilities {
 
     //Get each day with each time chuck counts
-    public static function campaign_times_list( $post_id, $month_limit = null ) {
+    public static function campaign_times_list( $post_id, $month_limit = null, $with_timezone = true ){
         $data = [];
 
         $record = DT_Posts::get_post( 'campaigns', $post_id, true, false );
-
         $min_time_duration = self::campaign_min_prayer_duration( $post_id );
-        $start_with_tz = self::start_of_campaign_with_timezone( $post_id );
-        $end = self::end_of_campaign_with_timezone( $post_id, $month_limit, $start_with_tz );
 
-        $start = strtotime( gmdate( 'Y-m-d', $start_with_tz ) );
+        $start = $record['start_date']['timestamp'] ?? time();
+        $end = $record['end_date']['timestamp'] ?? time() + 2 * MONTH_IN_SECONDS;
+        $start_with_tz = $start;
+        if ( $with_timezone ){
+            $start_with_tz = self::start_of_campaign_with_timezone( $post_id );
+            $end = self::end_of_campaign_with_timezone( $post_id, $month_limit, $start_with_tz );
+
+            $start = strtotime( gmdate( 'Y-m-d', $start_with_tz ) );
+        }
 
         $current_times_list = self::get_current_commitments( $record['ID'], $month_limit );
 

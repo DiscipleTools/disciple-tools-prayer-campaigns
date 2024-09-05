@@ -1213,10 +1213,10 @@ class DT_Campaigns_Base {
 
     public static function query_coverage_percentage( $campaign_post_id, $month_limit = 2 ) {
         $percent = 0;
-        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
-        //or time commitments / campaign length / prayer time duration * 100
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $campaign_goal = Campaign_Utils::get_campaign_goal( $campaign );
+        $with_timezone = $campaign_goal !== 'quantity';
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit, $with_timezone );
         $campaign_goal_quantity = Campaign_Utils::get_campaign_goal_quantity( $campaign );
         $adjusted = $campaign_goal_quantity / 24;
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
