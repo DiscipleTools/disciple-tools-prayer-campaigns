@@ -44,8 +44,6 @@ class DT_Campaigns_Base {
         // hooks
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
         add_action( 'post_connection_added', [ $this, 'post_connection_added' ], 10, 4 );
-        add_filter( 'dt_post_create_fields', [ $this, 'set_strings' ], 110, 2 );
-        add_filter( 'dt_post_update_fields', [ $this, 'set_strings' ], 110, 4 );
 
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
@@ -278,6 +276,7 @@ class DT_Campaigns_Base {
                 'name' => 'Campaign Goal',
                 'type' => 'key_select',
                 'tile' => 'status',
+                'description' => 'The prayer goal of the campaign. See https://prayer.tools/docs/campaign-goals/',
                 'default' => [
                     '247coverage' => [
                         'label' => '24/7 daily coverage',
@@ -293,7 +292,7 @@ class DT_Campaigns_Base {
             ];
             $fields['goal_quantity'] = [
                 'name' => 'Goal Quantity',
-                'description' => 'The number of hours of prayer a day you want to reach.',
+                'description' => 'The number of hours of prayer a day you want to reach',
                 'type' => 'number',
                 'tile' => 'status',
                 'default' => 24,
@@ -1355,24 +1354,6 @@ class DT_Campaigns_Base {
         return $fields;
     }
 
-    public function set_strings( $fields, $post_type, $post_id = null, $existing_post = [] ){
-        if ( $post_type !== 'campaigns' ){
-            return $fields;
-        }
-        $campaign_goal = ( $fields['goal'] ?? null ) ?: ( $existing_post['goal']['key'] ?? '' );
-        if ( $campaign_goal === 'quantity' ) {
-            if ( !isset( $fields['vision'] ) && empty( $existing_post['vision'] ) ){
-                $fields['vision'] = __( 'We want to cover this region with prayer.', 'disciple-tools-prayer-campaigns' );
-            }
-            if ( !isset( $fields['time_section_title'] ) && empty( $existing_post['time_section_title'] ) ){
-                $fields['time_section_title'] = __( 'Together', 'disciple-tools-prayer-campaigns' );
-            }
-        }
-
-        return $fields;
-    }
-
-    //list page filters function
     private static function get_all_status_types(){
         global $wpdb;
 

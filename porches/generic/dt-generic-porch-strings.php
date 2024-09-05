@@ -24,7 +24,7 @@ class DT_Generic_Porch_Strings {
 //
 //        $campaign_name = isset( $current_campaign['name'] ) ? $current_campaign['name'] : '';
 
-        return [
+        $fields = [
 //            'title' => [
 //                'label' => 'Campaign/Site Title',
 //                'value' => get_bloginfo( 'name' ),
@@ -259,6 +259,15 @@ class DT_Generic_Porch_Strings {
                 'tab' => 'translations',
             ]
         ];
+        $selected_campaign = DT_Campaign_Landing_Settings::get_campaign_id();
+        if ( !empty( $selected_campaign ) ){
+            $campaign_goal = get_post_meta( $selected_campaign, 'goal', true );
+            if ( $campaign_goal === 'quantity' ){
+                $fields['vision']['default'] = __( 'We want to cover this region with prayer.', 'disciple-tools-prayer-campaigns' );
+                $fields['time_section_title']['default'] = __( 'Together', 'disciple-tools-prayer-campaigns' );
+            }
+        }
+        return $fields;
     }
 
     public function dt_custom_fields_settings( $fields, $post_type ){
