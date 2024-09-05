@@ -30,6 +30,36 @@ class DT_Porch_Admin_Tab_Campaign_Settings extends DT_Porch_Admin_Tab_Base {
     public function body_content(){
         $this->main_column();
         $this->box_languages();
+        $this->custom_js();
+    }
+
+    public function custom_js(){
+        ?>
+        <script>
+          jQuery(document).ready(function ($) {
+            // Only show goal quantity if goal is quantity
+            const goal_input = $('#campaign_goal');
+            const goal_type = goal_input.val();
+            $('#goal_quantity-row').toggle(goal_type==='quantity');
+            goal_input.change(function () {
+              $('#goal_quantity-row').toggle($(this).val()==='quantity');
+            });
+
+            //Only show signup lengths for selected signup type
+            const signup_frequencies = $('#enabled_frequencies-row input[type=checkbox]');
+            signup_frequencies.each(function(a) {
+              const freq = $(this).val();
+              const checked = $(this).prop('checked');
+              $(`#${freq}_signup_length-row`).toggle(checked);
+            })
+            signup_frequencies.change(function () {
+              const freq = $(this).val();
+              $(`#${freq}_signup_length-row`).toggle($(this).prop('checked'));
+            });
+          });
+        </script>
+
+        <?php
     }
 
     private function box_languages() {

@@ -150,10 +150,8 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     <div class="container">
         <div class="row">
             <?php
-            $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign();
             $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign_fields['ID'] );
             $time_committed = DT_Time_Utilities::display_minutes_in_time( $minutes_committed );
-
             $size = $campaign_has_end_date ? 'col-sm-6 col-md-4 col-lg-4' : 'col-sm-6 col-md-6 col-lg-6';
             ?>
             <div class="<?php echo esc_html( $size ); ?>">
@@ -194,10 +192,8 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                             <i class="lnr lnr-heart"></i>
                         </div>
                         <div class="fact-count">
-
-                                <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : '2880' ?></h3>
-                                <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
-
+                            <h3><?php echo esc_html( Campaign_Utils::prayer_commitments_needed( $campaign_fields ) ) ?></h3>
+                            <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
                         </div>
                     </div>
                 </div>

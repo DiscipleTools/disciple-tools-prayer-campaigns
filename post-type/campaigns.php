@@ -272,6 +272,35 @@ class DT_Campaigns_Base {
             $fields['last_modified']['show_in_table'] = false;
             $fields['favorite']['show_in_table'] = false;
 
+            $fields['campaign_goal'] = [
+                'name' => 'Campaign Goal',
+                'type' => 'key_select',
+                'tile' => 'status',
+                'description' => 'The prayer goal of the campaign. See https://prayer.tools/docs/campaign-goals/',
+                'default' => [
+                    '247coverage' => [
+                        'label' => '24/7 daily coverage',
+                    ],
+                    'quantity' => [
+                        'label' => 'Custom # of hours every day (default 24)',
+                        'description' => 'Get to x Hours of prayer every day.'
+                    ]
+                ],
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
+                'select_cannot_be_empty' => true,
+            ];
+            $fields['goal_quantity'] = [
+                'name' => 'Goal Quantity',
+                'description' => 'The number of hours of prayer a day you want to reach',
+                'type' => 'number',
+                'tile' => 'status',
+                'default' => 24,
+                'settings_tab' => 'campaign_landing',
+                'settings_section' => 'Campaign',
+                'select_cannot_be_empty' => true,
+            ];
+
             $timezones = [];
             $tzlist = DateTimeZone::listIdentifiers( DateTimeZone::ALL );
             foreach ( $tzlist as $tz ){
@@ -1183,18 +1212,36 @@ class DT_Campaigns_Base {
 
     public static function query_coverage_percentage( $campaign_post_id, $month_limit = 2 ) {
         $percent = 0;
-        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
-        //or time commitments / campaign length / prayer time duration * 100
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
+        $campaign_goal = Campaign_Utils::get_campaign_goal( $campaign );
+        $with_timezone = $campaign_goal !== 'quantity';
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit, $with_timezone );
+        $campaign_goal_quantity = Campaign_Utils::get_campaign_goal_quantity( $campaign );
+        $adjusted = $campaign_goal_quantity / 24;
+        $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
 
         $blocks_covered = 0;
         $blocks = 0;
+        $blocks_expected = 0;
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
-                $blocks_covered += $day['blocks_covered'];
+                if ( $campaign_goal === 'quantity' ){
+                    //expect the goal or the max amount of slots in the day
+                    $number_of_slots_needed_to_meet_goal = $campaign_goal_quantity * 60 / $min_time_duration;
+                    $max_possible_in_the_day = min( $day['time_slot_count'], $number_of_slots_needed_to_meet_goal );
+                    $blocks_expected += $max_possible_in_the_day;
+                    $blocks_covered += min( $day['prayer_times'], $max_possible_in_the_day );
+                } else {
+                    $blocks_covered += $day['blocks_covered'];
+                }
                 $blocks += $day['time_slot_count'];
             }
 
-            $percent = $blocks ? ( $blocks_covered / $blocks * 100 ) : 0;
+            if ( $campaign_goal === 'quantity' ){
+                $percent = $blocks ? ( $blocks_covered / $blocks_expected * 100 ) : 0;
+            } else {
+                $percent = $blocks ? ( $blocks_covered / $blocks * 100 ) : 0;
+            }
         }
         return round( $percent, 2 );
     }
@@ -1295,11 +1342,18 @@ class DT_Campaigns_Base {
             if ( !isset( $fields[$key_name] ) ) {
                 $fields[$key_name] = dt_create_unique_key();
             }
+            //campaign goal
+            if ( !isset( $fields['campaign_goal'] ) ){
+                $fields['campaign_goal'] = '247coverage';
+            }
+            //signup frequency
+            if ( !isset( $fields['enabled_frequencies'] ) ){
+                $fields['enabled_frequencies'] = [ 'values' => [ [ 'value' => 'daily' ], [ 'value' => 'pick' ] ] ];
+            }
         }
         return $fields;
     }
 
-    //list page filters function
     private static function get_all_status_types(){
         global $wpdb;
 

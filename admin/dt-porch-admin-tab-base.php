@@ -228,7 +228,7 @@ class DT_Porch_Admin_Tab_Base {
                                         </select>
                                 </tr>
                             <?php elseif ( !isset( $field['type'] ) || in_array( $field['type'], [ 'text', 'color' ] ) ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
@@ -266,8 +266,26 @@ class DT_Porch_Admin_Tab_Base {
                             <?php elseif ( 'textarea' === $field['type'] ) : ?>
                                 <?php self::textarea( $langs, $key, $field, $section_name, $allowed_tags, $campaign[$key] ?? '' ) ?>
 
+                            <?php elseif ( 'number' === $field['type'] ) : ?>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
+                                    <td>
+                                        <?php echo esc_html( $field['name'] ); ?>
+                                    </td>
+                                    <td>
+                                        <?php if ( !empty( $field['default'] ) ): ?>
+                                            <strong>Default: </strong>
+                                            <?php echo esc_html( $field['default'] ); ?>
+                                            <br>
+                                        <?php endif; ?>
+                                        <input type="number" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" value="<?php echo esc_html( $campaign[$key] ?? '' ); ?>"/>
+                                    </td>
+                                    <td>
+                                        <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ?? '' ) ) ); //phpcs:ignore ?></p>
+                                    </td>
+                                </tr>
+
                             <?php elseif ( 'icon' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
@@ -296,12 +314,12 @@ class DT_Porch_Admin_Tab_Base {
 
 
                             <?php elseif ( 'key_select' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
                                     <td>
-                                        <select name="list[<?php echo esc_html( $key ); ?>]">
+                                        <select name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>">
                                             <?php if ( empty( $field['select_cannot_be_empty'] ) ) : ?>
                                                 <option value=""></option>
                                             <?php endif; ?>
@@ -324,7 +342,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                             <?php elseif ( 'date' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
@@ -340,7 +358,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                             <?php elseif ( 'multi_select' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>

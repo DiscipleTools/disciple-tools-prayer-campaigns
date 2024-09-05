@@ -1126,17 +1126,17 @@ export class cpTimes extends LitElement {
       let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key)
       let time_formatted = time.toFormat('hh:mm a')
       let progress = 0;
-      if ( window.campaign_data.end_timestamp ){
-        progress = (
-          window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length ?
-            window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
-            : 0
-        ).toFixed(1)
+      //quantity of prayer counts
+      if ( !coverage[time_formatted] ){
+        progress = 0
       } else {
-        progress = (
-          coverage[time_formatted] ? coverage[time_formatted].length / ( next_month.length - 1 ) * 100 : 0
-        ).toFixed(1)
+        if ( window.campaign_data.end_timestamp ){
+            progress = window.campaign_scripts.time_slot_coverage?.[time_formatted]?.length / window.campaign_scripts.time_label_counts[time_formatted] * 100
+        } else {
+            progress = coverage[time_formatted].length / ( next_month.length - 1 ) * 100
+        }
       }
+      progress = progress.toFixed(1)
       let min = time.toFormat(':mm')
       let selected = (window.campaign_user_data.recurring_signups||[]).find(r=>r.type==='daily' && key >= r.time && key < (r.time + r.duration * 60) )
       let coverage_count = progress >= 100 ? Math.min(...(coverage[time_formatted] || [0])) : 0
@@ -1393,7 +1393,7 @@ export class cpProgressRing extends LitElement {
       </svg>
       <style>
         :host{
-          --progress: ${this.progress};
+          --progress: ${Math.min(this.progress, 100)};
           --progress2: ${this.progress2};
         }
       </style>

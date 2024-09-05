@@ -154,46 +154,56 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <?php $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign();?>
-            <div class="col-sm-6 col-md-4 col-lg-4">
+            <?php
+            $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign_fields['ID'] );
+            $time_committed = DT_Time_Utilities::display_minutes_in_time( $minutes_committed );
+            $size = $campaign_has_end_date ? 'col-sm-6 col-md-4 col-lg-4' : 'col-sm-6 col-md-6 col-lg-6';
+            ?>
+            <div class="<?php echo esc_html( $size ); ?>">
                 <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">
                         <div class="icon">
                             <i class="lnr lnr-calendar-full"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><span class="counter"><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign ) : '30' ?></span></h3>
-                            <h4><?php esc_html_e( 'Days', 'disciple-tools-prayer-campaigns' ); ?></h4>
+
+                            <h3><?php echo esc_html( $time_committed ); ?></h3>
+                            <h4><?php esc_html_e( 'Time Committed', 'disciple-tools-prayer-campaigns' ) ?></h4>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
+            <?php $subscribers_count = DT_Subscriptions::get_subscribers_count( $campaign_fields['ID'] ); ?>
+
+            <div class="<?php echo esc_html( $size ); ?>">
                 <div class="wow fadeInUp" data-wow-delay=".6s">
                     <div class="facts-item">
                         <div class="icon">
                             <i class="lnr lnr-user"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 ) : '720' ?></h3>
-                            <h4><?php esc_html_e( 'Hours of Prayer', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                            <h3><?php echo esc_html( $subscribers_count ?? 0 ) ?></h3>
+                            <h4><?php esc_html_e( 'Prayer Warriors', 'disciple-tools-prayer-campaigns' ); ?></h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="wow fadeInUp" data-wow-delay=".8s">
-                    <div class="facts-item">
-                        <div class="icon">
-                            <i class="lnr lnr-heart"></i>
-                        </div>
-                        <div class="fact-count">
-                            <h3><?php echo $days_in_campaign !== -1 ? esc_html( $days_in_campaign * 24 * 4 ) : '2880' ?></h3>
-                            <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+            <?php if ( $campaign_has_end_date ) : ?>
+                <div class="<?php echo esc_html( $size ); ?>">
+                    <div class="wow fadeInUp" data-wow-delay=".8s">
+                        <div class="facts-item">
+                            <div class="icon">
+                                <i class="lnr lnr-heart"></i>
+                            </div>
+                            <div class="fact-count">
+                                <h3><?php echo esc_html( Campaign_Utils::prayer_commitments_needed( $campaign_fields ) ) ?></h3>
+                                <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

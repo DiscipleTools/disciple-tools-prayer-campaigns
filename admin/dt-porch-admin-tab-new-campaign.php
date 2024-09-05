@@ -50,6 +50,10 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                 $fields['end_date'] = $post_args['campaign_end_date'];
             }
         }
+        //goal
+        if ( !empty( $post_args['campaign_goal'] ) ){
+            $fields['campaign_goal'] = $post_args['campaign_goal'];
+        }
         //languages
         if ( !empty( $post_args['campaign_languages'] ) ){
             foreach ( $post_args['campaign_languages'] as $language ){
@@ -77,6 +81,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
         if ( $tab !== $this->key ) {
             return;
         }
+        $campaign_fields = DT_Posts::get_post_field_settings( 'campaigns' );
         $wizard_types = apply_filters( 'dt_campaigns_wizard_types', [] );
         $languages = DT_Campaign_Languages::get_installed_languages( null );
         $enabled_languages = [ 'en_US' ];
@@ -163,6 +168,22 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                         When the campaign will end. Leave empty for ongoing campaigns.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="campaign_goal">Goal</label></th>
+                                    <td>
+                                        <?php foreach ( $campaign_fields['campaign_goal']['default'] ?? [] as $key => $value ): ?>
+
+                                            <label style="display: block; padding: 8px">
+                                                <input type="radio" name="campaign_goal" value="<?php echo esc_html( $key ); ?>" required>
+                                                <?php echo isset( $value['label'] ) ? esc_html( $value['label'] ) : esc_html( $key ) ?>
+                                            </label>
+
+                                        <?php endforeach; ?>
+                                    </td>
+                                    <td>
+                                        Whether you aim for covering each day with 24/7 prayer or aim for a number of hours of cumulative prayer every day.
                                     </td>
                                 </tr>
                                 <tr>

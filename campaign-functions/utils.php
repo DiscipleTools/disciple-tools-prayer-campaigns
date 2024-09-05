@@ -1,6 +1,36 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+
+class Campaign_Utils {
+    public static function get_campaign_goal_quantity( $campaign ) {
+        $goal = 24;
+        if ( !empty( $campaign['goal_quantity'] ) && is_numeric( $campaign['goal_quantity'] ) ){
+            $goal = (int) $campaign['goal_quantity'];
+        }
+        return $goal;
+    }
+    public static function get_campaign_goal( $campaign ) {
+        return isset( $campaign['campaign_goal']['key'] ) ? $campaign['campaign_goal']['key'] : '247coverage';
+    }
+    public static function prayer_commitments_needed( $campaign ) {
+        $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign( $campaign['ID'] );
+        if ( $days_in_campaign === -1 ){
+            return '';
+        }
+        $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign['ID'] );
+        $campaign_goal = self::get_campaign_goal( $campaign );
+        if ( $campaign_goal === 'quantity' ){
+            $goal_hours = self::get_campaign_goal_quantity( $campaign );
+            $prayer_commitments_needed = $days_in_campaign * $goal_hours * 60 / $min_time_duration;
+        } else {
+            $prayer_commitments_needed = $days_in_campaign * 24 * 60 / $min_time_duration;
+        }
+        return $prayer_commitments_needed;
+    }
+}
+
+
 /**
  * Merges the $args and $defaults array recursively through sub arrays
  *
