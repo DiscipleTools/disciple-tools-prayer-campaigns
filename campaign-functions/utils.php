@@ -13,6 +13,21 @@ class Campaign_Utils {
     public static function get_campaign_goal( $campaign ) {
         return isset( $campaign['goal']['key'] ) ? $campaign['goal']['key'] : '247coverage';
     }
+    public static function prayer_commitments_needed( $campaign ) {
+        $days_in_campaign = DT_Campaign_Fuel::total_days_in_campaign( $campaign['ID'] );
+        if ( $days_in_campaign === -1 ){
+            return '';
+        }
+        $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign['ID'] );
+        $campaign_goal = self::get_campaign_goal( $campaign );
+        if ( $campaign_goal === 'quantity' ){
+            $goal_hours = self::get_campaign_goal_quantity( $campaign );
+            $prayer_commitments_needed = $days_in_campaign * $goal_hours * 60 / $min_time_duration;
+        } else {
+            $prayer_commitments_needed = $days_in_campaign * 24 * 60 / $min_time_duration;
+        }
+        return $prayer_commitments_needed;
+    }
 }
 
 
