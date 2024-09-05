@@ -280,10 +280,10 @@ class DT_Campaigns_Base {
                 'tile' => 'status',
                 'default' => [
                     '247coverage' => [
-                        'label' => '24/7 Coverage',
+                        'label' => '24/7 daily coverage',
                     ],
                     'quantity' => [
-                        'label' => '# of hours every day',
+                        'label' => 'Custom # of hours every day (default 24)',
                         'description' => 'Get to x Hours of prayer every day.'
                     ]
                 ],
@@ -1346,6 +1346,10 @@ class DT_Campaigns_Base {
             //campaign goal
             if ( !isset( $fields['goal'] ) ){
                 $fields['goal'] = '247coverage';
+            }
+            //signup frequency
+            if ( !isset( $fields['enabled_frequencies'] ) ){
+                $fields['enabled_frequencies'] = [ 'daily', 'pick' ];
             }
         }
         return $fields;
