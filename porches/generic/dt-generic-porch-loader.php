@@ -91,12 +91,12 @@ class DT_Generic_Porch_Loader implements IDT_Porch_Loader {
     }
 
     public function register_porch() {
+        $this->load_porch_settings();
         add_filter( 'dt_register_prayer_campaign_porch', array( $this, 'dt_register_porch' ), 10, 1 );
     }
 
     public function dt_register_porch( $porches ) {
         $porches[$this->id] = $this->get_porch_details();
-        $this->load_porch_settings();
 
         return $porches;
     }

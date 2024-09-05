@@ -261,7 +261,10 @@ class DT_Generic_Porch_Strings {
         ];
     }
 
-    public function dt_custom_fields_settings( $fields ){
+    public function dt_custom_fields_settings( $fields, $post_type ){
+        if ( $post_type !== 'campaigns' ){
+            return $fields;
+        }
         $string_fields = $this->load_defaults();
 
         $valid_types = [
