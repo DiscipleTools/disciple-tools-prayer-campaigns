@@ -228,7 +228,7 @@ class DT_Porch_Admin_Tab_Base {
                                         </select>
                                 </tr>
                             <?php elseif ( !isset( $field['type'] ) || in_array( $field['type'], [ 'text', 'color' ] ) ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
@@ -285,7 +285,7 @@ class DT_Porch_Admin_Tab_Base {
                                 </tr>
 
                             <?php elseif ( 'icon' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
@@ -342,7 +342,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                             <?php elseif ( 'date' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
@@ -358,7 +358,7 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                             <?php elseif ( 'multi_select' === $field['type'] ) : ?>
-                                <tr>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
