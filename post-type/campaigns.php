@@ -1241,7 +1241,7 @@ class DT_Campaigns_Base {
             if ( $campaign_goal === 'quantity' ){
                 $percent = $blocks ? ( $blocks_covered / $blocks_expected * 100 ) : 0;
             } else {
-                $percent = $blocks ? ( $blocks_covered / ( $blocks * $adjusted ) * 100 ) : 0;
+                $percent = $blocks ? ( $blocks_covered / $blocks * 100 ) : 0;
             }
         }
         return round( $percent, 2 );
