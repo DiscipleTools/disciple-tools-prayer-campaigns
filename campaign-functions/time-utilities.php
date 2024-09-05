@@ -11,7 +11,7 @@ class DT_Time_Utilities {
         $min_time_duration = self::campaign_min_prayer_duration( $post_id );
 
         $start = $record['start_date']['timestamp'] ?? time();
-        $end = $record['end_date']['timestamp'] ?? time() + 2 * MONTH_IN_SECONDS;
+        $end = ( $record['end_date']['timestamp'] ?? time() + 2 * MONTH_IN_SECONDS ) + 86399; // end of selected day (-1 second);
         $start_with_tz = $start;
         if ( $with_timezone ){
             $start_with_tz = self::start_of_campaign_with_timezone( $post_id );
