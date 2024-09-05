@@ -51,7 +51,13 @@ class DT_Campaign_Languages {
         $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         $enabled_codes = $campaign['enabled_languages'] ?? [ 'en_US' ];
 
-        $languages = self::get_languages_for_codes( $enabled_codes );
+        $dt_languages = self::get_languages_for_codes( $enabled_codes );
+        $languages = [];
+        foreach ( $enabled_codes as $code ){
+            if ( isset( $dt_languages[$code] ) ){
+                $languages[$code] = $dt_languages[$code];
+            }
+        }
 
         return $languages;
     }
