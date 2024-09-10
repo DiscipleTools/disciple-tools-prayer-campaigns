@@ -152,6 +152,9 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Please check your email to activate your account before adding more prayer times.' => __( 'Please check your email to activate your account before adding more prayer times.', 'disciple-tools-prayer-campaigns' ),
                     'Time not covered' => __( 'Time not covered', 'disciple-tools-prayer-campaigns' ),
                     '# of people covering this time' => __( '# of people covering this time', 'disciple-tools-prayer-campaigns' ),
+                    'Minute' => __( 'Minute', 'disciple-tools-prayer-campaigns' ),
+                    'Selected Commitment' => __( 'Selected Commitment', 'disciple-tools-prayer-campaigns' ),
+                    'Add' => __( 'Add', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );

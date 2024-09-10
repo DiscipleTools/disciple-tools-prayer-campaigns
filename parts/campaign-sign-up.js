@@ -532,6 +532,35 @@ export class CampaignSignUp extends LitElement {
   }
 
   time_picker_section(position){
+
+    let time_picker = html``
+    if ( window.campaign_data.campaign_goal === '247coverage' ){
+      time_picker = html`
+        <cp-times
+            slot_length="${this.campaign_data.slot_length}"
+            .frequency="${this.frequency.value}"
+            .weekday="${this.week_day.value}"
+            .selected_day="${this.selected_day}"
+            .selected_times="${this.selected_times}"
+            .recurring_signups="${[]}"
+            @time-selected="${e => this.time_selected(e.detail)}">
+        </cp-times>
+      `
+    } else {
+      time_picker = html`
+        <cp-simple-times
+            slot_length="${this.campaign_data.slot_length}"
+            .frequency="${this.frequency.value}"
+            .weekday="${this.week_day.value}"
+            .selected_day="${this.selected_day}"
+            .selected_times="${this.selected_times}"
+            .recurring_signups="${[]}"
+            @time-selected="${e => this.time_selected(e.detail)}">
+        </cp-simple-times>
+      `
+    }
+
+
     return html`
         <div class="section-div" ?disabled="${!this.frequency.value || this.frequency.value==='weekly' && !this.week_day.value}">
 
@@ -548,15 +577,7 @@ export class CampaignSignUp extends LitElement {
                     ?hidden="${!(this.recurring_signups.length===0 && this.selected_times.length===0) || !(this.frequency.value==='daily' || this.week_day.value || this.selected_day)}"
                     class="place-indicator">${strings['Continue here']}</span>
             </h2>
-            <cp-times
-                slot_length="${this.campaign_data.slot_length}"
-                .frequency="${this.frequency.value}"
-                .weekday="${this.week_day.value}"
-                .selected_day="${this.selected_day}"
-                .selected_times="${this.selected_times}"
-                .recurring_signups="${['bob']}"
-                @time-selected="${e => this.time_selected(e.detail)}">
-            </cp-times>
+            ${time_picker}
         </div>
     `
   }

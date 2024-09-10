@@ -35,6 +35,9 @@ customElements.define('cp-template', cpTemplate);
 export class campaignButton extends LitElement {
   static styles = [
     css`
+      :host {
+          width: fit-content;
+      }
       button {
         color: #fefefe;
         font-size: 1rem;
@@ -1208,6 +1211,215 @@ export class cpTimes extends LitElement {
 
 }
 customElements.define('cp-times', cpTimes);
+
+export class cpSimpleTime extends LitElement {
+  static styles = [
+    css`
+      .times-container {
+          display: grid;
+          //text-align: center;
+          margin-bottom: 0.1rem;
+          //max-height: 600px;
+          //overflow-y: auto;
+      }
+      .times-section {
+          display: grid;
+          align-items: center;
+          margin-bottom: 0.5rem;
+          //grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-gap: 0.3rem 1rem;
+      }
+
+      .section-column {
+          display: grid;
+          grid-gap: 0.3rem 1rem;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+      .grid-cell {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 0.1rem;
+      }
+      .time {
+        background-color: #4676fa1a;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .empty-time {
+          opacity: .8;
+          font-size:.8rem;
+      }
+      .time[disabled] {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+      .time.selected-time {
+          color: white;
+          opacity: 1;
+          background-color: var(--cp-color);
+      }
+      .time.selected-time img {
+          filter: invert(1);
+      }
+      .time.selected-time .empty-time {
+        opacity: 1;
+      }
+      
+      @media (min-width: 640px) {
+          .time:hover {
+              background-color: var(--cp-color);
+              opacity: 0.8;
+              color: #fff;
+          }
+      }
+    `,
+    window.campaignStyles
+  ]
+  static properties = {
+    slot_length: {type: String},
+    times: {type: Array},
+    selected_day: {type: String},
+    frequency: {type: String},
+    weekday: {type: String},
+    selected_times: {type: Array},
+    recurring_signups: {type: Array},
+    selected_hour: {type: Number},
+    selected_minute: {type: Number},
+    time_label: {type: String}
+  }
+
+  constructor() {
+    super();
+    this.days = window.campaign_scripts.days
+    this.selected_times = []
+    this.selected_hour = undefined;
+    this.selected_minute = undefined;
+    this.frequency = 'pick';
+    this.slot_length = 15;
+  }
+
+  connectedCallback(){
+    super.connectedCallback();
+    //set scroll position
+    setTimeout(()=>{
+      this.shadowRoot.querySelector('.times-container').scrollTop = 250;
+    })
+    window.addEventListener('campaign_timezone_change', (e)=>{
+      this.days = window.campaign_scripts.days
+      this.requestUpdate()
+    });
+  }
+  get_times(){
+    let time_frame_day_start = undefined;
+    if ( this.frequency === 'pick' && this.selected_day ){
+      time_frame_day_start = this.selected_day
+    } else {
+      let start_of_time_frame = window.luxon.DateTime.now({zone:window.campaign_user_data.timezone})
+      if ( start_of_time_frame.toSeconds() < window.campaign_data.start_timestamp ){
+        start_of_time_frame = window.luxon.DateTime.fromSeconds(window.campaign_data.start_timestamp, {zone:window.campaign_user_data.timezone})
+      }
+      time_frame_day_start = start_of_time_frame.startOf('day').toSeconds()
+    }
+
+    let options = [];
+    let key = 0;
+    let hours = [];
+    const now = window.luxon.DateTime.now().toSeconds();
+    while (key < day_in_seconds) {
+      const time = time_frame_day_start + key
+      let hour = window.luxon.DateTime.fromSeconds(time)
+      hours.push({
+        key, label:
+        hour.toLocaleString({hour: '2-digit'}),
+        disabled: this.frequency === 'pick' ? ( time < window.campaign_data.start_timestamp || time > window.campaign_data.end_timestamp || time < now ) : false
+      })
+      key += 3600
+    }
+
+    key = 0;
+    let mins = [];
+    while (key < 3600) {
+      let min = window.luxon.DateTime.fromSeconds(time_frame_day_start + key)
+      mins.push({key,label:min.toFormat(':mm')})
+      key += parseInt( this.slot_length * 60 )
+    }
+    return {
+      hours: hours,
+      mins,
+    }
+  }
+  add_time(){
+    let time_key = parseInt(this.selected_hour) + parseInt( this.selected_minute );
+    if ( this.frequency === 'pick'){
+      time_key += parseInt(this.selected_day)
+    }
+    //make sure time is not in the past
+    if ( time_key < parseInt(new Date().getTime() / 1000) && this.frequency === 'pick'){
+      return;
+    }
+    this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
+    this.selected_hour = undefined;
+    this.selected_minute = undefined;
+  }
+
+  render() {
+    const times = this.get_times()
+
+    let label = '';
+    if ( this.selected_hour !== undefined && this.selected_minute !== undefined ){
+      if ( this.frequency === 'pick' ){
+        let time = window.luxon.DateTime.fromSeconds(this.selected_day + this.selected_hour + this.selected_minute, {zone:window.campaign_user_data.timezone})
+        label = time.toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      } else if ( this.frequency !== 'weekly' || this.weekday ){
+        const rec = window.campaign_scripts.build_selected_times_for_recurring(this.selected_hour + this.selected_minute, this.frequency, this.slot_length, this.weekday)
+        label = rec.label
+      }
+    }
+
+    return html`
+      <div class="times-container">
+          <strong>${translate('Hour')}</strong>
+          <div class="times-section">
+            <div class="section-column">
+                ${times.hours.map(m=>html`
+                  <div @click="${()=>{this.selected_hour=m.key}}" 
+                       class="grid-cell time ${m.key === this.selected_hour ? 'selected-time' : ''}" 
+                       title=":${m.label}"
+                       ?disabled="${m.disabled}"
+                  >
+                    <span class="empty-time">${m.label}</span>
+                  </div>
+                `)}
+            </div>
+          </div>
+          <br>
+          <strong>${translate('Minute')}</strong>
+          <div class="times-section">
+            <div class="section-column">
+                ${times.mins.map(m=>html`
+                  <div @click="${()=>{this.selected_minute=m.key}}" class="grid-cell time ${m.key === this.selected_minute ? 'selected-time' : ''}" title="${m.label}"
+                    <span class="empty-time">${m.label}</span>
+                    </div>
+                `)}
+            </div>
+          </div>
+          
+          
+          <br>
+          <div ?hidden="${!label}">
+            <strong>${translate('Selected Commitment')}</strong>
+            <p>${label}</p>
+          </div>
+          <button @click="${this.add_time}" ?disabled="${!label}" style="width: fit-content;">${translate('Add')}</button>
+      </div>
+    `
+
+  }
+}
+customElements.define('cp-simple-times', cpSimpleTime);
+
 
 
 export class cpVerify extends LitElement {
