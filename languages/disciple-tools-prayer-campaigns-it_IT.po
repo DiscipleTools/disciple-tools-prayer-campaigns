@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-08-30T13:15:31+00:00\n"
-"PO-Revision-Date: 2024-08-20 09:59+0000\n"
+"PO-Revision-Date: 2024-09-17 07:59+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -321,17 +321,13 @@ msgid "Please check your email address now for your access link."
 msgstr "Controlla adesso la tua casella email per il tuo link per accedere."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
-#, fuzzy
-#| msgid "Your prayer times have been verified!"
 msgid "Your prayer time has been extended"
-msgstr "I tuoi intervalli di preghiera sono stati verificati!"
+msgstr "Il tuo intervallo di preghiera è stato prolungato"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:92
-#, fuzzy
-#| msgid "You signed up to pray:"
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
-msgstr "Ti sei registrato/a per pregare:"
+msgstr "Sei stato/a registrato/a per pregare da %1$s a %2$s."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:93
 msgid "OK"
@@ -339,11 +335,11 @@ msgstr "OK"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:94
 msgid "Email me the updated calendar"
-msgstr ""
+msgstr "Mandami un'email con il calendario aggiornato"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:96
 msgid "Join me in praying!"
-msgstr ""
+msgstr "Unisciti a me in preghiera!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:278
 #: porches/generic/site/archive-body.php:35
@@ -592,10 +588,8 @@ msgid "Prayer Time Selected"
 msgstr "Intervallo di preghiera selezionato"
 
 #: parts/components-enqueue.php:86
-#, fuzzy
-#| msgid "Prayer Time Selected"
 msgid "Prayer Time Removed"
-msgstr "Intervallo di preghiera selezionato"
+msgstr "Intervallo di preghiera rimosso"
 
 #: parts/components-enqueue.php:87
 msgid "Select a Day"
@@ -649,16 +643,12 @@ msgid "Timezone"
 msgstr "Fuso Orario"
 
 #: parts/components-enqueue.php:98
-#, fuzzy
-#| msgid "Receive Prayer time notifications"
 msgid "Receive prayer time notifications"
 msgstr "Ricevi notifiche per i tuoi intervalli di preghiera"
 
 #: parts/components-enqueue.php:99
-#, fuzzy
-#| msgid "See prayer times"
 msgid "Auto extend prayer times"
-msgstr "Visualizza gli intervalli di preghiera"
+msgstr "Prolungare automaticamente gli intervalli di preghiera"
 
 #: parts/components-enqueue.php:100
 msgid "Advanced Settings"
@@ -703,20 +693,16 @@ msgid "change time"
 msgstr "Cambia fuso orario"
 
 #: parts/components-enqueue.php:110
-#, fuzzy
-#| msgid "Start Praying!"
 msgid "Stop Praying"
-msgstr "Inizia a pregare!"
+msgstr "Termina l'intervallo di preghiera"
 
 #: parts/components-enqueue.php:111
 msgid "See prayer times"
 msgstr "Visualizza gli intervalli di preghiera"
 
 #: parts/components-enqueue.php:112
-#, fuzzy
-#| msgid "Some of your prayer times will be ending soon."
 msgid "Your future prayer times will be canceled."
-msgstr "Alcuni dei tuoi intervalli di preghiera stanno per terminare."
+msgstr "I tuoi futuri intervalli di preghiera saranno cancellati."
 
 #: parts/components-enqueue.php:113
 msgid "extend"
@@ -767,16 +753,12 @@ msgid "Hours"
 msgstr "Ore"
 
 #: parts/components-enqueue.php:125
-#, fuzzy
-#| msgid "Hours"
 msgid "Hour"
-msgstr "Ore"
+msgstr "Ora"
 
 #: parts/components-enqueue.php:126
-#, fuzzy
-#| msgid "minutes"
 msgid "Minutes"
-msgstr "minuti"
+msgstr "Minuti"
 
 #: parts/components-enqueue.php:127
 msgid "Change Prayer Time"
