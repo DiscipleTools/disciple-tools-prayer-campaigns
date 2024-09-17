@@ -52,6 +52,7 @@ class DT_Subscriptions_Base {
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
         add_filter( 'dt_filter_access_permissions', [ $this, 'dt_filter_access_permissions' ], 20, 2 );
+        add_filter( 'dt_list_posts_custom_fields', [ $this, 'dt_list_posts_custom_fields' ], 20, 2 );
 
         add_filter( 'dt_can_view_permission', [ $this, 'can_view_and_update_post' ], 10, 3 );
         add_filter( 'dt_can_update_permission', [ $this, 'can_view_and_update_post' ], 20, 3 );
@@ -314,9 +315,27 @@ class DT_Subscriptions_Base {
                 'tile' => 'details',
                 'default' => false,
                 'hidden' => false,
-                'show_in_table' => 50,
             ];
             $fields['last_modified']['show_in_table'] = false;
+
+            $fields['prayer_times_count'] = [
+                'name' => __( 'Prayer Times Count', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'number',
+                'hidden' => false,
+                'show_in_table' => 70,
+            ];
+            $fields['first_prayer_time'] = [
+                'name' => __( 'First Prayer Time', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'date',
+                'hidden' => false,
+                'show_in_table' => 80,
+            ];
+            $fields['last_prayer_time'] = [
+                'name' => __( 'Last Prayer Time', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'date',
+                'hidden' => false,
+                'show_in_table' => 90,
+            ];
         }
 
         if ( $post_type === 'contacts' && current_user_can( 'view_all_'.$this->post_type ) ){
@@ -1025,6 +1044,60 @@ class DT_Subscriptions_Base {
         }
 
         return $has_permission;
+    }
+
+    public function dt_list_posts_custom_fields( $data, $post_type ){
+        if ( $post_type === $this->post_type ){
+            $posts = $data['posts'];
+            $post_ids = array_column( $posts, 'ID' );
+            $ids_sql = dt_array_to_sql( $post_ids, true );
+            global $wpdb;
+            $prayer_time_counts = $wpdb->get_results( $wpdb->prepare( "
+                SELECT post_id, COUNT(*) as count
+                FROM $wpdb->dt_reports
+                WHERE post_id IN ( %1s )
+                AND post_type = 'subscriptions'
+                AND type = 'campaign_app'
+                GROUP by post_id
+            ", $ids_sql ), ARRAY_A );
+            $first_prayer_time = $wpdb->get_results( $wpdb->prepare( "
+                SELECT post_id, MIN(time_begin) as time_begin
+                FROM $wpdb->dt_reports
+                WHERE post_id IN ( %1s )
+                AND post_type = 'subscriptions'
+                AND type = 'campaign_app'
+                GROUP by post_id
+            ", $ids_sql ), ARRAY_A );
+            $last_prayer_time = $wpdb->get_results( $wpdb->prepare( "
+                SELECT post_id, MAX(time_begin) as time_begin
+                FROM $wpdb->dt_reports
+                WHERE post_id IN ( %1s )
+                AND post_type = 'subscriptions'
+                AND type = 'campaign_app'
+                GROUP by post_id
+            ", $ids_sql ), ARRAY_A );
+            $counts = [];
+            foreach ( $prayer_time_counts as $result ){
+                $counts[$result['post_id']]['count'] = $result['count'];
+            }
+            foreach ( $first_prayer_time as $result ){
+                $counts[$result['post_id']]['first_prayer_time'] = $result['time_begin'];
+            }
+            foreach ( $last_prayer_time as $result ){
+                $counts[$result['post_id']]['last_prayer_time'] = $result['time_begin'];
+            }
+            foreach ( $data['posts'] as &$post ){
+                $post['prayer_times_count'] = $counts[$post['ID']]['count'] ?? 0;
+                if ( isset( $counts[$post['ID']]['first_prayer_time'] ) ){
+                    $post['first_prayer_time']['timestamp'] = $counts[$post['ID']]['first_prayer_time'];
+                }
+                if ( isset( $counts[$post['ID']]['last_prayer_time'] ) ){
+                    $post['last_prayer_time']['timestamp'] = $counts[$post['ID']]['last_prayer_time'];
+                }
+            }
+        }
+
+        return $data;
     }
 }
 
