@@ -123,4 +123,11 @@ $prayer_fuel_link = $campaign_url . '/list';
         </div>
     </div>
 </header>
+<div id="loader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
 <!-- Header Section End -->
