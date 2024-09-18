@@ -183,7 +183,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
     public function record_group_count( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        if ( !isset( $params['number'] ) ){
+        if ( !isset( $params['number'] ) || !is_numeric( $params['number'] ) ){
             return false;
         }
         $campaign = DT_Campaign_Landing_Settings::get_campaign( $params['campaign_id'] );
