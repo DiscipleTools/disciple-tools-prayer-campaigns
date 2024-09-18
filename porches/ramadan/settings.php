@@ -22,7 +22,7 @@ add_action('dt_campaigns_before_prayer_fuel', function ( $posts, $todays_campaig
         }
     } else {
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign();
-        if ( $campaign_fields['porch_type']['key'] !== 'ramadan-porch' ){
+        if ( !isset( $campaign_fields['porch_type']['key'] ) || $campaign_fields['porch_type']['key'] !== 'ramadan-porch' ){
             return;
         }
         $link = DT_Campaign_Landing_Settings::get_landing_root_url() . '/stats';
