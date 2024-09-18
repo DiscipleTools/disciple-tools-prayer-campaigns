@@ -204,7 +204,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
         $sign_up_email_extra_message = '';
-        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? 'en_US', $campaign['signup_content'] );
+        $sign_up_content_translation = DT_Campaign_Languages::get_translation( $campaign_id, 'signup_content', $record['lang'] ?? 'en_US', $campaign['signup_content'] ?? '' );
         if ( $sign_up_content_translation ){
             $sign_up_email_extra_message = '<p>' .  $sign_up_content_translation . '</p>';
         }
