@@ -11,8 +11,8 @@ class Prayer_Campaign_WhatsApp_Notifications {
         add_filter( 'dt_twilio_messaging_templates', [ $this, 'dt_twilio_messaging_templates' ], 10, 1 );
     }
 
-    public function dt_custom_fields_settings( $fields, $type ){
-        if ( $type === 'campaigns' ){
+    public function dt_custom_fields_settings( $fields, $post_type ){
+        if ( $post_type === 'subscriptions' ){
             $fields['whatsapp_number'] = [
                 'type' => 'text',
                 'label' => 'WhatsApp # for Notifications',
