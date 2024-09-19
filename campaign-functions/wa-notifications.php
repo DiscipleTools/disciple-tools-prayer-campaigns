@@ -65,7 +65,11 @@ class Prayer_Campaign_WhatsApp_Notifications {
         $now = time();
         $from_now = $fifteen_mints_before - $now;
 
-        wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link ), $from_now );
+        if ( $prayer_fuel_time < $now + MINUTE_IN_SECONDS * 20 ){
+            self::send_whatsapp_notification( $phone_number, $prayer_fuel_link );
+        } else {
+            wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link ), $from_now );
+        }
     }
     public static function send_whatsapp_notification( $phone_number, $prayer_fuel_link ){
         $sent = Disciple_Tools_Twilio_API::send_dt_notification_template(
@@ -79,6 +83,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
             dt_write_log( __METHOD__ . ': Unable to send whatsapp to ' . $phone_number );
         }
         return $sent;
+        //@todo record sent activity
     }
 }
 new Prayer_Campaign_WhatsApp_Notifications();
