@@ -284,6 +284,19 @@ class DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
 
+                            <?php elseif ( 'boolean' === $field['type'] ) : ?>
+                                <tr id="<?php echo esc_html( $key ); ?>-row">
+                                    <td>
+                                        <?php echo esc_html( $field['name'] ); ?>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="list[<?php echo esc_html( $key ); ?>]" id="<?php echo esc_html( $key ); ?>" <?php echo !empty( $campaign[$key] ) ? 'checked' : ''; ?>/>
+                                    </td>
+                                    <td>
+                                        <p><?php echo nl2br( make_clickable( esc_html( $field['description'] ?? '' ) ) ); //phpcs:ignore ?></p>
+                                    </td>
+                                </tr>
+
                             <?php elseif ( 'icon' === $field['type'] ) : ?>
                                 <tr id="<?php echo esc_html( $key ); ?>-row">
                                     <td>

@@ -126,6 +126,11 @@ class DT_Porch_Settings {
                 }
             }
         }
+        foreach ( $campaign_field_settings as $key => $field ){
+            if ( $field['type'] === 'boolean' ){
+                $changes[$key] = !empty( $updates[$key] );
+            }
+        }
         if ( !empty( $changes ) ){
             $updated = DT_Posts::update_post( 'campaigns', $current_campaign['ID'], $changes, false, false );
             return !is_wp_error( $updated );
