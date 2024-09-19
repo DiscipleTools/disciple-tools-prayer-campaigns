@@ -36,6 +36,9 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
             add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
 //            return;
         }
+        if ( wp_doing_cron() ){
+            return;
+        }
         if ( empty( $page_info ) ) {
             return;
         }
