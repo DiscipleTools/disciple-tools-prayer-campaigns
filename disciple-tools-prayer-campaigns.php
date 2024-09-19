@@ -119,6 +119,7 @@ class DT_Prayer_Campaigns {
         require_once( 'campaign-functions/time-utilities.php' );
         require_once( 'campaign-functions/send-email-utility.php' );
         require_once( 'campaign-functions/cron-schedule.php' );
+        require_once( 'campaign-functions/wa-notifications.php' );
 
         require_once( 'post-type/loader.php' );
         require_once( 'classes/dt-campaign-fuel.php' );
