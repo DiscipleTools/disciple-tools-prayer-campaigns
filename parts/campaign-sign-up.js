@@ -1011,9 +1011,11 @@ export class cpCalendar extends LitElement {
       let goal_hours = window.campaign_data.campaign_goal === 'quantity' ? ( window.campaign_data.goal_quantity || 24 ) : 24;
 
       month_days.forEach(day=>{
-        covered_slots += day.covered_slots || 0
-        total_slots += day.slots.length || 0
-        total_times += Math.min(day.total_times, goal_hours * 60 / window.campaign_data.slot_length ) || 0
+        if ( day.key >= now_date.startOf('day').toSeconds() ) {
+          covered_slots += day.covered_slots || 0
+          total_slots += day.slots.length || 0
+          total_times += Math.min(day.total_times, goal_hours * 60 / window.campaign_data.slot_length) || 0
+        }
       })
 
       let percentage_of = window.campaign_data.campaign_goal !== '247coverage' ? total_times : covered_slots;
