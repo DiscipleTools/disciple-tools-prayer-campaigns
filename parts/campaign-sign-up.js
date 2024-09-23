@@ -165,6 +165,7 @@ export class CampaignSignUp extends LitElement {
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
+    this.undefined_prayer_time = false;
     this.selected_times = [];
     this.recurring_signups = [];
     this.show_selected_times = false;
@@ -346,7 +347,8 @@ export class CampaignSignUp extends LitElement {
   }
 
 
-  time_selected(selected_time){
+  time_selected(selected_time, undefined_prayer_time){
+    this.undefined_prayer_time = undefined_prayer_time
     if (!this.frequency.value ){
       return this.show_toast( 'Please check step 1', 'warn')
     }
@@ -356,7 +358,9 @@ export class CampaignSignUp extends LitElement {
     if ( this.frequency.value === 'pick' ){
       return this.time_and_day_selected(selected_time)
     }
-    let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time, this.frequency.value, this.duration.value, this.week_day.value)
+    console.log(this.undefined_prayer_time);
+    let recurring_signup = window.campaign_scripts.build_selected_times_for_recurring(selected_time||0, this.frequency.value, this.duration.value, this.week_day.value, null, this.undefined_prayer_time)
+    console.log(recurring_signup);
     if ( recurring_signup ){
       //keep this new recurring signup from overlapping with an existing one
       let has_overlay = this.recurring_signups.find(
@@ -543,7 +547,7 @@ export class CampaignSignUp extends LitElement {
             .selected_day="${this.selected_day}"
             .selected_times="${this.selected_times}"
             .recurring_signups="${[]}"
-            @time-selected="${e => this.time_selected(e.detail)}">
+            @time-selected="${e => this.time_selected(e.detail, false)}">
         </cp-times>
       `
     } else {
@@ -554,8 +558,10 @@ export class CampaignSignUp extends LitElement {
             .weekday="${this.week_day.value}"
             .selected_day="${this.selected_day}"
             .selected_times="${this.selected_times}"
+            .selected_duration="${this.duration.value}"
+            .undefined_prayer_time="${this.undefined_prayer_time}"
             .recurring_signups="${[]}"
-            @time-selected="${e => this.time_selected(e.detail)}">
+            @time-selected="${e => this.time_selected(e.detail.time, e.detail.undefined_prayer_time)}">
         </cp-simple-times>
       `
     }

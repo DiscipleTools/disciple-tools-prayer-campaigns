@@ -376,7 +376,7 @@ window.campaign_scripts = {
     div.textContent = str;
     return div.innerHTML;
   },
-  recurring_time_slot_label(value){
+  recurring_time_slot_label(value, undefined_prayer_time = false){
     let first = window.luxon.DateTime.fromSeconds(value.first, {zone:window.campaign_user_data.timezone})
     let time_label = first.toLocaleString({ hour: 'numeric', minute: 'numeric' });
     const frequency_option = window.campaign_data.frequency_options.find(k=>k.value===value.type)
@@ -394,8 +394,11 @@ window.campaign_scripts = {
       let weekly_label_options = [ strings['Mondays'], strings['Tuesdays'], strings['Wednesdays'], strings['Thursdays'], strings['Fridays'], strings['Saturdays'], strings['Sundays'] ]
       freq_label = weekly_label_options[day_number_of_the_week-1]
     }
-    let label = strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
-    return label;
+    if ( undefined_prayer_time ){
+      return strings['%1$s for %2$s'].replace('%1$s', freq_label).replace('%2$s', duration_label)
+    } else {
+      return strings['%1$s at %2$s for %3$s'].replace('%1$s', freq_label).replace('%2$s', time_label).replace('%3$s', duration_label)
+    }
   },
   build_calendar_days(month_date){
     const now = new Date().getTime()/1000
@@ -420,7 +423,7 @@ window.campaign_scripts = {
     }
     return month_days
   },
-  build_selected_times_for_recurring(selected_time, frequency, duration, weekday=null, from_date_ts=null){
+  build_selected_times_for_recurring(selected_time, frequency, duration, weekday=null, from_date_ts=null, undefined_prayer_time=false){
     let selected_times = []
     let now = new Date().getTime()/1000
     let now_date = window.luxon.DateTime.fromSeconds(Math.max(now, window.campaign_scripts.days[0].key),{zone:window.campaign_user_data.timezone})
@@ -456,7 +459,7 @@ window.campaign_scripts = {
       date_ref = start_date.plus({[frequency_option.step]:index})
       index += 1
     }
-    let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration})
+    let label = window.campaign_scripts.recurring_time_slot_label({first:start_time, type: frequency_option.value, duration: duration}, undefined_prayer_time)
 
     return {
       root: start_time,
@@ -470,6 +473,7 @@ window.campaign_scripts = {
       duration: duration,
       week_day: weekday,
       selected_times,
+      undefined_prayer_time
     }
   },
 

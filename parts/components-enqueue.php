@@ -80,6 +80,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     '%s Hour' => __( '%s Hour', 'disciple-tools-prayer-campaigns' ),
                     '%s Hours' => __( '%s Hours', 'disciple-tools-prayer-campaigns' ),
                     '%1$s at %2$s for %3$s' => __( '%1$s at %2$s for %3$s', 'disciple-tools-prayer-campaigns' ),
+                    '%1$s for %2$s' => __( '%1$s for %2$s', 'disciple-tools-prayer-campaigns' ),
                     'for %s minutes' => __( 'for %s minutes', 'disciple-tools-prayer-campaigns' ),
                     'Every %s' => __( 'Every %s', 'disciple-tools-prayer-campaigns' ),
                     'Prayer Time Selected' => __( 'Prayer Time Selected', 'disciple-tools-prayer-campaigns' ),

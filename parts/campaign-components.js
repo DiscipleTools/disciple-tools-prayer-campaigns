@@ -1279,6 +1279,8 @@ export class cpSimpleTime extends LitElement {
   ]
   static properties = {
     slot_length: {type: String},
+    selected_duration: {type: Number},
+    undefined_prayer_time: {type: Boolean},
     times: {type: Array},
     selected_day: {type: String},
     frequency: {type: String},
@@ -1287,7 +1289,7 @@ export class cpSimpleTime extends LitElement {
     recurring_signups: {type: Array},
     selected_hour: {type: Number},
     selected_minute: {type: Number},
-    time_label: {type: String}
+    time_label: {type: String},
   }
 
   constructor() {
@@ -1298,6 +1300,8 @@ export class cpSimpleTime extends LitElement {
     this.selected_minute = undefined;
     this.frequency = 'pick';
     this.slot_length = 15;
+    this.selected_duration = 15;
+    this.undefined_prayer_time = false
   }
 
   connectedCallback(){
@@ -1359,7 +1363,7 @@ export class cpSimpleTime extends LitElement {
     if ( time_key < parseInt(new Date().getTime() / 1000) && this.frequency === 'pick'){
       return;
     }
-    this.dispatchEvent(new CustomEvent('time-selected', {detail: time_key}));
+    this.dispatchEvent(new CustomEvent('time-selected', {detail: {time:time_key,undefined_prayer_time:this.undefined_prayer_time}}));
     this.selected_hour = undefined;
     this.selected_minute = undefined;
   }
@@ -1373,47 +1377,59 @@ export class cpSimpleTime extends LitElement {
         let time = window.luxon.DateTime.fromSeconds(this.selected_day + this.selected_hour + this.selected_minute, {zone:window.campaign_user_data.timezone})
         label = time.toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
       } else if ( this.frequency !== 'weekly' || this.weekday ){
-        const rec = window.campaign_scripts.build_selected_times_for_recurring(this.selected_hour + this.selected_minute, this.frequency, this.slot_length, this.weekday)
+        const rec = window.campaign_scripts.build_selected_times_for_recurring(this.selected_hour + this.selected_minute, this.frequency, this.selected_duration, this.weekday)
         label = rec.label
+      }
+    }
+    if ( this.undefined_prayer_time === true ){
+      if ( this.frequency === 'pick' ){
+        let time = window.luxon.DateTime.fromSeconds(this.selected_day, {zone:window.campaign_user_data.timezone})
+        label = time.toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' })
+      } else if ( this.frequency !== 'weekly' || this.weekday ){
+        let time = window.luxon.DateTime.now().setZone(window.campaign_user_data.timezone).startOf('day')
+        label = window.campaign_scripts.recurring_time_slot_label({first:time.toSeconds(), type: this.frequency, duration: this.selected_duration}, true)
       }
     }
 
     return html`
-      <div class="times-container">
-          <strong>${translate('Hour')}</strong>
-          <div class="times-section">
-            <div class="section-column">
-                ${times.hours.map(m=>html`
-                  <div @click="${()=>{this.selected_hour=m.key}}" 
-                       class="grid-cell time ${m.key === this.selected_hour ? 'selected-time' : ''}" 
-                       title=":${m.label}"
-                       ?disabled="${m.disabled}"
-                  >
-                    <span class="empty-time">${m.label}</span>
-                  </div>
-                `)}
-            </div>
-          </div>
-          <br>
-          <strong>${translate('Minute')}</strong>
-          <div class="times-section">
-            <div class="section-column">
-                ${times.mins.map(m=>html`
-                  <div @click="${()=>{this.selected_minute=m.key}}" class="grid-cell time ${m.key === this.selected_minute ? 'selected-time' : ''}" title="${m.label}"
-                    <span class="empty-time">${m.label}</span>
+      <p>
+          Don't specify a prayer time <input type="checkbox" ?checked="${this.undefined_prayer_time}" @click="${()=>this.undefined_prayer_time=!this.undefined_prayer_time}">
+      </p>
+      <div ?hidden="${this.undefined_prayer_time}">
+        <div class="times-container">
+            <strong>${translate('Hour')}</strong>
+            <div class="times-section">
+              <div class="section-column">
+                  ${times.hours.map(m=>html`
+                    <div @click="${()=>{this.selected_hour=m.key}}" 
+                         class="grid-cell time ${m.key === this.selected_hour ? 'selected-time' : ''}" 
+                         title=":${m.label}"
+                         ?disabled="${m.disabled}"
+                    >
+                      <span class="empty-time">${m.label}</span>
                     </div>
-                `)}
+                  `)}
+              </div>
             </div>
-          </div>
-          
-          
-          <br>
-          <div ?hidden="${!label}">
-            <strong>${translate('Selected Commitment')}</strong>
-            <p>${label}</p>
-          </div>
-          <button @click="${this.add_time}" ?disabled="${!label}" style="width: fit-content;">${translate('Add')}</button>
+            <br>
+            <strong>${translate('Minute')}</strong>
+            <div class="times-section">
+              <div class="section-column">
+                  ${times.mins.map(m=>html`
+                    <div @click="${()=>{this.selected_minute=m.key}}" class="grid-cell time ${m.key === this.selected_minute ? 'selected-time' : ''}" title="${m.label}"
+                      <span class="empty-time">${m.label}</span>
+                      </div>
+                  `)}
+              </div>
+            </div>
+        </div>
       </div>
+      <br>
+      <div ?hidden="${!label}">
+        <strong>${translate('Selected Commitment')}</strong>
+        <p>${label}</p>
+      </div>
+      <button @click="${this.add_time}" ?disabled="${!label}" style="width: fit-content;">${translate('Add')}</button>
     `
 
   }
