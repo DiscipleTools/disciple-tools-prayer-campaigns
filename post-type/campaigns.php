@@ -271,6 +271,7 @@ class DT_Campaigns_Base {
             ];
             $fields['last_modified']['show_in_table'] = false;
             $fields['favorite']['show_in_table'] = false;
+            $fields['name']['translations'] = [];
 
             $fields['campaign_goal'] = [
                 'name' => 'Campaign Goal',

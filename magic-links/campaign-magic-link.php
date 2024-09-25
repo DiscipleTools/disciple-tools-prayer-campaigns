@@ -36,6 +36,9 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
             add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
 //            return;
         }
+        if ( wp_doing_cron() ){
+            return;
+        }
         if ( empty( $page_info ) ) {
             return;
         }
@@ -63,7 +66,6 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         add_filter( 'dt_blank_access', function (){ return true;
         }, 100, 1 ); // allows non-logged in visit
 
-        add_filter( 'dt_blank_title', [ $this, 'page_tab_title' ] ); // adds basic title to browser tab
         add_action( 'wp_print_scripts', [ $this, 'print_scripts' ], 1500 ); // authorizes scripts
         add_action( 'wp_print_styles', [ $this, 'print_styles' ], 1500 ); // authorizes styles
 
@@ -105,7 +107,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
     public function dt_blank_title( $title ) {
         if ( $this->current_page === '' ){
             $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
-            return $current_campaign['name'];
+            return DT_Porch_Settings::get_field_translation( 'name' ) ?? $current_campaign['name'];
         } elseif ( $this->current_page === 'list' ){
             return __( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' );
         } elseif ( $this->current_page === 'fuel' ){
@@ -183,7 +185,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
     public function record_group_count( WP_REST_Request $request ){
         $params = $request->get_params();
         $params = dt_recursive_sanitize_array( $params );
-        if ( !isset( $params['number'] ) ){
+        if ( !isset( $params['number'] ) || !is_numeric( $params['number'] ) ){
             return false;
         }
         $campaign = DT_Campaign_Landing_Settings::get_campaign( $params['campaign_id'] );

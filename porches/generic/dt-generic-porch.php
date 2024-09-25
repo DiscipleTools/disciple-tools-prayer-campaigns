@@ -26,8 +26,8 @@ class DT_Generic_Porch {
         // Set Default Language
         $default_language = 'en_US';
 
-        if ( !empty( $fields['default_language']['key'] ) ) {
-            $default_language = $fields['default_language']['key'];
+        if ( !empty( $fields['default_language'] ) ) {
+            $default_language = $fields['default_language'];
         }
 
         if ( ! defined( 'PORCH_DEFAULT_LANGUAGE' ) ) {

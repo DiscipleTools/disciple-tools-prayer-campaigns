@@ -57,9 +57,3 @@ $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
     <i class="lnr lnr-arrow-up"></i>
 </a>
 
-<div id="loader">
-    <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-    </div>
-</div>

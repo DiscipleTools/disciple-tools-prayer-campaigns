@@ -25,6 +25,7 @@ function dt_campaign_user_record_prayed(){
     $campaign = DT_Campaign_Landing_Settings::get_campaign();
     $minutes_scheduled = isset( $campaign['ID'] ) ? DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign['ID'] ) : 0;
     $days_scheduled = round( !empty( $minutes_scheduled ) ? ( $minutes_scheduled / 24 / 60 ) : 0, 1 );
+    $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
     ?>
         <form onsubmit="event.preventDefault(); submit_group_count();return false;" id='form-content'>
             <div class='section-header col'>
@@ -67,7 +68,7 @@ function dt_campaign_user_record_prayed(){
               dataType: 'json',
               data: JSON.stringify({
                 parts: {
-                  root: '<?php echo esc_html( $campaign['campaign_url'] ) ?>',
+                  root: '<?php echo esc_html( $campaign_url ) ?>',
                   type: ''
                 },
                 number,

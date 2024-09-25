@@ -28,13 +28,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
             return;
         }
         if ( isset( $post['lang'] ) && $post['lang'] !== 'en_US' ){
-            $lang_code = $post['lang'];
-            add_filter( 'determine_locale', function ( $locale ) use ( $lang_code ){
-                if ( !empty( $lang_code ) ){
-                    return $lang_code;
-                }
-                return $locale;
-            } );
+            dt_campaign_set_translation( $post['lang'] );
         }
         $this->page_title = __( 'My Prayer Commitments', 'disciple-tools-prayer-campaigns' );
 
