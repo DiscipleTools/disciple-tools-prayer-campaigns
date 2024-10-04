@@ -51,6 +51,12 @@ class DT_Porch_Admin_Tab_Base {
                 margin-top: 10px;
                 cursor: pointer;
             }
+            .image-option:hover{
+                border: 2px solid #0073aa;
+            }
+            .image-option.selected {
+                border: 2px solid #0073aa;
+            }
         </style>
         <div class="wrap">
             <div id="poststuff">

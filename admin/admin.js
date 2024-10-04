@@ -155,5 +155,8 @@ jQuery(document).ready(function ($) {
     $(`#${field_key}-row .images-selected`).show();
     //change image
     $(`#${field_key}-row .color-img`).last().attr('src', image);
+    //add class to clicked image
+    $(`#${field_key}-row .image-option`).removeClass('selected');
+    $(e.target).addClass('selected');
   })
 })
