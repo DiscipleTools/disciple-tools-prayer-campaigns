@@ -59,6 +59,10 @@ export const campaignStyles = css`
     min-height: 40px;
     display: block;
   }
+  input[type="time"] {
+    padding: 0.5rem 0.5rem;
+    width: fit-content;
+  }
 
   textarea {
     min-width: 250px;

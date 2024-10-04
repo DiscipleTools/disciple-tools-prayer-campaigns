@@ -1393,36 +1393,19 @@ export class cpSimpleTime extends LitElement {
 
     return html`
       <p>
-          Don't specify a prayer time <input type="checkbox" ?checked="${this.undefined_prayer_time}" @click="${()=>this.undefined_prayer_time=!this.undefined_prayer_time}">
+        <label style="display: block">
+          <input type="checkbox" ?checked="${this.undefined_prayer_time}" @click="${()=>this.undefined_prayer_time=!this.undefined_prayer_time}">${translate('Pray without specifying a time')}
+        </label>
       </p>
-      <div ?hidden="${this.undefined_prayer_time}">
-        <div class="times-container">
-            <strong>${translate('Hour')}</strong>
-            <div class="times-section">
-              <div class="section-column">
-                  ${times.hours.map(m=>html`
-                    <div @click="${()=>{this.selected_hour=m.key}}" 
-                         class="grid-cell time ${m.key === this.selected_hour ? 'selected-time' : ''}" 
-                         title=":${m.label}"
-                         ?disabled="${m.disabled}"
-                    >
-                      <span class="empty-time">${m.label}</span>
-                    </div>
-                  `)}
-              </div>
-            </div>
-            <br>
-            <strong>${translate('Minute')}</strong>
-            <div class="times-section">
-              <div class="section-column">
-                  ${times.mins.map(m=>html`
-                    <div @click="${()=>{this.selected_minute=m.key}}" class="grid-cell time ${m.key === this.selected_minute ? 'selected-time' : ''}" title="${m.label}"
-                      <span class="empty-time">${m.label}</span>
-                      </div>
-                  `)}
-              </div>
-            </div>
-        </div>
+      <p ?hidden="${this.undefined_prayer_time}">
+          <label>${translate('Choose a prayer time')}
+            <input type="time" value="13:30">
+          </label>
+      </p>
+      <div ?hidden="${!this.undefined_prayer_time}">
+          <label>${translate('Choose a reminder time')}
+            <input type="time" value="13:30">
+          </label>
       </div>
       <br>
       <div ?hidden="${!label}">
