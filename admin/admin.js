@@ -144,6 +144,16 @@ jQuery(document).ready(function ($) {
   });
 
   /**
-   * CAMPAIGN CLONING
+   * Fields
    */
+  $('.image-option').on('click', function (e) {
+    const field_key = $(e.target).data('field');
+    const image = $(e.target).data('src');
+    //add src to value input
+    $(`#${field_key}`).val(image);
+    //show message
+    $(`#${field_key}-row .images-selected`).show();
+    //change image
+    $(`#${field_key}-row .color-img`).last().attr('src', image);
+  })
 })
