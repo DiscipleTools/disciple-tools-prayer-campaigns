@@ -171,12 +171,25 @@ class DT_Campaign_Prayer_Fuel_Post_Type
     }
 
     public function save_post( $id, $post, $update ){
+        if ( !isset( $post->post_type ) || $post->post_type !== CAMPAIGN_LANDING_POST_TYPE ){
+            return;
+        }
 
         $post_submission = dt_recursive_sanitize_array( wp_unslash( $_POST ) );
 
-        if ( isset( $_POST['landing-language-selector'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['landing-language-selector'] ) ), 'landing-language-selector' ) ) {
-            if ( isset( $_POST['dt-landing-language-selector'] ) ){
-                update_post_meta( $post_submission['ID'], 'post_language', $post_submission['dt-landing-language-selector'] );
+        if ( !empty( $post_submission ) ){
+            $lang = get_post_meta( $id, 'post_language', true );
+            if ( !empty( $post_submission['dt-landing-language-selector'] ) && $lang !== $post_submission['dt-landing-language-selector'] ){
+                $lang = $post_submission['dt-landing-language-selector'];
+                update_post_meta( $id, 'post_language', $lang );
+            }
+            if ( empty( $lang ) ){
+                $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
+                $default_language = get_post_meta( $campaign_id, 'default_language', true );
+                if ( empty( $default_language ) ){
+                    $default_language = 'en_US';
+                }
+                update_post_meta( $id, 'post_language', $default_language );
             }
         }
 
@@ -192,29 +205,30 @@ class DT_Campaign_Prayer_Fuel_Post_Type
             update_post_meta( $id, 'day', $day );
         }
 
-        if ( $post->post_type === CAMPAIGN_LANDING_POST_TYPE ) {
-            $day = get_post_meta( $id, 'day', true );
-            $lang = get_post_meta( $id, 'post_language', true );
-            $linked_campaign = get_post_meta( $id, 'linked_campaign', true );
+        /**
+         * check get request parameters and update post meta
+         */
+        $day = get_post_meta( $id, 'day', true );
+        $lang = get_post_meta( $id, 'post_language', true );
+        $linked_campaign = get_post_meta( $id, 'linked_campaign', true );
 
-            if ( empty( $day ) && isset( $_GET['day'] ) && !empty( $_GET['day'] ) ){
-                $day = sanitize_key( wp_unslash( $_GET['day'] ) );
-                update_post_meta( $id, 'day', $day );
-            }
-            if ( empty( $lang ) && isset( $_GET['post_language'] ) && !empty( $_GET['post_language'] ) ){
-                $lang = sanitize_text_field( wp_unslash( $_GET['post_language'] ) );
-                update_post_meta( $id, 'post_language', $lang );
-            }
+        if ( empty( $day ) && isset( $_GET['day'] ) && !empty( $_GET['day'] ) ){
+            $day = sanitize_key( wp_unslash( $_GET['day'] ) );
+            update_post_meta( $id, 'day', $day );
+        }
+        if ( empty( $lang ) && isset( $_GET['post_language'] ) && !empty( $_GET['post_language'] ) ){
+            $lang = sanitize_text_field( wp_unslash( $_GET['post_language'] ) );
+            update_post_meta( $id, 'post_language', $lang );
+        }
 
-            if ( !empty( $day ) ) {
-                update_post_meta( $id, CAMPAIGN_LANDING_META_KEY, $day );
-            }
+        if ( !empty( $day ) ) {
+            update_post_meta( $id, CAMPAIGN_LANDING_META_KEY, $day );
+        }
 
-            if ( empty( $linked_campaign ) && $update === false ){
-                $campaign = DT_Campaign_Landing_Settings::get_campaign();
-                if ( !empty( $campaign['ID'] ) ){
-                    update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
-                }
+        if ( empty( $linked_campaign ) && $update === false ){
+            $campaign = DT_Campaign_Landing_Settings::get_campaign();
+            if ( !empty( $campaign['ID'] ) ){
+                update_post_meta( $id, 'linked_campaign', $campaign['ID'] );
             }
         }
     }
