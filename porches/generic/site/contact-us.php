@@ -104,9 +104,7 @@ class DT_Generic_Porch_Contact_Us {
                             ></div>
                             </p>
                         <?php endif; ?>
-                        <p id="form-error-section" style="color: red">
-
-                        </p>
+                        <p id="form-error-section" style="color: red"></p>
                         <p>
                             <button id="contact-submit-button" class="btn btn-common" style="font-weight: bold; margin-left: 0">
                                 <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
@@ -164,9 +162,7 @@ class DT_Generic_Porch_Contact_Us {
                         $('#form-confirm').show()
                     })
                     .fail(function(e) {
-                      console.log(e);
-                      const message = e.responseJSON.message || 'There was an error submitting your form. Please try again.';
-                      console.log(message);
+                      const message = e.responseJSON?.message || 'There was an error submitting your form. Please try again.';
                       $('#form-error-section').text(message);
                       $('#contact-submit-spinner').hide()
                     })
