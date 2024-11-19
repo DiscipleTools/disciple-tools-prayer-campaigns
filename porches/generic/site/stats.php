@@ -24,6 +24,8 @@ class DT_Generic_Porch_Stats {
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
         add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
+
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
     }
     public function dt_blank_title( $title ) {
         return $this->page_title;
@@ -83,7 +85,6 @@ class DT_Generic_Porch_Stats {
         $thank_you = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
         $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
-        echo '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>';//phpcs:ignore
         ?>
 
         <style>
@@ -506,6 +507,13 @@ class DT_Generic_Porch_Stats {
 
     public function header_javascript(){
         require_once( 'header.php' );
+    }
+
+    public function enqueue_scripts(){
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
+        if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) ){
+            wp_enqueue_script( 'cloudflare-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, [ 'strategy' => 'defer' ] );
+        }
     }
 }
 DT_Generic_Porch_Stats::instance();
