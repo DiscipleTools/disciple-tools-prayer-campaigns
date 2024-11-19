@@ -19,11 +19,11 @@ class DT_Generic_Porch_Contact_Us {
     public function __construct() {
         $this->page_title = __( 'Contact Us', 'disciple-tools-prayer-campaigns' );
 
-        add_action( 'rest_api_init', [ $this, 'add_endpoints' ] );
-
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
         add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
+
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
     }
     public function dt_blank_title( $title ) {
         return $this->page_title;
@@ -44,6 +44,8 @@ class DT_Generic_Porch_Contact_Us {
         if ( isset( $campaign_fields[$key_name] ) ){
             $key = $campaign_fields[$key_name];
         }
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
+
         $atts = [
             'root' => $campaign_root,
             'type' => $campaign_type,
@@ -51,12 +53,13 @@ class DT_Generic_Porch_Contact_Us {
             'meta_key' => $key_name,
             'post_id' => (int) $post_id,
             'rest_url' => rest_url(),
-            'lang' => $lang
+            'lang' => $lang,
         ];
 
         dt_campaigns_register_scripts( $atts, $atts['post_id'] );
-        ?>
 
+
+        ?>
         <style>
             .wow p {
                 font-weight: 600;
@@ -91,11 +94,25 @@ class DT_Generic_Porch_Contact_Us {
                                 <br>
                                 <textarea id="contact-message" required rows="4" type="text" style="width: 100%"></textarea>
                             </label>
+                        </p>
+                        <?php if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) ) : ?>
+                            <p>
+                            <div
+                                class="cf-turnstile"
+                                data-sitekey="<?php echo esc_html( $cf_keys['dt_cloudflare_site_key'] ); ?>"
+                                data-theme="light"
+                                style="margin-top:1em;"
+                            ></div>
+                            </p>
+                        <?php endif; ?>
+                        <p id="form-error-section" style="color: red"></p>
+                        <p>
                             <button id="contact-submit-button" class="btn btn-common" style="font-weight: bold; margin-left: 0">
                                 <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
                                 <img id="contact-submit-spinner" style="display: none; margin-left: 10px" src="<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg" width="22px;" alt="spinner "/>
                             </button>
                         </p>
+
                     </form>
                     <div id="form-confirm" class="section-header" style="display: none">
                         <h3 class="section-subtitle"><?php esc_html_e( 'Thank you', 'disciple-tools-prayer-campaigns' ); ?></h3>
@@ -111,6 +128,10 @@ class DT_Generic_Porch_Contact_Us {
                     if ( honey ){
                         return;
                     }
+                    $('#form-error-section').text('');
+
+                    //cloudflare turnstile token
+                    const cf_token = $('input[name="cf-turnstile-response"]').val();
 
                     let name = $('#contact-name').val();
                     let email = $('#email-2').val();
@@ -121,7 +142,8 @@ class DT_Generic_Porch_Contact_Us {
                         campaign_id:  window.campaign_objects.magic_link_parts.post_id,
                         name,
                         email,
-                        message
+                        message,
+                        cf_token,
                     };
 
                     let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/contact_us';
@@ -136,12 +158,14 @@ class DT_Generic_Porch_Contact_Us {
                           xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
                         },
                     }).done(function(data){
-                        $('#contact-submit-spinner').show()
+                        $('#contact-submit-spinner').hide()
                         $('#form-content').hide()
                         $('#form-confirm').show()
                     })
                     .fail(function(e) {
-                        // jQuery('#error').html(e)
+                      const message = e.responseJSON?.message || 'There was an error submitting your form. Please try again.';
+                      $('#form-error-section').text(message);
+                      $('#contact-submit-spinner').hide()
                     })
                 }
             </script>
@@ -150,11 +174,19 @@ class DT_Generic_Porch_Contact_Us {
     }
 
     public function footer_javascript(){
+
         require_once( 'footer.php' );
     }
 
     public function header_javascript(){
         require_once( 'header.php' );
+    }
+
+    public function enqueue_scripts(){
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
+        if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) ){
+            wp_enqueue_script( 'cloudflare-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, [ 'strategy' => 'defer' ] );
+        }
     }
 }
 DT_Generic_Porch_Contact_Us::instance();

@@ -153,7 +153,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
     }
     // add dt_campaign_core to allowed scripts
     public function dt_magic_url_base_allowed_js( $allowed_js ) {
-        return array_merge( [ 'jquery', 'lodash', 'lodash-core' ], DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
+        return array_merge( [ 'jquery', 'lodash', 'lodash-core', 'cloudflare-turnstile' ], DT_Generic_Porch_Landing_Enqueue::load_allowed_scripts() );
     }
     // add dt_campaign_core to allowed scripts
     public function dt_magic_url_base_allowed_css( $allowed_css ) {
