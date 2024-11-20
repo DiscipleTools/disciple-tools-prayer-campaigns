@@ -5,585 +5,608 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-08-30T13:15:31+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2024-11-19T15:03:16+00:00\n"
+"PO-Revision-Date: 2024-11-16 15:00+0000\n"
+"Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
+"Language-Team: Hindi <https://translate.disciple.tools/projects/"
+"pray4movement/disciple-tools-prayer-campaigns/hi_IN/>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.8.3\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
 msgid "Verify your email address"
-msgstr ""
+msgstr "अपने ईमेल एड्रेस की पुष्टि करें"
 
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
-msgstr ""
+msgstr "अपने अकाउंट को एक्टिवेट करने के द्वारा अपनी भागीदारी की पुष्टि करें।"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
-msgstr ""
+msgstr "या इस लिंक पर क्लिक करें:"
 
 #: campaign-functions/send-email-utility.php:101
 msgid "If you did not request this email, please ignore it."
-msgstr ""
+msgstr "यदि आपने इस ईमेल का अनुरोध नहीं किया, तो कृपया इसे अनदेखा कर दें।"
 
-#: campaign-functions/send-email-utility.php:185
-#: campaign-functions/send-email-utility.php:281
+#: campaign-functions/send-email-utility.php:184
+#: campaign-functions/send-email-utility.php:280
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr ""
+msgstr "%1$s से %2$s, %3$s तक"
 
-#: campaign-functions/send-email-utility.php:192
+#: campaign-functions/send-email-utility.php:191
 msgid "see more on your account"
-msgstr ""
+msgstr "अपने अकाउंट के बारे में और अधिक देखें"
 
-#: campaign-functions/send-email-utility.php:204
+#: campaign-functions/send-email-utility.php:203
 msgid "Registered to pray with us!"
-msgstr ""
+msgstr "हमारे साथ प्रार्थना करने के लिए पंजीकरण करें!"
 
-#: campaign-functions/send-email-utility.php:225
-#: campaign-functions/send-email-utility.php:313
-#: campaign-functions/send-email-utility.php:418
+#: campaign-functions/send-email-utility.php:224
+#: campaign-functions/send-email-utility.php:312
+#: campaign-functions/send-email-utility.php:416
 msgid "Hello %s,"
-msgstr ""
+msgstr "नमस्कार %s,"
+
+#: campaign-functions/send-email-utility.php:228
+#: campaign-functions/send-email-utility.php:324
+msgid "Access your account to see your commitments and make changes:"
+msgstr "अपनी प्रतिबद्धताओं को देखने और उनमें परिवर्तन करने के लिए अपने अकाउंट पर जाएँ:"
 
 #: campaign-functions/send-email-utility.php:229
 #: campaign-functions/send-email-utility.php:325
-msgid "Access your account to see your commitments and make changes:"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:230
-#: campaign-functions/send-email-utility.php:326
-#: campaign-functions/send-email-utility.php:426
+#: campaign-functions/send-email-utility.php:424
 #: parts/components-enqueue.php:94
 msgid "Access Account"
-msgstr ""
+msgstr "अकाउंट पर जाएँ"
 
-#: campaign-functions/send-email-utility.php:233
+#: campaign-functions/send-email-utility.php:232
 msgid "You signed up to pray:"
-msgstr ""
+msgstr "आपने प्रार्थना करने के लिए साइन अप किया है:"
 
-#: campaign-functions/send-email-utility.php:238
+#: campaign-functions/send-email-utility.php:237
 msgid "These are your next prayer commitments:"
-msgstr ""
+msgstr "आपकी अगली प्रार्थना प्रतिबद्धताएँ ये हैं:"
 
-#: campaign-functions/send-email-utility.php:241
-#: campaign-functions/send-email-utility.php:317
+#: campaign-functions/send-email-utility.php:240
+#: campaign-functions/send-email-utility.php:316
 msgid "Times are shown according to: %s time"
-msgstr ""
+msgstr "समय इसके अनुसार दिखाए गए हैं: %s समय"
 
-#: campaign-functions/send-email-utility.php:245
-#: magic-links/subscription-management/subscription-management.php:378
+#: campaign-functions/send-email-utility.php:244
+#: magic-links/subscription-management/subscription-management.php:371
 msgid "Download Calendar"
-msgstr ""
+msgstr "कैलेंडर डाउनलोड करें"
 
-#: campaign-functions/send-email-utility.php:269
+#: campaign-functions/send-email-utility.php:268
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
-msgstr ""
+msgstr "आज के प्रार्थना सुझाव देखने के लिए यहाँ क्लिक करें: %s"
 
-#: campaign-functions/send-email-utility.php:287
+#: campaign-functions/send-email-utility.php:286
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr ""
+msgstr "%s के लिए"
 
-#: campaign-functions/send-email-utility.php:297
+#: campaign-functions/send-email-utility.php:296
 msgid "Prayer Time reminder!"
-msgstr ""
+msgstr "प्रार्थना समय अनुस्मारक!"
 
-#: campaign-functions/send-email-utility.php:314
-#: campaign-functions/send-email-utility.php:420
+#: campaign-functions/send-email-utility.php:313
+#: campaign-functions/send-email-utility.php:418
 #: parts/components-enqueue.php:105
 msgid "Thank you for praying with us."
-msgstr ""
+msgstr "हमारे साथ प्रार्थना करने के लिए धन्यवाद।"
 
-#: campaign-functions/send-email-utility.php:315
+#: campaign-functions/send-email-utility.php:314
 msgid "Here are your upcoming prayer times:"
-msgstr ""
+msgstr "आपके आगामी प्रार्थना समय इस प्रकार हैं:"
 
-#: campaign-functions/send-email-utility.php:320
-#: magic-links/campaign-magic-link.php:110
+#: campaign-functions/send-email-utility.php:319
 #: magic-links/campaign-magic-link.php:112
+#: magic-links/campaign-magic-link.php:114
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:33
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:95
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:153
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:94
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:152
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
 msgid "Prayer Fuel"
-msgstr ""
+msgstr "प्रार्थना सामग्री"
 
-#: campaign-functions/send-email-utility.php:416
+#: campaign-functions/send-email-utility.php:414
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr ""
+msgstr "[कार्रवाई करें] प्रार्थना करना जारी रखें?"
 
-#: campaign-functions/send-email-utility.php:420
+#: campaign-functions/send-email-utility.php:418
 msgid "Some of your prayer times will be ending soon."
-msgstr ""
+msgstr "हमारे कुछ प्रार्थना समय शीघ्र ही समाप्त हो जाएँगे।"
 
-#: campaign-functions/send-email-utility.php:421
+#: campaign-functions/send-email-utility.php:419
 msgid "The prayer times are:"
-msgstr ""
+msgstr "प्रार्थना के समय इस प्रकार हैं:"
 
-#: campaign-functions/send-email-utility.php:425
+#: campaign-functions/send-email-utility.php:423
 msgid ""
 "To continue praying, and to keep receiving the notifications, please access "
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
+"प्रार्थना जारी रखने के लिए और सूचनाएँ प्राप्त करते रहने के लिए, कृपया अपने अकाउंट में लॉग इन "
+"करें और अपनी प्रतिबद्धता(ओं) के बगल में दिए गए “आगे बढ़ें” वाले बटन पर क्लिक करें। यदि आप "
+"चाहें तो किसी अलग समय के लिए भी साइन अप कर सकते हैं।"
 
-#: campaign-functions/send-email-utility.php:427
+#: campaign-functions/send-email-utility.php:425
 msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
+"यदि आप अपने प्रार्थना समय के समाप्त होने पर प्रार्थना जारी नहीं रखना चाहते हैं, तो आपको "
+"कुछ भी करने की आवश्यकता नहीं है।"
 
-#: campaign-functions/send-email-utility.php:429 parts/components.php:51
-#: porches/generic/site/contact-us.php:102 porches/generic/site/stats.php:228
+#: campaign-functions/send-email-utility.php:427 parts/components.php:52
+#: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
 msgid "Thank you"
-msgstr ""
+msgstr "धन्यवाद"
 
-#: campaign-functions/send-email-utility.php:475
-#: porches/generic/site/stats.php:84
+#: campaign-functions/send-email-utility.php:473
+#: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
-msgstr ""
+msgstr "हमारे साथ प्रार्थना करने के लिए धन्यवाद!"
+
+#: campaign-functions/send-email-utility.php:497
+#: campaign-functions/send-email-utility.php:527
+msgid "Strategic prayer for a disciple making movement in %s"
+msgstr "%s में चेले बनाने के अभियान के लिए रणनीतिक प्रार्थना"
 
 #: campaign-functions/send-email-utility.php:499
 #: campaign-functions/send-email-utility.php:529
-msgid "Strategic prayer for a disciple making movement in %s"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:501
-#: campaign-functions/send-email-utility.php:531
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
-msgstr ""
+msgstr "चेले बनाने के अभियान के लिए रणनीतिक प्रार्थना"
 
-#: campaign-functions/send-email-utility.php:506
-#: campaign-functions/send-email-utility.php:536
+#: campaign-functions/send-email-utility.php:504
+#: campaign-functions/send-email-utility.php:534
 msgid "Dear %s,"
-msgstr ""
+msgstr "प्रिय %s,"
 
-#: campaign-functions/send-email-utility.php:509
-#: campaign-functions/send-email-utility.php:539
+#: campaign-functions/send-email-utility.php:507
+#: campaign-functions/send-email-utility.php:537
 msgid "Thank you for joining %1$s in %2$s."
-msgstr ""
+msgstr "%2$s में %1$s से जुड़ने के लिए धन्यवाद।"
 
-#: campaign-functions/send-email-utility.php:512
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"हम अपनी प्रार्थना के सम्पूर्ण प्रभाव के बारे में अनन्तकाल में ही जान पाएँगे। हालाँकि, हमें "
+"परमेश्वर के वचन से पता चलता है कि प्रार्थना सामर्थी और प्रभावी होती है (याकूब 5:16)।"
 
-#: campaign-functions/send-email-utility.php:515
+#: campaign-functions/send-email-utility.php:513
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"नीचे दिए गए बटन पर क्लिक करें, ताकि आप यह देख सकें कि आपने किस बात में योगदान दिया है। "
+"हमें यह सुनकर भी अच्छा लगेगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या वचन "
+"प्राप्त हुए।"
 
-#: campaign-functions/send-email-utility.php:517
+#: campaign-functions/send-email-utility.php:515
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
 "you’re signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
+"अन्त में, Prayer.Tools द्वारा निर्मित इस प्रार्थना साधन को भी देखें। सुनिश्चित करें कि आप "
+"भविष्य में मिलने वाले प्रार्थना अवसरों की सूचना पाने के लिए स्टैट्स पेज पर साइन अप कर चुके हैं।"
+
+#: campaign-functions/send-email-utility.php:517
+msgid "See Prayer Stats"
+msgstr "प्रार्थना स्टैट्स देखें"
 
 #: campaign-functions/send-email-utility.php:519
-msgid "See Prayer Stats"
-msgstr ""
-
-#: campaign-functions/send-email-utility.php:521
-#: campaign-functions/send-email-utility.php:551
+#: campaign-functions/send-email-utility.php:549
 msgid "In Christ with you,"
-msgstr ""
+msgstr "मसीह में आपके साथ,"
 
-#: campaign-functions/send-email-utility.php:542
+#: campaign-functions/send-email-utility.php:540
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"हम केवल अनन्तकाल में ही पूरी तरह से यह जान पाएंगे कि रमजान के दौरान मुस्लिम संसार के लिए "
+"की गई हज़ारों घण्टों की प्रार्थनाओं का क्या प्रभाव हुआ। हालाँकि, हमें परमेश्वर के वचन से पता "
+"चलता है कि प्रार्थना सामर्थी और प्रभावी होती है (याकूब 5:16)।"
 
-#: campaign-functions/send-email-utility.php:545
+#: campaign-functions/send-email-utility.php:543
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
+"नीचे दिए गए बटन पर क्लिक करें, ताकि आप इस रमजान में दिए गए अपने योगदान की एक झलक देख "
+"सकें। हम यह जानकर भी अच्छा लगगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या "
+"वचन मिले।"
 
-#: campaign-functions/send-email-utility.php:547
+#: campaign-functions/send-email-utility.php:545
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
+"अन्त में, रमजान 24/7 प्रार्थना स्टैट्स पेज के निचले भाग में एक साइन अप खण्ड भी है। सुनिश्चित "
+"करें कि आप इस प्रार्थना साधन के निर्माता Prayer.Tools के द्वारा भविष्य में दिए जाने वाले "
+"प्रार्थना अवसरों की जानकारी के लिए साइन अप कर चुके हैं।"
 
-#: campaign-functions/send-email-utility.php:549
+#: campaign-functions/send-email-utility.php:547
 msgid "See Ramadan 24/7 Prayer Stats"
-msgstr ""
+msgstr "रमज़ान 24/7 प्रार्थना स्टैट्स देखें"
 
-#: campaign-functions/time-utilities.php:173
+#: campaign-functions/time-utilities.php:185
 msgid "5 minutes"
-msgstr ""
+msgstr "5 मिनट"
 
-#: campaign-functions/time-utilities.php:174
+#: campaign-functions/time-utilities.php:186
 msgid "10 minutes"
-msgstr ""
+msgstr "10 मिनट"
 
-#: campaign-functions/time-utilities.php:175
+#: campaign-functions/time-utilities.php:187
 msgid "15 minutes"
-msgstr ""
+msgstr "15 मिनट"
 
-#: campaign-functions/time-utilities.php:176
+#: campaign-functions/time-utilities.php:188
 msgid "30 minutes"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:177
-msgid "1 hour"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:186
-msgid "years"
-msgstr ""
-
-#: campaign-functions/time-utilities.php:186
-msgid "year"
-msgstr ""
+msgstr "30 मिनट"
 
 #: campaign-functions/time-utilities.php:189
+msgid "1 hour"
+msgstr "1 घंटा"
+
+#: campaign-functions/time-utilities.php:198
+msgid "years"
+msgstr "वर्ष"
+
+#: campaign-functions/time-utilities.php:198
+msgid "year"
+msgstr "वर्ष"
+
+#: campaign-functions/time-utilities.php:201
 msgid "day"
-msgstr ""
+msgstr "दिन"
 
-#: campaign-functions/time-utilities.php:189 parts/components-enqueue.php:42
+#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:42
 msgid "days"
-msgstr ""
+msgstr "दिन"
 
-#: campaign-functions/utils.php:300
+#: campaign-functions/utils.php:324
 #: porches/generic/site/edit-post-list-body.php:142
 msgid "Edit"
-msgstr ""
+msgstr "एडिट करें"
 
-#: magic-links/campaign-resend-email/magic-link-post-type.php:159
+#: magic-links/campaign-resend-email/magic-link-post-type.php:158
 msgid "Retrieve Prayer Time Management Link"
-msgstr ""
+msgstr "प्रार्थना समय प्रबन्धन लिंक को पुनः प्राप्त करें"
 
-#: magic-links/campaign-resend-email/magic-link-post-type.php:168
+#: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr ""
+msgstr "अपना ईमेल एड्रेस दर्ज करें और अपने प्रार्थना समय का लिंक प्राप्त करें।"
 
-#: magic-links/campaign-resend-email/magic-link-post-type.php:170
-#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:83
-#: porches/generic/site/stats.php:209
+#: magic-links/campaign-resend-email/magic-link-post-type.php:169
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:85
+#: porches/generic/site/stats.php:212
 msgid "Email"
-msgstr ""
+msgstr "ईमेल"
 
-#: magic-links/campaign-resend-email/magic-link-post-type.php:175
+#: magic-links/campaign-resend-email/magic-link-post-type.php:174
 msgid "Email My Access Link"
-msgstr ""
+msgstr "मेरा एक्सेस लिंक ईमेल करें"
 
-#: magic-links/campaign-resend-email/magic-link-post-type.php:178
+#: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr ""
+msgstr "कृपया अपने एक्सेस लिंक के लिए अभी अपने ईमेल एड्रेस की जाँच करें।"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:90
+msgid "Your prayer time has been extended"
+msgstr "आपके प्रार्थना समय को बढ़ा दिया गया है"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
-msgid "Your prayer time has been extended"
-msgstr ""
-
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:92
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
-msgstr ""
+msgstr "आप %1$s से %2$s तक प्रार्थना करने के लिए पंजीकृत हैं।"
+
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:92
+msgid "OK"
+msgstr "ठीक है"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:93
-msgid "OK"
-msgstr ""
-
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:94
 msgid "Email me the updated calendar"
-msgstr ""
+msgstr "मुझे नवीनीकृत कैलेंडर ईमेल करें"
 
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:96
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:95
 msgid "Join me in praying!"
-msgstr ""
+msgstr "मेरे साथ प्रार्थना में शामिल हों!"
 
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:278
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
-msgstr ""
+msgstr "विषय-वस्तु %s दिनों में शुरू होगी"
 
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:290
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
+msgstr "यह अभियान समाप्त हो गया है। नीचे सामग्री देखें"
 
-#: magic-links/prayer-fuel/magic-prayer-fuel.php:312
+#: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:48
 msgid "Prayer Timer"
-msgstr ""
+msgstr "प्रार्थना टाइमर"
 
-#: magic-links/subscription-management/subscription-management.php:39
-#: magic-links/subscription-management/subscription-management.php:367
+#: magic-links/subscription-management/subscription-management.php:33
+#: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
-msgstr ""
+msgstr "मेरी प्रार्थना प्रतिबद्धताएँ"
+
+#: magic-links/subscription-management/subscription-management.php:334
+#: porches/generic/site/stats.php:145
+msgid "Prayer Commitments"
+msgstr "प्रार्थना प्रतिबद्धताएँ"
+
+#: magic-links/subscription-management/subscription-management.php:335
+msgid "Account"
+msgstr "अकाउंट"
 
 #: magic-links/subscription-management/subscription-management.php:341
-#: porches/generic/site/stats.php:142
-msgid "Prayer Commitments"
-msgstr ""
+msgid "Account activated!"
+msgstr "अकाउंट एक्टिवेट हो गया है!"
 
 #: magic-links/subscription-management/subscription-management.php:342
-msgid "Account"
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:348
-msgid "Account activated!"
-msgstr ""
+msgid "Here you can manage your prayer commitments and account settings."
+msgstr "आप यहाँ पर अपनी प्रार्थना प्रतिबद्धताओं और अकाउंट सेटिंग को प्रबन्धित कर सकते हैं।"
 
 #: magic-links/subscription-management/subscription-management.php:349
-msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
-
-#: magic-links/subscription-management/subscription-management.php:356
 msgid "Links"
-msgstr ""
+msgstr "लिंक"
 
-#: magic-links/subscription-management/subscription-management.php:357
+#: magic-links/subscription-management/subscription-management.php:350
 #: porches/generic/site/top-section.php:28
 msgid "Home"
-msgstr ""
+msgstr "होम"
 
-#: magic-links/subscription-management/subscription-management.php:359
-#: porches/generic/site/stats.php:20 porches/generic/site/stats.php:107
+#: magic-links/subscription-management/subscription-management.php:352
+#: porches/generic/site/stats.php:20 porches/generic/site/stats.php:110
 msgid "Stats"
-msgstr ""
+msgstr "आँकड़े"
 
-#: magic-links/subscription-management/subscription-management.php:375
+#: magic-links/subscription-management/subscription-management.php:368
 msgid "My Calendar"
-msgstr ""
+msgstr "मेरा कैलेंडर"
 
-#: magic-links/subscription-management/subscription-management.php:388
+#: magic-links/subscription-management/subscription-management.php:381
 msgid "Sign up for more prayer"
-msgstr ""
+msgstr "अधिक प्रार्थना के लिए साइन अप करें"
 
-#: magic-links/subscription-management/subscription-management.php:409
+#: magic-links/subscription-management/subscription-management.php:402
 msgid "This subscription has ended or is not configured correctly."
-msgstr ""
+msgstr "यह सदस्यता समाप्त हो गई है या इसे सही से प्रारूप नहीं दिया गया है।"
 
 #: parts/components-enqueue.php:40
 msgid "Detected time zone"
-msgstr ""
+msgstr "पता लगाया गया समय क्षेत्र"
 
 #: parts/components-enqueue.php:41
 msgid "Select a timezone"
-msgstr ""
+msgstr "समय क्षेत्र चुनें"
 
-#: parts/components-enqueue.php:43 porches/generic/site/stats.php:154
-#: porches/generic/site/stats.php:164
+#: parts/components-enqueue.php:43 porches/generic/site/stats.php:157
+#: porches/generic/site/stats.php:167
 msgid "hours"
-msgstr ""
+msgstr "घण्टे"
 
 #: parts/components-enqueue.php:44
 msgid "minutes"
-msgstr ""
+msgstr "मिनट"
 
 #: parts/components-enqueue.php:45
 msgid "seconds"
-msgstr ""
+msgstr "सेकंड"
 
 #: parts/components-enqueue.php:46
 msgid "Campaign Starts In"
-msgstr ""
+msgstr "अभियान शुरू होने में"
 
 #: parts/components-enqueue.php:47
 msgid "Campaign Ends In"
-msgstr ""
+msgstr "अभियान समाप्त होने में"
 
 #: parts/components-enqueue.php:48
 msgid "Campaign Ended"
-msgstr ""
+msgstr "अभियान समाप्त हो गया है"
 
 #: parts/components-enqueue.php:49
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr ""
+msgstr "%1$s %2$s मिनट के लिए।"
 
 #: parts/components-enqueue.php:50
 msgid "How often?"
-msgstr ""
+msgstr "कितनी बार?"
 
 #: parts/components-enqueue.php:51
 msgid "I will pray for"
-msgstr ""
+msgstr "मैं किसके लिए प्रार्थना करूँगा"
 
 #: parts/components-enqueue.php:52
 msgid "At what time?"
-msgstr ""
+msgstr "किस समय पर?"
 
 #: parts/components-enqueue.php:54
 msgid "Contact Info"
-msgstr ""
+msgstr "सम्पर्क जानकारी"
 
-#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:76
+#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:78
 msgid "Name"
-msgstr ""
+msgstr "नाम"
 
 #: parts/components-enqueue.php:57
 msgid "Start Here"
-msgstr ""
+msgstr "यहाँ से शुरू करें"
 
 #: parts/components-enqueue.php:58
 msgid "Continue here"
-msgstr ""
+msgstr "यहाँ जारी रखें"
 
 #: parts/components-enqueue.php:59
 msgid "On which week day?"
-msgstr ""
+msgstr "सप्ताह के किस दिन?"
 
 #: parts/components-enqueue.php:60
 msgid "Select a Date"
-msgstr ""
+msgstr "एक तिथि चुनें"
 
 #: parts/components-enqueue.php:61
 msgid "Select a Time"
-msgstr ""
+msgstr "एक समय चुनें"
 
 #: parts/components-enqueue.php:62
 msgid "Select a Time for %s"
-msgstr ""
+msgstr "%s के लिए समय चुनें"
 
 #: parts/components-enqueue.php:63 parts/components-enqueue.php:140
 msgid "Close"
-msgstr ""
+msgstr "बन्द करें"
 
 #: parts/components-enqueue.php:64
 msgid "prayer commitments"
-msgstr ""
+msgstr "प्रार्थना प्रतिबद्धताएँ"
 
 #: parts/components-enqueue.php:65
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr ""
+msgstr "%s से शुरू"
 
 #: parts/components-enqueue.php:66
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr ""
+msgstr "%s पर समाप्त"
 
 #: parts/components-enqueue.php:67
 msgid "Review"
-msgstr ""
+msgstr "समीक्षा करें"
 
-#: parts/components-enqueue.php:68 parts/components.php:45
-#: porches/generic/site/contact-us.php:96 porches/generic/site/stats.php:222
+#: parts/components-enqueue.php:68 parts/components.php:46
+#: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
 msgid "Submit"
-msgstr ""
+msgstr "जमा करें"
 
 #: parts/components-enqueue.php:69
 msgid "Verify"
-msgstr ""
+msgstr "पुष्टि करें"
 
 #: parts/components-enqueue.php:70
-msgid "Percentage covered in prayer"
-msgstr ""
+msgid "Goal: %s hours of prayer every day"
+msgstr "लक्ष्य: प्रतिदिन % घण्टे प्रार्थना"
 
 #: parts/components-enqueue.php:71
-msgid "%s committed"
-msgstr ""
+msgid "Goal: 24/7 coverage"
+msgstr "लक्ष्य: 24/7 दायरा"
 
 #: parts/components-enqueue.php:72
 msgid "Please enter a valid name or email address"
-msgstr ""
+msgstr "कृपया एक वैध नाम या ईमेल एड्रेस दर्ज करें"
 
 #: parts/components-enqueue.php:73
 msgid "Next"
-msgstr ""
+msgstr "अगला"
 
 #: parts/components-enqueue.php:74
 msgid "No prayer times selected"
-msgstr ""
+msgstr "कोई प्रार्थना समय नहीं चुना गया"
 
 #: parts/components-enqueue.php:75
 msgid "Daily"
-msgstr ""
+msgstr "दैनिक"
 
 #: parts/components-enqueue.php:76
 msgid "Weekly"
-msgstr ""
+msgstr "साप्ताहिक"
 
 #: parts/components-enqueue.php:77
 msgid "Monthly"
-msgstr ""
+msgstr "मासिक"
 
 #: parts/components-enqueue.php:78
 msgid "Pick Dates and Times"
-msgstr ""
+msgstr "तिथि और समय चुनें"
 
 #: parts/components-enqueue.php:79
 msgid "%s Minutes"
-msgstr ""
+msgstr "%s मिनट"
 
 #: parts/components-enqueue.php:80
 msgid "%s Hour"
-msgstr ""
+msgstr "%s घण्टे"
 
 #: parts/components-enqueue.php:81
 msgid "%s Hours"
-msgstr ""
+msgstr "%s घण्टे"
 
 #: parts/components-enqueue.php:82
 msgid "%1$s at %2$s for %3$s"
-msgstr ""
+msgstr "%1$s %2$s पर %3$s के लिए"
 
 #: parts/components-enqueue.php:83
 msgid "for %s minutes"
-msgstr ""
+msgstr "%s मिनट के लिए"
 
 #: parts/components-enqueue.php:84
 msgid "Every %s"
-msgstr ""
+msgstr "हर %s"
 
 #: parts/components-enqueue.php:85
 msgid "Prayer Time Selected"
-msgstr ""
+msgstr "प्रार्थना समय चुना गया"
 
 #: parts/components-enqueue.php:86
 msgid "Prayer Time Removed"
-msgstr ""
+msgstr "प्रार्थना समय हटाया गया"
 
 #: parts/components-enqueue.php:87
 msgid "Select a Day"
-msgstr ""
+msgstr "एक दिन चुनें"
 
 #: parts/components-enqueue.php:88
 msgid "Renews on %s"
-msgstr ""
+msgstr "%s पर नवीनीकृत होता है"
 
 #: parts/components-enqueue.php:89
 msgid "Ends on %s"
-msgstr ""
+msgstr "%s पर समाप्त होता है"
 
 #: parts/components-enqueue.php:90
 msgid "Success"
-msgstr ""
+msgstr "सफल"
 
 #: parts/components-enqueue.php:91
 msgid "Your registration was successful."
-msgstr ""
+msgstr "आपका पंजीकरण सफल रहा।"
 
 #: parts/components-enqueue.php:92
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
+msgstr "अतिरिक्त विवरण के लिए और अपने अकाउंट का प्रबन्ध करने के लिए अपना ईमेल देखें।"
 
 #: parts/components-enqueue.php:93
 msgid "Ok"
-msgstr ""
+msgstr "ठीक है"
 
 #: parts/components-enqueue.php:95
 msgid ""
@@ -592,425 +615,462 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
+"रद्द करना चाहते हैं? हम समझते हैं! पर एक मिनट रुकिए! यदि आपकी प्रार्थना की प्रतिबद्धता "
+"शुरू होने में 48 घंटे से कम समय बचा है, तो कृपया किसी मित्र से इसे पूरा करने का अनुरोध करें। "
+"इससे प्रार्थना की कड़ी टूटने से बचेगी और किसी और को खोए हुओं के लिए प्रार्थना करने का आनन्द "
+"मिलेगा! धन्यवाद!"
 
 #: parts/components-enqueue.php:96
 msgid "Account Settings"
-msgstr ""
+msgstr "अकाउंट सेटिंग"
 
 #: parts/components-enqueue.php:97
 msgid "Timezone"
-msgstr ""
+msgstr "समय क्षेत्र"
 
 #: parts/components-enqueue.php:98
 msgid "Receive prayer time notifications"
-msgstr ""
+msgstr "प्रार्थना समय की सूचनाएँ प्राप्त करें"
 
 #: parts/components-enqueue.php:99
 msgid "Auto extend prayer times"
-msgstr ""
+msgstr "स्वचालित रूप से प्रार्थना का समय बढ़ाएँ"
 
 #: parts/components-enqueue.php:100
 msgid "Advanced Settings"
-msgstr ""
+msgstr "उन्नत सेटिंग्स"
 
 #: parts/components-enqueue.php:101
 msgid "show"
-msgstr ""
+msgstr "दिखाएँ"
 
 #: parts/components-enqueue.php:102
 msgid "Delete this account and all the scheduled prayer times"
-msgstr ""
+msgstr "इस अकाउंट और सभी निर्धारित प्रार्थना समयों को हटाएँ"
 
 #: parts/components-enqueue.php:103
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
+"हमें बहुत खेद है। कुछ गड़बड़ हो गई। कृपया, इसमें आपकी सहायता करने के लिए हमसे सम्पर्क करें, या "
+"फिर से प्रयास करें।"
 
 #: parts/components-enqueue.php:104
 msgid "Your account has been deleted!"
-msgstr ""
+msgstr "आपका अकाउंट हटा दिया गया है!"
 
 #: parts/components-enqueue.php:106
 msgid "Language"
-msgstr ""
+msgstr "भाषा"
 
 #: parts/components-enqueue.php:107
 msgid "Delete"
-msgstr ""
+msgstr "हटाएँ"
 
 #: parts/components-enqueue.php:108
 #: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
-msgstr ""
+msgstr "प्रार्थना सामग्री देखें"
 
 #: parts/components-enqueue.php:109
 msgid "change time"
-msgstr ""
+msgstr "समय बदलें"
 
 #: parts/components-enqueue.php:110
 msgid "Stop Praying"
-msgstr ""
+msgstr "प्रार्थना करना बन्द करें"
 
 #: parts/components-enqueue.php:111
 msgid "See prayer times"
-msgstr ""
+msgstr "प्रार्थना के समय देखें"
 
 #: parts/components-enqueue.php:112
 msgid "Your future prayer times will be canceled."
-msgstr ""
+msgstr "आपके भविष्य के प्रार्थना समय रद्द कर दिए जाएँगे।"
 
 #: parts/components-enqueue.php:113
 msgid "extend"
-msgstr ""
+msgstr "बढ़ाएँ"
 
 #: parts/components-enqueue.php:114
 msgid "Extend Prayer Times"
-msgstr ""
+msgstr "प्रार्थना समय बढ़ाएँ"
 
 #: parts/components-enqueue.php:115
 msgid "Really delete this prayer time?"
-msgstr ""
+msgstr "क्या आप सचमुच इस प्रार्थना समय को हटाना चाहते हैं?"
 
 #: parts/components-enqueue.php:116
 msgid "Delete Prayer Time"
-msgstr ""
+msgstr "प्रार्थना समय हटाएँ"
 
 #: parts/components-enqueue.php:117
 msgid "Mondays"
-msgstr ""
+msgstr "सोमवार"
 
 #: parts/components-enqueue.php:118
 msgid "Tuesdays"
-msgstr ""
+msgstr "मंगलवार"
 
 #: parts/components-enqueue.php:119
 msgid "Wednesdays"
-msgstr ""
+msgstr "बुधवार"
 
 #: parts/components-enqueue.php:120
 msgid "Thursdays"
-msgstr ""
+msgstr "गुरुवार"
 
 #: parts/components-enqueue.php:121
 msgid "Fridays"
-msgstr ""
+msgstr "शुक्रवार"
 
 #: parts/components-enqueue.php:122
 msgid "Saturdays"
-msgstr ""
+msgstr "शनिवार"
 
 #: parts/components-enqueue.php:123
 msgid "Sundays"
-msgstr ""
+msgstr "रविवार"
 
 #: parts/components-enqueue.php:124
 msgid "Hours"
-msgstr ""
+msgstr "घण्टे"
 
 #: parts/components-enqueue.php:125
 msgid "Hour"
-msgstr ""
+msgstr "घण्टे"
 
 #: parts/components-enqueue.php:126
 msgid "Minutes"
-msgstr ""
+msgstr "मिनट"
 
 #: parts/components-enqueue.php:127
 msgid "Change Prayer Time"
-msgstr ""
+msgstr "अपने प्रार्थना समय को बदलें"
 
 #: parts/components-enqueue.php:128
 msgid "Your current prayer time is %s"
-msgstr ""
+msgstr "आपका वर्तमान प्रार्थना समय %s है"
 
 #: parts/components-enqueue.php:129
 msgid "Select a new time:"
-msgstr ""
+msgstr "नया समय चुनें:"
 
 #: parts/components-enqueue.php:130
 msgid "Select a time"
-msgstr ""
+msgstr "एक समय चुनें"
 
 #: parts/components-enqueue.php:131
 msgid "Renew Prayer Times"
-msgstr ""
+msgstr "प्रार्थना समयों को नवीनीकृत करें"
 
 #: parts/components-enqueue.php:132
 msgid "renew"
-msgstr ""
+msgstr "नवीनीकृत करें"
 
 #: parts/components-enqueue.php:133
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
+"Prayer.Tools की ओर से आगामी प्रार्थना अभियानों के बारे में समाचार प्राप्त करें और "
+"GospelAmbition.org से समय-समय पर सूचनाएँ प्राप्त करें"
 
 #: parts/components-enqueue.php:136
 msgid "Text Translations"
-msgstr ""
+msgstr "मूलपाठ अनुवाद"
 
 #: parts/components-enqueue.php:137
 msgid "Original String"
-msgstr ""
+msgstr "मूल स्ट्रिंग"
 
 #: parts/components-enqueue.php:138
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "सभी भाषाओं के लिए तदनुकूल अर्थ"
 
 #: parts/components-enqueue.php:139
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "वर्तमान में चयनित भाषा के लिए अनुवाद"
 
 #: parts/components-enqueue.php:141
 msgid "Update"
-msgstr ""
+msgstr "अपडेट करें"
 
 #: parts/components-enqueue.php:144
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
+msgstr "लगभग हो गया! अपना अकाउंट एक्टिवेट करके साइन अप समाप्त करें।"
 
 #: parts/components-enqueue.php:145
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr ""
+msgstr "भेजे गए ईमेल में “अकाउंट एक्टिवेट करने” बटन पर क्लिक करें: %s"
 
 #: parts/components-enqueue.php:146
 msgid "It will look like this:"
-msgstr ""
+msgstr "यह ऐसा दिखाई देगा:"
 
 #: parts/components-enqueue.php:147
 msgid "Pending - Verification Needed"
-msgstr ""
+msgstr "लम्बित - सत्यापन आवश्यक है"
 
 #: parts/components-enqueue.php:148
 msgid "Back to sign-up"
-msgstr ""
+msgstr "साइन-अप पर वापस जाएँ"
 
 #: parts/components-enqueue.php:149
 msgid "So sorry. Something went wrong. You can:"
-msgstr ""
+msgstr "हमें खेद है। कुछ गलत हो गया। आप यह कर सकते हैं:"
 
 #: parts/components-enqueue.php:150
 msgid "Try Again"
-msgstr ""
+msgstr "पुनः प्रयास करें"
 
 #: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:70 porches/generic/site/footer.php:46
+#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
-msgstr ""
+msgstr "हमसे संपर्क करें"
 
 #: parts/components-enqueue.php:152
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
+"कृपया अधिक प्रार्थना समय को जोड़ने से पहले अपने अकाउंट को एक्टिवेट करने के लिए अपना ईमेल "
+"जांचें।"
 
 #: parts/components-enqueue.php:153
 msgid "Time not covered"
-msgstr ""
+msgstr "प्रयोग न किया गया समय"
 
 #: parts/components-enqueue.php:154
 msgid "# of people covering this time"
-msgstr ""
+msgstr "# इस समय का प्रयोग कर रहे हैं"
 
-#: parts/components.php:32
+#: parts/components.php:33
 msgid "Praying as a group?"
-msgstr ""
+msgstr "क्या आप एक समूह के रूप में प्रार्थना कर रहे हैं?"
 
-#: parts/components.php:37
+#: parts/components.php:38
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
+"दूसरों की प्रार्थना में अगुवाई करना चेले बनाने की दिशा में एक बड़ा कदम है। हम आपके और उनके "
+"विश्वासयोग्य होने का आनन्द मनाना चाहते हैं। हर उस व्यक्ति के लिए जो आपके साथ प्रार्थना "
+"करता है, हम अब तक प्रतिबद्ध %s दिनों की प्रार्थना में 15 मिनट जोड़ देंगे।"
 
-#: parts/components.php:40
+#: parts/components.php:41
 msgid "How many prayed today (including yourself)?"
-msgstr ""
+msgstr "आज कितने लोगों ने प्रार्थना की (आप सहित)?"
 
 #: porches/generic/dt-generic-porch-strings.php:47
 msgid "Our Vision"
-msgstr ""
+msgstr "हमारा दर्शन"
 
 #: porches/generic/dt-generic-porch-strings.php:56
 msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr ""
+msgstr "हम इस क्षेत्र को निरन्तर 24/7 प्रार्थना के घेरे में रखना चाहते हैं।"
 
 #: porches/generic/dt-generic-porch-strings.php:73
 msgid "Extraordinary Prayer"
-msgstr ""
+msgstr "असाधारण प्रार्थना"
 
 #: porches/generic/dt-generic-porch-strings.php:82
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
-msgstr ""
+msgstr "इतिहास में चेले बनाने का हर आन्दोलन असाधारण प्रार्थना के सन्दर्भ में ही घटित हुआ है।"
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
-msgstr ""
+msgstr "आन्दोलन केंद्रित है"
 
 #: porches/generic/dt-generic-porch-strings.php:108
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
 msgstr ""
+"चेलों और कलीसियाओं की धाराओं के निर्माण के लिए माँगने, ढूँढने, और खटखटाने के कार्य में हमारे "
+"साथ जुड़ें।"
 
 #: porches/generic/dt-generic-porch-strings.php:125
 msgid "24/7 Every Day"
-msgstr ""
+msgstr "हर दिन 24/7"
 
 #: porches/generic/dt-generic-porch-strings.php:134
 msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
 msgstr ""
+"15 मिनट (या अधिक!) का समय खाँचा चुनें, जिसके दौरान आप प्रत्येक दिन प्रार्थना कर सकते हैं। "
+"किसी और को भी साइन अप करने के लिए आमंत्रित करें।"
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
+"प्रत्येक दिन विशेष रूप से प्रार्थना करने में सहायता करने के लिए इन संसाधनों का उपयोग करें।"
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
-msgstr ""
+msgstr "आज की प्रार्थना सामग्री"
 
 #: porches/generic/dt-generic-porch-strings.php:188
 msgid "All Days"
-msgstr ""
+msgstr "सभी दिन"
 
 #: porches/generic/dt-generic-porch-strings.php:197
 msgid "Edit Prayer Fuel"
-msgstr ""
+msgstr "प्रार्थना सामग्री को एडिट करें"
 
 #: porches/generic/dt-generic-porch-strings.php:215
 msgid "Scheduled Prayer Fuel"
-msgstr ""
+msgstr "निर्धारित प्रार्थना सामग्री"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
+"सभी उपलब्ध भाषाओं में सभी निर्धारित प्रार्थना सामग्री। नीचे प्रार्थना सामग्री जोड़ें और "
+"एडिट करें"
+
+#: porches/generic/dt-generic-porch-strings.php:266
+msgid "We want to cover this region with prayer."
+msgstr "हम इस क्षेत्र को प्रार्थना में शामिल करना चाहते हैं।"
+
+#: porches/generic/dt-generic-porch-strings.php:267
+msgid "Together"
+msgstr "एक साथ"
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
-msgstr ""
+msgstr "धत्त 404 - नहीं मिला"
 
 #: porches/generic/site/404-body.php:15
 msgid "It looks like you may have strayed from the narrow path."
-msgstr ""
+msgstr "ऐसा लगता है कि आप संकरे मार्ग से भटक गए हैं।"
 
 #: porches/generic/site/404-body.php:16
 msgid "Wide is the path that leads to the 404."
-msgstr ""
+msgstr "चौड़ा है वह मार्ग जो 404 की ओर ले जाता है।"
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
-msgstr ""
+msgstr "मार्ग पर वापस आने के लिए मेनू में दिए गए कुछ लिंक्स का प्रयोग करने का प्रयास करें।"
 
-#: porches/generic/site/contact-us.php:91
+#: porches/generic/site/contact-us.php:93
 msgid "Message"
-msgstr ""
+msgstr "संदेश"
 
 #: porches/generic/site/edit-post-list-body.php:120
 msgid "Day %s"
-msgstr ""
+msgstr "दिन %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:111
+#: porches/generic/site/top-section.php:115
 #: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
 msgid "Sign Up to Pray"
-msgstr ""
+msgstr "प्रार्थना करने के लिए साइन अप करें"
 
-#: porches/generic/site/home-body.php:168 porches/generic/site/stats.php:150
+#: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
+#: porches/ramadan/site/home-body.php:171
 msgid "Time Committed"
-msgstr ""
+msgstr "समर्पित समय"
 
-#: porches/generic/site/home-body.php:184
+#: porches/generic/site/home-body.php:182
+#: porches/ramadan/site/home-body.php:187
 msgid "Prayer Warriors"
-msgstr ""
+msgstr "प्रार्थना योद्धा"
 
-#: porches/generic/site/home-body.php:199 porches/generic/site/stats.php:126
-#: porches/ramadan/site/home-body.php:192
+#: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
+#: porches/ramadan/site/home-body.php:201
 msgid "Prayer Commitments Needed"
-msgstr ""
+msgstr "प्रार्थना प्रतिबद्धता की आवश्यकता है"
 
-#: porches/generic/site/home-body.php:220
-#: porches/ramadan/site/home-body.php:212
+#: porches/generic/site/home-body.php:216
+#: porches/ramadan/site/home-body.php:222
 msgid "View All"
-msgstr ""
+msgstr "सभी देखें"
 
 #: porches/generic/site/post-list-body.php:151
 msgid "Read"
-msgstr ""
+msgstr "पढ़ें"
 
 #: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
-msgstr ""
+msgstr "कोई प्रार्थना सामग्री नहीं मिली"
 
-#: porches/generic/site/stats.php:134
+#: porches/generic/site/stats.php:137
 msgid "Percentage Covered"
-msgstr ""
+msgstr "कितने प्रतिशत विषयों के लिए प्रार्थना हुई"
 
-#: porches/generic/site/stats.php:160
+#: porches/generic/site/stats.php:163
 msgid "Time Prayed in Groups"
-msgstr ""
+msgstr "समूहों में कितने समय तक प्रार्थना की गई"
 
-#: porches/generic/site/stats.php:170
+#: porches/generic/site/stats.php:173
 msgid "Number of People who Prayed"
-msgstr ""
+msgstr "प्रार्थना करने वाले लोगों की संख्या"
 
-#: porches/generic/site/stats.php:203
+#: porches/generic/site/stats.php:206
 msgid "Share with us your Prayer Stories"
-msgstr ""
+msgstr "अपनी प्रार्थना की कहानियाँ हमारे साथ साझा करें"
 
-#: porches/generic/site/stats.php:217
+#: porches/generic/site/stats.php:220
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc.)"
 msgstr ""
+"अपने प्रार्थना समय के बारे में हमें बताएँ (उदाहरण के लिए, गवाही, गूढ़-ज्ञान, आशीषें, इत्यादि)"
 
-#: porches/generic/site/stats.php:285
+#: porches/generic/site/stats.php:306
 msgid "Global Ramadan Stats"
-msgstr ""
+msgstr "वैश्विक रमज़ान स्टैट्स"
 
-#: porches/generic/site/stats.php:292
+#: porches/generic/site/stats.php:313
 msgid "Total Prayer Campaigns"
-msgstr ""
+msgstr "कुल प्रार्थना अभियान"
 
-#: porches/generic/site/stats.php:300
+#: porches/generic/site/stats.php:321
 msgid "Countries Prayed For"
-msgstr ""
+msgstr "जिन देशों के लिए प्रार्थना की गई"
 
-#: porches/generic/site/stats.php:308
+#: porches/generic/site/stats.php:329
 msgid "Intercessors"
-msgstr ""
+msgstr "मध्यस्थ"
 
-#: porches/generic/site/stats.php:316
+#: porches/generic/site/stats.php:337
 msgid "Time Prayed"
-msgstr ""
+msgstr "कितने समय प्रार्थना हुई"
 
-#: porches/generic/site/stats.php:324
+#: porches/generic/site/stats.php:345
 msgid "15 Minute Time Slots Filled"
-msgstr ""
+msgstr "15 मिनट का समय खाँचा भर गया"
 
-#: porches/generic/site/stats.php:347
+#: porches/generic/site/stats.php:368
 msgid "More Prayer Opportunities"
-msgstr ""
+msgstr "प्रार्थना के और अधिक अवसर"
 
-#: porches/generic/site/stats.php:351
+#: porches/generic/site/stats.php:372
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
+"Prayer.Tools के साथ अन्य प्रार्थना प्रयासों और अवसरों के बारे में सुनने के लिए साइन अप करें "
+"और GospelAmbition.org से कभी-कभार संचार प्राप्त करें।"
 
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
-msgstr ""
+msgstr "साइन अप करें"
+
+#: porches/generic/site/top-section.php:63
+msgid "Select Language"
+msgstr "भाषा चुनें।"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
-msgstr ""
+msgstr "रमज़ान लैंडिंग पेज"
 
 #: porches/ramadan/settings.php:6
 msgid ""
@@ -1033,36 +1093,44 @@ msgid ""
 "even read the entire Quran (about a tenth the length of the Bible). This "
 "sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
+"रमज़ान इस्लाम की पाँच शर्तों (या स्तम्भों) में से एक है। इसके 30 दिनों में से प्रत्येक दिन में "
+"मुस्लमानों को सुबह से लेकर शाम तक रोज़ा यानी उपवास रखना अनिवार्य होता है। इस दौरान "
+"उन्हें भोजन, तरल पदार्थ पीने, धूम्रपान और यौन सम्बन्धों से दूर रहना होता है।\n"
+"\n"
+"महिलाएँ आमतौर पर दोपहर का समय एक साथ बहुत सारा भोजन तैयार करने में बिताती हैं। "
+"सूर्यास्त के समय, परिवार अक्सर रोज़ा खोलने के लिए इकट्ठा होते हैं। परम्परागत रूप से परिवार "
+"पानी पीकर, फिर तीन सूखे खजूर और कई तरह के भोजन खाकर रोज़ा खोलते हैं। नई रमजान टीवी "
+"कार्यक्रम श्रृंखला को देखने के बाद, पुरुष (और कुछ महिलाएँ) कॉफ़ी की दुकान में जाते हैं, जहाँ वे "
+"कॉफ़ी पीते हैं और देर रात तक दोस्तों के साथ धूम्रपान करते हैं।\n"
+"\n"
+"हालाँकि हाल के वर्षों में बहुत से लोगों ने रोज़ा रखना छोड़ दिया है, और पाखण्ड, बढ़ती अपराध "
+"दर और महीने भर व्याप्त रहने वाले असभ्य व्यवहार से उनकी रुचि इसमें नहीं रही, अन्य लोग इस "
+"समय के दौरान धर्म के प्रति अधिक गम्भीर हो जाते हैं। कई लोग शाम की नमाज़ों में शामिल होते "
+"हैं और अन्य विधिवत् रीति से दुआएँ करते हैं। कुछ तो पूरी कुरान को भी पढ़ते हैं (जो बाइबल की "
+"लम्बाई का लगभग दसवाँ भाग है)। उनकी यह ईमानदारी से की जाने वाली खोज इस समय को हमारे "
+"लिए उनके लिए प्रार्थना करने का एक रणनीतिक समय बना देती है।"
 
 #: porches/ramadan/site/home-body.php:117
 msgid "Ramadan Begins ..."
-msgstr ""
+msgstr "रमज़ान शुरू हो गया..।"
 
 #: porches/ramadan/site/home-body.php:118
 msgid "Ramadan Ends ..."
-msgstr ""
+msgstr "रमज़ान समाप्त हो गया..।"
 
 #: porches/ramadan/site/home-body.php:119
 msgid "Ramadan Is Finished"
-msgstr ""
-
-#: porches/ramadan/site/home-body.php:166
-msgid "Days"
-msgstr ""
-
-#: porches/ramadan/site/home-body.php:179
-msgid "Hours of Prayer"
-msgstr ""
+msgstr "रमज़ान समाप्त हो गया है"
 
 #: shortcodes/prayer-timer.php:219
 msgid "Start Praying!"
-msgstr ""
+msgstr "प्रार्थना करना शुरू करें!"
 
 #: shortcodes/prayer-timer.php:222
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr ""
+msgstr "प्रार्थना का समय: %s मिनट"
 
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
-msgstr ""
+msgstr "अब प्रार्थना कर रहे हैं..।"
