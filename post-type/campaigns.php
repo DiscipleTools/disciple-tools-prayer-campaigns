@@ -1478,8 +1478,7 @@ class DT_Campaigns_Base {
         }
 
         $p4m_participation = apply_filters( 'p4m_participation', DT_Campaign_Global_Settings::get( 'p4m_participation', true ) );
-        $current_campaign = DT_Campaign_Landing_Settings::get_campaign();
-        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
+        $default_campaign_id = get_option( 'dt_campaign_selected_campaign', false );
 
         $campaigns = DT_Posts::list_posts( 'campaigns', [ 'tags' => [ '-campaign-ended' ] ], false );
         $campaigns_to_send = [];
@@ -1488,32 +1487,34 @@ class DT_Campaigns_Base {
         $site_hash = hash( 'sha256', $site_url );
 
         global $wpdb;
-        $language_counts = $wpdb->get_results( $wpdb->prepare( "
-            SELECT pm.meta_value, count(pm.meta_value) as count
-            FROM $wpdb->posts p
-            LEFT JOIN $wpdb->postmeta pm ON ( pm.post_ID = p.ID and pm.meta_key = 'post_language' )
-            INNER JOIN $wpdb->postmeta pm2 ON ( pm2.post_ID = p.ID and pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %s )
-            WHERE p.post_type = 'landing'
-            AND ( p.post_status = 'publish' OR p.post_status = 'future' )
-            GROUP BY pm.meta_value
-        ", $current_campaign['ID'] ?? '0' ), ARRAY_A );
-        $languages = [];
-        foreach ( $language_counts as $lang ){
-            if ( $lang['meta_value'] === null ){
-                $lang['meta_value'] = 'en_US';
-            }
-            if ( !in_array( $lang['meta_value'], $languages, true ) ){
-                $languages[] = $lang['meta_value'];
-            }
-        }
-        $pray_fuel = array_map( function ( $a ){
-            return [ 'value' => $a ];
-        }, $languages );
 
         foreach ( $campaigns['posts'] as $campaign ){
             if ( !isset( $campaign['start_date']['timestamp'] ) ){
                 continue;
             }
+
+            //get languages that have prayer fuel
+            $language_counts = $wpdb->get_results( $wpdb->prepare( "
+                SELECT pm.meta_value, count(pm.meta_value) as count
+                FROM $wpdb->posts p
+                LEFT JOIN $wpdb->postmeta pm ON ( pm.post_ID = p.ID and pm.meta_key = 'post_language' )
+                INNER JOIN $wpdb->postmeta pm2 ON ( pm2.post_ID = p.ID and pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %s )
+                WHERE p.post_type = 'landing'
+                AND ( p.post_status = 'publish' OR p.post_status = 'future' )
+                GROUP BY pm.meta_value
+            ", $campaign['ID'] ?? '0' ), ARRAY_A );
+            $languages = [];
+            foreach ( $language_counts as $lang ){
+                if ( $lang['meta_value'] === null ){
+                    $lang['meta_value'] = 'en_US';
+                }
+                if ( !in_array( $lang['meta_value'], $languages, true ) ){
+                    $languages[] = $lang['meta_value'];
+                }
+            }
+            $pray_fuel = array_map( function ( $a ){
+                return [ 'value' => $a ];
+            }, $languages );
 
             $min_time_duration = 15;
             if ( isset( $record['min_time_duration']['key'] ) ){
@@ -1524,10 +1525,10 @@ class DT_Campaigns_Base {
             $mins_extra = self::query_extra_minutes( $campaign['ID'] );
             $time_lots_covered = $mins_scheduled / $min_time_duration;
 
-            $is_current_campaign = isset( $current_campaign['ID'] ) && (int) $campaign['ID'] === (int) $current_campaign['ID'];
+            $is_current_campaign = (int) $campaign['ID'] === (int) $default_campaign_id;
 
             $focus = [];
-            if ( $is_current_campaign && $current_selected_porch === 'ramadan-porch' ){
+            if ( isset( $campaign['porch_type']['key'] ) && $campaign['porch_type']['key'] === 'ramadan-porch' ){
                 $focus[] = [ 'value' => 'ramadan' ];
             }
 
@@ -1535,6 +1536,9 @@ class DT_Campaigns_Base {
             foreach ( $campaign['location_grid'] ?? [] as $grid ){
                 $location_grid[] = [ 'grid_id' => $grid['id'] ];
             }
+
+            $campaign_url = $is_current_campaign ? $site_url : DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
+            $campaign_url = str_replace( 'http://', 'https://', $campaign_url );
 
             $data = [
                 'p4m_participation' => $p4m_participation ? 'approval' : 'not_shown',
@@ -1544,10 +1548,10 @@ class DT_Campaigns_Base {
                 'start_date' => $campaign['start_date']['timestamp'],
                 'end_date' => isset( $campaign['end_date']['timestamp'] ) ? $campaign['end_date']['timestamp'] : null,
                 'unique_id' => $site_hash . '_' . $campaign['ID'],
-                'campaign_link' => $is_current_campaign ? $site_url : '',
+                'campaign_link' => $campaign_url,
                 'campaign_links' => [
                     'values' => [
-                        [ 'value' => $site_url, 'type' => 'default' ],
+                        [ 'value' => $campaign_url, 'type' => 'default' ],
                     ]
                 ],
                 'campaign_progress' => $coverage_levels[0]['percent'],
@@ -1559,7 +1563,7 @@ class DT_Campaigns_Base {
                 'number_of_time_slots' => self::query_coverage_total_time_slots( $campaign['ID'] ),
                 'time_slots_covered' => $time_lots_covered,
                 'location_grid_meta' => empty( $location_grid ) ? [] : [ 'values' => $location_grid ],
-                'prayer_fuel_languages' => $is_current_campaign ? [ 'values' => $pray_fuel ] : [],
+                'prayer_fuel_languages' => [ 'values' => $pray_fuel ],
             ];
 
             $campaigns_to_send[] = apply_filters( 'p4m_campaigns_to_send', $data, $campaign );
