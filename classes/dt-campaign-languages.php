@@ -131,34 +131,52 @@ class DT_Campaign_Languages {
     }
 
     private static function get_translated_languages(){
-        $installed_languages = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
+//        $installed_languages = get_available_languages( untrailingslashit( plugin_dir_path( __DIR__ ) ) .'/languages' );
 
-        $available_language_codes = [ 'en_US' ];
-        foreach ( $installed_languages as $code ) {
-            unload_textdomain( 'disciple-tools-prayer-campaigns' );
-            $lang = str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
-            add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
-                if ( !empty( $lang ) ){
-                    return $lang;
-                }
-                return $locale;
-            }, 1000, 1 );
-            switch_to_locale( $lang );
-            dt_campaign_reload_text_domain();
-            $translated = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
-            if ( $translated !== 'Strategic prayer for a Disciple Making Movement' ){
-                $available_language_codes[] = $lang;
-            }
-        }
-        switch_to_locale( 'en_US' );
+        $available_language_codes = [
+            'en_US',
+            'fr_FR',
+            'ar',
+            'zh_Hans',
+            'zh_Hant',
+            'es_ES',
+            'de_DE',
+            'hi_IN',
+            'id_ID',
+            'it_IT',
+            'kn',
+            'ko_KR',
+            'pt_BR',
+            'ta',
+            'te',
+            'ur',
+            'wo',
+        ];
+//        foreach ( $installed_languages as $code ) {
+//            unload_textdomain( 'disciple-tools-prayer-campaigns' );
+//            $lang = str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
+//            add_filter( 'determine_locale', function ( $locale ) use ( $lang ){
+//                if ( !empty( $lang ) ){
+//                    return $lang;
+//                }
+//                return $locale;
+//            }, 1000, 1 );
+//            switch_to_locale( $lang );
+//            dt_campaign_reload_text_domain();
+//            $translated = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
+//            if ( $translated !== 'Strategic prayer for a Disciple Making Movement' ){
+//                $available_language_codes[] = $lang;
+//            }
+//        }
+//        switch_to_locale( 'en_US' );
 
-        array_unshift( $available_language_codes, 'en_US' );
+//        array_unshift( $available_language_codes, 'en_US' );
 
-        $remove_plugin_name = function ( $code ) {
-            return str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
-        };
-
-        $available_language_codes = array_map( $remove_plugin_name, $available_language_codes );
+//        $remove_plugin_name = function ( $code ) {
+//            return str_replace( 'disciple-tools-prayer-campaigns-', '', $code );
+//        };
+//
+//        $available_language_codes = array_map( $remove_plugin_name, $available_language_codes );
 
         return $available_language_codes;
     }

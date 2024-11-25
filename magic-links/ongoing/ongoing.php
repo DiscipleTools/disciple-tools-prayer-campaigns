@@ -141,6 +141,33 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return false;
         }
 
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
+        if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) && !empty( $cf_keys['dt_cloudflare_secret_key'] ) ){
+            $cf_token = $params['cf_token'] ?? '';
+            if ( empty( $cf_token ) ){
+                return new WP_Error( __METHOD__, 'Missing Cloudflare Verification', [ 'status' => 400 ] );
+            }
+
+            $ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+            $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+            $response = wp_remote_post( $url, [
+                'body' => [
+                    'secret' => $cf_keys['dt_cloudflare_secret_key'],
+                    'response' => $cf_token,
+                    'remoteip' => $ip,
+                ],
+            ] );
+
+            if ( is_wp_error( $response ) ) {
+                return new WP_Error( 'cf_token', 'Invalid token', [ 'status' => 400 ] );
+            }
+            $response_body = json_decode( wp_remote_retrieve_body( $response ), true );
+            if ( empty( $response_body['success'] ) ){
+                return new WP_Error( 'cf_token', 'Invalid token', [ 'status' => 400 ] );
+            }
+        }
+
+
         $message = wp_kses_post( $request->get_params()['message'] );
 
         $name = $params['name'];
@@ -177,6 +204,34 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( !isset( $params['story'], $params['email'], $params['campaign_id'] ) ){
             return false;
         }
+
+        //cloudflare turnstile challenge verification
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
+        if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) && !empty( $cf_keys['dt_cloudflare_secret_key'] ) ){
+            $cf_token = $params['cf_token'] ?? '';
+            if ( empty( $cf_token ) ){
+                return new WP_Error( __METHOD__, 'Missing Cloudflare Verification', [ 'status' => 400 ] );
+            }
+
+            $ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+            $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+            $response = wp_remote_post( $url, [
+                'body' => [
+                    'secret' => $cf_keys['dt_cloudflare_secret_key'],
+                    'response' => $cf_token,
+                    'remoteip' => $ip,
+                ],
+            ] );
+
+            if ( is_wp_error( $response ) ) {
+                return new WP_Error( 'cf_token', 'Invalid token', [ 'status' => 400 ] );
+            }
+            $response_body = json_decode( wp_remote_retrieve_body( $response ), true );
+            if ( empty( $response_body['success'] ) ){
+                return new WP_Error( 'cf_token', 'Invalid token', [ 'status' => 400 ] );
+            }
+        }
+
         $params['story'] = wp_kses_post( $request->get_params()['story'] );
 
         $campaign_fields = DT_Campaign_Landing_Settings::get_campaign( $params['campaign_id'] );

@@ -24,6 +24,8 @@ class DT_Generic_Porch_Stats {
         // load if valid url
         add_action( 'dt_blank_body', [ $this, 'body' ] ); // body for no post key
         add_filter( 'dt_blank_title', [ $this, 'dt_blank_title' ] ); // adds basic title to browser tab
+
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
     }
     public function dt_blank_title( $title ) {
         return $this->page_title;
@@ -81,6 +83,8 @@ class DT_Generic_Porch_Stats {
         }
 
         $thank_you = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
+
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
         ?>
 
         <style>
@@ -217,6 +221,19 @@ class DT_Generic_Porch_Stats {
                                 <br>
                                 <textarea id="campaign-stories" required rows="4" type="text" style="width: 100%"></textarea>
                             </label>
+                        </p>
+                        <?php if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) ) : ?>
+                            <p>
+                                <div
+                                    class="cf-turnstile"
+                                    data-sitekey="<?php echo esc_html( $cf_keys['dt_cloudflare_site_key'] ); ?>"
+                                    data-theme="light"
+                                    style="margin-top:1em;"
+                                ></div>
+                            </p>
+                        <?php endif; ?>
+                        <p id="form-error-section" style="color: red"></p>
+                        <p>
                             <button id="stories-submit-button" class="btn btn-common" style="font-weight: bold; margin-left: 0">
                                 <?php esc_html_e( 'Submit', 'disciple-tools-prayer-campaigns' ); ?>
                                 <img id="stories-submit-spinner" style="display: none; margin-left: 10px" src="<?php echo esc_url( trailingslashit( get_stylesheet_directory_uri() ) ) ?>spinner.svg" width="22px;" alt="spinner "/>
@@ -240,13 +257,16 @@ class DT_Generic_Porch_Stats {
 
                     let email = $('#email-2').val();
                     let story = $('#campaign-stories').val()
+                      //cloudflare turnstile token
+                      const cf_token = $('input[name="cf-turnstile-response"]').val();
 
 
                     let payload = {
                         'parts': window.campaign_objects.magic_link_parts,
                         campaign_id: window.campaign_objects.magic_link_parts.post_id,
                         email,
-                        story
+                        story,
+                        cf_token,
                     };
 
                     let link = window.campaign_objects.rest_url + window.campaign_objects.magic_link_parts.root + '/v1/' + window.campaign_objects.magic_link_parts.type + '/stories';
@@ -262,12 +282,14 @@ class DT_Generic_Porch_Stats {
                           xhr.setRequestHeader("X-WP-Nonce", window.campaign_objects.nonce);
                         },
                     }).done(function(data){
-                        $('#stories-submit-spinner').show()
+                        $('#stories-submit-spinner').hide()
                         $('#form-content').hide()
                         $('#form-confirm').show()
                     })
                     .fail(function(e) {
-                        // jQuery('#error').html(e)
+                      const message = e.responseJSON?.message || 'There was an error submitting your form. Please try again.';
+                      $('#form-error-section').text(message);
+                      $('#stories-submit-spinner').hide()
                     })
                 }
 
@@ -485,6 +507,13 @@ class DT_Generic_Porch_Stats {
 
     public function header_javascript(){
         require_once( 'header.php' );
+    }
+
+    public function enqueue_scripts(){
+        $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
+        if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) ){
+            wp_enqueue_script( 'cloudflare-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, [ 'strategy' => 'defer' ] );
+        }
     }
 }
 DT_Generic_Porch_Stats::instance();
