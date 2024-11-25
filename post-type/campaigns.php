@@ -44,6 +44,7 @@ class DT_Campaigns_Base {
         // hooks
         add_filter( 'dt_post_create_fields', [ $this, 'dt_post_create_fields' ], 10, 2 );
         add_action( 'post_connection_added', [ $this, 'post_connection_added' ], 10, 4 );
+        add_action( 'dt_post_created', [ $this, 'dt_post_created' ], 10, 3 );
 
         //list
         add_filter( 'dt_user_list_filters', [ $this, 'dt_user_list_filters' ], 150, 2 );
@@ -1309,6 +1310,7 @@ class DT_Campaigns_Base {
         return 0;
     }
 
+    //generate a random theme color for the porch
     public static function rand_color() {
         return sprintf( '#%06X', mt_rand( 0, 0xFFFFFF ) );
     }
@@ -1353,6 +1355,19 @@ class DT_Campaigns_Base {
             }
         }
         return $fields;
+    }
+
+    public function dt_post_created( $post_type, $post_id, $initial_fields ){
+        if ( $post_type === $this->post_type ){
+            $porch_settings = DT_Porch_Settings::settings( null, null, null, $post_id );
+            if ( !isset( $initial_fields['header_background_url'] ) && !empty( $porch_settings['header_background_url']['options'] ) ){
+                shuffle( $porch_settings['header_background_url']['options'] );
+                $update = [
+                    'header_background_url' => $porch_settings['header_background_url']['options'][0]
+                ];
+                DT_Posts::update_post( $post_type, $post_id, $update );
+            }
+        }
     }
 
     private static function get_all_status_types(){
