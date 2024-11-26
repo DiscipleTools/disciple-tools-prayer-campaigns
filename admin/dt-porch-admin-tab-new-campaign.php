@@ -63,14 +63,14 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
             $fields['enabled_languages']['values'][] = [ 'value' => 'en_US' ];
         }
 
-        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
 
         $new_campaign = DT_Posts::create_post( 'campaigns', $fields, true, false );
         if ( is_wp_error( $new_campaign ) ){
             return;
         }
 
-        if ( empty( $default_campaign ) ){
+        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+        if ( empty( $default_campaign ) || isset( $post_args['default_campaign'] ) ){
             update_option( 'dt_campaign_selected_campaign', $new_campaign['ID'] );
         }
         wp_safe_redirect( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $new_campaign['ID'] ) );
@@ -184,6 +184,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                     </td>
                                     <td>
                                         Whether you aim for covering each day with 24/7 prayer or aim for a number of hours of cumulative prayer every day.
+                                        See <a href="https://prayer.tools/docs/campaign-goals/">Campaign Goals</a> for more details
                                     </td>
                                 </tr>
                                 <tr>
@@ -208,10 +209,18 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th><label for="default_campaign">Default Campaign</label></th>
+                                    <td>
+                                        <input type="checkbox" name="default_campaign" id="default_campaign">
+                                    </td>
+                                    <td>Make this new campaign the default campaign that is show on the landing page: <a href="<?php echo esc_html( home_url() ); ?>"><?php echo esc_html( home_url() ); ?></a></td>
+                                </tr>
+                                <tr>
                                     <th></th>
                                     <td>
                                         <button type="submit" class="button button-primary">Create Campaign</button>
                                     </td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </form>
