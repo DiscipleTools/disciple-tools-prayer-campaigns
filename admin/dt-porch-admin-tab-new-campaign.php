@@ -33,9 +33,8 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
 
         if ( $post_args['wizard_type'] === 'ramadan-porch' ) {
             $fields['porch_type'] = 'ramadan-porch';
-            $next_ramadan_start_date = strtotime( dt_get_next_ramadan_start_date() );
-            $fields['start_date'] = $next_ramadan_start_date;
-            $fields['end_date'] = $next_ramadan_start_date + 30 * DAY_IN_SECONDS;
+            $fields['start_date'] = strtotime( dt_get_next_ramadan_start_date() );
+            $fields['end_date'] = strtotime( dt_get_next_ramadan_end_date() );
             $fields['name'] = $fields['name'] ?: 'Ramadan Campaign';
         }
 
