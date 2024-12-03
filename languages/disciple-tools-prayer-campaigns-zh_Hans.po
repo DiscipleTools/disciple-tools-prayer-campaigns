@@ -6,16 +6,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
-"PO-Revision-Date: 2024-07-14 15:02+0000\n"
-"Last-Translator: may plum <mayflower2465@proton.me>\n"
-"Language-Team: Chinese (Simplified) <https://translate.disciple.tools/"
-"projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
+"PO-Revision-Date: 2024-12-03 08:00+0000\n"
+"Last-Translator: Chad Edwards <credwards73@gmail.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.disciple."
+"tools/projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.8.4\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -308,29 +308,25 @@ msgid "Please check your email address now for your access link."
 msgstr "请查看您的电子邮件地址并得到您的访问链接。"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
-#, fuzzy
 msgid "Your prayer time has been extended"
-msgstr "您的祈祷时间已验证！"
+msgstr "您的祷告时间已经延长了"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
-#, fuzzy
-#| msgid "You signed up to pray:"
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
-msgstr "您已报名祈祷："
+msgstr "您已登记 %1$s 祷告，直到 %2$s。"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:92
-#, fuzzy
 msgid "OK"
 msgstr "好的"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:93
 msgid "Email me the updated calendar"
-msgstr ""
+msgstr "请将更新后的日历发送到我的邮箱"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:95
 msgid "Join me in praying!"
-msgstr ""
+msgstr "请和我一起祷告！"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
@@ -513,11 +509,11 @@ msgstr "核实"
 
 #: parts/components-enqueue.php:70
 msgid "Goal: %s hours of prayer every day"
-msgstr ""
+msgstr "目标：每天50小时的祷告"
 
 #: parts/components-enqueue.php:71
 msgid "Goal: 24/7 coverage"
-msgstr ""
+msgstr "目标：全天候24/7覆盖"
 
 #: parts/components-enqueue.php:72
 msgid "Please enter a valid name or email address"
@@ -576,10 +572,8 @@ msgid "Prayer Time Selected"
 msgstr "已选择的祈祷时间"
 
 #: parts/components-enqueue.php:86
-#, fuzzy
-#| msgid "Prayer Time Selected"
 msgid "Prayer Time Removed"
-msgstr "已选择的祈祷时间"
+msgstr "祷告时间已删除"
 
 #: parts/components-enqueue.php:87
 msgid "Select a Day"
@@ -629,16 +623,12 @@ msgid "Timezone"
 msgstr "时区"
 
 #: parts/components-enqueue.php:98
-#, fuzzy
-#| msgid "Receive Prayer time notifications"
 msgid "Receive prayer time notifications"
-msgstr "接收祈祷时间通知"
+msgstr "接收祷告时间通知"
 
 #: parts/components-enqueue.php:99
-#, fuzzy
-#| msgid "See prayer times"
 msgid "Auto extend prayer times"
-msgstr "查看祈祷时间"
+msgstr "自动延长祷告时间"
 
 #: parts/components-enqueue.php:100
 msgid "Advanced Settings"
@@ -680,20 +670,16 @@ msgid "change time"
 msgstr "更改时间"
 
 #: parts/components-enqueue.php:110
-#, fuzzy
-#| msgid "Start Praying!"
 msgid "Stop Praying"
-msgstr "正在祈祷！"
+msgstr "停止您的祷告时间"
 
 #: parts/components-enqueue.php:111
 msgid "See prayer times"
 msgstr "查看祈祷时间"
 
 #: parts/components-enqueue.php:112
-#, fuzzy
-#| msgid "Some of your prayer times will be ending soon."
 msgid "Your future prayer times will be canceled."
-msgstr "你的一些承諾禱告時間即將結束。"
+msgstr "您未来的祷告时间将被取消。"
 
 #: parts/components-enqueue.php:113
 msgid "extend"
@@ -740,18 +726,14 @@ msgid "Sundays"
 msgstr "每周日"
 
 #: parts/components-enqueue.php:124
-#, fuzzy
 msgid "Hours"
 msgstr "小时"
 
 #: parts/components-enqueue.php:125
-#, fuzzy
 msgid "Hour"
 msgstr "小时"
 
 #: parts/components-enqueue.php:126
-#, fuzzy
-#| msgid "minutes"
 msgid "Minutes"
 msgstr "分钟"
 
@@ -936,14 +918,12 @@ msgid ""
 msgstr "所有可预定安排的祈祷燃料都设有不同的语言版本，在下方增加和编辑祈祷燃料"
 
 #: porches/generic/dt-generic-porch-strings.php:266
-#, fuzzy
-#| msgid "We want to cover this region with continuous 24/7 prayer."
 msgid "We want to cover this region with prayer."
-msgstr "我们希望通过不间断24/7 的祈祷来覆盖这个地区。"
+msgstr "我们想通过祷告覆盖这个地区."
 
 #: porches/generic/dt-generic-porch-strings.php:267
 msgid "Together"
-msgstr ""
+msgstr "一起"
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
@@ -1066,10 +1046,8 @@ msgid "Sign Up"
 msgstr "报名"
 
 #: porches/generic/site/top-section.php:63
-#, fuzzy
-#| msgid "Select a Date"
 msgid "Select Language"
-msgstr "选择一个日期"
+msgstr "选择语言"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
