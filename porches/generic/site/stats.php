@@ -361,7 +361,7 @@ class DT_Generic_Porch_Stats {
             <!--
                 p4m news signup section
             -->
-            <?php if ( dt_campaigns_is_p4m_news_enabled() ) : ?>
+            <?php if ( dt_campaigns_is_prayer_tools_news_enabled() ) : ?>
             <section class="section" data-stellar-background-ratio="0.2" style="padding-top: 0;">
                 <div class="container">
                     <div class="section-header" style="padding-bottom: 40px;">

@@ -34,7 +34,7 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                 'home' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id ) : home_url(),
                 'campaign_root' => class_exists( 'DT_Campaign_Landing_Settings' ) ? DT_Campaign_Landing_Settings::get_landing_root_url() : '',
                 'plugin_url' => $plugin_dir_url,
-                'dt_campaigns_is_p4m_news_enabled' => dt_campaigns_is_p4m_news_enabled(),
+                'dt_campaigns_is_prayer_tools_news_enabled' => dt_campaigns_is_prayer_tools_news_enabled(),
                 'locale' => determine_locale(),
                 'translations' => [
                     'Detected time zone' => __( 'Detected time zone', 'disciple-tools-prayer-campaigns' ),

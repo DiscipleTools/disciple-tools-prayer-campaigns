@@ -286,6 +286,10 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return $sent;
         }
 
+        if ( !empty( $subscriber['receive_prayer_tools_news'] ) && isset( $subscriber['contact_email'][0]['value'] ) ){
+            p4m_subscribe_to_news( $subscriber['contact_email'][0]['value'], $subscriber['name'] );
+        }
+
         wp_redirect( $account_link . '?verified=true' );
         exit;
     }
@@ -418,10 +422,6 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             $title = $email;
         }
 
-        if ( isset( $params['receive_pray4movement_news'] ) && !empty( $params['receive_pray4movement_news'] ) ){
-            p4m_subscribe_to_news( $params['email'], $title );
-        }
-
         $existing_posts = DT_Posts::list_posts( 'subscriptions', [
             'campaigns' => [ $campaign_id ],
             'contact_email' => [ $email ]
@@ -453,6 +453,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 $params['selected_times'] ?? [],
                 [
                     'receive_prayer_time_notifications' => true,
+                    'receive_prayer_tools_news' => !empty( $params['receive_prayer_tools_news'] ),
                     'timezone' => $params['timezone'],
                     'lang' => $lang,
                     'status' => 'pending',

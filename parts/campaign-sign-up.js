@@ -161,7 +161,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
+      receive_prayer_tools_news: window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ? true : false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -250,7 +250,7 @@ export class CampaignSignUp extends LitElement {
     let data = {
       name: this._form_items.name,
       email: this._form_items.email,
-      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
+      receive_prayer_tools_news: this._form_items.receive_prayer_tools_news,
       selected_times: selected_times,
       recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
@@ -284,7 +284,7 @@ export class CampaignSignUp extends LitElement {
       campaign_id: this.campaign_data.campaign_id,
       url: '',
       name: this._form_items.name,
-      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
+      receive_prayer_tools_news: this._form_items.receive_prayer_tools_news,
       selected_times: this.selected_times,
       recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }

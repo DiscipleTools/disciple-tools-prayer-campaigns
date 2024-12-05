@@ -256,7 +256,7 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
 
 
 function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_signup' ){
-    if ( !dt_campaigns_is_p4m_news_enabled() ) {
+    if ( !dt_campaigns_is_prayer_tools_news_enabled() ) {
         return;
     }
 
