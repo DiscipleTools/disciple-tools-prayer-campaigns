@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
+"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/"
@@ -484,7 +484,7 @@ msgstr "ஒரு நேரத்தைத் தெரிவு செய்க
 msgid "Select a Time for %s"
 msgstr "%s -க்கான நேரத்தைத் தெரிவு செய்க"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
 msgstr "நிறைவு செய்க"
 
@@ -773,6 +773,18 @@ msgid "renew"
 msgstr "புதுப்பிக்க"
 
 #: parts/components-enqueue.php:133
+msgctxt "Extend prayer times until Feb 22"
+msgid "Until %s"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+#, fuzzy
+#| msgid "for %s minutes"
+msgctxt "Extend prayer times for 12 months"
+msgid "For %s months"
+msgstr "%s நிமிடங்கள்"
+
+#: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -780,72 +792,72 @@ msgstr ""
 "இனிவரும் ஜெப செயல்பாடுகள் மற்றும் GospelAmbition.org -ன் அவ்வப்போதைய தகவல்களை அறிய "
 "ப்ரேயர்.டூல்ஸ்-ன் செய்திகளைப் பெற்றுக்கொள்ளுங்கள்"
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:138
 msgid "Text Translations"
 msgstr "உரை மொழிபெயர்ப்புகள்"
 
-#: parts/components-enqueue.php:137
+#: parts/components-enqueue.php:139
 msgid "Original String"
 msgstr "ஆதி அமைப்புகள்"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
 msgstr "எல்லா மொழிகளுக்குமான பொது மதிப்பு"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
 msgstr "தற்போது தெரிவு செய்யப்பட்ட மொழிக்கான மொழிபெயர்ப்பு"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Update"
 msgstr "மாற்றுங்கள்"
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "முடிந்தாயிற்று! உங்கள் கணக்கை செயல்படுத்தி, சைன் அப் செய்வதை நிறைவு செய்க."
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:147
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "%s -க்கு அனுப்பப்பட்டிருக்கும் ஈமெயில் உள்ள “கணக்கை செயல்படுத்து” பட்டனை க்ளிக் செய்யவும்"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "It will look like this:"
 msgstr "அது இப்படி இருக்கும்:"
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
 msgstr "நிலுவையில் உள்ளது – சரிபார்த்தல் தேவை"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "Back to sign-up"
 msgstr "மீண்டும் சைன் அப்-ற்குச் செல்க"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
 msgstr "மன்னிக்கவும். ஏதோ தவறு நேர்ந்திருக்கிறது."
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Try Again"
 msgstr "மீண்டும் முயற்சி செய்து பார்க்கவும்"
 
-#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr "அல்லது எங்களைத் தொடர்பு கொள்ளவும்"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
 "கூடுதல் ஜெப நேரங்களைக் குறிப்பிடுவதற்கு முன் உங்கள் கணக்கை செயல்படுத்த ஈமெயில் பார்க்கவும்."
 
-#: parts/components-enqueue.php:153
+#: parts/components-enqueue.php:155
 msgid "Time not covered"
 msgstr "நேரம் குறிப்பிடப்படவில்லை"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid "# of people covering this time"
 msgstr "# இந்த நேரத்தில் ஜெபிக்கிறார்கள்"
 
