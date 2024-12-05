@@ -257,7 +257,7 @@ export class ContactInfo extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
+      receive_prayer_tools_news: window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ? true : false,
     }
     window.campaign_data.signup_form_fields?.map(f=>{
       this._form_items[f.key] = f.default || null;
@@ -309,9 +309,9 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
       </div>
-      ${ window.campaign_objects.dt_campaigns_is_p4m_news_enabled ?
-          html`<label for="receive_pray4movement_news" style="font-weight: normal; display: block">
-                <input type="checkbox" checked id="receive_pray4movement_news" name="receive_pray4movement_news" @input=${this.handleInput}/>
+      ${ window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ?
+          html`<label for="receive_prayer_tools_news" style="font-weight: normal; display: block">
+                <input type="checkbox" checked id="receive_prayer_tools_news" name="receive_prayer_tools_news" @input=${this.handleInput}/>
                 ${translate("Receive news from Prayer.Tools about upcoming prayer campaigns and occasional communication from GospelAmbition.org")}
           </label>`
       : ``}

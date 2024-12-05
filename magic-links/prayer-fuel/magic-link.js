@@ -10,10 +10,10 @@ jQuery(document).ready(function($) {
       const timezone = window.campaign_user_data.timezone
       if (recurring_signups.length) {
         recurring_signups.forEach((recurring_sign) => {
-          //extend the prayer times if the last time is within the next two months
+          //extend the prayer times if the last time is within the month
           const one_months_from_now = (new Date().getTime() / 1000) + 30 * day_in_seconds
           const now = new Date().getTime() / 1000
-          if (recurring_sign.last > now && recurring_sign.last < one_months_from_now) {
+          if (recurring_sign.last > now && recurring_sign.last < one_months_from_now && ( !window.campaign_data.end_timestamp || ( recurring_sign.last + 30 * day_in_seconds < window.campaign_data.end_timestamp ) ) ) {
             let recurring_extend = window.campaign_scripts.build_selected_times_for_recurring(
               recurring_sign.time, recurring_sign.type,
               recurring_sign.duration,

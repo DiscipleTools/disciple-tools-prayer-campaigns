@@ -64,7 +64,7 @@ add_filter( 'wp_mail_from_name', function ( $name ) {
 }, 50, 1 );
 
 
-function dt_campaigns_is_p4m_news_enabled(){
+function dt_campaigns_is_prayer_tools_news_enabled(){
     //maybe make this a setting too.
     return apply_filters( 'dt_campaigns_is_p4m_news_enabled', defined( 'WP_DEBUG' ) ? !WP_DEBUG : true );
 }

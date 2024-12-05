@@ -161,7 +161,7 @@ export class CampaignSignUp extends LitElement {
     this._form_items = {
       email: '',
       name: '',
-      receive_pray4movement_news: window.campaign_objects.dt_campaigns_is_p4m_news_enabled ? true : false,
+      receive_prayer_tools_news: window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ? true : false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;
@@ -250,7 +250,7 @@ export class CampaignSignUp extends LitElement {
     let data = {
       name: this._form_items.name,
       email: this._form_items.email,
-      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
+      receive_prayer_tools_news: this._form_items.receive_prayer_tools_news,
       selected_times: selected_times,
       recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
@@ -284,7 +284,7 @@ export class CampaignSignUp extends LitElement {
       campaign_id: this.campaign_data.campaign_id,
       url: '',
       name: this._form_items.name,
-      receive_pray4movement_news: this._form_items.receive_pray4movement_news,
+      receive_prayer_tools_news: this._form_items.receive_prayer_tools_news,
       selected_times: this.selected_times,
       recurring_signups: window.campaign_user_data.recurring_signups_combined,
     }
@@ -1011,9 +1011,11 @@ export class cpCalendar extends LitElement {
       let goal_hours = window.campaign_data.campaign_goal === 'quantity' ? ( window.campaign_data.goal_quantity || 24 ) : 24;
 
       month_days.forEach(day=>{
-        covered_slots += day.covered_slots || 0
-        total_slots += day.slots.length || 0
-        total_times += Math.min(day.total_times, goal_hours * 60 / window.campaign_data.slot_length ) || 0
+        if ( day.key >= now_date.startOf('day').toSeconds() ) {
+          covered_slots += day.covered_slots || 0
+          total_slots += day.slots.length || 0
+          total_times += Math.min(day.total_times, goal_hours * 60 / window.campaign_data.slot_length) || 0
+        }
       })
 
       let percentage_of = window.campaign_data.campaign_goal !== '247coverage' ? total_times : covered_slots;
@@ -1437,11 +1439,22 @@ export class campaignSubscriptions extends LitElement {
     this.selected_recurring_signup_to_extend = report_id
     let frequency_option = window.campaign_data.frequency_options.find(k=>k.value===recurring_sign.type)
 
+    //if end of campaign is sooner that the month limit, then only extend till the end of the campaign
+    const use_campaign_end_date = this.campaign_data.end_timestamp && this.campaign_data.end_timestamp < recurring_sign.last + frequency_option.month_limit * 86400 * 30;
+
     if ( renew ){
-      this._renew_modal_message = ("Renew for %s months?").replace('%s', frequency_option.month_limit );
+      if ( use_campaign_end_date ){
+        this._renew_modal_message = translate("Until %s").replace('%s', window.luxon.DateTime.fromSeconds(this.campaign_data.end_timestamp - 24*3600, {zone: this.timezone}).toLocaleString({ month: 'long', day: 'numeric' }));
+      } else {
+        this._renew_modal_message = translate("For %s months").replace('%s', frequency_option.month_limit );
+      }
       this._renew_modal_open = true;
     } else {
-      this._extend_modal_message = ("Extend for %s months?").replace('%s', frequency_option.month_limit );
+      if ( use_campaign_end_date ){
+        this._extend_modal_message = translate("Until %s").replace('%s', window.luxon.DateTime.fromSeconds(this.campaign_data.end_timestamp - 24*3600, {zone: this.timezone}).toLocaleString({ month: 'long', day: 'numeric' }));
+      } else {
+        this._extend_modal_message = translate("For %s months").replace('%s', frequency_option.month_limit );
+      }
       this._extend_modal_open = true;
     }
   }

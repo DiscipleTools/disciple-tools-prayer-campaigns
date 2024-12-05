@@ -286,6 +286,7 @@ class DT_Campaign_Landing_Settings {
             'name' => __( 'Image for Header Background', 'disciple-tools-prayer-campaigns' ),
             'default' => DT_Generic_Porch::assets_dir() . 'img/stencil-header.png',
             'type' => 'icon',
+            'options' => [],
             'tile' => 'campaign_landing',
             'description' => __( 'The URL that will be used as the background image for the header on the campaign landing page.', 'disciple-tools-prayer-campaigns' ),
             'settings_section' => 'Hero',
@@ -423,6 +424,24 @@ class DT_Campaign_Landing_Settings {
 
 //        wp_cache_set( 'dt_selected_campaign_' . $selected_campaign, $campaign );
         return $campaign;
+    }
+
+    public static function get_cloudflare_turnstile_keys(){
+        $cloudflare_site_key = '';
+        $cloudflare_secret_key = '';
+        //look at network wide values first
+        if ( is_multisite() ){
+            $cloudflare_site_key = get_site_option( 'dt_cloudflare_site_key', '' );
+            $cloudflare_secret_key = get_site_option( 'dt_cloudflare_secret_key', '' );
+        }
+        if ( empty( $cloudflare_site_key ) || empty( $cloudflare_secret_key ) ){
+            $cloudflare_site_key = get_option( 'dt_cloudflare_site_key', '' );
+            $cloudflare_secret_key = get_option( 'dt_cloudflare_secret_key', '' );
+        }
+        return [
+            'dt_cloudflare_site_key' => $cloudflare_site_key,
+            'dt_cloudflare_secret_key' => $cloudflare_secret_key,
+        ];
     }
 }
 new DT_Campaign_Landing_Settings();

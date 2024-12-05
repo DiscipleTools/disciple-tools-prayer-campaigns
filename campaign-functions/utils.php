@@ -215,7 +215,7 @@ function dt_get_next_ramadan_start_date() {
 }
 function dt_get_next_ramadan_end_date(){
     $start = dt_get_next_ramadan_start_date();
-    return gmdate( 'Y-m-d', strtotime( $start . ' +29 days' ) );
+    return gmdate( 'Y-m-d', strtotime( $start . ' +30 days' ) );
 }
 /*
 https://www.qppstudio.net/global-holidays-observances/start-of-ramadan.htm
@@ -256,7 +256,7 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
 
 
 function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_signup' ){
-    if ( !dt_campaigns_is_p4m_news_enabled() ) {
+    if ( !dt_campaigns_is_prayer_tools_news_enabled() ) {
         return;
     }
 

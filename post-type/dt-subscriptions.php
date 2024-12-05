@@ -8,6 +8,7 @@ class DT_Subscriptions {
             $args,
             [
                 'receive_prayer_time_notifications' => false,
+                'receive_prayer_tools_news' => false,
                 'timezone' => '',
                 'lang' => 'en_US',
                 'status' => 'active',
@@ -39,6 +40,7 @@ class DT_Subscriptions {
             'lang' => $args['lang'],
             $key_name => $hash,
             'receive_prayer_time_notifications' => $args['receive_prayer_time_notifications'],
+            'receive_prayer_tools_news' => $args['receive_prayer_tools_news'],
             'status' => $args['status'],
             'activation_code' => $args['activation_code'],
         ];

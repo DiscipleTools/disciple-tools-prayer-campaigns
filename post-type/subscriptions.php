@@ -336,6 +336,12 @@ class DT_Subscriptions_Base {
                 'hidden' => false,
                 'show_in_table' => 90,
             ];
+            $fields['receive_prayer_tools_news'] = [
+                'name' => __( 'Receive Pray4Movement News', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'default' => false,
+                'hidden' => true,
+            ];
         }
 
         if ( $post_type === 'contacts' && current_user_can( 'view_all_'.$this->post_type ) ){

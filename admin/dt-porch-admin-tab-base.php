@@ -46,6 +46,17 @@ class DT_Porch_Admin_Tab_Base {
                 flex-basis: 300px;
                 min-width: 300px;
             }
+            .image-option {
+                height: 40px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+            .image-option:hover{
+                border: 2px solid #0073aa;
+            }
+            .image-option.selected {
+                border: 2px solid #0073aa;
+            }
         </style>
         <div class="wrap">
             <div id="poststuff">
@@ -303,6 +314,23 @@ class DT_Porch_Admin_Tab_Base {
                                         <?php echo esc_html( $field['name'] ); ?>
                                     </td>
                                     <td>
+                                    <div class="images-options">
+                                        <?php if ( !empty( $field['options'] ) ){
+                                            foreach ( $field['options'] as $option ){
+                                                ?>
+                                                <img
+                                                    class="image-option"
+                                                    src="<?php echo esc_html( $option ); ?>"
+                                                    data-field="<?php echo esc_html( $key ); ?>"
+                                                    data-src="<?php echo esc_html( $option ); ?>"
+                                                />
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <p class="images-selected" style="display: none; font-weight: bold; color:red">Image selected, please click update button</p>
+
                                     <?php if ( !empty( $field['default'] ) ) : ?>
                                         <h3>Default image:</h3>
                                         <img class="color-img" style="height: 40px; margin-top:10px"  src="<?php echo esc_html( $field['default'] ); ?>" />
