@@ -1439,11 +1439,22 @@ export class campaignSubscriptions extends LitElement {
     this.selected_recurring_signup_to_extend = report_id
     let frequency_option = window.campaign_data.frequency_options.find(k=>k.value===recurring_sign.type)
 
+    //if end of campaign is sooner that the month limit, then only extend till the end of the campaign
+    const use_campaign_end_date = this.campaign_data.end_timestamp && this.campaign_data.end_timestamp < recurring_sign.last + frequency_option.month_limit * 86400 * 30;
+
     if ( renew ){
-      this._renew_modal_message = ("Renew for %s months?").replace('%s', frequency_option.month_limit );
+      if ( use_campaign_end_date ){
+        this._renew_modal_message = translate("Until %s").replace('%s', window.luxon.DateTime.fromSeconds(this.campaign_data.end_timestamp - 24*3600, {zone: this.timezone}).toLocaleString({ month: 'long', day: 'numeric' }));
+      } else {
+        this._renew_modal_message = translate("For %s months").replace('%s', frequency_option.month_limit );
+      }
       this._renew_modal_open = true;
     } else {
-      this._extend_modal_message = ("Extend for %s months?").replace('%s', frequency_option.month_limit );
+      if ( use_campaign_end_date ){
+        this._extend_modal_message = translate("Until %s").replace('%s', window.luxon.DateTime.fromSeconds(this.campaign_data.end_timestamp - 24*3600, {zone: this.timezone}).toLocaleString({ month: 'long', day: 'numeric' }));
+      } else {
+        this._extend_modal_message = translate("For %s months").replace('%s', frequency_option.month_limit );
+      }
       this._extend_modal_open = true;
     }
   }
