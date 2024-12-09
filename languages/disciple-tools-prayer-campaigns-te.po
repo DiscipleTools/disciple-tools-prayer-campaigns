@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
+"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
@@ -477,7 +477,7 @@ msgstr "సమయం ఎంచుకోండి"
 msgid "Select a Time for %s"
 msgstr "% కొరకు సమయం ఎంచుకోండి"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
 msgstr "ముగింపు"
 
@@ -766,6 +766,18 @@ msgid "renew"
 msgstr "నూతనపరచండి"
 
 #: parts/components-enqueue.php:133
+msgctxt "Extend prayer times until Feb 22"
+msgid "Until %s"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+#, fuzzy
+#| msgid "for %s minutes"
+msgctxt "Extend prayer times for 12 months"
+msgid "For %s months"
+msgstr "% నిమిషాల పాటు"
+
+#: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -773,71 +785,71 @@ msgstr ""
 "రాబోవు ప్రార్థనా క్యాంపెయిన్ లను గూర్చి Prayer.Tools నుండి సమాచారమును, GospelAmbition.org "
 "నుండి అప్పుడప్పుడు పత్రికలను పొందండి."
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:138
 msgid "Text Translations"
 msgstr "విషయముల అనువాదాలు"
 
-#: parts/components-enqueue.php:137
+#: parts/components-enqueue.php:139
 msgid "Original String"
 msgstr "ఒరిజినల్ స్ట్రింగ్"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
 msgstr "అన్ని భాషల కస్టమ్ విలువ"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
 msgstr "ప్రస్తుతము ఎన్నుకున్న భాష కొరకు అనువాదము"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Update"
 msgstr "అప్డేట్"
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "ఇంచుముంచు పూర్తైనది!  మీ ఎకౌంటును ఆక్టివేట్ చేయుట ద్వారా సైన్ అప్ చేయుటను ముగించండి."
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:147
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "మీకు పంపిన ఈమెయిలులో ఉన్న “ఆక్టివేట్ ఎకౌంటు” బటన్ నొక్కండి: %"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "It will look like this:"
 msgstr "అది ఇలా కనిపిస్తుంది:"
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
 msgstr "పెండింగ్- వెరిఫికేషన్ అవసరం"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "Back to sign-up"
 msgstr "సైన్-అప్ కు తిరిగి వెళ్లండి"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
 msgstr "క్షమించండి. ఏదో తప్పు జరిగింది. మీరు ఇలా చేయవచ్చు:"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Try Again"
 msgstr "మరలా ప్రయత్నించండి"
 
-#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr "మమ్మును సంప్రదించండి"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
 "అధిక ప్రార్థనా సమయములను చేర్చుటకు ముందు మీ ఎకౌంటును ఆక్టివేట్ చేయునట్లు మీ ఈమెయిలు చూడండి."
 
-#: parts/components-enqueue.php:153
+#: parts/components-enqueue.php:155
 msgid "Time not covered"
 msgstr "ఇంకా పురమాయించని సమయం"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid "# of people covering this time"
 msgstr "ఈ సమయము పురమాయించబడిన ప్రజలు #"
 
