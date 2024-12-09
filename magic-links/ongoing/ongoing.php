@@ -286,6 +286,8 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return $sent;
         }
 
+        do_action( 'campaign_subscription_activated', $params );
+
         if ( !empty( $subscriber['receive_prayer_tools_news'] ) && isset( $subscriber['contact_email'][0]['value'] ) ){
             p4m_subscribe_to_news( $subscriber['contact_email'][0]['value'], $subscriber['name'] );
         }
