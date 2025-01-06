@@ -139,6 +139,16 @@ export class cpProfile extends LitElement {
         </div>
         ` : ''}
         <div class="row">
+            <label>
+                ${translate('WhatsApp Number')}
+                <input type="text"
+                       placeholder="Include a country code like +33"
+                       @change="${e=>this.updates.whatsapp_number = e.target.value}"
+                       value="${this.subscriber_data.whatsapp_number}">
+            </label>
+        </div>
+          
+        <div class="row">
             <button class="loader ${this.show_spinner ? 'loading' : ''}" @click="${this.save_profile}">Save</button>
         </div>
         <div class="advanced-profile">

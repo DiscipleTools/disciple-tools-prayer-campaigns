@@ -482,6 +482,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( isset( $new_values['auto_extend_prayer_times'] ) ){
             $updates['auto_extend_prayer_times'] = !empty( $new_values['auto_extend_prayer_times'] );
         }
+        $updates = apply_filters( 'dt_subscription_update_profile', $updates, $subscriber_id, $new_values );
         $updated = DT_Posts::update_post( 'subscriptions', $subscriber_id, $updates, true, false );
         return true;
     }
@@ -719,6 +720,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'auto_extend_prayer_times' => $subscriber['auto_extend_prayer_times'] ?? true,
                 'email' => $subscriber['contact_email'][0]['value'] ?? '',
                 'name' => $subscriber['name'] ?? '',
+                'whatsapp_number' => $subscriber['whatsapp_number'] ?? '',
             ],
             'frequency_durations' => campaigns_get_frequency_duration_days( $campaign ),
         ];
