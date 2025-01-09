@@ -50,6 +50,14 @@ class DT_Porch_Selector {
 
     public function get_selected_porch_id() {
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        if ( isset( $campaign['default_language'] ) && $campaign['default_language'] !== 'en_US' ){
+            $lang = dt_campaign_get_current_lang( '' );
+            if ( empty( $lang ) ){
+                dt_campaign_add_lang_to_cookie( $campaign['default_language'] );
+                dt_campaign_set_translation( $campaign['default_language'] );
+                DT_Posts::get_post_field_settings( 'campaigns', false );
+            }
+        }
         $porches = $this->get_porch_loaders();
         if ( isset( $campaign['porch_type']['key'] ) && array_key_exists( $campaign['porch_type']['key'], $porches ) ){
             return $campaign['porch_type']['key'];

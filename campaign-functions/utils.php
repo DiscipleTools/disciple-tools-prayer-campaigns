@@ -103,8 +103,7 @@ function dt_validate_settings( $settings, $defaults ) {
  *
  * @return string
  */
-function dt_campaign_get_current_lang(): string {
-    $lang = 'en_US';
+function dt_campaign_get_current_lang( $lang = 'en_US' ): string {
     if ( defined( 'PORCH_DEFAULT_LANGUAGE' ) ){
         $lang = PORCH_DEFAULT_LANGUAGE;
     }
