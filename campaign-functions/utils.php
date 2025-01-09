@@ -305,7 +305,7 @@ function display_translated_field( $field_key, $edit_btn_class = 'btn-common', $
         }
 
         // Display edit button, if user is currently logged in.
-        if ( is_user_logged_in() ) {
+        if ( is_user_logged_in() && is_user_member_of_blog() ) {
 
             // Capture existing values for processing further down stream.
             $settings = DT_Porch_Settings::settings();
