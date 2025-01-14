@@ -53,8 +53,9 @@ class DT_Porch_Selector {
         if ( isset( $campaign['default_language'] ) && $campaign['default_language'] !== 'en_US' ){
             $lang = dt_campaign_get_current_lang( '' );
             if ( empty( $lang ) || !in_array( $lang, $campaign['enabled_languages'], true ) ){
-                setcookie( 'dt-magic-link-lang', $campaign['default_language'], 0, '/' );
-                dt_campaign_set_translation( $campaign['default_language'] );
+                $lang = $campaign['default_language'];
+                dt_campaign_add_lang_to_cookie( $lang );
+                dt_campaign_set_translation( $lang );
                 DT_Posts::get_post_field_settings( 'campaigns', false );
             }
         }

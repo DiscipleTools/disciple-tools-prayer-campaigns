@@ -136,9 +136,8 @@ function dt_campaign_reload_text_domain(){
  * @param string $lang
  */
 function dt_campaign_add_lang_to_cookie( string $lang ) {
-    if ( isset( $_GET['lang'] ) && !empty( $_GET['lang'] ) ){
-        setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
-    }
+    setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
+    $_COOKIE['dt-magic-link-lang'] = $lang;
 }
 
 
