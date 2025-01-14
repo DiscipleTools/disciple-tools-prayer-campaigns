@@ -78,6 +78,10 @@ class DT_Campaign_Landing_Settings {
     }
 
     public static function get_landing_page_url( $campaign_id = null ){
+        $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
+        if ( empty( $campaign_id ) || $default_campaign == $campaign_id ){
+            return self::get_landing_root_url();
+        }
         $campaign = self::get_campaign( $campaign_id );
         $url = $campaign['campaign_url'] ?? '';
         if ( !empty( $campaign ) && empty( $url ) ){
