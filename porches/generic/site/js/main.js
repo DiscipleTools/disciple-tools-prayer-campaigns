@@ -133,3 +133,18 @@ jQuery(document).ready(function ($) {
   init();
 
 })();
+
+if (window.navigator.canShare && window.navigator.canShare(data)) {
+  const share_button = document.getElementById('share-button');
+  share_button.style.display = 'block';
+  share_button.onclick = function () {
+    const data = {
+      title: document.title,
+      text: 'Please join me in prayer on ' + document.title,
+      url: window.location.href,
+    }
+    if (window.navigator.canShare && window.navigator.canShare(data)) {
+      window.navigator.share(data)
+    }
+  }
+}

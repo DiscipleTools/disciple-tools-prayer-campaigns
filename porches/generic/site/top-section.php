@@ -87,8 +87,12 @@ $prayer_fuel_link = $campaign_url . '/list';
                     </select>
 
                     <?php endif; ?>
-
-                    <button class="menu-button" id="open-button" aria-label="Menu Open"><i class="lnr lnr-menu"></i></button>
+                    <button class="menu-button" id="share-button"  style="display:none">
+                        <img class="dt-icon dt-white-icon"  src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/share.svg' ) ?>"/>
+                    </button>
+                    <button class="menu-button" id="open-button" aria-label="Menu Open">
+                        <i class="lnr lnr-menu"></i>
+                    </button>
                 </div>
             </div>
         </div>

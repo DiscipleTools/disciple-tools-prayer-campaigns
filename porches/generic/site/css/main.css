@@ -186,6 +186,12 @@ a:not([href]):not([tabindex]):hover {
   cursor: pointer;
   opacity: #eee;
 }
+.menu-button img {
+    filter: invert(100%);
+}
+.menu-bg .menu-button img{
+    filter:none;
+}
 .close-button {
   cursor: pointer;
 }
