@@ -134,7 +134,7 @@ jQuery(document).ready(function ($) {
 
 })();
 
-if (window.navigator.canShare && window.navigator.canShare(data)) {
+if (window.navigator.canShare) {
   const share_button = document.getElementById('share-button');
   share_button.style.display = 'block';
   share_button.onclick = function () {
