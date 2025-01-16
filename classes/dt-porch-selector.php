@@ -52,7 +52,7 @@ class DT_Porch_Selector {
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $lang = dt_campaign_get_current_lang( '' );
         if ( empty( $lang ) || !in_array( $lang, $campaign['enabled_languages'] ?? [ 'en_US' ], true ) ){
-            $lang = $campaign['default_language'];
+            $lang = $campaign['default_language'] ?? 'en_US';
         }
         if ( $lang !== 'en_US' ){
             dt_campaign_set_translation( $lang );

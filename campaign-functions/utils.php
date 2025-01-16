@@ -140,6 +140,18 @@ function dt_campaign_add_lang_to_cookie( string $lang ) {
     $_COOKIE['dt-magic-link-lang'] = $lang;
 }
 
+function dt_campaign_custom_dir_attr( $lang ){
+    if ( is_admin() ) {
+        return $lang;
+    }
+
+    $lang = dt_campaign_get_current_lang();
+
+    $dir = DT_Campaign_Languages::get_language_direction( $lang );
+    $dir_attr = 'dir="' . $dir . '"';
+
+    return 'lang="' . $lang .'" ' .$dir_attr;
+}
 
 /**
  * Split a sentence of $words into $parts and return the $part that you want.

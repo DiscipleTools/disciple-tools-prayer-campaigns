@@ -3,18 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 
 
-function dt_campaign_custom_dir_attr( $lang ){
-    if ( is_admin() ) {
-        return $lang;
-    }
 
-    $lang = dt_campaign_get_current_lang();
-
-    $dir = DT_Campaign_Languages::get_language_direction( $lang );
-    $dir_attr = 'dir="' . $dir . '"';
-
-    return 'lang="' . $lang .'" ' .$dir_attr;
-}
 
 
 /**
