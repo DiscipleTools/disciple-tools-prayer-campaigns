@@ -54,9 +54,9 @@ class DT_Porch_Selector {
         if ( empty( $lang ) || !in_array( $lang, $campaign['enabled_languages'] ?? [ 'en_US' ], true ) ){
             $lang = $campaign['default_language'] ?? 'en_US';
         }
+        dt_campaign_set_translation( $lang );
+        dt_campaign_add_lang_to_cookie( $lang );
         if ( $lang !== 'en_US' ){
-            dt_campaign_set_translation( $lang );
-            dt_campaign_add_lang_to_cookie( $lang );
             DT_Posts::get_post_field_settings( 'campaigns', false );
         }
         $porches = $this->get_porch_loaders();
