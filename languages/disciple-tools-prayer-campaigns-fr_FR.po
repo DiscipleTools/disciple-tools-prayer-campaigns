@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
-"PO-Revision-Date: 2024-11-20 13:14+0000\n"
+"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"PO-Revision-Date: 2025-01-14 14:53+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/fr_FR/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.3\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: campaign-functions/send-email-utility.php:87
 msgid "Verify your email address"
@@ -487,7 +487,7 @@ msgstr "Sélectionnez une heure"
 msgid "Select a Time for %s"
 msgstr "Sélectionnez une heure pour %s"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
 msgstr "Fermer"
 
@@ -524,7 +524,7 @@ msgstr "Objectif : %s heures de prière chaque jour"
 
 #: parts/components-enqueue.php:71
 msgid "Goal: 24/7 coverage"
-msgstr "Objectif : couverture 24h/24 et 7j/7"
+msgstr "Objectif: couverture 24h/24 et 7j/7"
 
 #: parts/components-enqueue.php:72
 msgid "Please enter a valid name or email address"
@@ -778,6 +778,16 @@ msgid "renew"
 msgstr "renouveler"
 
 #: parts/components-enqueue.php:133
+msgctxt "Extend prayer times until Feb 22"
+msgid "Until %s"
+msgstr "Jusqu'à %s"
+
+#: parts/components-enqueue.php:134
+msgctxt "Extend prayer times for 12 months"
+msgid "For %s months"
+msgstr "Pour %s mois"
+
+#: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -785,61 +795,61 @@ msgstr ""
 "Recevez des nouvelles et des opportunités de Prayer.Tools, ainsi que des "
 "communications occasionnelles de GospelAmbition.org"
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:138
 msgid "Text Translations"
 msgstr "Traductions de textes"
 
-#: parts/components-enqueue.php:137
+#: parts/components-enqueue.php:139
 msgid "Original String"
 msgstr "Texte original"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
 msgstr "Valeur personnalisée pour toutes les langues"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
 msgstr "Traduction pour la langue actuellement sélectionnée"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "Presque là ! Terminez votre inscription en activant votre compte."
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:147
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "Cliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "It will look like this:"
 msgstr "Il ressemblera à ceci :"
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
 msgstr "En attente – Vérification requise"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "Back to sign-up"
 msgstr "Retour à l'inscription"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
 msgstr "Désolé. Quelque chose s'est mal passé. Vous pouvez :"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Try Again"
 msgstr "Essayer à nouveau"
 
-#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr "Contactez-nous"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
@@ -847,11 +857,11 @@ msgstr ""
 "Veuillez vérifier votre email pour activer votre compte avant d'ajouter "
 "d'autres heures de prière."
 
-#: parts/components-enqueue.php:153
+#: parts/components-enqueue.php:155
 msgid "Time not covered"
 msgstr "Temps non couvert"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid "# of people covering this time"
 msgstr "# de personnes couvrant cette période"
 
@@ -1175,10 +1185,6 @@ msgstr "Prier maintenant..."
 #~ msgctxt "Praying Daily at 4:15 PM, ending on July 18, 2026"
 #~ msgid "ending on %s"
 #~ msgstr "terminant le %s"
-
-#~ msgctxt "up to 3 months"
-#~ msgid "up to %s months"
-#~ msgstr "jusqu’a %s mois"
 
 #~ msgid "Remove all"
 #~ msgstr "tout supprimer"

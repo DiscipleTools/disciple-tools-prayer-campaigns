@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
+"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Urdu <https://translate.disciple.tools/projects/pray4movement/"
@@ -485,7 +485,7 @@ msgstr "ایک وقت منتخب کریں۔"
 msgid "Select a Time for %s"
 msgstr "‎% ‎کےلیےایک وقت کا انتخاب کریں۔"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
 msgstr "بند"
 
@@ -774,6 +774,18 @@ msgid "renew"
 msgstr "تجدید"
 
 #: parts/components-enqueue.php:133
+msgctxt "Extend prayer times until Feb 22"
+msgid "Until %s"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+#, fuzzy
+#| msgid "for %s minutes"
+msgctxt "Extend prayer times for 12 months"
+msgid "For %s months"
+msgstr "‎%s ‎منٹوں کےلیے"
+
+#: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -781,60 +793,60 @@ msgstr ""
 "GospelAmbition.org ‎سےآنےوالیدعائیہمہمات اور کبھیکبھارمواصلتکےبارےمیںPrayer."
 "Toolsسےخبریں حاصل کریں۔"
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:138
 msgid "Text Translations"
 msgstr "متنکے تراجم"
 
-#: parts/components-enqueue.php:137
+#: parts/components-enqueue.php:139
 msgid "Original String"
 msgstr "اصلسلسلہ"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
 msgstr "تمامزبانوںکےلیے حسب ضرورت قدر"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
 msgstr "موجودہمنتخب زبان کاترجمہ"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Update"
 msgstr "اپڈیٹکریں۔"
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "تقریباًیہاں! اپنااکاؤنٹ فعالکرکےسائناپمکملکریں۔"
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:147
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "بھیجےگئےای میل میں \"اکاؤنٹ فعال کریں\" بٹنپرکلککریں: ‎%s"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "It will look like this:"
 msgstr "یہ اِس طرح نظر آئےگا‎:"
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
 msgstr "زیر التواء - تصدیقکیضرورتہے۔"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "Back to sign-up"
 msgstr "سائناپپرواپسجائیں۔"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
 msgstr "انتہائیمعذرتخواہہیں۔ کچھ غلط ہوگیا۔ آپکرسکتےہیں‎:"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Try Again"
 msgstr "دوبارہکوششکریں۔"
 
-#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr "ہمسےرابطہکریں۔"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
@@ -842,11 +854,11 @@ msgstr ""
 "دعا کےلئے کےمزید اوقات شامل کرنےسےپہلےاپنےاکاؤنٹکوفعال "
 "کرنےکےلیےبراہکرماپناایمیلدیکھیں۔"
 
-#: parts/components-enqueue.php:153
+#: parts/components-enqueue.php:155
 msgid "Time not covered"
 msgstr "وقتکااحاطہ نہیںکیاگیا۔"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid "# of people covering this time"
 msgstr "اِس وقتکااحاطہکرنےوالےلوگوںکی تعداد"
 
