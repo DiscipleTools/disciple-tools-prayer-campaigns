@@ -154,7 +154,8 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
                     'Please check your email to activate your account before adding more prayer times.' => __( 'Please check your email to activate your account before adding more prayer times.', 'disciple-tools-prayer-campaigns' ),
                     'Time not covered' => __( 'Time not covered', 'disciple-tools-prayer-campaigns' ),
                     '# of people covering this time' => __( '# of people covering this time', 'disciple-tools-prayer-campaigns' ),
-                    'share_text' => _x( 'Hi, let’s pray together for %s! I’m joining this prayer campaign and would love for you to join me! Please invite a couple of friends to pray along too.', 'Hi, let’s pray together for Ramadan 2031!', 'disciple-tools-prayer-campaigns' ),
+                    'share_text' => _x( 'Hi, let’s pray together for %s!', 'Hi, let’s pray together for Ramadan 2031!', 'disciple-tools-prayer-campaigns' ),
+                    'share_text2' => __( 'I’m joining this prayer campaign and would love for you to join me! Please invite a couple of friends to pray with us too.', 'disciple-tools-prayer-campaigns' ),
                 ]
             ]
         );

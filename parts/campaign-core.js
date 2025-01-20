@@ -685,7 +685,7 @@ if (window.navigator.canShare) {
   share_button.onclick = function () {
     const data = {
       title: document.title,
-      text: strings.share_text.replace('%s', document.title),
+      text: strings.share_text.replace('%s', document.title) + "\n" + strings.share_text2,
       url: window.location.href,
     }
     if (window.navigator.canShare && window.navigator.canShare(data)) {
