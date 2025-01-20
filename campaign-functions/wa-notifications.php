@@ -34,7 +34,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
         if ( $post_type === 'subscriptions' ){
             $fields['whatsapp_number'] = [
                 'type' => 'text',
-                'name' => 'WhatsApp # for Notifications',
+                'name' => 'WhatsApp # for Prayer Time Reminders (beta)',
                 'description' => 'Include a country code like +33',
                 'tile' => 'signup_form',
                 'default' => '',
