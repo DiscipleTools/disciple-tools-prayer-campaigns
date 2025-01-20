@@ -16,7 +16,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
         $per_page = 50;
         $current_page = $this->get_pagenum();
         $offset = ( $current_page - 1 ) * $per_page;
-        $max_days = 1000;
+        $max_days = 10000;
 
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
 

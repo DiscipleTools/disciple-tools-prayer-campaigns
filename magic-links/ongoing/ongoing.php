@@ -443,10 +443,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             }
             $created = DT_Subscriptions::save_recurring_signups( (int) $subscriber_id, (int) $campaign_id, $params['recurring_signups'] ?? [], false );
         } else {
-            $lang = 'en_US';
-            if ( isset( $params['parts']['lang'] ) ){
-                $lang = $params['parts']['lang'];
-            }
+            $lang = dt_campaign_get_current_lang();
             $activation_code = dt_create_unique_key();
             $subscriber_id = DT_Subscriptions::create_subscriber(
                 $campaign_id,

@@ -44,6 +44,7 @@ $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
                         <?php endif; ?>
                         <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . $campaign_id . '&tab=campaign_landing' ) ); ?>">Campaign Settings</a> |
                         <a href="<?php echo esc_url( $campaign_url ) ?>/contact-us"> <?php esc_html_e( 'Contact Us', 'disciple-tools-prayer-campaigns' ); ?></a>
+                        <?php do_action( 'campaign_footer_links' ); ?>
                     </p>
                 </div>
             </div>

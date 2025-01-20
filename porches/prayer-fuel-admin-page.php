@@ -28,7 +28,15 @@ class DT_Campaign_Prayer_Fuel_Menu {
         add_filter( 'prayer_campaign_tabs', [ $this, 'prayer_campaign_tabs' ], 21, 1 );
     }
     public function prayer_campaign_tabs( $tabs ) {
-        $tabs[ $this->token ] = $this->title;
+        $campaign = DT_Campaign_Landing_Settings::get_campaign();
+        if ( isset( $campaign['end_date']['timestamp'] ) ) {
+            $tabs[ $this->token] = $this->title;
+            return $tabs;
+        }
+        $start_date = $campaign['start_date']['timestamp'];
+        $days_since_start_date = ( strtotime( 'now' ) - $start_date ) / ( 60 * 60 * 24 );
+        $page = round( $days_since_start_date / 50 );
+        $tabs[ $this->token . '&paged=' . $page] = $this->title;
         return $tabs;
     }
     public function dt_prayer_campaigns_tab_content( $tab, $campaign_id ){

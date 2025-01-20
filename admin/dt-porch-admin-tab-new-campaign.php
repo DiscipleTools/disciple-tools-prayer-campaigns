@@ -210,7 +210,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                                 <tr>
                                     <th><label for="default_campaign">Default Campaign</label></th>
                                     <td>
-                                        <input type="checkbox" name="default_campaign" id="default_campaign">
+                                        <input type="checkbox" name="default_campaign" id="default_campaign" checked>
                                     </td>
                                     <td>Make this new campaign the default campaign that is show on the landing page: <a href="<?php echo esc_html( home_url() ); ?>"><?php echo esc_html( home_url() ); ?></a></td>
                                 </tr>

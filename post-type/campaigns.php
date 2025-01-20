@@ -1311,8 +1311,37 @@ class DT_Campaigns_Base {
     }
 
     //generate a random theme color for the porch
-    public static function rand_color() {
+    public static function random_color() {
         return sprintf( '#%06X', mt_rand( 0, 0xFFFFFF ) );
+    }
+
+    // get a theme color for the porch
+    public static function color_from_pallet() {
+        /**
+         * Colors:
+         * Espresso Brown #4B3621
+         * Midnight Blue #002147
+         * Deep Emerald #014421
+         * Rich Burgundy #800020
+         * Navy Indigo #1A1A40
+         * Dark Teal #014D4E
+         * Charcoal Gray #36454F
+         * Deep Purple #2E0854
+         * Forest Green #014421
+         * Maroon #800000
+         * Sapphire Blue #0F52BA
+         * Oxidized Copper #6F4E37
+         * Obsidian Black #0C0C0C
+         * Royal Purple #3F00FF
+         * Dark Olive #556B2F
+         * Mahogany #4A0100
+         * Deep Cyan #008B8B
+         * Twighlight Blue #0C2340
+         * Plum #8E4585
+         * Gunmetal Gray #2a3439
+         */
+        $color_options = [ '#4B3621', '#002147', '#014421', '#800020', '#1A1A40', '#014D4E', '#36454F', '#2E0854', '#014421', '#800000', '#0F52BA', '#6F4E37', '#0C0C0C', '#3F00FF', '#556B2F', '#4A0100', '#008B8B', '#0C2340', '#8E4585', '#2a3439' ];
+        return $color_options[ array_rand( $color_options ) ];
     }
 
     // filter at the start of post creation
@@ -1326,7 +1355,7 @@ class DT_Campaigns_Base {
                 $fields['porch_type'] = 'generic-porch';
             }
             if ( !isset( $fields['custom_theme_color'] ) ) {
-                $fields['custom_theme_color'] = self::rand_color();
+                $fields['custom_theme_color'] = self::color_from_pallet();
             }
             if ( !isset( $fields['campaign_url'] ) ) {
                 $fields['campaign_url'] = DT_Campaign_Landing_Settings::format_landing_page_url( $fields['name'] );

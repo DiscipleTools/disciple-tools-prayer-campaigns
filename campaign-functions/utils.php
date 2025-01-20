@@ -103,8 +103,7 @@ function dt_validate_settings( $settings, $defaults ) {
  *
  * @return string
  */
-function dt_campaign_get_current_lang(): string {
-    $lang = 'en_US';
+function dt_campaign_get_current_lang( $lang = 'en_US' ): string {
     if ( defined( 'PORCH_DEFAULT_LANGUAGE' ) ){
         $lang = PORCH_DEFAULT_LANGUAGE;
     }
@@ -137,11 +136,22 @@ function dt_campaign_reload_text_domain(){
  * @param string $lang
  */
 function dt_campaign_add_lang_to_cookie( string $lang ) {
-    if ( isset( $_GET['lang'] ) && !empty( $_GET['lang'] ) ){
-        setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
-    }
+    setcookie( 'dt-magic-link-lang', $lang, 0, '/' );
+    $_COOKIE['dt-magic-link-lang'] = $lang;
 }
 
+function dt_campaign_custom_dir_attr( $lang ){
+    if ( is_admin() ) {
+        return $lang;
+    }
+
+    $lang = dt_campaign_get_current_lang();
+
+    $dir = DT_Campaign_Languages::get_language_direction( $lang );
+    $dir_attr = 'dir="' . $dir . '"';
+
+    return 'lang="' . $lang .'" ' .$dir_attr;
+}
 
 /**
  * Split a sentence of $words into $parts and return the $part that you want.
@@ -306,7 +316,7 @@ function display_translated_field( $field_key, $edit_btn_class = 'btn-common', $
         }
 
         // Display edit button, if user is currently logged in.
-        if ( is_user_logged_in() ) {
+        if ( is_user_logged_in() && is_user_member_of_blog() ) {
 
             // Capture existing values for processing further down stream.
             $settings = DT_Porch_Settings::settings();

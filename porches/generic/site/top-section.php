@@ -52,7 +52,16 @@ $prayer_fuel_link = $campaign_url . '/list';
     <div class="fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a href="<?php echo esc_url( !empty( $campaign_fields['logo_link_url'] ) ? $campaign_fields['logo_link_url'] : $campaign_url ) ?>" class="logo"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'name' ) ?? 'Set Up A Campaign' ) ?></a>
+                <?php if ( !empty( $url_path ) ) :?>
+                    <a href="<?php echo esc_url( !empty( $campaign_fields['logo_link_url'] ) ? $campaign_fields['logo_link_url'] : $campaign_url ) ?>" class="logo">
+                        <!-- home icon -->
+                        <div class="icon">
+                            <i class="lnr lnr-home"></i>
+                        </div>
+                    </a>
+                <?php else : ?>
+                    <div></div>
+                <?php endif; ?>
                 <div class="d-flex align-items-center">
 
                     <?php if ( count( $langs ) > 1 ): ?>
@@ -78,8 +87,12 @@ $prayer_fuel_link = $campaign_url . '/list';
                     </select>
 
                     <?php endif; ?>
-
-                    <button class="menu-button" id="open-button" aria-label="Menu Open"><i class="lnr lnr-menu"></i></button>
+                    <button class="menu-button" id="share-button"  style="display:none">
+                        <img class="dt-icon dt-white-icon" style="vertical-align: unset"  src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/share.svg' ) ?>"/>
+                    </button>
+                    <button class="menu-button" id="open-button" aria-label="Menu Open">
+                        <i class="lnr lnr-menu"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -94,7 +107,9 @@ $prayer_fuel_link = $campaign_url . '/list';
 
                     <?php if ( !empty( $campaign_fields['logo_url'] ) ) : ?>
 
-                        <img class="logo-image" src="<?php echo esc_url( $campaign_fields['logo_url'] ) ?>" alt=""  />
+                        <a href="<?php echo esc_url( !empty( $campaign_fields['logo_link_url'] ) ? $campaign_fields['logo_link_url'] : $campaign_url ) ?>" class="logo">
+                            <img class="logo-image" src="<?php echo esc_url( $campaign_fields['logo_url'] ) ?>" alt=""  />
+                        </a>
 
                     <?php else : ?>
 

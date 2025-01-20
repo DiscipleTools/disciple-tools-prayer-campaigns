@@ -5,7 +5,7 @@
  * Description: Add a prayer subscriptions module to Disciple.Tools that allows for non-users to subscribe to pray for specific locations at specific times, supporting both time and geographic prayer saturation for your project.
  * Text Domain: disciple-tools-prayer-campaigns
  * Domain Path: /languages
- * Version: 4.12.2
+ * Version: 4.13.0
  * Author URI: https://github.com/DiscipleTools
  * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-prayer-campaigns
  * Requires at least: 4.7.0
@@ -147,10 +147,11 @@ class DT_Prayer_Campaigns {
             DT_Prayer_Campaigns_Menu::instance();
         }
 
-        $lang = dt_campaign_get_current_lang();
-        dt_campaign_add_lang_to_cookie( $lang );
-        dt_campaign_set_translation( $lang );
-
+//        $lang = dt_campaign_get_current_lang( '' );
+//        if ( !empty( $lang ) ){
+//            dt_campaign_add_lang_to_cookie( $lang );
+//            dt_campaign_set_translation( $lang );
+//        }
 
         if ( is_admin() ) { // adds links to the plugin description area in the plugin admin list.
             add_filter( 'plugin_row_meta', [ $this, 'plugin_description_links' ], 10, 4 );

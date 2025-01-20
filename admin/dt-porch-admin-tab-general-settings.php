@@ -162,18 +162,22 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                     <tr>
                                         <th>Campaign Name</th>
                                         <th>Edit</th>
-                                        <th>View</th>
+                                        <th>Landing Page Url</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ( $campaigns['posts'] as $index => $campaign ) :
                                     $url = $campaign['ID'] === $default_campaign ? home_url() : DT_Campaign_Landing_Settings::get_landing_page_url( $campaign['ID'] );
+                                    $color = DT_Campaign_Landing_Settings::get_campaign_color( $campaign['ID'] );
                                     ?>
                                     <tr>
                                         <td>
-                                            <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
+                                            <span style="background-color: <?php echo esc_html( $color ) ?>; width: 15px; height: 15px; display: inline-block; vertical-align: middle; border-radius: 5px;"></span>
+                                            <a    style="display: inline-block" href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
                                                 <?php echo esc_html( $campaign['name'] ) ?>
+                                            </a>
+
                                         </td>
                                         <td>
                                             <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&tab=campaign_landing&campaign=' . $campaign['ID'] ) ) ?>">
@@ -182,7 +186,7 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
                                         </td>
                                         <td>
                                             <a href="<?php echo esc_html( $url ) ?>" target="_blank">
-                                                View Landing Page
+                                                <?php echo esc_html( $url ) ?>
                                             </a>
                                         </td>
                                         <td>

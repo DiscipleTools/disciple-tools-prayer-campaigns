@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
+"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
@@ -486,7 +486,7 @@ msgstr "ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 msgid "Select a Time for %s"
 msgstr "%s ಗಾಗಿ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
 msgstr "ಮುಕ್ತಾಯ"
 
@@ -776,6 +776,18 @@ msgid "renew"
 msgstr "ನವೀಕರಿಸಿ"
 
 #: parts/components-enqueue.php:133
+msgctxt "Extend prayer times until Feb 22"
+msgid "Until %s"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+#, fuzzy
+#| msgid "for %s minutes"
+msgctxt "Extend prayer times for 12 months"
+msgid "For %s months"
+msgstr "%s ನಿಮಿಷಗಳವರೆಗೆ"
+
+#: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -783,63 +795,63 @@ msgstr ""
 "GospelAmbition.org ನಿಂದ ಮುಂಬರುವ ಪ್ರಾರ್ಥನಾ ಅಭಿಯಾನಗಳು ಮತ್ತು ಸಾಂದರ್ಭಿಕ ಸಂವಹನದ "
 "ಕುರಿತು Prayer.Tools ನಿಂದ ಸುದ್ದಿಗಳನ್ನು ಸ್ವೀಕರಿಸಿ."
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:138
 msgid "Text Translations"
 msgstr "ಪಠ್ಯ ಅನುವಾದಗಳು"
 
-#: parts/components-enqueue.php:137
+#: parts/components-enqueue.php:139
 msgid "Original String"
 msgstr "ಮೂಲ ಮುಗ್ಗಟ್ಟು"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
 msgstr "ಎಲ್ಲಾ ಭಾಷೆಗಳ ಗ್ರಾಹಕೀಯ ಮೌಲ್ಯ"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
 msgstr "ಪ್ರಸ್ತುತ ಆಯ್ಕೆಮಾಡಿದ ಭಾಷೆಗೆ ಅನುವಾದ"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Update"
 msgstr "ನವೀಕರಿಸಿ"
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
 "ಬಹುತೇಕ ಮುಗಿಸಲಿದ್ದೇವೆ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವ ಮೂಲಕ ಸೈನ್ ಅಪ್ ಮಾಡುವುದನ್ನು "
 "ಪೂರ್ಣಗೊಳಿಸಿ."
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:147
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "ಇವರಿಗೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್ನಲ್ಲಿರುವ \"ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "It will look like this:"
 msgstr "ಇದು ಈ ರೀತಿ ಕಾಣಿಸುತ್ತದೆ:"
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
 msgstr "ಬಾಕಿಯಿದೆ - ಪರಿಶೀಲನೆಯ ಅಗತ್ಯವಿದೆ"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "Back to sign-up"
 msgstr "ಸೈನ್ ಅಪ್ ಗೆ ಹಿಂತಿರುಗಿ"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
 msgstr "ಕ್ಷಮಿಸಿ. ಏನೋ ತಪ್ಪಾಗಿದೆ. ನೀವು ಮುಂದುವರೆಯಬಹುದು:"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Try Again"
 msgstr "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
 
-#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
@@ -847,11 +859,11 @@ msgstr ""
 "ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಸೇರಿಸುವುದಕ್ಕೆ ಮೊದಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮ್ಮ "
 "ಇಮೇಲ್  ಪರಿಶೀಲಿಸಿ."
 
-#: parts/components-enqueue.php:153
+#: parts/components-enqueue.php:155
 msgid "Time not covered"
 msgstr "ಸಮಯವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid "# of people covering this time"
 msgstr "ಈ ಬಾರಿ ಆವರಿಸಿರುವ ಜನರು #"
 

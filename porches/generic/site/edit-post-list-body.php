@@ -5,8 +5,6 @@ $landing_post_type = CAMPAIGN_LANDING_POST_TYPE;
 
 if ( !current_user_can( 'edit_' . $landing_post_type ) ) { exit; }
 
-$max_days = 1000;
-
 $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
 $lang = dt_campaign_get_current_lang();
@@ -81,11 +79,6 @@ foreach ( $posts_sorted_by_campaign_day as $day => $days_posts ) {
 
 $this->items = $sorted_posts;
 
-if ( $campaign_length > 0 ) {
-    $total_days = $campaign_length;
-} else {
-    $total_days = $max_days;
-}
 ?>
 <!-- LIST OF ALL PRAYER FUEL IN ALL LANGUAGES -->
 <section id="blog" class="section">

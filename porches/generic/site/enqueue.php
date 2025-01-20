@@ -27,7 +27,7 @@ add_action( 'wp_head', function() {
 
 add_action( 'wp_enqueue_scripts', function (){
     wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css', array(), '4.5.3' );
-    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css', array(), '6.5.2' );
+    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/fontawesome.min.css', array(), '6.7.0' );
     wp_enqueue_style( 'line-icons', 'https://cdn.linearicons.com/free/1.0.0/icon-font.min.css', array(), '1.0.0' );
     wp_enqueue_style( 'animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css', array(), '3.7.2' );
     wp_enqueue_style( 'main-styles', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'css/main.css', array(), filemtime( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/main.css' ) );

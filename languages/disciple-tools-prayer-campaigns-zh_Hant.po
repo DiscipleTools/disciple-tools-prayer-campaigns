@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-11-20T13:38:30+00:00\n"
+"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
 "PO-Revision-Date: 2024-12-03 08:00+0000\n"
 "Last-Translator: Chad Edwards <credwards73@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.disciple."
@@ -475,7 +475,7 @@ msgstr "選擇具體的時間"
 msgid "Select a Time for %s"
 msgstr "為% s選擇一個時間"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:140
+#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
 msgstr "關"
 
@@ -761,6 +761,19 @@ msgid "renew"
 msgstr "更新"
 
 #: parts/components-enqueue.php:133
+msgctxt "Extend prayer times until Feb 22"
+msgid "Until %s"
+msgstr ""
+
+#: parts/components-enqueue.php:134
+#, fuzzy
+#| msgctxt "up to 3 months"
+#| msgid "up to %s months"
+msgctxt "Extend prayer times for 12 months"
+msgid "For %s months"
+msgstr "%s個月以上"
+
+#: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -768,70 +781,70 @@ msgstr ""
 "通過 Prayer.Tools了解其他的禱告工作和機會，還有偶爾來自GospelAmbition.org網頁"
 "的消息推送。"
 
-#: parts/components-enqueue.php:136
+#: parts/components-enqueue.php:138
 msgid "Text Translations"
 msgstr "文本翻譯"
 
-#: parts/components-enqueue.php:137
+#: parts/components-enqueue.php:139
 msgid "Original String"
 msgstr "原始字符"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
 msgstr "自定義語言"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
 msgstr "翻譯已選的當前語言"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Update"
 msgstr "更新"
 
-#: parts/components-enqueue.php:144
+#: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "快完成了！通過激活您的賬號來完成注冊。"
 
-#: parts/components-enqueue.php:145
+#: parts/components-enqueue.php:147
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "點擊“激活賬號”按鈕至發送到郵箱：%s"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "It will look like this:"
 msgstr "看起來會像這樣："
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
 msgstr "待處理-需要驗證"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "Back to sign-up"
 msgstr "返回到注冊"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
 msgstr "很抱歉，出了些問題，你可以："
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Try Again"
 msgstr "再試試看"
 
-#: parts/components-enqueue.php:151 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
 msgid "Contact Us"
 msgstr "聯係我們"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr "請查閲你的電子郵箱來激活你的賬號，然後再添加更多的禱告時間。"
 
-#: parts/components-enqueue.php:153
+#: parts/components-enqueue.php:155
 msgid "Time not covered"
 msgstr "沒有覆蓋的時間點"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid "# of people covering this time"
 msgstr "#個人已經覆蓋這個時間點"
 
@@ -1131,10 +1144,6 @@ msgstr "現在祈禱..."
 #~ msgctxt "Praying Daily at 4:15 PM, ending on July 18, 2026"
 #~ msgid "ending on %s"
 #~ msgstr "在%s結束"
-
-#~ msgctxt "up to 3 months"
-#~ msgid "up to %s months"
-#~ msgstr "%s個月以上"
 
 #~ msgid "Remove all"
 #~ msgstr "刪除所有"
