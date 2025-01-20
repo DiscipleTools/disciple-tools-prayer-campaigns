@@ -676,6 +676,20 @@ jQuery(document).ready(function ($) {
 });
 
 /**
- * EDIT FUNCTIONALITY
+ * Share FUNCTIONALITY
  */
 
+if (window.navigator.canShare) {
+  const share_button = document.getElementById('share-button');
+  share_button.style.display = 'block';
+  share_button.onclick = function () {
+    const data = {
+      title: document.title,
+      text: strings.share_text.replace('%s', document.title),
+      url: window.location.href,
+    }
+    if (window.navigator.canShare && window.navigator.canShare(data)) {
+      window.navigator.share(data)
+    }
+  }
+}
