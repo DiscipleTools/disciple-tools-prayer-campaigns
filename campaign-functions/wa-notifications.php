@@ -82,7 +82,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
                 'name' => 'WhatsApp # Verified',
                 'tile' => 'details',
                 'default' => false,
-                'hidden' => true,
+                'hidden' => false,
             ];
         }
         return $fields;
