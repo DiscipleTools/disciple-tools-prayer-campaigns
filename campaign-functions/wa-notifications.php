@@ -56,7 +56,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
             if ( empty( $subscriber['whatsapp_number'] ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
                 continue;
             }
-            $update = DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'whatsapp_number_verified' => true ] );
+            $update = DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'whatsapp_number_verified' => true ], true, false );
             if ( is_wp_error( $update ) ){
                 dt_write_log( __METHOD__ . ': Unable to update subscriber with phone number ' . $phone_number );
             }
