@@ -13,21 +13,54 @@ class Prayer_Campaign_WhatsApp_Notifications {
         add_filter( 'dt_subscription_update_profile', [ $this, 'dt_subscription_update_profile' ], 10, 3 );
         //rest endpoints
         add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
+
+        add_action( 'dt_twilio_message_received', [ $this, 'wa_callback' ], 10, 2 );
     }
 
     public function rest_api_init(){
         register_rest_route( 'dt-public/dt-campaigns/v1', '/webhook/', [
             'methods' => 'POST',
-            'callback' => [ $this, 'wa_callback' ],
+            'callback' => [ $this, 'status_callback' ],
             'permission_callback' => '__return_true',
         ] );
     }
 
-    public function wa_callback( WP_REST_Request $request ){
+
+    public function status_callback( WP_REST_Request $request ){
         $params = $request->get_params();
         dt_write_log( $params );
         $params = dt_recursive_sanitize_array( $params );
         $headers = $request->get_headers();
+        return true;
+    }
+
+    public function wa_callback( $type, $params ){
+        if ( $type !== 'whatsapp' || empty( $params['Body'] ) ){
+            return false;
+        }
+        if ( strtolower( $params['Body'] ) !== 'confirm' ){
+            return false;
+        }
+        $phone_number = str_replace( 'whatsapp:', '', $params['From'] );
+        //find subscribers
+        $subscribers = DT_Posts::search_viewable_post( 'subscriptions', [ 'whatsapp_number' => $phone_number ], false );
+        if ( is_wp_error( $subscribers ) || empty( $subscribers ) ){
+            dt_write_log( __METHOD__ . ': Unable to find subscriber with phone number ' . $phone_number );
+            return false;
+        }
+        //set whatsapp_number_verified to true
+        foreach ( $subscribers as $subscriber ){
+            if ( empty( $subscriber['whatsapp_number'] ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
+                continue;
+            }
+            $update = DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'whatsapp_number_verified' => true ] );
+            if ( is_wp_error( $update ) ){
+                dt_write_log( __METHOD__ . ': Unable to update subscriber with phone number ' . $phone_number );
+            }
+            break;
+        }
+
+        return true;
     }
 
     public function dt_custom_fields_settings( $fields, $post_type ){
