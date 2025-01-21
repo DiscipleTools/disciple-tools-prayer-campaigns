@@ -52,6 +52,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
         }
         //set whatsapp_number_verified to true
         foreach ( $subscribers['posts'] as $subscriber ){
+            $subscriber = (array) $subscriber;
             if ( empty( $subscriber['whatsapp_number'] ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
                 continue;
             }
