@@ -35,6 +35,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
     }
 
     public function wa_callback( $type, $params ){
+        dt_write_log( $params );
         if ( $type !== 'whatsapp' || empty( $params['Body'] ) ){
             return false;
         }
@@ -77,7 +78,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
                 'hidden' => true,
             ];
             $fields['whatsapp_number_verified'] = [ //@todo made this a text field with the number
-                'type' => 'checkbox',
+                'type' => 'boolean',
                 'name' => 'WhatsApp # Verified',
                 'tile' => 'details',
                 'default' => false,
