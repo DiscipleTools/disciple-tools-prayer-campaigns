@@ -60,7 +60,6 @@ class Prayer_Campaign_WhatsApp_Notifications {
             if ( is_wp_error( $update ) ){
                 dt_write_log( __METHOD__ . ': Unable to update subscriber with phone number ' . $phone_number );
             }
-            break;
         }
 
         return true;
