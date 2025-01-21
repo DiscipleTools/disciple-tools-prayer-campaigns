@@ -721,6 +721,7 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
                 'email' => $subscriber['contact_email'][0]['value'] ?? '',
                 'name' => $subscriber['name'] ?? '',
                 'whatsapp_number' => $subscriber['whatsapp_number'] ?? '',
+                'whatsapp_number_verified' => $subscriber['whatsapp_number_verified'] ?? false,
             ],
             'frequency_durations' => campaigns_get_frequency_duration_days( $campaign ),
         ];

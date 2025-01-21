@@ -129,10 +129,10 @@ class Prayer_Campaign_WhatsApp_Notifications {
     }
 
     public function dt_prayer_campaign_prayer_time_reminder( $subscriber, $reports, $campaign_id ){
-        if ( empty( $subscriber['whatsapp_number'] ) ){
+        $phone_number = campaigns_validate_and_format_phone( $subscriber['whatsapp_number'] ?? '' );
+        if ( empty( $phone_number ) ){
             return;
         }
-        $phone_number = $subscriber['whatsapp_number'];
         $prayer_fuel_link = DT_Prayer_Campaigns_Send_Email::prayer_fuel_link( $subscriber, $campaign_id );
 
         //sort reports by time ascending
@@ -181,11 +181,11 @@ class Prayer_Campaign_WhatsApp_Notifications {
      */
     public static function campaign_subscription_activated( $params ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $params['id'], true, false );
-        if ( empty( $subscriber['whatsapp_number'] ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
+        $phone_number  = campaigns_validate_and_format_phone( $subscriber['whatsapp_number'] ?? '' );
+        if ( empty( $phone_number ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
             return;
         }
         $callback_url = get_rest_url() . 'dt-public/dt-campaigns/v1/webhook/';
-        $phone_number = $subscriber['whatsapp_number'];
         $sent = Disciple_Tools_Twilio_API::send_dt_notification_template(
             $phone_number,
             [],
@@ -201,8 +201,16 @@ class Prayer_Campaign_WhatsApp_Notifications {
 
     public static function dt_subscription_update_profile( $updates, $subscriber_id, $new_values ){
         if ( !empty( $new_values['whatsapp_number'] ) ){
+            $new_values['whatsapp_number'] = campaigns_validate_and_format_phone( $new_values['whatsapp_number'] );
             $updates['whatsapp_number'] = $new_values['whatsapp_number'];
-            //@todo verify the new number
+            $updates['whatsapp_number_verified'] = false;
+            if ( !empty( $new_values['whatsapp_number'] ) ){
+                Disciple_Tools_Twilio_API::send_dt_notification_template(
+                    $updates['whatsapp_number'],
+                    [],
+                    'confirm_wa_number',
+                );
+            }
         }
         return $updates;
     }

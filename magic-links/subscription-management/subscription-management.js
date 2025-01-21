@@ -140,7 +140,7 @@ export class cpProfile extends LitElement {
         ` : ''}
         <div class="row">
             <label>
-                ${translate('WhatsApp Number')}
+                ${translate('WhatsApp Number For Prayer Fuel Reminders')}
                 <input type="text"
                        placeholder="Include a country code like +33"
                        @change="${e=>this.updates.whatsapp_number = e.target.value}"
