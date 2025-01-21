@@ -130,7 +130,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
     }
 
     public function dt_prayer_campaign_prayer_time_reminder( $subscriber, $reports, $campaign_id ){
-        if ( empty( $subscriber['whatsapp_number'] ) ){
+        if ( empty( $subscriber['whatsapp_number'] ) || empty( $subscriber['whatsapp_number_verified'] ) ){
             return;
         }
         $phone_number = $subscriber['whatsapp_number'];
