@@ -129,7 +129,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
     }
 
     public function dt_prayer_campaign_prayer_time_reminder( $subscriber, $reports, $campaign_id ){
-        if ( empty( $subscriber['whatsapp_number'] ) || empty( $subscriber['whatsapp_number_verified'] ) ){
+        if ( empty( $subscriber['whatsapp_number'] ) ){
             return;
         }
         $phone_number = $subscriber['whatsapp_number'];
@@ -146,12 +146,20 @@ class Prayer_Campaign_WhatsApp_Notifications {
         $from_now = $fifteen_mints_before - $now;
 
         if ( $prayer_fuel_time < $now + MINUTE_IN_SECONDS * 20 ){
+            if ( empty( $subscriber['whatsapp_number_verified'] ) ){
+                return;
+            }
             self::send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber['ID'] );
         } else {
+            //check if verified later.
             wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link, $subscriber['ID'] ), $from_now );
         }
     }
     public static function send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber_id = null ){
+        $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
+        if ( empty( $subscriber['whatsapp_number'] ) || empty( $subscriber['whatsapp_number_verified'] ) ){
+            return true;
+        }
         $sent = Disciple_Tools_Twilio_API::send_dt_notification_template(
             $phone_number,
             [
@@ -159,10 +167,10 @@ class Prayer_Campaign_WhatsApp_Notifications {
             ],
             'prayer_fuel_notification',
         );
-        if ( ! $sent ){
+        if ( !$sent ){
             dt_write_log( __METHOD__ . ': Unable to send whatsapp to ' . $phone_number );
         }
-        DT_Posts::add_post_comment( 'subscriptions', $subscriber_id, 'Message sent to verify WhatsApp Number', 'comment', [], false, true );
+        DT_Posts::add_post_comment( 'subscriptions', $subscriber_id, 'WhatsApp Fuel Notification Sent', 'comment', [], false, true );
         return $sent;
     }
 
@@ -184,7 +192,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
             'confirm_wa_number',
             $callback_url
         );
-        if ( ! $sent ){
+        if ( !$sent ){
             dt_write_log( __METHOD__ . ': Unable to send whatsapp verification to ' . $phone_number );
             return;
         }
