@@ -44,7 +44,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
         }
         $phone_number = str_replace( 'whatsapp:', '', $params['From'] );
         //find subscribers
-        $subscribers = DT_Posts::search_viewable_post( 'subscriptions', [ 'whatsapp_number' => $phone_number ], false );
+        $subscribers = DT_Posts::search_viewable_post( 'subscriptions', [ 'whatsapp_number' => [ $phone_number ] ], false );
         if ( is_wp_error( $subscribers ) || empty( $subscribers['posts'] ) ){
             dt_write_log( $subscribers );
             dt_write_log( __METHOD__ . ': Unable to find subscriber with phone number ' . $phone_number );
