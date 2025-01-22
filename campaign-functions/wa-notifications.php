@@ -220,6 +220,9 @@ class Prayer_Campaign_WhatsApp_Notifications {
                     'confirm_wa_number',
                 );
             }
+        } else if ( isset( $new_values['whatsapp_number'] ) ){
+            $updates['whatsapp_number'] = '';
+            $updates['whatsapp_number_verified'] = false;
         }
         return $updates;
     }
