@@ -45,10 +45,6 @@ class Prayer_Campaign_WhatsApp_Notifications {
         if ( $type !== 'whatsapp' || empty( $params['Body'] ) ){
             return false;
         }
-        if ( strtolower( $params['Body'] ) !== 'confirm'
-            && ( !empty( $params['ButtonPayload'] ) && strtolower( $params['ButtonPayload'] ) !== 'confirm' ) ){
-            return false;
-        }
         $phone_number = str_replace( 'whatsapp:', '', $params['From'] );
         //find subscribers
         $subscribers = DT_Posts::list_posts( 'subscriptions', [ 'whatsapp_number' => [ $phone_number ] ], false );
@@ -57,14 +53,27 @@ class Prayer_Campaign_WhatsApp_Notifications {
             dt_write_log( __METHOD__ . ': Unable to find subscriber with phone number ' . $phone_number );
             return false;
         }
-        //set whatsapp_number_verified to true
-        foreach ( $subscribers['posts'] as $subscriber ){
-            if ( empty( $subscriber['whatsapp_number'] ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
-                continue;
+
+        if ( strtolower( $params['Body'] ) === 'confirm'
+            || ( !empty( $params['ButtonPayload'] ) && strtolower( $params['ButtonPayload'] ) === 'confirm' ) ){
+            //set whatsapp_number_verified to true
+            foreach ( $subscribers['posts'] as $subscriber ){
+                if ( empty( $subscriber['whatsapp_number'] ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
+                    continue;
+                }
+                $update = DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'whatsapp_number_verified' => true ], true, false );
+                if ( is_wp_error( $update ) ){
+                    dt_write_log( __METHOD__ . ': Unable to update subscriber with phone number ' . $phone_number );
+                }
             }
-            $update = DT_Posts::update_post( 'subscriptions', $subscriber['ID'], [ 'whatsapp_number_verified' => true ], true, false );
-            if ( is_wp_error( $update ) ){
-                dt_write_log( __METHOD__ . ': Unable to update subscriber with phone number ' . $phone_number );
+            return true;
+        } else {
+            //record the comment on the subscriber and @mention the admin
+            $base_user_id = dt_get_base_user( true );
+            $comment_text = dt_get_user_mention_syntax( $base_user_id ) . ', ';
+            $comment_text .= wp_kses_post( $params['Body'] );
+            foreach ( $subscribers['posts'] as $subscriber ){
+                DT_Posts::add_post_comment( 'subscriptions', $subscriber['ID'], $comment_text, 'comment', [], false, false );
             }
         }
 
