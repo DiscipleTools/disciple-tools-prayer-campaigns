@@ -109,7 +109,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
                 ],
                 'types' => [
                     'twilio/text' => [
-                        'body' => 'Hi {{1}},\n\n,Your prayer time at {{2}} is approaching. Here is a link to the prayer fuel: {{3}}.\n\nThank you for praying with us.'
+                        'body' => 'Hi {{1}},\n\nYour prayer time at {{2}} is approaching. Here is a link to the prayer fuel: {{3}}.\n\nThank you for praying with us.'
                     ]
                 ]
             ]
