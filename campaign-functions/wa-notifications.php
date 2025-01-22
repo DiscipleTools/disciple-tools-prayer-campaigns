@@ -160,7 +160,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
                 self::send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber['ID'], $report );
             } else {
                 //check if verified later.
-                wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link, $subscriber['ID'] ), $from_now );
+                wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link, $subscriber['ID'], $report ), $from_now );
             }
         }
     }
@@ -241,12 +241,14 @@ class Prayer_Campaign_WhatsApp_Notifications_Job extends Job {
     public $phone_number;
     public $prayer_fuel_link;
     public $subscriber_id;
-    public function __construct( $phone_number, $prayer_fuel_link, $subscriber_id ){
+    public $report;
+    public function __construct( $phone_number, $prayer_fuel_link, $subscriber_id, $report ){
         $this->phone_number = $phone_number;
         $this->prayer_fuel_link = $prayer_fuel_link;
         $this->subscriber_id = $subscriber_id;
+        $this->report = $report;
     }
     public function handle(){
-        Prayer_Campaign_WhatsApp_Notifications::send_whatsapp_notification( $this->phone_number, $this->prayer_fuel_link, $this->subscriber_id );
+        Prayer_Campaign_WhatsApp_Notifications::send_whatsapp_notification( $this->phone_number, $this->prayer_fuel_link, $this->subscriber_id, $this->report );
     }
 }
