@@ -93,21 +93,23 @@ class Prayer_Campaign_WhatsApp_Notifications {
     }
 
     public function dt_twilio_messaging_templates( $templates ){
-        $templates['prayer_fuel_notification'] = [
-            'id' => 'prayer_fuel_notification',
-            'name' => 'Prayer Fuel Notifications',
+        $templates['prayer_time_notification'] = [
+            'id' => 'prayer_time_notification',
+            'name' => 'Prayer Time Notification',
             'type' => 'whatsapp',
             'enabled' => true,
             'content_category' => 'UTILITY',
             'content_template' => [
-                'friendly_name' => 'Prayer Fuel Notifications',
+                'friendly_name' => 'Prayer Time Notification',
                 'language' => 'en',
                 'variables' => [
-                    '1' => 'https://ramadandemo.pray4movement.org/list',
+                    '1' => 'John Doe',
+                    '2' => '12:00 PM',
+                    '3' => 'https://ramadandemo.pray4movement.org/list',
                 ],
                 'types' => [
                     'twilio/text' => [
-                        'body' => 'Your prayer time is approaching. Here is a link to the prayer fuel: {{1}}.\n\nThank you for praying with us.'
+                        'body' => 'Hi {{1}},\n\n,Your prayer time at {{2}} is approaching. Here is a link to the prayer fuel: {{3}}.\n\nThank you for praying with us.'
                     ]
                 ]
             ]
@@ -155,7 +157,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
                 if ( empty( $subscriber['whatsapp_number_verified'] ) ){
                     return;
                 }
-                self::send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber['ID'] );
+                self::send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber['ID'], $report );
             } else {
                 //check if verified later.
                 wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link, $subscriber['ID'] ), $from_now );
@@ -163,17 +165,26 @@ class Prayer_Campaign_WhatsApp_Notifications {
         }
     }
 
-    public static function send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber_id = null ){
+    public static function send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber_id = null, $report = [] ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( empty( $subscriber['whatsapp_number'] ) || empty( $subscriber['whatsapp_number_verified'] ) ){
             return true;
         }
+        $locale = $record['lang'] ?? 'en_US';
+        //self::switch_email_locale( $locale );
+        $timezone = $subscriber['timezone'] ?? 'America/Chicago';
+        $tz = new DateTimeZone( $timezone );
+        $begin_date = new DateTime( '@'.$report['time_begin'] );
+        $begin_date->setTimezone( $tz );
+        $hour = DT_Time_Utilities::display_hour_localized( $begin_date, $locale, $timezone );
         $sent = Disciple_Tools_Twilio_API::send_dt_notification_template(
             $phone_number,
             [
-                '1' => $prayer_fuel_link,
+                '1' => $subscriber['name'] ?? '',
+                '2' => $hour,
+                '3' => $prayer_fuel_link,
             ],
-            'prayer_fuel_notification',
+            'prayer_time_notification',
         );
         if ( !$sent ){
             dt_write_log( __METHOD__ . ': Unable to send whatsapp to ' . $phone_number );
