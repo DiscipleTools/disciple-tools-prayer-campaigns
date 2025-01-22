@@ -11,28 +11,11 @@ class Prayer_Campaign_WhatsApp_Notifications {
         add_filter( 'dt_twilio_messaging_templates', [ $this, 'dt_twilio_messaging_templates' ], 10, 1 );
         add_action( 'campaign_subscription_activated', [ $this, 'campaign_subscription_activated' ], 10, 1 );
         add_filter( 'dt_subscription_update_profile', [ $this, 'dt_subscription_update_profile' ], 10, 3 );
-        //rest endpoints
-        add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 
         add_action( 'dt_twilio_message_received', [ $this, 'wa_callback' ], 10, 2 );
     }
 
-    public function rest_api_init(){
-        register_rest_route( 'dt-public/dt-campaigns/v1', '/webhook/', [
-            'methods' => 'POST',
-            'callback' => [ $this, 'status_callback' ],
-            'permission_callback' => '__return_true',
-        ] );
-    }
 
-
-    public function status_callback( WP_REST_Request $request ){
-        $params = $request->get_params();
-        dt_write_log( $params );
-        $params = dt_recursive_sanitize_array( $params );
-        $headers = $request->get_headers();
-        return true;
-    }
 
     /**
      * Callback for when a message is received
@@ -213,12 +196,10 @@ class Prayer_Campaign_WhatsApp_Notifications {
         if ( empty( $phone_number ) || !empty( $subscriber['whatsapp_number_verified'] ) ){
             return;
         }
-        $callback_url = get_rest_url() . 'dt-public/dt-campaigns/v1/webhook/';
         $sent = Disciple_Tools_Twilio_API::send_dt_notification_template(
             $phone_number,
             [],
-            'confirm_wa_number',
-            $callback_url
+            'confirm_wa_number'
         );
         if ( !$sent ){
             dt_write_log( __METHOD__ . ': Unable to send whatsapp verification to ' . $phone_number );
