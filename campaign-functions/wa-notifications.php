@@ -34,6 +34,12 @@ class Prayer_Campaign_WhatsApp_Notifications {
         return true;
     }
 
+    /**
+     * Callback for when a message is received
+     * @param $type
+     * @param $params
+     * @return bool
+     */
     public function wa_callback( $type, $params ){
         dt_write_log( $params );
         if ( $type !== 'whatsapp' || empty( $params['Body'] ) ){
@@ -75,7 +81,7 @@ class Prayer_Campaign_WhatsApp_Notifications {
                 'default' => '',
                 'hidden' => true,
             ];
-            $fields['whatsapp_number_verified'] = [ //@todo made this a text field with the number
+            $fields['whatsapp_number_verified'] = [
                 'type' => 'boolean',
                 'name' => 'WhatsApp # Verified',
                 'tile' => 'details',
@@ -140,21 +146,23 @@ class Prayer_Campaign_WhatsApp_Notifications {
             return $a['time_begin'] <=> $b['time_begin'];
         } );
 
-        $prayer_fuel_time = $reports[0]['time_begin'];
-        $fifteen_mints_before = $prayer_fuel_time - MINUTE_IN_SECONDS * 15;
-        $now = time();
-        $from_now = $fifteen_mints_before - $now;
-
-        if ( $prayer_fuel_time < $now + MINUTE_IN_SECONDS * 20 ){
-            if ( empty( $subscriber['whatsapp_number_verified'] ) ){
-                return;
+        foreach ( $reports as $report ){
+            $prayer_fuel_time = $report['time_begin'];
+            $fifteen_mints_before = $prayer_fuel_time - MINUTE_IN_SECONDS * 15;
+            $now = time();
+            $from_now = $fifteen_mints_before - $now;
+            if ( $prayer_fuel_time < $now + MINUTE_IN_SECONDS * 20 ){
+                if ( empty( $subscriber['whatsapp_number_verified'] ) ){
+                    return;
+                }
+                self::send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber['ID'] );
+            } else {
+                //check if verified later.
+                wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link, $subscriber['ID'] ), $from_now );
             }
-            self::send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber['ID'] );
-        } else {
-            //check if verified later.
-            wp_queue()->push( new Prayer_Campaign_WhatsApp_Notifications_Job( $phone_number, $prayer_fuel_link, $subscriber['ID'] ), $from_now );
         }
     }
+
     public static function send_whatsapp_notification( $phone_number, $prayer_fuel_link, $subscriber_id = null ){
         $subscriber = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( empty( $subscriber['whatsapp_number'] ) || empty( $subscriber['whatsapp_number_verified'] ) ){
