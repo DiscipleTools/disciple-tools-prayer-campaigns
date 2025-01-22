@@ -561,6 +561,8 @@ class DT_Subscriptions_Base {
             <span id="expiring_email_sent" style="display: none">Expiring email sent</span>
             <button class="loader button hollow tiny" type="button" id="send_end_campaign_email">Send end of campaign email</button>
             <span id="end_campaign_email_sent" style="display: none">End of campaign email sent</span>
+            <button class="loader button hollow tiny" type="button" id="send_confirm_wa">Confirm WhatsApp Message</button>
+            <span id="send_confirm_wa_sent" style="display: none">Confirm WhatsApp Message sent</span>
 
             <script type="application/javascript">
                 $('#resend_confirmation_email').on("click", function (){
@@ -652,6 +654,21 @@ class DT_Subscriptions_Base {
                         window.location.reload()
                     })
                 })
+                $('#send_confirm_wa').on("click", function (){
+                  $(this).addClass('loading')
+                  $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    url: window.wpApiShare.site_url + "/wp-json/dt-subscriptions/v1/" + window.detailsSettings.post_id + '/send-confirm-wa',
+                    beforeSend: (xhr) => {
+                      xhr.setRequestHeader("X-WP-Nonce", wpApiShare.nonce);
+                    },
+                  }).then(()=>{
+                    $(this).removeClass('loading')
+                    $('#send_confirm_wa_sent').show()
+                  })
+                })
                 </script>
             <?php
         }
@@ -741,6 +758,19 @@ class DT_Subscriptions_Base {
             [
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'manually_activate_endpoint' ],
+                'args' => [
+                    'id' => $arg_schemas['id'],
+                ],
+                'permission_callback' => function( WP_REST_Request $request ){
+                    $url_params = $request->get_url_params();
+                    return DT_Posts::can_update( 'subscriptions', $url_params['id'] ?? null );
+                },
+            ],
+        ] );
+        register_rest_route( $namespace, '/(?P<id>\d+)/send-confirm-wa', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'confirm_wa_endpoint' ],
                 'args' => [
                     'id' => $arg_schemas['id'],
                 ],
@@ -854,6 +884,13 @@ class DT_Subscriptions_Base {
         $campaign_id = $subscription['campaigns'][0]['ID'];
 
         return DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $subscriber_id, $campaign_id );
+    }
+
+    public static function confirm_wa_endpoint( WP_REST_Request $request ){
+        $url_params = $request->get_url_params();
+        $subscriber_id = $url_params['id'];
+        Prayer_Campaign_WhatsApp_Notifications::campaign_subscription_activated( [ 'id' => $subscriber_id ] );
+        return true;
     }
 
 
