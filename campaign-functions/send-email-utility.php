@@ -468,16 +468,20 @@ class DT_Prayer_Campaigns_Send_Email {
             $location = implode( ', ', $location_grid );
         }
 
+        $locale = $record['lang'] ?? 'en_US';
+
         $title = DT_Porch_Settings::get_field_translation( 'name', $record['lang'] ?? 'en_US', $campaign_id );
 
         $subject = __( 'Thank you for praying with us!', 'disciple-tools-prayer-campaigns' );
 
         $campaign_url = DT_Campaign_Landing_Settings::get_landing_page_url( $campaign_id );
-
-        if ( $current_campaign['porch_type']['key'] === 'ramadan-porch' ){
-            $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $campaign_url, $location );
+        if ( !empty( $current_campaign['end_of_campaign_content'] ) ) {
+            $message = self::end_of_campaign_custom_email( $record['name'], $title, $campaign_url, $location, $current_campaign, $locale );
+        }
+        else if ( $current_campaign['porch_type']['key'] === 'ramadan-porch' ){
+            $message = self::end_of_campaign_ramadan_email( $record['name'], $title, $campaign_url, $location, $current_campaign, $locale );
         } else {
-            $message = self::end_of_campaign_generic_email( $record['name'], $title, $campaign_url, $location );
+            $message = self::end_of_campaign_generic_email( $record['name'], $title, $campaign_url, $location, $current_campaign, $locale );
         }
         $full_email = Campaigns_Email_Template::build_campaign_email( $message, $campaign_id );
 
@@ -491,9 +495,12 @@ class DT_Prayer_Campaigns_Send_Email {
         return $sent;
     }
 
-    public static function end_of_campaign_generic_email( $name, $campaign_title, $campaign_url, $location = '' ){
+    public static function end_of_campaign_generic_email( $name, $campaign_title, $campaign_url, $location = '', $current_campaign, $locale ){
 
-        if ( !empty( $porch_fields['country_name']['value'] ) ){
+        if ( !empty( $current_campaign['email_tagline'] ) ) {
+            $tag = DT_Porch_Settings::get_field_translation( 'email_tagline', $locale );
+        }
+        else if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
@@ -515,15 +522,23 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'Finally, the folks at Prayer.Tools built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
-        $message .= Campaigns_Email_Template::email_content_part(
-            __( 'In Christ with you,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $campaign_title
-        );
+
+        if ( !empty( $current_campaign['email_signature'] ) ) {
+            $signature = DT_Porch_Settings::get_field_translation( 'email_signature', $locale );
+        } else {
+            $signature = __( 'In Christ with you,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $campaign_title;
+        }
+
+        $message .= Campaigns_Email_Template::email_content_part( $signature );
 
         return $message;
     }
 
-    public static function end_of_campaign_ramadan_email( $name, $campaign_title, $campaign_url, $location = '' ){
-        if ( $location ){
+    public static function end_of_campaign_ramadan_email( $name, $campaign_title, $campaign_url, $location = '', $current_campaign, $locale ){
+        if ( !empty( $current_campaign['email_tagline'] ) ) {
+            $tag = DT_Porch_Settings::get_field_translation( 'email_tagline', $locale );
+        }
+        else if ( !empty( $porch_fields['country_name']['value'] ) ){
             $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
         } else {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
@@ -545,9 +560,49 @@ class DT_Prayer_Campaigns_Send_Email {
         $message .= Campaigns_Email_Template::email_content_part( __( 'Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Prayer.Tools, the makers of this prayer tool.', 'disciple-tools-prayer-campaigns' ) );
 
         $message .= Campaigns_Email_Template::email_button_part( __( 'See Ramadan 24/7 Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
+
+        if ( !empty( $current_campaign['email_signature'] ) ) {
+            $signature = DT_Porch_Settings::get_field_translation( 'email_signature', $locale );
+        } else {
+            $signature = __( 'In Christ with you,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $campaign_title;
+        }
+
+        $message .= Campaigns_Email_Template::email_content_part( $signature );
+
+        return $message;
+    }
+
+    public static function end_of_campaign_custom_email( $name, $campaign_title, $campaign_url, $location = '', $current_campaign, $locale ){
+
+        if ( !empty( $current_campaign['email_tagline'] ) ) {
+            $tag = DT_Porch_Settings::get_field_translation( 'email_tagline', $locale );
+        }
+        else if ( !empty( $porch_fields['country_name']['value'] ) ){
+            $tag = sprintf( __( 'Strategic prayer for a disciple making movement in %s', 'disciple-tools-prayer-campaigns' ), $location );
+        } else {
+            $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
+        }
+
+        $url = $campaign_url . '/stats';
+
+        $message = Campaigns_Email_Template::email_content_part( '<h3>' . sprintf( __( 'Dear %s,', 'disciple-tools-prayer-campaigns' ), esc_html( $name ) ) . '</h3>' );
+
+        $message .= Campaigns_Email_Template::email_content_part( $tag );
+
         $message .= Campaigns_Email_Template::email_content_part(
-            __( 'In Christ with you,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $campaign_title
+            DT_Porch_Settings::get_field_translation( 'end_of_campaign_content', $locale )
         );
+
+        $message .= Campaigns_Email_Template::email_button_part( __( 'See Prayer Stats', 'disciple-tools-prayer-campaigns' ), $url );
+        $message .= Campaigns_Email_Template::email_content_part( DT_Porch_Settings::get_field_translation( 'end_of_campaign_content_2', $locale ) );
+
+        if ( !empty( $current_campaign['email_signature'] ) ) {
+            $signature = DT_Porch_Settings::get_field_translation( 'email_signature', $locale );
+        } else {
+            $signature = __( 'In Christ with you,', 'disciple-tools-prayer-campaigns' ) . '<br>' . $campaign_title;
+        }
+
+        $message .= Campaigns_Email_Template::email_content_part( $signature );
 
         return $message;
     }
