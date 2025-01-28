@@ -222,6 +222,15 @@ class DT_Campaign_Landing_Settings {
             'translations' => [],
             'settings_section' => 'Email Content',
         ];
+        $fields['email_signature'] = [
+            'name' => __( 'Signature', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'textarea',
+            'tile' => 'campaign_email',
+            'description' => __( 'The signature that will be used in emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
+            'default' => '',
+            'translations' => [],
+            'settings_section' => 'Email Content',
+        ];
         //reminder_content
         $fields['reminder_content'] = [
             'name' => __( 'Reminder Email Content', 'disciple-tools-prayer-campaigns' ),
@@ -238,6 +247,24 @@ class DT_Campaign_Landing_Settings {
             'type' => 'textarea',
             'tile' => 'campaign_email',
             'description' => __( 'The content that will be used in the signup email.', 'disciple-tools-prayer-campaigns' ),
+            'default' => '',
+            'translations' => [],
+            'settings_section' => 'Email Content',
+        ];
+        $fields['end_of_campaign_content'] = [
+            'name' => __( 'End of Campaign Email Content', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'textarea',
+            'tile' => 'campaign_email',
+            'description' => __( 'Replace the end of campaign email content with your own content.', 'disciple-tools-prayer-campaigns' ),
+            'default' => '',
+            'translations' => [],
+            'settings_section' => 'Email Content',
+        ];
+        $fields['end_of_campaign_content_after_stats_button'] = [
+            'name' => __( 'End of Campaign Email Content After Stats Link', 'disciple-tools-prayer-campaigns' ),
+            'type' => 'textarea',
+            'tile' => 'campaign_email',
+            'description' => __( 'Add your own campaign email content after the Prayer Stats button.', 'disciple-tools-prayer-campaigns' ),
             'default' => '',
             'translations' => [],
             'settings_section' => 'Email Content',
