@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
-"PO-Revision-Date: 2024-12-09 11:00+0000\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
+"PO-Revision-Date: 2025-01-20 11:24+0000\n"
 "Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -26,6 +26,10 @@ msgstr "Verifica il tuo indirizzo email"
 msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 "Conferma la tua partecipazione alla preghiera attivando il tuo account."
+
+#: campaign-functions/send-email-utility.php:92
+msgid "Activate Account"
+msgstr "Attiva il tuo account"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -291,8 +295,8 @@ msgstr "giorno"
 msgid "days"
 msgstr "giorni"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "Modifica"
 
@@ -345,7 +349,7 @@ msgstr "Unisciti a me in preghiera!"
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:164
 msgid "Content will start in %s days"
-msgstr "Il contenuto per la preghiera inizierà tra %s giorni"
+msgstr "Il propellente per la preghiera inizierà tra %s giorni"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
@@ -871,6 +875,19 @@ msgstr "Ore non coperte"
 msgid "# of people covering this time"
 msgstr "# di persone che coprano questo intervallo in preghiera"
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr "Ciao, preghiamo insieme per %s!"
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+"Mi sto registrando per questa campagna di preghiera, e mi piacerebbe tanto "
+"se anche tu lo facessi. Invita anche altri nostri amici a pregare con noi."
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "State pregando in gruppo?"
@@ -881,14 +898,13 @@ msgid ""
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
-"Guidare altri nella preghiera è buon passo per fare discepoli. Vogliamo "
-"festeggiare la fedeltà tua e anche di loro. Per ogni persona che prega con "
-"te, aggiungeremo altri 15 minuti ai %s giorni di preghiera programmati "
-"finora."
+"Guidare altri in preghiera è un buon passo per fare discepoli. Vogliamo "
+"festeggiare la vostra fedeltà. Per ogni persona che prega con te, "
+"aggiungeremo altri 15 minuti ai %s giorni di preghiera prenotati finora."
 
 #: parts/components.php:41
 msgid "How many prayed today (including yourself)?"
-msgstr "Quanti hanno pregato oggi, te incluso?"
+msgstr "Quanti hanno pregato oggi, incluso te stesso?"
 
 #: porches/generic/dt-generic-porch-strings.php:47
 msgid "Our Vision"
@@ -994,33 +1010,34 @@ msgstr ""
 msgid "Message"
 msgstr "Invia Messaggio"
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr "Giorno %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
 msgstr "Registrati per pregare"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
-msgstr "Tempo già riservato"
+msgstr "Tempo già prenotato"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
 msgstr "Guerrieri di Preghiera"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Intervalli di preghiera ancora necessari"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 msgid "View All"
 msgstr "Mostra tutto"
 
@@ -1096,7 +1113,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Registrati"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "Seleziona una lingua"
 
@@ -1145,15 +1162,15 @@ msgstr ""
 "l'intero Corano (circa un decimo della lunghezza della Bibbia). Questa "
 "ricerca sincera lo rende un momento strategico per noi di pregare per loro."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
 msgstr "Il Ramadan inizia..."
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
 msgstr "Il Ramadan finisce..."
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
 msgstr "Il Ramadan è terminato"
 

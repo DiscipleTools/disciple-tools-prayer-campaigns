@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Urdu <https://translate.disciple.tools/projects/pray4movement/"
@@ -25,6 +25,12 @@ msgstr "اپنے ای میل ایڈریس کی تصدیق کریں"
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
 msgstr "اپنااکاؤنٹ فعال‎ ‎کرکےدعامیں شرکت کی تصدیق‎ ‎کریں۔"
+
+#: campaign-functions/send-email-utility.php:92
+#, fuzzy
+#| msgid "Access Account"
+msgid "Activate Account"
+msgstr "اکاؤنٹ‎ ‎تک‎ ‎رسائی حاصل کریں۔"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -287,8 +293,8 @@ msgstr "دِن"
 msgid "days"
 msgstr "ایام"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "ترمیم کریں۔"
 
@@ -862,6 +868,17 @@ msgstr "وقتکااحاطہ نہیںکیاگیا۔"
 msgid "# of people covering this time"
 msgstr "اِس وقتکااحاطہکرنےوالےلوگوںکی تعداد"
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "اجتماعی طور پردعاکرنا؟"
@@ -978,33 +995,34 @@ msgstr "ٹریکپرواپسآنےکےلیےمینومیںسےکچھلنکس ا�
 msgid "Message"
 msgstr "پیغام"
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr "دن‎ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
 msgstr "دعاکےلیےسائناپکریں۔"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "وقتکاعہد"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
 msgstr "دعائیہجنگجو"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "دعائیہعہدکیضرورتہے۔"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 msgid "View All"
 msgstr "سبدیکھیں"
 
@@ -1079,7 +1097,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "سائناپکریں۔"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "زبان منتخب کریں۔"
 
@@ -1124,15 +1142,15 @@ msgstr ""
 "کرتے ہیں۔ کچھ تو پورا قرآن شریف بھی پڑھتے ہیں (بائبل مقدس کی لمبائی کا دسواں "
 "حصہ)۔ یہ مخلصانہ تلاش ہمارے لیے اُن کے لیے دعا کرنے کا ایک کلیدی وقت بناتی ہے۔"
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
 msgstr "رمضان المبارککاآغاز‎..."
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
 msgstr "رمضانالمبارککااختتام‎..."
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
 msgstr "رمضانالمبارک ختم ہوگیا۔"
 
