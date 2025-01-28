@@ -488,18 +488,19 @@ class DT_Prayer_Campaigns_Send_Email {
 
         if ( !empty( $current_campaign['email_tagline'] ) ) {
             $tag = DT_Porch_Settings::get_field_translation( 'email_tagline', $locale );
+            $message .= Campaigns_Email_Template::email_content_part( $tag );
         } else {
             $tag = __( 'Strategic prayer for a Disciple Making Movement', 'disciple-tools-prayer-campaigns' );
+            $message .= Campaigns_Email_Template::email_content_part(
+                sprintf( __( 'Thank you for joining %1$s in %2$s.', 'disciple-tools-prayer-campaigns' ), esc_html( $campaign_title ), lcfirst( $tag ) )
+            );
         }
-        $message .= Campaigns_Email_Template::email_content_part(
-            sprintf( __( 'Thank you for joining %1$s in %2$s.', 'disciple-tools-prayer-campaigns' ), esc_html( $campaign_title ), lcfirst( $tag ) )
-        );
 
         $custom_message = DT_Porch_Settings::get_field_translation( 'end_of_campaign_content', $locale );
         $custom_message = apply_filters( 'end_of_campaign_content', $custom_message, $current_campaign, $locale );
 
         if ( !empty( $custom_message ) ){
-            $message = $custom_message;
+            $message .= Campaigns_Email_Template::email_content_part( $custom_message );
         } else {
             if ( isset( $campaign['porch_type']['key'] ) && $campaign['porch_type']['key'] === 'ramadan-porch' ){
                 $message .= Campaigns_Email_Template::email_content_part(
@@ -526,7 +527,7 @@ class DT_Prayer_Campaigns_Send_Email {
 
         $custom_message_after_button = DT_Porch_Settings::get_field_translation( 'end_of_campaign_content_after_stats_button', $locale );
         if ( !empty( $custom_message_after_button ) ){
-            $message .= $custom_message_after_button;
+            $message .= Campaigns_Email_Template::email_content_part( $custom_message_after_button );
         }
 
         if ( !empty( $current_campaign['email_signature'] ) ) {
