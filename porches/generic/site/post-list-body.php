@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $lang = dt_campaign_get_current_lang();
-$total_days = DT_Campaign_Fuel::total_days_in_campaign();
+//$total_days = DT_Campaign_Fuel::total_days_in_campaign();
 
 $formatter = new IntlDateFormatter(
     $lang,  // the locale to use, e.g. 'en_GB'
@@ -36,12 +36,12 @@ $meta_query = [
         'compare' => $todays_day_in_campaign > 0 ? '<=' : '>',
         'type' => 'numeric',
     ],
-    'total_days_clause' => [
-        'key' => 'day',
-        'value' => $total_days,
-        'compare' => '<=',
-        'type' => 'numeric',
-    ],
+//    'total_days_clause' => [ // this is < -1 for ongoing campaigns
+//        'key' => 'day',
+//        'value' => $total_days,
+//        'compare' => '<=',
+//        'type' => 'numeric',
+//    ],
     'campaign_clause' =>[
         'key' => 'linked_campaign',
         'value' => $campaign['ID'],
@@ -53,7 +53,7 @@ $meta_query = [
 $list = new WP_Query( [
     'post_type' => CAMPAIGN_LANDING_POST_TYPE,
     'post_status' => [ 'publish' ],
-    'posts_per_page' => -1,
+    'posts_per_page' => 50,
     'meta_key' => 'day',
     'orderby' => 'day_clause',
     'order' => $todays_day_in_campaign > 0 ? 'DESC' : 'ASC',
@@ -65,7 +65,7 @@ if ( empty( $list->posts ) ){
     $args = array(
         'post_type' => CAMPAIGN_LANDING_POST_TYPE,
         'post_status' => [ 'publish' ],
-        'posts_per_page' => -1,
+        'posts_per_page' => 50,
         'orderby' => 'day_clause',
         'order' => $todays_day_in_campaign > 0 ? 'DESC' : 'ASC',
         'meta_query' => [

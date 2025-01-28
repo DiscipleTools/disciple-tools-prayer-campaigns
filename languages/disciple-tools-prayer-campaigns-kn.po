@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
@@ -26,6 +26,12 @@ msgstr "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ಪರಿ
 msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವ ಮೂಲಕ ಪ್ರಾರ್ಥನೆಯಲ್ಲಿ ನಿಮ್ಮ ಭಾಗವಹಿಸುವಿಕೆಯನ್ನು ದೃಢೀಕರಿಸಿ."
+
+#: campaign-functions/send-email-utility.php:92
+#, fuzzy
+#| msgid "Access Account"
+msgid "Activate Account"
+msgstr "ಖಾತೆಯನ್ನು ಪ್ರವೇಶಿಸಿ"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -289,8 +295,8 @@ msgstr "ದಿನ"
 msgid "days"
 msgstr "ದಿನಗಳು"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "ತಿದ್ದುಪಡಿ"
 
@@ -867,6 +873,17 @@ msgstr "ಸಮಯವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ"
 msgid "# of people covering this time"
 msgstr "ಈ ಬಾರಿ ಆವರಿಸಿರುವ ಜನರು #"
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "ಗುಂಪಾಗಿ ಪ್ರಾರ್ಥಿಸುವುದೇ?"
@@ -986,33 +1003,34 @@ msgstr "ಸಾಲಿಗೆ ಹಿಂತಿರುಗಲು ವಿವರಣೆಯ�
 msgid "Message"
 msgstr "ಸಂದೇಶ"
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr "%s ದಿನ"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
 msgstr "ಪ್ರಾರ್ಥನೆ ಮಾಡಲು ಸೈನ್ ಅಪ್ ಮಾಡಿ"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "ಸಮರ್ಪಿಸಿದ ಸಮಯ"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ವೀರರು"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "ಅಗತ್ಯವಿರುವ ಪ್ರಾರ್ಥನೆಯ ಬದ್ಧತೆಗಳು"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 msgid "View All"
 msgstr "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ"
 
@@ -1088,7 +1106,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "ಸೈನ್ ಅಪ್ ಮಾಡಿ"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
@@ -1135,15 +1153,15 @@ msgstr ""
 "(ಸತ್ಯವೇದದ ಹತ್ತನೇ ಒಂದು ಭಾಗದಷ್ಟು ಉದ್ದವಾಗಿದೆ). ಈ ಪ್ರಾಮಾಣಿಕ ಹುಡುಕಾಟವು ನಾವು ಅವರಿಗಾಗಿ "
 "ಪ್ರಾರ್ಥಿಸಲು ಒಂದು ಕಾರ್ಯತಂತ್ರದ ಸಮಯವನ್ನು ಅನುವು ಮಾಡುತ್ತದೆ."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
 msgstr "ರಂಜಾನ್ ಆರಂಭ…"
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
 msgstr "ರಂಜಾನ್ ಅಂತ್ಯ…"
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
 msgstr "ರಂಜಾನ್ ಮುಗಿದಿದೆ"
 

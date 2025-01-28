@@ -166,5 +166,9 @@ function dt_campaigns_register_scripts( $atts, $campaign_id ){
         wp_enqueue_script( 'campaign_component_sign_up', $plugin_dir_url . 'parts/campaign-sign-up.js', [ 'campaign_component_css' ], filemtime( $plugin_dir_path . 'parts/campaign-sign-up.js' ), true );
         wp_enqueue_style( 'toastify-js-css', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css', [], '1.12.0' );
         wp_enqueue_script( 'toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js', [ 'jquery' ], '1.12.0', true );
+        $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $atts['lang'] ?? 'en_US', $campaign_id ) ?? '';
+        if ( !empty( $video_url ) ){
+            wp_enqueue_script( 'vimeo', 'https://player.vimeo.com/api/player.js', [], '1', true );
+        }
     }
 }

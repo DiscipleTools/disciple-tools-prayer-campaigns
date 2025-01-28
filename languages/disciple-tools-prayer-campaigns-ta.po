@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/"
@@ -25,6 +25,12 @@ msgstr "உங்கள் ஈமெயில் முகவரியை சர
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
 msgstr "உங்கள் அக்கவுண்ட்-ஐ  இயக்கி, ஜெபத்தில் பங்கேற்பதை உறுதி செய்யவும்."
+
+#: campaign-functions/send-email-utility.php:92
+#, fuzzy
+#| msgid "Access Account"
+msgid "Activate Account"
+msgstr "அக்கவுண்ட்-ஐ இயக்கவும்"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -286,8 +292,8 @@ msgstr "நாள்"
 msgid "days"
 msgstr "நாட்கள்"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "திருத்தம்"
 
@@ -861,6 +867,17 @@ msgstr "நேரம் குறிப்பிடப்படவில்ல�
 msgid "# of people covering this time"
 msgstr "# இந்த நேரத்தில் ஜெபிக்கிறார்கள்"
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "குழுவாக ஜெபிக்கிறீர்களா?"
@@ -979,33 +996,34 @@ msgstr "மீண்டும் சரியான பாதைக்குத�
 msgid "Message"
 msgstr "செய்தி"
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr "நாள் %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
 msgstr "ஜெபிக்க சைன் அப் செய்யவும்"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "அர்ப்பணித்த நேரம்"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
 msgstr "ஜெப வீரர்கள்"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "ஜெப அர்ப்பணிப்புகள் தேவை"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 msgid "View All"
 msgstr "எல்லாவற்றையும் பார்க்க"
 
@@ -1081,7 +1099,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "சைன் அப்"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "மொழியைத் தெரிவு செய்க"
 
@@ -1128,15 +1146,15 @@ msgstr ""
 "பத்தில் ஒரு பங்கு உள்ள) குரான் முழுவதையும் படிக்கிறார்கள். இப்படி அவர்கள் உண்மையாகத் தேடும் "
 "நேரம் நம்மைப் பொறுத்தவரை அவர்களுக்காக ஜெபிக்கும் நல்லதொரு நேரமாகிறது."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
 msgstr "ரமலான் தொடங்குகிறது…"
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
 msgstr "ரமலான் நிறைவடைகிறது…"
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
 msgstr "ரமலான் முடிந்தது"
 

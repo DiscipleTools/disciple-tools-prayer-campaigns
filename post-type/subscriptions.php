@@ -883,7 +883,7 @@ class DT_Subscriptions_Base {
         }
         $campaign_id = $subscription['campaigns'][0]['ID'];
 
-        return DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $subscriber_id, $campaign_id );
+        return DT_Prayer_Campaigns_Send_Email::send_end_of_campaign_email( $subscriber_id, $campaign_id, true );
     }
 
     public static function confirm_wa_endpoint( WP_REST_Request $request ){
