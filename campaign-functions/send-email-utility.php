@@ -431,14 +431,14 @@ class DT_Prayer_Campaigns_Send_Email {
     }
 
 
-    public static function send_end_of_campaign_email( $subscriber_id, $campaign_id ){
+    public static function send_end_of_campaign_email( $subscriber_id, $campaign_id, $force = false ){
         $record = DT_Posts::get_post( 'subscriptions', $subscriber_id, true, false );
         if ( is_wp_error( $record ) ){
             dt_write_log( 'failed to record' );
             return;
         }
         //check if email already sent
-        if ( in_array( 'end_of_campaign_email_' . $campaign_id, $record['tags'] ?? [], true ) ){
+        if ( !$force && in_array( 'end_of_campaign_email_' . $campaign_id, $record['tags'] ?? [], true ) ){
             return;
         }
 
