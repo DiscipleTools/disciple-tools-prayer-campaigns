@@ -42,6 +42,7 @@ $dt_campaign_selected_campaign_magic_link_settings['color'] = CAMPAIGN_LANDING_C
 if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
     $dt_campaign_selected_campaign_magic_link_settings['color'] = '#4676fa';
 }
+$video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang, $campaign_fields['ID'] ) ?? '';
 
 ?>
 
@@ -66,6 +67,21 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                 </div>
             <?php endif; ?>
         </div>
+        <?php if ( !empty( $video_url ) ):
+            $embed_url = str_replace( 'https://vimeo.com/', 'https://player.vimeo.com/video/', $video_url );
+            ?>
+            <div class="video-container" style="margin-bottom: 50px;">
+                <div class="video-wrapper" style="max-width:900px; margin: auto; box-shadow: 0 5px 10px 2px #bababa;">
+                    <div style="padding:56.25% 0 0 0;position:relative;">
+                        <iframe
+                            src="<?php echo esc_html( $embed_url ); ?>?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                            frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                            title="Ramadan Video"></iframe>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
