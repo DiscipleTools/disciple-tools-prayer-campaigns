@@ -255,16 +255,16 @@ class DT_Campaign_Landing_Settings {
             'name' => __( 'End of Campaign Email Content', 'disciple-tools-prayer-campaigns' ),
             'type' => 'textarea',
             'tile' => 'campaign_email',
-            'description' => __( 'The content that will be used in the end of campaign email.', 'disciple-tools-prayer-campaigns' ),
+            'description' => __( 'Replace the end of campaign email content with your own content.', 'disciple-tools-prayer-campaigns' ),
             'default' => '',
             'translations' => [],
             'settings_section' => 'Email Content',
         ];
-        $fields['end_of_campaign_content_2'] = [
-            'name' => __( 'End of Campaign Email Content', 'disciple-tools-prayer-campaigns' ),
+        $fields['end_of_campaign_content_after_stats_button'] = [
+            'name' => __( 'End of Campaign Email Content After Stats Link', 'disciple-tools-prayer-campaigns' ),
             'type' => 'textarea',
             'tile' => 'campaign_email',
-            'description' => __( 'The content that will be used in the end of campaign email after the Prayer Stats button.', 'disciple-tools-prayer-campaigns' ),
+            'description' => __( 'Add your own campaign email content after the Prayer Stats button.', 'disciple-tools-prayer-campaigns' ),
             'default' => '',
             'translations' => [],
             'settings_section' => 'Email Content',
