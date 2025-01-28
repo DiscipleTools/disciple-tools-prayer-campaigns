@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-01-31 15:25+0000\n"
 "Last-Translator: Toni Albright <tja@gcnow.org>\n"
 "Language-Team: Turkish <https://translate.disciple.tools/projects/"
@@ -25,6 +25,11 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
+
+#: campaign-functions/send-email-utility.php:92
+#, fuzzy
+msgid "Activate Account"
+msgstr "Hesap"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -292,8 +297,8 @@ msgstr "gün"
 msgid "days"
 msgstr "günler"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
 
@@ -948,6 +953,17 @@ msgstr "kapalı"
 msgid "# of people covering this time"
 msgstr ""
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr ""
@@ -1080,37 +1096,38 @@ msgstr "Tekrar yola çıkmak için menüdeki bazı bağlantıları kullanmayı d
 msgid "Message"
 msgstr ""
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr ""
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Dua etmek için kaydolun"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 #, fuzzy
 msgid "Time Committed"
 msgstr "Taahhüt Süresi"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 #, fuzzy
 msgid "Prayer Warriors"
 msgstr "Namaz Vakitlerim"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Gerekli Dua Taahhütleri"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 #, fuzzy
 msgid "View All"
 msgstr "Hepsini gör"
@@ -1199,7 +1216,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Üye olmak"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 #, fuzzy
 msgid "Select Language"
 msgstr "Bir zaman seçin"
@@ -1250,17 +1267,17 @@ msgstr ""
 "Kuran'ın tamamını (İncil'in yaklaşık onda biri kadar) okur. Bu samimi "
 "arayış, onlar için dua etmemizi stratejik bir zaman haline getiriyor."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Ramazan Başlıyor..."
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Ramazan Bitiyor..."
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramazan Bitti"

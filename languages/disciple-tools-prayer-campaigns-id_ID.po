@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:00+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -23,6 +23,12 @@ msgstr "Verifikasi alamat email kamu"
 msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
 "Konfirmasikan partisipasi Anda dalam doa dengan mengaktifkan akun Anda."
+
+#: campaign-functions/send-email-utility.php:92
+#, fuzzy
+#| msgid "Access Account"
+msgid "Activate Account"
+msgstr "Akses Akun"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -293,8 +299,8 @@ msgstr "hari"
 msgid "days"
 msgstr "hari-hari"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
 
@@ -893,6 +899,17 @@ msgstr "tertutupi"
 msgid "# of people covering this time"
 msgstr ""
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "Berdoa secara kelompok?"
@@ -1017,33 +1034,34 @@ msgstr "Coba gunakan beberapa tautan di menu untuk kembali ke menu semula."
 msgid "Message"
 msgstr "Pesan"
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr ""
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
 msgstr "Mendaftar untuk berdoa"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "Waktu Berkomitmen"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
 msgstr "Prajurit Doa"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Komitmen Doa Diperlukan"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 msgid "View All"
 msgstr "Tampilkan Keseluruhan"
 
@@ -1128,7 +1146,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Mendaftar"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 #, fuzzy
 #| msgid "Select a Date"
 msgid "Select Language"
@@ -1179,15 +1197,15 @@ msgstr ""
 "Quran (kira-kira sepersepuluh panjang Alkitab). Pencarian tulus ini "
 "menjadikannya saat yang strategis bagi kita untuk mendoakan mereka."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
 msgstr "Ramadhan Dimulai..."
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
 msgstr "Ramadhan Berakhir..."
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
 msgstr "Ramadan Selesai"
 

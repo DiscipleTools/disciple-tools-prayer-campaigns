@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2023-02-21 03:22+0000\n"
 "Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
 "Language-Team: Nepali <https://translate.disciple.tools/projects/disciple-"
@@ -24,6 +24,10 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:92
+msgid "Activate Account"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:96
@@ -292,8 +296,8 @@ msgstr "दिनहरू"
 msgid "days"
 msgstr "दिनहरू"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
 
@@ -932,6 +936,17 @@ msgstr "ढाकिएको"
 msgid "# of people covering this time"
 msgstr ""
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr ""
@@ -1058,37 +1073,38 @@ msgstr "ट्र्याकमा फर्कन मेनुमा केह
 msgid "Message"
 msgstr ""
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr ""
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "प्रार्थना गर्न साइन अप गर्नुहोस्"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 #, fuzzy
 msgid "Time Committed"
 msgstr "समय प्रतिबद्ध"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 #, fuzzy
 msgid "Prayer Warriors"
 msgstr "मेरो प्रार्थना समय"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "प्रार्थना प्रतिबद्धताहरू आवश्यक छ"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 #, fuzzy
 msgid "View All"
 msgstr "सबै हेर्नुहोस्"
@@ -1175,7 +1191,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "साइन अप"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 #, fuzzy
 msgid "Select Language"
 msgstr "समय चयन गर्नुहोस्"
@@ -1223,17 +1239,17 @@ msgstr ""
 "पूरै कुरान (बाइबलको दशांश लम्बाइ) पनि पढ्छन्। यो निष्कपट खोजले हाम्रो लागि तिनीहरूको "
 "लागि प्रार्थना गर्ने रणनीतिक समय बनाउँछ।"
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "रमजान सुरु..."
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "रमजानको अन्त्य..."
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "रमजान सकियो"

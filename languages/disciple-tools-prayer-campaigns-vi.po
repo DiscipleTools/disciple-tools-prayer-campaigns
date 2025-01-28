@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:18+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
@@ -24,6 +24,10 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
+msgstr ""
+
+#: campaign-functions/send-email-utility.php:92
+msgid "Activate Account"
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:96
@@ -288,8 +292,8 @@ msgstr "ngày"
 msgid "days"
 msgstr "ngày"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
 
@@ -930,6 +934,17 @@ msgstr "đề cập"
 msgid "# of people covering this time"
 msgstr ""
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr ""
@@ -1061,37 +1076,38 @@ msgstr "Hãy thử sử dụng một số liên kết trong menu để trở l�
 msgid "Message"
 msgstr ""
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr ""
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 #, fuzzy
 msgid "Sign Up to Pray"
 msgstr "Đăng ký để cầu nguyện"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 #, fuzzy
 msgid "Time Committed"
 msgstr "Thời gian cam kết"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 #, fuzzy
 msgid "Prayer Warriors"
 msgstr "Thời gian cầu nguyện của tôi"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 #, fuzzy
 msgid "Prayer Commitments Needed"
 msgstr "Cần có những cam kết cầu nguyện"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 #, fuzzy
 msgid "View All"
 msgstr "Xem tất cả"
@@ -1179,7 +1195,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Đăng ký"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 #, fuzzy
 msgid "Select Language"
 msgstr "Chọn thời gian"
@@ -1231,17 +1247,17 @@ msgstr ""
 "bằng 1/10 Kinh thánh). Sự tìm kiếm chân thành này khiến chúng ta trở thành "
 "thời điểm chiến lược để cầu nguyện cho họ."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 #, fuzzy
 msgid "Ramadan Begins ..."
 msgstr "Tháng Ramadan Bắt đầu ..."
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 #, fuzzy
 msgid "Ramadan Ends ..."
 msgstr "Tháng Ramadan Kết thúc ..."
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 #, fuzzy
 msgid "Ramadan Is Finished"
 msgstr "Ramadan đã kết thúc"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2024-12-05T08:40:48+00:00\n"
+"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
@@ -26,6 +26,12 @@ msgstr "تحقق من عنوان بريدك الإلكتروني"
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
 msgstr "أَكِّد مشاركتك في الصّلاة بتفعيل حسابك."
+
+#: campaign-functions/send-email-utility.php:92
+#, fuzzy
+#| msgid "Access Account"
+msgid "Activate Account"
+msgstr "الدخول إلى الحساب"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -283,8 +289,8 @@ msgstr "يوم"
 msgid "days"
 msgstr "أيام"
 
-#: campaign-functions/utils.php:324
-#: porches/generic/site/edit-post-list-body.php:142
+#: campaign-functions/utils.php:334
+#: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "تعديل"
 
@@ -853,6 +859,17 @@ msgstr "مواقيت غير مُلباه %s"
 msgid "# of people covering this time"
 msgstr "# من الناس يلبون هذا التوقيت."
 
+#: parts/components-enqueue.php:157
+msgctxt "Hi, let’s pray together for Ramadan 2031!"
+msgid "Hi, let’s pray together for %s!"
+msgstr ""
+
+#: parts/components-enqueue.php:158
+msgid ""
+"I’m joining this prayer campaign and would love for you to join me! Please "
+"invite a couple of friends to pray with us too."
+msgstr ""
+
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "صلاة الجماعة؟"
@@ -970,33 +987,34 @@ msgstr "حاول استخدام بعض الروابط في القائمة للع
 msgid "Message"
 msgstr "رسالة"
 
-#: porches/generic/site/edit-post-list-body.php:120
+#: porches/generic/site/edit-post-list-body.php:113
 msgid "Day %s"
 msgstr "يوم %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
-#: porches/generic/site/top-section.php:115
-#: porches/ramadan/site/home-body.php:99 porches/ramadan/site/home-body.php:140
+#: porches/generic/site/top-section.php:130
+#: porches/ramadan/site/home-body.php:115
+#: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
 msgstr "قم بالتسجيل للصلاة"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:171
+#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "الوقت الذي تم الالتزام به"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:187
+#: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
 msgstr "جنود الصلاة"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:201
+#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "التزامات الصلاة مطلوبة"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:222
+#: porches/ramadan/site/home-body.php:238
 msgid "View All"
 msgstr "مشاهدة الكل"
 
@@ -1070,7 +1088,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr "سجل"
 
-#: porches/generic/site/top-section.php:63
+#: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "اختر لغة"
 
@@ -1115,15 +1133,15 @@ msgstr ""
 "ويؤدون صلاة الطقوس الأخرى. حتى أن البعض قرأ القرآن كاملاً (حوالي عُشر طول "
 "الكتاب المقدس). هذا البحث الصادق يجعله وقتًا استراتيجيًا لنا للصلاة من أجلهم."
 
-#: porches/ramadan/site/home-body.php:117
+#: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
 msgstr "بداية رمضان…"
 
-#: porches/ramadan/site/home-body.php:118
+#: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
 msgstr "نهاية رمضان…"
 
-#: porches/ramadan/site/home-body.php:119
+#: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
 msgstr "انتهى شهر رمضان"
 
