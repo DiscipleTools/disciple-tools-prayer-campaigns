@@ -152,6 +152,9 @@ a:not([href]):not([tabindex]):hover {
   background: #4676fa;
   left: 27px;
 }
+#campaign-vision .section-subtitle {
+    font-size: 22px;
+}
 /* ==========================================================================
    Navbar Style
    ========================================================================== */
