@@ -960,6 +960,9 @@ export class cpCalendar extends LitElement {
       .disabled-calendar-day {
         color: #c4c4c4;
       }
+      .disabled-calendar-day .progress-ring {
+        opacity: 0.5;
+      }
     `
   ]
 
@@ -1050,7 +1053,7 @@ export class cpCalendar extends LitElement {
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
-                                ${ ( day.disabled && ( day.key < window.campaign_data.start_timestamp || day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
+                                ${ ( day.key < window.campaign_data.start_timestamp || ( window.campaign_data.end_timestamp && day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
                                     <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`

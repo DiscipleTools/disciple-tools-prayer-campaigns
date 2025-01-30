@@ -163,27 +163,25 @@ window.campaign_scripts = {
         })
 
 
-        if ( time_iterator > now && time_iterator < end ){
-          if (!window.campaign_scripts.time_label_counts[time_formatted]) {
-            window.campaign_scripts.time_label_counts[time_formatted] = 0
+        if (!window.campaign_scripts.time_label_counts[time_formatted]) {
+          window.campaign_scripts.time_label_counts[time_formatted] = 0
+        }
+        window.campaign_scripts.time_label_counts[time_formatted] += 1
+
+        if (current_commitments[time_iterator]) {
+          days[days.length - 1].covered_slots += 1;
+          days[days.length - 1].total_times += current_commitments[time_iterator];
+
+          if (!window.campaign_scripts.time_slot_coverage[time_formatted]) {
+            window.campaign_scripts.time_slot_coverage[time_formatted] = [];
           }
-          window.campaign_scripts.time_label_counts[time_formatted] += 1
-
-          if (current_commitments[time_iterator]) {
-            days[days.length - 1].covered_slots += 1;
-            days[days.length - 1].total_times += current_commitments[time_iterator];
-
-            if (!window.campaign_scripts.time_slot_coverage[time_formatted]) {
-              window.campaign_scripts.time_slot_coverage[time_formatted] = [];
+          window.campaign_scripts.time_slot_coverage[time_formatted].push(current_commitments[time_iterator]);
+        } else {
+          if (time_iterator >= now) {
+            if (!window.campaign_scripts.missing_slots[time_formatted]) {
+              window.campaign_scripts.missing_slots[time_formatted] = []
             }
-            window.campaign_scripts.time_slot_coverage[time_formatted].push(current_commitments[time_iterator]);
-          } else {
-            if (time_iterator >= now) {
-              if (!window.campaign_scripts.missing_slots[time_formatted]) {
-                window.campaign_scripts.missing_slots[time_formatted] = []
-              }
-              window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
-            }
+            window.campaign_scripts.missing_slots[time_formatted].push(time_iterator)
           }
         }
       }
