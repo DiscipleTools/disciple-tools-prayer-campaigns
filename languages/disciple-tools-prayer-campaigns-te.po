@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
+"POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
 "PO-Revision-Date: 2024-11-16 15:00+0000\n"
 "Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
@@ -158,67 +158,25 @@ msgstr "మీ ప్రార్థనా సమయములు అయిపో
 msgid "Thank you"
 msgstr "కృతజ్ఞతలు"
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:467
 #: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
 msgstr "మా కొరకు ప్రార్థించినందుకు కృతజ్ఞతలు!"
 
-#: campaign-functions/send-email-utility.php:497
-#: campaign-functions/send-email-utility.php:527
-msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "%లో శిష్యులను చేయు ఉద్యమము కొరకు వ్యూహాత్మక ప్రార్థన"
+#: campaign-functions/send-email-utility.php:487
+msgid "Dear %s,"
+msgstr "ప్రియమైన %"
 
-#: campaign-functions/send-email-utility.php:499
-#: campaign-functions/send-email-utility.php:529
+#: campaign-functions/send-email-utility.php:493
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "శిష్యులను చేయు ఉద్యమము కొరకు వ్యూహాత్మక ప్రార్థన"
 
-#: campaign-functions/send-email-utility.php:504
-#: campaign-functions/send-email-utility.php:534
-msgid "Dear %s,"
-msgstr "ప్రియమైన %"
-
-#: campaign-functions/send-email-utility.php:507
-#: campaign-functions/send-email-utility.php:537
+#: campaign-functions/send-email-utility.php:495
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "%1$ ను %2$ లో చేర్చినందుకు కృతజ్ఞతలు."
 
-#: campaign-functions/send-email-utility.php:510
-msgid ""
-"We will only know in eternity the full impact of our prayer. However, we "
-"know from God's Word that prayer is powerful and effective (James 5:16)."
-msgstr ""
-"మన ప్రార్థన యొక్క సంపూర్ణ ప్రభావమును గూర్చి మనం నిత్యత్వములో మాత్రమే తెలుసుకుంటాము. అయితే ప్రార్థన "
-"ప్రభావము మరియు శక్తిగలది అని దేవుని వాక్యము తెలుపుతుంది (యాకోబు 5:16)."
-
-#: campaign-functions/send-email-utility.php:513
-msgid ""
-"Click the button below for a glimpse at what you contributed to. We would "
-"also love to hear impressions or words you received from God as you prayed."
-msgstr ""
-"మీ తోడ్పాటును చూచుటకు క్రింది బటన్ ను క్లిక్ చేయండి. మీరు ప్రార్థించుచుండగా దేవుడు మీకిచ్చిన తలంపులు "
-"లేక పదములను గురించి కూడా మేము వినాలని ఆశించుచున్నాము."
-
-#: campaign-functions/send-email-utility.php:515
-msgid ""
-"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
-"Stats page."
-msgstr ""
-"చివరిగా, Prayer.Tools వారు ఈ ప్రార్థనా పరికరమును నిర్మించారు. స్టాట్స్ పేజీలో మీరు భవిష్యత్ ప్రార్థనా "
-"అవకాశముల కొరకు సమాచారములను పొందుటకు సైన్ అప్ చేసుకొనునట్లు చూడండి."
-
-#: campaign-functions/send-email-utility.php:517
-msgid "See Prayer Stats"
-msgstr "ప్రార్థనా స్టాట్స్ చూడండి"
-
-#: campaign-functions/send-email-utility.php:519
-#: campaign-functions/send-email-utility.php:549
-msgid "In Christ with you,"
-msgstr "క్రీస్తులో మీతో,"
-
-#: campaign-functions/send-email-utility.php:540
+#: campaign-functions/send-email-utility.php:507
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -228,7 +186,7 @@ msgstr ""
 "నిత్యత్వములో మాత్రమే చూడగలుగుతాము. అయితే, ప్రార్థన బలమైన మరియు ప్రభావవంతమైనది అని దేవుని వాక్యములో "
 "నుండి మాత్రమే తెలుసుకోగలము (యాకోబు 5:16)."
 
-#: campaign-functions/send-email-utility.php:543
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
@@ -237,7 +195,7 @@ msgstr ""
 "ఈ రంజాన్ సమయములో మీ తోడ్పాటును చూచుటకు క్రింది బటన్ ను క్లిక్ చేయండి. మీరు ప్రార్థించుచుండగా దేవుడు "
 "మీకిచ్చిన తలంపులు లేక పదములను గురించి కూడా మేము వినాలని ఆశించుచున్నాము."
 
-#: campaign-functions/send-email-utility.php:545
+#: campaign-functions/send-email-utility.php:512
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -247,9 +205,38 @@ msgstr ""
 "నిర్మించిన పరికరములు. Prayer.Tools నుండి మీరు భవిష్యత్ ప్రార్థనా అవకాశముల కొరకు సమాచారములను "
 "పొందుటకు సైన్ అప్ చేసుకొనునట్లు చూడండి."
 
-#: campaign-functions/send-email-utility.php:547
-msgid "See Ramadan 24/7 Prayer Stats"
-msgstr "రంజాన్ 24/7 ప్రార్థనా స్టాట్స్ చూడండి"
+#: campaign-functions/send-email-utility.php:516
+msgid ""
+"We will only know in eternity the full impact of our prayer. However, we "
+"know from God's Word that prayer is powerful and effective (James 5:16)."
+msgstr ""
+"మన ప్రార్థన యొక్క సంపూర్ణ ప్రభావమును గూర్చి మనం నిత్యత్వములో మాత్రమే తెలుసుకుంటాము. అయితే ప్రార్థన "
+"ప్రభావము మరియు శక్తిగలది అని దేవుని వాక్యము తెలుపుతుంది (యాకోబు 5:16)."
+
+#: campaign-functions/send-email-utility.php:519
+msgid ""
+"Click the button below for a glimpse at what you contributed to. We would "
+"also love to hear impressions or words you received from God as you prayed."
+msgstr ""
+"మీ తోడ్పాటును చూచుటకు క్రింది బటన్ ను క్లిక్ చేయండి. మీరు ప్రార్థించుచుండగా దేవుడు మీకిచ్చిన తలంపులు "
+"లేక పదములను గురించి కూడా మేము వినాలని ఆశించుచున్నాము."
+
+#: campaign-functions/send-email-utility.php:521
+msgid ""
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
+msgstr ""
+"చివరిగా, Prayer.Tools వారు ఈ ప్రార్థనా పరికరమును నిర్మించారు. స్టాట్స్ పేజీలో మీరు భవిష్యత్ ప్రార్థనా "
+"అవకాశముల కొరకు సమాచారములను పొందుటకు సైన్ అప్ చేసుకొనునట్లు చూడండి."
+
+#: campaign-functions/send-email-utility.php:526
+msgid "See Prayer Stats"
+msgstr "ప్రార్థనా స్టాట్స్ చూడండి"
+
+#: campaign-functions/send-email-utility.php:536
+msgid "In Christ with you,"
+msgstr "క్రీస్తులో మీతో,"
 
 #: campaign-functions/time-utilities.php:185
 msgid "5 minutes"
@@ -287,7 +274,7 @@ msgstr "దినము"
 msgid "days"
 msgstr "రోజులు"
 
-#: campaign-functions/utils.php:334
+#: campaign-functions/utils.php:335
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "ఎడిట్"
@@ -1156,3 +1143,9 @@ msgstr "ప్రార్థనా సమయం: % నిమిషాలు"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "ఇప్పుడు ప్రార్థించుచున్నవారు…"
+
+#~ msgid "Strategic prayer for a disciple making movement in %s"
+#~ msgstr "%లో శిష్యులను చేయు ఉద్యమము కొరకు వ్యూహాత్మక ప్రార్థన"
+
+#~ msgid "See Ramadan 24/7 Prayer Stats"
+#~ msgstr "రంజాన్ 24/7 ప్రార్థనా స్టాట్స్ చూడండి"
