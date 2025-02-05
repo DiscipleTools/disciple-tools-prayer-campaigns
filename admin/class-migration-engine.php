@@ -173,6 +173,10 @@ class DT_Prayer_Campaign_Migration_Lock_Exception extends Exception
             if ( $last_migration_error === false ) {
                 $message = 'Cannot migrate, as migration lock is held';
             } else {
+                if ( is_error( $last_migration_error ) ){
+                    $last_migration_error = $last_migration_error->get_error_message();
+                }
+
                 $message =
                     'Cannot migrate, as migration lock is held. This is the previous stored migration error: '
                     . var_export( $last_migration_error, true );
