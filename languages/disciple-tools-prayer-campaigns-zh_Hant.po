@@ -6,16 +6,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
-"PO-Revision-Date: 2024-12-03 08:00+0000\n"
+"PO-Revision-Date: 2025-02-05 12:58+0000\n"
 "Last-Translator: Chad Edwards <credwards73@gmail.com>\n"
-"Language-Team: Chinese (Traditional Han script) <https://translate.disciple."
-"tools/projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hant/>\n"
+"Language-Team: Chinese (Traditional Han script) <https://"
+"translate.disciple.tools/projects/pray4movement/"
+"disciple-tools-prayer-campaigns/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -24,13 +25,11 @@ msgstr "驗證您的電子郵箱"
 
 #: campaign-functions/send-email-utility.php:89
 msgid "Confirm your participation in prayer by activating your account."
-msgstr "通過激活您的賬號來確認您加入祈禱。"
+msgstr "通過啟動您的帳號來確認您加入祈禱。"
 
 #: campaign-functions/send-email-utility.php:92
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "訪問賬號"
+msgstr "啟動帳號"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -63,14 +62,14 @@ msgstr "您好 %s，"
 #: campaign-functions/send-email-utility.php:228
 #: campaign-functions/send-email-utility.php:324
 msgid "Access your account to see your commitments and make changes:"
-msgstr "通過訪問您的賬號來查看您的承諾和做些改變："
+msgstr "通過訪問您的帳號來查看您的承諾和做些改變："
 
 #: campaign-functions/send-email-utility.php:229
 #: campaign-functions/send-email-utility.php:325
 #: campaign-functions/send-email-utility.php:424
 #: parts/components-enqueue.php:94
 msgid "Access Account"
-msgstr "訪問賬號"
+msgstr "存取帳號"
 
 #: campaign-functions/send-email-utility.php:232
 msgid "You signed up to pray:"
@@ -756,15 +755,12 @@ msgstr "更新"
 #: parts/components-enqueue.php:133
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "延長至%s"
 
 #: parts/components-enqueue.php:134
-#, fuzzy
-#| msgctxt "up to 3 months"
-#| msgid "up to %s months"
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "%s個月以上"
+msgstr "%s個月"
 
 #: parts/components-enqueue.php:135
 msgid ""
@@ -844,13 +840,14 @@ msgstr "#個人已經覆蓋這個時間點"
 #: parts/components-enqueue.php:157
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "嗨，一起為%s禱告吧！"
 
 #: parts/components-enqueue.php:158
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
-msgstr ""
+msgstr "我正在參加這個禱告運動，誠摯邀請你一起加入！請也邀請幾位朋友和我們一起禱告吧"
+"。"
 
 #: parts/components.php:33
 msgid "Praying as a group?"
