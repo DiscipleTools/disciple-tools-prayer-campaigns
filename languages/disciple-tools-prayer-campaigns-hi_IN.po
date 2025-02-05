@@ -6,8 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
-"PO-Revision-Date: 2024-11-16 15:00+0000\n"
-"Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
+"PO-Revision-Date: 2025-02-05 12:01+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Hindi <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/hi_IN/>\n"
 "Language: hi_IN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.3\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -27,10 +27,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "अपने अकाउंट को एक्टिवेट करने के द्वारा अपनी भागीदारी की पुष्टि करें।"
 
 #: campaign-functions/send-email-utility.php:92
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "अकाउंट पर जाएँ"
+msgstr "खाता सक्रिय करें"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -765,14 +763,12 @@ msgstr "नवीनीकृत करें"
 #: parts/components-enqueue.php:133
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "%s तक"
 
 #: parts/components-enqueue.php:134
-#, fuzzy
-#| msgid "for %s minutes"
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "%s मिनट के लिए"
+msgstr "%s महीनों के लिए"
 
 #: parts/components-enqueue.php:135
 msgid ""
