@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
-"PO-Revision-Date: 2024-11-16 15:00+0000\n"
-"Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
+"POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
+"PO-Revision-Date: 2025-02-05 11:49+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/es_ES/>\n"
 "Language: es_ES\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.3\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: campaign-functions/send-email-utility.php:87
 msgid "Verify your email address"
@@ -24,10 +24,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "Confirma tu participación en la oración activando tu cuenta."
 
 #: campaign-functions/send-email-utility.php:92
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "Acceder a tu cuenta"
+msgstr "Activar cuenta"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -158,70 +156,25 @@ msgstr ""
 msgid "Thank you"
 msgstr "Gracias"
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:467
 #: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
 msgstr "¡Gracias por orar con nosotros!"
 
-#: campaign-functions/send-email-utility.php:497
-#: campaign-functions/send-email-utility.php:527
-msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "Oración Estratégica por un Movimiento de Multiplicación de Discípulos"
+#: campaign-functions/send-email-utility.php:487
+msgid "Dear %s,"
+msgstr "Apreciad@ %s,"
 
-#: campaign-functions/send-email-utility.php:499
-#: campaign-functions/send-email-utility.php:529
+#: campaign-functions/send-email-utility.php:493
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
 
-#: campaign-functions/send-email-utility.php:504
-#: campaign-functions/send-email-utility.php:534
-msgid "Dear %s,"
-msgstr "Apreciad@ %s,"
-
-#: campaign-functions/send-email-utility.php:507
-#: campaign-functions/send-email-utility.php:537
+#: campaign-functions/send-email-utility.php:495
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Gracias por unírten en oración por los %1$s en %2$s."
 
-#: campaign-functions/send-email-utility.php:510
-msgid ""
-"We will only know in eternity the full impact of our prayer. However, we "
-"know from God's Word that prayer is powerful and effective (James 5:16)."
-msgstr ""
-"Solo en la eternidad podremos saber el impacto de nuestras oraciones. Sin "
-"embargo, sabemos por la Palabra de Dios que la oración es poderosa y "
-"efectiva (Santiago 5:16)."
-
-#: campaign-functions/send-email-utility.php:513
-msgid ""
-"Click the button below for a glimpse at what you contributed to. We would "
-"also love to hear impressions or words you received from God as you prayed."
-msgstr ""
-"Clica en el botón para tener un destello de tu contribución el día de hoy. "
-"También nos encantaría escuchar alguna impresión o palabras que recibiste de "
-"Dios mientras orabas."
-
-#: campaign-functions/send-email-utility.php:515
-msgid ""
-"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
-"Stats page."
-msgstr ""
-"Por último, esta herramienta de oración fue creada por los amigos de Prayer."
-"Tools. Asegúrate de estar registrado para recibir novedades sobre próximas "
-"oportunidades de oración en la página de Estadísticas."
-
-#: campaign-functions/send-email-utility.php:517
-msgid "See Prayer Stats"
-msgstr "Mira estadísticas sobre la oración"
-
-#: campaign-functions/send-email-utility.php:519
-#: campaign-functions/send-email-utility.php:549
-msgid "In Christ with you,"
-msgstr "En Cristo contigo,"
-
-#: campaign-functions/send-email-utility.php:540
+#: campaign-functions/send-email-utility.php:507
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -231,7 +184,7 @@ msgstr ""
 "por el mundo Musulmán durante Ramadan. Sin embargo, sabemos por medio de la "
 "Palabra de Dios que las oraciones son poderosas y efectivas (Santiago 5:16)."
 
-#: campaign-functions/send-email-utility.php:543
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
@@ -241,7 +194,7 @@ msgstr ""
 "Ramadan. También, nos gustaría escuchar de ti cualquier impresión o palabra "
 "que recibiste de Dios mientras oraba."
 
-#: campaign-functions/send-email-utility.php:545
+#: campaign-functions/send-email-utility.php:512
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -252,9 +205,41 @@ msgstr ""
 "registrado para recibir novedades sobre próximas oportunidades de oración a "
 "través de Prayer.Tools, los creadores de esta herramienta de oración."
 
-#: campaign-functions/send-email-utility.php:547
-msgid "See Ramadan 24/7 Prayer Stats"
-msgstr "Ver estadísticas sobre las Oraciones 24/7 en Ramadan"
+#: campaign-functions/send-email-utility.php:516
+msgid ""
+"We will only know in eternity the full impact of our prayer. However, we "
+"know from God's Word that prayer is powerful and effective (James 5:16)."
+msgstr ""
+"Solo en la eternidad podremos saber el impacto de nuestras oraciones. Sin "
+"embargo, sabemos por la Palabra de Dios que la oración es poderosa y "
+"efectiva (Santiago 5:16)."
+
+#: campaign-functions/send-email-utility.php:519
+msgid ""
+"Click the button below for a glimpse at what you contributed to. We would "
+"also love to hear impressions or words you received from God as you prayed."
+msgstr ""
+"Clica en el botón para tener un destello de tu contribución el día de hoy. "
+"También nos encantaría escuchar alguna impresión o palabras que recibiste de "
+"Dios mientras orabas."
+
+#: campaign-functions/send-email-utility.php:521
+msgid ""
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
+msgstr ""
+"Por último, esta herramienta de oración fue creada por los amigos de Prayer."
+"Tools. Asegúrate de estar registrado para recibir novedades sobre próximas "
+"oportunidades de oración en la página de Estadísticas."
+
+#: campaign-functions/send-email-utility.php:526
+msgid "See Prayer Stats"
+msgstr "Mira estadísticas sobre la oración"
+
+#: campaign-functions/send-email-utility.php:536
+msgid "In Christ with you,"
+msgstr "En Cristo contigo,"
 
 #: campaign-functions/time-utilities.php:185
 msgid "5 minutes"
@@ -292,7 +277,7 @@ msgstr "día"
 msgid "days"
 msgstr "días"
 
-#: campaign-functions/utils.php:334
+#: campaign-functions/utils.php:335
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "Editar"
@@ -786,15 +771,12 @@ msgstr "renovar"
 #: parts/components-enqueue.php:133
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "Hasta %s"
 
 #: parts/components-enqueue.php:134
-#, fuzzy
-#| msgctxt "up to 3 months"
-#| msgid "up to %s months"
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "hasta %s meses"
+msgstr "Por %s meses"
 
 #: parts/components-enqueue.php:135
 msgid ""
@@ -878,7 +860,7 @@ msgstr "# de personas cubriendo este tiempo"
 #: parts/components-enqueue.php:157
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "Hola, ¡oremos juntos por %s!"
 
 #: parts/components-enqueue.php:158
 msgid ""
@@ -1185,6 +1167,13 @@ msgstr "Tiempo de oración: %s min"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Orando…"
+
+#~ msgid "Strategic prayer for a disciple making movement in %s"
+#~ msgstr ""
+#~ "Oración Estratégica por un Movimiento de Multiplicación de Discípulos"
+
+#~ msgid "See Ramadan 24/7 Prayer Stats"
+#~ msgstr "Ver estadísticas sobre las Oraciones 24/7 en Ramadan"
 
 #~ msgid "Percentage covered in prayer"
 #~ msgstr "Porcentaje de cobertura en oración"

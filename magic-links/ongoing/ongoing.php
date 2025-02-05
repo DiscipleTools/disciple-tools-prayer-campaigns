@@ -186,9 +186,19 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             $mention .= dt_get_user_mention_syntax( $user['user_id'] );
             $mention .= ', ';
         }
-        $comment = 'Message on [Contact Us](' . $campaign_url . '/contact-us) by ' . $name . ' ' . $email . ": \n" . $message;
+        if ( empty( $users ) ){
+            $base_user_id = dt_get_base_user( true );
+            $mention = dt_get_user_mention_syntax( $base_user_id );
+            $mention .= ', ';
+        }
 
-        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $mention . $comment, 'contact_us', [], false );
+        $comment = "\n" . $name . ' (' . $email . ') filled out the Contact Us form (' . $campaign_url . "/contact-us) on your campaign. Here is what they said:\n\n" . $message;
+
+        $args = [
+            'comment_author' => 'Prayer Campaign Contact Us Form'
+        ];
+
+        $added_comment = DT_Posts::add_post_comment( 'campaigns', $campaign_id, $mention . $comment, 'contact_us', $args, false );
 
         $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $campaign_id ], 'contact_email' => [ $params['email'] ] ], false );
         if ( sizeof( $subs['posts'] ) === 1 ){
@@ -246,9 +256,18 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             $mention .= dt_get_user_mention_syntax( $user['user_id'] );
             $mention .= ', ';
         }
+        if ( empty( $users ) ){
+            $base_user_id = dt_get_base_user( true );
+            $mention = dt_get_user_mention_syntax( $base_user_id );
+            $mention .= ', ';
+        }
 
-        $comment = 'Story feedback from ' . $campaign_url . '/stats by ' . $params['email'] . ': \n' . $params['story'];
-        DT_Posts::add_post_comment( 'campaigns', $post_id, $mention . $comment, 'stories', [], false );
+        $args = [
+            'comment_author' => 'Prayer Campaign Stats Form'
+        ];
+
+        $comment = "\n" . 'You received a Story feedback on ' . $campaign_url . '/stats, submitted by ' . $params['email'] . ": \n\n" . $params['story'];
+        DT_Posts::add_post_comment( 'campaigns', $post_id, $mention . $comment, 'stories', $args, false );
 
         $subs = DT_Posts::list_posts( 'subscriptions', [ 'campaigns' => [ $post_id ], 'contact_email' => [ $params['email'] ] ], false );
         if ( sizeof( $subs['posts'] ) === 1 ){

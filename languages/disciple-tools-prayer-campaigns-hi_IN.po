@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
-"PO-Revision-Date: 2024-11-16 15:00+0000\n"
-"Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
+"POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
+"PO-Revision-Date: 2025-02-05 12:01+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Hindi <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/hi_IN/>\n"
 "Language: hi_IN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.3\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -27,10 +27,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "अपने अकाउंट को एक्टिवेट करने के द्वारा अपनी भागीदारी की पुष्टि करें।"
 
 #: campaign-functions/send-email-utility.php:92
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "अकाउंट पर जाएँ"
+msgstr "खाता सक्रिय करें"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -160,68 +158,25 @@ msgstr ""
 msgid "Thank you"
 msgstr "धन्यवाद"
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:467
 #: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
 msgstr "हमारे साथ प्रार्थना करने के लिए धन्यवाद!"
 
-#: campaign-functions/send-email-utility.php:497
-#: campaign-functions/send-email-utility.php:527
-msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "%s में चेले बनाने के अभियान के लिए रणनीतिक प्रार्थना"
+#: campaign-functions/send-email-utility.php:487
+msgid "Dear %s,"
+msgstr "प्रिय %s,"
 
-#: campaign-functions/send-email-utility.php:499
-#: campaign-functions/send-email-utility.php:529
+#: campaign-functions/send-email-utility.php:493
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "चेले बनाने के अभियान के लिए रणनीतिक प्रार्थना"
 
-#: campaign-functions/send-email-utility.php:504
-#: campaign-functions/send-email-utility.php:534
-msgid "Dear %s,"
-msgstr "प्रिय %s,"
-
-#: campaign-functions/send-email-utility.php:507
-#: campaign-functions/send-email-utility.php:537
+#: campaign-functions/send-email-utility.php:495
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "%2$s में %1$s से जुड़ने के लिए धन्यवाद।"
 
-#: campaign-functions/send-email-utility.php:510
-msgid ""
-"We will only know in eternity the full impact of our prayer. However, we "
-"know from God's Word that prayer is powerful and effective (James 5:16)."
-msgstr ""
-"हम अपनी प्रार्थना के सम्पूर्ण प्रभाव के बारे में अनन्तकाल में ही जान पाएँगे। हालाँकि, हमें "
-"परमेश्वर के वचन से पता चलता है कि प्रार्थना सामर्थी और प्रभावी होती है (याकूब 5:16)।"
-
-#: campaign-functions/send-email-utility.php:513
-msgid ""
-"Click the button below for a glimpse at what you contributed to. We would "
-"also love to hear impressions or words you received from God as you prayed."
-msgstr ""
-"नीचे दिए गए बटन पर क्लिक करें, ताकि आप यह देख सकें कि आपने किस बात में योगदान दिया है। "
-"हमें यह सुनकर भी अच्छा लगेगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या वचन "
-"प्राप्त हुए।"
-
-#: campaign-functions/send-email-utility.php:515
-msgid ""
-"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
-"Stats page."
-msgstr ""
-"अन्त में, Prayer.Tools द्वारा निर्मित इस प्रार्थना साधन को भी देखें। सुनिश्चित करें कि आप "
-"भविष्य में मिलने वाले प्रार्थना अवसरों की सूचना पाने के लिए स्टैट्स पेज पर साइन अप कर चुके हैं।"
-
-#: campaign-functions/send-email-utility.php:517
-msgid "See Prayer Stats"
-msgstr "प्रार्थना स्टैट्स देखें"
-
-#: campaign-functions/send-email-utility.php:519
-#: campaign-functions/send-email-utility.php:549
-msgid "In Christ with you,"
-msgstr "मसीह में आपके साथ,"
-
-#: campaign-functions/send-email-utility.php:540
+#: campaign-functions/send-email-utility.php:507
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -231,7 +186,7 @@ msgstr ""
 "की गई हज़ारों घण्टों की प्रार्थनाओं का क्या प्रभाव हुआ। हालाँकि, हमें परमेश्वर के वचन से पता "
 "चलता है कि प्रार्थना सामर्थी और प्रभावी होती है (याकूब 5:16)।"
 
-#: campaign-functions/send-email-utility.php:543
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
@@ -241,7 +196,7 @@ msgstr ""
 "सकें। हम यह जानकर भी अच्छा लगगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या "
 "वचन मिले।"
 
-#: campaign-functions/send-email-utility.php:545
+#: campaign-functions/send-email-utility.php:512
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
@@ -251,9 +206,39 @@ msgstr ""
 "करें कि आप इस प्रार्थना साधन के निर्माता Prayer.Tools के द्वारा भविष्य में दिए जाने वाले "
 "प्रार्थना अवसरों की जानकारी के लिए साइन अप कर चुके हैं।"
 
-#: campaign-functions/send-email-utility.php:547
-msgid "See Ramadan 24/7 Prayer Stats"
-msgstr "रमज़ान 24/7 प्रार्थना स्टैट्स देखें"
+#: campaign-functions/send-email-utility.php:516
+msgid ""
+"We will only know in eternity the full impact of our prayer. However, we "
+"know from God's Word that prayer is powerful and effective (James 5:16)."
+msgstr ""
+"हम अपनी प्रार्थना के सम्पूर्ण प्रभाव के बारे में अनन्तकाल में ही जान पाएँगे। हालाँकि, हमें "
+"परमेश्वर के वचन से पता चलता है कि प्रार्थना सामर्थी और प्रभावी होती है (याकूब 5:16)।"
+
+#: campaign-functions/send-email-utility.php:519
+msgid ""
+"Click the button below for a glimpse at what you contributed to. We would "
+"also love to hear impressions or words you received from God as you prayed."
+msgstr ""
+"नीचे दिए गए बटन पर क्लिक करें, ताकि आप यह देख सकें कि आपने किस बात में योगदान दिया है। "
+"हमें यह सुनकर भी अच्छा लगेगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या वचन "
+"प्राप्त हुए।"
+
+#: campaign-functions/send-email-utility.php:521
+msgid ""
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
+msgstr ""
+"अन्त में, Prayer.Tools द्वारा निर्मित इस प्रार्थना साधन को भी देखें। सुनिश्चित करें कि आप "
+"भविष्य में मिलने वाले प्रार्थना अवसरों की सूचना पाने के लिए स्टैट्स पेज पर साइन अप कर चुके हैं।"
+
+#: campaign-functions/send-email-utility.php:526
+msgid "See Prayer Stats"
+msgstr "प्रार्थना स्टैट्स देखें"
+
+#: campaign-functions/send-email-utility.php:536
+msgid "In Christ with you,"
+msgstr "मसीह में आपके साथ,"
 
 #: campaign-functions/time-utilities.php:185
 msgid "5 minutes"
@@ -291,7 +276,7 @@ msgstr "दिन"
 msgid "days"
 msgstr "दिन"
 
-#: campaign-functions/utils.php:334
+#: campaign-functions/utils.php:335
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "एडिट करें"
@@ -778,14 +763,12 @@ msgstr "नवीनीकृत करें"
 #: parts/components-enqueue.php:133
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "%s तक"
 
 #: parts/components-enqueue.php:134
-#, fuzzy
-#| msgid "for %s minutes"
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "%s मिनट के लिए"
+msgstr "%s महीनों के लिए"
 
 #: parts/components-enqueue.php:135
 msgid ""
@@ -1164,3 +1147,9 @@ msgstr "प्रार्थना का समय: %s मिनट"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "अब प्रार्थना कर रहे हैं..।"
+
+#~ msgid "Strategic prayer for a disciple making movement in %s"
+#~ msgstr "%s में चेले बनाने के अभियान के लिए रणनीतिक प्रार्थना"
+
+#~ msgid "See Ramadan 24/7 Prayer Stats"
+#~ msgstr "रमज़ान 24/7 प्रार्थना स्टैट्स देखें"

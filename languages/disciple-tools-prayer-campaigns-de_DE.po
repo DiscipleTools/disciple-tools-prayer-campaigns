@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-01-28T10:04:43+00:00\n"
+"POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
 "PO-Revision-Date: 2024-03-08 14:15+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: German <https://translate.disciple.tools/projects/"
@@ -162,77 +162,26 @@ msgstr ""
 msgid "Thank you"
 msgstr "Vielen Dank"
 
-#: campaign-functions/send-email-utility.php:473
+#: campaign-functions/send-email-utility.php:467
 #: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
 msgstr "Danke, dass du mit uns betest!"
 
-#: campaign-functions/send-email-utility.php:497
-#: campaign-functions/send-email-utility.php:527
-msgid "Strategic prayer for a disciple making movement in %s"
-msgstr "Strategisches Gebet für eine Jüngerschaftsbewegung"
+#: campaign-functions/send-email-utility.php:487
+msgid "Dear %s,"
+msgstr "Hallo %s"
 
-#: campaign-functions/send-email-utility.php:499
-#: campaign-functions/send-email-utility.php:529
+#: campaign-functions/send-email-utility.php:493
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Strategisches Gebet für eine Jüngerschaftsbewegung"
 
-#: campaign-functions/send-email-utility.php:504
-#: campaign-functions/send-email-utility.php:534
-msgid "Dear %s,"
-msgstr "Hallo %s"
-
-#: campaign-functions/send-email-utility.php:507
-#: campaign-functions/send-email-utility.php:537
+#: campaign-functions/send-email-utility.php:495
 msgid "Thank you for joining %1$s in %2$s."
 msgstr ""
 "Vielen Dank, dass du dich uns im Gebet für die %1$s in %2$s anschließt."
 
-#: campaign-functions/send-email-utility.php:510
-msgid ""
-"We will only know in eternity the full impact of our prayer. However, we "
-"know from God's Word that prayer is powerful and effective (James 5:16)."
-msgstr ""
-"Wir werden erst in der Ewigkeit erfahren, welche Wirkung unser Gebet hat. "
-"Wir wissen jedoch aus Gottes Wort, dass Gebet mächtig und wirksam ist "
-"(Jakobus 5,16)."
-
-#: campaign-functions/send-email-utility.php:513
-msgid ""
-"Click the button below for a glimpse at what you contributed to. We would "
-"also love to hear impressions or words you received from God as you prayed."
-msgstr ""
-"Klicke auf die Schaltfläche unten, um einen Einblick zu erhalten, wozu du "
-"beigetragen hast. Wir würden uns auch sehr darüber freuen, wenn du uns "
-"Eindrücke oder Worte, die du beim Beten von Gott erhalten hast, mitteilst."
-
-#: campaign-functions/send-email-utility.php:515
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
-msgid ""
-"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
-"Stats page."
-msgstr ""
-"Außerdem gibt es auf der Seite \"Ramadan 24/7 Gebetsstatistiken\" am unteren "
-"Rand einen Bereich, in dem du dich anmelden kannst. Vergewissere dich, dass "
-"du angemeldet bist, um Neuigkeiten über zukünftige Gebetsmöglichkeiten von "
-"Pray4Movement zu erhalten."
-
-#: campaign-functions/send-email-utility.php:517
-msgid "See Prayer Stats"
-msgstr "siehe Gebetsstatistiken"
-
-#: campaign-functions/send-email-utility.php:519
-#: campaign-functions/send-email-utility.php:549
-msgid "In Christ with you,"
-msgstr "Gott befohlen,"
-
-#: campaign-functions/send-email-utility.php:540
+#: campaign-functions/send-email-utility.php:507
 msgid ""
 "We will only know in eternity the full impact of the thousands of hours of "
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
@@ -243,7 +192,7 @@ msgstr ""
 "wissen jedoch aus Gottes Wort, dass Gebet mächtig und wirksam ist (Jakobus "
 "5,16)."
 
-#: campaign-functions/send-email-utility.php:543
+#: campaign-functions/send-email-utility.php:510
 msgid ""
 "Click the button below for a glimpse at what you contributed to this "
 "Ramadan. We would also love to hear impressions or words you received from "
@@ -254,7 +203,7 @@ msgstr ""
 "wenn du uns Eindrücke oder Worte, die du beim Beten von Gott erhalten hast, "
 "mitteilst."
 
-#: campaign-functions/send-email-utility.php:545
+#: campaign-functions/send-email-utility.php:512
 #, fuzzy
 #| msgid ""
 #| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
@@ -270,9 +219,47 @@ msgstr ""
 "du angemeldet bist, um Neuigkeiten über zukünftige Gebetsmöglichkeiten von "
 "Pray4Movement zu erhalten."
 
-#: campaign-functions/send-email-utility.php:547
-msgid "See Ramadan 24/7 Prayer Stats"
-msgstr "siehe Ramadan 24/7 Gebetsstatistiken"
+#: campaign-functions/send-email-utility.php:516
+msgid ""
+"We will only know in eternity the full impact of our prayer. However, we "
+"know from God's Word that prayer is powerful and effective (James 5:16)."
+msgstr ""
+"Wir werden erst in der Ewigkeit erfahren, welche Wirkung unser Gebet hat. "
+"Wir wissen jedoch aus Gottes Wort, dass Gebet mächtig und wirksam ist "
+"(Jakobus 5,16)."
+
+#: campaign-functions/send-email-utility.php:519
+msgid ""
+"Click the button below for a glimpse at what you contributed to. We would "
+"also love to hear impressions or words you received from God as you prayed."
+msgstr ""
+"Klicke auf die Schaltfläche unten, um einen Einblick zu erhalten, wozu du "
+"beigetragen hast. Wir würden uns auch sehr darüber freuen, wenn du uns "
+"Eindrücke oder Worte, die du beim Beten von Gott erhalten hast, mitteilst."
+
+#: campaign-functions/send-email-utility.php:521
+#, fuzzy
+#| msgid ""
+#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
+#| "the bottom. Make sure you are signed up to receive news about future "
+#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
+msgid ""
+"Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
+"you’re signed up to receive news about future prayer opportunities on the "
+"Stats page."
+msgstr ""
+"Außerdem gibt es auf der Seite \"Ramadan 24/7 Gebetsstatistiken\" am unteren "
+"Rand einen Bereich, in dem du dich anmelden kannst. Vergewissere dich, dass "
+"du angemeldet bist, um Neuigkeiten über zukünftige Gebetsmöglichkeiten von "
+"Pray4Movement zu erhalten."
+
+#: campaign-functions/send-email-utility.php:526
+msgid "See Prayer Stats"
+msgstr "siehe Gebetsstatistiken"
+
+#: campaign-functions/send-email-utility.php:536
+msgid "In Christ with you,"
+msgstr "Gott befohlen,"
 
 #: campaign-functions/time-utilities.php:185
 msgid "5 minutes"
@@ -310,7 +297,7 @@ msgstr "Tag"
 msgid "days"
 msgstr "Tage"
 
-#: campaign-functions/utils.php:334
+#: campaign-functions/utils.php:335
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
@@ -1244,6 +1231,12 @@ msgstr "Gebetszeit: %s min"
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
 msgstr "Ich bete jetzt..."
+
+#~ msgid "Strategic prayer for a disciple making movement in %s"
+#~ msgstr "Strategisches Gebet für eine Jüngerschaftsbewegung"
+
+#~ msgid "See Ramadan 24/7 Prayer Stats"
+#~ msgstr "siehe Ramadan 24/7 Gebetsstatistiken"
 
 #~ msgid "Percentage covered in prayer"
 #~ msgstr "Prozent, die durch Gebet abgedeckt sind"
