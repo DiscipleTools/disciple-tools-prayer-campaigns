@@ -1096,9 +1096,10 @@ export class cpPercentage extends LitElement {
     if ( !this.campaign_data ){
       return html`<div class="loading"></div>`
     }
-    const message = this.campaign_data.campaign_goal==='quantity' ?
+    let message = this.campaign_data.campaign_goal==='quantity' ?
       translate('Goal: %s hours of prayer every day').replace('%s', this.campaign_data.goal_quantity || 24):
       translate('Goal: 24/7 coverage')
+    message = message.replace('&nbsp;', ' ')
 
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
