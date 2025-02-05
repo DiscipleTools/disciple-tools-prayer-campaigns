@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
-"PO-Revision-Date: 2025-01-28 12:18+0000\n"
+"PO-Revision-Date: 2025-02-05 11:49+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/fr_FR/>\n"
@@ -859,13 +859,15 @@ msgstr "# de personnes couvrant cette période"
 #: parts/components-enqueue.php:157
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "Bonjour, prions ensemble pour %s !"
 
 #: parts/components-enqueue.php:158
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"Je me joins à cette campagne de prière et j’aimerais que vous vous joigniez "
+"à moi ! Veuillez également inviter quelques amis à prier avec nous."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
