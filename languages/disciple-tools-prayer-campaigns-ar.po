@@ -6,8 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-01-31T06:43:11+00:00\n"
-"PO-Revision-Date: 2024-11-16 15:00+0000\n"
-"Last-Translator: Kevin Fallah <kevin@christianlingua.com>\n"
+"PO-Revision-Date: 2025-02-05 11:49+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/ar/>\n"
 "Language: ar\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.8.3\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -28,10 +28,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "أَكِّد مشاركتك في الصّلاة بتفعيل حسابك."
 
 #: campaign-functions/send-email-utility.php:92
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "الدخول إلى الحساب"
+msgstr "تفعيل الحساب"
 
 #: campaign-functions/send-email-utility.php:96
 msgid "Or click this link:"
@@ -761,15 +759,12 @@ msgstr "تجديد"
 #: parts/components-enqueue.php:133
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "حتى %s"
 
 #: parts/components-enqueue.php:134
-#, fuzzy
-#| msgctxt "up to 3 months"
-#| msgid "up to %s months"
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "لمدة تصل إلى %s شهرًا"
+msgstr "لمدة %s أشهر"
 
 #: parts/components-enqueue.php:135
 msgid ""
