@@ -406,6 +406,7 @@ export class ContactInfo extends LitElement {
 
       <div class="nav-buttons">
           <button
+              id="submit-sign-up"
               class="button-content"
               ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
               @click=${()=>this.verify_contact_info()}>
