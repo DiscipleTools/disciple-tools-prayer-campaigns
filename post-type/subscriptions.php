@@ -228,15 +228,6 @@ class DT_Subscriptions_Base {
                 'hidden' => true,
                 'customizable' => false,
             ];
-            $fields['subscriber_last_modified'] = [
-                'name'   => __( 'Last Modified by Subscriber', 'disciple-tools-prayer-campaigns' ),
-                'description' => '',
-                'type' => 'time',
-                'default' => '',
-                'hidden' => true,
-                'customizable' => false,
-            ];
-
 
 
             /**
@@ -873,11 +864,6 @@ class DT_Subscriptions_Base {
 
     //filter at the start of post update
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        if ( $post_type === $this->post_type ){
-            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
-                $fields['subscriber_last_modified'] = time();
-            }
-        }
         return $fields;
     }
 
@@ -893,9 +879,6 @@ class DT_Subscriptions_Base {
             }
             if ( !isset( $fields[$key_name] ) ) {
                 $fields[$key_name] = dt_create_unique_key();
-            }
-            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
-                $fields['subscriber_last_modified'] = time();
             }
         }
         return $fields;
