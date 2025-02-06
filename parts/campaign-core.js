@@ -679,15 +679,17 @@ jQuery(document).ready(function ($) {
 
 if (window.navigator.canShare) {
   const share_button = document.getElementById('share-button');
-  share_button.style.display = 'block';
-  share_button.onclick = function () {
-    const data = {
-      title: document.title,
-      text: strings.share_text.replace('%s', document.title) + "\n\n" + strings.share_text2,
-      url: window.location.href,
-    }
-    if (window.navigator.canShare && window.navigator.canShare(data)) {
-      window.navigator.share(data)
+  if ( share_button ){
+    share_button.style.display = 'block';
+    share_button.onclick = function () {
+      const data = {
+        title: document.title,
+        text: strings.share_text.replace('%s', document.title) + "\n\n" + strings.share_text2,
+        url: window.location.href,
+      }
+      if (window.navigator.canShare && window.navigator.canShare(data)) {
+        window.navigator.share(data)
+      }
     }
   }
 }
