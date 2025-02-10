@@ -142,6 +142,10 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             return false;
         }
 
+        if ( !apply_filters( 'campaign_contact_continue', true, $params ) ){
+            return true;
+        }
+
         $cf_keys = DT_Campaign_Landing_Settings::get_cloudflare_turnstile_keys();
         if ( !empty( $cf_keys['dt_cloudflare_site_key'] ) && !empty( $cf_keys['dt_cloudflare_secret_key'] ) ){
             $cf_token = $params['cf_token'] ?? '';
