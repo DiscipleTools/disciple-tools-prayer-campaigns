@@ -1216,8 +1216,7 @@ class DT_Campaigns_Base {
         $percent = 0;
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $campaign_goal = Campaign_Utils::get_campaign_goal( $campaign );
-        $with_timezone = $campaign_goal !== 'quantity';
-        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit, $with_timezone );
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
         $campaign_goal_quantity = Campaign_Utils::get_campaign_goal_quantity( $campaign );
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
         $number_of_slots_needed_to_meet_goal = $campaign_goal_quantity * 60 / $min_time_duration;
@@ -1225,12 +1224,15 @@ class DT_Campaigns_Base {
         $blocks_covered = 0;
         $blocks = 0;
         $blocks_expected = 0;
+        $covered_each_day = [];
+
         if ( ! empty( $times_list ) ) {
             foreach ( $times_list as $day ){
                 if ( $campaign_goal === 'quantity' ){
                     //expect the goal or the max amount of slots in the day
                     $blocks_expected += $number_of_slots_needed_to_meet_goal;
                     $blocks_covered += min( $day['prayer_times'], $number_of_slots_needed_to_meet_goal );
+                    $covered_each_day[] = $day['prayer_times'];
                 } else {
                     $blocks_covered += $day['blocks_covered'];
                 }
@@ -1239,6 +1241,9 @@ class DT_Campaigns_Base {
 
             if ( $campaign_goal === 'quantity' ){
                 $percent = $blocks ? ( $blocks_covered / $blocks_expected * 100 ) : 0;
+                //allow for over 100% if the goal is met
+                $lowest_day_percent = min( $covered_each_day ) / $number_of_slots_needed_to_meet_goal * 100;
+                $percent = max( $percent, $lowest_day_percent );
             } else {
                 $percent = $blocks ? ( $blocks_covered / $blocks * 100 ) : 0;
             }
