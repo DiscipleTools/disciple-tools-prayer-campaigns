@@ -1219,8 +1219,8 @@ class DT_Campaigns_Base {
         $with_timezone = $campaign_goal !== 'quantity';
         $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit, $with_timezone );
         $campaign_goal_quantity = Campaign_Utils::get_campaign_goal_quantity( $campaign );
-        $adjusted = $campaign_goal_quantity / 24;
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
+        $number_of_slots_needed_to_meet_goal = $campaign_goal_quantity * 60 / $min_time_duration;
 
         $blocks_covered = 0;
         $blocks = 0;
@@ -1229,10 +1229,8 @@ class DT_Campaigns_Base {
             foreach ( $times_list as $day ){
                 if ( $campaign_goal === 'quantity' ){
                     //expect the goal or the max amount of slots in the day
-                    $number_of_slots_needed_to_meet_goal = $campaign_goal_quantity * 60 / $min_time_duration;
-                    $max_possible_in_the_day = min( $day['time_slot_count'], $number_of_slots_needed_to_meet_goal );
-                    $blocks_expected += $max_possible_in_the_day;
-                    $blocks_covered += min( $day['prayer_times'], $max_possible_in_the_day );
+                    $blocks_expected += $number_of_slots_needed_to_meet_goal;
+                    $blocks_covered += min( $day['prayer_times'], $number_of_slots_needed_to_meet_goal );
                 } else {
                     $blocks_covered += $day['blocks_covered'];
                 }
