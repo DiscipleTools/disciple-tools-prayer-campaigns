@@ -207,16 +207,6 @@ class DT_Subscriptions_Base {
                 'customizable' => false,
                 'in_create_form' => false,
             ];
-            $fields['languages'] = [
-                'name' => __( 'Languages', 'disciple-tools-prayer-campaigns' ),
-                'description' => __( 'Subscriber preferred language', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'key_select',
-                'tile' => 'details',
-                'in_create_form' => true,
-                'default' => dt_get_option( 'dt_working_languages' ) ?: [ 'en' ],
-                'icon' => get_template_directory_uri() . '/dt-assets/images/languages.svg',
-            ];
-
             $key_name = 'public_key';
             if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
