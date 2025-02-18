@@ -23,7 +23,7 @@ class DT_Time_Utilities {
             $start_with_tz = self::start_of_campaign_with_timezone( $post_id );
             $end = self::end_of_campaign_with_timezone( $post_id, $month_limit, $start_with_tz );
 
-            $start = strtotime( gmdate( 'Y-m-d', $start_with_tz ) );
+            $start = $start_with_tz;
         }
 
         $current_times_list = self::get_current_commitments( $record['ID'], $month_limit );
