@@ -334,9 +334,17 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $current_commitments = DT_Time_Utilities::get_current_commitments( $post_id, 13 );
         $start = (int) DT_Time_Utilities::start_of_campaign_with_timezone( $post_id );
         $end = $campaign['end_date']['timestamp'] ?? null;
+        $campaign_goal = Campaign_Utils::get_campaign_goal( $campaign );
+        $coverage_percent_second_level = 0;
         if ( $end ){
             $end = (int) DT_Time_Utilities::end_of_campaign_with_timezone( $post_id, 12, $start );
-            $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
+            if ( $campaign_goal === 'quantity' ){
+                $coverage_percent = DT_Campaigns_Base::query_coverage_percentage( $post_id );
+            } else {
+                $coverage_levels = DT_Campaigns_Base::query_coverage_levels_progress( $post_id );
+                $coverage_percent = $coverage_levels[0]['percent'] ?? 0;
+                $coverage_percent_second_level = $coverage_levels[1]['percent'] ?? 0;
+            }
         }
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $post_id );
 
@@ -363,6 +371,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
             'time_committed' => DT_Time_Utilities::display_minutes_in_time( $minutes_committed ),
             'enabled_frequencies' => $campaign['enabled_frequencies'] ?? [ 'daily', 'pick' ],
             'coverage_percent' => $coverage_percent ?? null,
+            'coverage_percent_second_level' => $coverage_percent_second_level ?? null,
             'signup_form_fields' => $signup_form_fields,
             'frequency_durations' => campaigns_get_frequency_duration_days( $campaign ),
             'campaign_goal' => Campaign_Utils::get_campaign_goal( $campaign ),
