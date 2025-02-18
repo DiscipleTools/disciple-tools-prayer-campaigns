@@ -903,9 +903,9 @@ export class cpCalendar extends LitElement {
       .month-title {
         display: flex;
         justify-content: space-between;
-        max-width: 280px;
         color: var(--cp-color);
         margin:0;
+        align-items: baseline;
       }
       .month-title .month-percentage {
         color: black; font-size:1.2rem;
@@ -1053,7 +1053,7 @@ export class cpCalendar extends LitElement {
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
-                                ${ ( day.key < window.campaign_data.start_timestamp || ( window.campaign_data.end_timestamp && day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
+                                ${ ( ( day.key < window.campaign_data.start_timestamp && day.disabled ) || ( window.campaign_data.end_timestamp && day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
                                     <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
