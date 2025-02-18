@@ -1216,8 +1216,7 @@ class DT_Campaigns_Base {
         $percent = 0;
         $campaign = DT_Posts::get_post( 'campaigns', $campaign_post_id, true, false );
         $campaign_goal = Campaign_Utils::get_campaign_goal( $campaign );
-        $with_timezone = $campaign_goal !== 'quantity';
-        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit, $with_timezone );
+        $times_list = DT_Time_Utilities::campaign_times_list( $campaign_post_id, $month_limit );
         $campaign_goal_quantity = Campaign_Utils::get_campaign_goal_quantity( $campaign );
         $min_time_duration = DT_Time_Utilities::campaign_min_prayer_duration( $campaign_post_id );
         $number_of_slots_needed_to_meet_goal = $campaign_goal_quantity * 60 / $min_time_duration;
