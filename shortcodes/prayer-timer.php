@@ -234,7 +234,7 @@ function show_prayer_timer( $atts ) {
                 setInterval( function() {
                     let time = new Date().getTime() - 1000;
                     if ( time < end_of_time ) {
-                        seconds = Math.floor( (( end_of_time - time ) / 1000) % 60 )
+                        const seconds = Math.floor( (( end_of_time - time ) / 1000) % 60 )
                         jQuery('#clock-sticky-remaining-time').text( Math.floor( (( end_of_time - time ) / 1000 /60) % 60 ) + ':' +  ( seconds < 10 ? '0' + seconds : seconds ) )
                     }
                 }, 5000)
