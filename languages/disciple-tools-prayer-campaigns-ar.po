@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-02-05T13:01:25+00:00\n"
-"PO-Revision-Date: 2025-02-05 11:49+0000\n"
+"PO-Revision-Date: 2025-02-25 08:27+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/ar/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.1\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:87
@@ -432,7 +432,7 @@ msgstr "كم مرة؟"
 
 #: parts/components-enqueue.php:51
 msgid "I will pray for"
-msgstr "سأصلي من أجل"
+msgstr "سأصلي لمدة"
 
 #: parts/components-enqueue.php:52
 msgid "At what time?"
