@@ -207,16 +207,6 @@ class DT_Subscriptions_Base {
                 'customizable' => false,
                 'in_create_form' => false,
             ];
-            $fields['languages'] = [
-                'name' => __( 'Languages', 'disciple-tools-prayer-campaigns' ),
-                'description' => __( 'Subscriber preferred language', 'disciple-tools-prayer-campaigns' ),
-                'type' => 'key_select',
-                'tile' => 'details',
-                'in_create_form' => true,
-                'default' => dt_get_option( 'dt_working_languages' ) ?: [ 'en' ],
-                'icon' => get_template_directory_uri() . '/dt-assets/images/languages.svg',
-            ];
-
             $key_name = 'public_key';
             if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
                 $key_name = DT_Magic_URL::get_public_key_meta_key( 'subscriptions_app', 'manage' );
@@ -228,15 +218,6 @@ class DT_Subscriptions_Base {
                 'hidden' => true,
                 'customizable' => false,
             ];
-            $fields['subscriber_last_modified'] = [
-                'name'   => __( 'Last Modified by Subscriber', 'disciple-tools-prayer-campaigns' ),
-                'description' => '',
-                'type' => 'time',
-                'default' => '',
-                'hidden' => true,
-                'customizable' => false,
-            ];
-
 
 
             /**
@@ -910,11 +891,6 @@ class DT_Subscriptions_Base {
 
     //filter at the start of post update
     public function dt_post_update_fields( $fields, $post_type, $post_id ){
-        if ( $post_type === $this->post_type ){
-            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
-                $fields['subscriber_last_modified'] = time();
-            }
-        }
         return $fields;
     }
 
@@ -930,9 +906,6 @@ class DT_Subscriptions_Base {
             }
             if ( !isset( $fields[$key_name] ) ) {
                 $fields[$key_name] = dt_create_unique_key();
-            }
-            if ( ! isset( $fields['subscriber_last_modified'] ) ) {
-                $fields['subscriber_last_modified'] = time();
             }
         }
         return $fields;

@@ -903,9 +903,9 @@ export class cpCalendar extends LitElement {
       .month-title {
         display: flex;
         justify-content: space-between;
-        max-width: 280px;
         color: var(--cp-color);
         margin:0;
+        align-items: baseline;
       }
       .month-title .month-percentage {
         color: black; font-size:1.2rem;
@@ -1053,7 +1053,7 @@ export class cpCalendar extends LitElement {
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
                                 >
-                                ${ ( day.key < window.campaign_data.start_timestamp || ( window.campaign_data.end_timestamp && day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
+                                ${ ( ( day.key < window.campaign_data.start_timestamp && day.disabled ) || ( window.campaign_data.end_timestamp && day.key > window.campaign_data.end_timestamp ) ) ? window.campaign_scripts.escapeHTML(day.day) : html`
                                     <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
@@ -1096,9 +1096,12 @@ export class cpPercentage extends LitElement {
     if ( !this.campaign_data ){
       return html`<div class="loading"></div>`
     }
-    const message = this.campaign_data.campaign_goal==='quantity' ?
+    let message = this.campaign_data.campaign_goal==='quantity' ?
       translate('Goal: %s hours of prayer every day').replace('%s', this.campaign_data.goal_quantity || 24):
       translate('Goal: 24/7 coverage')
+    message = message.replace('&nbsp;', ' ')
+
+    const show_second_layer = this.campaign_data.coverage_percent_second_level && this.campaign_data.coverage_percent >= 100;
 
     return html`
     <div class="cp-progress-wrapper cp-wrapper">
@@ -1106,9 +1109,9 @@ export class cpPercentage extends LitElement {
             <progress-ring
                style="max-width: 150px"
                progress="${this.campaign_data.coverage_percent || 0}"
-               progress2="0"
+               progress2="${show_second_layer ? this.campaign_data.coverage_percent_second_level : 0}"
                text="${this.campaign_data.coverage_percent || 0}%"
-               text2="">
+               text2="${show_second_layer ? this.campaign_data.coverage_percent_second_level + '%' : ''}"
             </progress-ring>
         </div>
         <div style="color: rgba(0,0,0,0.57); text-align: center">${message}</div>

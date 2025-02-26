@@ -1,4 +1,4 @@
-import {html, css, LitElement, range, map, classMap, styleMap} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import {html, css, LitElement, range, map, classMap, styleMap, svg} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 const strings = window.campaign_scripts.escapeObject(window.campaign_objects.translations)
 function translate(str){
   if ( !strings[str] ){
@@ -406,6 +406,7 @@ export class ContactInfo extends LitElement {
 
       <div class="nav-buttons">
           <button
+              id="submit-sign-up"
               class="button-content"
               ?disabled=${!this._form_items.name || !this._is_email(this._form_items.email) || this.selected_times_count === 0 || this._loading}
               @click=${()=>this.verify_contact_info()}>
@@ -1298,7 +1299,7 @@ export class cpProgressRing extends LitElement {
       --radius: 50cqi;
       --stroke-width: max(3px, 5cqi);
       --normalized-radius: calc(var(--radius) - var(--stroke-width));
-      --normalized-radius2: calc(var(--radius) - var(--stroke-width) / 2 + 1);
+      --normalized-radius2: calc(var(--radius) - calc(var(--stroke-width) * 2  )  );
       --circumference: calc(var(--normalized-radius) * 2 * var(--pi));
       --circumference2: calc(var(--normalized-radius2) * 2 * var(--pi));
 
@@ -1337,11 +1338,18 @@ export class cpProgressRing extends LitElement {
     circle.second-circle {
       stroke-dashoffset: var(--offset2);
     }
+    circle.third-circle {
+      stroke-dashoffset: var(--offset3);
+      stroke-dasharray: var(--circumference2) var(--circumference2);
+      r: var(--normalized-radius2);
+      stroke:red;
+    }
     `
   ]
 
   static properties = {
     text: {type: String},
+    text2: {type: String},
     progress: {type: Number},
     progress2: {type: Number},
     font_size: {type: Number},
@@ -1350,29 +1358,30 @@ export class cpProgressRing extends LitElement {
 
   constructor() {
     super();
-    this.font_size = 15
+    this.font_size = 1
     this.color = 'dodgerblue'
     this.progress = 0;
+    this.progress2 = 0
     this.text = ''
+    this.text2 = ''
   }
 
   render() {
     this.progress = parseInt(this.progress).toFixed()
     this.color = parseInt( this.progress ) >= 100 ? 'mediumseagreen' : this.color
+    let text = ``;
 
-    // if ( text2 ){
-    //   text_html = `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px">
-    //       <tspan x="50%" dy="0">${window.campaign_scripts.escapeHTML(text || progress + '%')}</tspan>
-    //       <tspan x="50%" dy="0.5cm">${window.campaign_scripts.escapeHTML(text2)}</tspan>
-    //   </text>`
-    // } else {
-    //   text_html =  `<text x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${font_size}px" dy=".3em">
-    //     ${window.campaign_scripts.escapeHTML(text || progress + '%')}
-    //   </text>
-    //   `
-    // }
-    // circrle3 @todo
-
+    if ( this.text2 ){
+      text = svg`<text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="${this.font_size}em" dy=".3em">
+          <tspan x="50%" dy="0">${window.campaign_scripts.escapeHTML(this.text || this.progress + '%')}</tspan>
+          <tspan x="50%" dy="0.5cm">${window.campaign_scripts.escapeHTML(this.text2)}</tspan>
+      </text>`
+    } else {
+      text =  svg`<text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
+          ${window.campaign_scripts.escapeHTML(this.text)}
+      </text>
+      `
+    }
 
     return html`
       <svg>
@@ -1382,14 +1391,18 @@ export class cpProgressRing extends LitElement {
              fill="transparent"
           />
           <circle
+              class="third-circle"
+              stroke-opacity="0.5"
+              stroke-width="4px"
+              fill="transparent"
+          />
+          <circle
              class="second-circle"
              stroke="${this.color}"
              stroke-opacity="0.1"
              fill="transparent"
           />
-          <text class="inner-text" x="50%" y="50%" text-anchor="middle" stroke-width="2px" font-size="1em" dy=".3em">
-              ${window.campaign_scripts.escapeHTML(this.text)}
-          </text>
+          ${text}
       </svg>
       <style>
         :host{
