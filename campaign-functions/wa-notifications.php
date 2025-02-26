@@ -13,6 +13,20 @@ class Prayer_Campaign_WhatsApp_Notifications {
         add_filter( 'dt_subscription_update_profile', [ $this, 'dt_subscription_update_profile' ], 10, 3 );
 
         add_action( 'dt_twilio_message_received', [ $this, 'wa_callback' ], 10, 2 );
+        add_filter( 'campaign_create_subscriber_fields', [ $this, 'campaign_create_subscriber_fields' ], 10, 1 );
+
+        add_filter( 'dt_post_update_fields', [ $this, 'dt_post_update_fields' ], 10, 3 );
+    }
+
+    public function dt_post_update_fields( $fields, $post_type, $post_id ){
+        if ( $post_type !== 'subscriptions' ){
+            return $fields;
+        }
+        if ( !empty( $fields['whatsapp_number'] ) ){
+            $fields['whatsapp_number'] = campaigns_validate_and_format_phone( $fields['whatsapp_number'], true );
+        }
+
+        return $fields;
     }
 
 
