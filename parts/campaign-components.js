@@ -1124,7 +1124,7 @@ export class cpTimes extends LitElement {
     let options = [];
     let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key)
+      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = 0;
       //quantity of prayer counts
@@ -1184,7 +1184,7 @@ export class cpTimes extends LitElement {
     let options = [];
     let key = 0;
     while (key < day_in_seconds) {
-      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key)
+      let time = window.luxon.DateTime.fromSeconds(time_frame_day_start + key, {zone:window.campaign_user_data.timezone})
       let time_formatted = time.toFormat('hh:mm a')
       let progress = (
         coverage[time_formatted] ? coverage[time_formatted].length / next_month.length * 100 : 0
