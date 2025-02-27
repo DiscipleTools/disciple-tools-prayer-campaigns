@@ -1296,17 +1296,10 @@ export class cpProgressRing extends LitElement {
     :host {
       display: block;
       --pi: 3.14159265358979;
-      --radius: 50cqi;
+      --radius: 50%;
       --stroke-width: max(3px, 5cqi);
       --normalized-radius: calc(var(--radius) - var(--stroke-width));
-      --normalized-radius2: calc(var(--radius) - calc(var(--stroke-width) * 2  )  );
-      --circumference: calc(var(--normalized-radius) * 2 * var(--pi));
-      --circumference2: calc(var(--normalized-radius2) * 2 * var(--pi));
-
-      --offset2: calc((var(--progress) / 100 * var(--circumference))*-1);
-      --offset: calc( var(--circumference) + var(--offset2));
-      --offset3: calc( var(--circumference2) - var(--progress2) / 100 * var(--circumference2));
-
+      --normalized-radius2: calc(var(--radius) - var(--stroke-width) * 2 );
 
       height: 95%;
       width: 95%;
@@ -1315,34 +1308,20 @@ export class cpProgressRing extends LitElement {
     .inner-text {
       font-size: clamp(1em, 0.5em + 3cqi, 1.25rem);
     }
-
-    svg {
-      width: 100cqi;
-      height: 100cqi;
-    }
-
     circle {
-      transition: stroke-dashoffset 0.35s;
       transform: rotate(-90deg);
       transform-origin: 50% 50%;
       stroke-width: var(--stroke-width);
-      stroke-dasharray: var(--circumference) var(--circumference);
       r: var(--normalized-radius);
-      cx: var(--radius);
-      cy: var(--radius);
+      cx: 50%;
+      cy: 50%;
     }
-
-    circle.first-circle {
-      stroke-dashoffset: var(--offset);
-    }
-    circle.second-circle {
-      stroke-dashoffset: var(--offset2);
+        
+    circle.progress {
+        r: var(--normalized-radius);
     }
     circle.third-circle {
-      stroke-dashoffset: var(--offset3);
-      stroke-dasharray: var(--circumference2) var(--circumference2);
-      r: var(--normalized-radius2);
-      stroke:red;
+        r: var(--normalized-radius2);
     }
     `
   ]
@@ -1384,34 +1363,13 @@ export class cpProgressRing extends LitElement {
     }
 
     return html`
-      <svg>
-           <circle
-             class="first-circle"
-             stroke="${this.color}"
-             fill="transparent"
-          />
-          <circle
-              class="third-circle"
-              stroke-opacity="0.5"
-              stroke-width="4px"
-              fill="transparent"
-          />
-          <circle
-             class="second-circle"
-             stroke="${this.color}"
-             stroke-opacity="0.1"
-             fill="transparent"
-          />
+      <svg height="100%" width="100%">
+          <circle class="outer-ring" fill="none" stroke="${this.color}" stroke-opacity="0.1"  />
+          <circle class="progress"  fill="none" stroke="${this.color}" pathLength="100" stroke-dasharray="${this.progress} 100"/>
+          <circle class="third-circle" fill="transparent" stroke="red" stroke-opacity="0.5" pathLength="100" stroke-dasharray="${this.progress2} 100"/>
           ${text}
       </svg>
-      <style>
-        :host{
-          --progress: ${Math.min(this.progress, 100)};
-          --progress2: ${this.progress2};
-        }
-      </style>
     `
-
   }
 }
 customElements.define('progress-ring', cpProgressRing);
