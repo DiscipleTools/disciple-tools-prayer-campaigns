@@ -45,26 +45,18 @@ $prayer_fuel_link = $campaign_url . '/list';
     </nav>
     <button class="close-button" id="close-button" aria-label="Menu Close"><i class="lnr lnr-cross"></i></button>
 </div>
-<!-- end Nav -->
+<div class="fixed-top menu-bg ">
+    <div class="container">
+        <div class="logo-menu">
+            <a href="<?php echo esc_url( !empty( $campaign_fields['logo_link_url'] ) ? $campaign_fields['logo_link_url'] : $campaign_url ) ?>" class="logo">
+                <!-- home icon -->
+                <div class="icon">
+                    <i class="lnr lnr-home"></i>
+                </div>
+            </a>
+            <div class="d-flex align-items-center">
 
-<!-- HEADER -->
-<header id="hero-area" data-stellar-background-ratio="0.5" class="stencil-background">
-    <div class="fixed-top change-bg-on-scroll">
-        <div class="container">
-            <div class="logo-menu">
-                <?php if ( !empty( $url_path ) ) :?>
-                    <a href="<?php echo esc_url( !empty( $campaign_fields['logo_link_url'] ) ? $campaign_fields['logo_link_url'] : $campaign_url ) ?>" class="logo">
-                        <!-- home icon -->
-                        <div class="icon">
-                            <i class="lnr lnr-home"></i>
-                        </div>
-                    </a>
-                <?php else : ?>
-                    <div></div>
-                <?php endif; ?>
-                <div class="d-flex align-items-center">
-
-                    <?php if ( count( $langs ) > 1 ): ?>
+                <?php if ( count( $langs ) > 1 ): ?>
 
                     <select class="dt-magic-link-language-selector">
 
@@ -77,7 +69,7 @@ $prayer_fuel_link = $campaign_url . '/list';
                             <?php if ( isset( $language['native_name'] ) ) : ?>
                                 <option value="<?php echo esc_html( $code ); ?>" <?php selected( $lang === $code ) ?>>
 
-                                <?php echo esc_html( $language['flag'] ?? '' ); ?> <?php echo esc_html( $language['native_name'] ); ?>
+                                    <?php echo esc_html( $language['flag'] ?? '' ); ?> <?php echo esc_html( $language['native_name'] ); ?>
 
                                 </option>
                             <?php endif; ?>
@@ -86,24 +78,29 @@ $prayer_fuel_link = $campaign_url . '/list';
 
                     </select>
 
-                    <?php endif; ?>
-                    <button class="menu-button" id="share-button"  style="display:none">
-                        <img class="dt-icon dt-white-icon" style="vertical-align: unset"  src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/share.svg' ) ?>"/>
-                    </button>
-                    <button class="menu-button" id="open-button" aria-label="Menu Open">
-                        <i class="lnr lnr-menu"></i>
-                    </button>
-                </div>
+                <?php endif; ?>
+                <button class="menu-button" id="share-button"  style="display:none">
+                    <img class="dt-icon dt-white-icon" style="vertical-align: unset"  src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/share.svg' ) ?>"/>
+                </button>
+                <button class="menu-button" id="open-button" aria-label="Menu Open">
+                    <i class="lnr lnr-menu"></i>
+                </button>
             </div>
         </div>
     </div>
+</div>
+<!-- end Nav -->
+
+<!-- HEADER -->
+<header id="hero-area" data-stellar-background-ratio="0.5" class="stencil-background">
+
     <?php if ( !isset( $campaign_fields['enable_overlay_blur'] ) || $campaign_fields['enable_overlay_blur']['key'] === 'yes' ) : ?>
-    <div class="overlay"></div>
+        <div class="overlay"></div>
     <?php endif; ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="contents content-height text-center">
+                <div class="contents content-height text-center" style="padding: 100px 0">
 
                     <?php if ( !empty( $campaign_fields['logo_url'] ) ) : ?>
 
@@ -114,29 +111,18 @@ $prayer_fuel_link = $campaign_url . '/list';
                     <?php else : ?>
 
                         <h1 class="wow fadeInDown" style="font-size: 3em;" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'name' ) ?? 'Set Up A Campaign' ) ?>
+                            <?php echo esc_html__( 'Prayer Fuel', 'disciple-tools-prayer-campaigns' ); ?>
                         </h1>
 
                     <?php endif; ?>
 
                     <h4>
-                        <?php display_translated_field( 'subtitle' ); ?>
+                        <?php echo esc_html( DT_Porch_Settings::get_field_translation( 'name' ) ) ?>
                     </h4>
 
-                    <?php
-                    if ( !isset( $campaign_fields['end_date']['formatted'] ) || time() <= strtotime( $campaign_fields['end_date']['formatted'] ?? '' ) ) : ?>
-
-                        <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                            <a href="<?php echo esc_url( $sign_up_link ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
-                            <a href="<?php echo esc_url( $prayer_fuel_link ) ?>" class="btn btn-common btn-rm"><?php echo esc_html( DT_Porch_Settings::get_field_translation( 'see_fuel_button' ) ) ?></a>
-                        </p>
-
-                    <?php endif; ?>
 
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-<!-- Header Section End -->
