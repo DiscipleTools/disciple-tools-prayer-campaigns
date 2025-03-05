@@ -118,22 +118,23 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
 
 
     public function dt_blank_body(){
-        DT_Generic_Porch::instance()->require_once( 'top-section.php' );
-
         if ( $this->current_page === '' ){
+            DT_Generic_Porch::instance()->require_once( 'top-section.php' );
             DT_Generic_Porch::instance()->require_once( 'home-body.php' );
-        } elseif ( $this->current_page === 'list' ){
+        } if ( $this->current_page === 'list' ){
+            DT_Generic_Porch::instance()->require_once( 'top-nav-fuel.php' );
             DT_Generic_Porch::instance()->require_once( 'archive-body.php' );
             DT_Generic_Porch::instance()->require_once( 'post-list-body.php' );
         } elseif ( $this->current_page === 'listEdit' ){
+            DT_Generic_Porch::instance()->require_once( 'top-nav-fuel.php' );
             DT_Generic_Porch::instance()->require_once( 'edit-body.php' );
             DT_Generic_Porch::instance()->require_once( 'edit-post-list-body.php' );
         } elseif ( $this->current_page === 'fuel' ){
+            DT_Generic_Porch::instance()->require_once( 'top-nav-fuel.php' );
             DT_Generic_Porch::instance()->require_once( 'landing-body.php' );
             DT_Generic_Porch::instance()->require_once( 'post-list-body.php' );
-        } elseif ( $this->current_page === 'install' ){
-            DT_Generic_Porch::instance()->require_once( 'landing-body.php' );
-            DT_Generic_Porch::instance()->require_once( 'post-list-body.php' );
+        } else {
+            DT_Generic_Porch::instance()->require_once( 'top-section.php' );
         }
     }
     public function header_javascript(){

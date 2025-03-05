@@ -4,6 +4,12 @@ $campaign_id = DT_Campaign_Landing_Settings::get_campaign_id();
 ?>
 
 <!-- Footer Section Start -->
+<div id="loader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
 <footer>
     <div class="container">
         <div class="row">

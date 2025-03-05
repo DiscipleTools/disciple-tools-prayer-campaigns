@@ -1,16 +1,4 @@
 /*
-   Sticky Nav
-   ========================================================================== */
-$(window).on('scroll', function () {
-  if ($(window).scrollTop() > 200) {
-    $('.header-top-area').addClass('menu-bg');
-  } else {
-    $('.header-top-area').removeClass('menu-bg');
-  }
-});
-
-
-/*
    Back Top Link
    ========================================================================== */
 $(window).scroll(function () {
@@ -40,21 +28,23 @@ jQuery(function ($) {
 });
 
 jQuery(document).ready(function () {
-  $(window).on('scroll', function () {
-    if ($(window).scrollTop() > 200) {
-      $('.fixed-top').addClass('menu-bg');
-    } else {
-      $('.fixed-top').removeClass('menu-bg');
-    }
-  });
+  if ($('.change-bg-on-scroll').length){
+    $(window).on('scroll', function () {
+      if ($(window).scrollTop() > 200) {
+        $('.fixed-top').addClass('menu-bg');
+      } else {
+        $('.fixed-top').removeClass('menu-bg');
+      }
+    });
 
-  if (typeof scrollspy!=='function') {
-    return
+    if (typeof scrollspy!=='function') {
+      return
+    }
+    $('body').scrollspy({
+      target: '.navbar-collapse',
+      offset: 195
+    });
   }
-  $('body').scrollspy({
-    target: '.navbar-collapse',
-    offset: 195
-  });
 });
 
 window.addEventListener('scroll', function () {
