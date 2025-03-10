@@ -121,6 +121,9 @@ $prayer_fuel_link = $campaign_url . '/list';
                     </h4>
 
 
+                    <?php do_action( 'dt_campaigns_prayer_fuel_header' ); ?>
+
+
                 </div>
             </div>
         </div>
