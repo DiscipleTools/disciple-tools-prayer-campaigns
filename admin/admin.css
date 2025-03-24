@@ -82,6 +82,11 @@
     width: 12px;
 }
 
+.prayer-fuel-warning {
+    color: red;
+    font-weight: bold;
+}
+
 .plus-icon {
     font: normal 20px/1 dashicons;
     display: flex;
