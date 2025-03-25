@@ -22,15 +22,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
-        $days = [];
-        $campaign_length = DT_Campaign_Fuel::total_days_in_campaign();
-        for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
-            if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
-                continue;
-            }
-            $days[] = $i + 1;
-        }
-        $days_string = implode( ', ', $days );
+        
 
         global $wpdb;
         $query = "
@@ -40,9 +32,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
             WHERE p.post_type = %s
             AND p.post_status IN ( 'draft', 'publish', 'future' )
-            AND pm.meta_value IN ( %1s )
         ";
-        $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $days_string ];
+        $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE ];
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
             $query .= '
@@ -66,6 +57,18 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             }
 
             $posts_sorted_by_campaign_day[$day][] = $post;
+        }
+
+        //get the max day from $posts_sorted_by_campaign_day
+        $max_installed_fuel = max( array_keys( $posts_sorted_by_campaign_day ) );
+
+        $days = [];
+        $campaign_length = max( $max_installed_fuel, DT_Campaign_Fuel::total_days_in_campaign() );
+        for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
+            if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
+                continue;
+            }
+            $days[] = $i + 1;
         }
 
         /* flesh out the posts array to include empty days */
@@ -166,9 +169,17 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 <?php
                 break;
             case 'date':
+                //warning of day is after the campaign end
+                $campaign = DT_Campaign_Landing_Settings::get_campaign();
+                $campaign_end_time = $campaign['end_date']['timestamp'] ?? null;
+                
                 $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
-                $date = gmdate( 'Y/m/d', strtotime( $date ) );
+                $fuel_time = strtotime( $date );
+                $date = gmdate( 'Y/m/d', $fuel_time );
                 echo esc_html( $date );
+                if ( $campaign_end_time && $fuel_time > $campaign_end_time ) {
+                    echo '<div class="prayer-fuel-warning">Warning: Day is after the campaign end</div>';
+                }
                 break;
             case 'titles':
                 $titles = implode( ', ', array_map( function( $item ) {
