@@ -297,7 +297,7 @@ class DT_Generic_Porch_Stats {
 
 
             <?php if ( $current_selected_porch === 'ramadan-porch' ) {
-                $ramadan_stats = p4m_cached_api_call( 'https://prayer.tools/wp-json/dt-public/campaigns/campaigns-stats?start_date=2024-03-01&end_date=2024-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
+                $ramadan_stats = p4m_cached_api_call( 'https://prayer.tools/wp-json/dt-public/campaigns/campaigns-stats?start_date=2025-02-01&end_date=2025-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
                 ?>
             <section class='section' data-stellar-background-ratio='0.2' style='padding-bottom: 0; min-height: 800px'>
                 <div class='container'>
