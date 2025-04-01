@@ -269,6 +269,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         $args = [
             'comment_author' => 'Prayer Campaign Stats Form'
         ];
+        do_action( 'campaign_stats_message_submit', $post_id, $params['email'], $params['story'] );
 
         $comment = "\n" . 'You received a Story feedback on ' . $campaign_url . '/stats, submitted by ' . $params['email'] . ": \n\n" . $params['story'];
         DT_Posts::add_post_comment( 'campaigns', $post_id, $mention . $comment, 'stories', $args, false );
@@ -277,7 +278,6 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
         if ( sizeof( $subs['posts'] ) === 1 ){
             DT_Posts::add_post_comment( 'subscriptions', $subs['posts'][0]['ID'], $comment, 'stories', [], false, true );
         }
-        do_action( 'campaign_stats_message_submit', $post_id, $params['email'], $comment );
 
         return true;
     }
