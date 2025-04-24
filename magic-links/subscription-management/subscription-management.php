@@ -23,12 +23,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
         if ( !$this->check_parts_match() ){
             return;
         }
-        $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
-        if ( is_wp_error( $post ) || empty( $post['campaigns'] ) ){
-            return;
-        }
-        if ( isset( $post['lang'] ) && $post['lang'] !== 'en_US' ){
-            dt_campaign_set_translation( $post['lang'] );
+        $lang = get_post_meta( $this->parts['post_id'], 'lang', true );
+        if ( isset( $lang ) && $lang !== 'en_US' ){
+            dt_campaign_set_translation( $lang );
         }
         $this->page_title = __( 'My Prayer Commitments', 'disciple-tools-prayer-campaigns' );
 
@@ -254,6 +251,9 @@ class DT_Prayer_Subscription_Management_Magic_Link extends DT_Magic_Url_Base {
 
     public function manage_body(){
         $post = DT_Posts::get_post( 'subscriptions', $this->parts['post_id'], true, false );
+        if ( is_wp_error( $post ) || empty( $post['campaigns'] ) ){
+            return false;
+        }
         dt_campaign_set_translation( $post['lang'] );
         if ( !isset( $post['campaigns'][0]['ID'] ) ){
             return false;
