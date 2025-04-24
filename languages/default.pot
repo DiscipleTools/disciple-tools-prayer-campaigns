@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.14.5\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.15.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-27T10:19:44+00:00\n"
+"POT-Creation-Date: 2025-04-24T15:25:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -116,6 +116,7 @@ msgstr ""
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:152
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
+#: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
 msgstr ""
 
@@ -299,7 +300,7 @@ msgstr ""
 msgid "Prayer Timer"
 msgstr ""
 
-#: magic-links/subscription-management/subscription-management.php:33
+#: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
@@ -327,6 +328,7 @@ msgid "Links"
 msgstr ""
 
 #: magic-links/subscription-management/subscription-management.php:350
+#: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr ""
@@ -777,7 +779,7 @@ msgstr ""
 #: parts/components-enqueue.php:153
 #: porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
-#: porches/generic/site/footer.php:46
+#: porches/generic/site/footer.php:52
 msgid "Contact Us"
 msgstr ""
 
@@ -992,10 +994,12 @@ msgstr ""
 msgid "Sign up to hear about other prayer efforts and opportunities with Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 
+#: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
 msgstr ""
 
+#: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr ""
