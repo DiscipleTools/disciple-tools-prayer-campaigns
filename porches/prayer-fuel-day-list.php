@@ -22,8 +22,6 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
-        
-
         global $wpdb;
         $query = "
             SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day, post_status, post_date
@@ -172,7 +170,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                 //warning of day is after the campaign end
                 $campaign = DT_Campaign_Landing_Settings::get_campaign();
                 $campaign_end_time = $campaign['end_date']['timestamp'] ?? null;
-                
+
                 $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
                 $fuel_time = strtotime( $date );
                 $date = gmdate( 'Y/m/d', $fuel_time );
