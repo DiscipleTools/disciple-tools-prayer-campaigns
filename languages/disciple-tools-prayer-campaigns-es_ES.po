@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-02-05T13:01:25+00:00\n"
+"POT-Creation-Date: 2025-04-24T15:25:14+00:00\n"
 "PO-Revision-Date: 2025-02-05 11:49+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
@@ -118,6 +118,7 @@ msgstr "Aquí están sus próximos tiempos de oración:"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:152
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
+#: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
 msgstr "Combustible de Oración"
 
@@ -345,7 +346,7 @@ msgstr "Esta campaña ha terminado. Ver combustible para la oración abajo"
 msgid "Prayer Timer"
 msgstr "Temporizador de oración"
 
-#: magic-links/subscription-management/subscription-management.php:33
+#: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
@@ -375,6 +376,7 @@ msgid "Links"
 msgstr "Links"
 
 #: magic-links/subscription-management/subscription-management.php:350
+#: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "Inicio"
@@ -837,7 +839,7 @@ msgid "Try Again"
 msgstr "Inténtalo de nuevo"
 
 #: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
+#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:52
 msgid "Contact Us"
 msgstr "Contactanos"
 
@@ -1088,10 +1090,12 @@ msgstr ""
 "Regístrate para escuchar sobre otras iniciativas y oportunidades de oración "
 "con Prayer.Tools y recibir mensajes ocasionales de  de GospelAmbition.org."
 
+#: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
 msgstr "Inscribirse"
 
+#: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "Elige un idioma"
