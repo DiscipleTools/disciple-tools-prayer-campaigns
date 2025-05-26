@@ -133,8 +133,8 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
                                 starting_label="<?php echo esc_html__( 'Ramadan Begins ...', 'disciple-tools-prayer-campaigns' ); ?>"
                                 ending_label="<?php echo esc_html__( 'Ramadan Ends ...', 'disciple-tools-prayer-campaigns' ); ?>"
                                 is_finished="<?php echo esc_html__( 'Ramadan Is Finished', 'disciple-tools-prayer-campaigns' ); ?>"
-                                end_time="<?php echo esc_html( $campaign_fields['end_date']['timestamp'] ); ?>"
-                                start_time="<?php echo esc_html( $campaign_fields['start_date']['timestamp'] ); ?>">
+                                end_time="<?php echo esc_html( DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_fields['ID'] ) ?? null ); ?>"
+                                start_time="<?php echo esc_html( DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_fields['ID'] ) ); ?>">
                         </div>
                     </div>
                 </div>

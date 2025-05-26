@@ -114,8 +114,8 @@ if ( $dt_campaign_selected_campaign_magic_link_settings['color'] === 'preset' ){
                     <div class="facts-item">
                         <div class="fact-count">
                             <counter-row
-                                end_time="<?php echo esc_html( $campaign_fields['end_date']['timestamp'] ?? null ); ?>"
-                                start_time="<?php echo esc_html( $campaign_fields['start_date']['timestamp'] ); ?>">
+                                end_time="<?php echo esc_html( DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_fields['ID'] ) ?? null ); ?>"
+                                start_time="<?php echo esc_html( DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_fields['ID'] ) ); ?>">
                         </div>
                     </div>
                 </div>
