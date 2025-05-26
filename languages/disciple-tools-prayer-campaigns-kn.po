@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-02-05T13:01:25+00:00\n"
+"POT-Creation-Date: 2025-05-26T09:42:41+00:00\n"
 "PO-Revision-Date: 2025-02-05 11:49+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
@@ -41,6 +41,7 @@ msgstr "ನೀವು ಈ ಇಮೇಲ್ ಅನ್ನು ವಿನಂತಿಸ�
 
 #: campaign-functions/send-email-utility.php:184
 #: campaign-functions/send-email-utility.php:280
+#, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s %2$s ರಿಂದ %3$s ವರೆಗೆ"
@@ -56,6 +57,7 @@ msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಲು ನೋ�
 #: campaign-functions/send-email-utility.php:224
 #: campaign-functions/send-email-utility.php:312
 #: campaign-functions/send-email-utility.php:416
+#, php-format
 msgid "Hello %s,"
 msgstr "ನಮಸ್ಕಾರ %s,"
 
@@ -82,6 +84,7 @@ msgstr "ಇವು ನಿಮ್ಮ ಮುಂದಿನ ಪ್ರಾರ್ಥನೆ
 
 #: campaign-functions/send-email-utility.php:240
 #: campaign-functions/send-email-utility.php:316
+#, php-format
 msgid "Times are shown according to: %s time"
 msgstr "%s ಸಮಯಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಸಮಯಗಳನ್ನು ತೋರಿಸಲಾಗಿದೆ"
 
@@ -91,11 +94,13 @@ msgid "Download Calendar"
 msgstr "ದಿನಾಂಕ ಪಟ್ಟಿಯನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡಿ"
 
 #: campaign-functions/send-email-utility.php:268
+#, php-format
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "ಇಂದಿನ ಪ್ರಾರ್ಥನೆ ಅಂಶಗಳನ್ನು ನೋಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
 
 #: campaign-functions/send-email-utility.php:286
+#, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "%s ಗೆ"
@@ -122,6 +127,7 @@ msgstr "ನಿಮ್ಮ ಮುಂಬರುವ ಪ್ರಾರ್ಥನೆ ಸಮ
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:152
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
+#: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಬಲ"
 
@@ -166,6 +172,7 @@ msgid "Thank you for praying with us!"
 msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಿದ್ದಕ್ಕಾಗಿ ಕೃತಜ್ಞತೆಗಳು!"
 
 #: campaign-functions/send-email-utility.php:487
+#, php-format
 msgid "Dear %s,"
 msgstr "ಆತ್ಮೀಯ %s,"
 
@@ -175,6 +182,7 @@ msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "ಶಿಷ್ಯರ ಆಂದೋಲನಕ್ಕಾಗಿ ಕಾರ್ಯತಂತ್ರದ ಪ್ರಾರ್ಥನೆ"
 
 #: campaign-functions/send-email-utility.php:495
+#, php-format
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "%2$s ನಲ್ಲಿ %1$s ಗೆ ಸೇರಿದ್ದಕ್ಕಾಗಿ ಕೃತಜ್ಞತೆಗಳು."
 
@@ -313,6 +321,7 @@ msgid "Your prayer time has been extended"
 msgstr "ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು ವಿಸ್ತರಿಸಲಾಗಿದೆ"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
+#, php-format
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
 msgstr "%2$s ವರೆಗೆ %1$s ಪ್ರಾರ್ಥನೆ ಮಾಡಲು ನೀವು ಸೈನ್ ಅಪ್ ಮಾಡಿರುವಿರಿ."
@@ -332,6 +341,7 @@ msgstr "ಪ್ರಾರ್ಥನೆಯಲ್ಲಿ ನನ್ನೊಂದಿಗ�
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:164
+#, php-format
 msgid "Content will start in %s days"
 msgstr "ವಿಷಯವು %s ದಿನಗಳಲ್ಲಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ"
 
@@ -346,7 +356,7 @@ msgstr "ಈ ಅಭಿಯಾನ ಮುಗಿದಿದೆ. ಕೆಳಗೆ ಶಕ�
 msgid "Prayer Timer"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯ"
 
-#: magic-links/subscription-management/subscription-management.php:33
+#: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
@@ -374,6 +384,7 @@ msgid "Links"
 msgstr "ಲಿಂಕ್ಗಳು"
 
 #: magic-links/subscription-management/subscription-management.php:350
+#: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "ಮನೆ"
@@ -429,6 +440,7 @@ msgid "Campaign Ended"
 msgstr "ಅಭಿಯಾನ ಕೊನೆಗೊಂಡಿದೆ"
 
 #: parts/components-enqueue.php:49
+#, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%2$s ನಿಮಿಷಗಳ %1$s ವರೆಗೆ."
@@ -474,6 +486,7 @@ msgid "Select a Time"
 msgstr "ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
 #: parts/components-enqueue.php:62
+#, php-format
 msgid "Select a Time for %s"
 msgstr "%s ಗಾಗಿ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
@@ -486,11 +499,13 @@ msgid "prayer commitments"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮರ್ಪಣೆಗಳು"
 
 #: parts/components-enqueue.php:65
+#, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr "%s ರಂದು ಪ್ರಾರಂಭವಾಗುತ್ತದೆ"
 
 #: parts/components-enqueue.php:66
+#, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr "%s ರಂದು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
@@ -509,6 +524,7 @@ msgid "Verify"
 msgstr "ಪರಿಶೀಲಿಸಿ"
 
 #: parts/components-enqueue.php:70
+#, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr "ಗುರಿ: ಪ್ರತಿದಿನ %s ಗಂಟೆಗಳ ಪ್ರಾರ್ಥನೆ ಮಾಡುವುದು"
 
@@ -545,26 +561,32 @@ msgid "Pick Dates and Times"
 msgstr "ದಿನಾಂಕಗಳು ಮತ್ತು ಸಮಯವನ್ನು ಆರಿಸಿ"
 
 #: parts/components-enqueue.php:79
+#, php-format
 msgid "%s Minutes"
 msgstr "%s ನಿಮಿಷಗಳು"
 
 #: parts/components-enqueue.php:80
+#, php-format
 msgid "%s Hour"
 msgstr "%s ಗಂಟೆ"
 
 #: parts/components-enqueue.php:81
+#, php-format
 msgid "%s Hours"
 msgstr "%s ಗಂಟೆಗಳು"
 
 #: parts/components-enqueue.php:82
+#, php-format
 msgid "%1$s at %2$s for %3$s"
 msgstr "%3$s ಗೆ %2$s ನಲ್ಲಿ %1$s"
 
 #: parts/components-enqueue.php:83
+#, php-format
 msgid "for %s minutes"
 msgstr "%s ನಿಮಿಷಗಳವರೆಗೆ"
 
 #: parts/components-enqueue.php:84
+#, php-format
 msgid "Every %s"
 msgstr "ಪ್ರತಿ %s"
 
@@ -581,10 +603,12 @@ msgid "Select a Day"
 msgstr "ಒಂದು ದಿನವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
 #: parts/components-enqueue.php:88
+#, php-format
 msgid "Renews on %s"
 msgstr "%s  ರಂದು ನವೀಕರಿಸಲಾಗುತ್ತದೆ"
 
 #: parts/components-enqueue.php:89
+#, php-format
 msgid "Ends on %s"
 msgstr "%s ರಂದು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
 
@@ -747,6 +771,7 @@ msgid "Change Prayer Time"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು ಬದಲಾಯಿಸಿ"
 
 #: parts/components-enqueue.php:128
+#, php-format
 msgid "Your current prayer time is %s"
 msgstr "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಪ್ರಾರ್ಥನೆ ಸಮಯ %s ಆಗಿದೆ"
 
@@ -767,11 +792,13 @@ msgid "renew"
 msgstr "ನವೀಕರಿಸಿ"
 
 #: parts/components-enqueue.php:133
+#, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr "%s ವರೆಗೆ"
 
 #: parts/components-enqueue.php:134
+#, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "%s ತಿಂಗಳುಗಳಿಗೆ"
@@ -811,6 +838,7 @@ msgstr ""
 "ಪೂರ್ಣಗೊಳಿಸಿ."
 
 #: parts/components-enqueue.php:147
+#, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "ಇವರಿಗೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್ನಲ್ಲಿರುವ \"ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
@@ -836,7 +864,7 @@ msgid "Try Again"
 msgstr "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
 
 #: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
+#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:52
 msgid "Contact Us"
 msgstr "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ"
 
@@ -857,6 +885,7 @@ msgid "# of people covering this time"
 msgstr "ಈ ಬಾರಿ ಆವರಿಸಿರುವ ಜನರು #"
 
 #: parts/components-enqueue.php:157
+#, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr ""
@@ -872,6 +901,7 @@ msgid "Praying as a group?"
 msgstr "ಗುಂಪಾಗಿ ಪ್ರಾರ್ಥಿಸುವುದೇ?"
 
 #: parts/components.php:38
+#, php-format
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
@@ -987,6 +1017,7 @@ msgid "Message"
 msgstr "ಸಂದೇಶ"
 
 #: porches/generic/site/edit-post-list-body.php:113
+#, php-format
 msgid "Day %s"
 msgstr "%s ದಿನ"
 
@@ -1085,10 +1116,12 @@ msgstr ""
 "Prayer.Tools ನೊಂದಿಗೆ ಇತರ ಪ್ರಾರ್ಥನೆ ಪ್ರಯತ್ನಗಳು ಮತ್ತು ಅವಕಾಶಗಳ ಬಗ್ಗೆ ಕೇಳಲು ಸೈನ್ ಅಪ್ "
 "ಮಾಡಿ ಮತ್ತು GospelAmbition.org ನಿಂದ ಸಾಂದರ್ಭಿಕ ಸಂಪರ್ಕವನ್ನು ಸ್ವೀಕರಿಸಿ."
 
+#: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
 msgstr "ಸೈನ್ ಅಪ್ ಮಾಡಿ"
 
+#: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
@@ -1153,6 +1186,7 @@ msgid "Start Praying!"
 msgstr "ಪ್ರಾರ್ಥನೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ!"
 
 #: shortcodes/prayer-timer.php:222
+#, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯ: %s ನಿಮಿಷ"

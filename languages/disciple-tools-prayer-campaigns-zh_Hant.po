@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-02-05T13:01:25+00:00\n"
+"POT-Creation-Date: 2025-05-26T09:42:41+00:00\n"
 "PO-Revision-Date: 2025-02-05 12:58+0000\n"
 "Last-Translator: Chad Edwards <credwards73@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.disciple."
@@ -40,6 +40,7 @@ msgstr "如果您不想要收到此郵件，請忽略它。"
 
 #: campaign-functions/send-email-utility.php:184
 #: campaign-functions/send-email-utility.php:280
+#, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s 從 %2$s 到 %3$s"
@@ -55,6 +56,7 @@ msgstr "註冊后與我們一起祈禱！"
 #: campaign-functions/send-email-utility.php:224
 #: campaign-functions/send-email-utility.php:312
 #: campaign-functions/send-email-utility.php:416
+#, php-format
 msgid "Hello %s,"
 msgstr "您好 %s，"
 
@@ -80,6 +82,7 @@ msgstr "這些是您接下來的祈禱承諾："
 
 #: campaign-functions/send-email-utility.php:240
 #: campaign-functions/send-email-utility.php:316
+#, php-format
 msgid "Times are shown according to: %s time"
 msgstr "時間數據顯示為：%s 時間"
 
@@ -89,11 +92,13 @@ msgid "Download Calendar"
 msgstr "下載日曆"
 
 #: campaign-functions/send-email-utility.php:268
+#, php-format
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "單擊此處查看今天的祈禱提示：%s"
 
 #: campaign-functions/send-email-utility.php:286
+#, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "為 %s"
@@ -120,6 +125,7 @@ msgstr "以下是您即將到來的祈禱時間："
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:152
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
+#: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
 msgstr "禱告燃料"
 
@@ -161,6 +167,7 @@ msgid "Thank you for praying with us!"
 msgstr "感謝您與我們一起祈禱！"
 
 #: campaign-functions/send-email-utility.php:487
+#, php-format
 msgid "Dear %s,"
 msgstr "親愛的%s，"
 
@@ -170,6 +177,7 @@ msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "為門徒造就運動的策略性禱告"
 
 #: campaign-functions/send-email-utility.php:495
+#, php-format
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "感謝您加入我們為 %2$s 中的 %1$s 祈禱。"
 
@@ -302,6 +310,7 @@ msgid "Your prayer time has been extended"
 msgstr "您的禱告時間已經延長了"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
+#, php-format
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
 msgstr "您已登記 %1$s 禱告，直到 %2$s。"
@@ -321,6 +330,7 @@ msgstr "請和我一起禱告！"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:164
+#, php-format
 msgid "Content will start in %s days"
 msgstr "内容將在% s天后開始"
 
@@ -335,7 +345,7 @@ msgstr "本次活動結束，參看下方燃料"
 msgid "Prayer Timer"
 msgstr "禱告計時器"
 
-#: magic-links/subscription-management/subscription-management.php:33
+#: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
@@ -363,6 +373,7 @@ msgid "Links"
 msgstr "鏈接"
 
 #: magic-links/subscription-management/subscription-management.php:350
+#: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "主頁"
@@ -418,6 +429,7 @@ msgid "Campaign Ended"
 msgstr "活動結束"
 
 #: parts/components-enqueue.php:49
+#, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s %2$s 分鐘。"
@@ -463,6 +475,7 @@ msgid "Select a Time"
 msgstr "選擇具體的時間"
 
 #: parts/components-enqueue.php:62
+#, php-format
 msgid "Select a Time for %s"
 msgstr "為% s選擇一個時間"
 
@@ -475,11 +488,13 @@ msgid "prayer commitments"
 msgstr "祈禱承諾"
 
 #: parts/components-enqueue.php:65
+#, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr "在%s開始"
 
 #: parts/components-enqueue.php:66
+#, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr "在%s結束"
@@ -498,6 +513,7 @@ msgid "Verify"
 msgstr "核實"
 
 #: parts/components-enqueue.php:70
+#, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr "目標：每天%s小時的禱告"
 
@@ -534,26 +550,33 @@ msgid "Pick Dates and Times"
 msgstr "選擇一個日期和時間"
 
 #: parts/components-enqueue.php:79
+#, php-format
 msgid "%s Minutes"
 msgstr "%s分鐘"
 
 #: parts/components-enqueue.php:80
+#, php-format
 msgid "%s Hour"
 msgstr "%s小時"
 
 #: parts/components-enqueue.php:81
+#, php-format
 msgid "%s Hours"
 msgstr "%s小時"
 
 #: parts/components-enqueue.php:82
+#, php-format
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s 從 %2$s 到 %3$s"
 
 #: parts/components-enqueue.php:83
+#, fuzzy, php-format
+#| msgid "for %s minutes"
 msgid "for %s minutes"
 msgstr "為 %$s 分鐘"
 
 #: parts/components-enqueue.php:84
+#, php-format
 msgid "Every %s"
 msgstr "每個%s"
 
@@ -570,10 +593,12 @@ msgid "Select a Day"
 msgstr "選擇一天"
 
 #: parts/components-enqueue.php:88
+#, php-format
 msgid "Renews on %s"
 msgstr "回顧在%s"
 
 #: parts/components-enqueue.php:89
+#, php-format
 msgid "Ends on %s"
 msgstr "結束在%s"
 
@@ -732,6 +757,7 @@ msgid "Change Prayer Time"
 msgstr "改變禱告時間"
 
 #: parts/components-enqueue.php:128
+#, php-format
 msgid "Your current prayer time is %s"
 msgstr "您當前的禱告時間是%s"
 
@@ -752,11 +778,13 @@ msgid "renew"
 msgstr "更新"
 
 #: parts/components-enqueue.php:133
+#, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr "延長至%s"
 
 #: parts/components-enqueue.php:134
+#, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "%s個月"
@@ -794,6 +822,7 @@ msgid "Almost there! Finish signing up by activating your account."
 msgstr "快完成了！通過激活您的賬號來完成注冊。"
 
 #: parts/components-enqueue.php:147
+#, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "點擊“激活賬號”按鈕至發送到郵箱：%s"
 
@@ -818,7 +847,7 @@ msgid "Try Again"
 msgstr "再試試看"
 
 #: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
+#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:52
 msgid "Contact Us"
 msgstr "聯係我們"
 
@@ -837,6 +866,7 @@ msgid "# of people covering this time"
 msgstr "#個人已經覆蓋這個時間點"
 
 #: parts/components-enqueue.php:157
+#, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr "嗨，一起為%s禱告吧！"
@@ -854,6 +884,7 @@ msgid "Praying as a group?"
 msgstr "和小組一起禱告？"
 
 #: parts/components.php:38
+#, php-format
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
@@ -961,6 +992,7 @@ msgid "Message"
 msgstr "信息内容"
 
 #: porches/generic/site/edit-post-list-body.php:113
+#, php-format
 msgid "Day %s"
 msgstr "天數%s"
 
@@ -1057,10 +1089,12 @@ msgstr ""
 "通過 Prayer.Tools 了解其他的禱告工作和機會，並偶爾接收GospelAmbition.org發送"
 "給你的消息。"
 
+#: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
 msgstr "報名"
 
+#: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "選擇語言"
@@ -1119,6 +1153,7 @@ msgid "Start Praying!"
 msgstr "開始祈禱！"
 
 #: shortcodes/prayer-timer.php:222
+#, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "祈禱時間：%s 分鐘"
