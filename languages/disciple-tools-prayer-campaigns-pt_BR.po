@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-02-05T13:01:25+00:00\n"
+"POT-Creation-Date: 2025-05-26T09:42:41+00:00\n"
 "PO-Revision-Date: 2025-02-05 11:49+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.disciple.tools/"
@@ -40,6 +40,7 @@ msgstr "Se você não solicitou este e-mail, ignore-o."
 
 #: campaign-functions/send-email-utility.php:184
 #: campaign-functions/send-email-utility.php:280
+#, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s de %2$s a %3$s"
@@ -55,6 +56,7 @@ msgstr "Registrado para orar conosco!"
 #: campaign-functions/send-email-utility.php:224
 #: campaign-functions/send-email-utility.php:312
 #: campaign-functions/send-email-utility.php:416
+#, php-format
 msgid "Hello %s,"
 msgstr "Olá %s,"
 
@@ -80,6 +82,7 @@ msgstr "Estes são seus próximos compromissos de oração:"
 
 #: campaign-functions/send-email-utility.php:240
 #: campaign-functions/send-email-utility.php:316
+#, php-format
 msgid "Times are shown according to: %s time"
 msgstr "As horas são mostradas de acordo com: %s hora"
 
@@ -89,11 +92,13 @@ msgid "Download Calendar"
 msgstr "Baixar Calendário"
 
 #: campaign-functions/send-email-utility.php:268
+#, php-format
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
 msgstr "Clique aqui para ver as instruções de oração para hoje: %s"
 
 #: campaign-functions/send-email-utility.php:286
+#, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
 msgstr "para %s"
@@ -120,6 +125,7 @@ msgstr "Aqui estão seus próximos tempos de oração:"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:152
 #: porches/generic/dt-generic-porch-strings.php:152
 #: porches/generic/dt-generic-porch-strings.php:161
+#: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
 msgstr "Combustível de oração"
 
@@ -164,6 +170,7 @@ msgid "Thank you for praying with us!"
 msgstr "Obrigado por orar conosco!"
 
 #: campaign-functions/send-email-utility.php:487
+#, php-format
 msgid "Dear %s,"
 msgstr "Querido(a) %s,"
 
@@ -173,6 +180,7 @@ msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "Oração estratégica para o Movimento de Multiplicação de Discípulos"
 
 #: campaign-functions/send-email-utility.php:495
+#, php-format
 msgid "Thank you for joining %1$s in %2$s."
 msgstr "Obrigado por se juntar a nós em oração pelos %1$s em %2$s."
 
@@ -311,6 +319,7 @@ msgid "Your prayer time has been extended"
 msgstr "Seu tempo de oração foi estendido!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
+#, php-format
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
 msgstr "Você se inscreveu para orar de %1$s até %2$s."
@@ -330,6 +339,7 @@ msgstr "Ore comigo!"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:164
+#, php-format
 msgid "Content will start in %s days"
 msgstr "O conteúdo começará em %s dias"
 
@@ -344,7 +354,7 @@ msgstr "Esta campanha acabou. Veja Combustível abaixo"
 msgid "Prayer Timer"
 msgstr "Temporizador de Oração"
 
-#: magic-links/subscription-management/subscription-management.php:33
+#: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
@@ -374,6 +384,7 @@ msgid "Links"
 msgstr "Links"
 
 #: magic-links/subscription-management/subscription-management.php:350
+#: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
 msgstr "Início"
@@ -429,6 +440,7 @@ msgid "Campaign Ended"
 msgstr "Campanha encerrada"
 
 #: parts/components-enqueue.php:49
+#, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s por %2$s minutos."
@@ -474,6 +486,7 @@ msgid "Select a Time"
 msgstr "Selecione um horário"
 
 #: parts/components-enqueue.php:62
+#, php-format
 msgid "Select a Time for %s"
 msgstr "Selecione um horário para %s"
 
@@ -486,11 +499,13 @@ msgid "prayer commitments"
 msgstr "Compromissos de oração"
 
 #: parts/components-enqueue.php:65
+#, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr "Começando em %s"
 
 #: parts/components-enqueue.php:66
+#, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr "Terminando em %s"
@@ -509,6 +524,7 @@ msgid "Verify"
 msgstr "Verificar"
 
 #: parts/components-enqueue.php:70
+#, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr "Objetivo: %s horas de oração todos os dias"
 
@@ -545,26 +561,32 @@ msgid "Pick Dates and Times"
 msgstr "Selecionar dias e horas"
 
 #: parts/components-enqueue.php:79
+#, php-format
 msgid "%s Minutes"
 msgstr "%s minutos"
 
 #: parts/components-enqueue.php:80
+#, php-format
 msgid "%s Hour"
 msgstr "%s hora"
 
 #: parts/components-enqueue.php:81
+#, php-format
 msgid "%s Hours"
 msgstr "%s horas"
 
 #: parts/components-enqueue.php:82
+#, php-format
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s em %2$s por %3$s"
 
 #: parts/components-enqueue.php:83
+#, php-format
 msgid "for %s minutes"
 msgstr "por %s minutos"
 
 #: parts/components-enqueue.php:84
+#, php-format
 msgid "Every %s"
 msgstr "A cada %s"
 
@@ -581,10 +603,12 @@ msgid "Select a Day"
 msgstr "Selecione um dia"
 
 #: parts/components-enqueue.php:88
+#, php-format
 msgid "Renews on %s"
 msgstr "Renova em %s"
 
 #: parts/components-enqueue.php:89
+#, php-format
 msgid "Ends on %s"
 msgstr "Termina em %s"
 
@@ -748,6 +772,7 @@ msgid "Change Prayer Time"
 msgstr "Alterar tempo de oração"
 
 #: parts/components-enqueue.php:128
+#, php-format
 msgid "Your current prayer time is %s"
 msgstr "Seu tempo de oração atual é %s"
 
@@ -768,11 +793,13 @@ msgid "renew"
 msgstr "Renovar"
 
 #: parts/components-enqueue.php:133
+#, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr "Até %s"
 
 #: parts/components-enqueue.php:134
+#, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "Por %s meses"
@@ -810,6 +837,7 @@ msgid "Almost there! Finish signing up by activating your account."
 msgstr "Quase lá! Termine de se inscrever ativando sua conta."
 
 #: parts/components-enqueue.php:147
+#, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "Clique no botão \"Ativar conta\" no e-mail enviado para: %s"
 
@@ -834,7 +862,7 @@ msgid "Try Again"
 msgstr "Tentar de novo!"
 
 #: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
-#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:46
+#: porches/generic/site/contact-us.php:72 porches/generic/site/footer.php:52
 msgid "Contact Us"
 msgstr "Fale Conosco"
 
@@ -855,6 +883,7 @@ msgid "# of people covering this time"
 msgstr "# de pessoas cobrindo este período"
 
 #: parts/components-enqueue.php:157
+#, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr ""
@@ -870,6 +899,7 @@ msgid "Praying as a group?"
 msgstr "Orando em grupo?"
 
 #: parts/components.php:38
+#, php-format
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
@@ -987,6 +1017,7 @@ msgid "Message"
 msgstr "Mensagem"
 
 #: porches/generic/site/edit-post-list-body.php:113
+#, php-format
 msgid "Day %s"
 msgstr "Dia %s"
 
@@ -1085,10 +1116,12 @@ msgstr ""
 "Inscreva-se para ouvir sobre outras iniciativas e oportunidades de oração "
 "com Prayer.Tools e receba comunicações ocasionais de GospelAmbition.org."
 
+#: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
 msgstr "Inscreva-se"
 
+#: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
 msgid "Select Language"
 msgstr "Selecione um idioma"
@@ -1156,6 +1189,7 @@ msgid "Start Praying!"
 msgstr "Comece a orar!"
 
 #: shortcodes/prayer-timer.php:222
+#, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "Tempo de oração: %s minutos"
