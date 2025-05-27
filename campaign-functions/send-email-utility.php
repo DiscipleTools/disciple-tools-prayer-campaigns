@@ -14,9 +14,7 @@ class DT_Prayer_Campaigns_Send_Email {
         }
         if ( $campaign_id ){
             $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-            if ( !empty( $campaign['from_name'] ) && !empty( $campaign['from_email'] ) ){
-                $headers[] = 'From: ' . $campaign['from_name'] . ' <' . $campaign['from_email'] . '>';
-            } else if ( !empty( $campaign['from_name'] ) ){
+            if ( !empty( $campaign['from_name'] ) ){
                 $headers[] = 'From: ' . $campaign['from_name'] . ' <' . apply_filters( 'wp_mail_from', '' ) . '>';
             }
             if ( !empty( $campaign['reply_to_email'] ) ){

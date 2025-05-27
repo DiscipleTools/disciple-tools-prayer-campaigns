@@ -166,15 +166,6 @@ class DT_Campaign_Landing_Settings {
         /**
          * Email settings
          */
-        $fields['from_email'] = [
-            'name' => __( 'The email address campaign emails will be sent from:', 'disciple-tools-prayer-campaigns' ),
-            'type' => 'text',
-            'description' => __( 'The email address that will be used as the "from" address for emails sent from this campaign.', 'disciple-tools-prayer-campaigns' ),
-            'tile' => 'campaign_email',
-
-            'settings_section' => $sections['settings'],
-            'default' => DT_Prayer_Campaigns_Send_Email::default_email_address(),
-        ];
         $fields['from_name'] = [
             'name' => __( 'From Name', 'disciple-tools-prayer-campaigns' ),
             'type' => 'text',
