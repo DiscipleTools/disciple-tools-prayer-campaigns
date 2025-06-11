@@ -177,7 +177,7 @@ class DT_Time_Utilities {
         }
 
         //if we want to restrict the data returned and the end date is after the limit
-        return $end + 86399; // end of selected day (-1 second);
+        return empty( $end ) ? $end : $end + 86399; // end of selected day (-1 second);
     }
 
     public static function get_slot_duration_options(){
