@@ -338,3 +338,20 @@ function display_translated_field( $field_key, $edit_btn_class = 'btn-common', $
         }
     }
 }
+
+function campaigns_validate_and_format_phone( $phone, $just_format = false ){
+    $phone = trim( $phone );
+    //match phones numbers with +
+    $phone = preg_replace( '/[^0-9+]/', '', $phone );
+    if ( str_starts_with( $phone, '00' ) ){
+        $phone = '+' . substr( $phone, 2 );
+    }
+    if ( strlen( $phone ) === 10 && !str_starts_with( $phone, '+' ) ){
+        $phone = '+1' . $phone;
+    }
+    if ( !$just_format && !str_starts_with( $phone, '+' ) ){
+        return false;
+    }
+
+    return $phone;
+}
