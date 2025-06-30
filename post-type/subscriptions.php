@@ -294,7 +294,7 @@ class DT_Subscriptions_Base {
                 'name' => __( 'Auto extend prayer times', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'boolean',
                 'tile' => 'details',
-                'default' => false,
+                'default' => true,
                 'hidden' => false,
             ];
             $fields['last_modified']['show_in_table'] = false;
@@ -862,6 +862,9 @@ class DT_Subscriptions_Base {
         if ( $post_type === $this->post_type ) {
             if ( !isset( $fields['status'] ) ) {
                 $fields['status'] = 'active';
+            }
+            if ( !isset( $fields['auto_extend_prayer_times'] ) ) {
+                $fields['auto_extend_prayer_times'] = true;
             }
             $key_name = 'public_key';
             if ( method_exists( 'DT_Magic_URL', 'get_public_key_meta_key' ) ){
