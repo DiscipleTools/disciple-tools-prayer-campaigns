@@ -15,13 +15,25 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         $per_page = 50;
         $current_page = $this->get_pagenum();
-        $offset = ( $current_page - 1 ) * $per_page;
-        $max_days = 10000;
-
+        
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
 
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
+        // Calculate campaign length
+        $total_campaign_days = DT_Campaign_Fuel::total_days_in_campaign();
+        if ( $total_campaign_days <= 0 ) {
+            // If no end date, show a large number for ongoing campaigns
+            $total_campaign_days = 10000;
+        }
+
+        // Calculate which days to show for this page
+        $start_day = ( ( $current_page - 1 ) * $per_page ) + 1;
+        $end_day = min( $start_day + $per_page - 1, $total_campaign_days );
+        
+        // Generate array of days for this page
+        $page_days = range( $start_day, $end_day );
+        
         global $wpdb;
         $query = "
             SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day, post_status, post_date
@@ -30,8 +42,9 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
             WHERE p.post_type = %s
             AND p.post_status IN ( 'draft', 'publish', 'future' )
+            AND CAST( pm.meta_value as unsigned ) BETWEEN %d AND %d
         ";
-        $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE ];
+        $args = [ $campaign['ID'], CAMPAIGN_LANDING_POST_TYPE, $start_day, $end_day ];
 
         if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
             $query .= '
@@ -39,6 +52,8 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             ';
             $args[] = sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
             $args[] = sanitize_text_field( wp_unslash( $_REQUEST['order'] ) );
+        } else {
+            $query .= ' ORDER BY day ASC';
         }
 
         /* Get the prayer fuel posts with their language and day meta tags included */
@@ -47,56 +62,39 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         $posts_sorted_by_campaign_day = [];
 
+        // Organize posts by day
         foreach ( $posts as $post ) {
             $day = intval( $post['day'] );
-
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [];
             }
-
             $posts_sorted_by_campaign_day[$day][] = $post;
         }
 
-        //get the max day from $posts_sorted_by_campaign_day
-        $max_installed_fuel = max( array_keys( $posts_sorted_by_campaign_day ) );
-
-        $days = [];
-        $campaign_length = max( $max_installed_fuel, DT_Campaign_Fuel::total_days_in_campaign() );
-        for ( $i = $offset; $i < $offset + $per_page; $i++ ) {
-            if ( $campaign_length > 0 && $i > $campaign_length - 1 ) {
-                continue;
-            }
-            $days[] = $i + 1;
-        }
-
-        /* flesh out the posts array to include empty days */
-        foreach ( $days as $day ) {
+        // Fill in empty days for this page
+        foreach ( $page_days as $day ) {
             if ( !isset( $posts_sorted_by_campaign_day[$day] ) ) {
                 $posts_sorted_by_campaign_day[$day] = [
                     [ 'ID' => null, 'day' => $day, 'campaign' => $campaign['ID'] ],
                 ];
             }
         }
+        
+        // Sort by day
         ksort( $posts_sorted_by_campaign_day );
 
+        // Convert to the format expected by the table
         $sorted_posts = [];
         foreach ( $posts_sorted_by_campaign_day as $day => $days_posts ) {
             $sorted_posts[] = $days_posts;
         }
 
-
         $this->items = $sorted_posts;
-
-        if ( $campaign_length > 0 ) {
-            $total_days = $campaign_length;
-        } else {
-            $total_days = $max_days;
-        }
 
         $this->set_pagination_args(
             array(
-            'total_items' => $total_days,
-            'per_page'    => $per_page,
+                'total_items' => $total_campaign_days,
+                'per_page'    => $per_page,
             )
         );
     }
