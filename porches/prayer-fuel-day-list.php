@@ -27,27 +27,6 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             $total_campaign_days = 10000;
         }
 
-        // If there are no days on this page (e.g., user paged past the end),
-        // avoid running the query and set empty items with correct pagination.
-        if ( empty( $days ) ) {
-            $this->items = [];
-
-            if ( $campaign_length > 0 ) {
-                $total_days = $campaign_length;
-            } else {
-                $total_days = $max_days;
-            }
-
-            $this->set_pagination_args(
-                array(
-                    'total_items' => $total_days,
-                    'per_page'    => $per_page,
-                )
-            );
-
-            return;
-        }
-
         // Calculate which days to show for this page
         $start_day = ( ( $current_page - 1 ) * $per_page ) + 1;
         $end_day = min( $start_day + $per_page - 1, $total_campaign_days );
