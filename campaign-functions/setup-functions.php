@@ -68,3 +68,36 @@ function dt_campaigns_is_prayer_tools_news_enabled(){
     //maybe make this a setting too.
     return apply_filters( 'dt_campaigns_is_p4m_news_enabled', defined( 'WP_DEBUG' ) ? !WP_DEBUG : true );
 }
+
+/**
+ * Handle export via admin-post.php to avoid direct file access.
+ */
+add_action( 'admin_post_dt_pc_export_fuel', function(){
+    if ( ! ( current_user_can( 'manage_dt' ) || current_user_can( 'edit_landings' ) ) ) {
+        wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'disciple-tools-prayer-campaigns' ) );
+    }
+
+    if ( ! isset( $_POST['export_from_file_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['export_from_file_nonce'] ) ), 'export_from_file' ) ){
+        wp_die( esc_html__( 'Invalid request.', 'disciple-tools-prayer-campaigns' ) );
+    }
+
+    $lang = null;
+    if ( isset( $_POST['language'] ) ){
+        $lang = sanitize_text_field( wp_unslash( $_POST['language'] ) );
+    }
+    $linked_campaign = null;
+    if ( isset( $_POST['linked_campaign'])){
+        $linked_campaign = sanitize_text_field( wp_unslash( $_POST['linked_campaign'] ) );
+    }
+    $campaign_name = null;
+    if ( isset( $_POST['campaign_name'])){
+        $campaign_name = sanitize_text_field( wp_unslash( $_POST['campaign_name'] ) );
+    }
+
+    if ( ! function_exists( 'export_fuel' ) ){
+        require_once __DIR__ . '/../admin/export.php';
+    }
+
+    export_fuel( $lang, $linked_campaign, $campaign_name );
+    exit;
+} );

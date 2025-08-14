@@ -1,7 +1,9 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
-define( 'WXR_VERSION', '1.2' );
+if ( !defined( 'WXR_VERSION' ) ){
+    define( 'WXR_VERSION', '1.2' );
+}
 
 /**
  * Class DT_Generic_Porch_Landing_Tab_Starter_Content
@@ -285,8 +287,9 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
                 <div id='post-body' class='metabox-holder columns-2'>
                     <div id='post-body-content'>
 
-        <form method = 'post' action="<?php echo esc_html( plugin_dir_url( __FILE__ ) . 'export.php' ); ?>">
-            <?php wp_nonce_field( 'export_from_file', 'export_from_file_nonce' ) ?>
+		<form method = 'post' action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<?php wp_nonce_field( 'export_from_file', 'export_from_file_nonce' ) ?>
+			<input type="hidden" name="action" value="dt_pc_export_fuel">
             <input type="hidden" name="linked_campaign" value="<?php echo esc_html( $campaign['ID'] ); ?>">
             <input type="hidden" name="campaign_name" value="<?php echo esc_html( $campaign['title'] ); ?>">
 

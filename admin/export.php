@@ -1,9 +1,13 @@
 <?php
 
-$wordpress_root_path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
-require_once( $wordpress_root_path . 'wp-admin/admin.php' );
-if ( !( current_user_can( 'manage_dt' ) || !current_user_can( 'edit_landings' ) ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
-    wp_die( 'You do not have sufficient permissions to access this page.' );
+// Only bootstrap full WP admin when this file is accessed directly.
+$is_direct_access = isset( $_SERVER['SCRIPT_FILENAME'] ) && basename( $_SERVER['SCRIPT_FILENAME'] ) === basename( __FILE__ );
+if ( $is_direct_access ) {
+    $wordpress_root_path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
+    require_once( $wordpress_root_path . 'wp-admin/admin.php' );
+    if ( ! ( current_user_can( 'manage_dt' ) || current_user_can( 'edit_landings' ) ) ) { // manage dt is a permission that is specific to Disciple.Tools and allows admins, strategists and dispatchers into the wp-admin
+        wp_die( 'You do not have sufficient permissions to access this page.' );
+    }
 }
 
 if ( !defined( 'WXR_VERSION' ) ){
@@ -319,21 +323,22 @@ function export_fuel( $language = null, $linked_campaign = null, $campaign_name 
     <?php
 }
 
-if ( isset( $_POST['export_from_file_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['export_from_file_nonce'] ) ), 'export_from_file' ) ){
-    $lang = null;
-    if ( isset( $_POST['language'] ) ){
-        $lang = sanitize_text_field( wp_unslash( $_POST['language'] ) );
-    }
-    $linked_campaign = null;
-    if ( isset( $_POST['linked_campaign'])){
-        $linked_campaign = sanitize_text_field( wp_unslash( $_POST['linked_campaign'] ) );
-    }
-    $campaign_name = null;
-    if ( isset( $_POST['campaign_name'])){
-        $campaign_name = sanitize_text_field( wp_unslash( $_POST['campaign_name'] ) );
-    }
+if ( isset( $_SERVER['SCRIPT_FILENAME'] ) && basename( $_SERVER['SCRIPT_FILENAME'] ) === basename( __FILE__ ) ){
+    if ( isset( $_POST['export_from_file_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['export_from_file_nonce'] ) ), 'export_from_file' ) ){
+        $lang = null;
+        if ( isset( $_POST['language'] ) ){
+            $lang = sanitize_text_field( wp_unslash( $_POST['language'] ) );
+        }
+        $linked_campaign = null;
+        if ( isset( $_POST['linked_campaign'])){
+            $linked_campaign = sanitize_text_field( wp_unslash( $_POST['linked_campaign'] ) );
+        }
+        $campaign_name = null;
+        if ( isset( $_POST['campaign_name'])){
+            $campaign_name = sanitize_text_field( wp_unslash( $_POST['campaign_name'] ) );
+        }
 
-
-    export_fuel( $lang, $linked_campaign, $campaign_name );
-    die();
+        export_fuel( $lang, $linked_campaign, $campaign_name );
+        die();
+    }
 }
