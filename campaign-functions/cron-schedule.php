@@ -30,7 +30,7 @@ function dt_prayer_campaign_prayer_time_reminder(){
      * Where notification has not been sent (no 'prayer_time_reminder_sent' meta)
      * Of prayer time happening in the next x hours
      */
-    $reminders = $wpdb->get_results($wpdb->prepare(
+    $reminders = $wpdb->get_results( $wpdb->prepare(
         "SELECT r.id, r.parent_id, r.post_id, r.time_begin, r.time_end, pm.meta_value as email, r.label, pk.meta_value as public_key, p.post_title as name
             FROM $wpdb->dt_reports r
             LEFT JOIN $wpdb->postmeta pm ON pm.post_id=r.post_id
@@ -98,6 +98,9 @@ function dt_prayer_campaign_prayer_time_reminder(){
                     Disciple_Tools_Reports::add_meta( $row['id'], 'prayer_time_reminder_sent', time() );
                 }
             }
+
+            //hook for other notification channels
+            do_action( 'dt_prayer_campaign_prayer_time_reminder', $record, $reports, $campaign_id );
         } // user loop
 
     } // campaign loop

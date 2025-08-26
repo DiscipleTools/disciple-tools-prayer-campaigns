@@ -414,6 +414,7 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
                 'timezone' => $subscriber['timezone'] ?? 'America/Chicago',
                 'receive_prayer_time_notifications' => $subscriber['receive_prayer_time_notifications'] ?? false,
                 'auto_extend_prayer_times' => $subscriber['auto_extend_prayer_times'] ?? true,
+                'whatsapp_number' => $subscriber['whatsapp_number'] ?? '',
             ]
         ];
     }
