@@ -20,7 +20,7 @@ function export_fuel( $language = null, $linked_campaign = null, $campaign_name 
     global $wpdb, $post;
     $join = '';
 
-    $where = $wpdb->prepare( 'post_type = %s AND post_status = %s', 'landing', 'publish' );
+    $where = $wpdb->prepare( "post_type = %s AND post_status='publish' OR post_status = 'future'", 'landing' );
 
     if ( $language ) {
         $join .= " INNER JOIN $wpdb->postmeta pm ON ({$wpdb->posts}.ID = pm.post_id) ";
