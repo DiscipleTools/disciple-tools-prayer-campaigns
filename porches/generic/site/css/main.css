@@ -91,9 +91,11 @@ ul {
 ul li {
   list-style: none;
 }
+.fuel-block ul {
+    margin: 0 0 0 1em;
+}
 .fuel-block ul li {
     list-style: disc !important;
-    padding-left: 1em !important;
     margin-left: 1em !important;
 }
 a:hover,
@@ -1060,6 +1062,13 @@ a:not([href]):not([tabindex]):hover {
     padding: 30px;
     overflow: hidden;
 }
+/*15 px on mobile*/
+@media (max-width: 640px) {
+    .fuel-block {
+        padding: 15px;
+    }
+}
+
 .fuel-block strong {
     font-weight: 600;
 }
@@ -1380,4 +1389,8 @@ footer a {
 
 #edit_modal_div textarea{
     font-size: 0.8rem;
+}
+
+.container mark {
+    background: none;
 }
