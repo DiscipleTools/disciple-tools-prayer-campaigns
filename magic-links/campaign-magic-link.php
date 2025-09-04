@@ -161,6 +161,7 @@ class DT_Prayer_Campaign_Magic_Link extends DT_Magic_Url_Base {
         return [
             'porch-style-css',
             'bootstrap',
+            'wordpress-styles',
             'main-styles',
             'font-awesome',
             'line-icons',

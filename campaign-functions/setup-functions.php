@@ -86,11 +86,11 @@ add_action( 'admin_post_dt_pc_export_fuel', function(){
         $lang = sanitize_text_field( wp_unslash( $_POST['language'] ) );
     }
     $linked_campaign = null;
-    if ( isset( $_POST['linked_campaign'])){
+    if ( isset( $_POST['linked_campaign'] ) ){
         $linked_campaign = sanitize_text_field( wp_unslash( $_POST['linked_campaign'] ) );
     }
     $campaign_name = null;
-    if ( isset( $_POST['campaign_name'])){
+    if ( isset( $_POST['campaign_name'] ) ){
         $campaign_name = sanitize_text_field( wp_unslash( $_POST['campaign_name'] ) );
     }
 

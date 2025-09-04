@@ -1,0 +1,132 @@
+/* Default WordPress block editor color classes */
+.has-white-color {
+    color: #fff !important;
+}
+.has-white-background-color {
+    background-color: #fff !important;
+}
+
+.has-black-color {
+    color: #000 !important;
+}
+.has-black-background-color {
+    background-color: #000 !important;
+}
+
+.has-very-light-gray {
+    color: rgb(243, 244, 246) !important;
+}
+.has-very-light-gray-background-color {
+    background-color: rgb(243, 244, 246) !important;
+}
+
+.has-light-gray-color {
+    color: rgb(240, 240, 240) !important;
+}
+.has-light-gray-background-color {
+    background-color: rgb(240, 240, 240) !important;
+}
+
+.has-gray-color {
+    color: rgb(102, 102, 102) !important;
+}
+.has-gray-background-color {
+    background-color: rgb(102, 102, 102) !important;
+}
+
+.has-dark-gray-color {
+    color: rgb(50, 55, 60) !important;
+}
+.has-dark-gray-background-color {
+    background-color: rgb(50, 55, 60) !important;
+}
+
+.has-blue-color {
+    color: rgb(34, 113, 177) !important;
+}
+.has-blue-background-color {
+    background-color: rgb(34, 113, 177) !important;
+}
+.has-red-color {
+    color: rgb(207, 46, 46) !important;
+}
+.has-red-background-color {
+    background-color: rgb(207, 46, 46) !important;
+}
+.has-green-color {
+    color: rgb(0, 168, 89) !important;
+}
+.has-green-background-color {
+    background-color: rgb(0, 168, 89) !important;
+}
+
+.has-yellow-color {
+    color: rgb(255, 185, 0) !important;
+}
+.has-yellow-background-color {
+    background-color: rgb(255, 185, 0) !important;
+}
+
+.has-pale-pink-color {
+    color: #f78da7 !important;
+}
+.has-pale-pink-background-color {
+    background-color: #f78da7 !important;
+}
+
+.has-vivid-red-color {
+    color: #cf2e2e !important;
+}
+.has-vivid-red-background-color {
+    background-color: #cf2e2e !important;
+}
+
+.has-luminous-vivid-orange-color {
+    color: #ff6900 !important;
+}
+.has-luminous-vivid-orange-background-color {
+    background-color: #ff6900 !important;
+}
+
+.has-luminous-vivid-amber-color {
+    color: #fcb900 !important;
+}
+.has-luminous-vivid-amber-background-color {
+    background-color: #fcb900 !important;
+}
+
+.has-light-green-cyan-color {
+    color: #7bdcb5 !important;
+}
+.has-light-green-cyan-background-color {
+    background-color: #7bdcb5 !important;
+}
+
+.has-vivid-green-cyan-color {
+    color: #00d084 !important;
+}
+.has-vivid-green-cyan-background-color {
+    background-color: #00d084 !important;
+}
+
+.has-vivid-purple-color {
+    color: #9b51e0 !important;
+}
+.has-vivid-purple-background-color {
+    background-color: #9b51e0 !important;
+}
+
+.has-vivid-cyan-blue-color {
+    color: #0693e3 !important;
+}
+.has-vivid-cyan-blue-background-color {
+    background-color: #0693e3 !important;
+}
+
+.has-cyan-bluish-gray-color {
+    color: #abb8c3 !important;
+}
+
+.has-cyan-bluish-gray-background-color {
+    background-color: #abb8c3 !important;
+}
