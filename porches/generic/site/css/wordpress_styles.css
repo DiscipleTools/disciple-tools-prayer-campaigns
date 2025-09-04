@@ -21,10 +21,10 @@
 }
 
 .has-light-gray-color {
-    color: #f0f0f0 !important;
+    color: rgb(240, 240, 240) !important;
 }
 .has-light-gray-background-color {
-    background-color: #f0f0f0 !important;
+    background-color: rgb(240, 240, 240) !important;
 }
 
 .has-gray-color {
@@ -35,10 +35,10 @@
 }
 
 .has-dark-gray-color {
-    color: #32373c !important;
+    color: rgb(50, 55, 60) !important;
 }
 .has-dark-gray-background-color {
-    background-color: #32373c !important;
+    background-color: rgb(50, 55, 60) !important;
 }
 
 .has-blue-color {
@@ -48,10 +48,10 @@
     background-color: rgb(34, 113, 177) !important;
 }
 .has-red-color {
-    color: #cf2e2e !important;
+    color: rgb(207, 46, 46) !important;
 }
 .has-red-background-color {
-    background-color: #cf2e2e !important;
+    background-color: rgb(207, 46, 46) !important;
 }
 .has-green-color {
     color: rgb(0, 168, 89) !important;
