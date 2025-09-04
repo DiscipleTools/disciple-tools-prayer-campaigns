@@ -66,3 +66,45 @@
 .has-yellow-background-color {
     background-color: rgb(255, 185, 0) !important;
 }
+
+.has-pale-pink-color {
+    color: #f78da7 !important;
+}
+.has-pale-pink-background-color {
+    background-color: #f78da7 !important;
+}
+
+.has-vivid-red-color {
+    color: #cf2e2e !important;
+}
+.has-vivid-red-background-color {
+    background-color: #cf2e2e !important;
+}
+
+.has-luminous-vivid-orange-color {
+    color: #ff6900 !important;
+}
+.has-luminous-vivid-orange-background-color {
+    background-color: #ff6900 !important;
+}
+
+.has-luminous-vivid-amber-color {
+    color: #fcb900 !important;
+}
+.has-luminous-vivid-amber-background-color {
+    background-color: #fcb900 !important;
+}
+
+.has-light-green-cyan-color {
+    color: #7bdcb5 !important;
+}
+.has-light-green-cyan-background-color {
+    background-color: #7bdcb5 !important;
+}
+
+.has-vivid-green-cyan-color {
+    color: #00d084 !important;
+}
+.has-vivid-green-cyan-background-color {
+    background-color: #00d084 !important;
+}
