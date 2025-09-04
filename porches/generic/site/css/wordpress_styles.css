@@ -48,10 +48,10 @@
     background-color: rgb(34, 113, 177) !important;
 }
 .has-red-color {
-    color: #cf2e2e !important;
+    color: rgb(207, 46, 46) !important;
 }
 .has-red-background-color {
-    background-color: #cf2e2e !important;
+    background-color: rgb(207, 46, 46) !important;
 }
 .has-green-color {
     color: rgb(0, 168, 89) !important;
