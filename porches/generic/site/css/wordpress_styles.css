@@ -35,10 +35,10 @@
 }
 
 .has-dark-gray-color {
-    color: #32373c !important;
+    color: rgb(50, 55, 60) !important;
 }
 .has-dark-gray-background-color {
-    background-color: #32373c !important;
+    background-color: rgb(50, 55, 60) !important;
 }
 
 .has-blue-color {
