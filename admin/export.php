@@ -1,7 +1,7 @@
 <?php
 
 // Only bootstrap full WP admin when this file is accessed directly.
-$is_direct_access = isset( $_SERVER['SCRIPT_FILENAME'] ) && basename( $_SERVER['SCRIPT_FILENAME'] ) === basename( __FILE__ );
+$is_direct_access = isset( $_SERVER['SCRIPT_FILENAME'] ) && basename(  $_SERVER['SCRIPT_FILENAME'] ) === basename( __FILE__ ); //phpcs:ignore
 if ( $is_direct_access ) {
     $wordpress_root_path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
     require_once( $wordpress_root_path . 'wp-admin/admin.php' );
