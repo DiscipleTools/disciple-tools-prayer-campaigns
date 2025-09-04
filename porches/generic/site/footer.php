@@ -50,10 +50,10 @@ $campaign = DT_Campaign_Landing_Settings::get_campaign();
                             <a href="<?php echo esc_html( wp_login_url( $campaign_url ) ); ?>">Login</a> |
                         <?php endif; ?>
                         <a href="<?php echo esc_html( admin_url( 'admin.php?page=dt_prayer_campaigns&campaign=' . $campaign_id . '&tab=campaign_landing' ) ); ?>">Campaign Settings</a> |
-                        <a href="<?php echo esc_url( $campaign_url ) ?>/contact-us"> <?php 
+                        <a href="<?php echo esc_url( $campaign_url ) ?>/contact-us"> <?php
                             $campaign_name = !empty( $campaign['name'] ) ? $campaign['name'] : 'Us';
                             /* translators: %s: campaign name */
-                            printf( esc_html__( 'Contact %s', 'disciple-tools-prayer-campaigns' ), esc_html( $campaign_name ) ); 
+                            printf( esc_html__( 'Contact %s', 'disciple-tools-prayer-campaigns' ), esc_html( $campaign_name ) );
                         ?></a>
                         <?php do_action( 'campaign_footer_links' ); ?>
                     </p>

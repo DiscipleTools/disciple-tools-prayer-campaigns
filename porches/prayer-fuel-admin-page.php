@@ -55,7 +55,7 @@ class DT_Campaign_Prayer_Fuel_Menu {
             $start_date = $campaign['start_date']['timestamp'];
             $days_since_start_date = ( strtotime( 'now' ) - $start_date ) / ( 60 * 60 * 24 );
             $page = max( 1, round( $days_since_start_date / 50 ) );
-            
+
             $redirect_url = add_query_arg( 'paged', $page );
             wp_safe_redirect( $redirect_url );
             exit;
