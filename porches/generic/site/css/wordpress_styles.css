@@ -108,3 +108,25 @@
 .has-vivid-green-cyan-background-color {
     background-color: #00d084 !important;
 }
+
+.has-vivid-purple-color {
+    color: #9b51e0 !important;
+}
+.has-vivid-purple-background-color {
+    background-color: #9b51e0 !important;
+}
+
+.has-vivid-cyan-blue-color {
+    color: #0693e3 !important;
+}
+.has-vivid-cyan-blue-background-color {
+    background-color: #0693e3 !important;
+}
+
+.has-cyan-bluish-gray-color {
+    color: #abb8c3 !important;
+}
+
+.has-cyan-bluish-gray-background-color {
+    background-color: #abb8c3 !important;
+}
