@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2025-02-05 11:49+0000\n"
+"PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/es_ES/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
@@ -317,7 +317,7 @@ msgstr ""
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
-msgstr "¡Tu tiempo de oración ha sido extendido!"
+msgstr "Tu tiempo de oración ha sido extendido"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
 #, php-format
@@ -896,6 +896,8 @@ msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"Me voy a unir a esta campaña de oración y me encantaría que te unieras a mí. "
+"Por favor, invita a un par de amigos a orar con nosotros también."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -1020,17 +1022,15 @@ msgid "Message"
 msgstr "Mensaje"
 
 #: porches/generic/site/edit-post-list-body.php:113
-#, fuzzy, php-format
-#| msgid "Day %s"
+#, php-format
 msgid "Day %s"
-msgstr "Día %"
+msgstr "Día %s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "Contactanos"
+msgstr "Contactar %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
@@ -1125,7 +1125,7 @@ msgid ""
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Regístrate para escuchar sobre otras iniciativas y oportunidades de oración "
-"con Prayer.Tools y recibir mensajes ocasionales de  de GospelAmbition.org."
+"con Prayer.Tools y recibir mensajes ocasionales de GospelAmbition.org."
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31

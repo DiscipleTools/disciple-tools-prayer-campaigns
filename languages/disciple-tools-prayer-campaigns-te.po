@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2025-02-05 12:01+0000\n"
+"PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/te/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.13.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -43,7 +43,7 @@ msgstr "మీరు ఈ ఈమెయిలు కొరకు అడగకప�
 #, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr "%1$s నుండి %2$s నుండి %3$s వరకు"
+msgstr "%1$s, %2$s నుండి %3$s వరకు"
 
 #: campaign-functions/send-email-utility.php:189
 msgid "see more on your account"
@@ -496,12 +496,10 @@ msgid "Starting on %s"
 msgstr "%s న ఆరంభమవుతుంది"
 
 #: parts/components-enqueue.php:66
-#, fuzzy, php-format
-#| msgctxt "Ending on October 4"
-#| msgid "Ending on %s"
+#, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr "న ముగుస్తుంది"
+msgstr "%sపై ముగింపు"
 
 #: parts/components-enqueue.php:67
 msgid "Review"
@@ -569,10 +567,9 @@ msgid "%s Hours"
 msgstr "%s గంటలు"
 
 #: parts/components-enqueue.php:82
-#, fuzzy, php-format
-#| msgid "%1$s at %2$s for %3$s"
+#, php-format
 msgid "%1$s at %2$s for %3$s"
-msgstr "%3$s కొరకు %1$నందు $2$"
+msgstr "%2$s లో %1$s, %3$s పాటు"
 
 #: parts/components-enqueue.php:83
 #, php-format
@@ -802,7 +799,7 @@ msgid ""
 "occasional communication from GospelAmbition.org"
 msgstr ""
 "రాబోవు ప్రార్థనా క్యాంపెయిన్ లను గూర్చి Prayer.Tools నుండి సమాచారమును, GospelAmbition.org "
-"నుండి అప్పుడప్పుడు పత్రికలను పొందండి."
+"నుండి అప్పుడప్పుడు పత్రికలను పొందండి"
 
 #: parts/components-enqueue.php:138
 msgid "Text Translations"
@@ -826,7 +823,8 @@ msgstr "అప్డేట్"
 
 #: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
-msgstr "ఇంచుముంచు పూర్తైనది!  మీ ఎకౌంటును ఆక్టివేట్ చేయుట ద్వారా సైన్ అప్ చేయుటను ముగించండి."
+msgstr ""
+"ఇంచుముంచు పూర్తైనది! మీ ఎకౌంటును ఆక్టివేట్ చేయుట ద్వారా సైన్ అప్ చేయుటను ముగించండి."
 
 #: parts/components-enqueue.php:147
 #, php-format
@@ -877,13 +875,15 @@ msgstr "ఈ సమయము పురమాయించబడిన ప్రజ
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "హాయ్, %s కోసం కలిసి ప్రార్థిద్దాం!"
 
 #: parts/components-enqueue.php:158
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"నేను ఈ ప్రార్థనా ప్రచారంలో చేరుతున్నాను; నాతో కలిసి మీరు కూడా చేరాలని मलाईకు చాలా ఇష్టం. దయచేసి మా "
+"ప్రార్థనలో కలిసి ప్రార్థించడానికి ఇద్దరు స్నేహితులను కూడా ఆహ్వానించండి."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -983,7 +983,7 @@ msgstr "కలిసి"
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
-msgstr "Epic 404 - Not Found"
+msgstr "ఎపిక్ 404 - కనుగొనబడలేదు"
 
 #: porches/generic/site/404-body.php:15
 msgid "It looks like you may have strayed from the narrow path."
@@ -1008,10 +1008,9 @@ msgstr "రోజు %s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "మమ్మును సంప్రదించండి"
+msgstr "సంప్రదించండి %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130

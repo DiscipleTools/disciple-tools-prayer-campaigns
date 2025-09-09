@@ -6,16 +6,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2024-12-03 08:00+0000\n"
-"Last-Translator: Chad Edwards <credwards73@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.disciple."
-"tools/projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
+"PO-Revision-Date: 2025-09-09 15:55+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.disciple.tools/projects/pray4movement/"
+"disciple-tools-prayer-campaigns/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.13.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -27,10 +28,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "通过激活您的账号来确认您加入祈祷。"
 
 #: campaign-functions/send-email-utility.php:90
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "访问账号"
+msgstr "激活账户"
 
 #: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
@@ -516,10 +515,9 @@ msgid "Verify"
 msgstr "核实"
 
 #: parts/components-enqueue.php:70
-#, fuzzy, php-format
-#| msgid "Goal: %s hours of prayer every day"
+#, php-format
 msgid "Goal: %s hours of prayer every day"
-msgstr "目标：每天50小时的祷告"
+msgstr "目标：每天 %s 小时的祈祷"
 
 #: parts/components-enqueue.php:71
 msgid "Goal: 24/7 coverage"
@@ -564,10 +562,9 @@ msgid "%s Hour"
 msgstr "%s小时"
 
 #: parts/components-enqueue.php:81
-#, fuzzy, php-format
-#| msgid "%s Hours"
+#, php-format
 msgid "%s Hours"
-msgstr "%小时"
+msgstr "%s 小时"
 
 #: parts/components-enqueue.php:82
 #, php-format
@@ -575,10 +572,9 @@ msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s 从 %2$s 到 %3$s"
 
 #: parts/components-enqueue.php:83
-#, fuzzy, php-format
-#| msgid "for %s minutes"
+#, php-format
 msgid "for %s minutes"
-msgstr "为%$s 分钟"
+msgstr "持续 %s 分钟"
 
 #: parts/components-enqueue.php:84
 #, php-format
@@ -598,16 +594,14 @@ msgid "Select a Day"
 msgstr "选中一天"
 
 #: parts/components-enqueue.php:88
-#, fuzzy, php-format
-#| msgid "Renews on %s"
+#, php-format
 msgid "Renews on %s"
-msgstr "回顾在"
+msgstr "在 %s 续订"
 
 #: parts/components-enqueue.php:89
-#, fuzzy, php-format
-#| msgid "Ends on %s"
+#, php-format
 msgid "Ends on %s"
-msgstr "结束在"
+msgstr "结束于 %s"
 
 #: parts/components-enqueue.php:90
 msgid "Success"
@@ -788,23 +782,20 @@ msgstr "更新"
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "直到 %s"
 
 #: parts/components-enqueue.php:134
-#, fuzzy, php-format
-#| msgctxt "up to 3 months"
-#| msgid "up to %s months"
+#, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "%s 个月以上"
+msgstr "持续 %s 个月"
 
 #: parts/components-enqueue.php:135
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
-msgstr ""
-"接收Prayer.Tools的最新消息和机会，还有偶尔来自GospelAmbition.org网页的消息推"
-"送。"
+msgstr "接收Prayer.Tools的最新消息和机会，还有偶尔来自GospelAmbition.org网页的消息推"
+"送"
 
 #: parts/components-enqueue.php:138
 msgid "Text Translations"
@@ -878,13 +869,13 @@ msgstr "#个人已经覆盖这个时间"
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "嗨，让我们一起为%s祷告吧！"
 
 #: parts/components-enqueue.php:158
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
-msgstr ""
+msgstr "我正在参加这个祷告活动，也希望你能加入！也请邀请几位朋友一起祷告。"
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -1003,10 +994,9 @@ msgstr "天数%s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "联系我们"
+msgstr "联系 %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130

@@ -6,16 +6,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2025-02-05 12:58+0000\n"
-"Last-Translator: Chad Edwards <credwards73@gmail.com>\n"
-"Language-Team: Chinese (Traditional Han script) <https://translate.disciple."
-"tools/projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hant/>\n"
+"PO-Revision-Date: 2025-09-09 13:03+0000\n"
+"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://"
+"translate.disciple.tools/projects/pray4movement/"
+"disciple-tools-prayer-campaigns/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.13.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -51,7 +52,7 @@ msgstr "在您的帳號上可查閲更多信息"
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "註冊后與我們一起祈禱！"
+msgstr "您已成功登記與我們一起禱告！"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
@@ -332,7 +333,7 @@ msgstr "請和我一起禱告！"
 #: porches/generic/site/post-list-body.php:164
 #, php-format
 msgid "Content will start in %s days"
-msgstr "内容將在% s天后開始"
+msgstr "內容將在 %s 天後開始"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
@@ -477,7 +478,7 @@ msgstr "選擇具體的時間"
 #: parts/components-enqueue.php:62
 #, php-format
 msgid "Select a Time for %s"
-msgstr "為% s選擇一個時間"
+msgstr "為 %s 選擇一個時間"
 
 #: parts/components-enqueue.php:63 parts/components-enqueue.php:142
 msgid "Close"
@@ -570,10 +571,9 @@ msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s 從 %2$s 到 %3$s"
 
 #: parts/components-enqueue.php:83
-#, fuzzy, php-format
-#| msgid "for %s minutes"
+#, php-format
 msgid "for %s minutes"
-msgstr "為 %$s 分鐘"
+msgstr "持續 %s 分鐘"
 
 #: parts/components-enqueue.php:84
 #, php-format
@@ -686,7 +686,7 @@ msgstr "更改時間"
 
 #: parts/components-enqueue.php:110
 msgid "Stop Praying"
-msgstr "停止您的禱告時間!"
+msgstr "停止您的禱告時間"
 
 #: parts/components-enqueue.php:111
 msgid "See prayer times"
@@ -793,9 +793,9 @@ msgstr "%s個月"
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
-msgstr ""
-"通過 Prayer.Tools了解其他的禱告工作和機會，還有偶爾來自GospelAmbition.org網頁"
-"的消息推送。"
+msgstr "通過 "
+"Prayer.Tools了解其他的禱告工作和機會，還有偶爾來自GospelAmbition.org網頁的消"
+"息推送"
 
 #: parts/components-enqueue.php:138
 msgid "Text Translations"
@@ -998,10 +998,9 @@ msgstr "天數%s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "聯係我們"
+msgstr "聯絡 %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130

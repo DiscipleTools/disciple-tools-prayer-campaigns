@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2025-02-05 11:49+0000\n"
+"PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/kn/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.13.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -202,9 +202,8 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
-"ಈ ರಂಜಾನ್ಗೆ ನೀವು ಏನು ಕೊಡುಗೆ ನೀಡಿದ್ದೀರಿ ಎಂಬುದರ ಒಂದು ನೋಟಕ್ಕಾಗಿ ಕೆಳಗಿನ ಬಟನ್  ಕ್ಲಿಕ್ "
-"ಮಾಡಿ. ನೀವು ಪ್ರಾರ್ಥಿಸುವಾಗ ನೀವು ದೇವರಿಂದ ಪಡೆದ ಅನಿಸಿಕೆಗಳು ಅಥವಾ ವಾಕ್ಯಗಳನ್ನು ಕೇಳಲು "
-"ನಾವು ಇಷ್ಟಪಡುತ್ತೇವೆ."
+"ಈ ರಂಜಾನ್ಗೆ ನೀವು ಏನು ಕೊಡುಗೆ ನೀಡಿದ್ದೀರಿ ಎಂಬುದರ ಒಂದು ನೋಟಕ್ಕಾಗಿ ಕೆಳಗಿನ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ. ನೀವು "
+"ಪ್ರಾರ್ಥಿಸುವಾಗ ನೀವು ದೇವರಿಂದ ಪಡೆದ ಅನಿಸಿಕೆಗಳು ಅಥವಾ ವಾಕ್ಯಗಳನ್ನು ಕೇಳಲು ನಾವು ಇಷ್ಟಪಡುತ್ತೇವೆ."
 
 #: campaign-functions/send-email-utility.php:510
 msgid ""
@@ -433,7 +432,7 @@ msgstr "ಅಭಿಯಾನ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ"
 
 #: parts/components-enqueue.php:47
 msgid "Campaign Ends In"
-msgstr "ಅಭಿಯಾನ  ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
+msgstr "ಅಭಿಯಾನ ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
 
 #: parts/components-enqueue.php:48
 msgid "Campaign Ended"
@@ -605,7 +604,7 @@ msgstr "ಒಂದು ದಿನವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 #: parts/components-enqueue.php:88
 #, php-format
 msgid "Renews on %s"
-msgstr "%s  ರಂದು ನವೀಕರಿಸಲಾಗುತ್ತದೆ"
+msgstr "%s ರಂದು ನವೀಕರಿಸಲಾಗುತ್ತದೆ"
 
 #: parts/components-enqueue.php:89
 #, php-format
@@ -637,9 +636,9 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 "ರದ್ದು ಮಾಡಬೇಕೆ? ನಾವು ಅದನ್ನು ಪಡೆಯುತ್ತೇವೆ! ಆದರೆ ನಿರೀಕ್ಷಿಸಿ! ನಿಮ್ಮ ಪ್ರಾರ್ಥನಾ ಸಮರ್ಪಣೆಯನ್ನು "
-"48-ಗಂಟೆಗಳಿಗಿಂತ ಕಡಿಮೆ ಅವಧಿಯಲ್ಲಿ ಪ್ರಾರಂಭಿಸಲು ನಿಗದಿಪಡಿಸಿದ್ದರೆ, ದಯವಿಟ್ಟು ಅದನ್ನು "
-"ನಿಮಗಾಗಿ ಮುಗಿಸಲು ಸ್ನೇಹಿತರನ್ನು ಕೇಳಿ. ಅದು ಪ್ರಾರ್ಥನಾ ಸರಪಳಿಯನ್ನು ಮುರಿಯದಂತೆ ಮಾಡುತ್ತದೆ "
-"ಮತ್ತು  ಕಳೆದುಹೋದವರಿಗಾಗಿ ಹೋರಾಡುವ ಸಂತೋಷವನ್ನು ಯಾರಿಗಾದರು ಕೊಡುತ್ತದೆ! ಕೃತಜ್ಞತೆಗಳು!"
+"48-ಗಂಟೆಗಳಿಗಿಂತ ಕಡಿಮೆ ಅವಧಿಯಲ್ಲಿ ಪ್ರಾರಂಭಿಸಲು ನಿಗದಿಪಡಿಸಿದ್ದರೆ, ದಯವಿಟ್ಟು ಅದನ್ನು ನಿಮಗಾಗಿ ಮುಗಿಸಲು "
+"ಸ್ನೇಹಿತರನ್ನು ಕೇಳಿ. ಅದು ಪ್ರಾರ್ಥನಾ ಸರಪಳಿಯನ್ನು ಮುರಿಯದಂತೆ ಮಾಡುತ್ತದೆ ಮತ್ತು ಕಳೆದುಹೋದವರಿಗಾಗಿ ಹೋರಾಡು"
+"ವ ಸಂತೋಷವನ್ನು ಯಾರಿಗಾದರು ಕೊಡುತ್ತದೆ! ಕೃತಜ್ಞತೆಗಳು!"
 
 #: parts/components-enqueue.php:96
 msgid "Account Settings"
@@ -674,8 +673,8 @@ msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
-"ಕ್ಷಮಿಸಿ. ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು, ಅದನ್ನು  ಸರಿಪಡಿಸಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ "
-"ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+"ಕ್ಷಮಿಸಿ. ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು, ಅದನ್ನು ಸರಿಪಡಿಸಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ "
+"ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
 
 #: parts/components-enqueue.php:104
 msgid "Your account has been deleted!"
@@ -808,8 +807,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"GospelAmbition.org ನಿಂದ ಮುಂಬರುವ ಪ್ರಾರ್ಥನಾ ಅಭಿಯಾನಗಳು ಮತ್ತು ಸಾಂದರ್ಭಿಕ ಸಂವಹನದ "
-"ಕುರಿತು Prayer.Tools ನಿಂದ ಸುದ್ದಿಗಳನ್ನು ಸ್ವೀಕರಿಸಿ."
+"GospelAmbition.org ನಿಂದ ಮುಂಬರುವ ಪ್ರಾರ್ಥನಾ ಅಭಿಯಾನಗಳು ಮತ್ತು ಸಾಂದರ್ಭಿಕ ಸಂವಹನದ ಕುರಿತು "
+"Prayer.Tools ನಿಂದ ಸುದ್ದಿಗಳನ್ನು ಸ್ವೀಕರಿಸಿ"
 
 #: parts/components-enqueue.php:138
 msgid "Text Translations"
@@ -873,8 +872,7 @@ msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
-"ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಸೇರಿಸುವುದಕ್ಕೆ ಮೊದಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮ್ಮ "
-"ಇಮೇಲ್  ಪರಿಶೀಲಿಸಿ."
+"ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಸೇರಿಸುವುದಕ್ಕೆ ಮೊದಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
 
 #: parts/components-enqueue.php:155
 msgid "Time not covered"
@@ -888,13 +886,15 @@ msgstr "ಈ ಬಾರಿ ಆವರಿಸಿರುವ ಜನರು #"
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "ಹಾಯ್, %s ಗಾಗಿ ಒಟ್ಟಿಗೆ ಪ್ರಾರ್ಥಿಸೋಣ!"
 
 #: parts/components-enqueue.php:158
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"ನಾನು ಈ ಪ್ರಾರ್ಥನಾ ಅಭಿಯಾನದಲ್ಲಿಾ ಸೇರುತ್ತಿದ್ದೇನೆ ಮತ್ತು ನೀವು ನನ್ನ ಜೊತೆ ಸೇರಿಕೊಳ್ಳಲಿರುವುದಾಗಿ ನನಗೆ "
+"ತುಂಬಾ ಇಷ್ಟವಾಗುತ್ತದೆ! ದಯವಿಟ್ಟು ನಮ್ಮ ಜೊತೆ ಪ್ರಾರ್ಥಿಸಬೇಕಾಗಿ ಎರಡು ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -933,8 +933,7 @@ msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
 msgstr ""
-"ಇತಿಹಾಸದಲ್ಲಿ ಶಿಷ್ಯರನ್ನಾಗಿ ಮಾಡುವ ಪ್ರತಿಯೊಂದು ಆಂದೋಲನವು  ಅಸಾಮಾನ್ಯ ಪ್ರಾರ್ಥನೆಯ ಹಿನ್ನಲೆಯಲ್ಲಿ "
-"ಸಂಭವಿಸಿದೆ."
+"ಇತಿಹಾಸದಲ್ಲಿ ಶಿಷ್ಯರನ್ನಾಗಿ ಮಾಡುವ ಪ್ರತಿಯೊಂದು ಆಂದೋಲನವು ಅಸಾಮಾನ್ಯ ಪ್ರಾರ್ಥನೆಯ ಹಿನ್ನಲೆಯಲ್ಲಿ ಸಂಭವಿಸಿದೆ."
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
@@ -957,8 +956,8 @@ msgid ""
 "Choose a 15-minute (or more!) time slot that you can pray during each day. "
 "Invite someone else to sign up too."
 msgstr ""
-"ಪ್ರತಿ ದಿನವೂ ನೀವು ಪ್ರಾರ್ಥಿಸಬಹುದಾದ 15 ನಿಮಿಷಗಳ (ಅಥವಾ ಹೆಚ್ಚು!) ಸಮಯದ ಮಿತಿಯನ್ನು "
-"ಆಯ್ಕೆಮಾಡಿ.  ಸೈನ್ ಅಪ್ ಮಾಡಲು ಬೇರೆಯವರನ್ನು ಸಹ ಆಹ್ವಾನಿಸಿ."
+"ಪ್ರತಿ ದಿನವೂ ನೀವು ಪ್ರಾರ್ಥಿಸಬಹುದಾದ 15 ನಿಮಿಷಗಳ (ಅಥವಾ ಹೆಚ್ಚು!) ಸಮಯದ ಮಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಸೈನ್ ಅಪ್ "
+"ಮಾಡಲು ಬೇರೆಯವರನ್ನು ಸಹ ಆಹ್ವಾನಿಸಿ."
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
@@ -1023,10 +1022,9 @@ msgstr "%s ದಿನ"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ"
+msgstr "ಸಂಪರ್ಕಿಸಿ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
@@ -1084,8 +1082,8 @@ msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc.)"
 msgstr ""
-"ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು  ಕುರಿತು ನಮ್ಮೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ (ಉದಾ. ಸಾಕ್ಷಿಗಳು, ಒಳನೋಟಗಳು, "
-"ಆಶೀರ್ವಾದಗಳು, ಇತ್ಯಾದಿ)"
+"ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು ಕುರಿತು ನಮ್ಮೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ (ಉದಾ. ಸಾಕ್ಷಿಗಳು, ಒಳನೋಟಗಳು, ಆಶೀರ್ವಾದಗಳು"
+", ಇತ್ಯಾದಿ)"
 
 #: porches/generic/site/stats.php:306
 msgid "Global Ramadan Stats"

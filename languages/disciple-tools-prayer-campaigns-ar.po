@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2025-02-25 08:27+0000\n"
+"PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/ar/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.10.1\n"
+"X-Generator: Weblate 5.13.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -41,12 +41,10 @@ msgstr "إذا لم تطلب هذا البريد الإلكتروني، من ف�
 
 #: campaign-functions/send-email-utility.php:182
 #: campaign-functions/send-email-utility.php:278
-#, fuzzy, php-format
-#| msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
-#| msgid "%1$s from %2$s to %3$s"
+#, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr "‫%1$‏s من %2$s إلى %3$s"
+msgstr "%1$s من %2$s إلى %3$s"
 
 #: campaign-functions/send-email-utility.php:189
 msgid "see more on your account"
@@ -87,7 +85,7 @@ msgstr "إليك التزاماتك/طلباتك المقبلة في الصلا�
 #: campaign-functions/send-email-utility.php:314
 #, php-format
 msgid "Times are shown according to: %s time"
-msgstr "تُعرض المواقيت وفقًا لـ: % s مرة"
+msgstr "تُعرض المواقيت وفقًا لـ: %s مرة"
 
 #: campaign-functions/send-email-utility.php:242
 #: magic-links/subscription-management/subscription-management.php:371
@@ -142,7 +140,7 @@ msgstr "بعض مواقيت صلاتك ستنتهي قريبًا."
 
 #: campaign-functions/send-email-utility.php:417
 msgid "The prayer times are:"
-msgstr "انظر إلى مواقيت الصلاة"
+msgstr "أوقات الصلاة هي:"
 
 #: campaign-functions/send-email-utility.php:421
 msgid ""
@@ -313,7 +311,7 @@ msgstr "يرجى التحقق من عنوان بريدك الإلكتروني ا
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
-msgstr "لقد مُدَّت مواقيت صلواتك!"
+msgstr "لقد مُدَّت مواقيت صلواتك"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
 #, php-format
@@ -435,12 +433,10 @@ msgid "Campaign Ended"
 msgstr "انتهت الحملة"
 
 #: parts/components-enqueue.php:49
-#, fuzzy, php-format
-#| msgctxt "Monday 5pm for 15 minutes"
-#| msgid "%1$s for %2$s minutes."
+#, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr "%1$‏s لمدة %2$s دقيقة."
+msgstr "%1$s لمدة %2$s دقيقة."
 
 #: parts/components-enqueue.php:50
 msgid "How often?"
@@ -521,10 +517,9 @@ msgid "Verify"
 msgstr "تحقق"
 
 #: parts/components-enqueue.php:70
-#, fuzzy, php-format
-#| msgid "Goal: %s hours of prayer every day"
+#, php-format
 msgid "Goal: %s hours of prayer every day"
-msgstr "الهدف: %ساعات من الصلاة اليومية"
+msgstr "الهدف: %s ساعات من الصلاة كل يوم"
 
 #: parts/components-enqueue.php:71
 msgid "Goal: 24/7 coverage"
@@ -574,15 +569,14 @@ msgid "%s Hours"
 msgstr "%s ساعات"
 
 #: parts/components-enqueue.php:82
-#, fuzzy, php-format
-#| msgid "%1$s at %2$s for %3$s"
+#, php-format
 msgid "%1$s at %2$s for %3$s"
-msgstr "%1$‏s في %2$s لـ %3$s"
+msgstr "%1$s في %2$s لـ %3$s"
 
 #: parts/components-enqueue.php:83
 #, php-format
 msgid "for %s minutes"
-msgstr "لمدة %s دقيقة."
+msgstr "لمدة %s دقيقة"
 
 #: parts/components-enqueue.php:84
 #, php-format
@@ -696,7 +690,7 @@ msgstr "تغيير الوقت"
 
 #: parts/components-enqueue.php:110
 msgid "Stop Praying"
-msgstr "إيقاف الصلاة!"
+msgstr "إيقاف الصلاة"
 
 #: parts/components-enqueue.php:111
 msgid "See prayer times"
@@ -873,19 +867,21 @@ msgstr "مواقيت غير مُلباه %s"
 
 #: parts/components-enqueue.php:156
 msgid "# of people covering this time"
-msgstr "# من الناس يلبون هذا التوقيت."
+msgstr "# من الناس يلبون هذا التوقيت"
 
 #: parts/components-enqueue.php:157
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "مرحبًا، دعونا نصلي معًا من أجل %s!"
 
 #: parts/components-enqueue.php:158
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"أنا أنضم إلى هذه الحملة من أجل الصلاة وأودّ أن تنضم إليّ أيضاً. من فضلك ادعُ "
+"اثنين من الأصدقاء ليصلّوا معنا أيضاً."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -973,7 +969,7 @@ msgstr "اكتشاف وقود الصلاة"
 msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
-msgstr "جميع مواقيت وقود الصلاة بكل اللغات المتاحة. أضف وقود صلاة وعدله أدناه."
+msgstr "جميع مواقيت وقود الصلاة بكل اللغات المتاحة. أضف وقود صلاة وعدله أدناه"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 msgid "We want to cover this region with prayer."
@@ -1012,10 +1008,9 @@ msgstr "يوم %s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "إتصل بنا"
+msgstr "اتصل بـ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
