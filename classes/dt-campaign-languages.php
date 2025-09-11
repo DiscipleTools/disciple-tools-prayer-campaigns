@@ -151,6 +151,7 @@ class DT_Campaign_Languages {
             'te',
             'ur',
             'wo',
+            'az',
         ];
 //        foreach ( $installed_languages as $code ) {
 //            unload_textdomain( 'disciple-tools-prayer-campaigns' );
