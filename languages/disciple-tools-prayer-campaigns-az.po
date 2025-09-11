@@ -6,115 +6,116 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
 "POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-09-11 08:03+0000\n"
+"Last-Translator: Jason Casto <jason.casto@quikmail.org>\n"
+"Language-Team: Azerbaijani <https://translate.disciple.tools/projects/"
+"pray4movement/disciple-tools-prayer-campaigns/az/>\n"
 "Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"X-Generator: Weblate 5.13.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
-msgstr ""
+msgstr "E-poçt ünvanınızı təsdiqləyin"
 
 #: campaign-functions/send-email-utility.php:87
 msgid "Confirm your participation in prayer by activating your account."
-msgstr ""
+msgstr "Hesabınızı aktivləşdirərək dua iştirakınızı təsdiqləyin."
 
 #: campaign-functions/send-email-utility.php:90
 msgid "Activate Account"
-msgstr ""
+msgstr "Hesabı Aktivləşdir"
 
 #: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
-msgstr ""
+msgstr "Bu linkə klikləyin:"
 
 #: campaign-functions/send-email-utility.php:99
 msgid "If you did not request this email, please ignore it."
-msgstr ""
+msgstr "Əgər bu e-poçtu siz istəməmisinizsə, xahiş edirik, nəzərə almayın."
 
 #: campaign-functions/send-email-utility.php:182
 #: campaign-functions/send-email-utility.php:278
 #, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr ""
+msgstr "%1$s , %2$s-dən %3$s-ə qədər"
 
 #: campaign-functions/send-email-utility.php:189
 msgid "see more on your account"
-msgstr ""
+msgstr "Daha ətraflı məlumatı hesabınızda görün"
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr ""
+msgstr "Bizimlə dua etmək üçün qeydiyyatdan keçmisiniz!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
 #: campaign-functions/send-email-utility.php:414
 #, php-format
 msgid "Hello %s,"
-msgstr ""
+msgstr "Salam %s,"
 
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
 msgid "Access your account to see your commitments and make changes:"
-msgstr ""
+msgstr "Öhdəliklərinizi görmək və dəyişiklik etmək üçün hesabınıza daxil olun:"
 
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
 #: parts/components-enqueue.php:94
 msgid "Access Account"
-msgstr ""
+msgstr "Hesaba Daxil Ol"
 
 #: campaign-functions/send-email-utility.php:230
 msgid "You signed up to pray:"
-msgstr ""
+msgstr "Dua etmək üçün qeydiyyatdan keçmisiniz:"
 
 #: campaign-functions/send-email-utility.php:235
 msgid "These are your next prayer commitments:"
-msgstr ""
+msgstr "Növbəti dua öhdəlikləriniz bunlardır:"
 
 #: campaign-functions/send-email-utility.php:238
 #: campaign-functions/send-email-utility.php:314
 #, php-format
 msgid "Times are shown according to: %s time"
-msgstr ""
+msgstr "Saatlar %s vaxtına görə göstərilir"
 
 #: campaign-functions/send-email-utility.php:242
 #: magic-links/subscription-management/subscription-management.php:371
 msgid "Download Calendar"
-msgstr ""
+msgstr "Təqvimi Yüklə"
 
 #: campaign-functions/send-email-utility.php:266
 #, php-format
 msgctxt "Click here to see the prayer prompts for today: link-html-code-here"
 msgid "Click here to see the prayer prompts for today: %s"
-msgstr ""
+msgstr "Bugünkü dua mövzularını görmək üçün buraya klikləyin: %s"
 
 #: campaign-functions/send-email-utility.php:284
 #, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr ""
+msgstr "%s üçün"
 
 #: campaign-functions/send-email-utility.php:294
 msgid "Prayer Time reminder!"
-msgstr ""
+msgstr "Dua vaxtı xatırlatması!"
 
 #: campaign-functions/send-email-utility.php:311
 #: campaign-functions/send-email-utility.php:416
 #: parts/components-enqueue.php:105
 msgid "Thank you for praying with us."
-msgstr ""
+msgstr "Bizimlə dua etdiyiniz üçün təşəkkür edirik."
 
 #: campaign-functions/send-email-utility.php:312
 msgid "Here are your upcoming prayer times:"
-msgstr ""
+msgstr "Qarşıdakı dua vaxtlarınız:"
 
 #: campaign-functions/send-email-utility.php:317
 #: magic-links/campaign-magic-link.php:112
@@ -126,820 +127,873 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:161
 #: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
-msgstr ""
+msgstr "Dua üçün mövzu"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr ""
+msgstr "[TƏDBİR LAZIMDIR] Dua etməyə davam edirsinizmi?"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
-msgstr ""
+msgstr "Bəzi dua vaxtlarınız tezliklə başa çatacaq."
 
 #: campaign-functions/send-email-utility.php:417
 msgid "The prayer times are:"
-msgstr ""
+msgstr "Dua vaxtları bunlardır:"
 
 #: campaign-functions/send-email-utility.php:421
 msgid "To continue praying, and to keep receiving the notifications, please access your account and click \"extend\" next to your commitment(s). You can also sign up for a different time if you wish."
 msgstr ""
+"Dua etməyə davam etmək və bildirişləri almaq üçün hesabınıza daxil olun və "
+"öhdəliyinizin yanında “uzat” düyməsinə basın. İstəsəniz, başqa bir vaxt üçün "
+"də qeydiyyatdan keçə bilərsiniz."
 
 #: campaign-functions/send-email-utility.php:423
 msgid "You do not have to do anything if you do not want to continue praying when your prayer times end."
 msgstr ""
+"Əgər dua vaxtlarınız bitdikdə davam etmək istəmirsinizsə, heç nə etməyiniz "
+"lazım deyil."
 
 #: campaign-functions/send-email-utility.php:425
 #: parts/components.php:52
 #: porches/generic/site/contact-us.php:118
 #: porches/generic/site/stats.php:244
 msgid "Thank you"
-msgstr ""
+msgstr "Təşəkkür edirik"
 
 #: campaign-functions/send-email-utility.php:465
 #: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
-msgstr ""
+msgstr "Bizimlə dua etdiyiniz üçün təşəkkürlər!"
 
 #: campaign-functions/send-email-utility.php:485
 #, php-format
 msgid "Dear %s,"
-msgstr ""
+msgstr "Əziz %s,"
 
 #: campaign-functions/send-email-utility.php:491
 #: porches/generic/dt-generic-porch-strings.php:38
 msgid "Strategic prayer for a Disciple Making Movement"
-msgstr ""
+msgstr "Şagird Yetişdirmə Hərəkatı üçün strateji dua"
 
 #: campaign-functions/send-email-utility.php:493
 #, php-format
 msgid "Thank you for joining %1$s in %2$s."
-msgstr ""
+msgstr "%1$sə %2$s-də qoşulduğunuz üçün minnətdarıq."
 
 #: campaign-functions/send-email-utility.php:505
 msgid "We will only know in eternity the full impact of the thousands of hours of prayer for the Muslim world during Ramadan. However, we know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Ramazan ayında müsəlman dünyası üçün edilən minlərlə saatlıq duaların tam "
+"təsirini yalnız əbədi həyatda biləcəyik. Amma Allahın Kəlamından bilirik ki, "
+"dua güclü və təsirlidir (Yaqub 5:16)."
 
 #: campaign-functions/send-email-utility.php:508
 msgid "Click the button below for a glimpse at what you contributed to this Ramadan. We would also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"Aşağıdakı düyməyə klikləyərək bu Ramazanda necə töhfə verdiyinizə bir baxış "
+"əldə edin. Dua etdiyiniz zaman Allahdan aldığınız təsir və ya sözləri "
+"eşitmək də bizi sevindirərdi."
 
 #: campaign-functions/send-email-utility.php:510
 msgid "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the bottom. Make sure you are signed up to receive news about future prayer opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
+"Sonda, Ramadan 24/7 Dua Statistikaları səhifəsinin aşağısında qeydiyyat "
+"bölməsi də var. Bu dua alətinin yaradıcıları Prayer.Tools tərəfindən gələcək "
+"dua imkanları barədə xəbərlər almaq üçün mütləq qeydiyyatdan keçdiyinizə "
+"əmin olun."
 
 #: campaign-functions/send-email-utility.php:514
 msgid "We will only know in eternity the full impact of our prayer. However, we know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Dualarımızın tam təsirini yalnız əbədi həyatda biləcəyik. Ancaq Allahın "
+"Kəlamından bilirik ki, dua güclü və təsirlidir (Yaqub 5:16)."
 
 #: campaign-functions/send-email-utility.php:517
 msgid "Click the button below for a glimpse at what you contributed to. We would also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"Aşağıdakı düyməyə klikləyərək töhfənizin necə olduğunu görə bilərsiniz. Dua "
+"zamanı Allahdan aldığınız təsir və ya sözləri bizimlə bölüşməyinizdən məmnun "
+"olarıq."
 
 #: campaign-functions/send-email-utility.php:519
 msgid "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page."
 msgstr ""
+"Nəhayət, bu dua alətini Prayer.Tools hazırlayıb. Gələcək dua imkanları "
+"barədə xəbər almaq üçün Statistikalar səhifəsində qeydiyyatdan keçdiyinizə "
+"əmin ola bilərsiniz."
 
 #: campaign-functions/send-email-utility.php:524
 msgid "See Prayer Stats"
-msgstr ""
+msgstr "Dua Statistikalarına Bax"
 
 #: campaign-functions/send-email-utility.php:534
 msgid "In Christ with you,"
-msgstr ""
+msgstr "Məsihdə sizinlə,"
 
 #: campaign-functions/time-utilities.php:185
 msgid "5 minutes"
-msgstr ""
+msgstr "5 dəqiqə"
 
 #: campaign-functions/time-utilities.php:186
 msgid "10 minutes"
-msgstr ""
+msgstr "10 dəqiqə"
 
 #: campaign-functions/time-utilities.php:187
 msgid "15 minutes"
-msgstr ""
+msgstr "15 dəqiqə"
 
 #: campaign-functions/time-utilities.php:188
 msgid "30 minutes"
-msgstr ""
+msgstr "30 dəqiqə"
 
 #: campaign-functions/time-utilities.php:189
 msgid "1 hour"
-msgstr ""
+msgstr "1 saat"
 
 #: campaign-functions/time-utilities.php:198
 msgid "years"
-msgstr ""
+msgstr "illər"
 
 #: campaign-functions/time-utilities.php:198
 msgid "year"
-msgstr ""
+msgstr "il"
 
 #: campaign-functions/time-utilities.php:201
 msgid "day"
-msgstr ""
+msgstr "gün"
 
 #: campaign-functions/time-utilities.php:201
 #: parts/components-enqueue.php:42
 msgid "days"
-msgstr ""
+msgstr "günlər"
 
 #: campaign-functions/utils.php:335
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
-msgstr ""
+msgstr "Redaktə et"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:158
 msgid "Retrieve Prayer Time Management Link"
-msgstr ""
+msgstr "Dua vaxtlarının idarəetmə linkini əldə et"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
+"E-poçt ünvanınızı daxil edin və dua vaxtlarınıza keçid linkini əldə edin."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:56
 #: porches/generic/site/contact-us.php:85
 #: porches/generic/site/stats.php:212
 msgid "Email"
-msgstr ""
+msgstr "E-poçt"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:174
 msgid "Email My Access Link"
-msgstr ""
+msgstr "Giriş linkimi göndər"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr ""
+msgstr "Giriş linkinizi almaq üçün indi e-poçtunuzu yoxlayın."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
-msgstr ""
+msgstr "Dua vaxtınız uzadılıb"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
 #, php-format
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
 msgstr ""
+"Siz %1$s dua etmək üçün qeydiyyatdan keçmisiniz və bu, %2$s tarixinədək "
+"davam edəcək."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:92
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:93
 msgid "Email me the updated calendar"
-msgstr ""
+msgstr "Yenilənmiş təqvimi mənə e-poçtla göndərin"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:95
 msgid "Join me in praying!"
-msgstr ""
+msgstr "Mənimlə birlikdə dua edin!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:164
 #, php-format
 msgid "Content will start in %s days"
-msgstr ""
+msgstr "Məzmun %s gün ərzində başlayacaq"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
+msgstr "Bu kampaniya başa çatıb. Aşağıda Dua Mövzularına baxın"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:48
 msgid "Prayer Timer"
-msgstr ""
+msgstr "Dua Taymeri"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
 #: parts/components-enqueue.php:53
 msgid "My Prayer Commitments"
-msgstr ""
+msgstr "Mənim Dua Öhdəliklərim"
 
 #: magic-links/subscription-management/subscription-management.php:334
 #: porches/generic/site/stats.php:145
 msgid "Prayer Commitments"
-msgstr ""
+msgstr "Dua Öhdəlikləri"
 
 #: magic-links/subscription-management/subscription-management.php:335
 msgid "Account"
-msgstr ""
+msgstr "Hesab"
 
 #: magic-links/subscription-management/subscription-management.php:341
 msgid "Account activated!"
-msgstr ""
+msgstr "Hesab aktivləşdirildi!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
+msgstr "Burada dua öhdəliklərinizi və hesab ayarlarınızı idarə edə bilərsiniz."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
-msgstr ""
+msgstr "Linklər"
 
 #: magic-links/subscription-management/subscription-management.php:350
 #: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
-msgstr ""
+msgstr "Ana səhifə"
 
 #: magic-links/subscription-management/subscription-management.php:352
 #: porches/generic/site/stats.php:20
 #: porches/generic/site/stats.php:110
 msgid "Stats"
-msgstr ""
+msgstr "Statistikalar"
 
 #: magic-links/subscription-management/subscription-management.php:368
 msgid "My Calendar"
-msgstr ""
+msgstr "Mənim Təqvimim"
 
 #: magic-links/subscription-management/subscription-management.php:381
 msgid "Sign up for more prayer"
-msgstr ""
+msgstr "Daha çox dua üçün qeydiyyatdan keç"
 
 #: magic-links/subscription-management/subscription-management.php:402
 msgid "This subscription has ended or is not configured correctly."
-msgstr ""
+msgstr "Bu abunəlik başa çatıb və ya düzgün qurulmayıb."
 
 #: parts/components-enqueue.php:40
 msgid "Detected time zone"
-msgstr ""
+msgstr "Aşkarlanmış saat qurşağı"
 
 #: parts/components-enqueue.php:41
 msgid "Select a timezone"
-msgstr ""
+msgstr "Saat qurşağını seçin"
 
 #: parts/components-enqueue.php:43
 #: porches/generic/site/stats.php:157
 #: porches/generic/site/stats.php:167
 msgid "hours"
-msgstr ""
+msgstr "saat"
 
 #: parts/components-enqueue.php:44
 msgid "minutes"
-msgstr ""
+msgstr "dəqiqə"
 
 #: parts/components-enqueue.php:45
 msgid "seconds"
-msgstr ""
+msgstr "saniyə"
 
 #: parts/components-enqueue.php:46
 msgid "Campaign Starts In"
-msgstr ""
+msgstr "Kampaniya Başlayır"
 
 #: parts/components-enqueue.php:47
 msgid "Campaign Ends In"
-msgstr ""
+msgstr "Kampaniya Bitir"
 
 #: parts/components-enqueue.php:48
 msgid "Campaign Ended"
-msgstr ""
+msgstr "Kampaniya Bitdi"
 
 #: parts/components-enqueue.php:49
 #, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr ""
+msgstr "%1$s, %2$s dəqiqəlik."
 
 #: parts/components-enqueue.php:50
 msgid "How often?"
-msgstr ""
+msgstr "Nə qədər tez-tez?"
 
 #: parts/components-enqueue.php:51
 msgid "I will pray for"
-msgstr ""
+msgstr "Mən dua edəcəyəm"
 
 #: parts/components-enqueue.php:52
 msgid "At what time?"
-msgstr ""
+msgstr "Saat neçədə?"
 
 #: parts/components-enqueue.php:54
 msgid "Contact Info"
-msgstr ""
+msgstr "Əlaqə Məlumatı"
 
 #: parts/components-enqueue.php:55
 #: porches/generic/site/contact-us.php:78
 msgid "Name"
-msgstr ""
+msgstr "Ad"
 
 #: parts/components-enqueue.php:57
 msgid "Start Here"
-msgstr ""
+msgstr "Buradan Başla"
 
 #: parts/components-enqueue.php:58
 msgid "Continue here"
-msgstr ""
+msgstr "Buradan Davam Et"
 
 #: parts/components-enqueue.php:59
 msgid "On which week day?"
-msgstr ""
+msgstr "Həftənin hansı günü?"
 
 #: parts/components-enqueue.php:60
 msgid "Select a Date"
-msgstr ""
+msgstr "Tarixi Seçin"
 
 #: parts/components-enqueue.php:61
 msgid "Select a Time"
-msgstr ""
+msgstr "Vaxtı Seçin"
 
 #: parts/components-enqueue.php:62
 #, php-format
 msgid "Select a Time for %s"
-msgstr ""
+msgstr "%s üçün vaxtı seçin"
 
 #: parts/components-enqueue.php:63
 #: parts/components-enqueue.php:142
 msgid "Close"
-msgstr ""
+msgstr "Bağla"
 
 #: parts/components-enqueue.php:64
 msgid "prayer commitments"
-msgstr ""
+msgstr "dua öhdəlikləri"
 
 #: parts/components-enqueue.php:65
 #, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr ""
+msgstr "%s tarixindən başlayır"
 
 #: parts/components-enqueue.php:66
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr ""
+msgstr "%s tarixində başa çatır"
 
 #: parts/components-enqueue.php:67
 msgid "Review"
-msgstr ""
+msgstr "Yoxlayın"
 
 #: parts/components-enqueue.php:68
 #: parts/components.php:46
 #: porches/generic/site/contact-us.php:111
 #: porches/generic/site/stats.php:238
 msgid "Submit"
-msgstr ""
+msgstr "Təsdiqləyin"
 
 #: parts/components-enqueue.php:69
 msgid "Verify"
-msgstr ""
+msgstr "Doğrulayın"
 
 #: parts/components-enqueue.php:70
 #, php-format
 msgid "Goal: %s hours of prayer every day"
-msgstr ""
+msgstr "Məqsəd: hər gün %s saat dua"
 
 #: parts/components-enqueue.php:71
 msgid "Goal: 24/7 coverage"
-msgstr ""
+msgstr "Məqsəd: 24/7 dua davamlılığı"
 
 #: parts/components-enqueue.php:72
 msgid "Please enter a valid name or email address"
-msgstr ""
+msgstr "Zəhmət olmasa, düzgün ad və ya e-poçt ünvanı daxil edin"
 
 #: parts/components-enqueue.php:73
 msgid "Next"
-msgstr ""
+msgstr "Növbəti"
 
 #: parts/components-enqueue.php:74
 msgid "No prayer times selected"
-msgstr ""
+msgstr "Heç bir dua vaxtı seçilməyib"
 
 #: parts/components-enqueue.php:75
 msgid "Daily"
-msgstr ""
+msgstr "Gündəlik"
 
 #: parts/components-enqueue.php:76
 msgid "Weekly"
-msgstr ""
+msgstr "Həftəlik"
 
 #: parts/components-enqueue.php:77
 msgid "Monthly"
-msgstr ""
+msgstr "Aylıq"
 
 #: parts/components-enqueue.php:78
 msgid "Pick Dates and Times"
-msgstr ""
+msgstr "Tarix və vaxt seçin"
 
 #: parts/components-enqueue.php:79
 #, php-format
 msgid "%s Minutes"
-msgstr ""
+msgstr "%s dəqiqə"
 
 #: parts/components-enqueue.php:80
 #, php-format
 msgid "%s Hour"
-msgstr ""
+msgstr "%s saat"
 
 #: parts/components-enqueue.php:81
 #, php-format
 msgid "%s Hours"
-msgstr ""
+msgstr "%s saat"
 
 #: parts/components-enqueue.php:82
 #, php-format
 msgid "%1$s at %2$s for %3$s"
-msgstr ""
+msgstr "%1$s, %2$s, %3$s dəqiqəlik"
 
 #: parts/components-enqueue.php:83
 #, php-format
 msgid "for %s minutes"
-msgstr ""
+msgstr "%s dəqiqəlik"
 
 #: parts/components-enqueue.php:84
 #, php-format
 msgid "Every %s"
-msgstr ""
+msgstr "Hər %s"
 
 #: parts/components-enqueue.php:85
 msgid "Prayer Time Selected"
-msgstr ""
+msgstr "Dua Vaxtı Seçilib"
 
 #: parts/components-enqueue.php:86
 msgid "Prayer Time Removed"
-msgstr ""
+msgstr "Dua Vaxtı Silinib"
 
 #: parts/components-enqueue.php:87
 msgid "Select a Day"
-msgstr ""
+msgstr "Gün Seçin"
 
 #: parts/components-enqueue.php:88
 #, php-format
 msgid "Renews on %s"
-msgstr ""
+msgstr "%s yenilənir"
 
 #: parts/components-enqueue.php:89
 #, php-format
 msgid "Ends on %s"
-msgstr ""
+msgstr "%s bitir"
 
 #: parts/components-enqueue.php:90
 msgid "Success"
-msgstr ""
+msgstr "Uğur"
 
 #: parts/components-enqueue.php:91
 msgid "Your registration was successful."
-msgstr ""
+msgstr "Qeydiyyatınız uğurlu oldu."
 
 #: parts/components-enqueue.php:92
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
+msgstr "Əlavə məlumat və hesabınızı idarə etmək üçün e-poçtunuzu yoxlayın."
 
 #: parts/components-enqueue.php:93
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: parts/components-enqueue.php:95
 msgid "Need to cancel? We get it! But wait! If your prayer commitment is scheduled to start in less than 48-hours, please ask a friend to cover it for you. That will keep the prayer chain from being broken AND will give someone the joy of fighting for the lost! Thanks!"
 msgstr ""
+"Ləğv etmək lazımdır? Anlayırıq! Amma bir də gözləyin! Əgər dua öhdəliyiniz "
+"48 saatdan az müddətdə başlayacaqsa, zəhmət olmasa bir dostunuzdan sizin "
+"yerinizə dua etməsini xahiş edin. Bu, dua zəncirinin pozulmamasını təmin "
+"edəcək VƏ kiminsə itmişlər üçün mübarizə aparma sevinci yaşamasına səbəb "
+"olacaq! Təşəkkürlər!"
 
 #: parts/components-enqueue.php:96
 msgid "Account Settings"
-msgstr ""
+msgstr "Hesab Ayarları"
 
 #: parts/components-enqueue.php:97
 msgid "Timezone"
-msgstr ""
+msgstr "Saat Qurşağı"
 
 #: parts/components-enqueue.php:98
 msgid "Receive prayer time notifications"
-msgstr ""
+msgstr "Dua vaxtı bildirişlərini alın"
 
 #: parts/components-enqueue.php:99
 msgid "Auto extend prayer times"
-msgstr ""
+msgstr "Dua vaxtlarını avtomatik uzadın"
 
 #: parts/components-enqueue.php:100
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Ətraflı Ayarlar"
 
 #: parts/components-enqueue.php:101
 msgid "show"
-msgstr ""
+msgstr "göstərin"
 
 #: parts/components-enqueue.php:102
 msgid "Delete this account and all the scheduled prayer times"
-msgstr ""
+msgstr "Bu hesabı və bütün planlaşdırılmış dua vaxtlarını silin"
 
 #: parts/components-enqueue.php:103
 msgid "So sorry. Something went wrong. Please, contact us to help you through it, or just try again."
 msgstr ""
+"Üzr istəyirik. Nəsə səhv getdi. Zəhmət olmasa, sizə kömək üçün bizimlə əlaqə "
+"saxlayın, ya da yenidən cəhd edin."
 
 #: parts/components-enqueue.php:104
 msgid "Your account has been deleted!"
-msgstr ""
+msgstr "Hesabınız silindi!"
 
 #: parts/components-enqueue.php:106
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: parts/components-enqueue.php:107
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: parts/components-enqueue.php:108
 #: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
-msgstr ""
+msgstr "Dua Mövzularına Baxın"
 
 #: parts/components-enqueue.php:109
 msgid "change time"
-msgstr ""
+msgstr "Vaxtı dəyiş"
 
 #: parts/components-enqueue.php:110
 msgid "Stop Praying"
-msgstr ""
+msgstr "Dua etməyi dayandırın"
 
 #: parts/components-enqueue.php:111
 msgid "See prayer times"
-msgstr ""
+msgstr "Dua vaxtlarına baxın"
 
 #: parts/components-enqueue.php:112
 msgid "Your future prayer times will be canceled."
-msgstr ""
+msgstr "Gələcək dua vaxtlarınız ləğv ediləcək."
 
 #: parts/components-enqueue.php:113
 msgid "extend"
-msgstr ""
+msgstr "uzadın"
 
 #: parts/components-enqueue.php:114
 msgid "Extend Prayer Times"
-msgstr ""
+msgstr "Dua Vaxtlarını Uzadın"
 
 #: parts/components-enqueue.php:115
 msgid "Really delete this prayer time?"
-msgstr ""
+msgstr "Bu dua vaxtını həqiqətən silmək istəyirsiniz?"
 
 #: parts/components-enqueue.php:116
 msgid "Delete Prayer Time"
-msgstr ""
+msgstr "Dua Vaxtını Silin"
 
 #: parts/components-enqueue.php:117
 msgid "Mondays"
-msgstr ""
+msgstr "Bazar ertəsi"
 
 #: parts/components-enqueue.php:118
 msgid "Tuesdays"
-msgstr ""
+msgstr "Çərşənbə axşamı"
 
 #: parts/components-enqueue.php:119
 msgid "Wednesdays"
-msgstr ""
+msgstr "Çərşənbə"
 
 #: parts/components-enqueue.php:120
 msgid "Thursdays"
-msgstr ""
+msgstr "Cümə axşamı"
 
 #: parts/components-enqueue.php:121
 msgid "Fridays"
-msgstr ""
+msgstr "Cümə"
 
 #: parts/components-enqueue.php:122
 msgid "Saturdays"
-msgstr ""
+msgstr "Şənbə"
 
 #: parts/components-enqueue.php:123
 msgid "Sundays"
-msgstr ""
+msgstr "Bazar"
 
 #: parts/components-enqueue.php:124
 msgid "Hours"
-msgstr ""
+msgstr "Saatlar"
 
 #: parts/components-enqueue.php:125
 msgid "Hour"
-msgstr ""
+msgstr "Saat"
 
 #: parts/components-enqueue.php:126
 msgid "Minutes"
-msgstr ""
+msgstr "Dəqiqələr"
 
 #: parts/components-enqueue.php:127
 msgid "Change Prayer Time"
-msgstr ""
+msgstr "Dua Vaxtını Dəyişin"
 
 #: parts/components-enqueue.php:128
 #, php-format
 msgid "Your current prayer time is %s"
-msgstr ""
+msgstr "Cari dua vaxtınız: %s"
 
 #: parts/components-enqueue.php:129
 msgid "Select a new time:"
-msgstr ""
+msgstr "Yeni vaxt seçin:"
 
 #: parts/components-enqueue.php:130
 msgid "Select a time"
-msgstr ""
+msgstr "Vaxt seçin"
 
 #: parts/components-enqueue.php:131
 msgid "Renew Prayer Times"
-msgstr ""
+msgstr "Dua Vaxtlarını Yeniləyin"
 
 #: parts/components-enqueue.php:132
 msgid "renew"
-msgstr ""
+msgstr "yeniləyin"
 
 #: parts/components-enqueue.php:133
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "%s tarixinədək"
 
 #: parts/components-enqueue.php:134
 #, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr ""
+msgstr "%s ay müddətinə"
 
 #: parts/components-enqueue.php:135
 msgid "Receive news from Prayer.Tools about upcoming prayer campaigns and occasional communication from GospelAmbition.org"
 msgstr ""
+"Gələcək dua kampaniyaları haqqında Prayer.Tools-dan və bəzən GospelAmbition"
+".org-dan məlumatlar alın"
 
 #: parts/components-enqueue.php:138
 msgid "Text Translations"
-msgstr ""
+msgstr "Mətn Tərcümələri"
 
 #: parts/components-enqueue.php:139
 msgid "Original String"
-msgstr ""
+msgstr "Orijinal Mətn"
 
 #: parts/components-enqueue.php:140
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "Bütün dillər üçün xüsusi dəyər"
 
 #: parts/components-enqueue.php:141
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "Hazırda seçilmiş dil üçün tərcümə"
 
 #: parts/components-enqueue.php:143
 msgid "Update"
-msgstr ""
+msgstr "Yeniləyin"
 
 #: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
+msgstr "Demək olar ki, tamamdır! Hesabınızı aktivləşdirərək qeydiyyatı bitirin."
 
 #: parts/components-enqueue.php:147
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
+"%s ünvanına göndərilən e-poçtdakı “Hesabı Aktivləşdir” düyməsini klikləyin"
 
 #: parts/components-enqueue.php:148
 msgid "It will look like this:"
-msgstr ""
+msgstr "Buna bənzəyəcək:"
 
 #: parts/components-enqueue.php:149
 msgid "Pending - Verification Needed"
-msgstr ""
+msgstr "Gözləmədə – Doğrulama tələb olunur"
 
 #: parts/components-enqueue.php:150
 msgid "Back to sign-up"
-msgstr ""
+msgstr "Qeydiyyata qayıdın"
 
 #: parts/components-enqueue.php:151
 msgid "So sorry. Something went wrong. You can:"
-msgstr ""
+msgstr "Üzr istəyirik. Nəsə səhv getdi. Siz edə bilərsiniz:"
 
 #: parts/components-enqueue.php:152
 msgid "Try Again"
-msgstr ""
+msgstr "Yenidən cəhd edin"
 
 #: parts/components-enqueue.php:153
 #: porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 msgid "Contact Us"
-msgstr ""
+msgstr "Bizimlə əlaqə saxlayın"
 
 #: parts/components-enqueue.php:154
 msgid "Please check your email to activate your account before adding more prayer times."
 msgstr ""
+"Daha çox dua vaxtı əlavə etməzdən əvvəl hesabınızı aktivləşdirmək üçün e-"
+"poçtunuzu yoxlayın."
 
 #: parts/components-enqueue.php:155
 msgid "Time not covered"
-msgstr ""
+msgstr "Vaxt əhatə olunmayıb"
 
 #: parts/components-enqueue.php:156
 msgid "# of people covering this time"
-msgstr ""
+msgstr "Bu vaxtı əhatə edən insanların sayı"
 
 #: parts/components-enqueue.php:157
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgstr "Salam, gəlin birlikdə %s üçün dua edək!"
 
 #: parts/components-enqueue.php:158
 msgid "I’m joining this prayer campaign and would love for you to join me! Please invite a couple of friends to pray with us too."
 msgstr ""
+"Mən bu dua kampaniyasına qoşuluram və sizin də mənə qoşulmağınızı istərdim! "
+"Zəhmət olmasa, bir-iki dostunuzu da bizimlə dua etməyə dəvət edin."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
-msgstr ""
+msgstr "Qrup şəklində dua edirsiniz?"
 
 #: parts/components.php:38
 #, php-format
 msgid "Leading others in prayer is a great step in making disciples. We want to celebrate your and their faithfulness.  For each person that prays with you, we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
+"Başqalarını dua etməyə rəhbərlik etmək şagird yetişdirmədə böyük bir "
+"addımdır. Biz sizin və onların sədaqətini qeyd etmək istəyirik. Sizinlə dua "
+"edən hər bir şəxs üçün, indiyə qədər öhdəlik götürülmüş %s gün dua müddətinə "
+"15 dəqiqə əlavə edəcəyik."
 
 #: parts/components.php:41
 msgid "How many prayed today (including yourself)?"
-msgstr ""
+msgstr "Bugün neçə nəfər dua etdi (özünüz də daxil olmaqla)?"
 
 #: porches/generic/dt-generic-porch-strings.php:47
 msgid "Our Vision"
-msgstr ""
+msgstr "Vizyonumuz"
 
 #: porches/generic/dt-generic-porch-strings.php:56
 msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr ""
+msgstr "Bu bölgəni fasiləsiz 24/7 dua ilə əhatə etmək istəyirik."
 
 #: porches/generic/dt-generic-porch-strings.php:73
 msgid "Extraordinary Prayer"
-msgstr ""
+msgstr "Qeyri-adi Dua"
 
 #: porches/generic/dt-generic-porch-strings.php:82
 msgid "Every disciple making movement in history has happened in the context of extraordinary prayer."
 msgstr ""
+"Tarixdə hər bir şagird yetişdirmə hərəkatı qeyri-adi duaların fonunda baş "
+"verib."
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
-msgstr ""
+msgstr "Hərəkata Yönəlmiş"
 
 #: porches/generic/dt-generic-porch-strings.php:108
 msgid "Join us in asking, seeking, and knocking for streams of disciples and churches to be made."
 msgstr ""
+"Şagirdlərin və kilsələrin meydana gəlməsi üçün dua edərək, axtararaq və ümid "
+"edərək bizə qoşulun."
 
 #: porches/generic/dt-generic-porch-strings.php:125
 msgid "24/7 Every Day"
-msgstr ""
+msgstr "Hər gün 24/7"
 
 #: porches/generic/dt-generic-porch-strings.php:134
 msgid "Choose a 15-minute (or more!) time slot that you can pray during each day. Invite someone else to sign up too."
 msgstr ""
+"Hər gün dua edə biləcəyiniz 15 dəqiqəlik (və ya daha uzun!) vaxt seçin. "
+"Başqasını da qeydiyyatdan keçməyə dəvət edin."
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
-msgstr ""
+msgstr "Hər gün xüsusi olaraq dua etmək üçün bu resurslardan istifadə edin."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
-msgstr ""
+msgstr "Bugünkü Dua Mövzusu"
 
 #: porches/generic/dt-generic-porch-strings.php:188
 msgid "All Days"
-msgstr ""
+msgstr "Bütün Günlər"
 
 #: porches/generic/dt-generic-porch-strings.php:197
 msgid "Edit Prayer Fuel"
-msgstr ""
+msgstr "Dua Mövzusunu Redaktə Edin"
 
 #: porches/generic/dt-generic-porch-strings.php:215
 msgid "Scheduled Prayer Fuel"
-msgstr ""
+msgstr "Planlaşdırılmış Dua Mövzuları"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid "All Scheduled Prayer Fuel in all available languages. Add and edit the prayer fuel below"
 msgstr ""
+"Bütün mövcud dillərdəki planlaşdırılmış dua mövzuları. Aşağıdan dua "
+"mövzularını əlavə və redaktə edin"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 msgid "We want to cover this region with prayer."
-msgstr ""
+msgstr "Bu bölgəni dua ilə əhatə etmək istəyirik."
 
 #: porches/generic/dt-generic-porch-strings.php:267
 msgid "Together"
-msgstr ""
+msgstr "Birlikdə"
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
-msgstr ""
+msgstr "Epic 404 – Tapılmadı"
 
 #: porches/generic/site/404-body.php:15
 msgid "It looks like you may have strayed from the narrow path."
-msgstr ""
+msgstr "Görünür, dar yoldan çıxmış ola bilərsiniz."
 
 #: porches/generic/site/404-body.php:16
 msgid "Wide is the path that leads to the 404."
-msgstr ""
+msgstr "404-ə aparan yol genişdir."
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
+"Yenidən yolunuza qayıtmaq üçün menyudakı keçidlərdən birini istifadə edin."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #: porches/generic/site/edit-post-list-body.php:113
 #, php-format
 msgid "Day %s"
-msgstr ""
+msgstr "Gün %s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
 #, php-format
 msgid "Contact %s"
-msgstr ""
+msgstr "%s Əlaqə edin"
 
 #: porches/generic/site/home-body.php:99
 #: porches/generic/site/home-body.php:137
@@ -947,103 +1001,107 @@ msgstr ""
 #: porches/ramadan/site/home-body.php:115
 #: porches/ramadan/site/home-body.php:156
 msgid "Sign Up to Pray"
-msgstr ""
+msgstr "Dua Üçün Qeydiyyatdan Keçin"
 
 #: porches/generic/site/home-body.php:166
 #: porches/generic/site/stats.php:153
 #: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
-msgstr ""
+msgstr "Öhdəlik Edilmiş Vaxtı"
 
 #: porches/generic/site/home-body.php:182
 #: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
-msgstr ""
+msgstr "Dua Edənlər"
 
 #: porches/generic/site/home-body.php:196
 #: porches/generic/site/stats.php:129
 #: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
-msgstr ""
+msgstr "Lazım olan Dua Öhdəlikləri"
 
 #: porches/generic/site/home-body.php:216
 #: porches/ramadan/site/home-body.php:238
 msgid "View All"
-msgstr ""
+msgstr "Hamısına Baxın"
 
 #: porches/generic/site/post-list-body.php:151
 msgid "Read"
-msgstr ""
+msgstr "Oxuyun"
 
 #: porches/generic/site/post-list-body.php:166
 msgid "No prayer fuel found"
-msgstr ""
+msgstr "Heç bir dua mövzusu tapılmadı"
 
 #: porches/generic/site/stats.php:137
 msgid "Percentage Covered"
-msgstr ""
+msgstr "Əhatə Faizi"
 
 #: porches/generic/site/stats.php:163
 msgid "Time Prayed in Groups"
-msgstr ""
+msgstr "Qruplarda Dua Edilmiş Vaxtı"
 
 #: porches/generic/site/stats.php:173
 msgid "Number of People who Prayed"
-msgstr ""
+msgstr "Dua edənlərin sayı"
 
 #: porches/generic/site/stats.php:206
 msgid "Share with us your Prayer Stories"
-msgstr ""
+msgstr "Dua Təcrübələrinizi Bizimlə Paylaşın"
 
 #: porches/generic/site/stats.php:220
 msgid "Share with us about your prayer time (E.g. testimonies, insights, blessings, etc.)"
 msgstr ""
+"Dua vaxtınız haqqında (məsələn, şahidliklər, təfəkkürlər, bərəkətlər və s.) "
+"bizimlə paylaşın"
 
 #: porches/generic/site/stats.php:306
 msgid "Global Ramadan Stats"
-msgstr ""
+msgstr "Qlobal Ramazan Statistikaları"
 
 #: porches/generic/site/stats.php:313
 msgid "Total Prayer Campaigns"
-msgstr ""
+msgstr "Ümumi Dua Kampaniyaları"
 
 #: porches/generic/site/stats.php:321
 msgid "Countries Prayed For"
-msgstr ""
+msgstr "Dua Edilən Ölkələr"
 
 #: porches/generic/site/stats.php:329
 msgid "Intercessors"
-msgstr ""
+msgstr "Vasitəçilər"
 
 #: porches/generic/site/stats.php:337
 msgid "Time Prayed"
-msgstr ""
+msgstr "Dua Edilmiş Vaxtı"
 
 #: porches/generic/site/stats.php:345
 msgid "15 Minute Time Slots Filled"
-msgstr ""
+msgstr "15 dəqiqəlik vaxt dilimləri dolub"
 
 #: porches/generic/site/stats.php:368
 msgid "More Prayer Opportunities"
-msgstr ""
+msgstr "Daha çox dua imkanları"
 
 #: porches/generic/site/stats.php:372
 msgid "Sign up to hear about other prayer efforts and opportunities with Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
+"Prayer.Tools ilə digər dua təşəbbüsləri və imkanları haqqında məlumat almaq "
+"üçün qeydiyyatdan keçin və bəzən GospelAmbition.org-dan bildirişlər alın."
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
 msgid "Sign Up"
-msgstr ""
+msgstr "Qeydiyyatdan Keçin"
 
 #: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
 msgid "Select Language"
-msgstr ""
+msgstr "Dil Seçin"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
-msgstr ""
+msgstr "Ramazan Açılış Səhifəsi"
 
 #: porches/ramadan/settings.php:6
 msgid ""
@@ -1053,29 +1111,48 @@ msgid ""
 "\n"
 "Though many have stopped fasting in recent years, and are turned off by the hypocrisy, increased crime rates, and rudeness that is pervasive through the month, others have become more serious about religion during this time. Many attend the evening prayer services and do the other ritual prayers. Some even read the entire Quran (about a tenth the length of the Bible). This sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
+"Ramazan İslamın beş əsas tələbindən (və ya sütunundan) biridir. Onun 30 günü "
+"ərzində müsəlmanlar imsakdan gün batımına qədər oruc tutmaqla "
+"öhdəliklidirlər. Bu müddət ərzində onlar yemək, içki, siqaret və cinsi "
+"əlaqədən çəkinməlidirlər.\n"
+"\n"
+"Qadınlar adətən günortaları böyük yemək hazırlamaqla keçirirlər. Gün "
+"batımında isə ailələr tez-tez bir araya gələrək orucu açırlar. Ənənəyə görə, "
+"oruc əvvəl su ilə, sonra üç qurudulmuş xurma ilə, daha sonra isə "
+"çoxsəviyyəli yeməklə açılır. Yeni Ramazan TV seriyasını izlədikdən sonra "
+"kişilər (və bəzi qadınlar) dostları ilə birlikdə gecə saatlarına qədər "
+"qəhvəxanalara gedərək qəhvə içir və siqaret çəkirlər.\n"
+"\n"
+"Son illərdə çoxları oruc tutmağı dayandırsa da, saxtakarlıq, ay boyunca "
+"artan cinayət halları və kobud davranışlar bəzi insanları bu aydan "
+"uzaqlaşdırır. Eyni zamanda, bəziləri bu dövrdə dini mövzularda daha ciddi "
+"olurlar. Çoxları axşam namazlarına qatılır və digər ritualları yerinə "
+"yetirirlər. Bəziləri hətta Qurani-Kərimi tamamilə oxuyur (Təxminən "
+"Bibliyanın ondan biri qədər). Bu səmimi axtarış, onların üçün dua etməyimiz "
+"üçün strateji bir vaxt yaradır."
 
 #: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."
-msgstr ""
+msgstr "Ramazan başlayır ..."
 
 #: porches/ramadan/site/home-body.php:134
 msgid "Ramadan Ends ..."
-msgstr ""
+msgstr "Ramazan bitir ..."
 
 #: porches/ramadan/site/home-body.php:135
 msgid "Ramadan Is Finished"
-msgstr ""
+msgstr "Ramazan başa çatıb"
 
 #: shortcodes/prayer-timer.php:219
 msgid "Start Praying!"
-msgstr ""
+msgstr "Dua Etməyə Başlayın!"
 
 #: shortcodes/prayer-timer.php:222
 #, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr ""
+msgstr "Dua vaxtı: %s dəq"
 
 #: shortcodes/prayer-timer.php:247
 msgid "Now praying..."
-msgstr ""
+msgstr "İndi dua edir..."
