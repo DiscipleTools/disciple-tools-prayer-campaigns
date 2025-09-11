@@ -146,7 +146,12 @@ if ( empty( $list->posts ) ){
                                 <span class="date"><i class="lnr lnr-calendar-full"></i><?php echo esc_html( $formatter->format( strtotime( $date ) ) )  ?></span>
                             </div>
                             <p>
-                                <?php echo wp_kses_post( esc_html( $item->post_excerpt ) ) ?>
+                                 <?php
+                                    setup_postdata( $item );
+                                    $excerpt = get_the_excerpt( $item );
+                                    echo wp_kses_post( esc_html( $excerpt ) );
+                                    wp_reset_postdata();
+                                    ?>
                             </p>
                             <a href="<?php echo esc_url( $url ) ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'Read', 'disciple-tools-prayer-campaigns' ); ?></a>
                         </div>
