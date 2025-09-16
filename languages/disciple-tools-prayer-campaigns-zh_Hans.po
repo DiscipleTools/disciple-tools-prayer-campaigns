@@ -5,12 +5,11 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
+"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
 "PO-Revision-Date: 2025-09-09 15:55+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.disciple.tools/projects/pray4movement/"
-"disciple-tools-prayer-campaigns/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.disciple."
+"tools/projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -331,7 +330,7 @@ msgstr "请和我一起祷告！"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:164
+#: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
 msgstr "内容将在%s天后开始"
@@ -794,7 +793,8 @@ msgstr "持续 %s 个月"
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
-msgstr "接收Prayer.Tools的最新消息和机会，还有偶尔来自GospelAmbition.org网页的消息推"
+msgstr ""
+"接收Prayer.Tools的最新消息和机会，还有偶尔来自GospelAmbition.org网页的消息推"
 "送"
 
 #: parts/components-enqueue.php:138
@@ -1025,11 +1025,11 @@ msgstr "需要做的祈祷承诺"
 msgid "View All"
 msgstr "查看全部"
 
-#: porches/generic/site/post-list-body.php:151
+#: porches/generic/site/post-list-body.php:156
 msgid "Read"
 msgstr "阅读"
 
-#: porches/generic/site/post-list-body.php:166
+#: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
 msgstr "找不到祈祷燃料"
 
