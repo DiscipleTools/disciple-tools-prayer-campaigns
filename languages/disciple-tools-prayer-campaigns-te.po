@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
+"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
@@ -331,7 +331,7 @@ msgstr "ప్రార్థనలో నాతో కలవండి!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:164
+#: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
 msgstr "%s రోజులలో విషయములు ఆరంభమవుతాయి"
@@ -823,8 +823,7 @@ msgstr "అప్డేట్"
 
 #: parts/components-enqueue.php:146
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
-"ఇంచుముంచు పూర్తైనది! మీ ఎకౌంటును ఆక్టివేట్ చేయుట ద్వారా సైన్ అప్ చేయుటను ముగించండి."
+msgstr "ఇంచుముంచు పూర్తైనది! మీ ఎకౌంటును ఆక్టివేట్ చేయుట ద్వారా సైన్ అప్ చేయుటను ముగించండి."
 
 #: parts/components-enqueue.php:147
 #, php-format
@@ -1039,11 +1038,11 @@ msgstr "ప్రార్థనా సమర్పణలు అవసరం"
 msgid "View All"
 msgstr "అన్ని చూడండి"
 
-#: porches/generic/site/post-list-body.php:151
+#: porches/generic/site/post-list-body.php:156
 msgid "Read"
 msgstr "చదవండి"
 
-#: porches/generic/site/post-list-body.php:166
+#: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
 msgstr "ప్రార్థనా ఇంధనం కనిపించలేదు"
 

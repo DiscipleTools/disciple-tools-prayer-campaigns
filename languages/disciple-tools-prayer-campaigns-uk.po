@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
+"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.disciple.tools/projects/disciple-"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:164
+#: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
 msgstr ""
@@ -1128,12 +1128,12 @@ msgstr "Потрібні молитовні зобов’язання"
 msgid "View All"
 msgstr "Подивитись все"
 
-#: porches/generic/site/post-list-body.php:151
+#: porches/generic/site/post-list-body.php:156
 #, fuzzy
 msgid "Read"
 msgstr "Прочитайте"
 
-#: porches/generic/site/post-list-body.php:166
+#: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
 msgstr ""
 
