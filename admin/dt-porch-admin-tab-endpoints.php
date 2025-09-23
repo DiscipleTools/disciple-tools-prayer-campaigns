@@ -112,6 +112,9 @@ class Porch_Admin_Endpoints {
                 }
             }
 
+            // Newly cloned campaigns should default to the active status.
+            $fields['status'] = 'active';
+
             // Final sanity check to ensure no magic keys have fallen through the cracks.
             $fields_to_unset = [];
             foreach ( $fields as $key => $value ) {
