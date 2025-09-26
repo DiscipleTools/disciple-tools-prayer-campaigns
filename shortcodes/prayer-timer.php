@@ -146,6 +146,10 @@ function show_prayer_timer( $atts ) {
                 filter: brightness(0.9);
             }
 
+            #start-praying:focus {
+                outline: none;
+            }
+
             .prayer-timer-now-praying {
                 color: #fefefe;
                 background-color: gray;
@@ -155,6 +159,11 @@ function show_prayer_timer( $atts ) {
             .prayer-timer-rotate {
                 -webkit-transition:-webkit-transform <?php echo esc_html( $prayer_duration_min ) * 60; ?>s linear;
                 transform: rotate(360deg);
+            }
+
+            .prayer-timer-rotate-paused {
+                -webkit-transition: none;
+                animation-play-state: paused;
             }
 
             .prayer-timer-duration-label {
@@ -225,58 +234,348 @@ function show_prayer_timer( $atts ) {
         </div>
         <script>
             let end_of_time = null;
-            function start_timer() {
-                if ( end_of_time ) {
+            let timer_interval = null;
+            let is_paused = false;
+            let total_duration = <?php echo esc_html( $prayer_duration_min ) * 60 * 1000; ?>;
+            let start_time = null;
+            let update_interval = 1000; // Start with 1 second updates
+            let ten_seconds_passed = false;
+            let dial_start_time = null;
+            let slot_timeouts = [];
+            let rotation_monitor_interval = null;
+            let slots_updated = [false, false, false, false, false]; // Track which slots have been updated
+            let remaining_time_when_paused = 0; // Track remaining time when paused
+            let use_five_second_updates = false; // Flag to force 5-second updates after resume
+
+            function updateStickyTimerDisplay() {
+                if (is_paused) {
+                    // When paused, use the stored remaining time
+                    if (remaining_time_when_paused > 0) {
+                        let remaining_seconds = Math.floor(remaining_time_when_paused / 1000);
+                        let minutes = Math.floor(remaining_seconds / 60);
+                        let seconds = remaining_seconds % 60;
+                        
+                        // Format display: always show MM:SS format
+                        let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+                        jQuery('#clock-sticky-remaining-time').text(display_text);
+                    }
                     return;
                 }
+                
+                let time = new Date().getTime();
+                let remaining_ms = end_of_time - time;
+                
+                if (remaining_ms > 0) {
+                    let remaining_seconds = Math.floor(remaining_ms / 1000);
+                    let minutes = Math.floor(remaining_seconds / 60);
+                    let seconds = remaining_seconds % 60;
+                    
+                    // Format display: always show MM:SS format
+                    let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+                    jQuery('#clock-sticky-remaining-time').text(display_text);
+                }
+            }
 
-                end_of_time = new Date().getTime() + <?php echo esc_html( $prayer_duration_min ) * 60 * 1000; ?>;
-                setInterval( function() {
-                    let time = new Date().getTime() - 1000;
-                    if ( time < end_of_time ) {
-                        const seconds = Math.floor( (( end_of_time - time ) / 1000) % 60 )
-                        jQuery('#clock-sticky-remaining-time').text( Math.floor( (( end_of_time - time ) / 1000 /60) % 60 ) + ':' +  ( seconds < 10 ? '0' + seconds : seconds ) )
+            function start_timer() {
+                if ( end_of_time && !is_paused ) {
+                    return;
+                }
+                if (is_paused) {
+                    // Resume: restart the clock with remaining time
+                    let elapsed_time = new Date().getTime() - start_time;
+                    let remaining_time = total_duration - elapsed_time;
+                    
+                    // Restart the clock
+                    start_time = new Date().getTime();
+                    total_duration = remaining_time;
+                    end_of_time = new Date().getTime() + remaining_time;
+                    ten_seconds_passed = false;
+                    update_interval = 1000;
+                } else {
+                    // Start fresh
+                    end_of_time = new Date().getTime() + total_duration;
+                    start_time = new Date().getTime();
+                    ten_seconds_passed = false;
+                    update_interval = 1000;
+                }
+
+                // Clear any existing interval
+                if (timer_interval) {
+                    clearInterval(timer_interval);
+                }
+
+                timer_interval = setInterval( function() {
+                    if (is_paused) {
+                        return; // Don't update when paused
                     }
-                }, 5000)
+                    
+                    let time = new Date().getTime();
+                    let remaining_ms = end_of_time - time;
+                    
+                    if ( remaining_ms > 0 ) {
+                        let remaining_seconds = Math.floor(remaining_ms / 1000);
+                        let minutes = Math.floor(remaining_seconds / 60);
+                        let seconds = remaining_seconds % 60;
+                        
+                        // Check if we should switch to 5-second updates
+                        if ((!ten_seconds_passed && (total_duration - remaining_ms) >= 10000) || use_five_second_updates) {
+                            ten_seconds_passed = true;
+                            clearInterval(timer_interval);
+                            update_interval = 5000;
+                            timer_interval = setInterval(arguments.callee, update_interval);
+                        }
+                        
+                        // Format display: always show MM:SS format
+                        let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+                        
+                        jQuery('#clock-sticky-remaining-time').text(display_text);
+                    }
+                }, update_interval);
+
                 jQuery('.clock-sticky-play-icon').hide();
                 jQuery('#clock-sticky-clock').show();
 
-                let start_praying_button = jQuery( '#start-praying' )
+                let start_praying_button = jQuery( '#start-praying' );
 
-                start_praying_button.attr( 'onclick', '' );
-                start_praying_button.text( '<?php esc_html_e( 'Now praying...', 'disciple-tools-prayer-campaigns' ); ?>');
+                start_praying_button.attr( 'onclick', 'pause_timer()' );
+                start_praying_button.text( '<?php esc_html_e( 'Pause', 'disciple-tools-prayer-campaigns' ); ?>');
                 start_praying_button.attr('class', 'prayer-timer-now-praying');
-                start_praying_button.blur()
+                start_praying_button.blur();
 
-                jQuery( '.prayer-timer-needle' ).attr( 'class', 'prayer-timer-needle prayer-timer-rotate' );
+                // Handle dial animation
+                if (is_paused) {
+                    // Resume: continue from paused position
+                    // Get the current transform (which was set during pause)
+                    let current_transform = jQuery( '.prayer-timer-needle' ).css('transform');
+                    
+                    // Parse the rotation angle from the transform matrix
+                    let current_rotation = 0;
+                    if (current_transform && current_transform !== 'none') {
+                        // Extract rotation from matrix: matrix(a, b, c, d, tx, ty)
+                        let matrix = current_transform.match(/matrix\(([^,]+),\s*([^,]+),\s*([^,]+),\s*([^,]+)/);
+                        if (matrix) {
+                            let a = parseFloat(matrix[1]);
+                            let b = parseFloat(matrix[2]);
+                            // Calculate rotation angle from matrix values
+                            current_rotation = Math.atan2(b, a) * (180 / Math.PI);
+                            if (current_rotation < 0) current_rotation += 360;
+                        }
+                    }
+                    
+                    // Remove paused class and reset transition
+                    jQuery( '.prayer-timer-needle' ).removeClass('prayer-timer-rotate-paused');
+                    jQuery( '.prayer-timer-needle' ).css('-webkit-transition', 'none');
+                    jQuery( '.prayer-timer-needle' ).css('transform', 'rotate(' + current_rotation + 'deg)');
+                    
+                    // Force a reflow
+                    jQuery( '.prayer-timer-needle' )[0].offsetHeight;
+                    
+                    // Continue animation from current position to 360 degrees
+                    jQuery( '.prayer-timer-needle' ).css('-webkit-transition', '-webkit-transform ' + (total_duration / 1000) + 's linear');
+                    jQuery( '.prayer-timer-needle' ).css('transform', 'rotate(360deg)');
+                } else {
+                    // Start fresh: begin from 0 degrees
+                    dial_start_time = new Date().getTime();
+                    jQuery( '.prayer-timer-needle' ).removeClass('prayer-timer-rotate-paused');
+                    jQuery( '.prayer-timer-needle' ).css('-webkit-transition', 'none');
+                    jQuery( '.prayer-timer-needle' ).css('transform', 'rotate(0deg)');
+                    
+                    // Force a reflow
+                    jQuery( '.prayer-timer-needle' )[0].offsetHeight;
+                    
+                    // Start the animation
+                    jQuery( '.prayer-timer-needle' ).css('-webkit-transition', '-webkit-transform ' + (total_duration / 1000) + 's linear');
+                    jQuery( '.prayer-timer-needle' ).css('transform', 'rotate(360deg)');
+                }
+                
+                // Clear the pause flag after handling resume
+                if (is_paused) {
+                    is_paused = false;
+                    
+                    // Update end_of_time based on remaining time when paused
+                    if (remaining_time_when_paused > 0) {
+                        end_of_time = new Date().getTime() + remaining_time_when_paused;
+                        remaining_time_when_paused = 0; // Reset
+                    }
+                    
+                    // Always use 5-second updates after resume for better UX
+                    use_five_second_updates = true;
+                    ten_seconds_passed = true;
+                    update_interval = 5000;
+                    
+                    // Clear existing interval and restart with 5-second updates
+                    if (timer_interval) {
+                        clearInterval(timer_interval);
+                    }
+                    timer_interval = setInterval(function() {
+                        if (is_paused) {
+                            return; // Don't update when paused
+                        }
+                        
+                        let time = new Date().getTime();
+                        let remaining_ms = end_of_time - time;
+                        
+                        if (remaining_ms > 0) {
+                            let remaining_seconds = Math.floor(remaining_ms / 1000);
+                            let minutes = Math.floor(remaining_seconds / 60);
+                            let seconds = remaining_seconds % 60;
+                            
+                            // Format display: always show MM:SS format
+                            let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+                            jQuery('#clock-sticky-remaining-time').text(display_text);
+                        }
+                    }, update_interval);
+                    
+                    // Immediately update the sticky timer display when resuming
+                    updateStickyTimerDisplay();
+                }
+                
+                // Handle slots - rotation-based approach
+                // Clear any existing slot timeouts
+                slot_timeouts.forEach(function(timeout) {
+                    clearTimeout(timeout);
+                });
+                slot_timeouts = [];
+                
+                // Set all slots to incomplete
                 jQuery( '.prayer-timer-slot-1').attr( 'class', 'prayer-timer-slot prayer-timer-slot-1 prayer-timer-slot-1-incomplete');
                 jQuery( '.prayer-timer-slot-2').attr( 'class', 'prayer-timer-slot prayer-timer-slot-2 prayer-timer-slot-2-incomplete');
                 jQuery( '.prayer-timer-slot-3').attr( 'class', 'prayer-timer-slot prayer-timer-slot-3 prayer-timer-slot-3-incomplete');
                 jQuery( '.prayer-timer-slot-4').attr( 'class', 'prayer-timer-slot prayer-timer-slot-4 prayer-timer-slot-4-incomplete');
                 jQuery( '.prayer-timer-slot-5').attr( 'class', 'prayer-timer-slot prayer-timer-slot-5 prayer-timer-slot-5-incomplete');
-                setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-1').attr( 'class', 'prayer-timer-slot prayer-timer-slot-1');
-                }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5; ?> );
+                
+                // Start rotation-based slot monitoring
+                setupRotationBasedSlots();
 
                 setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-2').attr( 'class', 'prayer-timer-slot prayer-timer-slot-2');
-                }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 2; ?> );
-
-                setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-3').attr( 'class', 'prayer-timer-slot prayer-timer-slot-3');
-                }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 3; ?> );
-
-                setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-4').attr( 'class', 'prayer-timer-slot prayer-timer-slot-4');
-                }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 4; ?> );
-
-                setTimeout( function() {
-                    jQuery( '.prayer-timer-slot-5').attr( 'class', 'prayer-timer-slot prayer-timer-slot-5');
-                }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000 / 5 * 5; ?> );
-
-                setTimeout( function() {
+                    // Remove all incomplete classes to show complete prayer cycle
+                    jQuery( '.prayer-timer-slot-1').removeClass('prayer-timer-slot-1-incomplete');
+                    jQuery( '.prayer-timer-slot-2').removeClass('prayer-timer-slot-2-incomplete');
+                    jQuery( '.prayer-timer-slot-3').removeClass('prayer-timer-slot-3-incomplete');
+                    jQuery( '.prayer-timer-slot-4').removeClass('prayer-timer-slot-4-incomplete');
+                    jQuery( '.prayer-timer-slot-5').removeClass('prayer-timer-slot-5-incomplete');
+                    
+                    // Set sticky timer to 00:00
+                    jQuery('#clock-sticky-remaining-time').text('00:00');
+                    
                     jQuery( '#start-praying' ).text( 'All done!' );
+
+                    is_paused = true; // Set the timer to paused
+
                 }, <?php echo esc_html( $prayer_duration_min ) * 60 * 1000; ?> );
+            }
+
+            function pause_timer() {
+                if (is_paused) {
+                    return;
+                }
+
+                paused_time = new Date().getTime();
+                
+                is_paused = true;
+                
+                if (timer_interval) {
+                    clearInterval(timer_interval);
+                    timer_interval = null;
+                }
+
+                // Clear rotation monitoring
+                if (rotation_monitor_interval) {
+                    clearInterval(rotation_monitor_interval);
+                    rotation_monitor_interval = null;
+                }
+                
+                // Capture remaining time when pausing
+                let time = new Date().getTime();
+                remaining_time_when_paused = end_of_time - time;
+                
+                // Update sticky timer display one last time before pausing
+                updateStickyTimerDisplay();
+
+                // Clear slot timeouts
+                slot_timeouts.forEach(function(timeout) {
+                    clearTimeout(timeout);
+                });
+                slot_timeouts = [];
+
+                // Pause the dial animation - capture current position
+                let current_transform = jQuery( '.prayer-timer-needle' ).css('transform');
+                jQuery( '.prayer-timer-needle' ).css('-webkit-transition', 'none');
+                jQuery( '.prayer-timer-needle' ).css('transform', current_transform);
+                jQuery( '.prayer-timer-needle' ).attr( 'class', 'prayer-timer-needle prayer-timer-rotate-paused' );
+
+                let start_praying_button = jQuery( '#start-praying' );
+                start_praying_button.attr( 'onclick', 'start_timer()' );
+                start_praying_button.text( '<?php esc_html_e( 'Resume', 'disciple-tools-prayer-campaigns' ); ?>');
+                start_praying_button.blur();
+            }
+
+            function setupRotationBasedSlots() {
+                // Clear any existing rotation monitoring
+                if (rotation_monitor_interval) {
+                    clearInterval(rotation_monitor_interval);
+                }
+                
+                // Reset slot tracking
+                slots_updated = [false, false, false, false, false];
+                
+                // Start monitoring rotation every 100ms
+                rotation_monitor_interval = setInterval(function() {
+                    let current_transform = jQuery('.prayer-timer-needle').css('transform');
+                    let current_rotation = 0;
+                    
+                    if (current_transform && current_transform !== 'none') {
+                        // Extract rotation from matrix: matrix(a, b, c, d, tx, ty)
+                        let matrix = current_transform.match(/matrix\(([^,]+),\s*([^,]+),\s*([^,]+),\s*([^,]+)/);
+                        if (matrix) {
+                            let a = parseFloat(matrix[1]);
+                            let b = parseFloat(matrix[2]);
+                            // Calculate rotation angle from matrix values
+                            current_rotation = Math.atan2(b, a) * (180 / Math.PI);
+                            if (current_rotation < 0) current_rotation += 360;
+                        }
+                    }
+                    
+                    // Update slots based on rotation milestones
+                    if (current_rotation >= 72 && !slots_updated[0]) {
+                        slots_updated[0] = true;
+                        jQuery('.prayer-timer-slot-1').removeClass('prayer-timer-slot-1-incomplete');
+                    }
+                    
+                    if (current_rotation >= 144 && !slots_updated[1]) {
+                        slots_updated[1] = true;
+                        jQuery('.prayer-timer-slot-1').removeClass('prayer-timer-slot-1-incomplete');
+                        jQuery('.prayer-timer-slot-2').removeClass('prayer-timer-slot-2-incomplete');
+                    }
+                    
+                    if (current_rotation >= 216 && !slots_updated[2]) {
+                        slots_updated[2] = true;
+                        jQuery('.prayer-timer-slot-1').removeClass('prayer-timer-slot-1-incomplete');
+                        jQuery('.prayer-timer-slot-2').removeClass('prayer-timer-slot-2-incomplete');
+                        jQuery('.prayer-timer-slot-3').removeClass('prayer-timer-slot-3-incomplete');
+                    }
+                    
+                    if (current_rotation >= 288 && !slots_updated[3]) {
+                        slots_updated[3] = true;
+                        jQuery('.prayer-timer-slot-1').removeClass('prayer-timer-slot-1-incomplete');
+                        jQuery('.prayer-timer-slot-2').removeClass('prayer-timer-slot-2-incomplete');
+                        jQuery('.prayer-timer-slot-3').removeClass('prayer-timer-slot-3-incomplete');
+                        jQuery('.prayer-timer-slot-4').removeClass('prayer-timer-slot-4-incomplete');
+                    }
+                    
+                    if (current_rotation >= 360 && !slots_updated[4]) {
+                        slots_updated[4] = true;
+                        jQuery('.prayer-timer-slot-1').removeClass('prayer-timer-slot-1-incomplete');
+                        jQuery('.prayer-timer-slot-2').removeClass('prayer-timer-slot-2-incomplete');
+                        jQuery('.prayer-timer-slot-3').removeClass('prayer-timer-slot-3-incomplete');
+                        jQuery('.prayer-timer-slot-4').removeClass('prayer-timer-slot-4-incomplete');
+                        jQuery('.prayer-timer-slot-5').removeClass('prayer-timer-slot-5-incomplete');
+                        
+                        // Clear the monitoring interval when all slots are updated
+                        clearInterval(rotation_monitor_interval);
+                        rotation_monitor_interval = null;
+                    }
+                }, 100); // Check every 100ms
             }
         </script>
     <?php
