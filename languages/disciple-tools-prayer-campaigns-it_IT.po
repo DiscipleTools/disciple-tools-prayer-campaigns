@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
-"PO-Revision-Date: 2025-06-30 18:03+0000\n"
-"Last-Translator: Kyle Koval <kyle.koval@gmail.com>\n"
+"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
+"PO-Revision-Date: 2025-09-16 13:03+0000\n"
+"Last-Translator: Kyle Koval <translator@disciple.tools>\n"
 "Language-Team: Italian <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/it_IT/>\n"
 "Language: it_IT\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.3\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -86,7 +86,7 @@ msgstr "Questi sono i tuoi prossimi intervalli per pregare:"
 #: campaign-functions/send-email-utility.php:314
 #, php-format
 msgid "Times are shown according to: %s time"
-msgstr "Gli intervalli sono mostrati in base all'ora di %s"
+msgstr "Gli intervalli sono nel fuso orario di: %s"
 
 #: campaign-functions/send-email-utility.php:242
 #: magic-links/subscription-management/subscription-management.php:371
@@ -342,7 +342,7 @@ msgstr "Unisciti a me in preghiera!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:164
+#: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
 msgstr "Il propellente per la preghiera inizierà tra %s giorni"
@@ -1064,11 +1064,11 @@ msgstr "Intervalli di preghiera ancora necessari"
 msgid "View All"
 msgstr "Mostra tutto"
 
-#: porches/generic/site/post-list-body.php:151
+#: porches/generic/site/post-list-body.php:156
 msgid "Read"
 msgstr "Leggi"
 
-#: porches/generic/site/post-list-body.php:166
+#: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
 msgstr "Nessun propellente di preghiera ritrovato"
 

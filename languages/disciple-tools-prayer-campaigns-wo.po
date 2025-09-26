@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 3.1.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-06-30T11:03:47+00:00\n"
+"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:00+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Wolof <https://translate.disciple.tools/projects/"
@@ -356,7 +356,7 @@ msgstr ""
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:164
+#: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
 msgstr "Le contenu commencera dans %s jours"
@@ -1101,11 +1101,11 @@ msgstr "Engagements de prière requis"
 msgid "View All"
 msgstr "Tout voir"
 
-#: porches/generic/site/post-list-body.php:151
+#: porches/generic/site/post-list-body.php:156
 msgid "Read"
 msgstr "Lire"
 
-#: porches/generic/site/post-list-body.php:166
+#: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
 msgstr "Aucun guide de prière trouvé"
 
