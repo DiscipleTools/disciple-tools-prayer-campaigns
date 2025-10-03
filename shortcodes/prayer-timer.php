@@ -190,6 +190,9 @@ function show_prayer_timer( $atts ) {
                 padding: 0;
                 margin: 0;
             }
+            #clock-sticky-button:focus {
+                outline: none;
+            }
             #clock-sticky-button img {
                 height: 20px;
             }
