@@ -202,6 +202,14 @@ function show_prayer_timer( $atts ) {
             #clock-sticky-remaining-time{
                 color:white
             }
+            .prayer-timer-resume-pulse {
+                animation: resumePulse 0.6s ease-in-out;
+            }
+            @keyframes resumePulse {
+                0% { background-color: <?php echo esc_html( $color_hex ); ?>; }
+                50% { background-color: #ffffff; color: <?php echo esc_html( $color_hex ); ?>; }
+                100% { background-color: <?php echo esc_html( $color_hex ); ?>; }
+            }
         </style>
 
         <span id="clock-sticky" class="clock-sticky">
@@ -212,7 +220,7 @@ function show_prayer_timer( $atts ) {
 
                 <img class="clock-sticky-play-icon" src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/play-white.svg' ) ?>"/>
                 <span style="display: none"; id="clock-sticky-clock">
-                    <img src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/clock-white.svg' ) ?>"/>
+                    <img id="clock-sticky-icon" src="<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/clock-white.svg' ) ?>"/>
                 </span>
             </button>
         </span>
@@ -258,6 +266,11 @@ function show_prayer_timer( $atts ) {
                         let minutes = Math.floor(remaining_seconds / 60);
                         let seconds = remaining_seconds % 60;
                         
+                        // Enforce 5-second stepping when paused if 10+ seconds have elapsed
+                        if (ten_seconds_passed || (total_duration - remaining_time_when_paused) >= 10000) {
+                            seconds = Math.floor(seconds / 5) * 5;
+                        }
+                        
                         // Format display: always show MM:SS format
                         let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
                         jQuery('#clock-sticky-remaining-time').text(display_text);
@@ -272,6 +285,11 @@ function show_prayer_timer( $atts ) {
                     let remaining_seconds = Math.floor(remaining_ms / 1000);
                     let minutes = Math.floor(remaining_seconds / 60);
                     let seconds = remaining_seconds % 60;
+                    
+                    // Enforce 5-second stepping after 10 seconds
+                    if (ten_seconds_passed || (total_duration - remaining_ms) >= 10000) {
+                        seconds = Math.floor(seconds / 5) * 5;
+                    }
                     
                     // Format display: always show MM:SS format
                     let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
@@ -307,6 +325,9 @@ function show_prayer_timer( $atts ) {
                     clearInterval(timer_interval);
                 }
 
+                // Update display immediately to fix initial delay
+                updateStickyTimerDisplay();
+
                 timer_interval = setInterval( function() {
                     if (is_paused) {
                         return; // Don't update when paused
@@ -320,11 +341,25 @@ function show_prayer_timer( $atts ) {
                         let minutes = Math.floor(remaining_seconds / 60);
                         let seconds = remaining_seconds % 60;
                         
+                        // Enforce 5-second stepping after 10 seconds
+                        if (ten_seconds_passed || (total_duration - remaining_ms) >= 10000) {
+                            // Quantize seconds to nearest lower multiple of 5
+                            seconds = Math.floor(seconds / 5) * 5;
+                        }
+                        
                         // Check if we should switch to 5-second updates
                         if ((!ten_seconds_passed && (total_duration - remaining_ms) >= 10000) || use_five_second_updates) {
                             ten_seconds_passed = true;
                             clearInterval(timer_interval);
                             update_interval = 5000;
+                            
+                            // Snap to 5-second boundary when switching
+                            let current_time = new Date().getTime();
+                            let elapsed = total_duration - remaining_ms;
+                            let snapped_elapsed = Math.floor(elapsed / 5000) * 5000;
+                            let adjustment = elapsed - snapped_elapsed;
+                            end_of_time = current_time + remaining_ms + adjustment;
+                            
                             timer_interval = setInterval(arguments.callee, update_interval);
                         }
                         
@@ -337,6 +372,9 @@ function show_prayer_timer( $atts ) {
 
                 jQuery('.clock-sticky-play-icon').hide();
                 jQuery('#clock-sticky-clock').show();
+                
+                // Change icon to clock when running
+                jQuery('#clock-sticky-icon').attr('src', '<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/clock-white.svg' ) ?>');
 
                 let start_praying_button = jQuery( '#start-praying' );
 
@@ -395,6 +433,12 @@ function show_prayer_timer( $atts ) {
                 if (is_paused) {
                     is_paused = false;
                     
+                    // Add visual indication for resume
+                    jQuery('#clock-sticky').addClass('prayer-timer-resume-pulse');
+                    setTimeout(function() {
+                        jQuery('#clock-sticky').removeClass('prayer-timer-resume-pulse');
+                    }, 600);
+                    
                     // Update end_of_time based on remaining time when paused
                     if (remaining_time_when_paused > 0) {
                         end_of_time = new Date().getTime() + remaining_time_when_paused;
@@ -410,6 +454,15 @@ function show_prayer_timer( $atts ) {
                     if (timer_interval) {
                         clearInterval(timer_interval);
                     }
+                    
+                    // Snap to 5-second boundary on resume
+                    let current_time = new Date().getTime();
+                    let remaining_ms = end_of_time - current_time;
+                    let remaining_seconds = Math.floor(remaining_ms / 1000);
+                    let snapped_seconds = Math.floor(remaining_seconds / 5) * 5;
+                    let adjustment = (remaining_seconds - snapped_seconds) * 1000;
+                    end_of_time = current_time + (snapped_seconds * 1000);
+                    
                     timer_interval = setInterval(function() {
                         if (is_paused) {
                             return; // Don't update when paused
@@ -422,6 +475,9 @@ function show_prayer_timer( $atts ) {
                             let remaining_seconds = Math.floor(remaining_ms / 1000);
                             let minutes = Math.floor(remaining_seconds / 60);
                             let seconds = remaining_seconds % 60;
+                            
+                            // Enforce 5-second stepping after resume
+                            seconds = Math.floor(seconds / 5) * 5;
                             
                             // Format display: always show MM:SS format
                             let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
@@ -506,6 +562,9 @@ function show_prayer_timer( $atts ) {
                 jQuery( '.prayer-timer-needle' ).css('-webkit-transition', 'none');
                 jQuery( '.prayer-timer-needle' ).css('transform', current_transform);
                 jQuery( '.prayer-timer-needle' ).attr( 'class', 'prayer-timer-needle prayer-timer-rotate-paused' );
+
+                // Change icon to pause when paused
+                jQuery('#clock-sticky-icon').attr('src', '<?php echo esc_html( DT_Prayer_Campaigns::get_url_path() . 'assets/pause-white.svg' ) ?>');
 
                 let start_praying_button = jQuery( '#start-praying' );
                 start_praying_button.attr( 'onclick', 'start_timer()' );
