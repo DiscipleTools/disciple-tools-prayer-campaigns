@@ -314,7 +314,7 @@ function show_prayer_timer( $atts ) {
                     update_interval = 1000;
                 } else {
                     // Start fresh
-                    end_of_time = new Date().getTime() + total_duration;
+                    end_of_time = new Date().getTime() + total_duration + 1000; // Add 1-second buffer
                     start_time = new Date().getTime();
                     ten_seconds_passed = false;
                     update_interval = 1000;
@@ -348,7 +348,7 @@ function show_prayer_timer( $atts ) {
                         }
                         
                         // Check if we should switch to 5-second updates
-                        if ((!ten_seconds_passed && (total_duration - remaining_ms) >= 10000) || use_five_second_updates) {
+                        if ((!ten_seconds_passed && (total_duration - remaining_ms) >= 9000) || use_five_second_updates) {
                             ten_seconds_passed = true;
                             clearInterval(timer_interval);
                             update_interval = 5000;
