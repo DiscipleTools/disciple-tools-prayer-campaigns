@@ -189,15 +189,20 @@ function show_prayer_timer( $atts ) {
                 cursor: pointer;
                 padding: 0;
                 margin: 0;
+                display: flex;
+                align-items: center;
+                gap: 5px;
             }
             #clock-sticky-button:focus {
                 outline: none;
             }
             #clock-sticky-button img {
-                height: 20px;
+                height: 16px;
+                display: block;
             }
             #clock-sticky-clock img {
-                height: 20px;
+                height: 16px;
+                display: block;
             }
             #clock-sticky-remaining-time{
                 color:white
