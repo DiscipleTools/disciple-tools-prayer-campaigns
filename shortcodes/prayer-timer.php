@@ -260,16 +260,11 @@ function show_prayer_timer( $atts ) {
                     jQuery('#clock-sticky-remaining-time').text('00:00');
                     return;
                 }
-                
+
                 let remaining_seconds = Math.floor(total_duration_timer / 1000);
                 let minutes = Math.floor(remaining_seconds / 60);
                 let seconds = remaining_seconds % 60;
-                
-                // Enforce 5-second stepping after 10 seconds
-                if (ten_seconds_passed || (total_duration - total_duration_timer) > 10000) {
-                    seconds = Math.floor(seconds / 5) * 5;
-                }
-                
+
                 // Format display: always show MM:SS format
                 let display_text = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
                 jQuery('#clock-sticky-remaining-time').text(display_text);
@@ -523,24 +518,22 @@ function show_prayer_timer( $atts ) {
                 if (timer_interval) {
                     clearInterval(timer_interval);
                 }
-                
-                // Determine if we should use 5-second updates
-                let shouldUseFiveSecondUpdates = ten_seconds_passed || (total_duration - total_duration_timer) > 10000;
-                
+
+                // Check if we're already at a 5-second boundary and past 10 seconds
+                let remaining_seconds = Math.floor(total_duration_timer / 1000);
+                let elapsed = total_duration - total_duration_timer;
+                let shouldUseFiveSecondUpdates = elapsed >= 10000 && (remaining_seconds % 5 === 0);
+
                 if (shouldUseFiveSecondUpdates) {
-                    // Use 5-second intervals
+                    // Use 5-second intervals (only when we're at a 5-second boundary)
                     update_interval = 5000;
-                    
-                    // Snap to nearest 5-second boundary
-                    let remaining_seconds = Math.floor(total_duration_timer / 1000);
-                    let snapped_seconds = Math.floor(remaining_seconds / 5) * 5;
-                    total_duration_timer = snapped_seconds * 1000;
-                    
+                    ten_seconds_passed = true;
+
                     timer_interval = setInterval(function() {
                         if (!is_paused) {
                             total_duration_timer -= 5000; // Subtract 5 seconds
                             updateStickyTimerDisplay();
-                            
+
                             if (total_duration_timer <= 0) {
                                 clearInterval(timer_interval);
                                 timer_interval = null;
@@ -554,17 +547,19 @@ function show_prayer_timer( $atts ) {
                     timer_interval = setInterval(function() {
                         if (!is_paused) {
                             total_duration_timer -= 1000; // Subtract 1 second
-                            
-                            // Switch to 5-second updates after 10 seconds
-                            if (!ten_seconds_passed && (total_duration - total_duration_timer) > 10000) {
-                                ten_seconds_passed = true;
+
+                            updateStickyTimerDisplay();
+
+                            // Check if we should switch to 5-second updates
+                            // Switch when: past 10 seconds AND at a 5-second boundary
+                            let elapsed = total_duration - total_duration_timer;
+                            let remaining_seconds = Math.floor(total_duration_timer / 1000);
+                            if (elapsed >= 10000 && remaining_seconds % 5 === 0) {
                                 clearInterval(timer_interval);
                                 startTimerInterval(); // Restart with 5-second intervals
                                 return;
                             }
-                            
-                            updateStickyTimerDisplay();
-                            
+
                             if (total_duration_timer <= 0) {
                                 clearInterval(timer_interval);
                                 timer_interval = null;
