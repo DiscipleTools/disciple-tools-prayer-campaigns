@@ -254,8 +254,7 @@ function show_prayer_timer( $atts ) {
             let slot_timeouts = [];
             let rotation_monitor_interval = null;
             let slots_updated = [false, false, false, false, false]; // Track which slots have been updated
-            
-console.log('=================> total_duration', total_duration)
+
             function updateStickyTimerDisplay() {
                 if (total_duration_timer <= 0) {
                     jQuery('#clock-sticky-remaining-time').text('00:00');
