@@ -225,7 +225,7 @@ function dt_get_next_ramadan_start_date() {
 }
 function dt_get_next_ramadan_end_date(){
     $start = dt_get_next_ramadan_start_date();
-    return gmdate( 'Y-m-d', strtotime( $start . ' +30 days' ) );
+    return gmdate( 'Y-m-d', strtotime( $start . ' +29 days' ) );
 }
 /*
 https://www.qppstudio.net/global-holidays-observances/start-of-ramadan.htm
