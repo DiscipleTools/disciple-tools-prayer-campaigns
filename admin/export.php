@@ -31,7 +31,7 @@ function export_fuel( $language = null, $linked_campaign = null, $campaign_name 
         $where .= $wpdb->prepare( " AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %s ", esc_sql( $linked_campaign ) );
     }
 
-    $post_ids = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} $join WHERE $where" );
+    $post_ids = $wpdb->get_col( "SELECT DISTINCT(ID) FROM {$wpdb->posts} $join WHERE $where" );
 
     /**
      * Returns the URL of the site.

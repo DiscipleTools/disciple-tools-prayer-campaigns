@@ -263,7 +263,7 @@ class DT_Porch_Admin_Tab_Starter_Content extends DT_Porch_Admin_Tab_Base {
 
         global $wpdb;
         $installed_langs_query = $wpdb->get_results( $wpdb->prepare("
-            SELECT pm.meta_value, count(*) as count
+            SELECT pm.meta_value, count(distinct(p.ID)) as count
             FROM $wpdb->posts p
             LEFT JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND meta_key = 'post_language' )
             INNER JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d )
