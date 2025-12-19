@@ -242,6 +242,7 @@ class DT_Porch_Admin_Tab_New_Campaign extends DT_Porch_Admin_Tab_Base {
                 $('#campaign_start_date').val('<?php echo esc_js( dt_get_next_ramadan_start_date() ); ?>');
                 $('#campaign_end_date').val('<?php echo esc_js( dt_get_next_ramadan_end_date() ); ?>');
                 $('#end-date-msg').html('Please make sure these dates match the start end of ramadan in your target region.').css('color', 'red');
+                $('input[name="campaign_goal"][value="quantity"]').prop('checked', true);
               }
               if ( $(this).val() === 'ongoing' ){
                 $('#campaign_end_date').val('').prop('disabled', true);
