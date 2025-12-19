@@ -87,6 +87,9 @@ class DT_Prayer_Campaigns_Campaigns extends DT_Porch_Admin_Tab_Base {
         foreach ( $default_values['languages'] as $lang ){
             $fields['enabled_languages']['values'][] = [ 'value' => $lang ];
         }
+        if ( !empty( $default_values['campaign_goal'] ) ){
+            $fields['campaign_goal'] = $default_values['campaign_goal'];
+        }
 
         $default_campaign = get_option( 'dt_campaign_selected_campaign', false );
 
