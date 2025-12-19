@@ -1046,9 +1046,11 @@ export class cpCalendar extends LitElement {
                     </h3>
                     <div class="calendar">
                         ${week_day_names.map(name=>html`<div class="week-day">${name}</div>`)}
-                        ${map(range(month.date.startOf('month').weekday%7), i=>html`<div class="day-cell disabled-calendar-day"></div>`)}
-                        ${month.days.map(day=>{
-                            return html`
+                        ${window.campaign_scripts.build_calendar_weeks(month.days, month.date.startOf('month').weekday).map(week=>
+                          week.map(day=>
+                            day.is_padding
+                              ? html`<div class="day-cell disabled-calendar-day"></div>`
+                              : html`
                                 <div class="day-cell
                                      ${day.disabled ? 'disabled-calendar-day':'day-in-select-calendar'}"
                                 data-day="${window.campaign_scripts.escapeHTML(day.key)}"
@@ -1057,7 +1059,8 @@ export class cpCalendar extends LitElement {
                                     <progress-ring class="progress-ring" progress="${window.campaign_scripts.escapeHTML(day.percent)}" text="${window.campaign_scripts.escapeHTML(day.day)}"></progress-ring>
                                 ` }
                                 </div>`
-                        })}
+                          )
+                        )}
                     </div>
                 </div>
             </div>

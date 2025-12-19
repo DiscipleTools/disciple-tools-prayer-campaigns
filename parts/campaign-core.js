@@ -418,6 +418,25 @@ window.campaign_scripts = {
     }
     return month_days
   },
+  build_calendar_weeks(month_days, first_day_weekday){
+    let weeks = [];
+    let current_week = [];
+    let padding_count = first_day_weekday % 7;
+    for (let i = 0; i < padding_count; i++) {
+      current_week.push({ is_padding: true });
+    }
+    for (let day of month_days) {
+      current_week.push(day);
+      if (current_week.length === 7) {
+        weeks.push(current_week);
+        current_week = [];
+      }
+    }
+    if (current_week.length > 0) {
+      weeks.push(current_week);
+    }
+    return weeks.filter(week => week.some(day => !day.is_padding && !day.disabled));
+  },
   build_selected_times_for_recurring(selected_time, frequency, duration, weekday=null, from_date_ts=null){
     let selected_times = []
     let now = new Date().getTime()/1000
