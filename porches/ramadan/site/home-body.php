@@ -50,38 +50,14 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
 <div id="edit_modal_div"></div>
 <!-- MODALS -->
 
-<!-- Vision -->
-<section id="campaign-vision" class="section">
+<!-- Why Pray -->
+<section id="why-pray" class="section">
     <div class="container">
-        <div class="section-header row">
-            <div class="col-sm-12 <?php echo esc_html( $campaign_has_end_date ? 'col-md-8' : 'col-md-12' ); ?>">
-                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php display_translated_field( 'vision_title', 'btn-common', true ); ?></h2>
-                <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-                <div style="padding: 1em">
-                    <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php display_translated_field( 'vision' ); ?></p>
-                </div>
-            </div>
-            <?php if ( $campaign_has_end_date ): ?>
-                <div class="col-sm-12 col-md-4">
-                    <?php echo dt_generic_percentage_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore?>
-                </div>
-            <?php endif; ?>
+        <div class="section-header">
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php display_translated_field( 'vision_title', 'btn-common', true ); ?></h2>
+            <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+            <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php display_translated_field( 'vision' ); ?></p>
         </div>
-        <?php if ( !empty( $video_url ) ):
-            $embed_url = str_replace( 'https://vimeo.com/', 'https://player.vimeo.com/video/', $video_url );
-            ?>
-            <div class="video-container" style="margin-bottom: 50px;">
-                <div class="video-wrapper" style="max-width:900px; margin: auto; box-shadow: 0 5px 10px 2px #bababa;">
-                    <div style="padding:56.25% 0 0 0;position:relative;">
-                        <iframe
-                            src="<?php echo esc_html( $embed_url ); ?>?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                            frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                            title="Ramadan Video"></iframe>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
@@ -111,43 +87,189 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
                 </div>
             </div>
         </div>
-        <div class="row" style="justify-content: center">
-            <a href="#sign-up" class="btn btn-common"><?php esc_html_e( 'Sign Up to Pray', 'disciple-tools-prayer-campaigns' ); ?></a>
-        </div>
-
     </div>
 </section>
-<!-- Services Section End -->
+<!-- Why Pray Section End -->
 
-
-<!-- COUNTER ROW -->
-<div id="days_until" class="counters section" data-stellar-background-ratio="0.5" >
+<!-- How It Works -->
+<div id="how-it-works" class="counters section" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
-        <div id="counter_row" class="row">
-            <div class="col-sm-12">
-                <div class="wow fadeInUp" data-wow-delay=".3s">
+        <div class="section-header">
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s" style="color: #fff;"><?php esc_html_e( 'How It Works', 'disciple-tools-prayer-campaigns' ); ?></h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="wow fadeInUp" data-wow-delay=".2s">
                     <div class="facts-item">
+                        <div class="icon">
+                            <i class="lnr lnr-pencil"></i>
+                        </div>
                         <div class="fact-count">
-                            <counter-row
-                                starting_label="<?php echo esc_html__( 'Ramadan Begins ...', 'disciple-tools-prayer-campaigns' ); ?>"
-                                ending_label="<?php echo esc_html__( 'Ramadan Ends ...', 'disciple-tools-prayer-campaigns' ); ?>"
-                                is_finished="<?php echo esc_html__( 'Ramadan Is Finished', 'disciple-tools-prayer-campaigns' ); ?>"
-                                end_time="<?php echo esc_html( DT_Time_Utilities::end_of_campaign_with_timezone( $campaign_fields['ID'] ) ?? null ); ?>"
-                                start_time="<?php echo esc_html( DT_Time_Utilities::start_of_campaign_with_timezone( $campaign_fields['ID'] ) ); ?>">
+                            <h4><?php esc_html_e( 'Sign up to pray', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="wow fadeInUp" data-wow-delay=".4s">
+                    <div class="facts-item">
+                        <div class="icon">
+                            <i class="lnr lnr-envelope"></i>
+                        </div>
+                        <div class="fact-count">
+                            <h4><?php esc_html_e( 'Receive email reminders', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="wow fadeInUp" data-wow-delay=".6s">
+                    <div class="facts-item">
+                        <div class="icon">
+                            <i class="lnr lnr-clock"></i>
+                        </div>
+                        <div class="fact-count">
+                            <h4><?php esc_html_e( 'Spend 15 minutes with guided prayers', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="wow fadeInUp" data-wow-delay=".8s">
+                    <div class="facts-item">
+                        <div class="icon">
+                            <i class="lnr lnr-heart"></i>
+                        </div>
+                        <div class="fact-count">
+                            <h4><?php esc_html_e( 'Encounter God as you pray for the nations', 'disciple-tools-prayer-campaigns' ); ?></h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 30px">
-            <div class="col-sm-12 col-md-7 col-lg-8 what-content-text"><?php display_translated_field( 'what_content', 'btn-border' ); ?></div>
+    </div>
+</div>
+<!-- How It Works Section End -->
+
+<!-- About Ramadan -->
+<section id="about-ramadan" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php esc_html_e( 'About Ramadan', 'disciple-tools-prayer-campaigns' ); ?></h2>
+            <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+        </div>
+        <div class="row">
+            <div class="col-sm-12"><?php display_translated_field( 'what_content' ); ?></div>
+        </div>
+    </div>
+</section>
+<!-- About Ramadan Section End -->
+
+<!-- Campaign Info - Shared PHP Variables -->
+<?php
+$start_date = isset( $campaign_fields['start_date']['timestamp'] ) ? gmdate( 'F j, Y', $campaign_fields['start_date']['timestamp'] ) : '';
+$start_date_short = isset( $campaign_fields['start_date']['timestamp'] ) ? gmdate( 'M j', $campaign_fields['start_date']['timestamp'] ) : '';
+$end_date = isset( $campaign_fields['end_date']['timestamp'] ) ? gmdate( 'F j, Y', $campaign_fields['end_date']['timestamp'] ) : '';
+$end_date_short = isset( $campaign_fields['end_date']['timestamp'] ) ? gmdate( 'M j, Y', $campaign_fields['end_date']['timestamp'] ) : '';
+$minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign_fields['ID'] );
+$time_committed = DT_Time_Utilities::display_minutes_in_time( $minutes_committed );
+$subscribers_count = DT_Subscriptions::get_subscribers_count( $campaign_fields['ID'] );
+
+// Calculate days until start
+$now = time();
+$start_timestamp = $campaign_fields['start_date']['timestamp'] ?? 0;
+$end_timestamp = $campaign_fields['end_date']['timestamp'] ?? 0;
+$days_until_start = $start_timestamp > $now ? ceil( ( $start_timestamp - $now ) / DAY_IN_SECONDS ) : 0;
+$days_until_end = $end_timestamp > $now ? ceil( ( $end_timestamp - $now ) / DAY_IN_SECONDS ) : 0;
+$campaign_started = $now >= $start_timestamp;
+$campaign_ended = $now >= $end_timestamp;
+
+// Calculate progress percentage
+$coverage_progress = 0;
+if ( $campaign_has_end_date && function_exists( 'DT_Campaigns_Base::query_coverage_percentage' ) ) {
+    $coverage_progress = DT_Campaigns_Base::query_coverage_percentage( $campaign_fields['ID'] );
+}
+?>
+
+<!-- Campaign Info -->
+<div id="campaign-info" class="counters section" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row" style="justify-content: space-between;">
+            <!-- Left Column: Info Stack -->
+            <div class="col-sm-12 col-md-7 col-lg-6">
+                <!-- Countdown Block -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9em; margin-bottom: 10px;">
+                        <?php if ( $campaign_ended ): ?>
+                            <?php esc_html_e( 'Campaign Complete', 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php elseif ( $campaign_started ): ?>
+                            <?php esc_html_e( 'Days Remaining', 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php else : ?>
+                            <?php esc_html_e( 'Ramadan Begins In', 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php endif; ?>
+                    </h4>
+                    <div style="color: #fff; font-size: 3.5em; font-weight: bold; line-height: 1;">
+                        <?php if ( $campaign_ended ): ?>
+                            ✓
+                        <?php elseif ( $campaign_started ): ?>
+                            <?php echo esc_html( $days_until_end ); ?> <span style="font-size: 0.4em; font-weight: normal;"><?php esc_html_e( 'days', 'disciple-tools-prayer-campaigns' ); ?></span>
+                        <?php else : ?>
+                            <?php echo esc_html( $days_until_start ); ?> <span style="font-size: 0.4em; font-weight: normal;"><?php esc_html_e( 'days', 'disciple-tools-prayer-campaigns' ); ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <div style="color: rgba(255,255,255,0.8); margin-top: 10px;">
+                        <?php echo esc_html( $start_date ); ?> — <?php echo esc_html( $end_date ); ?>
+                    </div>
+                </div>
+                <!-- Progress Block -->
+                <?php if ( $campaign_has_end_date ): ?>
+                <div style="margin-bottom: 30px;">
+                    <h4 style="color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9em; margin-bottom: 15px;">
+                        <?php esc_html_e( 'Prayer Coverage', 'disciple-tools-prayer-campaigns' ); ?>
+                    </h4>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.2); border-radius: 10px; height: 16px; overflow: hidden;">
+                            <div style="background: #fff; height: 100%; width: <?php echo esc_attr( min( $coverage_progress, 100 ) ); ?>%; border-radius: 10px;"></div>
+                        </div>
+                        <div style="color: #fff; font-size: 1.5em; font-weight: bold; min-width: 60px;"><?php echo esc_html( $coverage_progress ); ?>%</div>
+                    </div>
+                    <div style="color: rgba(255,255,255,0.7); font-size: 0.9em; margin-top: 8px;">
+                        <?php esc_html_e( 'Goal: 24/7 coverage', 'disciple-tools-prayer-campaigns' ); ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <!-- Inline Stats (Strategy A style) -->
+                <?php
+                // Parse time committed to separate number from unit
+                preg_match( '/^([\d.]+)\s*(.*)$/', $time_committed, $time_parts );
+                $time_number = isset( $time_parts[1] ) ? $time_parts[1] : $time_committed;
+                $time_unit = isset( $time_parts[2] ) ? $time_parts[2] : '';
+                ?>
+                <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div style="color: #fff; display: flex; align-items: center;">
+                        <i class="lnr lnr-user" style="font-size: 1.5em; margin-right: 10px;"></i>
+                        <span style="font-size: 2em; font-weight: bold;"><?php echo esc_html( $subscribers_count ?? 0 ); ?></span>
+                        <span style="margin-left: 8px;"><?php esc_html_e( 'Prayer Warriors', 'disciple-tools-prayer-campaigns' ); ?></span>
+                    </div>
+                    <div style="color: #fff; display: flex; align-items: center;">
+                        <i class="lnr lnr-calendar-full" style="font-size: 1.5em; margin-right: 10px;"></i>
+                        <span style="font-size: 2em; font-weight: bold;"><?php echo esc_html( $time_number ); ?></span>
+                        <span style="margin-left: 4px;"><?php echo esc_html( $time_unit ); ?></span>
+                        <span style="margin-left: 8px;"><?php esc_html_e( 'Committed', 'disciple-tools-prayer-campaigns' ); ?></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Calendar -->
             <div class="col-sm-12 col-md-5 col-lg-4">
                 <?php echo dt_generic_calendar_shortcode( $dt_campaign_selected_campaign_magic_link_settings ); //phpcs:ignore ?>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Campaign Info Section End -->
 
 <!-- SIGN UP TO PRAY -->
 <section id="features" class="section" data-stellar-background-ratio="0.2">
@@ -161,83 +283,26 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
         </div>
     </div>
 </section>
-<!-- Features Section End -->
+<!-- Sign Up Section End -->
 
-
-<?php if ( $campaign_has_end_date ): ?>
-<!-- COUNTER ROW -->
-<div class="counters section" data-stellar-background-ratio="0.5" >
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <?php
-            $minutes_committed = DT_Campaigns_Base::get_minutes_prayed_and_scheduled( $campaign_fields['ID'] );
-            $time_committed = DT_Time_Utilities::display_minutes_in_time( $minutes_committed );
-            $size = $campaign_has_end_date ? 'col-sm-6 col-md-4 col-lg-4' : 'col-sm-6 col-md-6 col-lg-6';
-            ?>
-            <div class="<?php echo esc_html( $size ); ?>">
-                <div class="wow fadeInUp" data-wow-delay=".2s">
-                    <div class="facts-item">
-                        <div class="icon">
-                            <i class="lnr lnr-calendar-full"></i>
-                        </div>
-                        <div class="fact-count">
-
-                            <h3><?php echo esc_html( $time_committed ); ?></h3>
-                            <h4><?php esc_html_e( 'Time Committed', 'disciple-tools-prayer-campaigns' ) ?></h4>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php $subscribers_count = DT_Subscriptions::get_subscribers_count( $campaign_fields['ID'] ); ?>
-
-            <div class="<?php echo esc_html( $size ); ?>">
-                <div class="wow fadeInUp" data-wow-delay=".6s">
-                    <div class="facts-item">
-                        <div class="icon">
-                            <i class="lnr lnr-user"></i>
-                        </div>
-                        <div class="fact-count">
-                            <h3><?php echo esc_html( $subscribers_count ?? 0 ) ?></h3>
-                            <h4><?php esc_html_e( 'Prayer Warriors', 'disciple-tools-prayer-campaigns' ); ?></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php if ( $campaign_has_end_date ) : ?>
-                <div class="<?php echo esc_html( $size ); ?>">
-                    <div class="wow fadeInUp" data-wow-delay=".8s">
-                        <div class="facts-item">
-                            <div class="icon">
-                                <i class="lnr lnr-heart"></i>
-                            </div>
-                            <div class="fact-count">
-                                <h3><?php echo esc_html( Campaign_Utils::prayer_commitments_needed( $campaign_fields ) ) ?></h3>
-                                <h4><?php esc_html_e( 'Prayer Commitments Needed', 'disciple-tools-prayer-campaigns' ); ?></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
-<!-- Counter Section End -->
-<?php endif; ?>
-
-<!-- Blog Section -->
-<section id="blog" class="section">
-    <!-- Container Starts -->
+<!-- Prayer Fuel Section -->
+<section id="blog" class="section" style="background-color: <?php
+    $color = CAMPAIGN_LANDING_COLOR_SCHEME_HEX === 'preset' ? '#4676fa' : CAMPAIGN_LANDING_COLOR_SCHEME_HEX;
+    // Convert hex to rgba with opacity for lighter appearance
+    $hex = ltrim( $color, '#' );
+    $r = hexdec( substr( $hex, 0, 2 ) );
+    $g = hexdec( substr( $hex, 2, 2 ) );
+    $b = hexdec( substr( $hex, 4, 2 ) );
+    echo esc_attr( "rgba($r, $g, $b, 0.7)" );
+?>;">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title split-color wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php display_translated_field( 'prayer_fuel_title', 'btn-common', true ); ?></h2>
-            <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php display_translated_field( 'prayer_fuel_description' ); ?></p>
-            <p class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
-                <a href="<?php echo esc_html( $root_url . '/list' ); ?>" class="btn btn-common btn-rm"><?php esc_html_e( 'View All', 'disciple-tools-prayer-campaigns' ); ?></a>
+            <h2 class="section-title" style="color: #fff;"><?php display_translated_field( 'prayer_fuel_title', 'btn-common', true ); ?></h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 20px;"><?php display_translated_field( 'prayer_fuel_description' ); ?></p>
+            <p>
+                <a href="<?php echo esc_html( $root_url . '/list' ); ?>" class="btn btn-common"><?php esc_html_e( 'View All', 'disciple-tools-prayer-campaigns' ); ?></a>
             </p>
         </div>
     </div>
 </section>
-<!-- blog Section End -->
+<!-- Prayer Fuel Section End -->
