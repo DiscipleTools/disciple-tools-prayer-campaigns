@@ -52,7 +52,7 @@ msgstr "ನಿಮ್ಮ ಖಾತೆಯಲ್ಲಿ ಹೆಚ್ಚಿನದನ�
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಲು ನೋಂದಾಯಿಸಿ!"
+msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಲು ನೋಂದಾಯಿಸಲಾಗಿದೆ!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
@@ -1208,11 +1208,11 @@ msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯ: %s ನಿಮಿಷ"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "ನಿಲ್ಲಿಸು"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "ಮುಂದುವರಿಸು"
 
 #~ msgid "Now praying..."
 #~ msgstr "ಈಗ ಪ್ರಾರ್ಥಿಸುವುದು…"

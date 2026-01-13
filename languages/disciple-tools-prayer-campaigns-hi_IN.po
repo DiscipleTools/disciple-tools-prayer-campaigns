@@ -51,7 +51,7 @@ msgstr "अपने अकाउंट के बारे में और अ
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "हमारे साथ प्रार्थना करने के लिए पंजीकरण करें!"
+msgstr "हमारे साथ प्रार्थना करने के लिए पंजीकृत!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
@@ -135,7 +135,7 @@ msgstr "[कार्रवाई करें] प्रार्थना क�
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
-msgstr "हमारे कुछ प्रार्थना समय शीघ्र ही समाप्त हो जाएँगे।"
+msgstr "आपके कुछ प्रार्थना समय शीघ्र ही समाप्त हो जाएँगे।"
 
 #: campaign-functions/send-email-utility.php:417
 msgid "The prayer times are:"
@@ -754,7 +754,7 @@ msgstr "घण्टे"
 
 #: parts/components-enqueue.php:126
 msgid "Hour"
-msgstr "घण्टे"
+msgstr "घण्टा"
 
 #: parts/components-enqueue.php:127
 msgid "Minutes"
@@ -810,6 +810,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"रमज़ान के दौरान प्रार्थना और इस अभियान के बारे में उपयोगी जानकारी प्राप्त करने के लिए "
+"ईमेल प्राप्त करें"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1194,11 +1196,11 @@ msgstr "प्रार्थना का समय: %s मिनट"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "रुकें"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "जारी रखें"
 
 #~ msgid "Now praying..."
 #~ msgstr "अब प्रार्थना कर रहे हैं..।"

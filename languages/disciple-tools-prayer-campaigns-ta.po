@@ -47,11 +47,11 @@ msgstr "%1$s %2$s முதல் %3$s வரை"
 
 #: campaign-functions/send-email-utility.php:189
 msgid "see more on your account"
-msgstr "எங்களுடன் ஜெபிக்க பதிவு செய்த"
+msgstr "உங்கள் அக்கவுண்ட்-ல் மேலும் விவரம் காணலாம்"
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "உங்கள் அக்கவுண்ட்-ல் மேலும் விவரம் காணலாம்!"
+msgstr "எங்களுடன் ஜெபிக்க பதிவு செய்தீர்கள்!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
@@ -131,7 +131,7 @@ msgstr "ஜெப எண்ணெய்"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr "[ACTION NEEDED] தொடர்ந்து ஜெபிக்கிறீர்களா?"
+msgstr "[செயல் தேவை] தொடர்ந்து ஜெபிக்கிறீர்களா?"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
@@ -813,6 +813,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"ரமலான் காலத்தில் ஜெபம் மற்றும் இந்தச் செயல்பாடு பற்றிய உபயோகமான தகவல்கள் பற்றிய "
+"ஈமெயில்களைப் பெற்றுக்கொள்ளுங்கள்"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1202,11 +1204,11 @@ msgstr "ஜெப நேரம்: நிமிடங்கள் %s"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "நிறுத்து"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "தொடரவும்"
 
 #~ msgid "Now praying..."
 #~ msgstr "இப்போது ஜெபித்துக்கொண்டிருக்கிறோம்…"

@@ -27,10 +27,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "계정을 활성화하여 기도 참여를 확인합니다."
 
 #: campaign-functions/send-email-utility.php:90
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "액세스 계정"
+msgstr "계정 활성화"
 
 #: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
@@ -42,12 +40,10 @@ msgstr "이 이메일을 요청하지 않으셨다면 무시해 주세요."
 
 #: campaign-functions/send-email-utility.php:182
 #: campaign-functions/send-email-utility.php:278
-#, fuzzy, php-format
-#| msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
-#| msgid "%1$s from %2$s to %3$s"
+#, php-format
 msgctxt "August 18, 2021 from 03:15 am to 03:30 am for Tokyo, Japan"
 msgid "%1$s from %2$s to %3$s"
-msgstr "1$s에서 %2$s까지 %3$s"
+msgstr "%1$s %2$s부터 %3$s까지"
 
 #: campaign-functions/send-email-utility.php:189
 msgid "see more on your account"
@@ -55,14 +51,14 @@ msgstr "계정에서 자세히 보기"
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "우리와 함께 기도하기 위해 등록하세요!"
+msgstr "우리와 함께 기도하기 위해 등록되었습니다!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
 #: campaign-functions/send-email-utility.php:414
 #, php-format
 msgid "Hello %s,"
-msgstr "안녕하세요 %s입니다,"
+msgstr "안녕하세요 %s님,"
 
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
@@ -86,10 +82,9 @@ msgstr "다음 기도 약속은 다음과 같습니다:"
 
 #: campaign-functions/send-email-utility.php:238
 #: campaign-functions/send-email-utility.php:314
-#, fuzzy, php-format
-#| msgid "Times are shown according to: %s time"
+#, php-format
 msgid "Times are shown according to: %s time"
-msgstr "시간은 다음에 따라 표시됩니다: 시간"
+msgstr "시간은 %s 기준으로 표시됩니다"
 
 #: campaign-functions/send-email-utility.php:242
 #: magic-links/subscription-management/subscription-management.php:371
@@ -106,7 +101,7 @@ msgstr "오늘의 기도 제목을 보려면 여기를 클릭하세요: %s"
 #, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr "에 대한 %s"
+msgstr "%s을(를) 위해"
 
 #: campaign-functions/send-email-utility.php:294
 msgid "Prayer Time reminder!"
@@ -135,20 +130,16 @@ msgid "Prayer Fuel"
 msgstr "기도 연료"
 
 #: campaign-functions/send-email-utility.php:412
-#, fuzzy
-#| msgid "Continue Praying?"
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr "계속 기도하시겠습니까?"
+msgstr "[조치 필요] 계속 기도하시겠습니까?"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
-msgstr ""
+msgstr "일부 기도 시간이 곧 종료됩니다."
 
 #: campaign-functions/send-email-utility.php:417
-#, fuzzy
-#| msgid "See prayer times"
 msgid "The prayer times are:"
-msgstr "기도 시간 보기"
+msgstr "기도 시간은 다음과 같습니다:"
 
 #: campaign-functions/send-email-utility.php:421
 msgid ""
@@ -156,12 +147,15 @@ msgid ""
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
+"계속 기도하고 알림을 받으시려면 계정에 접속하여 약정 옆의 \"연장\"을 클릭하세요. "
+"원하시면 다른 시간대에 등록하실 수도 있습니다."
 
 #: campaign-functions/send-email-utility.php:423
 msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
+"기도 시간이 끝났을 때 계속 기도하고 싶지 않으시면 아무것도 하실 필요가 없습니다."
 
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
@@ -176,7 +170,7 @@ msgstr "함께 기도해 주셔서 감사합니다!"
 #: campaign-functions/send-email-utility.php:485
 #, php-format
 msgid "Dear %s,"
-msgstr "Dear %s,"
+msgstr "친애하는 %s님,"
 
 #: campaign-functions/send-email-utility.php:491
 #: porches/generic/dt-generic-porch-strings.php:38
@@ -184,10 +178,9 @@ msgid "Strategic prayer for a Disciple Making Movement"
 msgstr "제자 삼는 운동을 위한 전략적 기도"
 
 #: campaign-functions/send-email-utility.php:493
-#, fuzzy, php-format
-#| msgid "Thank you for joining %1$s in %2$s."
+#, php-format
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "2$에서 %1$s에 가입해 주셔서 감사합니다."
+msgstr "%2$s의 %1$s에 함께해 주셔서 감사합니다."
 
 #: campaign-functions/send-email-utility.php:505
 msgid ""
@@ -209,18 +202,13 @@ msgstr ""
 "나님으로부터 받은 감동이나 말씀도 듣고 싶습니다."
 
 #: campaign-functions/send-email-utility.php:510
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgid ""
 "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at the "
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
 "마지막으로, 라마단 24/7 기도 통계 페이지 하단에는 등록 섹션도 있습니다. 이 기"
-"도 도구의 제작자인 Pray4Movement의 향후 기도 기회에 대한 소식을 받아보려면 등"
+"도 도구의 제작자인 Prayer.Tools의 향후 기도 기회에 대한 소식을 받아보려면 등"
 "록하세요."
 
 #: campaign-functions/send-email-utility.php:514
@@ -241,19 +229,13 @@ msgstr ""
 "서 하나님께 받은 감동이나 말씀도 듣고 싶습니다."
 
 #: campaign-functions/send-email-utility.php:519
-#, fuzzy
-#| msgid ""
-#| "Lastly, the Ramadan 24/7 Prayer Stats page also has a signup section at "
-#| "the bottom. Make sure you are signed up to receive news about future "
-#| "prayer opportunities by Pray4Movement, the makers of this prayer tool."
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
-"마지막으로, 라마단 24/7 기도 통계 페이지 하단에는 등록 섹션도 있습니다. 이 기"
-"도 도구의 제작자인 Pray4Movement의 향후 기도 기회에 대한 소식을 받아보려면 등"
-"록하세요."
+"마지막으로, Prayer.Tools에서 이 기도 도구를 만들었습니다. 통계 페이지에서 향후 "
+"기도 기회에 대한 소식을 받아보실 수 있도록 등록하세요."
 
 #: campaign-functions/send-email-utility.php:524
 msgid "See Prayer Stats"
@@ -302,7 +284,7 @@ msgstr "일수"
 #: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
-msgstr ""
+msgstr "수정"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:158
 msgid "Retrieve Prayer Time Management Link"
@@ -327,29 +309,26 @@ msgid "Please check your email address now for your access link."
 msgstr "지금 이메일 주소에서 액세스 링크를 확인하세요."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
-#, fuzzy
 msgid "Your prayer time has been extended"
-msgstr "기도 시간이 확인되었습니다!"
+msgstr "기도 시간이 연장되었습니다"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
-#, fuzzy, php-format
-#| msgid "You signed up to pray:"
+#, php-format
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
-msgstr "기도하기 위해 가입하셨습니다:"
+msgstr "%2$s까지 %1$s에 기도하도록 등록되어 있습니다."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:92
-#, fuzzy
 msgid "OK"
 msgstr "확인"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:93
 msgid "Email me the updated calendar"
-msgstr ""
+msgstr "업데이트된 캘린더를 이메일로 보내주세요"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:95
 msgid "Join me in praying!"
-msgstr ""
+msgstr "함께 기도해요!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
@@ -453,12 +432,10 @@ msgid "Campaign Ended"
 msgstr "캠페인 종료"
 
 #: parts/components-enqueue.php:50
-#, fuzzy, php-format
-#| msgctxt "Monday 5pm for 15 minutes"
-#| msgid "%1$s for %2$s minutes."
+#, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
-msgstr "2분 동안 %1$s를 사용했습니다."
+msgstr "%1$s, %2$s분 동안."
 
 #: parts/components-enqueue.php:51
 msgid "How often?"
@@ -514,12 +491,10 @@ msgid "prayer commitments"
 msgstr "기도 약속"
 
 #: parts/components-enqueue.php:66
-#, fuzzy, php-format
-#| msgctxt "Starting on October 4"
-#| msgid "Starting on %s"
+#, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr "에서 시작"
+msgstr "%s에 시작"
 
 #: parts/components-enqueue.php:67
 #, php-format
@@ -543,11 +518,11 @@ msgstr "확인"
 #: parts/components-enqueue.php:71
 #, php-format
 msgid "Goal: %s hours of prayer every day"
-msgstr ""
+msgstr "목표: 매일 %s시간 기도"
 
 #: parts/components-enqueue.php:72
 msgid "Goal: 24/7 coverage"
-msgstr ""
+msgstr "목표: 24시간 기도 커버리지"
 
 #: parts/components-enqueue.php:73
 msgid "Please enter a valid name or email address"
@@ -578,34 +553,29 @@ msgid "Pick Dates and Times"
 msgstr "날짜 및 시간 선택"
 
 #: parts/components-enqueue.php:80
-#, fuzzy, php-format
-#| msgid "%s Minutes"
+#, php-format
 msgid "%s Minutes"
-msgstr "분"
+msgstr "%s분"
 
 #: parts/components-enqueue.php:81
-#, fuzzy, php-format
-#| msgid "%s Hour"
+#, php-format
 msgid "%s Hour"
-msgstr "시간"
+msgstr "%s시간"
 
 #: parts/components-enqueue.php:82
-#, fuzzy, php-format
-#| msgid "%s Hours"
+#, php-format
 msgid "%s Hours"
-msgstr "시간"
+msgstr "%s시간"
 
 #: parts/components-enqueue.php:83
-#, fuzzy, php-format
-#| msgid "%1$s at %2$s for %3$s"
+#, php-format
 msgid "%1$s at %2$s for %3$s"
-msgstr "1$s에서 %2$s 동안 %3$s"
+msgstr "%1$s %2$s에 %3$s 동안"
 
 #: parts/components-enqueue.php:84
-#, fuzzy, php-format
-#| msgid "for %s minutes"
+#, php-format
 msgid "for %s minutes"
-msgstr "분 동안"
+msgstr "%s분 동안"
 
 #: parts/components-enqueue.php:85
 #, php-format
@@ -617,26 +587,22 @@ msgid "Prayer Time Selected"
 msgstr "기도 시간 선택"
 
 #: parts/components-enqueue.php:87
-#, fuzzy
-#| msgid "Prayer Time Selected"
 msgid "Prayer Time Removed"
-msgstr "기도 시간 선택"
+msgstr "기도 시간 삭제됨"
 
 #: parts/components-enqueue.php:88
 msgid "Select a Day"
 msgstr "날짜 선택"
 
 #: parts/components-enqueue.php:89
-#, fuzzy, php-format
-#| msgid "Renews on %s"
+#, php-format
 msgid "Renews on %s"
-msgstr "에 갱신"
+msgstr "%s에 갱신"
 
 #: parts/components-enqueue.php:90
-#, fuzzy, php-format
-#| msgid "Ends on %s"
+#, php-format
 msgid "Ends on %s"
-msgstr "에서 종료"
+msgstr "%s에 종료"
 
 #: parts/components-enqueue.php:91
 msgid "Success"
@@ -675,16 +641,12 @@ msgid "Timezone"
 msgstr "시간대"
 
 #: parts/components-enqueue.php:99
-#, fuzzy
-#| msgid "Receive Prayer time notifications"
 msgid "Receive prayer time notifications"
 msgstr "기도 시간 알림 받기"
 
 #: parts/components-enqueue.php:100
-#, fuzzy
-#| msgid "See prayer times"
 msgid "Auto extend prayer times"
-msgstr "기도 시간 보기"
+msgstr "기도 시간 자동 연장"
 
 #: parts/components-enqueue.php:101
 msgid "Advanced Settings"
@@ -728,20 +690,16 @@ msgid "change time"
 msgstr "시간 변경"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
-#| msgid "Start Praying!"
 msgid "Stop Praying"
-msgstr "기도를 시작하세요!"
+msgstr "기도 중단"
 
 #: parts/components-enqueue.php:112
 msgid "See prayer times"
 msgstr "기도 시간 보기"
 
 #: parts/components-enqueue.php:113
-#, fuzzy
-#| msgid "Your current prayer time is %s"
 msgid "Your future prayer times will be canceled."
-msgstr "현재 기도 시간은 %s입니다."
+msgstr "앞으로의 기도 시간이 취소됩니다."
 
 #: parts/components-enqueue.php:114
 msgid "extend"
@@ -792,14 +750,10 @@ msgid "Hours"
 msgstr "시간"
 
 #: parts/components-enqueue.php:126
-#, fuzzy
-#| msgid "Hours"
 msgid "Hour"
 msgstr "시간"
 
 #: parts/components-enqueue.php:127
-#, fuzzy
-#| msgid "minutes"
 msgid "Minutes"
 msgstr "분"
 
@@ -832,33 +786,28 @@ msgstr "갱신"
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "%s까지"
 
 #: parts/components-enqueue.php:135
-#, fuzzy, php-format
-#| msgctxt "up to 3 months"
-#| msgid "up to %s months"
+#, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "최대 %s 개월"
+msgstr "%s개월 동안"
 
 #: parts/components-enqueue.php:136
-#, fuzzy
-#| msgid ""
-#| "Receive Pray4Movement news and opportunities, and occasional "
-#| "communication from GospelAmbition.org."
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"기도4무브먼트의 소식과 기회, 그리고 가끔씩 GospelAmbition.org로부터 연락을 받"
-"습니다."
+"Prayer.Tools의 향후 기도 캠페인 소식과 GospelAmbition.org로부터 가끔 연락을 "
+"받습니다."
 
 #: parts/components-enqueue.php:137
 msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"라마단 기간 동안의 기도와 이 캠페인에 대한 유용한 정보를 이메일로 받습니다"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -877,7 +826,6 @@ msgid "Translation For Currently Selected Language"
 msgstr ""
 
 #: parts/components-enqueue.php:145
-#, fuzzy
 msgid "Update"
 msgstr "업데이트"
 
@@ -922,36 +870,33 @@ msgid ""
 msgstr "기도 시간을 더 추가하기 전에 이메일을 확인하여 계정을 활성화하세요."
 
 #: parts/components-enqueue.php:157
-#, fuzzy
 msgid "Time not covered"
-msgstr "덮인"
+msgstr "기도가 필요한 시간"
 
 #: parts/components-enqueue.php:158
 msgid "# of people covering this time"
-msgstr ""
+msgstr "이 시간을 담당하는 사람 수"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
+msgstr "안녕하세요, %s를 위해 함께 기도해요!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"이 기도 캠페인에 참여하고 있는데 함께해 주시면 좋겠습니다! 친구들도 초대해서 "
+"함께 기도해 주세요."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
 msgstr "단체로 기도하시나요?"
 
 #: parts/components.php:38
-#, fuzzy, php-format
-#| msgid ""
-#| "Leading others in prayer is a great step in making disciples. We want to "
-#| "celebrate your and their faithfulness.  For each person that prays with "
-#| "you, we will add 15 minutes to the %s days of prayer committed so far."
+#, php-format
 msgid ""
 "Leading others in prayer is a great step in making disciples. We want to "
 "celebrate your and their faithfulness.  For each person that prays with you, "
@@ -959,7 +904,7 @@ msgid ""
 msgstr ""
 "다른 사람들을 기도로 인도하는 것은 제자를 삼는 데 있어 매우 중요한 단계입니"
 "다. 저희는 여러분과 그들의 신실함을 축하하고 싶습니다.  여러분과 함께 기도하"
-"는 사람 한 명당 지금까지 기도한 일수에 15분을 더할 것입니다."
+"는 사람 한 명당 지금까지 헌신한 %s일의 기도 시간에 15분을 더할 것입니다."
 
 #: parts/components.php:41
 msgid "How many prayed today (including yourself)?"
@@ -1018,32 +963,27 @@ msgid "All Days"
 msgstr "모든 날"
 
 #: porches/generic/dt-generic-porch-strings.php:197
-#, fuzzy
-#| msgid "Prayer Fuel"
 msgid "Edit Prayer Fuel"
-msgstr "기도 연료"
+msgstr "기도 연료 수정"
 
 #: porches/generic/dt-generic-porch-strings.php:215
-#, fuzzy
-#| msgid "See Prayer Fuel"
 msgid "Scheduled Prayer Fuel"
-msgstr "기도 연료 보기"
+msgstr "예정된 기도 연료"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
+"모든 언어로 예정된 모든 기도 연료입니다. 아래에서 기도 연료를 추가하고 수정하세요"
 
 #: porches/generic/dt-generic-porch-strings.php:266
-#, fuzzy
-#| msgid "We want to cover this region with continuous 24/7 prayer."
 msgid "We want to cover this region with prayer."
-msgstr "우리는 이 지역을 위해 24시간 연중무휴로 기도하고 있습니다."
+msgstr "우리는 이 지역을 기도로 덮기를 원합니다."
 
 #: porches/generic/dt-generic-porch-strings.php:267
 msgid "Together"
-msgstr ""
+msgstr "함께"
 
 #: porches/generic/site/404-body.php:14
 msgid "Epic 404 - Not Found"
@@ -1068,14 +1008,13 @@ msgstr "메시지"
 #: porches/generic/site/edit-post-list-body.php:113
 #, php-format
 msgid "Day %s"
-msgstr ""
+msgstr "%s일차"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
-#, fuzzy, php-format
-#| msgid "Contact Us"
+#, php-format
 msgid "Contact %s"
-msgstr "문의하기"
+msgstr "%s에 문의하기"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
@@ -1129,10 +1068,6 @@ msgid "Share with us your Prayer Stories"
 msgstr "여러분의 기도 이야기를 공유해주세요."
 
 #: porches/generic/site/stats.php:220
-#, fuzzy
-#| msgid ""
-#| "Share with us about your prayer time (E.g. testimonies, insights, "
-#| "blessings, etc)"
 msgid ""
 "Share with us about your prayer time (E.g. testimonies, insights, blessings, "
 "etc.)"
@@ -1167,16 +1102,11 @@ msgid "More Prayer Opportunities"
 msgstr "더 많은 기도 기회"
 
 #: porches/generic/site/stats.php:372
-#, fuzzy
-#| msgid ""
-#| "Sign up to hear about other prayer efforts and opportunities with "
-#| "Pray4Movement.org and receive occasional communication from "
-#| "GospelAmbition.org."
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"Pray4Movement.org에 등록하여 다른 기도 노력과 기회에 대해 듣고, "
+"Prayer.Tools에 등록하여 다른 기도 노력과 기회에 대해 듣고, "
 "GospelAmbition.org에서 가끔씩 소식을 받아보세요."
 
 #: porches/generic/site/top-nav-fuel.php:31
@@ -1186,10 +1116,8 @@ msgstr "가입하기"
 
 #: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
-#, fuzzy
-#| msgid "Select a Date"
 msgid "Select Language"
-msgstr "날짜 선택"
+msgstr "언어 선택"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
@@ -1256,11 +1184,11 @@ msgstr "기도 시간: %s 분"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "일시정지"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "재개"
 
 #~ msgid "Now praying..."
 #~ msgstr "지금 기도 중..."

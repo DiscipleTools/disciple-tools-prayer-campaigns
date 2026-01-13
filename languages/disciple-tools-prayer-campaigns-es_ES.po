@@ -33,7 +33,7 @@ msgstr "O haz clic en este enlace:"
 
 #: campaign-functions/send-email-utility.php:99
 msgid "If you did not request this email, please ignore it."
-msgstr "Si no solicitates este correo, por favor, ignoralo."
+msgstr "Si no solicitaste este correo, por favor, ignóralo."
 
 #: campaign-functions/send-email-utility.php:182
 #: campaign-functions/send-email-utility.php:278
@@ -48,7 +48,7 @@ msgstr "Ve más detalles en tu cuenta"
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "¡Registrate para orar con nosotros!"
+msgstr "¡Registrado para orar con nosotros!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
@@ -180,7 +180,7 @@ msgstr "Oración Estratégica por un Movimiento de Formación de Discípulos"
 #: campaign-functions/send-email-utility.php:493
 #, php-format
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Gracias por unírten en oración por los %1$s en %2$s."
+msgstr "Gracias por unirte en oración por los %1$s en %2$s."
 
 #: campaign-functions/send-email-utility.php:505
 msgid ""
@@ -200,7 +200,7 @@ msgid ""
 msgstr ""
 "Clica en el botón para tener un destello de tu contribución durante este "
 "Ramadan. También, nos gustaría escuchar de ti cualquier impresión o palabra "
-"que recibiste de Dios mientras oraba."
+"que recibiste de Dios mientras orabas."
 
 #: campaign-functions/send-email-utility.php:510
 msgid ""
@@ -489,7 +489,7 @@ msgstr "Elige un Tiempo"
 #: parts/components-enqueue.php:63
 #, php-format
 msgid "Select a Time for %s"
-msgstr "Elige un tiempo por %s"
+msgstr "Elige un horario para %s"
 
 #: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 msgid "Close"
@@ -509,7 +509,7 @@ msgstr "Comienza el %s"
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr "Termiinando el %s"
+msgstr "Terminando el %s"
 
 #: parts/components-enqueue.php:68
 msgid "Review"
@@ -818,6 +818,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Recibir correos electrónicos sobre la oración durante el Ramadán e "
+"información útil sobre esta campaña"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -833,7 +835,7 @@ msgstr "Valor personalizado para todos los idiomas"
 
 #: parts/components-enqueue.php:143
 msgid "Translation For Currently Selected Language"
-msgstr "Traducción para él lenguaje seleccionado actualmente"
+msgstr "Traducción para el idioma seleccionado actualmente"
 
 #: parts/components-enqueue.php:145
 msgid "Update"
@@ -873,7 +875,7 @@ msgstr "Inténtalo de nuevo"
 #: parts/components-enqueue.php:155 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 msgid "Contact Us"
-msgstr "Contactanos"
+msgstr "Contáctanos"
 
 #: parts/components-enqueue.php:156
 msgid ""
@@ -1214,11 +1216,11 @@ msgstr "Tiempo de oración: %s min"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Pausa"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Reanudar"
 
 #~ msgid "Now praying..."
 #~ msgstr "Orando…"

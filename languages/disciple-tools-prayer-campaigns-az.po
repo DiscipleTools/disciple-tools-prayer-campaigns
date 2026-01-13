@@ -32,7 +32,7 @@ msgstr "Hesabı Aktivləşdir"
 
 #: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
-msgstr "Bu linkə klikləyin:"
+msgstr "Və ya bu linkə klikləyin:"
 
 #: campaign-functions/send-email-utility.php:99
 msgid "If you did not request this email, please ignore it."
@@ -816,6 +816,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Ramazan ərzində dua haqqında e-poçtlar və bu kampaniya haqqında faydalı "
+"məlumatlar alın"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1033,7 +1035,7 @@ msgstr "Gün %s"
 #: porches/generic/site/footer.php:56
 #, php-format
 msgid "Contact %s"
-msgstr "%s Əlaqə edin"
+msgstr "%s ilə əlaqə saxlayın"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
@@ -1209,11 +1211,11 @@ msgstr "Dua vaxtı: %s dəq"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Fasilə"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Davam et"
 
 #~ msgid "Now praying..."
 #~ msgstr "İndi dua edir..."
