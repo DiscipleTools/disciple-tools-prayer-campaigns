@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
+"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
@@ -70,7 +70,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Access Account"
 msgstr "ಖಾತೆಯನ್ನು ಪ್ರವೇಶಿಸಿ"
 
@@ -111,7 +111,7 @@ msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯದ ಜ್ಞಾಪನೆ!"
 
 #: campaign-functions/send-email-utility.php:311
 #: campaign-functions/send-email-utility.php:416
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 msgid "Thank you for praying with us."
 msgstr "ನಮ್ಮೊಂದಿಗೆ ಪ್ರಾರ್ಥಿಸಿದ್ದಕ್ಕಾಗಿ ಕೃತಜ್ಞತೆಗಳು."
 
@@ -284,11 +284,11 @@ msgstr "ವರ್ಷ"
 msgid "day"
 msgstr "ದಿನ"
 
-#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:42
+#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
 msgid "days"
 msgstr "ದಿನಗಳು"
 
-#: campaign-functions/utils.php:335
+#: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "ತಿದ್ದುಪಡಿ"
@@ -303,7 +303,7 @@ msgstr ""
 "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆ ಸಮಯಕ್ಕೆ ಲಿಂಕ್ ಅನ್ನು ಸ್ವೀಕರಿಸಿ."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
-#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:85
+#: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
 #: porches/generic/site/stats.php:212
 msgid "Email"
 msgstr "ಇಮೇಲ್"
@@ -358,7 +358,7 @@ msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯ"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:54
 msgid "My Prayer Commitments"
 msgstr "ನನ್ನ ಪ್ರಾರ್ಥನೆಯ ಸಮರ್ಪಣೆಗಳು"
 
@@ -406,230 +406,230 @@ msgstr "ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆಗಾಗಿ ಸೈನ�
 msgid "This subscription has ended or is not configured correctly."
 msgstr "ಈ ಚಂದಾದಾರಿಕೆ ಕೊನೆಗೊಂಡಿದೆ ಅಥವಾ ಸರಿಯಾಗಿ ಸಂರಚನೆ ಮಾಡಿರುವುದಿಲ್ಲ."
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:41
 msgid "Detected time zone"
 msgstr "ಸಮಯ ವಲಯವನ್ನು ಪತ್ತೆಹಚ್ಚಿರುವುದು"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:42
 msgid "Select a timezone"
 msgstr "ಸಮಯವಲಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:43 porches/generic/site/stats.php:157
+#: parts/components-enqueue.php:44 porches/generic/site/stats.php:157
 #: porches/generic/site/stats.php:167
 msgid "hours"
 msgstr "ಗಂಟೆಗಳು"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:45
 msgid "minutes"
 msgstr "ನಿಮಿಷಗಳು"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:46
 msgid "seconds"
 msgstr "ಕ್ಷಣಗಳು"
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:47
 msgid "Campaign Starts In"
 msgstr "ಅಭಿಯಾನ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ"
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:48
 msgid "Campaign Ends In"
 msgstr "ಅಭಿಯಾನ ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:49
 msgid "Campaign Ended"
 msgstr "ಅಭಿಯಾನ ಕೊನೆಗೊಂಡಿದೆ"
 
-#: parts/components-enqueue.php:49
+#: parts/components-enqueue.php:50
 #, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%2$s ನಿಮಿಷಗಳ %1$s ವರೆಗೆ."
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:51
 msgid "How often?"
 msgstr "ಎಷ್ಟು ಬಾರಿ?"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:52
 msgid "I will pray for"
 msgstr "ನಾನು ಇದಕ್ಕಾಗಿ ಪ್ರಾರ್ಥಿಸುತ್ತೇನೆ"
 
-#: parts/components-enqueue.php:52
+#: parts/components-enqueue.php:53
 msgid "At what time?"
 msgstr "ಯಾವ ಸಮಯದಲ್ಲಿ?"
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:55
 msgid "Contact Info"
 msgstr "ಸಂಪರ್ಕ ಮಾಹಿತಿ"
 
-#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:78
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:78
 msgid "Name"
 msgstr "ಹೆಸರು"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:58
 msgid "Start Here"
 msgstr "ಇಲ್ಲಿ ಪ್ರಾರಂಭಿಸಿ"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:59
 msgid "Continue here"
 msgstr "ಇಲ್ಲಿ ಮುಂದುವರಿಸಿ"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:60
 msgid "On which week day?"
 msgstr "ವಾರದ ಯಾವ ದಿನದಂದು?"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:61
 msgid "Select a Date"
 msgstr "ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:62
 msgid "Select a Time"
 msgstr "ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:63
 #, php-format
 msgid "Select a Time for %s"
 msgstr "%s ಗಾಗಿ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
+#: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 msgid "Close"
 msgstr "ಮುಕ್ತಾಯ"
 
-#: parts/components-enqueue.php:64
+#: parts/components-enqueue.php:65
 msgid "prayer commitments"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮರ್ಪಣೆಗಳು"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:66
 #, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr "%s ರಂದು ಪ್ರಾರಂಭವಾಗುತ್ತದೆ"
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:67
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr "%s ರಂದು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:68
 msgid "Review"
 msgstr "ವಿಮರ್ಶೆ"
 
-#: parts/components-enqueue.php:68 parts/components.php:46
+#: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
 msgid "Submit"
 msgstr "ಸಲ್ಲಿಸಿ"
 
-#: parts/components-enqueue.php:69
+#: parts/components-enqueue.php:70
 msgid "Verify"
 msgstr "ಪರಿಶೀಲಿಸಿ"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:71
 #, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr "ಗುರಿ: ಪ್ರತಿದಿನ %s ಗಂಟೆಗಳ ಪ್ರಾರ್ಥನೆ ಮಾಡುವುದು"
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:72
 msgid "Goal: 24/7 coverage"
 msgstr "ಗುರಿ: 24/7 ವ್ಯಾಪ್ತಿಯವರೆಗೆ"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:73
 msgid "Please enter a valid name or email address"
 msgstr "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ಹೆಸರು ಅಥವಾ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ"
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:74
 msgid "Next"
 msgstr "ಮುಂದಿನ"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:75
 msgid "No prayer times selected"
 msgstr "ಯಾವುದೇ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ"
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:76
 msgid "Daily"
 msgstr "ಪ್ರತಿದಿನ"
 
-#: parts/components-enqueue.php:76
+#: parts/components-enqueue.php:77
 msgid "Weekly"
 msgstr "ಸಾಪ್ತಾಹಿಕ"
 
-#: parts/components-enqueue.php:77
+#: parts/components-enqueue.php:78
 msgid "Monthly"
 msgstr "ಮಾಸಿಕ"
 
-#: parts/components-enqueue.php:78
+#: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
 msgstr "ದಿನಾಂಕಗಳು ಮತ್ತು ಸಮಯವನ್ನು ಆರಿಸಿ"
 
-#: parts/components-enqueue.php:79
+#: parts/components-enqueue.php:80
 #, php-format
 msgid "%s Minutes"
 msgstr "%s ನಿಮಿಷಗಳು"
 
-#: parts/components-enqueue.php:80
+#: parts/components-enqueue.php:81
 #, php-format
 msgid "%s Hour"
 msgstr "%s ಗಂಟೆ"
 
-#: parts/components-enqueue.php:81
+#: parts/components-enqueue.php:82
 #, php-format
 msgid "%s Hours"
 msgstr "%s ಗಂಟೆಗಳು"
 
-#: parts/components-enqueue.php:82
+#: parts/components-enqueue.php:83
 #, php-format
 msgid "%1$s at %2$s for %3$s"
 msgstr "%3$s ಗೆ %2$s ನಲ್ಲಿ %1$s"
 
-#: parts/components-enqueue.php:83
+#: parts/components-enqueue.php:84
 #, php-format
 msgid "for %s minutes"
 msgstr "%s ನಿಮಿಷಗಳವರೆಗೆ"
 
-#: parts/components-enqueue.php:84
+#: parts/components-enqueue.php:85
 #, php-format
 msgid "Every %s"
 msgstr "ಪ್ರತಿ %s"
 
-#: parts/components-enqueue.php:85
+#: parts/components-enqueue.php:86
 msgid "Prayer Time Selected"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:87
 msgid "Prayer Time Removed"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:88
 msgid "Select a Day"
 msgstr "ಒಂದು ದಿನವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 #, php-format
 msgid "Renews on %s"
 msgstr "%s ರಂದು ನವೀಕರಿಸಲಾಗುತ್ತದೆ"
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 #, php-format
 msgid "Ends on %s"
 msgstr "%s ರಂದು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ"
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Success"
 msgstr "ಯಶಸ್ಸು"
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 msgid "Your registration was successful."
 msgstr "ನಿಮ್ಮ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ."
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
 "ಹೆಚ್ಚುವರಿ ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ."
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid "Ok"
 msgstr "ಸರಿ"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -641,35 +641,35 @@ msgstr ""
 "ನಿಮಗಾಗಿ ಮುಗಿಸಲು ಸ್ನೇಹಿತರನ್ನು ಕೇಳಿ. ಅದು ಪ್ರಾರ್ಥನಾ ಸರಪಳಿಯನ್ನು ಮುರಿಯದಂತೆ ಮಾಡುತ್ತದೆ "
 "ಮತ್ತು ಕಳೆದುಹೋದವರಿಗಾಗಿ ಹೋರಾಡುವ ಸಂತೋಷವನ್ನು ಯಾರಿಗಾದರು ಕೊಡುತ್ತದೆ! ಕೃತಜ್ಞತೆಗಳು!"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 msgid "Account Settings"
 msgstr "ಖಾತೆ ಸೆಟ್ಟಿಂಗ್ಗಳು"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "Timezone"
 msgstr "ಸಮಯವಲಯ"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 msgid "Receive prayer time notifications"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯದ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 msgid "Auto extend prayer times"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಸ್ವಯಂ ವಿಸ್ತರಿಸಿ"
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid "Advanced Settings"
 msgstr "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳು"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "show"
 msgstr "ತೋರಿಸಿ"
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "ಈ ಖಾತೆಯನ್ನು ಮತ್ತು ಎಲ್ಲಾ ನಿಗದಿತ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಅಳಿಸಿ"
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
@@ -677,133 +677,133 @@ msgstr ""
 "ಕ್ಷಮಿಸಿ. ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು, ಅದನ್ನು ಸರಿಪಡಿಸಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ "
 "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 msgid "Your account has been deleted!"
 msgstr "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗಿದೆ!"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 msgid "Language"
 msgstr "ಭಾಷೆ"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 msgid "Delete"
 msgstr "ಅಳಿಸಿ"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
 msgstr "ಪ್ರಾರ್ಥನೆ ಶಕ್ತಿಯನ್ನು ನೋಡಿ"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 msgid "change time"
 msgstr "ಸಮಯವನ್ನು ಬದಲಿಸಿ"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 msgid "Stop Praying"
 msgstr "ಪ್ರಾರ್ಥನೆ ಮಾಡುವುದನ್ನು ನಿಲ್ಲಿಸಿ"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 msgid "See prayer times"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ನೋಡಿ"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 msgid "Your future prayer times will be canceled."
 msgstr "ನಿಮ್ಮ ಭವಿಷ್ಯದ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತದೆ."
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 msgid "extend"
 msgstr "ವಿಸ್ತರಿಸಿ"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 msgid "Extend Prayer Times"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ವಿಸ್ತರಿಸಿ"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 msgid "Really delete this prayer time?"
 msgstr "ನಿಜವಾಗಿಯೂ ಈ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಅಳಿಸಬಹುದೇ?"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 msgid "Delete Prayer Time"
 msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಅಳಿಸಿ"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Mondays"
 msgstr "ಸೋಮವಾರದಂದು"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 msgid "Tuesdays"
 msgstr "ಮಂಗಳವಾರದಂದು"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 msgid "Wednesdays"
 msgstr "ಬುಧವಾರದಂದು"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 msgid "Thursdays"
 msgstr "ಗುರುವಾರದಂದು"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 msgid "Fridays"
 msgstr "ಶುಕ್ರವಾರದಂದು"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 msgid "Saturdays"
 msgstr "ಶನಿವಾರದಂದು"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 msgid "Sundays"
 msgstr "ಭಾನುವಾರದಂದು"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 msgid "Hours"
 msgstr "ಗಂಟೆಗಳು"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 msgid "Hour"
 msgstr "ಗಂಟೆ"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 msgid "Minutes"
 msgstr "ನಿಮಿಷಗಳು"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "Change Prayer Time"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯವನ್ನು ಬದಲಾಯಿಸಿ"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 #, php-format
 msgid "Your current prayer time is %s"
 msgstr "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಪ್ರಾರ್ಥನೆ ಸಮಯ %s ಆಗಿದೆ"
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:130
 msgid "Select a new time:"
 msgstr "ಹೊಸ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ:"
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:131
 msgid "Select a time"
 msgstr "ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:132
 msgid "Renew Prayer Times"
 msgstr "ಪ್ರಾರ್ಥನಾ ಸಮಯವನ್ನು ನವೀಕರಿಸಿ"
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:133
 msgid "renew"
 msgstr "ನವೀಕರಿಸಿ"
 
-#: parts/components-enqueue.php:133
+#: parts/components-enqueue.php:134
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr "%s ವರೆಗೆ"
 
-#: parts/components-enqueue.php:134
+#: parts/components-enqueue.php:135
 #, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "%s ತಿಂಗಳುಗಳಿಗೆ"
 
-#: parts/components-enqueue.php:135
+#: parts/components-enqueue.php:136
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -811,64 +811,70 @@ msgstr ""
 "GospelAmbition.org ನಿಂದ ಮುಂಬರುವ ಪ್ರಾರ್ಥನಾ ಅಭಿಯಾನಗಳು ಮತ್ತು ಸಾಂದರ್ಭಿಕ ಸಂವಹನದ "
 "ಕುರಿತು Prayer.Tools ನಿಂದ ಸುದ್ದಿಗಳನ್ನು ಸ್ವೀಕರಿಸಿ"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:137
+msgid ""
+"Receive emails about praying during Ramadan and helpful information about "
+"this campaign"
+msgstr ""
+
+#: parts/components-enqueue.php:140
 msgid "Text Translations"
 msgstr "ಪಠ್ಯ ಅನುವಾದಗಳು"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Original String"
 msgstr "ಮೂಲ ಮುಗ್ಗಟ್ಟು"
 
-#: parts/components-enqueue.php:140
+#: parts/components-enqueue.php:142
 msgid "Custom Value For All Languages"
 msgstr "ಎಲ್ಲಾ ಭಾಷೆಗಳ ಗ್ರಾಹಕೀಯ ಮೌಲ್ಯ"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Translation For Currently Selected Language"
 msgstr "ಪ್ರಸ್ತುತ ಆಯ್ಕೆಮಾಡಿದ ಭಾಷೆಗೆ ಅನುವಾದ"
 
-#: parts/components-enqueue.php:143
+#: parts/components-enqueue.php:145
 msgid "Update"
 msgstr "ನವೀಕರಿಸಿ"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
 "ಬಹುತೇಕ ಮುಗಿಸಲಿದ್ದೇವೆ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವ ಮೂಲಕ ಸೈನ್ ಅಪ್ ಮಾಡುವುದನ್ನು "
 "ಪೂರ್ಣಗೊಳಿಸಿ."
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "ಇವರಿಗೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್ನಲ್ಲಿರುವ \"ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "It will look like this:"
 msgstr "ಇದು ಈ ರೀತಿ ಕಾಣಿಸುತ್ತದೆ:"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "Pending - Verification Needed"
 msgstr "ಬಾಕಿಯಿದೆ - ಪರಿಶೀಲನೆಯ ಅಗತ್ಯವಿದೆ"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Back to sign-up"
 msgstr "ಸೈನ್ ಅಪ್ ಗೆ ಹಿಂತಿರುಗಿ"
 
-#: parts/components-enqueue.php:151
+#: parts/components-enqueue.php:153
 msgid "So sorry. Something went wrong. You can:"
 msgstr "ಕ್ಷಮಿಸಿ. ಏನೋ ತಪ್ಪಾಗಿದೆ. ನೀವು ಮುಂದುವರೆಯಬಹುದು:"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid "Try Again"
 msgstr "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
 
-#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:155 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 msgid "Contact Us"
 msgstr "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
@@ -876,21 +882,21 @@ msgstr ""
 "ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆ ಸಮಯವನ್ನು ಸೇರಿಸುವುದಕ್ಕೆ ಮೊದಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮ್ಮ "
 "ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
 
-#: parts/components-enqueue.php:155
+#: parts/components-enqueue.php:157
 msgid "Time not covered"
 msgstr "ಸಮಯವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ"
 
-#: parts/components-enqueue.php:156
+#: parts/components-enqueue.php:158
 msgid "# of people covering this time"
 msgstr "ಈ ಬಾರಿ ಆವರಿಸಿರುವ ಜನರು #"
 
-#: parts/components-enqueue.php:157
+#: parts/components-enqueue.php:159
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr "ಹಾಯ್, %s ಗಾಗಿ ಒಟ್ಟಿಗೆ ಪ್ರಾರ್ಥಿಸೋಣ!"
 
-#: parts/components-enqueue.php:158
+#: parts/components-enqueue.php:160
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
@@ -1190,19 +1196,26 @@ msgstr "ರಂಜಾನ್ ಅಂತ್ಯ…"
 msgid "Ramadan Is Finished"
 msgstr "ರಂಜಾನ್ ಮುಗಿದಿದೆ"
 
-#: shortcodes/prayer-timer.php:219
+#: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
 msgstr "ಪ್ರಾರ್ಥನೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ!"
 
-#: shortcodes/prayer-timer.php:222
+#: shortcodes/prayer-timer.php:247
 #, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯ: %s ನಿಮಿಷ"
 
-#: shortcodes/prayer-timer.php:247
-msgid "Now praying..."
-msgstr "ಈಗ ಪ್ರಾರ್ಥಿಸುವುದು…"
+#: shortcodes/prayer-timer.php:323
+msgid "Pause"
+msgstr ""
+
+#: shortcodes/prayer-timer.php:449
+msgid "Resume"
+msgstr ""
+
+#~ msgid "Now praying..."
+#~ msgstr "ಈಗ ಪ್ರಾರ್ಥಿಸುವುದು…"
 
 #~ msgid "Strategic prayer for a disciple making movement in %s"
 #~ msgstr "%s ನಲ್ಲಿ ಶಿಷ್ಯರನ್ನಾಗಿ ಮಾಡುವ ಆಂದೋಲನಕ್ಕಾಗಿ ಕಾರ್ಯತಂತ್ರದ ಪ್ರಾರ್ಥನೆ"

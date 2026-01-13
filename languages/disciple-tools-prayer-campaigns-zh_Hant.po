@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
+"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.disciple."
@@ -68,7 +68,7 @@ msgstr "通過訪問您的帳號來查看您的承諾和做些改變："
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Access Account"
 msgstr "存取帳號"
 
@@ -109,7 +109,7 @@ msgstr "禱告時間提醒！"
 
 #: campaign-functions/send-email-utility.php:311
 #: campaign-functions/send-email-utility.php:416
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 msgid "Thank you for praying with us."
 msgstr "感謝您與我們一起祈禱。"
 
@@ -274,11 +274,11 @@ msgstr "年"
 msgid "day"
 msgstr "天"
 
-#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:42
+#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
 msgid "days"
 msgstr "天數"
 
-#: campaign-functions/utils.php:335
+#: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "編輯"
@@ -292,7 +292,7 @@ msgid "Enter you email address and receive a link to your prayer times."
 msgstr "輸入您的電子郵件地址來接收鏈接從而進入您已安排的祈禱時間。"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
-#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:85
+#: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
 #: porches/generic/site/stats.php:212
 msgid "Email"
 msgstr "電子郵件"
@@ -347,7 +347,7 @@ msgstr "禱告計時器"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:54
 msgid "My Prayer Commitments"
 msgstr "我的禱告承諾"
 
@@ -395,229 +395,229 @@ msgstr "註冊祈禱"
 msgid "This subscription has ended or is not configured correctly."
 msgstr "此訂閱已結束或配置不正確。"
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:41
 msgid "Detected time zone"
 msgstr "檢測到的時區"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:42
 msgid "Select a timezone"
 msgstr "選擇時區"
 
-#: parts/components-enqueue.php:43 porches/generic/site/stats.php:157
+#: parts/components-enqueue.php:44 porches/generic/site/stats.php:157
 #: porches/generic/site/stats.php:167
 msgid "hours"
 msgstr "小時"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:45
 msgid "minutes"
 msgstr "分鐘"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:46
 msgid "seconds"
 msgstr "秒"
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:47
 msgid "Campaign Starts In"
 msgstr "活動開始於"
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:48
 msgid "Campaign Ends In"
 msgstr "活動結束於"
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:49
 msgid "Campaign Ended"
 msgstr "活動結束"
 
-#: parts/components-enqueue.php:49
+#: parts/components-enqueue.php:50
 #, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%1$s %2$s 分鐘。"
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:51
 msgid "How often?"
 msgstr "多經常？"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:52
 msgid "I will pray for"
 msgstr "我將會為這些禱告"
 
-#: parts/components-enqueue.php:52
+#: parts/components-enqueue.php:53
 msgid "At what time?"
 msgstr "在什麽時間？"
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:55
 msgid "Contact Info"
 msgstr "聯係方式"
 
-#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:78
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:78
 msgid "Name"
 msgstr "姓名"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:58
 msgid "Start Here"
 msgstr "在這裏開始"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:59
 msgid "Continue here"
 msgstr "在這裏繼續"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:60
 msgid "On which week day?"
 msgstr "一周裏的哪一天？"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:61
 msgid "Select a Date"
 msgstr "選擇一個日期"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:62
 msgid "Select a Time"
 msgstr "選擇具體的時間"
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:63
 #, php-format
 msgid "Select a Time for %s"
 msgstr "為 %s 選擇一個時間"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
+#: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 msgid "Close"
 msgstr "關"
 
-#: parts/components-enqueue.php:64
+#: parts/components-enqueue.php:65
 msgid "prayer commitments"
 msgstr "祈禱承諾"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:66
 #, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr "在%s開始"
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:67
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr "在%s結束"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:68
 msgid "Review"
 msgstr "回顧"
 
-#: parts/components-enqueue.php:68 parts/components.php:46
+#: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
 msgid "Submit"
 msgstr "提交"
 
-#: parts/components-enqueue.php:69
+#: parts/components-enqueue.php:70
 msgid "Verify"
 msgstr "核實"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:71
 #, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr "目標：每天%s小時的禱告"
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:72
 msgid "Goal: 24/7 coverage"
 msgstr "目標：全天候24/7覆蓋"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:73
 msgid "Please enter a valid name or email address"
 msgstr "請輸入有效姓名或電子郵件地址"
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:74
 msgid "Next"
 msgstr "下一個"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:75
 msgid "No prayer times selected"
 msgstr "沒有可選的祈禱時間"
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:76
 msgid "Daily"
 msgstr "每日"
 
-#: parts/components-enqueue.php:76
+#: parts/components-enqueue.php:77
 msgid "Weekly"
 msgstr "每周"
 
-#: parts/components-enqueue.php:77
+#: parts/components-enqueue.php:78
 msgid "Monthly"
 msgstr "每月"
 
-#: parts/components-enqueue.php:78
+#: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
 msgstr "選擇一個日期和時間"
 
-#: parts/components-enqueue.php:79
+#: parts/components-enqueue.php:80
 #, php-format
 msgid "%s Minutes"
 msgstr "%s分鐘"
 
-#: parts/components-enqueue.php:80
+#: parts/components-enqueue.php:81
 #, php-format
 msgid "%s Hour"
 msgstr "%s小時"
 
-#: parts/components-enqueue.php:81
+#: parts/components-enqueue.php:82
 #, php-format
 msgid "%s Hours"
 msgstr "%s小時"
 
-#: parts/components-enqueue.php:82
+#: parts/components-enqueue.php:83
 #, php-format
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s 從 %2$s 到 %3$s"
 
-#: parts/components-enqueue.php:83
+#: parts/components-enqueue.php:84
 #, php-format
 msgid "for %s minutes"
 msgstr "持續 %s 分鐘"
 
-#: parts/components-enqueue.php:84
+#: parts/components-enqueue.php:85
 #, php-format
 msgid "Every %s"
 msgstr "每個%s"
 
-#: parts/components-enqueue.php:85
+#: parts/components-enqueue.php:86
 msgid "Prayer Time Selected"
 msgstr "已選擇的祈禱時間"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:87
 msgid "Prayer Time Removed"
 msgstr "禱告時間已刪除"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:88
 msgid "Select a Day"
 msgstr "選擇一天"
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 #, php-format
 msgid "Renews on %s"
 msgstr "回顧在%s"
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 #, php-format
 msgid "Ends on %s"
 msgstr "結束在%s"
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Success"
 msgstr "成功"
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 msgid "Your registration was successful."
 msgstr "您註冊成功了。"
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr "查看您的電子郵件以獲取更多詳細信息來管理您的賬號。"
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid "Ok"
 msgstr "好"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -628,167 +628,167 @@ msgstr ""
 "詢問朋友能不能代替您。因爲這將會保護這個祈禱鏈不會斷，同時也給予另一個人擁有"
 "一份能為失喪靈魂爭戰的喜樂！謝謝您！"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 msgid "Account Settings"
 msgstr "賬號設置"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "Timezone"
 msgstr "時區"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 msgid "Receive prayer time notifications"
 msgstr "接收禱告時間通知"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 msgid "Auto extend prayer times"
 msgstr "自動延長禱告時間"
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid "Advanced Settings"
 msgstr "高級設置"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "show"
 msgstr "顯示"
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "刪除此賬戶和所有預定的祈禱時間"
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr "抱歉，有時候會有小出錯，請聯係我們幫助你完成，或者請你再試試。"
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 msgid "Your account has been deleted!"
 msgstr "你的賬號已被取消！"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 msgid "Language"
 msgstr "語言"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 msgid "Delete"
 msgstr "刪除"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
 msgstr "查看禱告燃料"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 msgid "change time"
 msgstr "更改時間"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 msgid "Stop Praying"
 msgstr "停止您的禱告時間"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 msgid "See prayer times"
 msgstr "查看禱告時間"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 msgid "Your future prayer times will be canceled."
 msgstr "您未來的禱告時間將被取消。"
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 msgid "extend"
 msgstr "延長"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 msgid "Extend Prayer Times"
 msgstr "延長禱告時間"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 msgid "Really delete this prayer time?"
 msgstr "真的要刪除這些禱告時間嗎？"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 msgid "Delete Prayer Time"
 msgstr "刪除禱告時間"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Mondays"
 msgstr "每周一"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 msgid "Tuesdays"
 msgstr "每周二"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 msgid "Wednesdays"
 msgstr "每周三"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 msgid "Thursdays"
 msgstr "每周四"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 msgid "Fridays"
 msgstr "每周五"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 msgid "Saturdays"
 msgstr "每周六"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 msgid "Sundays"
 msgstr "每周日"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 msgid "Hours"
 msgstr "小時"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 msgid "Hour"
 msgstr "小時"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 msgid "Minutes"
 msgstr "分鐘"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "Change Prayer Time"
 msgstr "改變禱告時間"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 #, php-format
 msgid "Your current prayer time is %s"
 msgstr "您當前的禱告時間是%s"
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:130
 msgid "Select a new time:"
 msgstr "選擇一個新的時間："
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:131
 msgid "Select a time"
 msgstr "選擇一個時間"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:132
 msgid "Renew Prayer Times"
 msgstr "更新禱告時間"
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:133
 msgid "renew"
 msgstr "更新"
 
-#: parts/components-enqueue.php:133
+#: parts/components-enqueue.php:134
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr "延長至%s"
 
-#: parts/components-enqueue.php:134
+#: parts/components-enqueue.php:135
 #, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "%s個月"
 
-#: parts/components-enqueue.php:135
+#: parts/components-enqueue.php:136
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
@@ -796,81 +796,87 @@ msgstr ""
 "通過 Prayer.Tools了解其他的禱告工作和機會，還有偶爾來自GospelAmbition.org網頁"
 "的消息推送"
 
-#: parts/components-enqueue.php:138
+#: parts/components-enqueue.php:137
+msgid ""
+"Receive emails about praying during Ramadan and helpful information about "
+"this campaign"
+msgstr ""
+
+#: parts/components-enqueue.php:140
 msgid "Text Translations"
 msgstr "文本翻譯"
 
-#: parts/components-enqueue.php:139
+#: parts/components-enqueue.php:141
 msgid "Original String"
 msgstr "原始字符"
 
-#: parts/components-enqueue.php:140
+#: parts/components-enqueue.php:142
 msgid "Custom Value For All Languages"
 msgstr "自定義語言"
 
-#: parts/components-enqueue.php:141
+#: parts/components-enqueue.php:143
 msgid "Translation For Currently Selected Language"
 msgstr "翻譯已選的當前語言"
 
-#: parts/components-enqueue.php:143
+#: parts/components-enqueue.php:145
 msgid "Update"
 msgstr "更新"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "快完成了！通過激活您的賬號來完成注冊。"
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "點擊“激活賬號”按鈕至發送到郵箱：%s"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "It will look like this:"
 msgstr "看起來會像這樣："
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "Pending - Verification Needed"
 msgstr "待處理-需要驗證"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Back to sign-up"
 msgstr "返回到注冊"
 
-#: parts/components-enqueue.php:151
+#: parts/components-enqueue.php:153
 msgid "So sorry. Something went wrong. You can:"
 msgstr "很抱歉，出了些問題，你可以："
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid "Try Again"
 msgstr "再試試看"
 
-#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:155 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 msgid "Contact Us"
 msgstr "聯係我們"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr "請查閲你的電子郵箱來激活你的賬號，然後再添加更多的禱告時間。"
 
-#: parts/components-enqueue.php:155
+#: parts/components-enqueue.php:157
 msgid "Time not covered"
 msgstr "沒有覆蓋的時間點"
 
-#: parts/components-enqueue.php:156
+#: parts/components-enqueue.php:158
 msgid "# of people covering this time"
 msgstr "#個人已經覆蓋這個時間點"
 
-#: parts/components-enqueue.php:157
+#: parts/components-enqueue.php:159
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr "嗨，一起為%s禱告吧！"
 
-#: parts/components-enqueue.php:158
+#: parts/components-enqueue.php:160
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
@@ -1153,19 +1159,26 @@ msgstr "齋月結束..."
 msgid "Ramadan Is Finished"
 msgstr "齋月結束了"
 
-#: shortcodes/prayer-timer.php:219
+#: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
 msgstr "開始祈禱！"
 
-#: shortcodes/prayer-timer.php:222
+#: shortcodes/prayer-timer.php:247
 #, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "祈禱時間：%s 分鐘"
 
-#: shortcodes/prayer-timer.php:247
-msgid "Now praying..."
-msgstr "現在祈禱..."
+#: shortcodes/prayer-timer.php:323
+msgid "Pause"
+msgstr ""
+
+#: shortcodes/prayer-timer.php:449
+msgid "Resume"
+msgstr ""
+
+#~ msgid "Now praying..."
+#~ msgstr "現在祈禱..."
 
 #~ msgid "Strategic prayer for a disciple making movement in %s"
 #~ msgstr "為門徒造就運動的策略性禱告%s"
