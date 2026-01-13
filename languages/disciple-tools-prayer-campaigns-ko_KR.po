@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
+"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
 "PO-Revision-Date: 2024-03-19 11:18+0000\n"
 "Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Korean <https://translate.disciple.tools/projects/"
@@ -72,7 +72,7 @@ msgstr "계정에 액세스하여 약정을 확인하고 변경할 수 있습니
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Access Account"
 msgstr "액세스 계정"
 
@@ -114,7 +114,7 @@ msgstr "기도 시간 알림!"
 
 #: campaign-functions/send-email-utility.php:311
 #: campaign-functions/send-email-utility.php:416
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 msgid "Thank you for praying with us."
 msgstr "함께 기도해 주셔서 감사합니다."
 
@@ -295,11 +295,11 @@ msgstr "년"
 msgid "day"
 msgstr "일"
 
-#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:42
+#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
 msgid "days"
 msgstr "일수"
 
-#: campaign-functions/utils.php:335
+#: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
@@ -313,7 +313,7 @@ msgid "Enter you email address and receive a link to your prayer times."
 msgstr "이메일 주소를 입력하면 기도 시간에 대한 링크를 받을 수 있습니다."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
-#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:85
+#: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
 #: porches/generic/site/stats.php:212
 msgid "Email"
 msgstr "이메일"
@@ -371,7 +371,7 @@ msgstr "기도 타이머"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:54
 msgid "My Prayer Commitments"
 msgstr "나의 기도 약속"
 
@@ -419,40 +419,40 @@ msgstr "더 많은 기도 신청하기"
 msgid "This subscription has ended or is not configured correctly."
 msgstr "이 구독이 종료되었거나 올바르게 구성되지 않았습니다."
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:41
 msgid "Detected time zone"
 msgstr "감지된 시간대"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:42
 msgid "Select a timezone"
 msgstr "시간대 선택"
 
-#: parts/components-enqueue.php:43 porches/generic/site/stats.php:157
+#: parts/components-enqueue.php:44 porches/generic/site/stats.php:157
 #: porches/generic/site/stats.php:167
 msgid "hours"
 msgstr "시간"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:45
 msgid "minutes"
 msgstr "분"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:46
 msgid "seconds"
 msgstr "초"
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:47
 msgid "Campaign Starts In"
 msgstr "캠페인 시작"
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:48
 msgid "Campaign Ends In"
 msgstr "캠페인 종료일"
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:49
 msgid "Campaign Ended"
 msgstr "캠페인 종료"
 
-#: parts/components-enqueue.php:49
+#: parts/components-enqueue.php:50
 #, fuzzy, php-format
 #| msgctxt "Monday 5pm for 15 minutes"
 #| msgid "%1$s for %2$s minutes."
@@ -460,60 +460,60 @@ msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "2분 동안 %1$s를 사용했습니다."
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:51
 msgid "How often?"
 msgstr "얼마나 자주?"
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:52
 msgid "I will pray for"
 msgstr "다음을 위해 기도하겠습니다."
 
-#: parts/components-enqueue.php:52
+#: parts/components-enqueue.php:53
 msgid "At what time?"
 msgstr "몇 시에?"
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:55
 msgid "Contact Info"
 msgstr "연락처 정보"
 
-#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:78
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:78
 msgid "Name"
 msgstr "이름"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:58
 msgid "Start Here"
 msgstr "여기에서 시작"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:59
 msgid "Continue here"
 msgstr "여기에서 계속"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:60
 msgid "On which week day?"
 msgstr "어느 요일인가요?"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:61
 msgid "Select a Date"
 msgstr "날짜 선택"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:62
 msgid "Select a Time"
 msgstr "시간 선택"
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:63
 #, php-format
 msgid "Select a Time for %s"
 msgstr "시간 선택: %s"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
+#: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 msgid "Close"
 msgstr "닫기"
 
-#: parts/components-enqueue.php:64
+#: parts/components-enqueue.php:65
 msgid "prayer commitments"
 msgstr "기도 약속"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:66
 #, fuzzy, php-format
 #| msgctxt "Starting on October 4"
 #| msgid "Starting on %s"
@@ -521,140 +521,140 @@ msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr "에서 시작"
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:67
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr "에서 끝나는 %s"
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:68
 msgid "Review"
 msgstr "검토"
 
-#: parts/components-enqueue.php:68 parts/components.php:46
+#: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
 msgid "Submit"
 msgstr "제출하기"
 
-#: parts/components-enqueue.php:69
+#: parts/components-enqueue.php:70
 msgid "Verify"
 msgstr "확인"
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:71
 #, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr ""
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:72
 msgid "Goal: 24/7 coverage"
 msgstr ""
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:73
 msgid "Please enter a valid name or email address"
 msgstr "유효한 이름 또는 이메일 주소를 입력하세요."
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:74
 msgid "Next"
 msgstr "다음"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:75
 msgid "No prayer times selected"
 msgstr "기도 시간을 선택하지 않음"
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:76
 msgid "Daily"
 msgstr "매일"
 
-#: parts/components-enqueue.php:76
+#: parts/components-enqueue.php:77
 msgid "Weekly"
 msgstr "주간"
 
-#: parts/components-enqueue.php:77
+#: parts/components-enqueue.php:78
 msgid "Monthly"
 msgstr "월간"
 
-#: parts/components-enqueue.php:78
+#: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
 msgstr "날짜 및 시간 선택"
 
-#: parts/components-enqueue.php:79
+#: parts/components-enqueue.php:80
 #, fuzzy, php-format
 #| msgid "%s Minutes"
 msgid "%s Minutes"
 msgstr "분"
 
-#: parts/components-enqueue.php:80
+#: parts/components-enqueue.php:81
 #, fuzzy, php-format
 #| msgid "%s Hour"
 msgid "%s Hour"
 msgstr "시간"
 
-#: parts/components-enqueue.php:81
+#: parts/components-enqueue.php:82
 #, fuzzy, php-format
 #| msgid "%s Hours"
 msgid "%s Hours"
 msgstr "시간"
 
-#: parts/components-enqueue.php:82
+#: parts/components-enqueue.php:83
 #, fuzzy, php-format
 #| msgid "%1$s at %2$s for %3$s"
 msgid "%1$s at %2$s for %3$s"
 msgstr "1$s에서 %2$s 동안 %3$s"
 
-#: parts/components-enqueue.php:83
+#: parts/components-enqueue.php:84
 #, fuzzy, php-format
 #| msgid "for %s minutes"
 msgid "for %s minutes"
 msgstr "분 동안"
 
-#: parts/components-enqueue.php:84
+#: parts/components-enqueue.php:85
 #, php-format
 msgid "Every %s"
 msgstr "모든 %s"
 
-#: parts/components-enqueue.php:85
+#: parts/components-enqueue.php:86
 msgid "Prayer Time Selected"
 msgstr "기도 시간 선택"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:87
 #, fuzzy
 #| msgid "Prayer Time Selected"
 msgid "Prayer Time Removed"
 msgstr "기도 시간 선택"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:88
 msgid "Select a Day"
 msgstr "날짜 선택"
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 #, fuzzy, php-format
 #| msgid "Renews on %s"
 msgid "Renews on %s"
 msgstr "에 갱신"
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 #, fuzzy, php-format
 #| msgid "Ends on %s"
 msgid "Ends on %s"
 msgstr "에서 종료"
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Success"
 msgstr "성공"
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 msgid "Your registration was successful."
 msgstr "등록이 완료되었습니다."
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr "자세한 내용을 확인하고 계정을 관리하려면 이메일을 확인하세요."
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid "Ok"
 msgstr "확인"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -666,39 +666,39 @@ msgstr ""
 "것을 막을 수 있고, 누군가에게 잃어버린 자를 위해 싸우는 기쁨을 줄 수 있습니"
 "다! 감사합니다!"
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 msgid "Account Settings"
 msgstr "계정 설정"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "Timezone"
 msgstr "시간대"
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 #, fuzzy
 #| msgid "Receive Prayer time notifications"
 msgid "Receive prayer time notifications"
 msgstr "기도 시간 알림 받기"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 #, fuzzy
 #| msgid "See prayer times"
 msgid "Auto extend prayer times"
 msgstr "기도 시간 보기"
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 msgid "Advanced Settings"
 msgstr "고급 설정"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "show"
 msgstr "show"
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "이 계정과 예약된 모든 기도 시간을 삭제합니다."
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
@@ -706,135 +706,135 @@ msgstr ""
 "정말 죄송합니다. 문제가 발생했습니다. 당사에 문의하여 도움을 받으시거나 다시 "
 "시도해 주세요."
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 msgid "Your account has been deleted!"
 msgstr "계정이 삭제되었습니다!"
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 msgid "Language"
 msgstr "언어"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 msgid "Delete"
 msgstr "삭제"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
 msgstr "기도 연료 보기"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 msgid "change time"
 msgstr "시간 변경"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 #, fuzzy
 #| msgid "Start Praying!"
 msgid "Stop Praying"
 msgstr "기도를 시작하세요!"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 msgid "See prayer times"
 msgstr "기도 시간 보기"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 #, fuzzy
 #| msgid "Your current prayer time is %s"
 msgid "Your future prayer times will be canceled."
 msgstr "현재 기도 시간은 %s입니다."
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 msgid "extend"
 msgstr "확장"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 msgid "Extend Prayer Times"
 msgstr "기도 시간 연장"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 msgid "Really delete this prayer time?"
 msgstr "정말 이 기도 시간을 삭제할까요?"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 msgid "Delete Prayer Time"
 msgstr "기도 시간 삭제"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 msgid "Mondays"
 msgstr "월요일"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 msgid "Tuesdays"
 msgstr "화요일"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 msgid "Wednesdays"
 msgstr "수요일"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 msgid "Thursdays"
 msgstr "목요일"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 msgid "Fridays"
 msgstr "금요일"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 msgid "Saturdays"
 msgstr "토요일"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 msgid "Sundays"
 msgstr "일요일"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 msgid "Hours"
 msgstr "시간"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 #, fuzzy
 #| msgid "Hours"
 msgid "Hour"
 msgstr "시간"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 #, fuzzy
 #| msgid "minutes"
 msgid "Minutes"
 msgstr "분"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 msgid "Change Prayer Time"
 msgstr "기도 시간 변경"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 #, php-format
 msgid "Your current prayer time is %s"
 msgstr "현재 기도 시간은 %s입니다."
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:130
 msgid "Select a new time:"
 msgstr "새 시간을 선택합니다:"
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:131
 msgid "Select a time"
 msgstr "시간 선택"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:132
 msgid "Renew Prayer Times"
 msgstr "기도 시간 갱신"
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:133
 msgid "renew"
 msgstr "갱신"
 
-#: parts/components-enqueue.php:133
+#: parts/components-enqueue.php:134
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr ""
 
-#: parts/components-enqueue.php:134
+#: parts/components-enqueue.php:135
 #, fuzzy, php-format
 #| msgctxt "up to 3 months"
 #| msgid "up to %s months"
@@ -842,7 +842,7 @@ msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "최대 %s 개월"
 
-#: parts/components-enqueue.php:135
+#: parts/components-enqueue.php:136
 #, fuzzy
 #| msgid ""
 #| "Receive Pray4Movement news and opportunities, and occasional "
@@ -854,83 +854,89 @@ msgstr ""
 "기도4무브먼트의 소식과 기회, 그리고 가끔씩 GospelAmbition.org로부터 연락을 받"
 "습니다."
 
-#: parts/components-enqueue.php:138
-msgid "Text Translations"
-msgstr ""
-
-#: parts/components-enqueue.php:139
-msgid "Original String"
+#: parts/components-enqueue.php:137
+msgid ""
+"Receive emails about praying during Ramadan and helpful information about "
+"this campaign"
 msgstr ""
 
 #: parts/components-enqueue.php:140
-msgid "Custom Value For All Languages"
+msgid "Text Translations"
 msgstr ""
 
 #: parts/components-enqueue.php:141
-msgid "Translation For Currently Selected Language"
+msgid "Original String"
+msgstr ""
+
+#: parts/components-enqueue.php:142
+msgid "Custom Value For All Languages"
 msgstr ""
 
 #: parts/components-enqueue.php:143
+msgid "Translation For Currently Selected Language"
+msgstr ""
+
+#: parts/components-enqueue.php:145
 #, fuzzy
 msgid "Update"
 msgstr "업데이트"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "Almost there! Finish signing up by activating your account."
 msgstr "거의 다 왔습니다! 계정을 활성화하여 가입을 완료하세요."
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr "보낸 이메일에서 '계정 활성화' 버튼을 클릭합니다: %s"
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "It will look like this:"
 msgstr "다음과 같이 표시됩니다:"
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "Pending - Verification Needed"
 msgstr "보류 중 - 확인 필요"
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Back to sign-up"
 msgstr "가입으로 돌아가기"
 
-#: parts/components-enqueue.php:151
+#: parts/components-enqueue.php:153
 msgid "So sorry. Something went wrong. You can:"
 msgstr "정말 죄송합니다. 문제가 발생했습니다. 할 수 있어"
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid "Try Again"
 msgstr "다시 시도"
 
-#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:155 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 msgid "Contact Us"
 msgstr "문의하기"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr "기도 시간을 더 추가하기 전에 이메일을 확인하여 계정을 활성화하세요."
 
-#: parts/components-enqueue.php:155
+#: parts/components-enqueue.php:157
 #, fuzzy
 msgid "Time not covered"
 msgstr "덮인"
 
-#: parts/components-enqueue.php:156
+#: parts/components-enqueue.php:158
 msgid "# of people covering this time"
 msgstr ""
 
-#: parts/components-enqueue.php:157
+#: parts/components-enqueue.php:159
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr ""
 
-#: parts/components-enqueue.php:158
+#: parts/components-enqueue.php:160
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
@@ -1238,19 +1244,26 @@ msgstr "라마단 종료 ..."
 msgid "Ramadan Is Finished"
 msgstr "라마단 종료"
 
-#: shortcodes/prayer-timer.php:219
+#: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
 msgstr "기도를 시작하세요!"
 
-#: shortcodes/prayer-timer.php:222
+#: shortcodes/prayer-timer.php:247
 #, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "기도 시간: %s 분"
 
-#: shortcodes/prayer-timer.php:247
-msgid "Now praying..."
-msgstr "지금 기도 중..."
+#: shortcodes/prayer-timer.php:323
+msgid "Pause"
+msgstr ""
+
+#: shortcodes/prayer-timer.php:449
+msgid "Resume"
+msgstr ""
+
+#~ msgid "Now praying..."
+#~ msgstr "지금 기도 중..."
 
 #~ msgid "Strategic prayer for a disciple making movement in %s"
 #~ msgstr "에서 제자 삼는 운동을 위한 전략적 기도 %s"

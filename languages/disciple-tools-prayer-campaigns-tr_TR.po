@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2025-09-12T15:27:16+00:00\n"
+"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
 "PO-Revision-Date: 2024-01-31 15:25+0000\n"
 "Last-Translator: Toni Albright <tja@gcnow.org>\n"
 "Language-Team: Turkish <https://translate.disciple.tools/projects/"
@@ -71,7 +71,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
-#: parts/components-enqueue.php:94
+#: parts/components-enqueue.php:95
 msgid "Access Account"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr "Namaz Vakti hatırlatıcısı!"
 
 #: campaign-functions/send-email-utility.php:311
 #: campaign-functions/send-email-utility.php:416
-#: parts/components-enqueue.php:105
+#: parts/components-enqueue.php:106
 #, fuzzy
 msgid "Thank you for praying with us."
 msgstr "Bizimle dua ettiğiniz için teşekkür ederiz!"
@@ -280,11 +280,11 @@ msgstr "yıl"
 msgid "day"
 msgstr "gün"
 
-#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:42
+#: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
 msgid "days"
 msgstr "günler"
 
-#: campaign-functions/utils.php:335
+#: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr ""
@@ -302,7 +302,7 @@ msgstr ""
 "tıklayın."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
-#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:85
+#: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
 #: porches/generic/site/stats.php:212
 #, fuzzy
 msgid "Email"
@@ -365,7 +365,7 @@ msgstr "Seçilen Zamanlar"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
-#: parts/components-enqueue.php:53
+#: parts/components-enqueue.php:54
 #, fuzzy
 msgid "My Prayer Commitments"
 msgstr "Dua Taahhütleri"
@@ -420,258 +420,258 @@ msgstr "Dua etmek için kaydolun"
 msgid "This subscription has ended or is not configured correctly."
 msgstr "Bu abonelik sona erdi veya doğru yapılandırılmamış."
 
-#: parts/components-enqueue.php:40
+#: parts/components-enqueue.php:41
 #, fuzzy
 msgid "Detected time zone"
 msgstr "Seçilen Zamanlar"
 
-#: parts/components-enqueue.php:41
+#: parts/components-enqueue.php:42
 #, fuzzy
 msgid "Select a timezone"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:43 porches/generic/site/stats.php:157
+#: parts/components-enqueue.php:44 porches/generic/site/stats.php:157
 #: porches/generic/site/stats.php:167
 #, fuzzy
 msgid "hours"
 msgstr "saatler"
 
-#: parts/components-enqueue.php:44
+#: parts/components-enqueue.php:45
 #, fuzzy
 msgid "minutes"
 msgstr "dakika"
 
-#: parts/components-enqueue.php:45
+#: parts/components-enqueue.php:46
 #, fuzzy
 msgid "seconds"
 msgstr "saniye"
 
-#: parts/components-enqueue.php:46
+#: parts/components-enqueue.php:47
 #, fuzzy
 msgid "Campaign Starts In"
 msgstr "Kampanya İstatistikleri"
 
-#: parts/components-enqueue.php:47
+#: parts/components-enqueue.php:48
 #, fuzzy
 msgid "Campaign Ends In"
 msgstr "Kampanya İstatistikleri"
 
-#: parts/components-enqueue.php:48
+#: parts/components-enqueue.php:49
 #, fuzzy
 msgid "Campaign Ended"
 msgstr "Kampanya İstatistikleri"
 
-#: parts/components-enqueue.php:49
+#: parts/components-enqueue.php:50
 #, fuzzy, php-format
 msgctxt "Monday 5pm for 15 minutes"
 msgid "%1$s for %2$s minutes."
 msgstr "%2$s dakika için %1$s."
 
-#: parts/components-enqueue.php:50
+#: parts/components-enqueue.php:51
 msgid "How often?"
 msgstr ""
 
-#: parts/components-enqueue.php:51
+#: parts/components-enqueue.php:52
 msgid "I will pray for"
 msgstr ""
 
-#: parts/components-enqueue.php:52
+#: parts/components-enqueue.php:53
 #, fuzzy
 msgid "At what time?"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:54
+#: parts/components-enqueue.php:55
 #, fuzzy
 msgid "Contact Info"
 msgstr "İletişim bilgileri"
 
-#: parts/components-enqueue.php:55 porches/generic/site/contact-us.php:78
+#: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:78
 #, fuzzy
 msgid "Name"
 msgstr "İsim"
 
-#: parts/components-enqueue.php:57
+#: parts/components-enqueue.php:58
 #, fuzzy
 msgid "Start Here"
 msgstr "Buradan başlayın"
 
-#: parts/components-enqueue.php:58
+#: parts/components-enqueue.php:59
 #, fuzzy
 msgid "Continue here"
 msgstr "Buradan devam edin"
 
-#: parts/components-enqueue.php:59
+#: parts/components-enqueue.php:60
 #, fuzzy
 msgid "On which week day?"
 msgstr "Haftanın hangi gününde?"
 
-#: parts/components-enqueue.php:60
+#: parts/components-enqueue.php:61
 #, fuzzy
 msgid "Select a Date"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:61
+#: parts/components-enqueue.php:62
 #, fuzzy
 msgid "Select a Time"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:62
+#: parts/components-enqueue.php:63
 #, fuzzy, php-format
 msgid "Select a Time for %s"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:63 parts/components-enqueue.php:142
+#: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 #, fuzzy
 msgid "Close"
 msgstr "Kapatın"
 
-#: parts/components-enqueue.php:64
+#: parts/components-enqueue.php:65
 #, fuzzy
 msgid "prayer commitments"
 msgstr "Dua Taahhütleri"
 
-#: parts/components-enqueue.php:65
+#: parts/components-enqueue.php:66
 #, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:66
+#: parts/components-enqueue.php:67
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:67
+#: parts/components-enqueue.php:68
 msgid "Review"
 msgstr ""
 
-#: parts/components-enqueue.php:68 parts/components.php:46
+#: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
 #, fuzzy
 msgid "Submit"
 msgstr "Göndermek"
 
-#: parts/components-enqueue.php:69
+#: parts/components-enqueue.php:70
 msgid "Verify"
 msgstr ""
 
-#: parts/components-enqueue.php:70
+#: parts/components-enqueue.php:71
 #, php-format
 msgid "Goal: %s hours of prayer every day"
 msgstr ""
 
-#: parts/components-enqueue.php:71
+#: parts/components-enqueue.php:72
 msgid "Goal: 24/7 coverage"
 msgstr ""
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:73
 msgid "Please enter a valid name or email address"
 msgstr ""
 
-#: parts/components-enqueue.php:73
+#: parts/components-enqueue.php:74
 #, fuzzy
 msgid "Next"
 msgstr "Sonraki"
 
-#: parts/components-enqueue.php:74
+#: parts/components-enqueue.php:75
 #, fuzzy
 msgid "No prayer times selected"
 msgstr "Namaz vakitleriniz doğrulandı!"
 
-#: parts/components-enqueue.php:75
+#: parts/components-enqueue.php:76
 #, fuzzy
 msgid "Daily"
 msgstr "Günlük Saat"
 
-#: parts/components-enqueue.php:76
+#: parts/components-enqueue.php:77
 #, fuzzy
 msgid "Weekly"
 msgstr "Haftalık"
 
-#: parts/components-enqueue.php:77
+#: parts/components-enqueue.php:78
 #, fuzzy
 msgid "Monthly"
 msgstr "Aylık"
 
-#: parts/components-enqueue.php:78
+#: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
 msgstr ""
 
-#: parts/components-enqueue.php:79
+#: parts/components-enqueue.php:80
 #, fuzzy, php-format
 msgid "%s Minutes"
 msgstr "5 dakika"
 
-#: parts/components-enqueue.php:80
+#: parts/components-enqueue.php:81
 #, fuzzy, php-format
 msgid "%s Hour"
 msgstr "Saat"
 
-#: parts/components-enqueue.php:81
+#: parts/components-enqueue.php:82
 #, fuzzy, php-format
 msgid "%s Hours"
 msgstr "Saat"
 
-#: parts/components-enqueue.php:82
+#: parts/components-enqueue.php:83
 #, fuzzy, php-format
 msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s, %2$s ile %3$s arasında"
 
-#: parts/components-enqueue.php:83
+#: parts/components-enqueue.php:84
 #, fuzzy, php-format
 msgid "for %s minutes"
 msgstr "%2$s dakika için %1$s."
 
-#: parts/components-enqueue.php:84
+#: parts/components-enqueue.php:85
 #, fuzzy, php-format
 msgid "Every %s"
 msgstr "Her %s"
 
-#: parts/components-enqueue.php:85
+#: parts/components-enqueue.php:86
 #, fuzzy
 msgid "Prayer Time Selected"
 msgstr "Namaz vakitleriniz doğrulandı!"
 
-#: parts/components-enqueue.php:86
+#: parts/components-enqueue.php:87
 #, fuzzy
 msgid "Prayer Time Removed"
 msgstr "Namaz vakitleriniz doğrulandı!"
 
-#: parts/components-enqueue.php:87
+#: parts/components-enqueue.php:88
 #, fuzzy
 msgid "Select a Day"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:88
+#: parts/components-enqueue.php:89
 #, php-format
 msgid "Renews on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:89
+#: parts/components-enqueue.php:90
 #, php-format
 msgid "Ends on %s"
 msgstr ""
 
-#: parts/components-enqueue.php:90
+#: parts/components-enqueue.php:91
 msgid "Success"
 msgstr ""
 
-#: parts/components-enqueue.php:91
+#: parts/components-enqueue.php:92
 #, fuzzy
 msgid "Your registration was successful."
 msgstr "Kaydınız başarılı oldu."
 
-#: parts/components-enqueue.php:92
+#: parts/components-enqueue.php:93
 #, fuzzy
 msgid "Check your email for additional details and to manage your account."
 msgstr "E-postada namaz vakitlerinizi yönetmek için bir bağlantı var."
 
-#: parts/components-enqueue.php:93
+#: parts/components-enqueue.php:94
 msgid "Ok"
 msgstr "Tamam"
 
-#: parts/components-enqueue.php:95
+#: parts/components-enqueue.php:96
 msgid ""
 "Need to cancel? We get it! But wait! If your prayer commitment is scheduled "
 "to start in less than 48-hours, please ask a friend to cover it for you. "
@@ -679,197 +679,197 @@ msgid ""
 "joy of fighting for the lost! Thanks!"
 msgstr ""
 
-#: parts/components-enqueue.php:96
+#: parts/components-enqueue.php:97
 #, fuzzy
 msgid "Account Settings"
 msgstr "Gelişmiş Ayarlar"
 
-#: parts/components-enqueue.php:97
+#: parts/components-enqueue.php:98
 msgid "Timezone"
 msgstr ""
 
-#: parts/components-enqueue.php:98
+#: parts/components-enqueue.php:99
 #, fuzzy
 msgid "Receive prayer time notifications"
 msgstr "Namaz vakti bildirimleri alın"
 
-#: parts/components-enqueue.php:99
+#: parts/components-enqueue.php:100
 #, fuzzy
 msgid "Auto extend prayer times"
 msgstr "namaz vakti ekle"
 
-#: parts/components-enqueue.php:100
+#: parts/components-enqueue.php:101
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "Gelişmiş Ayarlar"
 
-#: parts/components-enqueue.php:101
+#: parts/components-enqueue.php:102
 msgid "show"
 msgstr ""
 
-#: parts/components-enqueue.php:102
+#: parts/components-enqueue.php:103
 #, fuzzy
 msgid "Delete this account and all the scheduled prayer times"
 msgstr "Bu profil ve planlanan tüm namaz vakitleri silinsin mi?"
 
-#: parts/components-enqueue.php:103
+#: parts/components-enqueue.php:104
 msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
 
-#: parts/components-enqueue.php:104
+#: parts/components-enqueue.php:105
 msgid "Your account has been deleted!"
 msgstr ""
 
-#: parts/components-enqueue.php:106
+#: parts/components-enqueue.php:107
 #, fuzzy
 msgid "Language"
 msgstr "Dil"
 
-#: parts/components-enqueue.php:107
+#: parts/components-enqueue.php:108
 #, fuzzy
 msgid "Delete"
 msgstr "Sil"
 
-#: parts/components-enqueue.php:108
+#: parts/components-enqueue.php:109
 #: porches/generic/dt-generic-porch-strings.php:206
 #, fuzzy
 msgid "See Prayer Fuel"
 msgstr "Dua Yakıtı"
 
-#: parts/components-enqueue.php:109
+#: parts/components-enqueue.php:110
 #, fuzzy
 msgid "change time"
 msgstr "Günlük saati değiştir"
 
-#: parts/components-enqueue.php:110
+#: parts/components-enqueue.php:111
 #, fuzzy
 msgid "Stop Praying"
 msgstr "Dua etmeye başlayın!"
 
-#: parts/components-enqueue.php:111
+#: parts/components-enqueue.php:112
 #, fuzzy
 msgid "See prayer times"
 msgstr "namaz vakti ekle"
 
-#: parts/components-enqueue.php:112
+#: parts/components-enqueue.php:113
 #, fuzzy
 msgid "Your future prayer times will be canceled."
 msgstr "Yeni namaz vakitleriniz kaydedildi."
 
-#: parts/components-enqueue.php:113
+#: parts/components-enqueue.php:114
 #, fuzzy
 msgid "extend"
 msgstr "Uzatmak"
 
-#: parts/components-enqueue.php:114
+#: parts/components-enqueue.php:115
 #, fuzzy
 msgid "Extend Prayer Times"
 msgstr "namaz vakti"
 
-#: parts/components-enqueue.php:115
+#: parts/components-enqueue.php:116
 #, fuzzy
 msgid "Really delete this prayer time?"
 msgstr "Bir namaz vakti seçin"
 
-#: parts/components-enqueue.php:116
+#: parts/components-enqueue.php:117
 #, fuzzy
 msgid "Delete Prayer Time"
 msgstr "Seçilen Zamanlar"
 
-#: parts/components-enqueue.php:117
+#: parts/components-enqueue.php:118
 #, fuzzy
 msgid "Mondays"
 msgstr "Pazartesi günleri"
 
-#: parts/components-enqueue.php:118
+#: parts/components-enqueue.php:119
 #, fuzzy
 msgid "Tuesdays"
 msgstr "Salı günleri"
 
-#: parts/components-enqueue.php:119
+#: parts/components-enqueue.php:120
 #, fuzzy
 msgid "Wednesdays"
 msgstr "Çarşamba günleri"
 
-#: parts/components-enqueue.php:120
+#: parts/components-enqueue.php:121
 #, fuzzy
 msgid "Thursdays"
 msgstr "Perşembe günleri"
 
-#: parts/components-enqueue.php:121
+#: parts/components-enqueue.php:122
 #, fuzzy
 msgid "Fridays"
 msgstr "Cuma günleri"
 
-#: parts/components-enqueue.php:122
+#: parts/components-enqueue.php:123
 #, fuzzy
 msgid "Saturdays"
 msgstr "Cumartesi günleri"
 
-#: parts/components-enqueue.php:123
+#: parts/components-enqueue.php:124
 #, fuzzy
 msgid "Sundays"
 msgstr "Pazar günleri"
 
-#: parts/components-enqueue.php:124
+#: parts/components-enqueue.php:125
 #, fuzzy
 msgid "Hours"
 msgstr "Saat"
 
-#: parts/components-enqueue.php:125
+#: parts/components-enqueue.php:126
 #, fuzzy
 msgid "Hour"
 msgstr "Saat"
 
-#: parts/components-enqueue.php:126
+#: parts/components-enqueue.php:127
 #, fuzzy
 msgid "Minutes"
 msgstr "dakika"
 
-#: parts/components-enqueue.php:127
+#: parts/components-enqueue.php:128
 #, fuzzy
 msgid "Change Prayer Time"
 msgstr "Namaz Vakitlerini Seçin"
 
-#: parts/components-enqueue.php:128
+#: parts/components-enqueue.php:129
 #, fuzzy, php-format
 msgid "Your current prayer time is %s"
 msgstr "Yeni namaz vakitleriniz kaydedildi."
 
-#: parts/components-enqueue.php:129
+#: parts/components-enqueue.php:130
 #, fuzzy
 msgid "Select a new time:"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:130
+#: parts/components-enqueue.php:131
 #, fuzzy
 msgid "Select a time"
 msgstr "Bir zaman seçin"
 
-#: parts/components-enqueue.php:131
+#: parts/components-enqueue.php:132
 #, fuzzy
 msgid "Renew Prayer Times"
 msgstr "namaz vakti"
 
-#: parts/components-enqueue.php:132
+#: parts/components-enqueue.php:133
 msgid "renew"
 msgstr ""
 
-#: parts/components-enqueue.php:133
+#: parts/components-enqueue.php:134
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
 msgstr ""
 
-#: parts/components-enqueue.php:134
+#: parts/components-enqueue.php:135
 #, fuzzy, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
 msgstr "%s aya kadar"
 
-#: parts/components-enqueue.php:135
+#: parts/components-enqueue.php:136
 #, fuzzy
 msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
@@ -878,84 +878,90 @@ msgstr ""
 "Pray4Movement.org ile diğer dua çabalarını ve fırsatlarını duymak ister "
 "misiniz?"
 
-#: parts/components-enqueue.php:138
-msgid "Text Translations"
-msgstr ""
-
-#: parts/components-enqueue.php:139
-msgid "Original String"
+#: parts/components-enqueue.php:137
+msgid ""
+"Receive emails about praying during Ramadan and helpful information about "
+"this campaign"
 msgstr ""
 
 #: parts/components-enqueue.php:140
-msgid "Custom Value For All Languages"
+msgid "Text Translations"
 msgstr ""
 
 #: parts/components-enqueue.php:141
-msgid "Translation For Currently Selected Language"
+msgid "Original String"
+msgstr ""
+
+#: parts/components-enqueue.php:142
+msgid "Custom Value For All Languages"
 msgstr ""
 
 #: parts/components-enqueue.php:143
+msgid "Translation For Currently Selected Language"
+msgstr ""
+
+#: parts/components-enqueue.php:145
 #, fuzzy
 msgid "Update"
 msgstr "Güncelle"
 
-#: parts/components-enqueue.php:146
+#: parts/components-enqueue.php:148
 msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
 
-#: parts/components-enqueue.php:147
+#: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 
-#: parts/components-enqueue.php:148
+#: parts/components-enqueue.php:150
 msgid "It will look like this:"
 msgstr ""
 
-#: parts/components-enqueue.php:149
+#: parts/components-enqueue.php:151
 msgid "Pending - Verification Needed"
 msgstr ""
 
-#: parts/components-enqueue.php:150
+#: parts/components-enqueue.php:152
 msgid "Back to sign-up"
 msgstr ""
 
-#: parts/components-enqueue.php:151
+#: parts/components-enqueue.php:153
 msgid "So sorry. Something went wrong. You can:"
 msgstr ""
 
-#: parts/components-enqueue.php:152
+#: parts/components-enqueue.php:154
 msgid "Try Again"
 msgstr ""
 
-#: parts/components-enqueue.php:153 porches/generic/site/contact-us.php:20
+#: parts/components-enqueue.php:155 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 #, fuzzy
 msgid "Contact Us"
 msgstr "İletişim bilgileri"
 
-#: parts/components-enqueue.php:154
+#: parts/components-enqueue.php:156
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
 
-#: parts/components-enqueue.php:155
+#: parts/components-enqueue.php:157
 #, fuzzy
 msgid "Time not covered"
 msgstr "kapalı"
 
-#: parts/components-enqueue.php:156
+#: parts/components-enqueue.php:158
 msgid "# of people covering this time"
 msgstr ""
 
-#: parts/components-enqueue.php:157
+#: parts/components-enqueue.php:159
 #, php-format
 msgctxt "Hi, let’s pray together for Ramadan 2031!"
 msgid "Hi, let’s pray together for %s!"
 msgstr ""
 
-#: parts/components-enqueue.php:158
+#: parts/components-enqueue.php:160
 msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
@@ -1289,21 +1295,28 @@ msgstr "Ramazan Bitiyor..."
 msgid "Ramadan Is Finished"
 msgstr "Ramazan Bitti"
 
-#: shortcodes/prayer-timer.php:219
+#: shortcodes/prayer-timer.php:244
 #, fuzzy
 msgid "Start Praying!"
 msgstr "Dua etmeye başlayın!"
 
-#: shortcodes/prayer-timer.php:222
+#: shortcodes/prayer-timer.php:247
 #, fuzzy, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
 msgstr "Namaz vakti: %s dk"
 
-#: shortcodes/prayer-timer.php:247
+#: shortcodes/prayer-timer.php:323
+msgid "Pause"
+msgstr ""
+
+#: shortcodes/prayer-timer.php:449
+msgid "Resume"
+msgstr ""
+
 #, fuzzy
-msgid "Now praying..."
-msgstr "Şimdi dua ediyor..."
+#~ msgid "Now praying..."
+#~ msgstr "Şimdi dua ediyor..."
 
 #, fuzzy
 #~ msgid "Strategic prayer for a disciple making movement in %s"
