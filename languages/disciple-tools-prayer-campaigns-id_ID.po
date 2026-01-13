@@ -485,7 +485,7 @@ msgstr "Pilih waktu untuk %s"
 
 #: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 msgid "Close"
-msgstr "Menutup"
+msgstr "Tutup"
 
 #: parts/components-enqueue.php:65
 msgid "prayer commitments"
@@ -815,19 +815,19 @@ msgstr ""
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
-msgstr ""
+msgstr "Terjemahan Teks"
 
 #: parts/components-enqueue.php:141
 msgid "Original String"
-msgstr ""
+msgstr "Teks Asli"
 
 #: parts/components-enqueue.php:142
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "Nilai Khusus Untuk Semua Bahasa"
 
 #: parts/components-enqueue.php:143
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "Terjemahan Untuk Bahasa yang Dipilih Saat Ini"
 
 #: parts/components-enqueue.php:145
 msgid "Update"
@@ -872,6 +872,8 @@ msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
+"Silakan periksa email Anda untuk mengaktifkan akun sebelum menambahkan waktu "
+"doa lainnya."
 
 #: parts/components-enqueue.php:157
 msgid "Time not covered"
@@ -879,19 +881,21 @@ msgstr "Waktu belum terisi"
 
 #: parts/components-enqueue.php:158
 msgid "# of people covering this time"
-msgstr ""
+msgstr "Jumlah orang yang mengisi waktu ini"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
+msgstr "Hai, mari berdoa bersama untuk %s!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"Saya bergabung dengan kampanye doa ini dan ingin Anda bergabung dengan saya! "
+"Tolong ajak beberapa teman untuk berdoa bersama kami juga."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -983,6 +987,8 @@ msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
+"Semua Bahan Bakar Doa Terjadwal dalam semua bahasa yang tersedia. Tambah dan "
+"edit bahan bakar doa di bawah"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 msgid "We want to cover this region with prayer."
@@ -1064,11 +1070,11 @@ msgstr "Persentase Tercakup"
 
 #: porches/generic/site/stats.php:163
 msgid "Time Prayed in Groups"
-msgstr "Watku doa berkelompok"
+msgstr "Waktu Doa Berkelompok"
 
 #: porches/generic/site/stats.php:173
 msgid "Number of People who Prayed"
-msgstr "Jumlah Orang yang Doa"
+msgstr "Jumlah Orang yang Berdoa"
 
 #: porches/generic/site/stats.php:206
 msgid "Share with us your Prayer Stories"

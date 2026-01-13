@@ -131,7 +131,7 @@ msgstr "禱告燃料"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr "要繼續禱告嗎？"
+msgstr "[需要操作] 要繼續禱告嗎？"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
@@ -594,7 +594,7 @@ msgstr "選擇一天"
 #: parts/components-enqueue.php:89
 #, php-format
 msgid "Renews on %s"
-msgstr "回顧在%s"
+msgstr "於%s續訂"
 
 #: parts/components-enqueue.php:90
 #, php-format
@@ -800,7 +800,7 @@ msgstr ""
 msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
-msgstr ""
+msgstr "接收有關齋月期間禱告以及此活動有用資訊的電子郵件"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"

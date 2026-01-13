@@ -131,7 +131,7 @@ msgstr "Combustível de oração"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr "[ACTION NEEDED] Continuar orando?"
+msgstr "[AÇÃO NECESSÁRIA] Continuar orando?"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
@@ -817,6 +817,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Receber e-mails sobre oração durante o Ramadã e informações úteis sobre "
+"esta campanha"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -899,7 +901,7 @@ msgid ""
 "I’m joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
-"Eu estou entrando nessa camapanha de oração e gostaria muito que você "
+"Eu estou entrando nessa campanha de oração e gostaria muito que você "
 "entrasse comigo! Por favor, convide alguns amigos para orar conosco, também."
 
 #: parts/components.php:33
@@ -982,7 +984,7 @@ msgstr "Todos os dias"
 
 #: porches/generic/dt-generic-porch-strings.php:197
 msgid "Edit Prayer Fuel"
-msgstr "Combustível de oração"
+msgstr "Editar Combustível de Oração"
 
 #: porches/generic/dt-generic-porch-strings.php:215
 msgid "Scheduled Prayer Fuel"
@@ -1033,7 +1035,7 @@ msgstr "Dia %s"
 #: porches/generic/site/footer.php:56
 #, php-format
 msgid "Contact %s"
-msgstr "Fale Conosco%s"
+msgstr "Fale Conosco %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130

@@ -131,11 +131,11 @@ msgstr "祷告燃料"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr "要继续祷告吗？"
+msgstr "[需要操作] 要继续祷告吗？"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
-msgstr "你的一些承諾禱告時間即將結束。"
+msgstr "你的一些祷告时间即将结束。"
 
 #: campaign-functions/send-email-utility.php:417
 msgid "The prayer times are:"
@@ -801,7 +801,7 @@ msgstr ""
 msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
-msgstr ""
+msgstr "接收斋月期间祷告的电子邮件和有关此活动的有用信息"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"

@@ -377,7 +377,7 @@ msgstr "Account"
 
 #: magic-links/subscription-management/subscription-management.php:341
 msgid "Account activated!"
-msgstr "Conto attivato!"
+msgstr "Account attivato!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
@@ -704,7 +704,7 @@ msgstr "Visualizza il Propellente per la preghiera"
 
 #: parts/components-enqueue.php:110
 msgid "change time"
-msgstr "Cambia fuso orario"
+msgstr "Cambia orario"
 
 #: parts/components-enqueue.php:111
 msgid "Stop Praying"

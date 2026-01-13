@@ -85,7 +85,7 @@ msgstr "إليك التزاماتك/طلباتك المقبلة في الصلا�
 #: campaign-functions/send-email-utility.php:314
 #, php-format
 msgid "Times are shown according to: %s time"
-msgstr "تُعرض المواقيت وفقًا لـ: %s مرة"
+msgstr "تُعرض المواقيت وفقًا لتوقيت: %s"
 
 #: campaign-functions/send-email-utility.php:242
 #: magic-links/subscription-management/subscription-management.php:371
@@ -167,7 +167,7 @@ msgstr "شكرًا لك"
 #: campaign-functions/send-email-utility.php:465
 #: porches/generic/site/stats.php:85
 msgid "Thank you for praying with us!"
-msgstr "شكرا لصلاتك ‎ ‎معنا!"
+msgstr "شكرًا لصلاتك معنا!"
 
 #: campaign-functions/send-email-utility.php:485
 #, php-format
@@ -928,7 +928,7 @@ msgstr "صلاة استثنائية"
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
-msgstr "لقد حدث كل تلميذ يقوم بحركة في التاريخ في سياق صلاة غير عادية."
+msgstr "كل حركة تلمذة في التاريخ حدثت في سياق صلاة استثنائية."
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"

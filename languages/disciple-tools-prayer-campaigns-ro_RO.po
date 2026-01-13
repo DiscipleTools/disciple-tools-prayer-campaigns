@@ -21,23 +21,23 @@ msgstr ""
 
 #: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
-msgstr ""
+msgstr "Verificați adresa de e-mail"
 
 #: campaign-functions/send-email-utility.php:87
 msgid "Confirm your participation in prayer by activating your account."
-msgstr ""
+msgstr "Confirmați participarea la rugăciune activând contul dumneavoastră."
 
 #: campaign-functions/send-email-utility.php:90
 msgid "Activate Account"
-msgstr ""
+msgstr "Activați contul"
 
 #: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
-msgstr ""
+msgstr "Sau faceți clic pe acest link:"
 
 #: campaign-functions/send-email-utility.php:99
 msgid "If you did not request this email, please ignore it."
-msgstr ""
+msgstr "Dacă nu ați solicitat acest e-mail, vă rugăm să îl ignorați."
 
 #: campaign-functions/send-email-utility.php:182
 #: campaign-functions/send-email-utility.php:278
@@ -47,14 +47,12 @@ msgid "%1$s from %2$s to %3$s"
 msgstr "%1$s de la %2$s la %3$s"
 
 #: campaign-functions/send-email-utility.php:189
-#, fuzzy
 msgid "see more on your account"
-msgstr "verifica-ti contul"
+msgstr "vedeți mai multe în contul dumneavoastră"
 
 #: campaign-functions/send-email-utility.php:201
-#, fuzzy
 msgid "Registered to pray with us!"
-msgstr "Înscris pentru a vă ruga cu noi!"
+msgstr "Înscris să se roage cu noi!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
@@ -66,24 +64,22 @@ msgstr "Bună %s,"
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
 msgid "Access your account to see your commitments and make changes:"
-msgstr ""
+msgstr "Accesați contul pentru a vedea angajamentele și pentru a face modificări:"
 
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
 #: parts/components-enqueue.php:95
 msgid "Access Account"
-msgstr ""
+msgstr "Accesați contul"
 
 #: campaign-functions/send-email-utility.php:230
-#, fuzzy
 msgid "You signed up to pray:"
-msgstr "Vă mulțumim că v-ați înscris să vă rugați!"
+msgstr "V-ați înscris să vă rugați:"
 
 #: campaign-functions/send-email-utility.php:235
-#, fuzzy
 msgid "These are your next prayer commitments:"
-msgstr "Faceți clic aici pentru a vă gestiona contul și angajamentele de timp"
+msgstr "Acestea sunt următoarele angajamente de rugăciune:"
 
 #: campaign-functions/send-email-utility.php:238
 #: campaign-functions/send-email-utility.php:314
@@ -105,10 +101,10 @@ msgstr ""
 "Faceți clic aici pentru a vedea solicitările de rugăciune pentru astăzi: %s"
 
 #: campaign-functions/send-email-utility.php:284
-#, fuzzy, php-format
+#, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr "pentru s"
+msgstr "pentru %s"
 
 #: campaign-functions/send-email-utility.php:294
 #, fuzzy
@@ -142,16 +138,15 @@ msgstr "Combustibil pentru rugăciune"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
-msgstr ""
+msgstr "[ACȚIUNE NECESARĂ] Continuați să vă rugați?"
 
 #: campaign-functions/send-email-utility.php:416
 msgid "Some of your prayer times will be ending soon."
-msgstr ""
+msgstr "Unele din orele de rugăciune se vor încheia în curând."
 
 #: campaign-functions/send-email-utility.php:417
-#, fuzzy
 msgid "The prayer times are:"
-msgstr "Adăugați timp de rugăciune"
+msgstr "Orele de rugăciune sunt:"
 
 #: campaign-functions/send-email-utility.php:421
 msgid ""
@@ -159,12 +154,18 @@ msgid ""
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
+"Pentru a continua să vă rugați și pentru a primi în continuare notificări, "
+"vă rugăm să accesați contul și să faceți clic pe «prelungire» lângă "
+"angajamentul (angajamentele) dumneavoastră. De asemenea, vă puteți înscrie "
+"pentru o altă oră dacă doriți."
 
 #: campaign-functions/send-email-utility.php:423
 msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
+"Nu trebuie să faceți nimic dacă nu doriți să continuați să vă rugați când "
+"se termină orele de rugăciune."
 
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
@@ -181,7 +182,7 @@ msgstr "Vă mulțumim că vă rugați cu noi!"
 #: campaign-functions/send-email-utility.php:485
 #, php-format
 msgid "Dear %s,"
-msgstr ""
+msgstr "Dragă %s,"
 
 #: campaign-functions/send-email-utility.php:491
 #: porches/generic/dt-generic-porch-strings.php:38
@@ -200,6 +201,9 @@ msgid ""
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Vom ști abia în veșnicie impactul deplin al miilor de ore de rugăciune "
+"pentru lumea musulmană în timpul Ramadanului. Cu toate acestea, știm din "
+"Cuvântul lui Dumnezeu că rugăciunea este puternică și eficientă (Iacov 5:16)."
 
 #: campaign-functions/send-email-utility.php:508
 msgid ""
@@ -207,6 +211,9 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
+"Faceți clic pe butonul de mai jos pentru a vedea ce ați contribuit în acest "
+"Ramadan. De asemenea, ne-ar plăcea să auzim impresiile sau cuvintele pe care "
+"le-ați primit de la Dumnezeu în timp ce vă rugați."
 
 #: campaign-functions/send-email-utility.php:510
 msgid ""
@@ -214,34 +221,46 @@ msgid ""
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
+"În cele din urmă, pagina Statisticilor de rugăciune Ramadan 24/7 are și o "
+"secțiune de înscriere la final. Asigurați-vă că sunteți înscriși pentru a "
+"primi știri despre viitoarele oportunități de rugăciune de la Prayer.Tools, "
+"creatorii acestui instrument de rugăciune."
 
 #: campaign-functions/send-email-utility.php:514
 msgid ""
 "We will only know in eternity the full impact of our prayer. However, we "
 "know from God's Word that prayer is powerful and effective (James 5:16)."
 msgstr ""
+"Vom ști abia în veșnicie impactul deplin al rugăciunii noastre. Cu toate "
+"acestea, știm din Cuvântul lui Dumnezeu că rugăciunea este puternică și "
+"eficientă (Iacov 5:16)."
 
 #: campaign-functions/send-email-utility.php:517
 msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
+"Faceți clic pe butonul de mai jos pentru a vedea ce ați contribuit. De "
+"asemenea, ne-ar plăcea să auzim impresiile sau cuvintele pe care le-ați "
+"primit de la Dumnezeu în timp ce vă rugați."
 
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
+"În cele din urmă, echipa de la Prayer.Tools a creat acest instrument de "
+"rugăciune. Puteți verifica că sunteți înscriși pentru a primi știri despre "
+"viitoarele oportunități de rugăciune pe pagina Statisticilor."
 
 #: campaign-functions/send-email-utility.php:524
-#, fuzzy
 msgid "See Prayer Stats"
-msgstr "Alegeți un timp de rugăciune"
+msgstr "Vedeți statisticile de rugăciune"
 
 #: campaign-functions/send-email-utility.php:534
 msgid "In Christ with you,"
-msgstr ""
+msgstr "În Hristos alături de voi,"
 
 #: campaign-functions/time-utilities.php:185
 #, fuzzy
@@ -270,16 +289,15 @@ msgstr "1 oră"
 
 #: campaign-functions/time-utilities.php:198
 msgid "years"
-msgstr ""
+msgstr "ani"
 
 #: campaign-functions/time-utilities.php:198
 msgid "year"
-msgstr ""
+msgstr "an"
 
 #: campaign-functions/time-utilities.php:201
-#, fuzzy
 msgid "day"
-msgstr "zile"
+msgstr "zi"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
 #, fuzzy
@@ -289,19 +307,16 @@ msgstr "zile"
 #: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
-msgstr ""
+msgstr "Editează"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:158
-#, fuzzy
 msgid "Retrieve Prayer Time Management Link"
-msgstr "Primiți notificări pentru timpul de rugăciune"
+msgstr "Obțineți linkul de gestionare a timpului de rugăciune"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
-#, fuzzy
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Faceți clic aici pentru a vă verifica adresa de e-mail și pentru a vă "
-"confirma orele de rugăciune."
+"Introduceți adresa de e-mail și primiți un link către orele de rugăciune."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -312,25 +327,21 @@ msgstr "Email"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:174
 msgid "Email My Access Link"
-msgstr ""
+msgstr "Trimiteți-mi linkul de acces"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
-#, fuzzy
 msgid "Please check your email address now for your access link."
-msgstr ""
-"Faceți clic aici pentru a vă verifica adresa de e-mail și pentru a vă "
-"confirma orele de rugăciune."
+msgstr "Verificați-vă e-mailul acum pentru a găsi linkul de acces."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
-#, fuzzy
 msgid "Your prayer time has been extended"
-msgstr "Timpii de rugăciune au fost verificați!"
+msgstr "Timpul de rugăciune a fost prelungit"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:91
-#, fuzzy, php-format
+#, php-format
 msgctxt "You are signed up to pray daily at 3pm until October 23, 2030."
 msgid "You are signed up to pray %1$s until %2$s."
-msgstr "Vă mulțumim că v-ați înscris să vă rugați!"
+msgstr "Sunteți înscris să vă rugați %1$s până la %2$s."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:92
 #, fuzzy
@@ -339,30 +350,29 @@ msgstr "O.K"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:93
 msgid "Email me the updated calendar"
-msgstr ""
+msgstr "Trimiteți-mi calendarul actualizat"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:95
 msgid "Join me in praying!"
-msgstr ""
+msgstr "Alăturați-vă mie în rugăciune!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
 #: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
-msgstr ""
+msgstr "Conținutul va începe în %s zile"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr ""
+msgstr "Această campanie s-a încheiat. Vedeți Combustibil pentru rugăciune mai jos"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:48
-#, fuzzy
 msgid "Prayer Timer"
-msgstr "Timp selectat"
+msgstr "Cronometru de rugăciune"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
@@ -379,19 +389,19 @@ msgstr "Angajamente de rugăciune"
 
 #: magic-links/subscription-management/subscription-management.php:335
 msgid "Account"
-msgstr ""
+msgstr "Cont"
 
 #: magic-links/subscription-management/subscription-management.php:341
 msgid "Account activated!"
-msgstr ""
+msgstr "Cont activat!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
+msgstr "Aici puteți gestiona angajamentele de rugăciune și setările contului."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
-msgstr ""
+msgstr "Linkuri"
 
 #: magic-links/subscription-management/subscription-management.php:350
 #: porches/generic/site/top-nav-fuel.php:28
@@ -403,12 +413,11 @@ msgstr "Acasă"
 #: magic-links/subscription-management/subscription-management.php:352
 #: porches/generic/site/stats.php:20 porches/generic/site/stats.php:110
 msgid "Stats"
-msgstr ""
+msgstr "Statistici"
 
 #: magic-links/subscription-management/subscription-management.php:368
-#, fuzzy
 msgid "My Calendar"
-msgstr "Descărcați Calendar"
+msgstr "Calendarul meu"
 
 #: magic-links/subscription-management/subscription-management.php:381
 #, fuzzy
@@ -421,14 +430,12 @@ msgid "This subscription has ended or is not configured correctly."
 msgstr "Acest abonament s-a încheiat sau nu este configurat corect."
 
 #: parts/components-enqueue.php:41
-#, fuzzy
 msgid "Detected time zone"
-msgstr "Timp selectat"
+msgstr "Fus orar detectat"
 
 #: parts/components-enqueue.php:42
-#, fuzzy
 msgid "Select a timezone"
-msgstr "Selectați o oră"
+msgstr "Selectați un fus orar"
 
 #: parts/components-enqueue.php:44 porches/generic/site/stats.php:157
 #: porches/generic/site/stats.php:167
@@ -447,19 +454,16 @@ msgid "seconds"
 msgstr "secunde"
 
 #: parts/components-enqueue.php:47
-#, fuzzy
 msgid "Campaign Starts In"
-msgstr "Statisticile campaniei"
+msgstr "Campania începe în"
 
 #: parts/components-enqueue.php:48
-#, fuzzy
 msgid "Campaign Ends In"
-msgstr "Statisticile campaniei"
+msgstr "Campania se termină în"
 
 #: parts/components-enqueue.php:49
-#, fuzzy
 msgid "Campaign Ended"
-msgstr "Statisticile campaniei"
+msgstr "Campania s-a încheiat"
 
 #: parts/components-enqueue.php:50
 #, fuzzy, php-format
@@ -469,20 +473,19 @@ msgstr "%1$s pentru %2$s minute."
 
 #: parts/components-enqueue.php:51
 msgid "How often?"
-msgstr ""
+msgstr "Cât de des?"
 
 #: parts/components-enqueue.php:52
 msgid "I will pray for"
-msgstr ""
+msgstr "Mă voi ruga pentru"
 
 #: parts/components-enqueue.php:53
-#, fuzzy
 msgid "At what time?"
-msgstr "Selectați o oră"
+msgstr "La ce oră?"
 
 #: parts/components-enqueue.php:55
 msgid "Contact Info"
-msgstr ""
+msgstr "Informații de contact"
 
 #: parts/components-enqueue.php:56 porches/generic/site/contact-us.php:78
 #, fuzzy
@@ -491,20 +494,19 @@ msgstr "Nume"
 
 #: parts/components-enqueue.php:58
 msgid "Start Here"
-msgstr ""
+msgstr "Începeți aici"
 
 #: parts/components-enqueue.php:59
 msgid "Continue here"
-msgstr ""
+msgstr "Continuați aici"
 
 #: parts/components-enqueue.php:60
 msgid "On which week day?"
-msgstr ""
+msgstr "În ce zi a săptămânii?"
 
 #: parts/components-enqueue.php:61
-#, fuzzy
 msgid "Select a Date"
-msgstr "Selectați o oră"
+msgstr "Selectați o dată"
 
 #: parts/components-enqueue.php:62
 #, fuzzy
@@ -512,9 +514,9 @@ msgid "Select a Time"
 msgstr "Selectați o oră"
 
 #: parts/components-enqueue.php:63
-#, fuzzy, php-format
+#, php-format
 msgid "Select a Time for %s"
-msgstr "Selectați o oră"
+msgstr "Selectați o oră pentru %s"
 
 #: parts/components-enqueue.php:64 parts/components-enqueue.php:144
 #, fuzzy
@@ -530,17 +532,17 @@ msgstr "Angajamente de rugăciune"
 #, php-format
 msgctxt "Starting on October 4"
 msgid "Starting on %s"
-msgstr ""
+msgstr "Începând pe %s"
 
 #: parts/components-enqueue.php:67
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr ""
+msgstr "Terminând pe %s"
 
 #: parts/components-enqueue.php:68
 msgid "Review"
-msgstr ""
+msgstr "Revizuire"
 
 #: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
@@ -550,20 +552,20 @@ msgstr "Trimite"
 
 #: parts/components-enqueue.php:70
 msgid "Verify"
-msgstr ""
+msgstr "Verificați"
 
 #: parts/components-enqueue.php:71
 #, php-format
 msgid "Goal: %s hours of prayer every day"
-msgstr ""
+msgstr "Obiectiv: %s ore de rugăciune în fiecare zi"
 
 #: parts/components-enqueue.php:72
 msgid "Goal: 24/7 coverage"
-msgstr ""
+msgstr "Obiectiv: acoperire 24/7"
 
 #: parts/components-enqueue.php:73
 msgid "Please enter a valid name or email address"
-msgstr ""
+msgstr "Introduceți un nume sau o adresă de e-mail validă"
 
 #: parts/components-enqueue.php:74
 #, fuzzy
@@ -571,47 +573,44 @@ msgid "Next"
 msgstr "Următorul"
 
 #: parts/components-enqueue.php:75
-#, fuzzy
 msgid "No prayer times selected"
-msgstr "Timpii de rugăciune au fost verificați!"
+msgstr "Nicio oră de rugăciune selectată"
 
 #: parts/components-enqueue.php:76
-#, fuzzy
 msgid "Daily"
-msgstr "Ora zilnică"
+msgstr "Zilnic"
 
 #: parts/components-enqueue.php:77
 msgid "Weekly"
-msgstr ""
+msgstr "Săptămânal"
 
 #: parts/components-enqueue.php:78
-#, fuzzy
 msgid "Monthly"
-msgstr "Lună"
+msgstr "Lunar"
 
 #: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
-msgstr ""
+msgstr "Alegeți datele și orele"
 
 #: parts/components-enqueue.php:80
-#, fuzzy, php-format
+#, php-format
 msgid "%s Minutes"
-msgstr "5 minute"
+msgstr "%s minute"
 
 #: parts/components-enqueue.php:81
-#, fuzzy, php-format
+#, php-format
 msgid "%s Hour"
-msgstr "Ore"
+msgstr "%s oră"
 
 #: parts/components-enqueue.php:82
-#, fuzzy, php-format
+#, php-format
 msgid "%s Hours"
-msgstr "Ore"
+msgstr "%s ore"
 
 #: parts/components-enqueue.php:83
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s at %2$s for %3$s"
-msgstr "%1$s de la %2$s la %3$s"
+msgstr "%1$s la %2$s pentru %3$s"
 
 #: parts/components-enqueue.php:84
 #, fuzzy, php-format
@@ -621,36 +620,33 @@ msgstr "%1$s pentru %2$s minute."
 #: parts/components-enqueue.php:85
 #, php-format
 msgid "Every %s"
-msgstr ""
+msgstr "În fiecare %s"
 
 #: parts/components-enqueue.php:86
-#, fuzzy
 msgid "Prayer Time Selected"
-msgstr "Timpii de rugăciune au fost verificați!"
+msgstr "Oră de rugăciune selectată"
 
 #: parts/components-enqueue.php:87
-#, fuzzy
 msgid "Prayer Time Removed"
-msgstr "Timpii de rugăciune au fost verificați!"
+msgstr "Oră de rugăciune eliminată"
 
 #: parts/components-enqueue.php:88
-#, fuzzy
 msgid "Select a Day"
-msgstr "Selectați o oră"
+msgstr "Selectați o zi"
 
 #: parts/components-enqueue.php:89
 #, php-format
 msgid "Renews on %s"
-msgstr ""
+msgstr "Se reînnoiește pe %s"
 
 #: parts/components-enqueue.php:90
 #, php-format
 msgid "Ends on %s"
-msgstr ""
+msgstr "Se termină pe %s"
 
 #: parts/components-enqueue.php:91
 msgid "Success"
-msgstr ""
+msgstr "Succes"
 
 #: parts/components-enqueue.php:92
 #, fuzzy
@@ -664,7 +660,7 @@ msgstr "În e-mail există un link pentru a vă gestiona orele de rugăciune."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: parts/components-enqueue.php:96
 msgid ""
@@ -673,15 +669,18 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
+"Trebuie să anulați? Înțelegem! Dar stați! Dacă angajamentul de rugăciune "
+"este programat să înceapă în mai puțin de 48 de ore, rugați un prieten să vă "
+"înlocuiască. Aceasta va menține lanțul de rugăciune intact și va da cuiva "
+"bucuria de a lupta pentru cei pierduți! Mulțumim!"
 
 #: parts/components-enqueue.php:97
-#, fuzzy
 msgid "Account Settings"
-msgstr "Setari avansate"
+msgstr "Setări cont"
 
 #: parts/components-enqueue.php:98
 msgid "Timezone"
-msgstr ""
+msgstr "Fus orar"
 
 #: parts/components-enqueue.php:99
 #, fuzzy
@@ -689,9 +688,8 @@ msgid "Receive prayer time notifications"
 msgstr "Primiți notificări pentru timpul de rugăciune"
 
 #: parts/components-enqueue.php:100
-#, fuzzy
 msgid "Auto extend prayer times"
-msgstr "Adăugați timp de rugăciune"
+msgstr "Prelungire automată a orelor de rugăciune"
 
 #: parts/components-enqueue.php:101
 #, fuzzy
@@ -700,7 +698,7 @@ msgstr "Setari avansate"
 
 #: parts/components-enqueue.php:102
 msgid "show"
-msgstr ""
+msgstr "arată"
 
 #: parts/components-enqueue.php:103
 #, fuzzy
@@ -712,14 +710,16 @@ msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
+"Ne pare rău. Ceva nu a funcționat. Vă rugăm să ne contactați pentru a vă "
+"ajuta sau încercați din nou."
 
 #: parts/components-enqueue.php:105
 msgid "Your account has been deleted!"
-msgstr ""
+msgstr "Contul dumneavoastră a fost șters!"
 
 #: parts/components-enqueue.php:107
 msgid "Language"
-msgstr ""
+msgstr "Limbă"
 
 #: parts/components-enqueue.php:108
 #, fuzzy
@@ -742,14 +742,12 @@ msgid "Stop Praying"
 msgstr "Opriți rugăciunea"
 
 #: parts/components-enqueue.php:112
-#, fuzzy
 msgid "See prayer times"
-msgstr "Adăugați timp de rugăciune"
+msgstr "Vedeți orele de rugăciune"
 
 #: parts/components-enqueue.php:113
-#, fuzzy
 msgid "Your future prayer times will be canceled."
-msgstr "Noile tale perioade de rugăciune au fost salvate."
+msgstr "Orele viitoare de rugăciune vor fi anulate."
 
 #: parts/components-enqueue.php:114
 #, fuzzy
@@ -757,19 +755,16 @@ msgid "extend"
 msgstr "Extinde"
 
 #: parts/components-enqueue.php:115
-#, fuzzy
 msgid "Extend Prayer Times"
-msgstr "Timpul de rugaciune"
+msgstr "Prelungiți orele de rugăciune"
 
 #: parts/components-enqueue.php:116
-#, fuzzy
 msgid "Really delete this prayer time?"
-msgstr "Alegeți un timp de rugăciune"
+msgstr "Sigur doriți să ștergeți această oră de rugăciune?"
 
 #: parts/components-enqueue.php:117
-#, fuzzy
 msgid "Delete Prayer Time"
-msgstr "Timp selectat"
+msgstr "Ștergeți ora de rugăciune"
 
 #: parts/components-enqueue.php:118
 msgid "Mondays"
@@ -805,9 +800,8 @@ msgid "Hours"
 msgstr "Ore"
 
 #: parts/components-enqueue.php:126
-#, fuzzy
 msgid "Hour"
-msgstr "Ore"
+msgstr "Oră"
 
 #: parts/components-enqueue.php:127
 #, fuzzy
@@ -815,14 +809,13 @@ msgid "Minutes"
 msgstr "minute"
 
 #: parts/components-enqueue.php:128
-#, fuzzy
 msgid "Change Prayer Time"
-msgstr "Alegeți Orele de rugăciune"
+msgstr "Schimbați ora de rugăciune"
 
 #: parts/components-enqueue.php:129
-#, fuzzy, php-format
+#, php-format
 msgid "Your current prayer time is %s"
-msgstr "Noile tale perioade de rugăciune au fost salvate."
+msgstr "Ora curentă de rugăciune este %s"
 
 #: parts/components-enqueue.php:130
 #, fuzzy
@@ -835,25 +828,24 @@ msgid "Select a time"
 msgstr "Selectați o oră"
 
 #: parts/components-enqueue.php:132
-#, fuzzy
 msgid "Renew Prayer Times"
-msgstr "Timpul de rugaciune"
+msgstr "Reînnoiți orele de rugăciune"
 
 #: parts/components-enqueue.php:133
 msgid "renew"
-msgstr ""
+msgstr "reînnoiește"
 
 #: parts/components-enqueue.php:134
 #, php-format
 msgctxt "Extend prayer times until Feb 22"
 msgid "Until %s"
-msgstr ""
+msgstr "Până la %s"
 
 #: parts/components-enqueue.php:135
-#, fuzzy, php-format
+#, php-format
 msgctxt "Extend prayer times for 12 months"
 msgid "For %s months"
-msgstr "%1$s pentru %2$s minute."
+msgstr "Pentru %s luni"
 
 #: parts/components-enqueue.php:136
 #, fuzzy
@@ -869,22 +861,24 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Primiți e-mailuri despre rugăciunea în timpul Ramadanului și informații "
+"utile despre această campanie"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
-msgstr ""
+msgstr "Traduceri text"
 
 #: parts/components-enqueue.php:141
 msgid "Original String"
-msgstr ""
+msgstr "Textul original"
 
 #: parts/components-enqueue.php:142
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "Valoare personalizată pentru toate limbile"
 
 #: parts/components-enqueue.php:143
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "Traducere pentru limba selectată"
 
 #: parts/components-enqueue.php:145
 #, fuzzy
@@ -893,43 +887,45 @@ msgstr "Actualizați"
 
 #: parts/components-enqueue.php:148
 msgid "Almost there! Finish signing up by activating your account."
-msgstr ""
+msgstr "Aproape gata! Finalizați înregistrarea activându-vă contul."
 
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr ""
+msgstr "Faceți clic pe butonul «Activați contul» din e-mailul trimis la: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
-msgstr ""
+msgstr "Va arăta astfel:"
 
 #: parts/components-enqueue.php:151
 msgid "Pending - Verification Needed"
-msgstr ""
+msgstr "În așteptare - Verificare necesară"
 
 #: parts/components-enqueue.php:152
 msgid "Back to sign-up"
-msgstr ""
+msgstr "Înapoi la înscriere"
 
 #: parts/components-enqueue.php:153
 msgid "So sorry. Something went wrong. You can:"
-msgstr ""
+msgstr "Ne pare rău. Ceva nu a funcționat. Puteți:"
 
 #: parts/components-enqueue.php:154
 msgid "Try Again"
-msgstr ""
+msgstr "Încercați din nou"
 
 #: parts/components-enqueue.php:155 porches/generic/site/contact-us.php:20
 #: porches/generic/site/contact-us.php:72
 msgid "Contact Us"
-msgstr ""
+msgstr "Contactați-ne"
 
 #: parts/components-enqueue.php:156
 msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
+"Verificați-vă e-mailul pentru a activa contul înainte de a adăuga mai multe "
+"ore de rugăciune."
 
 #: parts/components-enqueue.php:157
 #, fuzzy
@@ -938,23 +934,25 @@ msgstr "acoperit"
 
 #: parts/components-enqueue.php:158
 msgid "# of people covering this time"
-msgstr ""
+msgstr "Nr. de persoane care acoperă această oră"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
-msgstr ""
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
+msgstr "Bună, hai să ne rugăm împreună pentru %s!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
+"Mă alătur acestei campanii de rugăciune și mi-ar plăcea să te alături mie! "
+"Te rog să inviți și câțiva prieteni să se roage cu noi."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
-msgstr ""
+msgstr "Vă rugați în grup?"
 
 #: parts/components.php:38
 #, php-format
@@ -963,10 +961,14 @@ msgid ""
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
+"A conduce pe alții în rugăciune este un pas important în a face ucenici. "
+"Vrem să celebrăm credincioșia ta și a lor. Pentru fiecare persoană care se "
+"roagă cu tine, vom adăuga 15 minute la cele %s zile de rugăciune angajate "
+"până acum."
 
 #: parts/components.php:41
 msgid "How many prayed today (including yourself)?"
-msgstr ""
+msgstr "Câți s-au rugat astăzi (inclusiv tu)?"
 
 #: porches/generic/dt-generic-porch-strings.php:47
 #, fuzzy
@@ -1038,20 +1040,20 @@ msgid "All Days"
 msgstr "Toate zilele"
 
 #: porches/generic/dt-generic-porch-strings.php:197
-#, fuzzy
 msgid "Edit Prayer Fuel"
-msgstr "Combustibil pentru rugăciune"
+msgstr "Editați Combustibil pentru rugăciune"
 
 #: porches/generic/dt-generic-porch-strings.php:215
-#, fuzzy
 msgid "Scheduled Prayer Fuel"
-msgstr "Combustibil pentru rugăciune"
+msgstr "Combustibil pentru rugăciune programat"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
+"Tot Combustibilul pentru rugăciune programat în toate limbile disponibile. "
+"Adăugați și editați combustibilul pentru rugăciune mai jos"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 #, fuzzy
@@ -1060,7 +1062,7 @@ msgstr "Dorim să acoperim această regiune cu rugăciune continuă 24/7."
 
 #: porches/generic/dt-generic-porch-strings.php:267
 msgid "Together"
-msgstr ""
+msgstr "Împreună"
 
 #: porches/generic/site/404-body.php:14
 #, fuzzy
@@ -1086,18 +1088,18 @@ msgstr ""
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #: porches/generic/site/edit-post-list-body.php:113
 #, php-format
 msgid "Day %s"
-msgstr ""
+msgstr "Ziua %s"
 
 #. translators: %s: campaign name
 #: porches/generic/site/footer.php:56
 #, php-format
 msgid "Contact %s"
-msgstr ""
+msgstr "Contactați %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
@@ -1137,7 +1139,7 @@ msgstr "Citit"
 
 #: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
-msgstr ""
+msgstr "Niciun combustibil pentru rugăciune găsit"
 
 #: porches/generic/site/stats.php:137
 #, fuzzy
@@ -1146,7 +1148,7 @@ msgstr "Procent acoperit"
 
 #: porches/generic/site/stats.php:163
 msgid "Time Prayed in Groups"
-msgstr ""
+msgstr "Timp petrecut în rugăciune în grup"
 
 #: porches/generic/site/stats.php:173
 #, fuzzy
@@ -1169,30 +1171,27 @@ msgstr ""
 
 #: porches/generic/site/stats.php:306
 msgid "Global Ramadan Stats"
-msgstr ""
+msgstr "Statistici globale Ramadan"
 
 #: porches/generic/site/stats.php:313
-#, fuzzy
 msgid "Total Prayer Campaigns"
-msgstr "Se încarcă datele campaniei de rugăciune..."
+msgstr "Total campanii de rugăciune"
 
 #: porches/generic/site/stats.php:321
-#, fuzzy
 msgid "Countries Prayed For"
-msgstr "Orele de rugăciune"
+msgstr "Țări pentru care s-a rugat"
 
 #: porches/generic/site/stats.php:329
 msgid "Intercessors"
-msgstr ""
+msgstr "Mijlocitori"
 
 #: porches/generic/site/stats.php:337
-#, fuzzy
 msgid "Time Prayed"
-msgstr "Timp adăugat"
+msgstr "Timp petrecut în rugăciune"
 
 #: porches/generic/site/stats.php:345
 msgid "15 Minute Time Slots Filled"
-msgstr ""
+msgstr "Intervale de 15 minute completate"
 
 #: porches/generic/site/stats.php:368
 #, fuzzy
@@ -1220,9 +1219,8 @@ msgid "Select Language"
 msgstr "Selectați limba"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
-#, fuzzy
 msgid "Ramadan Landing Page"
-msgstr "Ramadanul se incheie..."
+msgstr "Pagina de întâmpinare Ramadan"
 
 #: porches/ramadan/settings.php:6
 #, fuzzy

@@ -308,7 +308,7 @@ msgstr "Email"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:174
 msgid "Email My Access Link"
-msgstr "Envoyer mon lien d'access"
+msgstr "Envoyer mon lien d'accès"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
@@ -347,7 +347,7 @@ msgstr "Le contenu commencera dans %s jours"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
+msgstr "Cette campagne est terminée. Voir le guide de prière ci-dessous"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
@@ -452,7 +452,7 @@ msgstr "À quelle fréquence ?"
 
 #: parts/components-enqueue.php:52
 msgid "I will pray for"
-msgstr "Je prie pour"
+msgstr "Je prierai pour"
 
 #: parts/components-enqueue.php:53
 msgid "At what time?"
@@ -710,7 +710,7 @@ msgstr "Voir les temps de prière"
 
 #: parts/components-enqueue.php:113
 msgid "Your future prayer times will be canceled."
-msgstr "Vos futurs heures de prière seront annulés."
+msgstr "Vos futures heures de prière seront annulées."
 
 #: parts/components-enqueue.php:114
 msgid "extend"
@@ -932,7 +932,7 @@ msgstr "Notre Vision"
 
 #: porches/generic/dt-generic-porch-strings.php:56
 msgid "We want to cover this region with continuous 24/7 prayer."
-msgstr "Nous voulons couvrir ce region avec de la prière 24/7 continuelle."
+msgstr "Nous voulons couvrir cette région avec de la prière 24/7 continuelle."
 
 #: porches/generic/dt-generic-porch-strings.php:73
 msgid "Extraordinary Prayer"

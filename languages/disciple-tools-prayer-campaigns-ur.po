@@ -814,6 +814,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"رمضان المبارک کے دوران دعا کرنے کے بارے میں ای میلز اور اِس مہم کے بارے میں "
+"مفید معلومات حاصل کریں"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1188,13 +1190,13 @@ msgstr "رمضانالمبارک ختم ہوگیا"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
-msgstr "نمازشروع کرو‎!"
+msgstr "دعا شروع کریں!"
 
 #: shortcodes/prayer-timer.php:247
 #, php-format
 msgctxt "Prayer time: 15 min"
 msgid "Prayer time: %s min"
-msgstr "نمازکاوقت:‎ %s ‎منٹ"
+msgstr "دعا کا وقت: %s منٹ"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"

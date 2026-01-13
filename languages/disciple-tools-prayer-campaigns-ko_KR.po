@@ -51,14 +51,14 @@ msgstr "계정에서 자세히 보기"
 
 #: campaign-functions/send-email-utility.php:201
 msgid "Registered to pray with us!"
-msgstr "우리와 함께 기도하기 위해 등록하세요!"
+msgstr "우리와 함께 기도하기 위해 등록되었습니다!"
 
 #: campaign-functions/send-email-utility.php:222
 #: campaign-functions/send-email-utility.php:310
 #: campaign-functions/send-email-utility.php:414
 #, php-format
 msgid "Hello %s,"
-msgstr "안녕하세요 %s입니다,"
+msgstr "안녕하세요 %s님,"
 
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
@@ -101,7 +101,7 @@ msgstr "오늘의 기도 제목을 보려면 여기를 클릭하세요: %s"
 #, php-format
 msgctxt "for Paris, France"
 msgid "for %s"
-msgstr "에 대한 %s"
+msgstr "%s을(를) 위해"
 
 #: campaign-functions/send-email-utility.php:294
 msgid "Prayer Time reminder!"
@@ -170,7 +170,7 @@ msgstr "함께 기도해 주셔서 감사합니다!"
 #: campaign-functions/send-email-utility.php:485
 #, php-format
 msgid "Dear %s,"
-msgstr "Dear %s,"
+msgstr "친애하는 %s님,"
 
 #: campaign-functions/send-email-utility.php:491
 #: porches/generic/dt-generic-porch-strings.php:38
@@ -641,8 +641,6 @@ msgid "Timezone"
 msgstr "시간대"
 
 #: parts/components-enqueue.php:99
-#, fuzzy
-#| msgid "Receive Prayer time notifications"
 msgid "Receive prayer time notifications"
 msgstr "기도 시간 알림 받기"
 
