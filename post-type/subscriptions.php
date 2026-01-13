@@ -323,6 +323,12 @@ class DT_Subscriptions_Base {
                 'default' => false,
                 'hidden' => true,
             ];
+            $fields['receive_ramadan_emails'] = [
+                'name' => __( 'Receive Ramadan Emails', 'disciple-tools-prayer-campaigns' ),
+                'type' => 'boolean',
+                'default' => false,
+                'hidden' => true,
+            ];
         }
 
         if ( $post_type === 'contacts' && current_user_can( 'view_all_'.$this->post_type ) ){

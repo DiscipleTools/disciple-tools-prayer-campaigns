@@ -312,8 +312,12 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
 
         do_action( 'campaign_subscription_activated', $params );
 
-        if ( !empty( $subscriber['receive_prayer_tools_news'] ) && isset( $subscriber['contact_email'][0]['value'] ) ){
-            p4m_subscribe_to_news( $subscriber['contact_email'][0]['value'], $subscriber['name'] );
+        if ( isset( $subscriber['contact_email'][0]['value'] ) ){
+            $receive_prayer_tools_news = !empty( $subscriber['receive_prayer_tools_news'] );
+            $receive_ramadan_emails = !empty( $subscriber['receive_ramadan_emails'] );
+            if ( $receive_prayer_tools_news || $receive_ramadan_emails ){
+                p4m_subscribe_to_lists( $subscriber['contact_email'][0]['value'], $subscriber['name'], $receive_prayer_tools_news, $receive_ramadan_emails );
+            }
         }
 
         wp_redirect( $account_link . '?verified=true' );
@@ -486,6 +490,7 @@ class DT_Prayer_Campaign_Ongoing_Magic_Link extends DT_Magic_Url_Base {
                 [
                     'receive_prayer_time_notifications' => true,
                     'receive_prayer_tools_news' => !empty( $params['receive_prayer_tools_news'] ),
+                    'receive_ramadan_emails' => !empty( $params['receive_ramadan_emails'] ),
                     'timezone' => $params['timezone'],
                     'lang' => $lang,
                     'status' => 'pending',
