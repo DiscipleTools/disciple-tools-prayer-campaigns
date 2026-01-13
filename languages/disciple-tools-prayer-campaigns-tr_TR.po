@@ -744,9 +744,8 @@ msgid "change time"
 msgstr "Günlük saati değiştir"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
 msgid "Stop Praying"
-msgstr "Dua etmeye başlayın!"
+msgstr "Dua etmeyi bırak"
 
 #: parts/components-enqueue.php:112
 #, fuzzy
@@ -1308,11 +1307,11 @@ msgstr "Namaz vakti: %s dk"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Duraklat"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Devam et"
 
 #, fuzzy
 #~ msgid "Now praying..."

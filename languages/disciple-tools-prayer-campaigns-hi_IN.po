@@ -810,6 +810,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"रमज़ान के दौरान प्रार्थना और इस अभियान के बारे में उपयोगी जानकारी प्राप्त करने के लिए "
+"ईमेल प्राप्त करें"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1194,11 +1196,11 @@ msgstr "प्रार्थना का समय: %s मिनट"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "रुकें"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "जारी रखें"
 
 #~ msgid "Now praying..."
 #~ msgstr "अब प्रार्थना कर रहे हैं..।"

@@ -1198,11 +1198,11 @@ msgstr "نمازکاوقت:‎ %s ‎منٹ"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "روکیں"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "جاری رکھیں"
 
 #~ msgid "Now praying..."
 #~ msgstr "اب دعا کررہے ہیں۔۔۔"

@@ -765,10 +765,8 @@ msgid "change time"
 msgstr "Изменить ежедневное время"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
-#| msgid "Start Praying!"
 msgid "Stop Praying"
-msgstr "Начать молиться!"
+msgstr "Прекратить молиться"
 
 #: parts/components-enqueue.php:112
 #, fuzzy
@@ -807,44 +805,32 @@ msgid "Delete Prayer Time"
 msgstr "Удалить время"
 
 #: parts/components-enqueue.php:118
-#, fuzzy
-#| msgid "days"
 msgid "Mondays"
-msgstr "дней"
+msgstr "Понедельники"
 
 #: parts/components-enqueue.php:119
-#, fuzzy
-#| msgid "days"
 msgid "Tuesdays"
-msgstr "дней"
+msgstr "Вторники"
 
 #: parts/components-enqueue.php:120
 msgid "Wednesdays"
-msgstr ""
+msgstr "Среды"
 
 #: parts/components-enqueue.php:121
-#, fuzzy
-#| msgid "days"
 msgid "Thursdays"
-msgstr "дней"
+msgstr "Четверги"
 
 #: parts/components-enqueue.php:122
-#, fuzzy
-#| msgid "days"
 msgid "Fridays"
-msgstr "дней"
+msgstr "Пятницы"
 
 #: parts/components-enqueue.php:123
-#, fuzzy
-#| msgid "days"
 msgid "Saturdays"
-msgstr "дней"
+msgstr "Субботы"
 
 #: parts/components-enqueue.php:124
-#, fuzzy
-#| msgid "days"
 msgid "Sundays"
-msgstr "дней"
+msgstr "Воскресенья"
 
 #: parts/components-enqueue.php:125
 msgid "Hours"
@@ -1162,10 +1148,8 @@ msgstr "Посвященное время"
 
 #: porches/generic/site/home-body.php:182
 #: porches/ramadan/site/home-body.php:203
-#, fuzzy
-#| msgid "My Prayer Times"
 msgid "Prayer Warriors"
-msgstr "Мое время молитвы"
+msgstr "Молитвенные воины"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
 #: porches/ramadan/site/home-body.php:217
@@ -1266,10 +1250,8 @@ msgstr "Регистрация"
 
 #: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
-#, fuzzy
-#| msgid "Select a time"
 msgid "Select Language"
-msgstr "Выбрать время"
+msgstr "Выбрать язык"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
@@ -1343,11 +1325,11 @@ msgstr "Молитвенное время: %s минут"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Продолжить"
 
 #~ msgid "Now praying..."
 #~ msgstr "Сейчас молятся..."

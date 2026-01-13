@@ -738,9 +738,8 @@ msgid "change time"
 msgstr "Schimbați ora zilnică"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
 msgid "Stop Praying"
-msgstr "Începeți să vă rugați!"
+msgstr "Opriți rugăciunea"
 
 #: parts/components-enqueue.php:112
 #, fuzzy
@@ -773,38 +772,32 @@ msgid "Delete Prayer Time"
 msgstr "Timp selectat"
 
 #: parts/components-enqueue.php:118
-#, fuzzy
 msgid "Mondays"
-msgstr "zile"
+msgstr "Luni"
 
 #: parts/components-enqueue.php:119
-#, fuzzy
 msgid "Tuesdays"
-msgstr "zile"
+msgstr "Marți"
 
 #: parts/components-enqueue.php:120
 msgid "Wednesdays"
-msgstr ""
+msgstr "Miercuri"
 
 #: parts/components-enqueue.php:121
-#, fuzzy
 msgid "Thursdays"
-msgstr "zile"
+msgstr "Joi"
 
 #: parts/components-enqueue.php:122
-#, fuzzy
 msgid "Fridays"
-msgstr "zile"
+msgstr "Vineri"
 
 #: parts/components-enqueue.php:123
-#, fuzzy
 msgid "Saturdays"
-msgstr "zile"
+msgstr "Sâmbătă"
 
 #: parts/components-enqueue.php:124
-#, fuzzy
 msgid "Sundays"
-msgstr "zile"
+msgstr "Duminică"
 
 #: parts/components-enqueue.php:125
 #, fuzzy
@@ -1122,9 +1115,8 @@ msgstr "Timp angajat"
 
 #: porches/generic/site/home-body.php:182
 #: porches/ramadan/site/home-body.php:203
-#, fuzzy
 msgid "Prayer Warriors"
-msgstr "Timpurile mele de rugăciune"
+msgstr "Luptători de rugăciune"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
 #: porches/ramadan/site/home-body.php:217
@@ -1224,9 +1216,8 @@ msgstr "Inscrie-te"
 
 #: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
-#, fuzzy
 msgid "Select Language"
-msgstr "Selectați o oră"
+msgstr "Selectați limba"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 #, fuzzy
@@ -1303,11 +1294,11 @@ msgstr "Timp de rugăciune: %s min"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Pauză"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Reluați"
 
 #, fuzzy
 #~ msgid "Now praying..."

@@ -27,10 +27,8 @@ msgid "Confirm your participation in prayer by activating your account."
 msgstr "Confirmez votre participation à la prière en activant votre compte."
 
 #: campaign-functions/send-email-utility.php:90
-#, fuzzy
-#| msgid "Access Account"
 msgid "Activate Account"
-msgstr "Accéder au compte"
+msgstr "Activer le compte"
 
 #: campaign-functions/send-email-utility.php:94
 msgid "Or click this link:"
@@ -369,10 +367,8 @@ msgstr "Cette campagne est terminée. Voir le carburant ci-dessous"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:48
-#, fuzzy
-#| msgid "Delete Prayer Time"
 msgid "Prayer Timer"
-msgstr "Supprimer le temps de prière"
+msgstr "Minuterie de prière"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
@@ -726,10 +722,8 @@ msgid "change time"
 msgstr "changer l'heure"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
-#| msgid "Start Praying!"
 msgid "Stop Praying"
-msgstr "Commencez à prier !"
+msgstr "Arrêtez de prier"
 
 #: parts/components-enqueue.php:112
 msgid "See prayer times"
@@ -1192,10 +1186,8 @@ msgstr "S'inscrire"
 
 #: porches/generic/site/top-nav-fuel.php:64
 #: porches/generic/site/top-section.php:72
-#, fuzzy
-#| msgid "Select a Date"
 msgid "Select Language"
-msgstr "Sélectionnez une date"
+msgstr "Sélectionnez la langue"
 
 #: porches/ramadan/dt-ramadan-porch-loader.php:10
 msgid "Ramadan Landing Page"
@@ -1268,11 +1260,11 @@ msgstr "Temps de prière : %s min"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Reprendre"
 
 #~ msgid "Now praying..."
 #~ msgstr "Prier maintenant..."

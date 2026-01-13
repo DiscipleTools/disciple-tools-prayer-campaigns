@@ -1186,11 +1186,11 @@ msgstr "ప్రార్థనా సమయం: %s నిమిషాలు"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "ఆపు"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "కొనసాగించండి"
 
 #~ msgid "Now praying..."
 #~ msgstr "ఇప్పుడు ప్రార్థించుచున్నవారు…"

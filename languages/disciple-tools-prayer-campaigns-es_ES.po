@@ -509,7 +509,7 @@ msgstr "Comienza el %s"
 #, php-format
 msgctxt "Ending on October 4"
 msgid "Ending on %s"
-msgstr "Termiinando el %s"
+msgstr "Terminando el %s"
 
 #: parts/components-enqueue.php:68
 msgid "Review"
@@ -818,6 +818,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Recibir correos electrónicos sobre la oración durante el Ramadán e "
+"información útil sobre esta campaña"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1214,11 +1216,11 @@ msgstr "Tiempo de oración: %s min"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Pausa"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Reanudar"
 
 #~ msgid "Now praying..."
 #~ msgstr "Orando…"

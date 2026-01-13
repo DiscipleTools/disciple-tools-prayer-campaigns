@@ -1336,11 +1336,11 @@ msgstr "Час молитви: %s хв"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Продовжити"
 
 #, fuzzy
 #~ msgid "Now praying..."

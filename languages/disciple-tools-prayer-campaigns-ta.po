@@ -1202,11 +1202,11 @@ msgstr "ஜெப நேரம்: நிமிடங்கள் %s"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "நிறுத்து"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "தொடரவும்"
 
 #~ msgid "Now praying..."
 #~ msgstr "இப்போது ஜெபித்துக்கொண்டிருக்கிறோம்…"

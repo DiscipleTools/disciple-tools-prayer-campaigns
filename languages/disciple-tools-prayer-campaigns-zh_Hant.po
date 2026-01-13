@@ -1171,11 +1171,11 @@ msgstr "祈禱時間：%s 分鐘"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "暫停"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "繼續"
 
 #~ msgid "Now praying..."
 #~ msgstr "現在祈禱..."

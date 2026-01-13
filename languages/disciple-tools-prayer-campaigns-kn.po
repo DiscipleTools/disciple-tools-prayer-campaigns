@@ -1208,11 +1208,11 @@ msgstr "ಪ್ರಾರ್ಥನೆಯ ಸಮಯ: %s ನಿಮಿಷ"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "ನಿಲ್ಲಿಸು"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "ಮುಂದುವರಿಸು"
 
 #~ msgid "Now praying..."
 #~ msgstr "ಈಗ ಪ್ರಾರ್ಥಿಸುವುದು…"

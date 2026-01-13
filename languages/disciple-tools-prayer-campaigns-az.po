@@ -816,6 +816,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Ramazan ərzində dua haqqında e-poçtlar və bu kampaniya haqqında faydalı "
+"məlumatlar alın"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1209,11 +1211,11 @@ msgstr "Dua vaxtı: %s dəq"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Fasilə"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Davam et"
 
 #~ msgid "Now praying..."
 #~ msgstr "İndi dua edir..."

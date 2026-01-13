@@ -1210,11 +1210,11 @@ msgstr "Tempo de oração: %s minutos"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Pausar"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Continuar"
 
 #~ msgid "Now praying..."
 #~ msgstr "Orando agora…"

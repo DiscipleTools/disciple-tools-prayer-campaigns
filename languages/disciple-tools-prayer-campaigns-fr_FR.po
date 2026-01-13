@@ -75,7 +75,7 @@ msgstr "Vous vous êtes inscrit pour prier :"
 
 #: campaign-functions/send-email-utility.php:235
 msgid "These are your next prayer commitments:"
-msgstr "Voici vos prochains engagements de temps :"
+msgstr "Voici vos prochains engagements de prière :"
 
 #: campaign-functions/send-email-utility.php:238
 #: campaign-functions/send-email-utility.php:314
@@ -388,7 +388,7 @@ msgstr "Liens"
 #: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
-msgstr "Acceuil"
+msgstr "Accueil"
 
 #: magic-links/subscription-management/subscription-management.php:352
 #: porches/generic/site/stats.php:20 porches/generic/site/stats.php:110
@@ -405,11 +405,11 @@ msgstr "Inscrivez-vous pour plus de prière"
 
 #: magic-links/subscription-management/subscription-management.php:402
 msgid "This subscription has ended or is not configured correctly."
-msgstr "Cet inscription est terminé ou n'est pas configuré correctement."
+msgstr "Cette inscription est terminée ou n'est pas configurée correctement."
 
 #: parts/components-enqueue.php:41
 msgid "Detected time zone"
-msgstr "Fuseau horaire  détecté"
+msgstr "Fuseau horaire détecté"
 
 #: parts/components-enqueue.php:42
 msgid "Select a timezone"
@@ -456,7 +456,7 @@ msgstr "Je prie pour"
 
 #: parts/components-enqueue.php:53
 msgid "At what time?"
-msgstr "À quel temps ?"
+msgstr "À quelle heure ?"
 
 #: parts/components-enqueue.php:55
 msgid "Contact Info"
@@ -559,7 +559,7 @@ msgstr "Chaque mois"
 
 #: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
-msgstr "Choisir les jours et heurs"
+msgstr "Choisir les jours et heures"
 
 #: parts/components-enqueue.php:80
 #, php-format
@@ -818,6 +818,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"Recevoir des courriels sur la prière pendant le Ramadan et des informations "
+"utiles sur cette campagne"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -1215,11 +1217,11 @@ msgstr "Temps de prière : %s min"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Reprendre"
 
 #~ msgid "Now praying..."
 #~ msgstr "Prier maintenant..."

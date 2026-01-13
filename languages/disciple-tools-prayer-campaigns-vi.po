@@ -736,9 +736,8 @@ msgid "change time"
 msgstr "Thay đổi thời gian hàng ngày"
 
 #: parts/components-enqueue.php:111
-#, fuzzy
 msgid "Stop Praying"
-msgstr "Bắt đầu cầu nguyện!"
+msgstr "Ngừng cầu nguyện"
 
 #: parts/components-enqueue.php:112
 #, fuzzy
@@ -1297,11 +1296,11 @@ msgstr "Thời gian cầu nguyện: %s phút"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "Tạm dừng"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "Tiếp tục"
 
 #, fuzzy
 #~ msgid "Now praying..."

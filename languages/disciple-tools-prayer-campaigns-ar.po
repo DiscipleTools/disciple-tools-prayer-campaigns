@@ -380,7 +380,7 @@ msgstr "الروابط"
 #: porches/generic/site/top-nav-fuel.php:28
 #: porches/generic/site/top-section.php:28
 msgid "Home"
-msgstr "منزل"
+msgstr "الرئيسية"
 
 #: magic-links/subscription-management/subscription-management.php:352
 #: porches/generic/site/stats.php:20 porches/generic/site/stats.php:110
@@ -510,7 +510,7 @@ msgstr "مراجعة"
 #: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
 msgid "Submit"
-msgstr "يُقدِّم"
+msgstr "إرسال"
 
 #: parts/components-enqueue.php:70
 msgid "Verify"
@@ -589,7 +589,7 @@ msgstr "تم اختيار وقت الصلاة"
 
 #: parts/components-enqueue.php:87
 msgid "Prayer Time Removed"
-msgstr "تحديد وقت الصلاة"
+msgstr "تمت إزالة وقت الصلاة"
 
 #: parts/components-enqueue.php:88
 msgid "Select a Day"
@@ -607,7 +607,7 @@ msgstr "ينتهي في %s"
 
 #: parts/components-enqueue.php:91
 msgid "Success"
-msgstr "نُجح"
+msgstr "نجاح"
 
 #: parts/components-enqueue.php:92
 msgid "Your registration was successful."
@@ -722,7 +722,7 @@ msgstr "أيام الاثنين"
 
 #: parts/components-enqueue.php:119
 msgid "Tuesdays"
-msgstr "الثلثاء"
+msgstr "الثلاثاء"
 
 #: parts/components-enqueue.php:120
 msgid "Wednesdays"
@@ -806,6 +806,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
+"تلقي رسائل بريد إلكتروني حول الصلاة خلال شهر رمضان ومعلومات مفيدة حول هذه "
+"الحملة"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -869,7 +871,7 @@ msgstr "رجاء تفقُّد بريدك الإلكتروني لتفعيل حس�
 
 #: parts/components-enqueue.php:157
 msgid "Time not covered"
-msgstr "مواقيت غير مُلباه %s"
+msgstr "وقت غير مغطى"
 
 #: parts/components-enqueue.php:158
 msgid "# of people covering this time"
@@ -965,11 +967,11 @@ msgstr "كل الأيام"
 
 #: porches/generic/dt-generic-porch-strings.php:197
 msgid "Edit Prayer Fuel"
-msgstr "وقود الصلاة"
+msgstr "تعديل وقود الصلاة"
 
 #: porches/generic/dt-generic-porch-strings.php:215
 msgid "Scheduled Prayer Fuel"
-msgstr "اكتشاف وقود الصلاة"
+msgstr "وقود الصلاة المجدول"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid ""
@@ -1089,7 +1091,7 @@ msgstr "الدول التي صليت من أجلها"
 
 #: porches/generic/site/stats.php:329
 msgid "Intercessors"
-msgstr "الشفاعة"
+msgstr "الشفعاء"
 
 #: porches/generic/site/stats.php:337
 msgid "Time Prayed"
@@ -1186,11 +1188,11 @@ msgstr "وقت الصلاة: %s دقيقة"
 
 #: shortcodes/prayer-timer.php:323
 msgid "Pause"
-msgstr ""
+msgstr "إيقاف مؤقت"
 
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
-msgstr ""
+msgstr "استئناف"
 
 #~ msgid "Now praying..."
 #~ msgstr "نصلي الآن…"
