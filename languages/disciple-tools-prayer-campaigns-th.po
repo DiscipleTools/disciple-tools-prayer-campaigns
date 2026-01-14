@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.17.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -274,6 +274,8 @@ msgid "day"
 msgstr "วัน"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "วัน"
 
@@ -516,7 +518,7 @@ msgstr "ยืนยัน"
 msgid "Goal: %s hours of prayer every day"
 msgstr "เป้าหมาย: %s ชั่วโมงของการอธิษฐานทุกวัน"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "เป้าหมาย: ครอบคลุม 24/7"
 
@@ -1007,28 +1009,25 @@ msgstr "ติดต่อ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "ลงทะเบียนเพื่ออธิษฐาน"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "เวลาที่อุทิศไว้"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "นักรบแห่งการอธิษฐาน"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "การอุทิศตัวอธิษฐานที่ต้องการ"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "ดูทั้งหมด"
 
@@ -1148,17 +1147,56 @@ msgstr ""
 "บางคนยังอ่านคัมภีร์อัลกุรอานทั้งเล่ม (ประมาณหนึ่งในสิบของความยาวพระคัมภีร์) "
 "การแสวงหาอย่างจริงใจนี้ทำให้เป็นเวลาที่เหมาะสมสำหรับเราที่จะอธิษฐานเพื่อพวกเขา"
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "วิธีการทำงาน"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "ลงทะเบียนเพื่ออธิษฐาน"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "รับการแจ้งเตือนทางอีเมล"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "รอมฎอนเริ่มต้น ..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "ใช้เวลา 15 นาทีกับการอธิษฐานแบบมีคำแนะนำ"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "รอมฎอนสิ้นสุด ..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "พบพระเจ้าขณะอธิษฐานเผื่อประชาชาติ"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "รอมฎอนจบลงแล้ว"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "เกี่ยวกับรอมฎอน"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "แคมเปญเสร็จสมบูรณ์"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "วันที่เหลือ"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "รอมฎอนเริ่มใน"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "ความครอบคลุมการอธิษฐาน"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "เป้าหมาย: %d ชั่วโมง/วัน"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "มุ่งมั่น"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1177,3 +1215,9 @@ msgstr "หยุดชั่วคราว"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "ดำเนินการต่อ"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "รอมฎอนสิ้นสุด ..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "รอมฎอนจบลงแล้ว"

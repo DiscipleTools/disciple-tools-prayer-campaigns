@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Spanish <https://translate.disciple.tools/projects/"
@@ -282,6 +282,8 @@ msgid "day"
 msgstr "día"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "días"
 
@@ -297,7 +299,9 @@ msgstr "Obtener Enlace de Administración de Tiempo de Oración"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Escribe tu correo electrónico y recibe un enlace para tus tiempos de oración."
+"Ingresa tu correo electrónico y recibe un enlace a tus horarios de "
+"oración.Escribe tu correo electrónico y recibe un enlace para tus tiempos de "
+"oración."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -312,8 +316,8 @@ msgstr "Enviar por Correo Electrónico mi Enlace de Acceso"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
 msgstr ""
-"Por favor revisa tu correo electrónico ahora para obtener tu enlace de "
-"acceso."
+"Por favor revisa tu correo electrónico ahora para tu enlace de acceso.Por "
+"favor revisa tu correo electrónico ahora para obtener tu enlace de acceso."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -377,8 +381,9 @@ msgstr "¡Cuenta activada!"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
-"Aquí puedes administrar tus compromisos de oración y la configuración de tu "
-"cuenta."
+"Aquí puedes administrar tus compromisos de oración y configuración de "
+"cuenta.Aquí puedes administrar tus compromisos de oración y la configuración "
+"de tu cuenta."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -529,7 +534,7 @@ msgstr "Verificar"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Objetivo: %s horas de oración diaria"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "Objetivo: cobertura 24/7"
 
@@ -624,8 +629,8 @@ msgstr "Tu registro fue exitoso."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Revisa tu correo electrónico para obtener detalles y acceso para administrar "
-"tu cuenta."
+"Revisa tu correo para más detalles y para administrar tu cuenta.Revisa tu "
+"correo electrónico para obtener detalles y acceso para administrar tu cuenta."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -849,8 +854,8 @@ msgstr "¡Casi llegamos! Termina de registrarte activando tu cuenta."
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Haz clic en el botón \"Activar cuenta\" en el correo electrónico enviado a: "
-"%s"
+"Haz clic en el botón \"Activar cuenta\" en el correo enviado a: %sHaz clic "
+"en el botón \"Activar cuenta\" en el correo electrónico enviado a: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -973,7 +978,8 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"Utiliza estos recursos para ayudarte a orar cada día de forma específica."
+"Usa estos recursos para ayudarte a orar específicamente cada día.Utiliza "
+"estos recursos para ayudarte a orar cada día de forma específica."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1022,7 +1028,8 @@ msgstr "Ancho es el camino que conduce a la 404."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Intenta usar algunos de los enlaces en el menú para volver al buen camino."
+"Intenta usar algunos enlaces del menú para volver al camino.Intenta usar "
+"algunos de los enlaces en el menú para volver al buen camino."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1041,28 +1048,25 @@ msgstr "Contactar %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "Regístrate para Orar"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "Compromisos de Tiempo"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "Guerreros de oración"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Compromisos de Oración Requeridos"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "Ver Todos"
 
@@ -1191,17 +1195,57 @@ msgstr ""
 "Biblia). Esta búsqueda sincera hace que sea un momento estratégico para que "
 "oremos por ellos."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "Cómo funciona"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "Inscríbete para orar"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "Recibe recordatorios por correo"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "Comienza Ramadán …"
+msgid "Spend 15 minutes with guided prayers"
+msgstr "Dedica 15 minutos a oraciones guiadas"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "Ramadán termina …"
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "Encuentra a Dios mientras oras por las naciones"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "Ramadan ha terminado"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "Acerca del Ramadán"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "Campaña completada"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "Días restantes"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "El Ramadán comienza en"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "Cobertura de oración"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "Meta: %d horas/día de cobertura"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "comprometido"
+msgstr[1] "comprometidos"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1220,3 +1264,9 @@ msgstr "Pausa"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Reanudar"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "Ramadán termina …"
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "Ramadan ha terminado"

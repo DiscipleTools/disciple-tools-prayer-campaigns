@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2024-04-19 08:00+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.disciple.tools/projects/"
@@ -279,6 +279,8 @@ msgid "day"
 msgstr "hari"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "hari-hari"
 
@@ -521,7 +523,7 @@ msgstr "Verifikasi"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Tujuan: %s jam doa setiap hari"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "Tujuan: cakupan 24/7"
 
@@ -616,7 +618,8 @@ msgstr "Pendaftaran Anda berhasil."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Periksa email Anda untuk detail tambahan dan untuk mengelola akun Anda."
+"Periksa email Anda untuk detail tambahan dan untuk mengelola akun "
+"Anda.Periksa email Anda untuk detail tambahan dan untuk mengelola akun Anda."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -964,7 +967,9 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"Gunakan sumber-sumber ini untuk membantu berdoa secara khusus setiap hari."
+"Gunakan sumber daya ini untuk membantu berdoa secara khusus setiap "
+"hari.Gunakan sumber-sumber ini untuk membantu berdoa secara khusus setiap "
+"hari."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1031,28 +1036,25 @@ msgstr "Hubungi %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "Mendaftar untuk berdoa"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "Waktu Berkomitmen"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "Prajurit Doa"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Komitmen Doa Diperlukan"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "Tampilkan Keseluruhan"
 
@@ -1179,17 +1181,56 @@ msgstr ""
 "Quran (kira-kira sepersepuluh panjang Alkitab). Pencarian tulus ini "
 "menjadikannya saat yang strategis bagi kita untuk mendoakan mereka."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "Cara kerjanya"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "Daftar untuk berdoa"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "Terima pengingat email"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "Ramadhan Dimulai..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "Habiskan 15 menit dengan doa terpandu"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "Ramadhan Berakhir..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "Berjumpa dengan Tuhan saat berdoa untuk bangsa-bangsa"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "Ramadan Selesai"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "Tentang Ramadan"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "Kampanye selesai"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "Hari tersisa"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "Ramadan dimulai dalam"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "Cakupan doa"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "Sasaran: %d jam/hari cakupan"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "Berkomitmen"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1208,3 +1249,9 @@ msgstr "Jeda"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Lanjutkan"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "Ramadhan Berakhir..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "Ramadan Selesai"

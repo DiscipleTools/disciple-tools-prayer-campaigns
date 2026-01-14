@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-09 15:55+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -277,6 +277,8 @@ msgid "day"
 msgstr "天"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "天数"
 
@@ -519,7 +521,7 @@ msgstr "核实"
 msgid "Goal: %s hours of prayer every day"
 msgstr "目标：每天 %s 小时的祈祷"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "目标：全天候24/7覆盖"
 
@@ -1007,28 +1009,25 @@ msgstr "联系 %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "报名祈祷"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "承诺时间"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "祷告勇士"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "需要做的祈祷承诺"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "查看全部"
 
@@ -1145,17 +1144,56 @@ msgstr ""
 "行其他仪式祈祷。有些人甚至阅读了整本古兰经（大约是圣经长度的十分之一）。这种"
 "真诚的寻求给与我们为他们祈祷的战略时机。"
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "如何运作"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "报名祷告"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "接收电子邮件提醒"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "斋月开始..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "花15分钟进行引导祷告"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "斋月结束..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "在为列国祷告时遇见上帝"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "斋月结束了"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "关于斋月"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "活动已完成"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "剩余天数"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "斋月开始倒计时"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "祷告覆盖"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "目标：每天 %d 小时覆盖"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "已承诺"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1174,3 +1212,9 @@ msgstr "暂停"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "继续"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "斋月结束..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "斋月结束了"
