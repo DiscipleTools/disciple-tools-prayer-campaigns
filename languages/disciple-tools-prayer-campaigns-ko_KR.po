@@ -63,14 +63,14 @@ msgstr "안녕하세요 %s님,"
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
 msgid "Access your account to see your commitments and make changes:"
-msgstr "계정에 액세스하여 약정을 확인하고 변경할 수 있습니다:"
+msgstr "계정에 접속하여 기도 약속을 확인하고 변경할 수 있습니다:"
 
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
 #: campaign-functions/send-email-utility.php:422
 #: parts/components-enqueue.php:95
 msgid "Access Account"
-msgstr "액세스 계정"
+msgstr "계정 접속"
 
 #: campaign-functions/send-email-utility.php:230
 msgid "You signed up to pray:"
@@ -147,7 +147,7 @@ msgid ""
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
-"계속 기도하고 알림을 받으시려면 계정에 접속하여 약정 옆의 \"연장\"을 클릭하세요. "
+"계속 기도하고 알림을 받으시려면 계정에 접속하여 기도 약속 옆의 \"연장\"을 클릭하세요. "
 "원하시면 다른 시간대에 등록하실 수도 있습니다."
 
 #: campaign-functions/send-email-utility.php:423
@@ -279,7 +279,7 @@ msgstr "일"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
 msgid "days"
-msgstr "일수"
+msgstr "일"
 
 #: campaign-functions/utils.php:352
 #: porches/generic/site/edit-post-list-body.php:135
@@ -288,7 +288,7 @@ msgstr "수정"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:158
 msgid "Retrieve Prayer Time Management Link"
-msgstr "기도 시간 관리 링크 검색"
+msgstr "기도 시간 관리 링크 받기"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
@@ -340,7 +340,7 @@ msgstr "콘텐츠가 %s일 후에 시작됩니다."
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr "이 캠페인은 종료되었습니다. 아래 연료 참조"
+msgstr "이 캠페인은 종료되었습니다. 아래 기도 연료를 참조하세요"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
@@ -369,7 +369,7 @@ msgstr "계정이 활성화되었습니다!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr "여기에서 기도 약정 및 계정 설정을 관리할 수 있습니다."
+msgstr "여기에서 기도 약속 및 계정 설정을 관리할 수 있습니다."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -421,11 +421,11 @@ msgstr "초"
 
 #: parts/components-enqueue.php:47
 msgid "Campaign Starts In"
-msgstr "캠페인 시작"
+msgstr "캠페인 시작까지"
 
 #: parts/components-enqueue.php:48
 msgid "Campaign Ends In"
-msgstr "캠페인 종료일"
+msgstr "캠페인 종료까지"
 
 #: parts/components-enqueue.php:49
 msgid "Campaign Ended"
@@ -580,11 +580,11 @@ msgstr "%s분 동안"
 #: parts/components-enqueue.php:85
 #, php-format
 msgid "Every %s"
-msgstr "모든 %s"
+msgstr "매주 %s"
 
 #: parts/components-enqueue.php:86
 msgid "Prayer Time Selected"
-msgstr "기도 시간 선택"
+msgstr "기도 시간이 선택되었습니다"
 
 #: parts/components-enqueue.php:87
 msgid "Prayer Time Removed"
@@ -627,7 +627,7 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
-"취소해야 하나요? 이해합니다! 하지만 잠깐만요! 48시간 이내에 기도 약정이 시작"
+"취소해야 하나요? 이해합니다! 하지만 잠깐만요! 48시간 이내에 기도 약속이 시작"
 "될 예정이라면 친구에게 대신해 달라고 부탁하세요. 그러면 기도 연쇄가 끊어지는 "
 "것을 막을 수 있고, 누군가에게 잃어버린 자를 위해 싸우는 기쁨을 줄 수 있습니"
 "다! 감사합니다!"
@@ -703,7 +703,7 @@ msgstr "앞으로의 기도 시간이 취소됩니다."
 
 #: parts/components-enqueue.php:114
 msgid "extend"
-msgstr "확장"
+msgstr "연장"
 
 #: parts/components-enqueue.php:115
 msgid "Extend Prayer Times"
@@ -811,19 +811,19 @@ msgstr ""
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
-msgstr ""
+msgstr "텍스트 번역"
 
 #: parts/components-enqueue.php:141
 msgid "Original String"
-msgstr ""
+msgstr "원본 문자열"
 
 #: parts/components-enqueue.php:142
 msgid "Custom Value For All Languages"
-msgstr ""
+msgstr "모든 언어에 적용할 사용자 지정 값"
 
 #: parts/components-enqueue.php:143
 msgid "Translation For Currently Selected Language"
-msgstr ""
+msgstr "현재 선택된 언어의 번역"
 
 #: parts/components-enqueue.php:145
 msgid "Update"
@@ -871,7 +871,7 @@ msgstr "기도 시간을 더 추가하기 전에 이메일을 확인하여 계�
 
 #: parts/components-enqueue.php:157
 msgid "Time not covered"
-msgstr "기도가 필요한 시간"
+msgstr "커버되지 않은 시간"
 
 #: parts/components-enqueue.php:158
 msgid "# of people covering this time"
@@ -930,7 +930,7 @@ msgstr "역사상 모든 제자 삼기 운동은 특별한 기도의 맥락에�
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
-msgstr "움직임 중심"
+msgstr "운동 중심"
 
 #: porches/generic/dt-generic-porch-strings.php:108
 msgid ""
@@ -995,7 +995,7 @@ msgstr "좁은 길에서 벗어난 것 같습니다."
 
 #: porches/generic/site/404-body.php:16
 msgid "Wide is the path that leads to the 404."
-msgstr "넓게는 404로 연결되는 경로입니다."
+msgstr "404로 가는 길은 넓습니다."
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
@@ -1026,7 +1026,7 @@ msgstr "기도 신청하기"
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
 #: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
-msgstr "투입된 시간"
+msgstr "약속된 시간"
 
 #: porches/generic/site/home-body.php:182
 #: porches/ramadan/site/home-body.php:203
@@ -1053,7 +1053,7 @@ msgstr "기도 연료가 없습니다."
 
 #: porches/generic/site/stats.php:137
 msgid "Percentage Covered"
-msgstr "적용 비율"
+msgstr "커버리지 비율"
 
 #: porches/generic/site/stats.php:163
 msgid "Time Prayed in Groups"
@@ -1083,7 +1083,7 @@ msgstr "총 기도 캠페인"
 
 #: porches/generic/site/stats.php:321
 msgid "Countries Prayed For"
-msgstr "기도하는 국가"
+msgstr "기도한 국가"
 
 #: porches/generic/site/stats.php:329
 msgid "Intercessors"
@@ -1095,7 +1095,7 @@ msgstr "기도한 시간"
 
 #: porches/generic/site/stats.php:345
 msgid "15 Minute Time Slots Filled"
-msgstr "15분 시간 슬롯이 가득 찼습니다."
+msgstr "채워진 15분 시간 슬롯"
 
 #: porches/generic/site/stats.php:368
 msgid "More Prayer Opportunities"

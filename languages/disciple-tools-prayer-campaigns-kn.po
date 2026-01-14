@@ -815,7 +815,7 @@ msgstr ""
 msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
-msgstr ""
+msgstr "ರಮಜಾನ್ ಸಮಯದಲ್ಲಿ ಪ್ರಾರ್ಥನೆಯ ಬಗ್ಗೆ ಇಮೇಲ್‌ಗಳನ್ನು ಪಡೆದುಕೊಳ್ಳಿ ಮತ್ತು ಈ ಅಭಿಯಾನ ಕುರಿತು ಉಪಯುಕ್ತ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳಿ"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
