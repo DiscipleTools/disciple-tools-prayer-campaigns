@@ -258,6 +258,7 @@ export class ContactInfo extends LitElement {
       email: '',
       name: '',
       receive_prayer_tools_news: window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ? true : false,
+      receive_ramadan_emails: window.campaign_objects.is_ramadan_campaign ? true : false,
     }
     window.campaign_data.signup_form_fields?.map(f=>{
       this._form_items[f.key] = f.default || null;
@@ -309,6 +310,12 @@ export class ContactInfo extends LitElement {
               <input class="cp-input" type="email" name="email" id="e2" placeholder="${strings['Email']}" @input=${this.handleInput} />
           </label>
       </div>
+      ${ window.campaign_objects.is_ramadan_campaign ?
+          html`<label for="receive_ramadan_emails" style="font-weight: normal; display: block">
+                <input type="checkbox" checked id="receive_ramadan_emails" name="receive_ramadan_emails" @input=${this.handleInput}/>
+                ${translate("Receive emails about praying during Ramadan and helpful information about this campaign")}
+          </label>`
+      : ``}
       ${ window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ?
           html`<label for="receive_prayer_tools_news" style="font-weight: normal; display: block">
                 <input type="checkbox" checked id="receive_prayer_tools_news" name="receive_prayer_tools_news" @input=${this.handleInput}/>

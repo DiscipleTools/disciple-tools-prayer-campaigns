@@ -162,6 +162,7 @@ export class CampaignSignUp extends LitElement {
       email: '',
       name: '',
       receive_prayer_tools_news: window.campaign_objects.dt_campaigns_is_prayer_tools_news_enabled ? true : false,
+      receive_ramadan_emails: window.campaign_objects.is_ramadan_campaign ? true : false,
     }
     this.now = new Date().getTime()/1000
     this.selected_day = null;

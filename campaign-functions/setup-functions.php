@@ -69,6 +69,17 @@ function dt_campaigns_is_prayer_tools_news_enabled(){
     return apply_filters( 'dt_campaigns_is_p4m_news_enabled', defined( 'WP_DEBUG' ) ? !WP_DEBUG : true );
 }
 
+function dt_campaigns_is_ramadan_campaign( $campaign_id ){
+    if ( empty( $campaign_id ) ){
+        return false;
+    }
+    $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+    if ( is_wp_error( $campaign ) ){
+        return false;
+    }
+    return isset( $campaign['porch_type']['key'] ) && $campaign['porch_type']['key'] === 'ramadan-porch';
+}
+
 /**
  * Handle export via admin-post.php to avoid direct file access.
  */

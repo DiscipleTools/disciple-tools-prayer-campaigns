@@ -265,22 +265,39 @@ if ( !function_exists( 'dt_cached_api_call' ) ){
 }
 
 
-function p4m_subscribe_to_news( $email, $name = '', $source = 'p4m_campaign_signup' ){
-    if ( !dt_campaigns_is_prayer_tools_news_enabled() ) {
+function p4m_subscribe_to_lists( $email, $name = '', $receive_prayer_tools_news = false, $receive_ramadan_emails = false, $source = 'p4m_campaign_signup' ){
+    if ( !dt_campaigns_is_prayer_tools_news_enabled() ){
         return;
     }
 
-    $lists = [ 'list_23', 'list_29' ]; //P4M News, P4M Campaign subscriber
+    $lists = [];
     $tags = [];
 
-    if ( class_exists( 'DT_Porch_Selector' ) ){
-        $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
-        if ( $selected_porch === 'ramadan-porch' ){
-            $lists[] = 'list_31'; //Ramadan Campaign subscriber
-            $lists[] = 'list_43'; //Ramadan 2026 Campaign subscriber
-            $tags[] = [ 'value' => 'p4m_ramadan_subscriber' ];
+    if ( $receive_prayer_tools_news ){
+        $lists[] = 'list_23'; //P4M News
+        $lists[] = 'list_29'; //P4M Campaign subscriber
+
+        if ( class_exists( 'DT_Porch_Selector' ) ){
+            $selected_porch = DT_Porch_Selector::instance()->get_selected_porch_id();
+            if ( $selected_porch === 'ramadan-porch' ){
+                $lists[] = 'list_31'; //Ramadan Campaign subscriber
+                $lists[] = 'list_43'; //Ramadan 2026 Campaign subscriber
+                $tags[] = [ 'value' => 'p4m_ramadan_subscriber' ];
+            }
         }
     }
+
+    if ( $receive_ramadan_emails ){
+        if ( !in_array( 'list_43', $lists ) ){
+            $lists[] = 'list_43'; //Ramadan 2026 Campaign subscriber
+        }
+        $tags[] = [ 'value' => 'p4m_ramadan_emails_subscriber' ];
+    }
+
+    if ( empty( $lists ) ){
+        return;
+    }
+
     $campaign_name = '';
     if ( class_exists( 'DT_Porch_Settings' ) ){
         $porch_fields = DT_Porch_Settings::settings();
