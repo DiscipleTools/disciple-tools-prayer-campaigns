@@ -1193,12 +1193,3 @@ msgstr "ఆపు"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "కొనసాగించండి"
-
-#~ msgid "Now praying..."
-#~ msgstr "ఇప్పుడు ప్రార్థించుచున్నవారు…"
-
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "%లో శిష్యులను చేయు ఉద్యమము కొరకు వ్యూహాత్మక ప్రార్థన"
-
-#~ msgid "See Ramadan 24/7 Prayer Stats"
-#~ msgstr "రంజాన్ 24/7 ప్రార్థనా స్టాట్స్ చూడండి"

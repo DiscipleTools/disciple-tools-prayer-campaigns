@@ -1209,12 +1209,3 @@ msgstr "நிறுத்து"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "தொடரவும்"
-
-#~ msgid "Now praying..."
-#~ msgstr "இப்போது ஜெபித்துக்கொண்டிருக்கிறோம்…"
-
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "%s -ன் சீஷரை உருவாக்கும் ஒரு இயக்கத்திற்கான திட்டமிட்ட ஜெபம்"
-
-#~ msgid "See Ramadan 24/7 Prayer Stats"
-#~ msgstr "ரமலான் 24/7 ப்ரேயர் ஸ்டாட்ஸ் பார்க்கவும்"

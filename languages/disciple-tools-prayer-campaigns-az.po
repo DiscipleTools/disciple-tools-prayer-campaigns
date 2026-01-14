@@ -1217,5 +1217,3 @@ msgstr "Fasilə"
 msgid "Resume"
 msgstr "Davam et"
 
-#~ msgid "Now praying..."
-#~ msgstr "İndi dua edir..."

@@ -129,7 +129,7 @@ msgstr "ನಿಮ್ಮ ಮುಂಬರುವ ಪ್ರಾರ್ಥನೆ ಸಮ
 #: porches/generic/dt-generic-porch-strings.php:161
 #: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
-msgstr "ಪ್ರಾರ್ಥನೆಯ ಬಲ"
+msgstr "ಪ್ರಾರ್ಥನೆ ಶಕ್ತಿ"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
@@ -975,7 +975,7 @@ msgstr "ಪ್ರತಿದಿನ ನಿರ್ದಿಷ್ಟವಾಗಿ ಪ್�
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
-msgstr "ಇಂದಿನ ಪ್ರಾರ್ಥನೆಯಲ್ಲಿರುವ ಶಕ್ತಿ"
+msgstr "ಇಂದಿನ ಪ್ರಾರ್ಥನೆ ಶಕ್ತಿ"
 
 #: porches/generic/dt-generic-porch-strings.php:188
 msgid "All Days"
@@ -1213,12 +1213,3 @@ msgstr "ನಿಲ್ಲಿಸು"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "ಮುಂದುವರಿಸು"
-
-#~ msgid "Now praying..."
-#~ msgstr "ಈಗ ಪ್ರಾರ್ಥಿಸುವುದು…"
-
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "%s ನಲ್ಲಿ ಶಿಷ್ಯರನ್ನಾಗಿ ಮಾಡುವ ಆಂದೋಲನಕ್ಕಾಗಿ ಕಾರ್ಯತಂತ್ರದ ಪ್ರಾರ್ಥನೆ"
-
-#~ msgid "See Ramadan 24/7 Prayer Stats"
-#~ msgstr "ರಂಜಾನ್ 24/7 ಪ್ರಾರ್ಥನಾ ಅಂಕಿಅಂಶಗಳನ್ನು ನೋಡಿ"

@@ -25,7 +25,7 @@ msgstr "Bestätige deine Email-Adresse"
 #: campaign-functions/send-email-utility.php:87
 msgid "Confirm your participation in prayer by activating your account."
 msgstr ""
-"Bestätigen Sie Ihre Teilnahme am Gebet, indem Sie Ihr Konto aktivieren."
+"Bestätige deine Teilnahme am Gebet, indem du dein Konto aktivierst."
 
 #: campaign-functions/send-email-utility.php:90
 msgid "Activate Account"
@@ -349,7 +349,7 @@ msgstr "Bete mit mir!"
 #: porches/generic/site/post-list-body.php:169
 #, php-format
 msgid "Content will start in %s days"
-msgstr "wird  in %s  Tagen veröffentlicht"
+msgstr "wird in %s Tagen veröffentlicht"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
@@ -384,7 +384,7 @@ msgstr "Konto aktiviert!"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
-"Hier können Sie Ihre Gebetsverpflichtungen und Kontoeinstellungen verwalten."
+"Hier kannst du deine Gebetsverpflichtungen und Kontoeinstellungen verwalten."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -851,14 +851,14 @@ msgstr "Aktualisieren"
 #: parts/components-enqueue.php:148
 msgid "Almost there! Finish signing up by activating your account."
 msgstr ""
-"Fast dort! Schließen Sie die Anmeldung ab, indem Sie Ihr Konto aktivieren."
+"Fast geschafft! Schließe die Anmeldung ab, indem du dein Konto aktivierst."
 
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Klicken Sie in der E-Mail, die an folgende Adresse gesendet wird, auf die "
-"Schaltfläche „Konto aktivieren“: %s"
+"Klicke in der E-Mail, die an folgende Adresse gesendet wird, auf die "
+"Schaltfläche „Konto aktivieren": %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -927,7 +927,7 @@ msgid ""
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
 "Andere im Gebet zu leiten ist ein wichtiger Schritt, um Jünger zu machen. "
-"Wir möchten deine und deren Treue feiern.  Für jede Person, die mit dir "
+"Wir möchten deine und deren Treue feiern. Für jede Person, die mit dir "
 "betet, addieren wir 15 Minuten zu den %s Gebetstagen, die bisher eingetragen "
 "wurden."
 
@@ -1068,7 +1068,7 @@ msgstr "Gebetskämpfer"
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
 #: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
-msgstr "Verfügbare Gebetszeiten"
+msgstr "Noch benötigte Gebetszeiten"
 
 #: porches/generic/site/home-body.php:216
 #: porches/ramadan/site/home-body.php:238
@@ -1229,372 +1229,3 @@ msgstr "Pause"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Fortsetzen"
-
-#~ msgid "Now praying..."
-#~ msgstr "Ich bete jetzt..."
-
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "Strategisches Gebet für eine Jüngerschaftsbewegung"
-
-#~ msgid "See Ramadan 24/7 Prayer Stats"
-#~ msgstr "siehe Ramadan 24/7 Gebetsstatistiken"
-
-#~ msgid "Percentage covered in prayer"
-#~ msgstr "Prozent, die durch Gebet abgedeckt sind"
-
-#~ msgid "%s committed"
-#~ msgstr "% zugesagt"
-
-#~ msgid "Days"
-#~ msgstr "Tage"
-
-#~ msgid "Hours of Prayer"
-#~ msgstr "Gebetsstunden"
-
-#, fuzzy
-#~| msgid "%1$s at %2$s for %3$s"
-#~ msgctxt "Every Wednesday at 5pm for 15 minutes"
-#~ msgid "Every %1$s at %2$s for %3$s minutes"
-#~ msgstr "%1$s am %2$s für %3$s"
-
-#, fuzzy
-#~| msgctxt "Ending on October 4"
-#~| msgid "Ending on %s"
-#~ msgctxt "Praying Daily at 4:15 PM, ending on July 18, 2026"
-#~ msgid "ending on %s"
-#~ msgstr "Endet am %s"
-
-#~ msgid "Remove all"
-#~ msgstr "Alles entfernen"
-
-#~ msgid "Delete Prayer Times"
-#~ msgstr "Gebetszeiten löschen"
-
-#~ msgid "Really delete these prayer times?"
-#~ msgstr "Diese Gebetszeiten wirklich löschen?"
-
-#, fuzzy
-#~| msgid ""
-#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
-#~| "praying?"
-#~ msgid ""
-#~ "Your last prayer time will be one week from today. Would you like to keep "
-#~ "praying?"
-#~ msgstr ""
-#~ "Deine letzte Gebetszeit liegt nun 2 Wochen zurück. Möchtest du weiter "
-#~ "beten?"
-
-#, fuzzy
-#~| msgid ""
-#~| "You are 2 weeks out from your last prayer time. Would you like to keep "
-#~| "praying?"
-#~ msgid ""
-#~ "Your last prayer time will be 2 weeks from today. Would you like to keep "
-#~ "praying? "
-#~ msgstr ""
-#~ "Deine letzte Gebetszeit liegt nun 2 Wochen zurück. Möchtest du weiter "
-#~ "beten?"
-
-#, fuzzy
-#~| msgid "Thank you for praying with us."
-#~ msgid "Today was your last day of prayer. Thank you for praying with us."
-#~ msgstr "Danke, dass du mit uns betest."
-
-#~ msgid "Sign up for more prayer times or extend your recurring time here:"
-#~ msgstr ""
-#~ "Melde dich hier für weitere Gebetszeiten an oder verlängere deine "
-#~ "bisherige Zeit:"
-
-#~ msgid ""
-#~ "Thank you for joining us in strategic prayer for a disciple making "
-#~ "movement!"
-#~ msgstr ""
-#~ "Vielen Dank, dass du dich dem gemeinsamen Gebet für eine "
-#~ "Jüngerschaftsbewegung anschließt!"
-
-#~ msgid "Campaign Stats"
-#~ msgstr "Aktionsstatistiken"
-
-#~ msgctxt "Thank you for joining us in prayer for the French in France."
-#~ msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-#~ msgstr ""
-#~ "Vielen Dank, dass du dich uns im Gebet für die %1$s in %2$s anschließt."
-
-#~ msgid "Month"
-#~ msgstr "Monat"
-
-#~ msgid "Hours Remaining"
-#~ msgstr "Verbleibende Stunden"
-
-#~ msgid "here"
-#~ msgstr "hier"
-
-#~ msgid "Choose a timezone"
-#~ msgstr "Wähle deine Zeitzone"
-
-#, fuzzy
-#~| msgid "Or click this link:"
-#~ msgid "Or click this link"
-#~ msgstr "Oder öffne diesen Link:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please copy and paste the following code into the Confirmation Code field."
-#~ msgstr ""
-#~ "Bitte kopiere den folgenden Code und füge ihn in das 'Bestätigungscode' "
-#~ "Feld ein."
-
-#~ msgid "This code will expire after 10 minutes."
-#~ msgstr "Dieser Code läuft nach 10 Minuten ab."
-
-#~ msgid "A confirmation code hase been sent to %s."
-#~ msgstr "Es wurde ein Bestätigungscode an %s gesendet."
-
-#~ msgid ""
-#~ "Please enter the code below in the next 10 minutes to confirm your email "
-#~ "address."
-#~ msgstr ""
-#~ "Bitte gib in den nächsten 10 Minuten den unten stehenden Code ein, um "
-#~ "deine E-Mail-Adresse zu bestätigen."
-
-#~ msgid "Confirmation Code"
-#~ msgstr "Bestätigungscode"
-
-#~ msgid "More Hours to be covered"
-#~ msgstr "Weitere Stunden, die abgedeckt werden müssen"
-
-#, fuzzy
-#~| msgid "Strategic prayer for a Disciple Making Movement"
-#~ msgid "Strategic prayer for a disciple making movement"
-#~ msgstr "Strategisches Gebet für eine Jüngerschaftsbewegung"
-
-#~ msgid "Thank You"
-#~ msgstr "Danke"
-
-#~ msgid "Here are the times you have committed to pray:"
-#~ msgstr "Dies sind die Zeiten, für die du dich entschieden hast zu beten:"
-
-#~ msgid "fully covered once"
-#~ msgstr "einmal vollständig abgedeckt"
-
-#~ msgid "fully covered %1$s times"
-#~ msgstr "%1$s Mal vollständig abgedeckt"
-
-#~ msgid "Extend for 3 months"
-#~ msgstr "3 Monate verlängern"
-
-#~ msgctxt "on 5 days"
-#~ msgid "On %s days"
-#~ msgstr "An %s Tagen"
-
-#~ msgctxt "and 5 more"
-#~ msgid "and %s more"
-#~ msgstr "und %s mehr"
-
-#~ msgid "Pray this time"
-#~ msgstr "Bete zu dieser Zeit"
-
-#~ msgid "Cancel"
-#~ msgstr "Stornieren"
-
-#~ msgid "Select"
-#~ msgstr "Auswählen"
-
-#~ msgid "Add a Daily Prayer Time"
-#~ msgstr "Füge eine tägliche Gebetszeit hinzu"
-
-#~ msgid "Add Individual Prayer Times"
-#~ msgstr "Füge  einmalige Gebetszeiten hinzu"
-
-#~ msgid "My commitments"
-#~ msgstr "Meine Gebetszeiten"
-
-#~ msgid "For how long"
-#~ msgstr "Für wie lange"
-
-#~ msgid "ok"
-#~ msgstr "OK"
-
-#~ msgid "Select a day and choose a time"
-#~ msgstr "Wähle einen Tag und eine Uhrzeit aus"
-
-#~ msgid "Time added"
-#~ msgstr "Zeit wurde hinzugefügt"
-
-#~ msgid "No selected Time"
-#~ msgstr "Keine ausgewählte Zeit"
-
-#~ msgid "Back"
-#~ msgstr "Zurück"
-
-#~ msgid "Choose a different time:"
-#~ msgstr "Wähle eine andere Zeit:"
-
-#~ msgid "Extend my prayer commitments until:"
-#~ msgstr "Verlängere meine Gebetzeiten bis:"
-
-#~ msgid "Confirm"
-#~ msgstr "Bestätigen"
-
-#~ msgid "Profile Settings"
-#~ msgstr "Profileinstellungen"
-
-#~ msgid "Notifications allowed"
-#~ msgstr "Benachrichtigungen gestattet"
-
-#~ msgid "Notifications not allowed"
-#~ msgstr "Benachrichtigungen nicht gestattet"
-
-#~ msgid "Are you sure you want to delete your profile?"
-#~ msgstr "Möchtest du dein Profil wirklich löschen?"
-
-#~ msgid "This can not be undone."
-#~ msgstr "Das kann nicht rückgängig gemacht werden."
-
-#~ msgid "Your email is required."
-#~ msgstr "Deine E-Mail ist erforderlich."
-
-#, fuzzy
-#~| msgid "Your email is required."
-#~ msgid "The code is required"
-#~ msgstr "Deine E-Mail ist erforderlich."
-
-#~ msgid "Return"
-#~ msgstr "Zurück"
-
-#~ msgid "We are not longer looking for sign ups"
-#~ msgstr "Wir benötigen keine Anmeldungen mehr"
-
-#~ msgid "Thanks for praying with us!"
-#~ msgstr "Danke, dass du mit uns betest!"
-
-#~ msgid "Showing times for:"
-#~ msgstr "Zeiten werden angezeigt für:"
-
-#~ msgctxt "Campaign Name is Finished"
-#~ msgid "%s is Finished"
-#~ msgstr "%s ist fertig"
-
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Ends In"
-#~ msgstr "%s endet in"
-
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Begins In"
-#~ msgstr "%s beginnt in"
-
-#~ msgid "covered once"
-#~ msgstr "einmal abgedeckt"
-
-#~ msgid "covered %1$s times"
-#~ msgstr "%1$s Mal abgedeckt"
-
-#~ msgid "Loading prayer campaign data..."
-#~ msgstr "Gebetsaktionsdaten werden geladen..."
-
-#~ msgid "Select an option"
-#~ msgstr "Wähle eine Option"
-
-#~ msgid "Pray every day at the same time"
-#~ msgstr "Bete jeden Tag zur gleichen Zeit"
-
-#~ msgid "Example: Everyday at 4pm for 15mins"
-#~ msgstr "Beispiel: Jeden Tag um 16 Uhr für 15 Minuten"
-
-#~ msgid "Select days and times to pray"
-#~ msgstr "Wähle Tage und Zeiten zum Beten aus"
-
-#~ msgid "Example: Monday 12th at 6pm for 15mins"
-#~ msgstr "Beispiel: Montag, den 12. um 18 Uhr für 15 Minuten"
-
-#~ msgid "Please note that daylight savings time may affect your prayer times."
-#~ msgstr ""
-#~ "Bitte beachte, dass die Umstellung auf Winter-/Sommerzeit deine "
-#~ "Gebetszeiten beeinflussen kann."
-
-#~ msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
-#~ msgid "Everyday at %1$s for %2$s until %3$s"
-#~ msgstr "Täglich um %1$s für %2$s bis %3$s"
-
-#~ msgctxt "Jun, Jul, Aug covered"
-#~ msgid "covered"
-#~ msgstr "abgedeckt"
-
-#~ msgid ""
-#~ "Chose a time to pray everyday for the next 3 months. Near the end you'll "
-#~ "have the option to sign up for more."
-#~ msgstr ""
-#~ "Wähle eine Zeit, um jeden Tag für die nächsten 3 Monate zu beten. Gegen "
-#~ "Ende hast du die Möglichkeit, dich für weitere Zeiten anzumelden."
-
-#~ msgid ""
-#~ "Thank you for joining us in strategic prayer for a disciple making "
-#~ "movement! You're one click away from finishing your registration."
-#~ msgstr ""
-#~ "Danke, dass du dich uns im strategischen Gebet für eine "
-#~ "Jüngerschaftsbewegung anschließt! Du bist nur einen Klick davon entfernt, "
-#~ "deine Registrierung abzuschließen."
-
-#~ msgid "Registration Confirmation"
-#~ msgstr "Anmeldebestätigung"
-
-#~ msgid ""
-#~ "We have some time before the campaign starts. We will send you another "
-#~ "email a couple months before the first day asking you to choose specific "
-#~ "times to pray. Working together we will cover the region in 24/7 prayer."
-#~ msgstr ""
-#~ "Wir haben noch etwas Zeit, bevor die Aktion startet. Wir senden dir "
-#~ "einige Monate vor dem ersten Tag eine weitere E-Mail, in der wir dich "
-#~ "bitten, bestimmte Zeiten zum Beten auszuwählen. Gemeinsam werden wir die "
-#~ "Region im 24/7-Gebet abdecken."
-
-#~ msgid "If you know your schedule already you can choose your times here:"
-#~ msgstr ""
-#~ "Wenn du deinen Zeitplan bereits kennst, kannst du deine Zeiten hier "
-#~ "auswählen:"
-
-#~ msgid "Receive Prayer Time Notifications (email verification needed)."
-#~ msgstr ""
-#~ "Erhalte Benachrichtigungen für deine Gebetszeit (E-Mail-Bestätigung "
-#~ "erforderlich)."
-
-#~ msgid "Submit Your Prayer Commitment"
-#~ msgstr "Sende deine Gebetszeiten"
-
-#~ msgid "Check your email"
-#~ msgstr "Überprüfe deinen Posteingang."
-
-#~ msgid ""
-#~ "Click on the link included in the email to verify your commitment and "
-#~ "receive prayer time notifications!"
-#~ msgstr ""
-#~ "Klicke auf den in der E-Mail enthaltenen Link, um deine Gebetszeiten zu "
-#~ "bestätigen und Benachrichtigungen zur Gebetszeit zu erhalten!"
-
-#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
-#~ msgstr ""
-#~ "Erhalte Pray4Movement Neuigkeiten (E-Mail-Bestätigung erforderlich)."
-
-#, fuzzy
-#~ msgid "Sent! Check your email."
-#~ msgstr "Gesendet! Überprüfen Sie Ihren Posteingang."
-
-#, fuzzy
-#~ msgid "Epic 404"
-#~ msgstr "Epos 404"
-
-#, fuzzy
-#~ msgid "Content to be added to the signup email"
-#~ msgstr "Inhalt, der der Registrierungs-E-Mail hinzugefügt werden soll"
-
-#, fuzzy
-#~ msgid "Content to be added to the reminder email"
-#~ msgstr "Inhalt, der der Erinnerungs-E-Mail hinzugefügt werden soll"
-
-#, fuzzy
-#~ msgid "Yes"
-#~ msgstr "Ja"
-
-#, fuzzy
-#~ msgid "No"
-#~ msgstr "Nein"
