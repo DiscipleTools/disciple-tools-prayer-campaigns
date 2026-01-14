@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
@@ -237,7 +237,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "ಅಂತಿಮವಾಗಿ, ಜನರ ಪ್ರಾರ್ಥನೆ. ಪರಿಕರಗಳು ಈ ಪ್ರಾರ್ಥನಾ ಸಾಧನವನ್ನು ನಿರ್ಮಿಸಿವೆ. ಅಂಕಿಅಂಶಗಳ "
@@ -815,7 +815,9 @@ msgstr ""
 msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
-msgstr "ರಮಜಾನ್ ಸಮಯದಲ್ಲಿ ಪ್ರಾರ್ಥನೆಯ ಬಗ್ಗೆ ಇಮೇಲ್‌ಗಳನ್ನು ಪಡೆದುಕೊಳ್ಳಿ ಮತ್ತು ಈ ಅಭಿಯಾನ ಕುರಿತು ಉಪಯುಕ್ತ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳಿ"
+msgstr ""
+"ರಮಜಾನ್ ಸಮಯದಲ್ಲಿ ಪ್ರಾರ್ಥನೆಯ ಬಗ್ಗೆ ಇಮೇಲ್‌ಗಳನ್ನು ಪಡೆದುಕೊಳ್ಳಿ ಮತ್ತು ಈ ಅಭಿಯಾನ ಕುರಿತು ಉಪಯುಕ್ತ "
+"ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳಿ"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -892,13 +894,13 @@ msgstr "ಈ ಬಾರಿ ಆವರಿಸಿರುವ ಜನರು #"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "ಹಾಯ್, %s ಗಾಗಿ ಒಟ್ಟಿಗೆ ಪ್ರಾರ್ಥಿಸೋಣ!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "ನಾನು ಈ ಪ್ರಾರ್ಥನಾ ಅಭಿಯಾನದಲ್ಲಿಾ ಸೇರುತ್ತಿದ್ದೇನೆ ಮತ್ತು ನೀವು ನನ್ನ ಜೊತೆ "
@@ -1125,8 +1127,8 @@ msgstr "ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆಯ ಅವಕಾಶಗ�
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools ನೊಂದಿಗೆ ಇತರ ಪ್ರಾರ್ಥನೆ ಪ್ರಯತ್ನಗಳು ಮತ್ತು ಅವಕಾಶಗಳ ಬಗ್ಗೆ ಕೇಳಲು ಸೈನ್ ಅಪ್ "
 "ಮಾಡಿ ಮತ್ತು GospelAmbition.org ನಿಂದ ಸಾಂದರ್ಭಿಕ ಸಂಪರ್ಕವನ್ನು ಸ್ವೀಕರಿಸಿ."

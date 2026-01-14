@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
@@ -230,7 +230,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "చివరిగా, Prayer.Tools వారు ఈ ప్రార్థనా పరికరమును నిర్మించారు. స్టాట్స్ పేజీలో మీరు భవిష్యత్ ప్రార్థనా "
@@ -613,8 +613,7 @@ msgstr "మీ రిజిస్ట్రేషన్ పూర్తి అయ
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
-"అదనపు వివరాల కొరకు మరియు మీ ఖాతాను నిర్వహించుటకు మీ ఈమెయిల్ చూడండి."
+msgstr "అదనపు వివరాల కొరకు మరియు మీ ఖాతాను నిర్వహించుటకు మీ ఈమెయిల్ చూడండి."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -806,8 +805,7 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
-"రమదాన్ సమయంలో ప్రార్థన మరియు ఈ క్యాంపెయిన్ గురించి ఉపయోగకరమైన సమాచారం "
-"గురించి ఈమెయిల్‌లను పొందండి"
+"రమదాన్ సమయంలో ప్రార్థన మరియు ఈ క్యాంపెయిన్ గురించి ఉపయోగకరమైన సమాచారం గురించి ఈమెయిల్‌లను పొందండి"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -880,13 +878,13 @@ msgstr "ఈ సమయము పురమాయించబడిన ప్రజ
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "హాయ్, %s కోసం కలిసి ప్రార్థిద్దాం!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "నేను ఈ ప్రార్థనా ప్రచారంలో చేరుతున్నాను; నాతో కలిసి మీరు కూడా చేరాలని मलाईకు చాలా ఇష్టం. దయచేసి మా "
@@ -1107,8 +1105,8 @@ msgstr "ఎక్కువ ప్రార్థనా అవకాశాలు"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools నుండి ఇతర ప్రార్థనా ప్రయత్నాలు మరియు అవకాశాలను గురించి తెలుసుకొనుటకు, "
 "GospelAmbition.org నుండి అప్పుడప్పుడు పత్రికలను పొందండి సైన్ అప్ చేయండి."

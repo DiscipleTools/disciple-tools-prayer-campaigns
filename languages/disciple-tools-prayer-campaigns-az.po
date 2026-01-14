@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.16.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-09-11 08:03+0000\n"
 "Last-Translator: Jason Casto <jason.casto@quikmail.org>\n"
 "Language-Team: Azerbaijani <https://translate.disciple.tools/projects/"
@@ -235,7 +235,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "Nəhayət, bu dua alətini Prayer.Tools hazırlayıb. Gələcək dua imkanları "
@@ -808,8 +808,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"Gələcək dua kampaniyaları haqqında Prayer.Tools-dan və bəzən GospelAmbition."
-"org-dan məlumatlar alın"
+"Gələcək dua kampaniyaları haqqında Prayer.Tools-dan və bəzən "
+"GospelAmbition.org-dan məlumatlar alın"
 
 #: parts/components-enqueue.php:137
 msgid ""
@@ -893,13 +893,13 @@ msgstr "Bu vaxtı əhatə edən insanların sayı"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "Salam, gəlin birlikdə %s üçün dua edək!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "Mən bu dua kampaniyasına qoşuluram və sizin də mənə qoşulmağınızı istərdim! "
@@ -1126,8 +1126,8 @@ msgstr "Daha çox dua imkanları"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools ilə digər dua təşəbbüsləri və imkanları haqqında məlumat almaq "
 "üçün qeydiyyatdan keçin və bəzən GospelAmbition.org-dan bildirişlər alın."
@@ -1216,4 +1216,3 @@ msgstr "Fasilə"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Davam et"
-

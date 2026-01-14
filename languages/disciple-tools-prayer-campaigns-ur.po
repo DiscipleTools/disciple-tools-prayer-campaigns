@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-09-09 15:55+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Urdu <https://translate.disciple.tools/projects/pray4movement/"
@@ -235,7 +235,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "غرض، دعائیہ ٹولز کے لوگوں نے اِس دعائیہٹولز کو بنایا۔ آپ اِس بات کو یقینی بنا "
@@ -806,8 +806,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"GospelAmbition.org ‎سےآنےوالیدعائیہمہمات اور کبھیکبھارمواصلتکےبارےمیںPrayer."
-"Toolsسےخبریں حاصل کریں"
+"GospelAmbition.org ‎سےآنےوالیدعائیہمہمات اور "
+"کبھیکبھارمواصلتکےبارےمیںPrayer.Toolsسےخبریں حاصل کریں"
 
 #: parts/components-enqueue.php:137
 msgid ""
@@ -889,13 +889,13 @@ msgstr "اِس وقتکااحاطہکرنےوالےلوگوںکی تعداد"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "ہیلو، آئیں %s کے لیے مل کر دعا کریں!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "میں اس دعا کی مہم میں شامل ہوں اور چاہوں گا کہ آپ بھی میرے ساتھ شامل ہوں۔ "
@@ -1117,11 +1117,11 @@ msgstr "دعا کے مزید مواقع"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"دعاکیدیگرکوششوں اور دعاکےمواقعوںکےبارےمیںسننےکےلیےسائناپکریں۔GospelAmbition."
-"org سےٹولاور کبھیکبھار بات چیت حاصل کریں۔"
+"دعاکیدیگرکوششوں اور دعاکےمواقعوںکےبارےمیںسننےکےلیےسائناپکریں۔"
+"GospelAmbition.org سےٹولاور کبھیکبھار بات چیت حاصل کریں۔"
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31

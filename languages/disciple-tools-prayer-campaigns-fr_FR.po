@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-09-08 15:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
@@ -235,12 +235,12 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "Enfin, sur la page Statistiques de prière assurez-vous d'être inscrit pour "
-"recevoir des nouvelles sur les futures opportunités de prière de Prayer."
-"Tools, les créateurs de cet outil de prière."
+"recevoir des nouvelles sur les futures opportunités de prière de "
+"Prayer.Tools, les créateurs de cet outil de prière."
 
 #: campaign-functions/send-email-utility.php:524
 msgid "See Prayer Stats"
@@ -894,13 +894,13 @@ msgstr "# de personnes couvrant cette période"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "Bonjour, prions ensemble pour %s !"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "Je me joins à cette campagne de prière et j’aimerais que vous vous joigniez "
@@ -1129,8 +1129,8 @@ msgstr "Plus d'opportunités de prière"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
 "avec Prayer.Tools et recevez des communications occasionnelles de "

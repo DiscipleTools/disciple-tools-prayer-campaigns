@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-08-29 19:03+0000\n"
 "Last-Translator: RAQUEL VILLELA ALVES <raquelvillelaalves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.disciple.tools/"
@@ -235,7 +235,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "Por último, o pessoal do Prayer.Tools desenvolveu esta ferramenta de oração. "
@@ -817,8 +817,8 @@ msgid ""
 "Receive emails about praying during Ramadan and helpful information about "
 "this campaign"
 msgstr ""
-"Receber e-mails sobre oração durante o Ramadã e informações úteis sobre "
-"esta campanha"
+"Receber e-mails sobre oração durante o Ramadã e informações úteis sobre esta "
+"campanha"
 
 #: parts/components-enqueue.php:140
 msgid "Text Translations"
@@ -892,13 +892,13 @@ msgstr "# de pessoas cobrindo este período"
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "Oi, vamos orar juntos por %s!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "Eu estou entrando nessa campanha de oração e gostaria muito que você "
@@ -1126,8 +1126,8 @@ msgstr "Mais oportunidades de oração"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Inscreva-se para ouvir sobre outras iniciativas e oportunidades de oração "
 "com Prayer.Tools e receba comunicações ocasionais de GospelAmbition.org."
@@ -1217,4 +1217,3 @@ msgstr "Pausar"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Continuar"
-

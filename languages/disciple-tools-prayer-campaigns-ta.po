@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-13T08:44:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/"
@@ -234,7 +234,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:519
 msgid ""
 "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure "
-"you’re signed up to receive news about future prayer opportunities on the "
+"you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
 "இறுதியாக, ஜெபம் இயக்கத்தில் உள்ளவர்கள். இந்த ஜெப உபகரணத்தை உருவாக்கிய கருவிகள். ஸ்டாட்ஸ் "
@@ -888,13 +888,13 @@ msgstr "# இந்த நேரத்தில் ஜெபிக்கிற�
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr "ஹாய், %s க்காக ஒன்றாக பிரார்த்தனை செய்வோம்!"
 
 #: parts/components-enqueue.php:160
 msgid ""
-"I’m joining this prayer campaign and would love for you to join me! Please "
+"I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
 "நான் இந்த பிரார்த்தனை பிரச்சாரத்தில் இணைகிறேன், நீங்களும் என்னுடன் சேர வேண்டும் என்று நான் "
@@ -1119,8 +1119,8 @@ msgstr "அதிக ஜெப வாய்ப்புகள்"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "ப்ரேயர்.டூல்ஸ்-ன் மற்ற ஜெப முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய சைன் அப் செய்து, "
 "GospelAmbition.org -லிருந்து வரும் தகவல்களை அவ்வப்போது பெற்றுக்கொள்ளவும்."

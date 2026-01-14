@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-14T08:29:18+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -193,7 +193,7 @@ msgid "Click the button below for a glimpse at what you contributed to. We would
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:519
-msgid "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure you’re signed up to receive news about future prayer opportunities on the Stats page."
+msgid "Finally, the folks at Prayer.Tools built this prayer tool. You can make sure you're signed up to receive news about future prayer opportunities on the Stats page."
 msgstr ""
 
 #: campaign-functions/send-email-utility.php:524
@@ -826,12 +826,12 @@ msgstr ""
 
 #: parts/components-enqueue.php:159
 #, php-format
-msgctxt "Hi, let’s pray together for Ramadan 2031!"
-msgid "Hi, let’s pray together for %s!"
+msgctxt "Hi, let's pray together for Ramadan 2031!"
+msgid "Hi, let's pray together for %s!"
 msgstr ""
 
 #: parts/components-enqueue.php:160
-msgid "I’m joining this prayer campaign and would love for you to join me! Please invite a couple of friends to pray with us too."
+msgid "I'm joining this prayer campaign and would love for you to join me! Please invite a couple of friends to pray with us too."
 msgstr ""
 
 #: parts/components.php:33
