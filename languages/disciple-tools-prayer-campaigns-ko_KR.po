@@ -147,15 +147,16 @@ msgid ""
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
-"계속 기도하고 알림을 받으시려면 계정에 접속하여 기도 약속 옆의 \"연장\"을 클릭하세요. "
-"원하시면 다른 시간대에 등록하실 수도 있습니다."
+"계속 기도하고 알림을 받으시려면 계정에 접속하여 기도 약속 옆의 \"연장\"을 클"
+"릭하세요. 원하시면 다른 시간대에 등록하실 수도 있습니다."
 
 #: campaign-functions/send-email-utility.php:423
 msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
-"기도 시간이 끝났을 때 계속 기도하고 싶지 않으시면 아무것도 하실 필요가 없습니다."
+"기도 시간이 끝났을 때 계속 기도하고 싶지 않으시면 아무것도 하실 필요가 없습니"
+"다."
 
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
@@ -234,8 +235,8 @@ msgid ""
 "you're signed up to receive news about future prayer opportunities on the "
 "Stats page."
 msgstr ""
-"마지막으로, Prayer.Tools에서 이 기도 도구를 만들었습니다. 통계 페이지에서 향후 "
-"기도 기회에 대한 소식을 받아보실 수 있도록 등록하세요."
+"마지막으로, Prayer.Tools에서 이 기도 도구를 만들었습니다. 통계 페이지에서 향"
+"후 기도 기회에 대한 소식을 받아보실 수 있도록 등록하세요."
 
 #: campaign-functions/send-email-utility.php:524
 msgid "See Prayer Stats"
@@ -975,7 +976,8 @@ msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
-"모든 언어로 예정된 모든 기도 연료입니다. 아래에서 기도 연료를 추가하고 수정하세요"
+"모든 언어로 예정된 모든 기도 연료입니다. 아래에서 기도 연료를 추가하고 수정하"
+"세요"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 msgid "We want to cover this region with prayer."
@@ -1103,11 +1105,11 @@ msgstr "더 많은 기도 기회"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"Prayer.Tools에 등록하여 다른 기도 노력과 기회에 대해 듣고, "
-"GospelAmbition.org에서 가끔씩 소식을 받아보세요."
+"Prayer.Tools에 등록하여 다른 기도 노력과 기회에 대해 듣고, GospelAmbition.org"
+"에서 가끔씩 소식을 받아보세요."
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31

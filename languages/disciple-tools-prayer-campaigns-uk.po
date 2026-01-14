@@ -851,7 +851,9 @@ msgstr "Майже готово! Завершіть реєстрацію, акт
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr "Натисніть кнопку «Активувати обліковий запис» в електронному листі, надісланому на: %s"
+msgstr ""
+"Натисніть кнопку «Активувати обліковий запис» в електронному листі, "
+"надісланому на: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -943,7 +945,9 @@ msgstr "Надзвичайна молитва"
 msgid ""
 "Every disciple making movement in history has happened in the context of "
 "extraordinary prayer."
-msgstr "Кожен рух творення учнів в історії відбувався в контексті надзвичайної молитви."
+msgstr ""
+"Кожен рух творення учнів в історії відбувався в контексті надзвичайної "
+"молитви."
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
@@ -1127,8 +1131,8 @@ msgstr "Більше можливостей для молитви"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Підпишіться, щоб дізнаватися про інші молитовні зусилля та можливості з "
 "Prayer.Tools та отримувати періодичні повідомлення від GospelAmbition.org."
@@ -1173,10 +1177,10 @@ msgstr ""
 "Протягом цього часу вони повинні утримуватися від їжі, вживання рідини, "
 "куріння та статевих стосунків.\n"
 "\n"
-"     Вдень жінки зазвичай готують велику їжу. На заході сонця "
-"сім'ї часто збираються, щоб розговитися. Традиційно сім'ї закінчують піст, "
-"випиваючи воду, потім три сушених фінікових фрукта та їжу з кількох страв. "
-"Після перегляду нових рамаданських телесеріалів чоловіки (і деякі жінки) йдуть в "
+"     Вдень жінки зазвичай готують велику їжу. На заході сонця сім'ї часто "
+"збираються, щоб розговитися. Традиційно сім'ї закінчують піст, випиваючи "
+"воду, потім три сушених фінікових фрукта та їжу з кількох страв. Після "
+"перегляду нових рамаданських телесеріалів чоловіки (і деякі жінки) йдуть в "
 "кав'ярні, де п'ють каву, курять з друзями до пізньої ночі.\n"
 "\n"
 "     Хоча багато хто припинив постити останніми роками, і їх відлякує "

@@ -145,9 +145,9 @@ msgid ""
 "your account and click \"extend\" next to your commitment(s). You can also "
 "sign up for a different time if you wish."
 msgstr ""
-"Untuk terus berdoa dan menerima notifikasi, silakan akses akun Anda dan "
-"klik \"perpanjang\" di samping komitmen Anda. Anda juga dapat mendaftar "
-"untuk waktu lain jika diinginkan."
+"Untuk terus berdoa dan menerima notifikasi, silakan akses akun Anda dan klik "
+"\"perpanjang\" di samping komitmen Anda. Anda juga dapat mendaftar untuk "
+"waktu lain jika diinginkan."
 
 #: campaign-functions/send-email-utility.php:423
 msgid ""
@@ -1118,8 +1118,8 @@ msgstr "Lebih Banyak Kesempatan Berdoa"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Daftarkan diri Anda untuk mendengar tentang upaya dan peluang doa lainnya "
 "dengan Prayer.Tools dan terima komunikasi sesekali dari GospelAmbition.org."

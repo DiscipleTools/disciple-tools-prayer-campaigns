@@ -61,7 +61,8 @@ msgstr "Привет %s,"
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
 msgid "Access your account to see your commitments and make changes:"
-msgstr "Войдите в свой аккаунт, чтобы просмотреть свои посвящения и внести изменения:"
+msgstr ""
+"Войдите в свой аккаунт, чтобы просмотреть свои посвящения и внести изменения:"
 
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
@@ -373,7 +374,9 @@ msgstr "Аккаунт активирован!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr "Здесь вы можете управлять своими молитвенными посвящениями и настройками аккаунта."
+msgstr ""
+"Здесь вы можете управлять своими молитвенными посвящениями и настройками "
+"аккаунта."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -618,7 +621,9 @@ msgstr "Ваша регистрация успешно завершена."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr "Проверьте электронную почту для получения дополнительной информации и управления вашим аккаунтом."
+msgstr ""
+"Проверьте электронную почту для получения дополнительной информации и "
+"управления вашим аккаунтом."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -670,8 +675,8 @@ msgid ""
 "So sorry. Something went wrong. Please, contact us to help you through it, "
 "or just try again."
 msgstr ""
-"Извините. Что-то пошло не так. Пожалуйста, свяжитесь с нами, чтобы мы помогли "
-"вам, или просто попробуйте снова."
+"Извините. Что-то пошло не так. Пожалуйста, свяжитесь с нами, чтобы мы "
+"помогли вам, или просто попробуйте снова."
 
 #: parts/components-enqueue.php:105
 msgid "Your account has been deleted!"
@@ -897,7 +902,8 @@ msgid ""
 "invite a couple of friends to pray with us too."
 msgstr ""
 "Я присоединяюсь к этой молитвенной кампании и буду рад, если вы "
-"присоединитесь! Пожалуйста, пригласите также нескольких друзей молиться с нами."
+"присоединитесь! Пожалуйста, пригласите также нескольких друзей молиться с "
+"нами."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -1120,8 +1126,8 @@ msgstr "Больше возможностей для молитвы"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Подпишитесь, чтобы узнавать о других молитвенных усилиях и возможностях с "
 "Prayer.Tools и получать периодические сообщения от GospelAmbition.org."

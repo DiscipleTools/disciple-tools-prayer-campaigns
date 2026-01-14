@@ -60,7 +60,9 @@ msgstr "Hallo %s,"
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
 msgid "Access your account to see your commitments and make changes:"
-msgstr "Ga naar uw account om uw toezeggingen te bekijken en wijzigingen aan te brengen:"
+msgstr ""
+"Ga naar uw account om uw toezeggingen te bekijken en wijzigingen aan te "
+"brengen:"
 
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
@@ -187,9 +189,9 @@ msgid ""
 "prayer for the Muslim world during Ramadan. However, we know from God's Word "
 "that prayer is powerful and effective (James 5:16)."
 msgstr ""
-"We zullen pas in de eeuwigheid de volledige impact weten van de duizenden uren "
-"gebed voor de moslimwereld tijdens de Ramadan. Maar we weten uit Gods Woord "
-"dat gebed krachtig en effectief is (Jakobus 5:16)."
+"We zullen pas in de eeuwigheid de volledige impact weten van de duizenden "
+"uren gebed voor de moslimwereld tijdens de Ramadan. Maar we weten uit Gods "
+"Woord dat gebed krachtig en effectief is (Jakobus 5:16)."
 
 #: campaign-functions/send-email-utility.php:508
 msgid ""
@@ -198,8 +200,8 @@ msgid ""
 "God as you prayed."
 msgstr ""
 "Klik op de knop hieronder voor een glimp van wat u hebt bijgedragen aan deze "
-"Ramadan. We horen ook graag indrukken of woorden die u van God ontving terwijl "
-"u bad."
+"Ramadan. We horen ook graag indrukken of woorden die u van God ontving "
+"terwijl u bad."
 
 #: campaign-functions/send-email-utility.php:510
 msgid ""
@@ -207,9 +209,10 @@ msgid ""
 "bottom. Make sure you are signed up to receive news about future prayer "
 "opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
-"Tot slot heeft de Ramadan 24/7 gebedsstatistiekenpagina ook een aanmeldgedeelte "
-"onderaan. Zorg ervoor dat u zich hebt aangemeld om nieuws te ontvangen over "
-"toekomstige gebedsmogelijkheden van Prayer.Tools, de makers van deze gebedstool."
+"Tot slot heeft de Ramadan 24/7 gebedsstatistiekenpagina ook een "
+"aanmeldgedeelte onderaan. Zorg ervoor dat u zich hebt aangemeld om nieuws te "
+"ontvangen over toekomstige gebedsmogelijkheden van Prayer.Tools, de makers "
+"van deze gebedstool."
 
 #: campaign-functions/send-email-utility.php:514
 msgid ""
@@ -224,8 +227,8 @@ msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
-"Klik op de knop hieronder voor een glimp van wat u hebt bijgedragen. We horen "
-"ook graag indrukken of woorden die u van God ontving terwijl u bad."
+"Klik op de knop hieronder voor een glimp van wat u hebt bijgedragen. We "
+"horen ook graag indrukken of woorden die u van God ontving terwijl u bad."
 
 #: campaign-functions/send-email-utility.php:519
 msgid ""
@@ -627,10 +630,10 @@ msgid ""
 "That will keep the prayer chain from being broken AND will give someone the "
 "joy of fighting for the lost! Thanks!"
 msgstr ""
-"Moet u annuleren? We begrijpen het! Maar wacht! Als uw gebedstoezegging binnen "
-"48 uur begint, vraag dan een vriend om het voor u over te nemen. Dat voorkomt "
-"dat de gebedsketen wordt verbroken EN geeft iemand de vreugde om te strijden "
-"voor de verlorenen! Bedankt!"
+"Moet u annuleren? We begrijpen het! Maar wacht! Als uw gebedstoezegging "
+"binnen 48 uur begint, vraag dan een vriend om het voor u over te nemen. Dat "
+"voorkomt dat de gebedsketen wordt verbroken EN geeft iemand de vreugde om te "
+"strijden voor de verlorenen! Bedankt!"
 
 #: parts/components-enqueue.php:97
 msgid "Account Settings"
@@ -799,8 +802,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"Ontvang nieuws van Prayer.Tools over aankomende gebedscampagnes en "
-"af en toe communicatie van GospelAmbition.org"
+"Ontvang nieuws van Prayer.Tools over aankomende gebedscampagnes en af en toe "
+"communicatie van GospelAmbition.org"
 
 #: parts/components-enqueue.php:137
 msgid ""
@@ -837,7 +840,8 @@ msgstr "Bijna klaar! Voltooi de aanmelding door uw account te activeren."
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr "Klik op de knop \"Account activeren\" in de e-mail die is verzonden naar: %s"
+msgstr ""
+"Klik op de knop \"Account activeren\" in de e-mail die is verzonden naar: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -905,9 +909,9 @@ msgid ""
 "celebrate your and their faithfulness.  For each person that prays with you, "
 "we will add 15 minutes to the %s days of prayer committed so far."
 msgstr ""
-"Anderen leiden in gebed is een geweldige stap in het maken van discipelen. We "
-"willen uw en hun trouw vieren. Voor elke persoon die met u bidt, voegen we 15 "
-"minuten toe aan de tot nu toe toegezegde %s dagen gebed."
+"Anderen leiden in gebed is een geweldige stap in het maken van discipelen. "
+"We willen uw en hun trouw vieren. Voor elke persoon die met u bidt, voegen "
+"we 15 minuten toe aan de tot nu toe toegezegde %s dagen gebed."
 
 #: parts/components.php:41
 msgid "How many prayed today (including yourself)?"
@@ -1115,8 +1119,8 @@ msgstr "Meer gebedsmogelijkheden"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Meld je aan om te horen over andere gebedsinspanningen en mogelijkheden met "
 "Prayer.Tools en ontvang af en toe communicatie van GospelAmbition.org."
@@ -1205,100 +1209,3 @@ msgstr "Pauzeren"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Hervatten"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -64,7 +64,8 @@ msgstr "Bună %s,"
 #: campaign-functions/send-email-utility.php:226
 #: campaign-functions/send-email-utility.php:322
 msgid "Access your account to see your commitments and make changes:"
-msgstr "Accesați contul pentru a vedea angajamentele și pentru a face modificări:"
+msgstr ""
+"Accesați contul pentru a vedea angajamentele și pentru a face modificări:"
 
 #: campaign-functions/send-email-utility.php:227
 #: campaign-functions/send-email-utility.php:323
@@ -159,8 +160,8 @@ msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
-"Nu trebuie să faceți nimic dacă nu doriți să continuați să vă rugați când "
-"se termină orele de rugăciune."
+"Nu trebuie să faceți nimic dacă nu doriți să continuați să vă rugați când se "
+"termină orele de rugăciune."
 
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
@@ -350,7 +351,8 @@ msgstr "Conținutul va începe în %s zile"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr "Această campanie s-a încheiat. Vedeți Combustibil pentru rugăciune mai jos"
+msgstr ""
+"Această campanie s-a încheiat. Vedeți Combustibil pentru rugăciune mai jos"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
@@ -624,7 +626,9 @@ msgstr "Înregistrarea dvs. a avut succes."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr "Verificați e-mailul pentru detalii suplimentare și pentru a vă gestiona contul."
+msgstr ""
+"Verificați e-mailul pentru detalii suplimentare și pentru a vă gestiona "
+"contul."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -1128,11 +1132,12 @@ msgstr "Mai multe oportunități de rugăciune"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Înscrieți-vă pentru a afla despre alte eforturi și oportunități de rugăciune "
-"cu Prayer.Tools și pentru a primi comunicări ocazionale de la GospelAmbition.org."
+"cu Prayer.Tools și pentru a primi comunicări ocazionale de la "
+"GospelAmbition.org."
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
@@ -1174,20 +1179,20 @@ msgstr ""
 "zori până la apus. În acest timp, ei ar trebui să se abțină de la mâncare, "
 "băuturi, fumat și relații sexuale.\n"
 "\n"
-"Femeile petrec de obicei după-amiezile pregătind o masă copioasă. La "
-"apus, familiile se adună adesea pentru a întrerupe postul. În mod "
-"tradițional, familiile întrerup postul cu un pahar de apă, apoi trei curmale "
-"uscate și o masă cu mai multe feluri. După ce vizionează noul "
-"serial TV de Ramadan, bărbații (și unele femei) ies la cafenele unde beau cafea "
-"și fumează cu prietenii până târziu în noapte.\n"
+"Femeile petrec de obicei după-amiezile pregătind o masă copioasă. La apus, "
+"familiile se adună adesea pentru a întrerupe postul. În mod tradițional, "
+"familiile întrerup postul cu un pahar de apă, apoi trei curmale uscate și o "
+"masă cu mai multe feluri. După ce vizionează noul serial TV de Ramadan, "
+"bărbații (și unele femei) ies la cafenele unde beau cafea și fumează cu "
+"prietenii până târziu în noapte.\n"
 "\n"
 "Deși mulți au renunțat la post în ultimii ani și sunt dezamăgiți de "
 "ipocrizie, ratele crescute ale criminalității și grosolănia care sunt "
 "omniprezente de-a lungul lunii, alții au devenit mai serioși cu privire la "
 "religie în acest timp. Mulți participă la slujbele de rugăciune de seară și "
 "fac celelalte rugăciuni rituale. Unii chiar citesc întregul Coran "
-"(aproximativ o zecime din lungimea Bibliei). Această căutare sinceră face din "
-"aceasta un moment strategic pentru noi să ne rugăm pentru ei."
+"(aproximativ o zecime din lungimea Bibliei). Această căutare sinceră face "
+"din aceasta un moment strategic pentru noi să ne rugăm pentru ei."
 
 #: porches/ramadan/site/home-body.php:133
 msgid "Ramadan Begins ..."

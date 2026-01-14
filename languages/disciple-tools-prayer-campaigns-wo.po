@@ -148,8 +148,9 @@ msgid ""
 "sign up for a different time if you wish."
 msgstr ""
 "Pour continuer à prier et recevoir les notifications, veuillez accéder à "
-"votre compte et cliquer sur « prolonger » à côté de votre (vos) engagement(s). "
-"Vous pouvez également vous inscrire pour une autre heure si vous le souhaitez."
+"votre compte et cliquer sur « prolonger » à côté de votre (vos) "
+"engagement(s). Vous pouvez également vous inscrire pour une autre heure si "
+"vous le souhaitez."
 
 #: campaign-functions/send-email-utility.php:423
 msgid ""
@@ -1131,8 +1132,8 @@ msgstr "Plus d'opportunités de prière"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
 "avec Prayer.Tools et recevez des communications occasionnelles de "
@@ -1224,33 +1225,3 @@ msgstr "Pause"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Reprendre"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

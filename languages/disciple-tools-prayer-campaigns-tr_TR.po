@@ -156,8 +156,8 @@ msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
-"Dua zamanlarınız sona erdiğinde dua etmeye devam etmek istemiyorsanız "
-"hiçbir şey yapmanıza gerek yok."
+"Dua zamanlarınız sona erdiğinde dua etmeye devam etmek istemiyorsanız hiçbir "
+"şey yapmanıza gerek yok."
 
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
@@ -200,8 +200,8 @@ msgid ""
 "Ramadan. We would also love to hear impressions or words you received from "
 "God as you prayed."
 msgstr ""
-"Bu Ramazan'a katkınızı görmek için aşağıdaki düğmeye tıklayın. "
-"Dua ederken Tanrı'dan aldığınız izlenimleri veya sözleri de duymak isteriz."
+"Bu Ramazan'a katkınızı görmek için aşağıdaki düğmeye tıklayın. Dua ederken "
+"Tanrı'dan aldığınız izlenimleri veya sözleri de duymak isteriz."
 
 #: campaign-functions/send-email-utility.php:510
 msgid ""
@@ -210,8 +210,8 @@ msgid ""
 "opportunities by Prayer.Tools, the makers of this prayer tool."
 msgstr ""
 "Son olarak, Ramazan 24/7 Dua İstatistikleri sayfasının altında bir kayıt "
-"bölümü de var. Bu dua aracının yapımcıları olan Prayer.Tools'dan gelecek "
-"dua fırsatları hakkında haberler almak için kaydolduğunuzdan emin olun."
+"bölümü de var. Bu dua aracının yapımcıları olan Prayer.Tools'dan gelecek dua "
+"fırsatları hakkında haberler almak için kaydolduğunuzdan emin olun."
 
 #: campaign-functions/send-email-utility.php:514
 msgid ""
@@ -226,8 +226,8 @@ msgid ""
 "Click the button below for a glimpse at what you contributed to. We would "
 "also love to hear impressions or words you received from God as you prayed."
 msgstr ""
-"Katkıda bulunduğunuz şeyleri görmek için aşağıdaki düğmeye tıklayın. "
-"Dua ederken Tanrı'dan aldığınız izlenimleri veya sözleri de duymak isteriz."
+"Katkıda bulunduğunuz şeyleri görmek için aşağıdaki düğmeye tıklayın. Dua "
+"ederken Tanrı'dan aldığınız izlenimleri veya sözleri de duymak isteriz."
 
 #: campaign-functions/send-email-utility.php:519
 msgid ""
@@ -839,7 +839,9 @@ msgstr "Neredeyse tamam! Hesabınızı etkinleştirerek kaydınızı tamamlayın
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr "Şu adrese gönderilen e-postadaki \"Hesabı Etkinleştir\" düğmesine tıklayın: %s"
+msgstr ""
+"Şu adrese gönderilen e-postadaki \"Hesabı Etkinleştir\" düğmesine tıklayın: "
+"%s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -871,8 +873,8 @@ msgid ""
 "Please check your email to activate your account before adding more prayer "
 "times."
 msgstr ""
-"Daha fazla dua zamanı eklemeden önce lütfen hesabınızı etkinleştirmek için "
-"e-postanızı kontrol edin."
+"Daha fazla dua zamanı eklemeden önce lütfen hesabınızı etkinleştirmek için e-"
+"postanızı kontrol edin."
 
 #: parts/components-enqueue.php:157
 msgid "Time not covered"
@@ -893,8 +895,8 @@ msgid ""
 "I'm joining this prayer campaign and would love for you to join me! Please "
 "invite a couple of friends to pray with us too."
 msgstr ""
-"Bu dua kampanyasına katılıyorum ve sizin de bana katılmanızı isterim! "
-"Lütfen birkaç arkadaşınızı da bizimle dua etmeye davet edin."
+"Bu dua kampanyasına katılıyorum ve sizin de bana katılmanızı isterim! Lütfen "
+"birkaç arkadaşınızı da bizimle dua etmeye davet edin."
 
 #: parts/components.php:33
 msgid "Praying as a group?"
@@ -986,8 +988,8 @@ msgid ""
 "All Scheduled Prayer Fuel in all available languages. Add and edit the "
 "prayer fuel below"
 msgstr ""
-"Mevcut tüm dillerde planlanmış tüm Dua Yakıtı. Aşağıdaki dua yakıtını ekleyin "
-"ve düzenleyin"
+"Mevcut tüm dillerde planlanmış tüm Dua Yakıtı. Aşağıdaki dua yakıtını "
+"ekleyin ve düzenleyin"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 msgid "We want to cover this region with prayer."
@@ -1117,8 +1119,8 @@ msgstr "Daha Fazla Dua Fırsatı"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools ile diğer dua çabaları ve fırsatları hakkında haberler almak ve "
 "GospelAmbition.org'dan ara sıra iletişim almak için kaydolun."
