@@ -113,7 +113,7 @@ msgstr "Спасибо, что молитесь вместе с нами!"
 
 #: campaign-functions/send-email-utility.php:312
 msgid "Here are your upcoming prayer times:"
-msgstr "Ваше предстоящее время молитвы:"
+msgstr "Ваши предстоящие времена молитвы:"
 
 #: campaign-functions/send-email-utility.php:317
 #: magic-links/campaign-magic-link.php:112
@@ -137,7 +137,7 @@ msgstr "Некоторые из ваших молитвенных времён �
 
 #: campaign-functions/send-email-utility.php:417
 msgid "The prayer times are:"
-msgstr "Время молитвы:"
+msgstr "Времена молитвы:"
 
 #: campaign-functions/send-email-utility.php:421
 msgid ""
@@ -618,7 +618,7 @@ msgstr "Ваша регистрация успешно завершена."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr "В электронном письме есть ссылка для управления временем молитвы."
+msgstr "Проверьте электронную почту для получения дополнительной информации и управления вашим аккаунтом."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -663,7 +663,7 @@ msgstr "показать"
 
 #: parts/components-enqueue.php:103
 msgid "Delete this account and all the scheduled prayer times"
-msgstr "Удалить этот профиль и все запланированное молитвенное время?"
+msgstr "Удалить этот аккаунт и все запланированные времена молитвы"
 
 #: parts/components-enqueue.php:104
 msgid ""
@@ -704,7 +704,7 @@ msgstr "Посмотреть время молитвы"
 
 #: parts/components-enqueue.php:113
 msgid "Your future prayer times will be canceled."
-msgstr "Ваше будущее время молитвы будет отменено."
+msgstr "Ваши будущие времена молитвы будут отменены."
 
 #: parts/components-enqueue.php:114
 msgid "extend"
@@ -804,8 +804,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"Хотели бы вы услышать о других молитвенных усилиях и возможностях с "
-"Pray4Movement.org?"
+"Получать новости от Prayer.Tools о предстоящих молитвенных кампаниях и "
+"периодические сообщения от GospelAmbition.org"
 
 #: parts/components-enqueue.php:137
 msgid ""
@@ -968,7 +968,7 @@ msgstr "Используйте эти ресурсы, чтобы молитьс�
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
-msgstr "Молитвенное горючее на сегодня"
+msgstr "Молитвенное Горючее на сегодня"
 
 #: porches/generic/dt-generic-porch-strings.php:188
 msgid "All Days"
@@ -1123,8 +1123,8 @@ msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"Хотели бы вы услышать о других молитвенных усилиях и возможностях с "
-"Pray4Movement.org?"
+"Подпишитесь, чтобы узнавать о других молитвенных усилиях и возможностях с "
+"Prayer.Tools и получать периодические сообщения от GospelAmbition.org."
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31

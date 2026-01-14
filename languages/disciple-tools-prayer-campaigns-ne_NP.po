@@ -579,19 +579,19 @@ msgid "Pick Dates and Times"
 msgstr "मिति र समय छान्नुहोस्"
 
 #: parts/components-enqueue.php:80
-#, fuzzy, php-format
+#, php-format
 msgid "%s Minutes"
-msgstr "5 मिनेट"
+msgstr "%s मिनेट"
 
 #: parts/components-enqueue.php:81
-#, fuzzy, php-format
+#, php-format
 msgid "%s Hour"
-msgstr "घण्टा"
+msgstr "%s घण्टा"
 
 #: parts/components-enqueue.php:82
-#, fuzzy, php-format
+#, php-format
 msgid "%s Hours"
-msgstr "घण्टा"
+msgstr "%s घण्टाहरू"
 
 #: parts/components-enqueue.php:83
 #, fuzzy, php-format
@@ -599,9 +599,9 @@ msgid "%1$s at %2$s for %3$s"
 msgstr "%1$s %2$s देखि %3$s सम्म"
 
 #: parts/components-enqueue.php:84
-#, fuzzy, php-format
+#, php-format
 msgid "for %s minutes"
-msgstr "%2$s मिनेटको लागि %1$s।"
+msgstr "%s मिनेटको लागि"
 
 #: parts/components-enqueue.php:85
 #, php-format
@@ -1011,14 +1011,12 @@ msgid "All Days"
 msgstr "सबै दिन"
 
 #: porches/generic/dt-generic-porch-strings.php:197
-#, fuzzy
 msgid "Edit Prayer Fuel"
-msgstr "प्रार्थना ईन्धन"
+msgstr "प्रार्थना ईन्धन सम्पादन"
 
 #: porches/generic/dt-generic-porch-strings.php:215
-#, fuzzy
 msgid "Scheduled Prayer Fuel"
-msgstr "प्रार्थना ईन्धन"
+msgstr "निर्धारित प्रार्थना ईन्धन"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid ""
@@ -1247,379 +1245,3 @@ msgstr "रोक्नुहोस्"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "जारी राख्नुहोस्"
-
-#, fuzzy
-#~ msgid "Now praying..."
-#~ msgstr "अब प्रार्थना..."
-
-#, fuzzy
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "चेला बनाउने आन्दोलनको लागि रणनीतिक प्रार्थना"
-
-#, fuzzy
-#~ msgid "Percentage covered in prayer"
-#~ msgstr "प्रार्थनामा कभर गरिएको प्रतिशत"
-
-#, fuzzy
-#~ msgid "%s committed"
-#~ msgstr "समय प्रतिबद्ध"
-
-#, fuzzy
-#~ msgid "Days"
-#~ msgstr "दिनहरू"
-
-#, fuzzy
-#~ msgid "Hours of Prayer"
-#~ msgstr "प्रार्थनाको घण्टा"
-
-#, fuzzy
-#~ msgctxt "Every Wednesday at 5pm for 15 minutes"
-#~ msgid "Every %1$s at %2$s for %3$s minutes"
-#~ msgstr "%1$s %2$s देखि %3$s सम्म"
-
-#, fuzzy
-#~ msgid "Remove all"
-#~ msgstr "सबै मेटाउनुहोस्"
-
-#, fuzzy
-#~ msgid "Delete Prayer Times"
-#~ msgstr "प्रार्थना समय"
-
-#, fuzzy
-#~ msgid "Really delete these prayer times?"
-#~ msgstr "प्रार्थना समय छान्नुहोस्"
-
-#, fuzzy
-#~ msgid ""
-#~ "Your last prayer time will be one week from today. Would you like to keep "
-#~ "praying?"
-#~ msgstr ""
-#~ "तपाईं आफ्नो अन्तिम प्रार्थना समयको लागि 2 हप्ता बाहिर हुनुहुन्छ। के तपाई प्रार्थना "
-#~ "गरिरहन चाहनुहुन्छ?"
-
-#, fuzzy
-#~ msgid ""
-#~ "Your last prayer time will be 2 weeks from today. Would you like to keep "
-#~ "praying? "
-#~ msgstr ""
-#~ "तपाईं आफ्नो अन्तिम प्रार्थना समयको लागि 2 हप्ता बाहिर हुनुहुन्छ। के तपाई प्रार्थना "
-#~ "गरिरहन चाहनुहुन्छ?"
-
-#, fuzzy
-#~ msgid "Today was your last day of prayer. Thank you for praying with us."
-#~ msgstr "हामीसँग प्रार्थना गर्नुभएकोमा धन्यवाद!"
-
-#, fuzzy
-#~ msgid "Sign up for more prayer times or extend your recurring time here:"
-#~ msgstr ""
-#~ "थप प्रार्थना समयहरूको लागि साइन अप गर्नुहोस् वा तपाईंको पुनरावर्ती समय यहाँ विस्तार "
-#~ "गर्नुहोस्:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Thank you for joining us in strategic prayer for a disciple making "
-#~ "movement!"
-#~ msgstr "चेला बनाउने आन्दोलनको लागि रणनीतिक प्रार्थना"
-
-#, fuzzy
-#~ msgid "Campaign Stats"
-#~ msgstr "अभियान तथ्याङ्क"
-
-#, fuzzy
-#~ msgctxt "Thank you for joining us in prayer for the French in France."
-#~ msgid "Thank you for joining us in prayer for the %1$s in %2$s."
-#~ msgstr "%2$s मा %1$s को लागि प्रार्थनामा हामीसँग सामेल हुनुभएकोमा धन्यवाद।"
-
-#, fuzzy
-#~ msgid "Month"
-#~ msgstr "महिना"
-
-#, fuzzy
-#~ msgid "Hours Remaining"
-#~ msgstr "घण्टा बाँकी"
-
-#, fuzzy
-#~ msgid "here"
-#~ msgstr "यहाँ"
-
-#, fuzzy
-#~ msgid "Choose a timezone"
-#~ msgstr "आफ्नो समय क्षेत्र परिवर्तन गर्नुहोस्:"
-
-#, fuzzy
-#~ msgid "Confirmation Code"
-#~ msgstr "टाइम्स पुष्टि गर्नुहोस्"
-
-#, fuzzy
-#~ msgid "More Hours to be covered"
-#~ msgstr "कभर गर्न थप घण्टा"
-
-#, fuzzy
-#~ msgid "Strategic prayer for a disciple making movement"
-#~ msgstr "चेला बनाउने आन्दोलनको लागि रणनीतिक प्रार्थना"
-
-#, fuzzy
-#~ msgid "Thank You"
-#~ msgstr "धन्यवाद"
-
-#, fuzzy
-#~ msgid "Here are the times you have committed to pray:"
-#~ msgstr "तपाईंले प्रार्थना गर्न प्रतिबद्ध गर्नुभएको समयहरू यहाँ छन्:"
-
-#, fuzzy
-#~ msgid "fully covered once"
-#~ msgstr "एक पटक पूर्ण रूपमा कभर"
-
-#, fuzzy
-#~ msgid "fully covered %1$s times"
-#~ msgstr "%1$s पटक पूर्ण रूपमा कभर गरियो"
-
-#, fuzzy
-#~ msgid "Extend for 3 months"
-#~ msgstr "३ महिनाको लागि बढाउनुहोस्"
-
-#, fuzzy
-#~ msgid "Pray this time"
-#~ msgstr "प्रार्थना समय"
-
-#~ msgid "Cancel"
-#~ msgstr "रद्ध"
-
-#, fuzzy
-#~ msgid "Select"
-#~ msgstr "चयन गर्नुहोस्"
-
-#, fuzzy
-#~ msgid "Add a Daily Prayer Time"
-#~ msgstr "दैनिक प्रार्थना समय थप्नुहोस्"
-
-#, fuzzy
-#~ msgid "Add Individual Prayer Times"
-#~ msgstr "व्यक्तिगत प्रार्थना समय थप्नुहोस्"
-
-#, fuzzy
-#~ msgid "My commitments"
-#~ msgstr "मेरो प्रतिबद्धताहरू"
-
-#, fuzzy
-#~ msgid "For how long"
-#~ msgstr "कति समयको लागि हो"
-
-#, fuzzy
-#~ msgid "ok"
-#~ msgstr "ठिक छ"
-
-#, fuzzy
-#~ msgid "Select a day and choose a time"
-#~ msgstr "एक दिन छान्नुहोस् र समय छान्नुहोस्"
-
-#, fuzzy
-#~ msgid "Time added"
-#~ msgstr "समय थपियो"
-
-#, fuzzy
-#~ msgid "No selected Time"
-#~ msgstr "कुनै चयन गरिएको समय छैन"
-
-#~ msgid "Back"
-#~ msgstr "पछाडी हेर्नुहोस"
-
-#, fuzzy
-#~ msgid "Choose a different time:"
-#~ msgstr "फरक समय छान्नुहोस्:"
-
-#, fuzzy
-#~ msgid "Extend my prayer commitments until:"
-#~ msgstr "मेरो प्रार्थना प्रतिबद्धताहरू सम्म विस्तार गर्नुहोस्:"
-
-#, fuzzy
-#~ msgid "Confirm"
-#~ msgstr "निश्चित गर्नुहोस"
-
-#, fuzzy
-#~ msgid "Profile Settings"
-#~ msgstr "प्रोफाइल सेटिङहरू"
-
-#, fuzzy
-#~ msgid "Notifications allowed"
-#~ msgstr "सूचनाहरूलाई अनुमति दिइएको छ"
-
-#, fuzzy
-#~ msgid "Notifications not allowed"
-#~ msgstr "सूचनाहरूलाई अनुमति छैन"
-
-#, fuzzy
-#~ msgid "Are you sure you want to delete your profile?"
-#~ msgstr "के तपाइँ तपाइँको प्रोफाइल मेटाउन निश्चित हुनुहुन्छ?"
-
-#, fuzzy
-#~ msgid "This can not be undone."
-#~ msgstr "यो उल्ट्याउन सकिदैन।"
-
-#, fuzzy
-#~ msgid "Your email is required."
-#~ msgstr "तपाईंको इमेल आवश्यक छ।"
-
-#, fuzzy
-#~ msgid "The code is required"
-#~ msgstr "तपाईंको इमेल आवश्यक छ।"
-
-#, fuzzy
-#~ msgid "Return"
-#~ msgstr "फर्किनु"
-
-#, fuzzy
-#~ msgid "We are not longer looking for sign ups"
-#~ msgstr "हामी अब साइन अपहरू खोजिरहेका छैनौं"
-
-#, fuzzy
-#~ msgid "Thanks for praying with us!"
-#~ msgstr "हामीसँग प्रार्थना गर्नुभएकोमा धन्यवाद!"
-
-#, fuzzy
-#~ msgid "Showing times for:"
-#~ msgstr "समय देखाउँदै:"
-
-#, fuzzy
-#~ msgctxt "Campaign Name is Finished"
-#~ msgid "%s is Finished"
-#~ msgstr "%s समाप्त भयो"
-
-#, fuzzy
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Ends In"
-#~ msgstr "%s मा समाप्त हुन्छ"
-
-#, fuzzy
-#~ msgctxt "Campaign Name End in [4 days]"
-#~ msgid "%s Begins In"
-#~ msgstr "%s मा सुरु हुन्छ"
-
-#, fuzzy
-#~ msgid "covered once"
-#~ msgstr "एक पटक कभर"
-
-#, fuzzy
-#~ msgid "covered %1$s times"
-#~ msgstr "%1$s पटक कभर गरियो"
-
-#, fuzzy
-#~ msgid "Loading prayer campaign data..."
-#~ msgstr "प्रार्थना अभियान डेटा लोड गर्दै..."
-
-#, fuzzy
-#~ msgid "Select an option"
-#~ msgstr "एक विकल्प चयन गर्नुहोस्"
-
-#, fuzzy
-#~ msgid "Pray every day at the same time"
-#~ msgstr "हरेक दिन एकै समयमा प्रार्थना गर्नुहोस्"
-
-#, fuzzy
-#~ msgid "Example: Everyday at 4pm for 15mins"
-#~ msgstr "उदाहरण: हरेक दिन 4 बजे 15 मिनेटको लागि"
-
-#, fuzzy
-#~ msgid "Select days and times to pray"
-#~ msgstr "प्रार्थना गर्न दिन र समय छान्नुहोस्"
-
-#, fuzzy
-#~ msgid "Example: Monday 12th at 6pm for 15mins"
-#~ msgstr "उदाहरण: सोमबार १२ गते बेलुका ६ बजे १५ मिनेटको लागि"
-
-#, fuzzy
-#~ msgid "Please note that daylight savings time may affect your prayer times."
-#~ msgstr "इमेलमा तपाइँको प्रार्थना समय व्यवस्थापन गर्न लिङ्क छ।"
-
-#, fuzzy
-#~ msgctxt "everyday at 3pm for 15 minutes until Jan 3 2031"
-#~ msgid "Everyday at %1$s for %2$s until %3$s"
-#~ msgstr "हरेक दिन %1$s मा %2$s को लागि %3$s सम्म"
-
-#, fuzzy
-#~ msgctxt "Jun, Jul, Aug covered"
-#~ msgid "covered"
-#~ msgstr "ढाकिएको"
-
-#, fuzzy
-#~ msgid ""
-#~ "Chose a time to pray everyday for the next 3 months. Near the end you'll "
-#~ "have the option to sign up for more."
-#~ msgstr ""
-#~ "अर्को 3 महिनाको लागि हरेक दिन प्रार्थना गर्न समय छान्नुहोस्। अन्त्यमा तपाईंसँग थपका "
-#~ "लागि साइन अप गर्ने विकल्प हुनेछ।"
-
-#, fuzzy
-#~ msgid ""
-#~ "Thank you for joining us in strategic prayer for a disciple making "
-#~ "movement! You're one click away from finishing your registration."
-#~ msgstr ""
-#~ "चेला बनाउने आन्दोलनको लागि रणनीतिक प्रार्थनामा हामीसँग सामेल हुनुभएकोमा धन्यवाद! "
-#~ "तपाइँ तपाइँको दर्ता समाप्त गर्नबाट एक क्लिक टाढा हुनुहुन्छ।"
-
-#, fuzzy
-#~ msgid "Registration Confirmation"
-#~ msgstr "दर्ता पुष्टिकरण"
-
-#, fuzzy
-#~ msgid ""
-#~ "We have some time before the campaign starts. We will send you another "
-#~ "email a couple months before the first day asking you to choose specific "
-#~ "times to pray. Working together we will cover the region in 24/7 prayer."
-#~ msgstr ""
-#~ "हामीसँग अभियान सुरु हुन केही समय छ। हामी तपाईंलाई पहिलो दिनको केही महिना अघि "
-#~ "अर्को इमेल पठाउनेछौं जसले तपाईंलाई प्रार्थना गर्नको लागि निश्चित समयहरू छनौट गर्न "
-#~ "सोध्नेछ। सँगै काम गर्दै हामी 24/7 प्रार्थनामा क्षेत्र कभर गर्नेछौं।"
-
-#, fuzzy
-#~ msgid "If you know your schedule already you can choose your times here:"
-#~ msgstr ""
-#~ "यदि तपाइँ तपाइँको तालिका पहिले नै थाहा छ तपाइँ यहाँ तपाइँको समय छनोट गर्न सक्नुहुन्छ:"
-
-#, fuzzy
-#~ msgid "Receive Prayer Time Notifications (email verification needed)."
-#~ msgstr "प्रार्थना समय सूचनाहरू प्राप्त गर्नुहोस् (इमेल प्रमाणिकरण आवश्यक)।"
-
-#, fuzzy
-#~ msgid "Submit Your Prayer Commitment"
-#~ msgstr "तपाईंको प्रार्थना प्रतिबद्धता पेश गर्नुहोस्"
-
-#, fuzzy
-#~ msgid "Check your email"
-#~ msgstr "पठाइयो! आफ्नो इमेल जाँच गर्नुहोस्।"
-
-#, fuzzy
-#~ msgid ""
-#~ "Click on the link included in the email to verify your commitment and "
-#~ "receive prayer time notifications!"
-#~ msgstr ""
-#~ "आफ्नो प्रतिबद्धता प्रमाणित गर्न र प्रार्थना समय सूचनाहरू प्राप्त गर्न इमेलमा समावेश "
-#~ "लिङ्कमा क्लिक गर्नुहोस्!"
-
-#, fuzzy
-#~ msgid "Receive Pray4Movement Newsletter (email verification needed)."
-#~ msgstr "Pray4Movement न्यूजलेटर प्राप्त गर्नुहोस् (इमेल प्रमाणिकरण आवश्यक)।"
-
-#, fuzzy
-#~ msgid "Sent! Check your email."
-#~ msgstr "पठाइयो! आफ्नो इमेल जाँच गर्नुहोस्।"
-
-#, fuzzy
-#~ msgid "Epic 404"
-#~ msgstr "एपिक 404"
-
-#, fuzzy
-#~ msgid "Content to be added to the signup email"
-#~ msgstr "साइनअप इमेलमा थपिने सामग्री"
-
-#, fuzzy
-#~ msgid "Content to be added to the reminder email"
-#~ msgstr "रिमाइन्डर इमेलमा थपिने सामग्री"
-
-#, fuzzy
-#~ msgid "Yes"
-#~ msgstr "हुन्छ"
-
-#, fuzzy
-#~ msgid "No"
-#~ msgstr "हुदैन"

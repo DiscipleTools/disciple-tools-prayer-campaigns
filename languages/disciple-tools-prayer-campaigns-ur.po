@@ -1205,12 +1205,3 @@ msgstr "روکیں"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "جاری رکھیں"
-
-#~ msgid "Now praying..."
-#~ msgstr "اب دعا کررہے ہیں۔۔۔"
-
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "‎%s میں شاگردبنانے کی تحریک کے لیے حکمت عملی کی دعا"
-
-#~ msgid "See Ramadan 24/7 Prayer Stats"
-#~ msgstr "رمضان المبارک ۲۴/۷ دعائیہ اعداد و شمار"

@@ -201,7 +201,7 @@ msgid ""
 "God as you prayed."
 msgstr ""
 "नीचे दिए गए बटन पर क्लिक करें, ताकि आप इस रमजान में दिए गए अपने योगदान की एक झलक देख "
-"सकें। हम यह जानकर भी अच्छा लगगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या "
+"सकें। हमें यह जानकर भी अच्छा लगेगा कि प्रार्थना करते समय आपको परमेश्वर से कौन से चिह्न या "
 "वचन मिले।"
 
 #: campaign-functions/send-email-utility.php:510
@@ -1201,12 +1201,3 @@ msgstr "रुकें"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "जारी रखें"
-
-#~ msgid "Now praying..."
-#~ msgstr "अब प्रार्थना कर रहे हैं..।"
-
-#~ msgid "Strategic prayer for a disciple making movement in %s"
-#~ msgstr "%s में चेले बनाने के अभियान के लिए रणनीतिक प्रार्थना"
-
-#~ msgid "See Ramadan 24/7 Prayer Stats"
-#~ msgstr "रमज़ान 24/7 प्रार्थना स्टैट्स देखें"
