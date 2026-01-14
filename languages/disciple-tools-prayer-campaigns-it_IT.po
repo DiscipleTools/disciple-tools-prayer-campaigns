@@ -303,9 +303,8 @@ msgstr "Richiedi il link per gestire i tuoi intervalli di preghiera"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Inserisci il tuo indirizzo email e ricevi un link ai tuoi orari di "
-"preghiera.Inserisci il tuo indirizzo email e ricevi il link per i tuoi "
-"intervalli di preghiera."
+"Inserisci il tuo indirizzo email e ricevi il link per i tuoi intervalli di "
+"preghiera."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -385,9 +384,7 @@ msgstr "Account attivato!"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
-"Qui puoi gestire i tuoi impegni di preghiera e le impostazioni del tuo "
-"account.Qui puoi gestire i tuoi impegni di preghiera e le impostazioni "
-"dell'account."
+"Qui puoi gestire i tuoi impegni di preghiera e le impostazioni dell'account."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -633,9 +630,8 @@ msgstr "La tua registrazione è andata a buon fine."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Controlla la tua email per ulteriori dettagli e per gestire il tuo "
-"account.Controlla la tua casella di posta elettronica per maggiori "
-"informazioni e per gestire il tuo account."
+"Controlla la tua casella di posta elettronica per maggiori informazioni e "
+"per gestire il tuo account."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -985,8 +981,7 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"Usa queste risorse per aiutarti a pregare specificamente ogni giorno.Usa "
-"queste risorse per aiutarti a pregare in modo specifico ogni giorno."
+"Usa queste risorse per aiutarti a pregare in modo specifico ogni giorno."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1035,8 +1030,7 @@ msgstr "Spaziosa è la via che porta al 404."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Prova a usare alcuni link nel menu per tornare sulla buona strada.Prova a "
-"utilizzare alcuni dei link nel menu per tornare sulla giusta via."
+"Prova a utilizzare alcuni dei link nel menu per tornare sulla giusta via."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"

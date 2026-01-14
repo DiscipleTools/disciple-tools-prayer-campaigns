@@ -618,8 +618,7 @@ msgstr "Pendaftaran Anda berhasil."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Periksa email Anda untuk detail tambahan dan untuk mengelola akun "
-"Anda.Periksa email Anda untuk detail tambahan dan untuk mengelola akun Anda."
+"Periksa email Anda untuk detail tambahan dan untuk mengelola akun Anda."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -967,9 +966,7 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"Gunakan sumber daya ini untuk membantu berdoa secara khusus setiap "
-"hari.Gunakan sumber-sumber ini untuk membantu berdoa secara khusus setiap "
-"hari."
+"Gunakan sumber-sumber ini untuk membantu berdoa secara khusus setiap hari."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"

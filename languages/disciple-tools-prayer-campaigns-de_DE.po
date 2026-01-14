@@ -306,9 +306,7 @@ msgstr "Link um Gebetszeiten zu verwalten, abrufen"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Geben Sie Ihre E-Mail-Adresse ein und erhalten Sie einen Link zu Ihren "
-"Gebetszeiten.Gib deine E-Mail-Adresse ein und erhalte einen Link zu deinen "
-"Gebetszeiten."
+"Gib deine E-Mail-Adresse ein und erhalte einen Link zu deinen Gebetszeiten."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -323,8 +321,7 @@ msgstr "Sende meinen Zugangslink"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
 msgstr ""
-"Bitte überprüfen Sie jetzt Ihre E-Mail-Adresse für Ihren Zugangslink.Bitte "
-"schaue in deinen E-Mails nach, ob du einen Zugangslink erhalten hast."
+"Bitte schaue in deinen E-Mails nach, ob du einen Zugangslink erhalten hast."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -388,9 +385,7 @@ msgstr "Konto aktiviert!"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
-"Hier können Sie Ihre Gebetsverpflichtungen und Kontoeinstellungen "
-"verwalten.Hier kannst du deine Gebetsverpflichtungen und Kontoeinstellungen "
-"verwalten."
+"Hier kannst du deine Gebetsverpflichtungen und Kontoeinstellungen verwalten."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -636,9 +631,8 @@ msgstr "Deine Registrierung war erfolgreich."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Überprüfen Sie Ihre E-Mail für weitere Details und zur Kontoverwaltung.Für "
-"weitere Informationen und zur Verwaltung deines Kontos sieh in deinen E-"
-"Mails nach."
+"Für weitere Informationen und zur Verwaltung deines Kontos sieh in deinen "
+"E-Mails nach."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -864,9 +858,8 @@ msgstr ""
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Klicken Sie auf die Schaltfläche \"Konto aktivieren\" in der E-Mail, die an "
-"%s gesendet wurdeKlicke in der E-Mail, die an folgende Adresse gesendet "
-"wird, auf die Schaltfläche \"Konto aktivieren\": %s"
+"Klicke in der E-Mail, die an folgende Adresse gesendet wird, auf die "
+"Schaltfläche \"Konto aktivieren\": %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1038,9 +1031,8 @@ msgstr "Breit ist der Weg, der zum 404 führt."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Versuchen Sie, einige Links im Menü zu verwenden, um wieder auf Kurs zu "
-"kommen.Versuche, einige der Links im Menü zu verwenden, um wieder auf den "
-"richtigen Pfad zu kommen."
+"Versuche, einige der Links im Menü zu verwenden, um wieder auf den richtigen "
+"Pfad zu kommen."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"

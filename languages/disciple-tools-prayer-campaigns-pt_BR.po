@@ -299,10 +299,7 @@ msgstr "Recuperar link de gerenciamento de tempo de oração"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr ""
-"Digite seu endereço de email e receba um link para seus horários de "
-"oração.Digite seu endereço de e-mail e receba um link para seus momentos de "
-"oração."
+msgstr "Digite seu endereço de e-mail e receba um link para seus horários de oração."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -379,10 +376,7 @@ msgstr "Conta ativada!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
-"Aqui você pode gerenciar seus compromissos de oração e configurações da "
-"conta.Aqui você pode gerenciar seus compromissos de oração e configurações "
-"de conta."
+msgstr "Aqui você pode gerenciar seus compromissos de oração e configurações da conta."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -627,9 +621,7 @@ msgstr "Seu cadastro foi realizado com sucesso."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
-"Verifique seu email para mais detalhes e para gerenciar sua conta.Verifique "
-"seu e-mail para obter detalhes adicionais e para gerenciar sua conta."
+msgstr "Verifique seu e-mail para mais detalhes e para gerenciar sua conta."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"

@@ -304,10 +304,7 @@ msgstr "Obțineți linkul de gestionare a timpului de rugăciune"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr ""
-"Introdu adresa ta de email și primește un link către orele tale de "
-"rugăciune.Introduceți adresa de e-mail și primiți un link către orele de "
-"rugăciune."
+msgstr "Introdu adresa ta de e-mail și primește un link către orele tale de rugăciune."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -630,10 +627,7 @@ msgstr "Înregistrarea dvs. a avut succes."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
-"Verifică emailul pentru detalii suplimentare și pentru a-ți gestiona "
-"contul.Verificați e-mailul pentru detalii suplimentare și pentru a vă "
-"gestiona contul."
+msgstr "Verifică e-mailul pentru detalii suplimentare și pentru a-ți gestiona contul."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -979,10 +973,7 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
-msgstr ""
-"Folosește aceste resurse pentru a te ajuta să te rogi specific în fiecare "
-"zi.Folosiți aceste resurse pentru a vă ajuta să vă rugați în mod specific în "
-"fiecare zi."
+msgstr "Folosește aceste resurse pentru a te ajuta să te rogi specific în fiecare zi."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1030,10 +1021,7 @@ msgstr "Lată este poteca care duce la 404."
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
-msgstr ""
-"Încearcă să folosești unele linkuri din meniu pentru a reveni pe drumul cel "
-"bun.Încercați să utilizați unele dintre linkurile din meniu pentru a reveni "
-"pe drumul cel bun."
+msgstr "Încearcă să folosești unele linkuri din meniu pentru a reveni pe drumul cel bun."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"

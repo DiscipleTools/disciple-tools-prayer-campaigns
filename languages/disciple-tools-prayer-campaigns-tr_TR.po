@@ -843,8 +843,7 @@ msgstr "Neredeyse tamam! Hesabınızı etkinleştirerek kaydınızı tamamlayın
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "Şu adrese gönderilen e-postadaki \"Hesabı Etkinleştir\" düğmesine tıklayın: "
-"%sŞu adrese gönderilen e-postadaki \"Hesabı Etkinleştir\" düğmesine "
-"tıklayın: %s"
+"%s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -967,10 +966,7 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
-msgstr ""
-"Her gün özellikle dua etmenize yardımcı olması için bu kaynakları "
-"kullanın.Her gün özel olarak dua etmenize yardımcı olması için bu kaynakları "
-"kullanın."
+msgstr "Her gün özellikle dua etmenize yardımcı olması için bu kaynakları kullanın."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"

@@ -963,8 +963,7 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"हर दिन विशेष रूप से प्रार्थना करने में मदद के लिए इन संसाधनों का उपयोग करें।प्रत्येक दिन "
-"विशेष रूप से प्रार्थना करने में सहायता करने के लिए इन संसाधनों का उपयोग करें।"
+"प्रत्येक दिन विशेष रूप से प्रार्थना करने में सहायता करने के लिए इन संसाधनों का उपयोग करें।"
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"

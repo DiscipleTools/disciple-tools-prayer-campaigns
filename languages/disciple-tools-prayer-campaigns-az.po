@@ -300,8 +300,7 @@ msgstr "Dua vaxtlarının idarəetmə linkini əldə et"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"E-poçt ünvanınızı daxil edin və dua vaxtlarınıza link alın.E-poçt ünvanınızı "
-"daxil edin və dua vaxtlarınıza keçid linkini əldə edin."
+"E-poçt ünvanınızı daxil edin və dua vaxtlarınıza keçid linkini əldə edin."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -851,8 +850,7 @@ msgstr ""
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Göndərilən e-poçtdakı \"Hesabı aktivləşdir\" düyməsinə klikləyin: %s%s "
-"ünvanına göndərilən e-poçtdakı “Hesabı Aktivləşdir” düyməsini klikləyin"
+"%s ünvanına göndərilən e-poçtdakı \"Hesabı Aktivləşdir\" düyməsini klikləyin"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1024,9 +1022,7 @@ msgstr "404-ə aparan yol genişdir."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Yolunuza qayıtmaq üçün menyudakı bəzi linklərdən istifadə etməyə "
-"çalışın.Yenidən yolunuza qayıtmaq üçün menyudakı keçidlərdən birini istifadə "
-"edin."
+"Yenidən yolunuza qayıtmaq üçün menyudakı keçidlərdən birini istifadə edin."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"

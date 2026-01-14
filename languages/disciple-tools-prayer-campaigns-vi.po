@@ -299,8 +299,7 @@ msgstr "Nhận liên kết quản lý thời gian cầu nguyện"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Nhập địa chỉ email của bạn và nhận liên kết đến thời gian cầu nguyện.Nhập "
-"địa chỉ email của bạn và nhận liên kết đến thời gian cầu nguyện của bạn."
+"Nhập địa chỉ email của bạn và nhận liên kết đến thời gian cầu nguyện của bạn."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -314,9 +313,7 @@ msgstr "Gửi liên kết truy cập qua email"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr ""
-"Vui lòng kiểm tra email ngay để lấy liên kết truy cập.Vui lòng kiểm tra "
-"email của bạn ngay bây giờ để nhận liên kết truy cập."
+msgstr "Vui lòng kiểm tra email ngay để lấy liên kết truy cập."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -379,9 +376,7 @@ msgstr "Tài khoản đã được kích hoạt!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
-"Tại đây bạn có thể quản lý cam kết cầu nguyện và cài đặt tài khoản.Tại đây "
-"bạn có thể quản lý các cam kết cầu nguyện và cài đặt tài khoản."
+msgstr "Tại đây bạn có thể quản lý cam kết cầu nguyện và cài đặt tài khoản."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"

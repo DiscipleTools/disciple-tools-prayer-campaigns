@@ -301,9 +301,7 @@ msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯ ನಿರ್ವಹಣೆ ಲಿಂ
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr ""
-"ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನಾ ಸಮಯಗಳ ಲಿಂಕ್ ಪಡೆಯಿರಿ.ನಿಮ್ಮ ಇಮೇಲ್ "
-"ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆ ಸಮಯಕ್ಕೆ ಲಿಂಕ್ ಅನ್ನು ಸ್ವೀಕರಿಸಿ."
+msgstr "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನಾ ಸಮಯಗಳ ಲಿಂಕ್ ಪಡೆಯಿರಿ."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -625,9 +623,7 @@ msgstr "ನಿಮ್ಮ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ.
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
-"ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ.ಹೆಚ್ಚುವರಿ "
-"ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ."
+msgstr "ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -852,9 +848,7 @@ msgstr ""
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr ""
-"ಈ ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್‌ನಲ್ಲಿ \"ಖಾತೆ ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ: %sಇವರಿಗೆ "
-"ಕಳುಹಿಸಿದ ಇಮೇಲ್ನಲ್ಲಿರುವ \"ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
+msgstr "ಈ ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್‌ನಲ್ಲಿ \"ಖಾತೆ ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"

@@ -302,9 +302,7 @@ msgstr "Récupérer le lien de gestion du temps de prière"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr ""
-"Dugg sa email te jot lien bi ngir sa waxtu ñaan yi.Entrez votre adresse e-"
-"mail et recevez un lien vers vos heures de prière."
+msgstr "Dugg sa email te jot lien bi ngir sa waxtu ñaan yi."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -318,9 +316,7 @@ msgstr "Envoyer mon lien d'access"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr ""
-"Xoolal sa email leegi ngir sa lien dugg.Veuillez vérifier votre adresse e-"
-"mail maintenant pour votre lien d'accès."
+msgstr "Xoolal sa email leegi ngir sa lien dugg."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -383,9 +379,7 @@ msgstr "Compte activé !"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr ""
-"Fii nga mën a saytu sa ñaanu jëfandikoo yi ak sa paramètre kont.Ici, vous "
-"pouvez gérer vos engagements de prière et les paramètres de votre compte."
+msgstr "Fii nga mën a saytu sa ñaanu jëfandikoo yi ak sa paramètre kont."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -630,9 +624,7 @@ msgstr "Votre inscription a réussi."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr ""
-"Xoolal sa email ngir yeneen xibaar ak ngir saytu sa kont.Vérifiez votre "
-"courrier électronique pour plus de détails et pour gérer votre compte."
+msgstr "Xoolal sa email ngir yeneen xibaar ak ngir saytu sa kont."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -980,9 +972,7 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
-msgstr ""
-"Jëfandikool bii yi ngir ñaan bu baax bés bu nekk.Utilisez ces ressources "
-"pour vous aider à prier spécifiquement chaque jour."
+msgstr "Jëfandikool bii yi ngir ñaan bu baax bés bu nekk."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1030,9 +1020,7 @@ msgstr "Large est le chemin qui mène à la 404."
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
-msgstr ""
-"Jéemaal jëfandikoo ay lien yi ci menu bi ngir delloo ci yoon wi.Essayez "
-"d'utiliser certains des liens du menu pour vous remettre sur la bonne voie."
+msgstr "Jéemaal jëfandikoo ay lien yi ci menu bi ngir delloo ci yoon wi."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"

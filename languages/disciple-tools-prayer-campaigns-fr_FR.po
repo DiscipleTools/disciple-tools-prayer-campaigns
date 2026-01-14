@@ -300,9 +300,7 @@ msgstr "Récupérer le lien de gestion du temps de prière"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Entrez votre adresse email et recevez un lien vers vos horaires de "
-"prière.Entrez votre adresse e-mail et recevez un lien vers vos temps de "
-"prière."
+"Entrez votre adresse e-mail et recevez un lien vers vos temps de prière."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -317,9 +315,7 @@ msgstr "Envoyer mon lien d'accès"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
 msgstr ""
-"Veuillez vérifier votre adresse email maintenant pour votre lien "
-"d'accès.Veuillez vérifier votre adresse e-mail maintenant pour votre lien "
-"d'accès."
+"Veuillez vérifier votre adresse e-mail maintenant pour votre lien d'accès."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -383,9 +379,8 @@ msgstr "Compte activé !"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
-"Ici vous pouvez gérer vos engagements de prière et les paramètres de votre "
-"compte.Ici, vous pouvez gérer vos engagements de prière et les paramètres de "
-"votre compte."
+"Ici, vous pouvez gérer vos engagements de prière et les paramètres de votre "
+"compte."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -631,9 +626,8 @@ msgstr "Votre inscription a réussi."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Consultez votre email pour plus de détails et pour gérer votre "
-"compte.Vérifiez votre courrier électronique pour plus de détails et pour "
-"gérer votre compte."
+"Vérifiez votre courrier électronique pour plus de détails et pour gérer "
+"votre compte."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -857,8 +851,7 @@ msgstr "Presque là ! Terminez votre inscription en activant votre compte."
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Cliquez sur le bouton \"Activer le compte\" dans l'email envoyé à : "
-"%sCliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
+"Cliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -983,7 +976,6 @@ msgstr ""
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
 "Utilisez ces ressources pour vous aider à prier spécifiquement chaque "
-"jour.Utilisez ces ressources pour vous aider à prier spécifiquement chaque "
 "jour."
 
 #: porches/generic/dt-generic-porch-strings.php:179
@@ -1033,8 +1025,7 @@ msgstr "Large est le chemin qui mène à la 404."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Essayez d'utiliser certains liens du menu pour revenir sur la bonne "
-"voie.Essayez d'utiliser certains des liens du menu pour vous remettre sur la "
+"Essayez d'utiliser certains des liens du menu pour vous remettre sur la "
 "bonne voie."
 
 #: porches/generic/site/contact-us.php:93
