@@ -154,8 +154,8 @@ msgid ""
 "You do not have to do anything if you do not want to continue praying when "
 "your prayer times end."
 msgstr ""
-"Vous n’avez rien à faire si vous ne souhaitez pas continuer à prier à la fin "
-"de vos heures de prière."
+"Vous n'avez rien à faire si vous ne souhaitez pas continuer à prier à la fin "
+"de vos temps de prière."
 
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
@@ -298,7 +298,7 @@ msgstr "Récupérer le lien de gestion du temps de prière"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Entrez votre adresse e-mail et recevez un lien vers vos heures de prière."
+"Entrez votre adresse e-mail et recevez un lien vers vos temps de prière."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -353,7 +353,7 @@ msgstr "Cette campagne est terminée. Voir le guide de prière ci-dessous"
 #: porches/generic/site/archive-body.php:69
 #: porches/generic/site/landing-body.php:48
 msgid "Prayer Timer"
-msgstr "Chronomètre"
+msgstr "Chronomètre de prière"
 
 #: magic-links/subscription-management/subscription-management.php:30
 #: magic-links/subscription-management/subscription-management.php:360
@@ -452,7 +452,7 @@ msgstr "À quelle fréquence ?"
 
 #: parts/components-enqueue.php:52
 msgid "I will pray for"
-msgstr "Je prierai pour"
+msgstr "Je prierai pendant"
 
 #: parts/components-enqueue.php:53
 msgid "At what time?"
@@ -513,7 +513,7 @@ msgstr "Terminant le %s"
 
 #: parts/components-enqueue.php:68
 msgid "Review"
-msgstr "Révision"
+msgstr "Récapitulatif"
 
 #: parts/components-enqueue.php:69 parts/components.php:46
 #: porches/generic/site/contact-us.php:111 porches/generic/site/stats.php:238
@@ -657,7 +657,7 @@ msgstr "Recevoir des notifications d'heure de prière"
 
 #: parts/components-enqueue.php:100
 msgid "Auto extend prayer times"
-msgstr "Prolonger automatiquement des heures de prière"
+msgstr "Prolonger automatiquement les temps de prière"
 
 #: parts/components-enqueue.php:101
 msgid "Advanced Settings"
@@ -669,7 +669,7 @@ msgstr "montrer"
 
 #: parts/components-enqueue.php:103
 msgid "Delete this account and all the scheduled prayer times"
-msgstr "Supprimer ce compte et toutes les heures de prière"
+msgstr "Supprimer ce compte et tous les temps de prière programmés"
 
 #: parts/components-enqueue.php:104
 msgid ""
@@ -702,7 +702,7 @@ msgstr "changer l'heure"
 
 #: parts/components-enqueue.php:111
 msgid "Stop Praying"
-msgstr "Arrêtez de prier"
+msgstr "Arrêter de prier"
 
 #: parts/components-enqueue.php:112
 msgid "See prayer times"
@@ -710,7 +710,7 @@ msgstr "Voir les temps de prière"
 
 #: parts/components-enqueue.php:113
 msgid "Your future prayer times will be canceled."
-msgstr "Vos futures heures de prière seront annulées."
+msgstr "Vos futurs temps de prière seront annulés."
 
 #: parts/components-enqueue.php:114
 msgid "extend"
@@ -787,7 +787,7 @@ msgstr "Sélectionnez une heure"
 
 #: parts/components-enqueue.php:132
 msgid "Renew Prayer Times"
-msgstr "Renouveler les heures de prière"
+msgstr "Renouveler les temps de prière"
 
 #: parts/components-enqueue.php:133
 msgid "renew"
@@ -882,7 +882,7 @@ msgid ""
 "times."
 msgstr ""
 "Veuillez vérifier votre email pour activer votre compte avant d'ajouter "
-"d'autres heures de prière."
+"d'autres temps de prière."
 
 #: parts/components-enqueue.php:157
 msgid "Time not covered"
@@ -948,15 +948,15 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:99
 msgid "Movement Focused"
-msgstr "Concentré sur un mouvement"
+msgstr "Axé sur le mouvement"
 
 #: porches/generic/dt-generic-porch-strings.php:108
 msgid ""
 "Join us in asking, seeking, and knocking for streams of disciples and "
 "churches to be made."
 msgstr ""
-"Rejoignez-nous pour demander, chercher et frapper afin que des flots de "
-"disciples et d'églises se fassent."
+"Rejoignez-nous pour demander, chercher et frapper afin que des multitudes de "
+"disciples et d'églises soient formés."
 
 #: porches/generic/dt-generic-porch-strings.php:125
 msgid "24/7 Every Day"

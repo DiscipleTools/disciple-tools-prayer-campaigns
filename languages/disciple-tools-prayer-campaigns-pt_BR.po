@@ -84,7 +84,7 @@ msgstr "Estes são seus próximos compromissos de oração:"
 #: campaign-functions/send-email-utility.php:314
 #, php-format
 msgid "Times are shown according to: %s time"
-msgstr "As horas são mostradas de acordo com: %s hora"
+msgstr "Os horários são mostrados de acordo com o fuso horário: %s"
 
 #: campaign-functions/send-email-utility.php:242
 #: magic-links/subscription-management/subscription-management.php:371
@@ -127,7 +127,7 @@ msgstr "Aqui estão seus próximos tempos de oração:"
 #: porches/generic/dt-generic-porch-strings.php:161
 #: porches/generic/site/top-nav-fuel.php:114
 msgid "Prayer Fuel"
-msgstr "Combustível de oração"
+msgstr "Combustível de Oração"
 
 #: campaign-functions/send-email-utility.php:412
 msgid "[ACTION NEEDED] Continue Praying?"
@@ -162,7 +162,7 @@ msgstr ""
 #: campaign-functions/send-email-utility.php:425 parts/components.php:52
 #: porches/generic/site/contact-us.php:118 porches/generic/site/stats.php:244
 msgid "Thank you"
-msgstr "Obrigada"
+msgstr "Obrigado"
 
 #: campaign-functions/send-email-utility.php:465
 #: porches/generic/site/stats.php:85
@@ -182,7 +182,7 @@ msgstr "Oração estratégica para o Movimento de Multiplicação de Discípulos
 #: campaign-functions/send-email-utility.php:493
 #, php-format
 msgid "Thank you for joining %1$s in %2$s."
-msgstr "Obrigado por se juntar a nós em oração pelos %1$s em %2$s."
+msgstr "Obrigado por se juntar a %1$s em %2$s."
 
 #: campaign-functions/send-email-utility.php:505
 msgid ""
@@ -346,7 +346,7 @@ msgstr "O conteúdo começará em %s dias"
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:289
 #: porches/generic/site/archive-body.php:47
 msgid "This campaign is finished. See Fuel below"
-msgstr "Esta campanha acabou. Veja Combustível abaixo"
+msgstr "Esta campanha acabou. Veja o Combustível de Oração abaixo"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:311
 #: porches/generic/site/archive-body.php:69
@@ -496,7 +496,7 @@ msgstr "Fechar"
 
 #: parts/components-enqueue.php:65
 msgid "prayer commitments"
-msgstr "Compromissos de oração"
+msgstr "compromissos de oração"
 
 #: parts/components-enqueue.php:66
 #, php-format
@@ -558,7 +558,7 @@ msgstr "Mensalmente"
 
 #: parts/components-enqueue.php:79
 msgid "Pick Dates and Times"
-msgstr "Selecionar dias e horas"
+msgstr "Selecionar datas e horários"
 
 #: parts/components-enqueue.php:80
 #, php-format
@@ -588,7 +588,7 @@ msgstr "por %s minutos"
 #: parts/components-enqueue.php:85
 #, php-format
 msgid "Every %s"
-msgstr "A cada %s"
+msgstr "Toda %s"
 
 #: parts/components-enqueue.php:86
 msgid "Prayer Time Selected"
@@ -693,7 +693,7 @@ msgstr "Excluir"
 #: parts/components-enqueue.php:109
 #: porches/generic/dt-generic-porch-strings.php:206
 msgid "See Prayer Fuel"
-msgstr "Veja Combustível de Oração"
+msgstr "Veja o Combustível de Oração"
 
 #: parts/components-enqueue.php:110
 msgid "change time"
@@ -778,7 +778,7 @@ msgstr "Seu tempo de oração atual é %s"
 
 #: parts/components-enqueue.php:130
 msgid "Select a new time:"
-msgstr "Selecione um novo tempo:"
+msgstr "Selecione um novo horário:"
 
 #: parts/components-enqueue.php:131
 msgid "Select a time"
@@ -960,7 +960,7 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:125
 msgid "24/7 Every Day"
-msgstr "24/7 -todos os dias"
+msgstr "24/7 Todos os Dias"
 
 #: porches/generic/dt-generic-porch-strings.php:134
 msgid ""
@@ -988,7 +988,7 @@ msgstr "Editar Combustível de Oração"
 
 #: porches/generic/dt-generic-porch-strings.php:215
 msgid "Scheduled Prayer Fuel"
-msgstr "Combustível de oração agendado"
+msgstr "Combustível de Oração Agendado"
 
 #: porches/generic/dt-generic-porch-strings.php:223
 msgid ""
@@ -996,7 +996,7 @@ msgid ""
 "prayer fuel below"
 msgstr ""
 "Todos os itens de Combustível de Oração em todos os idiomas disponíveis. "
-"Inclua e edite o combustível de oração abaixo"
+"Inclua e edite o Combustível de Oração abaixo"
 
 #: porches/generic/dt-generic-porch-strings.php:266
 msgid "We want to cover this region with prayer."
@@ -1052,7 +1052,7 @@ msgstr "Tempo Comprometido"
 #: porches/generic/site/home-body.php:182
 #: porches/ramadan/site/home-body.php:203
 msgid "Prayer Warriors"
-msgstr "Guerreiros de oração"
+msgstr "Guerreiros de Oração"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
 #: porches/ramadan/site/home-body.php:217
@@ -1070,7 +1070,7 @@ msgstr "Leia"
 
 #: porches/generic/site/post-list-body.php:171
 msgid "No prayer fuel found"
-msgstr "Nenhum combustível de oração encontrado"
+msgstr "Nenhum Combustível de Oração encontrado"
 
 #: porches/generic/site/stats.php:137
 msgid "Percentage Covered"
@@ -1078,7 +1078,7 @@ msgstr "Porcentagem Coberta"
 
 #: porches/generic/site/stats.php:163
 msgid "Time Prayed in Groups"
-msgstr "Tempo de oração em grupos"
+msgstr "Tempo Orado em Grupos"
 
 #: porches/generic/site/stats.php:173
 msgid "Number of People who Prayed"
@@ -1102,7 +1102,7 @@ msgstr "Estatísticas globais do Ramadã"
 
 #: porches/generic/site/stats.php:313
 msgid "Total Prayer Campaigns"
-msgstr "Total da Campanha de oração"
+msgstr "Total de Campanhas de Oração"
 
 #: porches/generic/site/stats.php:321
 msgid "Countries Prayed For"

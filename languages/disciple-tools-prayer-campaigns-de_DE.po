@@ -858,7 +858,7 @@ msgstr ""
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "Klicke in der E-Mail, die an folgende Adresse gesendet wird, auf die "
-"Schaltfläche „Konto aktivieren": %s"
+"Schaltfläche \"Konto aktivieren\": %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
