@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2023-02-21 03:22+0000\n"
 "Last-Translator: Mike Allbutt <mikeallbutt@gmail.com>\n"
 "Language-Team: Nepali <https://translate.disciple.tools/projects/disciple-"
@@ -278,6 +278,8 @@ msgid "day"
 msgstr "दिन"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "दिनहरू"
 
@@ -520,7 +522,7 @@ msgstr "प्रमाणित गर्नुहोस्"
 msgid "Goal: %s hours of prayer every day"
 msgstr "लक्ष्य: हरेक दिन %s घण्टा प्रार्थना"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "लक्ष्य: २४/७ कभरेज"
 
@@ -1020,28 +1022,25 @@ msgstr "%s लाई सम्पर्क गर्नुहोस्"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "प्रार्थना गर्न साइन अप गर्नुहोस्"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "प्रतिबद्ध समय"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "प्रार्थना योद्धाहरू"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "प्रार्थना प्रतिबद्धताहरू आवश्यक"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "सबै हेर्नुहोस्"
 
@@ -1164,17 +1163,57 @@ msgstr ""
 "पूरै कुरान (बाइबलको दशौं भाग लम्बाइ) पनि पढ्छन्। यो निष्कपट खोजले हाम्रो लागि तिनीहरूको "
 "लागि प्रार्थना गर्ने रणनीतिक समय बनाउँछ।"
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "यो कसरी काम गर्छ"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "प्रार्थनाको लागि साइन अप गर्नुहोस्"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "इमेल रिमाइन्डरहरू प्राप्त गर्नुहोस्"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "रमजान सुरु हुँदैछ..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "मार्गदर्शित प्रार्थनाहरूसँग 15 मिनेट बिताउनुहोस्"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "रमजान समाप्त हुँदैछ..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "राष्ट्रहरूको लागि प्रार्थना गर्दा परमेश्वरलाई भेट्नुहोस्"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "रमजान समाप्त भयो"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "रमजानको बारेमा"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "अभियान पूरा भयो"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "बाँकी दिनहरू"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "रमजान सुरु हुन्छ"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "प्रार्थना कभरेज"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "लक्ष्य: %d घण्टा/दिन कभरेज"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "प्रतिबद्ध"
+msgstr[1] "प्रतिबद्ध"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1193,3 +1232,9 @@ msgstr "रोक्नुहोस्"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "जारी राख्नुहोस्"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "रमजान समाप्त हुँदैछ..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "रमजान समाप्त भयो"

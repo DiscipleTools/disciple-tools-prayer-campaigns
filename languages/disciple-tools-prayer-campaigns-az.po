@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.16.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-11 08:03+0000\n"
 "Last-Translator: Jason Casto <jason.casto@quikmail.org>\n"
 "Language-Team: Azerbaijani <https://translate.disciple.tools/projects/"
@@ -283,6 +283,8 @@ msgid "day"
 msgstr "gün"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "günlər"
 
@@ -298,7 +300,8 @@ msgstr "Dua vaxtlarının idarəetmə linkini əldə et"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"E-poçt ünvanınızı daxil edin və dua vaxtlarınıza keçid linkini əldə edin."
+"E-poçt ünvanınızı daxil edin və dua vaxtlarınıza link alın.E-poçt ünvanınızı "
+"daxil edin və dua vaxtlarınıza keçid linkini əldə edin."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -528,7 +531,7 @@ msgstr "Doğrulayın"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Məqsəd: hər gün %s saat dua"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "Məqsəd: 24/7 dua davamlılığı"
 
@@ -848,7 +851,8 @@ msgstr ""
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"%s ünvanına göndərilən e-poçtdakı “Hesabı Aktivləşdir” düyməsini klikləyin"
+"Göndərilən e-poçtdakı \"Hesabı aktivləşdir\" düyməsinə klikləyin: %s%s "
+"ünvanına göndərilən e-poçtdakı “Hesabı Aktivləşdir” düyməsini klikləyin"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1020,7 +1024,9 @@ msgstr "404-ə aparan yol genişdir."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Yenidən yolunuza qayıtmaq üçün menyudakı keçidlərdən birini istifadə edin."
+"Yolunuza qayıtmaq üçün menyudakı bəzi linklərdən istifadə etməyə "
+"çalışın.Yenidən yolunuza qayıtmaq üçün menyudakı keçidlərdən birini istifadə "
+"edin."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1039,28 +1045,25 @@ msgstr "%s ilə əlaqə saxlayın"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "Dua Üçün Qeydiyyatdan Keçin"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "Öhdəlik Edilmiş Vaxtı"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "Dua Edənlər"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Lazım olan Dua Öhdəlikləri"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "Hamısına Baxın"
 
@@ -1187,17 +1190,57 @@ msgstr ""
 "Bibliyanın ondan biri qədər). Bu səmimi axtarış, onların üçün dua etməyimiz "
 "üçün strateji bir vaxt yaradır."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "Necə işləyir"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "Dua etmək üçün qeydiyyatdan keç"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "E-poçt xatırlatmaları alın"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "Ramazan başlayır ..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "Rəhbərli dualarla 15 dəqiqə keçirin"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "Ramazan bitir ..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "Millətlər üçün dua edərkən Allahla qarşılaşın"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "Ramazan başa çatıb"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "Ramazan haqqında"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "Kampaniya tamamlandı"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "Qalan günlər"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "Ramazan başlayır"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "Dua əhatəsi"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "Hədəf: gündə %d saat əhatə"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "öhdəlik"
+msgstr[1] "öhdəlik"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1216,3 +1259,9 @@ msgstr "Fasilə"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Davam et"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "Ramazan bitir ..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "Ramazan başa çatıb"

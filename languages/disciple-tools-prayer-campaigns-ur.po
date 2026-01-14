@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-09 15:55+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Urdu <https://translate.disciple.tools/projects/pray4movement/"
@@ -283,6 +283,8 @@ msgid "day"
 msgstr "دِن"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "ایام"
 
@@ -298,7 +300,8 @@ msgstr "دعاکے وقت کا انتظامی لنک دوبارہ حاصل کر�
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"اپنے ای میل ایڈرس کا اندراج کریں اور اپنے دعائیہ اوقات کا لنک حاصل کریں۔"
+"اپنا ای میل پتہ درج کریں اور اپنے دعا کے اوقات کا لنک حاصل کریں۔اپنے ای میل "
+"ایڈرس کا اندراج کریں اور اپنے دعائیہ اوقات کا لنک حاصل کریں۔"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -313,7 +316,8 @@ msgstr "میری رسائی کے لنک کو ای میل کریں"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
 msgstr ""
-"براہ کرم اپنے رسائی کے لنک کے لیے ابھی اپنے ای میل ایڈریس کی جانچ کریں۔"
+"براہ کرم اپنے رسائی لنک کے لیے ابھی اپنا ای میل چیک کریں۔براہ کرم اپنے رسائی "
+"کے لنک کے لیے ابھی اپنے ای میل ایڈریس کی جانچ کریں۔"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -527,7 +531,7 @@ msgstr "تصدیق کریں"
 msgid "Goal: %s hours of prayer every day"
 msgstr "مقصد: روزانہ %s گھنٹے دعا"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "مقصد: 24/7 نشر و تشہیر"
 
@@ -1031,28 +1035,25 @@ msgstr "%s سے رابطہ کریں"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "دعاکےلیےسائناپکریں"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "وقتکاعہد"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "دعائیہجنگجو"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "دعائیہعہدکیضرورتہے"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "سبدیکھیں"
 
@@ -1176,17 +1177,57 @@ msgstr ""
 "کرتے ہیں۔ کچھ تو پورا قرآن شریف بھی پڑھتے ہیں (بائبل مقدس کی لمبائی کا دسواں "
 "حصہ)۔ یہ مخلصانہ تلاش ہمارے لیے اُن کے لیے دعا کرنے کا ایک کلیدی وقت بناتی ہے۔"
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "یہ کیسے کام کرتا ہے"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "دعا کے لیے سائن اپ کریں"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "ای میل یاد دہانیاں وصول کریں"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "رمضان المبارککاآغاز‎..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "رہنمائی شدہ دعاؤں کے ساتھ 15 منٹ گزاریں"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "رمضانالمبارککااختتام‎..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "قوموں کے لیے دعا کرتے ہوئے خدا سے ملیں"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "رمضانالمبارک ختم ہوگیا"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "رمضان کے بارے میں"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "مہم مکمل"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "باقی دن"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "رمضان شروع ہونے میں"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "دعا کی کوریج"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "ہدف: %d گھنٹے/دن کوریج"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "پرعزم"
+msgstr[1] "پرعزم"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1205,3 +1246,9 @@ msgstr "روکیں"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "جاری رکھیں"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "رمضانالمبارککااختتام‎..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "رمضانالمبارک ختم ہوگیا"

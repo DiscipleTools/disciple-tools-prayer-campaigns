@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -238,6 +238,8 @@ msgstr ""
 
 #: campaign-functions/time-utilities.php:201
 #: parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr ""
 
@@ -488,6 +490,7 @@ msgid "Goal: %s hours of prayer every day"
 msgstr ""
 
 #: parts/components-enqueue.php:72
+#: porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr ""
 
@@ -945,30 +948,27 @@ msgstr ""
 #: porches/generic/site/home-body.php:99
 #: porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr ""
 
 #: porches/generic/site/home-body.php:166
 #: porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr ""
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr ""
 
 #: porches/generic/site/home-body.php:196
 #: porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr ""
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr ""
 
@@ -1055,17 +1055,57 @@ msgid ""
 "Though many have stopped fasting in recent years, and are turned off by the hypocrisy, increased crime rates, and rudeness that is pervasive through the month, others have become more serious about religion during this time. Many attend the evening prayer services and do the other ritual prayers. Some even read the entire Quran (about a tenth the length of the Bible). This sincere seeking makes it a strategic time for us to pray for them."
 msgstr ""
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr ""
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr ""
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr ""
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
+msgid "Spend 15 minutes with guided prayers"
 msgstr ""
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
 msgstr ""
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
 msgstr ""
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr ""
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr ""
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr ""
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr ""
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr ""
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] ""
+msgstr[1] ""
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"

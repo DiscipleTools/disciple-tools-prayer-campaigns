@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
@@ -277,6 +277,8 @@ msgid "day"
 msgstr "దినము"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "రోజులు"
 
@@ -519,7 +521,7 @@ msgstr "వెరిఫై"
 msgid "Goal: %s hours of prayer every day"
 msgstr "లక్ష్యం: ప్రతి రోజు %s గంటల ప్రార్థన"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "లక్ష్యం: 24/7 కవరేజ్"
 
@@ -1019,28 +1021,25 @@ msgstr "సంప్రదించండి %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "ప్రార్థించుటకు సైన్ అప్ చేయండి"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "ఒప్పుకున్న సమయం"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "ప్రార్థనా యోధులు"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "ప్రార్థనా సమర్పణలు అవసరం"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "అన్ని చూడండి"
 
@@ -1162,17 +1161,57 @@ msgstr ""
 "కొందరు కురాన్ అంతా కూడా చదువుతరు (బైబిలులో పదియవవంతు). ఈ నిజాయితీగల అన్వేషణ మనం వారి కొరకు "
 "వ్యూహాత్మకముగా ప్రార్థించుటకు అవకాశం ఇస్తుంది."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "ఇది ఎలా పని చేస్తుంది"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "ప్రార్థన కోసం సైన్ అప్ చేయండి"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "ఇమెయిల్ రిమైండర్లు పొందండి"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "రంజాన్ ఆరంభం …"
+msgid "Spend 15 minutes with guided prayers"
+msgstr "మార్గదర్శక ప్రార్థనలతో 15 నిమిషాలు గడపండి"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "రంజాన్ ముగింపు …"
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "దేశాల కోసం ప్రార్థిస్తూ దేవుణ్ణి కలుసుకోండి"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "రంజాన్ పూర్తైయ్యింది"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "రంజాన్ గురించి"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "ప్రచారం పూర్తయింది"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "మిగిలిన రోజులు"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "రంజాన్ ప్రారంభం"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "ప్రార్థన కవరేజ్"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "లక్ష్యం: %d గంటలు/రోజు కవరేజ్"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "నిబద్ధత"
+msgstr[1] "నిబద్ధత"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1191,3 +1230,9 @@ msgstr "ఆపు"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "కొనసాగించండి"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "రంజాన్ ముగింపు …"
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "రంజాన్ పూర్తైయ్యింది"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/"
@@ -281,6 +281,8 @@ msgid "day"
 msgstr "dag"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "dagen"
 
@@ -523,7 +525,7 @@ msgstr "Verifiëren"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Doel: %s uur gebed per dag"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "Doel: 24/7 dekking"
 
@@ -841,7 +843,8 @@ msgstr "Bijna klaar! Voltooi de aanmelding door uw account te activeren."
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Klik op de knop \"Account activeren\" in de e-mail die is verzonden naar: %s"
+"Klik op de knop \"Account activeren\" in de e-mail verzonden naar: %sKlik op "
+"de knop \"Account activeren\" in de e-mail die is verzonden naar: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1012,8 +1015,9 @@ msgstr "Breed is het pad dat naar de 404 leidt."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Probeer enkele van de links in het menu te gebruiken om weer op het goede "
-"spoor te komen."
+"Probeer enkele links in het menu te gebruiken om weer op weg te "
+"komen.Probeer enkele van de links in het menu te gebruiken om weer op het "
+"goede spoor te komen."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1032,28 +1036,25 @@ msgstr "Contact %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "Meld je aan om te bidden"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "Toegewijde tijd"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "Gebedsstrijders"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Gebedstoezeggingen nodig"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "Bekijk alle"
 
@@ -1180,17 +1181,57 @@ msgstr ""
 "tiende van de lengte van de Bijbel). Dit oprechte zoeken maakt het voor ons "
 "een strategisch moment om voor hen te bidden."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "Hoe het werkt"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "Meld je aan om te bidden"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "Ontvang e-mailherinneringen"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "Ramadan begint..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "Besteed 15 minuten aan begeleide gebeden"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "Ramadan eindigt..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "Ontmoet God terwijl je bidt voor de naties"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "Ramadan is afgelopen"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "Over Ramadan"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "Campagne voltooid"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "Resterende dagen"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "Ramadan begint over"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "Gebedsdekking"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "Doel: %d uur/dag dekking"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "toegezegd"
+msgstr[1] "toegezegd"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1209,3 +1250,9 @@ msgstr "Pauzeren"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Hervatten"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "Ramadan eindigt..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "Ramadan is afgelopen"

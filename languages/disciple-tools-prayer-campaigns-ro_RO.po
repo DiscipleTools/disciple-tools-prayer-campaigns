@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2022-12-08 12:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.disciple.tools/projects/disciple-"
@@ -288,6 +288,8 @@ msgid "day"
 msgstr "zi"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "zile"
 
@@ -303,7 +305,9 @@ msgstr "Obțineți linkul de gestionare a timpului de rugăciune"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Introduceți adresa de e-mail și primiți un link către orele de rugăciune."
+"Introdu adresa ta de email și primește un link către orele tale de "
+"rugăciune.Introduceți adresa de e-mail și primiți un link către orele de "
+"rugăciune."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -532,7 +536,7 @@ msgstr "Verificați"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Obiectiv: %s ore de rugăciune în fiecare zi"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "Obiectiv: acoperire 24/7"
 
@@ -627,8 +631,9 @@ msgstr "Înregistrarea dvs. a avut succes."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Verificați e-mailul pentru detalii suplimentare și pentru a vă gestiona "
-"contul."
+"Verifică emailul pentru detalii suplimentare și pentru a-ți gestiona "
+"contul.Verificați e-mailul pentru detalii suplimentare și pentru a vă "
+"gestiona contul."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -975,7 +980,8 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"Folosiți aceste resurse pentru a vă ajuta să vă rugați în mod specific în "
+"Folosește aceste resurse pentru a te ajuta să te rogi specific în fiecare "
+"zi.Folosiți aceste resurse pentru a vă ajuta să vă rugați în mod specific în "
 "fiecare zi."
 
 #: porches/generic/dt-generic-porch-strings.php:179
@@ -1025,8 +1031,9 @@ msgstr "Lată este poteca care duce la 404."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Încercați să utilizați unele dintre linkurile din meniu pentru a reveni pe "
-"drumul cel bun."
+"Încearcă să folosești unele linkuri din meniu pentru a reveni pe drumul cel "
+"bun.Încercați să utilizați unele dintre linkurile din meniu pentru a reveni "
+"pe drumul cel bun."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1045,28 +1052,25 @@ msgstr "Contactați %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "Înscrieți-vă pentru a vă ruga"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "Timp angajat"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "Luptători de rugăciune"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "Angajamente de rugăciune necesare"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "Vedeți tot"
 
@@ -1194,17 +1198,58 @@ msgstr ""
 "(aproximativ o zecime din lungimea Bibliei). Această căutare sinceră face "
 "din aceasta un moment strategic pentru noi să ne rugăm pentru ei."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "Cum funcționează"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "Înscrie-te pentru rugăciune"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "Primește memento-uri prin email"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "Ramadanul începe..."
+msgid "Spend 15 minutes with guided prayers"
+msgstr "Petrece 15 minute cu rugăciuni ghidate"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "Ramadanul se încheie..."
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "Întâlnește-L pe Dumnezeu în timp ce te rogi pentru națiuni"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "Ramadanul s-a terminat"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "Despre Ramadan"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "Campanie finalizată"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "Zile rămase"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "Ramadanul începe în"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "Acoperire de rugăciune"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "Obiectiv: %d ore/zi acoperire"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "angajat"
+msgstr[1] "angajate"
+msgstr[2] "Angajat"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1223,3 +1268,9 @@ msgstr "Pauză"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "Reluați"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "Ramadanul se încheie..."
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "Ramadanul s-a terminat"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:08:26+00:00\n"
+"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
 "PO-Revision-Date: 2025-09-09 13:03+0000\n"
 "Last-Translator: Corsacca <corsacca@gmail.com>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
@@ -279,6 +279,8 @@ msgid "day"
 msgstr "يوم"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
+#: porches/ramadan/site/home-body.php:217
+#: porches/ramadan/site/home-body.php:219
 msgid "days"
 msgstr "أيام"
 
@@ -521,7 +523,7 @@ msgstr "تحقق"
 msgid "Goal: %s hours of prayer every day"
 msgstr "الهدف: %s ساعات من الصلاة كل يوم"
 
-#: parts/components-enqueue.php:72
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
 msgid "Goal: 24/7 coverage"
 msgstr "الهدف: تغطية 24/7"
 
@@ -1022,28 +1024,25 @@ msgstr "اتصل بـ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:115
-#: porches/ramadan/site/home-body.php:156
+#: porches/ramadan/site/home-body.php:281
 msgid "Sign Up to Pray"
 msgstr "قم بالتسجيل للصلاة"
 
 #: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
-#: porches/ramadan/site/home-body.php:187
 msgid "Time Committed"
 msgstr "الوقت الذي تم الالتزام به"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:203
+#: porches/ramadan/site/home-body.php:257
 msgid "Prayer Warriors"
 msgstr "جنود الصلاة"
 
 #: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
-#: porches/ramadan/site/home-body.php:217
 msgid "Prayer Commitments Needed"
 msgstr "التزامات الصلاة مطلوبة"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:238
+#: porches/ramadan/site/home-body.php:306
 msgid "View All"
 msgstr "مشاهدة الكل"
 
@@ -1164,17 +1163,61 @@ msgstr ""
 "ويؤدون صلاة الطقوس الأخرى. حتى أن البعض قرأ القرآن كاملاً (حوالي عُشر طول "
 "الكتاب المقدس). هذا البحث الصادق يجعله وقتًا استراتيجيًا لنا للصلاة من أجلهم."
 
+#: porches/ramadan/site/home-body.php:99
+msgid "How It Works"
+msgstr "كيف يعمل"
+
+#: porches/ramadan/site/home-body.php:109
+msgid "Sign up to pray"
+msgstr "سجّل للصلاة"
+
+#: porches/ramadan/site/home-body.php:121
+msgid "Receive email reminders"
+msgstr "استلم تذكيرات بالبريد الإلكتروني"
+
 #: porches/ramadan/site/home-body.php:133
-msgid "Ramadan Begins ..."
-msgstr "بداية رمضان…"
+msgid "Spend 15 minutes with guided prayers"
+msgstr "اقضِ 15 دقيقة مع صلوات موجهة"
 
-#: porches/ramadan/site/home-body.php:134
-msgid "Ramadan Ends ..."
-msgstr "نهاية رمضان…"
+#: porches/ramadan/site/home-body.php:145
+msgid "Encounter God as you pray for the nations"
+msgstr "التقِ بالله وأنت تصلي من أجل الأمم"
 
-#: porches/ramadan/site/home-body.php:135
-msgid "Ramadan Is Finished"
-msgstr "انتهى شهر رمضان"
+#: porches/ramadan/site/home-body.php:159
+msgid "About Ramadan"
+msgstr "عن رمضان"
+
+#: porches/ramadan/site/home-body.php:206
+msgid "Campaign Complete"
+msgstr "اكتملت الحملة"
+
+#: porches/ramadan/site/home-body.php:208
+msgid "Days Remaining"
+msgstr "الأيام المتبقية"
+
+#: porches/ramadan/site/home-body.php:210
+msgid "Ramadan Begins In"
+msgstr "يبدأ رمضان خلال"
+
+#: porches/ramadan/site/home-body.php:230
+msgid "Prayer Coverage"
+msgstr "تغطية الصلاة"
+
+#. translators: %d is the number of hours per day
+#: porches/ramadan/site/home-body.php:244
+#, php-format
+msgid "Goal: %d hours/day coverage"
+msgstr "الهدف: %d ساعة/يوم تغطية"
+
+#: porches/ramadan/site/home-body.php:263
+msgid "committed"
+msgid_plural "committed"
+msgstr[0] "ملتزم"
+msgstr[1] "ملتزم"
+msgstr[2] "ملتزم"
+msgstr[3] "ملتزم"
+msgstr[4] "ملتزم"
+msgstr[5] "ملتزم"
 
 #: shortcodes/prayer-timer.php:244
 msgid "Start Praying!"
@@ -1193,3 +1236,9 @@ msgstr "إيقاف مؤقت"
 #: shortcodes/prayer-timer.php:449
 msgid "Resume"
 msgstr "استئناف"
+
+#~ msgid "Ramadan Ends ..."
+#~ msgstr "نهاية رمضان…"
+
+#~ msgid "Ramadan Is Finished"
+#~ msgstr "انتهى شهر رمضان"

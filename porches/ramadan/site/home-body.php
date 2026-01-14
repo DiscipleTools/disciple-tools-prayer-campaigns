@@ -251,22 +251,20 @@ if ( $campaign_has_end_date && function_exists( 'DT_Campaigns_Base::query_covera
                 <?php endif; ?>
                 <!-- Inline Stats (Strategy A style) -->
                 <?php
-                // Parse time committed to separate number from unit
-                preg_match( '/^([\d.]+)\s*(.*)$/', $time_committed, $time_parts );
-                $time_number = isset( $time_parts[1] ) ? $time_parts[1] : $time_committed;
-                $time_unit = isset( $time_parts[2] ) ? $time_parts[2] : '';
+                // Use 2 for plural (matches display_minutes_in_time logic where only 1 is singular)
+                $days_committed_raw = floor( $minutes_committed / 60 / 24 );
+                $committed_plural_count = ( (int) $days_committed_raw === 1 ) ? 1 : 2;
                 ?>
-                <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 20px;">
-                    <div style="color: #fff; display: flex; align-items: center;">
+                <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 20px; align-items: baseline;">
+                    <div style="color: #fff; display: flex; align-items: baseline;">
                         <i class="lnr lnr-user" style="font-size: 1.5em; margin-right: 10px;"></i>
                         <span style="font-size: 2em; font-weight: bold;"><?php echo esc_html( $subscribers_count ?? 0 ); ?></span>
                         <span style="margin-left: 8px;"><?php esc_html_e( 'Prayer Warriors', 'disciple-tools-prayer-campaigns' ); ?></span>
                     </div>
-                    <div style="color: #fff; display: flex; align-items: center;">
+                    <div style="color: #fff; display: flex; align-items: baseline;">
                         <i class="lnr lnr-calendar-full" style="font-size: 1.5em; margin-right: 10px;"></i>
-                        <span style="font-size: 2em; font-weight: bold;"><?php echo esc_html( $time_number ); ?></span>
-                        <span style="margin-left: 4px;"><?php echo esc_html( $time_unit ); ?></span>
-                        <span style="margin-left: 8px;"><?php esc_html_e( 'Committed', 'disciple-tools-prayer-campaigns' ); ?></span>
+                        <span style="font-size: 1.5em; font-weight: bold;"><?php echo esc_html( $time_committed ); ?></span>
+                        <span style="margin-left: 8px;"><?php echo esc_html( _n( 'committed', 'committed', $committed_plural_count, 'disciple-tools-prayer-campaigns' ) ); ?></span>
                     </div>
                 </div>
             </div>
