@@ -106,7 +106,7 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
                             <i class="lnr lnr-pencil"></i>
                         </div>
                         <div class="fact-count">
-                            <h4><?php esc_html_e( 'Sign up to pray', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                            <strong><?php esc_html_e( 'Sign up to pray', 'disciple-tools-prayer-campaigns' ); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
                             <i class="lnr lnr-envelope"></i>
                         </div>
                         <div class="fact-count">
-                            <h4><?php esc_html_e( 'Receive email reminders', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                            <strong><?php esc_html_e( 'Receive email reminders', 'disciple-tools-prayer-campaigns' ); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
                             <i class="lnr lnr-clock"></i>
                         </div>
                         <div class="fact-count">
-                            <h4><?php esc_html_e( 'Spend 15 minutes with guided prayers', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                            <strong><?php esc_html_e( 'Spend 15 minutes with guided prayers', 'disciple-tools-prayer-campaigns' ); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ $video_url = DT_Porch_Settings::get_field_translation( 'promo_video_url', $lang,
                             <i class="lnr lnr-heart"></i>
                         </div>
                         <div class="fact-count">
-                            <h4><?php esc_html_e( 'Encounter God as you pray for the nations', 'disciple-tools-prayer-campaigns' ); ?></h4>
+                            <strong><?php esc_html_e( 'Encounter God as you pray for the nations', 'disciple-tools-prayer-campaigns' ); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -220,7 +220,7 @@ if ( $campaign_has_end_date && function_exists( 'DT_Campaigns_Base::query_covera
                         <?php endif; ?>
                     </div>
                     <div style="color: rgba(255,255,255,0.8); margin-top: 10px;">
-                        <?php echo esc_html( $start_date ); ?> — <?php echo esc_html( $end_date ); ?>
+                        <strong><?php echo esc_html( $start_date ); ?></strong> — <strong><?php echo esc_html( $end_date ); ?></strong>
                     </div>
                 </div>
                 <!-- Progress Block -->
@@ -236,7 +236,16 @@ if ( $campaign_has_end_date && function_exists( 'DT_Campaigns_Base::query_covera
                         <div style="color: #fff; font-size: 1.5em; font-weight: bold; min-width: 60px;"><?php echo esc_html( $coverage_progress ); ?>%</div>
                     </div>
                     <div style="color: rgba(255,255,255,0.7); font-size: 0.9em; margin-top: 8px;">
-                        <?php esc_html_e( 'Goal: 24/7 coverage', 'disciple-tools-prayer-campaigns' ); ?>
+                        <?php
+                        $campaign_goal = Campaign_Utils::get_campaign_goal( $campaign_fields );
+                        if ( $campaign_goal === 'quantity' ) {
+                            $goal_hours = Campaign_Utils::get_campaign_goal_quantity( $campaign_fields );
+                            /* translators: %d is the number of hours per day */
+                            printf( esc_html__( 'Goal: %d hours/day coverage', 'disciple-tools-prayer-campaigns' ), absint( $goal_hours ) );
+                        } else {
+                            esc_html_e( 'Goal: 24/7 coverage', 'disciple-tools-prayer-campaigns' );
+                        }
+                        ?>
                     </div>
                 </div>
                 <?php endif; ?>
