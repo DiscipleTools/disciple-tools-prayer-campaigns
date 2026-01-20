@@ -187,7 +187,7 @@ $campaign_ended = $now >= $end_timestamp;
 
 // Calculate progress percentage
 $coverage_progress = 0;
-if ( $campaign_has_end_date && function_exists( 'DT_Campaigns_Base::query_coverage_percentage' ) ) {
+if ( $campaign_has_end_date && method_exists( 'DT_Campaigns_Base', 'query_coverage_percentage' ) ) {
     $coverage_progress = DT_Campaigns_Base::query_coverage_percentage( $campaign_fields['ID'] );
 }
 ?>
