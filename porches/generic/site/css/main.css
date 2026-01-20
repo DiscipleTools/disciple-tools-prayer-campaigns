@@ -1077,7 +1077,8 @@ a:not([href]):not([tabindex]):hover {
     height: auto;
 }
 .fuel-block h3 {
-    margin-top: 40px;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 .fuel-block figure.p4m_prayer_image {
     text-align: center;
