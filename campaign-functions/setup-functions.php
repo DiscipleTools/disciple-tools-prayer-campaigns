@@ -73,11 +73,17 @@ function dt_campaigns_is_ramadan_campaign( $campaign_id ){
     if ( empty( $campaign_id ) ){
         return false;
     }
-    $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
-    if ( is_wp_error( $campaign ) ){
-        return false;
+    $porch_type = '';
+    if ( class_exists( 'DT_Posts' ) ){
+        $campaign = DT_Posts::get_post( 'campaigns', $campaign_id, true, false );
+        if ( is_wp_error( $campaign ) ){
+            return false;
+        }
+        $porch_type = isset( $campaign['porch_type']['key'] ) && $campaign['porch_type']['key'] === 'ramadan-porch';
+    } else {
+        $porch_type = get_post_meta( $campaign_id, 'porch_type', true );
     }
-    return isset( $campaign['porch_type']['key'] ) && $campaign['porch_type']['key'] === 'ramadan-porch';
+    return empty( $porch_type ) ? false : $porch_type;
 }
 
 /**
