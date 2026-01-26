@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.11.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 15:55+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Urdu <https://translate.disciple.tools/projects/pray4movement/"
 "disciple-tools-prayer-campaigns/ur/>\n"
 "Language: ur\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -299,7 +299,9 @@ msgstr "دعاکے وقت کا انتظامی لنک دوبارہ حاصل کر�
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr "اپنا ای میل پتہ درج کریں اور اپنے دعا کے اوقات کا لنک حاصل کریں۔"
+msgstr ""
+"اپنا ای میل پتہ درج کریں اور اپنے دعا کے اوقات کا لنک حاصل کریں۔اپنے ای میل "
+"ایڈرس کا اندراج کریں اور اپنے دعائیہ اوقات کا لنک حاصل کریں۔"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -313,7 +315,9 @@ msgstr "میری رسائی کے لنک کو ای میل کریں"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr "براہ کرم اپنے رسائی لنک کے لیے ابھی اپنا ای میل چیک کریں۔"
+msgstr ""
+"براہ کرم اپنے رسائی لنک کے لیے ابھی اپنا ای میل چیک کریں۔براہ کرم اپنے رسائی "
+"کے لنک کے لیے ابھی اپنے ای میل ایڈریس کی جانچ کریں۔"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -806,8 +810,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"GospelAmbition.org ‎سےآنےوالیدعائیہمہمات اور "
-"کبھیکبھارمواصلتکےبارےمیںPrayer.Toolsسےخبریں حاصل کریں"
+"GospelAmbition.org ‎سےآنےوالیدعائیہمہمات اور کبھیکبھارمواصلتکےبارےمیںPrayer."
+"Toolsسےخبریں حاصل کریں"
 
 #: parts/components-enqueue.php:137
 msgid ""
@@ -1031,7 +1035,7 @@ msgstr "%s سے رابطہ کریں"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "دعاکےلیےسائناپکریں"
 
@@ -1040,7 +1044,7 @@ msgid "Time Committed"
 msgstr "وقتکاعہد"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "دعائیہجنگجو"
 
@@ -1049,7 +1053,7 @@ msgid "Prayer Commitments Needed"
 msgstr "دعائیہعہدکیضرورتہے"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "سبدیکھیں"
 
@@ -1114,11 +1118,11 @@ msgstr "دعا کے مزید مواقع"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"دعاکیدیگرکوششوں اور دعاکےمواقعوںکےبارےمیںسننےکےلیےسائناپکریں۔"
-"GospelAmbition.org سےٹولاور کبھیکبھار بات چیت حاصل کریں۔"
+"دعاکیدیگرکوششوں اور دعاکےمواقعوںکےبارےمیںسننےکےلیےسائناپکریں۔GospelAmbition."
+"org سےٹولاور کبھیکبھار بات چیت حاصل کریں۔"
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
@@ -1219,7 +1223,7 @@ msgstr "دعا کی کوریج"
 msgid "Goal: %d hours/day coverage"
 msgstr "ہدف: %d گھنٹے/دن کوریج"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "پرعزم"

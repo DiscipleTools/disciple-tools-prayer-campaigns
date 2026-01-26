@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 13:03+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Hindi <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/hi_IN/>\n"
 "Language: hi_IN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -963,7 +963,8 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"प्रत्येक दिन विशेष रूप से प्रार्थना करने में सहायता करने के लिए इन संसाधनों का उपयोग करें।"
+"हर दिन विशेष रूप से प्रार्थना करने में मदद के लिए इन संसाधनों का उपयोग करें।प्रत्येक दिन "
+"विशेष रूप से प्रार्थना करने में सहायता करने के लिए इन संसाधनों का उपयोग करें।"
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1030,7 +1031,7 @@ msgstr "संपर्क करें %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "प्रार्थना करने के लिए साइन अप करें"
 
@@ -1039,7 +1040,7 @@ msgid "Time Committed"
 msgstr "समर्पित समय"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "प्रार्थना योद्धा"
 
@@ -1048,7 +1049,7 @@ msgid "Prayer Commitments Needed"
 msgstr "प्रार्थना प्रतिबद्धता की आवश्यकता है"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "सभी देखें"
 
@@ -1113,8 +1114,8 @@ msgstr "प्रार्थना के और अधिक अवसर"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools के साथ अन्य प्रार्थना प्रयासों और अवसरों के बारे में सुनने के लिए साइन अप करें "
 "और GospelAmbition.org से कभी-कभार संचार प्राप्त करें।"
@@ -1217,7 +1218,7 @@ msgstr "प्रार्थना कवरेज"
 msgid "Goal: %d hours/day coverage"
 msgstr "लक्ष्य: %d घंटे/दिन कवरेज"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "प्रतिबद्ध"

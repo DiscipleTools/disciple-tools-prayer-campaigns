@@ -5,18 +5,17 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 15:55+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.disciple.tools/projects/pray4movement/disciple-tools-prayer-"
-"campaigns/zh_Hans/>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: EA Digital Ministries <translator@disciple.tools>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.disciple."
+"tools/projects/pray4movement/disciple-tools-prayer-campaigns/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -1009,7 +1008,7 @@ msgstr "联系 %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "报名祈祷"
 
@@ -1018,7 +1017,7 @@ msgid "Time Committed"
 msgstr "承诺时间"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "祷告勇士"
 
@@ -1027,7 +1026,7 @@ msgid "Prayer Commitments Needed"
 msgstr "需要做的祈祷承诺"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "查看全部"
 
@@ -1091,8 +1090,8 @@ msgstr "更多祈祷机会"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "通过Prayer.Tools 注册了解其他的祈祷工作和机会，并偶尔接收GospelAmbition.org."
 "发送给您的信息。"
@@ -1190,7 +1189,7 @@ msgstr "祷告覆盖"
 msgid "Goal: %d hours/day coverage"
 msgstr "目标：每天 %d 小时覆盖"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "已承诺"
