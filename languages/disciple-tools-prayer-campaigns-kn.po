@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 13:03+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Heidi Hart <translator@disciple.tools>\n"
 "Language-Team: Kannada <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/kn/>\n"
 "Language: kn\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -301,7 +301,9 @@ msgstr "ಪ್ರಾರ್ಥನೆ ಸಮಯ ನಿರ್ವಹಣೆ ಲಿಂ
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನಾ ಸಮಯಗಳ ಲಿಂಕ್ ಪಡೆಯಿರಿ."
+msgstr ""
+"ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನಾ ಸಮಯಗಳ ಲಿಂಕ್ ಪಡೆಯಿರಿ.ನಿಮ್ಮ ಇಮೇಲ್ "
+"ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಪ್ರಾರ್ಥನೆ ಸಮಯಕ್ಕೆ ಲಿಂಕ್ ಅನ್ನು ಸ್ವೀಕರಿಸಿ."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -623,7 +625,9 @@ msgstr "ನಿಮ್ಮ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ.
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr "ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ."
+msgstr ""
+"ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ.ಹೆಚ್ಚುವರಿ "
+"ವಿವರಗಳಿಗಾಗಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -848,7 +852,9 @@ msgstr ""
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr "ಈ ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್‌ನಲ್ಲಿ \"ಖಾತೆ ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
+msgstr ""
+"ಈ ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಿದ ಇಮೇಲ್‌ನಲ್ಲಿ \"ಖಾತೆ ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ: %sಇವರಿಗೆ "
+"ಕಳುಹಿಸಿದ ಇಮೇಲ್ನಲ್ಲಿರುವ \"ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ\" ಬಟನ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1039,7 +1045,7 @@ msgstr "ಸಂಪರ್ಕಿಸಿ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "ಪ್ರಾರ್ಥನೆ ಮಾಡಲು ಸೈನ್ ಅಪ್ ಮಾಡಿ"
 
@@ -1048,7 +1054,7 @@ msgid "Time Committed"
 msgstr "ಸಮರ್ಪಿಸಿದ ಸಮಯ"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "ಪ್ರಾರ್ಥನೆಯ ವೀರರು"
 
@@ -1057,7 +1063,7 @@ msgid "Prayer Commitments Needed"
 msgstr "ಅಗತ್ಯವಿರುವ ಪ್ರಾರ್ಥನೆಯ ಬದ್ಧತೆಗಳು"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ"
 
@@ -1123,8 +1129,8 @@ msgstr "ಹೆಚ್ಚಿನ ಪ್ರಾರ್ಥನೆಯ ಅವಕಾಶಗ�
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools ನೊಂದಿಗೆ ಇತರ ಪ್ರಾರ್ಥನೆ ಪ್ರಯತ್ನಗಳು ಮತ್ತು ಅವಕಾಶಗಳ ಬಗ್ಗೆ ಕೇಳಲು ಸೈನ್ ಅಪ್ "
 "ಮಾಡಿ ಮತ್ತು GospelAmbition.org ನಿಂದ ಸಾಂದರ್ಭಿಕ ಸಂಪರ್ಕವನ್ನು ಸ್ವೀಕರಿಸಿ."
@@ -1228,7 +1234,7 @@ msgstr "ಪ್ರಾರ್ಥನೆ ಕವರೇಜ್"
 msgid "Goal: %d hours/day coverage"
 msgstr "ಗುರಿ: %d ಗಂಟೆ/ದಿನ ಕವರೇಜ್"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "ಬದ್ಧತೆ"

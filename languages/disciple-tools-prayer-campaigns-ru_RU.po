@@ -3,18 +3,18 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2023-03-15 11:37+0000\n"
-"Last-Translator: Dmitry <dmitry_cherednikov@wycliffe.ru>\n"
-"Language-Team: Russian <https://translate.disciple.tools/projects/disciple-"
-"tools/disciple-tools-prayer-campaigns/ru_RU/>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Corsacca <translator@disciple.tools>\n"
+"Language-Team: Russian <https://translate.disciple.tools/projects/"
+"pray4movement/disciple-tools-prayer-campaigns/ru_RU/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
@@ -296,7 +296,9 @@ msgstr "Получить ссылку на управление временем
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr "Введите ваш адрес электронной почты и получите ссылку на время молитвы."
+msgstr ""
+"Введите ваш email и получите ссылку на ваше время молитвы.Введите свой адрес "
+"электронной почты и получите ссылку на время молитвы."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -310,7 +312,9 @@ msgstr "Отправить ссылку на мой доступ по элект
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr "Пожалуйста, проверьте вашу почту для получения ссылки доступа."
+msgstr ""
+"Пожалуйста, проверьте вашу почту для получения ссылки доступа.Пожалуйста, "
+"проверьте свой адрес электронной почты сейчас для вашей ссылки доступа."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -373,7 +377,10 @@ msgstr "Аккаунт активирован!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr "Здесь вы можете управлять своими молитвенными посвящениями и настройками аккаунта."
+msgstr ""
+"Здесь вы можете управлять своими молитвенными обязательствами и настройками "
+"аккаунта.Здесь вы можете управлять своими молитвенными посвящениями и "
+"настройками аккаунта."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -618,7 +625,10 @@ msgstr "Ваша регистрация успешно завершена."
 
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
-msgstr "Проверьте электронную почту для получения дополнительной информации и управления аккаунтом."
+msgstr ""
+"Проверьте email для получения дополнительной информации и управления "
+"аккаунтом.Проверьте электронную почту для получения дополнительной "
+"информации и управления вашим аккаунтом."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -1013,7 +1023,10 @@ msgstr "Широк путь, ведущий к 404."
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
-msgstr "Попробуйте использовать ссылки в меню, чтобы вернуться на правильный путь."
+msgstr ""
+"Попробуйте использовать ссылки в меню, чтобы вернуться на правильный путь."
+"Попробуйте использовать некоторые ссылки в меню, чтобы вернуться в нужное "
+"русло."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1032,7 +1045,7 @@ msgstr "Связаться с %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "Зарегистрироваться чтобы молиться"
 
@@ -1041,7 +1054,7 @@ msgid "Time Committed"
 msgstr "Посвященное время"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "Молитвенные воины"
 
@@ -1050,7 +1063,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Нужда в молитвенном посвящении"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "Посмотреть все"
 
@@ -1116,8 +1129,8 @@ msgstr "Больше возможностей для молитвы"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Подпишитесь, чтобы узнавать о других молитвенных усилиях и возможностях с "
 "Prayer.Tools и получать периодические сообщения от GospelAmbition.org."
@@ -1222,7 +1235,7 @@ msgstr "Молитвенное покрытие"
 msgid "Goal: %d hours/day coverage"
 msgstr "Цель: %d часов/день охвата"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "обязательство"

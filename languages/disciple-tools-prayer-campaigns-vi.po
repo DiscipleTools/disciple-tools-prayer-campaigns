@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2024-04-19 08:18+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Corsacca <translator@disciple.tools>\n"
 "Language-Team: Vietnamese <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/vi/>\n"
 "Language: vi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4.3\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -299,7 +299,8 @@ msgstr "Nhận liên kết quản lý thời gian cầu nguyện"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Nhập địa chỉ email của bạn và nhận liên kết đến thời gian cầu nguyện của bạn."
+"Nhập địa chỉ email của bạn và nhận liên kết đến thời gian cầu nguyện.Nhập "
+"địa chỉ email của bạn và nhận liên kết đến thời gian cầu nguyện của bạn."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -313,7 +314,9 @@ msgstr "Gửi liên kết truy cập qua email"
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
-msgstr "Vui lòng kiểm tra email ngay để lấy liên kết truy cập."
+msgstr ""
+"Vui lòng kiểm tra email ngay để lấy liên kết truy cập.Vui lòng kiểm tra "
+"email của bạn ngay bây giờ để nhận liên kết truy cập."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -376,7 +379,9 @@ msgstr "Tài khoản đã được kích hoạt!"
 
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
-msgstr "Tại đây bạn có thể quản lý cam kết cầu nguyện và cài đặt tài khoản."
+msgstr ""
+"Tại đây bạn có thể quản lý cam kết cầu nguyện và cài đặt tài khoản.Tại đây "
+"bạn có thể quản lý các cam kết cầu nguyện và cài đặt tài khoản."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -1033,7 +1038,7 @@ msgstr "Liên hệ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "Đăng ký để cầu nguyện"
 
@@ -1042,7 +1047,7 @@ msgid "Time Committed"
 msgstr "Thời gian cam kết"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "Chiến sĩ cầu nguyện"
 
@@ -1051,7 +1056,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Cần có cam kết cầu nguyện"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "Xem tất cả"
 
@@ -1117,11 +1122,11 @@ msgstr "Nhiều cơ hội cầu nguyện hơn"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
-"Đăng ký để nhận thông tin về các nỗ lực và cơ hội cầu nguyện khác với "
-"Prayer.Tools và nhận thông tin liên lạc từ GospelAmbition.org."
+"Đăng ký để nhận thông tin về các nỗ lực và cơ hội cầu nguyện khác với Prayer."
+"Tools và nhận thông tin liên lạc từ GospelAmbition.org."
 
 #: porches/generic/site/top-nav-fuel.php:31
 #: porches/generic/site/top-section.php:31
@@ -1224,7 +1229,7 @@ msgstr "Phạm vi cầu nguyện"
 msgid "Goal: %d hours/day coverage"
 msgstr "Mục tiêu: %d giờ/ngày bao phủ"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "Đã cam kết"

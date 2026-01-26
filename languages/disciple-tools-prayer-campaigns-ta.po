@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 13:03+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/ta/>\n"
 "Language: ta\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -298,7 +298,9 @@ msgstr "ஜெப நேர நிர்வாக லிங்க் பெற�
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
-msgstr "உங்கள் ஜெப நேரங்களைப் பற்றிய தகவல் அறியும் லிங்க்-ஐ பெற உங்கள் ஈமெயில் முகவரியைக் கொடுக்கவும்."
+msgstr ""
+"உங்கள் மின்னஞ்சல் முகவரியை உள்ளிட்டு உங்கள் ஜெப நேரங்களுக்கான இணைப்பைப் பெறுங்கள்.உங்கள் ஜெப "
+"நேரங்களைப் பற்றிய தகவல் அறியும் லிங்க்-ஐ பெற உங்கள் ஈமெயில் முகவரியைக் கொடுக்கவும்."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -843,7 +845,10 @@ msgstr "முடிந்தாயிற்று! உங்கள் கணக
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr "%s -க்கு அனுப்பப்பட்டிருக்கும் ஈமெயில் உள்ள \"கணக்கை செயல்படுத்து\" பட்டனை க்ளிக் செய்யவும்"
+msgstr ""
+"இந்த முகவரிக்கு அனுப்பப்பட்ட மின்னஞ்சலில் \"கணக்கை செயல்படுத்து\" பொத்தானைக் கிளிக் "
+"செய்யவும்: %s%s -க்கு அனுப்பப்பட்டிருக்கும் ஈமெயில் உள்ள “கணக்கை செயல்படுத்து” பட்டனை க்ளிக் "
+"செய்யவும்"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1031,7 +1036,7 @@ msgstr "%s தொடர்பு கொள்ளவும்"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "ஜெபிக்க சைன் அப் செய்யவும்"
 
@@ -1040,7 +1045,7 @@ msgid "Time Committed"
 msgstr "அர்ப்பணித்த நேரம்"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "ஜெப வீரர்கள்"
 
@@ -1049,7 +1054,7 @@ msgid "Prayer Commitments Needed"
 msgstr "ஜெப அர்ப்பணிப்புகள் தேவை"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "எல்லாவற்றையும் பார்க்க"
 
@@ -1115,8 +1120,8 @@ msgstr "அதிக ஜெப வாய்ப்புகள்"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "ப்ரேயர்.டூல்ஸ்-ன் மற்ற ஜெப முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய சைன் அப் செய்து, "
 "GospelAmbition.org -லிருந்து வரும் தகவல்களை அவ்வப்போது பெற்றுக்கொள்ளவும்."
@@ -1222,7 +1227,7 @@ msgstr "ஜெப கவரேஜ்"
 msgid "Goal: %d hours/day coverage"
 msgstr "இலக்கு: %d மணி/நாள் கவரேஜ்"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "உறுதியளிக்கப்பட்டது"
