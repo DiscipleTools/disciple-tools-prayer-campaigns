@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2024-03-08 14:15+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Rayanna Tiederle <translator@disciple.tools>\n"
 "Language-Team: German <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/de_DE/>\n"
 "Language: de_DE\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -306,7 +306,9 @@ msgstr "Link um Gebetszeiten zu verwalten, abrufen"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Gib deine E-Mail-Adresse ein und erhalte einen Link zu deinen Gebetszeiten."
+"Geben Sie Ihre E-Mail-Adresse ein und erhalten Sie einen Link zu Ihren "
+"Gebetszeiten.Gib deine E-Mail-Adresse ein und erhalte einen Link zu deinen "
+"Gebetszeiten."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -321,7 +323,8 @@ msgstr "Sende meinen Zugangslink"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
 msgstr ""
-"Bitte schaue in deinen E-Mails nach, ob du einen Zugangslink erhalten hast."
+"Bitte überprüfen Sie jetzt Ihre E-Mail-Adresse für Ihren Zugangslink.Bitte "
+"schaue in deinen E-Mails nach, ob du einen Zugangslink erhalten hast."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
 msgid "Your prayer time has been extended"
@@ -385,6 +388,7 @@ msgstr "Konto aktiviert!"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
+"Hier können Sie Ihre Gebetsverpflichtungen und Kontoeinstellungen verwalten."
 "Hier kannst du deine Gebetsverpflichtungen und Kontoeinstellungen verwalten."
 
 #: magic-links/subscription-management/subscription-management.php:349
@@ -631,8 +635,9 @@ msgstr "Deine Registrierung war erfolgreich."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
-"Für weitere Informationen und zur Verwaltung deines Kontos sieh in deinen "
-"E-Mails nach."
+"Überprüfen Sie Ihre E-Mail für weitere Details und zur Kontoverwaltung.Für "
+"weitere Informationen und zur Verwaltung deines Kontos sieh in deinen E-"
+"Mails nach."
 
 #: parts/components-enqueue.php:94
 msgid "Ok"
@@ -858,8 +863,9 @@ msgstr ""
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Klicke in der E-Mail, die an folgende Adresse gesendet wird, auf die "
-"Schaltfläche \"Konto aktivieren\": %s"
+"Klicken Sie auf die Schaltfläche \"Konto aktivieren\" in der E-Mail, die an "
+"%s gesendet wurdeKlicke in der E-Mail, die an folgende Adresse gesendet "
+"wird, auf die Schaltfläche \"Konto aktivieren\": %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1031,8 +1037,9 @@ msgstr "Breit ist der Weg, der zum 404 führt."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Versuche, einige der Links im Menü zu verwenden, um wieder auf den richtigen "
-"Pfad zu kommen."
+"Versuchen Sie, einige Links im Menü zu verwenden, um wieder auf Kurs zu "
+"kommen.Versuche, einige der Links im Menü zu verwenden, um wieder auf den "
+"richtigen Pfad zu kommen."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1051,7 +1058,7 @@ msgstr "Kontaktiere %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "Trage dich zum Beten ein"
 
@@ -1060,7 +1067,7 @@ msgid "Time Committed"
 msgstr "Eingetragene Zeit"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "Gebetskämpfer"
 
@@ -1069,7 +1076,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Noch benötigte Gebetszeiten"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "Alle ansehen"
 
@@ -1135,8 +1142,8 @@ msgstr "Weitere Gebetsmöglichkeiten"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Registriere dich, um über weitere Gebetsaktionen von Prayer.Tools zu "
 "erfahren und gelegentlich Mitteilungen von GospelAmbition.org zu erhalten."
@@ -1244,7 +1251,7 @@ msgstr "Gebetsabdeckung"
 msgid "Goal: %d hours/day coverage"
 msgstr "Ziel: %d Stunden/Tag Abdeckung"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "zugesagt"

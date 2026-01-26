@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-08 15:03+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Deleted User <translator@disciple.tools>\n"
 "Language-Team: French <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
@@ -239,8 +239,8 @@ msgid ""
 "Stats page."
 msgstr ""
 "Enfin, sur la page Statistiques de prière assurez-vous d'être inscrit pour "
-"recevoir des nouvelles sur les futures opportunités de prière de "
-"Prayer.Tools, les créateurs de cet outil de prière."
+"recevoir des nouvelles sur les futures opportunités de prière de Prayer."
+"Tools, les créateurs de cet outil de prière."
 
 #: campaign-functions/send-email-utility.php:524
 msgid "See Prayer Stats"
@@ -300,6 +300,7 @@ msgstr "Récupérer le lien de gestion du temps de prière"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
+"Entrez votre adresse email et recevez un lien vers vos horaires de prière."
 "Entrez votre adresse e-mail et recevez un lien vers vos temps de prière."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
@@ -315,6 +316,7 @@ msgstr "Envoyer mon lien d'accès"
 #: magic-links/campaign-resend-email/magic-link-post-type.php:177
 msgid "Please check your email address now for your access link."
 msgstr ""
+"Veuillez vérifier votre adresse email maintenant pour votre lien d'accès."
 "Veuillez vérifier votre adresse e-mail maintenant pour votre lien d'accès."
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:90
@@ -379,8 +381,9 @@ msgstr "Compte activé !"
 #: magic-links/subscription-management/subscription-management.php:342
 msgid "Here you can manage your prayer commitments and account settings."
 msgstr ""
-"Ici, vous pouvez gérer vos engagements de prière et les paramètres de votre "
-"compte."
+"Ici vous pouvez gérer vos engagements de prière et les paramètres de votre "
+"compte.Ici, vous pouvez gérer vos engagements de prière et les paramètres de "
+"votre compte."
 
 #: magic-links/subscription-management/subscription-management.php:349
 msgid "Links"
@@ -626,6 +629,7 @@ msgstr "Votre inscription a réussi."
 #: parts/components-enqueue.php:93
 msgid "Check your email for additional details and to manage your account."
 msgstr ""
+"Consultez votre email pour plus de détails et pour gérer votre compte."
 "Vérifiez votre courrier électronique pour plus de détails et pour gérer "
 "votre compte."
 
@@ -851,7 +855,8 @@ msgstr "Presque là ! Terminez votre inscription en activant votre compte."
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
-"Cliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
+"Cliquez sur le bouton \"Activer le compte\" dans l'email envoyé à : "
+"%sCliquez sur le bouton \"Activer le compte\" dans l'e-mail envoyé à : %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -975,8 +980,8 @@ msgstr ""
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
 msgstr ""
-"Utilisez ces ressources pour vous aider à prier spécifiquement chaque "
-"jour."
+"Utilisez ces ressources pour vous aider à prier spécifiquement chaque jour."
+"Utilisez ces ressources pour vous aider à prier spécifiquement chaque jour."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1025,6 +1030,7 @@ msgstr "Large est le chemin qui mène à la 404."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
+"Essayez d'utiliser certains liens du menu pour revenir sur la bonne voie."
 "Essayez d'utiliser certains des liens du menu pour vous remettre sur la "
 "bonne voie."
 
@@ -1045,7 +1051,7 @@ msgstr "Contacter %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "Inscrivez-vous pour prier"
 
@@ -1054,7 +1060,7 @@ msgid "Time Committed"
 msgstr "Temps engagé"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "Guerriers de prière"
 
@@ -1063,7 +1069,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Engagements de prière requis"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "Tout voir"
 
@@ -1129,8 +1135,8 @@ msgstr "Plus d'opportunités de prière"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Inscrivez-vous pour connaître d'autres efforts et opportunités de prière "
 "avec Prayer.Tools et recevez des communications occasionnelles de "
@@ -1239,7 +1245,7 @@ msgstr "Couverture de prière"
 msgid "Goal: %d hours/day coverage"
 msgstr "Objectif : %d heures/jour de couverture"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "engagé"
