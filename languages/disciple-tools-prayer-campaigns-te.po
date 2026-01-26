@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 13:03+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/te/>\n"
 "Language: te\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -1021,7 +1021,7 @@ msgstr "సంప్రదించండి %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "ప్రార్థించుటకు సైన్ అప్ చేయండి"
 
@@ -1030,7 +1030,7 @@ msgid "Time Committed"
 msgstr "ఒప్పుకున్న సమయం"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "ప్రార్థనా యోధులు"
 
@@ -1039,7 +1039,7 @@ msgid "Prayer Commitments Needed"
 msgstr "ప్రార్థనా సమర్పణలు అవసరం"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "అన్ని చూడండి"
 
@@ -1104,8 +1104,8 @@ msgstr "ఎక్కువ ప్రార్థనా అవకాశాలు"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools నుండి ఇతర ప్రార్థనా ప్రయత్నాలు మరియు అవకాశాలను గురించి తెలుసుకొనుటకు, "
 "GospelAmbition.org నుండి అప్పుడప్పుడు పత్రికలను పొందండి సైన్ అప్ చేయండి."
@@ -1207,7 +1207,7 @@ msgstr "ప్రార్థన కవరేజ్"
 msgid "Goal: %d hours/day coverage"
 msgstr "లక్ష్యం: %d గంటలు/రోజు కవరేజ్"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "నిబద్ధత"
