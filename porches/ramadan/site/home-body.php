@@ -220,8 +220,24 @@ if ( $campaign_has_end_date && method_exists( 'DT_Campaigns_Base', 'query_covera
                         <?php endif; ?>
                     </div>
                     <div style="color: rgba(255,255,255,0.8); margin-top: 10px;">
-                        <strong><?php echo esc_html( $start_date ); ?></strong> — <strong><?php echo esc_html( $end_date ); ?></strong>
+                        <strong id="campaign-start-date" data-timestamp="<?php echo esc_attr( $start_timestamp ); ?>"><?php echo esc_html( $start_date ); ?></strong> — <strong id="campaign-end-date" data-timestamp="<?php echo esc_attr( $end_timestamp ); ?>"><?php echo esc_html( $end_date ); ?></strong>
                     </div>
+                    <script>
+                    (function() {
+                        const locale = '<?php echo esc_js( str_replace( '_', '-', dt_campaign_get_current_lang() ) ); ?>';
+                        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+                        const startEl = document.getElementById('campaign-start-date');
+                        const endEl = document.getElementById('campaign-end-date');
+
+                        if (startEl && startEl.dataset.timestamp) {
+                            startEl.textContent = new Intl.DateTimeFormat(locale, options).format(startEl.dataset.timestamp * 1000);
+                        }
+                        if (endEl && endEl.dataset.timestamp) {
+                            endEl.textContent = new Intl.DateTimeFormat(locale, options).format(endEl.dataset.timestamp * 1000);
+                        }
+                    })();
+                    </script>
                 </div>
                 <!-- Progress Block -->
                 <?php if ( $campaign_has_end_date ): ?>
