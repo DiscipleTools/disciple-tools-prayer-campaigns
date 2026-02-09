@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2024-01-31 15:25+0000\n"
-"Last-Translator: Toni Albright <tja@gcnow.org>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Corsacca <translator@disciple.tools>\n"
 "Language-Team: Turkish <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/tr_TR/>\n"
 "Language: tr_TR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -843,7 +843,8 @@ msgstr "Neredeyse tamam! Hesabınızı etkinleştirerek kaydınızı tamamlayın
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
 msgstr ""
 "Şu adrese gönderilen e-postadaki \"Hesabı Etkinleştir\" düğmesine tıklayın: "
-"%s"
+"%sŞu adrese gönderilen e-postadaki \"Hesabı Etkinleştir\" düğmesine "
+"tıklayın: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -966,7 +967,9 @@ msgstr ""
 
 #: porches/generic/dt-generic-porch-strings.php:170
 msgid "Use these resources to help pray specifically each day."
-msgstr "Her gün özellikle dua etmenize yardımcı olması için bu kaynakları kullanın."
+msgstr ""
+"Her gün özellikle dua etmenize yardımcı olması için bu kaynakları kullanın."
+"Her gün özel olarak dua etmenize yardımcı olması için bu kaynakları kullanın."
 
 #: porches/generic/dt-generic-porch-strings.php:179
 msgid "Today's Prayer Fuel"
@@ -1033,7 +1036,7 @@ msgstr "%s ile İletişim"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "Dua Etmek İçin Kaydol"
 
@@ -1042,7 +1045,7 @@ msgid "Time Committed"
 msgstr "Taahhüt Edilen Süre"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "Dua Savaşçıları"
 
@@ -1051,7 +1054,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Gereken Dua Taahhütleri"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "Tümünü Gör"
 
@@ -1117,8 +1120,8 @@ msgstr "Daha Fazla Dua Fırsatı"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools ile diğer dua çabaları ve fırsatları hakkında haberler almak ve "
 "GospelAmbition.org'dan ara sıra iletişim almak için kaydolun."
@@ -1223,7 +1226,7 @@ msgstr "Dua kapsamı"
 msgid "Goal: %d hours/day coverage"
 msgstr "Hedef: günde %d saat kapsama"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "taahhüt edildi"
