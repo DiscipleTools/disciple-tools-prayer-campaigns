@@ -5,16 +5,17 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.17.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Anonymous <translator@disciple.tools>\n"
+"Language-Team: Thai <https://translate.disciple.tools/projects/pray4movement/"
+"disciple-tools-prayer-campaigns/th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"X-Generator: Weblate 5.15.2\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
 
 #: campaign-functions/send-email-utility.php:85
@@ -1009,7 +1010,7 @@ msgstr "ติดต่อ %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "ลงทะเบียนเพื่ออธิษฐาน"
 
@@ -1018,7 +1019,7 @@ msgid "Time Committed"
 msgstr "เวลาที่อุทิศไว้"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "นักรบแห่งการอธิษฐาน"
 
@@ -1027,7 +1028,7 @@ msgid "Prayer Commitments Needed"
 msgstr "การอุทิศตัวอธิษฐานที่ต้องการ"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "ดูทั้งหมด"
 
@@ -1091,8 +1092,8 @@ msgstr "โอกาสอธิษฐานเพิ่มเติม"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "ลงทะเบียนเพื่อรับข่าวสารเกี่ยวกับความพยายามอธิษฐานและโอกาสอื่นๆ กับ Prayer.Tools "
 "และรับการสื่อสารเป็นครั้งคราวจาก GospelAmbition.org"
@@ -1193,7 +1194,7 @@ msgstr "ความครอบคลุมการอธิษฐาน"
 msgid "Goal: %d hours/day coverage"
 msgstr "เป้าหมาย: %d ชั่วโมง/วัน"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "มุ่งมั่น"

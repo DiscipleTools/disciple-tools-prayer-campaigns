@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-14T09:51:46+00:00\n"
-"PO-Revision-Date: 2025-09-09 13:03+0000\n"
-"Last-Translator: Corsacca <corsacca@gmail.com>\n"
+"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"PO-Revision-Date: 2026-01-21 13:31+0000\n"
+"Last-Translator: Corsacca <translator@disciple.tools>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/"
 "pray4movement/disciple-tools-prayer-campaigns/nl_NL/>\n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: campaign-functions/send-email-utility.php:85
 msgid "Verify your email address"
@@ -842,7 +842,9 @@ msgstr "Bijna klaar! Voltooi de aanmelding door uw account te activeren."
 #: parts/components-enqueue.php:149
 #, php-format
 msgid "Click the \"Activate Account\" button in the email sent to: %s"
-msgstr "Klik op de knop \"Account activeren\" in de e-mail verzonden naar: %s"
+msgstr ""
+"Klik op de knop \"Account activeren\" in de e-mail verzonden naar: %sKlik op "
+"de knop \"Account activeren\" in de e-mail die is verzonden naar: %s"
 
 #: parts/components-enqueue.php:150
 msgid "It will look like this:"
@@ -1012,7 +1014,10 @@ msgstr "Breed is het pad dat naar de 404 leidt."
 
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
-msgstr "Probeer enkele links in het menu te gebruiken om weer op weg te komen."
+msgstr ""
+"Probeer enkele links in het menu te gebruiken om weer op weg te komen."
+"Probeer enkele van de links in het menu te gebruiken om weer op het goede "
+"spoor te komen."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
@@ -1031,7 +1036,7 @@ msgstr "Contact %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:281
+#: porches/ramadan/site/home-body.php:285
 msgid "Sign Up to Pray"
 msgstr "Meld je aan om te bidden"
 
@@ -1040,7 +1045,7 @@ msgid "Time Committed"
 msgstr "Toegewijde tijd"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:257
+#: porches/ramadan/site/home-body.php:262
 msgid "Prayer Warriors"
 msgstr "Gebedsstrijders"
 
@@ -1049,7 +1054,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Gebedstoezeggingen nodig"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:306
+#: porches/ramadan/site/home-body.php:310
 msgid "View All"
 msgstr "Bekijk alle"
 
@@ -1115,8 +1120,8 @@ msgstr "Meer gebedsmogelijkheden"
 
 #: porches/generic/site/stats.php:372
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with "
-"Prayer.Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with Prayer."
+"Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Meld je aan om te horen over andere gebedsinspanningen en mogelijkheden met "
 "Prayer.Tools en ontvang af en toe communicatie van GospelAmbition.org."
@@ -1222,7 +1227,7 @@ msgstr "Gebedsdekking"
 msgid "Goal: %d hours/day coverage"
 msgstr "Doel: %d uur/dag dekking"
 
-#: porches/ramadan/site/home-body.php:263
+#: porches/ramadan/site/home-body.php:267
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "toegezegd"

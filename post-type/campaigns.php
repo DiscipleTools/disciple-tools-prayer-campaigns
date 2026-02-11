@@ -1139,6 +1139,7 @@ class DT_Campaigns_Base {
             FROM $wpdb->dt_reports r
             WHERE r.parent_id = %s AND r.post_type = 'campaigns' AND r.type = 'fuel'
             AND r.value > 1
+            AND r.value <= 1000
             ;", $campaign_post_id
         ) );
         return $extra_people * $prayer_time_duration;
