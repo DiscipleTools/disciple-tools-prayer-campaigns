@@ -1567,7 +1567,8 @@ class DT_Campaigns_Base {
             if ( isset( $record['min_time_duration']['key'] ) ){
                 $min_time_duration = $record['min_time_duration']['key'];
             }
-            $coverage_levels = self::query_coverage_levels_progress( $campaign['ID'] );
+
+            $coverage_percentage = self::query_coverage_percentage( $campaign['ID'] );
             $mins_scheduled = self::query_scheduled_minutes( $campaign['ID'] );
             $mins_extra = self::query_extra_minutes( $campaign['ID'] );
             $time_lots_covered = $mins_scheduled / $min_time_duration;
@@ -1601,7 +1602,7 @@ class DT_Campaigns_Base {
                         [ 'value' => $campaign_url, 'type' => 'default' ],
                     ]
                 ],
-                'campaign_progress' => $coverage_levels[0]['percent'],
+                'campaign_progress' => $coverage_percentage,
                 //'campaign_type' => $campaign['type']['key'],
                 'focus' => empty( $focus ) ? [] : [ 'values' => $focus ],
                 'minutes_committed' => $mins_scheduled + $mins_extra,
