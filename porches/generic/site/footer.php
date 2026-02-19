@@ -41,7 +41,7 @@ $campaign = DT_Campaign_Landing_Settings::get_campaign();
                             global $allowedtags;
                             echo wp_kses( DT_Porch_Settings::get_field_translation( 'footer_content' ), $allowedtags ) ?><br>
                         <?php endif; ?>
-                        Built using <a href="https://prayer.tools/campaigns-tool/" target="_blank">Prayer.Tools</a> &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+                        Built using <a href="https://prayer.tools/campaigns-tool/" target="_blank">Prayer.Tools</a> &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> | <a href="https://prayer.tools/give/" target="_blank">Donate</a>
                     </p>
                 </div>
                 <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
