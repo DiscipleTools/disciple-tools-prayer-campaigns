@@ -37,7 +37,7 @@ class DT_Generic_Porch_Stats {
         $post_id = $campaign_fields['ID'];
         $lang = dt_campaign_get_current_lang();
         dt_campaign_set_translation( $lang );
-        $current_selected_porch = DT_Campaign_Global_Settings::get( 'selected_porch' );
+        $current_selected_porch = $campaign_fields['porch_type']['key'];
 
         $campaign_name = $campaign_fields['title'];
         $campaign_name_translated = DT_Porch_Settings::get_field_translation( 'name' );
@@ -297,7 +297,7 @@ class DT_Generic_Porch_Stats {
 
 
             <?php if ( $current_selected_porch === 'ramadan-porch' ) {
-                $ramadan_stats = p4m_cached_api_call( 'https://prayer.tools/wp-json/dt-public/campaigns/campaigns-stats?start_date=2025-02-01&end_date=2025-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
+                $ramadan_stats = p4m_cached_api_call( 'https://prayer.tools/wp-json/dt-public/campaigns/campaigns-stats?start_date=2026-02-01&end_date=2026-05-01&focus=ramadan', 'GET', HOUR_IN_SECONDS );
                 ?>
             <section class='section' data-stellar-background-ratio='0.2' style='padding-bottom: 0; min-height: 800px'>
                 <div class='container'>
@@ -349,8 +349,20 @@ class DT_Generic_Porch_Stats {
                             </div>
                         </div>
                     </div>
-                    <div class="center">
-                        See <a href="https://prayer.tools/ramadan"> https://prayer.tools/ramadan</a> for more details.
+                    <div class="section-header" style="padding-top: 40px; padding-bottom: 20px;">
+                        <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><?php echo esc_html( __( 'Loved This?', 'disciple-tools-prayer-campaigns' ) ); ?></h2>
+                        <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                    </div>
+                    <div style="margin: auto;">
+                        <p>
+                            <?php echo esc_html( __( 'You were part of', 'disciple-tools-prayer-campaigns' ) ); ?> <a href="https://prayer.tools/ramadan/" target="_blank"><?php echo esc_html( __( 'more than 512,000 intercessors', 'disciple-tools-prayer-campaigns' ) ); ?></a> <?php echo esc_html( __( 'who committed to praying for Muslims throughout the Islamic world this Ramadan!', 'disciple-tools-prayer-campaigns' ) ); ?>
+                            <?php if ( !empty( $campaign_fields['promo_video_url'] ) ): ?>
+                                <?php echo esc_html( __( 'Share', 'disciple-tools-prayer-campaigns' ) ); ?> <a href="<?php echo esc_url( $campaign_fields['promo_video_url'] ); ?>"><?php echo esc_html( __( 'this video', 'disciple-tools-prayer-campaigns' ) ); ?></a> <?php echo esc_html( __( 'to invite friends to pray along!', 'disciple-tools-prayer-campaigns' ) ); ?>
+                            <?php endif; ?>
+                        </p>
+                        <p>
+                            <?php echo esc_html( __( 'If this blessed you, consider', 'disciple-tools-prayer-campaigns' ) ); ?> <a href="https://prayer.tools/blessing" target="_blank"><?php echo esc_html( __( 'paying it forward', 'disciple-tools-prayer-campaigns' ) ); ?></a>.
+                        </p>
                     </div>
                 </div>
             </section>
