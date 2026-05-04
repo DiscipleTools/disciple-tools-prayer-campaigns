@@ -74,7 +74,7 @@ class DT_Campaign_Fuel {
     public static function date_of_campaign_day( int $day ) {
         $porch_fields = DT_Porch_Settings::settings();
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
-        $campaign_start_time = $campaign['start_date']['timestamp'];
+        $campaign_start_time = DT_Time_Utilities::start_of_campaign_with_timezone( $campaign['ID'] );
 
         $internal = DAY_IN_SECONDS;
         if ( $porch_fields['prayer_fuel_frequency']['value'] === 'weekly' ) {
