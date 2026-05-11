@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Telugu <https://translate.disciple.tools/projects/"
@@ -521,7 +521,7 @@ msgstr "వెరిఫై"
 msgid "Goal: %s hours of prayer every day"
 msgstr "లక్ష్యం: ప్రతి రోజు %s గంటల ప్రార్థన"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
 msgid "Goal: 24/7 coverage"
 msgstr "లక్ష్యం: 24/7 కవరేజ్"
 
@@ -1021,7 +1021,7 @@ msgstr "సంప్రదించండి %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:285
+#: porches/ramadan/site/home-body.php:301
 msgid "Sign Up to Pray"
 msgstr "ప్రార్థించుటకు సైన్ అప్ చేయండి"
 
@@ -1030,7 +1030,7 @@ msgid "Time Committed"
 msgstr "ఒప్పుకున్న సమయం"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:262
+#: porches/ramadan/site/home-body.php:278
 msgid "Prayer Warriors"
 msgstr "ప్రార్థనా యోధులు"
 
@@ -1039,7 +1039,7 @@ msgid "Prayer Commitments Needed"
 msgstr "ప్రార్థనా సమర్పణలు అవసరం"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:310
+#: porches/ramadan/site/home-body.php:326
 msgid "View All"
 msgstr "అన్ని చూడండి"
 
@@ -1098,11 +1098,49 @@ msgstr "ప్రార్థించిన సమయం"
 msgid "15 Minute Time Slots Filled"
 msgstr "నింపబడిన 15 నిమిషాల ప్రార్థనా స్లాట్లు"
 
-#: porches/generic/site/stats.php:368
+#: porches/generic/site/stats.php:353
+msgid "Loved This?"
+msgstr ""
+
+#: porches/generic/site/stats.php:358
+msgid "You were part of"
+msgstr ""
+
+#: porches/generic/site/stats.php:358
+msgid "more than 512,000 intercessors"
+msgstr ""
+
+#: porches/generic/site/stats.php:358
+msgid ""
+"who committed to praying for Muslims throughout the Islamic world this "
+"Ramadan!"
+msgstr ""
+
+#: porches/generic/site/stats.php:360
+msgid "Share"
+msgstr ""
+
+#: porches/generic/site/stats.php:360
+msgid "this video"
+msgstr ""
+
+#: porches/generic/site/stats.php:360
+msgid "to invite friends to pray along!"
+msgstr ""
+
+#: porches/generic/site/stats.php:364
+msgid "If this blessed you, consider"
+msgstr ""
+
+#: porches/generic/site/stats.php:364
+msgid "paying it forward"
+msgstr ""
+
+#: porches/generic/site/stats.php:380
 msgid "More Prayer Opportunities"
 msgstr "ఎక్కువ ప్రార్థనా అవకాశాలు"
 
-#: porches/generic/site/stats.php:372
+#: porches/generic/site/stats.php:384
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
@@ -1197,17 +1235,17 @@ msgstr "మిగిలిన రోజులు"
 msgid "Ramadan Begins In"
 msgstr "రంజాన్ ప్రారంభం"
 
-#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:246
 msgid "Prayer Coverage"
 msgstr "ప్రార్థన కవరేజ్"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:244
+#: porches/ramadan/site/home-body.php:260
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "లక్ష్యం: %d గంటలు/రోజు కవరేజ్"
 
-#: porches/ramadan/site/home-body.php:267
+#: porches/ramadan/site/home-body.php:283
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "నిబద్ధత"
