@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
+"POT-Creation-Date: 2026-10-08T20:44:28+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Tamil <https://translate.disciple.tools/projects/"
@@ -282,12 +282,12 @@ msgid "day"
 msgstr "நாள்"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
-#: porches/ramadan/site/home-body.php:217
-#: porches/ramadan/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:232
 msgid "days"
 msgstr "நாட்கள்"
 
-#: campaign-functions/utils.php:352
+#: campaign-functions/utils.php:381
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "திருத்தம்"
@@ -528,7 +528,7 @@ msgstr "சரிபார்"
 msgid "Goal: %s hours of prayer every day"
 msgstr "இலக்கு: தினமும் %s மணிநேர ஜெபம்"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:275
 msgid "Goal: 24/7 coverage"
 msgstr "இலக்கு: 24/7 முழுவதும்"
 
@@ -1034,27 +1034,28 @@ msgstr "நாள் %s"
 msgid "Contact %s"
 msgstr "%s தொடர்பு கொள்ளவும்"
 
-#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/home-body.php:113
+#: porches/generic/site/home-body.php:151
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:301
+#: porches/ramadan/site/home-body.php:314
 msgid "Sign Up to Pray"
 msgstr "ஜெபிக்க சைன் அப் செய்யவும்"
 
-#: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:153
 msgid "Time Committed"
 msgstr "அர்ப்பணித்த நேரம்"
 
-#: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:278
+#: porches/generic/site/home-body.php:196
+#: porches/ramadan/site/home-body.php:291
 msgid "Prayer Warriors"
 msgstr "ஜெப வீரர்கள்"
 
-#: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
+#: porches/generic/site/home-body.php:210 porches/generic/site/stats.php:129
 msgid "Prayer Commitments Needed"
 msgstr "ஜெப அர்ப்பணிப்புகள் தேவை"
 
-#: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:326
+#: porches/generic/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:339
 msgid "View All"
 msgstr "எல்லாவற்றையும் பார்க்க"
 
@@ -1158,8 +1159,8 @@ msgstr "அதிக ஜெப வாய்ப்புகள்"
 
 #: porches/generic/site/stats.php:384
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "ப்ரேயர்.டூல்ஸ்-ன் மற்ற ஜெப முயற்சிகள் மற்றும் வாய்ப்புகளைப் பற்றி அறிய சைன் அப் செய்து, "
 "GospelAmbition.org -லிருந்து வரும் தகவல்களை அவ்வப்போது பெற்றுக்கொள்ளவும்."
@@ -1219,53 +1220,53 @@ msgstr ""
 "படிக்கிறார்கள். இப்படி அவர்கள் உண்மையாகத் தேடும் நேரம் நம்மைப் பொறுத்தவரை அவர்களுக்காக "
 "ஜெபிக்கும் நல்லதொரு நேரமாகிறது."
 
-#: porches/ramadan/site/home-body.php:99
+#: porches/ramadan/site/home-body.php:112
 msgid "How It Works"
 msgstr "இது எப்படி வேலை செய்கிறது"
 
-#: porches/ramadan/site/home-body.php:109
+#: porches/ramadan/site/home-body.php:122
 msgid "Sign up to pray"
 msgstr "ஜெபிக்க பதிவு செய்யுங்கள்"
 
-#: porches/ramadan/site/home-body.php:121
+#: porches/ramadan/site/home-body.php:134
 msgid "Receive email reminders"
 msgstr "மின்னஞ்சல் நினைவூட்டல்களைப் பெறுங்கள்"
 
-#: porches/ramadan/site/home-body.php:133
+#: porches/ramadan/site/home-body.php:146
 msgid "Spend 15 minutes with guided prayers"
 msgstr "வழிகாட்டப்பட்ட ஜெபங்களுடன் 15 நிமிடங்கள் செலவிடுங்கள்"
 
-#: porches/ramadan/site/home-body.php:145
+#: porches/ramadan/site/home-body.php:158
 msgid "Encounter God as you pray for the nations"
 msgstr "தேசங்களுக்காக ஜெபிக்கும்போது கடவுளை சந்தியுங்கள்"
 
-#: porches/ramadan/site/home-body.php:159
+#: porches/ramadan/site/home-body.php:172
 msgid "About Ramadan"
 msgstr "ரமலான் பற்றி"
 
-#: porches/ramadan/site/home-body.php:206
+#: porches/ramadan/site/home-body.php:219
 msgid "Campaign Complete"
 msgstr "பிரச்சாரம் முடிந்தது"
 
-#: porches/ramadan/site/home-body.php:208
+#: porches/ramadan/site/home-body.php:221
 msgid "Days Remaining"
 msgstr "மீதமுள்ள நாட்கள்"
 
-#: porches/ramadan/site/home-body.php:210
+#: porches/ramadan/site/home-body.php:223
 msgid "Ramadan Begins In"
 msgstr "ரமலான் தொடங்குகிறது"
 
-#: porches/ramadan/site/home-body.php:246
+#: porches/ramadan/site/home-body.php:259
 msgid "Prayer Coverage"
 msgstr "ஜெப கவரேஜ்"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:260
+#: porches/ramadan/site/home-body.php:273
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "இலக்கு: %d மணி/நாள் கவரேஜ்"
 
-#: porches/ramadan/site/home-body.php:283
+#: porches/ramadan/site/home-body.php:296
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "உறுதியளிக்கப்பட்டது"
