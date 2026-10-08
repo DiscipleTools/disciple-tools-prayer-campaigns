@@ -195,7 +195,7 @@ export class CampaignSignUp extends LitElement {
       }
 
       this.duration = {
-        value: 15,
+        value: Math.max(15, this.campaign_data.slot_length),
         options: options
       }
       this.week_day = {
