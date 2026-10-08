@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-01-26T16:37:20+00:00\n"
+"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Oleh Onyshchenko <translator@disciple.tools>\n"
 "Language-Team: Ukrainian <https://translate.disciple.tools/projects/"
@@ -537,7 +537,7 @@ msgstr "Підтвердити"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Мета: %s годин молитви щодня"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:246
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
 msgid "Goal: 24/7 coverage"
 msgstr "Мета: цілодобове покриття"
 
@@ -1052,7 +1052,7 @@ msgstr "Зв'язатися з %s"
 
 #: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:285
+#: porches/ramadan/site/home-body.php:301
 msgid "Sign Up to Pray"
 msgstr "Запишіться на молитву"
 
@@ -1061,7 +1061,7 @@ msgid "Time Committed"
 msgstr "Запланований час"
 
 #: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:262
+#: porches/ramadan/site/home-body.php:278
 msgid "Prayer Warriors"
 msgstr "Молитовні воїни"
 
@@ -1070,7 +1070,7 @@ msgid "Prayer Commitments Needed"
 msgstr "Потрібні молитовні зобов’язання"
 
 #: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:310
+#: porches/ramadan/site/home-body.php:326
 msgid "View All"
 msgstr "Подивитись все"
 
@@ -1130,11 +1130,49 @@ msgstr "Час молитви"
 msgid "15 Minute Time Slots Filled"
 msgstr "Заповнено 15-хвилинних слотів"
 
-#: porches/generic/site/stats.php:368
+#: porches/generic/site/stats.php:353
+msgid "Loved This?"
+msgstr ""
+
+#: porches/generic/site/stats.php:358
+msgid "You were part of"
+msgstr ""
+
+#: porches/generic/site/stats.php:358
+msgid "more than 512,000 intercessors"
+msgstr ""
+
+#: porches/generic/site/stats.php:358
+msgid ""
+"who committed to praying for Muslims throughout the Islamic world this "
+"Ramadan!"
+msgstr ""
+
+#: porches/generic/site/stats.php:360
+msgid "Share"
+msgstr ""
+
+#: porches/generic/site/stats.php:360
+msgid "this video"
+msgstr ""
+
+#: porches/generic/site/stats.php:360
+msgid "to invite friends to pray along!"
+msgstr ""
+
+#: porches/generic/site/stats.php:364
+msgid "If this blessed you, consider"
+msgstr ""
+
+#: porches/generic/site/stats.php:364
+msgid "paying it forward"
+msgstr ""
+
+#: porches/generic/site/stats.php:380
 msgid "More Prayer Opportunities"
 msgstr "Більше можливостей для молитви"
 
-#: porches/generic/site/stats.php:372
+#: porches/generic/site/stats.php:384
 msgid ""
 "Sign up to hear about other prayer efforts and opportunities with Prayer."
 "Tools and receive occasional communication from GospelAmbition.org."
@@ -1231,17 +1269,17 @@ msgstr "Залишилось днів"
 msgid "Ramadan Begins In"
 msgstr "Рамадан починається через"
 
-#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:246
 msgid "Prayer Coverage"
 msgstr "Молитовне покриття"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:244
+#: porches/ramadan/site/home-body.php:260
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "Мета: %d годин/день охоплення"
 
-#: porches/ramadan/site/home-body.php:267
+#: porches/ramadan/site/home-body.php:283
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "зобовʼязання"
