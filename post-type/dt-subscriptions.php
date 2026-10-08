@@ -157,6 +157,7 @@ class DT_Subscriptions {
         if ( is_numeric( $duration ) ){
             $duration_mins = $duration;
         }
+        $duration_mins = max( (int) $duration_mins, (int) ( $campaign['min_time_duration']['key'] ?? 15 ) );
         $args = [
             'parent_id' => $campaign_id,
             'post_id' => $subscription_id,
@@ -428,7 +429,7 @@ class Recurring_Signups {
                 'selected_times' => $selected_times,
                 'type' => $type,
                 'label' => $label,
-                'duration' => $selected_times[0]['duration'] ?? 15,
+                'duration' => max( (int) ( $selected_times[0]['duration'] ?? 15 ), (int) DT_Time_Utilities::campaign_min_prayer_duration( $this->campaign_id ) ),
                 'time' => $time ?? null,
                 'week_day' => $week_day,
             ],
