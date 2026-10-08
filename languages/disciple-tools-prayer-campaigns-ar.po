@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
+"POT-Creation-Date: 2026-10-08T20:44:28+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Arabic <https://translate.disciple.tools/projects/"
@@ -279,12 +279,12 @@ msgid "day"
 msgstr "يوم"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
-#: porches/ramadan/site/home-body.php:217
-#: porches/ramadan/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:232
 msgid "days"
 msgstr "أيام"
 
-#: campaign-functions/utils.php:352
+#: campaign-functions/utils.php:381
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "تعديل"
@@ -523,7 +523,7 @@ msgstr "تحقق"
 msgid "Goal: %s hours of prayer every day"
 msgstr "الهدف: %s ساعات من الصلاة كل يوم"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:275
 msgid "Goal: 24/7 coverage"
 msgstr "الهدف: تغطية 24/7"
 
@@ -800,8 +800,8 @@ msgid ""
 "Receive news from Prayer.Tools about upcoming prayer campaigns and "
 "occasional communication from GospelAmbition.org"
 msgstr ""
-"تلق تحديثات Prayer.Tools عن حملات الصلاة والتواصل العرضي من GospelAmbition."
-"org"
+"تلق تحديثات Prayer.Tools عن حملات الصلاة والتواصل العرضي من "
+"GospelAmbition.org"
 
 #: parts/components-enqueue.php:137
 msgid ""
@@ -1022,27 +1022,28 @@ msgstr "يوم %s"
 msgid "Contact %s"
 msgstr "اتصل بـ %s"
 
-#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/home-body.php:113
+#: porches/generic/site/home-body.php:151
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:301
+#: porches/ramadan/site/home-body.php:314
 msgid "Sign Up to Pray"
 msgstr "قم بالتسجيل للصلاة"
 
-#: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:153
 msgid "Time Committed"
 msgstr "الوقت الذي تم الالتزام به"
 
-#: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:278
+#: porches/generic/site/home-body.php:196
+#: porches/ramadan/site/home-body.php:291
 msgid "Prayer Warriors"
 msgstr "جنود الصلاة"
 
-#: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
+#: porches/generic/site/home-body.php:210 porches/generic/site/stats.php:129
 msgid "Prayer Commitments Needed"
 msgstr "التزامات الصلاة مطلوبة"
 
-#: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:326
+#: porches/generic/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:339
 msgid "View All"
 msgstr "مشاهدة الكل"
 
@@ -1144,8 +1145,8 @@ msgstr "المزيد من فرص الصلاة"
 
 #: porches/generic/site/stats.php:384
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "سجل اشتراكك للاستماع إلى جهود الصلاة الأخرى والفرص المتاحة مع Prayer.Tools "
 "وتلقي اتصالات عرضية من GospelAmbition.org."
@@ -1201,53 +1202,53 @@ msgstr ""
 "ويؤدون صلاة الطقوس الأخرى. حتى أن البعض قرأ القرآن كاملاً (حوالي عُشر طول "
 "الكتاب المقدس). هذا البحث الصادق يجعله وقتًا استراتيجيًا لنا للصلاة من أجلهم."
 
-#: porches/ramadan/site/home-body.php:99
+#: porches/ramadan/site/home-body.php:112
 msgid "How It Works"
 msgstr "كيف يعمل"
 
-#: porches/ramadan/site/home-body.php:109
+#: porches/ramadan/site/home-body.php:122
 msgid "Sign up to pray"
 msgstr "سجّل للصلاة"
 
-#: porches/ramadan/site/home-body.php:121
+#: porches/ramadan/site/home-body.php:134
 msgid "Receive email reminders"
 msgstr "استلم تذكيرات بالبريد الإلكتروني"
 
-#: porches/ramadan/site/home-body.php:133
+#: porches/ramadan/site/home-body.php:146
 msgid "Spend 15 minutes with guided prayers"
 msgstr "اقضِ 15 دقيقة مع صلوات موجهة"
 
-#: porches/ramadan/site/home-body.php:145
+#: porches/ramadan/site/home-body.php:158
 msgid "Encounter God as you pray for the nations"
 msgstr "التقِ بالله وأنت تصلي من أجل الأمم"
 
-#: porches/ramadan/site/home-body.php:159
+#: porches/ramadan/site/home-body.php:172
 msgid "About Ramadan"
 msgstr "عن رمضان"
 
-#: porches/ramadan/site/home-body.php:206
+#: porches/ramadan/site/home-body.php:219
 msgid "Campaign Complete"
 msgstr "اكتملت الحملة"
 
-#: porches/ramadan/site/home-body.php:208
+#: porches/ramadan/site/home-body.php:221
 msgid "Days Remaining"
 msgstr "الأيام المتبقية"
 
-#: porches/ramadan/site/home-body.php:210
+#: porches/ramadan/site/home-body.php:223
 msgid "Ramadan Begins In"
 msgstr "يبدأ رمضان خلال"
 
-#: porches/ramadan/site/home-body.php:246
+#: porches/ramadan/site/home-body.php:259
 msgid "Prayer Coverage"
 msgstr "تغطية الصلاة"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:260
+#: porches/ramadan/site/home-body.php:273
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "الهدف: %d ساعة/يوم تغطية"
 
-#: porches/ramadan/site/home-body.php:283
+#: porches/ramadan/site/home-body.php:296
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "ملتزم"

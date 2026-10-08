@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
+"POT-Creation-Date: 2026-10-08T20:44:28+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Anonymous <translator@disciple.tools>\n"
 "Language-Team: Hindi <https://translate.disciple.tools/projects/"
@@ -281,12 +281,12 @@ msgid "day"
 msgstr "दिन"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
-#: porches/ramadan/site/home-body.php:217
-#: porches/ramadan/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:232
 msgid "days"
 msgstr "दिन"
 
-#: campaign-functions/utils.php:352
+#: campaign-functions/utils.php:381
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "एडिट करें"
@@ -525,7 +525,7 @@ msgstr "पुष्टि करें"
 msgid "Goal: %s hours of prayer every day"
 msgstr "लक्ष्य: प्रतिदिन %s घंटे प्रार्थना"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:275
 msgid "Goal: 24/7 coverage"
 msgstr "लक्ष्य: 24/7 दायरा"
 
@@ -1029,27 +1029,28 @@ msgstr "दिन %s"
 msgid "Contact %s"
 msgstr "संपर्क करें %s"
 
-#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/home-body.php:113
+#: porches/generic/site/home-body.php:151
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:301
+#: porches/ramadan/site/home-body.php:314
 msgid "Sign Up to Pray"
 msgstr "प्रार्थना करने के लिए साइन अप करें"
 
-#: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:153
 msgid "Time Committed"
 msgstr "समर्पित समय"
 
-#: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:278
+#: porches/generic/site/home-body.php:196
+#: porches/ramadan/site/home-body.php:291
 msgid "Prayer Warriors"
 msgstr "प्रार्थना योद्धा"
 
-#: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
+#: porches/generic/site/home-body.php:210 porches/generic/site/stats.php:129
 msgid "Prayer Commitments Needed"
 msgstr "प्रार्थना प्रतिबद्धता की आवश्यकता है"
 
-#: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:326
+#: porches/generic/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:339
 msgid "View All"
 msgstr "सभी देखें"
 
@@ -1152,8 +1153,8 @@ msgstr "प्रार्थना के और अधिक अवसर"
 
 #: porches/generic/site/stats.php:384
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Prayer.Tools के साथ अन्य प्रार्थना प्रयासों और अवसरों के बारे में सुनने के लिए साइन अप करें "
 "और GospelAmbition.org से कभी-कभार संचार प्राप्त करें।"
@@ -1210,53 +1211,53 @@ msgstr ""
 "लम्बाई का लगभग दसवाँ भाग है)। उनकी यह ईमानदारी से की जाने वाली खोज इस समय को हमारे "
 "लिए उनके लिए प्रार्थना करने का एक रणनीतिक समय बना देती है।"
 
-#: porches/ramadan/site/home-body.php:99
+#: porches/ramadan/site/home-body.php:112
 msgid "How It Works"
 msgstr "यह कैसे काम करता है"
 
-#: porches/ramadan/site/home-body.php:109
+#: porches/ramadan/site/home-body.php:122
 msgid "Sign up to pray"
 msgstr "प्रार्थना के लिए साइन अप करें"
 
-#: porches/ramadan/site/home-body.php:121
+#: porches/ramadan/site/home-body.php:134
 msgid "Receive email reminders"
 msgstr "ईमेल रिमाइंडर प्राप्त करें"
 
-#: porches/ramadan/site/home-body.php:133
+#: porches/ramadan/site/home-body.php:146
 msgid "Spend 15 minutes with guided prayers"
 msgstr "निर्देशित प्रार्थनाओं के साथ 15 मिनट बिताएं"
 
-#: porches/ramadan/site/home-body.php:145
+#: porches/ramadan/site/home-body.php:158
 msgid "Encounter God as you pray for the nations"
 msgstr "राष्ट्रों के लिए प्रार्थना करते हुए परमेश्वर से मिलें"
 
-#: porches/ramadan/site/home-body.php:159
+#: porches/ramadan/site/home-body.php:172
 msgid "About Ramadan"
 msgstr "रमज़ान के बारे में"
 
-#: porches/ramadan/site/home-body.php:206
+#: porches/ramadan/site/home-body.php:219
 msgid "Campaign Complete"
 msgstr "अभियान पूर्ण"
 
-#: porches/ramadan/site/home-body.php:208
+#: porches/ramadan/site/home-body.php:221
 msgid "Days Remaining"
 msgstr "शेष दिन"
 
-#: porches/ramadan/site/home-body.php:210
+#: porches/ramadan/site/home-body.php:223
 msgid "Ramadan Begins In"
 msgstr "रमज़ान शुरू होने में"
 
-#: porches/ramadan/site/home-body.php:246
+#: porches/ramadan/site/home-body.php:259
 msgid "Prayer Coverage"
 msgstr "प्रार्थना कवरेज"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:260
+#: porches/ramadan/site/home-body.php:273
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "लक्ष्य: %d घंटे/दिन कवरेज"
 
-#: porches/ramadan/site/home-body.php:283
+#: porches/ramadan/site/home-body.php:296
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "प्रतिबद्ध"

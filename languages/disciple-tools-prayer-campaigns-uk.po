@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Disciple.Tools - Prayer Campaigns 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
+"POT-Creation-Date: 2026-10-08T20:44:28+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Oleh Onyshchenko <translator@disciple.tools>\n"
 "Language-Team: Ukrainian <https://translate.disciple.tools/projects/"
@@ -285,12 +285,12 @@ msgid "day"
 msgstr "день"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
-#: porches/ramadan/site/home-body.php:217
-#: porches/ramadan/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:232
 msgid "days"
 msgstr "днів"
 
-#: campaign-functions/utils.php:352
+#: campaign-functions/utils.php:381
 #: porches/generic/site/edit-post-list-body.php:135
 msgid "Edit"
 msgstr "Редагувати"
@@ -302,8 +302,9 @@ msgstr "Отримати посилання на керування часом �
 #: magic-links/campaign-resend-email/magic-link-post-type.php:167
 msgid "Enter you email address and receive a link to your prayer times."
 msgstr ""
-"Введіть вашу електронну адресу та отримайте посилання на ваш час молитви."
-"Введіть вашу електронну адресу та отримаєте посилання на ваш розклад молитви."
+"Введіть вашу електронну адресу та отримайте посилання на ваш час "
+"молитви.Введіть вашу електронну адресу та отримаєте посилання на ваш розклад "
+"молитви."
 
 #: magic-links/campaign-resend-email/magic-link-post-type.php:169
 #: parts/components-enqueue.php:57 porches/generic/site/contact-us.php:85
@@ -537,7 +538,7 @@ msgstr "Підтвердити"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Мета: %s годин молитви щодня"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:275
 msgid "Goal: 24/7 coverage"
 msgstr "Мета: цілодобове покриття"
 
@@ -1050,27 +1051,28 @@ msgstr "День %s"
 msgid "Contact %s"
 msgstr "Зв'язатися з %s"
 
-#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/home-body.php:113
+#: porches/generic/site/home-body.php:151
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:301
+#: porches/ramadan/site/home-body.php:314
 msgid "Sign Up to Pray"
 msgstr "Запишіться на молитву"
 
-#: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:153
 msgid "Time Committed"
 msgstr "Запланований час"
 
-#: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:278
+#: porches/generic/site/home-body.php:196
+#: porches/ramadan/site/home-body.php:291
 msgid "Prayer Warriors"
 msgstr "Молитовні воїни"
 
-#: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
+#: porches/generic/site/home-body.php:210 porches/generic/site/stats.php:129
 msgid "Prayer Commitments Needed"
 msgstr "Потрібні молитовні зобов’язання"
 
-#: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:326
+#: porches/generic/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:339
 msgid "View All"
 msgstr "Подивитись все"
 
@@ -1174,8 +1176,8 @@ msgstr "Більше можливостей для молитви"
 
 #: porches/generic/site/stats.php:384
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Підпишіться, щоб дізнаватися про інші молитовні зусилля та можливості з "
 "Prayer.Tools та отримувати періодичні повідомлення від GospelAmbition.org."
@@ -1233,53 +1235,53 @@ msgstr ""
 "читають весь Коран (приблизно десяту частину Біблії). Це щире прагнення "
 "робить для нас стратегічний час молитися за них."
 
-#: porches/ramadan/site/home-body.php:99
+#: porches/ramadan/site/home-body.php:112
 msgid "How It Works"
 msgstr "Як це працює"
 
-#: porches/ramadan/site/home-body.php:109
+#: porches/ramadan/site/home-body.php:122
 msgid "Sign up to pray"
 msgstr "Зареєструватися на молитву"
 
-#: porches/ramadan/site/home-body.php:121
+#: porches/ramadan/site/home-body.php:134
 msgid "Receive email reminders"
 msgstr "Отримуйте нагадування електронною поштою"
 
-#: porches/ramadan/site/home-body.php:133
+#: porches/ramadan/site/home-body.php:146
 msgid "Spend 15 minutes with guided prayers"
 msgstr "Проведіть 15 хвилин з керованими молитвами"
 
-#: porches/ramadan/site/home-body.php:145
+#: porches/ramadan/site/home-body.php:158
 msgid "Encounter God as you pray for the nations"
 msgstr "Зустріньте Бога, молячись за народи"
 
-#: porches/ramadan/site/home-body.php:159
+#: porches/ramadan/site/home-body.php:172
 msgid "About Ramadan"
 msgstr "Про Рамадан"
 
-#: porches/ramadan/site/home-body.php:206
+#: porches/ramadan/site/home-body.php:219
 msgid "Campaign Complete"
 msgstr "Кампанію завершено"
 
-#: porches/ramadan/site/home-body.php:208
+#: porches/ramadan/site/home-body.php:221
 msgid "Days Remaining"
 msgstr "Залишилось днів"
 
-#: porches/ramadan/site/home-body.php:210
+#: porches/ramadan/site/home-body.php:223
 msgid "Ramadan Begins In"
 msgstr "Рамадан починається через"
 
-#: porches/ramadan/site/home-body.php:246
+#: porches/ramadan/site/home-body.php:259
 msgid "Prayer Coverage"
 msgstr "Молитовне покриття"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:260
+#: porches/ramadan/site/home-body.php:273
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "Мета: %d годин/день охоплення"
 
-#: porches/ramadan/site/home-body.php:283
+#: porches/ramadan/site/home-body.php:296
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "зобовʼязання"
