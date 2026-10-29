@@ -4,10 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 $lang = dt_campaign_get_current_lang();
 //$total_days = DT_Campaign_Fuel::total_days_in_campaign();
 
+$campaign = DT_Campaign_Landing_Settings::get_campaign();
 $formatter = new IntlDateFormatter(
     $lang,  // the locale to use, e.g. 'en_GB'
     IntlDateFormatter::LONG, // how the date should be formatted, e.g. IntlDateFormatter::FULL
     IntlDateFormatter::NONE,  // how the time should be formatted, e.g. IntlDateFormatter::FULL
+    DT_Campaign_Fuel::campaign_timezone( $campaign['ID'] ?? null ),
 );
 //  for getting posts in the selected language.
 $lang_query = [
@@ -24,9 +26,8 @@ if ( $lang === 'en_US' ){
     ];
     $lang_query['relation'] = 'OR';
 }
-$campaign = DT_Campaign_Landing_Settings::get_campaign();
 $frequency = isset( $campaign['prayer_fuel_frequency']['key'] ) ? $campaign['prayer_fuel_frequency']['key'] : 'daily';
-$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( gmdate( 'Y/m/d' ), $campaign['ID'], $frequency );
+$todays_day_in_campaign = DT_Campaign_Fuel::what_day_in_campaign( DT_Campaign_Fuel::today_in_campaign_timezone( $campaign['ID'] ), $campaign['ID'], $frequency );
 
 $meta_query = [
    'relation' => 'AND',

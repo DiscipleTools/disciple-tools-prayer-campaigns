@@ -171,7 +171,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
                 $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
                 $fuel_time = strtotime( $date );
-                $date = gmdate( 'Y/m/d', $fuel_time );
+                $date = DT_Campaign_Fuel::formatted_date_of_campaign_day( intval( $day ) );
                 echo esc_html( $date );
                 if ( $campaign_end_time && $fuel_time > $campaign_end_time ) {
                     echo '<div class="prayer-fuel-warning">Warning: Day is after the campaign end</div>';

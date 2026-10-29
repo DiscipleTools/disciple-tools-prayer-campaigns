@@ -69,7 +69,50 @@ class DT_Campaign_Fuel {
     }
 
     /**
-     * Get the mysql date string for the day of the campaign
+     * Get the timezone of the campaign, falling back to UTC
+     *
+     * @param int|null $campaign_id
+     *
+     * @return DateTimeZone
+     */
+    public static function campaign_timezone( $campaign_id = null ): DateTimeZone {
+        $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
+        $timezone = $campaign['campaign_timezone']['key'] ?? 'UTC';
+        try {
+            return new DateTimeZone( $timezone );
+        } catch ( Exception $e ) {
+            return new DateTimeZone( 'UTC' );
+        }
+    }
+
+    /**
+     * Get today's date in the campaign's timezone
+     *
+     * @param int|null $campaign_id
+     * @param string $format
+     *
+     * @return string
+     */
+    public static function today_in_campaign_timezone( $campaign_id = null, string $format = 'Y-m-d' ): string {
+        return wp_date( $format, time(), self::campaign_timezone( $campaign_id ) );
+    }
+
+    /**
+     * Format the timestamp of a campaign day in the campaign's timezone.
+     * date_of_campaign_day() returns the UTC time of midnight in the campaign timezone,
+     * so formatting it in UTC shows the previous day for timezones ahead of UTC.
+     *
+     * @param int $day
+     * @param string $format
+     *
+     * @return string
+     */
+    public static function formatted_date_of_campaign_day( int $day, string $format = 'Y/m/d' ): string {
+        return wp_date( $format, strtotime( self::date_of_campaign_day( $day ) ), self::campaign_timezone() );
+    }
+
+    /**
+     * Get the mysql date string (UTC) for the start of the day of the campaign
      */
     public static function date_of_campaign_day( int $day ) {
         $porch_fields = DT_Porch_Settings::settings();

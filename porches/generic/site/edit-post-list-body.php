@@ -13,6 +13,7 @@ $formatter = new IntlDateFormatter(
     $lang,  // the locale to use, e.g. 'en_GB'
     IntlDateFormatter::LONG, // how the date should be formatted, e.g. IntlDateFormatter::FULL
     IntlDateFormatter::NONE,  // how the time should be formatted, e.g. IntlDateFormatter::FULL
+    DT_Campaign_Fuel::campaign_timezone( $campaign['ID'] ?? null ),
 );
 
 $days = [];
