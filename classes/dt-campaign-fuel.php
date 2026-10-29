@@ -69,20 +69,84 @@ class DT_Campaign_Fuel {
     }
 
     /**
-     * Get the mysql date string for the day of the campaign
+     * Get the timezone of the campaign, falling back to UTC
+     *
+     * @param int|array|null $campaign campaign id, an already loaded campaign, or null for the current campaign
+     *
+     * @return DateTimeZone
      */
-    public static function date_of_campaign_day( int $day ) {
-        $porch_fields = DT_Porch_Settings::settings();
-        $campaign = DT_Campaign_Landing_Settings::get_campaign();
-        $campaign_start_time = DT_Time_Utilities::start_of_campaign_with_timezone( $campaign['ID'] );
+    public static function campaign_timezone( $campaign = null ): DateTimeZone {
+        if ( !is_array( $campaign ) ) {
+            $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign );
+        }
+        $timezone = $campaign['campaign_timezone']['key'] ?? 'UTC';
+        try {
+            return new DateTimeZone( $timezone );
+        } catch ( Exception $e ) {
+            return new DateTimeZone( 'UTC' );
+        }
+    }
 
-        $internal = DAY_IN_SECONDS;
-        if ( $porch_fields['prayer_fuel_frequency']['value'] === 'weekly' ) {
-            $internal = DAY_IN_SECONDS * 7;
-        } elseif ( $porch_fields['prayer_fuel_frequency']['value'] === 'monthly' ) {
-            return gmdate( 'Y-m-d', strtotime( "first day of +{$day} month", $campaign_start_time + ( $day - 1 ) ) );
+    /**
+     * Get today's date in the campaign's timezone
+     *
+     * @param int|array|null $campaign campaign id, an already loaded campaign, or null for the current campaign
+     * @param string $format
+     *
+     * @return string
+     */
+    public static function today_in_campaign_timezone( $campaign = null, string $format = 'Y-m-d' ): string {
+        return wp_date( $format, time(), self::campaign_timezone( $campaign ) );
+    }
+
+    /**
+     * Get the start (midnight in the campaign's timezone) of a day of the campaign.
+     * Calendar days are counted rather than seconds so daylight saving changes don't shift the date.
+     *
+     * @param int $day
+     * @param int|array|null $campaign campaign id, an already loaded campaign, or null for the current campaign
+     *
+     * @return DateTimeImmutable
+     */
+    public static function datetime_of_campaign_day( int $day, $campaign = null ): DateTimeImmutable {
+        if ( !is_array( $campaign ) ) {
+            $campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign );
+        }
+        $timezone = self::campaign_timezone( $campaign );
+        $start = !empty( $campaign['start_date']['formatted'] ) ? $campaign['start_date']['formatted'] : 'today';
+        $date = ( new DateTimeImmutable( $start, $timezone ) )->setTime( 0, 0 );
+
+        $frequency = $campaign['prayer_fuel_frequency']['key'] ?? 'daily';
+        if ( $frequency === 'monthly' ) {
+            return $date->modify( "first day of +{$day} month" );
         }
 
-        return gmdate( 'Y-m-d H:i:s', $campaign_start_time + ( $day - 1 ) * $internal );
+        $interval_days = $frequency === 'weekly' ? 7 : 1;
+        return $date->modify( '+' . ( ( $day - 1 ) * $interval_days ) . ' days' );
+    }
+
+    /**
+     * Format the date of a campaign day in the campaign's timezone
+     *
+     * @param int $day
+     * @param string $format
+     * @param int|array|null $campaign campaign id, an already loaded campaign, or null for the current campaign
+     *
+     * @return string
+     */
+    public static function formatted_date_of_campaign_day( int $day, string $format = 'Y/m/d', $campaign = null ): string {
+        return self::datetime_of_campaign_day( $day, $campaign )->format( $format );
+    }
+
+    /**
+     * Get the mysql date string (UTC) for the start of the day of the campaign
+     *
+     * @param int $day
+     * @param int|array|null $campaign campaign id, an already loaded campaign, or null for the current campaign
+     *
+     * @return string
+     */
+    public static function date_of_campaign_day( int $day, $campaign = null ) {
+        return gmdate( 'Y-m-d H:i:s', self::datetime_of_campaign_day( $day, $campaign )->getTimestamp() );
     }
 }
