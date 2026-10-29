@@ -244,7 +244,7 @@ class Campaigns_Prayer_Fuel extends DT_Magic_Url_Base {
         $day = isset( $_GET['day'] ) ? sanitize_key( wp_unslash( $_GET['day'] ) ) : null;
         if ( empty( $day ) ){
             $frequency = isset( $campaign['prayer_fuel_frequency']['key'] ) ? $campaign['prayer_fuel_frequency']['key'] : 'daily';
-            $day = DT_Campaign_Fuel::what_day_in_campaign( DT_Campaign_Fuel::today_in_campaign_timezone(), null, $frequency );
+            $day = DT_Campaign_Fuel::what_day_in_campaign( DT_Campaign_Fuel::today_in_campaign_timezone( $campaign_id ), $campaign_id, $frequency );
         }
 
         $today = DT_Campaign_Prayer_Fuel_Post_Type::instance()->get_days_posts( $day );

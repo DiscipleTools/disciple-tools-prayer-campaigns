@@ -36,7 +36,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
 
         global $wpdb;
         $query = "
-            SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day, post_status, post_date
+            SELECT ID, post_title, CAST( pm.meta_value as unsigned ) as day, post_status, post_date, post_date_gmt
             FROM $wpdb->posts p
             JOIN $wpdb->postmeta pm ON ( p.ID = pm.post_id AND pm.meta_key = 'day' )
             JOIN $wpdb->postmeta pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'linked_campaign' AND pm2.meta_value = %d)
@@ -167,13 +167,11 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             case 'date':
                 //warning of day is after the campaign end
                 $campaign = DT_Campaign_Landing_Settings::get_campaign();
-                $campaign_end_time = $campaign['end_date']['timestamp'] ?? null;
+                $campaign_end_date = $campaign['end_date']['formatted'] ?? null;
 
-                $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
-                $fuel_time = strtotime( $date );
-                $date = DT_Campaign_Fuel::formatted_date_of_campaign_day( intval( $day ) );
-                echo esc_html( $date );
-                if ( $campaign_end_time && $fuel_time > $campaign_end_time ) {
+                $fuel_date = DT_Campaign_Fuel::datetime_of_campaign_day( intval( $day ), $campaign );
+                echo esc_html( $fuel_date->format( 'Y/m/d' ) );
+                if ( $campaign_end_date && $fuel_date->format( 'Y-m-d' ) > $campaign_end_date ) {
                     echo '<div class="prayer-fuel-warning">Warning: Day is after the campaign end</div>';
                 }
                 break;
@@ -191,6 +189,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
             case 'language':
                 $campaign = DT_Campaign_Landing_Settings::get_campaign();
                 $languages = DT_Campaign_Languages::get_enabled_languages( $campaign['ID'] );
+                $day_start_time = DT_Campaign_Fuel::datetime_of_campaign_day( intval( $day ), $campaign )->getTimestamp();
 
                 $translated_languages = [];
                 foreach ( $items as $post ) {
@@ -218,7 +217,6 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                         $link = "post.php?post=$id&action=edit";
                         $link .= '&campaign=' . $campaign['ID'];
                     }
-                    $date = DT_Campaign_Fuel::date_of_campaign_day( intval( $day ) );
                     ?>
 
                     <?php if ( count( $posts_in_language ) < 2 ): ?>
@@ -230,7 +228,7 @@ class DT_Campaign_Prayer_Fuel_Day_List extends WP_List_Table {
                         >
                             <?php if ( isset( $posts_in_language[0]['post_status'] ) && $posts_in_language[0]['post_status'] === 'draft' ): ?>
                                 <span class="prayer-fuel-draft-status" title="Draft Post">!</span>
-                            <?php elseif ( isset( $posts_in_language[0]['post_date'] ) && strtotime( $posts_in_language[0]['post_date'] ) > strtotime( $date ) ): ?>
+                            <?php elseif ( isset( $posts_in_language[0]['post_date_gmt'] ) && strtotime( $posts_in_language[0]['post_date_gmt'] . ' UTC' ) > $day_start_time ): ?>
                                 <span class="prayer-fuel-draft-status" title="Incorrect Publish Date" style="background-color: red">!</span>
                             <?php endif;?>
 

@@ -60,16 +60,11 @@ class DT_Campaign_Prayer_Post_Importer {
         $languages_manager = new DT_Campaign_Languages();
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
         $available_languages = $languages_manager->get_enabled_languages( $campaign['ID'] );
-        $post_scheduled_start_date = [];
-
         $start_posting_from_date = $this->start_posting_from_date();
+        $post_campaign_day = [];
         foreach ( $available_languages as $lang => $lang_details ) {
-            if ( $this->append_date ) {
-                $post_scheduled_start_date[$lang] = $this->append_date;
-            } else {
-                $post_scheduled_start_date[$lang] = $start_posting_from_date;
-            }
-            $post_scheduled_start_date[$lang] = $this->mysql_date( strtotime( $post_scheduled_start_date[$lang] ) );
+            $start_date = $this->append_date ? $this->append_date : $start_posting_from_date;
+            $post_campaign_day[$lang] = max( 1, (int) DT_Campaign_Fuel::what_day_in_campaign( $this->calendar_date( $start_date ), $campaign['ID'] ) );
         }
 
         foreach ( $new_posts as $i => $post ) {
@@ -78,13 +73,11 @@ class DT_Campaign_Prayer_Post_Importer {
                 continue;
             }
 
-            $post_start_date = $post_scheduled_start_date[$post_lang];
-
             $post['post_date'] = $this->mysql_date( time() );
             $post['post_date_gmt'] = $this->mysql_date( time() );
             $post['post_status'] = 'publish';
 
-            $campaign_day = DT_Campaign_Fuel::what_day_in_campaign( $post_start_date, $campaign['ID'] );
+            $campaign_day = $post_campaign_day[$post_lang];
 
             $post['postmeta'] = [
                 [
@@ -107,7 +100,7 @@ class DT_Campaign_Prayer_Post_Importer {
 
             $new_posts[$i] = $post;
 
-            $post_scheduled_start_date[$post_lang] = $this->mysql_date( $this->next_day_timestamp( $post_scheduled_start_date[$post_lang] ) );
+            $post_campaign_day[$post_lang]++;
         }
 
         $this->append_date = null;
@@ -160,38 +153,58 @@ class DT_Campaign_Prayer_Post_Importer {
     }
 
     /**
-     * Return the date of the latest prayer fuel post that was imported in mysql format
+     * Return the date (Y-m-d, in the campaign's timezone) of the latest prayer fuel post
      *
      * @param string $lang
      *
-     * @return string
+     * @return string|null
      */
     public function find_latest_prayer_fuel_date( $lang = null ) {
         $latest_prayer_fuel_day = $this->find_latest_prayer_fuel_data( $lang );
         if ( $latest_prayer_fuel_day === null ) {
             return null;
         }
-        $latest_prayer_fuel_date = DT_Campaign_Fuel::date_of_campaign_day( $latest_prayer_fuel_day );
 
-        return $latest_prayer_fuel_date;
+        return DT_Campaign_Fuel::formatted_date_of_campaign_day( $latest_prayer_fuel_day, 'Y-m-d' );
     }
 
+    /**
+     * Return the date (Y-m-d, in the campaign's timezone) that newly imported prayer fuel should start from:
+     * the day after the latest prayer fuel, but no earlier than today or the start of the campaign.
+     *
+     * @param string $lang
+     *
+     * @return string
+     */
     public function start_posting_from_date( $lang = null ) {
-        $latest_prayer_fuel_date = $this->find_latest_prayer_fuel_date( $lang );
-
-        $today_timestamp = time();
         $campaign = DT_Campaign_Landing_Settings::get_campaign();
-        $campaign_start = $campaign['start_date']['timestamp'];
+        $today = DT_Campaign_Fuel::today_in_campaign_timezone( $campaign );
+        $campaign_start = $campaign['start_date']['formatted'] ?? $today;
 
-        $start_posting_from = max( $campaign_start, $today_timestamp );
+        $start_posting_from = max( $campaign_start, $today );
 
-        $latest_prayer_fuel_timestamp = $latest_prayer_fuel_date !== null ? strtotime( $latest_prayer_fuel_date ) : null;
-
-        if ( !$latest_prayer_fuel_timestamp || $latest_prayer_fuel_timestamp < $start_posting_from ) {
-            return $this->mysql_date( $start_posting_from );
-        } else {
-            return $this->mysql_date( $this->next_day_timestamp( $latest_prayer_fuel_date ) );
+        $latest_prayer_fuel_day = $this->find_latest_prayer_fuel_data( $lang );
+        if ( $latest_prayer_fuel_day !== null ) {
+            $start_posting_from = max( $start_posting_from, $this->first_date_of_campaign_day( $latest_prayer_fuel_day + 1, $campaign ) );
         }
+
+        return $start_posting_from;
+    }
+
+    /**
+     * Return the first date (Y-m-d) that DT_Campaign_Fuel::what_day_in_campaign() maps to the given day
+     *
+     * @param int $day
+     * @param array $campaign
+     *
+     * @return string
+     */
+    private function first_date_of_campaign_day( int $day, array $campaign ) {
+        $frequency = $campaign['prayer_fuel_frequency']['key'] ?? 'daily';
+        $interval_days = [ 'weekly' => 7, 'monthly' => 30 ][ $frequency ] ?? 1;
+
+        $date = new DateTimeImmutable( $campaign['start_date']['formatted'], new DateTimeZone( 'UTC' ) );
+        return $date->modify( '+' . ( ( max( 1, $day ) - 1 ) * $interval_days ) . ' days' )->format( 'Y-m-d' );
     }
 
     /**
@@ -287,6 +300,18 @@ class DT_Campaign_Prayer_Post_Importer {
      */
     public function mysql_date( int $timestamp ) {
         return gmdate( 'Y-m-d H:i:s', $timestamp );
+    }
+
+    /**
+     * Normalise a date string to a Y-m-d calendar date without shifting it between timezones
+     *
+     * @param string $date
+     *
+     * @return string
+     */
+    private function calendar_date( string $date ) {
+        $parsed = date_create( $date, new DateTimeZone( 'UTC' ) );
+        return $parsed ? $parsed->format( 'Y-m-d' ) : $date;
     }
 
     /**
