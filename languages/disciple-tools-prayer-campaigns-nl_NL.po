@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: P4M Prayer Campaigns\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-"
 "prayer-campaigns\n"
-"POT-Creation-Date: 2026-05-04T09:18:45+00:00\n"
+"POT-Creation-Date: 2026-10-29T11:50:58+00:00\n"
 "PO-Revision-Date: 2026-01-21 13:31+0000\n"
 "Last-Translator: Corsacca <translator@disciple.tools>\n"
 "Language-Team: Dutch <https://translate.disciple.tools/projects/"
@@ -281,13 +281,13 @@ msgid "day"
 msgstr "dag"
 
 #: campaign-functions/time-utilities.php:201 parts/components-enqueue.php:43
-#: porches/ramadan/site/home-body.php:217
-#: porches/ramadan/site/home-body.php:219
+#: porches/ramadan/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:232
 msgid "days"
 msgstr "dagen"
 
-#: campaign-functions/utils.php:352
-#: porches/generic/site/edit-post-list-body.php:135
+#: campaign-functions/utils.php:381
+#: porches/generic/site/edit-post-list-body.php:136
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -337,7 +337,7 @@ msgstr "Bid mee met mij!"
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:169
+#: porches/generic/site/post-list-body.php:170
 #, php-format
 msgid "Content will start in %s days"
 msgstr "Inhoud begint over %s dagen"
@@ -525,7 +525,7 @@ msgstr "Verifiëren"
 msgid "Goal: %s hours of prayer every day"
 msgstr "Doel: %s uur gebed per dag"
 
-#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:262
+#: parts/components-enqueue.php:72 porches/ramadan/site/home-body.php:275
 msgid "Goal: 24/7 coverage"
 msgstr "Doel: 24/7 dekking"
 
@@ -1015,15 +1015,15 @@ msgstr "Breed is het pad dat naar de 404 leidt."
 #: porches/generic/site/404-body.php:17
 msgid "Try using some of the links in the menu to get back on track."
 msgstr ""
-"Probeer enkele links in het menu te gebruiken om weer op weg te komen."
-"Probeer enkele van de links in het menu te gebruiken om weer op het goede "
-"spoor te komen."
+"Probeer enkele links in het menu te gebruiken om weer op weg te "
+"komen.Probeer enkele van de links in het menu te gebruiken om weer op het "
+"goede spoor te komen."
 
 #: porches/generic/site/contact-us.php:93
 msgid "Message"
 msgstr "Bericht"
 
-#: porches/generic/site/edit-post-list-body.php:113
+#: porches/generic/site/edit-post-list-body.php:114
 #, php-format
 msgid "Day %s"
 msgstr "Dag %s"
@@ -1034,35 +1034,36 @@ msgstr "Dag %s"
 msgid "Contact %s"
 msgstr "Contact %s"
 
-#: porches/generic/site/home-body.php:99 porches/generic/site/home-body.php:137
+#: porches/generic/site/home-body.php:113
+#: porches/generic/site/home-body.php:151
 #: porches/generic/site/top-section.php:130
-#: porches/ramadan/site/home-body.php:301
+#: porches/ramadan/site/home-body.php:314
 msgid "Sign Up to Pray"
 msgstr "Meld je aan om te bidden"
 
-#: porches/generic/site/home-body.php:166 porches/generic/site/stats.php:153
+#: porches/generic/site/home-body.php:180 porches/generic/site/stats.php:153
 msgid "Time Committed"
 msgstr "Toegewijde tijd"
 
-#: porches/generic/site/home-body.php:182
-#: porches/ramadan/site/home-body.php:278
+#: porches/generic/site/home-body.php:196
+#: porches/ramadan/site/home-body.php:291
 msgid "Prayer Warriors"
 msgstr "Gebedsstrijders"
 
-#: porches/generic/site/home-body.php:196 porches/generic/site/stats.php:129
+#: porches/generic/site/home-body.php:210 porches/generic/site/stats.php:129
 msgid "Prayer Commitments Needed"
 msgstr "Gebedstoezeggingen nodig"
 
-#: porches/generic/site/home-body.php:216
-#: porches/ramadan/site/home-body.php:326
+#: porches/generic/site/home-body.php:230
+#: porches/ramadan/site/home-body.php:339
 msgid "View All"
 msgstr "Bekijk alle"
 
-#: porches/generic/site/post-list-body.php:156
+#: porches/generic/site/post-list-body.php:157
 msgid "Read"
 msgstr "Lees"
 
-#: porches/generic/site/post-list-body.php:171
+#: porches/generic/site/post-list-body.php:172
 msgid "No prayer fuel found"
 msgstr "Geen gebedsbrandstof gevonden"
 
@@ -1158,8 +1159,8 @@ msgstr "Meer gebedsmogelijkheden"
 
 #: porches/generic/site/stats.php:384
 msgid ""
-"Sign up to hear about other prayer efforts and opportunities with Prayer."
-"Tools and receive occasional communication from GospelAmbition.org."
+"Sign up to hear about other prayer efforts and opportunities with "
+"Prayer.Tools and receive occasional communication from GospelAmbition.org."
 msgstr ""
 "Meld je aan om te horen over andere gebedsinspanningen en mogelijkheden met "
 "Prayer.Tools en ontvang af en toe communicatie van GospelAmbition.org."
@@ -1219,53 +1220,53 @@ msgstr ""
 "tiende van de lengte van de Bijbel). Dit oprechte zoeken maakt het voor ons "
 "een strategisch moment om voor hen te bidden."
 
-#: porches/ramadan/site/home-body.php:99
+#: porches/ramadan/site/home-body.php:112
 msgid "How It Works"
 msgstr "Hoe het werkt"
 
-#: porches/ramadan/site/home-body.php:109
+#: porches/ramadan/site/home-body.php:122
 msgid "Sign up to pray"
 msgstr "Meld je aan om te bidden"
 
-#: porches/ramadan/site/home-body.php:121
+#: porches/ramadan/site/home-body.php:134
 msgid "Receive email reminders"
 msgstr "Ontvang e-mailherinneringen"
 
-#: porches/ramadan/site/home-body.php:133
+#: porches/ramadan/site/home-body.php:146
 msgid "Spend 15 minutes with guided prayers"
 msgstr "Besteed 15 minuten aan begeleide gebeden"
 
-#: porches/ramadan/site/home-body.php:145
+#: porches/ramadan/site/home-body.php:158
 msgid "Encounter God as you pray for the nations"
 msgstr "Ontmoet God terwijl je bidt voor de naties"
 
-#: porches/ramadan/site/home-body.php:159
+#: porches/ramadan/site/home-body.php:172
 msgid "About Ramadan"
 msgstr "Over Ramadan"
 
-#: porches/ramadan/site/home-body.php:206
+#: porches/ramadan/site/home-body.php:219
 msgid "Campaign Complete"
 msgstr "Campagne voltooid"
 
-#: porches/ramadan/site/home-body.php:208
+#: porches/ramadan/site/home-body.php:221
 msgid "Days Remaining"
 msgstr "Resterende dagen"
 
-#: porches/ramadan/site/home-body.php:210
+#: porches/ramadan/site/home-body.php:223
 msgid "Ramadan Begins In"
 msgstr "Ramadan begint over"
 
-#: porches/ramadan/site/home-body.php:246
+#: porches/ramadan/site/home-body.php:259
 msgid "Prayer Coverage"
 msgstr "Gebedsdekking"
 
 #. translators: %d is the number of hours per day
-#: porches/ramadan/site/home-body.php:260
+#: porches/ramadan/site/home-body.php:273
 #, php-format
 msgid "Goal: %d hours/day coverage"
 msgstr "Doel: %d uur/dag dekking"
 
-#: porches/ramadan/site/home-body.php:283
+#: porches/ramadan/site/home-body.php:296
 msgid "committed"
 msgid_plural "committed"
 msgstr[0] "toegezegd"
