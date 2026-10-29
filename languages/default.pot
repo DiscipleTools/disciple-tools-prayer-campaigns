@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Disciple.Tools - Prayer Campaigns plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.20.0\n"
+"Project-Id-Version: Disciple.Tools - Prayer Campaigns 4.20.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/disciple-tools-prayer-campaigns\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-08T20:44:28+00:00\n"
+"POT-Creation-Date: 2026-10-29T11:50:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: disciple-tools-prayer-campaigns\n"
@@ -244,7 +244,7 @@ msgid "days"
 msgstr ""
 
 #: campaign-functions/utils.php:381
-#: porches/generic/site/edit-post-list-body.php:135
+#: porches/generic/site/edit-post-list-body.php:136
 msgid "Edit"
 msgstr ""
 
@@ -295,7 +295,7 @@ msgstr ""
 
 #: magic-links/prayer-fuel/magic-prayer-fuel.php:277
 #: porches/generic/site/archive-body.php:35
-#: porches/generic/site/post-list-body.php:169
+#: porches/generic/site/post-list-body.php:170
 #, php-format
 msgid "Content will start in %s days"
 msgstr ""
@@ -934,7 +934,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: porches/generic/site/edit-post-list-body.php:113
+#: porches/generic/site/edit-post-list-body.php:114
 #, php-format
 msgid "Day %s"
 msgstr ""
@@ -972,11 +972,11 @@ msgstr ""
 msgid "View All"
 msgstr ""
 
-#: porches/generic/site/post-list-body.php:156
+#: porches/generic/site/post-list-body.php:157
 msgid "Read"
 msgstr ""
 
-#: porches/generic/site/post-list-body.php:171
+#: porches/generic/site/post-list-body.php:172
 msgid "No prayer fuel found"
 msgstr ""
 
