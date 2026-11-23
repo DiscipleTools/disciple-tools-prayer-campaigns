@@ -280,7 +280,7 @@ class DT_Subscriptions_Base {
             $fields['lang'] = [
                 'name' => __( 'Language', 'disciple-tools-prayer-campaigns' ),
                 'type' => 'text',
-                'hidden' => true
+                'hidden' => false
             ];
             $fields['receive_prayer_time_notifications'] = [
                 'name' => __( 'Receive prayer time notifications', 'disciple-tools-prayer-campaigns' ),
