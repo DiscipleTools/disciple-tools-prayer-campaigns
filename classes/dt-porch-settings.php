@@ -12,7 +12,7 @@ class DT_Porch_Settings {
      * @param string $tab The name of the tab that we want the settings for
      * @param string $section The name of the section we want the settings for
      */
-    public static function settings( string $tab = null, string $section = null, $use_cache = true, $campaign_id = null ): array {
+    public static function settings( ?string $tab = null, ?string $section = null, $use_cache = true, $campaign_id = null ): array {
 
         $current_campaign = DT_Campaign_Landing_Settings::get_campaign( $campaign_id );
         if ( empty( $current_campaign ) ) {
