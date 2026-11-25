@@ -46,7 +46,7 @@ class DT_Subscriptions {
         ];
 
         // create post
-        $new_subscriber = DT_Posts::create_post( 'subscriptions', $fields, true );
+        $new_subscriber = DT_Posts::create_post( 'subscriptions', $fields, true, false );
         if ( is_wp_error( $new_subscriber ) ) {
             return $new_subscriber;
         }
